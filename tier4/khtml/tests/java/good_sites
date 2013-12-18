@@ -1,0 +1,44 @@
+http Sites
+---------------------------------------------------------
+http://ellerbruch.nmu.edu/classes/cs255f01/cs255students/kvanderb/p8/Rush/rushHour_jar.html
+www.soda.co.uk
+java.sun.com
+www.teledyn.com/fun/SaubleBeach (redraw problems, also in netscape)
+www.fxapplets.com
+games.yahoo.com/games/klondike.html (security exception)
+www.webtrac.co.za/cgi-bin/demo/demo.pl (classloader problem)
+www.sodaplay.com/constructor/player.htm
+www.sodaplay.com
+www.dseffects.com/applets.html
+www.controlzed.com
+www.chess.net/play/java [neeeds login]
+www.kmelektronik.de/root/index.html
+rdufour.mytradecenter.com/applets/Tetris/Tetris.html
+http://www.shiatsu-austria.at
+
+currently unavailable:
+----------------------
+screening.nasdaq.com/screening/NASDAQSearch.asp
+
+unavailable:
+------------
+www.indegocomputer.de
+http://aktien.onvista.de/risk-return-map/
+http://java.sun.com/products/plugin/1.3.1_01a/demos/applets.html
+www.javaboutique.com
+www.quote.com/quotecom/livecharts/
+
+https Sites
+---------------------------------------------------------
+https://brokerage-m3.consors.de/ConSors/ 
+https://homebanking.dvg-ka.de/045/index.html
+https://spk-ihb.izb-hb.de/SPK_Deggendorf/index.html
+https://www3.genodirekt.de/homebank.nsf/(rzbks)/xxq1050x?OpenDocument
+https://banking.sonline.de/kreissparkasse-duesseldorf/
+
+Security Test Sites
+---------------------------------------------------------
+http://java.sun.com/sfaq/#examples
+http://www.heise.de/ct/browsercheck/java.shtml
+http://www.heise.de/ct/browsercheck/n4demo1.shtml
+

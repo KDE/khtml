@@ -1,0 +1,4 @@
+#!/bin/sh
+bison -v -d -p khtmlxpathyy parser.y
+mv parser.tab.c parser.cpp
+mv parser.tab.h parser.h

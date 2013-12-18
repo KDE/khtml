@@ -1,0 +1,83 @@
+<ui version="4.0" >
+ <author>George Staikos &lt;staikos@kde.org></author>
+ <class>KGWizardPage2</class>
+ <widget class="QWidget" name="KGWizardPage2" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>492</width>
+    <height>156</height>
+   </rect>
+  </property>
+  <layout class="QGridLayout" >
+   <property name="leftMargin" >
+    <number>11</number>
+   </property>
+   <property name="topMargin" >
+    <number>11</number>
+   </property>
+   <property name="rightMargin" >
+    <number>11</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>11</number>
+   </property>
+   <property name="horizontalSpacing" >
+    <number>6</number>
+   </property>
+   <property name="verticalSpacing" >
+    <number>6</number>
+   </property>
+   <item row="0" column="0" colspan="2" >
+    <widget class="QLabel" name="TextLabel4" >
+     <property name="text" >
+      <string>You must now provide a password for the certificate request. Please choose a very secure password as this will be used to encrypt your private key.</string>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+     <property name="wordWrap" >
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" >
+    <widget class="QLabel" name="TextLabel6" >
+     <property name="text" >
+      <string>&amp;Repeat password:</string>
+     </property>
+     <property name="buddy" >
+      <cstring>_password2</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" >
+    <widget class="QLabel" name="TextLabel5" >
+     <property name="text" >
+      <string>&amp;Choose password:</string>
+     </property>
+     <property name="buddy" >
+      <cstring>_password1</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1" >
+    <widget class="KLineEdit" name="_password1" >
+     <property name="echoMode" >
+      <enum>QLineEdit::Password</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1" >
+    <widget class="KLineEdit" name="_password2" >
+     <property name="echoMode" >
+      <enum>QLineEdit::Password</enum>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

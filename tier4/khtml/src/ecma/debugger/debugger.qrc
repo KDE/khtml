@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/" >
+        <file>images/continue.png</file>
+        <file>images/step-into.png</file>
+        <file>images/step-out.png</file>
+        <file>images/step-over.png</file>
+        <file>images/stop.png</file>
+        <file>images/class.png</file>
+        <file>images/property.png</file>
+        <file>images/method.png</file>
+        <file>images/addtab.png</file>
+        <file>images/removetab.png</file>
+    </qresource>
+</RCC>

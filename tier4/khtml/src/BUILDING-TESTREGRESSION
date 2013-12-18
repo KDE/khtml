@@ -1,0 +1,32 @@
+In order to be able to use testregression, you have to build your Qt and kdelibs in a special manner.
+Here are the needed steps.
+
+1. Set your QTDIR to point to the Qt source tree
+2. Configure Qt as:
+configure -prefix $PWD -no-reduce-exports -qt-gif -no-exceptions -debug -fast -qdbus -nomake examples -nomake demos
+The first 2 parameters are what's needed for testregression, the rest are standard. If you already have Qt configured,
+make sure to do "make confclean" first.
+3. Build & Install Qt
+4. Configure kdelibs:
+cmake /path/to/kdelibs-src/ -DCMAKE_INSTALL_PREFIX=$KDEDIR -DCMAKE_BUILD_TYPE=debug  -DKHTML_BUILD_TESTREGRESSION=true
+Obviously, you may use whatever prefix and other flags you want, but you must pass
+-DKHTML_BUILD_TESTREGRESSION=true and must use a debug or debugfull build type.
+
+Unfortunately, other KDE modules don't like visibility-less kdelibs and Qt much, so you may also want to apply this:
+--- cmake/modules/FindKDE4Internal.cmake        (revision 738780)
++++ cmake/modules/FindKDE4Internal.cmake        (working copy)
+@@ -884,6 +884,8 @@
+       exec_program(${CMAKE_C_COMPILER} ARGS -v OUTPUT_VARIABLE _gcc_alloc_info)
+       string(REGEX MATCH "(--enable-libstdcxx-allocator=mt)" _GCC_COMPILED_WITH_BAD_ALLOCATOR "${_gcc_alloc_info}")
+    endif (GCC_IS_NEWER_THAN_4_1)
++
++   set (__KDE_HAVE_GCC_VISIBILITY 0)
+
+    if (__KDE_HAVE_GCC_VISIBILITY AND GCC_IS_NEWER_THAN_4_1 AND NOT _GCC_COMPILED_WITH_BAD_ALLOCATOR)
+       set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden")
+
+
+5. Build & Install kdelibs
+6. You can now use testregression from kdelibs build dirs bin/ directory. Pass it the path to the regression/ directory in khtmltests.
+Don't forget to make install after changing KHTML or KJS!
+

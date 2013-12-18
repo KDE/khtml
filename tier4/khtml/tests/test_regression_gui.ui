@@ -1,0 +1,295 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>875</width>
+    <height>825</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>KHTML Regression Testing Utility</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QHBoxLayout" >
+    <property name="margin" >
+     <number>9</number>
+    </property>
+    <property name="spacing" >
+     <number>6</number>
+    </property>
+    <item>
+     <widget class="QTreeWidget" name="treeWidget" >
+      <property name="sizePolicy" >
+       <sizepolicy>
+        <hsizetype>0</hsizetype>
+        <vsizetype>7</vsizetype>
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize" >
+       <size>
+        <width>350</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="contextMenuPolicy" >
+       <enum>Qt::CustomContextMenu</enum>
+      </property>
+      <property name="columnCount" >
+       <number>1</number>
+      </property>
+      <column>
+       <property name="text" >
+        <string>0</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTabWidget" name="tabWidget" >
+      <widget class="QWidget" name="firstTab" >
+       <attribute name="title" >
+        <string>Regression testing output</string>
+       </attribute>
+       <layout class="QHBoxLayout" >
+        <property name="margin" >
+         <number>9</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item>
+         <layout class="QVBoxLayout" >
+          <property name="margin" >
+           <number>0</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>111</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pauseContinueButton" >
+              <property name="sizePolicy" >
+               <sizepolicy>
+                <hsizetype>0</hsizetype>
+                <vsizetype>0</vsizetype>
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="maximumSize" >
+               <size>
+                <width>16777215</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="toolTip" >
+               <string>Pause/Continue regression testing process</string>
+              </property>
+              <property name="whatsThis" >
+               <string>Pause/Continue regression testing process</string>
+              </property>
+              <property name="layoutDirection" >
+               <enum>Qt::LeftToRight</enum>
+              </property>
+              <property name="text" >
+               <string>Pause</string>
+              </property>
+              <property name="flat" >
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="saveLogButton" >
+              <property name="sizePolicy" >
+               <sizepolicy>
+                <hsizetype>0</hsizetype>
+                <vsizetype>0</vsizetype>
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="maximumSize" >
+               <size>
+                <width>16777215</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="toolTip" >
+               <string>You may select a file where the log content is stored, before the regression testing is started.</string>
+              </property>
+              <property name="whatsThis" >
+               <string>You may select a file where the log content is stored, before the regression testing is started.</string>
+              </property>
+              <property name="text" >
+               <string>Output to File...</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTextEdit" name="textEdit" />
+          </item>
+          <item>
+           <widget class="QLabel" name="statusLabel" >
+            <property name="text" >
+             <string>Regression Testing Status</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QProgressBar" name="progressBar" >
+            <property name="value" >
+             <number>24</number>
+            </property>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="secondTab" >
+       <attribute name="title" >
+        <string>View HTML Output</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>875</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuSettings" >
+    <property name="tearOffEnabled" >
+     <bool>false</bool>
+    </property>
+    <property name="title" >
+     <string>Settings</string>
+    </property>
+    <addaction name="actionOnly_run_JS_tests" />
+    <addaction name="actionOnly_run_HTML_tests" />
+    <addaction name="actionDo_not_suppress_debug_output" />
+    <addaction name="actionDo_not_use_Xvfb" />
+   </widget>
+   <widget class="QMenu" name="menuMain" >
+    <property name="title" >
+     <string>Tests</string>
+    </property>
+    <addaction name="actionSpecify_tests_directory" />
+    <addaction name="actionSpecify_khtml_directory" />
+    <addaction name="actionSpecify_output_directory" />
+    <addaction name="separator" />
+    <addaction name="actionRun_tests" />
+   </widget>
+   <addaction name="menuMain" />
+   <addaction name="menuSettings" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>804</y>
+     <width>875</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <action name="actionOnly_run_JS_tests" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Only Run JS Tests</string>
+   </property>
+  </action>
+  <action name="actionOnly_run_HTML_tests" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Only Run HTML Tests</string>
+   </property>
+  </action>
+  <action name="actionDo_not_suppress_debug_output" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Do Not Suppress Debug Output</string>
+   </property>
+  </action>
+  <action name="actionDo_not_use_Xvfb" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Do not use Xvfb</string>
+   </property>
+  </action>
+  <action name="actionRun_tests" >
+   <property name="text" >
+    <string>Run Tests...</string>
+   </property>
+  </action>
+  <action name="actionRun_single_test" >
+   <property name="text" >
+    <string>Run Single Test...</string>
+   </property>
+  </action>
+  <action name="actionSpecify_tests_directory" >
+   <property name="text" >
+    <string>Specify tests Directory...</string>
+   </property>
+  </action>
+  <action name="actionSpecify_khtml_directory" >
+   <property name="text" >
+    <string>Specify khtml Directory...</string>
+   </property>
+  </action>
+  <action name="actionSpecify_output_directory" >
+   <property name="text" >
+    <string>Specify Output Directory...</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="test_regression_gui.qrc" />
+ </resources>
+ <connections/>
+</ui>

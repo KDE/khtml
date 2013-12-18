@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<project name="KJAS" basedir="." default="all">
+
+  <property file="build.properties"/>
+
+  <target name="init">
+    <mkdir dir="${build}" />
+  </target>
+
+  <target name="compile" depends="init">
+    <javac srcdir="${src}" destdir="${build}" includes="${includes}" excludes="${excludes}" deprecation="true" debug="${debug}" debuglevel="${debuglevel}" source="1.3" target="1.2"/>
+  </target>
+
+  <target name="images" depends="init">
+    <mkdir dir="${build}/images"/>
+    <copy todir="${build}/images">
+      <fileset dir="${images}">
+        <include name="*gif"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="jar" depends="init,images,compile">
+    <jar jarfile="${jar}.jar" compress="false" basedir="${build}" />
+  </target>
+
+  <target name="all" depends="jar" description="Build everything.">
+    <echo message="Application built." />
+  </target>
+
+  <target name="clean" depends="init" description="Clean all build products.">
+    <delete file="${jar}.jar" />
+    <delete dir="${build}" />
+  </target>
+
+  <target name="test-init" depends="">
+    <mkdir dir="tests/classes" />
+  </target>
+
+  <target name="test" depends="test-init" description="Build the test applets">
+    <javac srcdir="tests" destdir="tests/classes" debug="true" deprecation="true" source="1.3" target="1.2"/>
+  </target>
+
+  <target name="test-clean" depends="">
+    <delete dir="tests/classes" />
+  </target>
+
+</project>

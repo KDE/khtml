@@ -1,0 +1,6 @@
+#regular chars are needed in khtml
+EXCLUDE doublequote_chars
+#SadEagle recommends excluding these checkers because khtml uses pimpl-patterned classes
+EXCLUDE dpointer,explicit
+
+SKIP test_regression.*\|testkhtml.cpp\|testemca.cpp

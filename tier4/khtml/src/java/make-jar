@@ -1,0 +1,12 @@
+#!/bin/sh
+# very simple shell script to compile the java
+# sources and generate the jar file
+set -e           # exit on error
+set -x           # be verbose 
+rm -rf java-build-dir/*
+mkdir -p java-build-dir/images
+cp images/*.gif images/*.png java-build-dir/images/
+pwd=`pwd`;
+javac -d java-build-dir -deprecation -source 1.2 -target 1.2 `find org/kde netscape -name '*.java'` \
+ && cd java-build-dir && jar c0vf $pwd/kjava.jar images `find org/kde netscape -name *.class`
+

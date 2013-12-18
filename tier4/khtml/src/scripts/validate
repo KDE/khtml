@@ -1,0 +1,176 @@
+#!/usr/bin/perl
+#
+# Copyright (C) 2009 Germain Garand <germain@ebooksfrance.org>
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Library General Public
+# License as published by the Free Software Foundation; either
+# version 2 of the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Library General Public License for more details.
+#
+# You should have received a copy of the GNU Library General Public License
+# along with this library; see the file COPYING.LIB.  If not, write to
+# the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+# Boston, MA 02110-1301, USA.
+
+# v.0.31
+
+use strict;
+
+my %o;
+my $f;
+my @svn;
+my $svn;
+my $gen = "-g";
+my %files;
+my $numch = 0;
+my %output = 0;
+
+use Getopt::Std;
+getopts('xdrpsvVie:E:X', \%o) or die;
+
+$ARGV[0] or die "validate [-drp] [-sv] links.html
+\tissue testregression file list (for testregression -g), and generated file list (for svn commit line).
+\t
+\tOptions:
+\t -d, r, p: only testcases containing any change among this combination of [DRP] changes are validated.
+\t\te.g. r -> [R] or [RP]
+\t -i: make specified changes a requirement : all changes among the combination must be present.
+\t\te.g. r -> [R], rp -> [RP] or [DRP]
+\t -x: make specified changes an exclusive requirement : all changes among the combination must be present, and no more.
+\t\te.g. rp -> [RP]
+\t
+\t -e <pcre>: only testcases which name matches (case insensitively) the provided regular expression are validated.
+\t -E <pcre>: exclude testcases which name matches (case insensitively) the provided regular expression.
+\t
+\tIf none of -d,-r,-p is specified, all changes are validated.
+\t
+\t -s: output corresponding baseline filelist for svn commit purpose (instead of the defaut testregression -g line)
+\t -V: together with -s, removes all files in filelist that do not really exist in the baseline (e.g. svnignore'd)
+\t
+\t -v: pretty print all selected changes on stderr and exit
+\t -X: output filtered links.html content on stdout (i.e. any test matched is removed from the output) and exit
+\t
+\tExample:
+\t  validate -dr -i -s output/links.html
+\t\t will list all file changes that would result from the regeneration of baseline 
+\t\tfor testcases containing at least [DR] changes.
+\t
+\t  validate -rp -v output/links.html
+\t\t pretty print all [R] or [RP] changes.
+\t
+\t  validate -rp -X output/links.html > output/links.2.html
+\t\t output is the same as input, with all matched testcases removed (here [R] or [RP] changes) 
+\t
+\tSuggested usage:
+\t 1) testregression -g -o dummy `validate -dr output/links.html` . 
+\t\t regenerates all [DR] testcases output by validate
+\t
+\t 2) svn commit `validate -dr -sV output/links.html`
+\t\t commit all files generated at the previous step that exist and are referenced by svn (needs 'svn' command in path)
+\t
+\t 3) mv output/links.html output/links.html.bak && validate -dr -X output/links.html.bak output/links.html
+\t\t  removes all checked out testcases from links.html
+";
+
+format STDERR_TOP = 
+ Testcase                                                                       Change
+---------------------------------------------------------------------------------------
+.
+
+format STDERR =
+@<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<[@||||]
+$f,  $files{$f}
+.
+
+
+open(F, $ARGV[0]) or die $!;
+
+if (not exists $o{'d'} and not exists $o{'r'} and not exists $o{'p'}) {
+    # default: validate all changes
+    $o{'d'} = $o{'r'} = $o{'p'} = '';
+}
+
+while (my $l=<F>) {
+
+   # retrieve test name, nature of change.
+   $l =~ /href="(.*?)-compare.html"/ or next;
+   my $tn = $1;
+   next if ($tn =~ /^tests\//);   #####
+   $l =~ /<\/a>\s*\[(.*?)\]/;
+   my $tc = $1;   
+
+   $output { $tn } = $l if exists $o{'X'};
+
+   next if $tc =~ /^\s*$/;
+
+   if (exists $o{'x'} and
+       ($tc =~ /D/ && not exists $o{'d'} and
+        $tc =~ /R/ && not exists $o{'r'} and
+        $tc =~ /P/ && not exists $o{'p'})) {
+      next;
+   } elsif (!exists $o{'i'} and
+       ($tc =~ /D/ && not exists $o{'d'} or
+        $tc =~ /R/ && not exists $o{'r'} or
+        $tc =~ /P/ && not exists $o{'p'})) {
+      next;
+   } elsif
+       ($tc !~ /D/ && exists $o{'d'} or
+        $tc !~ /R/ && exists $o{'r'} or
+        $tc !~ /P/ && exists $o{'p'}) {
+      next;
+   }
+   
+   next if exists $o{'e'} and $tn !~ m%$o{'e'}%io;
+   
+   next if exists $o{'E'} and $tn =~ m%$o{'E'}%io;
+
+   # store in a hash
+   $files { $tn  } = $tc;
+      
+   delete $output { $tn } if exists $o{'X'};
+}
+
+$numch = +(keys %files);
+if (exists $o{'v'}) {
+    print STDERR "Number of test changed: $numch\n\n";
+    for $f(sort keys %files) {
+        write STDERR;
+    }
+    exit();
+}
+
+if (exists $o{'X'}) {
+    for $f(sort keys %output) {
+        print $output{ $f };
+    }
+    exit();                  
+}
+
+die "no ./baseline directory in pwd" if exists $o{'V'} and !-d "baseline";
+
+# generation command
+for my $f(sort keys %files) {
+  $f =~ s/\.html-\d+$/.html/;
+  $gen .= " -t $f";
+}
+
+# svn commit line
+for my $f(sort keys %files) {
+  my $s = "baseline/$f";
+  my ($d, $r, $p);
+  $files{$f} =~ /D/ and  exists $o{'d'} and push @svn, $s . '-dom';
+  $files{$f} =~ /R/ and  exists $o{'r'} and push @svn, $s . '-render';
+  $files{$f} =~ /P/ and  exists $o{'p'} and push @svn, $s . '-dump.png';
+}
+
+if (exists $o{'s'}) {
+    map { (!exists $o{'V'} or (-e $_ and `svn status $_`!~/^\?/)) and $svn .= " $_" } @svn;
+    print $svn;
+} else {
+    print $gen;
+}

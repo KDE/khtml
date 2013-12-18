@@ -1,0 +1,29 @@
+KMultiPart implements "server push" for KHTML/Konqueror:
+it handles the multipart/mixed and multipart/x-mixed-replace
+mimetype, embedding the appropriate component (part).
+
+Documentation used to be at http://www.netscape.com/assist/net_sites/pushpull.html
+ but that site is gone nowadays.
+
+Found more docs at:
+ http://www.kiv.zcu.cz/~ledvina/vyuka/books/HTMLnya/ch38.htm
+ http://docstore.mik.ua/orelly/web/html/ch14_03.html
+
+Typical real-world uses: webchats, webcams...
+
+Testcases:
+  http://217.173.193.218/axis-cgi/mjpg/video.cgi?resolution=704x576,
+  http://wtb.cc:5050
+  http://palantir.santinoli.com:14334/
+  http://moosworld.dyndns.org:4033/nphMotionJpeg?Resolution=320x240&Quality=Standard&NUMBER=1&time=1239198646918
+  http://www.airport-nuernberg.de/_/tools/webcam.html?_FRAME=64&refresh=2&datei=webcam-0-0.jpg&bildpaket=1&oldcam=oldcam&pid=12541   (bug 123614)
+  http://www.geodata.co.uk/sbc/    (bug 120220)
+  http://www.fastpath.it/products/palantir/demo.html  (bug 115286)
+  http://cpansearch.perl.org/src/LDS/CGI.pm-3.43/examples/index.html [does not work anymore]
+  r257583 mentionned expedia.ca for the gzip encoding, need to add pmax for details
+
+TODO:
+* Use the new streaming API of KParts to pipe data into the part,
+the current code does that for KHTML only.
+* Change KHTML so that it embeds KMultiPart for images which send multipart/x-mixed-replace
+data.

@@ -1,0 +1,74 @@
+CSS describes two ways of layouting tables. Auto layout (the NS4
+compliant HTML table layout) and fixed layout. The fixed layout
+strategy is described in detail in the CSS specs and will not be
+repeated here.
+
+Due to the fact that two layout strategies exist, it is rather natural
+to encapsulate the layouting process in a TableLayout class. Two types
+(FixedTableLayout and AutoTableLayout) exist. AutoTableLayout is the
+default and also need a quirks flags for NS compatibility
+mode. FixedTableLayout will be used if a style rule sets the
+table-layout property to fixed.
+
+The grid of table cells is stored in each table section, as spans
+can't pass section borders. Changing the number of cols in the grid
+has to be done by the table to keep all grids (for all sections) in
+sync. The grid only stores effective columns. The table below would
+only result in one column being allocated in the grid:
+
+<table><tr><td colspan=1000>foo</td></tr></table>
+
+Once a colspan get's used, the column is split into its subparts. To
+do this, the table has to store the colspans of effective columns in a
+structure.
+
+
+
+
+NS & Mozilla compliant table layouting algorithm (AutoTableLayout)
+------------------------------------------------------------------
+
+The table layout algorithm computes a set of layout hints from the
+information in the table cells, <col> elements and style
+sheets. Hints from different sources are treated a bit differently in
+the collection stage.
+
+In addition certain operations are only done in quirks (NS4 compat)
+mode.
+
+Resizing the table doesn't require you to build up this information
+again. All that is needed is a list of layout hints for each column.
+
+The algorithm below describes to the best of our knowledge the way
+table alyouting is handled in a NS compatible way.
+
+There are two stages, the collection stage (assocaited with
+calcMinMaxWidth() in khtml) and the stage assigning width to cells
+(associated with layout()).
+
+A set of hinted widths are used to determine the final table layout in
+the layouting stage.
+
+enum hintType {
+     MinWidth,
+     DesiredWidth,
+     FixedWidth,
+     MinWidthAdjusted,
+     DesiredWidthAdjusted,
+     FixedWidthAdjusted,
+     PercentWidth,
+     PercentWidthAdjusted,
+     ProportionalWidth
+};
+
+One width (in pixels) for each hintType describes how the column
+wishes to be layouted. The layouting stage operates only on an array
+of hints for each column.
+
+An additional totalCellSpacing variable is used to know about the
+remaining width to distribute.
+
+Collection stage:
+-----------------
+
+

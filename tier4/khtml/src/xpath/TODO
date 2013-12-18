@@ -1,0 +1,19 @@
+- Verify implementation of nodetest for a named processing instruction.
+
+- Verify that implementation of 'descendant' does not match attribute or
+  namespace nodes.
+
+- Verify that the following-sibling and preceding-sibling axis are empty
+  for namespace nodes.
+
+- Verify correctness of preceding and following axen.
+
+- Implement functions:
+	o id() - this requires access to a document's DTD, to figure out
+	  which ID references which node.
+
+- Figure out how nodetests other than * and nodetypes work on the namespace
+  axis.
+
+- Augment the function library with ends-with(), min() and max()
+

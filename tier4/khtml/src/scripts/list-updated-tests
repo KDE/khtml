@@ -1,0 +1,74 @@
+#!/usr/bin/perl
+#
+# Copyright (C) 2009 Germain Garand <germain@ebooksfrance.org>
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Library General Public
+# License as published by the Free Software Foundation; either
+# version 2 of the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Library General Public License for more details.
+#
+# You should have received a copy of the GNU Library General Public License
+# along with this library; see the file COPYING.LIB.  If not, write to
+# the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+# Boston, MA 02110-1301, USA.
+
+# Run this from the svn directory containing your |tests| and |baseline| directories for testregression.
+# It will output a list of all tests/baselines that have been updated on the SVN server,
+# in a form suitable to be used with testregression - so you may regenerate selected tests
+# using 'testregression -g'
+#
+# It makes it easier to maintain a private baseline.
+#
+# Say for instance that you have a private baseline generated with:
+#   testregression -g -r baseline_priv .
+#
+# From time to time, people will have to add/update tests in the svn-kept baseline.
+# So instead of regenerating your whole private baseline to update it, you may run:
+#   testregression -g -r baseline_priv `list-updated-tests` .
+# to update those tests in your own baseline ( check first that list-updated-tests does have an output a all)
+#
+# Of course, this will only work *before* you 'svn update'.
+
+use strict;
+
+my @local;
+my %dist;
+
+my $svn = `which svn`;
+chomp $svn;
+
+open S, "-|", "$svn status -u tests baseline", or die "Couldn't get status: $!.\n";
+
+while (<S>) {
+    /^([AMCDR]?)\s+(\*)?.*?(\S+)$/;
+    my $loc = $1;
+    my $dist = $2;
+    my $fname = $3;
+
+    if ($loc and $dist and ($loc eq "M" || $loc eq "C")) {
+        push @local, $fname;
+    } elsif ($dist and not -d $fname and not $fname =~ /svnignore/ ) {
+        if ($fname =~ s|baseline/||) {
+            $fname =~ s/-(?:dump.png|render|dom)//;
+        } else {
+            $fname =~ s|tests/||;
+        }
+        $dist{ $fname } =1 if (! -d $fname);
+    }
+}
+close S;
+
+if (scalar @local) {
+   print STDERR "Locally changed/conflicting files found:\n",join(" ", @local), "\n";
+   print STDERR "A more recent version of those files exist on the server. Please resolve.\n";
+   die;
+}
+
+if (scalar keys %dist) {
+    print "-t ".join(" -t ", keys %dist)."\n";
+}

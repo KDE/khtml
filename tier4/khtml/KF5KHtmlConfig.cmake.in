@@ -1,0 +1,21 @@
+@PACKAGE_INIT@
+
+find_dependency(KF5Archive "@KF5_VERSION@")
+find_dependency(KF5Bookmarks "@KF5_VERSION@")
+find_dependency(KF5GlobalAccel "@KF5_VERSION@")
+find_dependency(KF5I18n "@KF5_VERSION@")
+find_dependency(KF5IconThemes "@KF5_VERSION@")
+find_dependency(KF5JS "@KF5_VERSION@")
+find_dependency(KF5KIO "@KF5_VERSION@")
+find_dependency(KF5Notifications "@KF5_VERSION@")
+find_dependency(KF5Parts "@KF5_VERSION@")
+find_dependency(KF5Sonnet "@KF5_VERSION@")
+find_dependency(KF5Wallet "@KF5_VERSION@")
+find_dependency(KF5WidgetsAddons "@KF5_VERSION@")
+find_dependency(KF5WindowSystem "@KF5_VERSION@")
+
+find_dependency(Qt5Core @REQUIRED_QT_VERSION@)
+
+
+include("${CMAKE_CURRENT_LIST_DIR}/KF5KHtmlTargets.cmake")
+

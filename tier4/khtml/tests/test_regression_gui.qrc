@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/test" >
+        <file>pics/crash.xpm</file>
+        <file>pics/fail.xpm</file>
+        <file>pics/failKnown.xpm</file>
+        <file>pics/ignore.xpm</file>
+        <file>pics/noBaseline.xpm</file>
+        <file>pics/pass.xpm</file>
+        <file>pics/passUnexpected.xpm</file>
+    </qresource>
+</RCC>

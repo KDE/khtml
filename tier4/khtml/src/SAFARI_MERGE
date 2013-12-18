@@ -1,0 +1,161 @@
+
+This is a short document with the progress of patches in the Safari codebase
+being merged into khtml. 
+
+its ordered by directory and by files. Add here the parts that cannot be
+immediately merged and need further negotiation. 
+
+Its recommended to add a //FIXME_SAFARI comment to places which need merging
+in the khtml sourcecode. 
+
+===========================================================================
+# css
+===========================================================================
+
+- the font changes (except for the konq-body property) are still not merged.
+ They are partly not easily portable and I don't understand some parts of them.
+ a small part is merged but still unused (separate font sizes for fixed fonts)
+
+- The Apple specific parts with their DPI settings.
+
+- most of the html4.css changes are not in. I have already added the
+  @konq-quirks part
+
+===========================================================================
+# dom
+===========================================================================
+
+- dom_doc.cpp / .h: preferred Stylesheet stuff. how does this correlate
+  to the changes in css_stylesheet.h / cpp ? <- It's independent (lars).
+  requires merging of the impl in xml/html first
+
+- css_stylesheet.cpp / .h addition of preferredStyleSheet et all, but
+  appears to be unused
+
+- weird change in dom_doc.cpp: doctype()
+
+- dom_string.h: removal of virtual destructor can't be merged, BIC. 
+  doesn't make sense anyway, as one might want to inherit from it. 
+  if it is a speed problem more stuff has to be handled with DOMStringImpl*
+
+- html_document.cpp / .h setPolicyBaseURL for cookie handling. euhm?
+
+===========================================================================
+# ecma
+===========================================================================
+
+TODO:
+- ScriptInterpreter domObjectsPerDocument + getDOMDocumentNode
+
+To investigate:
+- kjs_navigator (PluginBase refcount ; ProductSub)
+   hmm, why is e.g. the ref/deref stuff in APPLE_CHANGES?
+- scope changes  (kjs_events.cpp, DOMNode::pushEventHandlerScope)
+- Image object: DOM::Document doc -> QGuardedPtr<DOM::DocumentImpl> doc;
+  (why? Or rather: should this also be done in all other domobject-wrappers?)
+- window.scroll == scrollto or scrollby ?? 
+- ScheduledAction: ObjectImp -> Object. Sounds good - why did we have an imp? refcount problem?
+
+Needs other stuff before it can be applied:
+- Identifier change (needs kjs2) (includes lengthPropertyName change)
+
+===========================================================================
+# html
+===========================================================================
+
+- dtd.cpp: changes regarding ID_TEXT, ID_FORM, A and FONT left out
+
+- html_formimpl.cpp/.h: many changes skipped. will need to integrate the
+  "activate first submit" button part. 
+
+- html_headimpl.cpp:  changes for FOUC in external style loading
+
+- html_image/html_form: name / id lookup cache skipped. want to do that
+  for all elements. 
+
+- html_miscimpl.cpp: case insensitive name / id matching
+
+- html_parser: reapplying of dropped attributes. reported to be obsolete
+
+===========================================================================
+# misc
+===========================================================================
+
+- decoder.cpp/.h: changes in APPLE_CHANGES #ifdef that make decoder
+  being a null wrapper just using unicode directly instead of working
+  on charset specific 8bit data. 
+
+- htmltags.in: removal of <-konqblock>, not sure if that should ever
+  be merged. 
+
+===========================================================================
+# rendering
+===========================================================================
+
+done so far: 
+
+- RenderArena support. Usage of the arena is disabled for now. Needs
+  testing before I'll enable it.
+
+- renamed print methods to paint
+
+- RenderLayer code is used. Needs to be updated to apples latest version.
+
+- Handling of block within inlines via continuations is done.
+
+changes that need to be merged:
+
+- bidi.h/cpp: lot's of changes to white space handling and others.
+   probably needs the merge of the tokenizer.
+
+- font.cpp/h: some apple specific changes. Addition of a genericFamily enum,
+  IMO to speed up style stuff. Should IMO be separated out into a font_mac.cpp
+  and font_x11.cpp
+
+- repaint has gotten a bool immediate
+
+- render_applet.cpp: small #ifdef APPLE changes
+
+- render_box.cpp:
+	paintBackground has some fixes for background position in
+	table cells and repeat handling. Need to examine in detail
+
+	calcWidth has some code for min and max width constraints
+	calcHeight has a hack for "height: 100%". Not sure I understand it.
+	
+- render_container:
+	some hack to avoid an infinite recursion on one of the evil tests.
+	Since I fixed anonymous table insertion, I doubt it is still needed. Needs testing.
+
+....
+
+
+===========================================================================
+# xml
+===========================================================================
+
+- dom2_eventsimpl.cpp: computeLayerPos, requires mering of rendering/
+
+- dom2_rangeimpl.cpp: createContextualFragment.. merging needed
+
+- dom_docimpl.cpp: 
+    renderArena support.. merging needed. 
+    lowercase attribute names.. requires confirmation
+    preferred style sheet / delay recalcing style selector till
+    all external stylesheets are loaded. 
+
+- dom_nodeimpl.cpp: rendererNeedsClose. I don't fully understand this
+  seems to be only required for the avoid-unstyled-elements-flicker
+  restoreState -> QStringList change. will merge. 
+  setLayouted(false) calls in attach(). this should imho be handled
+  in the rendering tree. needs feedback. 
+
+- dom_nodeimpl.cpp / .h: setMalformed() hack. 
+  isInline() fixes. 
+  previous/nextrenderer addition
+
+- dom_stringimpl.cpp: toLengthArray alternative implementation not merged
+
+- dom_textimpl.cpp: setNodeValue: whitespace nuking needs merged!!
+
+- xml_tokenizer.cpp/.h: completely skipped. unfinished work. 

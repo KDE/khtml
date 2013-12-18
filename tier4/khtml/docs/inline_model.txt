@@ -1,0 +1,71 @@
+This document gives an example of how a given rendering of inline elements,
+with its associated HTML code, will map to 2 different trees:
+
+-a tree of render objects, mirroring the corresponding DOM tree.
+-a tree of lineboxes reflecting how inline-level render objects are laid out in distinct lines inside
+ block-level elements. (cf. http://www.w3.org/TR/CSS2/visuren.html#inline-formatting and http://www.w3.org/TR/CSS2/visudet.html#line-height)
+
+Rendering:
+=========
+ _________________
+|Lorem ipsum dolor|
+|sit amet.        |
+|_________________|
+
+=> 1 block level element
+=> 2 lines (because of wrapping).
+
+HTML:
+====
+
+<div>Lorem <span>ipsum <i>dolor sit</i> amet.</span></div>
+
+Render tree:
+===========
+[RenderBlock1
+  [RenderText1 "Lorem "]
+  [RenderInline1
+    [RenderText2 "ipsum "]
+    [RenderInline2
+      [RenderText3 "dolor sit"]
+    ]
+    [RenderText4 " amet."]
+  ]
+]
+
+Linebox tree:
+============
+
+[RootInlineBox1
+  [InlineTextBox1 "Lorem"]
+  [InlineFlowBox1
+    [InlineTextBox2 "ipsum"]
+    [InlineFlowBox3
+      [InlineTextBox3 "dolor"]
+    ]
+  ]
+]
+[RootInlineBox2
+  [InlineFlowBox2
+    [InlineFlowBox4
+      [InlineTextBox4 "sit"]
+    ]
+    [InlineTextBox5 " amet."]
+  ]
+]
+
+Linkage of LineBox tree:
+========================
+(just for first line:)
+
+RootBox1->nextOnLine() == InlineTextBox1 ->nextOnLine() == InlineFlowBox1 -> nextOnLine() == InlineTextBox2 -> 
+                          nextOnLine() == InlineFlowBox2-> nextOnLine() == InlineTextBox2 ->nextOnLine() == InlineFlowBox2 ->
+                          nextOnLine() == InlineTextBox3
+
+Correspondence Render tree / Linebox tree:
+==========================================
+(just for some objects:)
+
+( RenderBlock1 -> firstLineBox()  ==  RootBox1 ) ->nextLineBox() == (RootBox2 == RenderBlock1 -> lastLineBox() )
+( RenderInline1 ->firstLineBox()  ==  InlineFlowBox1 ) -> nextLineBox() == (InlineFlowBox2 == RenderInline1 -> lastLineBox() )
+( RenderText3 -> firstTextBox()   ==  InlineTextBox3 ) -> nextTextBox() == (InlineTextBox4 == RenderText3 -> lastLineBox() )

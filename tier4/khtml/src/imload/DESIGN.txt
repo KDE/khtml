@@ -1,0 +1,39 @@
+0. Goals/Philosophy.
+
+The basic philosophy behind this library's design is simple: the X server is
+a shared resource that multiplexes poorly. Therefore, the server is touched
+as late as possible, and X memory is conserved (as is for some things main
+memory). This makes the worst case much better, but likely makes the best
+case worse.
+
+1. Planes.
+
+In displaying images, data has to be moved between client and the server,
+and perhaps scaled. The concept underlying this is that of a plane.
+The original images data is at the original/source plane, and all the other
+planes get the data from it or some other plane. Various scenarios are handled
+by stacking planes in a different order.
+
+e.g., here is how a basic displaying looks:
+
+RawPixmapPlane
+     ^
+     |
+RawImagePlane <- - - (data from loader)
+
+
+and a client-side scaling scenario:
+
+RawPixmapPlane
+     ^
+     |
+ScaledImagePlane
+     ^
+     |
+RawImagePlane <- - - (data from loader)
+
+
+All planes above the lowest RawImagePlane treat their data as tiles,
+and limit the actual resources they use by using the appropriate tile cache
+to allocate them.
+
