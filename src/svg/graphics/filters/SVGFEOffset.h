@@ -25,11 +25,13 @@
 #if ENABLE(SVG) && ENABLE(SVG_FILTERS)
 #include "SVGFilterEffect.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-class SVGFEOffset : public SVGFilterEffect {
+class SVGFEOffset : public SVGFilterEffect
+{
 public:
-    SVGFEOffset(SVGResourceFilter*);
+    SVGFEOffset(SVGResourceFilter *);
 
     float dx() const;
     void setDx(float);
@@ -37,10 +39,10 @@ public:
     float dy() const;
     void setDy(float);
 
-    virtual TextStream& externalRepresentation(TextStream&) const;
+    virtual TextStream &externalRepresentation(TextStream &) const;
 
 #if PLATFORM(CI)
-    virtual CIFilter* getCIFilter(const FloatRect& bbox) const;
+    virtual CIFilter *getCIFilter(const FloatRect &bbox) const;
 #endif
 
 private:

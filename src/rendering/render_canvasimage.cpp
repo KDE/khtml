@@ -48,28 +48,31 @@ using namespace khtml;
 
 // -------------------------------------------------------------------------
 
-RenderCanvasImage::RenderCanvasImage(DOM::HTMLCanvasElementImpl* canvasEl)
+RenderCanvasImage::RenderCanvasImage(DOM::HTMLCanvasElementImpl *canvasEl)
     : RenderReplaced(canvasEl), imagePainter(canvasEl->getCanvasImage())
 {
-    setIntrinsicWidth (element()->width());
+    setIntrinsicWidth(element()->width());
     setIntrinsicHeight(element()->height());
 }
 
-void RenderCanvasImage::paint(PaintInfo& i, int _tx, int _ty)
+void RenderCanvasImage::paint(PaintInfo &i, int _tx, int _ty)
 {
     int x = _tx + m_x;
     int y = _ty + m_y;
 
-    if (shouldPaintBackgroundOrBorder() && i.phase != PaintActionOutline)
+    if (shouldPaintBackgroundOrBorder() && i.phase != PaintActionOutline) {
         paintBoxDecorations(i, x, y);
+    }
 
-    QPainter* p = i.p;
+    QPainter *p = i.p;
 
-    if (i.phase == PaintActionOutline && style()->outlineWidth() && style()->visibility() == VISIBLE)
+    if (i.phase == PaintActionOutline && style()->outlineWidth() && style()->visibility() == VISIBLE) {
         paintOutline(p, x, y, width(), height(), style());
+    }
 
-    if (i.phase != PaintActionForeground && i.phase != PaintActionSelection)
+    if (i.phase != PaintActionForeground && i.phase != PaintActionSelection) {
         return;
+    }
 
     //bool isPrinting = (i.p->device()->devType() == QInternal::Printer);
     //bool drawSelectionTint = (selectionState() != SelectionNone) && !isPrinting;
@@ -82,8 +85,12 @@ void RenderCanvasImage::paint(PaintInfo& i, int _tx, int _ty)
 
     int cWidth = contentWidth();
     int cHeight = contentHeight();
-    if ( !cWidth )  cWidth = 300;
-    if ( !cHeight ) cHeight = 150;
+    if (!cWidth) {
+        cWidth = 300;
+    }
+    if (!cHeight) {
+        cHeight = 150;
+    }
     int leftBorder = borderLeft();
     int topBorder = borderTop();
     int leftPad = paddingLeft();
@@ -105,8 +112,8 @@ void RenderCanvasImage::paint(PaintInfo& i, int _tx, int _ty)
 
 void RenderCanvasImage::layout()
 {
-    KHTMLAssert( needsLayout());
-    KHTMLAssert( minMaxKnown() );
+    KHTMLAssert(needsLayout());
+    KHTMLAssert(minMaxKnown());
 
     calcWidth();
     calcHeight();
@@ -119,13 +126,13 @@ void RenderCanvasImage::updateFromElement()
     int newWidth  = element()->width();
     int newHeight = element()->height();
     if (intrinsicHeight() != newHeight || intrinsicWidth()  != newWidth) {
-        setIntrinsicWidth (newWidth);
+        setIntrinsicWidth(newWidth);
         setIntrinsicHeight(newHeight);
         setNeedsLayoutAndMinMaxRecalc();
     }
-    
-    if (!needsLayout())
+
+    if (!needsLayout()) {
         repaint();
+    }
 }
 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

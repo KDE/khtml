@@ -20,69 +20,74 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include "dom_positioniterator.h"
 
 #include "dom_nodeimpl.h"
 
-namespace DOM {
+namespace DOM
+{
 
 Position PositionIterator::peekPrevious() const
 {
     Position pos = m_current;
-    
-    if (pos.isEmpty())
+
+    if (pos.isEmpty()) {
         return pos;
-    
+    }
+
     if (pos.offset() <= 0) {
         NodeImpl *prevNode = pos.node()->previousLeafNode();
-        if (prevNode)
+        if (prevNode) {
             pos = Position(prevNode, prevNode->maxOffset());
-    }
-    else {
+        }
+    } else {
         pos = Position(pos.node(), pos.offset() - 1);
     }
-    
+
     return pos;
 }
 
 Position PositionIterator::peekNext() const
 {
     Position pos = m_current;
-    
-    if (pos.isEmpty())
+
+    if (pos.isEmpty()) {
         return pos;
-    
+    }
+
     if (pos.offset() >= pos.node()->maxOffset()) {
         NodeImpl *nextNode = pos.node()->nextLeafNode();
-        if (nextNode)
+        if (nextNode) {
             pos = Position(nextNode, 0);
-    }
-    else {
+        }
+    } else {
         pos = Position(pos.node(), pos.offset() + 1);
     }
-    
+
     return pos;
 }
 
 bool PositionIterator::atStart() const
 {
-    if (m_current.isEmpty())
+    if (m_current.isEmpty()) {
         return true;
+    }
 
-    return m_current.offset() == 0 && 
-        m_current.node()->previousLeafNode() == 0;
+    return m_current.offset() == 0 &&
+           m_current.node()->previousLeafNode() == 0;
 }
 
 bool PositionIterator::atEnd() const
 {
-    if (m_current.isEmpty())
+    if (m_current.isEmpty()) {
         return true;
+    }
 
-    return m_current.offset() == m_current.node()->maxOffset() && 
-        m_current.node()->nextLeafNode() == 0;
+    return m_current.offset() == m_current.node()->maxOffset() &&
+           m_current.node()->nextLeafNode() == 0;
 }
 
 } // namespace DOM

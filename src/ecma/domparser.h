@@ -1,4 +1,3 @@
-// -*- c-basic-offset: 2 -*-
 /*
  *  This file is part of the KDE libraries
  *  Copyright (C) 2005 Anders Carlsson (andersca@mac.com)
@@ -29,31 +28,40 @@
 
 #include "kjs_dom.h"
 
-namespace KJS {
+namespace KJS
+{
 
-  class DOMParserConstructorImp : public JSObject {
-  public:
+class DOMParserConstructorImp : public JSObject
+{
+public:
     DOMParserConstructorImp(ExecState *, DOM::DocumentImpl *d);
     virtual bool implementsConstruct() const;
     using KJS::JSObject::construct;
     virtual JSObject *construct(ExecState *exec, const List &args);
 private:
     SharedPtr<DOM::DocumentImpl> doc;
-  };
+};
 
-  class DOMParser : public DOMObject {
-  public:
+class DOMParser : public DOMObject
+{
+public:
     DOMParser(ExecState *, DOM::DocumentImpl *d);
-    virtual bool toBoolean(ExecState *) const { return true; }
-    virtual const ClassInfo* classInfo() const { return &info; }
+    virtual bool toBoolean(ExecState *) const
+    {
+        return true;
+    }
+    virtual const ClassInfo *classInfo() const
+    {
+        return &info;
+    }
     static const ClassInfo info;
     enum { ParseFromString };
 
-  private:
+private:
     QPointer<DOM::DocumentImpl> doc;
 
     friend class DOMParserProtoFunc;
-  };
+};
 
 } // namespace
 

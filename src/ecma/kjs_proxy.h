@@ -1,4 +1,3 @@
-// -*- c-basic-offset: 2 -*-
 /*
  *  This file is part of the KDE libraries
  *  Copyright (C) 1999 Harri Porten (porten@kde.org)
@@ -29,26 +28,30 @@
 
 class KHTMLPart;
 
-namespace DOM {
-  class Node;
-  class NodeImpl;
-  class EventListener;
-  class Event;
+namespace DOM
+{
+class Node;
+class NodeImpl;
+class EventListener;
+class Event;
 }
 
-namespace KJS {
-  class List;
-  class Interpreter;
-  class Completion;
-  class ScriptInterpreter;
+namespace KJS
+{
+class List;
+class Interpreter;
+class Completion;
+class ScriptInterpreter;
 }
 
-namespace KJSDebugger {
-  class DebugWindow;
+namespace KJSDebugger
+{
+class DebugWindow;
 }
 
-namespace khtml {
-  class ChildFrame;
+namespace khtml
+{
+class ChildFrame;
 }
 
 /**
@@ -56,48 +59,51 @@ namespace khtml {
  *
  * @short Proxy class serving as interface when being dlopen'ed.
  */
-class KJSProxy {
+class KJSProxy
+{
 public:
-  KJSProxy(khtml::ChildFrame* frame);
-  ~KJSProxy();
-  
-  QVariant evaluate(QString filename, int baseLine, const QString &, const DOM::Node &n,
-			    KJS::Completion *completion = 0);
-  void clear();
-  
-  DOM::EventListener *createHTMLEventHandler(QString sourceUrl, QString name, QString code, DOM::NodeImpl* node, bool svg = false);
-  void finishedWithEvent(const DOM::Event &event);
-  KJS::Interpreter *interpreter();
+    KJSProxy(khtml::ChildFrame *frame);
+    ~KJSProxy();
 
-  bool isRunningScript();
+    QVariant evaluate(QString filename, int baseLine, const QString &, const DOM::Node &n,
+                      KJS::Completion *completion = 0);
+    void clear();
 
-  void setDebugEnabled(bool enabled);
-  bool debugEnabled() const;
-  void showDebugWindow(bool show = true);
-  
-  bool paused() const;
+    DOM::EventListener *createHTMLEventHandler(QString sourceUrl, QString name, QString code, DOM::NodeImpl *node, bool svg = false);
+    void finishedWithEvent(const DOM::Event &event);
+    KJS::Interpreter *interpreter();
 
-  void setEventHandlerLineno(int lineno) { m_handlerLineno = lineno; }
+    bool isRunningScript();
 
-  // Helper method, to access the private KHTMLPart::jScript()
-  static KJSProxy *proxy( KHTMLPart *part );
+    void setDebugEnabled(bool enabled);
+    bool debugEnabled() const;
+    void showDebugWindow(bool show = true);
+
+    bool paused() const;
+
+    void setEventHandlerLineno(int lineno)
+    {
+        m_handlerLineno = lineno;
+    }
+
+    // Helper method, to access the private KHTMLPart::jScript()
+    static KJSProxy *proxy(KHTMLPart *part);
 private:
-  void initScript();
-  void applyUserAgent();
+    void initScript();
+    void applyUserAgent();
 
-  khtml::ChildFrame *m_frame;
-  int m_handlerLineno;
+    khtml::ChildFrame *m_frame;
+    int m_handlerLineno;
 
-  KJS::ScriptInterpreter* m_script;
+    KJS::ScriptInterpreter *m_script;
 #ifdef KJS_DEBUGGER
-  WTF::RefPtr<KJSDebugger::DebugWindow> m_debugWindow;
+    WTF::RefPtr<KJSDebugger::DebugWindow> m_debugWindow;
 #endif
-  bool m_debugEnabled;
-  int m_running;
+    bool m_debugEnabled;
+    int m_running;
 #ifndef NDEBUG
-  static int s_count;
+    static int s_count;
 #endif
 };
-
 
 #endif

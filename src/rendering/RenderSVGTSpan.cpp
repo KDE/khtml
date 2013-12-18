@@ -30,27 +30,29 @@
 #include "SVGInlineTextBox.h"
 #include "SVGRootInlineBox.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-RenderSVGTSpan::RenderSVGTSpan(Node* n)
+RenderSVGTSpan::RenderSVGTSpan(Node *n)
     : RenderSVGInline(n)
 {
 }
 
-void RenderSVGTSpan::absoluteRects(Vector<IntRect>& rects, int, int, bool)
+void RenderSVGTSpan::absoluteRects(Vector<IntRect> &rects, int, int, bool)
 {
-    InlineRunBox* firstBox = firstLineBox();
+    InlineRunBox *firstBox = firstLineBox();
 
-    SVGRootInlineBox* rootBox = firstBox ? static_cast<SVGInlineTextBox*>(firstBox)->svgRootInlineBox() : 0;
-    RenderObject* object = rootBox ? rootBox->object() : 0;
+    SVGRootInlineBox *rootBox = firstBox ? static_cast<SVGInlineTextBox *>(firstBox)->svgRootInlineBox() : 0;
+    RenderObject *object = rootBox ? rootBox->object() : 0;
 
-    if (!object)
+    if (!object) {
         return;
+    }
 
     int xRef = object->xPos() + xPos();
     int yRef = object->yPos() + yPos();
- 
-    for (InlineRunBox* curr = firstBox; curr; curr = curr->nextLineBox()) {
+
+    for (InlineRunBox *curr = firstBox; curr; curr = curr->nextLineBox()) {
         FloatRect rect(xRef + curr->xPos(), yRef + curr->yPos(), curr->width(), curr->height());
         rects.append(enclosingIntRect(absoluteTransform().mapRect(rect)));
     }

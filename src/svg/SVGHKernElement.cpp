@@ -31,12 +31,12 @@
 #include "SVGParserUtilities.h"
 //FIXME khtml #include "SimpleFontData.h"
 
-
-namespace WebCore {
+namespace WebCore
+{
 
 using namespace SVGNames;
 
-SVGHKernElement::SVGHKernElement(const QualifiedName& tagName, Document* doc)
+SVGHKernElement::SVGHKernElement(const QualifiedName &tagName, Document *doc)
     : SVGElement(tagName, doc)
 {
 }
@@ -47,19 +47,21 @@ SVGHKernElement::~SVGHKernElement()
 
 void SVGHKernElement::insertedIntoDocument()
 {
-    Node* fontNode = parentNode();
+    Node *fontNode = parentNode();
     if (fontNode && fontNode->hasTagName(fontTag)) {
-        if (SVGFontElement* element = static_cast<SVGFontElement*>(fontNode))
+        if (SVGFontElement *element = static_cast<SVGFontElement *>(fontNode)) {
             element->invalidateGlyphCache();
+        }
     }
 }
 
 void SVGHKernElement::removedFromDocument()
 {
-    Node* fontNode = parentNode();
+    Node *fontNode = parentNode();
     if (fontNode && fontNode->hasTagName(fontTag)) {
-        if (SVGFontElement* element = static_cast<SVGFontElement*>(fontNode))
+        if (SVGFontElement *element = static_cast<SVGFontElement *>(fontNode)) {
             element->invalidateGlyphCache();
+        }
     }
 }
 

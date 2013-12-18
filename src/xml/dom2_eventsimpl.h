@@ -39,47 +39,66 @@ class QMouseEvent;
 class QKeyEvent;
 class KHTMLPart;
 
-namespace DOM {
+namespace DOM
+{
 
 class AbstractViewImpl;
 class DOMStringImpl;
 class NodeImpl;
 class DocumentImpl;
 
-class RegisteredEventListener {
+class RegisteredEventListener
+{
 public:
     RegisteredEventListener() : useCapture(false), listener(0) {}
 
     RegisteredEventListener(EventName _id, EventListener *_listener, bool _useCapture)
-        : eventName(_id), useCapture(_useCapture), listener(_listener) { if (listener) listener->ref(); }
+        : eventName(_id), useCapture(_useCapture), listener(_listener)
+    {
+        if (listener) {
+            listener->ref();
+        }
+    }
 
-    ~RegisteredEventListener() { if (listener) listener->deref(); listener = 0; }
+    ~RegisteredEventListener()
+    {
+        if (listener) {
+            listener->deref();
+        } listener = 0;
+    }
 
     bool operator==(const RegisteredEventListener &other) const
-    { return eventName == other.eventName && listener == other.listener
-             && useCapture == other.useCapture; }
-
+    {
+        return eventName == other.eventName && listener == other.listener
+               && useCapture == other.useCapture;
+    }
 
     EventName eventName;
     bool useCapture;
     EventListener *listener;
 
-    RegisteredEventListener( const RegisteredEventListener &other ) :
-                eventName(other.eventName), useCapture(other.useCapture), listener(other.listener)
-    { if (listener) listener->ref(); }
+    RegisteredEventListener(const RegisteredEventListener &other) :
+        eventName(other.eventName), useCapture(other.useCapture), listener(other.listener)
+    {
+        if (listener) {
+            listener->ref();
+        }
+    }
 
-    RegisteredEventListener & operator=( const RegisteredEventListener &other ) {
+    RegisteredEventListener &operator=(const RegisteredEventListener &other)
+    {
         eventName  = other.eventName;
         useCapture = other.useCapture;
-        if (other.listener)
+        if (other.listener) {
             other.listener->ref();
-        if (listener)
+        }
+        if (listener) {
             listener->deref();
+        }
         listener = other.listener;
         return *this;
     }
 };
-
 
 struct RegisteredListenerList {
     RegisteredListenerList() : listeners(0)
@@ -97,11 +116,11 @@ struct RegisteredListenerList {
     void clear();
 
     //### KDE4: should disappear
-    bool stillContainsListener(const RegisteredEventListener& listener);
+    bool stillContainsListener(const RegisteredEventListener &listener);
 
-    QList<RegisteredEventListener>* listeners;//The actual listener list - may be 0
+    QList<RegisteredEventListener> *listeners;//The actual listener list - may be 0
 private:
-    bool isHTMLEventListener(EventListener* listener);
+    bool isHTMLEventListener(EventListener *listener);
 };
 
 class EventTargetImpl : public khtml::TreeShared<EventTargetImpl>
@@ -118,7 +137,7 @@ public:
     /* Override this to provide access to associated document in order to
      * set appropriate 'has listerner' flags
      */
-    virtual DocumentImpl* eventTargetDocument();
+    virtual DocumentImpl *eventTargetDocument();
 
     /**
      * Perform the default action for an event e.g. submitting a form
@@ -138,7 +157,10 @@ public:
     EventListener *getHTMLEventListener(EventName id);
     EventListener *getHTMLEventListener(unsigned id);
 
-    RegisteredListenerList& listenerList() { return m_regdListeners; }
+    RegisteredListenerList &listenerList()
+    {
+        return m_regdListeners;
+    }
 private:
     void setDocListenerFlag(unsigned flag);
     RegisteredListenerList m_regdListeners;
@@ -148,7 +170,7 @@ class EventImpl : public khtml::Shared<EventImpl>
 {
 public:
     enum EventId {
-       // UI events
+        // UI events
         DOMFOCUSIN_EVENT,
         DOMFOCUSOUT_EVENT,
         DOMACTIVATE_EVENT,
@@ -181,7 +203,7 @@ public:
         RESIZE_EVENT,
         SCROLL_EVENT,
         HASHCHANGE_EVENT,
-            // keyboard events
+        // keyboard events
         KEYDOWN_EVENT,
         KEYUP_EVENT,
         KEYPRESS_EVENT, //Mostly corresponds to DOM3 textInput event.
@@ -202,21 +224,59 @@ public:
     EventImpl(EventId id, bool canBubbleArg, bool cancelableArg);
     virtual ~EventImpl();
 
-    EventId id() const { return EventId(m_eventName.id()); }
-    DOMString type() const { return m_eventName.toString(); }
-    EventName name() const { return m_eventName; }
+    EventId id() const
+    {
+        return EventId(m_eventName.id());
+    }
+    DOMString type() const
+    {
+        return m_eventName.toString();
+    }
+    EventName name() const
+    {
+        return m_eventName;
+    }
 
-    EventTargetImpl *target() const { return m_target; }
+    EventTargetImpl *target() const
+    {
+        return m_target;
+    }
     void setTarget(EventTargetImpl *_target);
-    EventTargetImpl *currentTarget() const { return m_currentTarget; }
-    void setCurrentTarget(EventTargetImpl *_currentTarget) { m_currentTarget = _currentTarget; }
-    unsigned short eventPhase() const { return m_eventPhase; }
-    void setEventPhase(unsigned short _eventPhase) { m_eventPhase = _eventPhase; }
-    bool bubbles() const { return m_canBubble; }
-    bool cancelable() const { return m_cancelable; }
+    EventTargetImpl *currentTarget() const
+    {
+        return m_currentTarget;
+    }
+    void setCurrentTarget(EventTargetImpl *_currentTarget)
+    {
+        m_currentTarget = _currentTarget;
+    }
+    unsigned short eventPhase() const
+    {
+        return m_eventPhase;
+    }
+    void setEventPhase(unsigned short _eventPhase)
+    {
+        m_eventPhase = _eventPhase;
+    }
+    bool bubbles() const
+    {
+        return m_canBubble;
+    }
+    bool cancelable() const
+    {
+        return m_cancelable;
+    }
     DOMTimeStamp timeStamp();
-    void stopPropagation(bool stop) { m_propagationStopped = stop; }
-    void preventDefault(bool prevent) { if ( m_cancelable ) m_defaultPrevented = prevent; }
+    void stopPropagation(bool stop)
+    {
+        m_propagationStopped = stop;
+    }
+    void preventDefault(bool prevent)
+    {
+        if (m_cancelable) {
+            m_defaultPrevented = prevent;
+        }
+    }
 
     void initEvent(const DOMString &eventTypeArg, bool canBubbleArg, bool cancelableArg);
 
@@ -227,26 +287,49 @@ public:
     virtual bool isKeyboardEvent() const;
     virtual bool isMessageEvent() const;
     virtual bool isHashChangeEvent() const;
-    bool isKeyRelatedEvent() const { return isTextInputEvent() || isKeyboardEvent(); }
+    bool isKeyRelatedEvent() const
+    {
+        return isTextInputEvent() || isKeyboardEvent();
+    }
 
-    bool propagationStopped() const { return m_propagationStopped; }
-    bool defaultPrevented() const { return m_defaultPrevented; }
+    bool propagationStopped() const
+    {
+        return m_propagationStopped;
+    }
+    bool defaultPrevented() const
+    {
+        return m_defaultPrevented;
+    }
 
-    void setDefaultHandled() { m_defaultHandled = true; }
-    bool defaultHandled() const { return m_defaultHandled; }
+    void setDefaultHandled()
+    {
+        m_defaultHandled = true;
+    }
+    bool defaultHandled() const
+    {
+        return m_defaultHandled;
+    }
 
-    DOMString message() const { return m_message; }
-    void setMessage(const DOMString &_message) { m_message = _message; }
+    DOMString message() const
+    {
+        return m_message;
+    }
+    void setMessage(const DOMString &_message)
+    {
+        m_message = _message;
+    }
 
-    static khtml::IDTable<EventImpl>* idTable() {
-        if (s_idTable)
+    static khtml::IDTable<EventImpl> *idTable()
+    {
+        if (s_idTable) {
             return s_idTable;
-        else
+        } else {
             return initIdTable();
+        }
     }
 protected:
-    static khtml::IDTable<EventImpl>* s_idTable;
-    static khtml::IDTable<EventImpl>* initIdTable();
+    static khtml::IDTable<EventImpl> *s_idTable;
+    static khtml::IDTable<EventImpl> *initIdTable();
     EventName m_eventName;
     bool m_canBubble  : 1;
     bool m_cancelable : 1;
@@ -261,36 +344,61 @@ protected:
     DOMString m_message;
 };
 
-
-
 class UIEventImpl : public EventImpl
 {
 public:
     UIEventImpl() : m_view(0), m_detail(0) {}
     UIEventImpl(EventId _id,
-		bool canBubbleArg,
-		bool cancelableArg,
-		AbstractViewImpl *viewArg,
-		long detailArg);
+                bool canBubbleArg,
+                bool cancelableArg,
+                AbstractViewImpl *viewArg,
+                long detailArg);
     virtual ~UIEventImpl();
-    AbstractViewImpl *view() const { return m_view; }
-    long detail() const { return m_detail; }
+    AbstractViewImpl *view() const
+    {
+        return m_view;
+    }
+    long detail() const
+    {
+        return m_detail;
+    }
     void initUIEvent(const DOMString &typeArg,
-		     bool canBubbleArg,
-		     bool cancelableArg,
-		     AbstractViewImpl* viewArg,
-		     long detailArg);
+                     bool canBubbleArg,
+                     bool cancelableArg,
+                     AbstractViewImpl *viewArg,
+                     long detailArg);
     virtual bool isUIEvent() const;
 
     //Compat stuff
-    virtual int keyCode() const  { return 0; }
-    virtual int charCode() const { return 0; }
+    virtual int keyCode() const
+    {
+        return 0;
+    }
+    virtual int charCode() const
+    {
+        return 0;
+    }
 
-    virtual long pageX() const { return 0; }
-    virtual long pageY() const { return 0; }
-    virtual long layerX() const { return 0; }
-    virtual long layerY() const { return 0; }
-    virtual int which() const { return 0; }
+    virtual long pageX() const
+    {
+        return 0;
+    }
+    virtual long pageY() const
+    {
+        return 0;
+    }
+    virtual long layerX() const
+    {
+        return 0;
+    }
+    virtual long layerY() const
+    {
+        return 0;
+    }
+    virtual int which() const
+    {
+        return 0;
+    }
 protected:
     AbstractViewImpl *m_view;
     long m_detail;
@@ -298,7 +406,8 @@ protected:
 };
 
 // Introduced in DOM Level 2: - internal
-class MouseEventImpl : public UIEventImpl {
+class MouseEventImpl : public UIEventImpl
+{
 public:
     enum Orientation {
         ONone = 0,
@@ -308,65 +417,119 @@ public:
 
     MouseEventImpl();
     MouseEventImpl(EventId _id,
-		   bool canBubbleArg,
-		   bool cancelableArg,
-		   AbstractViewImpl *viewArg,
-		   long detailArg,
-		   long screenXArg,
-		   long screenYArg,
-		   long clientXArg,
-		   long clientYArg,
+                   bool canBubbleArg,
+                   bool cancelableArg,
+                   AbstractViewImpl *viewArg,
+                   long detailArg,
+                   long screenXArg,
+                   long screenYArg,
+                   long clientXArg,
+                   long clientYArg,
                    long pageXArg,
                    long pageYArg,
-		   bool ctrlKeyArg,
-		   bool altKeyArg,
-		   bool shiftKeyArg,
-		   bool metaKeyArg,
-		   unsigned short buttonArg,
-		   NodeImpl *relatedTargetArg,
-		   QMouseEvent *qe = 0,
+                   bool ctrlKeyArg,
+                   bool altKeyArg,
+                   bool shiftKeyArg,
+                   bool metaKeyArg,
+                   unsigned short buttonArg,
+                   NodeImpl *relatedTargetArg,
+                   QMouseEvent *qe = 0,
                    bool isDoubleClick = false,
                    Orientation orient = ONone);
     virtual ~MouseEventImpl();
-    long screenX() const { return m_screenX; }
-    long screenY() const { return m_screenY; }
-    long clientX() const { return m_clientX; }
-    long clientY() const { return m_clientY; }
-    long layerX() const { return m_layerX; } // non-DOM extension
-    long layerY() const { return m_layerY; } // non-DOM extension
-    long pageX() const { return m_pageX; } // non-DOM extension
-    long pageY() const { return m_pageY; } // non-DOM extension
-    virtual int which() const { return button() + 1; } // non-DOM extension
-    bool isDoubleClick() const { return m_isDoubleClick; } // non-DOM extension
-    Orientation orientation() const { return KDE_CAST_BF_ENUM(Orientation, m_orientation); } // non-DOM extension
-    bool ctrlKey() const { return m_ctrlKey; }
-    bool shiftKey() const { return m_shiftKey; }
-    bool altKey() const { return m_altKey; }
-    bool metaKey() const { return m_metaKey; }
-    unsigned short button() const { return m_button; }
-    NodeImpl *relatedTarget() const { return m_relatedTarget; }
+    long screenX() const
+    {
+        return m_screenX;
+    }
+    long screenY() const
+    {
+        return m_screenY;
+    }
+    long clientX() const
+    {
+        return m_clientX;
+    }
+    long clientY() const
+    {
+        return m_clientY;
+    }
+    long layerX() const
+    {
+        return m_layerX;    // non-DOM extension
+    }
+    long layerY() const
+    {
+        return m_layerY;    // non-DOM extension
+    }
+    long pageX() const
+    {
+        return m_pageX;    // non-DOM extension
+    }
+    long pageY() const
+    {
+        return m_pageY;    // non-DOM extension
+    }
+    virtual int which() const
+    {
+        return button() + 1;    // non-DOM extension
+    }
+    bool isDoubleClick() const
+    {
+        return m_isDoubleClick;    // non-DOM extension
+    }
+    Orientation orientation() const
+    {
+        return KDE_CAST_BF_ENUM(Orientation, m_orientation);    // non-DOM extension
+    }
+    bool ctrlKey() const
+    {
+        return m_ctrlKey;
+    }
+    bool shiftKey() const
+    {
+        return m_shiftKey;
+    }
+    bool altKey() const
+    {
+        return m_altKey;
+    }
+    bool metaKey() const
+    {
+        return m_metaKey;
+    }
+    unsigned short button() const
+    {
+        return m_button;
+    }
+    NodeImpl *relatedTarget() const
+    {
+        return m_relatedTarget;
+    }
 
     void computeLayerPos();
 
     void initMouseEvent(const DOMString &typeArg,
-			bool canBubbleArg,
-			bool cancelableArg,
-			AbstractViewImpl* viewArg,
-			long detailArg,
-			long screenXArg,
-			long screenYArg,
-			long clientXArg,
-			long clientYArg,
-			bool ctrlKeyArg,
-			bool altKeyArg,
-			bool shiftKeyArg,
-			bool metaKeyArg,
-			unsigned short buttonArg,
-			const Node &relatedTargetArg,
-			Orientation orient = ONone);
+                        bool canBubbleArg,
+                        bool cancelableArg,
+                        AbstractViewImpl *viewArg,
+                        long detailArg,
+                        long screenXArg,
+                        long screenYArg,
+                        long clientXArg,
+                        long clientYArg,
+                        bool ctrlKeyArg,
+                        bool altKeyArg,
+                        bool shiftKeyArg,
+                        bool metaKeyArg,
+                        unsigned short buttonArg,
+                        const Node &relatedTargetArg,
+                        Orientation orient = ONone);
     virtual bool isMouseEvent() const;
 
-    QMouseEvent *qEvent() const { return m_qevent; }
+    QMouseEvent *qEvent() const
+    {
+        return m_qevent;
+    }
 protected:
     long m_screenX;
     long m_screenY;
@@ -387,125 +550,160 @@ protected:
     QMouseEvent *m_qevent;
 };
 
-class KeyEventBaseImpl : public UIEventImpl {
+class KeyEventBaseImpl : public UIEventImpl
+{
 public:
-  // VirtualKeyCode
-  enum KeyCodes  {
-      DOM_VK_UNDEFINED		     = 0x0,
-      DOM_VK_RIGHT_ALT		     = 0x12,
-      DOM_VK_LEFT_ALT		     = 0x12,
-      DOM_VK_LEFT_CONTROL	     = 0x11,
-      DOM_VK_RIGHT_CONTROL	     = 0x11,
-      DOM_VK_LEFT_SHIFT		     = 0x10,
-      DOM_VK_RIGHT_SHIFT	     = 0x10,
-      DOM_VK_META		     = 0x9D,
-      DOM_VK_BACK_SPACE		     = 0x08,
-      DOM_VK_CAPS_LOCK		     = 0x14,
-      DOM_VK_INSERT		     = 0x2D,
-      DOM_VK_DELETE		     = 0x7F,
-      DOM_VK_END		     = 0x23,
-      DOM_VK_ENTER		     = 0x0D,
-      DOM_VK_ESCAPE		     = 0x1B,
-      DOM_VK_HOME		     = 0x24,
-      DOM_VK_NUM_LOCK		     = 0x90,
-      DOM_VK_PAUSE		     = 0x13,
-      DOM_VK_PRINTSCREEN	     = 0x9A,
-      DOM_VK_SCROLL_LOCK	     = 0x91,
-      DOM_VK_SPACE		     = 0x20,
-      DOM_VK_TAB		     = 0x09,
-      DOM_VK_LEFT		     = 0x25,
-      DOM_VK_RIGHT		     = 0x27,
-      DOM_VK_UP			     = 0x26,
-      DOM_VK_DOWN		     = 0x28,
-      DOM_VK_PAGE_DOWN		     = 0x22,
-      DOM_VK_PAGE_UP		     = 0x21,
-      DOM_VK_F1			     = 0x70,
-      DOM_VK_F2			     = 0x71,
-      DOM_VK_F3			     = 0x72,
-      DOM_VK_F4			     = 0x73,
-      DOM_VK_F5			     = 0x74,
-      DOM_VK_F6			     = 0x75,
-      DOM_VK_F7			     = 0x76,
-      DOM_VK_F8			     = 0x77,
-      DOM_VK_F9			     = 0x78,
-      DOM_VK_F10		     = 0x79,
-      DOM_VK_F11		     = 0x7A,
-      DOM_VK_F12		     = 0x7B,
-      DOM_VK_F13		     = 0xF000,
-      DOM_VK_F14		     = 0xF001,
-      DOM_VK_F15		     = 0xF002,
-      DOM_VK_F16		     = 0xF003,
-      DOM_VK_F17		     = 0xF004,
-      DOM_VK_F18		     = 0xF005,
-      DOM_VK_F19		     = 0xF006,
-      DOM_VK_F20		     = 0xF007,
-      DOM_VK_F21		     = 0xF008,
-      DOM_VK_F22		     = 0xF009,
-      DOM_VK_F23		     = 0xF00A,
-      DOM_VK_F24		     = 0xF00B
-  };
+    // VirtualKeyCode
+    enum KeyCodes  {
+        DOM_VK_UNDEFINED           = 0x0,
+        DOM_VK_RIGHT_ALT           = 0x12,
+        DOM_VK_LEFT_ALT            = 0x12,
+        DOM_VK_LEFT_CONTROL        = 0x11,
+        DOM_VK_RIGHT_CONTROL       = 0x11,
+        DOM_VK_LEFT_SHIFT          = 0x10,
+        DOM_VK_RIGHT_SHIFT         = 0x10,
+        DOM_VK_META            = 0x9D,
+        DOM_VK_BACK_SPACE          = 0x08,
+        DOM_VK_CAPS_LOCK           = 0x14,
+        DOM_VK_INSERT          = 0x2D,
+        DOM_VK_DELETE          = 0x7F,
+        DOM_VK_END             = 0x23,
+        DOM_VK_ENTER           = 0x0D,
+        DOM_VK_ESCAPE          = 0x1B,
+        DOM_VK_HOME            = 0x24,
+        DOM_VK_NUM_LOCK            = 0x90,
+        DOM_VK_PAUSE           = 0x13,
+        DOM_VK_PRINTSCREEN         = 0x9A,
+        DOM_VK_SCROLL_LOCK         = 0x91,
+        DOM_VK_SPACE           = 0x20,
+        DOM_VK_TAB             = 0x09,
+        DOM_VK_LEFT            = 0x25,
+        DOM_VK_RIGHT           = 0x27,
+        DOM_VK_UP              = 0x26,
+        DOM_VK_DOWN            = 0x28,
+        DOM_VK_PAGE_DOWN           = 0x22,
+        DOM_VK_PAGE_UP             = 0x21,
+        DOM_VK_F1              = 0x70,
+        DOM_VK_F2              = 0x71,
+        DOM_VK_F3              = 0x72,
+        DOM_VK_F4              = 0x73,
+        DOM_VK_F5              = 0x74,
+        DOM_VK_F6              = 0x75,
+        DOM_VK_F7              = 0x76,
+        DOM_VK_F8              = 0x77,
+        DOM_VK_F9              = 0x78,
+        DOM_VK_F10             = 0x79,
+        DOM_VK_F11             = 0x7A,
+        DOM_VK_F12             = 0x7B,
+        DOM_VK_F13             = 0xF000,
+        DOM_VK_F14             = 0xF001,
+        DOM_VK_F15             = 0xF002,
+        DOM_VK_F16             = 0xF003,
+        DOM_VK_F17             = 0xF004,
+        DOM_VK_F18             = 0xF005,
+        DOM_VK_F19             = 0xF006,
+        DOM_VK_F20             = 0xF007,
+        DOM_VK_F21             = 0xF008,
+        DOM_VK_F22             = 0xF009,
+        DOM_VK_F23             = 0xF00A,
+        DOM_VK_F24             = 0xF00B
+    };
 
-  void initKeyBaseEvent(const DOMString &typeArg,
-                         bool canBubbleArg,
-                         bool cancelableArg,
-                         AbstractViewImpl* viewArg,
-                         unsigned long keyVal,
-                         unsigned long virtKeyVal,
-                         unsigned long modifiers);
+    void initKeyBaseEvent(const DOMString &typeArg,
+                          bool canBubbleArg,
+                          bool cancelableArg,
+                          AbstractViewImpl *viewArg,
+                          unsigned long keyVal,
+                          unsigned long virtKeyVal,
+                          unsigned long modifiers);
 
-  bool ctrlKey()  const { return m_modifier & Qt::ControlModifier; }
-  bool shiftKey() const { return m_modifier & Qt::ShiftModifier; }
-  bool altKey()   const { return m_modifier & Qt::AltModifier; }
-  bool metaKey()  const { return m_modifier & Qt::MetaModifier; }
+    bool ctrlKey()  const
+    {
+        return m_modifier & Qt::ControlModifier;
+    }
+    bool shiftKey() const
+    {
+        return m_modifier & Qt::ShiftModifier;
+    }
+    bool altKey()   const
+    {
+        return m_modifier & Qt::AltModifier;
+    }
+    bool metaKey()  const
+    {
+        return m_modifier & Qt::MetaModifier;
+    }
 
-  bool             inputGenerated() const { return m_virtKeyVal == 0; }
-  unsigned long    keyVal() const     { return m_keyVal; }
-  unsigned long    virtKeyVal() const { return m_virtKeyVal; }
+    bool             inputGenerated() const
+    {
+        return m_virtKeyVal == 0;
+    }
+    unsigned long    keyVal() const
+    {
+        return m_keyVal;
+    }
+    unsigned long    virtKeyVal() const
+    {
+        return m_virtKeyVal;
+    }
 
-  QKeyEvent *qKeyEvent() const { if (!m_keyEvent) buildQKeyEvent(); return m_keyEvent; }
+    QKeyEvent *qKeyEvent() const
+    {
+        if (!m_keyEvent) {
+            buildQKeyEvent();
+        } return m_keyEvent;
+    }
 
-  ~KeyEventBaseImpl();
+    ~KeyEventBaseImpl();
 
-  bool checkModifier(unsigned long modifierArg);
+    bool checkModifier(unsigned long modifierArg);
 
-  virtual int which() const { return keyCode(); } // non-DOM extension
+    virtual int which() const
+    {
+        return keyCode();    // non-DOM extension
+    }
 
-  //Returns true if the event was synthesized by client use of DOM
-  bool isSynthetic() const { return m_synthetic; }
+    //Returns true if the event was synthesized by client use of DOM
+    bool isSynthetic() const
+    {
+        return m_synthetic;
+    }
 protected:
-  KeyEventBaseImpl(): m_keyEvent(0), m_keyVal(0), m_virtKeyVal(0), m_modifier(0), m_synthetic(false)
-  {  m_detail = 0; }
+    KeyEventBaseImpl(): m_keyEvent(0), m_keyVal(0), m_virtKeyVal(0), m_modifier(0), m_synthetic(false)
+    {
+        m_detail = 0;
+    }
 
-  KeyEventBaseImpl(EventId id,
-                   bool canBubbleArg,
-                   bool cancelableArg,
-                   AbstractViewImpl *viewArg,
-                   QKeyEvent *key);
+    KeyEventBaseImpl(EventId id,
+                     bool canBubbleArg,
+                     bool cancelableArg,
+                     AbstractViewImpl *viewArg,
+                     QKeyEvent *key);
 
+    mutable QKeyEvent *m_keyEvent;
+    unsigned long m_keyVal;     //Unicode key value
+    unsigned long m_virtKeyVal; //Virtual key value for keys like arrows, Fn, etc.
 
-  mutable QKeyEvent *m_keyEvent;
-  unsigned long m_keyVal;     //Unicode key value
-  unsigned long m_virtKeyVal; //Virtual key value for keys like arrows, Fn, etc.
+    // bitfield containing state of modifiers. not part of the dom.
+    unsigned long    m_modifier;
 
-  // bitfield containing state of modifiers. not part of the dom.
-  unsigned long    m_modifier;
+    bool             m_synthetic;
 
-  bool             m_synthetic;
-
-  void buildQKeyEvent() const; //Construct a Qt key event from m_keyVal/m_virtKeyVal
+    void buildQKeyEvent() const; //Construct a Qt key event from m_keyVal/m_virtKeyVal
 };
 
-class TextEventImpl : public KeyEventBaseImpl {
+class TextEventImpl : public KeyEventBaseImpl
+{
 public:
     TextEventImpl();
 
-    TextEventImpl(QKeyEvent* key, DOM::AbstractViewImpl* view);
+    TextEventImpl(QKeyEvent *key, DOM::AbstractViewImpl *view);
 
     void initTextEvent(const DOMString &typeArg,
                        bool canBubbleArg,
                        bool cancelableArg,
-                       AbstractViewImpl* viewArg,
-                       const DOMString& text);
+                       AbstractViewImpl *viewArg,
+                       const DOMString &text);
 
     virtual bool isTextInputEvent() const;
 
@@ -513,67 +711,89 @@ public:
     virtual int keyCode() const;
     virtual int charCode() const;
 
-    DOMString data() const { return m_outputString; }
+    DOMString data() const
+    {
+        return m_outputString;
+    }
 private:
     DOMString m_outputString;
 };
 
-class KeyboardEventImpl : public KeyEventBaseImpl {
+class KeyboardEventImpl : public KeyEventBaseImpl
+{
 public:
-  KeyboardEventImpl();
-  KeyboardEventImpl(QKeyEvent* key, DOM::AbstractViewImpl* view);
+    KeyboardEventImpl();
+    KeyboardEventImpl(QKeyEvent *key, DOM::AbstractViewImpl *view);
 
-  virtual bool isKeyboardEvent() const;
+    virtual bool isKeyboardEvent() const;
 
-  //Legacy key stuff...
-  int keyCode() const;
-  int charCode() const;
+    //Legacy key stuff...
+    int keyCode() const;
+    int charCode() const;
 
-  DOMString     keyIdentifier() const;
-  unsigned long keyLocation() const { return m_keyLocation; }
+    DOMString     keyIdentifier() const;
+    unsigned long keyLocation() const
+    {
+        return m_keyLocation;
+    }
 
-  bool getModifierState(const DOMString& keyIdentifierArg) const;
+    bool getModifierState(const DOMString &keyIdentifierArg) const;
 
-  void initKeyboardEvent(const DOMString &typeArg,
-                         bool canBubbleArg,
-                         bool cancelableArg,
-                         AbstractViewImpl* viewArg,
-                         const DOMString &keyIdentifierArg,
-                         unsigned long keyLocationArg,
-                         const DOMString& modifiersList);
+    void initKeyboardEvent(const DOMString &typeArg,
+                           bool canBubbleArg,
+                           bool cancelableArg,
+                           AbstractViewImpl *viewArg,
+                           const DOMString &keyIdentifierArg,
+                           unsigned long keyLocationArg,
+                           const DOMString &modifiersList);
 
 private:
     unsigned long m_keyLocation;
 };
 
-
-class MutationEventImpl : public EventImpl {
+class MutationEventImpl : public EventImpl
+{
 // ### fire these during parsing (if necessary)
 public:
     MutationEventImpl();
     MutationEventImpl(EventId _id, /* for convenience */
-		      bool canBubbleArg,
-		      bool cancelableArg,
-		      const Node &relatedNodeArg,
-		      const DOMString &prevValueArg,
-		      const DOMString &newValueArg,
-		      const DOMString &attrNameArg,
-		      unsigned short attrChangeArg);
+                      bool canBubbleArg,
+                      bool cancelableArg,
+                      const Node &relatedNodeArg,
+                      const DOMString &prevValueArg,
+                      const DOMString &newValueArg,
+                      const DOMString &attrNameArg,
+                      unsigned short attrChangeArg);
     ~MutationEventImpl();
 
-    Node relatedNode() const { return m_relatedNode; }
-    DOMString prevValue() const { return m_prevValue; }
-    DOMString newValue() const { return m_newValue; }
-    DOMString attrName() const { return m_attrName; }
-    unsigned short attrChange() const { return m_attrChange; }
+    Node relatedNode() const
+    {
+        return m_relatedNode;
+    }
+    DOMString prevValue() const
+    {
+        return m_prevValue;
+    }
+    DOMString newValue() const
+    {
+        return m_newValue;
+    }
+    DOMString attrName() const
+    {
+        return m_attrName;
+    }
+    unsigned short attrChange() const
+    {
+        return m_attrChange;
+    }
     void initMutationEvent(const DOMString &typeArg,
-			   bool canBubbleArg,
-			   bool cancelableArg,
-			   const Node &relatedNodeArg,
-			   const DOMString &prevValueArg,
-			   const DOMString &newValueArg,
-			   const DOMString &attrNameArg,
-			   unsigned short attrChangeArg);
+                           bool canBubbleArg,
+                           bool cancelableArg,
+                           const Node &relatedNodeArg,
+                           const DOMString &prevValueArg,
+                           const DOMString &newValueArg,
+                           const DOMString &attrNameArg,
+                           unsigned short attrChangeArg);
     virtual bool isMutationEvent() const;
 protected:
     NodeImpl *m_relatedNode;
@@ -583,32 +803,46 @@ protected:
     unsigned short m_attrChange;
 };
 
-class MessageEventImpl : public EventImpl {
+class MessageEventImpl : public EventImpl
+{
 public:
     enum DataType {
         JS_VALUE
     };
 
-    class Data : public khtml::Shared<Data> {
+    class Data : public khtml::Shared<Data>
+    {
     public:
         virtual DataType messageDataType() const = 0;
         virtual ~Data() {}
     };
 
-    RefPtr<Data> data() const { return m_data; }
-    DOMString  origin() const { return m_origin; }
-    KHTMLPart* source() const { return m_source.data(); }
-    DOMString  lastEventId() const { return m_lastEventId; }
+    RefPtr<Data> data() const
+    {
+        return m_data;
+    }
+    DOMString  origin() const
+    {
+        return m_origin;
+    }
+    KHTMLPart *source() const
+    {
+        return m_source.data();
+    }
+    DOMString  lastEventId() const
+    {
+        return m_lastEventId;
+    }
 
     MessageEventImpl();
 
     void initMessageEvent(const DOMString &eventTypeArg,
                           bool  canBubbleArg,
                           bool  cancelableArg,
-                          const RefPtr<Data>& dataArg,
-                          const DOMString& originArg,
-                          const DOMString& lastEventIdArg,
-                          KHTMLPart* sourceArg); // no message ports yet.
+                          const RefPtr<Data> &dataArg,
+                          const DOMString &originArg,
+                          const DOMString &lastEventIdArg,
+                          KHTMLPart *sourceArg); // no message ports yet.
     virtual bool isMessageEvent() const;
 private:
     RefPtr<Data> m_data;
@@ -617,20 +851,26 @@ private:
     QWeakPointer<KHTMLPart>  m_source;
 };
 
-
-class HashChangeEventImpl : public EventImpl {
+class HashChangeEventImpl : public EventImpl
+{
 public:
-    const DOMString &oldUrl() const { return m_oldUrl; }
-    const DOMString &newUrl() const { return m_newUrl; }
+    const DOMString &oldUrl() const
+    {
+        return m_oldUrl;
+    }
+    const DOMString &newUrl() const
+    {
+        return m_newUrl;
+    }
 
     HashChangeEventImpl();
 
     void initHashChangeEvent(const DOMString &eventTypeArg,
-                          bool  canBubbleArg,
-                          bool  cancelableArg,
-                          const DOMString &oldUrl,
-                          const DOMString &newUrl
-                         );
+                             bool  canBubbleArg,
+                             bool  cancelableArg,
+                             const DOMString &oldUrl,
+                             const DOMString &newUrl
+                            );
     virtual bool isHashChangeEvent() const;
 private:
     DOMString    m_oldUrl;

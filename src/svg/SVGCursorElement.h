@@ -30,38 +30,46 @@
 #include "SVGURIReference.h"
 #include "SVGExternalResourcesRequired.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGCursorElement : public SVGElement,
-                             public SVGTests,
-                             public SVGExternalResourcesRequired,
-                             public SVGURIReference {
-    public:
-        SVGCursorElement(const QualifiedName&, Document*);
-        virtual ~SVGCursorElement();
+class SVGCursorElement : public SVGElement,
+    public SVGTests,
+    public SVGExternalResourcesRequired,
+    public SVGURIReference
+{
+public:
+    SVGCursorElement(const QualifiedName &, Document *);
+    virtual ~SVGCursorElement();
 
-        void addClient(SVGElement*);
-        void removeClient(SVGElement*);
+    void addClient(SVGElement *);
+    void removeClient(SVGElement *);
 
-        virtual bool isValid() const { return SVGTests::isValid(); }
+    virtual bool isValid() const
+    {
+        return SVGTests::isValid();
+    }
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual void svgAttributeChanged(const QualifiedName&);
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual void svgAttributeChanged(const QualifiedName &);
 
-        virtual void getSubresourceAttributeStrings(Vector<String>&) const;
+    virtual void getSubresourceAttributeStrings(Vector<String> &) const;
 
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
 
-    private:
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)
+private:
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)
 
-        ANIMATED_PROPERTY_DECLARATIONS(SVGCursorElement, SVGLength, SVGLength, X, x)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGCursorElement, SVGLength, SVGLength, Y, y)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGCursorElement, SVGLength, SVGLength, X, x)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGCursorElement, SVGLength, SVGLength, Y, y)
 
-        HashSet<SVGElement*> m_clients;
-    };
+    HashSet<SVGElement *> m_clients;
+};
 
 } // namespace WebCore
 

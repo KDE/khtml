@@ -32,7 +32,8 @@
 #include <khtml_export.h>
 #include <dom/html_element.h>
 
-namespace DOM {
+namespace DOM
+{
 
 class HTMLDListElementImpl;
 class HTMLUListElementImpl;
@@ -55,13 +56,15 @@ public:
     HTMLDListElement();
     HTMLDListElement(const HTMLDListElement &other);
     HTMLDListElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLDListElement(HTMLDListElementImpl *impl);
 public:
 
-    HTMLDListElement & operator = (const HTMLDListElement &other);
-    HTMLDListElement & operator = (const Node &other);
+    HTMLDListElement &operator = (const HTMLDListElement &other);
+    HTMLDListElement &operator = (const Node &other);
 
     ~HTMLDListElement();
 
@@ -77,7 +80,7 @@ public:
     /**
      * see compact
      */
-    void setCompact( bool );
+    void setCompact(bool);
 };
 
 // --------------------------------------------------------------------------
@@ -95,13 +98,15 @@ public:
     HTMLDirectoryElement();
     HTMLDirectoryElement(const HTMLDirectoryElement &other);
     HTMLDirectoryElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLDirectoryElement(HTMLDirectoryElementImpl *impl);
 public:
 
-    HTMLDirectoryElement & operator = (const HTMLDirectoryElement &other);
-    HTMLDirectoryElement & operator = (const Node &other);
+    HTMLDirectoryElement &operator = (const HTMLDirectoryElement &other);
+    HTMLDirectoryElement &operator = (const Node &other);
 
     ~HTMLDirectoryElement();
 
@@ -117,7 +122,7 @@ public:
     /**
      * see compact
      */
-    void setCompact( bool );
+    void setCompact(bool);
 };
 
 // --------------------------------------------------------------------------
@@ -134,14 +139,16 @@ public:
     HTMLLIElement();
     HTMLLIElement(const HTMLLIElement &other);
     HTMLLIElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 
 protected:
     HTMLLIElement(HTMLLIElementImpl *impl);
 public:
 
-    HTMLLIElement & operator = (const HTMLLIElement &other);
-    HTMLLIElement & operator = (const Node &other);
+    HTMLLIElement &operator = (const HTMLLIElement &other);
+    HTMLLIElement &operator = (const Node &other);
 
     ~HTMLLIElement();
 
@@ -157,7 +164,7 @@ public:
     /**
      * see type
      */
-    void setType( const DOMString & );
+    void setType(const DOMString &);
 
     /**
      * Reset sequence number when used in \c OL See the <a
@@ -171,7 +178,7 @@ public:
     /**
      * see value
      */
-    void setValue( long );
+    void setValue(long);
 };
 
 // --------------------------------------------------------------------------
@@ -189,14 +196,16 @@ public:
     HTMLMenuElement();
     HTMLMenuElement(const HTMLMenuElement &other);
     HTMLMenuElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 
 protected:
     HTMLMenuElement(HTMLMenuElementImpl *impl);
 public:
 
-    HTMLMenuElement & operator = (const HTMLMenuElement &other);
-    HTMLMenuElement & operator = (const Node &other);
+    HTMLMenuElement &operator = (const HTMLMenuElement &other);
+    HTMLMenuElement &operator = (const Node &other);
 
     ~HTMLMenuElement();
 
@@ -212,7 +221,7 @@ public:
     /**
      * see compact
      */
-    void setCompact( bool );
+    void setCompact(bool);
 };
 
 // --------------------------------------------------------------------------
@@ -229,13 +238,15 @@ public:
     HTMLOListElement();
     HTMLOListElement(const HTMLOListElement &other);
     HTMLOListElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLOListElement(HTMLOListElementImpl *impl);
 public:
 
-    HTMLOListElement & operator = (const HTMLOListElement &other);
-    HTMLOListElement & operator = (const Node &other);
+    HTMLOListElement &operator = (const HTMLOListElement &other);
+    HTMLOListElement &operator = (const Node &other);
 
     ~HTMLOListElement();
 
@@ -251,7 +262,7 @@ public:
     /**
      * see compact
      */
-    void setCompact( bool );
+    void setCompact(bool);
 
     /**
      * Starting sequence number. See the <a
@@ -265,7 +276,7 @@ public:
     /**
      * see start
      */
-    void setStart( long );
+    void setStart(long);
 
     /**
      * Numbering style. See the <a
@@ -279,11 +290,10 @@ public:
     /**
      * see type
      */
-    void setType( const DOMString & );
+    void setType(const DOMString &);
 };
 
 // --------------------------------------------------------------------------
-
 
 /**
  * Unordered list. See the <a
@@ -297,13 +307,15 @@ public:
     HTMLUListElement();
     HTMLUListElement(const HTMLUListElement &other);
     HTMLUListElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLUListElement(HTMLUListElementImpl *impl);
 public:
 
-    HTMLUListElement & operator = (const HTMLUListElement &other);
-    HTMLUListElement & operator = (const Node &other);
+    HTMLUListElement &operator = (const HTMLUListElement &other);
+    HTMLUListElement &operator = (const Node &other);
 
     ~HTMLUListElement();
 
@@ -319,7 +331,7 @@ public:
     /**
      * see compact
      */
-    void setCompact( bool );
+    void setCompact(bool);
 
     /**
      * Bullet style. See the <a
@@ -333,7 +345,7 @@ public:
     /**
      * see type
      */
-    void setType( const DOMString & );
+    void setType(const DOMString &);
 };
 
 } //namespace

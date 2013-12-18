@@ -31,7 +31,8 @@
 
 #include <QColor>
 
-namespace DOM {
+namespace DOM
+{
 
 class CSSStyleDeclarationImpl;
 class CSSRule;
@@ -63,7 +64,7 @@ public:
     CSSStyleDeclaration(CSSStyleDeclarationImpl *impl);
 public:
 
-    CSSStyleDeclaration & operator = (const CSSStyleDeclaration &other);
+    CSSStyleDeclaration &operator = (const CSSStyleDeclaration &other);
 
     ~CSSStyleDeclaration();
 
@@ -87,7 +88,7 @@ public:
      * readonly.
      *
      */
-    void setCssText( const DOM::DOMString & );
+    void setCssText(const DOM::DOMString &);
 
     /**
      * The number of properties that have been explicitly set in this
@@ -115,7 +116,7 @@ public:
      * string if the property has not been set.
      *
      */
-    DOM::DOMString getPropertyValue ( const DOM::DOMString &propertyName ) const;
+    DOM::DOMString getPropertyValue(const DOM::DOMString &propertyName) const;
 
     /**
      * Used to retrieve the object representation of the value of a
@@ -136,7 +137,7 @@ public:
      * \c null if the property has not been set.
      *
      */
-    CSSValue getPropertyCSSValue ( const DOM::DOMString &propertyName ) const;
+    CSSValue getPropertyCSSValue(const DOM::DOMString &propertyName) const;
 
     /**
      * Used to remove a CSS property if it has been explicitly set
@@ -156,7 +157,7 @@ public:
      * readonly.
      *
      */
-    DOM::DOMString removeProperty ( const DOM::DOMString &propertyName );
+    DOM::DOMString removeProperty(const DOM::DOMString &propertyName);
 
     /**
      * Used to retrieve the priority of a CSS property (e.g. the
@@ -172,7 +173,7 @@ public:
      * exists.
      *
      */
-    DOM::DOMString getPropertyPriority ( const DOM::DOMString &propertyName ) const;
+    DOM::DOMString getPropertyPriority(const DOM::DOMString &propertyName) const;
 
     /**
      * Used to set a property value and priority within this
@@ -198,7 +199,7 @@ public:
      * readonly.
      *
      */
-    void setProperty ( const DOM::DOMString &propertyName, const DOM::DOMString &value, const DOM::DOMString &priority );
+    void setProperty(const DOM::DOMString &propertyName, const DOM::DOMString &value, const DOM::DOMString &priority);
 
     /**
      * Used to retrieve the properties that have been explicitly set
@@ -213,7 +214,7 @@ public:
      * empty string if no property exists at this position.
      *
      */
-    DOM::DOMString item ( unsigned long index ) const;
+    DOM::DOMString item(unsigned long index) const;
 
     /**
      * @internal
@@ -225,7 +226,6 @@ public:
 protected:
     CSSStyleDeclarationImpl *impl;
 };
-
 
 class CSSValueImpl;
 
@@ -242,7 +242,7 @@ public:
     CSSValue(CSSValueImpl *impl);
 public:
 
-    CSSValue & operator = (const CSSValue &other);
+    CSSValue &operator = (const CSSValue &other);
 
     ~CSSValue();
     /**
@@ -253,7 +253,7 @@ public:
      *
      */
     enum UnitTypes {
-	CSS_INHERIT = 0,
+        CSS_INHERIT = 0,
         CSS_PRIMITIVE_VALUE = 1,
         CSS_VALUE_LIST = 2,
         CSS_CUSTOM = 3,
@@ -279,7 +279,7 @@ public:
      * readonly.
      *
      */
-    void setCssText( const DOM::DOMString & );
+    void setCssText(const DOM::DOMString &);
 
     /**
      * A code defining the type of the value as defined above.
@@ -300,7 +300,6 @@ protected:
     CSSValueImpl *impl;
 };
 
-
 class CSSValueListImpl;
 class CSSValue;
 
@@ -318,8 +317,8 @@ public:
     CSSValueList(CSSValueListImpl *impl);
 public:
 
-    CSSValueList & operator = (const CSSValueList &other);
-    CSSValueList & operator = (const CSSValue &other);
+    CSSValueList &operator = (const CSSValueList &other);
+    CSSValueList &operator = (const CSSValue &other);
 
     ~CSSValueList();
 
@@ -343,12 +342,11 @@ public:
      * that is not valid index.
      *
      */
-    CSSValue item ( unsigned long index );
+    CSSValue item(unsigned long index);
 
 protected:
     CSSValueListImpl *vimpl;
 };
-
 
 class CSSPrimitiveValueImpl;
 class Counter;
@@ -375,8 +373,8 @@ public:
     CSSPrimitiveValue(CSSPrimitiveValueImpl *impl);
 public:
 
-    CSSPrimitiveValue & operator = (const CSSPrimitiveValue &other);
-    CSSPrimitiveValue & operator = (const CSSValue &other);
+    CSSPrimitiveValue &operator = (const CSSPrimitiveValue &other);
+    CSSPrimitiveValue &operator = (const CSSValue &other);
 
     ~CSSPrimitiveValue();
     /**
@@ -451,7 +449,7 @@ public:
      * readonly.
      *
      */
-    void setFloatValue ( unsigned short unitType, float floatValue );
+    void setFloatValue(unsigned short unitType, float floatValue);
 
     /**
      * This method is used to get a float value in a specified unit.
@@ -478,7 +476,7 @@ public:
      * specified unit.
      *
      */
-    float getFloatValue ( unsigned short unitType ) const;
+    float getFloatValue(unsigned short unitType) const;
 
     /**
      * A method to set the string value with a specified unit. If the
@@ -505,7 +503,7 @@ public:
      * readonly.
      *
      */
-    void setStringValue ( unsigned short stringType, const DOM::DOMString &stringValue );
+    void setStringValue(unsigned short stringType, const DOM::DOMString &stringValue);
 
     /**
      * This method is used to get the string value in a specified
@@ -522,7 +520,7 @@ public:
      * string value.
      *
      */
-    DOM::DOMString getStringValue (  ) const;
+    DOM::DOMString getStringValue() const;
 
     /**
      * This method is used to get the Counter value. If this CSS value
@@ -537,7 +535,7 @@ public:
      * Counter value.
      *
      */
-    Counter getCounterValue (  ) const;
+    Counter getCounterValue() const;
 
     /**
      * This method is used to get the Rect value. If this CSS value
@@ -552,7 +550,7 @@ public:
      * Rect value.
      *
      */
-    Rect getRectValue (  ) const;
+    Rect getRectValue() const;
 
     /**
      * This method is used to get the RGB color. If this CSS value
@@ -568,10 +566,8 @@ public:
      * return a RGB color value.
      *
      */
-    RGBColor getRGBColorValue (  ) const;
+    RGBColor getRGBColorValue() const;
 };
-
-
 
 /**
  * The \c RGBColor interface is used to represent any <a
@@ -588,11 +584,14 @@ public:
     /**
      * @deprecated
      */
-    RGBColor(const QColor& c) { m_color = c.rgb(); }
+    RGBColor(const QColor &c)
+    {
+        m_color = c.rgb();
+    }
     RGBColor(QRgb color);
 
     RGBColor(const RGBColor &other);
-    RGBColor & operator = (const RGBColor &other);
+    RGBColor &operator = (const RGBColor &other);
 
     ~RGBColor();
 
@@ -617,7 +616,10 @@ public:
     /**
      * @internal
      */
-    QRgb color() const { return m_color; }
+    QRgb color() const
+    {
+        return m_color;
+    }
 protected:
     QRgb m_color;
 };
@@ -639,7 +641,7 @@ public:
     Rect();
     Rect(const Rect &other);
 
-    Rect & operator = (const Rect &other);
+    Rect &operator = (const Rect &other);
 
     ~Rect();
 
@@ -697,7 +699,7 @@ public:
     Counter(const Counter &other);
 public:
 
-    Counter & operator = (const Counter &other);
+    Counter &operator = (const Counter &other);
 
     ~Counter();
 
@@ -731,8 +733,6 @@ protected:
     Counter(CounterImpl *i);
 };
 
-
 } // namespace
-
 
 #endif

@@ -26,7 +26,8 @@
 
 #include "xml/dom_stringimpl.h"
 
-namespace khtml {
+namespace khtml
+{
 
 class AtomicStringImpl : public DOM::DOMStringImpl
 {

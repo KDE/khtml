@@ -33,9 +33,10 @@
 #include "SVGTextPathElement.h"
 #include "SVGTransformList.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGTextPathElement::SVGTextPathElement(const QualifiedName& tagName, Document* doc)
+SVGTextPathElement::SVGTextPathElement(const QualifiedName &tagName, Document *doc)
     : SVGTextContentElement(tagName, doc)
     , SVGURIReference()
     , m_startOffset(this, LengthModeOther)
@@ -52,43 +53,47 @@ ANIMATED_PROPERTY_DEFINITIONS(SVGTextPathElement, SVGLength, Length, length, Sta
 ANIMATED_PROPERTY_DEFINITIONS(SVGTextPathElement, int, Enumeration, enumeration, Method, method, SVGNames::methodAttr, m_method)
 ANIMATED_PROPERTY_DEFINITIONS(SVGTextPathElement, int, Enumeration, enumeration, Spacing, spacing, SVGNames::spacingAttr, m_spacing)
 
-void SVGTextPathElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGTextPathElement::parseMappedAttribute(MappedAttribute *attr)
 {
-    const String& value = attr->value();
+    const String &value = attr->value();
 
-    if (attr->name() == SVGNames::startOffsetAttr)
+    if (attr->name() == SVGNames::startOffsetAttr) {
         setStartOffsetBaseValue(SVGLength(this, LengthModeOther, value));
-    else if (attr->name() == SVGNames::methodAttr) {
-        if (value == "align")
+    } else if (attr->name() == SVGNames::methodAttr) {
+        if (value == "align") {
             setSpacingBaseValue(SVG_TEXTPATH_METHODTYPE_ALIGN);
-        else if(value == "stretch")
+        } else if (value == "stretch") {
             setSpacingBaseValue(SVG_TEXTPATH_METHODTYPE_STRETCH);
+        }
     } else if (attr->name() == SVGNames::spacingAttr) {
-        if (value == "auto")
+        if (value == "auto") {
             setMethodBaseValue(SVG_TEXTPATH_SPACINGTYPE_AUTO);
-        else if (value == "exact")
+        } else if (value == "exact") {
             setMethodBaseValue(SVG_TEXTPATH_SPACINGTYPE_EXACT);
+        }
     } else {
-        if (SVGURIReference::parseMappedAttribute(attr))
+        if (SVGURIReference::parseMappedAttribute(attr)) {
             return;
+        }
         SVGTextContentElement::parseMappedAttribute(attr);
     }
 }
 
-RenderObject* SVGTextPathElement::createRenderer(RenderArena* arena, RenderStyle* style)
+RenderObject *SVGTextPathElement::createRenderer(RenderArena *arena, RenderStyle *style)
 {
     Q_UNUSED(style);
-    return new (arena) RenderSVGTextPath(this);
+    return new(arena) RenderSVGTextPath(this);
 }
 
-bool SVGTextPathElement::childShouldCreateRenderer(Node* child) const
+bool SVGTextPathElement::childShouldCreateRenderer(Node *child) const
 {
     if (child->isTextNode()
 #if ENABLE(SVG_FONTS)
-        || child->hasTagName(SVGNames::altGlyphTag)
+            || child->hasTagName(SVGNames::altGlyphTag)
 #endif
-        || child->hasTagName(SVGNames::trefTag) || child->hasTagName(SVGNames::tspanTag) || child->hasTagName(SVGNames::textPathTag))
+            || child->hasTagName(SVGNames::trefTag) || child->hasTagName(SVGNames::tspanTag) || child->hasTagName(SVGNames::textPathTag)) {
         return true;
+    }
 
     return false;
 }
@@ -98,7 +103,7 @@ void SVGTextPathElement::insertedIntoDocument()
     SVGElement::insertedIntoDocument();
 
     String id = SVGURIReference::getTarget(href());
-    Element* targetElement = ownerDocument()->getElementById(id);
+    Element *targetElement = ownerDocument()->getElementById(id);
     if (!targetElement) {
         document()->accessSVGExtensions()->addPendingResource(id, this);
         return;
@@ -109,4 +114,3 @@ void SVGTextPathElement::insertedIntoDocument()
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

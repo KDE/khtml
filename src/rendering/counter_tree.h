@@ -25,7 +25,8 @@
 #include "misc/shared.h"
 #include "rendering/render_object.h"
 
-namespace khtml {
+namespace khtml
+{
 
 class CounterReset;
 
@@ -41,33 +42,78 @@ public:
     CounterNode(RenderObject *o);
     virtual ~CounterNode();
 
-    CounterReset* parent() const { return m_parent; }
-    CounterNode* previousSibling() const { return m_previous; }
-    CounterNode* nextSibling() const { return m_next; }
-    virtual CounterNode* firstChild() const { return 0; } 
-    virtual CounterNode* lastChild() const { return 0; }
-    virtual void insertAfter ( CounterNode *newChild, CounterNode *refChild );
-    virtual void removeChild ( CounterNode *oldChild );
+    CounterReset *parent() const
+    {
+        return m_parent;
+    }
+    CounterNode *previousSibling() const
+    {
+        return m_previous;
+    }
+    CounterNode *nextSibling() const
+    {
+        return m_next;
+    }
+    virtual CounterNode *firstChild() const
+    {
+        return 0;
+    }
+    virtual CounterNode *lastChild() const
+    {
+        return 0;
+    }
+    virtual void insertAfter(CounterNode *newChild, CounterNode *refChild);
+    virtual void removeChild(CounterNode *oldChild);
     // Convenient self-referring version of the above
     void remove();
 
-    int value() const { return m_value; }
-    void setValue(short v) { m_value = v; }
-    int count() const { return m_count; }
+    int value() const
+    {
+        return m_value;
+    }
+    void setValue(short v)
+    {
+        m_value = v;
+    }
+    int count() const
+    {
+        return m_count;
+    }
 
-    virtual bool isReset() { return false; }
-    virtual void recount( bool first = false );
+    virtual bool isReset()
+    {
+        return false;
+    }
+    virtual void recount(bool first = false);
     virtual void setSelfDirty();
     virtual void setParentDirty();
 
-    bool hasCounters() const { return m_hasCounters; }
-    bool isVisual() const { return m_isVisual; }
+    bool hasCounters() const
+    {
+        return m_hasCounters;
+    }
+    bool isVisual() const
+    {
+        return m_isVisual;
+    }
     void setHasCounters();
-    void setIsVisual() { m_isVisual = true; }
-    bool isRoot() { return m_renderer && m_renderer->isRoot(); }
+    void setIsVisual()
+    {
+        m_isVisual = true;
+    }
+    bool isRoot()
+    {
+        return m_renderer && m_renderer->isRoot();
+    }
 
-    void setRenderer(RenderObject *o) { m_renderer = o; }
-    RenderObject* renderer() const { return m_renderer; }
+    void setRenderer(RenderObject *o)
+    {
+        m_renderer = o;
+    }
+    RenderObject *renderer() const
+    {
+        return m_renderer;
+    }
 
     friend class CounterReset;
 protected:
@@ -88,19 +134,31 @@ public:
     CounterReset(RenderObject *o);
     virtual ~CounterReset();
 
-    virtual CounterNode *firstChild() const { return m_first; }
-    virtual CounterNode *lastChild() const { return m_last; }
-    virtual void insertAfter ( CounterNode *newChild, CounterNode *refChild );
-    virtual void removeChild ( CounterNode *oldChild );
+    virtual CounterNode *firstChild() const
+    {
+        return m_first;
+    }
+    virtual CounterNode *lastChild() const
+    {
+        return m_last;
+    }
+    virtual void insertAfter(CounterNode *newChild, CounterNode *refChild);
+    virtual void removeChild(CounterNode *oldChild);
 
-    virtual bool isReset() { return true; }
-    virtual void recount( bool first = false );
+    virtual bool isReset()
+    {
+        return true;
+    }
+    virtual void recount(bool first = false);
     virtual void setSelfDirty();
     virtual void setParentDirty();
 
     void updateTotal(int value);
     // The highest value among children
-    int total() const { return m_total; }
+    int total() const
+    {
+        return m_total;
+    }
 
 protected:
     int m_total;

@@ -15,8 +15,8 @@ int main(int argc, char **argv)
     QApplication app(argc, argv);
 
     if (app.arguments().isEmpty()) {
-      qWarning() << "you need to specify a path to your kdelibs source dir, see \"--help\"";
-      return -1;
+        qWarning() << "you need to specify a path to your kdelibs source dir, see \"--help\"";
+        return -1;
     }
     const QString path = app.arguments().first();
 
@@ -29,9 +29,9 @@ int main(int argc, char **argv)
 //    c->registerApplet(a->applet());
 
     a->applet()->setBaseURL(QUrl::fromLocalFile(path).toString());
-    a->applet()->setAppletName( "Lake" );
-    a->applet()->setAppletClass( "lake.class" );
-    a->applet()->setParameter( "image", "konqi.gif" );
+    a->applet()->setAppletName("Lake");
+    a->applet()->setAppletClass("lake.class");
+    a->applet()->setParameter("image", "konqi.gif");
 
     a->showApplet();
     a->applet()->start();

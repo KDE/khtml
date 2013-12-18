@@ -27,71 +27,97 @@
 
 #include "SVGPathSeg.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGPathSegCurvetoQuadraticAbs : public SVGPathSeg { 
-    public:
-        static PassRefPtr<SVGPathSegCurvetoQuadraticAbs> create(float x, float y, float x1, float y1) { return adoptRef(new SVGPathSegCurvetoQuadraticAbs(x, y, x1, y1)); }
-        virtual ~SVGPathSegCurvetoQuadraticAbs();
+class SVGPathSegCurvetoQuadraticAbs : public SVGPathSeg
+{
+public:
+    static PassRefPtr<SVGPathSegCurvetoQuadraticAbs> create(float x, float y, float x1, float y1)
+    {
+        return adoptRef(new SVGPathSegCurvetoQuadraticAbs(x, y, x1, y1));
+    }
+    virtual ~SVGPathSegCurvetoQuadraticAbs();
 
-        virtual unsigned short pathSegType() const { return PATHSEG_CURVETO_QUADRATIC_ABS; }
-        virtual String pathSegTypeAsLetter() const { return "Q"; }
-        virtual String toString() const { return String::format("Q %.6lg %.6lg %.6lg %.6lg", m_x1, m_y1, m_x, m_y); }
+    virtual unsigned short pathSegType() const
+    {
+        return PATHSEG_CURVETO_QUADRATIC_ABS;
+    }
+    virtual String pathSegTypeAsLetter() const
+    {
+        return "Q";
+    }
+    virtual String toString() const
+    {
+        return String::format("Q %.6lg %.6lg %.6lg %.6lg", m_x1, m_y1, m_x, m_y);
+    }
 
-        void setX(float);
-        float x() const;
+    void setX(float);
+    float x() const;
 
-        void setY(float);
-        float y() const;
+    void setY(float);
+    float y() const;
 
-        void setX1(float);
-        float x1() const;
+    void setX1(float);
+    float x1() const;
 
-        void setY1(float);
-        float y1() const;
+    void setY1(float);
+    float y1() const;
 
-    private:
-        SVGPathSegCurvetoQuadraticAbs(float x, float y, float x1, float y1);
-        
-        float m_x;
-        float m_y;
-        float m_x1;
-        float m_y1;
-    };
+private:
+    SVGPathSegCurvetoQuadraticAbs(float x, float y, float x1, float y1);
 
-    class SVGPathSegCurvetoQuadraticRel : public SVGPathSeg {
-    public:
-        static PassRefPtr<SVGPathSegCurvetoQuadraticRel> create(float x, float y, float x1, float y1) { return adoptRef(new SVGPathSegCurvetoQuadraticRel(x, y, x1, y1)); }
-        virtual ~SVGPathSegCurvetoQuadraticRel();
+    float m_x;
+    float m_y;
+    float m_x1;
+    float m_y1;
+};
 
-        virtual unsigned short pathSegType() const { return PATHSEG_CURVETO_QUADRATIC_REL; }
-        virtual String pathSegTypeAsLetter() const { return "q"; }
-        virtual String toString() const { return String::format("q %.6lg %.6lg %.6lg %.6lg", m_x1, m_y1, m_x, m_y); }
+class SVGPathSegCurvetoQuadraticRel : public SVGPathSeg
+{
+public:
+    static PassRefPtr<SVGPathSegCurvetoQuadraticRel> create(float x, float y, float x1, float y1)
+    {
+        return adoptRef(new SVGPathSegCurvetoQuadraticRel(x, y, x1, y1));
+    }
+    virtual ~SVGPathSegCurvetoQuadraticRel();
 
-        void setX(float);
-        float x() const;
+    virtual unsigned short pathSegType() const
+    {
+        return PATHSEG_CURVETO_QUADRATIC_REL;
+    }
+    virtual String pathSegTypeAsLetter() const
+    {
+        return "q";
+    }
+    virtual String toString() const
+    {
+        return String::format("q %.6lg %.6lg %.6lg %.6lg", m_x1, m_y1, m_x, m_y);
+    }
 
-        void setY(float);
-        float y() const;
+    void setX(float);
+    float x() const;
 
-        void setX1(float);
-        float x1() const;
+    void setY(float);
+    float y() const;
 
-        void setY1(float);
-        float y1() const;
+    void setX1(float);
+    float x1() const;
 
-    private:
-        SVGPathSegCurvetoQuadraticRel(float x, float y, float x1, float y1);
+    void setY1(float);
+    float y1() const;
 
-        float m_x;
-        float m_y;
-        float m_x1;
-        float m_y1;
-    };
+private:
+    SVGPathSegCurvetoQuadraticRel(float x, float y, float x1, float y1);
+
+    float m_x;
+    float m_y;
+    float m_x1;
+    float m_y1;
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

@@ -26,40 +26,49 @@
 #if ENABLE(SVG)
 #include "SVGStyledElement.h"
 
-namespace WebCore {
-    class SVGFilterEffect;
-    class SVGResourceFilter;
+namespace WebCore
+{
+class SVGFilterEffect;
+class SVGResourceFilter;
 
-    class SVGFilterPrimitiveStandardAttributes : public SVGStyledElement
+class SVGFilterPrimitiveStandardAttributes : public SVGStyledElement
+{
+public:
+    SVGFilterPrimitiveStandardAttributes(const QualifiedName &, Document *);
+    virtual ~SVGFilterPrimitiveStandardAttributes();
+
+    virtual bool isFilterEffect() const
     {
-    public:
-        SVGFilterPrimitiveStandardAttributes(const QualifiedName&, Document*);
-        virtual ~SVGFilterPrimitiveStandardAttributes();
-        
-        virtual bool isFilterEffect() const { return true; }
+        return true;
+    }
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual SVGFilterEffect* filterEffect(SVGResourceFilter*) const = 0;
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual SVGFilterEffect *filterEffect(SVGResourceFilter *) const = 0;
 
-        virtual bool rendererIsNeeded(RenderStyle*) { return false; }
+    virtual bool rendererIsNeeded(RenderStyle *)
+    {
+        return false;
+    }
 
-    protected:
-        void setStandardAttributes(SVGFilterEffect*) const;
+protected:
+    void setStandardAttributes(SVGFilterEffect *) const;
 
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
 
-    private:
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFilterPrimitiveStandardAttributes, SVGLength, SVGLength, X, x)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFilterPrimitiveStandardAttributes, SVGLength, SVGLength, Y, y)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFilterPrimitiveStandardAttributes, SVGLength, SVGLength, Width, width)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFilterPrimitiveStandardAttributes, SVGLength, SVGLength, Height, height)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFilterPrimitiveStandardAttributes, String, String, Result, result)
-    };
+private:
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFilterPrimitiveStandardAttributes, SVGLength, SVGLength, X, x)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFilterPrimitiveStandardAttributes, SVGLength, SVGLength, Y, y)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFilterPrimitiveStandardAttributes, SVGLength, SVGLength, Width, width)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFilterPrimitiveStandardAttributes, SVGLength, SVGLength, Height, height)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFilterPrimitiveStandardAttributes, String, String, Result, result)
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

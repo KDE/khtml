@@ -24,9 +24,10 @@
 
 #include "SVGNames.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFELightElement::SVGFELightElement(const QualifiedName& tagName, Document* doc)
+SVGFELightElement::SVGFELightElement(const QualifiedName &tagName, Document *doc)
     : SVGElement(tagName, doc)
     , m_azimuth(0.0f)
     , m_elevation(0.0f)
@@ -57,35 +58,35 @@ ANIMATED_PROPERTY_DEFINITIONS(SVGFELightElement, float, Number, number, PointsAt
 ANIMATED_PROPERTY_DEFINITIONS(SVGFELightElement, float, Number, number, SpecularExponent, specularExponent, SVGNames::specularExponentAttr, m_specularExponent)
 ANIMATED_PROPERTY_DEFINITIONS(SVGFELightElement, float, Number, number, LimitingConeAngle, limitingConeAngle, SVGNames::limitingConeAngleAttr, m_limitingConeAngle)
 
-void SVGFELightElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGFELightElement::parseMappedAttribute(MappedAttribute *attr)
 {
-    const String& value = attr->value();
-    if (attr->name() == SVGNames::azimuthAttr)
+    const String &value = attr->value();
+    if (attr->name() == SVGNames::azimuthAttr) {
         setAzimuthBaseValue(value.toFloat());
-    else if (attr->name() == SVGNames::elevationAttr)
+    } else if (attr->name() == SVGNames::elevationAttr) {
         setElevationBaseValue(value.toFloat());
-    else if (attr->name() == SVGNames::xAttr)
+    } else if (attr->name() == SVGNames::xAttr) {
         setXBaseValue(value.toFloat());
-    else if (attr->name() == SVGNames::yAttr)
+    } else if (attr->name() == SVGNames::yAttr) {
         setYBaseValue(value.toFloat());
-    else if (attr->name() == SVGNames::zAttr)
+    } else if (attr->name() == SVGNames::zAttr) {
         setZBaseValue(value.toFloat());
-    else if (attr->name() == SVGNames::pointsAtXAttr)
+    } else if (attr->name() == SVGNames::pointsAtXAttr) {
         setPointsAtXBaseValue(value.toFloat());
-    else if (attr->name() == SVGNames::pointsAtYAttr)
+    } else if (attr->name() == SVGNames::pointsAtYAttr) {
         setPointsAtYBaseValue(value.toFloat());
-    else if (attr->name() == SVGNames::pointsAtZAttr)
+    } else if (attr->name() == SVGNames::pointsAtZAttr) {
         setPointsAtZBaseValue(value.toFloat());
-    else if (attr->name() == SVGNames::specularExponentAttr)
+    } else if (attr->name() == SVGNames::specularExponentAttr) {
         setSpecularExponentBaseValue(value.toFloat());
-    else if (attr->name() == SVGNames::limitingConeAngleAttr)
+    } else if (attr->name() == SVGNames::limitingConeAngleAttr) {
         setLimitingConeAngleBaseValue(value.toFloat());
-    else
+    } else {
         SVGElement::parseMappedAttribute(attr);
+    }
 }
 
 }
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

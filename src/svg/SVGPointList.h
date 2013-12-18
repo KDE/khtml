@@ -28,17 +28,22 @@
 #include "FloatPoint.h"
 #include <wtf/PassRefPtr.h>
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGPointList : public SVGPODList<FloatPoint> {
-    public:
-        static PassRefPtr<SVGPointList> create(const QualifiedName& attributeName) { return adoptRef(new SVGPointList(attributeName)); }
+class SVGPointList : public SVGPODList<FloatPoint>
+{
+public:
+    static PassRefPtr<SVGPointList> create(const QualifiedName &attributeName)
+    {
+        return adoptRef(new SVGPointList(attributeName));
+    }
 
-        virtual ~SVGPointList();
-        
-    private:
-        SVGPointList(const QualifiedName&);
-    };
+    virtual ~SVGPointList();
+
+private:
+    SVGPointList(const QualifiedName &);
+};
 
 } // namespace WebCore
 

@@ -22,7 +22,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef css_webfont_h
@@ -42,7 +42,8 @@
 
 #include <QHash>
 
-namespace DOM {
+namespace DOM
+{
 
 class CSSFontFace;
 class CSSFontFaceRuleImpl;
@@ -52,54 +53,58 @@ class DocumentImpl;
 class DocLoader;
 class FontDef;
 
-    enum {
-        FontStyleNormalBit = 0,
-        FontStyleItalicBit,
-        FontVariantNormalBit,
-        FontVariantSmallCapsBit,
-        FontWeight100Bit,
-        FontWeight200Bit,
-        FontWeight300Bit,
-        FontWeight400Bit,
-        FontWeight500Bit,
-        FontWeight600Bit,
-        FontWeight700Bit,
-        FontWeight800Bit,
-        FontWeight900Bit,
-        FontTraitsMaskWidth
-    };
+enum {
+    FontStyleNormalBit = 0,
+    FontStyleItalicBit,
+    FontVariantNormalBit,
+    FontVariantSmallCapsBit,
+    FontWeight100Bit,
+    FontWeight200Bit,
+    FontWeight300Bit,
+    FontWeight400Bit,
+    FontWeight500Bit,
+    FontWeight600Bit,
+    FontWeight700Bit,
+    FontWeight800Bit,
+    FontWeight900Bit,
+    FontTraitsMaskWidth
+};
 
-    enum FontTraitsMask {
-        FontStyleNormalMask = 1 << FontStyleNormalBit,
-        FontStyleItalicMask = 1 << FontStyleItalicBit,
-        FontStyleMask = FontStyleNormalMask | FontStyleItalicMask,
+enum FontTraitsMask {
+    FontStyleNormalMask = 1 << FontStyleNormalBit,
+    FontStyleItalicMask = 1 << FontStyleItalicBit,
+    FontStyleMask = FontStyleNormalMask | FontStyleItalicMask,
 
-        FontVariantNormalMask = 1 << FontVariantNormalBit,
-        FontVariantSmallCapsMask = 1 << FontVariantSmallCapsBit,
-        FontVariantMask = FontVariantNormalMask | FontVariantSmallCapsMask,
+    FontVariantNormalMask = 1 << FontVariantNormalBit,
+    FontVariantSmallCapsMask = 1 << FontVariantSmallCapsBit,
+    FontVariantMask = FontVariantNormalMask | FontVariantSmallCapsMask,
 
-        FontWeight100Mask = 1 << FontWeight100Bit,
-        FontWeight200Mask = 1 << FontWeight200Bit,
-        FontWeight300Mask = 1 << FontWeight300Bit,
-        FontWeight400Mask = 1 << FontWeight400Bit,
-        FontWeight500Mask = 1 << FontWeight500Bit,
-        FontWeight600Mask = 1 << FontWeight600Bit,
-        FontWeight700Mask = 1 << FontWeight700Bit,
-        FontWeight800Mask = 1 << FontWeight800Bit,
-        FontWeight900Mask = 1 << FontWeight900Bit,
-        FontWeightMask = FontWeight100Mask | FontWeight200Mask | FontWeight300Mask | FontWeight400Mask | FontWeight500Mask | FontWeight600Mask | FontWeight700Mask | FontWeight800Mask | FontWeight900Mask
-    };
+    FontWeight100Mask = 1 << FontWeight100Bit,
+    FontWeight200Mask = 1 << FontWeight200Bit,
+    FontWeight300Mask = 1 << FontWeight300Bit,
+    FontWeight400Mask = 1 << FontWeight400Bit,
+    FontWeight500Mask = 1 << FontWeight500Bit,
+    FontWeight600Mask = 1 << FontWeight600Bit,
+    FontWeight700Mask = 1 << FontWeight700Bit,
+    FontWeight800Mask = 1 << FontWeight800Bit,
+    FontWeight900Mask = 1 << FontWeight900Bit,
+    FontWeightMask = FontWeight100Mask | FontWeight200Mask | FontWeight300Mask | FontWeight400Mask | FontWeight500Mask | FontWeight600Mask | FontWeight700Mask | FontWeight800Mask | FontWeight900Mask
+};
 
-class CSSSegmentedFontFace :  public khtml::Shared<CSSSegmentedFontFace>{
+class CSSSegmentedFontFace :  public khtml::Shared<CSSSegmentedFontFace>
+{
 public:
-    CSSSegmentedFontFace(CSSFontSelector*);
+    CSSSegmentedFontFace(CSSFontSelector *);
     ~CSSSegmentedFontFace();
 
     bool isLoaded() const;
     bool isValid() const;
-    CSSFontSelector* fontSelector() const { return m_fontSelector; }
+    CSSFontSelector *fontSelector() const
+    {
+        return m_fontSelector;
+    }
 
-    void fontLoaded(CSSFontFace*);
+    void fontLoaded(CSSFontFace *);
 
     void appendFontFace(CSSFontFace);
 
@@ -109,22 +114,29 @@ private:
 
 //    void pruneTable();
 
-    CSSFontSelector* m_fontSelector;
+    CSSFontSelector *m_fontSelector;
 //    HashMap<unsigned, SegmentedFontData*> m_fontDataTable;
 //    WTF::Vector<WTF::RefPtr<CSSFontFace>, 1> m_fontFaces;
 };
 
-class CSSFontFaceSource : public khtml::CachedObjectClient {
+class CSSFontFaceSource : public khtml::CachedObjectClient
+{
 public:
-    CSSFontFaceSource(const DOMString&, bool distant = false);
+    CSSFontFaceSource(const DOMString &, bool distant = false);
     virtual ~CSSFontFaceSource();
 
     bool isLoaded() const;
     bool isValid() const;
 
-    DOMString string() const { return m_string; }
+    DOMString string() const
+    {
+        return m_string;
+    }
 
-    void setFontFace(CSSFontFace* face) { m_face = face; }
+    void setFontFace(CSSFontFace *face)
+    {
+        m_face = face;
+    }
 
     virtual void notifyFinished(khtml::CachedObject * /*finishedObj*/);
     void refLoader();
@@ -134,14 +146,20 @@ public:
 
 #if 0
     // ENABLE(SVG_FONTS)
-    SVGFontFaceElement* svgFontFaceElement() const { return m_svgFontFaceElement; }
-    void setSVGFontFaceElement(SVGFontFaceElement* element) { m_svgFontFaceElement = element; }
+    SVGFontFaceElement *svgFontFaceElement() const
+    {
+        return m_svgFontFaceElement;
+    }
+    void setSVGFontFaceElement(SVGFontFaceElement *element)
+    {
+        m_svgFontFaceElement = element;
+    }
 #endif
 
 private:
     DOMString m_string; // URI for remote, built-in font name for local.
-    khtml::CachedFont* m_font; // For remote fonts, a pointer to our cached resource.
-    CSSFontFace* m_face; // Our owning font face.
+    khtml::CachedFont *m_font; // For remote fonts, a pointer to our cached resource.
+    CSSFontFace *m_face; // Our owning font face.
     int m_id; // Qt identifier for the Application font.
     bool m_refed;
     bool m_distant;
@@ -149,90 +167,107 @@ private:
 
 #if 0
     // ENABLE(SVG_FONTS)
-    SVGFontFaceElement* m_svgFontFaceElement;
+    SVGFontFaceElement *m_svgFontFaceElement;
     RefPtr<SVGFontElement> m_externalSVGFontElement;
 #endif
 };
 
-class CSSFontFace : public khtml::Shared<CSSFontFace> {
+class CSSFontFace : public khtml::Shared<CSSFontFace>
+{
 public:
-    CSSFontFace(FontTraitsMask traitsMask, CSSFontSelector* fs)
+    CSSFontFace(FontTraitsMask traitsMask, CSSFontSelector *fs)
         : m_traitsMask(traitsMask), m_fontSelector(fs), m_refed(false)
     {
     }
     ~CSSFontFace();
 
-    FontTraitsMask traitsMask() const { return m_traitsMask; }
+    FontTraitsMask traitsMask() const
+    {
+        return m_traitsMask;
+    }
 
-/*
-    struct UnicodeRange;
+    /*
+        struct UnicodeRange;
 
-    void addRange(UChar32 from, UChar32 to) { m_ranges.append(UnicodeRange(from, to)); }
-    const Vector<UnicodeRange>& ranges() const { return m_ranges; }
-*/
-    void addedToSegmentedFontFace(CSSSegmentedFontFace*);
-    void removedFromSegmentedFontFace(CSSSegmentedFontFace*);
+        void addRange(UChar32 from, UChar32 to) { m_ranges.append(UnicodeRange(from, to)); }
+        const Vector<UnicodeRange>& ranges() const { return m_ranges; }
+    */
+    void addedToSegmentedFontFace(CSSSegmentedFontFace *);
+    void removedFromSegmentedFontFace(CSSSegmentedFontFace *);
 
     bool isLoaded() const;
     bool isValid() const;
 
-    void addSource(CSSFontFaceSource*);
+    void addSource(CSSFontFaceSource *);
 
-    void fontLoaded(CSSFontFaceSource*);
-    void addFamilyName(const DOMString& name) { m_names.append( name ); }
-    WTF::Vector<DOMString> familyNames() const { return m_names; }
-    CSSFontSelector* fontSelector() const { return m_fontSelector; }
+    void fontLoaded(CSSFontFaceSource *);
+    void addFamilyName(const DOMString &name)
+    {
+        m_names.append(name);
+    }
+    WTF::Vector<DOMString> familyNames() const
+    {
+        return m_names;
+    }
+    CSSFontSelector *fontSelector() const
+    {
+        return m_fontSelector;
+    }
     void refLoaders(); // start loading all sources
 
 //    SimpleFontData* getFontData(const FontDef&, bool syntheticBold, bool syntheticItalic);
 
-/*
-    struct UnicodeRange {
-        UnicodeRange(UChar32 from, UChar32 to)
-            : m_from(from)
-            , m_to(to)
-        {
-        }
+    /*
+        struct UnicodeRange {
+            UnicodeRange(UChar32 from, UChar32 to)
+                : m_from(from)
+                , m_to(to)
+            {
+            }
 
-        UChar32 from() const { return m_from; }
-        UChar32 to() const { return m_to; }
+            UChar32 from() const { return m_from; }
+            UChar32 to() const { return m_to; }
 
-    private:
-        UChar32 m_from;
-        UChar32 m_to;
-    };
-*/
+        private:
+            UChar32 m_from;
+            UChar32 m_to;
+        };
+    */
 
 private:
     FontTraitsMask m_traitsMask;
 //    Vector<UnicodeRange> m_ranges;
 //    HashSet<CSSSegmentedFontFace*> m_segmentedFontFaces;
     WTF::Vector<DOMString> m_names;
-    WTF::Vector<CSSFontFaceSource*> m_sources;
-    CSSFontSelector* m_fontSelector;
+    WTF::Vector<CSSFontFaceSource *> m_sources;
+    CSSFontSelector *m_fontSelector;
     bool m_refed;
 };
 
-class CSSFontSelector : public khtml::Shared<CSSFontSelector> {
+class CSSFontSelector : public khtml::Shared<CSSFontSelector>
+{
 public:
-    CSSFontSelector(DocumentImpl*);
+    CSSFontSelector(DocumentImpl *);
     virtual ~CSSFontSelector();
 
 //    virtual FontData* getFontData(const FontDef& fontDescription, const DOMString& familyName);
-    void requestFamilyName( const DOMString& familyName );
-    void clearDocument() { m_document = 0; }
-    void addFontFaceRule(const CSSFontFaceRuleImpl*);
+    void requestFamilyName(const DOMString &familyName);
+    void clearDocument()
+    {
+        m_document = 0;
+    }
+    void addFontFaceRule(const CSSFontFaceRuleImpl *);
     void fontLoaded();
     virtual void fontCacheInvalidated();
     bool isEmpty() const;
-    khtml::DocLoader* docLoader() const;
+    khtml::DocLoader *docLoader() const;
 
 private:
 
-    DocumentImpl* m_document;
+    DocumentImpl *m_document;
 //    HashMap<DOMString, Vector<RefPtr<CSSFontFace> >*, CaseFoldingHash> m_fontFaces;
 //    WTF::HashMap<DOMString, WTF::Vector<WTF::RefPtr<CSSFontFace> >*, CaseFoldingHash> m_locallyInstalledFontFaces;
-      QHash<DOMString, CSSFontFace*> m_locallyInstalledFontFaces;
+    QHash<DOMString, CSSFontFace *> m_locallyInstalledFontFaces;
 //    HashMap<DOMString, HashMap<unsigned, RefPtr<CSSSegmentedFontFace> >*, CaseFoldingHash> m_fonts;
 };
 

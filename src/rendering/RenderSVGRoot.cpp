@@ -40,9 +40,10 @@
 #include "SVGStyledElement.h"
 /*#include "SVGURIReference.h"*/
 
-namespace WebCore {
+namespace WebCore
+{
 
-RenderSVGRoot::RenderSVGRoot(SVGStyledElement* node)
+RenderSVGRoot::RenderSVGRoot(SVGStyledElement *node)
     : RenderBox(node) /*RenderContainer(node)*/
 {
     setReplaced(true);
@@ -72,8 +73,9 @@ void RenderSVGRoot::calcMinMaxWidth()
     if (style()->width().isPercent() || (style()->width().isAuto() && style()->height().isPercent())) {
         m_minWidth = 0;
         m_maxWidth = width;
-    } else
+    } else {
         m_minWidth = m_maxWidth = width;
+    }
 
     setMinMaxKnown();
 }
@@ -86,7 +88,7 @@ void RenderSVGRoot::layout()
 
     // Arbitrary affine transforms are incompatible with LayoutState.
     //FIXME vtokarev: view()->disableLayoutState();
-	//canvas()->disableLayoutState();
+    //canvas()->disableLayoutState();
 
     /*IntRect oldBounds = m_absoluteBounds;
     IntRect oldOutlineBox;
@@ -98,13 +100,15 @@ void RenderSVGRoot::layout()
     calcHeight();
 
     //m_absoluteBounds = absoluteClippedOverflowRect();
-    SVGSVGElement* svg = static_cast<SVGSVGElement*>(element());
+    SVGSVGElement *svg = static_cast<SVGSVGElement *>(element());
     m_width = static_cast<int>(m_width * svg->currentScale());
     m_height = static_cast<int>(m_height * svg->currentScale());
 
-    for (RenderObject* child = firstChild(); child; child = child->nextSibling()) {
+    for (RenderObject *child = firstChild(); child; child = child->nextSibling()) {
         // ### TODO: we only want to relayout if our size/transform changed kids
-        if (child->isText()) continue;
+        if (child->isText()) {
+            continue;
+        }
         child->setNeedsLayout(true);
         child->layoutIfNeeded();
         // ASSERT(!child->needsLayout());
@@ -114,7 +118,7 @@ void RenderSVGRoot::layout()
         repaintAfterLayoutIfNeeded(oldBounds, oldOutlineBox);*/
 
     //FIXME vtokarev view()->enableLayoutState();
-	//canvas()->enableLayoutState();
+    //canvas()->enableLayoutState();
     setNeedsLayout(false);
 }
 
@@ -142,20 +146,21 @@ void RenderSVGRoot::layout()
     if (!viewport().isEmpty()) {
         if (style()->overflowX() != OVISIBLE)
             paintInfo.context->clip(enclosingIntRect(viewport())); // FIXME: Eventually we'll want float-precision clipping
-        
+
         paintInfo.context->concatCTM(AffineTransform().translate(viewport().x(), viewport().y()));
     }
 
     paintInfo.context->concatCTM(AffineTransform().translate(svg->currentTranslate().x(), svg->currentTranslate().y()));
 }*/
 
-void RenderSVGRoot::paint(PaintInfo& paintInfo, int parentX, int parentY)
+void RenderSVGRoot::paint(PaintInfo &paintInfo, int parentX, int parentY)
 {
     calcViewport();
 
     //SVGSVGElement* svg = static_cast<SVGSVGElement*>(element());
-    if (viewport().width() <= 0. || viewport().height() <= 0.)
+    if (viewport().width() <= 0. || viewport().height() <= 0.) {
         return;
+    }
 
     if (shouldPaintBackgroundOrBorder()) {
         paintBoxDecorations(paintInfo, m_x + parentX, m_y + parentY);
@@ -171,44 +176,45 @@ void RenderSVGRoot::paint(PaintInfo& paintInfo, int parentX, int parentY)
     childPaintInfo.p->restore();
 
 #if 0
-	// qDebug() << "in paint()" << endl;
-	/*if (!paintInfo.context) {
-		GraphicsContext context(paintInfo.p);
-		paintInfo.context = &context;
-		// qDebug() << "context:" << &context << endl;
-	}*/
-    if (paintInfo.context->paintingDisabled())
+    // qDebug() << "in paint()" << endl;
+    /*if (!paintInfo.context) {
+        GraphicsContext context(paintInfo.p);
+        paintInfo.context = &context;
+        // qDebug() << "context:" << &context << endl;
+    }*/
+    if (paintInfo.context->paintingDisabled()) {
         return;
+    }
 
     calcViewport();
 
-    SVGSVGElement* svg = static_cast<SVGSVGElement*>(element());
+    SVGSVGElement *svg = static_cast<SVGSVGElement *>(element());
     // A value of zero disables rendering of the element.
-	// qDebug() << "viewport:" << viewport().width() << viewport().height() << endl;
-    if (viewport().width() <= 0. || viewport().height() <= 0.)
+    // qDebug() << "viewport:" << viewport().width() << viewport().height() << endl;
+    if (viewport().width() <= 0. || viewport().height() <= 0.) {
         return;
+    }
     // qDebug() << "painting:" << parentX << parentY << viewport().width() << viewport().height() << endl;
-
 
     // This should only exist for <svg> renderers
     /*if (hasBoxDecorations() && (paintInfo.phase == PaintPhaseForeground || paintInfo.phase == PaintPhaseSelection))*/
-        paintBoxDecorations(paintInfo, m_x + parentX, m_y + parentY);
+    paintBoxDecorations(paintInfo, m_x + parentX, m_y + parentY);
 
     /*if (!firstChild()) {
-#if ENABLE(SVG_FILTERS)
+    #if ENABLE(SVG_FILTERS)
         // Spec: groups w/o children still may render filter content.
         const SVGRenderStyle* svgStyle = style()->svgStyle();
         AtomicString filterId(SVGURIReference::getTarget(svgStyle->filter()));
         SVGResourceFilter* filter = getFilterById(document(), filterId);
         if (!filter)
-#endif
+    #endif
             return;
     }*/
- 	paintInfo.p->fillRect(parentX, parentY, viewport().width(), viewport().height(), QBrush(Qt::green));
+    paintInfo.p->fillRect(parentX, parentY, viewport().width(), viewport().height(), QBrush(Qt::green));
 
     RenderObject::PaintInfo childPaintInfo(paintInfo);
     childPaintInfo.context->save();
-	// qDebug() << "context= " << childPaintInfo.context << "parent=" << paintInfo.context << endl;
+    // qDebug() << "context= " << childPaintInfo.context << "parent=" << paintInfo.context << endl;
 
     /*applyContentTransforms(childPaintInfo, parentX, parentY);
 
@@ -225,7 +231,7 @@ void RenderSVGRoot::paint(PaintInfo& paintInfo, int parentX, int parentY)
         finishRenderSVGContent(this, childPaintInfo, boundingBox, filter, paintInfo.context);*/
 
     childPaintInfo.context->restore();
-    
+
     /*if ((childPaintInfo.phase == PaintPhaseOutline || childPaintInfo.phase == PaintPhaseSelfOutline) && style()->outlineWidth() && style()->visibility() == VISIBLE)
         paintOutline(childPaintInfo.context, m_absoluteBounds.x(), m_absoluteBounds.y(), m_absoluteBounds.width(), m_absoluteBounds.height(), style());*/
 #endif
@@ -238,25 +244,28 @@ FloatRect RenderSVGRoot::viewport() const
 
 void RenderSVGRoot::calcViewport()
 {
-    SVGElement* svgelem = static_cast<SVGElement*>(element());
+    SVGElement *svgelem = static_cast<SVGElement *>(element());
     if (svgelem->hasTagName(SVGNames::svgTag)) {
-        SVGSVGElement* svg = static_cast<SVGSVGElement*>(element());
+        SVGSVGElement *svg = static_cast<SVGSVGElement *>(element());
 
-        if (!selfNeedsLayout() && !svg->hasRelativeValues())
+        if (!selfNeedsLayout() && !svg->hasRelativeValues()) {
             return;
+        }
 
-		float w, h;
+        float w, h;
         SVGLength width = svg->width();
-        if (width.unitType() == LengthTypePercentage && svg->hasSetContainerSize())
+        if (width.unitType() == LengthTypePercentage && svg->hasSetContainerSize()) {
             w = svg->relativeWidthValue();
-        else
+        } else {
             w = width.value();
-        
+        }
+
         SVGLength height = svg->height();
-        if (height.unitType() == LengthTypePercentage && svg->hasSetContainerSize())
+        if (height.unitType() == LengthTypePercentage && svg->hasSetContainerSize()) {
             h = svg->relativeHeightValue();
-        else
+        } else {
             h = height.value();
+        }
         m_viewport = FloatRect(0, 0, w, h);
     }
 }
@@ -268,16 +277,16 @@ IntRect RenderSVGRoot::absoluteClippedOverflowRect()
     for (RenderObject* current = firstChild(); current != 0; current = current->nextSibling())
         repaintRect.unite(current->absoluteClippedOverflowRect());
 
-#if ENABLE(SVG_FILTERS)
+    #if ENABLE(SVG_FILTERS)
     // Filters can expand the bounding box
     SVGResourceFilter* filter = getFilterById(document(), SVGURIReference::getTarget(style()->svgStyle()->filter()));
     if (filter)
         repaintRect.unite(enclosingIntRect(filter->filterBBoxForItemBBox(repaintRect)));
-#endif
+    #endif
 
     return repaintRect;*/
-	ASSERT(false);
-	return IntRect();
+    ASSERT(false);
+    return IntRect();
 }
 
 /*void RenderSVGRoot::addFocusRingRects(GraphicsContext* graphicsContext, int, int)
@@ -285,7 +294,7 @@ IntRect RenderSVGRoot::absoluteClippedOverflowRect()
     graphicsContext->addFocusRingRect(m_absoluteBounds);
 }*/
 
-void RenderSVGRoot::absoluteRects(Vector<IntRect>& rects, int, int)
+void RenderSVGRoot::absoluteRects(Vector<IntRect> &rects, int, int)
 {
     Q_UNUSED(rects);
     /*for (RenderObject* current = firstChild(); current != 0; current = current->nextSibling())
@@ -296,7 +305,7 @@ AffineTransform RenderSVGRoot::absoluteTransform() const
 {
     AffineTransform ctm = RenderContainer::absoluteTransform();
     ctm.translate(m_x, m_y);
-    SVGSVGElement* svg = static_cast<SVGSVGElement*>(element());
+    SVGSVGElement *svg = static_cast<SVGSVGElement *>(element());
     ctm.scale(svg->currentScale());
     ctm.translate(svg->currentTranslate().x(), svg->currentTranslate().y());
     ctm.translate(viewport().x(), viewport().y());
@@ -307,7 +316,7 @@ FloatRect RenderSVGRoot::relativeBBox(bool includeStroke) const
 {
     Q_UNUSED(includeStroke);
     FloatRect rect;
-    
+
     //RenderObject* current = firstChild();
     /*for (; current != 0; current = current->nextSibling()) {
         FloatRect childBBox = current->relativeBBox(includeStroke);
@@ -332,7 +341,7 @@ AffineTransform RenderSVGRoot::localTransform() const
 
     int sx = (_tx - static_cast<int>(ctm.e())); // scroll offset
     int sy = (_ty - static_cast<int>(ctm.f())); // scroll offset
- 
+
     if (!viewport().isEmpty()
         && style()->overflowX() == OHIDDEN
         && style()->overflowY() == OHIDDEN) {
@@ -355,12 +364,11 @@ AffineTransform RenderSVGRoot::localTransform() const
             return true;
         }
     }
-    
+
     // Spec: Only graphical elements can be targeted by the mouse, period.
     // 16.4: "If there are no graphics elements whose relevant graphics content is under the pointer (i.e., there is no target element), the event is not dispatched."
     return false;
 }*/
-
 
 }
 

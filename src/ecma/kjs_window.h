@@ -1,4 +1,3 @@
-// -*- c-basic-offset: 2 -*-
 /*
  *  This file is part of the KDE libraries
  *  Copyright (C) 2000 Harri Porten (porten@kde.org)
@@ -36,50 +35,59 @@ class QTimer;
 class KHTMLView;
 class KHTMLPart;
 
-namespace KParts {
-  class ReadOnlyPart;
+namespace KParts
+{
+class ReadOnlyPart;
 }
 
-namespace khtml {
-  class ChildFrame;
+namespace khtml
+{
+class ChildFrame;
 }
 
-namespace DOM {
-  class EventImpl;
+namespace DOM
+{
+class EventImpl;
 }
 
-namespace KJS {
+namespace KJS
+{
 
-  class WindowFunc;
-  class WindowQObject;
-  class Location;
-  class History;
-  class External;
-  class ScheduledAction;
-  class JSEventListener;
-  class JSLazyEventListener;
+class WindowFunc;
+class WindowQObject;
+class Location;
+class History;
+class External;
+class ScheduledAction;
+class JSEventListener;
+class JSLazyEventListener;
 
-  class Screen : public JSObject {
-  public:
+class Screen : public JSObject
+{
+public:
     Screen(ExecState *exec);
     enum {
-      Height, Width, ColorDepth, PixelDepth, AvailLeft, AvailTop, AvailHeight,
-      AvailWidth
+        Height, Width, ColorDepth, PixelDepth, AvailLeft, AvailTop, AvailHeight,
+        AvailWidth
     };
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier& propertyName, PropertySlot& slot);
-    JSValue* getValueProperty(ExecState *exec, int token) const;
-  private:
+    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    JSValue *getValueProperty(ExecState *exec, int token) const;
+private:
     KHTMLView *view;
-    virtual const ClassInfo* classInfo() const { return &info; }
+    virtual const ClassInfo *classInfo() const
+    {
+        return &info;
+    }
     static const ClassInfo info;
-  };
+};
 
-  class Console : public JSObject {
-  public:
+class Console : public JSObject
+{
+public:
     Console(ExecState *exec);
     enum {
-      Assert, Log, Debug, Info, Warn, Error, Clear
+        Assert, Log, Debug, Info, Warn, Error, Clear
     };
 
     enum MessageType {
@@ -90,28 +98,32 @@ namespace KJS {
         ErrorType   = 1 << 4
     };
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier& propertyName, PropertySlot& slot);
-  private:
-    virtual const ClassInfo* classInfo() const { return &info; }
+    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+private:
+    virtual const ClassInfo *classInfo() const
+    {
+        return &info;
+    }
     static const ClassInfo info;
-  };
+};
 
-  class Window : public JSGlobalObject {
+class Window : public JSGlobalObject
+{
     friend QPointer<KHTMLPart> getInstance();
     friend class KJS::Location;
     friend class KJS::WindowFunc;
     friend class KJS::WindowQObject;
     friend class KJS::ScheduledAction;
-  public:
+public:
     Window(khtml::ChildFrame *p);
-  public:
+public:
     ~Window();
     /**
      * Returns and registers a window object. In case there's already a Window
      * for the specified part p this will be returned in order to have unique
      * bindings.
      */
-    static JSValue* retrieve(KParts::ReadOnlyPart *p);
+    static JSValue *retrieve(KParts::ReadOnlyPart *p);
     /**
      * Returns the Window object for a given part
      */
@@ -121,46 +133,53 @@ namespace KJS {
      * was called from.
      */
     static Window *retrieveActive(ExecState *exec);
-    KParts::ReadOnlyPart *part() const {
+    KParts::ReadOnlyPart *part() const
+    {
         return m_frame.isNull() ? 0L : m_frame->m_part.data();
     }
 
     virtual void mark();
-    JSValue* getValueProperty(ExecState *exec, int token);
+    JSValue *getValueProperty(ExecState *exec, int token);
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier& propertyName, PropertySlot& slot);
+    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
     using KJS::JSObject::put;
-    virtual void put(ExecState *exec, const Identifier &propertyName, JSValue* value, int attr = None);
+    virtual void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None);
     virtual bool toBoolean(ExecState *exec) const;
-    virtual DOM::AbstractViewImpl* toAbstractView() const;
+    virtual DOM::AbstractViewImpl *toAbstractView() const;
     void scheduleClose();
     void closeNow();
     void delayedGoHistory(int steps);
     void goHistory(int steps);
-    void goURL(ExecState* exec, const QString& url, bool lockHistory);
+    void goURL(ExecState *exec, const QString &url, bool lockHistory);
 
-    static bool targetIsExistingWindow(KHTMLPart* part, const QString& frameName);
-    JSValue* openWindow(ExecState *exec, const List &args);
-    JSValue* executeOpenWindow(ExecState *exec, const QUrl& url, const QString& frameName, const QString& features);
-    void resizeTo(QWidget* tl, int width, int height);
+    static bool targetIsExistingWindow(KHTMLPart *part, const QString &frameName);
+    JSValue *openWindow(ExecState *exec, const List &args);
+    JSValue *executeOpenWindow(ExecState *exec, const QUrl &url, const QString &frameName, const QString &features);
+    void resizeTo(QWidget *tl, int width, int height);
     void afterScriptExecution();
-    bool isSafeScript(ExecState *exec) const {
-        KParts::ReadOnlyPart *activePart = static_cast<KJS::ScriptInterpreter *>(  exec->dynamicInterpreter() )->part();
-      if ( activePart == part() ) return true;
-      return checkIsSafeScript( activePart );
+    bool isSafeScript(ExecState *exec) const
+    {
+        KParts::ReadOnlyPart *activePart = static_cast<KJS::ScriptInterpreter *>(exec->dynamicInterpreter())->part();
+        if (activePart == part()) {
+            return true;
+        }
+        return checkIsSafeScript(activePart);
     }
     Location *location() const;
-    JSEventListener *getJSEventListener(JSValue* val, bool html = false);
-    JSLazyEventListener *getJSLazyEventListener(const QString &code, const QString& sourceUrl, int lineNo,
-                                                const QString &name, DOM::NodeImpl* node, bool svg = false);
-    void clear( ExecState *exec );
+    JSEventListener *getJSEventListener(JSValue *val, bool html = false);
+    JSLazyEventListener *getJSLazyEventListener(const QString &code, const QString &sourceUrl, int lineNo,
+            const QString &name, DOM::NodeImpl *node, bool svg = false);
+    void clear(ExecState *exec);
     virtual UString toString(ExecState *exec) const;
 
     // Set the current "event" object
-    void setCurrentEvent( DOM::EventImpl *evt );
+    void setCurrentEvent(DOM::EventImpl *evt);
 
-    QHash<const QPair<void*, bool>, JSEventListener*> jsEventListeners;
-    virtual const ClassInfo* classInfo() const { return &info; }
+    QHash<const QPair<void *, bool>, JSEventListener *> jsEventListeners;
+    virtual const ClassInfo *classInfo() const
+    {
+        return &info;
+    }
     static const ClassInfo info;
     enum { Closed, Crypto, DefaultStatus, Status, Document, Node, EventCtor, Range,
            NodeFilter, NodeList, DOMException, RangeException, CSSRule, Frames, _History, _External, Event, InnerHeight,
@@ -196,36 +215,37 @@ namespace KJS {
            HTMLTableElementCtor, HTMLTableCaptionElementCtor, HTMLTableColElementCtor,
            HTMLTableSectionElementCtor, HTMLTableRowElementCtor, HTMLTableCellElementCtor,
            HTMLFrameSetElementCtor, HTMLLayerElementCtor, HTMLFrameElementCtor, HTMLIFrameElementCtor,
-           HTMLCollectionCtor, StyleSheetCtor, 
+           HTMLCollectionCtor, StyleSheetCtor,
            CSSStyleDeclarationCtor, HTMLCanvasElementCtor, Context2DCtor, SVGAngleCtor,
-           XPathResultCtor, XPathExpressionCtor, XPathNSResolverCtor};
+           XPathResultCtor, XPathExpressionCtor, XPathNSResolverCtor
+         };
     WindowQObject *winq;
 
     void forgetSuppressedWindows();
     void showSuppressedWindows();
 
-    JSValue* indexGetter(ExecState *exec, unsigned index);
+    JSValue *indexGetter(ExecState *exec, unsigned index);
 
     // updates window listeners.
-    JSValue* getListener(ExecState *exec, int eventId) const;
-    void setListener(ExecState *exec, int eventId, JSValue* func);
-    
+    JSValue *getListener(ExecState *exec, int eventId) const;
+    void setListener(ExecState *exec, int eventId, JSValue *func);
+
     struct DelayedAction {
-      virtual void mark() {}; // mark any JS objects we use
-      virtual bool execute(Window*) = 0; // returns whether to continue or not
-      virtual ~DelayedAction() {};
+        virtual void mark() {}; // mark any JS objects we use
+        virtual bool execute(Window *) = 0; // returns whether to continue or not
+        virtual ~DelayedAction() {};
     };
-    
-  private:
+
+private:
     // Returns true if the particular method or property should be permitted
     // to be accessed even across frames.
     bool isCrossFrameAccessible(int token) const;
-  
-    KParts::ReadOnlyPart* frameByIndex(unsigned index);
-    static JSValue *framePartGetter(ExecState *exec, JSObject*, const Identifier&, const PropertySlot& slot);
-    static JSValue *namedItemGetter(ExecState *exec, JSObject*, const Identifier&, const PropertySlot& slot);
 
-    bool checkIsSafeScript( KParts::ReadOnlyPart* activePart ) const;
+    KParts::ReadOnlyPart *frameByIndex(unsigned index);
+    static JSValue *framePartGetter(ExecState *exec, JSObject *, const Identifier &, const PropertySlot &slot);
+    static JSValue *namedItemGetter(ExecState *exec, JSObject *, const Identifier &, const PropertySlot &slot);
+
+    bool checkIsSafeScript(KParts::ReadOnlyPart *activePart) const;
 
     QPointer<khtml::ChildFrame> m_frame;
     Screen *screen;
@@ -235,26 +255,26 @@ namespace KJS {
     Location *loc;
     DOM::EventImpl *m_evt;
 
-    QList<DelayedAction*> m_delayed;
+    QList<DelayedAction *> m_delayed;
 
     struct SuppressedWindowInfo {
-       SuppressedWindowInfo() {}  // for QValueList
-       SuppressedWindowInfo( QUrl u, QString fr, QString fe ) : url(u), frameName(fr), features(fe) {}
-       QUrl url;
-       QString frameName;
-       QString features;
-     };
-     QList<SuppressedWindowInfo> m_suppressedWindowInfo;
-  };
+        SuppressedWindowInfo() {}  // for QValueList
+        SuppressedWindowInfo(QUrl u, QString fr, QString fe) : url(u), frameName(fr), features(fe) {}
+        QUrl url;
+        QString frameName;
+        QString features;
+    };
+    QList<SuppressedWindowInfo> m_suppressedWindowInfo;
+};
 
-  /**
-   * like QDateTime, but properly handles milliseconds
-   */
-  class DateTimeMS
-  {
-  	QDate mDate;
-  	QTime mTime;
-  public:
+/**
+ * like QDateTime, but properly handles milliseconds
+ */
+class DateTimeMS
+{
+    QDate mDate;
+    QTime mTime;
+public:
     DateTimeMS addMSecs(int s) const;
     bool operator >(const DateTimeMS &other) const;
     bool operator >=(const DateTimeMS &other) const;
@@ -262,16 +282,17 @@ namespace KJS {
     int msecsTo(const DateTimeMS &other) const;
 
     static DateTimeMS now();
-  };
+};
 
-  /**
-   * An action (either function or string) to be executed after a specified
-   * time interval, either once or repeatedly. Used for window.setTimeout()
-   * and window.setInterval()
-   */
-  class ScheduledAction {
-  public:
-    ScheduledAction(JSObject* _func, List _args, DateTimeMS _nextTime, int _interval, bool _singleShot, int _timerId);
+/**
+ * An action (either function or string) to be executed after a specified
+ * time interval, either once or repeatedly. Used for window.setTimeout()
+ * and window.setInterval()
+ */
+class ScheduledAction
+{
+public:
+    ScheduledAction(JSObject *_func, List _args, DateTimeMS _nextTime, int _interval, bool _singleShot, int _timerId);
     ScheduledAction(QString _code, DateTimeMS _nextTime, int _interval, bool _singleShot, int _timerId);
     ~ScheduledAction();
     bool execute(Window *window);
@@ -287,32 +308,33 @@ namespace KJS {
     int interval;
     bool executing;
     int timerId;
-  };
+};
 
-  class WindowQObject : public QObject {
+class WindowQObject : public QObject
+{
     Q_OBJECT
-  public:
+public:
     WindowQObject(Window *w);
     ~WindowQObject();
     int installTimeout(const Identifier &handler, int t, bool singleShot);
-    int installTimeout(JSValue* func, List args, int t, bool singleShot);
+    int installTimeout(JSValue *func, List args, int t, bool singleShot);
     void clearTimeout(int timerId);
     void mark();
     bool hasTimers() const;
 
     void pauseTimers();
     void resumeTimers();
-  public Q_SLOTS:
+public Q_SLOTS:
     void timeoutClose();
-  protected Q_SLOTS:
+protected Q_SLOTS:
     void parentDestroyed();
-  protected:
+protected:
     void timerEvent(QTimerEvent *e);
     void setNextTimer();
     void killTimers();
-  private:
+private:
     Window *parent;
-    QList<ScheduledAction*> scheduledActions;
+    QList<ScheduledAction *> scheduledActions;
 
     /**
      We need to pause timers when alerts are up; so we keep track
@@ -324,47 +346,54 @@ namespace KJS {
     int lastTimerId;
     QList<int> timerIds;
     bool currentlyDispatching;
-  };
+};
 
-  /**
-   * Helper for pausing/resuming timers
-   */
-  class TimerPauser
-  {
-  public:
-    TimerPauser(ExecState* exec) {
-      win = Window::retrieveActive(exec);
-      win->winq->pauseTimers();
+/**
+ * Helper for pausing/resuming timers
+ */
+class TimerPauser
+{
+public:
+    TimerPauser(ExecState *exec)
+    {
+        win = Window::retrieveActive(exec);
+        win->winq->pauseTimers();
     }
 
-    ~TimerPauser() {
-      win->winq->resumeTimers();
+    ~TimerPauser()
+    {
+        win->winq->resumeTimers();
     }
-  private:
-    Window* win;
-  };
+private:
+    Window *win;
+};
 
-  class Location : public JSObject {
-  public:
+class Location : public JSObject
+{
+public:
     ~Location();
 
-    JSValue* getValueProperty(ExecState *exec, int token) const;
+    JSValue *getValueProperty(ExecState *exec, int token) const;
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier& propertyName, PropertySlot& slot);
+    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
     using KJS::JSObject::put;
-    virtual void put(ExecState *exec, const Identifier &propertyName, JSValue* value, int attr = None);
-    virtual JSValue* toPrimitive(ExecState *exec, JSType preferred) const;
+    virtual void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None);
+    virtual JSValue *toPrimitive(ExecState *exec, JSType preferred) const;
     virtual UString toString(ExecState *exec) const;
     enum { Hash, Href, Hostname, Host, Pathname, Port, Protocol, Search, EqualEqual,
-           Assign, Replace, Reload, ToString };
+           Assign, Replace, Reload, ToString
+         };
     KParts::ReadOnlyPart *part() const;
-    virtual const ClassInfo* classInfo() const { return &info; }
+    virtual const ClassInfo *classInfo() const
+    {
+        return &info;
+    }
     static const ClassInfo info;
-  private:
+private:
     friend class Window;
     Location(khtml::ChildFrame *f);
     QPointer<khtml::ChildFrame> m_frame;
-  };
+};
 
 } // namespace
 

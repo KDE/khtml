@@ -26,7 +26,8 @@
 #include "dom/dom_misc.h"
 #include "misc/shared.h"
 
-namespace DOM {
+namespace DOM
+{
 
 class DocumentImpl;
 class CSSStyleDeclarationImpl;
@@ -39,7 +40,10 @@ class AbstractViewImpl : public khtml::Shared<AbstractViewImpl>
 public:
     AbstractViewImpl(DocumentImpl *_document);
     ~AbstractViewImpl();
-    DocumentImpl *document() const { return m_document; }
+    DocumentImpl *document() const
+    {
+        return m_document;
+    }
     CSSStyleDeclarationImpl *getComputedStyle(ElementImpl *elt, DOMStringImpl *pseudoElt);
 protected:
     DocumentImpl *m_document;

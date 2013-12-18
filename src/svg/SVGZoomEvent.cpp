@@ -24,7 +24,8 @@
 #if ENABLE(SVG)
 #include "SVGZoomEvent.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 SVGZoomEvent::SVGZoomEvent()
     : m_newScale(0.0f)
@@ -80,4 +81,3 @@ bool SVGZoomEvent::isSVGZoomEvent() const
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

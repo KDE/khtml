@@ -4,8 +4,9 @@
 #include "render_box.h"
 #include "IntRect.h"
 
-namespace WebCore {
-    using namespace khtml;
+namespace WebCore
+{
+using namespace khtml;
 }
 
 #endif

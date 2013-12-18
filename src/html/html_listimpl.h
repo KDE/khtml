@@ -32,7 +32,6 @@
 namespace DOM
 {
 
-
 class HTMLUListElementImpl : public HTMLElementImpl
 {
 public:
@@ -42,7 +41,10 @@ public:
 
     virtual void parseAttribute(AttributeImpl *);
 
-    virtual int start() const { return 1; }
+    virtual int start() const
+    {
+        return 1;
+    }
 };
 
 // -------------------------------------------------------------------------
@@ -77,7 +79,10 @@ public:
     virtual Id id() const;
     virtual void parseAttribute(AttributeImpl *);
 
-    int start() const { return _start; }
+    int start() const
+    {
+        return _start;
+    }
 private:
     int _start;
 };

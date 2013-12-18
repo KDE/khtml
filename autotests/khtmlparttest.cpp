@@ -31,11 +31,12 @@
 
 QTEST_MAIN(KHTMLPartTest)
 
-void __abort(int) {
+void __abort(int)
+{
     std::signal(SIGABRT, SIG_DFL);
     std::signal(SIGSEGV, SIG_DFL);
-    QVERIFY( false );
-} 
+    QVERIFY(false);
+}
 
 void KHTMLPartTest::initTestCase()
 {
@@ -45,14 +46,14 @@ void KHTMLPartTest::initTestCase()
 
 class MyKHTMLPart : public KHTMLPart
 {
-  public:
-    MyKHTMLPart() : KHTMLPart( new KHTMLView(this, 0) ) {}
+public:
+    MyKHTMLPart() : KHTMLPart(new KHTMLView(this, 0)) {}
 };
 
 void KHTMLPartTest::testConstructKHTMLViewFromInitList()
 {
     // test that KHTMLView can be built from a derived KHTMLPart's initialization list
-    KHTMLPart* aPart = new MyKHTMLPart();
+    KHTMLPart *aPart = new MyKHTMLPart();
     QVERIFY(true);
     QVERIFY(aPart->view()->part() == aPart);
     delete aPart;
@@ -61,8 +62,8 @@ void KHTMLPartTest::testConstructKHTMLViewFromInitList()
 void KHTMLPartTest::testConstructKHTMLViewBeforePart()
 {
     // test that a KHTMLView can be constructed before a KHTMLPart
-    KHTMLView* view = new KHTMLView(0, 0);
-    KHTMLPart* part = new KHTMLPart(view);
+    KHTMLView *view = new KHTMLView(0, 0);
+    KHTMLPart *part = new KHTMLPart(view);
     QVERIFY(true);
     QVERIFY(view->part() == part);
     delete part;

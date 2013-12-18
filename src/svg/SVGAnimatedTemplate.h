@@ -30,150 +30,158 @@
 #include <wtf/HashTraits.h>
 #include <wtf/HashMap.h>
 
+namespace WebCore
+{
 
-namespace WebCore {
+class FloatRect;
+class SVGAngle;
+class SVGElement;
+class SVGLength;
+class SVGLengthList;
+class SVGNumberList;
+class SVGPreserveAspectRatio;
+class SVGTransformList;
+//class String;
+//class QualifiedName;
 
-    class FloatRect;
-    class SVGAngle;
-    class SVGElement;
-    class SVGLength;
-    class SVGLengthList;
-    class SVGNumberList;
-    class SVGPreserveAspectRatio;
-    class SVGTransformList;
-    //class String;
-    //class QualifiedName;
+struct SVGAnimatedTypeWrapperKey {
+    // Empty value
+    SVGAnimatedTypeWrapperKey()
+        : element(0)
+        , attributeName(0)
+    { }
 
-    struct SVGAnimatedTypeWrapperKey {            
-        // Empty value
-        SVGAnimatedTypeWrapperKey()
-            : element(0)
-            , attributeName(0)
-        { }
-        
-        // Deleted value
-        SVGAnimatedTypeWrapperKey(WTF::HashTableDeletedValueType)
-            : element(reinterpret_cast<SVGElement*>(-1))
-        {
-        }
-        bool isHashTableDeletedValue() const
-        {
-            return element == reinterpret_cast<SVGElement*>(-1);
-        }
-        
-        SVGAnimatedTypeWrapperKey(const SVGElement* _element, const AtomicString& _attributeName)
-            : element(_element)
-            , attributeName(_attributeName.impl())
-        {
-            ASSERT(element);
-            ASSERT(attributeName);
-        }
-        
-        bool operator==(const SVGAnimatedTypeWrapperKey& other) const
-        {
-            return element == other.element && attributeName == other.attributeName;
-        }
-        
-        const SVGElement* element;
-        AtomicStringImpl* attributeName;
-    };
-    
-    struct SVGAnimatedTypeWrapperKeyHash {
-        static unsigned hash(const SVGAnimatedTypeWrapperKey& key)
-        {
-            return StringImpl::computeHash(reinterpret_cast<const UChar*>(&key), sizeof(SVGAnimatedTypeWrapperKey) / sizeof(UChar));
-        }
-            
-        static bool equal(const SVGAnimatedTypeWrapperKey& a, const SVGAnimatedTypeWrapperKey& b)
-        {
-            return a == b;
-        }
-
-        static const bool safeToCompareToEmptyOrDeleted = true;
-    };
-    
-    struct SVGAnimatedTypeWrapperKeyHashTraits : WTF::GenericHashTraits<SVGAnimatedTypeWrapperKey> {
-        static const bool emptyValueIsZero = true;
-        
-        static void constructDeletedValue(SVGAnimatedTypeWrapperKey* slot)
-        {
-            new (slot) SVGAnimatedTypeWrapperKey(WTF::HashTableDeletedValue);
-        }
-        static bool isDeletedValue(const SVGAnimatedTypeWrapperKey& value)
-        {
-            return value.isHashTableDeletedValue();
-        }
-    };
-    
-    template<typename BareType>
-    class SVGAnimatedTemplate : public RefCounted<SVGAnimatedTemplate<BareType> > {
-    public:
-        SVGAnimatedTemplate(const QualifiedName& attributeName)
-            : RefCounted<SVGAnimatedTemplate<BareType> >(0)
-            , m_associatedAttributeName(attributeName)
-        {
-        }
-
-        virtual ~SVGAnimatedTemplate() { forgetWrapper(this); }
-
-        virtual BareType baseVal() const = 0;
-        virtual void setBaseVal(BareType newBaseVal) = 0;
-
-        virtual BareType animVal() const = 0;
-        virtual void setAnimVal(BareType newAnimVal) = 0;
-
-        typedef HashMap<SVGAnimatedTypeWrapperKey, SVGAnimatedTemplate<BareType>*, SVGAnimatedTypeWrapperKeyHash, SVGAnimatedTypeWrapperKeyHashTraits > ElementToWrapperMap;
-        typedef typename ElementToWrapperMap::const_iterator ElementToWrapperMapIterator;
-
-        static ElementToWrapperMap* wrapperCache()
-        {
-            static ElementToWrapperMap* s_wrapperCache = new ElementToWrapperMap;                
-            return s_wrapperCache;
-        }
-        
-        static void forgetWrapper(SVGAnimatedTemplate<BareType>* wrapper)
-        {
-            ElementToWrapperMap* cache = wrapperCache();
-            ElementToWrapperMapIterator itr = cache->begin();
-            ElementToWrapperMapIterator end = cache->end();
-            for (; itr != end; ++itr) {
-                if (itr->second == wrapper) {
-                    cache->remove(itr->first);
-                    break;
-                }
-            }
-        }
-
-       const QualifiedName& associatedAttributeName() const { return m_associatedAttributeName; }
-
-    private:
-       const QualifiedName& m_associatedAttributeName;
-    };
-
-    template <class Type, class SVGElementSubClass>
-    Type* lookupOrCreateWrapper(const SVGElementSubClass* element, const QualifiedName& domAttrName, const AtomicString& attrIdentifier) {
-        SVGAnimatedTypeWrapperKey key(element, attrIdentifier);
-        Type* wrapper = static_cast<Type*>(Type::wrapperCache()->get(key));
-        if (!wrapper) {
-            wrapper = new Type(element, domAttrName);
-            Type::wrapperCache()->set(key, wrapper);
-        }
-        return wrapper;
+    // Deleted value
+    SVGAnimatedTypeWrapperKey(WTF::HashTableDeletedValueType)
+        : element(reinterpret_cast<SVGElement *>(-1))
+    {
+    }
+    bool isHashTableDeletedValue() const
+    {
+        return element == reinterpret_cast<SVGElement *>(-1);
     }
 
-    // Common type definitions, to ease IDL generation...
-    typedef SVGAnimatedTemplate<SVGAngle*> SVGAnimatedAngle;
-    typedef SVGAnimatedTemplate<bool> SVGAnimatedBoolean;
-    typedef SVGAnimatedTemplate<int> SVGAnimatedEnumeration;
-    typedef SVGAnimatedTemplate<long> SVGAnimatedInteger;
-    typedef SVGAnimatedTemplate<SVGLength> SVGAnimatedLength;
-    typedef SVGAnimatedTemplate<SVGLengthList*> SVGAnimatedLengthList;
-    typedef SVGAnimatedTemplate<float> SVGAnimatedNumber;
-    typedef SVGAnimatedTemplate<SVGNumberList*> SVGAnimatedNumberList; 
-    typedef SVGAnimatedTemplate<SVGPreserveAspectRatio*> SVGAnimatedPreserveAspectRatio;
-    typedef SVGAnimatedTemplate<FloatRect> SVGAnimatedRect;
-    typedef SVGAnimatedTemplate<String> SVGAnimatedString;
-    typedef SVGAnimatedTemplate<SVGTransformList*> SVGAnimatedTransformList;
+    SVGAnimatedTypeWrapperKey(const SVGElement *_element, const AtomicString &_attributeName)
+        : element(_element)
+        , attributeName(_attributeName.impl())
+    {
+        ASSERT(element);
+        ASSERT(attributeName);
+    }
+
+    bool operator==(const SVGAnimatedTypeWrapperKey &other) const
+    {
+        return element == other.element && attributeName == other.attributeName;
+    }
+
+    const SVGElement *element;
+    AtomicStringImpl *attributeName;
+};
+
+struct SVGAnimatedTypeWrapperKeyHash {
+    static unsigned hash(const SVGAnimatedTypeWrapperKey &key)
+    {
+        return StringImpl::computeHash(reinterpret_cast<const UChar *>(&key), sizeof(SVGAnimatedTypeWrapperKey) / sizeof(UChar));
+    }
+
+    static bool equal(const SVGAnimatedTypeWrapperKey &a, const SVGAnimatedTypeWrapperKey &b)
+    {
+        return a == b;
+    }
+
+    static const bool safeToCompareToEmptyOrDeleted = true;
+};
+
+struct SVGAnimatedTypeWrapperKeyHashTraits : WTF::GenericHashTraits<SVGAnimatedTypeWrapperKey> {
+    static const bool emptyValueIsZero = true;
+
+    static void constructDeletedValue(SVGAnimatedTypeWrapperKey *slot)
+    {
+        new(slot) SVGAnimatedTypeWrapperKey(WTF::HashTableDeletedValue);
+    }
+    static bool isDeletedValue(const SVGAnimatedTypeWrapperKey &value)
+    {
+        return value.isHashTableDeletedValue();
+    }
+};
+
+template<typename BareType>
+class SVGAnimatedTemplate : public RefCounted<SVGAnimatedTemplate<BareType> >
+{
+public:
+    SVGAnimatedTemplate(const QualifiedName &attributeName)
+        : RefCounted<SVGAnimatedTemplate<BareType> >(0)
+        , m_associatedAttributeName(attributeName)
+    {
+    }
+
+    virtual ~SVGAnimatedTemplate()
+    {
+        forgetWrapper(this);
+    }
+
+    virtual BareType baseVal() const = 0;
+    virtual void setBaseVal(BareType newBaseVal) = 0;
+
+    virtual BareType animVal() const = 0;
+    virtual void setAnimVal(BareType newAnimVal) = 0;
+
+    typedef HashMap<SVGAnimatedTypeWrapperKey, SVGAnimatedTemplate<BareType>*, SVGAnimatedTypeWrapperKeyHash, SVGAnimatedTypeWrapperKeyHashTraits > ElementToWrapperMap;
+    typedef typename ElementToWrapperMap::const_iterator ElementToWrapperMapIterator;
+
+    static ElementToWrapperMap *wrapperCache()
+    {
+        static ElementToWrapperMap *s_wrapperCache = new ElementToWrapperMap;
+        return s_wrapperCache;
+    }
+
+    static void forgetWrapper(SVGAnimatedTemplate<BareType> *wrapper)
+    {
+        ElementToWrapperMap *cache = wrapperCache();
+        ElementToWrapperMapIterator itr = cache->begin();
+        ElementToWrapperMapIterator end = cache->end();
+        for (; itr != end; ++itr) {
+            if (itr->second == wrapper) {
+                cache->remove(itr->first);
+                break;
+            }
+        }
+    }
+
+    const QualifiedName &associatedAttributeName() const
+    {
+        return m_associatedAttributeName;
+    }
+
+private:
+    const QualifiedName &m_associatedAttributeName;
+};
+
+template <class Type, class SVGElementSubClass>
+Type *lookupOrCreateWrapper(const SVGElementSubClass *element, const QualifiedName &domAttrName, const AtomicString &attrIdentifier)
+{
+    SVGAnimatedTypeWrapperKey key(element, attrIdentifier);
+    Type *wrapper = static_cast<Type *>(Type::wrapperCache()->get(key));
+    if (!wrapper) {
+        wrapper = new Type(element, domAttrName);
+        Type::wrapperCache()->set(key, wrapper);
+    }
+    return wrapper;
+}
+
+// Common type definitions, to ease IDL generation...
+typedef SVGAnimatedTemplate<SVGAngle *> SVGAnimatedAngle;
+typedef SVGAnimatedTemplate<bool> SVGAnimatedBoolean;
+typedef SVGAnimatedTemplate<int> SVGAnimatedEnumeration;
+typedef SVGAnimatedTemplate<long> SVGAnimatedInteger;
+typedef SVGAnimatedTemplate<SVGLength> SVGAnimatedLength;
+typedef SVGAnimatedTemplate<SVGLengthList *> SVGAnimatedLengthList;
+typedef SVGAnimatedTemplate<float> SVGAnimatedNumber;
+typedef SVGAnimatedTemplate<SVGNumberList *> SVGAnimatedNumberList;
+typedef SVGAnimatedTemplate<SVGPreserveAspectRatio *> SVGAnimatedPreserveAspectRatio;
+typedef SVGAnimatedTemplate<FloatRect> SVGAnimatedRect;
+typedef SVGAnimatedTemplate<String> SVGAnimatedString;
+typedef SVGAnimatedTemplate<SVGTransformList *> SVGAnimatedTransformList;
 }
 
 #endif // ENABLE(SVG)

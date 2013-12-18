@@ -27,9 +27,10 @@
 #include "SVGNames.h"
 #include "SVGLength.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGCursorElement::SVGCursorElement(const QualifiedName& tagName, Document* doc)
+SVGCursorElement::SVGCursorElement(const QualifiedName &tagName, Document *doc)
     : SVGElement(tagName, doc)
     , SVGTests()
     , SVGExternalResourcesRequired()
@@ -46,51 +47,55 @@ SVGCursorElement::~SVGCursorElement()
 ANIMATED_PROPERTY_DEFINITIONS(SVGCursorElement, SVGLength, Length, length, X, x, SVGNames::xAttr, m_x)
 ANIMATED_PROPERTY_DEFINITIONS(SVGCursorElement, SVGLength, Length, length, Y, y, SVGNames::yAttr, m_y)
 
-void SVGCursorElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGCursorElement::parseMappedAttribute(MappedAttribute *attr)
 {
-    if (attr->name() == SVGNames::xAttr)
+    if (attr->name() == SVGNames::xAttr) {
         setXBaseValue(SVGLength(0, LengthModeWidth, attr->value()));
-    else if (attr->name() == SVGNames::yAttr)
+    } else if (attr->name() == SVGNames::yAttr) {
         setYBaseValue(SVGLength(0, LengthModeHeight, attr->value()));
-    else {
-        if (SVGTests::parseMappedAttribute(attr))
+    } else {
+        if (SVGTests::parseMappedAttribute(attr)) {
             return;
-        if (SVGExternalResourcesRequired::parseMappedAttribute(attr))
+        }
+        if (SVGExternalResourcesRequired::parseMappedAttribute(attr)) {
             return;
-        if (SVGURIReference::parseMappedAttribute(attr))
+        }
+        if (SVGURIReference::parseMappedAttribute(attr)) {
             return;
+        }
 
         SVGElement::parseMappedAttribute(attr);
     }
 }
 
-void SVGCursorElement::addClient(SVGElement* element)
+void SVGCursorElement::addClient(SVGElement *element)
 {
     m_clients.add(element);
 }
 
-void SVGCursorElement::removeClient(SVGElement* element)
+void SVGCursorElement::removeClient(SVGElement *element)
 {
     m_clients.remove(element);
 }
 
-void SVGCursorElement::svgAttributeChanged(const QualifiedName& attrName)
+void SVGCursorElement::svgAttributeChanged(const QualifiedName &attrName)
 {
     SVGElement::svgAttributeChanged(attrName);
 
     if (attrName == SVGNames::xAttr || attrName == SVGNames::yAttr ||
-        SVGTests::isKnownAttribute(attrName) ||
-        SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
-        SVGURIReference::isKnownAttribute(attrName)) {
-        HashSet<SVGElement*>::const_iterator it = m_clients.begin();
-        HashSet<SVGElement*>::const_iterator end = m_clients.end();
+            SVGTests::isKnownAttribute(attrName) ||
+            SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
+            SVGURIReference::isKnownAttribute(attrName)) {
+        HashSet<SVGElement *>::const_iterator it = m_clients.begin();
+        HashSet<SVGElement *>::const_iterator end = m_clients.end();
 
-        for (; it != end; ++it)
+        for (; it != end; ++it) {
             (*it)->setChanged();
+        }
     }
 }
 
-void SVGCursorElement::getSubresourceAttributeStrings(Vector<String>& urls) const
+void SVGCursorElement::getSubresourceAttributeStrings(Vector<String> &urls) const
 {
     urls.append(href());
 }

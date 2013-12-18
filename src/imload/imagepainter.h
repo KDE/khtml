@@ -29,7 +29,8 @@ class QPainter;
 
 #include <QSize>
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 class Image;
 
@@ -42,17 +43,16 @@ public:
     /**
      Creates an image painter for the given image...
     */
-    ImagePainter(Image* image);
+    ImagePainter(Image *image);
 
     /**
      Creates an image painter for the given image,
      of given size
     */
-    ImagePainter(Image* image, QSize size);
+    ImagePainter(Image *image, QSize size);
 
-    ImagePainter(const ImagePainter& src);
-    ImagePainter& operator=(const ImagePainter& src);
-    
+    ImagePainter(const ImagePainter &src);
+    ImagePainter &operator=(const ImagePainter &src);
 
     /**
      Sets the size of the image.
@@ -63,23 +63,23 @@ public:
      Sets the image to the default size
     */
     void setDefaultSize();
-    
+
     /**
      Cleans up
     */
     ~ImagePainter();
-    
+
     /**
      Paints a portion of the image frame on the painter 'p' at dx and dy.
      The source rectangle starts at sx, sy and has dimension width * height
     */
-    void paint(int dx, int dy, QPainter* p, int sx = 0, int sy = 0,
+    void paint(int dx, int dy, QPainter *p, int sx = 0, int sy = 0,
                int width = -1, int height = -1);
 private:
     // Note: we actually request/ref scaled version from Image
     // lazily. This is because we may be constructed before there
     // is anything to scale, so we check when painting..
-    Image* image;
+    Image *image;
     QSize  size;
     bool   sizeRefd;
 };
@@ -87,4 +87,3 @@ private:
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

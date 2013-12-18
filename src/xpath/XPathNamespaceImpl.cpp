@@ -29,41 +29,41 @@
 
 using namespace DOM;
 
-XPathNamespaceImpl::XPathNamespaceImpl( DocumentImpl *ptr, DOMStringImpl *prefix, DOMStringImpl *uri )
-	: NodeImpl( ptr ),
-	m_ownerDocument( ptr ),
-	m_prefix( prefix ),
-	m_uri( uri )
+XPathNamespaceImpl::XPathNamespaceImpl(DocumentImpl *ptr, DOMStringImpl *prefix, DOMStringImpl *uri)
+    : NodeImpl(ptr),
+      m_ownerDocument(ptr),
+      m_prefix(prefix),
+      m_uri(uri)
 {
 }
 
-XPathNamespaceImpl::XPathNamespaceImpl( const XPathNamespaceImpl &other )
-	: NodeImpl( other )
+XPathNamespaceImpl::XPathNamespaceImpl(const XPathNamespaceImpl &other)
+    : NodeImpl(other)
 {
-	NodeImpl::operator=( other );
-	*this = other;
+    NodeImpl::operator=(other);
+    *this = other;
 }
 
 XPathNamespaceImpl::~XPathNamespaceImpl()
 {
 }
 
-XPathNamespaceImpl &XPathNamespaceImpl::operator=( const XPathNamespaceImpl &other )
+XPathNamespaceImpl &XPathNamespaceImpl::operator=(const XPathNamespaceImpl &other)
 {
-	m_prefix = other.m_prefix;
-	m_uri = other.m_uri;
-	return *this;
+    m_prefix = other.m_prefix;
+    m_uri = other.m_uri;
+    return *this;
 }
 
 DocumentImpl *XPathNamespaceImpl::ownerDocument() const
 {
-	return m_ownerDocument;
+    return m_ownerDocument;
 }
 
 ElementImpl *XPathNamespaceImpl::ownerElement() const
 {
-	// XXX
-	return 0;
+    // XXX
+    return 0;
 }
 
 const AtomicString &XPathNamespaceImpl::prefix() const
@@ -83,6 +83,6 @@ const AtomicString &XPathNamespaceImpl::namespaceURI() const
 
 unsigned short XPathNamespaceImpl::nodeType() const
 {
-	return XPATH_NAMESPACE_NODE;
+    return XPATH_NAMESPACE_NODE;
 }
 

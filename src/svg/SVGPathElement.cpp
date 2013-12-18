@@ -41,9 +41,10 @@
 #include "SVGPathSegMoveto.h"
 #include "SVGSVGElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGPathElement::SVGPathElement(const QualifiedName& tagName, Document* doc)
+SVGPathElement::SVGPathElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledTransformableElement(tagName, doc)
     , SVGTests()
     , SVGLangSpace()
@@ -171,7 +172,7 @@ PassRefPtr<SVGPathSegCurvetoQuadraticSmoothRel> SVGPathElement::createSVGPathSeg
     return SVGPathSegCurvetoQuadraticSmoothRel::create(x, y);
 }
 
-void SVGPathElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGPathElement::parseMappedAttribute(MappedAttribute *attr)
 {
     if (attr->name() == SVGNames::dAttr) {
         ExceptionCode ec;
@@ -181,55 +182,62 @@ void SVGPathElement::parseMappedAttribute(MappedAttribute* attr)
             document()->accessSVGExtensions()->reportError("Problem parsing d=\"" + attr->value() + "\"");*/
     } else if (attr->name() == SVGNames::pathLengthAttr) {
         m_pathLength = attr->value().toFloat();
-        if (m_pathLength < 0.0f)
+        if (m_pathLength < 0.0f) {
             document()->accessSVGExtensions()->reportError("A negative value for path attribute <pathLength> is not allowed");
+        }
     } else {
-        if (SVGTests::parseMappedAttribute(attr))
+        if (SVGTests::parseMappedAttribute(attr)) {
             return;
-        if (SVGLangSpace::parseMappedAttribute(attr))
+        }
+        if (SVGLangSpace::parseMappedAttribute(attr)) {
             return;
-        if (SVGExternalResourcesRequired::parseMappedAttribute(attr))
+        }
+        if (SVGExternalResourcesRequired::parseMappedAttribute(attr)) {
             return;
+        }
         SVGStyledTransformableElement::parseMappedAttribute(attr);
     }
 }
 
-void SVGPathElement::svgAttributeChanged(const QualifiedName& attrName)
+void SVGPathElement::svgAttributeChanged(const QualifiedName &attrName)
 {
     SVGStyledTransformableElement::svgAttributeChanged(attrName);
 
-    if (!renderer())
+    if (!renderer()) {
         return;
+    }
 
     if (attrName == SVGNames::dAttr || attrName == SVGNames::pathLengthAttr ||
-        SVGTests::isKnownAttribute(attrName) ||
-        SVGLangSpace::isKnownAttribute(attrName) ||
-        SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
-        SVGStyledTransformableElement::isKnownAttribute(attrName))
+            SVGTests::isKnownAttribute(attrName) ||
+            SVGLangSpace::isKnownAttribute(attrName) ||
+            SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
+            SVGStyledTransformableElement::isKnownAttribute(attrName)) {
         renderer()->setNeedsLayout(true);
+    }
 }
 
-SVGPathSegList* SVGPathElement::pathSegList() const
+SVGPathSegList *SVGPathElement::pathSegList() const
 {
-    if (!m_pathSegList)
+    if (!m_pathSegList) {
         m_pathSegList = SVGPathSegList::create(SVGNames::dAttr);
+    }
 
     return m_pathSegList.get();
 }
 
-SVGPathSegList* SVGPathElement::normalizedPathSegList() const
+SVGPathSegList *SVGPathElement::normalizedPathSegList() const
 {
     // TODO
     return 0;
 }
 
-SVGPathSegList* SVGPathElement::animatedPathSegList() const
+SVGPathSegList *SVGPathElement::animatedPathSegList() const
 {
     // TODO
     return 0;
 }
 
-SVGPathSegList* SVGPathElement::animatedNormalizedPathSegList() const
+SVGPathSegList *SVGPathElement::animatedNormalizedPathSegList() const
 {
     // TODO
     return 0;

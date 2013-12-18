@@ -26,19 +26,19 @@ class QCheckBox;
 
 class KHTMLPrintSettings : public QWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	KHTMLPrintSettings(QWidget *parent = 0);
-	~KHTMLPrintSettings();
+    KHTMLPrintSettings(QWidget *parent = 0);
+    ~KHTMLPrintSettings();
 
-        bool printFriendly();
-        bool printImages();
-        bool printHeader();
+    bool printFriendly();
+    bool printImages();
+    bool printHeader();
 
 private:
-	QCheckBox	*m_printfriendly;
-	QCheckBox	*m_printimages;
-	QCheckBox	*m_printheader;
+    QCheckBox   *m_printfriendly;
+    QCheckBox   *m_printimages;
+    QCheckBox   *m_printheader;
 };
 
 #endif

@@ -35,21 +35,23 @@ KHTMLFactory::~KHTMLFactory()
     KHTMLGlobal::finalCheck();
 }
 
-QObject * KHTMLFactory::create( const char *iface,
-                                QWidget *parentWidget,
-                                QObject *parent,
-                                const QVariantList &args,
-                                const QString &keyword )
+QObject *KHTMLFactory::create(const char *iface,
+                              QWidget *parentWidget,
+                              QObject *parent,
+                              const QVariantList &args,
+                              const QString &keyword)
 {
-    Q_UNUSED( keyword );
+    Q_UNUSED(keyword);
     KHTMLPart::GUIProfile prof = KHTMLPart::DefaultGUI;
-    if ( strcmp(iface, "Browser/View") == 0 ) // old hack
+    if (strcmp(iface, "Browser/View") == 0) { // old hack
         prof = KHTMLPart::BrowserViewGUI;
-    if (args.contains("Browser/View"))
+    }
+    if (args.contains("Browser/View")) {
         prof = KHTMLPart::BrowserViewGUI;
+    }
 
-    return new KHTMLPart( parentWidget, parent, prof );
+    return new KHTMLPart(parentWidget, parent, prof);
 }
 
-K_EXPORT_PLUGIN( KHTMLFactory )
+K_EXPORT_PLUGIN(KHTMLFactory)
 

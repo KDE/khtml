@@ -29,7 +29,8 @@
 
 #include <QDebug>
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 class TileCache;
 class TileCacheNode;
@@ -44,7 +45,7 @@ class TileCacheNode;
 class Tile
 {
 public:
-    enum {TileSize = 64}; 
+    enum {TileSize = 64};
     //Note:this can be safely reduced, but not increased --- ScaledPlane
     //relies for byte offsets in a single row in a tile fitting into bytes
 
@@ -56,13 +57,12 @@ protected:
     {
         std::memset(versions, 0, Tile::TileSize);
     }
-    virtual ~Tile(){}
+    virtual ~Tile() {}
     virtual void discard() = 0;
 
-    TileCacheNode* cacheNode;
+    TileCacheNode *cacheNode;
 };
 
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

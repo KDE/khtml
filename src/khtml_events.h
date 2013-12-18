@@ -30,126 +30,181 @@ namespace khtml
 class KHTML_EXPORT MouseEvent : public KParts::Event
 {
 public:
-  MouseEvent( const char *name, QMouseEvent *qmouseEvent, int x, int y,
-              const DOM::DOMString &url, const DOM::DOMString& target,
-              const DOM::Node &innerNode);
-  virtual ~MouseEvent();
+    MouseEvent(const char *name, QMouseEvent *qmouseEvent, int x, int y,
+               const DOM::DOMString &url, const DOM::DOMString &target,
+               const DOM::Node &innerNode);
+    virtual ~MouseEvent();
 
-  QMouseEvent *qmouseEvent() const { return m_qmouseEvent; }
-  int x() const { return m_x; }
-  int y() const { return m_y; }
-  int absX() const { return m_nodeAbsX; }
-  int absY() const { return m_nodeAbsY; }
+    QMouseEvent *qmouseEvent() const
+    {
+        return m_qmouseEvent;
+    }
+    int x() const
+    {
+        return m_x;
+    }
+    int y() const
+    {
+        return m_y;
+    }
+    int absX() const
+    {
+        return m_nodeAbsX;
+    }
+    int absY() const
+    {
+        return m_nodeAbsY;
+    }
 
-  DOM::DOMString url() const { return m_url; }
-  DOM::DOMString target() const { return m_target; }
-  DOM::Node innerNode() const { return m_innerNode; }
+    DOM::DOMString url() const
+    {
+        return m_url;
+    }
+    DOM::DOMString target() const
+    {
+        return m_target;
+    }
+    DOM::Node innerNode() const
+    {
+        return m_innerNode;
+    }
 
-  // return the offset of innerNode
-  long offset() const;
+    // return the offset of innerNode
+    long offset() const;
 
 private:
-  QMouseEvent *m_qmouseEvent;
-  int m_x;
-  int m_y;
-  int m_nodeAbsX, m_nodeAbsY;
-  DOM::DOMString m_url;
-  DOM::DOMString m_target;
-  DOM::Node m_innerNode;
-  class MouseEventPrivate;
-  MouseEventPrivate *d;
+    QMouseEvent *m_qmouseEvent;
+    int m_x;
+    int m_y;
+    int m_nodeAbsX, m_nodeAbsY;
+    DOM::DOMString m_url;
+    DOM::DOMString m_target;
+    DOM::Node m_innerNode;
+    class MouseEventPrivate;
+    MouseEventPrivate *d;
 };
 
 class KHTML_EXPORT MousePressEvent : public MouseEvent
 {
 public:
-  MousePressEvent( QMouseEvent *mouseEvent, int x, int y,
-                   const DOM::DOMString &url, const DOM::DOMString& target,
-                   const DOM::Node &innerNode)
-  : MouseEvent( s_strMousePressEvent, mouseEvent, x, y, url, target, innerNode )
-  {}
+    MousePressEvent(QMouseEvent *mouseEvent, int x, int y,
+                    const DOM::DOMString &url, const DOM::DOMString &target,
+                    const DOM::Node &innerNode)
+        : MouseEvent(s_strMousePressEvent, mouseEvent, x, y, url, target, innerNode)
+    {}
 
-  static bool test( const QEvent *event ) { return KParts::Event::test( event, s_strMousePressEvent ); }
-
+    static bool test(const QEvent *event)
+    {
+        return KParts::Event::test(event, s_strMousePressEvent);
+    }
 
 private:
-  static const char *s_strMousePressEvent;
+    static const char *s_strMousePressEvent;
 };
 
 class KHTML_EXPORT MouseDoubleClickEvent : public MouseEvent
 {
 public:
-  // clickCount is 3 for a triple-click event
-  MouseDoubleClickEvent( QMouseEvent *mouseEvent, int x, int y,
-                         const DOM::DOMString &url, const DOM::DOMString& target,
-		         const DOM::Node &innerNode, int clickCount = 2 )
-  : MouseEvent( s_strMouseDoubleClickEvent, mouseEvent, x, y, url, target, innerNode ),
-    m_clickCount( clickCount )
-  {}
+    // clickCount is 3 for a triple-click event
+    MouseDoubleClickEvent(QMouseEvent *mouseEvent, int x, int y,
+                          const DOM::DOMString &url, const DOM::DOMString &target,
+                          const DOM::Node &innerNode, int clickCount = 2)
+        : MouseEvent(s_strMouseDoubleClickEvent, mouseEvent, x, y, url, target, innerNode),
+          m_clickCount(clickCount)
+    {}
 
-  static bool test( const QEvent *event )
-  { return KParts::Event::test( event, s_strMouseDoubleClickEvent ); }
+    static bool test(const QEvent *event)
+    {
+        return KParts::Event::test(event, s_strMouseDoubleClickEvent);
+    }
 
-  int clickCount() const { return m_clickCount; }
+    int clickCount() const
+    {
+        return m_clickCount;
+    }
 
 private:
-  int m_clickCount;
-  static const char *s_strMouseDoubleClickEvent;
+    int m_clickCount;
+    static const char *s_strMouseDoubleClickEvent;
 };
 
 class KHTML_EXPORT MouseMoveEvent : public MouseEvent
 {
 public:
-  MouseMoveEvent( QMouseEvent *mouseEvent, int x, int y,
-                  const DOM::DOMString &url, const DOM::DOMString& target,
-		   const DOM::Node &innerNode)
-  : MouseEvent( s_strMouseMoveEvent, mouseEvent, x, y, url, target, innerNode )
-  {}
+    MouseMoveEvent(QMouseEvent *mouseEvent, int x, int y,
+                   const DOM::DOMString &url, const DOM::DOMString &target,
+                   const DOM::Node &innerNode)
+        : MouseEvent(s_strMouseMoveEvent, mouseEvent, x, y, url, target, innerNode)
+    {}
 
-  static bool test( const QEvent *event ) { return KParts::Event::test( event, s_strMouseMoveEvent ); }
+    static bool test(const QEvent *event)
+    {
+        return KParts::Event::test(event, s_strMouseMoveEvent);
+    }
 
 private:
-  static const char *s_strMouseMoveEvent;
+    static const char *s_strMouseMoveEvent;
 };
 
 class KHTML_EXPORT MouseReleaseEvent : public MouseEvent
 {
 public:
-  MouseReleaseEvent( QMouseEvent *mouseEvent, int x, int y,
-                     const DOM::DOMString &url, const DOM::DOMString& target,
-		     const DOM::Node &innerNode, long = 0 )
-  : MouseEvent( s_strMouseReleaseEvent, mouseEvent, x, y, url, target, innerNode )
-  {}
+    MouseReleaseEvent(QMouseEvent *mouseEvent, int x, int y,
+                      const DOM::DOMString &url, const DOM::DOMString &target,
+                      const DOM::Node &innerNode, long = 0)
+        : MouseEvent(s_strMouseReleaseEvent, mouseEvent, x, y, url, target, innerNode)
+    {}
 
-  static bool test( const QEvent *event ) { return KParts::Event::test( event, s_strMouseReleaseEvent ); }
+    static bool test(const QEvent *event)
+    {
+        return KParts::Event::test(event, s_strMouseReleaseEvent);
+    }
 
 private:
-  static const char *s_strMouseReleaseEvent;
+    static const char *s_strMouseReleaseEvent;
 };
 
 class KHTML_EXPORT DrawContentsEvent : public KParts::Event
 {
 public:
-  DrawContentsEvent( QPainter *painter, int clipx, int clipy, int clipw, int cliph );
-  virtual ~DrawContentsEvent();
+    DrawContentsEvent(QPainter *painter, int clipx, int clipy, int clipw, int cliph);
+    virtual ~DrawContentsEvent();
 
-  QPainter *painter() const { return m_painter; }
-  int clipx() const { return m_clipx; }
-  int clipy() const { return m_clipy; }
-  int clipw() const { return m_clipw; }
-  int cliph() const { return m_cliph; }
+    QPainter *painter() const
+    {
+        return m_painter;
+    }
+    int clipx() const
+    {
+        return m_clipx;
+    }
+    int clipy() const
+    {
+        return m_clipy;
+    }
+    int clipw() const
+    {
+        return m_clipw;
+    }
+    int cliph() const
+    {
+        return m_cliph;
+    }
 
-  static bool test( const QEvent *event ) { return KParts::Event::test( event, s_strDrawContentsEvent ); }
+    static bool test(const QEvent *event)
+    {
+        return KParts::Event::test(event, s_strDrawContentsEvent);
+    }
 
 private:
-  QPainter *m_painter;
-  int m_clipx;
-  int m_clipy;
-  int m_clipw;
-  int m_cliph;
-  class DrawContentsEventPrivate;
-  DrawContentsEventPrivate *d;
-  static const char *s_strDrawContentsEvent;
+    QPainter *m_painter;
+    int m_clipx;
+    int m_clipy;
+    int m_clipw;
+    int m_cliph;
+    class DrawContentsEventPrivate;
+    DrawContentsEventPrivate *d;
+    static const char *s_strDrawContentsEvent;
 };
 
 }

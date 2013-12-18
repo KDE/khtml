@@ -23,7 +23,7 @@
  * Level 3 Events Specification (Working Group Note 07 November 2003)
  * http://www.w3.org/TR/DOM-Level-3-Events/
  * Copyright © 2003 World Wide Web Consortium , (Massachusetts Institute of
- * Technology, European Research Consortium for Informatics and Mathematics, 
+ * Technology, European Research Consortium for Informatics and Mathematics,
  * Keio University ). All Rights Reserved.
  *
  */
@@ -34,7 +34,8 @@
 #include <dom/dom_node.h>
 #include <dom/dom_misc.h>
 
-namespace DOM {
+namespace DOM
+{
 
 class Event;
 class EventException;
@@ -49,8 +50,6 @@ class EventImpl;
 class UIEventImpl;
 class MouseEventImpl;
 class MutationEventImpl;
-
-
 
 /**
  * Introduced in DOM Level 2
@@ -67,7 +66,8 @@ class MutationEventImpl;
  * add them manually.
  *
  */
-class KHTML_EXPORT EventListener : public DomShared {
+class KHTML_EXPORT EventListener : public DomShared
+{
 public:
     EventListener();
     virtual ~EventListener();
@@ -101,7 +101,6 @@ protected:
     EventListenerImpl *impl;
 };
 
-
 /**
  * Introduced in DOM Level 2
  *
@@ -114,7 +113,8 @@ protected:
  * implemented by the object passed to the event listener.
  *
  */
-class KHTML_EXPORT Event {
+class KHTML_EXPORT Event
+{
     friend class Document;
     friend class NodeImpl;
     friend class DocumentImpl;
@@ -123,7 +123,7 @@ public:
     Event(const Event &other);
     virtual ~Event();
 
-    Event & operator = (const Event &other);
+    Event &operator = (const Event &other);
 
     /**
      * An integer indicating which phase of event flow is being processed.
@@ -137,9 +137,9 @@ public:
      *
      */
     enum PhaseType {
-	CAPTURING_PHASE = 1,
-	AT_TARGET = 2,
-	BUBBLING_PHASE = 3
+        CAPTURING_PHASE = 1,
+        AT_TARGET = 2,
+        BUBBLING_PHASE = 3
     };
 
     /**
@@ -257,7 +257,6 @@ protected:
     EventImpl *impl;
 };
 
-
 /**
  * Introduced in DOM Level 2:
  *
@@ -270,7 +269,7 @@ class KHTML_EXPORT EventException
 public:
     EventException(unsigned short _code);
     EventException(const EventException &other);
-    EventException & operator = (const EventException &other);
+    EventException &operator = (const EventException &other);
     virtual ~EventException() {}
 
     /**
@@ -298,9 +297,8 @@ public:
 
     /** @internal - checks to see whether internal code is an event one */
     static bool isEventExceptionCode(int exceptioncode);
-    
-};
 
+};
 
 /**
  * Introduced in DOM Level 2
@@ -309,13 +307,14 @@ public:
  * with User Interface events.
  *
  */
-class KHTML_EXPORT UIEvent : public Event {
+class KHTML_EXPORT UIEvent : public Event
+{
 public:
     UIEvent();
     UIEvent(const UIEvent &other);
     UIEvent(const Event &other);
-    UIEvent & operator = (const UIEvent &other);
-    UIEvent & operator = (const Event &other);
+    UIEvent &operator = (const UIEvent &other);
+    UIEvent &operator = (const Event &other);
     virtual ~UIEvent();
 
     /**
@@ -385,16 +384,13 @@ public:
      *
      */
     void initUIEvent(const DOMString &typeArg,
-                                 bool canBubbleArg,
-                                 bool cancelableArg,
-                                 const AbstractView &viewArg,
-                                 long detailArg);
+                     bool canBubbleArg,
+                     bool cancelableArg,
+                     const AbstractView &viewArg,
+                     long detailArg);
 protected:
     UIEvent(UIEventImpl *impl);
 };
-
-
-
 
 /**
  * Introduced in DOM Level 2
@@ -414,13 +410,14 @@ protected:
  * obtain notification of mouse events which occur within its descendent elements.
  *
  */
-class KHTML_EXPORT MouseEvent : public UIEvent {
+class KHTML_EXPORT MouseEvent : public UIEvent
+{
 public:
     MouseEvent();
     MouseEvent(const MouseEvent &other);
     MouseEvent(const Event &other);
-    MouseEvent & operator = (const MouseEvent &other);
-    MouseEvent & operator = (const Event &other);
+    MouseEvent &operator = (const MouseEvent &other);
+    MouseEvent &operator = (const Event &other);
     virtual ~MouseEvent();
 
     /**
@@ -541,20 +538,20 @@ public:
      *
      */
     void initMouseEvent(const DOMString &typeArg,
-                                    bool canBubbleArg,
-                                    bool cancelableArg,
-                                    const AbstractView &viewArg,
-                                    long detailArg,
-                                    long screenXArg,
-                                    long screenYArg,
-                                    long clientXArg,
-                                    long clientYArg,
-                                    bool ctrlKeyArg,
-                                    bool altKeyArg,
-                                    bool shiftKeyArg,
-                                    bool metaKeyArg,
-                                    unsigned short buttonArg,
-                                    const Node &relatedTargetArg);
+                        bool canBubbleArg,
+                        bool cancelableArg,
+                        const AbstractView &viewArg,
+                        long detailArg,
+                        long screenXArg,
+                        long screenYArg,
+                        long clientXArg,
+                        long clientYArg,
+                        bool ctrlKeyArg,
+                        bool altKeyArg,
+                        bool shiftKeyArg,
+                        bool metaKeyArg,
+                        unsigned short buttonArg,
+                        const Node &relatedTargetArg);
 protected:
     MouseEvent(MouseEventImpl *impl);
 };
@@ -562,23 +559,24 @@ protected:
 /**
  * Introduced in DOM Level 3
  *
- * DOM::TextEvent is used to indicate actual text entry 
+ * DOM::TextEvent is used to indicate actual text entry
  * during text input. It corresponds to the HTML keypress events
  */
-class KHTML_EXPORT TextEvent : public UIEvent {
+class KHTML_EXPORT TextEvent : public UIEvent
+{
 public:
     TextEvent();
     TextEvent(const TextEvent &other);
     TextEvent(const Event &other);
-    TextEvent & operator = (const TextEvent &other);
-    TextEvent & operator = (const Event &other);
+    TextEvent &operator = (const TextEvent &other);
+    TextEvent &operator = (const Event &other);
     virtual ~TextEvent();
-    
+
     /**
      * initTextEvent
      * The initTextEvent method is used to initialize the value of a TextEvent
-     * object and has the same behavior as UIEvent.initUIEvent(). 
-     * The value of UIEvent.detail remains undefined. 
+     * object and has the same behavior as UIEvent.initUIEvent().
+     * The value of UIEvent.detail remains undefined.
      *
      * Parameters:
      *
@@ -590,74 +588,74 @@ public:
      * viewArg of type views::AbstractView
      *   Specifies the TextEvent's AbstractView.
      * dataArg of type DOMString
-     *   Specifies TextEvent.data. 
+     *   Specifies TextEvent.data.
      */
     void initTextEvent(const DOMString &typeArg,
-                      bool canBubbleArg,
-                      bool cancelableArg,
-                      const AbstractView &viewArg,
-                      const DOMString &dataArg);
+                       bool canBubbleArg,
+                       bool cancelableArg,
+                       const AbstractView &viewArg,
+                       const DOMString &dataArg);
 
     /**
-     * data of type DOMString, readonly 
+     * data of type DOMString, readonly
      *
      * data holds the value of the characters generated by the character device. This may be a single Unicode character or a non-empty sequence of Unicode characters [Unicode]. Characters should be normalized as defined by the Unicode normalization form NFC, defined in [UTR #15].
-     * Note: while the DOM spec specifies that the string never be empty, 
+     * Note: while the DOM spec specifies that the string never be empty,
      * KHTML can not guarantee that
      */
     DOMString data() const;
 };
-
 
 /**
  * Introduced in DOM Level 3
  *
  * DOM::KeyboardEvent
  * The KeyboardEvent interface provides specific contextual information
- * associated with keyboard devices. Each keyboard event references a 
- * key using an identifier. Keyboard events are commonly directed at 
- * the element that has the focus. 
+ * associated with keyboard devices. Each keyboard event references a
+ * key using an identifier. Keyboard events are commonly directed at
+ * the element that has the focus.
  *
  * The KeyboardEvent interface provides convenient attributes for some
- * common modifiers keys: KeyboardEvent.ctrlKey, KeyboardEvent.shiftKey, 
- * KeyboardEvent.altKey, KeyboardEvent.metaKey. These attributes are 
- * equivalent to use the method KeyboardEvent.getModifierState(keyIdentifierArg) 
- * with "Control", "Shift", "Alt", or "Meta" respectively. 
+ * common modifiers keys: KeyboardEvent.ctrlKey, KeyboardEvent.shiftKey,
+ * KeyboardEvent.altKey, KeyboardEvent.metaKey. These attributes are
+ * equivalent to use the method KeyboardEvent.getModifierState(keyIdentifierArg)
+ * with "Control", "Shift", "Alt", or "Meta" respectively.
  *
- * To create an instance of the KeyboardEvent interface, use the 
+ * To create an instance of the KeyboardEvent interface, use the
  * DocumentEvent.createEvent("KeyboardEvent") method call.
  */
-class KHTML_EXPORT KeyboardEvent : public UIEvent {
+class KHTML_EXPORT KeyboardEvent : public UIEvent
+{
 public:
     KeyboardEvent();
     KeyboardEvent(const KeyboardEvent &other);
     KeyboardEvent(const Event &other);
-    KeyboardEvent & operator = (const KeyboardEvent &other);
-    KeyboardEvent & operator = (const Event &other);
+    KeyboardEvent &operator = (const KeyboardEvent &other);
+    KeyboardEvent &operator = (const Event &other);
     virtual ~KeyboardEvent();
 
     enum KeyLocation {
         /**
-         The key activation is not distinguished as the left 
-         or right version of the key, and did not originate 
-         from the numeric keypad (or did not originate with a 
-         virtual key corresponding to the numeric keypad). 
+         The key activation is not distinguished as the left
+         or right version of the key, and did not originate
+         from the numeric keypad (or did not originate with a
+         virtual key corresponding to the numeric keypad).
          Example: the 'Q' key on a PC 101 Key US keyboard.
         */
         DOM_KEY_LOCATION_STANDARD      = 0x00,
 
-        /** 
-         The key activated is in the left key location 
-         (there is more than one possible location for this key). 
+        /**
+         The key activated is in the left key location
+         (there is more than one possible location for this key).
          Example: the left Shift key on a PC 101 Key US keyboard.
 
          Note: KHTML currently always considers modifier keys to be on the left
         */
         DOM_KEY_LOCATION_LEFT          = 0x01,
 
-        /** 
-         The key activated is in the right key location 
-         (there is more than one possible location for this key). 
+        /**
+         The key activated is in the right key location
+         (there is more than one possible location for this key).
          Example: the right Shift key on a PC 101 Key US keyboard.
 
          Note: KHTML currently always considers modifier keys to be on the left
@@ -665,24 +663,24 @@ public:
         DOM_KEY_LOCATION_RIGHT         = 0x02,
 
         /**
-         The key activation originated on the numeric keypad or 
-         with a virtual key corresponding to the numeric keypad. 
+         The key activation originated on the numeric keypad or
+         with a virtual key corresponding to the numeric keypad.
          Example: the '1' key on a PC 101 Key US keyboard located on the numeric pad.
         */
         DOM_KEY_LOCATION_NUMPAD        = 0x03
     };
 
-   /** 
-    * keyIdentifier of type DOMString, readonly 
-    *
-    * keyIdentifier holds the identifier of the key. The key identifiers
-    * are defined in Appendix A.2 "Key identifiers set" 
-    * (http://www.w3.org/TR/DOM-Level-3-Events/keyset.html#KeySet-Set)
-    */
+    /**
+     * keyIdentifier of type DOMString, readonly
+     *
+     * keyIdentifier holds the identifier of the key. The key identifiers
+     * are defined in Appendix A.2 "Key identifiers set"
+     * (http://www.w3.org/TR/DOM-Level-3-Events/keyset.html#KeySet-Set)
+     */
     DOMString       keyIdentifier() const;
 
     /**
-     * keyLocation of type unsigned long, readonly 
+     * keyLocation of type unsigned long, readonly
      *
      * The keyLocation attribute contains an indication of the location
      * of they key on the device.
@@ -693,28 +691,28 @@ public:
     /**
      * ctrlKey of type boolean, readonly
      *
-     * true if the control (Ctrl) key modifier is activated. 
+     * true if the control (Ctrl) key modifier is activated.
      */
     bool ctrlKey() const;
 
     /**
      * shiftKey of type boolean, readonly
      *
-     * true if the shift (Shift) key modifier is activated. 
+     * true if the shift (Shift) key modifier is activated.
      */
     bool shiftKey() const;
 
     /**
      * altKey of type boolean, readonly
      *
-     * true if the alt (Alt) key modifier is activated. 
+     * true if the alt (Alt) key modifier is activated.
      */
     bool altKey() const;
 
     /**
      * metaKey of type boolean, readonly
      *
-     * true if the meta (Meta) key modifier is activated. 
+     * true if the meta (Meta) key modifier is activated.
      */
     bool metaKey() const;
 
@@ -727,20 +725,19 @@ public:
      * Parameters:
      *
      * keyIdentifierArg of type DOMString
-     *   A modifier key identifier. Supported modifier keys are "Alt", "Control", "Meta", "Shift". 
+     *   A modifier key identifier. Supported modifier keys are "Alt", "Control", "Meta", "Shift".
      *
-     * Return Value 
+     * Return Value
      *   boolean true if it is modifier key and the modifier is activated, false otherwise.
      */
     bool getModifierState(DOMString keyIdentifierArg) const;
 
-
     /**
-     * initKeyboardEvent 
-     * 
-     * The initKeyboardEvent method is used to initialize the value of a 
-     * KeyboardEvent object and has the same behavior as UIEvent.initUIEvent(). 
-     * The value of UIEvent.detail remains undefined. 
+     * initKeyboardEvent
+     *
+     * The initKeyboardEvent method is used to initialize the value of a
+     * KeyboardEvent object and has the same behavior as UIEvent.initUIEvent().
+     * The value of UIEvent.detail remains undefined.
      *
      * Parameters:
      * typeArg of type DOMString
@@ -752,11 +749,11 @@ public:
      * viewArg of type views::AbstractView
      *   Specifies the TextEvent's AbstractView.
      * keyIdentifierArg of type DOMString
-     *   Specifies KeyboardEvent.keyIdentifier.   
+     *   Specifies KeyboardEvent.keyIdentifier.
      * keyLocationArg of type unsigned long
-     *   Specifies KeyboardEvent.keyLocation. 
+     *   Specifies KeyboardEvent.keyLocation.
      * modifiersList of type DOMString
-     *   A white space separated list of modifier key identifiers to be activated on this object. 
+     *   A white space separated list of modifier key identifiers to be activated on this object.
      */
     void  initKeyboardEvent(DOMString typeArg,
                             bool canBubbleArg,
@@ -767,7 +764,6 @@ public:
                             DOMString modifiersList);
 };
 
-
 /**
  * Introduced in DOM Level 2
  *
@@ -775,13 +771,14 @@ public:
  * associated with Mutation events.
  *
  */
-class KHTML_EXPORT MutationEvent : public Event {
+class KHTML_EXPORT MutationEvent : public Event
+{
 public:
     MutationEvent();
     MutationEvent(const MutationEvent &other);
     MutationEvent(const Event &other);
-    MutationEvent & operator = (const MutationEvent &other);
-    MutationEvent & operator = (const Event &other);
+    MutationEvent &operator = (const MutationEvent &other);
+    MutationEvent &operator = (const Event &other);
     virtual ~MutationEvent();
 
     /**
@@ -795,11 +792,10 @@ public:
      *
      */
     enum attrChangeType {
-	MODIFICATION = 1,
-	ADDITION = 2,
-	REMOVAL = 3
+        MODIFICATION = 1,
+        ADDITION = 2,
+        REMOVAL = 3
     };
-
 
     /**
      * relatedNode is used to identify a secondary node related to a mutation
@@ -869,18 +865,16 @@ public:
      *
      */
     void initMutationEvent(const DOMString &typeArg,
-                                       bool canBubbleArg,
-                                       bool cancelableArg,
-                                       const Node &relatedNodeArg,
-                                       const DOMString &prevValueArg,
-                                       const DOMString &newValueArg,
-                                       const DOMString &attrNameArg,
-                                       unsigned short attrChangeArg);
+                           bool canBubbleArg,
+                           bool cancelableArg,
+                           const Node &relatedNodeArg,
+                           const DOMString &prevValueArg,
+                           const DOMString &newValueArg,
+                           const DOMString &attrNameArg,
+                           unsigned short attrChangeArg);
 protected:
     MutationEvent(MutationEventImpl *impl);
 };
-
-
 
 } //namespace
 #endif

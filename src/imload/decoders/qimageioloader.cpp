@@ -34,7 +34,8 @@
 #include "QDebug"
 #include "imagemanager.h"
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 class QImageIOLoader: public ImageLoader
 {
@@ -49,7 +50,7 @@ public:
     {
     }
 
-    virtual int processData(uchar* data, int length)
+    virtual int processData(uchar *data, int length)
     {
         //Collect data in the buffer
         int pos = array.size();
@@ -72,10 +73,11 @@ public:
 
         QSize size = reader.size();
         if (size.isValid()) {
-            if (ImageManager::isAcceptableSize(size.width(), size.height()))
+            if (ImageManager::isAcceptableSize(size.width(), size.height())) {
                 notifyImageInfo(size.width(), size.height());
-            else
+            } else {
                 return Error;
+            }
         }
 
         if (!reader.read(&image)) {
@@ -84,10 +86,11 @@ public:
 
         if (!size.isValid()) {
             // Might be too late by now..
-            if (ImageManager::isAcceptableSize(image.width(), image.height()))
+            if (ImageManager::isAcceptableSize(image.width(), image.height())) {
                 notifyImageInfo(image.width(), image.height());
-            else
+            } else {
                 return Error;
+            }
         }
 
         ImageFormat format;
@@ -100,8 +103,9 @@ public:
 
         return Done;
     }
-    bool imageFormat(QImage &image, ImageFormat &format) {
-        switch(image.format()) {
+    bool imageFormat(QImage &image, ImageFormat &format)
+    {
+        switch (image.format()) {
         case QImage::Format_RGB32:
             format.type  = ImageFormat::Image_RGB_32;
             break;
@@ -130,13 +134,14 @@ public:
     }
 };
 
-static const char* const positiveList[] = {
+static const char *const positiveList[] = {
     "BMP", "TIFF", "JP2", "PNM", "EXR", "XBM", "XPM", "ICO", 0
 };
 
-bool isSupportedFormat(QString format) {
+bool isSupportedFormat(QString format)
+{
     QStringList pList;
-    for(int i=0; positiveList[i]; i++) {
+    for (int i = 0; positiveList[i]; i++) {
         pList.append(QString::fromLatin1(positiveList[i]));
     }
 
@@ -150,24 +155,28 @@ ImageLoaderProvider::Type QImageIOLoaderProvider::type()
     return Foreign;
 }
 
-const QStringList& QImageIOLoaderProvider::mimeTypes()
+const QStringList &QImageIOLoaderProvider::mimeTypes()
 {
-    if (!s_formats.isEmpty()) return s_formats;
+    if (!s_formats.isEmpty()) {
+        return s_formats;
+    }
 
 //     QList<QByteArray> formats = QImageIOReader::supportedFormats();
     KService::List services = KServiceTypeTrader::self()->query("QImageIOPlugins");
 
-    foreach(const KService::Ptr &service, services) {
+    foreach (const KService::Ptr &service, services) {
         QStringList formats = service->property("X-KDE-ImageFormat").toStringList();
         QString mimetype = service->property("X-KDE-MimeType").toString();
         bool positive = false;
-        foreach(const QString &format, formats) {
+        foreach (const QString &format, formats) {
             if (isSupportedFormat(format)) {
                 positive = true;
                 break;
             }
         }
-        if (!positive) continue;
+        if (!positive) {
+            continue;
+        }
         if (!mimetype.isEmpty()) {
             s_formats.append(mimetype);
             // qDebug() << "QImageIO - Format supported: " << mimetype << endl;
@@ -176,19 +185,21 @@ const QStringList& QImageIOLoaderProvider::mimeTypes()
     return s_formats;
 }
 
-ImageLoader* QImageIOLoaderProvider::loaderFor(const QByteArray& prefix)
+ImageLoader *QImageIOLoaderProvider::loaderFor(const QByteArray &prefix)
 {
     QByteArray pref = prefix;
     QBuffer prefixBuffer(&pref);
     prefixBuffer.open(QIODevice::ReadOnly);
     QByteArray format = QImageReader::imageFormat(&prefixBuffer);
     prefixBuffer.close();
-    if (format.isEmpty() || !isSupportedFormat(format))
+    if (format.isEmpty() || !isSupportedFormat(format)) {
         return 0;
-    else
+    } else
         // qDebug() << "QImageIO - Format guessed: " << format << endl;
 
-    return new QImageIOLoader;
+    {
+        return new QImageIOLoader;
+    }
 }
 
 } // namespace

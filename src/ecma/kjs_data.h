@@ -26,7 +26,8 @@ class KHTMLPart;
 
 #include <QWeakPointer>
 
-namespace KJS {
+namespace KJS
+{
 
 /*
  Deep copy of data; no guarantees are made about the domain of the result;
@@ -34,7 +35,7 @@ namespace KJS {
  encapsulateMessageEventData on the result to associate it with the
  appropriate security domain.
 */
-JSValue* cloneData(ExecState* exec, JSValue* data);
+JSValue *cloneData(ExecState *exec, JSValue *data);
 
 /*
  Note: unlike other JS->DOM routines, this method is expected to cross security
@@ -43,13 +44,13 @@ JSValue* cloneData(ExecState* exec, JSValue* data);
  from it. It can also return 0 if the serialization failed; in which case an
  exception will also be set.
 */
-DOM::MessageEventImpl::Data* encapsulateMessageEventData(ExecState* exec, Interpreter* ctx, JSValue* data);
+DOM::MessageEventImpl::Data *encapsulateMessageEventData(ExecState *exec, Interpreter *ctx, JSValue *data);
 
 /*
  Warning: Unlike the above, this accessor isn't expected to cross boundaries,
  so it doesn't do any deep copying or the like
  */
-JSValue* getMessageEventData(ExecState* exec, DOM::MessageEventImpl::Data* data);
+JSValue *getMessageEventData(ExecState *exec, DOM::MessageEventImpl::Data *data);
 
 /*
  Actually executes Window::PostMessage with given arguments;
@@ -58,10 +59,10 @@ JSValue* getMessageEventData(ExecState* exec, DOM::MessageEventImpl::Data* data)
 class DelayedPostMessage: public Window::DelayedAction
 {
 public:
-    DelayedPostMessage(KHTMLPart* source, const QString& _sourceOrigin, const QString& _targetOrigin, JSValue* _payload);
+    DelayedPostMessage(KHTMLPart *source, const QString &_sourceOrigin, const QString &_targetOrigin, JSValue *_payload);
 
     virtual void mark();
-    virtual bool execute(Window*);
+    virtual bool execute(Window *);
 private:
     QString  sourceOrigin;
     QString  targetOrigin;
@@ -71,4 +72,3 @@ private:
 
 }
 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

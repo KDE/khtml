@@ -27,25 +27,30 @@
 #include "SVGLocatable.h"
 #include "SVGStyledElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGElement;
+class SVGElement;
 
-    class SVGStyledLocatableElement : public SVGStyledElement,
-                                      virtual public SVGLocatable {
-    public:
-        SVGStyledLocatableElement(const QualifiedName&, Document*);
-        virtual ~SVGStyledLocatableElement();
-        
-        virtual bool isStyledLocatable() const { return true; }
+class SVGStyledLocatableElement : public SVGStyledElement,
+    virtual public SVGLocatable
+{
+public:
+    SVGStyledLocatableElement(const QualifiedName &, Document *);
+    virtual ~SVGStyledLocatableElement();
 
-        virtual SVGElement* nearestViewportElement() const;
-        virtual SVGElement* farthestViewportElement() const;
+    virtual bool isStyledLocatable() const
+    {
+        return true;
+    }
 
-        virtual FloatRect getBBox() const;
-        virtual AffineTransform getCTM() const;
-        virtual AffineTransform getScreenCTM() const;
-    };
+    virtual SVGElement *nearestViewportElement() const;
+    virtual SVGElement *farthestViewportElement() const;
+
+    virtual FloatRect getBBox() const;
+    virtual AffineTransform getCTM() const;
+    virtual AffineTransform getScreenCTM() const;
+};
 
 } // namespace WebCore
 

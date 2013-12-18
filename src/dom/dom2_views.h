@@ -24,7 +24,8 @@
 #define _DOM_Views_h_
 
 #include <khtml_export.h>
-namespace DOM {
+namespace DOM
+{
 
 class Document;
 class AbstractViewImpl;
@@ -38,7 +39,8 @@ class DOMString;
  * A base interface that all views shall derive from.
  *
  */
-class KHTML_EXPORT AbstractView {
+class KHTML_EXPORT AbstractView
+{
     friend class Event;
     friend class UIEvent;
     friend class MouseEvent;
@@ -49,7 +51,7 @@ public:
     AbstractView(const AbstractView &other);
     virtual ~AbstractView();
 
-    AbstractView & operator = (const AbstractView &other);
+    AbstractView &operator = (const AbstractView &other);
 
     /**
      * The source DocumentView of which this is an AbstractView.
@@ -84,7 +86,6 @@ protected:
     AbstractView(AbstractViewImpl *i);
     AbstractViewImpl *impl;
 };
-
 
 } //namespace
 #endif

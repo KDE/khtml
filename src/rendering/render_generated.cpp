@@ -31,34 +31,36 @@ using namespace Enumerate;
 
 // -------------------------------------------------------------------------
 
-RenderCounterBase::RenderCounterBase(DOM::NodeImpl* node)
-    : RenderText(node,0), m_counterNode(0)
+RenderCounterBase::RenderCounterBase(DOM::NodeImpl *node)
+    : RenderText(node, 0), m_counterNode(0)
 {
 }
 
 void RenderCounterBase::layout()
 {
-    KHTMLAssert( needsLayout() );
+    KHTMLAssert(needsLayout());
 
-    if ( !minMaxKnown() )
+    if (!minMaxKnown()) {
         calcMinMaxWidth();
+    }
 
     RenderText::layout();
 }
 
 void RenderCounterBase::calcMinMaxWidth()
 {
-    KHTMLAssert( !minMaxKnown() );
+    KHTMLAssert(!minMaxKnown());
 
     generateContent();
 
-    if (str) str->deref();
+    if (str) {
+        str->deref();
+    }
     str = new DOM::DOMStringImpl(m_item.unicode(), m_item.length());
     str->ref();
 
     RenderText::calcMinMaxWidth();
 }
-
 
 void RenderCounterBase::updateContent()
 {
@@ -67,7 +69,7 @@ void RenderCounterBase::updateContent()
 
 // -------------------------------------------------------------------------
 
-RenderCounter::RenderCounter(DOM::NodeImpl* node, const DOM::CounterImpl* counter)
+RenderCounter::RenderCounter(DOM::NodeImpl *node, const DOM::CounterImpl *counter)
     : RenderCounterBase(node), m_counter(counter)
 {
 }
@@ -75,8 +77,7 @@ RenderCounter::RenderCounter(DOM::NodeImpl* node, const DOM::CounterImpl* counte
 QString RenderCounter::toListStyleType(int value, int total, EListStyleType type)
 {
     QString item;
-    switch(type)
-    {
+    switch (type) {
     case LNONE:
         break;
 // Glyphs: (these values are not really used and instead handled by RenderGlyph)
@@ -97,103 +98,103 @@ QString RenderCounter::toListStyleType(int value, int total, EListStyleType type
         break;
 // Numeric:
     case LDECIMAL:
-        item.setNum ( value );
+        item.setNum(value);
         break;
     case DECIMAL_LEADING_ZERO: {
         int decimals = 2;
-        int t = total/100;
-        while (t>0) {
-            t = t/10;
+        int t = total / 100;
+        while (t > 0) {
+            t = t / 10;
             decimals++;
         }
         decimals = qMax(decimals, 2);
         QString num = QString::number(value);
-        item.fill('0',decimals-num.length());
+        item.fill('0', decimals - num.length());
         item.append(num);
         break;
     }
     case ARABIC_INDIC:
-        item = toArabicIndic( value );
+        item = toArabicIndic(value);
         break;
     case LAO:
-        item = toLao( value );
+        item = toLao(value);
         break;
     case PERSIAN:
     case URDU:
-        item = toPersianUrdu( value );
+        item = toPersianUrdu(value);
         break;
     case THAI:
-        item = toThai( value );
+        item = toThai(value);
         break;
     case TIBETAN:
-        item = toTibetan( value );
+        item = toTibetan(value);
         break;
 // Algoritmic:
     case LOWER_ROMAN:
-        item = toRoman( value, false );
+        item = toRoman(value, false);
         break;
     case UPPER_ROMAN:
-        item = toRoman( value, true );
+        item = toRoman(value, true);
         break;
     case HEBREW:
-        item = toHebrew( value );
+        item = toHebrew(value);
         break;
     case ARMENIAN:
-        item = toArmenian( value );
+        item = toArmenian(value);
         break;
     case GEORGIAN:
-        item = toGeorgian( value );
+        item = toGeorgian(value);
         break;
 // Alphabetic:
     case LOWER_ALPHA:
     case LOWER_LATIN:
-        item = toLowerLatin( value );
+        item = toLowerLatin(value);
         break;
     case UPPER_ALPHA:
     case UPPER_LATIN:
-        item = toUpperLatin( value );
+        item = toUpperLatin(value);
         break;
     case LOWER_GREEK:
-        item = toLowerGreek( value );
+        item = toLowerGreek(value);
         break;
     case UPPER_GREEK:
-        item = toUpperGreek( value );
+        item = toUpperGreek(value);
         break;
     case HIRAGANA:
-        item = toHiragana( value );
+        item = toHiragana(value);
         break;
     case HIRAGANA_IROHA:
-        item = toHiraganaIroha( value );
+        item = toHiraganaIroha(value);
         break;
     case KATAKANA:
-        item = toKatakana( value );
+        item = toKatakana(value);
         break;
     case KATAKANA_IROHA:
-        item = toKatakanaIroha( value );
+        item = toKatakanaIroha(value);
         break;
 // Ideographic:
     case JAPANESE_FORMAL:
-        item = toJapaneseFormal( value );
+        item = toJapaneseFormal(value);
         break;
     case JAPANESE_INFORMAL:
-        item = toJapaneseInformal( value );
+        item = toJapaneseInformal(value);
         break;
     case SIMP_CHINESE_FORMAL:
-        item = toSimpChineseFormal( value );
+        item = toSimpChineseFormal(value);
         break;
     case SIMP_CHINESE_INFORMAL:
-        item = toSimpChineseInformal( value );
+        item = toSimpChineseInformal(value);
         break;
     case TRAD_CHINESE_FORMAL:
-        item = toTradChineseFormal( value );
+        item = toTradChineseFormal(value);
         break;
     case CJK_IDEOGRAPHIC:
-        // CSS 3 List says treat as trad-chinese-informal
+    // CSS 3 List says treat as trad-chinese-informal
     case TRAD_CHINESE_INFORMAL:
-        item = toTradChineseInformal( value );
+        item = toTradChineseInformal(value);
         break;
     default:
-        item.setNum ( value );
+        item.setNum(value);
         break;
     }
     return item;
@@ -204,19 +205,24 @@ void RenderCounter::generateContent()
     bool counters;
     counters = !m_counter->separator().isNull();
 
-    if (!m_counterNode)
+    if (!m_counterNode) {
         m_counterNode = getCounter(m_counter->identifier(), true, counters);
+    }
 
     int value = m_counterNode->count();
-    if (m_counterNode->isReset()) value = m_counterNode->value();
+    if (m_counterNode->isReset()) {
+        value = m_counterNode->value();
+    }
     int total = value;
-    if (m_counterNode->parent()) total = m_counterNode->parent()->total();
+    if (m_counterNode->parent()) {
+        total = m_counterNode->parent()->total();
+    }
     m_item = toListStyleType(value, total, (EListStyleType)m_counter->listStyle());
 
     if (counters) {
         CounterNode *counter = m_counterNode->parent();
         // we deliberately do not render the root counter-node
-        while(counter->parent() && !(counter->isReset() && counter->parent()->isRoot())) {
+        while (counter->parent() && !(counter->isReset() && counter->parent()->isRoot())) {
             value = counter->count();
             total = counter->parent()->total();
             m_item = toListStyleType(value, total, (EListStyleType)m_counter->listStyle()) + m_counter->separator().string() + m_item;
@@ -228,23 +234,22 @@ void RenderCounter::generateContent()
 
 // -------------------------------------------------------------------------
 
-RenderQuote::RenderQuote(DOM::NodeImpl* node, EQuoteContent type)
+RenderQuote::RenderQuote(DOM::NodeImpl *node, EQuoteContent type)
     : RenderCounterBase(node), m_quoteType(type)
 {
 }
 
-
 int RenderQuote::quoteCount() const
 {
-    switch(m_quoteType) {
-         case OPEN_QUOTE:
-         case NO_OPEN_QUOTE:
-            return 1;
-         case CLOSE_QUOTE:
-         case NO_CLOSE_QUOTE:
-            return -1;
-         case NO_QUOTE:
-            return 0;
+    switch (m_quoteType) {
+    case OPEN_QUOTE:
+    case NO_OPEN_QUOTE:
+        return 1;
+    case CLOSE_QUOTE:
+    case NO_CLOSE_QUOTE:
+        return -1;
+    case NO_QUOTE:
+        return 0;
     }
     assert(false);
     return 0;
@@ -253,33 +258,37 @@ int RenderQuote::quoteCount() const
 void RenderQuote::generateContent()
 {
     bool visual;
-    if (m_quoteType == NO_CLOSE_QUOTE || m_quoteType == NO_OPEN_QUOTE)
+    if (m_quoteType == NO_CLOSE_QUOTE || m_quoteType == NO_OPEN_QUOTE) {
         visual = false;
-    else
+    } else {
         visual = true;
+    }
 
-    if (!m_counterNode)
+    if (!m_counterNode) {
         m_counterNode = getCounter("-khtml-quotes", visual, false);
+    }
 
     int value = m_counterNode->count();
-    if (m_counterNode->isReset()) value = m_counterNode->value();
+    if (m_counterNode->isReset()) {
+        value = m_counterNode->value();
+    }
     switch (m_quoteType) {
-         case OPEN_QUOTE:
-            m_item = style()->openQuote( value );
-            break;
-         case CLOSE_QUOTE:
-            m_item = style()->closeQuote( value );
-            break;
-         case NO_OPEN_QUOTE:
-         case NO_CLOSE_QUOTE:
-         case NO_QUOTE:
-            m_item.clear();
+    case OPEN_QUOTE:
+        m_item = style()->openQuote(value);
+        break;
+    case CLOSE_QUOTE:
+        m_item = style()->closeQuote(value);
+        break;
+    case NO_OPEN_QUOTE:
+    case NO_CLOSE_QUOTE:
+    case NO_QUOTE:
+        m_item.clear();
     }
 }
 
 // -------------------------------------------------------------------------
 
-RenderGlyph::RenderGlyph(DOM::NodeImpl* node, EListStyleType type)
+RenderGlyph::RenderGlyph(DOM::NodeImpl *node, EListStyleType type)
     : RenderBox(node), m_type(type)
 {
     setInline(true);
@@ -291,23 +300,23 @@ void RenderGlyph::setStyle(RenderStyle *_style)
     RenderBox::setStyle(_style);
 
     const QFontMetrics &fm = style()->fontMetrics();
-    QRect xSize= fm.boundingRect('x');
+    QRect xSize = fm.boundingRect('x');
     m_height = xSize.height();
     m_width = xSize.width();
 
-    switch(m_type) {
+    switch (m_type) {
     // Glyphs:
-        case LDISC:
-        case LCIRCLE:
-        case LSQUARE:
-        case LBOX:
-        case LDIAMOND:
-        case LNONE:
-            break;
-        default:
-            // not a glyph !
-            assert(false);
-            break;
+    case LDISC:
+    case LCIRCLE:
+    case LSQUARE:
+    case LBOX:
+    case LDIAMOND:
+    case LNONE:
+        break;
+    default:
+        // not a glyph !
+        assert(false);
+        break;
     }
 }
 
@@ -329,57 +338,61 @@ short RenderGlyph::baselinePosition(bool /*b*/) const
     return height();
 }
 
-void RenderGlyph::paint(PaintInfo& paintInfo, int _tx, int _ty)
+void RenderGlyph::paint(PaintInfo &paintInfo, int _tx, int _ty)
 {
-    if (paintInfo.phase != PaintActionForeground)
+    if (paintInfo.phase != PaintActionForeground) {
         return;
+    }
 
-    if (style()->visibility() != VISIBLE)  return;
+    if (style()->visibility() != VISIBLE) {
+        return;
+    }
 
     _tx += m_x;
     _ty += m_y;
 
-    if((_ty > paintInfo.r.bottom()) || (_ty + m_height <= paintInfo.r.top()))
+    if ((_ty > paintInfo.r.bottom()) || (_ty + m_height <= paintInfo.r.top())) {
         return;
+    }
 
-    QPainter* p = paintInfo.p;
+    QPainter *p = paintInfo.p;
 
-    const QColor color( style()->color() );
-    p->setPen( color );
+    const QColor color(style()->color());
+    p->setPen(color);
 
     int xHeight = m_height;
-    int bulletWidth = (xHeight+1)/2;
-    int yoff = (xHeight - 1)/4;
+    int bulletWidth = (xHeight + 1) / 2;
+    int yoff = (xHeight - 1) / 4;
     QRect marker(_tx, _ty + yoff, bulletWidth, bulletWidth);
 
-    switch(m_type) {
+    switch (m_type) {
     case LDISC:
-        p->setBrush( color );
-        p->drawEllipse( marker );
+        p->setBrush(color);
+        p->drawEllipse(marker);
         return;
     case LCIRCLE:
-        p->setBrush( Qt::NoBrush );
-        p->drawEllipse( marker );
+        p->setBrush(Qt::NoBrush);
+        p->drawEllipse(marker);
         return;
     case LSQUARE:
-        p->setBrush( color );
-        p->drawRect( marker );
+        p->setBrush(color);
+        p->drawRect(marker);
         return;
     case LBOX:
-        p->setBrush( Qt::NoBrush );
-        p->drawRect( marker );
+        p->setBrush(Qt::NoBrush);
+        p->drawRect(marker);
         return;
     case LDIAMOND: {
         static QPolygon diamond(4);
         int x = marker.x();
         int y = marker.y();
-        int s = bulletWidth/2;
-        diamond[0] = QPoint(x+s,   y);
-        diamond[1] = QPoint(x+2*s, y+s);
-        diamond[2] = QPoint(x+s,   y+2*s);
-        diamond[3] = QPoint(x,     y+s);
-        p->setBrush( color );
-        p->drawConvexPolygon( diamond.constData(), 4 );
+        int s = bulletWidth / 2;
+        diamond[0] = QPoint(x + s,   y);
+        diamond[1] = QPoint(x + 2 * s, y + s);
+        diamond[2] = QPoint(x + s,   y + 2 * s);
+        diamond[3] = QPoint(x,     y + s);
+        p->setBrush(color);
+        p->drawConvexPolygon(diamond.constData(), 4);
         return;
     }
     case LNONE:

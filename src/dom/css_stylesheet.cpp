@@ -43,86 +43,116 @@ StyleSheet::StyleSheet()
 StyleSheet::StyleSheet(const StyleSheet &other)
 {
     impl = other.impl;
-    if(impl) impl->ref();
+    if (impl) {
+        impl->ref();
+    }
 }
 
 StyleSheet::StyleSheet(StyleSheetImpl *i)
 {
     impl = i;
-    if(impl) impl->ref();
+    if (impl) {
+        impl->ref();
+    }
 }
 
 StyleSheet &StyleSheet::operator = (const StyleSheet &other)
 {
-    if ( impl != other.impl ) {
-        if(impl) impl->deref();
+    if (impl != other.impl) {
+        if (impl) {
+            impl->deref();
+        }
         impl = other.impl;
-        if(impl) impl->ref();
+        if (impl) {
+            impl->ref();
+        }
     }
     return *this;
 }
 
 StyleSheet::~StyleSheet()
 {
-    if(impl) impl->deref();
+    if (impl) {
+        impl->deref();
+    }
 }
 
 DOMString StyleSheet::type() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((StyleSheetImpl *)impl)->type();
 }
 
 bool StyleSheet::disabled() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return ((StyleSheetImpl *)impl)->disabled();
 }
 
-void StyleSheet::setDisabled( bool _disabled )
+void StyleSheet::setDisabled(bool _disabled)
 {
-    if(impl)
-        ((StyleSheetImpl *)impl)->setDisabled( _disabled );
+    if (impl) {
+        ((StyleSheetImpl *)impl)->setDisabled(_disabled);
+    }
 }
 
 DOM::Node StyleSheet::ownerNode() const
 {
-    if(!impl) return Node();
+    if (!impl) {
+        return Node();
+    }
     return ((StyleSheetImpl *)impl)->ownerNode();
 }
 
 StyleSheet StyleSheet::parentStyleSheet() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return ((StyleSheetImpl *)impl)->parentStyleSheet();
 }
 
 DOMString StyleSheet::href() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((StyleSheetImpl *)impl)->href();
 }
 
 DOMString StyleSheet::title() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((StyleSheetImpl *)impl)->title();
 }
 
 MediaList StyleSheet::media() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return ((StyleSheetImpl *)impl)->media();
 }
 
 bool StyleSheet::isCSSStyleSheet() const
 {
-    if(!impl) return false;
+    if (!impl) {
+        return false;
+    }
     return ((StyleSheetImpl *)impl)->isCSSStyleSheet();
 }
 
-QUrl StyleSheet::baseUrl() {
-    if(!impl) return QUrl();
+QUrl StyleSheet::baseUrl()
+{
+    if (!impl) {
+        return QUrl();
+    }
     return ((StyleSheetImpl *)impl)->baseURL();
 }
 
@@ -138,13 +168,13 @@ bool CSSException::isCSSExceptionCode(int exceptioncode)
 
 DOMString CSSException::codeAsString(int code)
 {
-    switch ( code ) {
+    switch (code) {
     case SYNTAX_ERR:
-        return DOMString( "SYNTAX_ERR" );
+        return DOMString("SYNTAX_ERR");
     case INVALID_MODIFICATION_ERR:
-        return DOMString( "INVALID_MODIFICATION_ERR" );
+        return DOMString("INVALID_MODIFICATION_ERR");
     default:
-        return DOMString( "(unknown exception code)" );
+        return DOMString("(unknown exception code)");
     }
 }
 
@@ -158,10 +188,11 @@ CSSStyleSheet::CSSStyleSheet(const CSSStyleSheet &other) : StyleSheet(other)
 
 CSSStyleSheet::CSSStyleSheet(const StyleSheet &other)
 {
-    if (!other.isCSSStyleSheet())
-	impl = 0;
-    else
-	operator=(other);
+    if (!other.isCSSStyleSheet()) {
+        impl = 0;
+    } else {
+        operator=(other);
+    }
 }
 
 CSSStyleSheet::CSSStyleSheet(CSSStyleSheetImpl *impl) : StyleSheet(impl)
@@ -176,12 +207,13 @@ CSSStyleSheet &CSSStyleSheet::operator = (const CSSStyleSheet &other)
 
 CSSStyleSheet &CSSStyleSheet::operator = (const StyleSheet &other)
 {
-    if(!other.handle()->isCSSStyleSheet())
-    {
-        if(impl) impl->deref();
+    if (!other.handle()->isCSSStyleSheet()) {
+        if (impl) {
+            impl->deref();
+        }
         impl = 0;
     } else {
-    StyleSheet::operator = (other);
+        StyleSheet::operator = (other);
     }
     return *this;
 }
@@ -192,44 +224,57 @@ CSSStyleSheet::~CSSStyleSheet()
 
 CSSRule CSSStyleSheet::ownerRule() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return ((CSSStyleSheetImpl *)impl)->ownerRule();
 }
 
 CSSRuleList CSSStyleSheet::cssRules() const
 {
-    if(!impl) return (CSSRuleListImpl*)0;
+    if (!impl) {
+        return (CSSRuleListImpl *)0;
+    }
     return ((CSSStyleSheetImpl *)impl)->cssRules();
 }
 
-unsigned long CSSStyleSheet::insertRule( const DOMString &rule, unsigned long index )
+unsigned long CSSStyleSheet::insertRule(const DOMString &rule, unsigned long index)
 {
     int exceptioncode = 0;
-    if(!impl) return 0;
-    unsigned long retval = ((CSSStyleSheetImpl *)impl)->insertRule( rule, index, exceptioncode );
-    if ( exceptioncode >= CSSException::_EXCEPTION_OFFSET )
-        throw CSSException( exceptioncode - CSSException::_EXCEPTION_OFFSET );
-    if ( exceptioncode )
-        throw DOMException( exceptioncode );
+    if (!impl) {
+        return 0;
+    }
+    unsigned long retval = ((CSSStyleSheetImpl *)impl)->insertRule(rule, index, exceptioncode);
+    if (exceptioncode >= CSSException::_EXCEPTION_OFFSET) {
+        throw CSSException(exceptioncode - CSSException::_EXCEPTION_OFFSET);
+    }
+    if (exceptioncode) {
+        throw DOMException(exceptioncode);
+    }
     return retval;
 }
 
-void CSSStyleSheet::deleteRule( unsigned long index )
+void CSSStyleSheet::deleteRule(unsigned long index)
 {
     int exceptioncode = 0;
-    if(impl)
-        ((CSSStyleSheetImpl *)impl)->deleteRule( index, exceptioncode );
-    if ( exceptioncode >= CSSException::_EXCEPTION_OFFSET )
-        throw CSSException( exceptioncode - CSSException::_EXCEPTION_OFFSET );
-    if ( exceptioncode )
-        throw DOMException( exceptioncode );
+    if (impl) {
+        ((CSSStyleSheetImpl *)impl)->deleteRule(index, exceptioncode);
+    }
+    if (exceptioncode >= CSSException::_EXCEPTION_OFFSET) {
+        throw CSSException(exceptioncode - CSSException::_EXCEPTION_OFFSET);
+    }
+    if (exceptioncode) {
+        throw DOMException(exceptioncode);
+    }
 }
 
-DOM::DOMString CSSStyleSheet::charset() const {
-    if(!impl) return DOMString();
+DOM::DOMString CSSStyleSheet::charset() const
+{
+    if (!impl) {
+        return DOMString();
+    }
     return static_cast<CSSStyleSheetImpl *>(impl)->charset();
 }
-
 
 StyleSheetList::StyleSheetList()
 {
@@ -239,40 +284,54 @@ StyleSheetList::StyleSheetList()
 StyleSheetList::StyleSheetList(const StyleSheetList &other)
 {
     impl = other.impl;
-    if(impl) impl->ref();
+    if (impl) {
+        impl->ref();
+    }
 }
 
 StyleSheetList::StyleSheetList(StyleSheetListImpl *i)
 {
     impl = i;
-    if(impl) impl->ref();
+    if (impl) {
+        impl->ref();
+    }
 }
 
 StyleSheetList &StyleSheetList::operator = (const StyleSheetList &other)
 {
-    if ( impl != other.impl ) {
-        if(impl) impl->deref();
+    if (impl != other.impl) {
+        if (impl) {
+            impl->deref();
+        }
         impl = other.impl;
-        if(impl) impl->ref();
+        if (impl) {
+            impl->ref();
+        }
     }
     return *this;
 }
 
 StyleSheetList::~StyleSheetList()
 {
-    if(impl) impl->deref();
+    if (impl) {
+        impl->deref();
+    }
 }
 
 unsigned long StyleSheetList::length() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return ((StyleSheetListImpl *)impl)->length();
 }
 
-StyleSheet StyleSheetList::item( unsigned long index )
+StyleSheet StyleSheetList::item(unsigned long index)
 {
-    if(!impl) return StyleSheet();
-    return ((StyleSheetListImpl *)impl)->item( index );
+    if (!impl) {
+        return StyleSheet();
+    }
+    return ((StyleSheetListImpl *)impl)->item(index);
 }
 
 StyleSheetListImpl *StyleSheetList::handle() const
@@ -295,76 +354,98 @@ MediaList::MediaList()
 MediaList::MediaList(const MediaList &other)
 {
     impl = other.impl;
-    if(impl) impl->ref();
+    if (impl) {
+        impl->ref();
+    }
 }
 
 MediaList::MediaList(MediaListImpl *i)
 {
     impl = i;
-    if(impl) impl->ref();
+    if (impl) {
+        impl->ref();
+    }
 }
 
 MediaList &MediaList::operator = (const MediaList &other)
 {
-    if ( impl != other.impl ) {
-        if(impl) impl->deref();
+    if (impl != other.impl) {
+        if (impl) {
+            impl->deref();
+        }
         impl = other.impl;
-        if(impl) impl->ref();
+        if (impl) {
+            impl->ref();
+        }
     }
     return *this;
 }
 
 MediaList::~MediaList()
 {
-    if(impl) impl->deref();
+    if (impl) {
+        impl->deref();
+    }
 }
 
 DOM::DOMString MediaList::mediaText() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return static_cast<MediaListImpl *>(impl)->mediaText();
 }
 
-void MediaList::setMediaText(const DOM::DOMString &value )
+void MediaList::setMediaText(const DOM::DOMString &value)
 {
-    if(!impl)
+    if (!impl) {
         return;
+    }
     int exceptioncode = 0;
-    static_cast<MediaListImpl *>(impl)->setMediaText( value, exceptioncode );
-    if ( exceptioncode )
-        throw DOMException( exceptioncode );
+    static_cast<MediaListImpl *>(impl)->setMediaText(value, exceptioncode);
+    if (exceptioncode) {
+        throw DOMException(exceptioncode);
+    }
 }
 
 unsigned long MediaList::length() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return ((MediaListImpl *)impl)->length();
 }
 
 DOM::DOMString MediaList::item(unsigned long index) const
 {
-    if(!impl) return DOMString();
-    return ((MediaListImpl *)impl)->item( index );
+    if (!impl) {
+        return DOMString();
+    }
+    return ((MediaListImpl *)impl)->item(index);
 }
 
 void MediaList::deleteMedium(const DOM::DOMString &oldMedium)
 {
-    if(!impl)
+    if (!impl) {
         return;
+    }
     int exceptioncode = 0;
-    ((MediaListImpl *)impl)->deleteMedium( oldMedium, exceptioncode );
-    if ( exceptioncode )
-        throw DOMException( exceptioncode );
+    ((MediaListImpl *)impl)->deleteMedium(oldMedium, exceptioncode);
+    if (exceptioncode) {
+        throw DOMException(exceptioncode);
+    }
 }
 
 void MediaList::appendMedium(const DOM::DOMString &newMedium)
 {
-    if(!impl)
+    if (!impl) {
         return;
+    }
     int exceptioncode = 0;
-    ((MediaListImpl *)impl)->appendMedium( newMedium, exceptioncode );
-    if ( exceptioncode )
-        throw DOMException( exceptioncode );
+    ((MediaListImpl *)impl)->appendMedium(newMedium, exceptioncode);
+    if (exceptioncode) {
+        throw DOMException(exceptioncode);
+    }
 }
 
 MediaListImpl *MediaList::handle() const
@@ -387,38 +468,50 @@ LinkStyle::LinkStyle()
 LinkStyle::LinkStyle(const LinkStyle &other)
 {
     node = other.node;
-    if(node) node->ref();
+    if (node) {
+        node->ref();
+    }
 }
 
-LinkStyle & LinkStyle::operator = (const LinkStyle &other)
+LinkStyle &LinkStyle::operator = (const LinkStyle &other)
 {
-    if ( node != other.node ) {
-        if(node) node->deref();
+    if (node != other.node) {
+        if (node) {
+            node->deref();
+        }
         node = other.node;
-        if(node) node->ref();
+        if (node) {
+            node->ref();
+        }
     }
     return *this;
 }
 
-LinkStyle & LinkStyle::operator = (const Node &other)
+LinkStyle &LinkStyle::operator = (const Node &other)
 {
-    if(node) node->deref();
+    if (node) {
+        node->deref();
+    }
     node = 0;
     // ### add processing instructions
     NodeImpl *n = other.handle();
 
     // ### check link is really linking a style sheet
-    if( n && n->isElementNode() &&
-	(n->id() == ID_STYLE || n->id() == ID_LINK) ) {
-    node = n;
-    if(node) node->ref();
+    if (n && n->isElementNode() &&
+            (n->id() == ID_STYLE || n->id() == ID_LINK)) {
+        node = n;
+        if (node) {
+            node->ref();
+        }
     }
     return *this;
 }
 
 LinkStyle::~LinkStyle()
 {
-    if(node) node->deref();
+    if (node) {
+        node->deref();
+    }
 }
 
 StyleSheet LinkStyle::sheet()
@@ -426,18 +519,17 @@ StyleSheet LinkStyle::sheet()
     int id = node ? node->id() : 0;
     // ### add PI
     return
-	( id == ID_STYLE) ?
-	static_cast<HTMLStyleElementImpl *>(node)->sheet()
-	: ( (id == ID_LINK) ?
-	    static_cast<HTMLLinkElementImpl *>(node)->sheet()
-	    : StyleSheet() );
+        (id == ID_STYLE) ?
+        static_cast<HTMLStyleElementImpl *>(node)->sheet()
+        : ((id == ID_LINK) ?
+           static_cast<HTMLLinkElementImpl *>(node)->sheet()
+           : StyleSheet());
 }
 
 bool LinkStyle::isNull() const
 {
     return (node == 0);
 }
-
 
 // ----------------------------------------------------------
 
@@ -449,33 +541,45 @@ DocumentStyle::DocumentStyle()
 DocumentStyle::DocumentStyle(const DocumentStyle &other)
 {
     doc = other.doc;
-    if(doc) doc->ref();
+    if (doc) {
+        doc->ref();
+    }
 }
 
-DocumentStyle & DocumentStyle::operator = (const DocumentStyle &other)
+DocumentStyle &DocumentStyle::operator = (const DocumentStyle &other)
 {
-    if ( doc != other.doc ) {
-        if(doc) doc->deref();
+    if (doc != other.doc) {
+        if (doc) {
+            doc->deref();
+        }
         doc = other.doc;
-        if(doc) doc->ref();
+        if (doc) {
+            doc->ref();
+        }
     }
     return *this;
 }
 
-DocumentStyle & DocumentStyle::operator = (const Document &other)
+DocumentStyle &DocumentStyle::operator = (const Document &other)
 {
     DocumentImpl *odoc = static_cast<DocumentImpl *>(other.handle());
-    if ( doc != odoc ) {
-    if(doc) doc->deref();
-	doc = odoc;
-    if(doc) doc->ref();
+    if (doc != odoc) {
+        if (doc) {
+            doc->deref();
+        }
+        doc = odoc;
+        if (doc) {
+            doc->ref();
+        }
     }
     return *this;
 }
 
 DocumentStyle::~DocumentStyle()
 {
-    if(doc) doc->deref();
+    if (doc) {
+        doc->deref();
+    }
 }
 
 StyleSheetList DocumentStyle::styleSheets() const
@@ -488,7 +592,7 @@ DOMString DocumentStyle::preferredStylesheetSet() const
     return doc->preferredStylesheetSet();
 }
 
-void DocumentStyle::setSelectedStylesheetSet(const DOMString& aStr)
+void DocumentStyle::setSelectedStylesheetSet(const DOMString &aStr)
 {
     return doc->setSelectedStylesheetSet(aStr);
 }

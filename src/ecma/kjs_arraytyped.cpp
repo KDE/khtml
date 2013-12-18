@@ -19,45 +19,45 @@
 
 #include "kjs_arraytyped.h"
 
-namespace KJS {
+namespace KJS
+{
 
 // Define TypedArrayTypes
 // type == the type, like int8_t
 // TypeName == the readable Type, like Int8
-// this will define 
+// this will define
 // ArrayBufferConstructorImpInt8
 // ArrayBufferViewProtoInt8
 // ArrayBufferViewInt8
 
 #define KJS_TYPEDARRAY_DEFINE(type,TypeName) \
-JSObject* ArrayBufferConstructorImp##TypeName::construct(ExecState *exec, const List &args) \
-{ \
-    return ArrayBufferViewConstructorImp<type, ArrayBufferView##TypeName>::construct(exec, args); \
-} \
- \
-Identifier* ArrayBufferViewProto##TypeName::name() \
-{ \
-    if (!s_name) \
-        s_name = new KJS::Identifier("[[" "ArrayBuffer"#TypeName  ".prototype]]"); \
-    return s_name; \
-} \
- \
-KJS::Identifier* ArrayBufferViewProto##TypeName::s_name = 0; \
-const KJS::ClassInfo ArrayBufferViewProto##TypeName::info = { "ArrayBuffer"#TypeName , 0, &ArrayBufferViewProtoTable, 0 }; \
- \
-KJS::JSObject *ArrayBufferViewProto##TypeName::self(KJS::ExecState *exec) { \
-    return KJS_CACHEGLOBALOBJECT_NS cacheGlobalObject<ArrayBufferViewProto##TypeName >(exec, *name()); \
-} \
-ArrayBufferViewProto##TypeName::ArrayBufferViewProto##TypeName(KJS::ExecState *exec) \
-    : ArrayBufferViewProto<type, ArrayBufferView##TypeName>(exec) \
-{} \
- \
-const KJS::ClassInfo ArrayBufferView##TypeName::info = { "ArrayBuffer"#TypeName , 0, &ArrayBufferViewProtoTable, 0 }; \
- \
-ArrayBufferView##TypeName::ArrayBufferView##TypeName(ExecState* exec, ArrayBuffer* buffer, size_t byteOffset, size_t byteLength) \
-    : ArrayBufferView<type, ArrayBufferViewProto##TypeName>(exec,buffer, byteOffset, byteLength) \
-{}
-
+    JSObject* ArrayBufferConstructorImp##TypeName::construct(ExecState *exec, const List &args) \
+    { \
+        return ArrayBufferViewConstructorImp<type, ArrayBufferView##TypeName>::construct(exec, args); \
+    } \
+    \
+    Identifier* ArrayBufferViewProto##TypeName::name() \
+    { \
+        if (!s_name) \
+            s_name = new KJS::Identifier("[[" "ArrayBuffer"#TypeName  ".prototype]]"); \
+        return s_name; \
+    } \
+    \
+    KJS::Identifier* ArrayBufferViewProto##TypeName::s_name = 0; \
+    const KJS::ClassInfo ArrayBufferViewProto##TypeName::info = { "ArrayBuffer"#TypeName , 0, &ArrayBufferViewProtoTable, 0 }; \
+    \
+    KJS::JSObject *ArrayBufferViewProto##TypeName::self(KJS::ExecState *exec) { \
+        return KJS_CACHEGLOBALOBJECT_NS cacheGlobalObject<ArrayBufferViewProto##TypeName >(exec, *name()); \
+    } \
+    ArrayBufferViewProto##TypeName::ArrayBufferViewProto##TypeName(KJS::ExecState *exec) \
+        : ArrayBufferViewProto<type, ArrayBufferView##TypeName>(exec) \
+    {} \
+    \
+    const KJS::ClassInfo ArrayBufferView##TypeName::info = { "ArrayBuffer"#TypeName , 0, &ArrayBufferViewProtoTable, 0 }; \
+    \
+    ArrayBufferView##TypeName::ArrayBufferView##TypeName(ExecState* exec, ArrayBuffer* buffer, size_t byteOffset, size_t byteLength) \
+        : ArrayBufferView<type, ArrayBufferViewProto##TypeName>(exec,buffer, byteOffset, byteLength) \
+    {}
 
 KJS_TYPEDARRAY_DEFINE(int8_t, Int8)
 KJS_TYPEDARRAY_DEFINE(uint8_t, Uint8)

@@ -33,40 +33,57 @@
 
 #include <QUrl>
 
-namespace khtml {
+namespace khtml
+{
 
-class SecurityOrigin : public Shared<SecurityOrigin> {
+class SecurityOrigin : public Shared<SecurityOrigin>
+{
 public:
-    static SecurityOrigin* createFromString(const QString&);
-    static SecurityOrigin* create(const QUrl&);
-    static SecurityOrigin* createEmpty();
+    static SecurityOrigin *createFromString(const QString &);
+    static SecurityOrigin *create(const QUrl &);
+    static SecurityOrigin *createEmpty();
 
     // Set the domain property of this security origin to newDomain. This
     // function does not check whether newDomain is a suffix of the current
     // domain. The caller is responsible for validating newDomain.
-    void setDomainFromDOM(const QString& newDomain);
-    bool domainWasSetInDOM() const { return m_domainWasSetInDOM; }
+    void setDomainFromDOM(const QString &newDomain);
+    bool domainWasSetInDOM() const
+    {
+        return m_domainWasSetInDOM;
+    }
 
-    QString protocol() const { return m_protocol; }
-    QString host() const { return m_host; }
-    QString domain() const { return m_domain; }
-    unsigned short port() const { return m_port; }
+    QString protocol() const
+    {
+        return m_protocol;
+    }
+    QString host() const
+    {
+        return m_host;
+    }
+    QString domain() const
+    {
+        return m_domain;
+    }
+    unsigned short port() const
+    {
+        return m_port;
+    }
 
     // Returns true if this SecurityOrigin can script objects in the given
     // SecurityOrigin. For example, call this function before allowing
     // script from one security origin to read or write objects from
     // another SecurityOrigin.
-    bool canAccess(const SecurityOrigin*) const;
+    bool canAccess(const SecurityOrigin *) const;
 
     // Returns true if this SecurityOrigin can read content retrieved from
     // the given URL. For example, call this function before issuing
     // XMLHttpRequests.
-    bool canRequest(const QUrl&) const;
+    bool canRequest(const QUrl &) const;
 
     // Returns true if drawing an image from this URL taints a canvas from
     // this security origin. For example, call this function before
     // drawing an image onto an HTML canvas element with the drawImage API.
-    bool taintsCanvas(const QUrl&) const;
+    bool taintsCanvas(const QUrl &) const;
 
     // The local SecurityOrigin is the most privileged SecurityOrigin.
     // The local SecurityOrigin can script any document, navigate to local
@@ -75,13 +92,16 @@ public:
 
     // The empty SecurityOrigin is the least privileged SecurityOrigin.
     bool isEmpty() const;
-    
+
     // The origin is a globally unique identifier assigned when the Document is
     // created. http://www.whatwg.org/specs/web-apps/current-work/#sandboxOrigin
-    bool isUnique() const { return m_isUnique; }    
-    
+    bool isUnique() const
+    {
+        return m_isUnique;
+    }
+
     // Marks an origin as being unique.
-    void makeUnique();    
+    void makeUnique();
 
     // Convert this SecurityOrigin into a string. The string
     // representation of a SecurityOrigin is similar to a URL, except it
@@ -97,11 +117,11 @@ public:
 
     // This method checks for equality, ignoring the value of document.domain
     // (and whether it was set) but considering the host. It is used for postMessage.
-    bool isSameSchemeHostPort(const SecurityOrigin*) const;
+    bool isSameSchemeHostPort(const SecurityOrigin *) const;
 
 private:
-    SecurityOrigin(const QUrl&);
-    explicit SecurityOrigin(const SecurityOrigin*);
+    SecurityOrigin(const QUrl &);
+    explicit SecurityOrigin(const SecurityOrigin *);
 
     QString m_protocol;
     QString m_host;

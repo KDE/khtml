@@ -25,7 +25,8 @@
 #if ENABLE(SVG)
 #include "SVGStylable.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 SVGStylable::SVGStylable()
 {

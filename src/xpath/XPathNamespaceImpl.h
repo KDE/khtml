@@ -34,31 +34,29 @@ class DOMStringImpl;
 
 class XPathNamespaceImpl : public NodeImpl
 {
-	public:
-		XPathNamespaceImpl( DocumentImpl *ptr,
-		                    DOMStringImpl *prefix, DOMStringImpl *uri );
-		XPathNamespaceImpl( const XPathNamespaceImpl &other );
-		XPathNamespaceImpl &operator=( const XPathNamespaceImpl &rhs );
-		virtual ~XPathNamespaceImpl();
+public:
+    XPathNamespaceImpl(DocumentImpl *ptr,
+                       DOMStringImpl *prefix, DOMStringImpl *uri);
+    XPathNamespaceImpl(const XPathNamespaceImpl &other);
+    XPathNamespaceImpl &operator=(const XPathNamespaceImpl &rhs);
+    virtual ~XPathNamespaceImpl();
 
-		virtual DocumentImpl *ownerDocument() const;
-		virtual ElementImpl *ownerElement() const;
+    virtual DocumentImpl *ownerDocument() const;
+    virtual ElementImpl *ownerElement() const;
 
-		virtual const AtomicString &prefix() const;
-		virtual DOMString nodeName() const;
-		virtual const AtomicString &namespaceURI() const;
+    virtual const AtomicString &prefix() const;
+    virtual DOMString nodeName() const;
+    virtual const AtomicString &namespaceURI() const;
 
-		virtual unsigned short nodeType() const;
+    virtual unsigned short nodeType() const;
 
-	private:
-		DocumentImpl *m_ownerDocument;
-		AtomicString m_prefix;
-		AtomicString m_uri;
+private:
+    DocumentImpl *m_ownerDocument;
+    AtomicString m_prefix;
+    AtomicString m_uri;
 };
 
 }
 
-
 #endif // XPATHNAMESPACEIMPL_H
 
-// kate: indent-width 4; replace-tabs off; tab-width 4; space-indent off;

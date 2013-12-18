@@ -22,19 +22,20 @@
 #if ENABLE(SVG) && ENABLE(SVG_EXPERIMENTAL_FEATURES)
 #include "SVGResourceFilter.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGResourceFilterPlatformData* SVGResourceFilter::createPlatformData()
+SVGResourceFilterPlatformData *SVGResourceFilter::createPlatformData()
 {
     return 0;
 }
 
-void SVGResourceFilter::prepareFilter(GraphicsContext*&, const FloatRect&)
+void SVGResourceFilter::prepareFilter(GraphicsContext *&, const FloatRect &)
 {
     // FIXME: implement me :-)
 }
 
-void SVGResourceFilter::applyFilter(GraphicsContext*&, const FloatRect&)
+void SVGResourceFilter::applyFilter(GraphicsContext *&, const FloatRect &)
 {
     // FIXME: implement me :-)
 }
@@ -43,4 +44,3 @@ void SVGResourceFilter::applyFilter(GraphicsContext*&, const FloatRect&)
 
 #endif
 
-// vim:ts=4:noet

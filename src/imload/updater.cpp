@@ -29,7 +29,8 @@
 #include <QtCore/QTimer>
 #include "image.h"
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 /**
  We keep 10 separate tables for each of ten 100ms portions of a second.
@@ -42,61 +43,64 @@ Updater::Updater()
 
     updatePusher = new QTimer(this);
     connect(updatePusher, SIGNAL(timeout()),
-            this,         SLOT  (pushUpdates()));
+            this,         SLOT(pushUpdates()));
 }
 
-void Updater::haveUpdates(Image* frame)
+void Updater::haveUpdates(Image *frame)
 {
     assert(frame);
     int schedulePortion = (timePortion + 1) % 10;
     frames[schedulePortion].append(frame);
-    if (!updatePusher->isActive())
+    if (!updatePusher->isActive()) {
         updatePusher->start(100);
+    }
 }
 
 bool Updater::updatesPending()
 {
     for (int i = 0; i < 10; ++i)
-        if (!frames[i].isEmpty())
+        if (!frames[i].isEmpty()) {
             return true;
+        }
 
     return false;
 }
 
-void Updater::destroyed(Image* frame)
+void Updater::destroyed(Image *frame)
 {
-    for (int i = 0; i < 10; ++i)
-    {
+    for (int i = 0; i < 10; ++i) {
         int pos = frames[i].indexOf(frame);
-        if (pos != -1)
-          frames[i].remove(pos);
+        if (pos != -1) {
+            frames[i].remove(pos);
+        }
     }
 
-    if (!updatesPending())
+    if (!updatesPending()) {
         updatePusher->stop();
+    }
 }
 
 void Updater::pushUpdates()
 {
     timePortion++;
-    if (timePortion >= 10)
+    if (timePortion >= 10) {
         timePortion = 0;
+    }
 
     //Notify all images for the given slice.
-    QVector<Image*>::const_iterator iter;
+    QVector<Image *>::const_iterator iter;
     for (iter = frames[timePortion].constBegin();
-        iter != frames[timePortion].constEnd()  ; ++iter)
-    {
+            iter != frames[timePortion].constEnd(); ++iter) {
         (*iter)->notifyPerformUpdate();
     }
 
     //Dump the contents of the table, everything delivered
     frames[timePortion].clear();
 
-    if (!updatesPending())
+    if (!updatesPending()) {
         updatePusher->stop();
+    }
 }
 
 }
 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

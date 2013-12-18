@@ -27,21 +27,23 @@
 
 #include "expression.h"
 
-namespace khtml {
-namespace XPath {
+namespace khtml
+{
+namespace XPath
+{
 
 class VariableReference : public Expression
 {
-	public:
-		VariableReference( const DOM::DOMString &name );
+public:
+    VariableReference(const DOM::DOMString &name);
 
-		virtual bool isConstant() const;
-		virtual QString dump() const;
+    virtual bool isConstant() const;
+    virtual QString dump() const;
 
-	private:
-		virtual Value doEvaluate() const;
+private:
+    virtual Value doEvaluate() const;
 
-		DOM::DOMString m_name;
+    DOM::DOMString m_name;
 };
 
 } // namespace XPath

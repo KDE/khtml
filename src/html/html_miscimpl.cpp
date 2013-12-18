@@ -49,15 +49,17 @@ NodeImpl::Id HTMLBaseFontElementImpl::id() const
 
 // -------------------------------------------------------------------------
 
-struct CollectionCache: public DynamicNodeListImpl::Cache
-{
-    static Cache* make() { return new CollectionCache; }
+struct CollectionCache: public DynamicNodeListImpl::Cache {
+    static Cache *make()
+    {
+        return new CollectionCache;
+    }
 
-    QHash<DOMString,QList<NodeImpl*>* > nameCache;
+    QHash<DOMString, QList<NodeImpl *>* > nameCache;
 
     CollectionCache(): Cache(DocumentImpl::TV_IDNameHref) {}
 
-    virtual void clear(DocumentImpl* doc)
+    virtual void clear(DocumentImpl *doc)
     {
         Cache::clear(doc);
         qDeleteAll(nameCache);
@@ -76,78 +78,89 @@ HTMLCollectionImpl::HTMLCollectionImpl(NodeImpl *_base, int _type):
     type = _type;
 }
 
-bool HTMLCollectionImpl::nodeMatches(NodeImpl *current, bool& deep) const
+bool HTMLCollectionImpl::nodeMatches(NodeImpl *current, bool &deep) const
 {
-    if ( current->nodeType() != Node::ELEMENT_NODE )
-    {
+    if (current->nodeType() != Node::ELEMENT_NODE) {
         deep = false;
         return false;
     }
 
     bool check = false;
     HTMLElementImpl *e = static_cast<HTMLElementImpl *>(current);
-    switch(type)
-    {
+    switch (type) {
     case DOC_IMAGES:
-        if(e->id() == ID_IMG)
+        if (e->id() == ID_IMG) {
             check = true;
+        }
         break;
     case DOC_SCRIPTS:
-        if(e->id() == ID_SCRIPT)
+        if (e->id() == ID_SCRIPT) {
             check = true;
+        }
         break;
     case DOC_FORMS:
-        if(e->id() == ID_FORM)
+        if (e->id() == ID_FORM) {
             check = true;
+        }
         break;
     case DOC_LAYERS:
-        if(e->id() == ID_LAYER || e->id() == ID_ILAYER)
+        if (e->id() == ID_LAYER || e->id() == ID_ILAYER) {
             check = true;
+        }
         break;
     case TABLE_TBODIES:
-        if(e->id() == ID_TBODY)
+        if (e->id() == ID_TBODY) {
             check = true;
-        else if(e->id() == ID_TABLE)
+        } else if (e->id() == ID_TABLE) {
             deep = false;
+        }
         break;
     case TR_CELLS:
-        if(e->id() == ID_TD || e->id() == ID_TH)
+        if (e->id() == ID_TD || e->id() == ID_TH) {
             check = true;
-        else if(e->id() == ID_TABLE)
+        } else if (e->id() == ID_TABLE) {
             deep = false;
+        }
         break;
     case TABLE_ROWS:
     case TSECTION_ROWS:
-        if(e->id() == ID_TR)
+        if (e->id() == ID_TR) {
             check = true;
-        else if(e->id() == ID_TABLE)
+        } else if (e->id() == ID_TABLE) {
             deep = false;
+        }
         break;
     case SELECT_OPTIONS:
-        if(e->id() == ID_OPTION)
+        if (e->id() == ID_OPTION) {
             check = true;
+        }
         break;
     case MAP_AREAS:
-        if(e->id() == ID_AREA)
+        if (e->id() == ID_AREA) {
             check = true;
+        }
         break;
     case FORMLESS_INPUT:
-        if(e->id() == ID_INPUT && !static_cast<HTMLInputElementImpl*>(e)->form())
+        if (e->id() == ID_INPUT && !static_cast<HTMLInputElementImpl *>(e)->form()) {
             check = true;
+        }
         break;
     case DOC_APPLETS:   // all OBJECT and APPLET elements
-        if(e->id() == ID_OBJECT || e->id() == ID_APPLET || e->id() == ID_EMBED)
+        if (e->id() == ID_OBJECT || e->id() == ID_APPLET || e->id() == ID_EMBED) {
             check = true;
+        }
         break;
     case DOC_LINKS:     // all A _and_ AREA elements with a value for href
-        if(e->id() == ID_A || e->id() == ID_AREA)
-            if(!e->getAttribute(ATTR_HREF).isNull())
+        if (e->id() == ID_A || e->id() == ID_AREA)
+            if (!e->getAttribute(ATTR_HREF).isNull()) {
                 check = true;
+            }
         break;
     case DOC_ANCHORS:      // all A elements with a value for name and/or id
-        if(e->id() == ID_A) {
-            if(e->hasID() || !e->getAttribute(ATTR_NAME).isNull())
+        if (e->id() == ID_A) {
+            if (e->hasID() || !e->getAttribute(ATTR_NAME).isNull()) {
                 check = true;
+            }
         }
         break;
     case DOC_ALL:      // "all" elements
@@ -167,14 +180,16 @@ bool HTMLCollectionImpl::nodeMatches(NodeImpl *current, bool& deep) const
 
 bool HTMLCollectionImpl::checkForNameMatch(NodeImpl *node, const DOMString &name) const
 {
-    if ( node->nodeType() != Node::ELEMENT_NODE )
+    if (node->nodeType() != Node::ELEMENT_NODE) {
         return false;
+    }
 
     HTMLElementImpl *e = static_cast<HTMLElementImpl *>(node);
 
     //If ID matches, this is definitely a match
-    if (e->getAttribute(ATTR_ID) == name)
+    if (e->getAttribute(ATTR_ID) == name) {
         return true;
+    }
 
     //Despite what the DOM spec says, neither IE nor Gecko actually
     //care to prefer IDs. Instead, they just match everything
@@ -187,50 +202,51 @@ bool HTMLCollectionImpl::checkForNameMatch(NodeImpl *node, const DOMString &name
     //oddness, which I don't understand -- Maks.
 
     bool checkName;
-    switch (e->id())
-    {
-        case ID_A:
-        case ID_APPLET:
-        case ID_BUTTON:
-        case ID_EMBED:
-        case ID_FORM:
-        case ID_IMG:
-        case ID_INPUT:
-        case ID_MAP:
-        case ID_META:
-        case ID_OBJECT:
-        case ID_SELECT:
-        case ID_TEXTAREA:
-        case ID_FRAME:
-        case ID_IFRAME:
-        case ID_FRAMESET:
-            checkName = true;
-            break;
-        default:
-            checkName = false;
+    switch (e->id()) {
+    case ID_A:
+    case ID_APPLET:
+    case ID_BUTTON:
+    case ID_EMBED:
+    case ID_FORM:
+    case ID_IMG:
+    case ID_INPUT:
+    case ID_MAP:
+    case ID_META:
+    case ID_OBJECT:
+    case ID_SELECT:
+    case ID_TEXTAREA:
+    case ID_FRAME:
+    case ID_IFRAME:
+    case ID_FRAMESET:
+        checkName = true;
+        break;
+    default:
+        checkName = false;
     }
 
-    if (checkName)
-       return e->getAttribute(ATTR_NAME) == name;
-    else
-       return false;
+    if (checkName) {
+        return e->getAttribute(ATTR_NAME) == name;
+    } else {
+        return false;
+    }
 }
 
-NodeImpl *HTMLCollectionImpl::item ( unsigned long index ) const
+NodeImpl *HTMLCollectionImpl::item(unsigned long index) const
 {
     //Most of the time, we just go in normal document order
-    if (type != TABLE_ROWS)
+    if (type != TABLE_ROWS) {
         return DynamicNodeListImpl::item(index);
+    }
 
     //For table.rows, we first need to check header, then bodies, then footer.
     //we pack any extra headers/footer with bodies. This matches IE, and
     //means doing the usual thing with length is right
-    const HTMLTableElementImpl* table = static_cast<const HTMLTableElementImpl*>(m_refNode);
+    const HTMLTableElementImpl *table = static_cast<const HTMLTableElementImpl *>(m_refNode);
 
     long                          sectionIndex;
-    HTMLTableSectionElementImpl*  section;
+    HTMLTableSectionElementImpl  *section;
 
-    NodeImpl* found = 0;
+    NodeImpl *found = 0;
     if (table->findRowSection(index, section, sectionIndex)) {
         HTMLCollectionImpl rows(section, TSECTION_ROWS);
         found = rows.item(sectionIndex);
@@ -243,12 +259,13 @@ NodeImpl *HTMLCollectionImpl::item ( unsigned long index ) const
 
 unsigned long HTMLCollectionImpl::calcLength(NodeImpl *start) const
 {
-    if (type != TABLE_ROWS)
+    if (type != TABLE_ROWS) {
         return DynamicNodeListImpl::calcLength(start);
+    }
 
     unsigned length = 0;
-    const HTMLTableElementImpl* table = static_cast<const HTMLTableElementImpl*>(m_refNode);
-    for (NodeImpl* kid = table->firstChild(); kid; kid = kid->nextSibling()) {
+    const HTMLTableElementImpl *table = static_cast<const HTMLTableElementImpl *>(m_refNode);
+    for (NodeImpl *kid = table->firstChild(); kid; kid = kid->nextSibling()) {
         HTMLCollectionImpl rows(kid, TSECTION_ROWS);
         length += rows.length();
     }
@@ -267,7 +284,7 @@ NodeImpl *HTMLCollectionImpl::nextItem() const
     return item(m_cache->position + 1);
 }
 
-NodeImpl *HTMLCollectionImpl::namedItem( const DOMString &name ) const
+NodeImpl *HTMLCollectionImpl::namedItem(const DOMString &name) const
 {
     //Reset the position. The invariant is that nextNamedItem will start looking
     //from the current position.
@@ -276,34 +293,34 @@ NodeImpl *HTMLCollectionImpl::namedItem( const DOMString &name ) const
     return nextNamedItem(name);
 }
 
-NodeImpl *HTMLCollectionImpl::nextNamedItem( const DOMString &name ) const
+NodeImpl *HTMLCollectionImpl::nextNamedItem(const DOMString &name) const
 {
-    while (NodeImpl* candidate = m_cache->current.node)
-    {
+    while (NodeImpl *candidate = m_cache->current.node) {
         //Always advance, for next call
         nextItem();
-        if (checkForNameMatch(candidate, name))
+        if (checkForNameMatch(candidate, name)) {
             return candidate;
+        }
     }
     return 0;
 }
 
-QList<NodeImpl*> HTMLCollectionImpl::namedItems( const DOMString &name ) const
+QList<NodeImpl *> HTMLCollectionImpl::namedItems(const DOMString &name) const
 {
-    if (name.isEmpty())
-        return QList<NodeImpl*>();
+    if (name.isEmpty()) {
+        return QList<NodeImpl *>();
+    }
 
     //We use a work-conserving design for the name cache presently -- only
     //remember stuff about elements we were asked for.
     m_cache->updateNodeListInfo(m_refNode->document());
-    CollectionCache* cache = static_cast<CollectionCache*>(m_cache);
-    if (QList<NodeImpl*>* info = cache->nameCache.value(name)) {
+    CollectionCache *cache = static_cast<CollectionCache *>(m_cache);
+    if (QList<NodeImpl *> *info = cache->nameCache.value(name)) {
         return *info;
-    }
-    else {
-        QList<NodeImpl*>* newInfo = new QList<NodeImpl*>;
+    } else {
+        QList<NodeImpl *> *newInfo = new QList<NodeImpl *>;
 
-        NodeImpl* match = namedItem(name);
+        NodeImpl *match = namedItem(name);
         while (match) {
             newInfo->append(match);
             match = nextNamedItem(name);
@@ -316,36 +333,32 @@ QList<NodeImpl*> HTMLCollectionImpl::namedItems( const DOMString &name ) const
 
 // -----------------------------------------------------------------------------
 
-HTMLFormCollectionImpl::HTMLFormCollectionImpl(NodeImpl* _base)
+HTMLFormCollectionImpl::HTMLFormCollectionImpl(NodeImpl *_base)
     : HTMLCollectionImpl(_base, FORM_ELEMENTS), currentNamePos(0), currentNameImgPos(0)
 {}
 
-NodeImpl *HTMLFormCollectionImpl::item( unsigned long index ) const
+NodeImpl *HTMLFormCollectionImpl::item(unsigned long index) const
 {
     m_cache->updateNodeListInfo(m_refNode->document());
 
     unsigned int dist = index;
     unsigned int strt = 0;
-    if (m_cache->current.index && m_cache->position <= index)
-    {
+    if (m_cache->current.index && m_cache->position <= index) {
         dist = index - m_cache->position;
         strt = m_cache->current.index;
     }
 
-    QList<HTMLGenericFormElementImpl*>& l = static_cast<HTMLFormElementImpl*>( m_refNode )->formElements;
-    for (unsigned i = strt; i < (unsigned)l.count(); i++)
-    {
-        if (l.at( i )->isEnumerable())
-        {
-            if (dist == 0)
-            {
+    QList<HTMLGenericFormElementImpl *> &l = static_cast<HTMLFormElementImpl *>(m_refNode)->formElements;
+    for (unsigned i = strt; i < (unsigned)l.count(); i++) {
+        if (l.at(i)->isEnumerable()) {
+            if (dist == 0) {
                 //Found it!
                 m_cache->position      = index;
                 m_cache->current.index = i;
-                return l.at( i );
-            }
-            else
+                return l.at(i);
+            } else {
                 --dist;
+            }
         }
     }
     return 0;
@@ -355,14 +368,15 @@ unsigned long HTMLFormCollectionImpl::calcLength(NodeImpl *start) const
 {
     Q_UNUSED(start);
     unsigned length = 0;
-    QList<HTMLGenericFormElementImpl*> l = static_cast<HTMLFormElementImpl*>( m_refNode )->formElements;
-    for ( unsigned i = 0; i < (unsigned)l.count(); i++ )
-        if ( l.at( i )->isEnumerable() )
+    QList<HTMLGenericFormElementImpl *> l = static_cast<HTMLFormElementImpl *>(m_refNode)->formElements;
+    for (unsigned i = 0; i < (unsigned)l.count(); i++)
+        if (l.at(i)->isEnumerable()) {
             ++length;
+        }
     return length;
 }
 
-NodeImpl *HTMLFormCollectionImpl::namedItem( const DOMString &name ) const
+NodeImpl *HTMLFormCollectionImpl::namedItem(const DOMString &name) const
 {
     currentNamePos    = 0;
     currentNameImgPos = 0;
@@ -370,18 +384,16 @@ NodeImpl *HTMLFormCollectionImpl::namedItem( const DOMString &name ) const
     return nextNamedItem(name);
 }
 
-NodeImpl *HTMLFormCollectionImpl::nextNamedItem( const DOMString &name ) const
+NodeImpl *HTMLFormCollectionImpl::nextNamedItem(const DOMString &name) const
 {
-    QList<HTMLGenericFormElementImpl*>& l = static_cast<HTMLFormElementImpl*>( m_refNode )->formElements;
+    QList<HTMLGenericFormElementImpl *> &l = static_cast<HTMLFormElementImpl *>(m_refNode)->formElements;
 
     //Go through the list, trying to find the appropriate named form element.
-    for ( ; currentNamePos < (unsigned)l.count(); ++currentNamePos )
-    {
-        HTMLGenericFormElementImpl* el = l.at(currentNamePos);
+    for (; currentNamePos < (unsigned)l.count(); ++currentNamePos) {
+        HTMLGenericFormElementImpl *el = l.at(currentNamePos);
         if (el->isEnumerable() &&
-             ((el->getAttribute(ATTR_ID)   == name) ||
-              (el->getAttribute(ATTR_NAME) == name)))
-        {
+                ((el->getAttribute(ATTR_ID)   == name) ||
+                 (el->getAttribute(ATTR_NAME) == name))) {
             ++currentNamePos; //Make next call start after this
             foundInput = true;//No need to look for img
             return el;
@@ -390,15 +402,15 @@ NodeImpl *HTMLFormCollectionImpl::nextNamedItem( const DOMString &name ) const
 
     //If we got this far, we may need to start looking through the images,
     //but only if no input tags were matched
-    if (foundInput) return 0;
+    if (foundInput) {
+        return 0;
+    }
 
-    QList<HTMLImageElementImpl*>& il = static_cast<HTMLFormElementImpl*>( m_refNode )->imgElements;
-    for ( ; currentNameImgPos < (unsigned)il.count(); ++currentNameImgPos )
-    {
-        HTMLImageElementImpl* el = il.at(currentNameImgPos);
+    QList<HTMLImageElementImpl *> &il = static_cast<HTMLFormElementImpl *>(m_refNode)->imgElements;
+    for (; currentNameImgPos < (unsigned)il.count(); ++currentNameImgPos) {
+        HTMLImageElementImpl *el = il.at(currentNameImgPos);
         if ((el->getAttribute(ATTR_ID)   == name) ||
-            (el->getAttribute(ATTR_NAME) == name))
-        {
+                (el->getAttribute(ATTR_NAME) == name)) {
             ++currentNameImgPos; //Make next call start after this
             return el;
         }
@@ -408,16 +420,15 @@ NodeImpl *HTMLFormCollectionImpl::nextNamedItem( const DOMString &name ) const
 }
 
 // -------------------------------------------------------------------------
-HTMLMappedNameCollectionImpl::HTMLMappedNameCollectionImpl(NodeImpl* _base, int _type, const DOMString& _name):
+HTMLMappedNameCollectionImpl::HTMLMappedNameCollectionImpl(NodeImpl *_base, int _type, const DOMString &_name):
     HTMLCollectionImpl(_base, DynamicNodeListImpl::UNCACHEABLE), name(_name)
 {
     type = _type; //We pass uncacheable to collection, but need our own type internally.
 }
 
-bool HTMLMappedNameCollectionImpl::nodeMatches(NodeImpl *current, bool& deep) const
+bool HTMLMappedNameCollectionImpl::nodeMatches(NodeImpl *current, bool &deep) const
 {
-    if ( current->nodeType() != Node::ELEMENT_NODE )
-    {
+    if (current->nodeType() != Node::ELEMENT_NODE) {
         deep = false;
         return false;
     }
@@ -427,27 +438,27 @@ bool HTMLMappedNameCollectionImpl::nodeMatches(NodeImpl *current, bool& deep) co
     return matchesName(e, type, name);
 }
 
-bool HTMLMappedNameCollectionImpl::matchesName( ElementImpl* el, int type, const DOMString& name )
+bool HTMLMappedNameCollectionImpl::matchesName(ElementImpl *el, int type, const DOMString &name)
 {
-    switch (el->id())
-    {
+    switch (el->id()) {
     case ID_IMG:
     case ID_FORM:
         //Under document. these require non-empty name to see the element
-        if (type == DOCUMENT_NAMED_ITEMS && el->getAttribute(ATTR_NAME).isNull())
+        if (type == DOCUMENT_NAMED_ITEMS && el->getAttribute(ATTR_NAME).isNull()) {
             return false;
-        //Otherwise, fallthrough
+        }
+    //Otherwise, fallthrough
     case ID_OBJECT:
     case ID_EMBED:
     case ID_APPLET:
     case ID_LAYER:
-        if (el->getAttribute(ATTR_NAME) == name || el->getAttribute(ATTR_ID) == name)
+        if (el->getAttribute(ATTR_NAME) == name || el->getAttribute(ATTR_ID) == name) {
             return true;
-        else
+        } else {
             return false;
+        }
     default:
         return false;
     }
 }
 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

@@ -84,16 +84,19 @@ class KJavaAppletWidget : public QX11EmbedContainer
 {
     Q_OBJECT
 public:
-    KJavaAppletWidget( QWidget* parent=0 );
+    KJavaAppletWidget(QWidget *parent = 0);
 
-   ~KJavaAppletWidget();
+    ~KJavaAppletWidget();
 
     /**
      * Returns a pointer to the KJavaApplet.  Use this to
      * configure the applet's parameters. You can also
      * use it to start and stop the Applet.
      */
-    KJavaApplet* applet() { return m_applet; }
+    KJavaApplet *applet()
+    {
+        return m_applet;
+    }
 
     /**
      * Tells the AppletServer to create, initialize, and
@@ -102,24 +105,24 @@ public:
     void showApplet();
 
     QSize sizeHint() const;
-    void resize( int, int );
+    void resize(int, int);
 
 protected Q_SLOTS:
     /**
      * This slot is called by KWin when new windows are added.  We check
      * to see if the window has the title we set.  If so we embed it.
      */
-    void setWindow( WId w );
+    void setWindow(WId w);
 
 protected:
     //The counter to generate ID's for the applets
     static int appletCount;
-    void showEvent (QShowEvent *);
+    void showEvent(QShowEvent *);
 
 private:
-    KJavaAppletWidgetPrivate* const d;
+    KJavaAppletWidgetPrivate *const d;
 
-    KJavaApplet* m_applet;
+    KJavaApplet *m_applet;
     QString      m_swallowTitle;
 
 };

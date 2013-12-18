@@ -1,7 +1,7 @@
 /*
    Copyright (C) 2007 Eric Seidel <eric@webkit.org>
    Copyright (C) 2007, 2008 Nikolas Zimmermann <zimmermann@kde.org>
-    
+
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public
    License as published by the Free Software Foundation; either
@@ -17,7 +17,6 @@
    the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
    Boston, MA 02110-1301, USA.
 */
-
 
 #if ENABLE(SVG_FONTS)
 #include "SVGFontFaceElement.h"
@@ -41,11 +40,12 @@
 
 #include <math.h>
 
-namespace WebCore {
+namespace WebCore
+{
 
 using namespace SVGNames;
 
-SVGFontFaceElement::SVGFontFaceElement(const QualifiedName& tagName, Document* doc)
+SVGFontFaceElement::SVGFontFaceElement(const QualifiedName &tagName, Document *doc)
     : SVGElement(tagName, doc)
     , m_fontFaceRule(new CSSFontFaceRule(0))
     , m_styleDeclaration(new CSSMutableStyleDeclaration)
@@ -60,21 +60,22 @@ SVGFontFaceElement::~SVGFontFaceElement()
 {
 }
 
-static void mapAttributeToCSSProperty(HashMap<AtomicStringImpl*, int>* propertyNameToIdMap, const QualifiedName& attrName)
+static void mapAttributeToCSSProperty(HashMap<AtomicStringImpl *, int> *propertyNameToIdMap, const QualifiedName &attrName)
 {
     int propertyId = cssPropertyID(attrName.localName());
     ASSERT(propertyId > 0);
     propertyNameToIdMap->set(attrName.localName().impl(), propertyId);
 }
 
-static int cssPropertyIdForSVGAttributeName(const QualifiedName& attrName)
+static int cssPropertyIdForSVGAttributeName(const QualifiedName &attrName)
 {
-    if (!attrName.namespaceURI().isNull())
+    if (!attrName.namespaceURI().isNull()) {
         return 0;
-    
-    static HashMap<AtomicStringImpl*, int>* propertyNameToIdMap = 0;
+    }
+
+    static HashMap<AtomicStringImpl *, int> *propertyNameToIdMap = 0;
     if (!propertyNameToIdMap) {
-        propertyNameToIdMap = new HashMap<AtomicStringImpl*, int>;
+        propertyNameToIdMap = new HashMap<AtomicStringImpl *, int>;
         // This is a list of all @font-face CSS properties which are exposed as SVG XML attributes
         // Those commented out are not yet supported by WebCore's style system
         //mapAttributeToCSSProperty(propertyNameToIdMap, accent_heightAttr);
@@ -111,27 +112,28 @@ static int cssPropertyIdForSVGAttributeName(const QualifiedName& attrName)
         //mapAttributeToCSSProperty(propertyNameToIdMap, widthsAttr);
         //mapAttributeToCSSProperty(propertyNameToIdMap, x_heightAttr);
     }
-    
+
     return propertyNameToIdMap->get(attrName.localName().impl());
 }
 
-void SVGFontFaceElement::parseMappedAttribute(MappedAttribute* attr)
-{    
+void SVGFontFaceElement::parseMappedAttribute(MappedAttribute *attr)
+{
     int propId = cssPropertyIdForSVGAttributeName(attr->name());
     if (propId > 0) {
         m_styleDeclaration->setProperty(propId, attr->value(), false);
         rebuildFontFace();
         return;
     }
-    
+
     SVGElement::parseMappedAttribute(attr);
 }
 
 unsigned SVGFontFaceElement::unitsPerEm() const
 {
     AtomicString value(getAttribute(units_per_emAttr));
-    if (value.isEmpty())
+    if (value.isEmpty()) {
         return 1000;
+    }
 
     return static_cast<unsigned>(ceilf(value.toFloat()));
 }
@@ -139,117 +141,133 @@ unsigned SVGFontFaceElement::unitsPerEm() const
 int SVGFontFaceElement::xHeight() const
 {
     AtomicString value(getAttribute(x_heightAttr));
-    if (value.isEmpty())
+    if (value.isEmpty()) {
         return 0;
+    }
 
     return static_cast<int>(ceilf(value.toFloat()));
 }
 
 float SVGFontFaceElement::horizontalOriginX() const
 {
-    if (!m_fontElement)
+    if (!m_fontElement) {
         return 0.0f;
+    }
 
     // Spec: The X-coordinate in the font coordinate system of the origin of a glyph to be used when
     // drawing horizontally oriented text. (Note that the origin applies to all glyphs in the font.)
     // If the attribute is not specified, the effect is as if a value of "0" were specified.
     AtomicString value(m_fontElement->getAttribute(horiz_origin_xAttr));
-    if (value.isEmpty())
+    if (value.isEmpty()) {
         return 0.0f;
+    }
 
     return value.toFloat();
 }
 
 float SVGFontFaceElement::horizontalOriginY() const
 {
-    if (!m_fontElement)
+    if (!m_fontElement) {
         return 0.0f;
+    }
 
     // Spec: The Y-coordinate in the font coordinate system of the origin of a glyph to be used when
     // drawing horizontally oriented text. (Note that the origin applies to all glyphs in the font.)
     // If the attribute is not specified, the effect is as if a value of "0" were specified.
     AtomicString value(m_fontElement->getAttribute(horiz_origin_yAttr));
-    if (value.isEmpty())
+    if (value.isEmpty()) {
         return 0.0f;
+    }
 
     return value.toFloat();
 }
 
 float SVGFontFaceElement::horizontalAdvanceX() const
 {
-    if (!m_fontElement)
+    if (!m_fontElement) {
         return 0.0f;
+    }
 
     // Spec: The default horizontal advance after rendering a glyph in horizontal orientation. Glyph
     // widths are required to be non-negative, even if the glyph is typically rendered right-to-left,
     // as in Hebrew and Arabic scripts.
     AtomicString value(m_fontElement->getAttribute(horiz_adv_xAttr));
-    if (value.isEmpty())
+    if (value.isEmpty()) {
         return 0.0f;
+    }
 
     return value.toFloat();
 }
 
 float SVGFontFaceElement::verticalOriginX() const
 {
-    if (!m_fontElement)
+    if (!m_fontElement) {
         return 0.0f;
+    }
 
     // Spec: The default X-coordinate in the font coordinate system of the origin of a glyph to be used when
     // drawing vertically oriented text. If the attribute is not specified, the effect is as if the attribute
     // were set to half of the effective value of attribute horiz-adv-x.
     AtomicString value(m_fontElement->getAttribute(vert_origin_xAttr));
-    if (value.isEmpty())
+    if (value.isEmpty()) {
         return horizontalAdvanceX() / 2.0f;
+    }
 
     return value.toFloat();
 }
 
 float SVGFontFaceElement::verticalOriginY() const
 {
-    if (!m_fontElement)
+    if (!m_fontElement) {
         return 0.0f;
+    }
 
     // Spec: The default Y-coordinate in the font coordinate system of the origin of a glyph to be used when
     // drawing vertically oriented text. If the attribute is not specified, the effect is as if the attribute
-    // were set to the position specified by the font's ascent attribute.             
+    // were set to the position specified by the font's ascent attribute.
     AtomicString value(m_fontElement->getAttribute(vert_origin_yAttr));
-    if (value.isEmpty())
+    if (value.isEmpty()) {
         return ascent();
+    }
 
     return value.toFloat();
 }
 
 float SVGFontFaceElement::verticalAdvanceY() const
 {
-    if (!m_fontElement)
+    if (!m_fontElement) {
         return 0.0f;
+    }
 
     // Spec: The default vertical advance after rendering a glyph in vertical orientation. If the attribute is
-    // not specified, the effect is as if a value equivalent of one em were specified (see units-per-em).                    
+    // not specified, the effect is as if a value equivalent of one em were specified (see units-per-em).
     AtomicString value(m_fontElement->getAttribute(vert_adv_yAttr));
-       if (value.isEmpty())
+    if (value.isEmpty()) {
         return 1.0f;
+    }
 
     return value.toFloat();
 }
 
 int SVGFontFaceElement::ascent() const
 {
-    if (!m_fontElement)
+    if (!m_fontElement) {
         return 0.0f;
+    }
 
     // Spec: Same syntax and semantics as the 'ascent' descriptor within an @font-face rule. The maximum
     // unaccented height of the font within the font coordinate system. If the attribute is not specified,
     // the effect is as if the attribute were set to the difference between the units-per-em value and the
     // vert-origin-y value for the corresponding font.
     AtomicString value(m_fontElement->getAttribute(ascentAttr));
-    if (!value.isEmpty())
+    if (!value.isEmpty()) {
         return static_cast<int>(ceilf(value.toFloat()));
+    }
 
     value = m_fontElement->getAttribute(vert_origin_yAttr);
-    if (!value.isEmpty())
+    if (!value.isEmpty()) {
         return static_cast<int>(unitsPerEm()) - static_cast<int>(ceilf(value.toFloat()));
+    }
 
     // Match Batiks default value
     return static_cast<int>(ceilf(unitsPerEm() * 0.8f));
@@ -257,8 +275,9 @@ int SVGFontFaceElement::ascent() const
 
 int SVGFontFaceElement::descent() const
 {
-    if (!m_fontElement)
+    if (!m_fontElement) {
         return 0.0f;
+    }
 
     // Spec: Same syntax and semantics as the 'descent' descriptor within an @font-face rule. The maximum
     // unaccented depth of the font within the font coordinate system. If the attribute is not specified,
@@ -271,8 +290,9 @@ int SVGFontFaceElement::descent() const
     }
 
     value = m_fontElement->getAttribute(vert_origin_yAttr);
-    if (!value.isEmpty())
+    if (!value.isEmpty()) {
         return static_cast<int>(ceilf(value.toFloat()));
+    }
 
     // Match Batiks default value
     return static_cast<int>(ceilf(unitsPerEm() * 0.2f));
@@ -283,7 +303,7 @@ String SVGFontFaceElement::fontFamily() const
     return m_styleDeclaration->getPropertyValue(CSSPropertyFontFamily);
 }
 
-SVGFontElement* SVGFontFaceElement::associatedFontElement() const
+SVGFontElement *SVGFontFaceElement::associatedFontElement() const
 {
     return m_fontElement.get();
 }
@@ -291,54 +311,60 @@ SVGFontElement* SVGFontFaceElement::associatedFontElement() const
 void SVGFontFaceElement::rebuildFontFace()
 {
     // Ignore changes until we live in the tree
-    if (!parentNode())
+    if (!parentNode()) {
         return;
+    }
 
     // we currently ignore all but the first src element, alternatively we could concat them
-    SVGFontFaceSrcElement* srcElement = 0;
-    SVGDefinitionSrcElement* definitionSrc = 0;
+    SVGFontFaceSrcElement *srcElement = 0;
+    SVGDefinitionSrcElement *definitionSrc = 0;
 
-    for (Node* child = firstChild(); child; child = child->nextSibling()) {
-        if (child->hasTagName(font_face_srcTag) && !srcElement)
-            srcElement = static_cast<SVGFontFaceSrcElement*>(child);
-        else if (child->hasTagName(definition_srcTag) && !definitionSrc)
-            definitionSrc = static_cast<SVGDefinitionSrcElement*>(child);
+    for (Node *child = firstChild(); child; child = child->nextSibling()) {
+        if (child->hasTagName(font_face_srcTag) && !srcElement) {
+            srcElement = static_cast<SVGFontFaceSrcElement *>(child);
+        } else if (child->hasTagName(definition_srcTag) && !definitionSrc) {
+            definitionSrc = static_cast<SVGDefinitionSrcElement *>(child);
+        }
     }
 
 #if 0
     // @font-face (CSSFontFace) does not yet support definition-src, as soon as it does this code should do the trick!
-    if (definitionSrc)
+    if (definitionSrc) {
         m_styleDeclaration->setProperty(CSSPropertyDefinitionSrc, definitionSrc->getAttribute(XLinkNames::hrefAttr), false);
+    }
 #endif
 
     bool describesParentFont = parentNode()->hasTagName(fontTag);
     RefPtr<CSSValueList> list;
 
     if (describesParentFont) {
-        m_fontElement = static_cast<SVGFontElement*>(parentNode());
+        m_fontElement = static_cast<SVGFontElement *>(parentNode());
 
         list = new CSSValueList; // ### CSSValueListImpl(CSSValueListImpl::Comma);
         list->append(new CSSFontFaceSrcValue(fontFamily(), true));
-    } else if (srcElement)
+    } else if (srcElement) {
         list = srcElement->srcValue();
+    }
 
-    if (!list)
+    if (!list) {
         return;
+    }
 
     // Parse in-memory CSS rules
     CSSProperty srcProperty(CSSPropertySrc, list);
-    const CSSProperty* srcPropertyRef = &srcProperty;
+    const CSSProperty *srcPropertyRef = &srcProperty;
     m_styleDeclaration->addParsedProperties(&srcPropertyRef, 1);
 
-    if (describesParentFont) {    
+    if (describesParentFont) {
         // Traverse parsed CSS values and associate CSSFontFaceSrcValue elements with ourselves.
         RefPtr<CSSValue> src = m_styleDeclaration->getPropertyCSSValue(CSSPropertySrc);
-        CSSValueList* srcList = static_cast<CSSValueList*>(src.get());
+        CSSValueList *srcList = static_cast<CSSValueList *>(src.get());
 
         unsigned srcLength = srcList ? srcList->length() : 0;
         for (unsigned i = 0; i < srcLength; i++) {
-            if (CSSFontFaceSrcValue* item = static_cast<CSSFontFaceSrcValue*>(srcList->itemWithoutBoundsCheck(i)))
+            if (CSSFontFaceSrcValue *item = static_cast<CSSFontFaceSrcValue *>(srcList->itemWithoutBoundsCheck(i))) {
                 item->setSVGFontFaceElement(this);
+            }
         }
     }
 
@@ -351,7 +377,7 @@ void SVGFontFaceElement::insertedIntoDocument()
     SVGElement::insertedIntoDocument();
 }
 
-void SVGFontFaceElement::childrenChanged(bool changedByParser, Node* beforeChange, Node* afterChange, int childCountDelta)
+void SVGFontFaceElement::childrenChanged(bool changedByParser, Node *beforeChange, Node *afterChange, int childCountDelta)
 {
     SVGElement::childrenChanged(changedByParser, beforeChange, afterChange, childCountDelta);
     rebuildFontFace();

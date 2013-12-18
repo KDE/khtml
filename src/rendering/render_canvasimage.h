@@ -39,29 +39,32 @@
 
 #include "imload/imagepainter.h"
 
-
-namespace khtml {
-
+namespace khtml
+{
 
 class RenderCanvasImage : public RenderReplaced
 {
 public:
-    RenderCanvasImage(DOM::HTMLCanvasElementImpl*);
+    RenderCanvasImage(DOM::HTMLCanvasElementImpl *);
 
-    virtual const char *renderName() const { return "RenderCanvasImage"; }
+    virtual const char *renderName() const
+    {
+        return "RenderCanvasImage";
+    }
 
-    virtual void paint(PaintInfo& i, int tx, int ty);
+    virtual void paint(PaintInfo &i, int tx, int ty);
     virtual void layout();
     virtual void updateFromElement();
 
     // don't even think about making this method virtual!
-    DOM::HTMLCanvasElementImpl* element() const
-    { return static_cast<DOM::HTMLCanvasElementImpl*>(RenderObject::element()); }
+    DOM::HTMLCanvasElementImpl *element() const
+    {
+        return static_cast<DOM::HTMLCanvasElementImpl *>(RenderObject::element());
+    }
 
 private:
     khtmlImLoad::ImagePainter imagePainter;
 };
-
 
 } //namespace
 

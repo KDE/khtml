@@ -34,50 +34,76 @@ class CIFilter;
 #endif
 #endif
 
-namespace WebCore {
+namespace WebCore
+{
 
 class SVGResourceFilter;
 class TextStream;
 
-class SVGFilterEffect {
+class SVGFilterEffect
+{
 public:
-    SVGFilterEffect(SVGResourceFilter*);
+    SVGFilterEffect(SVGResourceFilter *);
     virtual ~SVGFilterEffect() { }
 
-    bool xBoundingBoxMode() const { return m_xBBoxMode; }
-    void setXBoundingBoxMode(bool bboxMode) { m_xBBoxMode = bboxMode; }
+    bool xBoundingBoxMode() const
+    {
+        return m_xBBoxMode;
+    }
+    void setXBoundingBoxMode(bool bboxMode)
+    {
+        m_xBBoxMode = bboxMode;
+    }
 
-    bool yBoundingBoxMode() const { return m_yBBoxMode; }
-    void setYBoundingBoxMode(bool bboxMode) { m_yBBoxMode = bboxMode; }
+    bool yBoundingBoxMode() const
+    {
+        return m_yBBoxMode;
+    }
+    void setYBoundingBoxMode(bool bboxMode)
+    {
+        m_yBBoxMode = bboxMode;
+    }
 
-    bool widthBoundingBoxMode() const { return m_widthBBoxMode; }
-    void setWidthBoundingBoxMode(bool bboxMode) { m_widthBBoxMode = bboxMode; }
+    bool widthBoundingBoxMode() const
+    {
+        return m_widthBBoxMode;
+    }
+    void setWidthBoundingBoxMode(bool bboxMode)
+    {
+        m_widthBBoxMode = bboxMode;
+    }
 
-    bool heightBoundingBoxMode() const { return m_heightBBoxMode; }
-    void setHeightBoundingBoxMode(bool bboxMode) { m_heightBBoxMode = bboxMode; }
+    bool heightBoundingBoxMode() const
+    {
+        return m_heightBBoxMode;
+    }
+    void setHeightBoundingBoxMode(bool bboxMode)
+    {
+        m_heightBBoxMode = bboxMode;
+    }
 
-    FloatRect primitiveBBoxForFilterBBox(const FloatRect& filterBBox, const FloatRect& itemBBox) const;
+    FloatRect primitiveBBoxForFilterBBox(const FloatRect &filterBBox, const FloatRect &itemBBox) const;
 
     FloatRect subRegion() const;
-    void setSubRegion(const FloatRect&);
+    void setSubRegion(const FloatRect &);
 
     String in() const;
-    void setIn(const String&);
+    void setIn(const String &);
 
     String result() const;
-    void setResult(const String&);
+    void setResult(const String &);
 
-    SVGResourceFilter* filter() const;
-    void setFilter(SVGResourceFilter*);
+    SVGResourceFilter *filter() const;
+    void setFilter(SVGResourceFilter *);
 
-    virtual TextStream& externalRepresentation(TextStream&) const;
+    virtual TextStream &externalRepresentation(TextStream &) const;
 
 #if PLATFORM(CI)
-    virtual CIFilter* getCIFilter(const FloatRect& bbox) const;
+    virtual CIFilter *getCIFilter(const FloatRect &bbox) const;
 #endif
 
 private:
-    SVGResourceFilter* m_filter;
+    SVGResourceFilter *m_filter;
 
     bool m_xBBoxMode : 1;
     bool m_yBBoxMode : 1;
@@ -85,12 +111,12 @@ private:
     bool m_heightBBoxMode : 1;
 
     FloatRect m_subRegion;
- 
+
     String m_in;
     String m_result;
 };
 
-TextStream& operator<<(TextStream&, const SVGFilterEffect&);
+TextStream &operator<<(TextStream &, const SVGFilterEffect &);
 
 } // namespace WebCore
 

@@ -28,44 +28,52 @@
 #include "RenderBox.h"
 #include "FloatRect.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 class SVGStyledElement;
 class AffineTransform;
 
-class RenderSVGRoot : public RenderBox /*RenderContainer in WebCore*/ {
+class RenderSVGRoot : public RenderBox /*RenderContainer in WebCore*/
+{
 public:
-    RenderSVGRoot(SVGStyledElement*);
+    RenderSVGRoot(SVGStyledElement *);
     ~RenderSVGRoot();
 
-    virtual bool isSVGRoot() const { return true; }
-    virtual const char* renderName() const { return "RenderSVGRoot"; }
+    virtual bool isSVGRoot() const
+    {
+        return true;
+    }
+    virtual const char *renderName() const
+    {
+        return "RenderSVGRoot";
+    }
 
     virtual short lineHeight(bool b) const;
     virtual short baselinePosition(bool b) const;
     virtual void calcMinMaxWidth();
-    
+
     virtual void layout();
-    virtual void paint(PaintInfo&, int parentX, int parentY);
-    
+    virtual void paint(PaintInfo &, int parentX, int parentY);
+
     virtual IntRect absoluteClippedOverflowRect();
-    virtual void absoluteRects(Vector<IntRect>& rects, int tx, int ty);
+    virtual void absoluteRects(Vector<IntRect> &rects, int tx, int ty);
     //virtual void addFocusRingRects(GraphicsContext*, int tx, int ty);
 
     virtual AffineTransform absoluteTransform() const;
 
-    bool fillContains(const FloatPoint&) const;
-    bool strokeContains(const FloatPoint&) const;
+    bool fillContains(const FloatPoint &) const;
+    bool strokeContains(const FloatPoint &) const;
     FloatRect relativeBBox(bool includeStroke = true) const;
-    
+
     virtual AffineTransform localTransform() const;
-   
+
     FloatRect viewport() const;
 
     //virtual bool nodeAtPoint(const HitTestRequest&, HitTestResult&, int x, int y, int tx, int ty, HitTestAction);
-	
+
 private:
-    void calcViewport(); 
+    void calcViewport();
 
     //void applyContentTransforms(PaintInfo&, int parentX, int parentY);
 
@@ -78,4 +86,3 @@ private:
 #endif // ENABLE(SVG)
 #endif // RenderSVGRoot_h
 
-// vim:ts=4:noet

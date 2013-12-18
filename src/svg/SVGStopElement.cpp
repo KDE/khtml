@@ -30,9 +30,10 @@
 #include "SVGGradientElement.h"
 #include "SVGNames.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGStopElement::SVGStopElement(const QualifiedName& tagName, Document* doc)
+SVGStopElement::SVGStopElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledElement(tagName, doc)
     , m_offset(0.0f)
 {
@@ -44,24 +45,26 @@ SVGStopElement::~SVGStopElement()
 
 ANIMATED_PROPERTY_DEFINITIONS(SVGStopElement, float, Number, number, Offset, offset, SVGNames::offsetAttr, m_offset)
 
-void SVGStopElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGStopElement::parseMappedAttribute(MappedAttribute *attr)
 {
     if (attr->name() == SVGNames::offsetAttr) {
-        const String& value = attr->value();
+        const String &value = attr->value();
         // qDebug() << "parse offset:" << value << endl;
-        if (value.endsWith("%"))
+        if (value.endsWith("%")) {
             setOffsetBaseValue(value.substring(0, value.length() - 1).toFloat() / 100.0f);
-        else
+        } else {
             setOffsetBaseValue(value.toFloat());
+        }
 
         setChanged();
-    } else
+    } else {
         SVGStyledElement::parseMappedAttribute(attr);
+    }
 }
 
-RenderObject* SVGStopElement::createRenderer(RenderArena* arena, RenderStyle*)
+RenderObject *SVGStopElement::createRenderer(RenderArena *arena, RenderStyle *)
 {
-    return new (arena) RenderSVGGradientStop(this);
+    return new(arena) RenderSVGGradientStop(this);
 }
 
 // KHTML ElementImpl pure virtual method

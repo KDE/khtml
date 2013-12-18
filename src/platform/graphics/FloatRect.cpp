@@ -33,9 +33,10 @@
 using std::max;
 using std::min;
 
-namespace WebCore {
+namespace WebCore
+{
 
-FloatRect::FloatRect(const IntRect& r) : m_location(r.location()), m_size(r.size())
+FloatRect::FloatRect(const IntRect &r) : m_location(r.location()), m_size(r.size())
 {
 }
 
@@ -44,21 +45,21 @@ FloatRect FloatRect::narrowPrecision(double x, double y, double width, double he
     return FloatRect(narrowPrecisionToFloat(x), narrowPrecisionToFloat(y), narrowPrecisionToFloat(width), narrowPrecisionToFloat(height));
 }
 
-bool FloatRect::intersects(const FloatRect& other) const
+bool FloatRect::intersects(const FloatRect &other) const
 {
     // Checking emptiness handles negative widths as well as zero.
     return !isEmpty() && !other.isEmpty()
-        && x() < other.right() && other.x() < right()
-        && y() < other.bottom() && other.y() < bottom();
+           && x() < other.right() && other.x() < right()
+           && y() < other.bottom() && other.y() < bottom();
 }
 
-bool FloatRect::contains(const FloatRect& other) const
+bool FloatRect::contains(const FloatRect &other) const
 {
     return x() <= other.x() && right() >= other.right()
-        && y() <= other.y() && bottom() >= other.bottom();
+           && y() <= other.y() && bottom() >= other.bottom();
 }
 
-void FloatRect::intersect(const FloatRect& other)
+void FloatRect::intersect(const FloatRect &other)
 {
     float l = max(x(), other.x());
     float t = max(y(), other.y());
@@ -79,11 +80,12 @@ void FloatRect::intersect(const FloatRect& other)
     m_size.setHeight(b - t);
 }
 
-void FloatRect::unite(const FloatRect& other)
+void FloatRect::unite(const FloatRect &other)
 {
     // Handle empty special cases first.
-    if (other.isEmpty())
+    if (other.isEmpty()) {
         return;
+    }
     if (isEmpty()) {
         *this = other;
         return;
@@ -108,7 +110,7 @@ void FloatRect::scale(float s)
     m_size.setHeight(height() * s);
 }
 
-IntRect enclosingIntRect(const FloatRect& rect)
+IntRect enclosingIntRect(const FloatRect &rect)
 {
     int l = static_cast<int>(rect.x());
     int t = static_cast<int>(rect.y());

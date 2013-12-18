@@ -53,8 +53,8 @@ KIconLoader *KHTMLGlobal::s_iconLoader = 0;
 KAboutData *KHTMLGlobal::s_about = 0;
 KHTMLSettings *KHTMLGlobal::s_settings = 0;
 
-static QLinkedList<KHTMLPart*> *s_parts = 0;
-static QLinkedList<DOM::DocumentImpl*> *s_docs = 0;
+static QLinkedList<KHTMLPart *> *s_parts = 0;
+static QLinkedList<DOM::DocumentImpl *> *s_docs = 0;
 
 KHTMLGlobal::KHTMLGlobal()
 {
@@ -76,8 +76,7 @@ KHTMLGlobal::KHTMLGlobal()
 KHTMLGlobal::~KHTMLGlobal()
 {
     //qDebug() << this;
-    if ( s_self == this )
-    {
+    if (s_self == this) {
         finalCheck();
         delete s_iconLoader;
         delete s_about;
@@ -108,15 +107,14 @@ KHTMLGlobal::~KHTMLGlobal()
         khtml::Cache::clear();
         khtml::cleanup_thaibreaks();
         khtml::ArenaFinish();
-    }
-    else
+    } else {
         deref();
+    }
 }
 
 void KHTMLGlobal::ref()
 {
-    if ( !s_refcnt && !s_self )
-    {
+    if (!s_refcnt && !s_self) {
         //qDebug() << "Creating KHTMLGlobal instance";
         // we can't use a staticdeleter here, because that would mean
         // that the KHTMLGlobal instance gets deleted from within a qPostRoutine, called
@@ -137,32 +135,32 @@ void KHTMLGlobal::ref()
 void KHTMLGlobal::deref()
 {
     //qDebug() << "s_refcnt=" << s_refcnt - 1;
-    if ( !--s_refcnt && s_self )
-    {
+    if (!--s_refcnt && s_self) {
         delete s_self;
         s_self = 0;
     }
 }
 
-void KHTMLGlobal::registerPart( KHTMLPart *part )
+void KHTMLGlobal::registerPart(KHTMLPart *part)
 {
     //qDebug() << part;
-    if ( !s_parts )
-        s_parts = new QLinkedList<KHTMLPart*>;
+    if (!s_parts) {
+        s_parts = new QLinkedList<KHTMLPart *>;
+    }
 
-    if ( !s_parts->contains( part ) ) {
-        s_parts->append( part );
+    if (!s_parts->contains(part)) {
+        s_parts->append(part);
         ref();
     }
 }
 
-void KHTMLGlobal::deregisterPart( KHTMLPart *part )
+void KHTMLGlobal::deregisterPart(KHTMLPart *part)
 {
     //qDebug() << part;
-    assert( s_parts );
+    assert(s_parts);
 
-    if ( s_parts->removeAll( part ) ) {
-        if ( s_parts->isEmpty() ) {
+    if (s_parts->removeAll(part)) {
+        if (s_parts->isEmpty()) {
             delete s_parts;
             s_parts = 0;
         }
@@ -170,25 +168,26 @@ void KHTMLGlobal::deregisterPart( KHTMLPart *part )
     }
 }
 
-void KHTMLGlobal::registerDocumentImpl( DOM::DocumentImpl *doc )
+void KHTMLGlobal::registerDocumentImpl(DOM::DocumentImpl *doc)
 {
     //qDebug() << doc;
-    if ( !s_docs )
-        s_docs = new QLinkedList<DOM::DocumentImpl*>;
+    if (!s_docs) {
+        s_docs = new QLinkedList<DOM::DocumentImpl *>;
+    }
 
-    if ( !s_docs->contains( doc ) ) {
-        s_docs->append( doc );
+    if (!s_docs->contains(doc)) {
+        s_docs->append(doc);
         ref();
     }
 }
 
-void KHTMLGlobal::deregisterDocumentImpl( DOM::DocumentImpl *doc )
+void KHTMLGlobal::deregisterDocumentImpl(DOM::DocumentImpl *doc)
 {
     //qDebug() << doc;
-    assert( s_docs );
+    assert(s_docs);
 
-    if ( s_docs->removeAll( doc ) ) {
-        if ( s_docs->isEmpty() ) {
+    if (s_docs->removeAll(doc)) {
+        if (s_docs->isEmpty()) {
             delete s_docs;
             s_docs = 0;
         }
@@ -198,45 +197,44 @@ void KHTMLGlobal::deregisterDocumentImpl( DOM::DocumentImpl *doc )
 
 const KAboutData &KHTMLGlobal::aboutData()
 {
-  assert( s_self );
+    assert(s_self);
 
-  if ( !s_about )
-  {
-    s_about = new KAboutData( "khtml", 0, i18n("KHTML"), QStringLiteral(KHTML_VERSION_STRING),
-                              i18n( "Embeddable HTML component"),
-                              KAboutData::License_LGPL );
-    s_about->addAuthor(QStringLiteral("Lars Knoll"), QString(), "knoll@kde.org");
-    s_about->addAuthor(QStringLiteral("Antti Koivisto"), QString(), "koivisto@kde.org");
-    s_about->addAuthor(QStringLiteral("Waldo Bastian"), QString(), "bastian@kde.org");
-    s_about->addAuthor(QStringLiteral("Dirk Mueller"), QString(), "mueller@kde.org");
-    s_about->addAuthor(QStringLiteral("Peter Kelly"), QString(), "pmk@kde.org");
-    s_about->addAuthor(QStringLiteral("Torben Weis"), QString(), "weis@kde.org");
-    s_about->addAuthor(QStringLiteral("Martin Jones"), QString(), "mjones@kde.org");
-    s_about->addAuthor(QStringLiteral("Simon Hausmann"), QString(), "hausmann@kde.org");
-    s_about->addAuthor(QStringLiteral("Tobias Anton"), QString(), "anton@stud.fbi.fh-darmstadt.de");
+    if (!s_about) {
+        s_about = new KAboutData("khtml", 0, i18n("KHTML"), QStringLiteral(KHTML_VERSION_STRING),
+                                 i18n("Embeddable HTML component"),
+                                 KAboutData::License_LGPL);
+        s_about->addAuthor(QStringLiteral("Lars Knoll"), QString(), "knoll@kde.org");
+        s_about->addAuthor(QStringLiteral("Antti Koivisto"), QString(), "koivisto@kde.org");
+        s_about->addAuthor(QStringLiteral("Waldo Bastian"), QString(), "bastian@kde.org");
+        s_about->addAuthor(QStringLiteral("Dirk Mueller"), QString(), "mueller@kde.org");
+        s_about->addAuthor(QStringLiteral("Peter Kelly"), QString(), "pmk@kde.org");
+        s_about->addAuthor(QStringLiteral("Torben Weis"), QString(), "weis@kde.org");
+        s_about->addAuthor(QStringLiteral("Martin Jones"), QString(), "mjones@kde.org");
+        s_about->addAuthor(QStringLiteral("Simon Hausmann"), QString(), "hausmann@kde.org");
+        s_about->addAuthor(QStringLiteral("Tobias Anton"), QString(), "anton@stud.fbi.fh-darmstadt.de");
 
-  }
+    }
 
-  return *s_about;
+    return *s_about;
 }
 
 KIconLoader *KHTMLGlobal::iconLoader()
 {
-  if ( !s_iconLoader )
-  {
-    s_iconLoader = new KIconLoader(aboutData().componentName());
-  }
+    if (!s_iconLoader) {
+        s_iconLoader = new KIconLoader(aboutData().componentName());
+    }
 
-  return s_iconLoader;
+    return s_iconLoader;
 }
 
 KHTMLSettings *KHTMLGlobal::defaultHTMLSettings()
 {
-  assert( s_self );
-  if ( !s_settings )
-    s_settings = new KHTMLSettings();
+    assert(s_self);
+    if (!s_settings) {
+        s_settings = new KHTMLSettings();
+    }
 
-  return s_settings;
+    return s_settings;
 }
 
 void KHTMLGlobal::finalCheck()
@@ -244,12 +242,12 @@ void KHTMLGlobal::finalCheck()
 #ifndef NDEBUG
     if (s_refcnt) {
         if (s_parts && !s_parts->isEmpty()) {
-            Q_FOREACH(KHTMLPart *part, *s_parts) {
+            Q_FOREACH (KHTMLPart *part, *s_parts) {
                 qWarning() << "Part" << part->url() << "was not deleted";
             }
         }
         if (s_docs && !s_docs->isEmpty()) {
-            Q_FOREACH(DOM::DocumentImpl *doc, *s_docs) {
+            Q_FOREACH (DOM::DocumentImpl *doc, *s_docs) {
                 qWarning() << "Document" << doc->URL() << "was not deleted";
             }
         }

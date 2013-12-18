@@ -27,45 +27,62 @@
 using namespace DOM;
 using namespace khtml;
 
-
 DOMString khtml::parseURL(const DOMString &url)
 {
-    DOMStringImpl* i = url.implementation();
-    if(!i) return DOMString();
+    DOMStringImpl *i = url.implementation();
+    if (!i) {
+        return DOMString();
+    }
 
     int o = 0;
     int l = i->l;
-    while(o < l && (i->s[o] <= ' ')) { o++; l--; }
-    while(l > 0 && (i->s[o+l-1] <= ' ')) l--;
+    while (o < l && (i->s[o] <= ' ')) {
+        o++;
+        l--;
+    }
+    while (l > 0 && (i->s[o + l - 1] <= ' ')) {
+        l--;
+    }
 
-    if(l >= 5 &&
-       (i->s[o].toLower() == 'u') &&
-       (i->s[o+1].toLower() == 'r') &&
-       (i->s[o+2].toLower() == 'l') &&
-       i->s[o+3].toLatin1() == '(' &&
-       i->s[o+l-1].toLatin1() == ')') {
+    if (l >= 5 &&
+            (i->s[o].toLower() == 'u') &&
+            (i->s[o + 1].toLower() == 'r') &&
+            (i->s[o + 2].toLower() == 'l') &&
+            i->s[o + 3].toLatin1() == '(' &&
+            i->s[o + l - 1].toLatin1() == ')') {
         o += 4;
         l -= 5;
     }
 
-    while(o < l && (i->s[o] <= ' ')) { o++; l--; }
-    while(l > 0 && (i->s[o+l-1] <= ' ')) l--;
+    while (o < l && (i->s[o] <= ' ')) {
+        o++;
+        l--;
+    }
+    while (l > 0 && (i->s[o + l - 1] <= ' ')) {
+        l--;
+    }
 
-    if(l >= 2 && i->s[o] == i->s[o+l-1] &&
-       (i->s[o].toLatin1() == '\'' || i->s[o].toLatin1() == '\"')) {
+    if (l >= 2 && i->s[o] == i->s[o + l - 1] &&
+            (i->s[o].toLatin1() == '\'' || i->s[o].toLatin1() == '\"')) {
         o++;
         l -= 2;
     }
 
-    while(o < l && (i->s[o] <= ' ')) { o++; l--; }
-    while(l > 0 && (i->s[o+l-1] <= ' ')) l--;
+    while (o < l && (i->s[o] <= ' ')) {
+        o++;
+        l--;
+    }
+    while (l > 0 && (i->s[o + l - 1] <= ' ')) {
+        l--;
+    }
 
-    DOMStringImpl* j = new DOMStringImpl(i->s+o,l);
+    DOMStringImpl *j = new DOMStringImpl(i->s + o, l);
 
     int nl = 0;
-    for(int k = o; k < o+l; k++)
-        if(i->s[k].unicode() > '\r')
+    for (int k = o; k < o + l; k++)
+        if (i->s[k].unicode() > '\r') {
             j->s[nl++] = i->s[k];
+        }
 
     j->l = nl;
 

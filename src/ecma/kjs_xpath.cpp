@@ -27,10 +27,11 @@ using KJS::XPathResult;
 
 #include "kjs_xpath.lut.h"
 
-namespace KJS {
+namespace KJS
+{
 
 // -------------------------------------------------------------------------
-/* 
+/*
 @begin XPathResultConstantsTable  13
   ANY_TYPE                      DOM::XPath::ANY_TYPE      DontDelete|ReadOnly
   NUMBER_TYPE                   DOM::XPath::NUMBER_TYPE   DontDelete|ReadOnly
@@ -45,7 +46,7 @@ namespace KJS {
 @end
 */
 DEFINE_CONSTANT_TABLE(XPathResultConstants)
-IMPLEMENT_CONSTANT_TABLE(XPathResultConstants,"XPathResultConstants")
+IMPLEMENT_CONSTANT_TABLE(XPathResultConstants, "XPathResultConstants")
 // -------------------------------------------------------------------------
 /*
 @begin XPathResultProtoTable 3
@@ -53,7 +54,7 @@ IMPLEMENT_CONSTANT_TABLE(XPathResultConstants,"XPathResultConstants")
   snapshotItem  XPathResult::SnapshotItem  DontDelete|Function 1
 @end
 */
-KJS_DEFINE_PROTOTYPE   (XPathResultProto)
+KJS_DEFINE_PROTOTYPE(XPathResultProto)
 KJS_IMPLEMENT_PROTOFUNC(XPathResultProtoFunc)
 KJS_IMPLEMENT_PROTOTYPE("XPathResult", XPathResultProto, XPathResultProtoFunc, XPathResultConstants)
 IMPLEMENT_PSEUDO_CONSTRUCTOR_WITH_PARENT(XPathResultPseudoCtor, "XPathResult", XPathResultProto, XPathResultConstants)
@@ -71,15 +72,15 @@ IMPLEMENT_PSEUDO_CONSTRUCTOR_WITH_PARENT(XPathResultPseudoCtor, "XPathResult", X
 */
 const ClassInfo XPathResult::info = { "XPathResult", 0, &XPathResultTable, 0 };
 
-XPathResult::XPathResult(ExecState* exec, khtml::XPathResultImpl* impl):
+XPathResult::XPathResult(ExecState *exec, khtml::XPathResultImpl *impl):
     WrapperBase(XPathResultProto::self(exec), impl)
 {}
 
-JSValue* XPathResultProtoFunc::callAsFunction(ExecState* exec, JSObject* thisObj, const List& args)
+JSValue *XPathResultProtoFunc::callAsFunction(ExecState *exec, JSObject *thisObj, const List &args)
 {
     KJS_CHECK_THIS(XPathResult, thisObj);
 
-    khtml::XPathResultImpl* imp = static_cast<XPathResult*>(thisObj)->impl();
+    khtml::XPathResultImpl *imp = static_cast<XPathResult *>(thisObj)->impl();
     DOMExceptionTranslator exception(exec);
 
     switch (id) {
@@ -92,13 +93,13 @@ JSValue* XPathResultProtoFunc::callAsFunction(ExecState* exec, JSObject* thisObj
     return jsUndefined();
 }
 
-bool XPathResult::getOwnPropertySlot(ExecState* exec, const Identifier& p, PropertySlot& slot)
+bool XPathResult::getOwnPropertySlot(ExecState *exec, const Identifier &p, PropertySlot &slot)
 {
     return getStaticValueSlot<XPathResult, DOMObject>(exec, &XPathResultTable,
-                                                      this, p, slot);
+            this, p, slot);
 }
 
-JSValue* XPathResult::getValueProperty(ExecState* exec, int token) const
+JSValue *XPathResult::getValueProperty(ExecState *exec, int token) const
 {
     DOMExceptionTranslator exception(exec);
     switch (token) {
@@ -119,7 +120,7 @@ JSValue* XPathResult::getValueProperty(ExecState* exec, int token) const
     default:
         assert(0);
         return jsUndefined();
-    }    
+    }
 }
 
 // -------------------------------------------------------------------------
@@ -128,14 +129,14 @@ JSValue* XPathResult::getValueProperty(ExecState* exec, int token) const
   evaluate   XPathExpression::Evaluate   DontDelete|Function 2
 @end
 */
-KJS_DEFINE_PROTOTYPE   (XPathExpressionProto)
+KJS_DEFINE_PROTOTYPE(XPathExpressionProto)
 KJS_IMPLEMENT_PROTOFUNC(XPathExpressionProtoFunc)
 KJS_IMPLEMENT_PROTOTYPE("XPathExpression", XPathExpressionProto, XPathExpressionProtoFunc, ObjectPrototype)
 IMPLEMENT_PSEUDO_CONSTRUCTOR(XPathExpressionPseudoCtor, "XPathExpression", XPathExpressionProto)
 
 const ClassInfo XPathExpression::info = { "XPathExpression", 0, 0, 0 };
 
-XPathExpression::XPathExpression(ExecState* exec, khtml::XPathExpressionImpl* impl):
+XPathExpression::XPathExpression(ExecState *exec, khtml::XPathExpressionImpl *impl):
     WrapperBase(XPathExpressionProto::self(exec), impl), jsResolver(0)
 {}
 
@@ -143,23 +144,24 @@ void XPathExpression::mark()
 {
     DOMObject::mark();
 
-    if (jsResolver && !jsResolver->marked())
+    if (jsResolver && !jsResolver->marked()) {
         jsResolver->mark();
+    }
 }
 
-JSValue* XPathExpressionProtoFunc::callAsFunction(ExecState* exec, JSObject* thisObj, const List& args)
+JSValue *XPathExpressionProtoFunc::callAsFunction(ExecState *exec, JSObject *thisObj, const List &args)
 {
     KJS_CHECK_THIS(XPathExpression, thisObj);
 
-    khtml::XPathExpressionImpl* imp = static_cast<XPathExpression*>(thisObj)->impl();
+    khtml::XPathExpressionImpl *imp = static_cast<XPathExpression *>(thisObj)->impl();
     DOMExceptionTranslator exception(exec);
 
     switch (id) {
     case XPathExpression::Evaluate:
         return getWrapper<XPathResult>(exec, imp->evaluate(toNode(args[0]),
-                                                          args[1]->toInt32(exec),
-                                                          0,
-                                                          exception));
+                                       args[1]->toInt32(exec),
+                                       0,
+                                       exception));
     }
 
     return jsUndefined();
@@ -171,22 +173,22 @@ JSValue* XPathExpressionProtoFunc::callAsFunction(ExecState* exec, JSObject* thi
   lookupNamespaceURI   XPathNSResolver::LookupNamespaceURI   DontDelete|Function 1
 @end
 */
-KJS_DEFINE_PROTOTYPE   (XPathNSResolverProto)
+KJS_DEFINE_PROTOTYPE(XPathNSResolverProto)
 KJS_IMPLEMENT_PROTOFUNC(XPathNSResolverProtoFunc)
 KJS_IMPLEMENT_PROTOTYPE("XPathNSResolver", XPathNSResolverProto, XPathNSResolverProtoFunc, ObjectPrototype)
 IMPLEMENT_PSEUDO_CONSTRUCTOR(XPathNSResolverPseudoCtor, "XPathNSResolver", XPathNSResolverProto)
 
 const ClassInfo XPathNSResolver::info = { "XPathNSResolver", 0, 0, 0 };
 
-XPathNSResolver::XPathNSResolver(ExecState* exec, khtml::XPathNSResolverImpl* impl):
+XPathNSResolver::XPathNSResolver(ExecState *exec, khtml::XPathNSResolverImpl *impl):
     WrapperBase(XPathNSResolverProto::self(exec), impl)
 {}
 
-JSValue* XPathNSResolverProtoFunc::callAsFunction(ExecState* exec, JSObject* thisObj, const List& args)
+JSValue *XPathNSResolverProtoFunc::callAsFunction(ExecState *exec, JSObject *thisObj, const List &args)
 {
     KJS_CHECK_THIS(XPathNSResolver, thisObj);
 
-    khtml::XPathNSResolverImpl* imp = static_cast<XPathNSResolver*>(thisObj)->impl();
+    khtml::XPathNSResolverImpl *imp = static_cast<XPathNSResolver *>(thisObj)->impl();
     DOMExceptionTranslator exception(exec);
 
     switch (id) {
@@ -197,10 +199,9 @@ JSValue* XPathNSResolverProtoFunc::callAsFunction(ExecState* exec, JSObject* thi
     return jsUndefined();
 }
 
-
 // -------------------------------------------------------------------------
 
-JSXPathNSResolver::JSXPathNSResolver(Interpreter* ctx, JSObject* impl): impl(impl), ctx(ctx)
+JSXPathNSResolver::JSXPathNSResolver(Interpreter *ctx, JSObject *impl): impl(impl), ctx(ctx)
 {}
 
 khtml::XPathNSResolverImpl::Type JSXPathNSResolver::type()
@@ -208,33 +209,35 @@ khtml::XPathNSResolverImpl::Type JSXPathNSResolver::type()
     return XPathNSResolverImpl::JS;
 }
 
-DOM::DOMString JSXPathNSResolver::lookupNamespaceURI( const DOM::DOMString& prefix )
+DOM::DOMString JSXPathNSResolver::lookupNamespaceURI(const DOM::DOMString &prefix)
 {
     // ### this is "heavily inspired" by JSNodeFilter::acceptNode ---
     // gotta be a way of reducing the dupe. This one doesn't
     // propagate exceptions, however --- should it?
-    ExecState* exec = ctx->globalExec();
+    ExecState *exec = ctx->globalExec();
 
-    JSObject* function = 0;
+    JSObject *function = 0;
     if (impl->implementsCall()) {
         function = impl;
     } else {
         // See if we have an object with a lookupNamespaceURI method.
-        JSObject* cand = impl->get(exec, "lookupNamespaceURI")->getObject();
-        if (cand && cand->implementsCall())
+        JSObject *cand = impl->get(exec, "lookupNamespaceURI")->getObject();
+        if (cand && cand->implementsCall()) {
             function = cand;
+        }
     }
 
     if (function) {
         List args;
         args.append(jsString(prefix));
 
-        JSValue* result = function->call(exec, impl, args);
+        JSValue *result = function->call(exec, impl, args);
         if (!exec->hadException()) {
-            if (result->isUndefinedOrNull())
+            if (result->isUndefinedOrNull()) {
                 return DOMString();
-            else
+            } else {
                 return result->toString(exec).domString();
+            }
         } else {
             exec->clearException();
         }
@@ -245,15 +248,16 @@ DOM::DOMString JSXPathNSResolver::lookupNamespaceURI( const DOM::DOMString& pref
 
 // Convert JS -> DOM. Might make a new JSXPathNSResolver. It does not
 // protect the JS resolver from collection in any way.
-khtml::XPathNSResolverImpl* toResolver(ExecState* exec, JSValue* impl)
+khtml::XPathNSResolverImpl *toResolver(ExecState *exec, JSValue *impl)
 {
-    JSObject* o = impl->getObject();
-    if (!o)
+    JSObject *o = impl->getObject();
+    if (!o) {
         return 0;
+    }
 
     // Wrapped native object -> unwrap
     if (o->inherits(&XPathNSResolver::info)) {
-        return static_cast<XPathNSResolver*>(o)->impl();
+        return static_cast<XPathNSResolver *>(o)->impl();
     }
 
     // A JS object -> wrap it.
@@ -261,5 +265,4 @@ khtml::XPathNSResolverImpl* toResolver(ExecState* exec, JSValue* impl)
 }
 
 } // namespace KJS
- 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;
+

@@ -26,9 +26,10 @@
 #include "SVGParserUtilities.h"
 #include "SVGResourceFilter.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFETurbulenceElement::SVGFETurbulenceElement(const QualifiedName& tagName, Document* doc)
+SVGFETurbulenceElement::SVGFETurbulenceElement(const QualifiedName &tagName, Document *doc)
     : SVGFilterPrimitiveStandardAttributes(tagName, doc)
     , m_baseFrequencyX(0.0f)
     , m_baseFrequencyY(0.0f)
@@ -52,39 +53,43 @@ ANIMATED_PROPERTY_DEFINITIONS(SVGFETurbulenceElement, long, Integer, integer, Nu
 ANIMATED_PROPERTY_DEFINITIONS(SVGFETurbulenceElement, int, Enumeration, enumeration, StitchTiles, stitchTiles, SVGNames::stitchTilesAttr, m_stitchTiles)
 ANIMATED_PROPERTY_DEFINITIONS(SVGFETurbulenceElement, int, Enumeration, enumeration, Type, type, SVGNames::typeAttr, m_type)
 
-void SVGFETurbulenceElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGFETurbulenceElement::parseMappedAttribute(MappedAttribute *attr)
 {
-    const String& value = attr->value();
+    const String &value = attr->value();
     if (attr->name() == SVGNames::typeAttr) {
-        if (value == "fractalNoise")
+        if (value == "fractalNoise") {
             setTypeBaseValue(SVG_TURBULENCE_TYPE_FRACTALNOISE);
-        else if (value == "turbulence")
+        } else if (value == "turbulence") {
             setTypeBaseValue(SVG_TURBULENCE_TYPE_TURBULENCE);
+        }
     } else if (attr->name() == SVGNames::stitchTilesAttr) {
-        if (value == "stitch")
+        if (value == "stitch") {
             setStitchTilesBaseValue(SVG_STITCHTYPE_STITCH);
-        else if (value == "nostitch")
+        } else if (value == "nostitch") {
             setStitchTilesBaseValue(SVG_STITCHTYPE_NOSTITCH);
+        }
     } else if (attr->name() == SVGNames::baseFrequencyAttr) {
         float x, y;
         if (parseNumberOptionalNumber(value, x, y)) {
             setBaseFrequencyXBaseValue(x);
             setBaseFrequencyYBaseValue(y);
         }
-    } else if (attr->name() == SVGNames::seedAttr)
+    } else if (attr->name() == SVGNames::seedAttr) {
         setSeedBaseValue(value.toFloat());
-    else if (attr->name() == SVGNames::numOctavesAttr)
+    } else if (attr->name() == SVGNames::numOctavesAttr) {
         setNumOctavesBaseValue(value.toUIntStrict());
-    else
+    } else {
         SVGFilterPrimitiveStandardAttributes::parseMappedAttribute(attr);
+    }
 }
 
-SVGFETurbulence* SVGFETurbulenceElement::filterEffect(SVGResourceFilter* filter) const
+SVGFETurbulence *SVGFETurbulenceElement::filterEffect(SVGResourceFilter *filter) const
 {
-    
-    if (!m_filterEffect)
+
+    if (!m_filterEffect) {
         m_filterEffect = new SVGFETurbulence(filter);
-    
+    }
+
     m_filterEffect->setType((SVGTurbulanceType) type());
     m_filterEffect->setBaseFrequencyX(baseFrequencyX());
     m_filterEffect->setBaseFrequencyY(baseFrequencyY());
@@ -92,7 +97,7 @@ SVGFETurbulence* SVGFETurbulenceElement::filterEffect(SVGResourceFilter* filter)
     m_filterEffect->setSeed(seed());
     m_filterEffect->setStitchTiles(stitchTiles() == SVG_STITCHTYPE_STITCH);
 
-    setStandardAttributes(m_filterEffect); 
+    setStandardAttributes(m_filterEffect);
     return m_filterEffect;
 }
 
@@ -100,4 +105,3 @@ SVGFETurbulence* SVGFETurbulenceElement::filterEffect(SVGResourceFilter* filter)
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

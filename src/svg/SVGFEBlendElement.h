@@ -29,29 +29,31 @@
 
 namespace WebCore
 {
-    class SVGFEBlendElement : public SVGFilterPrimitiveStandardAttributes
+class SVGFEBlendElement : public SVGFilterPrimitiveStandardAttributes
+{
+public:
+    SVGFEBlendElement(const QualifiedName &, Document *);
+    virtual ~SVGFEBlendElement();
+
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual SVGFEBlend *filterEffect(SVGResourceFilter *) const;
+
+protected:
+    virtual const SVGElement *contextElement() const
     {
-    public:
-        SVGFEBlendElement(const QualifiedName&, Document*);
-        virtual ~SVGFEBlendElement();
+        return this;
+    }
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual SVGFEBlend* filterEffect(SVGResourceFilter*) const;
+private:
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFEBlendElement, String, String, In1, in1)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFEBlendElement, String, String, In2, in2)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFEBlendElement, int, int, Mode, mode)
 
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
-
-    private:
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFEBlendElement, String, String, In1, in1)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFEBlendElement, String, String, In2, in2)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFEBlendElement, int, int, Mode, mode)
-
-        mutable SVGFEBlend* m_filterEffect;
-    };
+    mutable SVGFEBlend *m_filterEffect;
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

@@ -25,8 +25,8 @@
 
 using namespace WebCore;
 
-SVGMetadataElement::SVGMetadataElement(const QualifiedName& tagName, Document *doc)
-: SVGElement(tagName, doc)
+SVGMetadataElement::SVGMetadataElement(const QualifiedName &tagName, Document *doc)
+    : SVGElement(tagName, doc)
 {
 }
 

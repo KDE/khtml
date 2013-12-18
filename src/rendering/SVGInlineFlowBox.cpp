@@ -28,11 +28,12 @@
 #include "SVGInlineFlowBox.h"
 #include "SVGNames.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 using namespace SVGNames;
 
-void SVGInlineFlowBox::paint(RenderObject::PaintInfo& paintInfo, int tx, int ty)
+void SVGInlineFlowBox::paint(RenderObject::PaintInfo &paintInfo, int tx, int ty)
 {
     Q_UNUSED(paintInfo);
     Q_UNUSED(tx);
@@ -40,7 +41,7 @@ void SVGInlineFlowBox::paint(RenderObject::PaintInfo& paintInfo, int tx, int ty)
     //ASSERT_NOT_REACHED();
 }
 
-int SVGInlineFlowBox::placeBoxesHorizontally(int x, int& leftPosition, int& rightPosition, bool& needsWordSpacing)
+int SVGInlineFlowBox::placeBoxesHorizontally(int x, int &leftPosition, int &rightPosition, bool &needsWordSpacing)
 {
     Q_UNUSED(x);
     Q_UNUSED(leftPosition);
@@ -51,7 +52,7 @@ int SVGInlineFlowBox::placeBoxesHorizontally(int x, int& leftPosition, int& righ
     return 0;
 }
 
-void SVGInlineFlowBox::verticallyAlignBoxes(int& heightOfBlock)
+void SVGInlineFlowBox::verticallyAlignBoxes(int &heightOfBlock)
 {
     Q_UNUSED(heightOfBlock);
     // no-op

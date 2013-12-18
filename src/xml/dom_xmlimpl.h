@@ -28,11 +28,13 @@
 
 #include <QtXml/qxml.h>
 
-namespace khtml {
+namespace khtml
+{
 class CachedCSSStyleSheet;
 }
 
-namespace DOM {
+namespace DOM
+{
 
 class DocumentImpl;
 class CSSStyleSheetImpl;
@@ -57,11 +59,11 @@ public:
 
     virtual DOMString nodeName() const;
     virtual unsigned short nodeType() const;
-    virtual WTF::PassRefPtr<NodeImpl> cloneNode ( bool deep );
+    virtual WTF::PassRefPtr<NodeImpl> cloneNode(bool deep);
 
     // Other methods (not part of DOM)
 
-    virtual bool childTypeAllowed( unsigned short type );
+    virtual bool childTypeAllowed(unsigned short type);
 
     virtual DOMString toString() const;
 
@@ -71,7 +73,6 @@ protected:
     DOMStringImpl *m_notationName;
     DOMStringImpl *m_name;
 };
-
 
 class EntityReferenceImpl : public NodeBaseImpl
 {
@@ -84,11 +85,11 @@ public:
 
     virtual DOMString nodeName() const;
     virtual unsigned short nodeType() const;
-    virtual WTF::PassRefPtr<NodeImpl> cloneNode ( bool deep );
+    virtual WTF::PassRefPtr<NodeImpl> cloneNode(bool deep);
 
     // Other methods (not part of DOM)
 
-    virtual bool childTypeAllowed( unsigned short type );
+    virtual bool childTypeAllowed(unsigned short type);
 
     virtual DOMString toString() const;
 protected:
@@ -111,17 +112,16 @@ public:
 
     virtual DOMString nodeName() const;
     virtual unsigned short nodeType() const;
-    virtual WTF::PassRefPtr<NodeImpl> cloneNode ( bool deep );
+    virtual WTF::PassRefPtr<NodeImpl> cloneNode(bool deep);
 
     // Other methods (not part of DOM)
 
-    virtual bool childTypeAllowed( unsigned short type );
+    virtual bool childTypeAllowed(unsigned short type);
 protected:
     DOMStringImpl *m_name;
     DOMStringImpl *m_publicId;
     DOMStringImpl *m_systemId;
 };
-
 
 class ProcessingInstructionImpl : public NodeBaseImpl, private khtml::CachedObjectClient
 {
@@ -133,32 +133,41 @@ public:
     // DOM methods & attributes for Notation
 
     virtual DOMString target() const;
-    DOMString data() const { return m_data; }
-    virtual void setData( const DOMString &_data, int &exceptioncode );
+    DOMString data() const
+    {
+        return m_data;
+    }
+    virtual void setData(const DOMString &_data, int &exceptioncode);
 
     // DOM methods overridden from  parent classes
 
     virtual DOMString nodeName() const;
     virtual unsigned short nodeType() const;
     virtual DOMString nodeValue() const;
-    virtual void setNodeValue( const DOMString &_nodeValue, int &exceptioncode );
-    virtual WTF::PassRefPtr<NodeImpl> cloneNode ( bool deep );
+    virtual void setNodeValue(const DOMString &_nodeValue, int &exceptioncode);
+    virtual WTF::PassRefPtr<NodeImpl> cloneNode(bool deep);
 
     // Other methods (not part of DOM)
 
     virtual DOMString localHref() const;
-    virtual bool childTypeAllowed( unsigned short type );
+    virtual bool childTypeAllowed(unsigned short type);
     StyleSheetImpl *sheet() const;
     void checkStyleSheet();
     virtual void setStyleSheet(const DOM::DOMString &url, const DOM::DOMString &sheet, const DOM::DOMString &charset, const DOM::DOMString &mimetype);
-    virtual void setStyleSheet(CSSStyleSheetImpl* sheet);
+    virtual void setStyleSheet(CSSStyleSheetImpl *sheet);
 
     virtual DOMString toString() const;
 
-    virtual bool offsetInCharacters() const { return true; }
+    virtual bool offsetInCharacters() const
+    {
+        return true;
+    }
     virtual int maxCharacterOffset() const;
 
-    bool isAlternate() const { return m_alternate; }
+    bool isAlternate() const
+    {
+        return m_alternate;
+    }
 protected:
     DOMStringImpl *m_target;
     DOMStringImpl *m_data;
@@ -173,10 +182,10 @@ protected:
 class XMLAttributeReader : public QXmlDefaultHandler
 {
 public:
-    XMLAttributeReader(const QString& _attrString);
+    XMLAttributeReader(const QString &_attrString);
     virtual ~XMLAttributeReader();
     QXmlAttributes readAttrs(bool &ok);
-    bool startElement(const QString& namespaceURI, const QString& localName, const QString& qName, const QXmlAttributes& atts);
+    bool startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &atts);
 
 protected:
     QXmlAttributes attrs;

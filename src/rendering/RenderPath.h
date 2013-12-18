@@ -36,7 +36,8 @@
 #include "Path.h"
 #include "FloatPoint.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 class FloatPoint;
 //class Path;
@@ -46,42 +47,48 @@ class SVGStyledTransformableElement;
 class RenderPath : public RenderObject
 {
 public:
-    RenderPath(RenderStyle*, SVGStyledTransformableElement*);
+    RenderPath(RenderStyle *, SVGStyledTransformableElement *);
     virtual ~RenderPath();
 
     // Hit-detection separated for the fill and the stroke
-    virtual bool fillContains(const FloatPoint&, bool requiresFill = true) const;
+    virtual bool fillContains(const FloatPoint &, bool requiresFill = true) const;
     /*virtual bool strokeContains(const FloatPoint&, bool requiresStroke = true) const;*/
 
     // Returns an unscaled bounding box (not even including localTransform()) for this vector path
     virtual FloatRect relativeBBox(bool includeStroke = true) const;
 
-    const khtml::Path& path() const;
-    void setPath(const khtml::Path& newPath);
+    const khtml::Path &path() const;
+    void setPath(const khtml::Path &newPath);
 
-    virtual bool isRenderPath() const { return true; }
-    virtual const char* renderName() const { return "RenderPath"; }
-    
+    virtual bool isRenderPath() const
+    {
+        return true;
+    }
+    virtual const char *renderName() const
+    {
+        return "RenderPath";
+    }
+
     bool calculateLocalTransform();
     virtual AffineTransform localTransform() const;
-    
+
     virtual void layout();
     virtual IntRect absoluteClippedOverflowRect();
     virtual bool requiresLayer() const;
     virtual short lineHeight(bool b) const;
     virtual short baselinePosition(bool b) const;
-    virtual void paint(PaintInfo&, int parentX, int parentY);
+    virtual void paint(PaintInfo &, int parentX, int parentY);
 
-    virtual void absoluteRects(Vector<IntRect>&, int tx, int ty, bool topLevel = true);
+    virtual void absoluteRects(Vector<IntRect> &, int tx, int ty, bool topLevel = true);
     /*virtual void addFocusRingRects(GraphicsContext*, int tx, int ty);
 
     virtual bool nodeAtPoint(const HitTestRequest&, HitTestResult&, int x, int y, int tx, int ty, HitTestAction);
 
     FloatRect drawMarkersIfNeeded(GraphicsContext*, const FloatRect&, const Path&) const;*/
     /*virtual FloatRect strokeBBox() const;*/
-    
+
 private:
-    FloatPoint mapAbsolutePointToLocal(const FloatPoint&) const;
+    FloatPoint mapAbsolutePointToLocal(const FloatPoint &) const;
 
     mutable khtml::Path m_path;
     mutable FloatRect m_fillBBox;
@@ -96,4 +103,3 @@ private:
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

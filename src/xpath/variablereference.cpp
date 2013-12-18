@@ -27,28 +27,28 @@
 using namespace khtml;
 using namespace khtml::XPath;
 
-VariableReference::VariableReference( const DOM::DOMString &name )
-	: m_name( name )
+VariableReference::VariableReference(const DOM::DOMString &name)
+    : m_name(name)
 {
 }
 
 bool VariableReference::isConstant() const
 {
-	return false;
+    return false;
 }
 
 QString VariableReference::dump() const
 {
-	return QString() + "<variablereference name=\"" + m_name.string() + "\"/>";
+    return QString() + "<variablereference name=\"" + m_name.string() + "\"/>";
 }
 
 Value VariableReference::doEvaluate() const
 {
-	QHash<DOM::DOMString, DOM::DOMString>& bindings = evaluationContext().variableBindings;
-	if ( !bindings.contains( m_name ) ) {
-		// XXX What to do if an unknown variable is referenced?
-		return Value( DOMString() );
-	}
-	return Value( bindings[ m_name ] );
+    QHash<DOM::DOMString, DOM::DOMString> &bindings = evaluationContext().variableBindings;
+    if (!bindings.contains(m_name)) {
+        // XXX What to do if an unknown variable is referenced?
+        return Value(DOMString());
+    }
+    return Value(bindings[ m_name ]);
 }
 

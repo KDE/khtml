@@ -1,4 +1,3 @@
-// -*- c-basic-offset: 2 -*-
 /*
  *  This file is part of the KDE libraries
  *  Copyright (c) 2003 George Staikos (staikos@kde.org)
@@ -31,69 +30,71 @@
 
 using namespace KJS;
 
-namespace KJS {
+namespace KJS
+{
 
 const ClassInfo MozillaSidebarExtension::info = { "sidebar", 0, &MozillaSidebarExtensionTable, 0 };
 /*
 @begin MozillaSidebarExtensionTable 1
-  addPanel	MozillaSidebarExtension::addPanel	DontDelete|Function 0
+  addPanel  MozillaSidebarExtension::addPanel   DontDelete|Function 0
 @end
 */
 }
 KJS_IMPLEMENT_PROTOFUNC(MozillaSidebarExtensionFunc)
 
 MozillaSidebarExtension::MozillaSidebarExtension(ExecState *exec, KHTMLPart *p)
-  : m_part(p) {
-  setPrototype(exec->lexicalInterpreter()->builtinObjectPrototype());
+    : m_part(p)
+{
+    setPrototype(exec->lexicalInterpreter()->builtinObjectPrototype());
 }
 
-bool MozillaSidebarExtension::getOwnPropertySlot(ExecState *exec, const Identifier& propertyName, PropertySlot& slot)
+bool MozillaSidebarExtension::getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot)
 {
 #ifdef KJS_VERBOSE
-  qDebug() << "MozillaSidebarExtension::get " << propertyName.ascii();
+    qDebug() << "MozillaSidebarExtension::get " << propertyName.ascii();
 #endif
-  return getStaticPropertySlot<MozillaSidebarExtensionFunc,MozillaSidebarExtension,JSObject>
-            (exec,&MozillaSidebarExtensionTable,this, propertyName, slot);
+    return getStaticPropertySlot<MozillaSidebarExtensionFunc, MozillaSidebarExtension, JSObject>
+           (exec, &MozillaSidebarExtensionTable, this, propertyName, slot);
 }
 
 JSValue *MozillaSidebarExtension::getValueProperty(ExecState *exec, int token) const
 {
-  Q_UNUSED(exec);
-  switch (token) {
-  default:
-    // qDebug() << "WARNING: Unhandled token in MozillaSidebarExtension::getValueProperty : " << token;
-    return jsNull();
-  }
+    Q_UNUSED(exec);
+    switch (token) {
+    default:
+        // qDebug() << "WARNING: Unhandled token in MozillaSidebarExtension::getValueProperty : " << token;
+        return jsNull();
+    }
 }
 
 JSValue *MozillaSidebarExtensionFunc::callAsFunction(ExecState *exec, JSObject *thisObj, const List &args)
 {
-  KJS_CHECK_THIS( KJS::MozillaSidebarExtension, thisObj );
-  MozillaSidebarExtension *mse = static_cast<MozillaSidebarExtension*>(thisObj);
+    KJS_CHECK_THIS(KJS::MozillaSidebarExtension, thisObj);
+    MozillaSidebarExtension *mse = static_cast<MozillaSidebarExtension *>(thisObj);
 
-  KHTMLPart *part = mse->part();
-  if (!part)
-    return jsUndefined();
-
-  // addPanel()  id == 0
-  KParts::BrowserExtension *ext = part->browserExtension();
-  if (ext) {
-    QString url, name;
-    if (args.size() == 1) {  // I've seen this, don't know if it's legal.
-      name.clear();
-      url = args[0]->toString(exec).qstring();
-    } else if (args.size() == 2 || args.size() == 3) {
-      name = args[0]->toString(exec).qstring();
-      url = args[1]->toString(exec).qstring();
-      // 2 is the "CURL" which I don't understand and don't think we need.
-    } else {
-      return jsBoolean(false);
+    KHTMLPart *part = mse->part();
+    if (!part) {
+        return jsUndefined();
     }
-    emit ext->addWebSideBar(QUrl( url ), name);
-    return jsBoolean(true);
-  }
 
-  return jsUndefined();
+    // addPanel()  id == 0
+    KParts::BrowserExtension *ext = part->browserExtension();
+    if (ext) {
+        QString url, name;
+        if (args.size() == 1) {  // I've seen this, don't know if it's legal.
+            name.clear();
+            url = args[0]->toString(exec).qstring();
+        } else if (args.size() == 2 || args.size() == 3) {
+            name = args[0]->toString(exec).qstring();
+            url = args[1]->toString(exec).qstring();
+            // 2 is the "CURL" which I don't understand and don't think we need.
+        } else {
+            return jsBoolean(false);
+        }
+        emit ext->addWebSideBar(QUrl(url), name);
+        return jsBoolean(true);
+    }
+
+    return jsUndefined();
 }
-
 

@@ -3,7 +3,7 @@
                   2004, 2005, 2006, 2007 Rob Buis <buis@kde.org>
     Copyright (C) 2007 Eric Seidel <eric@webkit.org>
     Copyright (C) 2008 Apple Inc. All Rights Reserved.
-    
+
     This file is part of the KDE project
 
     This library is free software; you can redistribute it and/or
@@ -30,43 +30,47 @@
 #include "SVGTransform.h"
 #include "SVGTransformDistance.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class AffineTransform;
+class AffineTransform;
 
-    class SVGAnimateTransformElement : public SVGAnimationElement {
-    public:
-        SVGAnimateTransformElement(const QualifiedName&, Document*);
-        virtual ~SVGAnimateTransformElement();
-        
-        virtual bool hasValidTarget() const;
+class SVGAnimateTransformElement : public SVGAnimationElement
+{
+public:
+    SVGAnimateTransformElement(const QualifiedName &, Document *);
+    virtual ~SVGAnimateTransformElement();
 
-        virtual void parseMappedAttribute(MappedAttribute*);
+    virtual bool hasValidTarget() const;
 
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
-        
-    private:
-        virtual void resetToBaseValue(const String&);
-        virtual bool calculateFromAndToValues(const String& fromString, const String& toString);
-        virtual bool calculateFromAndByValues(const String& fromString, const String& byString);
-        virtual void calculateAnimatedValue(float percentage, unsigned repeat, SVGSMILElement* resultElement);
-        virtual void applyResultsToTarget();
-        virtual float calculateDistance(const String& fromString, const String& toString);
+    virtual void parseMappedAttribute(MappedAttribute *);
 
-        SVGTransform parseTransformValue(const String&) const;
-        
-        SVGTransform::SVGTransformType m_type;
-        
-        unsigned m_baseIndexInTransformList;
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
 
-        SVGTransform m_toTransform;
-        SVGTransform m_fromTransform;
-    };
+private:
+    virtual void resetToBaseValue(const String &);
+    virtual bool calculateFromAndToValues(const String &fromString, const String &toString);
+    virtual bool calculateFromAndByValues(const String &fromString, const String &byString);
+    virtual void calculateAnimatedValue(float percentage, unsigned repeat, SVGSMILElement *resultElement);
+    virtual void applyResultsToTarget();
+    virtual float calculateDistance(const String &fromString, const String &toString);
+
+    SVGTransform parseTransformValue(const String &) const;
+
+    SVGTransform::SVGTransformType m_type;
+
+    unsigned m_baseIndexInTransformList;
+
+    SVGTransform m_toTransform;
+    SVGTransform m_fromTransform;
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif // SVGAnimateTransformElement_h
 
-// vim:ts=4:noet

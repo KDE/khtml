@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef SVGPaintServer_h
@@ -45,72 +45,77 @@ QT_END_NAMESPACE
 #endif
 
 #if PLATFORM(CG)
-    typedef Vector<CGFloat> DashArray;
+typedef Vector<CGFloat> DashArray;
 #else
-    typedef Vector<float> DashArray;
+typedef Vector<float> DashArray;
 #endif
 
-namespace WebCore {
+namespace WebCore
+{
 
-    enum SVGPaintServerType {
-        // Painting mode
-        SolidPaintServer = 0,
-        PatternPaintServer = 1,
-        LinearGradientPaintServer = 2,
-        RadialGradientPaintServer = 3
-    };
+enum SVGPaintServerType {
+    // Painting mode
+    SolidPaintServer = 0,
+    PatternPaintServer = 1,
+    LinearGradientPaintServer = 2,
+    RadialGradientPaintServer = 3
+};
 
-    enum SVGPaintTargetType {
-        // Target mode
-        ApplyToFillTargetType = 1,
-        ApplyToStrokeTargetType = 2
-    };
+enum SVGPaintTargetType {
+    // Target mode
+    ApplyToFillTargetType = 1,
+    ApplyToStrokeTargetType = 2
+};
 
-    /*class GraphicsContext;
-    class RenderObject;
-    class RenderStyle;*/
-    class SVGPaintServerSolid;
+/*class GraphicsContext;
+class RenderObject;
+class RenderStyle;*/
+class SVGPaintServerSolid;
 
-    class SVGPaintServer : public SVGResource {
-    public:
-        virtual ~SVGPaintServer();
+class SVGPaintServer : public SVGResource
+{
+public:
+    virtual ~SVGPaintServer();
 
-        virtual SVGResourceType resourceType() const { return PaintServerResourceType; }
+    virtual SVGResourceType resourceType() const
+    {
+        return PaintServerResourceType;
+    }
 
-        virtual SVGPaintServerType type() const = 0;
-        /* FIXME khtml virtual TextStream& externalRepresentation(TextStream&) const = 0;*/
+    virtual SVGPaintServerType type() const = 0;
+    /* FIXME khtml virtual TextStream& externalRepresentation(TextStream&) const = 0;*/
 
-        // To be implemented in platform specific code.
-        virtual void draw(QPainter* painter, QPainterPath* painterPath, const RenderObject*, SVGPaintTargetType) const;
-        virtual void teardown(QPainter* painter, QPainterPath* painterPath, const RenderObject*, SVGPaintTargetType, bool isPaintingText = false) const;
-        virtual void renderPath(QPainter* painter, QPainterPath* painterPath, const RenderObject*, SVGPaintTargetType) const;
+    // To be implemented in platform specific code.
+    virtual void draw(QPainter *painter, QPainterPath *painterPath, const RenderObject *, SVGPaintTargetType) const;
+    virtual void teardown(QPainter *painter, QPainterPath *painterPath, const RenderObject *, SVGPaintTargetType, bool isPaintingText = false) const;
+    virtual void renderPath(QPainter *painter, QPainterPath *painterPath, const RenderObject *, SVGPaintTargetType) const;
 
-        virtual bool setup(QPainter* painter, QPainterPath* painterPath, const RenderObject*, SVGPaintTargetType, bool isPaintingText = false) const = 0;
+    virtual bool setup(QPainter *painter, QPainterPath *painterPath, const RenderObject *, SVGPaintTargetType, bool isPaintingText = false) const = 0;
 
-        static SVGPaintServer* strokePaintServer(const RenderStyle*, const RenderObject*);
-        static SVGPaintServer* fillPaintServer(const RenderStyle*, const RenderObject*);
-        static SVGPaintServerSolid* sharedSolidPaintServer();
+    static SVGPaintServer *strokePaintServer(const RenderStyle *, const RenderObject *);
+    static SVGPaintServer *fillPaintServer(const RenderStyle *, const RenderObject *);
+    static SVGPaintServerSolid *sharedSolidPaintServer();
 
-    protected:
+protected:
 #if PLATFORM(CG)
-        void strokePath(CGContextRef, const RenderObject*) const;
-        void clipToStrokePath(CGContextRef, const RenderObject*) const;
-        void fillPath(CGContextRef, const RenderObject*) const;
-        void clipToFillPath(CGContextRef, const RenderObject*) const;
+    void strokePath(CGContextRef, const RenderObject *) const;
+    void clipToStrokePath(CGContextRef, const RenderObject *) const;
+    void fillPath(CGContextRef, const RenderObject *) const;
+    void clipToFillPath(CGContextRef, const RenderObject *) const;
 #endif
 
 #if PLATFORM(QT)
-        void setPenProperties(const RenderObject*, const RenderStyle*, QPen&) const;
+    void setPenProperties(const RenderObject *, const RenderStyle *, QPen &) const;
 #endif
-    protected:
-        SVGPaintServer();        
-    };
+protected:
+    SVGPaintServer();
+};
 
-    /*khtml TextStream& operator<<(TextStream&, const SVGPaintServer&);*/
+/*khtml TextStream& operator<<(TextStream&, const SVGPaintServer&);*/
 
-    SVGPaintServer* getPaintServerById(Document*, const AtomicString&);
+SVGPaintServer *getPaintServerById(Document *, const AtomicString &);
 
-    DashArray dashArrayFromRenderingStyle(const RenderStyle* style);
+DashArray dashArrayFromRenderingStyle(const RenderStyle *style);
 } // namespace WebCore
 
 #endif

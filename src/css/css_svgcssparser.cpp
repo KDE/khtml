@@ -35,9 +35,10 @@ namespace DOM
 
 bool CSSParser::parseSVGValue(int propId, bool important)
 {
-    Value* value = valueList->current();
-    if (!value)
+    Value *value = valueList->current();
+    if (!value) {
         return false;
+    }
 
     int id = value->id;
 
@@ -48,120 +49,135 @@ bool CSSParser::parseSVGValue(int propId, bool important)
     /* The comment to the right defines all valid value of these
      * properties as defined in SVG 1.1, Appendix N. Property index */
     case CSS_PROP_ALIGNMENT_BASELINE:
-    // auto | baseline | before-edge | text-before-edge | middle |
-    // central | after-edge | text-after-edge | ideographic | alphabetic |
-    // hanging | mathematical | inherit
+        // auto | baseline | before-edge | text-before-edge | middle |
+        // central | after-edge | text-after-edge | ideographic | alphabetic |
+        // hanging | mathematical | inherit
         if (id == CSS_VAL_AUTO || id == CSS_VAL_BASELINE || id == CSS_VAL_MIDDLE ||
-          (id >= CSS_VAL_BEFORE_EDGE && id <= CSS_VAL_MATHEMATICAL))
+                (id >= CSS_VAL_BEFORE_EDGE && id <= CSS_VAL_MATHEMATICAL)) {
             valid_primitive = true;
+        }
         break;
 
     case CSS_PROP_BASELINE_SHIFT:
-    // baseline | super | sub | <percentage> | <length> | inherit
-        if (id == CSS_VAL_BASELINE || id == CSS_VAL_SUB || id >= CSS_VAL_SUPER)
+        // baseline | super | sub | <percentage> | <length> | inherit
+        if (id == CSS_VAL_BASELINE || id == CSS_VAL_SUB || id >= CSS_VAL_SUPER) {
             valid_primitive = true;
-        else
-            valid_primitive = validUnit(value, FLength|FPercent, false);
+        } else {
+            valid_primitive = validUnit(value, FLength | FPercent, false);
+        }
         break;
 
     case CSS_PROP_DOMINANT_BASELINE:
-    // auto | use-script | no-change | reset-size | ideographic |
-    // alphabetic | hanging | mathematical | central | middle |
-    // text-after-edge | text-before-edge | inherit
+        // auto | use-script | no-change | reset-size | ideographic |
+        // alphabetic | hanging | mathematical | central | middle |
+        // text-after-edge | text-before-edge | inherit
         if (id == CSS_VAL_AUTO || id == CSS_VAL_MIDDLE ||
-          (id >= CSS_VAL_USE_SCRIPT && id <= CSS_VAL_RESET_SIZE) ||
-          (id >= CSS_VAL_CENTRAL && id <= CSS_VAL_MATHEMATICAL))
+                (id >= CSS_VAL_USE_SCRIPT && id <= CSS_VAL_RESET_SIZE) ||
+                (id >= CSS_VAL_CENTRAL && id <= CSS_VAL_MATHEMATICAL)) {
             valid_primitive = true;
+        }
         break;
 
     case CSS_PROP_ENABLE_BACKGROUND:
-    // accumulate | new [x] [y] [width] [height] | inherit
-        if (id == CSS_VAL_ACCUMULATE) // ### TODO: new
+        // accumulate | new [x] [y] [width] [height] | inherit
+        if (id == CSS_VAL_ACCUMULATE) { // ### TODO: new
             valid_primitive = true;
+        }
         break;
 
     case CSS_PROP_MARKER_START:
     case CSS_PROP_MARKER_MID:
     case CSS_PROP_MARKER_END:
     case CSS_PROP_MASK:
-        if (id == CSS_VAL_NONE)
+        if (id == CSS_VAL_NONE) {
             valid_primitive = true;
-        else if (value->unit == CSSPrimitiveValue::CSS_URI) {
+        } else if (value->unit == CSSPrimitiveValue::CSS_URI) {
             parsedValue = new CSSPrimitiveValueImpl(domString(value->string), CSSPrimitiveValue::CSS_URI);
-            if (parsedValue)
+            if (parsedValue) {
                 valueList->next();
+            }
         }
         break;
 
     case CSS_PROP_CLIP_RULE:            // nonzero | evenodd | inherit
     case CSS_PROP_FILL_RULE:
-        if (id == CSS_VAL_NONZERO || id == CSS_VAL_EVENODD)
+        if (id == CSS_VAL_NONZERO || id == CSS_VAL_EVENODD) {
             valid_primitive = true;
+        }
         break;
 
     case CSS_PROP_STROKE_MITERLIMIT:   // <miterlimit> | inherit
-        valid_primitive = validUnit(value, FNumber|FNonNeg, false);
+        valid_primitive = validUnit(value, FNumber | FNonNeg, false);
         break;
 
     case CSS_PROP_STROKE_LINEJOIN:   // miter | round | bevel | inherit
-        if (id == CSS_VAL_MITER || id == CSS_VAL_ROUND || id == CSS_VAL_BEVEL)
+        if (id == CSS_VAL_MITER || id == CSS_VAL_ROUND || id == CSS_VAL_BEVEL) {
             valid_primitive = true;
+        }
         break;
 
     case CSS_PROP_STROKE_LINECAP:    // butt | round | square | inherit
-        if (id == CSS_VAL_BUTT || id == CSS_VAL_ROUND || id == CSS_VAL_SQUARE)
+        if (id == CSS_VAL_BUTT || id == CSS_VAL_ROUND || id == CSS_VAL_SQUARE) {
             valid_primitive = true;
+        }
         break;
 
     case CSS_PROP_STROKE_OPACITY:   // <opacity-value> | inherit
     case CSS_PROP_FILL_OPACITY:
     case CSS_PROP_STOP_OPACITY:
     case CSS_PROP_FLOOD_OPACITY:
-        valid_primitive = (!id && validUnit(value, FNumber|FPercent, false));
+        valid_primitive = (!id && validUnit(value, FNumber | FPercent, false));
         break;
 
     case CSS_PROP_SHAPE_RENDERING:
-    // auto | optimizeSpeed | crispEdges | geometricPrecision | inherit
+        // auto | optimizeSpeed | crispEdges | geometricPrecision | inherit
         if (id == CSS_VAL_AUTO || id == CSS_VAL_OPTIMIZESPEED ||
-            id == CSS_VAL_CRISPEDGES || id == CSS_VAL_GEOMETRICPRECISION)
+                id == CSS_VAL_CRISPEDGES || id == CSS_VAL_GEOMETRICPRECISION) {
             valid_primitive = true;
+        }
         break;
 
     case CSS_PROP_TEXT_RENDERING:   // auto | optimizeSpeed | optimizeLegibility | geometricPrecision | inherit
         if (id == CSS_VAL_AUTO || id == CSS_VAL_OPTIMIZESPEED || id == CSS_VAL_OPTIMIZELEGIBILITY ||
-       id == CSS_VAL_GEOMETRICPRECISION)
+                id == CSS_VAL_GEOMETRICPRECISION) {
             valid_primitive = true;
+        }
         break;
 
     case CSS_PROP_IMAGE_RENDERING:  // auto | optimizeSpeed |
     case CSS_PROP_COLOR_RENDERING:  // optimizeQuality | inherit
         if (id == CSS_VAL_AUTO || id == CSS_VAL_OPTIMIZESPEED ||
-                id == CSS_VAL_OPTIMIZEQUALITY)
+                id == CSS_VAL_OPTIMIZEQUALITY) {
             valid_primitive = true;
+        }
         break;
 
     case CSS_PROP_COLOR_PROFILE: // auto | sRGB | <name> | <uri> inherit
-        if (id == CSS_VAL_AUTO || id == CSS_VAL_SRGB)
+        if (id == CSS_VAL_AUTO || id == CSS_VAL_SRGB) {
             valid_primitive = true;
+        }
         break;
 
     case CSS_PROP_COLOR_INTERPOLATION:   // auto | sRGB | linearRGB | inherit
-    case CSS_PROP_COLOR_INTERPOLATION_FILTERS:  
-        if (id == CSS_VAL_AUTO || id == CSS_VAL_SRGB || id == CSS_VAL_LINEARRGB)
+    case CSS_PROP_COLOR_INTERPOLATION_FILTERS:
+        if (id == CSS_VAL_AUTO || id == CSS_VAL_SRGB || id == CSS_VAL_LINEARRGB) {
             valid_primitive = true;
+        }
         break;
 
     case CSS_PROP_POINTER_EVENTS:
-    // visiblePainted | visibleFill | visibleStroke | visible |
-    // painted | fill | stroke | all | none |  inherit
+        // visiblePainted | visibleFill | visibleStroke | visible |
+        // painted | fill | stroke | all | none |  inherit
         if (id == CSS_VAL_VISIBLE || id == CSS_VAL_NONE ||
-          (id >= CSS_VAL_VISIBLEPAINTED && id <= CSS_VAL_ALL))
+                (id >= CSS_VAL_VISIBLEPAINTED && id <= CSS_VAL_ALL)) {
             valid_primitive = true;
+        }
         break;
 
     case CSS_PROP_TEXT_ANCHOR:    // start | middle | end | inherit
-        if (id == CSS_VAL_START || id == CSS_VAL_MIDDLE || id == CSS_VAL_END)
+        if (id == CSS_VAL_START || id == CSS_VAL_MIDDLE || id == CSS_VAL_END) {
             valid_primitive = true;
+        }
         break;
 
     case CSS_PROP_GLYPH_ORIENTATION_VERTICAL: // auto | <angle> | inherit
@@ -169,37 +185,40 @@ bool CSSParser::parseSVGValue(int propId, bool important)
             valid_primitive = true;
             break;
         }
-        /* fallthrough intentional */
+    /* fallthrough intentional */
     case CSS_PROP_GLYPH_ORIENTATION_HORIZONTAL: // <angle> (restricted to _deg_ per SVG 1.1 spec) | inherit
         if (value->unit == CSSPrimitiveValue::CSS_DEG || value->unit == CSSPrimitiveValue::CSS_NUMBER) {
             parsedValue = new CSSPrimitiveValueImpl(value->fValue, CSSPrimitiveValue::CSS_DEG);
 
-            if (parsedValue)
+            if (parsedValue) {
                 valueList->next();
+            }
         }
         break;
 
     case CSS_PROP_FILL:                 // <paint> | inherit
-    case CSS_PROP_STROKE:               // <paint> | inherit
-        {
-            if (id == CSS_VAL_NONE)
-                parsedValue = new SVGPaintImpl(SVGPaintImpl::SVG_PAINTTYPE_NONE);
-            else if (id == CSS_VAL_CURRENTCOLOR)
-                parsedValue = new SVGPaintImpl(SVGPaintImpl::SVG_PAINTTYPE_CURRENTCOLOR);
-            else if (value->unit == CSSPrimitiveValue::CSS_URI) {
-                CSSPrimitiveValueImpl* val;
-                if (valueList->next() && (val = parseColorFromValue(valueList->current()/*, c, true*/))) {
-                    parsedValue = new SVGPaintImpl(domString(value->string), val->getRGBColorValue());
-                    delete val;
-                } else
-                    parsedValue = new SVGPaintImpl(SVGPaintImpl::SVG_PAINTTYPE_URI, domString(value->string));
-            } else
-                parsedValue = parseSVGPaint();
-
-            if (parsedValue)
-                valueList->next();
+    case CSS_PROP_STROKE: {             // <paint> | inherit
+        if (id == CSS_VAL_NONE) {
+            parsedValue = new SVGPaintImpl(SVGPaintImpl::SVG_PAINTTYPE_NONE);
+        } else if (id == CSS_VAL_CURRENTCOLOR) {
+            parsedValue = new SVGPaintImpl(SVGPaintImpl::SVG_PAINTTYPE_CURRENTCOLOR);
+        } else if (value->unit == CSSPrimitiveValue::CSS_URI) {
+            CSSPrimitiveValueImpl *val;
+            if (valueList->next() && (val = parseColorFromValue(valueList->current()/*, c, true*/))) {
+                parsedValue = new SVGPaintImpl(domString(value->string), val->getRGBColorValue());
+                delete val;
+            } else {
+                parsedValue = new SVGPaintImpl(SVGPaintImpl::SVG_PAINTTYPE_URI, domString(value->string));
+            }
+        } else {
+            parsedValue = parseSVGPaint();
         }
-        break;
+
+        if (parsedValue) {
+            valueList->next();
+        }
+    }
+    break;
 
     /*case CSS_PROP_Color:                // <color> | inherit
         if ((id >= CSS_VAL_Aqua && id <= CSS_VAL_Windowtext) ||
@@ -216,22 +235,25 @@ bool CSSParser::parseSVGValue(int propId, bool important)
     case CSS_PROP_FLOOD_COLOR:
     case CSS_PROP_LIGHTING_COLOR:
         if ((id >= CSS_VAL_AQUA && id <= CSS_VAL_WINDOWTEXT)/* ||
-           (id >= CSS_VAL_Aliceblue && id <= CSS_VAL_Yellowgreen)*/)
+           (id >= CSS_VAL_Aliceblue && id <= CSS_VAL_Yellowgreen)*/) {
             parsedValue = new SVGColorImpl(domString(value->string));
-        else if (id == CSS_VAL_CURRENTCOLOR)
+        } else if (id == CSS_VAL_CURRENTCOLOR) {
             parsedValue = new SVGColorImpl(SVGColorImpl::SVG_COLORTYPE_CURRENTCOLOR);
-        else // TODO : svgcolor (iccColor)
+        } else { // TODO : svgcolor (iccColor)
             parsedValue = parseSVGColor();
+        }
 
-        if (parsedValue)
+        if (parsedValue) {
             valueList->next();
+        }
 
         break;
 
     case CSS_PROP_WRITING_MODE:
-    // lr-tb | rl_tb | tb-rl | lr | rl | tb | inherit
-        if (id >= CSS_VAL_LR_TB && id <= CSS_VAL_TB)
+        // lr-tb | rl_tb | tb-rl | lr | rl | tb | inherit
+        if (id >= CSS_VAL_LR_TB && id <= CSS_VAL_TB) {
             valid_primitive = true;
+        }
         break;
 
     case CSS_PROP_STROKE_WIDTH:         // <length> | inherit
@@ -240,36 +262,39 @@ bool CSSParser::parseSVGValue(int propId, bool important)
         break;
 
     case CSS_PROP_STROKE_DASHARRAY:     // none | <dasharray> | inherit
-        if (id == CSS_VAL_NONE)
+        if (id == CSS_VAL_NONE) {
             valid_primitive = true;
-        else
+        } else {
             parsedValue = parseSVGStrokeDasharray();
+        }
 
         break;
 
     case CSS_PROP_KERNING:              // auto | normal | <length> | inherit
-        if (id == CSS_VAL_AUTO || id == CSS_VAL_NORMAL)
+        if (id == CSS_VAL_AUTO || id == CSS_VAL_NORMAL) {
             valid_primitive = true;
-        else
+        } else {
             valid_primitive = validUnit(value, FLength, false);
+        }
         break;
 
     case CSS_PROP_CLIP_PATH:    // <uri> | none | inherit
     case CSS_PROP_FILTER:
-        if (id == CSS_VAL_NONE)
+        if (id == CSS_VAL_NONE) {
             valid_primitive = true;
-        else if (value->unit == CSSPrimitiveValue::CSS_URI) {
+        } else if (value->unit == CSSPrimitiveValue::CSS_URI) {
             parsedValue = new CSSPrimitiveValueImpl(domString(value->string), (CSSPrimitiveValue::UnitTypes) value->unit);
-            if (parsedValue)
+            if (parsedValue) {
                 valueList->next();
+            }
         }
         break;
 
     /* shorthand properties */
-    case CSS_PROP_MARKER:
-    {
+    case CSS_PROP_MARKER: {
         const int properties[3] = { CSS_PROP_MARKER_START, CSS_PROP_MARKER_MID,
-                                    CSS_PROP_MARKER_END };
+                                    CSS_PROP_MARKER_END
+                                  };
         return parseShortHand(propId, properties, 3, important);
 
     }
@@ -282,14 +307,15 @@ bool CSSParser::parseSVGValue(int propId, bool important)
     }
 
     if (valid_primitive) {
-        if (id != 0)
+        if (id != 0) {
             parsedValue = new CSSPrimitiveValueImpl(id);
-        else if (value->unit == CSSPrimitiveValue::CSS_STRING)
+        } else if (value->unit == CSSPrimitiveValue::CSS_STRING) {
             parsedValue = new CSSPrimitiveValueImpl(domString(value->string), (CSSPrimitiveValue::UnitTypes)value->unit);
-        else if (value->unit >= CSSPrimitiveValue::CSS_NUMBER && value->unit <= CSSPrimitiveValue::CSS_KHZ)
+        } else if (value->unit >= CSSPrimitiveValue::CSS_NUMBER && value->unit <= CSSPrimitiveValue::CSS_KHZ) {
             parsedValue = new CSSPrimitiveValueImpl(value->fValue, (CSSPrimitiveValue::UnitTypes)value->unit);
-        else if (value->unit >= Value::Q_EMS)
+        } else if (value->unit >= Value::Q_EMS) {
             parsedValue = new CSSQuirkPrimitiveValueImpl(value->fValue, CSSPrimitiveValue::CSS_EMS);
+        }
         valueList->next();
     }
     if (!parsedValue || (valueList->current() && !inShorthand())) {
@@ -301,22 +327,25 @@ bool CSSParser::parseSVGValue(int propId, bool important)
     return true;
 }
 
-CSSValueImpl* CSSParser::parseSVGStrokeDasharray()
+CSSValueImpl *CSSParser::parseSVGStrokeDasharray()
 {
-    CSSValueListImpl* ret = new CSSValueListImpl(CSSValueListImpl::Comma);
-    Value* value = valueList->current();
+    CSSValueListImpl *ret = new CSSValueListImpl(CSSValueListImpl::Comma);
+    Value *value = valueList->current();
     bool valid_primitive = true;
     while (value) {
-        valid_primitive = validUnit(value, FLength | FPercent |FNonNeg, false);
-        if (!valid_primitive)
+        valid_primitive = validUnit(value, FLength | FPercent | FNonNeg, false);
+        if (!valid_primitive) {
             break;
-        if (value->id != 0)
+        }
+        if (value->id != 0) {
             ret->append(new CSSPrimitiveValueImpl(value->id));
-        else if (value->unit >= CSSPrimitiveValue::CSS_NUMBER && value->unit <= CSSPrimitiveValue::CSS_KHZ)
+        } else if (value->unit >= CSSPrimitiveValue::CSS_NUMBER && value->unit <= CSSPrimitiveValue::CSS_KHZ) {
             ret->append(new CSSPrimitiveValueImpl(value->fValue, (CSSPrimitiveValue::UnitTypes) value->unit));
+        }
         value = valueList->next();
-        if (value && value->unit == Value::Operator && value->iValue == ',')
+        if (value && value->unit == Value::Operator && value->iValue == ',') {
             value = valueList->next();
+        }
     }
     if (!valid_primitive) {
         delete ret;
@@ -326,24 +355,26 @@ CSSValueImpl* CSSParser::parseSVGStrokeDasharray()
     return ret;
 }
 
-CSSValueImpl* CSSParser::parseSVGPaint()
+CSSValueImpl *CSSParser::parseSVGPaint()
 {
-    CSSPrimitiveValueImpl* val;
+    CSSPrimitiveValueImpl *val;
 
-    if (!(val = parseColorFromValue(valueList->current()/*, c, true*/)))
+    if (!(val = parseColorFromValue(valueList->current()/*, c, true*/))) {
         return new SVGPaintImpl();
+    }
 
-    SVGPaintImpl* paint = new SVGPaintImpl(QColor(val->getRGBColorValue()));
+    SVGPaintImpl *paint = new SVGPaintImpl(QColor(val->getRGBColorValue()));
     delete val;
     return paint;
 }
 
-CSSValueImpl* CSSParser::parseSVGColor()
+CSSValueImpl *CSSParser::parseSVGColor()
 {
-    CSSPrimitiveValueImpl* val;
-    if (!(val = parseColorFromValue(valueList->current()/*, c, true*/)))
+    CSSPrimitiveValueImpl *val;
+    if (!(val = parseColorFromValue(valueList->current()/*, c, true*/))) {
         return 0;
-    SVGColorImpl* color = new SVGColorImpl(QColor(val->getRGBColorValue()));
+    }
+    SVGColorImpl *color = new SVGColorImpl(QColor(val->getRGBColorValue()));
     delete val;
     return color;
 }

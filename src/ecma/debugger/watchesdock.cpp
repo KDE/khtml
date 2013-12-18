@@ -22,7 +22,8 @@
 #include <QVBoxLayout>
 #include <QListWidget>
 
-namespace KJSDebugger {
+namespace KJSDebugger
+{
 
 WatchesDock::WatchesDock(QWidget *parent)
     : QDockWidget("Watches", parent)

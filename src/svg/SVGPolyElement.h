@@ -30,37 +30,51 @@
 #include "SVGStyledTransformableElement.h"
 #include "SVGTests.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGPolyElement :  public SVGStyledTransformableElement,
-                            public SVGTests,
-                            public SVGLangSpace,
-                            public SVGExternalResourcesRequired,
-                            public SVGAnimatedPoints {
-    public:
-        SVGPolyElement(const QualifiedName&, Document*);
-        virtual ~SVGPolyElement();
-        
-        virtual bool isValid() const { return SVGTests::isValid(); }
+class SVGPolyElement :  public SVGStyledTransformableElement,
+    public SVGTests,
+    public SVGLangSpace,
+    public SVGExternalResourcesRequired,
+    public SVGAnimatedPoints
+{
+public:
+    SVGPolyElement(const QualifiedName &, Document *);
+    virtual ~SVGPolyElement();
 
-        virtual SVGPointList* points() const;
-        virtual SVGPointList* animatedPoints() const;
+    virtual bool isValid() const
+    {
+        return SVGTests::isValid();
+    }
 
-        virtual void parseMappedAttribute(MappedAttribute*); 
-        virtual void svgAttributeChanged(const QualifiedName&);
+    virtual SVGPointList *points() const;
+    virtual SVGPointList *animatedPoints() const;
 
-        virtual bool rendererIsNeeded(RenderStyle* style) { return StyledElement::rendererIsNeeded(style); }
-        virtual bool supportsMarkers() const { return true; }
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual void svgAttributeChanged(const QualifiedName &);
 
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
+    virtual bool rendererIsNeeded(RenderStyle *style)
+    {
+        return StyledElement::rendererIsNeeded(style);
+    }
+    virtual bool supportsMarkers() const
+    {
+        return true;
+    }
 
-    private:
-        bool m_ignoreAttributeChanges : 1;
-        mutable RefPtr<SVGPointList> m_points;
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
 
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
-    };
+private:
+    bool m_ignoreAttributeChanges : 1;
+    mutable RefPtr<SVGPointList> m_points;
+
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
+};
 
 } // namespace WebCore
 

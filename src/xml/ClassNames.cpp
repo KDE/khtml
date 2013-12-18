@@ -20,31 +20,37 @@
 
 #include "ClassNames.h"
 
-namespace DOM {
-
-void ClassNames::parseClassAttribute(const DOMString& classStr, bool inCompatMode)
+namespace DOM
 {
-    if (!m_nameVector)
-        m_nameVector.set(new ClassNameVector);
-    else
-        m_nameVector->clear();
 
-    if (classStr.isEmpty())
+void ClassNames::parseClassAttribute(const DOMString &classStr, bool inCompatMode)
+{
+    if (!m_nameVector) {
+        m_nameVector.set(new ClassNameVector);
+    } else {
+        m_nameVector->clear();
+    }
+
+    if (classStr.isEmpty()) {
         return;
+    }
 
     DOMString classAttr = inCompatMode ? classStr.lower() : classStr;
 
-    const QChar* str = classAttr.unicode();
+    const QChar *str = classAttr.unicode();
     const int length = classAttr.length();
     int start = 0;
     while (true) {
-        while (start < length && isClassWhitespace(str[start]))
+        while (start < length && isClassWhitespace(str[start])) {
             ++start;
-        if (start >= length)
+        }
+        if (start >= length) {
             break;
+        }
         int end = start + 1;
-        while (end < length && !isClassWhitespace(str[end]))
+        while (end < length && !isClassWhitespace(str[end])) {
             ++end;
+        }
 
         m_nameVector->append(AtomicString(str + start, end - start));
 

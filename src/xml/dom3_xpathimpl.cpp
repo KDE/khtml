@@ -41,215 +41,215 @@ XPathResultImpl::XPathResultImpl()
 {
 }
 
-XPathResultImpl::XPathResultImpl( const Value &value )
-	: m_value( value )
+XPathResultImpl::XPathResultImpl(const Value &value)
+    : m_value(value)
 {
-	switch ( m_value.type() ) {
-		case Value::Boolean:
-			m_resultType = BOOLEAN_TYPE;
-			break;
-		case Value::Number:
-			m_resultType = NUMBER_TYPE;
-			break;
-		case Value::String:
-			m_resultType = STRING_TYPE;
-			break;
-		case Value::Nodeset:
-			m_resultType = UNORDERED_NODE_ITERATOR_TYPE;
-			m_nodeIterator = 0;
-	}
+    switch (m_value.type()) {
+    case Value::Boolean:
+        m_resultType = BOOLEAN_TYPE;
+        break;
+    case Value::Number:
+        m_resultType = NUMBER_TYPE;
+        break;
+    case Value::String:
+        m_resultType = STRING_TYPE;
+        break;
+    case Value::Nodeset:
+        m_resultType = UNORDERED_NODE_ITERATOR_TYPE;
+        m_nodeIterator = 0;
+    }
 }
 
-void XPathResultImpl::convertTo( unsigned short type, int &exceptioncode )
+void XPathResultImpl::convertTo(unsigned short type, int &exceptioncode)
 {
-	switch ( type ) {
-		case ANY_TYPE:
-			break;
-		case NUMBER_TYPE:
-			m_resultType = type;
-			m_value = Value( m_value.toNumber() );
-			break;
-		case STRING_TYPE:
-			m_resultType = type;
-			m_value = Value( m_value.toString() );
-			break;
-		case BOOLEAN_TYPE:
-			m_resultType = type;
-			m_value = Value( m_value.toBoolean() );
-			break;
-		case UNORDERED_NODE_ITERATOR_TYPE:
-		case ORDERED_NODE_ITERATOR_TYPE:
-		case UNORDERED_NODE_SNAPSHOT_TYPE:
-		case ORDERED_NODE_SNAPSHOT_TYPE:
-		case ANY_UNORDERED_NODE_TYPE:
-		case FIRST_ORDERED_NODE_TYPE:
-			if ( !m_value.isNodeset() ) {
-				exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
-				return;
-			}
-			m_resultType = type;
-			break;
-		default:
-			// qDebug() << "Cannot convert XPathResultImpl to unknown type" << type;
-			exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
-	}
+    switch (type) {
+    case ANY_TYPE:
+        break;
+    case NUMBER_TYPE:
+        m_resultType = type;
+        m_value = Value(m_value.toNumber());
+        break;
+    case STRING_TYPE:
+        m_resultType = type;
+        m_value = Value(m_value.toString());
+        break;
+    case BOOLEAN_TYPE:
+        m_resultType = type;
+        m_value = Value(m_value.toBoolean());
+        break;
+    case UNORDERED_NODE_ITERATOR_TYPE:
+    case ORDERED_NODE_ITERATOR_TYPE:
+    case UNORDERED_NODE_SNAPSHOT_TYPE:
+    case ORDERED_NODE_SNAPSHOT_TYPE:
+    case ANY_UNORDERED_NODE_TYPE:
+    case FIRST_ORDERED_NODE_TYPE:
+        if (!m_value.isNodeset()) {
+            exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
+            return;
+        }
+        m_resultType = type;
+        break;
+    default:
+        // qDebug() << "Cannot convert XPathResultImpl to unknown type" << type;
+        exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
+    }
 }
 
 unsigned short XPathResultImpl::resultType() const
 {
-	return m_resultType;
+    return m_resultType;
 }
 
 double XPathResultImpl::numberValue(int &exceptioncode) const
 {
-	if ( resultType() != NUMBER_TYPE ) {
-		exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
-		return 0.0;
-	}
-	return m_value.toNumber();
+    if (resultType() != NUMBER_TYPE) {
+        exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
+        return 0.0;
+    }
+    return m_value.toNumber();
 }
 
 DOM::DOMString XPathResultImpl::stringValue(int &exceptioncode) const
 {
-	if ( resultType() != STRING_TYPE ) {
-		exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
-		return DOMString();
-	}
-	return m_value.toString();
+    if (resultType() != STRING_TYPE) {
+        exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
+        return DOMString();
+    }
+    return m_value.toString();
 }
 
 bool XPathResultImpl::booleanValue(int &exceptioncode) const
 {
-	if ( resultType() != BOOLEAN_TYPE ) {
-		exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
-		return false;
-	}
-	return m_value.toBoolean();
+    if (resultType() != BOOLEAN_TYPE) {
+        exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
+        return false;
+    }
+    return m_value.toBoolean();
 }
 
 NodeImpl *XPathResultImpl::singleNodeValue(int &exceptioncode) const
 {
-	if ( resultType() != ANY_UNORDERED_NODE_TYPE &&
-	     resultType() != FIRST_ORDERED_NODE_TYPE ) {
-		exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
-		return 0;
-	}
-	DomNodeList nodes = m_value.toNodeset();
+    if (resultType() != ANY_UNORDERED_NODE_TYPE &&
+            resultType() != FIRST_ORDERED_NODE_TYPE) {
+        exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
+        return 0;
+    }
+    DomNodeList nodes = m_value.toNodeset();
 
-	if (nodes && nodes->length())
-		return nodes->item(0);
-	else
-		return 0;
+    if (nodes && nodes->length()) {
+        return nodes->item(0);
+    } else {
+        return 0;
+    }
 }
 
 bool XPathResultImpl::invalidIteratorState() const
 {
-	if ( resultType() != UNORDERED_NODE_ITERATOR_TYPE &&
-	     resultType() != ORDERED_NODE_ITERATOR_TYPE ) {
-		return false;
-	}
-	// XXX How to tell whether the document was changed since this
-	// result was returned?
-	return true;
+    if (resultType() != UNORDERED_NODE_ITERATOR_TYPE &&
+            resultType() != ORDERED_NODE_ITERATOR_TYPE) {
+        return false;
+    }
+    // XXX How to tell whether the document was changed since this
+    // result was returned?
+    return true;
 }
 
 unsigned long XPathResultImpl::snapshotLength(int &exceptioncode) const
 {
-	if ( resultType() != UNORDERED_NODE_SNAPSHOT_TYPE &&
-	     resultType() != ORDERED_NODE_SNAPSHOT_TYPE ) {
-		exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
-		return 0;
-	}
+    if (resultType() != UNORDERED_NODE_SNAPSHOT_TYPE &&
+            resultType() != ORDERED_NODE_SNAPSHOT_TYPE) {
+        exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
+        return 0;
+    }
 
-	SharedPtr<DOM::StaticNodeListImpl> nodes = m_value.toNodeset();
-	return nodes ? nodes->length() : 0;
+    SharedPtr<DOM::StaticNodeListImpl> nodes = m_value.toNodeset();
+    return nodes ? nodes->length() : 0;
 }
 
 NodeImpl *XPathResultImpl::iterateNext(int &exceptioncode)
 {
-	if ( resultType() != UNORDERED_NODE_ITERATOR_TYPE &&
-	     resultType() != ORDERED_NODE_ITERATOR_TYPE ) {
-		exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
-		return 0;
-	}
-	// XXX How to tell whether the document was changed since this
-	// result was returned? We need to throw an INVALID_STATE_ERR if that
-	// is the case.
-	SharedPtr<DOM::StaticNodeListImpl> nodes = m_value.toNodeset();
-	if ( !nodes || m_nodeIterator >= nodes->length() ) {
-		return 0;
-	} else {
-		NodeImpl* n = nodes->item(m_nodeIterator);
-		++m_nodeIterator;
-		return n;
-	}
+    if (resultType() != UNORDERED_NODE_ITERATOR_TYPE &&
+            resultType() != ORDERED_NODE_ITERATOR_TYPE) {
+        exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
+        return 0;
+    }
+    // XXX How to tell whether the document was changed since this
+    // result was returned? We need to throw an INVALID_STATE_ERR if that
+    // is the case.
+    SharedPtr<DOM::StaticNodeListImpl> nodes = m_value.toNodeset();
+    if (!nodes || m_nodeIterator >= nodes->length()) {
+        return 0;
+    } else {
+        NodeImpl *n = nodes->item(m_nodeIterator);
+        ++m_nodeIterator;
+        return n;
+    }
 }
 
-NodeImpl *XPathResultImpl::snapshotItem( unsigned long index, int &exceptioncode )
+NodeImpl *XPathResultImpl::snapshotItem(unsigned long index, int &exceptioncode)
 {
-	if ( resultType() != UNORDERED_NODE_SNAPSHOT_TYPE &&
-	     resultType() != ORDERED_NODE_SNAPSHOT_TYPE ) {
-		exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
-		return 0;
-	}
-	DomNodeList nodes = m_value.toNodeset();
-	if ( !nodes || index >= nodes->length() ) {
-		return 0;
-	}
-	return nodes->item( index );
-}
-
-// ---------------------------------------------------------------------------
-
-DefaultXPathNSResolverImpl::DefaultXPathNSResolverImpl( NodeImpl *node )
-	: m_node( node )
-{
-}
-
-DOMString DefaultXPathNSResolverImpl::lookupNamespaceURI( const DOMString& prefix )
-{
-	// Apparently Node::lookupNamespaceURI doesn't do this.
-	// ### check
-	if ( prefix.string() == "xml" ) {
-		return DOMString( "http://www.w3.org/XML/1998/namespace" );
-	}
-	return m_node->lookupNamespaceURI( prefix );
+    if (resultType() != UNORDERED_NODE_SNAPSHOT_TYPE &&
+            resultType() != ORDERED_NODE_SNAPSHOT_TYPE) {
+        exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
+        return 0;
+    }
+    DomNodeList nodes = m_value.toNodeset();
+    if (!nodes || index >= nodes->length()) {
+        return 0;
+    }
+    return nodes->item(index);
 }
 
 // ---------------------------------------------------------------------------
-XPathExpressionImpl::XPathExpressionImpl( const DOMString& expression, XPathNSResolverImpl *resolver ): m_statement(expression, resolver)
+
+DefaultXPathNSResolverImpl::DefaultXPathNSResolverImpl(NodeImpl *node)
+    : m_node(node)
 {
 }
 
-XPathResultImpl *XPathExpressionImpl::evaluate( NodeImpl *contextNode,
-                                                unsigned short type,
-                                                XPathResultImpl* /*result_*/,
-                                                int &exceptioncode )
+DOMString DefaultXPathNSResolverImpl::lookupNamespaceURI(const DOMString &prefix)
 {
-	if ( !isValidContextNode( contextNode ) ) {
-		exceptioncode = DOMException::NOT_SUPPORTED_ERR;
-		return 0;
-	}
+    // Apparently Node::lookupNamespaceURI doesn't do this.
+    // ### check
+    if (prefix.string() == "xml") {
+        return DOMString("http://www.w3.org/XML/1998/namespace");
+    }
+    return m_node->lookupNamespaceURI(prefix);
+}
 
-	// We are permitted, but not required, to re-use result_. We don't.
-	Value xpathRes = m_statement.evaluate( contextNode, exceptioncode );
-	XPathResultImpl* result = new XPathResultImpl( exceptioncode ? Value() : xpathRes );
-	
-	if ( type != ANY_TYPE ) {
-		result->convertTo( type, exceptioncode );
-		if( exceptioncode ) {
-			// qDebug() << "couldn't convert XPathResult to" <<  type << "from" << xpathRes.type();
-			delete result;
-			return 0;
-		}
-	}
+// ---------------------------------------------------------------------------
+XPathExpressionImpl::XPathExpressionImpl(const DOMString &expression, XPathNSResolverImpl *resolver): m_statement(expression, resolver)
+{
+}
 
-	return result;
+XPathResultImpl *XPathExpressionImpl::evaluate(NodeImpl *contextNode,
+        unsigned short type,
+        XPathResultImpl * /*result_*/,
+        int &exceptioncode)
+{
+    if (!isValidContextNode(contextNode)) {
+        exceptioncode = DOMException::NOT_SUPPORTED_ERR;
+        return 0;
+    }
+
+    // We are permitted, but not required, to re-use result_. We don't.
+    Value xpathRes = m_statement.evaluate(contextNode, exceptioncode);
+    XPathResultImpl *result = new XPathResultImpl(exceptioncode ? Value() : xpathRes);
+
+    if (type != ANY_TYPE) {
+        result->convertTo(type, exceptioncode);
+        if (exceptioncode) {
+            // qDebug() << "couldn't convert XPathResult to" <<  type << "from" << xpathRes.type();
+            delete result;
+            return 0;
+        }
+    }
+
+    return result;
 }
 
 int XPathExpressionImpl::parseExceptionCode()
 {
-	return m_statement.exceptionCode();
+    return m_statement.exceptionCode();
 }
 
-// kate: indent-width 4; replace-tabs off; tab-width 4; space-indent off;

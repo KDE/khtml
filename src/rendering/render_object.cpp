@@ -90,12 +90,12 @@ void RenderObject::cleanup()
 
 //#define MASK_DEBUG
 
-void* RenderObject::operator new(size_t sz, RenderArena* renderArena) throw()
+void *RenderObject::operator new(size_t sz, RenderArena *renderArena) throw()
 {
     return renderArena->allocate(sz);
 }
 
-void RenderObject::operator delete(void* ptr, size_t sz)
+void RenderObject::operator delete(void *ptr, size_t sz)
 {
     assert(baseOfRenderObjectBeingDeleted == ptr);
 
@@ -105,137 +105,139 @@ void RenderObject::operator delete(void* ptr, size_t sz)
 #endif
 }
 
-RenderObject *RenderObject::createObject(DOM::NodeImpl* node,  RenderStyle* style)
+RenderObject *RenderObject::createObject(DOM::NodeImpl *node,  RenderStyle *style)
 {
     RenderObject *o = 0;
-    khtml::RenderArena* arena = node->document()->renderArena();
-    switch(style->display())
-    {
+    khtml::RenderArena *arena = node->document()->renderArena();
+    switch (style->display()) {
     case NONE:
         break;
     case INLINE:
-        o = new (arena) RenderInline(node);
+        o = new(arena) RenderInline(node);
         break;
     case BLOCK:
-        o = new (arena) RenderBlock(node);
+        o = new(arena) RenderBlock(node);
         break;
     case INLINE_BLOCK:
-        o = new (arena) RenderBlock(node);
+        o = new(arena) RenderBlock(node);
         break;
     case LIST_ITEM:
-        o = new (arena) RenderListItem(node);
+        o = new(arena) RenderListItem(node);
         break;
     case RUN_IN:
     case COMPACT:
-        o = new (arena) RenderBlock(node);
+        o = new(arena) RenderBlock(node);
         break;
     case TABLE:
     case INLINE_TABLE:
         style->setFlowAroundFloats(true);
-        o = new (arena) RenderTable(node);
+        o = new(arena) RenderTable(node);
         break;
     case TABLE_ROW_GROUP:
     case TABLE_HEADER_GROUP:
     case TABLE_FOOTER_GROUP:
-        o = new (arena) RenderTableSection(node);
+        o = new(arena) RenderTableSection(node);
         break;
     case TABLE_ROW:
-        o = new (arena) RenderTableRow(node);
+        o = new(arena) RenderTableRow(node);
         break;
     case TABLE_COLUMN_GROUP:
     case TABLE_COLUMN:
-        o = new (arena) RenderTableCol(node);
+        o = new(arena) RenderTableCol(node);
         break;
     case TABLE_CELL:
-        o = new (arena) RenderTableCell(node);
+        o = new(arena) RenderTableCell(node);
         break;
     case TABLE_CAPTION:
-        o = new (arena) RenderBlock(node);
+        o = new(arena) RenderBlock(node);
         break;
     }
     return o;
 }
 
-
-RenderObject::RenderObject(DOM::NodeImpl* node)
+RenderObject::RenderObject(DOM::NodeImpl *node)
     : CachedObjectClient(),
-      m_style( 0 ),
-      m_node( node ),
-      m_parent( 0 ),
-      m_previous( 0 ),
-      m_next( 0 ),
-      m_verticalPosition( PositionUndefined ),
-      m_needsLayout( false ),
-      m_normalChildNeedsLayout( false ),
-      m_markedForRepaint( false ),
-      m_posChildNeedsLayout( false ),
-      m_minMaxKnown( false ),
-      m_floating( false ),
+      m_style(0),
+      m_node(node),
+      m_parent(0),
+      m_previous(0),
+      m_next(0),
+      m_verticalPosition(PositionUndefined),
+      m_needsLayout(false),
+      m_normalChildNeedsLayout(false),
+      m_markedForRepaint(false),
+      m_posChildNeedsLayout(false),
+      m_minMaxKnown(false),
+      m_floating(false),
 
-      m_positioned( false ),
-      m_relPositioned( false ),
-      m_paintBackground( false ),
+      m_positioned(false),
+      m_relPositioned(false),
+      m_paintBackground(false),
 
-      m_isAnonymous( node->isDocumentNode() ),
-      m_recalcMinMax( false ),
-      m_isText( false ),
-      m_inline( true ),
-      m_attached( false ),
+      m_isAnonymous(node->isDocumentNode()),
+      m_recalcMinMax(false),
+      m_isText(false),
+      m_inline(true),
+      m_attached(false),
 
-      m_replaced( false ),
-      m_mouseInside( false ),
-      m_hasFirstLine( false ),
-      m_isSelectionBorder( false ),
-      m_isRoot( false ),
-      m_afterPageBreak( false ),
-      m_needsPageClear( false ),
-      m_containsPageBreak( false ),
+      m_replaced(false),
+      m_mouseInside(false),
+      m_hasFirstLine(false),
+      m_isSelectionBorder(false),
+      m_isRoot(false),
+      m_afterPageBreak(false),
+      m_needsPageClear(false),
+      m_containsPageBreak(false),
       m_hasOverflowClip(false),
       m_inPosObjectList(false),
       m_doNotDelete(false)
 {
-  assert( node );
-  if (node->document()->documentElement() == node) setIsRoot(true);
+    assert(node);
+    if (node->document()->documentElement() == node) {
+        setIsRoot(true);
+    }
 }
 
 RenderObject::~RenderObject()
 {
-    const BackgroundLayer* bgLayer = m_style->backgroundLayers();
+    const BackgroundLayer *bgLayer = m_style->backgroundLayers();
     while (bgLayer) {
-        if(bgLayer->backgroundImage())
+        if (bgLayer->backgroundImage()) {
             bgLayer->backgroundImage()->deref(this);
+        }
         bgLayer = bgLayer->next();
     }
 
     m_style->deref();
 }
 
-RenderObject* RenderObject::objectBelow() const
+RenderObject *RenderObject::objectBelow() const
 {
-    RenderObject* obj = firstChild();
-    if ( !obj ) {
+    RenderObject *obj = firstChild();
+    if (!obj) {
         obj = nextSibling();
-        if ( !obj )
-        {
+        if (!obj) {
             obj = parent();
-            while (obj && !obj->nextSibling())
+            while (obj && !obj->nextSibling()) {
                 obj = obj->parent();
-            if (obj)
+            }
+            if (obj) {
                 obj = obj->nextSibling();
+            }
         }
     }
     return obj;
 }
 
-RenderObject* RenderObject::objectAbove() const
+RenderObject *RenderObject::objectAbove() const
 {
-    RenderObject* obj = previousSibling();
-    if ( !obj )
+    RenderObject *obj = previousSibling();
+    if (!obj) {
         return parent();
+    }
 
-    RenderObject* last = obj->lastChild();
-    while ( last )
-    {
+    RenderObject *last = obj->lastChild();
+    while (last) {
         obj = last;
         last = last->lastChild();
     }
@@ -261,44 +263,46 @@ bool RenderObject::isHTMLMarquee() const
     return element() && element()->renderer() == this && element()->id() == ID_MARQUEE;
 }
 
-void RenderObject::addChild(RenderObject* , RenderObject *)
+void RenderObject::addChild(RenderObject *, RenderObject *)
 {
     KHTMLAssert(0);
 }
 
-RenderObject* RenderObject::removeChildNode(RenderObject*)
+RenderObject *RenderObject::removeChildNode(RenderObject *)
 {
     KHTMLAssert(0);
     return 0;
 }
 
-void RenderObject::removeChild(RenderObject*)
+void RenderObject::removeChild(RenderObject *)
 {
     KHTMLAssert(0);
 }
 
-void RenderObject::appendChildNode(RenderObject*)
+void RenderObject::appendChildNode(RenderObject *)
 {
     KHTMLAssert(0);
 }
 
-void RenderObject::insertChildNode(RenderObject*, RenderObject*)
+void RenderObject::insertChildNode(RenderObject *, RenderObject *)
 {
     KHTMLAssert(0);
 }
 
 RenderObject *RenderObject::nextRenderer() const
 {
-    if (firstChild())
+    if (firstChild()) {
         return firstChild();
-    else if (nextSibling())
+    } else if (nextSibling()) {
         return nextSibling();
-    else {
+    } else {
         const RenderObject *r = this;
-        while (r && !r->nextSibling())
+        while (r && !r->nextSibling()) {
             r = r->parent();
-        if (r)
+        }
+        if (r) {
             return r->nextSibling();
+        }
     }
     return 0;
 }
@@ -307,14 +311,13 @@ RenderObject *RenderObject::previousRenderer() const
 {
     if (previousSibling()) {
         RenderObject *r = previousSibling();
-        while (r->lastChild())
+        while (r->lastChild()) {
             r = r->lastChild();
+        }
         return r;
-    }
-    else if (parent()) {
+    } else if (parent()) {
         return parent();
-    }
-    else {
+    } else {
         return 0;
     }
 }
@@ -327,11 +330,11 @@ bool RenderObject::isEditable() const
     }
 
     return style()->visibility() == VISIBLE &&
-        element() && element()->isContentEditable() &&
-        ((isBlockFlow() && !firstChild()) ||
-        isReplaced() ||
-        isBR() ||
-        (textRenderer && textRenderer->firstTextBox()));
+           element() && element()->isContentEditable() &&
+           ((isBlockFlow() && !firstChild()) ||
+            isReplaced() ||
+            isBR() ||
+            (textRenderer && textRenderer->firstTextBox()));
 }
 
 RenderObject *RenderObject::nextEditable() const
@@ -343,10 +346,11 @@ RenderObject *RenderObject::nextEditable() const
             r = n;
             n = n->firstChild();
         }
-        if (r->isEditable())
+        if (r->isEditable()) {
             return r;
-        else
+        } else {
             return r->nextEditable();
+        }
     }
     n = r->nextSibling();
     if (n) {
@@ -355,10 +359,11 @@ RenderObject *RenderObject::nextEditable() const
             r = n;
             n = n->firstChild();
         }
-        if (r->isEditable())
+        if (r->isEditable()) {
             return r;
-        else
+        } else {
             return r->nextEditable();
+        }
     }
     n = r->parent();
     while (n) {
@@ -371,10 +376,11 @@ RenderObject *RenderObject::nextEditable() const
                 r = n;
                 n = n->firstChild();
             }
-            if (r->isEditable())
+            if (r->isEditable()) {
                 return r;
-            else
+            } else {
                 return r->nextEditable();
+            }
         }
         n = r->parent();
     }
@@ -390,10 +396,11 @@ RenderObject *RenderObject::previousEditable() const
             r = n;
             n = n->lastChild();
         }
-        if (r->isEditable())
+        if (r->isEditable()) {
             return r;
-        else
+        } else {
             return r->previousEditable();
+        }
     }
     n = r->previousSibling();
     if (n) {
@@ -402,10 +409,11 @@ RenderObject *RenderObject::previousEditable() const
             r = n;
             n = n->lastChild();
         }
-        if (r->isEditable())
+        if (r->isEditable()) {
             return r;
-        else
+        } else {
             return r->previousEditable();
+        }
     }
     n = r->parent();
     while (n) {
@@ -418,10 +426,11 @@ RenderObject *RenderObject::previousEditable() const
                 r = n;
                 n = n->lastChild();
             }
-            if (r->isEditable())
+            if (r->isEditable()) {
                 return r;
-            else
+            } else {
                 return r->previousEditable();
+            }
         }
         n = r->parent();
     }
@@ -434,8 +443,9 @@ RenderObject *RenderObject::firstLeafChild() const
     while (r) {
         RenderObject *n = 0;
         n = r->firstChild();
-        if (!n)
+        if (!n) {
             break;
+        }
         r = n;
     }
     return r;
@@ -447,15 +457,16 @@ RenderObject *RenderObject::lastLeafChild() const
     while (r) {
         RenderObject *n = 0;
         n = r->lastChild();
-        if (!n)
+        if (!n) {
             break;
+        }
         r = n;
     }
     return r;
 }
 
-static void addLayers(RenderObject* obj, RenderLayer* parentLayer, RenderObject*& newObject,
-                      RenderLayer*& beforeChild)
+static void addLayers(RenderObject *obj, RenderLayer *parentLayer, RenderObject *&newObject,
+                      RenderLayer *&beforeChild)
 {
     if (obj->layer()) {
         if (!beforeChild && newObject) {
@@ -469,107 +480,121 @@ static void addLayers(RenderObject* obj, RenderLayer* parentLayer, RenderObject*
         return;
     }
 
-    for (RenderObject* curr = obj->firstChild(); curr; curr = curr->nextSibling())
+    for (RenderObject *curr = obj->firstChild(); curr; curr = curr->nextSibling()) {
         addLayers(curr, parentLayer, newObject, beforeChild);
+    }
 }
 
-void RenderObject::addLayers(RenderLayer* parentLayer, RenderObject* newObject)
+void RenderObject::addLayers(RenderLayer *parentLayer, RenderObject *newObject)
 {
-    if (!parentLayer)
+    if (!parentLayer) {
         return;
+    }
 
-    RenderObject* object = newObject;
-    RenderLayer* beforeChild = 0;
+    RenderObject *object = newObject;
+    RenderLayer *beforeChild = 0;
     ::addLayers(this, parentLayer, object, beforeChild);
 }
 
-void RenderObject::removeLayers(RenderLayer* parentLayer)
+void RenderObject::removeLayers(RenderLayer *parentLayer)
 {
-    if (!parentLayer)
+    if (!parentLayer) {
         return;
+    }
 
     if (layer()) {
         parentLayer->removeChild(layer());
         return;
     }
 
-    for (RenderObject* curr = firstChild(); curr; curr = curr->nextSibling())
+    for (RenderObject *curr = firstChild(); curr; curr = curr->nextSibling()) {
         curr->removeLayers(parentLayer);
+    }
 }
 
-void RenderObject::moveLayers(RenderLayer* oldParent, RenderLayer* newParent)
+void RenderObject::moveLayers(RenderLayer *oldParent, RenderLayer *newParent)
 {
-    if (!newParent)
+    if (!newParent) {
         return;
+    }
 
     if (layer()) {
-        if (oldParent)
+        if (oldParent) {
             oldParent->removeChild(layer());
+        }
         newParent->addChild(layer());
         return;
     }
 
-    for (RenderObject* curr = firstChild(); curr; curr = curr->nextSibling())
+    for (RenderObject *curr = firstChild(); curr; curr = curr->nextSibling()) {
         curr->moveLayers(oldParent, newParent);
+    }
 }
 
-RenderLayer* RenderObject::findNextLayer(RenderLayer* parentLayer, RenderObject* startPoint,
-                                         bool checkParent)
+RenderLayer *RenderObject::findNextLayer(RenderLayer *parentLayer, RenderObject *startPoint,
+        bool checkParent)
 {
     // Error check the parent layer passed in.  If it's null, we can't find anything.
-    if (!parentLayer)
+    if (!parentLayer) {
         return 0;
+    }
 
     // Step 1: If our layer is a child of the desired parent, then return our layer.
-    RenderLayer* ourLayer = layer();
-    if (ourLayer && ourLayer->parent() == parentLayer)
+    RenderLayer *ourLayer = layer();
+    if (ourLayer && ourLayer->parent() == parentLayer) {
         return ourLayer;
+    }
 
     // Step 2: If we don't have a layer, or our layer is the desired parent, then descend
     // into our siblings trying to find the next layer whose parent is the desired parent.
     if (!ourLayer || ourLayer == parentLayer) {
-        for (RenderObject* curr = startPoint ? startPoint->nextSibling() : firstChild();
-             curr; curr = curr->nextSibling()) {
-            RenderLayer* nextLayer = curr->findNextLayer(parentLayer, 0, false);
-            if (nextLayer)
+        for (RenderObject *curr = startPoint ? startPoint->nextSibling() : firstChild();
+                curr; curr = curr->nextSibling()) {
+            RenderLayer *nextLayer = curr->findNextLayer(parentLayer, 0, false);
+            if (nextLayer) {
                 return nextLayer;
+            }
         }
     }
 
     // Step 3: If our layer is the desired parent layer, then we're finished.  We didn't
     // find anything.
-    if (parentLayer == ourLayer)
+    if (parentLayer == ourLayer) {
         return 0;
+    }
 
     // Step 4: If |checkParent| is set, climb up to our parent and check its siblings that
     // follow us to see if we can locate a layer.
-    if (checkParent && parent())
+    if (checkParent && parent()) {
         return parent()->findNextLayer(parentLayer, this, true);
+    }
 
     return 0;
 }
 
-RenderLayer* RenderObject::enclosingLayer() const
+RenderLayer *RenderObject::enclosingLayer() const
 {
-    const RenderObject* curr = this;
+    const RenderObject *curr = this;
     while (curr) {
         RenderLayer *layer = curr->layer();
-        if (layer)
+        if (layer) {
             return layer;
+        }
         curr = curr->parent();
     }
     return 0;
 }
 
-RenderLayer* RenderObject::enclosingStackingContext() const
+RenderLayer *RenderObject::enclosingStackingContext() const
 {
-    RenderLayer* l = enclosingLayer();
-    while (l && !l->isStackingContext())
+    RenderLayer *l = enclosingLayer();
+    while (l && !l->isStackingContext()) {
         l = l->parent();
+    }
     return l;
 }
 
-QRectF RenderObject::clientRectToViewport(const QRectF& rect)
+QRectF RenderObject::clientRectToViewport(const QRectF &rect)
 {
     int offsetX = document()->part()->view()->contentsX();
     int offsetY = document()->part()->view()->contentsY();
@@ -596,83 +621,91 @@ QList<QRectF> RenderObject::getClientRects()
 
 int RenderObject::offsetLeft() const
 {
-    if (isBody())
+    if (isBody()) {
         return 0;
+    }
 
     int x, dummy;
-    RenderObject* offsetPar = offsetParent();
+    RenderObject *offsetPar = offsetParent();
     if (!offsetPar || offsetPar->isBody()) {
-        if (style()->position() == PFIXED)
+        if (style()->position() == PFIXED) {
             return xPos();
-        else {
+        } else {
             absolutePosition(x, dummy);
             return x;
         }
     }
 
-    x = xPos() -offsetPar->borderLeft();
-    if ( isPositioned() )
+    x = xPos() - offsetPar->borderLeft();
+    if (isPositioned()) {
         return x;
+    }
 
     if (isRelPositioned()) {
         int y = 0;
-        static_cast<const RenderBox*>(this)->relativePositionOffset(x, y);
+        static_cast<const RenderBox *>(this)->relativePositionOffset(x, y);
     }
 
-    for( RenderObject* curr = parent();
-         curr && curr != offsetPar;
-         curr = curr->parent() )
+    for (RenderObject *curr = parent();
+            curr && curr != offsetPar;
+            curr = curr->parent()) {
         x += curr->xPos();
+    }
 
-     return x;
+    return x;
 }
 
 int RenderObject::offsetTop() const
 {
-    if (isBody())
+    if (isBody()) {
         return 0;
+    }
 
     int y, dummy;
-    RenderObject* offsetPar = offsetParent();
+    RenderObject *offsetPar = offsetParent();
     if (!offsetPar || offsetPar->isBody()) {
-        if (style()->position() == PFIXED)
+        if (style()->position() == PFIXED) {
             return yPos();
-        else {
+        } else {
             absolutePosition(dummy, y);
             return y;
         }
     }
 
-    y = yPos() -offsetPar->borderTop();
-    if ( isPositioned() )
+    y = yPos() - offsetPar->borderTop();
+    if (isPositioned()) {
         return y;
-
-     if (isRelPositioned()) {
-        int x = 0;
-        static_cast<const RenderBox*>(this)->relativePositionOffset(x, y);
     }
-    for( RenderObject* curr = parent();
-         curr && curr != offsetPar;
-         curr = curr->parent() )
-        y += curr->yPos();
 
-     return y;
+    if (isRelPositioned()) {
+        int x = 0;
+        static_cast<const RenderBox *>(this)->relativePositionOffset(x, y);
+    }
+    for (RenderObject *curr = parent();
+            curr && curr != offsetPar;
+            curr = curr->parent()) {
+        y += curr->yPos();
+    }
+
+    return y;
 }
 
-RenderObject* RenderObject::offsetParent() const
+RenderObject *RenderObject::offsetParent() const
 {
-    if (isBody() || style()->position() == PFIXED)
+    if (isBody() || style()->position() == PFIXED) {
         return 0;
+    }
 
     // can't really use containing blocks here (#113280)
     bool skipTables = isPositioned() || isRelPositioned();
     bool strict = !style()->htmlHacks();
-    RenderObject* curr = parent();
+    RenderObject *curr = parent();
     while (curr && (!curr->element() ||
                     (!curr->isPositioned() && !curr->isRelPositioned() &&
-                        !(strict && skipTables ? curr->isRoot() : curr->isBody())))) {
-        if (!skipTables && curr->element() && (curr->isTableCell() || curr->isTable()))
+                     !(strict && skipTables ? curr->isRoot() : curr->isBody())))) {
+        if (!skipTables && curr->element() && (curr->isTableCell() || curr->isTable())) {
             break;
+        }
         curr = curr->parent();
     }
     return curr;
@@ -683,7 +716,7 @@ RenderObject* RenderObject::offsetParent() const
 short RenderObject::clientWidth() const
 {
     return width() - borderLeft() - borderRight() -
-        (layer() ? layer()->verticalScrollbarWidth() : 0);
+           (layer() ? layer()->verticalScrollbarWidth() : 0);
 }
 
 int RenderObject::clientLeft() const
@@ -699,7 +732,7 @@ int RenderObject::clientTop() const
 int RenderObject::clientHeight() const
 {
     return height() - borderTop() - borderBottom() -
-      (layer() ? layer()->horizontalScrollbarHeight() : 0);
+           (layer() ? layer()->horizontalScrollbarHeight() : 0);
 }
 
 // scrollWidth/scrollHeight is the size including the overflow area
@@ -713,13 +746,13 @@ int RenderObject::scrollHeight() const
     return (hasOverflowClip() && layer()) ? layer()->scrollHeight() : overflowHeight() - overflowTop();
 }
 
-void RenderObject::updatePixmap(const QRect& /*r*/, CachedImage* image)
+void RenderObject::updatePixmap(const QRect & /*r*/, CachedImage *image)
 {
 #ifdef __GNUC__
 #warning "FIXME: Check if complete!"
 #endif
     //repaint bg when it finished loading
-    if(image && parent() && style() && style()->backgroundLayers()->containsImage(image)) {
+    if (image && parent() && style() && style()->backgroundLayers()->containsImage(image)) {
         isBody() ? canvas()->repaint() : repaint();
     }
 }
@@ -730,11 +763,10 @@ void RenderObject::setNeedsLayout(bool b, bool markParents)
     m_needsLayout = b;
     if (b) {
         if (!alreadyNeededLayout && markParents && m_parent) {
-            dirtyFormattingContext( false );
+            dirtyFormattingContext(false);
             markContainingBlocksForLayout();
         }
-    }
-    else {
+    } else {
         m_posChildNeedsLayout = false;
         m_normalChildNeedsLayout = false;
     }
@@ -745,10 +777,10 @@ void RenderObject::setChildNeedsLayout(bool b, bool markParents)
     bool alreadyNeededLayout = m_normalChildNeedsLayout;
     m_normalChildNeedsLayout = b;
     if (b) {
-        if (!alreadyNeededLayout && markParents)
+        if (!alreadyNeededLayout && markParents) {
             markContainingBlocksForLayout();
-    }
-    else {
+        }
+    } else {
         m_posChildNeedsLayout = false;
         m_normalChildNeedsLayout = false;
     }
@@ -761,13 +793,14 @@ void RenderObject::markContainingBlocksForLayout()
 
     while (o) {
         if (!last->isText() && (last->style()->position() == PFIXED || last->style()->position() == PABSOLUTE)) {
-            if (o->m_posChildNeedsLayout)
+            if (o->m_posChildNeedsLayout) {
                 return;
+            }
             o->m_posChildNeedsLayout = true;
-        }
-        else {
-            if (o->m_normalChildNeedsLayout)
+        } else {
+            if (o->m_normalChildNeedsLayout) {
                 return;
+            }
             o->m_normalChildNeedsLayout = true;
         }
 
@@ -780,55 +813,62 @@ void RenderObject::markContainingBlocksForLayout()
 
 RenderBlock *RenderObject::containingBlock() const
 {
-    if(isTableCell())
-        return static_cast<RenderBlock*>( parent()->parent()->parent() );
-    if (isCanvas())
-        return const_cast<RenderBlock*>( static_cast<const RenderBlock*>(this) );
+    if (isTableCell()) {
+        return static_cast<RenderBlock *>(parent()->parent()->parent());
+    }
+    if (isCanvas()) {
+        return const_cast<RenderBlock *>(static_cast<const RenderBlock *>(this));
+    }
 
     RenderObject *o = parent();
-    if(m_style->position() == PFIXED) {
-        while ( o && !o->isCanvas() )
+    if (m_style->position() == PFIXED) {
+        while (o && !o->isCanvas()) {
             o = o->parent();
-    }
-    else if(m_style->position() == PABSOLUTE) {
+        }
+    } else if (m_style->position() == PABSOLUTE) {
         while (o &&
-               ( o->style()->position() == PSTATIC || ( o->isInline() && !o->isReplaced() ) ) && !o->isCanvas()) {
-               // for relpos inlines, return the nearest block - it will host the positioned objects list
-               if (o->isInline() && !o->isReplaced() && o->style()->position() == PRELATIVE)
-                   return o->containingBlock();
+                (o->style()->position() == PSTATIC || (o->isInline() && !o->isReplaced())) && !o->isCanvas()) {
+            // for relpos inlines, return the nearest block - it will host the positioned objects list
+            if (o->isInline() && !o->isReplaced() && o->style()->position() == PRELATIVE) {
+                return o->containingBlock();
+            }
             o = o->parent();
         }
     } else {
-        while(o && ( ( o->isInline() && !o->isReplaced() ) || o->isTableRow() || o->isTableSection() ||
-                       o->isTableCol() || o->isFrameSet() ||
-                       o->isSVGContainer() || o->isSVGRoot() ) ) // for svg
+        while (o && ((o->isInline() && !o->isReplaced()) || o->isTableRow() || o->isTableSection() ||
+                     o->isTableCol() || o->isFrameSet() ||
+                     o->isSVGContainer() || o->isSVGRoot()))   // for svg
 
+        {
             o = o->parent();
+        }
     }
     // this is just to make sure we return a valid element.
     // the case below should never happen...
-    if(!o || !o->isRenderBlock()) {
-        if(!isCanvas()) {
+    if (!o || !o->isRenderBlock()) {
+        if (!isCanvas()) {
 #ifndef NDEBUG
             qDebug() << this << ": " << renderName() << "(RenderObject): No containingBlock!";
-            const RenderObject* p = this;
-            while (p->parent()) p = p->parent();
+            const RenderObject *p = this;
+            while (p->parent()) {
+                p = p->parent();
+            }
             p->printTree();
 #endif
         }
         return canvas(); // likely wrong, but better than a crash
     }
 
-    return static_cast<RenderBlock*>( o );
+    return static_cast<RenderBlock *>(o);
 }
 
-short RenderObject::containingBlockWidth(RenderObject*) const
+short RenderObject::containingBlockWidth(RenderObject *) const
 {
     // ###
     return containingBlock()->contentWidth();
 }
 
-int RenderObject::containingBlockHeight(RenderObject*) const
+int RenderObject::containingBlockHeight(RenderObject *) const
 {
     // ###
     return containingBlock()->contentHeight();
@@ -839,24 +879,27 @@ bool RenderObject::sizesToMaxWidth() const
     // Marquees in WinIE are like a mixture of blocks and inline-blocks.  They size as though they're blocks,
     // but they allow text to sit on the same line as the marquee.
     if (isFloating() || isCompact() ||
-        (isInlineBlockOrInlineTable() && !isHTMLMarquee()) ||
-        (element() && (element()->id() == ID_BUTTON || element()->id() == ID_LEGEND)))
+            (isInlineBlockOrInlineTable() && !isHTMLMarquee()) ||
+            (element() && (element()->id() == ID_BUTTON || element()->id() == ID_LEGEND))) {
         return true;
+    }
 
     // Children of a horizontal marquee do not fill the container by default.
     // FIXME: Need to deal with MAUTO value properly.  It could be vertical.
     if (parent()->style()->overflowX() == OMARQUEE) {
         EMarqueeDirection dir = parent()->style()->marqueeDirection();
-        if (dir == MAUTO || dir == MFORWARD || dir == MBACKWARD || dir == MLEFT || dir == MRIGHT)
+        if (dir == MAUTO || dir == MFORWARD || dir == MBACKWARD || dir == MLEFT || dir == MRIGHT) {
             return true;
+        }
     }
 
-#ifdef APPLE_CHANGES	// ### what the heck is a flexbox?
+#ifdef APPLE_CHANGES    // ### what the heck is a flexbox?
     // Flexible horizontal boxes lay out children at their maxwidths.  Also vertical boxes
     // that don't stretch their kids lay out their children at their maxwidths.
     if (parent()->isFlexibleBox() &&
-        (parent()->style()->boxOrient() == HORIZONTAL || parent()->style()->boxAlign() != BSTRETCH))
+            (parent()->style()->boxOrient() == HORIZONTAL || parent()->style()->boxAlign() != BSTRETCH)) {
         return true;
+    }
 #endif
 
     return false;
@@ -866,83 +909,87 @@ bool RenderObject::sizesToMaxWidth() const
 static int brightness(int red, int green, int blue)
 {
 
-  int intensity = (red + green + blue) / 3;
+    int intensity = (red + green + blue) / 3;
 
-  int luminosity =
-    ((RED_LUMINOSITY * red) / 100) +
-    ((GREEN_LUMINOSITY * green) / 100) +
-    ((BLUE_LUMINOSITY * blue) / 100);
+    int luminosity =
+        ((RED_LUMINOSITY * red) / 100) +
+        ((GREEN_LUMINOSITY * green) / 100) +
+        ((BLUE_LUMINOSITY * blue) / 100);
 
-  return ((intensity * INTENSITY_FACTOR) +
-          (luminosity * LUMINOSITY_FACTOR)) / 100;
+    return ((intensity * INTENSITY_FACTOR) +
+            (luminosity * LUMINOSITY_FACTOR)) / 100;
 }
 
 static void calc3DColor(QColor &color, bool darken)
 {
-  int rb = color.red();
-  int gb = color.green();
-  int bb = color.blue();
-  int a = color.alpha();
+    int rb = color.red();
+    int gb = color.green();
+    int bb = color.blue();
+    int a = color.alpha();
 
-  int brightness_ = brightness(rb,gb,bb);
+    int brightness_ = brightness(rb, gb, bb);
 
-  int f0, f1;
-  if (brightness_ < COLOR_DARK_THRESHOLD) {
-    f0 = COLOR_DARK_BS_FACTOR;
-    f1 = COLOR_DARK_TS_FACTOR;
-  } else if (brightness_ > COLOR_LIGHT_THRESHOLD) {
-    f0 = COLOR_LITE_BS_FACTOR;
-    f1 = COLOR_LITE_TS_FACTOR;
-  } else {
-    f0 = COLOR_DARK_BS_FACTOR +
-      (brightness_ *
-       (COLOR_LITE_BS_FACTOR - COLOR_DARK_BS_FACTOR) / MAX_COLOR);
-    f1 = COLOR_DARK_TS_FACTOR +
-      (brightness_ *
-       (COLOR_LITE_TS_FACTOR - COLOR_DARK_TS_FACTOR) / MAX_COLOR);
-  }
+    int f0, f1;
+    if (brightness_ < COLOR_DARK_THRESHOLD) {
+        f0 = COLOR_DARK_BS_FACTOR;
+        f1 = COLOR_DARK_TS_FACTOR;
+    } else if (brightness_ > COLOR_LIGHT_THRESHOLD) {
+        f0 = COLOR_LITE_BS_FACTOR;
+        f1 = COLOR_LITE_TS_FACTOR;
+    } else {
+        f0 = COLOR_DARK_BS_FACTOR +
+             (brightness_ *
+              (COLOR_LITE_BS_FACTOR - COLOR_DARK_BS_FACTOR) / MAX_COLOR);
+        f1 = COLOR_DARK_TS_FACTOR +
+             (brightness_ *
+              (COLOR_LITE_TS_FACTOR - COLOR_DARK_TS_FACTOR) / MAX_COLOR);
+    }
 
-  if (darken) {
-    int r = rb - (f0 * rb / 100);
-    int g = gb - (f0 * gb / 100);
-    int b = bb - (f0 * bb / 100);
-    if ((r == rb) && (g == gb) && (b == bb))
-      color = (color == Qt::black) ? QColor(DARK_GRAY) : QColor(Qt::black);
-    else
-      color.setRgb(r, g, b);
-  } else {
-    int r = qMin(rb + (f1 * (MAX_COLOR - rb) / 100), 255);
-    int g = qMin(gb + (f1 * (MAX_COLOR - gb) / 100), 255);
-    int b = qMin(bb + (f1 * (MAX_COLOR - bb) / 100), 255);
-    if ((r == rb) && (g == gb) && (b == bb))
-      color = (color == Qt::white) ? QColor(LIGHT_GRAY) : QColor(Qt::white);
-    else
-      color.setRgb(r, g, b);
-  }
-  color.setAlpha(a);
+    if (darken) {
+        int r = rb - (f0 * rb / 100);
+        int g = gb - (f0 * gb / 100);
+        int b = bb - (f0 * bb / 100);
+        if ((r == rb) && (g == gb) && (b == bb)) {
+            color = (color == Qt::black) ? QColor(DARK_GRAY) : QColor(Qt::black);
+        } else {
+            color.setRgb(r, g, b);
+        }
+    } else {
+        int r = qMin(rb + (f1 * (MAX_COLOR - rb) / 100), 255);
+        int g = qMin(gb + (f1 * (MAX_COLOR - gb) / 100), 255);
+        int b = qMin(bb + (f1 * (MAX_COLOR - bb) / 100), 255);
+        if ((r == rb) && (g == gb) && (b == bb)) {
+            color = (color == Qt::white) ? QColor(LIGHT_GRAY) : QColor(Qt::white);
+        } else {
+            color.setRgb(r, g, b);
+        }
+    }
+    color.setAlpha(a);
 }
 
 void RenderObject::drawBorder(QPainter *p, int x1, int y1, int x2, int y2,
-                              BorderSide s, QColor c, const QColor& textcolor, EBorderStyle style,
+                              BorderSide s, QColor c, const QColor &textcolor, EBorderStyle style,
                               int adjbw1, int adjbw2, bool invalidisInvert, qreal *nextDashOffset)
 {
-    if(nextDashOffset && style != DOTTED && style != DASHED)
+    if (nextDashOffset && style != DOTTED && style != DASHED) {
         *nextDashOffset = 0;
+    }
 
     if (p->hasClipping() && !p->clipRegion().boundingRect().intersects(QRect(x1, y1, x2 - x1, y2 - y1))) {
-        if (nextDashOffset && (style == DOTTED || style == DASHED))
+        if (nextDashOffset && (style == DOTTED || style == DASHED)) {
             *nextDashOffset += (s == BSTop || s == BSBottom) ? (x2 - x1) : (y2 - y1);
+        }
         return;
     }
 
-    int width = (s==BSTop||s==BSBottom?y2-y1:x2-x1);
+    int width = (s == BSTop || s == BSBottom ? y2 - y1 : x2 - x1);
 
-    if(style == DOUBLE && width < 3)
+    if (style == DOUBLE && width < 3) {
         style = SOLID;
+    }
 
-    if(!c.isValid()) {
-        if(invalidisInvert)
-        {
+    if (!c.isValid()) {
+        if (invalidisInvert) {
             // handle 'outline-color: invert'
             if (p->paintEngine() && p->paintEngine()->hasFeature(QPaintEngine::BlendModes)) {
                 p->setCompositionMode(QPainter::CompositionMode_Difference);
@@ -953,45 +1000,41 @@ void RenderObject::drawBorder(QPainter *p, int x1, int y1, int x2, int y2,
                 // the 'outline-color' property is the 'currentColor' [CSS3COLOR] keyword.
                 c = m_style->color();
             }
-        }
-        else {
-            if(style == INSET || style == OUTSET || style == RIDGE || style ==
-            GROOVE)
+        } else {
+            if (style == INSET || style == OUTSET || style == RIDGE || style ==
+                    GROOVE) {
                 c = Qt::white;
-            else
+            } else {
                 c = textcolor;
+            }
         }
     }
 
-    switch(style)
-    {
+    switch (style) {
     case BNATIVE:
     case BNONE:
     case BHIDDEN:
         // should not happen
-        if(invalidisInvert && p->compositionMode() == QPainter::CompositionMode_Difference)
+        if (invalidisInvert && p->compositionMode() == QPainter::CompositionMode_Difference) {
             p->setCompositionMode(QPainter::CompositionMode_SourceOver);
+        }
 
         return;
     case DOTTED:
-    case DASHED:
-    {
-        if (width <= 0)
+    case DASHED: {
+        if (width <= 0) {
             break;
+        }
 
         //Figure out on/off spacing
         int onLen  = width;
         int offLen = width;
 
-        if (style == DASHED)
-        {
-            if (width == 1)
-            {
+        if (style == DASHED) {
+            if (width == 1) {
                 onLen  = 3;
                 offLen = 3;
-            }
-            else
-            {
+            } else {
                 onLen  = width  * 3;
                 offLen = width;
             }
@@ -1001,8 +1044,7 @@ void RenderObject::drawBorder(QPainter *p, int x1, int y1, int x2, int y2,
         // the line into account. (The borders are drawn counter-clockwise)
         QPoint offset(0, 0);
         if (nextDashOffset) {
-            switch (s)
-            {
+            switch (s) {
             // The left border is drawn top to bottom
             case BSLeft:
                 offset.ry() = -qRound(*nextDashOffset);
@@ -1032,33 +1074,31 @@ void RenderObject::drawBorder(QPainter *p, int x1, int y1, int x2, int y2,
             offset.ry() = offset.y() % (onLen + offLen);
         }
 
-        if ((onLen + offLen) <= 32 && width < 0x7fff)
-        {
-            if (!s_dashedLineCache)
+        if ((onLen + offLen) <= 32 && width < 0x7fff) {
+            if (!s_dashedLineCache) {
                 s_dashedLineCache = new QCache<quint64, QPixmap>(30);
+            }
 
             bool horizontal = (s == BSBottom || s == BSTop);
             quint64 key = int(horizontal) << 31 | (onLen & 0xff) << 23 | (offLen & 0xff) << 15 | (width & 0x7fff);
             key = key << 32 | c.rgba();
 
             QPixmap *tile = s_dashedLineCache->object(key);
-            if (!tile)
-            {
+            if (!tile) {
                 QPainterPath path;
                 int size = (onLen + offLen) * (64 / (onLen + offLen));
-                if (horizontal)
-                {
+                if (horizontal) {
                     tile = new QPixmap(size, width);
                     tile->fill(Qt::transparent);
-                    for (int x = 0; x < tile->width(); x += onLen + offLen)
+                    for (int x = 0; x < tile->width(); x += onLen + offLen) {
                         path.addRect(x, 0, onLen, tile->height());
-                }
-                else //Vertical
-                {
+                    }
+                } else { //Vertical
                     tile = new QPixmap(width, size);
                     tile->fill(Qt::transparent);
-                    for (int y = 0; y < tile->height(); y += onLen + offLen)
+                    for (int y = 0; y < tile->height(); y += onLen + offLen) {
                         path.addRect(0, y, tile->width(), onLen);
+                    }
                 }
                 QPainter p2(tile);
                 p2.fillPath(path, c);
@@ -1067,34 +1107,33 @@ void RenderObject::drawBorder(QPainter *p, int x1, int y1, int x2, int y2,
             }
 
             QRect r = QRect(x1, y1, x2 - x1, y2 - y1);
-            if (p->hasClipping())
+            if (p->hasClipping()) {
                 r &= p->clipRegion().boundingRect();
+            }
 
             // Make sure we're drawing the pattern in the correct phase
-            if (horizontal && r.left() > x1)
+            if (horizontal && r.left() > x1) {
                 offset.rx() += (x1 - r.left());
-            else if (!horizontal && r.top() > y1)
+            } else if (!horizontal && r.top() > y1) {
                 offset.ry() += (y1 - r.top());
+            }
 
             p->drawTiledPixmap(r, *tile, -offset);
-        }
-        else
-        {
+        } else {
             const QRect bounding(x1, y1, x2 - x1, y2 - y1);
             QPainterPath path;
-            if (s == BSBottom || s == BSTop) //Horizontal
-            {
-                if (offset.x() > 0)
+            if (s == BSBottom || s == BSTop) { //Horizontal
+                if (offset.x() > 0) {
                     offset.rx() -= onLen + offLen;
+                }
                 for (int x = x1 + offset.x(); x < x2; x += onLen + offLen) {
                     const QRect r(x, y1, qMin(onLen, (x2 - x)), width);
                     path.addRect(r & bounding);
                 }
-            }
-            else //Vertical
-            {
-                if (offset.y() > 0)
+            } else { //Vertical
+                if (offset.y() > 0) {
                     offset.ry() -= onLen + offLen;
+                }
                 for (int y = y1 + offset.y(); y < y2; y += onLen + offLen) {
                     const QRect r(x1, y, width, qMin(onLen, (y2 - y)));
                     path.addRect(r & bounding);
@@ -1105,110 +1144,111 @@ void RenderObject::drawBorder(QPainter *p, int x1, int y1, int x2, int y2,
         }
         break;
     }
-    case DOUBLE:
-    {
-        int third = (width+1)/3;
+    case DOUBLE: {
+        int third = (width + 1) / 3;
 
-        if (adjbw1 == 0 && adjbw2 == 0)
-        {
+        if (adjbw1 == 0 && adjbw2 == 0) {
             p->setPen(Qt::NoPen);
             p->setBrush(c);
-            switch(s)
-            {
+            switch (s) {
             case BSTop:
             case BSBottom:
-                p->drawRect(x1, y1      , x2-x1, third);
-                p->drawRect(x1, y2-third, x2-x1, third);
+                p->drawRect(x1, y1, x2 - x1, third);
+                p->drawRect(x1, y2 - third, x2 - x1, third);
                 break;
             case BSLeft:
-                p->drawRect(x1      , y1, third, y2-y1);
-                p->drawRect(x2-third, y1, third, y2-y1);
+                p->drawRect(x1, y1, third, y2 - y1);
+                p->drawRect(x2 - third, y1, third, y2 - y1);
                 break;
             case BSRight:
-                p->drawRect(x1      , y1, third, y2-y1);
-                p->drawRect(x2-third, y1, third, y2-y1);
+                p->drawRect(x1, y1, third, y2 - y1);
+                p->drawRect(x2 - third, y1, third, y2 - y1);
                 break;
             }
-        }
-        else
-        {
+        } else {
             int adjbw1bigthird;
-            if (adjbw1>0) adjbw1bigthird = adjbw1+1;
-            else adjbw1bigthird = adjbw1 - 1;
+            if (adjbw1 > 0) {
+                adjbw1bigthird = adjbw1 + 1;
+            } else {
+                adjbw1bigthird = adjbw1 - 1;
+            }
             adjbw1bigthird /= 3;
 
             int adjbw2bigthird;
-            if (adjbw2>0) adjbw2bigthird = adjbw2 + 1;
-            else adjbw2bigthird = adjbw2 - 1;
+            if (adjbw2 > 0) {
+                adjbw2bigthird = adjbw2 + 1;
+            } else {
+                adjbw2bigthird = adjbw2 - 1;
+            }
             adjbw2bigthird /= 3;
 
-          switch(s)
-            {
+            switch (s) {
             case BSTop:
-              drawBorder(p, x1+qMax((-adjbw1*2+1)/3,0), y1        , x2-qMax((-adjbw2*2+1)/3,0), y1 + third, s, c, textcolor, SOLID, adjbw1bigthird, adjbw2bigthird);
-              drawBorder(p, x1+qMax(( adjbw1*2+1)/3,0), y2 - third, x2-qMax(( adjbw2*2+1)/3,0), y2        , s, c, textcolor, SOLID, adjbw1bigthird, adjbw2bigthird);
-              break;
+                drawBorder(p, x1 + qMax((-adjbw1 * 2 + 1) / 3, 0), y1, x2 - qMax((-adjbw2 * 2 + 1) / 3, 0), y1 + third, s, c, textcolor, SOLID, adjbw1bigthird, adjbw2bigthird);
+                drawBorder(p, x1 + qMax((adjbw1 * 2 + 1) / 3, 0), y2 - third, x2 - qMax((adjbw2 * 2 + 1) / 3, 0), y2, s, c, textcolor, SOLID, adjbw1bigthird, adjbw2bigthird);
+                break;
             case BSLeft:
-              drawBorder(p, x1        , y1+qMax((-adjbw1*2+1)/3,0), x1+third, y2-qMax((-adjbw2*2+1)/3,0), s, c, textcolor, SOLID, adjbw1bigthird, adjbw2bigthird);
-              drawBorder(p, x2 - third, y1+qMax(( adjbw1*2+1)/3,0), x2      , y2-qMax(( adjbw2*2+1)/3,0), s, c, textcolor, SOLID, adjbw1bigthird, adjbw2bigthird);
-              break;
+                drawBorder(p, x1, y1 + qMax((-adjbw1 * 2 + 1) / 3, 0), x1 + third, y2 - qMax((-adjbw2 * 2 + 1) / 3, 0), s, c, textcolor, SOLID, adjbw1bigthird, adjbw2bigthird);
+                drawBorder(p, x2 - third, y1 + qMax((adjbw1 * 2 + 1) / 3, 0), x2, y2 - qMax((adjbw2 * 2 + 1) / 3, 0), s, c, textcolor, SOLID, adjbw1bigthird, adjbw2bigthird);
+                break;
             case BSBottom:
-              drawBorder(p, x1+qMax(( adjbw1*2+1)/3,0), y1      , x2-qMax(( adjbw2*2+1)/3,0), y1+third, s, c, textcolor, SOLID, adjbw1bigthird, adjbw2bigthird);
-              drawBorder(p, x1+qMax((-adjbw1*2+1)/3,0), y2-third, x2-qMax((-adjbw2*2+1)/3,0), y2      , s, c, textcolor, SOLID, adjbw1bigthird, adjbw2bigthird);
-              break;
+                drawBorder(p, x1 + qMax((adjbw1 * 2 + 1) / 3, 0), y1, x2 - qMax((adjbw2 * 2 + 1) / 3, 0), y1 + third, s, c, textcolor, SOLID, adjbw1bigthird, adjbw2bigthird);
+                drawBorder(p, x1 + qMax((-adjbw1 * 2 + 1) / 3, 0), y2 - third, x2 - qMax((-adjbw2 * 2 + 1) / 3, 0), y2, s, c, textcolor, SOLID, adjbw1bigthird, adjbw2bigthird);
+                break;
             case BSRight:
-            drawBorder(p, x1      , y1+qMax(( adjbw1*2+1)/3,0), x1+third, y2-qMax(( adjbw2*2+1)/3,0), s, c, textcolor, SOLID, adjbw1bigthird, adjbw2bigthird);
-            drawBorder(p, x2-third, y1+qMax((-adjbw1*2+1)/3,0), x2      , y2-qMax((-adjbw2*2+1)/3,0), s, c, textcolor, SOLID, adjbw1bigthird, adjbw2bigthird);
-              break;
+                drawBorder(p, x1, y1 + qMax((adjbw1 * 2 + 1) / 3, 0), x1 + third, y2 - qMax((adjbw2 * 2 + 1) / 3, 0), s, c, textcolor, SOLID, adjbw1bigthird, adjbw2bigthird);
+                drawBorder(p, x2 - third, y1 + qMax((-adjbw1 * 2 + 1) / 3, 0), x2, y2 - qMax((-adjbw2 * 2 + 1) / 3, 0), s, c, textcolor, SOLID, adjbw1bigthird, adjbw2bigthird);
+                break;
             default:
-              break;
+                break;
             }
         }
         break;
     }
     case RIDGE:
-    case GROOVE:
-    {
+    case GROOVE: {
         EBorderStyle s1;
         EBorderStyle s2;
-        if (style==GROOVE)
-        {
+        if (style == GROOVE) {
             s1 = INSET;
             s2 = OUTSET;
-        }
-        else
-        {
+        } else {
             s1 = OUTSET;
             s2 = INSET;
         }
 
         int adjbw1bighalf;
         int adjbw2bighalf;
-        if (adjbw1>0) adjbw1bighalf=adjbw1+1;
-        else adjbw1bighalf=adjbw1-1;
-        adjbw1bighalf/=2;
+        if (adjbw1 > 0) {
+            adjbw1bighalf = adjbw1 + 1;
+        } else {
+            adjbw1bighalf = adjbw1 - 1;
+        }
+        adjbw1bighalf /= 2;
 
-        if (adjbw2>0) adjbw2bighalf=adjbw2+1;
-        else adjbw2bighalf=adjbw2-1;
-        adjbw2bighalf/=2;
+        if (adjbw2 > 0) {
+            adjbw2bighalf = adjbw2 + 1;
+        } else {
+            adjbw2bighalf = adjbw2 - 1;
+        }
+        adjbw2bighalf /= 2;
 
-        switch (s)
-        {
+        switch (s) {
         case BSTop:
-            drawBorder(p, x1+qMax(-adjbw1  ,0)/2,  y1        , x2-qMax(-adjbw2,0)/2, (y1+y2+1)/2, s, c, textcolor, s1, adjbw1bighalf, adjbw2bighalf);
-            drawBorder(p, x1+qMax( adjbw1+1,0)/2, (y1+y2+1)/2, x2-qMax( adjbw2+1,0)/2,  y2        , s, c, textcolor, s2, adjbw1/2, adjbw2/2);
+            drawBorder(p, x1 + qMax(-adjbw1, 0) / 2,  y1, x2 - qMax(-adjbw2, 0) / 2, (y1 + y2 + 1) / 2, s, c, textcolor, s1, adjbw1bighalf, adjbw2bighalf);
+            drawBorder(p, x1 + qMax(adjbw1 + 1, 0) / 2, (y1 + y2 + 1) / 2, x2 - qMax(adjbw2 + 1, 0) / 2,  y2, s, c, textcolor, s2, adjbw1 / 2, adjbw2 / 2);
             break;
         case BSLeft:
-            drawBorder(p,  x1        , y1+qMax(-adjbw1  ,0)/2, (x1+x2+1)/2, y2-qMax(-adjbw2,0)/2, s, c, textcolor, s1, adjbw1bighalf, adjbw2bighalf);
-            drawBorder(p, (x1+x2+1)/2, y1+qMax( adjbw1+1,0)/2,  x2        , y2-qMax( adjbw2+1,0)/2, s, c, textcolor, s2, adjbw1/2, adjbw2/2);
+            drawBorder(p,  x1, y1 + qMax(-adjbw1, 0) / 2, (x1 + x2 + 1) / 2, y2 - qMax(-adjbw2, 0) / 2, s, c, textcolor, s1, adjbw1bighalf, adjbw2bighalf);
+            drawBorder(p, (x1 + x2 + 1) / 2, y1 + qMax(adjbw1 + 1, 0) / 2,  x2, y2 - qMax(adjbw2 + 1, 0) / 2, s, c, textcolor, s2, adjbw1 / 2, adjbw2 / 2);
             break;
         case BSBottom:
-            drawBorder(p, x1+qMax( adjbw1  ,0)/2,  y1        , x2-qMax( adjbw2,0)/2, (y1+y2+1)/2, s, c, textcolor, s2,  adjbw1bighalf, adjbw2bighalf);
-            drawBorder(p, x1+qMax(-adjbw1+1,0)/2, (y1+y2+1)/2, x2-qMax(-adjbw2+1,0)/2,  y2        , s, c, textcolor, s1, adjbw1/2, adjbw2/2);
+            drawBorder(p, x1 + qMax(adjbw1, 0) / 2,  y1, x2 - qMax(adjbw2, 0) / 2, (y1 + y2 + 1) / 2, s, c, textcolor, s2,  adjbw1bighalf, adjbw2bighalf);
+            drawBorder(p, x1 + qMax(-adjbw1 + 1, 0) / 2, (y1 + y2 + 1) / 2, x2 - qMax(-adjbw2 + 1, 0) / 2,  y2, s, c, textcolor, s1, adjbw1 / 2, adjbw2 / 2);
             break;
         case BSRight:
-            drawBorder(p,  x1        , y1+qMax( adjbw1  ,0)/2, (x1+x2+1)/2, y2-qMax( adjbw2,0)/2, s, c, textcolor, s2, adjbw1bighalf, adjbw2bighalf);
-            drawBorder(p, (x1+x2+1)/2, y1+qMax(-adjbw1+1,0)/2,  x2        , y2-qMax(-adjbw2+1,0)/2, s, c, textcolor, s1, adjbw1/2, adjbw2/2);
+            drawBorder(p,  x1, y1 + qMax(adjbw1, 0) / 2, (x1 + x2 + 1) / 2, y2 - qMax(adjbw2, 0) / 2, s, c, textcolor, s2, adjbw1bighalf, adjbw2bighalf);
+            drawBorder(p, (x1 + x2 + 1) / 2, y1 + qMax(-adjbw1 + 1, 0) / 2,  x2, y2 - qMax(-adjbw2 + 1, 0) / 2, s, c, textcolor, s1, adjbw1 / 2, adjbw2 / 2);
             break;
         }
         break;
@@ -1216,54 +1256,55 @@ void RenderObject::drawBorder(QPainter *p, int x1, int y1, int x2, int y2,
     case INSET:
     case OUTSET:
         calc3DColor(c, (style == OUTSET && (s == BSBottom || s == BSRight)) ||
-             (style == INSET && ( s == BSTop || s == BSLeft ) ) );
-        /* nobreak; */
+                    (style == INSET && (s == BSTop || s == BSLeft)));
+    /* nobreak; */
     case SOLID:
         p->setPen(Qt::NoPen);
         p->setBrush(c);
-        Q_ASSERT(x2>=x1);
-        Q_ASSERT(y2>=y1);
-        if (adjbw1==0 && adjbw2 == 0) {
-            p->drawRect(x1,y1,x2-x1,y2-y1);
+        Q_ASSERT(x2 >= x1);
+        Q_ASSERT(y2 >= y1);
+        if (adjbw1 == 0 && adjbw2 == 0) {
+            p->drawRect(x1, y1, x2 - x1, y2 - y1);
             return;
         }
         QPolygon quad(4);
-        switch(s) {
+        switch (s) {
         case BSTop:
             quad.setPoints(4,
-                           x1+qMax(-adjbw1,0), y1,
-                           x1+qMax( adjbw1,0), y2,
-                           x2-qMax( adjbw2,0), y2,
-                           x2-qMax(-adjbw2,0), y1);
+                           x1 + qMax(-adjbw1, 0), y1,
+                           x1 + qMax(adjbw1, 0), y2,
+                           x2 - qMax(adjbw2, 0), y2,
+                           x2 - qMax(-adjbw2, 0), y1);
             break;
         case BSBottom:
             quad.setPoints(4,
-                           x1+qMax( adjbw1,0), y1,
-                           x1+qMax(-adjbw1,0), y2,
-                           x2-qMax(-adjbw2,0), y2,
-                           x2-qMax( adjbw2,0), y1);
+                           x1 + qMax(adjbw1, 0), y1,
+                           x1 + qMax(-adjbw1, 0), y2,
+                           x2 - qMax(-adjbw2, 0), y2,
+                           x2 - qMax(adjbw2, 0), y1);
             break;
         case BSLeft:
-          quad.setPoints(4,
-                         x1, y1+qMax(-adjbw1,0),
-                                x1, y2-qMax(-adjbw2,0),
-                         x2, y2-qMax( adjbw2,0),
-                         x2, y1+qMax( adjbw1,0));
+            quad.setPoints(4,
+                           x1, y1 + qMax(-adjbw1, 0),
+                           x1, y2 - qMax(-adjbw2, 0),
+                           x2, y2 - qMax(adjbw2, 0),
+                           x2, y1 + qMax(adjbw1, 0));
             break;
         case BSRight:
-          quad.setPoints(4,
-                         x1, y1+qMax( adjbw1,0),
-                                x1, y2-qMax( adjbw2,0),
-                         x2, y2-qMax(-adjbw2,0),
-                         x2, y1+qMax(-adjbw1,0));
+            quad.setPoints(4,
+                           x1, y1 + qMax(adjbw1, 0),
+                           x1, y2 - qMax(adjbw2, 0),
+                           x2, y2 - qMax(-adjbw2, 0),
+                           x2, y1 + qMax(-adjbw1, 0));
             break;
         }
         p->drawConvexPolygon(quad);
         break;
     }
 
-    if(invalidisInvert && p->compositionMode() == QPainter::CompositionMode_Difference)
+    if (invalidisInvert && p->compositionMode() == QPainter::CompositionMode_Difference) {
         p->setCompositionMode(QPainter::CompositionMode_SourceOver);
+    }
 }
 
 void RenderObject::adjustBorderRadii(BorderRadii &tl, BorderRadii &tr, BorderRadii &bl, BorderRadii &br, int w, int h) const
@@ -1277,10 +1318,12 @@ void RenderObject::adjustBorderRadii(BorderRadii &tl, BorderRadii &tr, BorderRad
     const int verS = qMax(tl.vertical + bl.vertical, tr.vertical + br.vertical);
 
     qreal f = 1.0;
-    if (horS > 0)
+    if (horS > 0) {
         f = qMin(f, w / qreal(horS));
-    if (verS > 0)
+    }
+    if (verS > 0) {
         f = qMin(f, h / qreal(verS));
+    }
 
     if (f < 1.0) {
         tl.horizontal *= f;
@@ -1351,10 +1394,11 @@ static QBrush cornerGradient(int cx, int cy, const BorderRadii &radius, int angl
     QTransform xform;
     xform.translate(cx, cy);
 
-    if (radius.horizontal < radius.vertical)
+    if (radius.horizontal < radius.vertical) {
         xform.scale(radius.horizontal / radius.vertical, 1);
-    else if (radius.vertical < radius.horizontal)
+    } else if (radius.vertical < radius.horizontal) {
         xform.scale(1, radius.vertical / radius.horizontal);
+    }
 
     brush.setTransform(xform);
     return brush;
@@ -1366,10 +1410,11 @@ void RenderObject::drawBorderArc(QPainter *p, int x, int y, float horThickness, 
 {
     QColor c = brush.color();
     if (!c.isValid()) {
-        if (style == INSET || style == OUTSET || style == RIDGE || style == GROOVE)
+        if (style == INSET || style == OUTSET || style == RIDGE || style == GROOVE) {
             c = Qt::white;
-        else
+        } else {
             c = textColor;
+        }
     }
 
     QColor light = c;
@@ -1377,169 +1422,163 @@ void RenderObject::drawBorderArc(QPainter *p, int x, int y, float horThickness, 
     calc3DColor(light, false);
     calc3DColor(dark, true);
 
-    if (style == DOUBLE && horThickness < 3 && vertThickness < 3)
+    if (style == DOUBLE && horThickness < 3 && vertThickness < 3) {
         style = SOLID;
+    }
 
-    if (nextDashOffset && style != DOTTED && style != DASHED)
+    if (nextDashOffset && style != DOTTED && style != DASHED) {
         *nextDashOffset = 0;
+    }
 
     p->save();
     p->setRenderHint(QPainter::Antialiasing);
 
-    switch (style)
-    {
-        case BNATIVE:
-        case BNONE:
-        case BHIDDEN:
-        {
-            // Should not happen
-            break;
+    switch (style) {
+    case BNATIVE:
+    case BNONE:
+    case BHIDDEN: {
+        // Should not happen
+        break;
+    }
+
+    case SOLID: {
+        const QRect outerRect = QRect(x - radius.horizontal, y - radius.vertical, radius.horizontal * 2, radius.vertical * 2);
+        const QRect innerRect = outerRect.adjusted(horThickness, vertThickness, -horThickness, -vertThickness);
+        QPainterPath path;
+        path.arcMoveTo(outerRect, angleStart);
+        path.arcTo(outerRect, angleStart, angleSpan);
+        if (innerRect.isValid()) {
+            path.arcTo(innerRect, angleStart + angleSpan, -angleSpan);
+        } else {
+            path.lineTo(x, y);
+        }
+        path.closeSubpath();
+        p->fillPath(path, brush);
+        break;
+    }
+
+    case DOUBLE: {
+        const qreal hw = (horThickness + 1) / 3;
+        const qreal vw = (vertThickness + 1) / 3;
+
+        BorderRadii br;
+        br.horizontal = radius.horizontal - hw * 2 + 1;
+        br.vertical = radius.vertical - vw * 2 + 1;
+
+        drawBorderArc(p, x, y, hw, vw, radius, angleStart, angleSpan, brush, textColor, SOLID);
+        drawBorderArc(p, x, y, hw, vw, br, angleStart, angleSpan, brush, textColor, SOLID);
+        break;
+    }
+
+    case INSET:
+    case OUTSET: {
+        QImage image1(radius.horizontal * 2, radius.vertical * 2, QImage::Format_ARGB32_Premultiplied);
+        image1.fill(0);
+
+        QImage image2 = image1;
+
+        const QColor c1 = style == OUTSET ? dark : light;
+        const QColor c2 = style == OUTSET ? light : dark;
+
+        QPainter p2;
+        p2.begin(&image1);
+        drawBorderArc(&p2, radius.horizontal, radius.vertical, horThickness, vertThickness,
+                      radius, angleStart, angleSpan, c1, textColor, SOLID);
+        p2.end();
+
+        p2.begin(&image2);
+        drawBorderArc(&p2, radius.horizontal, radius.vertical, horThickness, vertThickness,
+                      radius, angleStart, angleSpan, c2, textColor, SOLID);
+        p2.end();
+
+        p->drawImage(x - radius.horizontal, y - radius.vertical, blendCornerImages(image1, image2));
+        break;
+    }
+
+    case RIDGE:
+    case GROOVE: {
+        QImage image1(radius.horizontal * 2, radius.vertical * 2, QImage::Format_ARGB32_Premultiplied);
+        image1.fill(0);
+
+        QImage image2 = image1;
+
+        const QColor c1 = style == RIDGE ? dark : light;
+        const QColor c2 = style == RIDGE ? light : dark;
+
+        const qreal hw = horThickness / 2;
+        const qreal vw = vertThickness / 2;
+        int cx = radius.horizontal;
+        int cy = radius.vertical;
+
+        BorderRadii innerRadius;
+        innerRadius.horizontal = radius.horizontal - hw;
+        innerRadius.vertical = radius.vertical - vw;
+
+        QPainter p2;
+        p2.begin(&image1);
+        drawBorderArc(&p2, cx, cy, hw, vw, radius, angleStart, angleSpan, c1, textColor, SOLID);
+        drawBorderArc(&p2, cx, cy, hw, vw, innerRadius, angleStart, angleSpan, c2, textColor, SOLID);
+        p2.end();
+
+        p2.begin(&image2);
+        drawBorderArc(&p2, cx, cy, hw, vw, radius, angleStart, angleSpan, c2, textColor, SOLID);
+        drawBorderArc(&p2, cx, cy, hw, vw, innerRadius, angleStart, angleSpan, c1, textColor, SOLID);
+        p2.end();
+
+        p->drawImage(x - radius.horizontal, y - radius.vertical, blendCornerImages(image1, image2));
+        break;
+    }
+
+    case DOTTED:
+    case DASHED: {
+        const QRectF rect = QRectF(x - radius.horizontal, y - radius.vertical, radius.horizontal * 2, radius.vertical * 2);
+        int width;
+
+        // Figure out which border we're starting from
+        angleStart = angleStart % 360;
+        if (angleStart < 0) {
+            angleStart += 360;
         }
 
-        case SOLID:
-        {
-            const QRect outerRect = QRect(x - radius.horizontal, y - radius.vertical, radius.horizontal * 2, radius.vertical * 2);
-            const QRect innerRect = outerRect.adjusted(horThickness, vertThickness, -horThickness, -vertThickness);
-            QPainterPath path;
-            path.arcMoveTo(outerRect, angleStart);
-            path.arcTo(outerRect, angleStart, angleSpan);
-            if (innerRect.isValid())
-                path.arcTo(innerRect, angleStart + angleSpan, -angleSpan);
-            else
-                path.lineTo(x, y);
-            path.closeSubpath();
-            p->fillPath(path, brush);
-            break;
+        if ((angleStart > 45 && angleStart <= 135) || (angleStart > 225 && angleStart <= 315)) {
+            width = vertThickness;
+        } else {
+            width = horThickness;
         }
 
-        case DOUBLE:
-        {
-            const qreal hw = (horThickness + 1) / 3;
-            const qreal vw = (vertThickness + 1) / 3;
+        int onLen  = width;
+        int offLen = width;
 
-            BorderRadii br;
-            br.horizontal = radius.horizontal - hw * 2 + 1;
-            br.vertical = radius.vertical - vw * 2 + 1;
-
-            drawBorderArc(p, x, y, hw, vw, radius, angleStart, angleSpan, brush, textColor, SOLID);
-            drawBorderArc(p, x, y, hw, vw, br, angleStart, angleSpan, brush, textColor, SOLID);
-            break;
-        }
-
-        case INSET:
-        case OUTSET:
-        {
-            QImage image1(radius.horizontal * 2, radius.vertical * 2, QImage::Format_ARGB32_Premultiplied);
-            image1.fill(0);
-
-            QImage image2 = image1;
-
-            const QColor c1 = style == OUTSET ? dark : light;
-            const QColor c2 = style == OUTSET ? light : dark;
-
-            QPainter p2;
-            p2.begin(&image1);
-            drawBorderArc(&p2, radius.horizontal, radius.vertical, horThickness, vertThickness,
-                          radius, angleStart, angleSpan, c1, textColor, SOLID);
-            p2.end();
-
-            p2.begin(&image2);
-            drawBorderArc(&p2, radius.horizontal, radius.vertical, horThickness, vertThickness,
-                          radius, angleStart, angleSpan, c2, textColor, SOLID);
-            p2.end();
-
-            p->drawImage(x - radius.horizontal, y - radius.vertical, blendCornerImages(image1, image2));
-            break;
-        }
-
-        case RIDGE:
-        case GROOVE:
-        {
-            QImage image1(radius.horizontal * 2, radius.vertical * 2, QImage::Format_ARGB32_Premultiplied);
-            image1.fill(0);
-
-            QImage image2 = image1;
-
-            const QColor c1 = style == RIDGE ? dark : light;
-            const QColor c2 = style == RIDGE ? light : dark;
-
-            const qreal hw = horThickness / 2;
-            const qreal vw = vertThickness / 2;
-            int cx = radius.horizontal;
-            int cy = radius.vertical;
-
-            BorderRadii innerRadius;
-            innerRadius.horizontal = radius.horizontal - hw;
-            innerRadius.vertical = radius.vertical - vw;
-
-            QPainter p2;
-            p2.begin(&image1);
-            drawBorderArc(&p2, cx, cy, hw, vw, radius, angleStart, angleSpan, c1, textColor, SOLID);
-            drawBorderArc(&p2, cx, cy, hw, vw, innerRadius, angleStart, angleSpan, c2, textColor, SOLID);
-            p2.end();
-
-            p2.begin(&image2);
-            drawBorderArc(&p2, cx, cy, hw, vw, radius, angleStart, angleSpan, c2, textColor, SOLID);
-            drawBorderArc(&p2, cx, cy, hw, vw, innerRadius, angleStart, angleSpan, c1, textColor, SOLID);
-            p2.end();
-
-            p->drawImage(x - radius.horizontal, y - radius.vertical, blendCornerImages(image1, image2));
-            break;
-        }
-
-        case DOTTED:
-        case DASHED:
-        {
-            const QRectF rect = QRectF(x - radius.horizontal, y - radius.vertical, radius.horizontal * 2, radius.vertical * 2);
-            int width;
-
-            // Figure out which border we're starting from
-            angleStart = angleStart % 360;
-            if (angleStart < 0)
-                angleStart += 360;
-
-            if ((angleStart > 45 && angleStart <= 135) || (angleStart > 225 && angleStart <= 315))
-                width = vertThickness;
-            else
-                width = horThickness;
-
-            int onLen  = width;
-            int offLen = width;
-
-            if (style == DASHED)
-            {
-                if (width == 1)
-                {
-                    onLen  = 3;
-                    offLen = 3;
-                }
-                else
-                {
-                    onLen  = width  * 3;
-                    offLen = width;
-                }
+        if (style == DASHED) {
+            if (width == 1) {
+                onLen  = 3;
+                offLen = 3;
+            } else {
+                onLen  = width  * 3;
+                offLen = width;
             }
-
-            BorderArcStroker stroker;
-            stroker.setArc(rect, angleStart, angleSpan);
-            stroker.setPenWidth(horThickness, vertThickness);
-            stroker.setDashPattern(onLen, offLen);
-            stroker.setDashOffset(*nextDashOffset);
-
-            const QPainterPath path = stroker.createStroke(nextDashOffset);
-            p->fillPath(path, brush);
         }
+
+        BorderArcStroker stroker;
+        stroker.setArc(rect, angleStart, angleSpan);
+        stroker.setPenWidth(horThickness, vertThickness);
+        stroker.setDashPattern(onLen, offLen);
+        stroker.setDashOffset(*nextDashOffset);
+
+        const QPainterPath path = stroker.createStroke(nextDashOffset);
+        p->fillPath(path, brush);
+    }
     }
 
     p->restore();
 }
 
-void RenderObject::paintBorder(QPainter *p, int _tx, int _ty, int w, int h, const RenderStyle* style, bool begin, bool end)
+void RenderObject::paintBorder(QPainter *p, int _tx, int _ty, int w, int h, const RenderStyle *style, bool begin, bool end)
 {
-    const QColor& tc = style->borderTopColor();
-    const QColor& bc = style->borderBottomColor();
-    const QColor& lc = style->borderLeftColor();
-    const QColor& rc = style->borderRightColor();
+    const QColor &tc = style->borderTopColor();
+    const QColor &bc = style->borderBottomColor();
+    const QColor &lc = style->borderLeftColor();
+    const QColor &rc = style->borderRightColor();
 
     bool tt = style->borderTopIsTransparent();
     bool bt = style->borderBottomIsTransparent();
@@ -1582,16 +1621,16 @@ void RenderObject::paintBorder(QPainter *p, int _tx, int _ty, int w, int h, cons
     qreal nextDashOffset = 0;
 
     // Draw the borders counter-clockwise starting with the upper right corner
-    if(render_t) {
+    if (render_t) {
         bool ignore_left = (topLeft.horizontal > 0) ||
-            ((tc == lc) && (tt == lt) &&
-             (ts >= OUTSET) &&
-             (ls == DOTTED || ls == DASHED || ls == SOLID || ls == OUTSET));
+                           ((tc == lc) && (tt == lt) &&
+                            (ts >= OUTSET) &&
+                            (ls == DOTTED || ls == DASHED || ls == SOLID || ls == OUTSET));
 
         bool ignore_right = (topRight.horizontal > 0) ||
-            ((tc == rc) && (tt == rt) &&
-             (ts >= OUTSET) &&
-             (rs == DOTTED || rs == DASHED || rs == SOLID || rs == INSET));
+                            ((tc == rc) && (tt == rt) &&
+                             (ts >= OUTSET) &&
+                             (rs == DOTTED || rs == DASHED || rs == SOLID || rs == INSET));
 
         int x = _tx + topLeft.horizontal;
         int x2 = _tx + w - topRight.horizontal;
@@ -1610,7 +1649,7 @@ void RenderObject::paintBorder(QPainter *p, int _tx, int _ty, int w, int h, cons
             }
 
             const QBrush brush = upperRightGradient ?
-                    cornerGradient(x, y, topRight, startAngle, span, rc, tc) : tc;
+                                 cornerGradient(x, y, topRight, startAngle, span, rc, tc) : tc;
 
             // Draw the upper right arc
             drawBorderArc(p, x, y, style->borderRightWidth(), style->borderTopWidth(),
@@ -1618,8 +1657,8 @@ void RenderObject::paintBorder(QPainter *p, int _tx, int _ty, int w, int h, cons
         }
 
         drawBorder(p, x, _ty, x2, _ty + style->borderTopWidth(), BSTop, tc, style->color(), ts,
-                   ignore_left?0:style->borderLeftWidth(),
-                   ignore_right?0:style->borderRightWidth(), false, &nextDashOffset);
+                   ignore_left ? 0 : style->borderLeftWidth(),
+                   ignore_right ? 0 : style->borderRightWidth(), false, &nextDashOffset);
 
         if (topLeft.hasBorderRadius()) {
             int x = _tx + topLeft.horizontal;
@@ -1627,26 +1666,26 @@ void RenderObject::paintBorder(QPainter *p, int _tx, int _ty, int w, int h, cons
             int startAngle = 90;
             int span = (upperLeftBorderStylesMatch || upperLeftGradient) ? 90 : 45;
             const QBrush brush = upperLeftGradient ?
-                    cornerGradient(x, y, topLeft, startAngle, span, tc, lc) : tc;
+                                 cornerGradient(x, y, topLeft, startAngle, span, tc, lc) : tc;
 
             // Draw the upper left arc
             drawBorderArc(p, x, y, style->borderLeftWidth(), style->borderTopWidth(),
                           topLeft, startAngle, span, brush, style->color(), ts, &nextDashOffset);
-        } else if (ls == DASHED || ls == DOTTED)
-            nextDashOffset = 0; // Reset the offset to avoid partially overlapping dashes
+        } else if (ls == DASHED || ls == DOTTED) {
+            nextDashOffset = 0;    // Reset the offset to avoid partially overlapping dashes
+        }
     }
 
-    if(render_l)
-    {
-	bool ignore_top = (topLeft.vertical > 0) ||
-	  ((tc == lc) && (tt == lt) &&
-	   (ls >= OUTSET) &&
-           (ts == DOTTED || ts == DASHED || ts == SOLID || ts == OUTSET));
+    if (render_l) {
+        bool ignore_top = (topLeft.vertical > 0) ||
+                          ((tc == lc) && (tt == lt) &&
+                           (ls >= OUTSET) &&
+                           (ts == DOTTED || ts == DASHED || ts == SOLID || ts == OUTSET));
 
-	bool ignore_bottom = (bottomLeft.vertical > 0) ||
-	  ((bc == lc) && (bt == lt) &&
-	   (ls >= OUTSET) &&
-	   (bs == DOTTED || bs == DASHED || bs == SOLID || bs == INSET));
+        bool ignore_bottom = (bottomLeft.vertical > 0) ||
+                             ((bc == lc) && (bt == lt) &&
+                              (ls >= OUTSET) &&
+                              (bs == DOTTED || bs == DASHED || bs == SOLID || bs == INSET));
 
         int y = _ty + topLeft.vertical;
         int y2 = _ty + h - bottomLeft.vertical;
@@ -1663,10 +1702,10 @@ void RenderObject::paintBorder(QPainter *p, int _tx, int _ty, int w, int h, cons
         }
 
         drawBorder(p, _tx, y, _tx + style->borderLeftWidth(), y2, BSLeft, lc, style->color(), ls,
-                   ignore_top?0:style->borderTopWidth(),
-                   ignore_bottom?0:style->borderBottomWidth(), false, &nextDashOffset);
+                   ignore_top ? 0 : style->borderTopWidth(),
+                   ignore_bottom ? 0 : style->borderBottomWidth(), false, &nextDashOffset);
 
-       if (!lowerLeftBorderStylesMatch && !lowerLeftGradient && bottomLeft.hasBorderRadius()) {
+        if (!lowerLeftBorderStylesMatch && !lowerLeftGradient && bottomLeft.hasBorderRadius()) {
             int x = _tx + bottomLeft.horizontal;
             int y = _ty + h - bottomLeft.vertical;
             int startAngle = 180;
@@ -1678,20 +1717,21 @@ void RenderObject::paintBorder(QPainter *p, int _tx, int _ty, int w, int h, cons
         }
 
         // Reset the offset to avoid partially overlapping dashes
-        if (!bottomLeft.hasBorderRadius() && (bs == DASHED || bs == DOTTED))
+        if (!bottomLeft.hasBorderRadius() && (bs == DASHED || bs == DOTTED)) {
             nextDashOffset = 0;
+        }
     }
 
-    if(render_b) {
+    if (render_b) {
         bool ignore_left = (bottomLeft.horizontal > 0) ||
-            ((bc == lc) && (bt == lt) &&
-             (bs >= OUTSET) &&
-             (ls == DOTTED || ls == DASHED || ls == SOLID || ls == INSET));
+                           ((bc == lc) && (bt == lt) &&
+                            (bs >= OUTSET) &&
+                            (ls == DOTTED || ls == DASHED || ls == SOLID || ls == INSET));
 
         bool ignore_right = (bottomRight.horizontal > 0) ||
-            ((bc == rc) && (bt == rt) &&
-             (bs >= OUTSET) &&
-             (rs == DOTTED || rs == DASHED || rs == SOLID || rs == OUTSET));
+                            ((bc == rc) && (bt == rt) &&
+                             (bs >= OUTSET) &&
+                             (rs == DOTTED || rs == DASHED || rs == SOLID || rs == OUTSET));
 
         int x = _tx + bottomLeft.horizontal;
         int x2 = _tx + w - bottomRight.horizontal;
@@ -1710,7 +1750,7 @@ void RenderObject::paintBorder(QPainter *p, int _tx, int _ty, int w, int h, cons
             }
 
             const QBrush brush = lowerLeftGradient ?
-                    cornerGradient(x, y, bottomLeft, startAngle, span, lc, bc) : bc;
+                                 cornerGradient(x, y, bottomLeft, startAngle, span, lc, bc) : bc;
 
             // Draw the bottom left arc
             drawBorderArc(p, x, y, style->borderLeftWidth(), style->borderBottomWidth(),
@@ -1718,8 +1758,8 @@ void RenderObject::paintBorder(QPainter *p, int _tx, int _ty, int w, int h, cons
         }
 
         drawBorder(p, x, _ty + h - style->borderBottomWidth(), x2, _ty + h, BSBottom, bc, style->color(), bs,
-                   ignore_left?0:style->borderLeftWidth(),
-                   ignore_right?0:style->borderRightWidth(), false, &nextDashOffset);
+                   ignore_left ? 0 : style->borderLeftWidth(),
+                   ignore_right ? 0 : style->borderRightWidth(), false, &nextDashOffset);
 
         if (bottomRight.hasBorderRadius()) {
             int x = _tx + w - bottomRight.horizontal;
@@ -1727,27 +1767,26 @@ void RenderObject::paintBorder(QPainter *p, int _tx, int _ty, int w, int h, cons
             int startAngle = 270;
             int span = (lowerRightBorderStylesMatch || lowerRightGradient) ? 90 : 45;
             const QBrush brush = lowerRightGradient ?
-                    cornerGradient(x, y, bottomRight, startAngle, span, bc, rc) : bc;
+                                 cornerGradient(x, y, bottomRight, startAngle, span, bc, rc) : bc;
 
             // Draw the bottom right arc
             drawBorderArc(p, x, y, style->borderRightWidth(), style->borderBottomWidth(),
                           bottomRight, startAngle, span, brush, style->color(), bs, &nextDashOffset);
+        } else if (rs == DASHED || rs == DOTTED) {
+            nextDashOffset = 0;    // Reset the offset to avoid partially overlapping dashes
         }
-        else if (rs == DASHED || rs == DOTTED)
-            nextDashOffset = 0; // Reset the offset to avoid partially overlapping dashes
     }
 
-    if(render_r)
-    {
-	bool ignore_top = (topRight.vertical > 0) ||
-	  ((tc == rc) && (tt == rt) &&
-	   (rs >= DOTTED || rs == INSET) &&
-	   (ts == DOTTED || ts == DASHED || ts == SOLID || ts == OUTSET));
+    if (render_r) {
+        bool ignore_top = (topRight.vertical > 0) ||
+                          ((tc == rc) && (tt == rt) &&
+                           (rs >= DOTTED || rs == INSET) &&
+                           (ts == DOTTED || ts == DASHED || ts == SOLID || ts == OUTSET));
 
-	bool ignore_bottom = (bottomRight.vertical > 0) ||
-	  ((bc == rc) && (bt == rt) &&
-	   (rs >= DOTTED || rs == INSET) &&
-	   (bs == DOTTED || bs == DASHED || bs == SOLID || bs == INSET));
+        bool ignore_bottom = (bottomRight.vertical > 0) ||
+                             ((bc == rc) && (bt == rt) &&
+                              (rs >= DOTTED || rs == INSET) &&
+                              (bs == DOTTED || bs == DASHED || bs == SOLID || bs == INSET));
 
         int y = _ty + topRight.vertical;
         int y2 = _ty + h - bottomRight.vertical;
@@ -1764,8 +1803,8 @@ void RenderObject::paintBorder(QPainter *p, int _tx, int _ty, int w, int h, cons
         }
 
         drawBorder(p, _tx + w - style->borderRightWidth(), y, _tx + w, y2, BSRight, rc, style->color(), rs,
-                   ignore_top?0:style->borderTopWidth(),
-                   ignore_bottom?0:style->borderBottomWidth(), false, &nextDashOffset);
+                   ignore_top ? 0 : style->borderTopWidth(),
+                   ignore_bottom ? 0 : style->borderBottomWidth(), false, &nextDashOffset);
 
         if (!upperRightBorderStylesMatch && !upperRightGradient && topRight.hasBorderRadius()) {
             int x = _tx + w - topRight.horizontal;
@@ -1780,12 +1819,14 @@ void RenderObject::paintBorder(QPainter *p, int _tx, int _ty, int w, int h, cons
     }
 }
 
-void RenderObject::paintOutline(QPainter *p, int _tx, int _ty, int w, int h, const RenderStyle* style)
+void RenderObject::paintOutline(QPainter *p, int _tx, int _ty, int w, int h, const RenderStyle *style)
 {
     int ow = style->outlineWidth();
-    if(!ow) return;
+    if (!ow) {
+        return;
+    }
 
-    const QColor& oc = style->outlineColor();
+    const QColor &oc = style->outlineColor();
     EBorderStyle os = style->outlineStyle();
     int offset = style->outlineOffset();
 
@@ -1801,34 +1842,36 @@ void RenderObject::paintOutline(QPainter *p, int _tx, int _ty, int w, int h, con
 
     _tx -= offset;
     _ty -= offset;
-    w += 2*offset;
-    h += 2*offset;
+    w += 2 * offset;
+    h += 2 * offset;
 
-    drawBorder(p, _tx-ow, _ty-ow, _tx, _ty+h+ow, BSLeft,
+    drawBorder(p, _tx - ow, _ty - ow, _tx, _ty + h + ow, BSLeft,
                QColor(oc), style->color(),
                os, ow, ow, true);
 
-    drawBorder(p, _tx-ow, _ty-ow, _tx+w+ow, _ty, BSTop,
+    drawBorder(p, _tx - ow, _ty - ow, _tx + w + ow, _ty, BSTop,
                QColor(oc), style->color(),
                os, ow, ow, true);
 
-    drawBorder(p, _tx+w, _ty-ow, _tx+w+ow, _ty+h+ow, BSRight,
+    drawBorder(p, _tx + w, _ty - ow, _tx + w + ow, _ty + h + ow, BSRight,
                QColor(oc), style->color(),
                os, ow, ow, true);
 
-    drawBorder(p, _tx-ow, _ty+h, _tx+w+ow, _ty+h+ow, BSBottom,
+    drawBorder(p, _tx - ow, _ty + h, _tx + w + ow, _ty + h + ow, BSBottom,
                QColor(oc), style->color(),
                os, ow, ow, true);
 
 }
 
-void RenderObject::paint( PaintInfo&, int /*tx*/, int /*ty*/)
+void RenderObject::paint(PaintInfo &, int /*tx*/, int /*ty*/)
 {
 }
 
 void RenderObject::repaintRectangle(int x, int y, int w, int h, Priority p, bool f)
 {
-    if(parent()) parent()->repaintRectangle(x, y, w, h, p, f);
+    if (parent()) {
+        parent()->repaintRectangle(x, y, w, h, p, f);
+    }
 }
 
 #ifdef ENABLE_DUMP
@@ -1837,44 +1880,76 @@ QString RenderObject::information() const
 {
     QString str;
     int x; int y;
-    absolutePosition(x,y);
+    absolutePosition(x, y);
     x += inlineXPos();
     y += inlineYPos();
-    QTextStream ts( &str, QIODevice::WriteOnly );
+    QTextStream ts(&str, QIODevice::WriteOnly);
     ts << renderName()
-        << "(" << (style() ? style()->refCount() : 0) << ")"
-       << ": " << (void*)this << "  ";
+       << "(" << (style() ? style()->refCount() : 0) << ")"
+       << ": " << (void *)this << "  ";
     ts << "{" << x << " " << y << "} ";
-    if (isInline()) ts << "il ";
-    if (childrenInline()) ts << "ci ";
-    if (isFloating()) ts << "fl ";
-    if (isAnonymous()) ts << "an ";
-    if (isRelPositioned()) ts << "rp ";
-    if (isPositioned()) ts << "ps ";
-    if (isReplaced()) ts << "rp ";
-    if (needsLayout()) ts << "nl ";
-    if (minMaxKnown()) ts << "mmk ";
-    if (m_recalcMinMax) ts << "rmm ";
-    if (mouseInside()) ts << "mi ";
-    if (style() && style()->zIndex()) ts << "zI: " << style()->zIndex();
-    if (style() && style()->hasAutoZIndex()) ts << "zI: auto ";
+    if (isInline()) {
+        ts << "il ";
+    }
+    if (childrenInline()) {
+        ts << "ci ";
+    }
+    if (isFloating()) {
+        ts << "fl ";
+    }
+    if (isAnonymous()) {
+        ts << "an ";
+    }
+    if (isRelPositioned()) {
+        ts << "rp ";
+    }
+    if (isPositioned()) {
+        ts << "ps ";
+    }
+    if (isReplaced()) {
+        ts << "rp ";
+    }
+    if (needsLayout()) {
+        ts << "nl ";
+    }
+    if (minMaxKnown()) {
+        ts << "mmk ";
+    }
+    if (m_recalcMinMax) {
+        ts << "rmm ";
+    }
+    if (mouseInside()) {
+        ts << "mi ";
+    }
+    if (style() && style()->zIndex()) {
+        ts << "zI: " << style()->zIndex();
+    }
+    if (style() && style()->hasAutoZIndex()) {
+        ts << "zI: auto ";
+    }
     if (element()) {
-        if (element()->active()) ts << "act ";
-        if (element()->hasAnchor()) ts << "anchor ";
-        if (element()->focused()) ts << "focus ";
+        if (element()->active()) {
+            ts << "act ";
+        }
+        if (element()->hasAnchor()) {
+            ts << "anchor ";
+        }
+        if (element()->focused()) {
+            ts << "focus ";
+        }
         ts << " <" << LocalName::fromId(localNamePart(element()->id())).toString().string() << ">";
 
     } else if (isPseudoAnonymous() && style() && style()->styleType() != RenderStyle::NOPSEUDO) {
         ts << " <" << LocalName::fromId(localNamePart(node()->id())).toString().string();
         QString pseudo;
         switch (style()->styleType()) {
-          case RenderStyle::FIRST_LETTER:
+        case RenderStyle::FIRST_LETTER:
             pseudo = ":first-letter"; break;
-          case RenderStyle::BEFORE:
+        case RenderStyle::BEFORE:
             pseudo = ":before"; break;
-          case RenderStyle::AFTER:
+        case RenderStyle::AFTER:
             pseudo = ":after"; break;
-          default:
+        default:
             pseudo = ":pseudo-element";
         }
         ts << pseudo;
@@ -1885,22 +1960,25 @@ QString RenderObject::information() const
        << " { mT: " << marginTop() << " qT: " << isTopMarginQuirk()
        << " mB: " << marginBottom() << " qB: " << isBottomMarginQuirk()
        << "}"
-        << (isTableCell() ?
-            ( QLatin1String(" [r=") +
-              QString::number( static_cast<const RenderTableCell *>(this)->row() ) +
-              QLatin1String(" c=") +
-              QString::number( static_cast<const RenderTableCell *>(this)->col() ) +
-              QLatin1String(" rs=") +
-              QString::number( static_cast<const RenderTableCell *>(this)->rowSpan() ) +
-              QLatin1String(" cs=") +
-              QString::number( static_cast<const RenderTableCell *>(this)->colSpan() ) +
-              QLatin1String("]") ) : QString() );
-    if ( layer() )
+       << (isTableCell() ?
+           (QLatin1String(" [r=") +
+            QString::number(static_cast<const RenderTableCell *>(this)->row()) +
+            QLatin1String(" c=") +
+            QString::number(static_cast<const RenderTableCell *>(this)->col()) +
+            QLatin1String(" rs=") +
+            QString::number(static_cast<const RenderTableCell *>(this)->rowSpan()) +
+            QLatin1String(" cs=") +
+            QString::number(static_cast<const RenderTableCell *>(this)->colSpan()) +
+            QLatin1String("]")) : QString());
+    if (layer()) {
         ts << " layer=" << layer();
-    if ( continuation() )
+    }
+    if (continuation()) {
         ts << " continuation=" << continuation();
-    if (isText())
+    }
+    if (isText()) {
         ts << " \"" << QString::fromRawData(static_cast<const RenderText *>(this)->text(), qMin(static_cast<const RenderText *>(this)->length(), 10u)) << "\"";
+    }
     return str;
 }
 
@@ -1912,9 +1990,8 @@ void RenderObject::printTree(int indent) const
     // qDebug() << (ind + information());
 
     RenderObject *child = firstChild();
-    while( child != 0 )
-    {
-        child->printTree(indent+2);
+    while (child != 0) {
+        child->printTree(indent + 2);
         child = child->nextSibling();
     }
 }
@@ -1925,14 +2002,16 @@ static QTextStream &operator<<(QTextStream &ts, const QRect &r)
 }
 
 //A bit like getTagName, but handles XML, too.
-static QString lookupTagName(NodeImpl* node) {
+static QString lookupTagName(NodeImpl *node)
+{
     return LocalName::fromId(node->id()).toString().string();
 }
 
 void RenderObject::dump(QTextStream &ts, const QString &ind) const
 {
-    if ( !layer() )
+    if (!layer()) {
         ts << endl;
+    }
 
     ts << ind << renderName();
 
@@ -1949,13 +2028,13 @@ void RenderObject::dump(QTextStream &ts, const QString &ind) const
         QString pseudo;
         QString tagName(lookupTagName(node()));
         switch (style()->styleType()) {
-          case RenderStyle::FIRST_LETTER:
+        case RenderStyle::FIRST_LETTER:
             pseudo = ":first-letter"; break;
-          case RenderStyle::BEFORE:
+        case RenderStyle::BEFORE:
             pseudo = ":before"; break;
-          case RenderStyle::AFTER:
+        case RenderStyle::AFTER:
             pseudo = ":after"; break;
-          default:
+        default:
             pseudo = ":pseudo-element";
         }
         ts << " {" << tagName << pseudo << "}";
@@ -1964,33 +2043,60 @@ void RenderObject::dump(QTextStream &ts, const QString &ind) const
     QRect r(xPos(), yPos(), width(), height());
     ts << " " << r;
 
-    if ( parent() )
-        ts << style()->createDiff( *parent()->style() );
+    if (parent()) {
+        ts << style()->createDiff(*parent()->style());
+    }
 
-    if (isAnonymous()) { ts << " anonymousBox"; }
-    if (isFloating()) { ts << " floating"; }
-    if (isPositioned()) { ts << " positioned"; }
-    if (isRelPositioned()) { ts << " relPositioned"; }
-    if (isText()) { ts << " text"; }
-    if (isInline()) { ts << " inline"; }
-    if (isReplaced()) { ts << " replaced"; }
-    if (shouldPaintBackgroundOrBorder()) { ts << " paintBackground"; }
-    if (needsLayout()) { ts << " needsLayout"; }
-    if (minMaxKnown()) { ts << " minMaxKnown"; }
-    if (hasFirstLine()) { ts << " hasFirstLine"; }
-    if (afterPageBreak()) { ts << " afterPageBreak"; }
+    if (isAnonymous()) {
+        ts << " anonymousBox";
+    }
+    if (isFloating()) {
+        ts << " floating";
+    }
+    if (isPositioned()) {
+        ts << " positioned";
+    }
+    if (isRelPositioned()) {
+        ts << " relPositioned";
+    }
+    if (isText()) {
+        ts << " text";
+    }
+    if (isInline()) {
+        ts << " inline";
+    }
+    if (isReplaced()) {
+        ts << " replaced";
+    }
+    if (shouldPaintBackgroundOrBorder()) {
+        ts << " paintBackground";
+    }
+    if (needsLayout()) {
+        ts << " needsLayout";
+    }
+    if (minMaxKnown()) {
+        ts << " minMaxKnown";
+    }
+    if (hasFirstLine()) {
+        ts << " hasFirstLine";
+    }
+    if (afterPageBreak()) {
+        ts << " afterPageBreak";
+    }
 }
 
 void RenderObject::printLineBoxTree() const
 {
-    RenderObject* child = firstChild();
-    for (; child; child = child->nextSibling())
+    RenderObject *child = firstChild();
+    for (; child; child = child->nextSibling()) {
         child->printLineBoxTree();
+    }
     if (isRenderBlock()) {
-        const RenderBlock* block = static_cast<const RenderBlock*>(this);
-        RootInlineBox* rootBox = block->firstRootBox();
-        for (; rootBox; rootBox = rootBox->nextRootBox())
+        const RenderBlock *block = static_cast<const RenderBlock *>(this);
+        RootInlineBox *rootBox = block->firstRootBox();
+        for (; rootBox; rootBox = rootBox->nextRootBox()) {
             rootBox->printTree();
+        }
     }
 }
 #endif
@@ -1998,18 +2104,21 @@ void RenderObject::printLineBoxTree() const
 bool RenderObject::shouldSelect() const
 {
 #if 0 // ### merge
-    const RenderObject* curr = this;
+    const RenderObject *curr = this;
     DOM::NodeImpl *node = 0;
     bool forcedOn = false;
 
     while (curr) {
-        if (curr->style()->userSelect() == SELECT_TEXT)
+        if (curr->style()->userSelect() == SELECT_TEXT) {
             forcedOn = true;
-        if (!forcedOn && curr->style()->userSelect() == SELECT_NONE)
+        }
+        if (!forcedOn && curr->style()->userSelect() == SELECT_NONE) {
             return false;
+        }
 
-        if (!node)
+        if (!node) {
             node = curr->element();
+        }
         curr = curr->parent();
     }
 
@@ -2022,56 +2131,61 @@ bool RenderObject::shouldSelect() const
 #endif
 }
 
-void RenderObject::selectionStartEnd(int& spos, int& epos)
+void RenderObject::selectionStartEnd(int &spos, int &epos)
 {
-    if (parent())
+    if (parent()) {
         parent()->selectionStartEnd(spos, epos);
+    }
 }
 
 void RenderObject::setStyle(RenderStyle *style)
 {
-    if (m_style == style)
+    if (m_style == style) {
         return;
+    }
 
-    RenderStyle::Diff d = m_style ? m_style->diff( style ) : RenderStyle::Layout;
+    RenderStyle::Diff d = m_style ? m_style->diff(style) : RenderStyle::Layout;
     //qDebug("m_style: %p new style, diff=%d", m_style,  d);
 
     Priority pri = NormalPriority;
     if (m_style) {
         pri = HighPriority;
-        if ( d >= RenderStyle::Visible && !isText() && m_parent &&
-             ( d == RenderStyle::Position ||
-               m_style->outlineWidth() > style->outlineWidth() ||
-               (!m_style->hidesOverflow() && style->hidesOverflow()) ||
-               ( m_style->hasClip() && !(m_style->clip() == style->clip()) ) ) ) {
+        if (d >= RenderStyle::Visible && !isText() && m_parent &&
+                (d == RenderStyle::Position ||
+                 m_style->outlineWidth() > style->outlineWidth() ||
+                 (!m_style->hidesOverflow() && style->hidesOverflow()) ||
+                 (m_style->hasClip() && !(m_style->clip() == style->clip())))) {
             // schedule a repaint with the old style
-            if (layer() && !isInlineFlow())
+            if (layer() && !isInlineFlow()) {
                 layer()->repaint(pri);
-            else
+            } else {
                 repaint(pri);
+            }
         }
 
-        if ( ( isFloating() && m_style->floating() != style->floating() ) ||
-               ( isPositioned() && m_style->position() != style->position() &&
-                 style->position() != PABSOLUTE && style->position() != PFIXED ) )
+        if ((isFloating() && m_style->floating() != style->floating()) ||
+                (isPositioned() && m_style->position() != style->position() &&
+                 style->position() != PABSOLUTE && style->position() != PFIXED)) {
             removeFromObjectLists();
+        }
 
-        if ( layer() ) {
-            if ( ( m_style->hasAutoZIndex() != style->hasAutoZIndex() ||
-                   m_style->zIndex() != style->zIndex() ||
-                   m_style->visibility() != style->visibility() ) ) {
+        if (layer()) {
+            if ((m_style->hasAutoZIndex() != style->hasAutoZIndex() ||
+                    m_style->zIndex() != style->zIndex() ||
+                    m_style->visibility() != style->visibility())) {
                 layer()->stackingContext()->dirtyZOrderLists();
                 layer()->dirtyZOrderLists();
             }
             // keep layer hierarchy visibility bits up to date if visibility changes
             if (m_style->visibility() != style->visibility()) {
-                RenderLayer* l = enclosingLayer(); 
-                if (style->visibility() == VISIBLE && l)
+                RenderLayer *l = enclosingLayer();
+                if (style->visibility() == VISIBLE && l) {
                     l->setHasVisibleContent(true);
-                else if (l && l->hasVisibleContent() && 
-                    (this == l->renderer() || l->renderer()->style()->visibility() != VISIBLE))
+                } else if (l && l->hasVisibleContent() &&
+                           (this == l->renderer() || l->renderer()->style()->visibility() != VISIBLE)) {
                     l->dirtyVisibleContentStatus();
-            }            
+                }
+            }
         }
 
         // reset style flags
@@ -2083,37 +2197,39 @@ void RenderObject::setStyle(RenderStyle *style)
     }
 
     // only honor z-index for non-static objects and objects with opacity
-    if ( style->position() == PSTATIC && style->opacity() == 1.0f ) {
+    if (style->position() == PSTATIC && style->opacity() == 1.0f) {
         style->setHasAutoZIndex();
     }
     // force establishment of a stacking context by transparent objects, as those define
     // the bounds of an atomically painted region.
-    if (style->hasAutoZIndex() && (isRoot() || style->opacity() < 1.0f))
-        style->setZIndex( 0 );
+    if (style->hasAutoZIndex() && (isRoot() || style->opacity() < 1.0f)) {
+        style->setZIndex(0);
+    }
 
-    if ( d > RenderStyle::Position &&
-         (style->hasFixedBackgroundImage() != (m_style && m_style->hasFixedBackgroundImage())
-            || (style->position() == PFIXED) != (m_style && (m_style->position() == PFIXED)))
-            && canvas() && canvas()->view() ) {
-       // some sort of fixed object is added or removed. Let's find out more and report to the canvas,
-       // so that it does some bookkeeping and optimizes the view's background display mode accordingly.
-       bool fixedBG = style->hasFixedBackgroundImage();
-       bool oldFixedBG = m_style && m_style->hasFixedBackgroundImage();
-       bool fixedPos = (style->position() == PFIXED);
-       bool oldFixedPos = m_style && (m_style->position() == PFIXED);
-       if (fixedBG != oldFixedBG) {
-           if (fixedBG) {
-               canvas()->addStaticObject(this);
-           } else {
-               canvas()->removeStaticObject(this);
-           }
-       }
-       if (fixedPos != oldFixedPos) {
-           if (fixedPos)
-               canvas()->addStaticObject( this, true /*positioned*/ );
-           else
-               canvas()->removeStaticObject( this, true );
-       }
+    if (d > RenderStyle::Position &&
+            (style->hasFixedBackgroundImage() != (m_style && m_style->hasFixedBackgroundImage())
+             || (style->position() == PFIXED) != (m_style && (m_style->position() == PFIXED)))
+            && canvas() && canvas()->view()) {
+        // some sort of fixed object is added or removed. Let's find out more and report to the canvas,
+        // so that it does some bookkeeping and optimizes the view's background display mode accordingly.
+        bool fixedBG = style->hasFixedBackgroundImage();
+        bool oldFixedBG = m_style && m_style->hasFixedBackgroundImage();
+        bool fixedPos = (style->position() == PFIXED);
+        bool oldFixedPos = m_style && (m_style->position() == PFIXED);
+        if (fixedBG != oldFixedBG) {
+            if (fixedBG) {
+                canvas()->addStaticObject(this);
+            } else {
+                canvas()->removeStaticObject(this);
+            }
+        }
+        if (fixedPos != oldFixedPos) {
+            if (fixedPos) {
+                canvas()->addStaticObject(this, true /*positioned*/);
+            } else {
+                canvas()->removeStaticObject(this, true);
+            }
+        }
     }
 
     RenderStyle *oldStyle = m_style;
@@ -2121,22 +2237,24 @@ void RenderObject::setStyle(RenderStyle *style)
 
     updateBackgroundImages(oldStyle);
 
-        m_style->ref();
+    m_style->ref();
 
-    if (oldStyle)
+    if (oldStyle) {
         oldStyle->deref();
+    }
 
     setShouldPaintBackgroundOrBorder(m_style->hasBorder() || m_style->hasBackground());
 
     m_hasFirstLine = (style->getPseudoStyle(RenderStyle::FIRST_LINE) != 0);
     if (m_parent) {
-        if (d == RenderStyle::Position && !attemptDirectLayerTranslation())
+        if (d == RenderStyle::Position && !attemptDirectLayerTranslation()) {
             d = RenderStyle::Layout;
+        }
 
-        if ( d > RenderStyle::Position) {
+        if (d > RenderStyle::Position) {
             // we must perform a full layout
             if (!isText() && d == RenderStyle::CbLayout) {
-                dirtyFormattingContext( true );
+                dirtyFormattingContext(true);
             }
             setNeedsLayoutAndMinMaxRecalc();
         } else if (!isText() && d >= RenderStyle::Visible) {
@@ -2145,16 +2263,20 @@ void RenderObject::setStyle(RenderStyle *style)
                 if (canvas() && canvas()->needsWidgetMasks()) {
                     // update our widget masks
                     RenderLayer *p, *d = 0;
-                    for (p=layer()->parent();p;p=p->parent())
-                        if (p->hasOverlaidWidgets()) d=p;
-                    if (d) // deepest
-                        d->updateWidgetMasks( canvas()->layer() );
+                    for (p = layer()->parent(); p; p = p->parent())
+                        if (p->hasOverlaidWidgets()) {
+                            d = p;
+                        }
+                    if (d) { // deepest
+                        d->updateWidgetMasks(canvas()->layer());
+                    }
                 }
             }
-            if (layer() && !isInlineFlow())
+            if (layer() && !isInlineFlow()) {
                 layer()->repaint(pri);
-            else
+            } else {
                 repaint(pri);
+            }
         }
     }
 }
@@ -2164,9 +2286,10 @@ bool RenderObject::attemptDirectLayerTranslation()
     // When the difference between two successive styles is only 'Position'
     // we may attempt to save a layout by directly updating the object position.
 
-    KHTMLAssert( m_style->position() != PSTATIC );
-    if (!layer())
+    KHTMLAssert(m_style->position() != PSTATIC);
+    if (!layer()) {
         return false;
+    }
     setInline(m_style->isDisplayInlineType());
     setPositioned(m_style->position() != PRELATIVE);
     setRelPositioned(m_style->position() == PRELATIVE);
@@ -2197,8 +2320,8 @@ bool RenderObject::attemptDirectLayerTranslation()
             cb = cb->container();
         }
         if (needsDocSizeUpdate && canvas()) {
-            bool posXOffset = (xPos()-oldXPos >= 0);
-            bool posYOffset = (yPos()-oldYPos >= 0);
+            bool posXOffset = (xPos() - oldXPos >= 0);
+            bool posYOffset = (yPos() - oldYPos >= 0);
             canvas()->updateDocSizeAfterLayerTranslation(this, posXOffset, posYOffset);
         }
     }
@@ -2206,42 +2329,48 @@ bool RenderObject::attemptDirectLayerTranslation()
     return true;
 }
 
-void RenderObject::dirtyFormattingContext( bool checkContainer )
+void RenderObject::dirtyFormattingContext(bool checkContainer)
 {
-    if (m_markedForRepaint && !checkContainer)
+    if (m_markedForRepaint && !checkContainer) {
         return;
+    }
     m_markedForRepaint = true;
-    if (layer() && (style()->position() == PFIXED || style()->position() == PABSOLUTE))
+    if (layer() && (style()->position() == PFIXED || style()->position() == PABSOLUTE)) {
         return;
+    }
     if (m_parent && (checkContainer || style()->width().isAuto() || style()->height().isAuto() ||
-                    !(isFloating() || flowAroundFloats() || isTableCell())))
+                     !(isFloating() || flowAroundFloats() || isTableCell()))) {
         m_parent->dirtyFormattingContext(false);
+    }
 }
 
 void RenderObject::repaintDuringLayout()
 {
-    if (canvas()->needsFullRepaint() || isText())
+    if (canvas()->needsFullRepaint() || isText()) {
         return;
+    }
     if (layer() && !isInlineFlow()) {
-        layer()->repaint( NormalPriority, true );
+        layer()->repaint(NormalPriority, true);
     } else {
-       repaint();
-       canvas()->deferredRepaint( this );
+        repaint();
+        canvas()->deferredRepaint(this);
     }
 }
 
-void RenderObject::updateBackgroundImages(RenderStyle* oldStyle)
+void RenderObject::updateBackgroundImages(RenderStyle *oldStyle)
 {
     // FIXME: This will be slow when a large number of images is used.  Fix by using a dict.
-    const BackgroundLayer* oldLayers = oldStyle ? oldStyle->backgroundLayers() : 0;
-    const BackgroundLayer* newLayers = m_style ? m_style->backgroundLayers() : 0;
-    for (const BackgroundLayer* currOld = oldLayers; currOld; currOld = currOld->next()) {
-        if (currOld->backgroundImage() && (!newLayers || !newLayers->containsImage(currOld->backgroundImage())))
+    const BackgroundLayer *oldLayers = oldStyle ? oldStyle->backgroundLayers() : 0;
+    const BackgroundLayer *newLayers = m_style ? m_style->backgroundLayers() : 0;
+    for (const BackgroundLayer *currOld = oldLayers; currOld; currOld = currOld->next()) {
+        if (currOld->backgroundImage() && (!newLayers || !newLayers->containsImage(currOld->backgroundImage()))) {
             currOld->backgroundImage()->deref(this);
+        }
     }
-    for (const BackgroundLayer* currNew = newLayers; currNew; currNew = currNew->next()) {
-        if (currNew->backgroundImage() && (!oldLayers || !oldLayers->containsImage(currNew->backgroundImage())))
+    for (const BackgroundLayer *currNew = newLayers; currNew; currNew = currNew->next()) {
+        if (currNew->backgroundImage() && (!oldLayers || !oldLayers->containsImage(currNew->backgroundImage()))) {
             currNew->backgroundImage()->ref(this);
+        }
     }
 }
 
@@ -2252,15 +2381,14 @@ QRect RenderObject::viewRect() const
 
 bool RenderObject::absolutePosition(int &xPos, int &yPos, bool f) const
 {
-    RenderObject* p = parent();
+    RenderObject *p = parent();
     if (p) {
         p->absolutePosition(xPos, yPos, f);
-        if ( p->hasOverflowClip() )
-            p->layer()->subtractScrollOffset( xPos, yPos );
+        if (p->hasOverflowClip()) {
+            p->layer()->subtractScrollOffset(xPos, yPos);
+        }
         return true;
-    }
-    else
-    {
+    } else {
         xPos = yPos = 0;
         return false;
     }
@@ -2270,18 +2398,20 @@ void RenderObject::caretPos(int /*offset*/, int /*flags*/, int &_x, int &_y, int
 {
     _x = _y = height = -1;
     width = 1;        // the caret has a default width of one pixel. If you want
-                    // to check for validity, only test the x-coordinate for >= 0.
+    // to check for validity, only test the x-coordinate for >= 0.
 }
 
 int RenderObject::paddingTop() const
 {
     int w = 0;
     Length padding = m_style->paddingTop();
-    if (padding.isPercent())
+    if (padding.isPercent()) {
         w = containingBlock()->contentWidth();
+    }
     w = padding.minWidth(w);
-    if ( isTableCell() && padding.isAuto() )
+    if (isTableCell() && padding.isAuto()) {
         w = static_cast<const RenderTableCell *>(this)->table()->cellPadding();
+    }
     return w;
 }
 
@@ -2289,11 +2419,13 @@ int RenderObject::paddingBottom() const
 {
     int w = 0;
     Length padding = style()->paddingBottom();
-    if (padding.isPercent())
+    if (padding.isPercent()) {
         w = containingBlock()->contentWidth();
+    }
     w = padding.minWidth(w);
-    if ( isTableCell() && padding.isAuto() )
+    if (isTableCell() && padding.isAuto()) {
         w = static_cast<const RenderTableCell *>(this)->table()->cellPadding();
+    }
     return w;
 }
 
@@ -2301,11 +2433,13 @@ int RenderObject::paddingLeft() const
 {
     int w = 0;
     Length padding = style()->paddingLeft();
-    if (padding.isPercent())
+    if (padding.isPercent()) {
         w = containingBlock()->contentWidth();
+    }
     w = padding.minWidth(w);
-    if ( isTableCell() && padding.isAuto() )
+    if (isTableCell() && padding.isAuto()) {
         w = static_cast<const RenderTableCell *>(this)->table()->cellPadding();
+    }
     return w;
 }
 
@@ -2313,11 +2447,13 @@ int RenderObject::paddingRight() const
 {
     int w = 0;
     Length padding = style()->paddingRight();
-    if (padding.isPercent())
+    if (padding.isPercent()) {
         w = containingBlock()->contentWidth();
+    }
     w = padding.minWidth(w);
-    if ( isTableCell() && padding.isAuto() )
+    if (isTableCell() && padding.isAuto()) {
         w = static_cast<const RenderTableCell *>(this)->table()->cellPadding();
+    }
     return w;
 }
 
@@ -2334,7 +2470,7 @@ RenderObject *RenderObject::container() const
     // calcAbsoluteVertical have to use container().
     EPosition pos = m_style->position();
     RenderObject *o = 0;
-    if( pos == PFIXED ) {
+    if (pos == PFIXED) {
         // container() can be called on an object that is not in the
         // tree yet.  We don't call canvas() since it will assert if it
         // can't get back to the canvas.  Instead we just walk as high up
@@ -2342,22 +2478,24 @@ RenderObject *RenderObject::container() const
         // aren't we'll get the root of our little subtree (most likely
         // we'll just return 0).
         o = parent();
-        while ( o && o->parent() ) o = o->parent();
-    }
-    else if ( pos == PABSOLUTE ) {
+        while (o && o->parent()) {
+            o = o->parent();
+        }
+    } else if (pos == PABSOLUTE) {
         // Same goes here.  We technically just want our containing block, but
         // we may not have one if we're part of an uninstalled subtree.  We'll
         // climb as high as we can though.
         o = parent();
-        while (o && o->style()->position() == PSTATIC && !o->isCanvas())
+        while (o && o->style()->position() == PSTATIC && !o->isCanvas()) {
             o = o->parent();
-    }
-    else
+        }
+    } else {
         o = parent();
+    }
     return o;
 }
 
-DOM::DocumentImpl* RenderObject::document() const
+DOM::DocumentImpl *RenderObject::document() const
 {
     return m_node->document();
 }
@@ -2365,24 +2503,29 @@ DOM::DocumentImpl* RenderObject::document() const
 void RenderObject::removeFromObjectLists()
 {
     // in destruction mode, don't care.
-    if ( documentBeingDestroyed() ) return;
+    if (documentBeingDestroyed()) {
+        return;
+    }
 
     if (isFloating()) {
-        RenderBlock* outermostBlock = containingBlock();
-        for (RenderBlock* p = outermostBlock; p && !p->isCanvas() && p->containsFloat(this);) {
+        RenderBlock *outermostBlock = containingBlock();
+        for (RenderBlock *p = outermostBlock; p && !p->isCanvas() && p->containsFloat(this);) {
             outermostBlock = p;
-            if (p->isFloatingOrPositioned())
+            if (p->isFloatingOrPositioned()) {
                 break;
+            }
             p = p->containingBlock();
         }
 
-        if (outermostBlock)
+        if (outermostBlock) {
             outermostBlock->markAllDescendantsWithFloatsForLayout(this);
+        }
 
         RenderObject *p;
         for (p = parent(); p; p = p->parent()) {
-            if (p->isRenderBlock())
-                static_cast<RenderBlock*>(p)->removeFloatingObject(this);
+            if (p->isRenderBlock()) {
+                static_cast<RenderBlock *>(p)->removeFloatingObject(this);
+            }
         }
 
     }
@@ -2390,13 +2533,14 @@ void RenderObject::removeFromObjectLists()
     if (inPosObjectList()) {
         RenderObject *p;
         for (p = parent(); p; p = p->parent()) {
-            if (p->isRenderBlock())
-                static_cast<RenderBlock*>(p)->removePositionedObject(this);
+            if (p->isRenderBlock()) {
+                static_cast<RenderBlock *>(p)->removePositionedObject(this);
+            }
         }
     }
 }
 
-RenderArena* RenderObject::renderArena() const
+RenderArena *RenderObject::renderArena() const
 {
     return m_node->document()->renderArena();
 }
@@ -2407,8 +2551,9 @@ void RenderObject::detach()
     remove();
 
     // make sure our DOM-node don't think we exist
-    if ( node() && node()->renderer() == this)
+    if (node() && node()->renderer() == this) {
         node()->setRenderer(0);
+    }
 
     // by default no refcounting
     arenaDelete(renderArena(), this);
@@ -2418,8 +2563,9 @@ void RenderObject::remove()
 {
     if (m_parent) {
         m_parent->removeChild(this);
-        if (isFloating() || inPosObjectList())
+        if (isFloating() || inPosObjectList()) {
             removeFromObjectLists();
+        }
     }
 }
 
@@ -2453,27 +2599,30 @@ RenderPosition RenderObject::positionForCoordinates(int /*x*/, int /*y*/)
 bool RenderObject::isPointInsideSelection(int x, int y, const Selection &sel) const
 {
     SelectionState selstate = selectionState();
-    if (selstate == SelectionInside) return true;
-    if (selstate == SelectionNone || !element()) return false;
+    if (selstate == SelectionInside) {
+        return true;
+    }
+    if (selstate == SelectionNone || !element()) {
+        return false;
+    }
     return element()->isPointInsideSelection(x, y, sel);
 }
 
 #if 0
-FindSelectionResult RenderObject::checkSelectionPoint( int _x, int _y, int _tx, int _ty, DOM::NodeImpl*& node, int & offset, SelPointState &state )
+FindSelectionResult RenderObject::checkSelectionPoint(int _x, int _y, int _tx, int _ty, DOM::NodeImpl *&node, int &offset, SelPointState &state)
 {
 #if 0
     NodeInfo info(true, false);
-    if ( nodeAtPoint( info, _x, _y, _tx, _ty ) && info.innerNode() )
-    {
-        RenderObject* r = info.innerNode()->renderer();
-        if ( r ) {
-            if ( r == this ) {
+    if (nodeAtPoint(info, _x, _y, _tx, _ty) && info.innerNode()) {
+        RenderObject *r = info.innerNode()->renderer();
+        if (r) {
+            if (r == this) {
                 node = info.innerNode();
                 offset = 0; // we have no text...
                 return SelectionPointInside;
+            } else {
+                return r->checkSelectionPoint(_x, _y, _tx, _ty, node, offset, state);
             }
-            else
-                return r->checkSelectionPoint( _x, _y, _tx, _ty, node, offset, state );
         }
     }
     //qDebug() << "nodeAtPoint Failed. Fallback - hmm, SelectionPointAfter";
@@ -2482,20 +2631,21 @@ FindSelectionResult RenderObject::checkSelectionPoint( int _x, int _y, int _tx, 
     return SelectionPointAfter;
 #endif
     int off = offset;
-    DOM::NodeImpl* nod = node;
+    DOM::NodeImpl *nod = node;
 
-    for (RenderObject *child = firstChild(); child; child=child->nextSibling()) {
+    for (RenderObject *child = firstChild(); child; child = child->nextSibling()) {
         // ignore empty text boxes, they produce totally bogus information
         // for caret navigation (LS)
-        if (child->isText() && !static_cast<RenderText *>(child)->firstTextBox())
+        if (child->isText() && !static_cast<RenderText *>(child)->firstTextBox()) {
             continue;
+        }
 
 //        qDebug() << "iterating " << (child ? child->renderName() : "") << "@" << child << (child->isText() ? " contains: \"" + QString::fromRawData(static_cast<RenderText *>(child)->text(), qMin(static_cast<RenderText *>(child)->length(), 10u)) + "\"" : QString());
 //        qDebug() << "---------- checkSelectionPoint recursive -----------";
-        khtml::FindSelectionResult pos = child->checkSelectionPoint(_x, _y, _tx+xPos(), _ty+yPos(), nod, off, state);
+        khtml::FindSelectionResult pos = child->checkSelectionPoint(_x, _y, _tx + xPos(), _ty + yPos(), nod, off, state);
 //        qDebug() << "-------- end checkSelectionPoint recursive ---------";
 //        qDebug() << this << " child->findSelectionNode returned result=" << pos << " nod=" << nod << " off=" << off;
-        switch(pos) {
+        switch (pos) {
         case SelectionPointBeforeInLine:
         case SelectionPointInside:
             //qDebug() << "RenderObject::checkSelectionPoint " << this << " returning SelectionPointInside offset=" << offset;
@@ -2504,7 +2654,7 @@ FindSelectionResult RenderObject::checkSelectionPoint( int _x, int _y, int _tx, 
             return SelectionPointInside;
         case SelectionPointBefore:
             //x,y is before this element -> stop here
-            if ( state.m_lastNode ) {
+            if (state.m_lastNode) {
                 node = state.m_lastNode;
                 offset = state.m_lastOffset;
                 //qDebug() << "RenderObject::checkSelectionPoint " << this << " before this child "
@@ -2518,10 +2668,14 @@ FindSelectionResult RenderObject::checkSelectionPoint( int _x, int _y, int _tx, 
             }
             break;
         case SelectionPointAfter:
-            if (state.m_afterInLine) break;
-            // fall through
+            if (state.m_afterInLine) {
+                break;
+            }
+        // fall through
         case SelectionPointAfterInLine:
-            if (pos == SelectionPointAfterInLine) state.m_afterInLine = true;
+            if (pos == SelectionPointAfterInLine) {
+                state.m_afterInLine = true;
+            }
             //qDebug() << "RenderObject::checkSelectionPoint: selection after: " << nod << " offset: " << off << " afterInLine: " << state.m_afterInLine;
             state.m_lastNode = nod;
             state.m_lastOffset = off;
@@ -2531,8 +2685,7 @@ FindSelectionResult RenderObject::checkSelectionPoint( int _x, int _y, int _tx, 
     }
     // If we are after the last child, return lastNode/lastOffset
     // But lastNode can be 0L if there is no child, for instance.
-    if ( state.m_lastNode )
-    {
+    if (state.m_lastNode) {
         node = state.m_lastNode;
         offset = state.m_lastOffset;
     }
@@ -2543,163 +2696,179 @@ FindSelectionResult RenderObject::checkSelectionPoint( int _x, int _y, int _tx, 
 
 bool RenderObject::mouseInside() const
 {
-    if (!m_mouseInside && continuation())
+    if (!m_mouseInside && continuation()) {
         return continuation()->mouseInside();
+    }
     return m_mouseInside;
 }
 
-bool RenderObject::nodeAtPoint(NodeInfo& info, int _x, int _y, int _tx, int _ty, HitTestAction hitTestAction, bool inside)
+bool RenderObject::nodeAtPoint(NodeInfo &info, int _x, int _y, int _tx, int _ty, HitTestAction hitTestAction, bool inside)
 {
     int tx = _tx + xPos();
     int ty = _ty + yPos();
 
-    inside |= ( style()->visibility() != HIDDEN &&
-                (_y >= ty) && (_y < ty + height()) && (_x >= tx) && (_x < tx + width())) || isRoot() || isBody();
+    inside |= (style()->visibility() != HIDDEN &&
+               (_y >= ty) && (_y < ty + height()) && (_x >= tx) && (_x < tx + width())) || isRoot() || isBody();
     bool inOverflowRect = inside;
-    if ( !inOverflowRect ) {
+    if (!inOverflowRect) {
         int ol = overflowLeft();
         int ot = overflowTop();
-        QRect overflowRect( tx+ol, ty+ot, overflowWidth()-ol, overflowHeight()-ot );
-        inOverflowRect = overflowRect.contains( _x, _y );
+        QRect overflowRect(tx + ol, ty + ot, overflowWidth() - ol, overflowHeight() - ot);
+        inOverflowRect = overflowRect.contains(_x, _y);
     }
 
     // ### table should have its own, more performant method
     if (hitTestAction != HitTestSelfOnly &&
-        (( !isRenderBlock() ||
-           !static_cast<RenderBlock*>( this )->isPointInScrollbar( _x, _y, _tx, _ty )) &&
-        (inOverflowRect || isInline() || isRoot() || isCanvas() ||
-        isTableRow() || isTableSection() || inside || mouseInside() ))) {
-        if ( hitTestAction == HitTestChildrenOnly )
+            ((!isRenderBlock() ||
+              !static_cast<RenderBlock *>(this)->isPointInScrollbar(_x, _y, _tx, _ty)) &&
+             (inOverflowRect || isInline() || isRoot() || isCanvas() ||
+              isTableRow() || isTableSection() || inside || mouseInside()))) {
+        if (hitTestAction == HitTestChildrenOnly) {
             inside = false;
-        if ( hasOverflowClip() && layer() )
+        }
+        if (hasOverflowClip() && layer()) {
             layer()->subtractScrollOffset(tx, ty);
-        for (RenderObject* child = lastChild(); child; child = child->previousSibling())
-            if (!child->layer() && child->nodeAtPoint(info, _x, _y, tx, ty, HitTestAll))
+        }
+        for (RenderObject *child = lastChild(); child; child = child->previousSibling())
+            if (!child->layer() && child->nodeAtPoint(info, _x, _y, tx, ty, HitTestAll)) {
                 inside = true;
+            }
     }
 
-    if (inside)
+    if (inside) {
         setInnerNode(info);
+    }
 
     return inside;
 }
 
-
-void RenderObject::setInnerNode(NodeInfo& info)
+void RenderObject::setInnerNode(NodeInfo &info)
 {
     if (!info.innerNode() && !isInline() && continuation()) {
         // We are in the margins of block elements that are part of a continuation.  In
         // this case we're actually still inside the enclosing inline element that was
         // split.  Go ahead and set our inner node accordingly.
         info.setInnerNode(continuation()->element());
-        if (!info.innerNonSharedNode())
+        if (!info.innerNonSharedNode()) {
             info.setInnerNonSharedNode(continuation()->element());
+        }
     }
 
-    if (!info.innerNode() && element())
+    if (!info.innerNode() && element()) {
         info.setInnerNode(element());
+    }
 
-    if(!info.innerNonSharedNode() && element())
+    if (!info.innerNonSharedNode() && element()) {
         info.setInnerNonSharedNode(element());
+    }
 }
 
-
-short RenderObject::verticalPositionHint( bool firstLine ) const
+short RenderObject::verticalPositionHint(bool firstLine) const
 {
     short vpos = m_verticalPosition;
-    if ( m_verticalPosition == PositionUndefined || firstLine ) {
-        vpos = getVerticalPosition( firstLine );
-        if ( !firstLine )
+    if (m_verticalPosition == PositionUndefined || firstLine) {
+        vpos = getVerticalPosition(firstLine);
+        if (!firstLine) {
             const_cast<RenderObject *>(this)->m_verticalPosition = vpos;
+        }
     }
     return vpos;
 
 }
 
-short RenderObject::getVerticalPosition( bool firstLine, RenderObject* ref ) const
+short RenderObject::getVerticalPosition(bool firstLine, RenderObject *ref) const
 {
     // vertical align for table cells has a different meaning
     int vpos = 0;
-    if ( !isTableCell() && isInline() ) {
+    if (!isTableCell() && isInline()) {
         EVerticalAlign va = style()->verticalAlign();
-        if ( va == TOP ) {
+        if (va == TOP) {
             vpos = PositionTop;
-        } else if ( va == BOTTOM ) {
+        } else if (va == BOTTOM) {
             vpos = PositionBottom;
         } else {
-            if (!ref) ref = parent();
+            if (!ref) {
+                ref = parent();
+            }
             bool checkParent = ref->isInline() && !ref->isReplacedBlock() &&
-                               !( ref->style()->verticalAlign() == TOP || ref->style()->verticalAlign() == BOTTOM );
-            vpos = checkParent ? ref->verticalPositionHint( firstLine ) : 0;
+                               !(ref->style()->verticalAlign() == TOP || ref->style()->verticalAlign() == BOTTOM);
+            vpos = checkParent ? ref->verticalPositionHint(firstLine) : 0;
             // don't allow elements nested inside text-top to have a different valignment.
-            if ( va == BASELINE )
+            if (va == BASELINE) {
                 return vpos;
-            else if ( va == LENGTH )
-                return vpos - style()->verticalAlignLength().width( lineHeight( firstLine ) );
+            } else if (va == LENGTH) {
+                return vpos - style()->verticalAlignLength().width(lineHeight(firstLine));
+            }
 
-            const QFont &f = ref->font( firstLine );
+            const QFont &f = ref->font(firstLine);
             int fontsize = f.pixelSize();
 
-            if ( va == SUB )
-                vpos += fontsize/5 + 1;
-            else if ( va == SUPER )
-                vpos -= fontsize/3 + 1;
-            else if ( va == TEXT_TOP ) {
-                vpos += baselinePosition( firstLine ) - (QFontMetrics(f).ascent() + QFontMetrics(f).leading()/2);
-            } else if ( va == MIDDLE ) {
+            if (va == SUB) {
+                vpos += fontsize / 5 + 1;
+            } else if (va == SUPER) {
+                vpos -= fontsize / 3 + 1;
+            } else if (va == TEXT_TOP) {
+                vpos += baselinePosition(firstLine) - (QFontMetrics(f).ascent() + QFontMetrics(f).leading() / 2);
+            } else if (va == MIDDLE) {
                 QRect b = QFontMetrics(f).boundingRect('x');
-                vpos += -b.height()/2 - lineHeight( firstLine )/2 + baselinePosition( firstLine );
-            } else if ( va == TEXT_BOTTOM ) {
-                vpos += QFontMetrics(f).descent() + QFontMetrics(f).leading()/2;
-                if ( !isReplaced() ) {
+                vpos += -b.height() / 2 - lineHeight(firstLine) / 2 + baselinePosition(firstLine);
+            } else if (va == TEXT_BOTTOM) {
+                vpos += QFontMetrics(f).descent() + QFontMetrics(f).leading() / 2;
+                if (!isReplaced()) {
                     vpos -= (lineHeight(firstLine) - baselinePosition(firstLine));
                 }
-            } else if ( va == BASELINE_MIDDLE )
-                vpos += - lineHeight( firstLine )/2 + baselinePosition( firstLine );
+            } else if (va == BASELINE_MIDDLE) {
+                vpos += - lineHeight(firstLine) / 2 + baselinePosition(firstLine);
+            }
         }
     }
     return vpos;
 }
 
-short RenderObject::lineHeight( bool firstLine ) const
+short RenderObject::lineHeight(bool firstLine) const
 {
     // Inline blocks are replaced elements. Otherwise, just pass off to
     // the base class.  If we're being queried as though we're the root line
     // box, then the fact that we're an inline-block is irrelevant, and we behave
     // just like a block.
 
-    if (isReplaced() && (!isInlineBlockOrInlineTable() || !needsLayout()))
-        return height()+marginTop()+marginBottom();
+    if (isReplaced() && (!isInlineBlockOrInlineTable() || !needsLayout())) {
+        return height() + marginTop() + marginBottom();
+    }
 
     Length lh;
-    if( firstLine && hasFirstLine() ) {
+    if (firstLine && hasFirstLine()) {
         RenderStyle *pseudoStyle  = style()->getPseudoStyle(RenderStyle::FIRST_LINE);
-        if ( pseudoStyle )
+        if (pseudoStyle) {
             lh = pseudoStyle->lineHeight();
-    }
-    else
+        }
+    } else {
         lh = style()->lineHeight();
+    }
 
     // its "unset", choose nice default
-    if ( lh.isNegative() )
+    if (lh.isNegative()) {
         return style()->htmlFont().lineSpacing();
+    }
 
-    if ( lh.isPercent() )
-        return lh.minWidth( style()->font().pixelSize() );
+    if (lh.isPercent()) {
+        return lh.minWidth(style()->font().pixelSize());
+    }
 
     // its fixed
     return lh.value();
 }
 
-short RenderObject::baselinePosition( bool firstLine ) const
+short RenderObject::baselinePosition(bool firstLine) const
 {
     // If we're an inline-block and need layout, it means our replaced boundaries
     // are not yet fully established, so we behave just like a block.
-    if (isReplaced() && (!isInlineBlockOrInlineTable() || !needsLayout()))
-        return height()+marginTop()+marginBottom();
+    if (isReplaced() && (!isInlineBlockOrInlineTable() || !needsLayout())) {
+        return height() + marginTop() + marginBottom();
+    }
 
-    const QFontMetrics &fm = fontMetrics( firstLine );
-    return fm.ascent() + ( lineHeight( firstLine) - fm.height() ) / 2;
+    const QFontMetrics &fm = fontMetrics(firstLine);
+    return fm.ascent() + (lineHeight(firstLine) - fm.height()) / 2;
 }
 
 void RenderObject::invalidateVerticalPosition()
@@ -2709,60 +2878,68 @@ void RenderObject::invalidateVerticalPosition()
 
 void RenderObject::recalcMinMaxWidths()
 {
-    KHTMLAssert( m_recalcMinMax );
+    KHTMLAssert(m_recalcMinMax);
 
 #ifdef DEBUG_LAYOUT
     qDebug() << renderName() << " recalcMinMaxWidths() this=" << this;
 #endif
 
     RenderObject *child = firstChild();
-    int cmin=0;
-    int cmax=0;
+    int cmin = 0;
+    int cmax = 0;
 
-    while( child ) {
+    while (child) {
         bool test = false;
-        if ( ( m_minMaxKnown && child->m_recalcMinMax ) || !child->m_minMaxKnown ) {
+        if ((m_minMaxKnown && child->m_recalcMinMax) || !child->m_minMaxKnown) {
             cmin = child->minWidth();
             cmax = child->maxWidth();
             test = true;
         }
-        if ( child->m_recalcMinMax )
+        if (child->m_recalcMinMax) {
             child->recalcMinMaxWidths();
-        if ( !child->m_minMaxKnown )
+        }
+        if (!child->m_minMaxKnown) {
             child->calcMinMaxWidth();
-        if ( m_minMaxKnown && test && (cmin != child->minWidth() || cmax != child->maxWidth()) )
+        }
+        if (m_minMaxKnown && test && (cmin != child->minWidth() || cmax != child->maxWidth())) {
             m_minMaxKnown = false;
+        }
         child = child->nextSibling();
     }
 
     // we need to recalculate, if the contains inline children, as the change could have
     // happened somewhere deep inside the child tree
-    if ( ( !isInline() || isReplacedBlock() ) && childrenInline() )
+    if ((!isInline() || isReplacedBlock()) && childrenInline()) {
         m_minMaxKnown = false;
+    }
 
-    if ( !m_minMaxKnown )
+    if (!m_minMaxKnown) {
         calcMinMaxWidth();
+    }
     m_recalcMinMax = false;
 }
 
 void RenderObject::scheduleRelayout(RenderObject *clippedObj)
 {
-    if (!isCanvas()) return;
+    if (!isCanvas()) {
+        return;
+    }
     KHTMLView *view = static_cast<RenderCanvas *>(this)->view();
-    if ( view )
+    if (view) {
         view->scheduleRelayout(clippedObj);
+    }
 }
 
-InlineBox* RenderObject::createInlineBox(bool /*makePlaceHolderBox*/, bool /*isRootLineBox*/)
+InlineBox *RenderObject::createInlineBox(bool /*makePlaceHolderBox*/, bool /*isRootLineBox*/)
 {
     KHTMLAssert(false);
     return 0;
 }
 
-void RenderObject::getTextDecorationColors(int decorations, QColor& underline, QColor& overline,
-                                           QColor& linethrough, bool quirksMode)
+void RenderObject::getTextDecorationColors(int decorations, QColor &underline, QColor &overline,
+        QColor &linethrough, bool quirksMode)
 {
-    RenderObject* curr = this;
+    RenderObject *curr = this;
     do {
         RenderStyle *st = curr->style();
         int currDecs = st->textDecoration();
@@ -2781,34 +2958,40 @@ void RenderObject::getTextDecorationColors(int decorations, QColor& underline, Q
             }
         }
         curr = curr->parent();
-        if (curr && curr->isRenderBlock() && curr->continuation())
+        if (curr && curr->isRenderBlock() && curr->continuation()) {
             curr = curr->continuation();
+        }
     } while (curr && decorations && (!quirksMode || !curr->element() ||
                                      (curr->element()->id() != ID_A && curr->element()->id() != ID_FONT)));
 
     // If we bailed out, use the element we bailed out at (typically a <font> or <a> element).
     if (decorations && curr) {
         RenderStyle *st = curr->style();
-        if (decorations & UNDERLINE)
+        if (decorations & UNDERLINE) {
             underline = st->color();
-        if (decorations & OVERLINE)
+        }
+        if (decorations & OVERLINE) {
             overline = st->color();
-        if (decorations & LINE_THROUGH)
+        }
+        if (decorations & LINE_THROUGH) {
             linethrough = st->color();
+        }
     }
 }
 
 int RenderObject::maximalOutlineSize(PaintAction p) const
 {
-    if (p != PaintActionOutline)
+    if (p != PaintActionOutline) {
         return 0;
-    return static_cast<RenderCanvas*>(document()->renderer())->maximalOutlineSize();
+    }
+    return static_cast<RenderCanvas *>(document()->renderer())->maximalOutlineSize();
 }
 
-void RenderObject::collectBorders(QList<CollapsedBorderValue>& borderStyles)
+void RenderObject::collectBorders(QList<CollapsedBorderValue> &borderStyles)
 {
-    for (RenderObject* curr = firstChild(); curr; curr = curr->nextSibling())
+    for (RenderObject *curr = firstChild(); curr; curr = curr->nextSibling()) {
         curr->collectBorders(borderStyles);
+    }
 }
 
 bool RenderObject::flowAroundFloats() const
@@ -2821,7 +3004,7 @@ bool RenderObject::usesLineWidth() const
     // All auto-width objects that avoid floats should always use lineWidth
     // unless they are floating or inline. We only care about objects that grow
     // to fill the available space.
-    return (!isInline()||isHTMLMarquee()) && flowAroundFloats() && style()->width().isAuto() && !isFloating();
+    return (!isInline() || isHTMLMarquee()) && flowAroundFloats() && style()->width().isAuto() && !isFloating();
 }
 
 long RenderObject::caretMinOffset() const
@@ -2841,47 +3024,57 @@ unsigned long RenderObject::caretMaxRenderedOffset() const
 
 InlineBox *RenderObject::inlineBox(long /*offset*/)
 {
-    if (isBox())
-        return static_cast<RenderBox*>(this)->placeHolderBox();
+    if (isBox()) {
+        return static_cast<RenderBox *>(this)->placeHolderBox();
+    }
     return 0;
 }
 
-bool RenderObject::hasCounter(const DOMString& counter) const
+bool RenderObject::hasCounter(const DOMString &counter) const
 {
     if (style() && (!isText() || isCounter())) {
-        if (lookupCounter(counter)) return true;
-        if (style()->hasCounterReset(counter)) {
+        if (lookupCounter(counter)) {
             return true;
         }
-        else if (style()->hasCounterIncrement(counter)) {
+        if (style()->hasCounterReset(counter)) {
+            return true;
+        } else if (style()->hasCounterIncrement(counter)) {
             return true;
         }
     }
     if (counter == "list-item") {
-        if (isListItem()) return true;
-        if (element() && (
-                element()->id() == ID_OL ||
-                element()->id() == ID_UL ||
-                element()->id() == ID_MENU ||
-                element()->id() == ID_DIR))
+        if (isListItem()) {
             return true;
-    } else
-    if (counter == "-khtml-quotes" && isQuote()) {
-        return (static_cast<const RenderQuote*>(this)->quoteCount() != 0);
+        }
+        if (element() && (
+                    element()->id() == ID_OL ||
+                    element()->id() == ID_UL ||
+                    element()->id() == ID_MENU ||
+                    element()->id() == ID_DIR)) {
+            return true;
+        }
+    } else if (counter == "-khtml-quotes" && isQuote()) {
+        return (static_cast<const RenderQuote *>(this)->quoteCount() != 0);
     }
     return false;
 }
 
-CounterNode* RenderObject::getCounter(const DOMString& counter, bool view, bool counters)
+CounterNode *RenderObject::getCounter(const DOMString &counter, bool view, bool counters)
 {
 //     qDebug() << renderName() << " getCounter(" << counter << ")";
 
-    if (!style()) return 0;
+    if (!style()) {
+        return 0;
+    }
 
-    if (isText() && !isCounter()) return 0;
+    if (isText() && !isCounter()) {
+        return 0;
+    }
 
     CounterNode *i = lookupCounter(counter);
-    if (i) return i;
+    if (i) {
+        return i;
+    }
     int val = 0;
 
     if (style()->hasCounterReset(counter) || isRoot()) {
@@ -2891,18 +3084,15 @@ CounterNode* RenderObject::getCounter(const DOMString& counter, bool view, bool 
             val += style()->counterIncrement(counter);
         }
 //         qDebug() << renderName() << " counter-reset: " << counter << " " << val;
-    }
-    else
-    if (style()->hasCounterIncrement(counter)) {
+    } else if (style()->hasCounterIncrement(counter)) {
         i = new CounterNode(this);
         val = style()->counterIncrement(counter);
 //         qDebug() << renderName() << " counter-increment: " << counter << " " << val;
-    }
-    else if (counter == "list-item") {
+    } else if (counter == "list-item") {
         if (isListItem()) {
             if (element() && element()->id() == ID_LI) {
-                DOMString v = static_cast<ElementImpl*>(element())->getAttribute(ATTR_VALUE);
-                if ( !v.isEmpty() ) {
+                DOMString v = static_cast<ElementImpl *>(element())->getAttribute(ATTR_VALUE);
+                if (!v.isEmpty()) {
                     i = new CounterReset(this);
                     val = v.toInt();
 //                     qDebug() << renderName() << " counter-reset: " << counter << " " << val;
@@ -2913,31 +3103,26 @@ CounterNode* RenderObject::getCounter(const DOMString& counter, bool view, bool 
                 val = 1;
 //                 qDebug() << renderName() << " counter-increment: " << counter << " " << val;
             }
-        }
-        else
-        if (element() && element()->id() == ID_OL) {
+        } else if (element() && element()->id() == ID_OL) {
             i = new CounterReset(this);
-            DOMString v = static_cast<ElementImpl*>(element())->getAttribute(ATTR_START);
-            if ( !v.isEmpty() )
-                val = v.toInt()-1;
-            else
+            DOMString v = static_cast<ElementImpl *>(element())->getAttribute(ATTR_START);
+            if (!v.isEmpty()) {
+                val = v.toInt() - 1;
+            } else {
                 val = 0;
+            }
 //             qDebug() << renderName() << " counter-reset: " << counter << " " << val;
-        }
-        else
-        if (element() &&
-            (element()->id() == ID_UL ||
-             element()->id() == ID_MENU||
-             element()->id() == ID_DIR))
-        {
+        } else if (element() &&
+                   (element()->id() == ID_UL ||
+                    element()->id() == ID_MENU ||
+                    element()->id() == ID_DIR)) {
             i = new CounterReset(this);
             val = 0;
 //             qDebug() << renderName() << " counter-reset: " << counter << " " << val;
         }
-    }
-    else if (counter == "-khtml-quotes" && isQuote()) {
+    } else if (counter == "-khtml-quotes" && isQuote()) {
         i = new CounterNode(this);
-        val = static_cast<RenderQuote*>(this)->quoteCount();
+        val = static_cast<RenderQuote *>(this)->quoteCount();
     }
 
     if (!i) {
@@ -2946,21 +3131,25 @@ CounterNode* RenderObject::getCounter(const DOMString& counter, bool view, bool 
 //         qDebug() << renderName() << " counter-increment: " << counter << " " << val;
     }
     i->setValue(val);
-    if (view) i->setIsVisual();
-    if (counters) i->setHasCounters();
+    if (view) {
+        i->setIsVisual();
+    }
+    if (counters) {
+        i->setHasCounters();
+    }
 
     insertCounter(counter, i);
 
     if (!isRoot()) {
-        CounterNode *last=0, *current=0;
+        CounterNode *last = 0, *current = 0;
         RenderObject *n = previousSibling();
-        while(n) {
+        while (n) {
             if (n->hasCounter(counter)) {
                 current = n->getCounter(counter);
                 break;
-            }
-            else
+            } else {
                 n = n->previousSibling();
+            }
         }
         last = current;
 
@@ -2978,48 +3167,50 @@ CounterNode* RenderObject::getCounter(const DOMString& counter, bool view, bool 
                         if (current->nextSibling()) {
                             n = n->lastChild();
                             continue;
-                        }
-                        else
+                        } else {
                             break;
+                        }
                     }
                 }
                 n = n->previousSibling();
             }
-            if (sibling->isReset())
-            {
-                if (last != sibling)
+            if (sibling->isReset()) {
+                if (last != sibling) {
                     sibling->insertAfter(i, last);
-                else
+                } else {
                     sibling->insertAfter(i, 0);
-            }
-            else if (last->parent())
+                }
+            } else if (last->parent()) {
                 last->parent()->insertAfter(i, last);
-        }
-        else if (parent()) {
+            }
+        } else if (parent()) {
             // Nothing found among siblings, let our parent search
             last = parent()->getCounter(counter, false);
-            if (last->isReset())
+            if (last->isReset()) {
                 last->insertAfter(i, 0);
-            else if (last->parent())
+            } else if (last->parent()) {
                 last->parent()->insertAfter(i, last);
+            }
         }
     }
 
     return i;
 }
 
-CounterNode* RenderObject::lookupCounter(const DOMString& counter) const
+CounterNode *RenderObject::lookupCounter(const DOMString &counter) const
 {
-    QHash<DOMString,khtml::CounterNode*>* counters = document()->counters(this);
+    QHash<DOMString, khtml::CounterNode *> *counters = document()->counters(this);
     return counters ? counters->value(counter) : 0;
 }
 
 void RenderObject::detachCounters()
 {
-    QHash<DOMString,khtml::CounterNode*>* counters = document()->counters(this);
-    if (!counters) return;
+    QHash<DOMString, khtml::CounterNode *> *counters = document()->counters(this);
+    if (!counters) {
+        return;
+    }
 
-    QHashIterator<DOMString,khtml::CounterNode*> i(*counters);
+    QHashIterator<DOMString, khtml::CounterNode *> i(*counters);
 
     while (i.hasNext()) {
         i.next();
@@ -3029,63 +3220,65 @@ void RenderObject::detachCounters()
     document()->removeCounters(this);
 }
 
-void RenderObject::insertCounter(const DOMString& counter, CounterNode* val)
+void RenderObject::insertCounter(const DOMString &counter, CounterNode *val)
 {
-    QHash<DOMString,khtml::CounterNode*>* counters = document()->counters(this);
+    QHash<DOMString, khtml::CounterNode *> *counters = document()->counters(this);
 
     if (!counters) {
-        counters = new QHash<DOMString,khtml::CounterNode*>();
+        counters = new QHash<DOMString, khtml::CounterNode *>();
         document()->setCounters(this, counters);
     }
 
     counters->insert(counter, val);
 }
 
-void RenderObject::updateWidgetMasks() {
-    for (RenderObject* curr = firstChild(); curr; curr = curr->nextSibling()) {
-        if ( curr->isWidget() && static_cast<RenderWidget*>(curr)->needsMask() ) {
-            QWidget* w = static_cast<RenderWidget*>(curr)->widget();
-            if (!w)
+void RenderObject::updateWidgetMasks()
+{
+    for (RenderObject *curr = firstChild(); curr; curr = curr->nextSibling()) {
+        if (curr->isWidget() && static_cast<RenderWidget *>(curr)->needsMask()) {
+            QWidget *w = static_cast<RenderWidget *>(curr)->widget();
+            if (!w) {
                 return;
-            RenderLayer* l = curr->enclosingStackingContext();
+            }
+            RenderLayer *l = curr->enclosingStackingContext();
             QRegion r = l ? l->getMask() : QRegion();
-            int x,y;
-            if (!r.isEmpty() && curr->absolutePosition(x,y)) {
-                int pbx = curr->borderLeft()+curr->paddingLeft();
-                int pby = curr->borderTop()+curr->paddingTop();
-                x+= pbx;
-                y+= pby;
-                r = r.intersect(QRect(x,y,
-                                  curr->width()-pbx-curr->borderRight()-curr->paddingRight(),
-                                  curr->height()-pby-curr->borderBottom()-curr->paddingBottom()));
+            int x, y;
+            if (!r.isEmpty() && curr->absolutePosition(x, y)) {
+                int pbx = curr->borderLeft() + curr->paddingLeft();
+                int pby = curr->borderTop() + curr->paddingTop();
+                x += pbx;
+                y += pby;
+                r = r.intersect(QRect(x, y,
+                                      curr->width() - pbx - curr->borderRight() - curr->paddingRight(),
+                                      curr->height() - pby - curr->borderBottom() - curr->paddingBottom()));
 #ifdef MASK_DEBUG
                 QVector<QRect> ar = r.rects();
                 qDebug() << "|| Setting widget mask for " << curr->information();
-                for (int i = 0; i < ar.size() ; ++i) {
+                for (int i = 0; i < ar.size(); ++i) {
                     qDebug() << "		" <<  ar[i];
                 }
 #endif
-                r.translate(-x,-y);
+                r.translate(-x, -y);
 
                 // ### Scrollarea's widget doesn't update when mask change.
                 // Might be a Qt bug. Might be the way we handle updates. Investigate.
-                if (::qobject_cast<QScrollArea*>(w)) {
-                    QScrollArea* sa = static_cast<QScrollArea*>(w);
+                if (::qobject_cast<QScrollArea *>(w)) {
+                    QScrollArea *sa = static_cast<QScrollArea *>(w);
                     if (!w->mask().isEmpty()) {
-                      QPoint off( sa->horizontalScrollBar()->value(),
-                                  sa->verticalScrollBar()->value() );
-                      sa->widget()->update(w->mask().translated(off));
-                      sa->horizontalScrollBar()->update();
-                      sa->verticalScrollBar()->update();
+                        QPoint off(sa->horizontalScrollBar()->value(),
+                                   sa->verticalScrollBar()->value());
+                        sa->widget()->update(w->mask().translated(off));
+                        sa->horizontalScrollBar()->update();
+                        sa->verticalScrollBar()->update();
                     }
                 }
                 w->setMask(r);
             } else {
                 w->clearMask();
             }
-        }
-        else if (!curr->layer() || !curr->layer()->isStackingContext())
+        } else if (!curr->layer() || !curr->layer()->isStackingContext()) {
             curr->updateWidgetMasks();
+        }
 
     }
 }
@@ -3094,29 +3287,29 @@ QRegion RenderObject::visibleFlowRegion(int x, int y) const
 {
     QRegion r;
     bool returnSelf = false;
-    for (RenderObject* ro=firstChild();ro;ro=ro->nextSibling()) {
-        if( !ro->layer() && !ro->isFloating() && ro->style()->visibility() == VISIBLE) {
+    for (RenderObject *ro = firstChild(); ro; ro = ro->nextSibling()) {
+        if (!ro->layer() && !ro->isFloating() && ro->style()->visibility() == VISIBLE) {
             const RenderStyle *s = ro->style();
             int ow = s->outlineSize();
             if (ro->isInlineFlow() || ro->isText()) {
                 returnSelf = true;
                 break;
             }
-            if ( s->backgroundImage() || s->backgroundColor().isValid() || s->hasBorder() || ro->isReplaced() || ow ) {
-                r += QRect(x -ow +ro->effectiveXPos(),y -ow + ro->effectiveYPos(), 
-                                  ro->effectiveWidth()+ow*2, ro->effectiveHeight()+ow*2);
+            if (s->backgroundImage() || s->backgroundColor().isValid() || s->hasBorder() || ro->isReplaced() || ow) {
+                r += QRect(x - ow + ro->effectiveXPos(), y - ow + ro->effectiveYPos(),
+                           ro->effectiveWidth() + ow * 2, ro->effectiveHeight() + ow * 2);
             } else {
-                r += ro->visibleFlowRegion(x+ro->xPos(), y+ro->yPos());
+                r += ro->visibleFlowRegion(x + ro->xPos(), y + ro->yPos());
             }
         }
     }
     if (hasFloats()) {
-        r += static_cast<const RenderBlock*>(this)->visibleFloatingRegion(x, y);
+        r += static_cast<const RenderBlock *>(this)->visibleFloatingRegion(x, y);
     }
     if (returnSelf) {
         int ow = style()->outlineSize();
-        r+= QRect(x-xPos()-ow +effectiveXPos(),y-yPos()-ow + effectiveYPos(),
-                               effectiveWidth()+ow*2, effectiveHeight()+ow*2);
+        r += QRect(x - xPos() - ow + effectiveXPos(), y - yPos() - ow + effectiveYPos(),
+                   effectiveWidth() + ow * 2, effectiveHeight() + ow * 2);
     }
     return r;
 }
@@ -3135,8 +3328,9 @@ AffineTransform RenderObject::localTransform() const
 
 AffineTransform RenderObject::absoluteTransform() const
 {
-    if (parent())
+    if (parent()) {
         return localTransform() * parent()->absoluteTransform();
+    }
     return localTransform();
 }
 // END SVG

@@ -29,16 +29,16 @@
 
 #include "tile.h"
 
-namespace khtmlImLoad {
-
+namespace khtmlImLoad
+{
 
 class TileCacheNode
 {
 public:
     //Interface to the cache LRU chains
-    TileCacheNode* cacheNext;
-    TileCacheNode* cachePrev;
-    
+    TileCacheNode *cacheNext;
+    TileCacheNode *cachePrev;
+
     void unlink()
     {
         cacheNext->cachePrev = cachePrev;
@@ -46,48 +46,45 @@ public:
         cacheNext = 0;
         cachePrev = 0;
     }
-    
-    void linkBefore(TileCacheNode* node)
+
+    void linkBefore(TileCacheNode *node)
     {
         this->cacheNext = node;
         this->cachePrev = node->cachePrev;
-        
+
         node->cachePrev = this;
         this->cachePrev->cacheNext = this;
     }
 
-    Tile* tile;
-    
+    Tile *tile;
+
     TileCacheNode(): cacheNext(0), cachePrev(0), tile(0)
     {}
 };
 
-
-/** 
+/**
  An LRU-replacement cache for tiles.
 */
 class TileCache
 {
 public:
     typedef TileCacheNode Node;
-    
 
-    Node* poolHead;
+    Node *poolHead;
 
     //### TODO: consider smarter allocation for these?.
-    Node* create()
+    Node *create()
     {
-        if (poolHead)
-        {
-            Node* toRet = poolHead;
+        if (poolHead) {
+            Node *toRet = poolHead;
             poolHead    = poolHead->cacheNext;
             return toRet;
-        }
-        else
+        } else {
             return new Node();
+        }
     }
-    
-    void release(Node* entry)
+
+    void release(Node *entry)
     {
         //### TODO: Limit ??
         entry->cacheNext = poolHead;
@@ -97,17 +94,17 @@ public:
 private:
     int sizeLimit;
     int size;
-    
+
     /**
      We keep tiles in a double-linked list, with the most recent one being at the rear
     */
-    Node* front;
-    Node* rear;
+    Node *front;
+    Node *rear;
 
     /**
      Discard the node, and removes it from the list. Does not free the node.
     */
-    void doDiscard(Node* node)
+    void doDiscard(Node *node)
     {
         assert(node->tile->cacheNode == node);
         node->tile->discard();
@@ -118,36 +115,35 @@ private:
     }
 public:
 
-    TileCache(int _sizeLimit):sizeLimit(_sizeLimit), size(0)
+    TileCache(int _sizeLimit): sizeLimit(_sizeLimit), size(0)
     {
         front = new Node;
         rear  = new Node;
-        
+
         front->cacheNext = rear;
         rear ->cachePrev = front;
-        
+
         poolHead = 0;
     }
-    
-    /**
-     Add an entry to the cache. 
-     */
-    void addEntry(Tile* tile)
-    {
-        assert (tile->cacheNode == 0);
 
-        Node* node;
-        
+    /**
+     Add an entry to the cache.
+     */
+    void addEntry(Tile *tile)
+    {
+        assert(tile->cacheNode == 0);
+
+        Node *node;
+
         //Must have room
-        if (size >= sizeLimit)
-        {
+        if (size >= sizeLimit) {
             //Remove the front entry, reuse it
             //for the new node
             node = front->cacheNext;
             doDiscard(node);
-        }
-        else
+        } else {
             node = create();
+        }
 
         //Link in before the end sentinel, i.e. at the very last spot, increment usage count
         node->tile            = tile;
@@ -155,25 +151,24 @@ public:
         node->linkBefore(rear);
         size++;
     }
-    
-    
+
     /**
-     "Touches" the entry, making it the most recent 
+     "Touches" the entry, making it the most recent
      (i.e. moves the entry to the rear of the chain)
      */
-    void touchEntry(Tile* tile)
+    void touchEntry(Tile *tile)
     {
-        Node* node = tile->cacheNode;
+        Node *node = tile->cacheNode;
         node->unlink();
         node->linkBefore(rear);
     }
-    
+
     /**
      Removes the entry from the cache, discards it.
      */
-    void removeEntry(Tile* tile)
+    void removeEntry(Tile *tile)
     {
-        Node* node = tile->cacheNode;
+        Node *node = tile->cacheNode;
         doDiscard(node);
 
         release(node);
@@ -183,4 +178,3 @@ public:
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

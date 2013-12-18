@@ -29,33 +29,41 @@
 #include "SVGFitToViewBox.h"
 #include "SVGZoomAndPan.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGStringList;
-    class SVGViewElement : public SVGStyledElement,
-                           public SVGExternalResourcesRequired,
-                           public SVGFitToViewBox,
-                           public SVGZoomAndPan {
-    public:
-        SVGViewElement(const QualifiedName&, Document*);
-        virtual ~SVGViewElement();
+class SVGStringList;
+class SVGViewElement : public SVGStyledElement,
+    public SVGExternalResourcesRequired,
+    public SVGFitToViewBox,
+    public SVGZoomAndPan
+{
+public:
+    SVGViewElement(const QualifiedName &, Document *);
+    virtual ~SVGViewElement();
 
-        virtual void parseMappedAttribute(MappedAttribute*);
+    virtual void parseMappedAttribute(MappedAttribute *);
 
-        SVGStringList* viewTarget() const;
+    SVGStringList *viewTarget() const;
 
-        virtual bool rendererIsNeeded(RenderStyle*) { return false; }
+    virtual bool rendererIsNeeded(RenderStyle *)
+    {
+        return false;
+    }
 
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
 
-    private:
-        mutable RefPtr<SVGStringList> m_viewTarget;
+private:
+    mutable RefPtr<SVGStringList> m_viewTarget;
 
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGFitToViewBox, FloatRect, ViewBox, viewBox)
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGFitToViewBox, SVGPreserveAspectRatio*, PreserveAspectRatio, preserveAspectRatio)
-    };
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGFitToViewBox, FloatRect, ViewBox, viewBox)
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGFitToViewBox, SVGPreserveAspectRatio *, PreserveAspectRatio, preserveAspectRatio)
+};
 
 } // namespace WebCore
 

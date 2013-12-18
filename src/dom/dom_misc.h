@@ -24,7 +24,8 @@
 
 #include <khtml_export.h>
 
-namespace DOM {
+namespace DOM
+{
 
 /*
  * This implements the reference counting scheme used for all internal
@@ -36,17 +37,33 @@ namespace DOM {
 class KHTML_EXPORT DomShared
 {
 public:
-  DomShared() : _ref( 0 ) {}
-  virtual ~DomShared();
+    DomShared() : _ref(0) {}
+    virtual ~DomShared();
 
-  /* Overload this function if you want a different deletion behavior
-   */
-  virtual bool deleteMe();
+    /* Overload this function if you want a different deletion behavior
+     */
+    virtual bool deleteMe();
 
-  void ref() { _ref++; }
-  void deref() { if(_ref) _ref--; if(!_ref && deleteMe()) delete this; }
-  bool hasOneRef() const { return _ref == 1; }
-  unsigned int refCount() const { return _ref; }
+    void ref()
+    {
+        _ref++;
+    }
+    void deref()
+    {
+        if (_ref) {
+            _ref--;
+        } if (!_ref && deleteMe()) {
+            delete this;
+        }
+    }
+    bool hasOneRef() const
+    {
+        return _ref == 1;
+    }
+    unsigned int refCount() const
+    {
+        return _ref;
+    }
 
 protected:
     // the number of DOMObjects referencing this Node

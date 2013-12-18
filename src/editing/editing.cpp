@@ -25,21 +25,23 @@
 using DOM::Selection;
 using namespace khtml;
 
-EditorContext::~EditorContext() {
-  delete m_editor;
+EditorContext::~EditorContext()
+{
+    delete m_editor;
 }
 
-void EditorContext::reset() {
-  m_selection = Selection();
-  m_dragCaret = Selection();
-  
-  m_caretBlinkTimer = -1;
-  m_caretVisible = true;
-  m_caretBlinks = true;
-  m_caretPaint = true;
-  m_beganSelectingText = false;
+void EditorContext::reset()
+{
+    m_selection = Selection();
+    m_dragCaret = Selection();
 
-  delete m_editor;
-  m_editor = 0;
+    m_caretBlinkTimer = -1;
+    m_caretVisible = true;
+    m_caretBlinks = true;
+    m_caretPaint = true;
+    m_beganSelectingText = false;
+
+    delete m_editor;
+    m_editor = 0;
 
 }

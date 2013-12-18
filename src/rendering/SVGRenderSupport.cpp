@@ -36,25 +36,26 @@
 #include "SVGStyledElement.h"
 #include "SVGURIReference.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-void prepareToRenderSVGContent(RenderObject* object, RenderObject::PaintInfo& paintInfo, const FloatRect& boundingBox, SVGResourceFilter*& filter, SVGResourceFilter* rootFilter)
-{    
+void prepareToRenderSVGContent(RenderObject *object, RenderObject::PaintInfo &paintInfo, const FloatRect &boundingBox, SVGResourceFilter *&filter, SVGResourceFilter *rootFilter)
+{
     Q_UNUSED(filter);
     Q_UNUSED(rootFilter);
-    SVGElement* svgElement = static_cast<SVGElement*>(object->element());
+    SVGElement *svgElement = static_cast<SVGElement *>(object->element());
     ASSERT(svgElement && svgElement->document() && svgElement->isStyled());
     ASSERT(object);
 
-    SVGStyledElement* styledElement = static_cast<SVGStyledElement*>(svgElement);
-    const RenderStyle* style = object->style();
+    SVGStyledElement *styledElement = static_cast<SVGStyledElement *>(svgElement);
+    const RenderStyle *style = object->style();
     ASSERT(style);
 
-    const SVGRenderStyle* svgStyle = style->svgStyle();
+    const SVGRenderStyle *svgStyle = style->svgStyle();
     ASSERT(svgStyle);
 
     /*// Setup transparency layers before setting up filters!
-    float opacity = style->opacity(); 
+    float opacity = style->opacity();
     if (opacity < 1.0f) {
         paintInfo.context->clip(enclosingIntRect(boundingBox));
         paintInfo.context->beginTransparencyLayer(opacity);
@@ -67,35 +68,38 @@ void prepareToRenderSVGContent(RenderObject* object, RenderObject::PaintInfo& pa
     AtomicString clipperId(SVGURIReference::getTarget(svgStyle->clipPath()));
     //AtomicString maskerId(SVGURIReference::getTarget(svgStyle->maskElement()));
 
-    Document* document = object->document();
+    Document *document = object->document();
 
 #if ENABLE(SVG_FILTERS)
-    SVGResourceFilter* newFilter = getFilterById(document, filterId);
+    SVGResourceFilter *newFilter = getFilterById(document, filterId);
     if (newFilter == rootFilter) {
         // Catch <text filter="url(#foo)">Test<tspan filter="url(#foo)">123</tspan></text>.
         // The filter is NOT meant to be applied twice in that case!
         filter = 0;
         filterId = String();
-    } else
+    } else {
         filter = newFilter;
+    }
 #endif
 
-    SVGResourceClipper* clipper = getClipperById(document, clipperId);
+    SVGResourceClipper *clipper = getClipperById(document, clipperId);
     //SVGResourceMasker* masker = getMaskerById(document, maskerId);
 
 #if ENABLE(SVG_FILTERS)
     if (filter) {
         filter->addClient(styledElement);
         filter->prepareFilter(paintInfo.context, boundingBox);
-    } else if (!filterId.isEmpty())
+    } else if (!filterId.isEmpty()) {
         svgElement->document()->accessSVGExtensions()->addPendingResource(filterId, styledElement);
+    }
 #endif
 
     if (clipper) {
         clipper->addClient(styledElement);
         clipper->applyClip(paintInfo.p, boundingBox);
-    } else if (!clipperId.isEmpty())
+    } else if (!clipperId.isEmpty()) {
         svgElement->document()->accessSVGExtensions()->addPendingResource(clipperId, styledElement);
+    }
 
     /*if (masker) {
         masker->addClient(styledElement);
@@ -104,28 +108,28 @@ void prepareToRenderSVGContent(RenderObject* object, RenderObject::PaintInfo& pa
         svgElement->document()->accessSVGExtensions()->addPendingResource(maskerId, styledElement);*/
 }
 
-void finishRenderSVGContent(RenderObject* object, RenderObject::PaintInfo& paintInfo, const FloatRect& boundingBox, SVGResourceFilter*& filter, QPainter* savedContext)
+void finishRenderSVGContent(RenderObject *object, RenderObject::PaintInfo &paintInfo, const FloatRect &boundingBox, SVGResourceFilter *&filter, QPainter *savedContext)
 {
     Q_UNUSED(object);
     Q_UNUSED(paintInfo);
     Q_UNUSED(boundingBox);
     Q_UNUSED(filter);
     Q_UNUSED(savedContext);
-/*    ASSERT(object);
+    /*    ASSERT(object);
 
-    const RenderStyle* style = object->style();
-    ASSERT(style);
+        const RenderStyle* style = object->style();
+        ASSERT(style);
 
-#if ENABLE(SVG_FILTERS)
-    if (filter) {
-        filter->applyFilter(paintInfo.context, boundingBox);
-        paintInfo.context = savedContext;
-    }
-#endif
+    #if ENABLE(SVG_FILTERS)
+        if (filter) {
+            filter->applyFilter(paintInfo.context, boundingBox);
+            paintInfo.context = savedContext;
+        }
+    #endif
 
-    float opacity = style->opacity();    
-    if (opacity < 1.0f)
-        paintInfo.context->endTransparencyLayer();*/
+        float opacity = style->opacity();
+        if (opacity < 1.0f)
+            paintInfo.context->endTransparencyLayer();*/
 }
 
 /*void renderSubtreeToImage(ImageBuffer* image, RenderObject* item)

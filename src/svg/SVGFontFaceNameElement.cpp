@@ -23,9 +23,10 @@
 #include "CSSFontFaceSrcValue.h"
 #include "SVGNames.h"
 
-namespace WebCore {
-    
-SVGFontFaceNameElement::SVGFontFaceNameElement(const QualifiedName& tagName, Document* doc)
+namespace WebCore
+{
+
+SVGFontFaceNameElement::SVGFontFaceNameElement(const QualifiedName &tagName, Document *doc)
     : SVGElement(tagName, doc)
 {
 }

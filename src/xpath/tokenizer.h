@@ -36,77 +36,75 @@
 #include "util.h"
 #include "parser.h"
 
-namespace khtml {
-namespace XPath {
-
-
-struct Token
+namespace khtml
 {
-	int     type;
-	QString value;
-	int     intValue; //0 if not set
-	bool    hasString;
+namespace XPath
+{
 
-	Token(int _type): type(_type), intValue(0), hasString(false) {}
-	Token(QString _value): type(ERROR+1), value(_value), intValue(0), hasString(true) {}
-	Token(int _type, QString _value): type(_type), value(_value), intValue(0), hasString(true) {}
-	Token(int _type, int     _value): type(_type), intValue(_value), hasString(false) {}
+struct Token {
+    int     type;
+    QString value;
+    int     intValue; //0 if not set
+    bool    hasString;
+
+    Token(int _type): type(_type), intValue(0), hasString(false) {}
+    Token(QString _value): type(ERROR + 1), value(_value), intValue(0), hasString(true) {}
+    Token(int _type, QString _value): type(_type), value(_value), intValue(0), hasString(true) {}
+    Token(int _type, int     _value): type(_type), intValue(_value), hasString(false) {}
 };
 
 class Tokenizer
 {
 private:
-	int m_nextPos;
-	QString m_data;
-	int m_lastTokenType;
+    int m_nextPos;
+    QString m_data;
+    int m_lastTokenType;
 
-	static QHash<QString, Step::AxisType>* s_axisNamesDict;
-	static QSet<QString>* s_nodeTypeNamesDict;
+    static QHash<QString, Step::AxisType> *s_axisNamesDict;
+    static QSet<QString> *s_nodeTypeNamesDict;
 
-	enum XMLCat {
-		NameStart,
-		NameCont,
-		NotPartOfName
-	};
+    enum XMLCat {
+        NameStart,
+        NameCont,
+        NotPartOfName
+    };
 
-	XMLCat charCat(QChar aChar);
+    XMLCat charCat(QChar aChar);
 
-	bool isAxisName(QString name, Step::AxisType *type = 0);
-	bool isNodeTypeName(QString name);
-	bool isOperatorContext();
+    bool isAxisName(QString name, Step::AxisType *type = 0);
+    bool isNodeTypeName(QString name);
+    bool isOperatorContext();
 
-	void  skipWS();
-	Token makeTokenAndAdvance(int code, int advance = 1);
-	Token makeIntTokenAndAdvance(int code, int val, int advance = 1);
-	char  peekAheadHelper();
-	char  peekCurHelper();
+    void  skipWS();
+    Token makeTokenAndAdvance(int code, int advance = 1);
+    Token makeIntTokenAndAdvance(int code, int val, int advance = 1);
+    char  peekAheadHelper();
+    char  peekCurHelper();
 
-	Token lexString();
-	Token lexNumber();
-	Token lexNCName();
-	Token lexQName();
+    Token lexString();
+    Token lexNumber();
+    Token lexNCName();
+    Token lexQName();
 
-	Token nextTokenInternal();
-	Tokenizer();
-	Tokenizer(const Tokenizer &rhs);                  // disabled
-	Tokenizer &operator=(const Tokenizer &rhs);       // disabled
-	~Tokenizer();
+    Token nextTokenInternal();
+    Tokenizer();
+    Tokenizer(const Tokenizer &rhs);                  // disabled
+    Tokenizer &operator=(const Tokenizer &rhs);       // disabled
+    ~Tokenizer();
 public:
-	static Tokenizer &self();
+    static Tokenizer &self();
 
-	void reset(QString);
-	Token nextToken();
+    void reset(QString);
+    Token nextToken();
 };
 
 // Interface to the parser
 int khtmlxpathyylex();
 void khtmlxpathyyerror(const char *str);
-void initTokenizer(const DOM::DOMString& string);
+void initTokenizer(const DOM::DOMString &string);
 
 } // namespace XPath
 
 } // namespace khtml
 
-
 #endif
-// kate: indent-width 4; replace-tabs off; tab-width 4; indent-spaces: off;

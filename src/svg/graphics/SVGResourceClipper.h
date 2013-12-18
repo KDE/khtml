@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef SVGResourceClipper_h
@@ -34,60 +34,78 @@
 // khtml
 #include "wtf/PassRefPtr.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    struct ClipData {
-        Path path;
-        WindRule windRule;
-        bool bboxUnits : 1;
-    };
+struct ClipData {
+    Path path;
+    WindRule windRule;
+    bool bboxUnits : 1;
+};
 
-    class ClipDataList { 
-    public:
-        void addPath(const Path& pathData, WindRule windRule, bool bboxUnits)
-        {
-            ClipData clipData;
-            
-            clipData.path = pathData;
-            clipData.windRule = windRule;
-            clipData.bboxUnits = bboxUnits;
-            
-            m_clipData.append(clipData);
-        }
-        
-        void clear() { m_clipData.clear(); }
-        const Vector<ClipData>& clipData() const { return m_clipData; }
-        bool isEmpty() const { return m_clipData.isEmpty(); }
-    private:
-        Vector<ClipData> m_clipData;
-    };  
+class ClipDataList
+{
+public:
+    void addPath(const Path &pathData, WindRule windRule, bool bboxUnits)
+    {
+        ClipData clipData;
 
-    /*class GraphicsContext;*/
+        clipData.path = pathData;
+        clipData.windRule = windRule;
+        clipData.bboxUnits = bboxUnits;
 
-    class SVGResourceClipper : public SVGResource {
-    public:
-        static PassRefPtr<SVGResourceClipper> create() { return adoptRef(new SVGResourceClipper); }
-        virtual ~SVGResourceClipper();
-      
-        void resetClipData();
-        void addClipData(const Path&, WindRule, bool bboxUnits);
+        m_clipData.append(clipData);
+    }
 
-        const ClipDataList& clipData() const;
-        
-        virtual SVGResourceType resourceType() const { return ClipperResourceType; }
-        /*virtual TextStream& externalRepresentation(TextStream&) const;*/
+    void clear()
+    {
+        m_clipData.clear();
+    }
+    const Vector<ClipData> &clipData() const
+    {
+        return m_clipData;
+    }
+    bool isEmpty() const
+    {
+        return m_clipData.isEmpty();
+    }
+private:
+    Vector<ClipData> m_clipData;
+};
 
-        // To be implemented by the specific rendering devices
-        void applyClip(/*GraphicsContext**/QPainter* painter, const FloatRect& boundingBox) const;
-    private:
-        SVGResourceClipper();
-        ClipDataList m_clipData;
-    };
+/*class GraphicsContext;*/
 
-    /*TextStream& operator<<(TextStream&, WindRule);
-    TextStream& operator<<(TextStream&, const ClipData&);*/
+class SVGResourceClipper : public SVGResource
+{
+public:
+    static PassRefPtr<SVGResourceClipper> create()
+    {
+        return adoptRef(new SVGResourceClipper);
+    }
+    virtual ~SVGResourceClipper();
 
-    SVGResourceClipper* getClipperById(Document*, const AtomicString&);
+    void resetClipData();
+    void addClipData(const Path &, WindRule, bool bboxUnits);
+
+    const ClipDataList &clipData() const;
+
+    virtual SVGResourceType resourceType() const
+    {
+        return ClipperResourceType;
+    }
+    /*virtual TextStream& externalRepresentation(TextStream&) const;*/
+
+    // To be implemented by the specific rendering devices
+    void applyClip(/*GraphicsContext**/QPainter *painter, const FloatRect &boundingBox) const;
+private:
+    SVGResourceClipper();
+    ClipDataList m_clipData;
+};
+
+/*TextStream& operator<<(TextStream&, WindRule);
+TextStream& operator<<(TextStream&, const ClipData&);*/
+
+SVGResourceClipper *getClipperById(Document *, const AtomicString &);
 
 } // namespace WebCore
 

@@ -19,4 +19,4 @@
 
 #include "khtmlimage.h"
 
-K_EXPORT_PLUGIN( KHTMLImageFactory )
+K_EXPORT_PLUGIN(KHTMLImageFactory)

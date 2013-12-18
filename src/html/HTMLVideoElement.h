@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef HTMLVideoElement_h
@@ -30,27 +30,31 @@
 #include <phonon/videowidget.h>
 #include "HTMLMediaElement.h"
 
-namespace khtml {
+namespace khtml
+{
 
 class HTMLVideoElement : public HTMLMediaElement
 {
 public:
-    HTMLVideoElement(Document*);
+    HTMLVideoElement(Document *);
 
     virtual Id id() const;
 
-    virtual bool isVideo() const { return true; }
+    virtual bool isVideo() const
+    {
+        return true;
+    }
 
     int width() const;
     void setWidth(int);
     int height() const;
     void setHeight(int);
-    
+
     int videoWidth() const;
     int videoHeight() const;
-    
+
     DOMString poster() const;
-    void setPoster(const DOMString&);
+    void setPoster(const DOMString &);
 };
 
 } //namespace

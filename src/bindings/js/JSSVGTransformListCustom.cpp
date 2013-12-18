@@ -34,13 +34,14 @@
 using namespace KJS;
 using namespace WebCore;
 
-namespace khtml {
+namespace khtml
+{
 
-JSValue* JSSVGTransformList::clear(ExecState* exec, const List&)
+JSValue *JSSVGTransformList::clear(ExecState *exec, const List &)
 {
     ExceptionCode ec = 0;
 
-    SVGTransformList* imp = static_cast<SVGTransformList*>(impl());
+    SVGTransformList *imp = static_cast<SVGTransformList *>(impl());
     imp->clear(ec);
     setDOMException(exec, ec);
 
@@ -49,18 +50,18 @@ JSValue* JSSVGTransformList::clear(ExecState* exec, const List&)
     return jsUndefined();
 }
 
-JSValue* JSSVGTransformList::initialize(ExecState* exec, const List& args)
+JSValue *JSSVGTransformList::initialize(ExecState *exec, const List &args)
 {
     ExceptionCode ec = 0;
     SVGTransform newItem = toSVGTransform(args[0]);
 
-    SVGTransformList* imp = static_cast<SVGTransformList*>(impl());
-    SVGList<RefPtr<SVGPODListItem<SVGTransform> > >* listImp = imp;
+    SVGTransformList *imp = static_cast<SVGTransformList *>(impl());
+    SVGList<RefPtr<SVGPODListItem<SVGTransform> > > *listImp = imp;
 
-    SVGPODListItem<SVGTransform>* listItem = listImp->initialize(SVGPODListItem<SVGTransform>::copy(newItem), ec).get(); 
-    JSSVGPODTypeWrapperCreatorForList<SVGTransform>* obj = new JSSVGPODTypeWrapperCreatorForList<SVGTransform>(listItem, imp->associatedAttributeName());
+    SVGPODListItem<SVGTransform> *listItem = listImp->initialize(SVGPODListItem<SVGTransform>::copy(newItem), ec).get();
+    JSSVGPODTypeWrapperCreatorForList<SVGTransform> *obj = new JSSVGPODTypeWrapperCreatorForList<SVGTransform>(listItem, imp->associatedAttributeName());
 
-    KJS::JSValue* result = toJS(exec, obj, m_context.get());
+    KJS::JSValue *result = toJS(exec, obj, m_context.get());
     setDOMException(exec, ec);
 
     m_context->svgAttributeChanged(imp->associatedAttributeName());
@@ -68,7 +69,7 @@ JSValue* JSSVGTransformList::initialize(ExecState* exec, const List& args)
     return result;
 }
 
-JSValue* JSSVGTransformList::getItem(ExecState* exec, const List& args)
+JSValue *JSSVGTransformList::getItem(ExecState *exec, const List &args)
 {
     ExceptionCode ec = 0;
 
@@ -79,18 +80,18 @@ JSValue* JSSVGTransformList::getItem(ExecState* exec, const List& args)
         return jsUndefined();
     }
 
-    SVGTransformList* imp = static_cast<SVGTransformList*>(impl());
-    SVGList<RefPtr<SVGPODListItem<SVGTransform> > >* listImp = imp;
+    SVGTransformList *imp = static_cast<SVGTransformList *>(impl());
+    SVGList<RefPtr<SVGPODListItem<SVGTransform> > > *listImp = imp;
 
-    SVGPODListItem<SVGTransform>* listItem = listImp->getItem(index, ec).get();
-    JSSVGPODTypeWrapperCreatorForList<SVGTransform>* obj = new JSSVGPODTypeWrapperCreatorForList<SVGTransform>(listItem, imp->associatedAttributeName());
+    SVGPODListItem<SVGTransform> *listItem = listImp->getItem(index, ec).get();
+    JSSVGPODTypeWrapperCreatorForList<SVGTransform> *obj = new JSSVGPODTypeWrapperCreatorForList<SVGTransform>(listItem, imp->associatedAttributeName());
 
-    KJS::JSValue* result = toJS(exec, obj, m_context.get());
+    KJS::JSValue *result = toJS(exec, obj, m_context.get());
     setDOMException(exec, ec);
     return result;
 }
 
-JSValue* JSSVGTransformList::insertItemBefore(ExecState* exec, const List& args)
+JSValue *JSSVGTransformList::insertItemBefore(ExecState *exec, const List &args)
 {
     ExceptionCode ec = 0;
     SVGTransform newItem = toSVGTransform(args[0]);
@@ -102,13 +103,13 @@ JSValue* JSSVGTransformList::insertItemBefore(ExecState* exec, const List& args)
         return jsUndefined();
     }
 
-    SVGTransformList* imp = static_cast<SVGTransformList*>(impl());
-    SVGList<RefPtr<SVGPODListItem<SVGTransform> > >* listImp = imp;
+    SVGTransformList *imp = static_cast<SVGTransformList *>(impl());
+    SVGList<RefPtr<SVGPODListItem<SVGTransform> > > *listImp = imp;
 
-    SVGPODListItem<SVGTransform>* listItem = listImp->insertItemBefore(SVGPODListItem<SVGTransform>::copy(newItem), index, ec).get();
-    JSSVGPODTypeWrapperCreatorForList<SVGTransform>* obj = new JSSVGPODTypeWrapperCreatorForList<SVGTransform>(listItem, imp->associatedAttributeName());
+    SVGPODListItem<SVGTransform> *listItem = listImp->insertItemBefore(SVGPODListItem<SVGTransform>::copy(newItem), index, ec).get();
+    JSSVGPODTypeWrapperCreatorForList<SVGTransform> *obj = new JSSVGPODTypeWrapperCreatorForList<SVGTransform>(listItem, imp->associatedAttributeName());
 
-    KJS::JSValue* result = toJS(exec, obj, m_context.get());
+    KJS::JSValue *result = toJS(exec, obj, m_context.get());
     setDOMException(exec, ec);
 
     m_context->svgAttributeChanged(imp->associatedAttributeName());
@@ -116,7 +117,7 @@ JSValue* JSSVGTransformList::insertItemBefore(ExecState* exec, const List& args)
     return result;
 }
 
-JSValue* JSSVGTransformList::replaceItem(ExecState* exec, const List& args)
+JSValue *JSSVGTransformList::replaceItem(ExecState *exec, const List &args)
 {
     ExceptionCode ec = 0;
     SVGTransform newItem = toSVGTransform(args[0]);
@@ -128,13 +129,13 @@ JSValue* JSSVGTransformList::replaceItem(ExecState* exec, const List& args)
         return jsUndefined();
     }
 
-    SVGTransformList* imp = static_cast<SVGTransformList*>(impl());
-    SVGList<RefPtr<SVGPODListItem<SVGTransform> > >* listImp = imp;
+    SVGTransformList *imp = static_cast<SVGTransformList *>(impl());
+    SVGList<RefPtr<SVGPODListItem<SVGTransform> > > *listImp = imp;
 
-    SVGPODListItem<SVGTransform>* listItem = listImp->replaceItem(SVGPODListItem<SVGTransform>::copy(newItem), index, ec).get(); 
-    JSSVGPODTypeWrapperCreatorForList<SVGTransform>* obj = new JSSVGPODTypeWrapperCreatorForList<SVGTransform>(listItem, imp->associatedAttributeName());
+    SVGPODListItem<SVGTransform> *listItem = listImp->replaceItem(SVGPODListItem<SVGTransform>::copy(newItem), index, ec).get();
+    JSSVGPODTypeWrapperCreatorForList<SVGTransform> *obj = new JSSVGPODTypeWrapperCreatorForList<SVGTransform>(listItem, imp->associatedAttributeName());
 
-    KJS::JSValue* result = toJS(exec, obj, m_context.get());
+    KJS::JSValue *result = toJS(exec, obj, m_context.get());
     setDOMException(exec, ec);
 
     m_context->svgAttributeChanged(imp->associatedAttributeName());
@@ -142,10 +143,10 @@ JSValue* JSSVGTransformList::replaceItem(ExecState* exec, const List& args)
     return result;
 }
 
-JSValue* JSSVGTransformList::removeItem(ExecState* exec, const List& args)
+JSValue *JSSVGTransformList::removeItem(ExecState *exec, const List &args)
 {
     ExceptionCode ec = 0;
-    
+
     bool indexOk;
     unsigned index = args[0]->toInt32(exec, indexOk);
     if (!indexOk) {
@@ -153,13 +154,13 @@ JSValue* JSSVGTransformList::removeItem(ExecState* exec, const List& args)
         return jsUndefined();
     }
 
-    SVGTransformList* imp = static_cast<SVGTransformList*>(impl());
-    SVGList<RefPtr<SVGPODListItem<SVGTransform> > >* listImp = imp;
+    SVGTransformList *imp = static_cast<SVGTransformList *>(impl());
+    SVGList<RefPtr<SVGPODListItem<SVGTransform> > > *listImp = imp;
 
     RefPtr<SVGPODListItem<SVGTransform> > listItem(listImp->removeItem(index, ec));
-    JSSVGPODTypeWrapper<SVGTransform>* obj = new JSSVGPODTypeWrapperCreatorReadOnly<SVGTransform>(*listItem.get());
+    JSSVGPODTypeWrapper<SVGTransform> *obj = new JSSVGPODTypeWrapperCreatorReadOnly<SVGTransform>(*listItem.get());
 
-    KJS::JSValue* result = toJS(exec, obj, m_context.get());
+    KJS::JSValue *result = toJS(exec, obj, m_context.get());
     setDOMException(exec, ec);
 
     m_context->svgAttributeChanged(imp->associatedAttributeName());
@@ -167,18 +168,18 @@ JSValue* JSSVGTransformList::removeItem(ExecState* exec, const List& args)
     return result;
 }
 
-JSValue* JSSVGTransformList::appendItem(ExecState* exec, const List& args)
+JSValue *JSSVGTransformList::appendItem(ExecState *exec, const List &args)
 {
     ExceptionCode ec = 0;
     SVGTransform newItem = toSVGTransform(args[0]);
 
-    SVGTransformList* imp = static_cast<SVGTransformList*>(impl());
-    SVGList<RefPtr<SVGPODListItem<SVGTransform> > >* listImp = imp;
+    SVGTransformList *imp = static_cast<SVGTransformList *>(impl());
+    SVGList<RefPtr<SVGPODListItem<SVGTransform> > > *listImp = imp;
 
-    SVGPODListItem<SVGTransform>* listItem = listImp->appendItem(SVGPODListItem<SVGTransform>::copy(newItem), ec).get(); 
-    JSSVGPODTypeWrapperCreatorForList<SVGTransform>* obj = new JSSVGPODTypeWrapperCreatorForList<SVGTransform>(listItem, imp->associatedAttributeName());
+    SVGPODListItem<SVGTransform> *listItem = listImp->appendItem(SVGPODListItem<SVGTransform>::copy(newItem), ec).get();
+    JSSVGPODTypeWrapperCreatorForList<SVGTransform> *obj = new JSSVGPODTypeWrapperCreatorForList<SVGTransform>(listItem, imp->associatedAttributeName());
 
-    KJS::JSValue* result = toJS(exec, obj, m_context.get());
+    KJS::JSValue *result = toJS(exec, obj, m_context.get());
     setDOMException(exec, ec);
 
     m_context->svgAttributeChanged(imp->associatedAttributeName());

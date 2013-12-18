@@ -27,20 +27,23 @@
 #include "imagemanager.h"
 #include "image.h"
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 void AnimProvider::nextFrame()
 {
     curFrame = curFrame->nextFrame;
-    if (!curFrame)
+    if (!curFrame) {
         curFrame = frame0;
+    }
 }
 
 void AnimProvider::switchFrame()
 {
-    if (animationAdvice == KHTMLSettings::KAnimationDisabled)
+    if (animationAdvice == KHTMLSettings::KAnimationDisabled) {
         return;
-    shouldSwitchFrame = true; 
+    }
+    shouldSwitchFrame = true;
     image->notifyFrameChange();
 }
 
@@ -56,4 +59,3 @@ void AnimProvider::setShowAnimations(KHTMLSettings::KAnimationAdvice newAdvice)
 
 }
 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

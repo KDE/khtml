@@ -28,7 +28,8 @@ class QListWidgetItem;
 class KHistoryComboBox;
 class QPushButton;
 
-namespace KJSDebugger {
+namespace KJSDebugger
+{
 
 struct InterpreterContext;
 
@@ -39,14 +40,14 @@ public:
     ConsoleDock(QWidget *parent = 0);
     ~ConsoleDock();
 
-    void reportResult(const QString& src, const QString& msg);
+    void reportResult(const QString &src, const QString &msg);
 
 Q_SIGNALS: // Bah. This isn't a public header.
-    void requestEval(const QString& code);
+    void requestEval(const QString &code);
 
 private Q_SLOTS:
     void slotUserRequestedEval();
-    void slotPasteItem(QListWidgetItem* item);
+    void slotPasteItem(QListWidgetItem *item);
 
 private:
     QListWidget *consoleView;

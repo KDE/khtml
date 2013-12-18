@@ -33,29 +33,41 @@ namespace khtml
 class RenderContainer : public RenderObject
 {
 public:
-    RenderContainer(DOM::NodeImpl* node);
+    RenderContainer(DOM::NodeImpl *node);
 
-    RenderObject *firstChild() const { return m_first; }
-    RenderObject *lastChild() const { return m_last; }
+    RenderObject *firstChild() const
+    {
+        return m_first;
+    }
+    RenderObject *lastChild() const
+    {
+        return m_last;
+    }
 
-    virtual bool childAllowed() const {
+    virtual bool childAllowed() const
+    {
         // Prevent normal children when we are replaced by generated content
-        if (style()) return style()->useNormalContent();
+        if (style()) {
+            return style()->useNormalContent();
+        }
         return true;
     }
 
     virtual void addChild(RenderObject *newChild, RenderObject *beforeChild = 0);
 
-    virtual RenderObject* removeChildNode(RenderObject* child);
-    virtual void appendChildNode(RenderObject* child);
-    virtual void insertChildNode(RenderObject* child, RenderObject* before);
+    virtual RenderObject *removeChildNode(RenderObject *child);
+    virtual void appendChildNode(RenderObject *child);
+    virtual void insertChildNode(RenderObject *child, RenderObject *before);
 
     virtual void layout();
-    virtual void calcMinMaxWidth() { setMinMaxKnown( true ); }
+    virtual void calcMinMaxWidth()
+    {
+        setMinMaxKnown(true);
+    }
 
-    virtual void removeSuperfluousAnonymousBlockChild( RenderObject* child );
+    virtual void removeSuperfluousAnonymousBlockChild(RenderObject *child);
 
-    virtual void setStyle(RenderStyle* _style);
+    virtual void setStyle(RenderStyle *_style);
 
     virtual RenderPosition positionForCoordinates(int x, int y);
 
@@ -67,12 +79,18 @@ protected:
     void updatePseudoChildren();
     void updatePseudoChild(RenderStyle::PseudoId type);
 
-    RenderContainer* pseudoContainer( RenderStyle::PseudoId type ) const;
-    void addPseudoContainer(RenderObject* child);
+    RenderContainer *pseudoContainer(RenderStyle::PseudoId type) const;
+    void addPseudoContainer(RenderObject *child);
 private:
 
-    void setFirstChild(RenderObject *first) { m_first = first; }
-    void setLastChild(RenderObject *last) { m_last = last; }
+    void setFirstChild(RenderObject *first)
+    {
+        m_first = first;
+    }
+    void setLastChild(RenderObject *last)
+    {
+        m_last = last;
+    }
 
 protected:
 

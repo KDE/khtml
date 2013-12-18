@@ -40,7 +40,7 @@ HTMLDListElement::HTMLDListElement(HTMLDListElementImpl *impl) : HTMLElement(imp
 
 HTMLDListElement &HTMLDListElement::operator = (const Node &other)
 {
-    assignOther( other, ID_DL );
+    assignOther(other, ID_DL);
     return *this;
 }
 
@@ -56,18 +56,20 @@ HTMLDListElement::~HTMLDListElement()
 
 bool HTMLDListElement::compact() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return !((ElementImpl *)impl)->getAttribute(ATTR_COMPACT).isNull();
 }
 
-void HTMLDListElement::setCompact( bool _compact )
+void HTMLDListElement::setCompact(bool _compact)
 {
-   if(impl)
-    {
-	DOMString str;
-	if( _compact )
-	    str = "";
-	((ElementImpl *)impl)->setAttribute(ATTR_COMPACT, str);
+    if (impl) {
+        DOMString str;
+        if (_compact) {
+            str = "";
+        }
+        ((ElementImpl *)impl)->setAttribute(ATTR_COMPACT, str);
     }
 }
 
@@ -87,7 +89,7 @@ HTMLDirectoryElement::HTMLDirectoryElement(HTMLDirectoryElementImpl *impl) : HTM
 
 HTMLDirectoryElement &HTMLDirectoryElement::operator = (const Node &other)
 {
-    assignOther( other, ID_DIR );
+    assignOther(other, ID_DIR);
     return *this;
 }
 
@@ -103,18 +105,20 @@ HTMLDirectoryElement::~HTMLDirectoryElement()
 
 bool HTMLDirectoryElement::compact() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return !((ElementImpl *)impl)->getAttribute(ATTR_COMPACT).isNull();
 }
 
-void HTMLDirectoryElement::setCompact( bool _compact )
+void HTMLDirectoryElement::setCompact(bool _compact)
 {
-   if(impl)
-    {
-	DOMString str;
-	if( _compact )
-	    str = "";
-	((ElementImpl *)impl)->setAttribute(ATTR_COMPACT, str);
+    if (impl) {
+        DOMString str;
+        if (_compact) {
+            str = "";
+        }
+        ((ElementImpl *)impl)->setAttribute(ATTR_COMPACT, str);
     }
 }
 
@@ -134,7 +138,7 @@ HTMLLIElement::HTMLLIElement(HTMLLIElementImpl *impl) : HTMLElement(impl)
 
 HTMLLIElement &HTMLLIElement::operator = (const Node &other)
 {
-    assignOther( other, ID_LI );
+    assignOther(other, ID_LI);
     return *this;
 }
 
@@ -150,26 +154,32 @@ HTMLLIElement::~HTMLLIElement()
 
 DOMString HTMLLIElement::type() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_TYPE);
 }
 
-void HTMLLIElement::setType( const DOMString &value )
+void HTMLLIElement::setType(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_TYPE, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_TYPE, value);
+    }
 }
 
 long HTMLLIElement::value() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_VALUE).toInt();
 }
 
-void HTMLLIElement::setValue( long _value )
+void HTMLLIElement::setValue(long _value)
 {
-    if(impl) {
-	DOMString value(QString::number(_value));
-        ((ElementImpl *)impl)->setAttribute(ATTR_VALUE,value);
+    if (impl) {
+        DOMString value(QString::number(_value));
+        ((ElementImpl *)impl)->setAttribute(ATTR_VALUE, value);
     }
 }
 
@@ -189,7 +199,7 @@ HTMLMenuElement::HTMLMenuElement(HTMLMenuElementImpl *impl) : HTMLElement(impl)
 
 HTMLMenuElement &HTMLMenuElement::operator = (const Node &other)
 {
-    assignOther( other, ID_MENU );
+    assignOther(other, ID_MENU);
     return *this;
 }
 
@@ -205,18 +215,20 @@ HTMLMenuElement::~HTMLMenuElement()
 
 bool HTMLMenuElement::compact() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return !((ElementImpl *)impl)->getAttribute(ATTR_COMPACT).isNull();
 }
 
-void HTMLMenuElement::setCompact( bool _compact )
+void HTMLMenuElement::setCompact(bool _compact)
 {
-   if(impl)
-    {
-	DOMString str;
-	if( _compact )
-	    str = "";
-	((ElementImpl *)impl)->setAttribute(ATTR_COMPACT, str);
+    if (impl) {
+        DOMString str;
+        if (_compact) {
+            str = "";
+        }
+        ((ElementImpl *)impl)->setAttribute(ATTR_COMPACT, str);
     }
 }
 
@@ -236,7 +248,7 @@ HTMLOListElement::HTMLOListElement(HTMLOListElementImpl *impl) : HTMLElement(imp
 
 HTMLOListElement &HTMLOListElement::operator = (const Node &other)
 {
-    assignOther( other, ID_OL );
+    assignOther(other, ID_OL);
     return *this;
 }
 
@@ -252,45 +264,53 @@ HTMLOListElement::~HTMLOListElement()
 
 bool HTMLOListElement::compact() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return !((ElementImpl *)impl)->getAttribute(ATTR_COMPACT).isNull();
 }
 
-void HTMLOListElement::setCompact( bool _compact )
+void HTMLOListElement::setCompact(bool _compact)
 {
-   if(impl)
-    {
-	DOMString str;
-	if( _compact )
-	    str = "";
-	((ElementImpl *)impl)->setAttribute(ATTR_COMPACT, str);
+    if (impl) {
+        DOMString str;
+        if (_compact) {
+            str = "";
+        }
+        ((ElementImpl *)impl)->setAttribute(ATTR_COMPACT, str);
     }
 }
 
 long HTMLOListElement::start() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_START).toInt();
 }
 
-void HTMLOListElement::setStart( long _start )
+void HTMLOListElement::setStart(long _start)
 {
 
-    if(impl) {
-	DOMString value(QString::number(_start));
-        ((ElementImpl *)impl)->setAttribute(ATTR_START,value);
+    if (impl) {
+        DOMString value(QString::number(_start));
+        ((ElementImpl *)impl)->setAttribute(ATTR_START, value);
     }
 }
 
 DOMString HTMLOListElement::type() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_TYPE);
 }
 
-void HTMLOListElement::setType( const DOMString &value )
+void HTMLOListElement::setType(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_TYPE, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_TYPE, value);
+    }
 }
 
 // --------------------------------------------------------------------------
@@ -309,7 +329,7 @@ HTMLUListElement::HTMLUListElement(HTMLUListElementImpl *impl) : HTMLElement(imp
 
 HTMLUListElement &HTMLUListElement::operator = (const Node &other)
 {
-    assignOther( other, ID_UL );
+    assignOther(other, ID_UL);
     return *this;
 }
 
@@ -325,29 +345,35 @@ HTMLUListElement::~HTMLUListElement()
 
 bool HTMLUListElement::compact() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return !((ElementImpl *)impl)->getAttribute(ATTR_COMPACT).isNull();
 }
 
-void HTMLUListElement::setCompact( bool _compact )
+void HTMLUListElement::setCompact(bool _compact)
 {
-   if(impl)
-    {
-	DOMString str;
-	if( _compact )
-	    str = "";
-	((ElementImpl *)impl)->setAttribute(ATTR_COMPACT, str);
+    if (impl) {
+        DOMString str;
+        if (_compact) {
+            str = "";
+        }
+        ((ElementImpl *)impl)->setAttribute(ATTR_COMPACT, str);
     }
 }
 
 DOMString HTMLUListElement::type() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_TYPE);
 }
 
-void HTMLUListElement::setType( const DOMString &value )
+void HTMLUListElement::setType(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_TYPE, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_TYPE, value);
+    }
 }
 

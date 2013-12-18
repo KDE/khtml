@@ -23,9 +23,10 @@
 #include "SVGRenderTreeAsText.h"
 #include "SVGFEDisplacementMap.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFEDisplacementMap::SVGFEDisplacementMap(SVGResourceFilter* filter)
+SVGFEDisplacementMap::SVGFEDisplacementMap(SVGResourceFilter *filter)
     : SVGFilterEffect(filter)
     , m_xChannelSelector(SVG_CHANNEL_UNKNOWN)
     , m_yChannelSelector(SVG_CHANNEL_UNKNOWN)
@@ -73,33 +74,33 @@ void SVGFEDisplacementMap::setScale(float scale)
     m_scale = scale;
 }
 
-static TextStream& operator<<(TextStream& ts, SVGChannelSelectorType t)
+static TextStream &operator<<(TextStream &ts, SVGChannelSelectorType t)
 {
-    switch (t)
-    {
-        case SVG_CHANNEL_UNKNOWN:
-            ts << "UNKNOWN"; break;
-        case SVG_CHANNEL_R:
-            ts << "RED"; break;
-        case SVG_CHANNEL_G:
-            ts << "GREEN"; break;
-        case SVG_CHANNEL_B:
-            ts << "BLUE"; break;
-        case SVG_CHANNEL_A:
-            ts << "ALPHA"; break;
+    switch (t) {
+    case SVG_CHANNEL_UNKNOWN:
+        ts << "UNKNOWN"; break;
+    case SVG_CHANNEL_R:
+        ts << "RED"; break;
+    case SVG_CHANNEL_G:
+        ts << "GREEN"; break;
+    case SVG_CHANNEL_B:
+        ts << "BLUE"; break;
+    case SVG_CHANNEL_A:
+        ts << "ALPHA"; break;
     }
     return ts;
 }
 
-TextStream& SVGFEDisplacementMap::externalRepresentation(TextStream& ts) const
+TextStream &SVGFEDisplacementMap::externalRepresentation(TextStream &ts) const
 {
     ts << "[type=DISPLACEMENT-MAP] ";
     SVGFilterEffect::externalRepresentation(ts);
-    if (!in2().isEmpty())
+    if (!in2().isEmpty()) {
         ts << " [in2=" << in2() << "]";
+    }
     ts << " [scale=" << m_scale << "]"
-        << " [x channel selector=" << m_xChannelSelector << "]"
-        << " [y channel selector=" << m_yChannelSelector << "]";
+       << " [x channel selector=" << m_xChannelSelector << "]"
+       << " [y channel selector=" << m_yChannelSelector << "]";
     return ts;
 }
 

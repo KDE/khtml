@@ -20,16 +20,16 @@
     Boston, MA 02110-1301, USA.
 */
 
-
 #if ENABLE(SVG) && ENABLE(SVG_FILTERS)
 #include "SVGFECompositeElement.h"
 
 #include "SVGNames.h"
 #include "SVGResourceFilter.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFECompositeElement::SVGFECompositeElement(const QualifiedName& tagName, Document* doc)
+SVGFECompositeElement::SVGFECompositeElement(const QualifiedName &tagName, Document *doc)
     : SVGFilterPrimitiveStandardAttributes(tagName, doc)
     , m__operator(SVG_FECOMPOSITE_OPERATOR_OVER)
     , m_k1(0.0f)
@@ -55,42 +55,44 @@ ANIMATED_PROPERTY_DEFINITIONS(SVGFECompositeElement, float, Number, number, K4, 
 
 void SVGFECompositeElement::parseMappedAttribute(MappedAttribute *attr)
 {
-    const String& value = attr->value();
+    const String &value = attr->value();
     if (attr->name() == SVGNames::operatorAttr) {
-        if (value == "over")
+        if (value == "over") {
             set_operatorBaseValue(SVG_FECOMPOSITE_OPERATOR_OVER);
-        else if (value == "in")
+        } else if (value == "in") {
             set_operatorBaseValue(SVG_FECOMPOSITE_OPERATOR_IN);
-        else if (value == "out")
+        } else if (value == "out") {
             set_operatorBaseValue(SVG_FECOMPOSITE_OPERATOR_OUT);
-        else if (value == "atop")
+        } else if (value == "atop") {
             set_operatorBaseValue(SVG_FECOMPOSITE_OPERATOR_ATOP);
-        else if (value == "xor")
+        } else if (value == "xor") {
             set_operatorBaseValue(SVG_FECOMPOSITE_OPERATOR_XOR);
-        else if (value == "arithmetic")
+        } else if (value == "arithmetic") {
             set_operatorBaseValue(SVG_FECOMPOSITE_OPERATOR_ARITHMETIC);
-    }
-    else if (attr->name() == SVGNames::inAttr)
+        }
+    } else if (attr->name() == SVGNames::inAttr) {
         setIn1BaseValue(value);
-    else if (attr->name() == SVGNames::in2Attr)
+    } else if (attr->name() == SVGNames::in2Attr) {
         setIn2BaseValue(value);
-    else if (attr->name() == SVGNames::k1Attr)
+    } else if (attr->name() == SVGNames::k1Attr) {
         setK1BaseValue(value.toFloat());
-    else if (attr->name() == SVGNames::k2Attr)
+    } else if (attr->name() == SVGNames::k2Attr) {
         setK2BaseValue(value.toFloat());
-    else if (attr->name() == SVGNames::k3Attr)
+    } else if (attr->name() == SVGNames::k3Attr) {
         setK3BaseValue(value.toFloat());
-    else if (attr->name() == SVGNames::k4Attr)
+    } else if (attr->name() == SVGNames::k4Attr) {
         setK4BaseValue(value.toFloat());
-    else
+    } else {
         SVGFilterPrimitiveStandardAttributes::parseMappedAttribute(attr);
+    }
 }
 
-SVGFEComposite* SVGFECompositeElement::filterEffect(SVGResourceFilter* filter) const
+SVGFEComposite *SVGFECompositeElement::filterEffect(SVGResourceFilter *filter) const
 {
-    if (!m_filterEffect)
+    if (!m_filterEffect) {
         m_filterEffect = new SVGFEComposite(filter);
-    
+    }
+
     m_filterEffect->setOperation((SVGCompositeOperationType) _operator());
     m_filterEffect->setIn(in1());
     m_filterEffect->setIn2(in2());
@@ -107,4 +109,3 @@ SVGFEComposite* SVGFECompositeElement::filterEffect(SVGResourceFilter* filter) c
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

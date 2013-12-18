@@ -30,39 +30,52 @@
 #include "SVGStyledTransformableElement.h"
 #include "SVGTests.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGClipPathElement : public SVGStyledTransformableElement,
-                               public SVGTests,
-                               public SVGLangSpace,
-                               public SVGExternalResourcesRequired
+class SVGClipPathElement : public SVGStyledTransformableElement,
+    public SVGTests,
+    public SVGLangSpace,
+    public SVGExternalResourcesRequired
+{
+public:
+    SVGClipPathElement(const QualifiedName &, Document *);
+    virtual ~SVGClipPathElement();
+
+    virtual bool isValid() const
     {
-    public:
-        SVGClipPathElement(const QualifiedName&, Document*);
-        virtual ~SVGClipPathElement();
+        return SVGTests::isValid();
+    }
+    virtual bool rendererIsNeeded(RenderStyle *)
+    {
+        return false;
+    }
 
-        virtual bool isValid() const { return SVGTests::isValid(); }
-        virtual bool rendererIsNeeded(RenderStyle*) { return false; }
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual void svgAttributeChanged(const QualifiedName &);
+    using DOM::NodeImpl::childrenChanged;
+    virtual void childrenChanged(bool changedByParser = false, Node *beforeChange = 0, Node *afterChange = 0, int childCountDelta = 0);
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual void svgAttributeChanged(const QualifiedName&);
-        using DOM::NodeImpl::childrenChanged;
-        virtual void childrenChanged(bool changedByParser = false, Node* beforeChange = 0, Node* afterChange = 0, int childCountDelta = 0);
+    virtual SVGResource *canvasResource();
 
-        virtual SVGResource* canvasResource();
+    // KHTML ElementImpl pure virtual method
+    virtual quint32 id() const
+    {
+        return SVGNames::clipPathTag.id();
+    }
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
 
-        // KHTML ElementImpl pure virtual method
-        virtual quint32 id() const { return SVGNames::clipPathTag.id(); }
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
+private:
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
 
-    private:
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGClipPathElement, int, int, ClipPathUnits, clipPathUnits)
 
-        ANIMATED_PROPERTY_DECLARATIONS(SVGClipPathElement, int, int, ClipPathUnits, clipPathUnits)
-
-        RefPtr<SVGResourceClipper> m_clipper;
-    };
+    RefPtr<SVGResourceClipper> m_clipper;
+};
 
 } // namespace WebCore
 

@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef SVGPaintServerPattern_h
@@ -36,54 +36,62 @@
 
 #include <wtf/OwnPtr.h>
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class GraphicsContext;
-    class ImageBuffer;
-    class SVGPatternElement;
+class GraphicsContext;
+class ImageBuffer;
+class SVGPatternElement;
 
-    class SVGPaintServerPattern : public SVGPaintServer {
-    public:
-        static PassRefPtr<SVGPaintServerPattern> create(const SVGPatternElement* owner) { return adoptRef(new SVGPaintServerPattern(owner)); }
+class SVGPaintServerPattern : public SVGPaintServer
+{
+public:
+    static PassRefPtr<SVGPaintServerPattern> create(const SVGPatternElement *owner)
+    {
+        return adoptRef(new SVGPaintServerPattern(owner));
+    }
 
-        virtual ~SVGPaintServerPattern();
+    virtual ~SVGPaintServerPattern();
 
-        virtual SVGPaintServerType type() const { return PatternPaintServer; }
+    virtual SVGPaintServerType type() const
+    {
+        return PatternPaintServer;
+    }
 
-        // Pattern boundaries
-        void setPatternBoundaries(const FloatRect&);
-        FloatRect patternBoundaries() const;
+    // Pattern boundaries
+    void setPatternBoundaries(const FloatRect &);
+    FloatRect patternBoundaries() const;
 
-        ImageBuffer* tile() const;
-        void setTile(std::auto_ptr<ImageBuffer>);
+    ImageBuffer *tile() const;
+    void setTile(std::auto_ptr<ImageBuffer>);
 
-        AffineTransform patternTransform() const;
-        void setPatternTransform(const AffineTransform&);
+    AffineTransform patternTransform() const;
+    void setPatternTransform(const AffineTransform &);
 
-        virtual TextStream& externalRepresentation(TextStream&) const;
+    virtual TextStream &externalRepresentation(TextStream &) const;
 
 #if PLATFORM(CG)
-        virtual bool setup(GraphicsContext*&, const RenderObject*, SVGPaintTargetType, bool isPaintingText) const;
-        virtual void teardown(GraphicsContext*&, const RenderObject*, SVGPaintTargetType, bool isPaintingText) const; 
+    virtual bool setup(GraphicsContext *&, const RenderObject *, SVGPaintTargetType, bool isPaintingText) const;
+    virtual void teardown(GraphicsContext *&, const RenderObject *, SVGPaintTargetType, bool isPaintingText) const;
 #endif
 
 #if PLATFORM(QT) || PLATFORM(CAIRO)
-        virtual bool setup(QPainter* painter, QPainterPaht* painterPath, const RenderObject*, SVGPaintTargetType, bool isPaintingText) const;
+    virtual bool setup(QPainter *painter, QPainterPaht *painterPath, const RenderObject *, SVGPaintTargetType, bool isPaintingText) const;
 #endif
 
-    private:
-        SVGPaintServerPattern(const SVGPatternElement*);
-        
-        OwnPtr<ImageBuffer> m_tile;
-        const SVGPatternElement* m_ownerElement;
-        AffineTransform m_patternTransform;
-        FloatRect m_patternBoundaries;
+private:
+    SVGPaintServerPattern(const SVGPatternElement *);
+
+    OwnPtr<ImageBuffer> m_tile;
+    const SVGPatternElement *m_ownerElement;
+    AffineTransform m_patternTransform;
+    FloatRect m_patternBoundaries;
 
 #if PLATFORM(CG)
-        mutable CGColorSpaceRef m_patternSpace;
-        mutable CGPatternRef m_pattern;
-#endif                
-    };
+    mutable CGColorSpaceRef m_patternSpace;
+    mutable CGPatternRef m_pattern;
+#endif
+};
 
 } // namespace WebCore
 

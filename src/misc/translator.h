@@ -36,29 +36,35 @@ public:
         R    r;
     };
 
-    IDTranslator(const Info* table) {
-        for (const Info* cursor = table; cursor->l; ++cursor) {
+    IDTranslator(const Info *table)
+    {
+        for (const Info *cursor = table; cursor->l; ++cursor) {
             m_lToR.insert(cursor->l,  cursor->r);
             m_rToL.insert(cursor->r,  cursor->l);
         }
     }
 
-    bool hasLeft(L l) {
-        typename QMap<L,R>::iterator i = m_lToR.find(l);
+    bool hasLeft(L l)
+    {
+        typename QMap<L, R>::iterator i = m_lToR.find(l);
         return i != m_lToR.end();
     }
 
-    L toLeft(R r) {
-        typename QMap<R,L>::iterator i( m_rToL.find(r) );
-        if (i != m_rToL.end())
+    L toLeft(R r)
+    {
+        typename QMap<R, L>::iterator i(m_rToL.find(r));
+        if (i != m_rToL.end()) {
             return *i;
+        }
         return L();
     }
 
-    R toRight(L l) {
-        typename QMap<L,R>::iterator i = m_lToR.find(l);
-        if (i != m_lToR.end())
+    R toRight(L l)
+    {
+        typename QMap<L, R>::iterator i = m_lToR.find(l);
+        if (i != m_lToR.end()) {
             return *i;
+        }
         return R();
     }
 
@@ -70,6 +76,5 @@ private:
 #define MAKE_TRANSLATOR(name,L,R,MR,table) static IDTranslator<L,R,MR>* s_##name; \
     static IDTranslator<L,R,MR>* name() { if (!s_##name) s_##name = new IDTranslator<L,R,MR>(table); \
         return s_##name; }
-
 
 #endif

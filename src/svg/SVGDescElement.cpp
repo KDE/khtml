@@ -24,9 +24,10 @@
 #if ENABLE(SVG)
 #include "SVGDescElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGDescElement::SVGDescElement(const QualifiedName& tagName, Document *doc)
+SVGDescElement::SVGDescElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledElement(tagName, doc)
     , SVGLangSpace()
 {
@@ -43,6 +44,5 @@ String SVGDescElement::description() const
 
 }
 
-// vim:ts=4:noet
 #endif // ENABLE(SVG)
 

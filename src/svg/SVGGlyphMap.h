@@ -25,107 +25,124 @@
 
 namespace WTF
 {
-    struct QCharHash
+struct QCharHash {
+    static unsigned hash(const QChar &c)
     {
-        static unsigned hash(const QChar& c) { return c.unicode(); }
-        static bool equal(const QChar& a, const QChar& b) { return a == b; }
-        static const bool safeToCompareToEmptyOrDeleted = false;
-    };
-    template<> struct HashTraits<QChar> : public GenericHashTraits<QChar> {
-        static const bool emptyValueIsZero = true;
-        static const bool needsDestruction = false;
-        static const bool needsRef = false;
-        static QChar deletedValue() { return QChar(-1); }
-        static bool isDeletedValue(const QChar&) { return false; }
-        static QChar constructDeletedValue(QChar*) { return QChar(-1); }
-    };
-    template<> struct DefaultHash<QChar>
+        return c.unicode();
+    }
+    static bool equal(const QChar &a, const QChar &b)
     {
-        typedef QCharHash Hash;
-    };
+        return a == b;
+    }
+    static const bool safeToCompareToEmptyOrDeleted = false;
+};
+template<> struct HashTraits<QChar> : public GenericHashTraits<QChar> {
+    static const bool emptyValueIsZero = true;
+    static const bool needsDestruction = false;
+    static const bool needsRef = false;
+    static QChar deletedValue()
+    {
+        return QChar(-1);
+    }
+    static bool isDeletedValue(const QChar &)
+    {
+        return false;
+    }
+    static QChar constructDeletedValue(QChar *)
+    {
+        return QChar(-1);
+    }
+};
+template<> struct DefaultHash<QChar> {
+    typedef QCharHash Hash;
+};
 }
 
-namespace WebCore {
+namespace WebCore
+{
 
-    struct GlyphMapNode;
+struct GlyphMapNode;
 
-    typedef HashMap<UChar, RefPtr<GlyphMapNode> > GlyphMapLayer;
-    
+typedef HashMap<UChar, RefPtr<GlyphMapNode> > GlyphMapLayer;
 
-    struct GlyphMapNode : public RefCounted<GlyphMapNode> {
-    private:
-        GlyphMapNode() { }
-    public:
-        static PassRefPtr<GlyphMapNode> create() { return adoptRef(new GlyphMapNode); }
+struct GlyphMapNode : public RefCounted<GlyphMapNode> {
+private:
+    GlyphMapNode() { }
+public:
+    static PassRefPtr<GlyphMapNode> create()
+    {
+        return adoptRef(new GlyphMapNode);
+    }
 
-        Vector<SVGGlyphIdentifier> glyphs;
+    Vector<SVGGlyphIdentifier> glyphs;
 
-        GlyphMapLayer children;
-    };
+    GlyphMapLayer children;
+};
 
-    class SVGGlyphMap {
+class SVGGlyphMap
+{
 
-    public:
-        SVGGlyphMap() : m_currentPriority(0) { }
+public:
+    SVGGlyphMap() : m_currentPriority(0) { }
 
-        void add(const String& string, const SVGGlyphIdentifier& glyph) 
-        {
-            size_t len = string.length();
-            GlyphMapLayer* currentLayer = &m_rootLayer;
+    void add(const String &string, const SVGGlyphIdentifier &glyph)
+    {
+        size_t len = string.length();
+        GlyphMapLayer *currentLayer = &m_rootLayer;
 
-            RefPtr<GlyphMapNode> node;
-            for (size_t i = 0; i < len; i++) {
-                UChar curChar = string[i];
-                node = currentLayer->get(curChar);
-                if (!node) {
-                    node = GlyphMapNode::create();
-                    currentLayer->set(curChar, node);
-                }
-                currentLayer = &node->children;
+        RefPtr<GlyphMapNode> node;
+        for (size_t i = 0; i < len; i++) {
+            UChar curChar = string[i];
+            node = currentLayer->get(curChar);
+            if (!node) {
+                node = GlyphMapNode::create();
+                currentLayer->set(curChar, node);
             }
+            currentLayer = &node->children;
+        }
 
-            if (node) {
-                node->glyphs.append(glyph);
-                node->glyphs.last().priority = m_currentPriority++;
-                node->glyphs.last().nameLength = len;
-                node->glyphs.last().isValid = true;
+        if (node) {
+            node->glyphs.append(glyph);
+            node->glyphs.last().priority = m_currentPriority++;
+            node->glyphs.last().nameLength = len;
+            node->glyphs.last().isValid = true;
+        }
+    }
+
+    static inline bool compareGlyphPriority(const SVGGlyphIdentifier &first, const SVGGlyphIdentifier &second)
+    {
+        return first.priority < second.priority;
+    }
+
+    void get(const String &string, Vector<SVGGlyphIdentifier> &glyphs)
+    {
+        GlyphMapLayer *currentLayer = &m_rootLayer;
+
+        for (size_t i = 0; i < string.length(); i++) {
+            UChar curChar = string[i];
+            RefPtr<GlyphMapNode> node = currentLayer->get(curChar);
+            if (!node) {
+                break;
             }
+            glyphs.append(node->glyphs);
+            currentLayer = &node->children;
         }
+        std::sort(glyphs.begin(), glyphs.end(), compareGlyphPriority);
+    }
 
-        static inline bool compareGlyphPriority(const SVGGlyphIdentifier& first, const SVGGlyphIdentifier& second)
-        {
-            return first.priority < second.priority;
-        }
+    void clear()
+    {
+        m_rootLayer.clear();
+        m_currentPriority = 0;
+    }
 
-        void get(const String& string, Vector<SVGGlyphIdentifier>& glyphs)
-        {
-            GlyphMapLayer* currentLayer = &m_rootLayer;
-
-            for (size_t i = 0; i < string.length(); i++) {
-                UChar curChar = string[i];
-                RefPtr<GlyphMapNode> node = currentLayer->get(curChar);
-                if (!node)
-                    break;
-                glyphs.append(node->glyphs);
-                currentLayer = &node->children;
-            }
-            std::sort(glyphs.begin(), glyphs.end(), compareGlyphPriority);
-        }
-
-        void clear() 
-        { 
-            m_rootLayer.clear(); 
-            m_currentPriority = 0;
-        }
-
-    private:
-        GlyphMapLayer m_rootLayer;
-        int m_currentPriority;
-    };
+private:
+    GlyphMapLayer m_rootLayer;
+    int m_currentPriority;
+};
 
 }
 
 #endif // ENABLE(SVG_FONTS)
-
 
 #endif //SVGGlyphMap_h

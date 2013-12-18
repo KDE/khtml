@@ -3,8 +3,9 @@
 
 #include "render_inline.h"
 
-namespace WebCore {
-    using namespace khtml;
+namespace WebCore
+{
+using namespace khtml;
 }
 
 #endif

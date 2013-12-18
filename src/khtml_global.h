@@ -33,11 +33,11 @@ class KHTMLPart;
 
 namespace KParts
 {
-  class HistoryProvider;
+class HistoryProvider;
 }
 namespace DOM
 {
-  class DocumentImpl;
+class DocumentImpl;
 }
 
 /**
@@ -52,11 +52,11 @@ public:
     KHTMLGlobal();
     ~KHTMLGlobal();
 
-    static void registerPart( KHTMLPart *part );
-    static void deregisterPart( KHTMLPart *part );
+    static void registerPart(KHTMLPart *part);
+    static void deregisterPart(KHTMLPart *part);
 
-    static void registerDocumentImpl( DOM::DocumentImpl *doc );
-    static void deregisterDocumentImpl( DOM::DocumentImpl *doc );
+    static void registerDocumentImpl(DOM::DocumentImpl *doc);
+    static void deregisterDocumentImpl(DOM::DocumentImpl *doc);
 
     static const KAboutData &aboutData();
     static KIconLoader *iconLoader();
@@ -64,7 +64,8 @@ public:
     static KHTMLSettings *defaultHTMLSettings();
 
     // list of visited URLs
-    static KParts::HistoryProvider *vLinks() {
+    static KParts::HistoryProvider *vLinks()
+    {
         return KParts::HistoryProvider::self();
     }
 

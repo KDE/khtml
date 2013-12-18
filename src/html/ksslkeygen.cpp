@@ -18,7 +18,6 @@
  * Boston, MA 02110-1301, USA.
  */
 
-
 #include "ksslkeygen.h"
 #include "ksslkeygen_p.h"
 #include "ui_keygenwizard.h"
@@ -35,7 +34,7 @@
 
 #include <assert.h>
 
-KSSLKeyGenWizardPage2::KSSLKeyGenWizardPage2(QWidget* parent)
+KSSLKeyGenWizardPage2::KSSLKeyGenWizardPage2(QWidget *parent)
     : QWizardPage(parent)
 {
     ui2 = new Ui_KGWizardPage2;
@@ -71,7 +70,7 @@ public:
     }
     int idx;
     Ui_KGWizardPage1 *ui1;
-    KSSLKeyGenWizardPage2* page2;
+    KSSLKeyGenWizardPage2 *page2;
 };
 
 KSSLKeyGen::KSSLKeyGen(QWidget *parent)
@@ -79,7 +78,7 @@ KSSLKeyGen::KSSLKeyGen(QWidget *parent)
 {
 #if KSSL_HAVE_SSL
 
-    QWizardPage* page1 = new QWizardPage(this);
+    QWizardPage *page1 = new QWizardPage(this);
     page1->setTitle(i18n("KDE Certificate Request"));
     d->ui1 = new Ui_KGWizardPage1;
     d->ui1->setupUi(page1);
@@ -94,15 +93,17 @@ KSSLKeyGen::KSSLKeyGen(QWidget *parent)
 #endif
 }
 
-
-KSSLKeyGen::~KSSLKeyGen() {
+KSSLKeyGen::~KSSLKeyGen()
+{
     delete d->ui1;
     delete d;
 }
 
-bool KSSLKeyGen::validateCurrentPage() {
-    if (currentPage() != d->page2)
+bool KSSLKeyGen::validateCurrentPage()
+{
+    if (currentPage() != d->page2) {
         return true;
+    }
 
     assert(d->idx >= 0 && d->idx <= 3);   // for now
 
@@ -136,8 +137,9 @@ bool KSSLKeyGen::validateCurrentPage() {
     // FIXME - progress dialog won't show this way
 
     int rc = generateCSR("This CSR" /*FIXME */, d->page2->password(), bits, 0x10001 /* This is the traditional exponent used */);
-    if (rc != 0) // error
+    if (rc != 0) { // error
         return false;
+    }
 
     kpd->setValue(100);
 
@@ -158,107 +160,106 @@ bool KSSLKeyGen::validateCurrentPage() {
     return true;
 }
 
-
-int KSSLKeyGen::generateCSR(const QString& name, const QString& pass, int bits, int e) {
+int KSSLKeyGen::generateCSR(const QString &name, const QString &pass, int bits, int e)
+{
 #if KSSL_HAVE_SSL
-	KOSSL *kossl = KOSSL::self();
-	int rc;
+    KOSSL *kossl = KOSSL::self();
+    int rc;
 
-	X509_REQ *req = kossl->X509_REQ_new();
-	if (!req) {
-		return -2;
-	}
+    X509_REQ *req = kossl->X509_REQ_new();
+    if (!req) {
+        return -2;
+    }
 
-	EVP_PKEY *pkey = kossl->EVP_PKEY_new();
-	if (!pkey) {
-		kossl->X509_REQ_free(req);
-		return -4;
-	}
+    EVP_PKEY *pkey = kossl->EVP_PKEY_new();
+    if (!pkey) {
+        kossl->X509_REQ_free(req);
+        return -4;
+    }
 
-	RSA *rsakey = kossl->RSA_generate_key(bits, e, NULL, NULL);
-	if (!rsakey) {
-		kossl->X509_REQ_free(req);
-		kossl->EVP_PKEY_free(pkey);
-		return -3;
-	}
+    RSA *rsakey = kossl->RSA_generate_key(bits, e, NULL, NULL);
+    if (!rsakey) {
+        kossl->X509_REQ_free(req);
+        kossl->EVP_PKEY_free(pkey);
+        return -3;
+    }
 
-	rc = kossl->EVP_PKEY_assign(pkey, EVP_PKEY_RSA, (char *)rsakey);
+    rc = kossl->EVP_PKEY_assign(pkey, EVP_PKEY_RSA, (char *)rsakey);
 
-	rc = kossl->X509_REQ_set_pubkey(req, pkey);
+    rc = kossl->X509_REQ_set_pubkey(req, pkey);
 
-	// Set the subject
-	X509_NAME *n = kossl->X509_NAME_new();
+    // Set the subject
+    X509_NAME *n = kossl->X509_NAME_new();
 
-	kossl->X509_NAME_add_entry_by_txt(n, (char*)LN_countryName, MBSTRING_UTF8, (unsigned char*)name.toLocal8Bit().data(), -1, -1, 0);
-	kossl->X509_NAME_add_entry_by_txt(n, (char*)LN_organizationName, MBSTRING_UTF8, (unsigned char*)name.toLocal8Bit().data(), -1, -1, 0);
-	kossl->X509_NAME_add_entry_by_txt(n, (char*)LN_organizationalUnitName, MBSTRING_UTF8, (unsigned char*)name.toLocal8Bit().data(), -1, -1, 0);
-	kossl->X509_NAME_add_entry_by_txt(n, (char*)LN_localityName, MBSTRING_UTF8, (unsigned char*)name.toLocal8Bit().data(), -1, -1, 0);
-	kossl->X509_NAME_add_entry_by_txt(n, (char*)LN_stateOrProvinceName, MBSTRING_UTF8, (unsigned char*)name.toLocal8Bit().data(), -1, -1, 0);
-	kossl->X509_NAME_add_entry_by_txt(n, (char*)LN_commonName, MBSTRING_UTF8, (unsigned char*)name.toLocal8Bit().data(), -1, -1, 0);
-	kossl->X509_NAME_add_entry_by_txt(n, (char*)LN_pkcs9_emailAddress, MBSTRING_UTF8, (unsigned char*)name.toLocal8Bit().data(), -1, -1, 0);
+    kossl->X509_NAME_add_entry_by_txt(n, (char *)LN_countryName, MBSTRING_UTF8, (unsigned char *)name.toLocal8Bit().data(), -1, -1, 0);
+    kossl->X509_NAME_add_entry_by_txt(n, (char *)LN_organizationName, MBSTRING_UTF8, (unsigned char *)name.toLocal8Bit().data(), -1, -1, 0);
+    kossl->X509_NAME_add_entry_by_txt(n, (char *)LN_organizationalUnitName, MBSTRING_UTF8, (unsigned char *)name.toLocal8Bit().data(), -1, -1, 0);
+    kossl->X509_NAME_add_entry_by_txt(n, (char *)LN_localityName, MBSTRING_UTF8, (unsigned char *)name.toLocal8Bit().data(), -1, -1, 0);
+    kossl->X509_NAME_add_entry_by_txt(n, (char *)LN_stateOrProvinceName, MBSTRING_UTF8, (unsigned char *)name.toLocal8Bit().data(), -1, -1, 0);
+    kossl->X509_NAME_add_entry_by_txt(n, (char *)LN_commonName, MBSTRING_UTF8, (unsigned char *)name.toLocal8Bit().data(), -1, -1, 0);
+    kossl->X509_NAME_add_entry_by_txt(n, (char *)LN_pkcs9_emailAddress, MBSTRING_UTF8, (unsigned char *)name.toLocal8Bit().data(), -1, -1, 0);
 
-	rc = kossl->X509_REQ_set_subject_name(req, n);
+    rc = kossl->X509_REQ_set_subject_name(req, n);
 
+    rc = kossl->X509_REQ_sign(req, pkey, kossl->EVP_md5());
 
-	rc = kossl->X509_REQ_sign(req, pkey, kossl->EVP_md5());
+    // We write it to the database and then the caller can obtain it
+    // back from there.  Yes it's inefficient, but it doesn't happen
+    // often and this way things are uniform.
 
-	// We write it to the database and then the caller can obtain it
-	// back from there.  Yes it's inefficient, but it doesn't happen
-	// often and this way things are uniform.
+    const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/kssl";
+    QTemporaryFile csrFile(path + "csr_XXXXXX.der");
+    csrFile.setAutoRemove(false);
 
-	const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/kssl";
-	QTemporaryFile csrFile(path + "csr_XXXXXX.der");
-	csrFile.setAutoRemove(false);
+    if (!csrFile.open()) {
+        kossl->X509_REQ_free(req);
+        kossl->EVP_PKEY_free(pkey);
+        return -5;
+    }
 
-	if (!csrFile.open()) {
-		kossl->X509_REQ_free(req);
-		kossl->EVP_PKEY_free(pkey);
-		return -5;
-	}
+    QTemporaryFile p8File(path + "pkey_XXXXXX.p8");
+    p8File.setAutoRemove(false);
 
-	QTemporaryFile p8File(path + "pkey_XXXXXX.p8");
-	p8File.setAutoRemove(false);
+    if (!p8File.open()) {
+        kossl->X509_REQ_free(req);
+        kossl->EVP_PKEY_free(pkey);
+        return -5;
+    }
 
-	if (!p8File.open()) {
-		kossl->X509_REQ_free(req);
-		kossl->EVP_PKEY_free(pkey);
-		return -5;
-	}
+    FILE *csr_fs = QT_FOPEN(QFile::encodeName(csrFile.fileName()), "r+");
+    FILE *p8_fs = QT_FOPEN(QFile::encodeName(p8File.fileName()), "r+");
 
-	FILE *csr_fs = QT_FOPEN(QFile::encodeName(csrFile.fileName()), "r+");
-	FILE *p8_fs = QT_FOPEN(QFile::encodeName(p8File.fileName()), "r+");
+    kossl->i2d_X509_REQ_fp(csr_fs, req);
 
-	kossl->i2d_X509_REQ_fp(csr_fs, req);
+    kossl->i2d_PKCS8PrivateKey_fp(p8_fs, pkey,
+                                  kossl->EVP_bf_cbc(), pass.toLocal8Bit().data(),
+                                  pass.length(), 0L, 0L);
 
-	kossl->i2d_PKCS8PrivateKey_fp(p8_fs, pkey,
-			kossl->EVP_bf_cbc(), pass.toLocal8Bit().data(),
-			pass.length(), 0L, 0L);
+    // FIXME Write kconfig entry to store the filenames under the md5 hash
 
-	// FIXME Write kconfig entry to store the filenames under the md5 hash
+    kossl->X509_REQ_free(req);
+    kossl->EVP_PKEY_free(pkey);
 
-	kossl->X509_REQ_free(req);
-	kossl->EVP_PKEY_free(pkey);
+    fclose(csr_fs);
+    fclose(p8_fs);
 
-	fclose(csr_fs);
-	fclose(p8_fs);
-
-	return 0;
+    return 0;
 #else
-	return -1;
+    return -1;
 #endif
 }
 
-
-QStringList KSSLKeyGen::supportedKeySizes() {
+QStringList KSSLKeyGen::supportedKeySizes()
+{
     QStringList x;
 
 #if KSSL_HAVE_SSL
-    x	<< i18n("2048 (High Grade)")
+    x   << i18n("2048 (High Grade)")
         << i18n("1024 (Medium Grade)")
         << i18n("768  (Low Grade)")
         << i18n("512  (Low Grade)");
 #else
-    x	<< i18n("No SSL support.");
+    x   << i18n("No SSL support.");
 #endif
 
     return x;
@@ -266,7 +267,7 @@ QStringList KSSLKeyGen::supportedKeySizes() {
 
 void KSSLKeyGen::setKeySize(int idx)
 {
-     d->idx = idx;
+    d->idx = idx;
 }
 
 #include "moc_ksslkeygen.cpp"

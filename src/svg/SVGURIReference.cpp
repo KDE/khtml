@@ -27,7 +27,8 @@
 #include "SVGStyledElement.h"
 #include "XLinkNames.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 SVGURIReference::SVGURIReference()
 {
@@ -39,7 +40,7 @@ SVGURIReference::~SVGURIReference()
 
 ANIMATED_PROPERTY_DEFINITIONS_WITH_CONTEXT(SVGURIReference, String, String, string, Href, href, XLinkNames::hrefAttr, m_href)
 
-bool SVGURIReference::parseMappedAttribute(MappedAttribute* attr)
+bool SVGURIReference::parseMappedAttribute(MappedAttribute *attr)
 {
     // qDebug() << "parse" << attr->localName() << attr->value() << endl;
     if (attr->id() == ATTR_XLINK_HREF) {
@@ -51,12 +52,12 @@ bool SVGURIReference::parseMappedAttribute(MappedAttribute* attr)
     return false;
 }
 
-bool SVGURIReference::isKnownAttribute(const QualifiedName& attrName)
+bool SVGURIReference::isKnownAttribute(const QualifiedName &attrName)
 {
     return attrName.matches(XLinkNames::hrefAttr);
 }
 
-String SVGURIReference::getTarget(const String& url)
+String SVGURIReference::getTarget(const String &url)
 {
     if (url.startsWith("url(")) { // URI References, ie. fill:url(#target)
         unsigned int start = url.find('#') + 1;
@@ -66,8 +67,9 @@ String SVGURIReference::getTarget(const String& url)
     } else if (url.find('#') > -1) { // format is #target
         unsigned int start = url.find('#') + 1;
         return url.substring(start, url.length() - start);
-    } else // Normal Reference, ie. style="color-profile:changeColor"
+    } else { // Normal Reference, ie. style="color-profile:changeColor"
         return url;
+    }
 }
 
 }

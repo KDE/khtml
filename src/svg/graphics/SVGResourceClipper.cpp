@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include "wtf/Platform.h"
@@ -30,7 +30,8 @@
 
 /*#include "SVGRenderTreeAsText.h"*/
 
-namespace WebCore {
+namespace WebCore
+{
 
 SVGResourceClipper::SVGResourceClipper()
     : SVGResource()
@@ -46,12 +47,12 @@ void SVGResourceClipper::resetClipData()
     m_clipData.clear();
 }
 
-void SVGResourceClipper::addClipData(const Path& path, WindRule rule, bool bboxUnits)
+void SVGResourceClipper::addClipData(const Path &path, WindRule rule, bool bboxUnits)
 {
     m_clipData.addPath(path, rule, bboxUnits);
 }
 
-const ClipDataList& SVGResourceClipper::clipData() const
+const ClipDataList &SVGResourceClipper::clipData() const
 {
     return m_clipData;
 }
@@ -86,11 +87,12 @@ TextStream& operator<<(TextStream& ts, const ClipData& d)
     return ts;
 }*/
 
-SVGResourceClipper* getClipperById(Document* document, const AtomicString& id)
+SVGResourceClipper *getClipperById(Document *document, const AtomicString &id)
 {
-    SVGResource* resource = getResourceById(document, id);
-    if (resource && resource->isClipper())
-        return static_cast<SVGResourceClipper*>(resource);
+    SVGResource *resource = getResourceById(document, id);
+    if (resource && resource->isClipper()) {
+        return static_cast<SVGResourceClipper *>(resource);
+    }
 
     return 0;
 }

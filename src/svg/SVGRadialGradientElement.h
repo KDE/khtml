@@ -26,37 +26,45 @@
 #if ENABLE(SVG)
 #include "SVGGradientElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    struct RadialGradientAttributes;
-    class SVGLength;
+struct RadialGradientAttributes;
+class SVGLength;
 
-    class SVGRadialGradientElement : public SVGGradientElement {
-    public:
-        SVGRadialGradientElement(const QualifiedName&, Document*);
-        virtual ~SVGRadialGradientElement();
+class SVGRadialGradientElement : public SVGGradientElement
+{
+public:
+    SVGRadialGradientElement(const QualifiedName &, Document *);
+    virtual ~SVGRadialGradientElement();
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual void svgAttributeChanged(const QualifiedName&);
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual void svgAttributeChanged(const QualifiedName &);
 
-        // KHTML ElementImpl pure virtual method
-        virtual quint32 id() const;
-    protected:
-        virtual void buildGradient() const;
-        virtual SVGPaintServerType gradientType() const { return RadialGradientPaintServer; }
+    // KHTML ElementImpl pure virtual method
+    virtual quint32 id() const;
+protected:
+    virtual void buildGradient() const;
+    virtual SVGPaintServerType gradientType() const
+    {
+        return RadialGradientPaintServer;
+    }
 
-        RadialGradientAttributes collectGradientProperties() const;
+    RadialGradientAttributes collectGradientProperties() const;
 
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
 
-    private:
-        ANIMATED_PROPERTY_DECLARATIONS(SVGRadialGradientElement, SVGLength, SVGLength, Cx, cx)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGRadialGradientElement, SVGLength, SVGLength, Cy, cy)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGRadialGradientElement, SVGLength, SVGLength, R, r)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGRadialGradientElement, SVGLength, SVGLength, Fx, fx)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGRadialGradientElement, SVGLength, SVGLength, Fy, fy)
-    };
+private:
+    ANIMATED_PROPERTY_DECLARATIONS(SVGRadialGradientElement, SVGLength, SVGLength, Cx, cx)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGRadialGradientElement, SVGLength, SVGLength, Cy, cy)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGRadialGradientElement, SVGLength, SVGLength, R, r)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGRadialGradientElement, SVGLength, SVGLength, Fx, fx)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGRadialGradientElement, SVGLength, SVGLength, Fy, fy)
+};
 
 } // namespace WebCore
 

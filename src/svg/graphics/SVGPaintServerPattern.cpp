@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #if ENABLE(SVG)
@@ -32,9 +32,10 @@
 
 using namespace std;
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGPaintServerPattern::SVGPaintServerPattern(const SVGPatternElement* owner)
+SVGPaintServerPattern::SVGPaintServerPattern(const SVGPatternElement *owner)
     : m_ownerElement(owner)
 #if PLATFORM(CG)
     , m_patternSpace(0)
@@ -57,12 +58,12 @@ FloatRect SVGPaintServerPattern::patternBoundaries() const
     return m_patternBoundaries;
 }
 
-void SVGPaintServerPattern::setPatternBoundaries(const FloatRect& rect)
+void SVGPaintServerPattern::setPatternBoundaries(const FloatRect &rect)
 {
     m_patternBoundaries = rect;
 }
 
-ImageBuffer* SVGPaintServerPattern::tile() const
+ImageBuffer *SVGPaintServerPattern::tile() const
 {
     return m_tile.get();
 }
@@ -77,20 +78,21 @@ AffineTransform SVGPaintServerPattern::patternTransform() const
     return m_patternTransform;
 }
 
-void SVGPaintServerPattern::setPatternTransform(const AffineTransform& transform)
+void SVGPaintServerPattern::setPatternTransform(const AffineTransform &transform)
 {
     m_patternTransform = transform;
 }
 
-TextStream& SVGPaintServerPattern::externalRepresentation(TextStream& ts) const
+TextStream &SVGPaintServerPattern::externalRepresentation(TextStream &ts) const
 {
     // Gradients/patterns aren't setup, until they are used for painting. Work around that fact.
     m_ownerElement->buildPattern(FloatRect(0.0f, 0.0f, 1.0f, 1.0f));
 
     ts << "[type=PATTERN]"
-        << " [bbox=" << patternBoundaries() << "]";
-    if (!patternTransform().isIdentity())
+       << " [bbox=" << patternBoundaries() << "]";
+    if (!patternTransform().isIdentity()) {
         ts << " [pattern transform=" << patternTransform() << "]";
+    }
     return ts;
 }
 

@@ -28,19 +28,24 @@
 #include "Document.h"
 #include "SVGList.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGStringList : public SVGList<String> {
-    public:
-        static PassRefPtr<SVGStringList> create(const QualifiedName& attributeName) { return adoptRef(new SVGStringList(attributeName)); }
-        virtual ~SVGStringList();
+class SVGStringList : public SVGList<String>
+{
+public:
+    static PassRefPtr<SVGStringList> create(const QualifiedName &attributeName)
+    {
+        return adoptRef(new SVGStringList(attributeName));
+    }
+    virtual ~SVGStringList();
 
-        void reset(const String& str);
-        void parse(const String& data, UChar delimiter = ',');
-        
-    private:
-        SVGStringList(const QualifiedName&);
-    };
+    void reset(const String &str);
+    void parse(const String &data, UChar delimiter = ',');
+
+private:
+    SVGStringList(const QualifiedName &);
+};
 
 } // namespace WebCore
 

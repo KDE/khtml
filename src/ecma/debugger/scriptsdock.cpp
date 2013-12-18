@@ -54,25 +54,28 @@ void ScriptsDock::documentDestroyed(DebugDocument *document)
 {
     // We may be asked to remove a document held for reload repeatedly;
     // ignore later attempts
-    if (!m_documents.contains(document))
+    if (!m_documents.contains(document)) {
         return;
+    }
 
-    QTreeWidgetItem* fragment = m_documents[document];
+    QTreeWidgetItem *fragment = m_documents[document];
     m_documents.remove(document);
 
-    QTreeWidgetItem* file      = fragment->parent();
-    QTreeWidgetItem* domain    = file->parent();
+    QTreeWidgetItem *file      = fragment->parent();
+    QTreeWidgetItem *domain    = file->parent();
 
     delete file->takeChild(file->indexOfChild(fragment));
 
-    if (file->childCount())
+    if (file->childCount()) {
         return;
+    }
 
     // Need to clean up the file as well.
     delete domain->takeChild(domain->indexOfChild(file));
 
-    if (domain->childCount())
-      return;
+    if (domain->childCount()) {
+        return;
+    }
 
     // ... and domain
     m_headers.remove(domain->text(0));
@@ -81,31 +84,31 @@ void ScriptsDock::documentDestroyed(DebugDocument *document)
 
 void ScriptsDock::addDocument(DebugDocument *document)
 {
-    assert (!m_documents.contains(document));
+    assert(!m_documents.contains(document));
 
     QString name = document->name();
     QString domain;
     QString favicon;
 
-    if (document->url().isEmpty())
-        domain = "????"; // ### KDE4.1: proper i18n'able string
+    if (document->url().isEmpty()) {
+        domain = "????";    // ### KDE4.1: proper i18n'able string
+    }
 
-    else
-    {
+    else {
         QUrl kurl(document->url());
-        if (!kurl.host().isEmpty())
+        if (!kurl.host().isEmpty()) {
             domain = kurl.host();
-        else
+        } else {
             domain = "localhost";
+        }
 
         favicon = KIO::favIconForUrl(kurl);
     }
 
     QTreeWidgetItem *parent = 0;
-    if (m_headers.contains(domain))
+    if (m_headers.contains(domain)) {
         parent = m_headers[domain];
-    else
-    {
+    } else {
         parent = new QTreeWidgetItem(QStringList() << domain);
         if (!favicon.isEmpty()) {
             QIcon icon = QIcon::fromTheme(favicon);
@@ -117,15 +120,17 @@ void ScriptsDock::addDocument(DebugDocument *document)
     }
 
     // Now try to find a kid for the name
-    QTreeWidgetItem* file = 0;
+    QTreeWidgetItem *file = 0;
     for (int c = 0; c < parent->childCount(); ++c) {
-        QTreeWidgetItem* cand = parent->child(c);
-        if (cand->text(0) == name)
+        QTreeWidgetItem *cand = parent->child(c);
+        if (cand->text(0) == name) {
             file = cand;
+        }
     }
 
-    if (!file)
+    if (!file) {
         file = new QTreeWidgetItem(parent, QStringList() << name);
+    }
 
     // Now add the fragment
     QString lines = QString::number(1 + document->baseLine()) + "-" +
@@ -138,9 +143,8 @@ void ScriptsDock::addDocument(DebugDocument *document)
 void ScriptsDock::scriptSelected(QTreeWidgetItem *item, int /*column*/)
 {
     DebugDocument *doc = m_documents.key(item);
-    if (doc)
+    if (doc) {
         emit displayScript(doc);
+    }
 }
 
-
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

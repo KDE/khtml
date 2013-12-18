@@ -25,19 +25,21 @@
 #if ENABLE(SVG) && ENABLE(SVG_FILTERS)
 #include "SVGFilterEffect.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-class SVGFEMerge : public SVGFilterEffect {
+class SVGFEMerge : public SVGFilterEffect
+{
 public:
-    SVGFEMerge(SVGResourceFilter* filter) : SVGFilterEffect(filter) { }
+    SVGFEMerge(SVGResourceFilter *filter) : SVGFilterEffect(filter) { }
 
-    const Vector<String>& mergeInputs() const;
-    void setMergeInputs(const Vector<String>& mergeInputs);
+    const Vector<String> &mergeInputs() const;
+    void setMergeInputs(const Vector<String> &mergeInputs);
 
-    virtual TextStream& externalRepresentation(TextStream&) const;
+    virtual TextStream &externalRepresentation(TextStream &) const;
 
 #if PLATFORM(CI)
-    virtual CIFilter* getCIFilter(const FloatRect& bbox) const;
+    virtual CIFilter *getCIFilter(const FloatRect &bbox) const;
 #endif
 
 private:

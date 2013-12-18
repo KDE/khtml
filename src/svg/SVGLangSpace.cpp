@@ -27,7 +27,8 @@
 
 #include "SVGElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 SVGLangSpace::SVGLangSpace()
 {
@@ -37,17 +38,17 @@ SVGLangSpace::~SVGLangSpace()
 {
 }
 
-const AtomicString& SVGLangSpace::xmllang() const
+const AtomicString &SVGLangSpace::xmllang() const
 {
     return m_lang;
 }
 
-void SVGLangSpace::setXmllang(const AtomicString& xmlLang)
+void SVGLangSpace::setXmllang(const AtomicString &xmlLang)
 {
     m_lang = xmlLang;
 }
 
-const AtomicString& SVGLangSpace::xmlspace() const
+const AtomicString &SVGLangSpace::xmlspace() const
 {
     if (m_space.isNull()) {
         static const AtomicString defaultString("default");
@@ -57,12 +58,12 @@ const AtomicString& SVGLangSpace::xmlspace() const
     return m_space;
 }
 
-void SVGLangSpace::setXmlspace(const AtomicString& xmlSpace)
+void SVGLangSpace::setXmlspace(const AtomicString &xmlSpace)
 {
     m_space = xmlSpace;
 }
 
-bool SVGLangSpace::parseMappedAttribute(MappedAttribute* attr)
+bool SVGLangSpace::parseMappedAttribute(MappedAttribute *attr)
 {
     if (attr->id() == ATTR_XML_LANG) {
         setXmllang(attr->value());
@@ -75,7 +76,7 @@ bool SVGLangSpace::parseMappedAttribute(MappedAttribute* attr)
     return false;
 }
 
-bool SVGLangSpace::isKnownAttribute(const QualifiedName& attrName)
+bool SVGLangSpace::isKnownAttribute(const QualifiedName &attrName)
 {
     return attrName.id() == ATTR_XML_LANG ||
            attrName.id() == ATTR_XML_SPACE;

@@ -29,104 +29,124 @@
 
 #include <wtf/PassRefPtr.h>
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGPathSegArcAbs : public SVGPathSeg {
-    public:
-        static PassRefPtr<SVGPathSegArcAbs> create(float x, float y, float r1, float r2, float angle, bool largeArcFlag, bool sweepFlag)
-        {
-            return adoptRef(new SVGPathSegArcAbs(x, y, r1, r2, angle, largeArcFlag, sweepFlag));
-        }
-        
-        virtual ~SVGPathSegArcAbs();
+class SVGPathSegArcAbs : public SVGPathSeg
+{
+public:
+    static PassRefPtr<SVGPathSegArcAbs> create(float x, float y, float r1, float r2, float angle, bool largeArcFlag, bool sweepFlag)
+    {
+        return adoptRef(new SVGPathSegArcAbs(x, y, r1, r2, angle, largeArcFlag, sweepFlag));
+    }
 
-        virtual unsigned short pathSegType() const { return PATHSEG_ARC_ABS; }
-        virtual String pathSegTypeAsLetter() const { return "A"; }
-        virtual String toString() const { return String::format("A %.6lg %.6lg %.6lg %d %d %.6lg %.6lg", m_r1, m_r2, m_angle, m_largeArcFlag, m_sweepFlag, m_x, m_y); }
+    virtual ~SVGPathSegArcAbs();
 
-        void setX(float x);
-        float x() const;
+    virtual unsigned short pathSegType() const
+    {
+        return PATHSEG_ARC_ABS;
+    }
+    virtual String pathSegTypeAsLetter() const
+    {
+        return "A";
+    }
+    virtual String toString() const
+    {
+        return String::format("A %.6lg %.6lg %.6lg %d %d %.6lg %.6lg", m_r1, m_r2, m_angle, m_largeArcFlag, m_sweepFlag, m_x, m_y);
+    }
 
-        void setY(float y);
-        float y() const;
+    void setX(float x);
+    float x() const;
 
-        void setR1(float r1);
-        float r1() const;
+    void setY(float y);
+    float y() const;
 
-        void setR2(float r2);
-        float r2() const;
+    void setR1(float r1);
+    float r1() const;
 
-        void setAngle(float angle);
-        float angle() const;
+    void setR2(float r2);
+    float r2() const;
 
-        void setLargeArcFlag(bool largeArcFlag);
-        bool largeArcFlag() const;
+    void setAngle(float angle);
+    float angle() const;
 
-        void setSweepFlag(bool sweepFlag);
-        bool sweepFlag() const;
+    void setLargeArcFlag(bool largeArcFlag);
+    bool largeArcFlag() const;
 
-    private:
-        SVGPathSegArcAbs(float x, float y, float r1, float r2, float angle, bool largeArcFlag, bool sweepFlag);
+    void setSweepFlag(bool sweepFlag);
+    bool sweepFlag() const;
 
-        float m_x;
-        float m_y;
-        float m_r1;
-        float m_r2;
-        float m_angle;
+private:
+    SVGPathSegArcAbs(float x, float y, float r1, float r2, float angle, bool largeArcFlag, bool sweepFlag);
 
-        bool m_largeArcFlag    : 1;
-        bool m_sweepFlag : 1;
-    };
+    float m_x;
+    float m_y;
+    float m_r1;
+    float m_r2;
+    float m_angle;
 
-    class SVGPathSegArcRel : public SVGPathSeg {
-    public:
-        static PassRefPtr<SVGPathSegArcRel> create(float x, float y, float r1, float r2, float angle, bool largeArcFlag, bool sweepFlag)
-        {
-            return adoptRef(new SVGPathSegArcRel(x, y, r1, r2, angle, largeArcFlag, sweepFlag));
-        }
-        virtual ~SVGPathSegArcRel();
+    bool m_largeArcFlag    : 1;
+    bool m_sweepFlag : 1;
+};
 
-        virtual unsigned short pathSegType() const { return PATHSEG_ARC_REL; }
-        virtual String pathSegTypeAsLetter() const { return "a"; }
-        virtual String toString() const { return String::format("a %.6lg %.6lg %.6lg %d %d %.6lg %.6lg", m_r1, m_r2, m_angle, m_largeArcFlag, m_sweepFlag, m_x, m_y); }
+class SVGPathSegArcRel : public SVGPathSeg
+{
+public:
+    static PassRefPtr<SVGPathSegArcRel> create(float x, float y, float r1, float r2, float angle, bool largeArcFlag, bool sweepFlag)
+    {
+        return adoptRef(new SVGPathSegArcRel(x, y, r1, r2, angle, largeArcFlag, sweepFlag));
+    }
+    virtual ~SVGPathSegArcRel();
 
-        void setX(float x);
-        float x() const;
+    virtual unsigned short pathSegType() const
+    {
+        return PATHSEG_ARC_REL;
+    }
+    virtual String pathSegTypeAsLetter() const
+    {
+        return "a";
+    }
+    virtual String toString() const
+    {
+        return String::format("a %.6lg %.6lg %.6lg %d %d %.6lg %.6lg", m_r1, m_r2, m_angle, m_largeArcFlag, m_sweepFlag, m_x, m_y);
+    }
 
-        void setY(float y);
-        float y() const;
+    void setX(float x);
+    float x() const;
 
-        void setR1(float r1);
-        float r1() const;
+    void setY(float y);
+    float y() const;
 
-        void setR2(float r2);
-        float r2() const;
+    void setR1(float r1);
+    float r1() const;
 
-        void setAngle(float angle);
-        float angle() const;
+    void setR2(float r2);
+    float r2() const;
 
-        void setLargeArcFlag(bool largeArcFlag);
-        bool largeArcFlag() const;
+    void setAngle(float angle);
+    float angle() const;
 
-        void setSweepFlag(bool sweepFlag);
-        bool sweepFlag() const;
+    void setLargeArcFlag(bool largeArcFlag);
+    bool largeArcFlag() const;
 
-    private:
-        SVGPathSegArcRel(float x, float y, float r1, float r2, float angle, bool largeArcFlag, bool sweepFlag);
+    void setSweepFlag(bool sweepFlag);
+    bool sweepFlag() const;
 
-        float m_x;
-        float m_y;
-        float m_r1;
-        float m_r2;
-        float m_angle;
+private:
+    SVGPathSegArcRel(float x, float y, float r1, float r2, float angle, bool largeArcFlag, bool sweepFlag);
 
-        bool m_largeArcFlag : 1;
-        bool m_sweepFlag : 1;
-    };
+    float m_x;
+    float m_y;
+    float m_r1;
+    float m_r2;
+    float m_angle;
+
+    bool m_largeArcFlag : 1;
+    bool m_sweepFlag : 1;
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

@@ -28,21 +28,23 @@
 #include "xml/Document.h"
 #include "css/css_valueimpl.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    //class CSSValue;
-    //class CSSStyleDeclaration;
-    //class String;
-    //class QualifiedName;
+//class CSSValue;
+//class CSSStyleDeclaration;
+//class String;
+//class QualifiedName;
 
-    class SVGStylable {
-    public:
-        SVGStylable();
-        virtual ~SVGStylable();
+class SVGStylable
+{
+public:
+    SVGStylable();
+    virtual ~SVGStylable();
 
-        virtual DOM::CSSStyleDeclarationImpl* style() = 0;
-        virtual PassRefPtr<DOM::CSSValueImpl> getPresentationAttribute(const DOMString&) = 0;
-    };
+    virtual DOM::CSSStyleDeclarationImpl *style() = 0;
+    virtual PassRefPtr<DOM::CSSValueImpl> getPresentationAttribute(const DOMString &) = 0;
+};
 
 } // namespace WebCore
 

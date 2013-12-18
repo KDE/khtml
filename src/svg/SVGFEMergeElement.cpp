@@ -26,9 +26,10 @@
 #include "SVGFEMergeNodeElement.h"
 #include "SVGResourceFilter.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFEMergeElement::SVGFEMergeElement(const QualifiedName& tagName, Document* doc)
+SVGFEMergeElement::SVGFEMergeElement(const QualifiedName &tagName, Document *doc)
     : SVGFilterPrimitiveStandardAttributes(tagName, doc)
     , m_filterEffect(0)
 {
@@ -39,16 +40,18 @@ SVGFEMergeElement::~SVGFEMergeElement()
     delete m_filterEffect;
 }
 
-SVGFEMerge* SVGFEMergeElement::filterEffect(SVGResourceFilter* filter) const
+SVGFEMerge *SVGFEMergeElement::filterEffect(SVGResourceFilter *filter) const
 {
-    if (!m_filterEffect)
+    if (!m_filterEffect) {
         m_filterEffect = new SVGFEMerge(filter);
+    }
     setStandardAttributes(m_filterEffect);
 
     Vector<String> mergeInputs;
-    for (Node* n = firstChild(); n != 0; n = n->nextSibling()) {
-        if (n->hasTagName(SVGNames::feMergeNodeTag))
-            mergeInputs.append(static_cast<SVGFEMergeNodeElement*>(n)->in1());
+    for (Node *n = firstChild(); n != 0; n = n->nextSibling()) {
+        if (n->hasTagName(SVGNames::feMergeNodeTag)) {
+            mergeInputs.append(static_cast<SVGFEMergeNodeElement *>(n)->in1());
+        }
     }
 
     m_filterEffect->setMergeInputs(mergeInputs);
@@ -59,4 +62,3 @@ SVGFEMerge* SVGFEMergeElement::filterEffect(SVGResourceFilter* filter) const
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

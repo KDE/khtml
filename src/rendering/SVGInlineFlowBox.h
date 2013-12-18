@@ -27,19 +27,21 @@
 #if ENABLE(SVG)
 #include "render_line.h"
 
-namespace WebCore {
+namespace WebCore
+{
 using namespace khtml;
 
-class SVGInlineFlowBox : public InlineFlowBox {
+class SVGInlineFlowBox : public InlineFlowBox
+{
 public:
-    SVGInlineFlowBox(RenderObject* obj)
+    SVGInlineFlowBox(RenderObject *obj)
         : InlineFlowBox(obj)
     {
     }
 
-    virtual void paint(RenderObject::PaintInfo&, int tx, int ty);
-    virtual int placeBoxesHorizontally(int x, int& leftPosition, int& rightPosition, bool& needsWordSpacing);
-    virtual void verticallyAlignBoxes(int& heightOfBlock);
+    virtual void paint(RenderObject::PaintInfo &, int tx, int ty);
+    virtual int placeBoxesHorizontally(int x, int &leftPosition, int &rightPosition, bool &needsWordSpacing);
+    virtual void verticallyAlignBoxes(int &heightOfBlock);
 };
 
 } // namespace WebCore

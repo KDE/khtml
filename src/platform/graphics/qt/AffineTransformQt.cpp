@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include "wtf/Platform.h"
@@ -29,7 +29,8 @@
 #include "IntRect.h"
 #include "FloatRect.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 AffineTransform::AffineTransform()
     : m_transform()
@@ -41,7 +42,7 @@ AffineTransform::AffineTransform(double a, double b, double c, double d, double 
 {
 }
 
-AffineTransform::AffineTransform(const QMatrix& matrix)
+AffineTransform::AffineTransform(const QMatrix &matrix)
     : m_transform(matrix)
 {
 }
@@ -51,7 +52,7 @@ void AffineTransform::setMatrix(double a, double b, double c, double d, double t
     m_transform.setMatrix(a, b, c, d, tx, ty);
 }
 
-void AffineTransform::map(double x, double y, double* x2, double* y2) const
+void AffineTransform::map(double x, double y, double *x2, double *y2) const
 {
     qreal tx2, ty2;
     m_transform.map(qreal(x), qreal(y), &tx2, &ty2);
@@ -59,12 +60,12 @@ void AffineTransform::map(double x, double y, double* x2, double* y2) const
     *y2 = ty2;
 }
 
-IntRect AffineTransform::mapRect(const IntRect& rect) const
+IntRect AffineTransform::mapRect(const IntRect &rect) const
 {
     return m_transform.mapRect(rect);
 }
 
-FloatRect AffineTransform::mapRect(const FloatRect& rect) const
+FloatRect AffineTransform::mapRect(const FloatRect &rect) const
 {
     return m_transform.mapRect(rect);
 }
@@ -139,25 +140,25 @@ void AffineTransform::reset()
     m_transform.reset();
 }
 
-AffineTransform& AffineTransform::scale(double sx, double sy)
+AffineTransform &AffineTransform::scale(double sx, double sy)
 {
     m_transform.scale(sx, sy);
     return *this;
 }
 
-AffineTransform& AffineTransform::rotate(double d)
+AffineTransform &AffineTransform::rotate(double d)
 {
     m_transform.rotate(d);
     return *this;
 }
 
-AffineTransform& AffineTransform::translate(double tx, double ty)
+AffineTransform &AffineTransform::translate(double tx, double ty)
 {
     m_transform.translate(tx, ty);
     return *this;
 }
 
-AffineTransform& AffineTransform::shear(double sx, double sy)
+AffineTransform &AffineTransform::shear(double sx, double sy)
 {
     m_transform.shear(sx, sy);
     return *this;
@@ -170,8 +171,9 @@ double AffineTransform::det() const
 
 AffineTransform AffineTransform::inverse() const
 {
-    if(!isInvertible())
+    if (!isInvertible()) {
         return AffineTransform();
+    }
 
     return m_transform.inverted();
 }
@@ -181,22 +183,21 @@ AffineTransform::operator QMatrix() const
     return m_transform;
 }
 
-bool AffineTransform::operator==(const AffineTransform& other) const
+bool AffineTransform::operator==(const AffineTransform &other) const
 {
     return m_transform == other.m_transform;
 }
 
-AffineTransform& AffineTransform::operator*=(const AffineTransform& other)
+AffineTransform &AffineTransform::operator*=(const AffineTransform &other)
 {
     m_transform *= other.m_transform;
     return *this;
 }
 
-AffineTransform AffineTransform::operator*(const AffineTransform& other)
+AffineTransform AffineTransform::operator*(const AffineTransform &other)
 {
     return m_transform * other.m_transform;
 }
 
 }
 
-// vim: ts=4 sw=4 et

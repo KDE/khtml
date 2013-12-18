@@ -29,9 +29,10 @@
 #include "SVGRenderStyle.h"
 #include "SVGResourceFilter.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFEFloodElement::SVGFEFloodElement(const QualifiedName& tagName, Document* doc)
+SVGFEFloodElement::SVGFEFloodElement(const QualifiedName &tagName, Document *doc)
     : SVGFilterPrimitiveStandardAttributes(tagName, doc)
     , m_filterEffect(0)
 {
@@ -42,29 +43,30 @@ SVGFEFloodElement::~SVGFEFloodElement()
     delete m_filterEffect;
 }
 
-void SVGFEFloodElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGFEFloodElement::parseMappedAttribute(MappedAttribute *attr)
 {
     SVGFilterPrimitiveStandardAttributes::parseMappedAttribute(attr);
 }
 
-SVGFEFlood* SVGFEFloodElement::filterEffect(SVGResourceFilter* filter) const
+SVGFEFlood *SVGFEFloodElement::filterEffect(SVGResourceFilter *filter) const
 {
-    if (!m_filterEffect)
+    if (!m_filterEffect) {
         m_filterEffect = new SVGFEFlood(filter);
-    
+    }
+
     setStandardAttributes(m_filterEffect);
 
-    SVGFEFloodElement* nonConstThis = const_cast<SVGFEFloodElement*>(this);
+    SVGFEFloodElement *nonConstThis = const_cast<SVGFEFloodElement *>(this);
 
-    RenderStyle* parentStyle = nonConstThis->styleForRenderer(parent()->renderer());
-    RenderStyle* filterStyle = nonConstThis->resolveStyle(parentStyle);
-    
+    RenderStyle *parentStyle = nonConstThis->styleForRenderer(parent()->renderer());
+    RenderStyle *filterStyle = nonConstThis->resolveStyle(parentStyle);
+
     m_filterEffect->setFloodColor(filterStyle->svgStyle()->floodColor());
     m_filterEffect->setFloodOpacity(filterStyle->svgStyle()->floodOpacity());
-    
+
     parentStyle->deref(document()->renderArena());
     filterStyle->deref(document()->renderArena());
-    
+
     return m_filterEffect;
 }
 
@@ -72,4 +74,3 @@ SVGFEFlood* SVGFEFloodElement::filterEffect(SVGResourceFilter* filter) const
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

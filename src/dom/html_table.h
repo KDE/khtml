@@ -33,7 +33,8 @@
 #include <khtml_export.h>
 #include <dom/html_element.h>
 
-namespace DOM {
+namespace DOM
+{
 
 class HTMLTableCaptionElementImpl;
 class DOMString;
@@ -52,13 +53,15 @@ public:
     HTMLTableCaptionElement();
     HTMLTableCaptionElement(const HTMLTableCaptionElement &other);
     HTMLTableCaptionElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLTableCaptionElement(HTMLTableCaptionElementImpl *impl);
 public:
 
-    HTMLTableCaptionElement & operator = (const HTMLTableCaptionElement &other);
-    HTMLTableCaptionElement & operator = (const Node &other);
+    HTMLTableCaptionElement &operator = (const HTMLTableCaptionElement &other);
+    HTMLTableCaptionElement &operator = (const Node &other);
 
     ~HTMLTableCaptionElement();
 
@@ -74,7 +77,7 @@ public:
     /**
      * see align
      */
-    void setAlign( const DOMString & );
+    void setAlign(const DOMString &);
 };
 
 // --------------------------------------------------------------------------
@@ -96,13 +99,15 @@ public:
     HTMLTableCellElement();
     HTMLTableCellElement(const HTMLTableCellElement &other);
     HTMLTableCellElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLTableCellElement(HTMLTableCellElementImpl *impl);
 public:
 
-    HTMLTableCellElement & operator = (const HTMLTableCellElement &other);
-    HTMLTableCellElement & operator = (const Node &other);
+    HTMLTableCellElement &operator = (const HTMLTableCellElement &other);
+    HTMLTableCellElement &operator = (const Node &other);
 
     ~HTMLTableCellElement();
 
@@ -118,7 +123,7 @@ public:
      * This function is obsolete - the cellIndex property is actually supposed to be read-only
      * (http://www.w3.org/DOM/updates/REC-DOM-Level-1-19981001-errata.html)
      */
-    void setCellIndex( long  );
+    void setCellIndex(long);
 
     /**
      * Abbreviation for header cells. See the <a
@@ -131,7 +136,7 @@ public:
     /**
      * see abbr
      */
-    void setAbbr( const DOMString & );
+    void setAbbr(const DOMString &);
 
     /**
      * Horizontal alignment of data in cell. See the <a
@@ -144,7 +149,7 @@ public:
     /**
      * see align
      */
-    void setAlign( const DOMString & );
+    void setAlign(const DOMString &);
 
     /**
      * Names group of related headers. See the <a
@@ -157,7 +162,7 @@ public:
     /**
      * see axis
      */
-    void setAxis( const DOMString & );
+    void setAxis(const DOMString &);
 
     /**
      * Cell background color. See the <a
@@ -171,7 +176,7 @@ public:
     /**
      * see bgColor
      */
-    void setBgColor( const DOMString & );
+    void setBgColor(const DOMString &);
 
     /**
      * Alignment character for cells in a column. See the <a
@@ -184,7 +189,7 @@ public:
     /**
      * see ch
      */
-    void setCh( const DOMString & );
+    void setCh(const DOMString &);
 
     /**
      * Offset of alignment character. See the <a
@@ -197,7 +202,7 @@ public:
     /**
      * see chOff
      */
-    void setChOff( const DOMString & );
+    void setChOff(const DOMString &);
 
     /**
      * Number of columns spanned by cell. See the <a
@@ -210,7 +215,7 @@ public:
     /**
      * see colSpan
      */
-    void setColSpan( long  );
+    void setColSpan(long);
 
     /**
      * List of \c id attribute values for header cells.
@@ -224,7 +229,7 @@ public:
     /**
      * see headers
      */
-    void setHeaders( const DOMString & );
+    void setHeaders(const DOMString &);
 
     /**
      * Cell height. See the <a
@@ -238,7 +243,7 @@ public:
     /**
      * see height
      */
-    void setHeight( const DOMString & );
+    void setHeight(const DOMString &);
 
     /**
      * Suppress word wrapping. See the <a
@@ -252,7 +257,7 @@ public:
     /**
      * see noWrap
      */
-    void setNoWrap( bool );
+    void setNoWrap(bool);
 
     /**
      * Number of rows spanned by cell. See the <a
@@ -265,7 +270,7 @@ public:
     /**
      * see rowSpan
      */
-    void setRowSpan( long );
+    void setRowSpan(long);
 
     /**
      * Scope covered by header cells. See the <a
@@ -278,7 +283,7 @@ public:
     /**
      * see scope
      */
-    void setScope( const DOMString & );
+    void setScope(const DOMString &);
 
     /**
      * Vertical alignment of data in cell. See the <a
@@ -291,7 +296,7 @@ public:
     /**
      * see vAlign
      */
-    void setVAlign( const DOMString & );
+    void setVAlign(const DOMString &);
 
     /**
      * Cell width. See the <a
@@ -305,7 +310,7 @@ public:
     /**
      * see width
      */
-    void setWidth( const DOMString & );
+    void setWidth(const DOMString &);
 };
 
 // --------------------------------------------------------------------------
@@ -327,13 +332,15 @@ public:
     HTMLTableColElement();
     HTMLTableColElement(const HTMLTableColElement &other);
     HTMLTableColElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLTableColElement(HTMLTableColElementImpl *impl);
 public:
 
-    HTMLTableColElement & operator = (const HTMLTableColElement &other);
-    HTMLTableColElement & operator = (const Node &other);
+    HTMLTableColElement &operator = (const HTMLTableColElement &other);
+    HTMLTableColElement &operator = (const Node &other);
 
     ~HTMLTableColElement();
 
@@ -348,7 +355,7 @@ public:
     /**
      * see align
      */
-    void setAlign( const DOMString & );
+    void setAlign(const DOMString &);
 
     /**
      * Alignment character for cells in a column. See the <a
@@ -361,7 +368,7 @@ public:
     /**
      * see ch
      */
-    void setCh( const DOMString & );
+    void setCh(const DOMString &);
 
     /**
      * Offset of alignment character. See the <a
@@ -374,7 +381,7 @@ public:
     /**
      * see chOff
      */
-    void setChOff( const DOMString & );
+    void setChOff(const DOMString &);
 
     /**
      * Indicates the number of columns in a group or affected by a
@@ -388,7 +395,7 @@ public:
     /**
      * see span
      */
-    void setSpan( long  );
+    void setSpan(long);
 
     /**
      * Vertical alignment of cell data in column. See the <a
@@ -401,7 +408,7 @@ public:
     /**
      * see vAlign
      */
-    void setVAlign( const DOMString & );
+    void setVAlign(const DOMString &);
 
     /**
      * Default column width. See the <a
@@ -414,7 +421,7 @@ public:
     /**
      * see width
      */
-    void setWidth( const DOMString & );
+    void setWidth(const DOMString &);
 };
 
 // --------------------------------------------------------------------------
@@ -444,14 +451,16 @@ public:
     HTMLTableElement();
     HTMLTableElement(const HTMLTableElement &other);
     HTMLTableElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 
 protected:
     HTMLTableElement(HTMLTableElementImpl *impl);
 public:
 
-    HTMLTableElement & operator = (const HTMLTableElement &other);
-    HTMLTableElement & operator = (const Node &other);
+    HTMLTableElement &operator = (const HTMLTableElement &other);
+    HTMLTableElement &operator = (const Node &other);
 
     ~HTMLTableElement();
 
@@ -465,7 +474,7 @@ public:
     /**
      * see caption
      */
-    void setCaption( const HTMLTableCaptionElement & );
+    void setCaption(const HTMLTableCaptionElement &);
 
     /**
      * Returns the table's \c THEAD , or \c null
@@ -477,7 +486,7 @@ public:
     /**
      * see tHead
      */
-    void setTHead( const HTMLTableSectionElement & );
+    void setTHead(const HTMLTableSectionElement &);
 
     /**
      * Returns the table's \c TFOOT , or \c null
@@ -489,7 +498,7 @@ public:
     /**
      * see tFoot
      */
-    void setTFoot( const HTMLTableSectionElement & );
+    void setTFoot(const HTMLTableSectionElement &);
 
     /**
      * Returns a collection of all the rows in the table, including
@@ -518,7 +527,7 @@ public:
     /**
      * see align
      */
-    void setAlign( const DOMString & );
+    void setAlign(const DOMString &);
 
     /**
      * Cell background color. See the <a
@@ -532,7 +541,7 @@ public:
     /**
      * see bgColor
      */
-    void setBgColor( const DOMString & );
+    void setBgColor(const DOMString &);
 
     /**
      * The width of the border around the table. See the <a
@@ -545,7 +554,7 @@ public:
     /**
      * see border
      */
-    void setBorder( const DOMString & );
+    void setBorder(const DOMString &);
 
     /**
      * Specifies the horizontal and vertical space between cell
@@ -559,7 +568,7 @@ public:
     /**
      * see cellPadding
      */
-    void setCellPadding( const DOMString & );
+    void setCellPadding(const DOMString &);
 
     /**
      * Specifies the horizontal and vertical separation between cells.
@@ -573,7 +582,7 @@ public:
     /**
      * see cellSpacing
      */
-    void setCellSpacing( const DOMString & );
+    void setCellSpacing(const DOMString &);
 
     /**
      * Specifies which external table borders to render. See the <a
@@ -586,7 +595,7 @@ public:
     /**
      * see frame
      */
-    void setFrame( const DOMString & );
+    void setFrame(const DOMString &);
 
     /**
      * Specifies which internal table borders to render. See the <a
@@ -599,7 +608,7 @@ public:
     /**
      * see rules
      */
-    void setRules( const DOMString & );
+    void setRules(const DOMString &);
 
     /**
      * Supplementary description about the purpose or structure of a
@@ -613,7 +622,7 @@ public:
     /**
      * see summary
      */
-    void setSummary( const DOMString & );
+    void setSummary(const DOMString &);
 
     /**
      * Specifies the desired table width. See the <a
@@ -626,7 +635,7 @@ public:
     /**
      * see width
      */
-    void setWidth( const DOMString & );
+    void setWidth(const DOMString &);
 
     /**
      * Create a table header row or return an existing one.
@@ -634,7 +643,7 @@ public:
      * @return A new table header element ( \c THEAD ).
      *
      */
-    HTMLElement createTHead (  );
+    HTMLElement createTHead();
 
     /**
      * Delete the header from the table, if one exists.
@@ -642,7 +651,7 @@ public:
      * @return
      *
      */
-    void deleteTHead (  );
+    void deleteTHead();
 
     /**
      * Create a table footer row or return an existing one.
@@ -650,7 +659,7 @@ public:
      * @return A footer element ( \c TFOOT ).
      *
      */
-    HTMLElement createTFoot (  );
+    HTMLElement createTFoot();
 
     /**
      * Delete the footer from the table, if one exists.
@@ -658,7 +667,7 @@ public:
      * @return
      *
      */
-    void deleteTFoot (  );
+    void deleteTFoot();
 
     /**
      * Create a new table caption object or return an existing one.
@@ -666,7 +675,7 @@ public:
      * @return A \c CAPTION element.
      *
      */
-    HTMLElement createCaption (  );
+    HTMLElement createCaption();
 
     /**
      * Delete the table caption, if one exists.
@@ -674,7 +683,7 @@ public:
      * @return
      *
      */
-    void deleteCaption (  );
+    void deleteCaption();
 
     /**
      * Insert a new empty row in the table.
@@ -693,7 +702,7 @@ public:
      * @return The newly created row.
      *
      */
-    HTMLElement insertRow ( long index );
+    HTMLElement insertRow(long index);
 
     /**
      * Delete a table row.
@@ -706,7 +715,7 @@ public:
      * @return
      *
      */
-    void deleteRow ( long index );
+    void deleteRow(long index);
 };
 
 // --------------------------------------------------------------------------
@@ -730,14 +739,16 @@ public:
     HTMLTableRowElement();
     HTMLTableRowElement(const HTMLTableRowElement &other);
     HTMLTableRowElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 
 protected:
     HTMLTableRowElement(HTMLTableRowElementImpl *impl);
 public:
 
-    HTMLTableRowElement & operator = (const HTMLTableRowElement &other);
-    HTMLTableRowElement & operator = (const Node &other);
+    HTMLTableRowElement &operator = (const HTMLTableRowElement &other);
+    HTMLTableRowElement &operator = (const Node &other);
 
     ~HTMLTableRowElement();
 
@@ -757,7 +768,7 @@ public:
      * This function is obsolete - the rowIndex property is actually supposed to be read-only
      * (http://www.w3.org/DOM/updates/REC-DOM-Level-1-19981001-errata.html)
      */
-    void setRowIndex( long  );
+    void setRowIndex(long);
 
     /**
      * The index of this row, relative to the current section (
@@ -773,7 +784,7 @@ public:
      * This function is obsolete - the sectionRowIndex property is actually supposed to be read-only
      * (http://www.w3.org/DOM/updates/REC-DOM-Level-1-19981001-errata.html)
      */
-    void setSectionRowIndex( long  );
+    void setSectionRowIndex(long);
 
     /**
      * The collection of cells in this row.
@@ -787,7 +798,7 @@ public:
      * This function is obsolete - the cells property is actually supposed to be read-only
      * (http://www.w3.org/DOM/updates/REC-DOM-Level-1-19981001-errata.html)
      */
-    void setCells( const HTMLCollection & );
+    void setCells(const HTMLCollection &);
 
     /**
      * Horizontal alignment of data within cells of this row. See the
@@ -801,7 +812,7 @@ public:
     /**
      * see align
      */
-    void setAlign( const DOMString & );
+    void setAlign(const DOMString &);
 
     /**
      * Background color for rows. See the <a
@@ -815,7 +826,7 @@ public:
     /**
      * see bgColor
      */
-    void setBgColor( const DOMString & );
+    void setBgColor(const DOMString &);
 
     /**
      * Alignment character for cells in a column. See the <a
@@ -828,7 +839,7 @@ public:
     /**
      * see ch
      */
-    void setCh( const DOMString & );
+    void setCh(const DOMString &);
 
     /**
      * Offset of alignment character. See the <a
@@ -841,7 +852,7 @@ public:
     /**
      * see chOff
      */
-    void setChOff( const DOMString & );
+    void setChOff(const DOMString &);
 
     /**
      * Vertical alignment of data within cells of this row. See the <a
@@ -854,7 +865,7 @@ public:
     /**
      * see vAlign
      */
-    void setVAlign( const DOMString & );
+    void setVAlign(const DOMString &);
 
     /**
      * Insert an empty \c TD cell into this row.
@@ -866,7 +877,7 @@ public:
      * @return The newly created cell.
      *
      */
-    HTMLElement insertCell ( long index );
+    HTMLElement insertCell(long index);
 
     /**
      * Delete a cell from the current row.
@@ -877,7 +888,7 @@ public:
      * @return
      *
      */
-    void deleteCell ( long index );
+    void deleteCell(long index);
 };
 
 // --------------------------------------------------------------------------
@@ -900,15 +911,16 @@ public:
     HTMLTableSectionElement();
     HTMLTableSectionElement(const HTMLTableSectionElement &other);
     HTMLTableSectionElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
-
+    {
+        (*this) = other;
+    }
 
 protected:
     HTMLTableSectionElement(HTMLTableSectionElementImpl *impl);
 public:
 
-    HTMLTableSectionElement & operator = (const HTMLTableSectionElement &other);
-    HTMLTableSectionElement & operator = (const Node &other);
+    HTMLTableSectionElement &operator = (const HTMLTableSectionElement &other);
+    HTMLTableSectionElement &operator = (const Node &other);
 
     ~HTMLTableSectionElement();
 
@@ -922,7 +934,7 @@ public:
     /**
      * see align
      */
-    void setAlign( const DOMString & );
+    void setAlign(const DOMString &);
 
     /**
      * Alignment character for cells in a column. See the <a
@@ -935,7 +947,7 @@ public:
     /**
      * see ch
      */
-    void setCh( const DOMString & );
+    void setCh(const DOMString &);
 
     /**
      * Offset of alignment character. See the <a
@@ -948,7 +960,7 @@ public:
     /**
      * see chOff
      */
-    void setChOff( const DOMString & );
+    void setChOff(const DOMString &);
 
     /**
      * Vertical alignment of data in cells. See the \c valign
@@ -960,7 +972,7 @@ public:
     /**
      * see vAlign
      */
-    void setVAlign( const DOMString & );
+    void setVAlign(const DOMString &);
 
     /**
      * The collection of rows in this table section.
@@ -979,7 +991,7 @@ public:
      * @return The newly created row.
      *
      */
-    HTMLElement insertRow ( long index );
+    HTMLElement insertRow(long index);
 
     /**
      * Delete a row from this section.
@@ -989,7 +1001,7 @@ public:
      * to the rows contained inside this section, not all the rows in the table.
      *
      */
-    void deleteRow ( long index );
+    void deleteRow(long index);
 };
 
 } //namespace

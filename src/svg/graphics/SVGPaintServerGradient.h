@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef SVGPaintServerGradient_h
@@ -41,101 +41,105 @@ class QGradient;
 QT_END_NAMESPACE
 #endif
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class ImageBuffer;
-    class SVGGradientElement;
+class ImageBuffer;
+class SVGGradientElement;
 
-    // FIXME: Remove the spread method enum in SVGGradientElement
-    enum SVGGradientSpreadMethod {
-        SPREADMETHOD_PAD = 1,
-        SPREADMETHOD_REFLECT = 2,
-        SPREADMETHOD_REPEAT = 3
-    };
+// FIXME: Remove the spread method enum in SVGGradientElement
+enum SVGGradientSpreadMethod {
+    SPREADMETHOD_PAD = 1,
+    SPREADMETHOD_REFLECT = 2,
+    SPREADMETHOD_REPEAT = 3
+};
 
-    typedef std::pair<float, QColor> SVGGradientStop;
+typedef std::pair<float, QColor> SVGGradientStop;
 
+class SVGPaintServerGradient : public SVGPaintServer
+{
+public:
+    virtual ~SVGPaintServerGradient();
 
-    class SVGPaintServerGradient : public SVGPaintServer {
-    public:
-        virtual ~SVGPaintServerGradient();
+    const Vector<SVGGradientStop> &gradientStops() const;
+    void setGradientStops(const Vector<SVGGradientStop> &);
 
-        const Vector<SVGGradientStop>& gradientStops() const;
-        void setGradientStops(const Vector<SVGGradientStop>&);
+    SVGGradientSpreadMethod spreadMethod() const;
+    void setGradientSpreadMethod(const SVGGradientSpreadMethod &);
 
-        SVGGradientSpreadMethod spreadMethod() const;
-        void setGradientSpreadMethod(const SVGGradientSpreadMethod&);
+    // Gradient start and end points are percentages when used in boundingBox mode.
+    // For instance start point with value (0,0) is top-left and end point with
+    // value (100, 100) is bottom-right. BoundingBox mode is enabled by default.
+    bool boundingBoxMode() const;
+    void setBoundingBoxMode(bool mode = true);
 
-        // Gradient start and end points are percentages when used in boundingBox mode.
-        // For instance start point with value (0,0) is top-left and end point with
-        // value (100, 100) is bottom-right. BoundingBox mode is enabled by default.
-        bool boundingBoxMode() const;
-        void setBoundingBoxMode(bool mode = true);
+    AffineTransform gradientTransform() const;
+    void setGradientTransform(const AffineTransform &);
 
-        AffineTransform gradientTransform() const;
-        void setGradientTransform(const AffineTransform&);
+    /*virtual TextStream& externalRepresentation(TextStream&) const;*/
 
-        /*virtual TextStream& externalRepresentation(TextStream&) const;*/
-
-        virtual bool setup(QPainter* painter, QPainterPath* path, const RenderObject*, SVGPaintTargetType, bool isPaintingText) const;
+    virtual bool setup(QPainter *painter, QPainterPath *path, const RenderObject *, SVGPaintTargetType, bool isPaintingText) const;
 #if PLATFORM(CG)
-        virtual void teardown(GraphicsContext*&, const RenderObject*, SVGPaintTargetType, bool isPaintingText) const;
-        virtual void renderPath(GraphicsContext*&, const RenderObject*, SVGPaintTargetType) const;
+    virtual void teardown(GraphicsContext *&, const RenderObject *, SVGPaintTargetType, bool isPaintingText) const;
+    virtual void renderPath(GraphicsContext *&, const RenderObject *, SVGPaintTargetType) const;
 
-        virtual void invalidate();
+    virtual void invalidate();
 
-        // Helpers
-        void updateQuartzGradientStopsCache(const Vector<SVGGradientStop>&);
-        void updateQuartzGradientCache(const SVGPaintServerGradient*);
-        void handleBoundingBoxModeAndGradientTransformation(GraphicsContext*, const FloatRect& targetRect) const;
+    // Helpers
+    void updateQuartzGradientStopsCache(const Vector<SVGGradientStop> &);
+    void updateQuartzGradientCache(const SVGPaintServerGradient *);
+    void handleBoundingBoxModeAndGradientTransformation(GraphicsContext *, const FloatRect &targetRect) const;
 #endif
 
 #if PLATFORM(QT)
-    protected:
-        void fillColorArray(QGradient&, const Vector<SVGGradientStop>&, float opacity) const;
-        virtual QGradient setupGradient(QPainter* painter, QPainterPath* painterPath, const RenderObject*) const = 0;
+protected:
+    void fillColorArray(QGradient &, const Vector<SVGGradientStop> &, float opacity) const;
+    virtual QGradient setupGradient(QPainter *painter, QPainterPath *painterPath, const RenderObject *) const = 0;
 #endif
 
-    protected:
-        SVGPaintServerGradient(const SVGGradientElement* owner);
-        
-    private:
-        Vector<SVGGradientStop> m_stops;
-        SVGGradientSpreadMethod m_spreadMethod;
-        bool m_boundingBoxMode;
-        AffineTransform m_gradientTransform;
-        const SVGGradientElement* m_ownerElement;
+protected:
+    SVGPaintServerGradient(const SVGGradientElement *owner);
+
+private:
+    Vector<SVGGradientStop> m_stops;
+    SVGGradientSpreadMethod m_spreadMethod;
+    bool m_boundingBoxMode;
+    AffineTransform m_gradientTransform;
+    const SVGGradientElement *m_ownerElement;
 
 #if PLATFORM(CG)
+public:
+    typedef struct {
+        CGFloat colorArray[4];
+        CGFloat offset;
+        CGFloat previousDeltaInverse;
+    } QuartzGradientStop;
+
+    struct SharedStopCache : public RefCounted<SharedStopCache> {
     public:
-        typedef struct {
-            CGFloat colorArray[4];
-            CGFloat offset;
-            CGFloat previousDeltaInverse;
-        } QuartzGradientStop;
-        
-        struct SharedStopCache : public RefCounted<SharedStopCache> {
-        public:
-            static PassRefPtr<SharedStopCache> create() { return adoptRef(new SharedStopCache); }
-            
-            Vector<QuartzGradientStop> m_stops;
-        
-        private:
-            SharedStopCache() { }
-        };
+        static PassRefPtr<SharedStopCache> create()
+        {
+            return adoptRef(new SharedStopCache);
+        }
 
-        RefPtr<SharedStopCache> m_stopsCache;
+        Vector<QuartzGradientStop> m_stops;
 
-        CGShadingRef m_shadingCache;
-        mutable GraphicsContext* m_savedContext;
-        mutable ImageBuffer* m_imageBuffer;
-#endif
+    private:
+        SharedStopCache() { }
     };
 
-    inline SVGGradientStop makeGradientStop(float offset, const QColor& color)
-    {
-        return std::make_pair(offset, color);
-    }
+    RefPtr<SharedStopCache> m_stopsCache;
+
+    CGShadingRef m_shadingCache;
+    mutable GraphicsContext *m_savedContext;
+    mutable ImageBuffer *m_imageBuffer;
+#endif
+};
+
+inline SVGGradientStop makeGradientStop(float offset, const QColor &color)
+{
+    return std::make_pair(offset, color);
+}
 
 } // namespace WebCore
 

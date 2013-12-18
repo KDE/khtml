@@ -26,18 +26,20 @@
 #if ENABLE(SVG)
 #include "SVGPolyElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGPolylineElement : public SVGPolyElement {
-    public:
-        SVGPolylineElement(const QualifiedName&, Document*);
-        virtual ~SVGPolylineElement();
+class SVGPolylineElement : public SVGPolyElement
+{
+public:
+    SVGPolylineElement(const QualifiedName &, Document *);
+    virtual ~SVGPolylineElement();
 
-        virtual Path toPathData() const;
+    virtual Path toPathData() const;
 
-        // KHTML ElementImpl pure virtual method
-        virtual quint32 id() const;
-    };
+    // KHTML ElementImpl pure virtual method
+    virtual quint32 id() const;
+};
 
 } // namespace WebCore
 

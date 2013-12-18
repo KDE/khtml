@@ -34,13 +34,14 @@
 using namespace KJS;
 using namespace DOM;
 
-namespace khtml {
+namespace khtml
+{
 
-KJS::JSValue* JSSVGPathSegList::clear(ExecState* exec, const List& args)
+KJS::JSValue *JSSVGPathSegList::clear(ExecState *exec, const List &args)
 {
     ExceptionCode ec = 0;
 
-    SVGPathSegList* imp = static_cast<SVGPathSegList*>(impl());
+    SVGPathSegList *imp = static_cast<SVGPathSegList *>(impl());
     imp->clear(ec);
 
     setDOMException(exec, ec);
@@ -49,23 +50,23 @@ KJS::JSValue* JSSVGPathSegList::clear(ExecState* exec, const List& args)
     return jsUndefined();
 }
 
-KJS::JSValue* JSSVGPathSegList::initialize(ExecState* exec, const List& args)
+KJS::JSValue *JSSVGPathSegList::initialize(ExecState *exec, const List &args)
 {
     ExceptionCode ec = 0;
-    SVGPathSeg* newItem = toSVGPathSeg(args[0]);
+    SVGPathSeg *newItem = toSVGPathSeg(args[0]);
 
-    SVGPathSegList* imp = static_cast<SVGPathSegList*>(impl());
+    SVGPathSegList *imp = static_cast<SVGPathSegList *>(impl());
 
-    SVGPathSeg* obj = WTF::getPtr(imp->initialize(newItem, ec));
+    SVGPathSeg *obj = WTF::getPtr(imp->initialize(newItem, ec));
 
-    KJS::JSValue* result = toJS(exec, obj, m_context.get());
+    KJS::JSValue *result = toJS(exec, obj, m_context.get());
     setDOMException(exec, ec);
 
-    m_context->svgAttributeChanged(imp->associatedAttributeName());    
+    m_context->svgAttributeChanged(imp->associatedAttributeName());
     return result;
 }
 
-KJS::JSValue* JSSVGPathSegList::getItem(ExecState* exec, const List& args)
+KJS::JSValue *JSSVGPathSegList::getItem(ExecState *exec, const List &args)
 {
     ExceptionCode ec = 0;
 
@@ -76,18 +77,18 @@ KJS::JSValue* JSSVGPathSegList::getItem(ExecState* exec, const List& args)
         return jsUndefined();
     }
 
-    SVGPathSegList* imp = static_cast<SVGPathSegList*>(impl());
-    SVGPathSeg* obj = WTF::getPtr(imp->getItem(index, ec));
+    SVGPathSegList *imp = static_cast<SVGPathSegList *>(impl());
+    SVGPathSeg *obj = WTF::getPtr(imp->getItem(index, ec));
 
-    KJS::JSValue* result = toJS(exec, obj, m_context.get());
+    KJS::JSValue *result = toJS(exec, obj, m_context.get());
     setDOMException(exec, ec);
     return result;
 }
 
-KJS::JSValue* JSSVGPathSegList::insertItemBefore(ExecState* exec, const List& args)
+KJS::JSValue *JSSVGPathSegList::insertItemBefore(ExecState *exec, const List &args)
 {
     ExceptionCode ec = 0;
-    SVGPathSeg* newItem = toSVGPathSeg(args[0]);
+    SVGPathSeg *newItem = toSVGPathSeg(args[0]);
 
     bool indexOk;
     unsigned index = args[1]->toInt32(exec, indexOk);
@@ -96,20 +97,20 @@ KJS::JSValue* JSSVGPathSegList::insertItemBefore(ExecState* exec, const List& ar
         return jsUndefined();
     }
 
-    SVGPathSegList* imp = static_cast<SVGPathSegList*>(impl());
+    SVGPathSegList *imp = static_cast<SVGPathSegList *>(impl());
 
-    KJS::JSValue* result = toJS(exec, WTF::getPtr(imp->insertItemBefore(newItem, index, ec)), m_context.get());
+    KJS::JSValue *result = toJS(exec, WTF::getPtr(imp->insertItemBefore(newItem, index, ec)), m_context.get());
     setDOMException(exec, ec);
 
-    m_context->svgAttributeChanged(imp->associatedAttributeName());    
+    m_context->svgAttributeChanged(imp->associatedAttributeName());
     return result;
 }
 
-KJS::JSValue* JSSVGPathSegList::replaceItem(ExecState* exec, const List& args)
+KJS::JSValue *JSSVGPathSegList::replaceItem(ExecState *exec, const List &args)
 {
     ExceptionCode ec = 0;
-    SVGPathSeg* newItem = toSVGPathSeg(args[0]);
-    
+    SVGPathSeg *newItem = toSVGPathSeg(args[0]);
+
     bool indexOk;
     unsigned index = args[1]->toInt32(exec, indexOk);
     if (!indexOk) {
@@ -117,19 +118,19 @@ KJS::JSValue* JSSVGPathSegList::replaceItem(ExecState* exec, const List& args)
         return jsUndefined();
     }
 
-    SVGPathSegList* imp = static_cast<SVGPathSegList*>(impl());
+    SVGPathSegList *imp = static_cast<SVGPathSegList *>(impl());
 
-    KJS::JSValue* result = toJS(exec, WTF::getPtr(imp->replaceItem(newItem, index, ec)), m_context.get());
+    KJS::JSValue *result = toJS(exec, WTF::getPtr(imp->replaceItem(newItem, index, ec)), m_context.get());
     setDOMException(exec, ec);
 
-    m_context->svgAttributeChanged(imp->associatedAttributeName());    
+    m_context->svgAttributeChanged(imp->associatedAttributeName());
     return result;
 }
 
-KJS::JSValue* JSSVGPathSegList::removeItem(ExecState* exec, const List& args)
+KJS::JSValue *JSSVGPathSegList::removeItem(ExecState *exec, const List &args)
 {
     ExceptionCode ec = 0;
-    
+
     bool indexOk;
     unsigned index = args[0]->toInt32(exec, indexOk);
     if (!indexOk) {
@@ -137,28 +138,28 @@ KJS::JSValue* JSSVGPathSegList::removeItem(ExecState* exec, const List& args)
         return jsUndefined();
     }
 
-    SVGPathSegList* imp = static_cast<SVGPathSegList*>(impl());
+    SVGPathSegList *imp = static_cast<SVGPathSegList *>(impl());
 
     RefPtr<SVGPathSeg> obj(imp->removeItem(index, ec));
 
-    KJS::JSValue* result = toJS(exec, obj.get(), m_context.get());
+    KJS::JSValue *result = toJS(exec, obj.get(), m_context.get());
     setDOMException(exec, ec);
 
-    m_context->svgAttributeChanged(imp->associatedAttributeName());    
+    m_context->svgAttributeChanged(imp->associatedAttributeName());
     return result;
 }
 
-KJS::JSValue* JSSVGPathSegList::appendItem(ExecState* exec, const List& args)
+KJS::JSValue *JSSVGPathSegList::appendItem(ExecState *exec, const List &args)
 {
     ExceptionCode ec = 0;
-    SVGPathSeg* newItem = toSVGPathSeg(args[0]);
+    SVGPathSeg *newItem = toSVGPathSeg(args[0]);
 
-    SVGPathSegList* imp = static_cast<SVGPathSegList*>(impl());
+    SVGPathSegList *imp = static_cast<SVGPathSegList *>(impl());
 
-    KJS::JSValue* result = toJS(exec, WTF::getPtr(imp->appendItem(newItem, ec)), m_context.get());
+    KJS::JSValue *result = toJS(exec, WTF::getPtr(imp->appendItem(newItem, ec)), m_context.get());
     setDOMException(exec, ec);
 
-    m_context->svgAttributeChanged(imp->associatedAttributeName());    
+    m_context->svgAttributeChanged(imp->associatedAttributeName());
     return result;
 }
 

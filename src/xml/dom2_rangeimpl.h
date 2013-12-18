@@ -29,7 +29,8 @@
 #include "dom/dom2_range.h"
 #include "misc/shared.h"
 
-namespace DOM {
+namespace DOM
+{
 
 class RangeImpl : public khtml::Shared<RangeImpl>
 {
@@ -50,24 +51,24 @@ public:
 
     NodeImpl *commonAncestorContainer(int &exceptioncode);
     static NodeImpl *commonAncestorContainer(NodeImpl *containerA, NodeImpl *containerB);
-    void setStart ( NodeImpl *refNode, long offset, int &exceptioncode );
-    void setEnd ( NodeImpl *refNode, long offset, int &exceptioncode );
-    void collapse ( bool toStart, int &exceptioncode );
-    short compareBoundaryPoints ( Range::CompareHow how, RangeImpl *sourceRange, int &exceptioncode );
-    static short compareBoundaryPoints ( NodeImpl *containerA, long offsetA, NodeImpl *containerB, long offsetB );
-    bool boundaryPointsValid (  );
-    void deleteContents ( int &exceptioncode );
-    DocumentFragmentImpl *extractContents ( int &exceptioncode );
-    DocumentFragmentImpl *cloneContents ( int &exceptioncode );
-    void insertNode( NodeImpl *newNode, int &exceptioncode );
-    DOMString toString ( int &exceptioncode );
+    void setStart(NodeImpl *refNode, long offset, int &exceptioncode);
+    void setEnd(NodeImpl *refNode, long offset, int &exceptioncode);
+    void collapse(bool toStart, int &exceptioncode);
+    short compareBoundaryPoints(Range::CompareHow how, RangeImpl *sourceRange, int &exceptioncode);
+    static short compareBoundaryPoints(NodeImpl *containerA, long offsetA, NodeImpl *containerB, long offsetB);
+    bool boundaryPointsValid();
+    void deleteContents(int &exceptioncode);
+    DocumentFragmentImpl *extractContents(int &exceptioncode);
+    DocumentFragmentImpl *cloneContents(int &exceptioncode);
+    void insertNode(NodeImpl *newNode, int &exceptioncode);
+    DOMString toString(int &exceptioncode);
     /** Converts the selection  to HTML.  The returned string will have matching
      *  tags, and all td, tr, etc tags will be inside a table tag.  CSS is not
      *  used at this stage - This needs to be fixed.
      *
      *  This is guaranteed to produce an xml valid snippet, no matter how crappy the input
      *  html page is.  It will have html and body tags.
-     *  
+     *
      *  Any urls in images or links will be expanded to full urls <em>with passwords stripped</em>
      *  for security reasons.
      *
@@ -77,32 +78,38 @@ public:
      *  @param exceptioncode This will be set if m_detached is true.
      *  @return A string with html tags for this range.
      */
-    DOMString toHTML ( int &exceptioncode );
+    DOMString toHTML(int &exceptioncode);
 
-    DocumentFragment createContextualFragment ( const DOMString &html, int &exceptioncode );
+    DocumentFragment createContextualFragment(const DOMString &html, int &exceptioncode);
 
-    void detach ( int &exceptioncode );
+    void detach(int &exceptioncode);
     bool isDetached() const;
     RangeImpl *cloneRange(int &exceptioncode);
 
-    void setStartAfter( NodeImpl *refNode, int &exceptioncode );
-    void setEndBefore( NodeImpl *refNode, int &exceptioncode );
-    void setEndAfter( NodeImpl *refNode, int &exceptioncode );
-    void selectNode( NodeImpl *refNode, int &exceptioncode );
-    void selectNodeContents( NodeImpl *refNode, int &exceptioncode );
-    void surroundContents( NodeImpl *newParent, int &exceptioncode );
-    void setStartBefore( NodeImpl *refNode, int &exceptioncode );
+    void setStartAfter(NodeImpl *refNode, int &exceptioncode);
+    void setEndBefore(NodeImpl *refNode, int &exceptioncode);
+    void setEndAfter(NodeImpl *refNode, int &exceptioncode);
+    void selectNode(NodeImpl *refNode, int &exceptioncode);
+    void selectNodeContents(NodeImpl *refNode, int &exceptioncode);
+    void surroundContents(NodeImpl *newParent, int &exceptioncode);
+    void setStartBefore(NodeImpl *refNode, int &exceptioncode);
 
     enum ActionType {
         DELETE_CONTENTS,
         EXTRACT_CONTENTS,
         CLONE_CONTENTS
     };
-    DocumentFragmentImpl *processContents ( ActionType action, int &exceptioncode );
+    DocumentFragmentImpl *processContents(ActionType action, int &exceptioncode);
 
-    bool readOnly() { return false; }
+    bool readOnly()
+    {
+        return false;
+    }
 
-    DocumentImpl *ownerDocument() { return m_ownerDocument; }
+    DocumentImpl *ownerDocument()
+    {
+        return m_ownerDocument;
+    }
 
 protected:
     DocumentImpl *m_ownerDocument;
@@ -113,8 +120,8 @@ protected:
     bool m_detached;
 
 private:
-    void checkNodeWOffset( NodeImpl *n, int offset, int &exceptioncode) const;
-    void checkNodeBA( NodeImpl *n, int &exceptioncode ) const;
+    void checkNodeWOffset(NodeImpl *n, int offset, int &exceptioncode) const;
+    void checkNodeBA(NodeImpl *n, int &exceptioncode) const;
     void setStartContainer(NodeImpl *_startContainer);
     void setEndContainer(NodeImpl *_endContainer);
     void checkDeleteExtract(int &exceptioncode);

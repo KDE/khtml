@@ -30,29 +30,27 @@
 #include <QImage>
 #include <assert.h>
 
-namespace khtmlImLoad {
-
-struct ImageFormat
+namespace khtmlImLoad
 {
+
+struct ImageFormat {
     ImageFormat(): type(Image_INVALID)
     {}
 
-    enum Type
-    {
+    enum Type {
         Image_RGB_32,     // 32-bit RGB
         Image_ARGB_32,    // 32-bit ARGB; this will be premultiplied upon reception
-                          // so should not be used in combination with requestScanline
+        // so should not be used in combination with requestScanline
         Image_ARGB_32_DontPremult,  // 32-bit ARGB that will be kept as-is
-                                         // should only be used for interlaced images
-                                         // as it is slower
+        // should only be used for interlaced images
+        // as it is slower
         Image_Palette_8,   //8-bit paletted image
         Image_INVALID
     } type;
 
     int depth() const
     {
-        switch (type)
-        {
+        switch (type) {
         case Image_RGB_32:
         case Image_ARGB_32:
         case Image_ARGB_32_DontPremult:
@@ -65,8 +63,7 @@ struct ImageFormat
     QImage makeImage(int width, int height) const
     {
         QImage toRet;
-        switch (type)
-        {
+        switch (type) {
         case Image_RGB_32:
             toRet = QImage(width, height, QImage::Format_RGB32);
             break;
@@ -79,8 +76,9 @@ struct ImageFormat
         case Image_Palette_8:
             toRet = QImage(width, height, QImage::Format_Indexed8);
             // Make sure we're completely robust if the loader is buggy..
-            while (palette.size() < 256)
+            while (palette.size() < 256) {
                 palette.append(0);
+            }
             toRet.setColorTable(palette);
             break;
         default:
@@ -92,7 +90,7 @@ struct ImageFormat
 
     bool hasAlpha() const
     {
-        return  (type == Image_ARGB_32 || type == Image_ARGB_32_DontPremult);
+        return (type == Image_ARGB_32 || type == Image_ARGB_32_DontPremult);
     }
 
     mutable QVector<QRgb> palette;
@@ -101,8 +99,9 @@ struct ImageFormat
     void greyscaleSetup()
     {
         palette.clear();
-        for (int i=0; i<256; i++)
-            palette.append(qRgb(i,i,i));
+        for (int i = 0; i < 256; i++) {
+            palette.append(qRgb(i, i, i));
+        }
         type = ImageFormat::Image_Palette_8;
     }
 };
@@ -110,4 +109,3 @@ struct ImageFormat
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

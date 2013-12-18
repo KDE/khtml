@@ -18,7 +18,6 @@
  * Boston, MA 02110-1301, USA.
  */
 
-
 #ifndef _KSSLKEYGEN_H
 #define _KSSLKEYGEN_H
 
@@ -26,7 +25,6 @@
 
 #include <QtCore/QStringList>
 #include <QWizard>
-
 
 class KSSLKeyGenPrivate;
 
@@ -40,14 +38,15 @@ class KSSLKeyGenPrivate;
  * @see KSSL, KSSLCertificate, KSSLPKCS12
  * @short KDE Key Generation Dialog
  */
-class KHTML_EXPORT KSSLKeyGen : public QWizard {
+class KHTML_EXPORT KSSLKeyGen : public QWizard
+{
     Q_OBJECT
 public:
     /**
      *  Construct a keygen dialog.
      *  @param parent the parent widget
      */
-    explicit KSSLKeyGen(QWidget *parent=0L);
+    explicit KSSLKeyGen(QWidget *parent = 0L);
 
     /**
      *  Destroy this dialog.
@@ -68,7 +67,7 @@ public:
      *  @param e the value of the "e" parameter in RSA
      *  @return 0 on success, non-zero on error
      */
-    int generateCSR(const QString& name, const QString& pass, int bits, int e = 0x10001);
+    int generateCSR(const QString &name, const QString &pass, int bits, int e = 0x10001);
 
     /**
      *  Set the key size.
@@ -80,7 +79,7 @@ private:
     /*reimp*/ bool validateCurrentPage();
 
 private:
-    KSSLKeyGenPrivate * const d;
+    KSSLKeyGenPrivate *const d;
 };
 
 #endif

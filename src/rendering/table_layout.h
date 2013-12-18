@@ -23,10 +23,10 @@
 #ifndef TABLE_LAYOUT_H
 #define TABLE_LAYOUT_H
 
-
 #include <misc/khtmllayout.h>
 #include <QVector>
-namespace khtml {
+namespace khtml
+{
 
 class RenderTable;
 class RenderTableCell;
@@ -36,7 +36,7 @@ class RenderTableCell;
 class TableLayout
 {
 public:
-    TableLayout( RenderTable *t ) : table( t ) {}
+    TableLayout(RenderTable *t) : table(t) {}
     virtual ~TableLayout() {}
 
     virtual void calcMinMaxWidth() = 0;
@@ -51,7 +51,7 @@ protected:
 class FixedTableLayout : public TableLayout
 {
 public:
-    FixedTableLayout( RenderTable *table );
+    FixedTableLayout(RenderTable *table);
     ~FixedTableLayout();
 
     void calcMinMaxWidth();
@@ -68,31 +68,30 @@ protected:
 class AutoTableLayout : public TableLayout
 {
 public:
-    AutoTableLayout( RenderTable *table );
+    AutoTableLayout(RenderTable *table);
     ~AutoTableLayout();
 
     void calcMinMaxWidth();
     void layout();
 
-
 protected:
     void fullRecalc();
-    void recalcColumn( int effCol );
+    void recalcColumn(int effCol);
     int calcEffectiveWidth();
-    void insertSpanCell( RenderTableCell *cell );
+    void insertSpanCell(RenderTableCell *cell);
 
     struct Layout {
-	Layout() : minWidth( 1 ), maxWidth( 1 ),
-		   effMinWidth( 0 ), effMaxWidth( 0 ),
-		   calcWidth( 0 ), emptyCellsOnly(true) {}
-	Length width;
-	Length effWidth;
-	short minWidth;
-	int maxWidth;
-	short effMinWidth;
-	int effMaxWidth;
-	int calcWidth;
-	bool emptyCellsOnly;
+        Layout() : minWidth(1), maxWidth(1),
+            effMinWidth(0), effMaxWidth(0),
+            calcWidth(0), emptyCellsOnly(true) {}
+        Length width;
+        Length effWidth;
+        short minWidth;
+        int maxWidth;
+        short effMinWidth;
+        int effMaxWidth;
+        int calcWidth;
+        bool emptyCellsOnly;
     };
 
     QVector<Layout> layoutStruct;

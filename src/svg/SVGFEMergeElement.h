@@ -29,20 +29,23 @@
 
 namespace WebCore
 {
-    class SVGFEMergeElement : public SVGFilterPrimitiveStandardAttributes
+class SVGFEMergeElement : public SVGFilterPrimitiveStandardAttributes
+{
+public:
+    SVGFEMergeElement(const QualifiedName &, Document *);
+    virtual ~SVGFEMergeElement();
+
+    virtual SVGFEMerge *filterEffect(SVGResourceFilter *) const;
+
+protected:
+    virtual const SVGElement *contextElement() const
     {
-    public:
-        SVGFEMergeElement(const QualifiedName&, Document*);
-        virtual ~SVGFEMergeElement();
+        return this;
+    }
 
-        virtual SVGFEMerge* filterEffect(SVGResourceFilter*) const;
-
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
-
-    private:
-        mutable SVGFEMerge* m_filterEffect;
-    };
+private:
+    mutable SVGFEMerge *m_filterEffect;
+};
 
 } // namespace WebCore
 

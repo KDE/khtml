@@ -31,16 +31,16 @@
 
 #define d this
 
-KHTMLFindBar::KHTMLFindBar( QWidget *parent ) :
-    KHTMLViewBarWidget( true, parent ),
-    m_enabled( KFind::WholeWordsOnly | KFind::FromCursor | KFind::SelectedText | KFind::CaseSensitive | KFind::FindBackwards | KFind::RegularExpression | KHTMLPart::FindLinksOnly )
+KHTMLFindBar::KHTMLFindBar(QWidget *parent) :
+    KHTMLViewBarWidget(true, parent),
+    m_enabled(KFind::WholeWordsOnly | KFind::FromCursor | KFind::SelectedText | KFind::CaseSensitive | KFind::FindBackwards | KFind::RegularExpression | KHTMLPart::FindLinksOnly)
 {
-    setupUi( centralWidget() );
+    setupUi(centralWidget());
 
-    m_next->setIcon( QIcon::fromTheme( "go-down-search" ) );
-    m_previous->setIcon( QIcon::fromTheme( "go-up-search" ) );
-    m_next->setDisabled( true );
-    m_previous->setDisabled( true );
+    m_next->setIcon(QIcon::fromTheme("go-down-search"));
+    m_previous->setIcon(QIcon::fromTheme("go-up-search"));
+    m_next->setDisabled(true);
+    m_previous->setDisabled(true);
 
     // Fill options menu
     m_incMenu = new QMenu();
@@ -60,21 +60,21 @@ KHTMLFindBar::KHTMLFindBar( QWidget *parent ) :
 
     m_atEnd = false;
 
-    m_find->setDuplicatesEnabled( false );
-    centralWidget()->setFocusProxy( m_find );
+    m_find->setDuplicatesEnabled(false);
+    centralWidget()->setFocusProxy(m_find);
 
-    connect( m_selectedText, SIGNAL(toggled(bool)), this, SLOT(slotSelectedTextToggled(bool)) );
-    connect( m_find, SIGNAL(editTextChanged(QString)), this, SIGNAL(searchChanged()) );
-    connect( m_find->lineEdit(), SIGNAL(clearButtonClicked()), this, SLOT(slotAddPatternToHistory()) );
-    connect( this, SIGNAL(hideMe()), this, SLOT(slotAddPatternToHistory()) );
-    connect( this, SIGNAL(searchChanged()), this, SLOT(slotSearchChanged()) );
-    connect( m_next, SIGNAL(clicked()), this, SIGNAL(findNextClicked()) );
-    connect( m_previous, SIGNAL(clicked()), this, SIGNAL(findPreviousClicked()) );
-    connect( m_caseSensitive, SIGNAL(changed()), this, SIGNAL(searchChanged()) );
-    connect( m_wholeWordsOnly, SIGNAL(changed()), this, SIGNAL(searchChanged()) );
-    connect( m_fromCursor, SIGNAL(changed()), this, SIGNAL(searchChanged()) );
-    connect( m_regExp, SIGNAL(changed()), this, SIGNAL(searchChanged()) );
-    connect( m_findLinksOnly, SIGNAL(changed()), this, SIGNAL(searchChanged()) );
+    connect(m_selectedText, SIGNAL(toggled(bool)), this, SLOT(slotSelectedTextToggled(bool)));
+    connect(m_find, SIGNAL(editTextChanged(QString)), this, SIGNAL(searchChanged()));
+    connect(m_find->lineEdit(), SIGNAL(clearButtonClicked()), this, SLOT(slotAddPatternToHistory()));
+    connect(this, SIGNAL(hideMe()), this, SLOT(slotAddPatternToHistory()));
+    connect(this, SIGNAL(searchChanged()), this, SLOT(slotSearchChanged()));
+    connect(m_next, SIGNAL(clicked()), this, SIGNAL(findNextClicked()));
+    connect(m_previous, SIGNAL(clicked()), this, SIGNAL(findPreviousClicked()));
+    connect(m_caseSensitive, SIGNAL(changed()), this, SIGNAL(searchChanged()));
+    connect(m_wholeWordsOnly, SIGNAL(changed()), this, SIGNAL(searchChanged()));
+    connect(m_fromCursor, SIGNAL(changed()), this, SIGNAL(searchChanged()));
+    connect(m_regExp, SIGNAL(changed()), this, SIGNAL(searchChanged()));
+    connect(m_findLinksOnly, SIGNAL(changed()), this, SIGNAL(searchChanged()));
 
     m_find->setFocus();
 }
@@ -88,18 +88,24 @@ long KHTMLFindBar::options() const
 {
     long options = 0;
 
-    if (d->m_caseSensitive->isChecked())
+    if (d->m_caseSensitive->isChecked()) {
         options |= KFind::CaseSensitive;
-    if (d->m_wholeWordsOnly->isChecked())
+    }
+    if (d->m_wholeWordsOnly->isChecked()) {
         options |= KFind::WholeWordsOnly;
-    if (d->m_fromCursor->isChecked())
+    }
+    if (d->m_fromCursor->isChecked()) {
         options |= KFind::FromCursor;
-    if (d->m_selectedText->isChecked())
+    }
+    if (d->m_selectedText->isChecked()) {
         options |= KFind::SelectedText;
-    if (d->m_regExp->isChecked())
+    }
+    if (d->m_regExp->isChecked()) {
         options |= KFind::RegularExpression;
-    if (d->m_findLinksOnly->isChecked())
+    }
+    if (d->m_findLinksOnly->isChecked()) {
         options |= KHTMLPart::FindLinksOnly;
+    }
     return options | KHTMLPart::FindNoPopups /* | KFind::FindIncremental */;
 }
 
@@ -110,48 +116,50 @@ QString KHTMLFindBar::pattern() const
 
 void KHTMLFindBar::slotSearchChanged()
 {
-   // reset background color of the combo box
-   if (pattern().isEmpty()) {
-       d->m_find->setPalette(QPalette());
-       m_next->setDisabled( true );
-       m_previous->setDisabled( true );
-       m_statusLabel->clear();
-   } else {
-       m_prevPattern = pattern();
-       m_next->setDisabled( false );
-       m_previous->setDisabled( false );
-   }
+    // reset background color of the combo box
+    if (pattern().isEmpty()) {
+        d->m_find->setPalette(QPalette());
+        m_next->setDisabled(true);
+        m_previous->setDisabled(true);
+        m_statusLabel->clear();
+    } else {
+        m_prevPattern = pattern();
+        m_next->setDisabled(false);
+        m_previous->setDisabled(false);
+    }
 }
 
 bool KHTMLFindBar::restoreLastPatternFromHistory()
 {
-    if (d->m_find->historyItems().isEmpty())
+    if (d->m_find->historyItems().isEmpty()) {
         return false;
-    d->m_find->lineEdit()->setText( d->m_find->historyItems().first() );
+    }
+    d->m_find->lineEdit()->setText(d->m_find->historyItems().first());
     return true;
 }
 
 void KHTMLFindBar::setFindHistory(const QStringList &strings)
 {
-    if (strings.count() > 0)
-    {
+    if (strings.count() > 0) {
         d->m_find->setHistoryItems(strings, true);
         //d->m_find->lineEdit()->setText( strings.first() );
         //d->m_find->lineEdit()->selectAll();
-    }
-    else
+    } else {
         d->m_find->clearHistory();
+    }
 }
 
 void KHTMLFindBar::setHasSelection(bool hasSelection)
 {
-    if (hasSelection) d->m_enabled |= KFind::SelectedText;
-    else d->m_enabled &= ~KFind::SelectedText;
-    d->m_selectedText->setEnabled( hasSelection );
-    if ( !hasSelection )
-    {
-        d->m_selectedText->setChecked( false );
-        slotSelectedTextToggled( hasSelection );
+    if (hasSelection) {
+        d->m_enabled |= KFind::SelectedText;
+    } else {
+        d->m_enabled &= ~KFind::SelectedText;
+    }
+    d->m_selectedText->setEnabled(hasSelection);
+    if (!hasSelection) {
+        d->m_selectedText->setChecked(false);
+        slotSelectedTextToggled(hasSelection);
     }
 }
 
@@ -174,17 +182,21 @@ void KHTMLFindBar::slotAddPatternToHistory()
 void KHTMLFindBar::slotSelectedTextToggled(bool selec)
 {
     // From cursor doesn't make sense if we have a selection
-    m_fromCursor->setEnabled( !selec && (m_enabled & KFind::FromCursor) );
-    if ( selec ) // uncheck if disabled
-        m_fromCursor->setChecked( false );
+    m_fromCursor->setEnabled(!selec && (m_enabled & KFind::FromCursor));
+    if (selec) { // uncheck if disabled
+        m_fromCursor->setChecked(false);
+    }
 }
 
 void KHTMLFindBar::setHasCursor(bool hasCursor)
 {
-    if (hasCursor) d->m_enabled |= KFind::FromCursor;
-    else d->m_enabled &= ~KFind::FromCursor;
-    d->m_fromCursor->setEnabled( hasCursor );
-    d->m_fromCursor->setChecked( hasCursor && (options() & KFind::FromCursor) );
+    if (hasCursor) {
+        d->m_enabled |= KFind::FromCursor;
+    } else {
+        d->m_enabled &= ~KFind::FromCursor;
+    }
+    d->m_fromCursor->setEnabled(hasCursor);
+    d->m_fromCursor->setChecked(hasCursor && (options() & KFind::FromCursor));
 }
 
 void KHTMLFindBar::setOptions(long options)
@@ -197,56 +209,57 @@ void KHTMLFindBar::setOptions(long options)
     d->m_findLinksOnly->setChecked((d->m_enabled & KHTMLPart::FindLinksOnly) && (options & KHTMLPart::FindLinksOnly));
 }
 
-void KHTMLFindBar::setFoundMatch( bool match )
+void KHTMLFindBar::setFoundMatch(bool match)
 {
-    if ( pattern().isEmpty() ) {
+    if (pattern().isEmpty()) {
         m_find->setPalette(QPalette());
-        m_next->setDisabled( true );
-        m_previous->setDisabled( true );
+        m_next->setDisabled(true);
+        m_previous->setDisabled(true);
         m_statusLabel->clear();
-    } else if ( !match ) {
-        QPalette newPal( m_find->palette() );
+    } else if (!match) {
+        QPalette newPal(m_find->palette());
         KColorScheme::adjustBackground(newPal, KColorScheme::NegativeBackground);
         m_find->setPalette(newPal);
         m_statusLabel->setText(i18n("Not found"));
     } else {
-        QPalette newPal( m_find->palette() );
+        QPalette newPal(m_find->palette());
         KColorScheme::adjustBackground(newPal, KColorScheme::PositiveBackground);
         m_find->setPalette(newPal);
         m_statusLabel->clear();
     }
 }
 
-void KHTMLFindBar::setAtEnd( bool atEnd )
+void KHTMLFindBar::setAtEnd(bool atEnd)
 {
-    if (atEnd == m_atEnd)
+    if (atEnd == m_atEnd) {
         return;
-    if ( atEnd ) {
-        m_statusLabel->setText( i18n( "No more matches for this search direction." ) );
+    }
+    if (atEnd) {
+        m_statusLabel->setText(i18n("No more matches for this search direction."));
     } else {
         m_statusLabel->clear();
     }
     m_atEnd = atEnd;
 }
 
-void KHTMLFindBar::setVisible( bool visible )
+void KHTMLFindBar::setVisible(bool visible)
 {
-    KHTMLViewBarWidget::setVisible( visible );
+    KHTMLViewBarWidget::setVisible(visible);
 
-    if ( visible ) {
-        m_find->setFocus( Qt::ActiveWindowFocusReason );
+    if (visible) {
+        m_find->setFocus(Qt::ActiveWindowFocusReason);
         m_find->lineEdit()->selectAll();
     }
 }
 
-bool KHTMLFindBar::event(QEvent* e)
+bool KHTMLFindBar::event(QEvent *e)
 {
     // Close the bar when pressing Escape.
     // Not using a QShortcut for this because it could conflict with
     // window-global actions (e.g. Emil Sedgh binds Esc to "close tab").
     // With a shortcut override we can catch this before it gets to kactions.
     if (e->type() == QEvent::ShortcutOverride) {
-        QKeyEvent* kev = static_cast<QKeyEvent* >(e);
+        QKeyEvent *kev = static_cast<QKeyEvent * >(e);
         if (kev->key() == Qt::Key_Escape) {
             e->accept();
             emit hideMe();

@@ -46,36 +46,47 @@
 
 #include <dom_string.h>
 
-namespace DOM {
+namespace DOM
+{
 
 enum XPathExceptionCode {
     INVALID_EXPRESSION_ERR = 51,
     TYPE_ERR = 52
 };
 
-namespace XPath {
-    enum XPathResultType {
-        ANY_TYPE = 0,
-        NUMBER_TYPE = 1,
-        STRING_TYPE = 2,
-        BOOLEAN_TYPE = 3,
-        UNORDERED_NODE_ITERATOR_TYPE = 4,
-        ORDERED_NODE_ITERATOR_TYPE = 5,
-        UNORDERED_NODE_SNAPSHOT_TYPE = 6,
-        ORDERED_NODE_SNAPSHOT_TYPE = 7,
-        ANY_UNORDERED_NODE_TYPE = 8,
-        FIRST_ORDERED_NODE_TYPE = 9
-    };
+namespace XPath
+{
+enum XPathResultType {
+    ANY_TYPE = 0,
+    NUMBER_TYPE = 1,
+    STRING_TYPE = 2,
+    BOOLEAN_TYPE = 3,
+    UNORDERED_NODE_ITERATOR_TYPE = 4,
+    ORDERED_NODE_ITERATOR_TYPE = 5,
+    UNORDERED_NODE_SNAPSHOT_TYPE = 6,
+    ORDERED_NODE_SNAPSHOT_TYPE = 7,
+    ANY_UNORDERED_NODE_TYPE = 8,
+    FIRST_ORDERED_NODE_TYPE = 9
+};
 }
 
 class KHTML_EXPORT XPathException
 {
 public:
-    XPathException(unsigned short _code) { code = _code; }
-    XPathException(const XPathException &other) { code = other.code; }
+    XPathException(unsigned short _code)
+    {
+        code = _code;
+    }
+    XPathException(const XPathException &other)
+    {
+        code = other.code;
+    }
 
-    XPathException & operator = (const XPathException &other)
-        { code = other.code; return *this; }
+    XPathException &operator = (const XPathException &other)
+    {
+        code = other.code;
+        return *this;
+    }
 
     virtual ~XPathException() {}
 
@@ -85,8 +96,7 @@ public:
      */
     unsigned short   code;
 
-    enum XPathExceptionCode
-    {
+    enum XPathExceptionCode {
         INVALID_EXPRESSION_ERR = 51,
         TYPE_ERR = 52,
 
@@ -103,7 +113,6 @@ public:
     /** @internal - checks to see whether internal code is an XPath one */
     static bool isXPathExceptionCode(int exceptioncode);
 };
-
 
 }
 

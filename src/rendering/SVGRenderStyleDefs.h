@@ -74,193 +74,203 @@
 using DOM::SVGPaintImpl;
 using DOM::CSSValueImpl;
 using DOM::CSSValueListImpl;
-    
+
 namespace khtml
 {
-    enum EBaselineShift {
-        BS_BASELINE, BS_SUB, BS_SUPER, BS_LENGTH
-    };
+enum EBaselineShift {
+    BS_BASELINE, BS_SUB, BS_SUPER, BS_LENGTH
+};
 
-    enum ETextAnchor {
-        TA_START, TA_MIDDLE, TA_END
-    };
+enum ETextAnchor {
+    TA_START, TA_MIDDLE, TA_END
+};
 
-    enum EColorInterpolation {
-        CI_AUTO, CI_SRGB, CI_LINEARRGB
-    };
+enum EColorInterpolation {
+    CI_AUTO, CI_SRGB, CI_LINEARRGB
+};
 
-    enum EColorRendering {
-        CR_AUTO, CR_OPTIMIZESPEED, CR_OPTIMIZEQUALITY
-    };
-    
-    enum EImageRendering {
-        IR_AUTO, IR_OPTIMIZESPEED, IR_OPTIMIZEQUALITY
-    };
+enum EColorRendering {
+    CR_AUTO, CR_OPTIMIZESPEED, CR_OPTIMIZEQUALITY
+};
 
-    enum EShapeRendering {
-        SR_AUTO, SR_OPTIMIZESPEED, SR_CRISPEDGES, SR_GEOMETRICPRECISION
-    };
+enum EImageRendering {
+    IR_AUTO, IR_OPTIMIZESPEED, IR_OPTIMIZEQUALITY
+};
 
-    enum ETextRendering {
-        TR_AUTO, TR_OPTIMIZESPEED, TR_OPTIMIZELEGIBILITY, TR_GEOMETRICPRECISION
-    };
+enum EShapeRendering {
+    SR_AUTO, SR_OPTIMIZESPEED, SR_CRISPEDGES, SR_GEOMETRICPRECISION
+};
 
-    enum EWritingMode {
-        WM_LRTB, WM_LR, WM_RLTB, WM_RL, WM_TBRL, WM_TB
-    };
+enum ETextRendering {
+    TR_AUTO, TR_OPTIMIZESPEED, TR_OPTIMIZELEGIBILITY, TR_GEOMETRICPRECISION
+};
 
-    enum EGlyphOrientation {
-        GO_0DEG, GO_90DEG, GO_180DEG, GO_270DEG, GO_AUTO
-    };
+enum EWritingMode {
+    WM_LRTB, WM_LR, WM_RLTB, WM_RL, WM_TBRL, WM_TB
+};
 
-    enum EAlignmentBaseline {
-        AB_AUTO, AB_BASELINE, AB_BEFORE_EDGE, AB_TEXT_BEFORE_EDGE,
-        AB_MIDDLE, AB_CENTRAL, AB_AFTER_EDGE, AB_TEXT_AFTER_EDGE,
-        AB_IDEOGRAPHIC, AB_ALPHABETIC, AB_HANGING, AB_MATHEMATICAL
-    };
+enum EGlyphOrientation {
+    GO_0DEG, GO_90DEG, GO_180DEG, GO_270DEG, GO_AUTO
+};
 
-    enum EDominantBaseline {
-        DB_AUTO, DB_USE_SCRIPT, DB_NO_CHANGE, DB_RESET_SIZE,
-        DB_IDEOGRAPHIC, DB_ALPHABETIC, DB_HANGING, DB_MATHEMATICAL,
-        DB_CENTRAL, DB_MIDDLE, DB_TEXT_AFTER_EDGE, DB_TEXT_BEFORE_EDGE
-    };
+enum EAlignmentBaseline {
+    AB_AUTO, AB_BASELINE, AB_BEFORE_EDGE, AB_TEXT_BEFORE_EDGE,
+    AB_MIDDLE, AB_CENTRAL, AB_AFTER_EDGE, AB_TEXT_AFTER_EDGE,
+    AB_IDEOGRAPHIC, AB_ALPHABETIC, AB_HANGING, AB_MATHEMATICAL
+};
 
-    enum EPointerEvents {
-        PE_NONE, PE_STROKE, PE_FILL, PE_PAINTED, PE_VISIBLE,
-        PE_VISIBLE_STROKE, PE_VISIBLE_FILL, PE_VISIBLE_PAINTED, PE_ALL
-    };
-    
-    // Inherited/Non-Inherited Style Datastructures
-    class StyleFillData : public RefCounted<StyleFillData> {
-    public:
-        bool operator==(const StyleFillData &other) const;
-        bool operator!=(const StyleFillData &other) const
-        {
-            return !(*this == other);
-        }
+enum EDominantBaseline {
+    DB_AUTO, DB_USE_SCRIPT, DB_NO_CHANGE, DB_RESET_SIZE,
+    DB_IDEOGRAPHIC, DB_ALPHABETIC, DB_HANGING, DB_MATHEMATICAL,
+    DB_CENTRAL, DB_MIDDLE, DB_TEXT_AFTER_EDGE, DB_TEXT_BEFORE_EDGE
+};
 
-        float opacity;
-        RefPtr<SVGPaintImpl> paint;
+enum EPointerEvents {
+    PE_NONE, PE_STROKE, PE_FILL, PE_PAINTED, PE_VISIBLE,
+    PE_VISIBLE_STROKE, PE_VISIBLE_FILL, PE_VISIBLE_PAINTED, PE_ALL
+};
 
-        StyleFillData();
-        StyleFillData(const StyleFillData&);
-    };
+// Inherited/Non-Inherited Style Datastructures
+class StyleFillData : public RefCounted<StyleFillData>
+{
+public:
+    bool operator==(const StyleFillData &other) const;
+    bool operator!=(const StyleFillData &other) const
+    {
+        return !(*this == other);
+    }
 
-    class StyleStrokeData : public RefCounted<StyleStrokeData> {
-    public:
-        bool operator==(const StyleStrokeData&) const;
-        bool operator!=(const StyleStrokeData& other) const
-        {
-            return !(*this == other);
-        }
+    float opacity;
+    RefPtr<SVGPaintImpl> paint;
 
-        float opacity;
-        float miterLimit;
+    StyleFillData();
+    StyleFillData(const StyleFillData &);
+};
 
-        RefPtr<CSSValueImpl> width;
-        RefPtr<CSSValueImpl> dashOffset;
+class StyleStrokeData : public RefCounted<StyleStrokeData>
+{
+public:
+    bool operator==(const StyleStrokeData &) const;
+    bool operator!=(const StyleStrokeData &other) const
+    {
+        return !(*this == other);
+    }
 
-        RefPtr<SVGPaintImpl> paint;
-        RefPtr<CSSValueListImpl> dashArray;
+    float opacity;
+    float miterLimit;
 
-        StyleStrokeData();
-        StyleStrokeData(const StyleStrokeData&);
-    };
+    RefPtr<CSSValueImpl> width;
+    RefPtr<CSSValueImpl> dashOffset;
 
-    class StyleStopData : public RefCounted<StyleStopData> {
-    public:
-        bool operator==(const StyleStopData &other) const;
-        bool operator!=(const StyleStopData &other) const
-        {
-            return !(*this == other);
-        }
+    RefPtr<SVGPaintImpl> paint;
+    RefPtr<CSSValueListImpl> dashArray;
 
-        float opacity;
-        QColor color;
+    StyleStrokeData();
+    StyleStrokeData(const StyleStrokeData &);
+};
 
-        StyleStopData();
-        StyleStopData(const StyleStopData&);
-    };
+class StyleStopData : public RefCounted<StyleStopData>
+{
+public:
+    bool operator==(const StyleStopData &other) const;
+    bool operator!=(const StyleStopData &other) const
+    {
+        return !(*this == other);
+    }
 
-    class StyleTextData : public RefCounted<StyleTextData> {
-    public:
-        bool operator==(const StyleTextData& other) const;
-        bool operator!=(const StyleTextData& other) const
-        {
-            return !(*this == other);
-        }
+    float opacity;
+    QColor color;
 
-        RefPtr<CSSValueImpl> kerning;
+    StyleStopData();
+    StyleStopData(const StyleStopData &);
+};
 
-        StyleTextData();
-        StyleTextData(const StyleTextData& other);
-    };
+class StyleTextData : public RefCounted<StyleTextData>
+{
+public:
+    bool operator==(const StyleTextData &other) const;
+    bool operator!=(const StyleTextData &other) const
+    {
+        return !(*this == other);
+    }
 
-    class StyleClipData : public RefCounted<StyleClipData> {
-    public:
-        bool operator==(const StyleClipData &other) const;
-        bool operator!=(const StyleClipData &other) const
-        {
-            return !(*this == other);
-        }
+    RefPtr<CSSValueImpl> kerning;
 
-        DOMString clipPath;
+    StyleTextData();
+    StyleTextData(const StyleTextData &other);
+};
 
-        StyleClipData();
-        StyleClipData(const StyleClipData&);
-    };
+class StyleClipData : public RefCounted<StyleClipData>
+{
+public:
+    bool operator==(const StyleClipData &other) const;
+    bool operator!=(const StyleClipData &other) const
+    {
+        return !(*this == other);
+    }
 
-    class StyleMaskData : public RefCounted<StyleMaskData> {
-    public:
-        bool operator==(const StyleMaskData &other) const;
-        bool operator!=(const StyleMaskData &other) const { return !(*this == other); }
+    DOMString clipPath;
 
-        DOMString maskElement;
+    StyleClipData();
+    StyleClipData(const StyleClipData &);
+};
 
-        StyleMaskData();
-        StyleMaskData(const StyleMaskData&);
-    };
+class StyleMaskData : public RefCounted<StyleMaskData>
+{
+public:
+    bool operator==(const StyleMaskData &other) const;
+    bool operator!=(const StyleMaskData &other) const
+    {
+        return !(*this == other);
+    }
 
-    class StyleMarkerData : public RefCounted<StyleMarkerData> {
-    public:
-        bool operator==(const StyleMarkerData &other) const;
-        bool operator!=(const StyleMarkerData &other) const
-        {
-            return !(*this == other);
-        }
+    DOMString maskElement;
 
-        DOMString startMarker;
-        DOMString midMarker;
-        DOMString endMarker;
+    StyleMaskData();
+    StyleMaskData(const StyleMaskData &);
+};
 
-        StyleMarkerData();
-        StyleMarkerData(const StyleMarkerData&);
-    };
+class StyleMarkerData : public RefCounted<StyleMarkerData>
+{
+public:
+    bool operator==(const StyleMarkerData &other) const;
+    bool operator!=(const StyleMarkerData &other) const
+    {
+        return !(*this == other);
+    }
 
-    // Note : the rule for this class is, *no inheritance* of these props
-    class StyleMiscData : public RefCounted<StyleMiscData> {
-    public:
-        bool operator==(const StyleMiscData &other) const;
-        bool operator!=(const StyleMiscData &other) const
-        {
-            return !(*this == other);
-        }
+    DOMString startMarker;
+    DOMString midMarker;
+    DOMString endMarker;
 
-        DOMString filter;
-        QColor floodColor;
-        float floodOpacity;
+    StyleMarkerData();
+    StyleMarkerData(const StyleMarkerData &);
+};
 
-        QColor lightingColor;
+// Note : the rule for this class is, *no inheritance* of these props
+class StyleMiscData : public RefCounted<StyleMiscData>
+{
+public:
+    bool operator==(const StyleMiscData &other) const;
+    bool operator!=(const StyleMiscData &other) const
+    {
+        return !(*this == other);
+    }
 
-        // non-inherited text stuff lives here not in StyleTextData.
-        RefPtr<CSSValueImpl> baselineShiftValue;
+    DOMString filter;
+    QColor floodColor;
+    float floodOpacity;
 
-        StyleMiscData();
-        StyleMiscData(const StyleMiscData&);
-    };
+    QColor lightingColor;
 
-} 
+    // non-inherited text stuff lives here not in StyleTextData.
+    RefPtr<CSSValueImpl> baselineShiftValue;
+
+    StyleMiscData();
+    StyleMiscData(const StyleMiscData &);
+};
+
+}
 
 #endif // SVGRenderStyleDefs_h
 
-// vim:ts=4

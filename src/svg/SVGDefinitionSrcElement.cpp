@@ -23,18 +23,20 @@
 #include "SVGFontFaceElement.h"
 #include "SVGNames.h"
 
-namespace WebCore {
-    
-SVGDefinitionSrcElement::SVGDefinitionSrcElement(const QualifiedName& tagName, Document* doc)
+namespace WebCore
+{
+
+SVGDefinitionSrcElement::SVGDefinitionSrcElement(const QualifiedName &tagName, Document *doc)
     : SVGElement(tagName, doc)
 {
 }
 
-void SVGDefinitionSrcElement::childrenChanged(bool changedByParser, Node* beforeChange, Node* afterChange, int childCountDelta)
+void SVGDefinitionSrcElement::childrenChanged(bool changedByParser, Node *beforeChange, Node *afterChange, int childCountDelta)
 {
     SVGElement::childrenChanged(changedByParser, beforeChange, afterChange, childCountDelta);
-    if (parentNode() && parentNode()->hasTagName(SVGNames::font_faceTag))
-        static_cast<SVGFontFaceElement*>(parentNode())->rebuildFontFace();
+    if (parentNode() && parentNode()->hasTagName(SVGNames::font_faceTag)) {
+        static_cast<SVGFontFaceElement *>(parentNode())->rebuildFontFace();
+    }
 }
 
 }

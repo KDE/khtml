@@ -32,55 +32,57 @@
 
 int khtmlxpathyyparse();
 
-namespace khtml {
-namespace XPath {
+namespace khtml
+{
+namespace XPath
+{
 
 class Filter : public Expression
 {
-	public:
-		Filter( Expression *expr,
-		        const QList<Predicate *> &predicates = QList<Predicate *>() );
-		virtual ~Filter();
+public:
+    Filter(Expression *expr,
+           const QList<Predicate *> &predicates = QList<Predicate *>());
+    virtual ~Filter();
 
-		virtual QString dump() const;
+    virtual QString dump() const;
 
-	private:
-		virtual Value doEvaluate() const;
+private:
+    virtual Value doEvaluate() const;
 
-		Expression *m_expr;
-		QList<Predicate *> m_predicates;
+    Expression *m_expr;
+    QList<Predicate *> m_predicates;
 };
 
 class LocationPath : public Expression
 {
-	friend int ::khtmlxpathyyparse();
-	public:
-		LocationPath();
-		virtual ~LocationPath();
+    friend int ::khtmlxpathyyparse();
+public:
+    LocationPath();
+    virtual ~LocationPath();
 
-		void optimize();
-		virtual QString dump() const;
+    void optimize();
+    virtual QString dump() const;
 
-	private:
-		virtual Value doEvaluate() const;
+private:
+    virtual Value doEvaluate() const;
 
-		QList<Step *> m_steps;
-		bool m_absolute;
+    QList<Step *> m_steps;
+    bool m_absolute;
 };
 
 class Path : public Expression
 {
-	public:
-		Path( Filter *filter, LocationPath *path );
-		virtual ~Path();
+public:
+    Path(Filter *filter, LocationPath *path);
+    virtual ~Path();
 
-		virtual QString dump() const;
+    virtual QString dump() const;
 
-	private:
-		virtual Value doEvaluate() const;
+private:
+    virtual Value doEvaluate() const;
 
-		Filter *m_filter;
-		LocationPath *m_path;
+    Filter *m_filter;
+    LocationPath *m_path;
 };
 
 } // namespace XPath

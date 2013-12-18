@@ -25,7 +25,8 @@
 
 #include "xml/dom_elementimpl.h"
 
-namespace DOM {
+namespace DOM
+{
 
 class DOMString;
 class DocumentFragment;
@@ -37,7 +38,10 @@ public:
 
     virtual ~HTMLElementImpl();
 
-    virtual bool isHTMLElement() const { return true; }
+    virtual bool isHTMLElement() const
+    {
+        return true;
+    }
 
     virtual bool isInline() const;
 
@@ -49,26 +53,26 @@ public:
     void addCSSLength(int id, const DOMString &value, bool numOnly = false, bool multiLength = false);
     void addCSSProperty(int id, const DOMString &value);
     void addCSSProperty(int id, int value);
-    void addHTMLColor( int id, const DOMString &c );
+    void addHTMLColor(int id, const DOMString &c);
     void removeCSSProperty(int id);
 
-    virtual void recalcStyle( StyleChange );
+    virtual void recalcStyle(StyleChange);
 
     DOMString innerHTML() const;
     DOMString innerText() const;
-    DocumentFragment createContextualFragment( const DOMString &html );
-    void setInnerHTML( const DOMString &html, int& exceptioncode );
-    void setInnerText( const DOMString &text, int& exceptioncode );
+    DocumentFragment createContextualFragment(const DOMString &html);
+    void setInnerHTML(const DOMString &html, int &exceptioncode);
+    void setInnerText(const DOMString &text, int &exceptioncode);
 
     virtual DOMString contentEditable() const;
-    virtual void setContentEditable(AttributeImpl* attr);
+    virtual void setContentEditable(AttributeImpl *attr);
     virtual void setContentEditable(const DOMString &enabled);
 
     virtual DOMString toString() const;
 
 protected:
     // for IMG, OBJECT and APPLET
-    void addHTMLAlignment( DOMString alignment );
+    void addHTMLAlignment(DOMString alignment);
 };
 
 class HTMLGenericElementImpl : public HTMLElementImpl
@@ -79,7 +83,10 @@ public:
 
     virtual ~HTMLGenericElementImpl();
 
-    virtual Id id() const { return m_localName.id(); }
+    virtual Id id() const
+    {
+        return m_localName.id();
+    }
 
 protected:
     LocalName m_localName;

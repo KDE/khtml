@@ -30,9 +30,10 @@
 #include "SVGLength.h"
 #include "SVGNames.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGEllipseElement::SVGEllipseElement(const QualifiedName& tagName, Document* doc)
+SVGEllipseElement::SVGEllipseElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledTransformableElement(tagName, doc)
     , SVGTests()
     , SVGLangSpace()
@@ -42,7 +43,7 @@ SVGEllipseElement::SVGEllipseElement(const QualifiedName& tagName, Document* doc
     , m_rx(this, LengthModeWidth)
     , m_ry(this, LengthModeHeight)
 {
-}    
+}
 
 SVGEllipseElement::~SVGEllipseElement()
 {
@@ -53,45 +54,52 @@ ANIMATED_PROPERTY_DEFINITIONS(SVGEllipseElement, SVGLength, Length, length, Cy, 
 ANIMATED_PROPERTY_DEFINITIONS(SVGEllipseElement, SVGLength, Length, length, Rx, rx, SVGNames::rxAttr, m_rx)
 ANIMATED_PROPERTY_DEFINITIONS(SVGEllipseElement, SVGLength, Length, length, Ry, ry, SVGNames::ryAttr, m_ry)
 
-void SVGEllipseElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGEllipseElement::parseMappedAttribute(MappedAttribute *attr)
 {
-    if (attr->name() == SVGNames::cxAttr)
+    if (attr->name() == SVGNames::cxAttr) {
         setCxBaseValue(SVGLength(this, LengthModeWidth, attr->value()));
-    else if (attr->name() == SVGNames::cyAttr)
+    } else if (attr->name() == SVGNames::cyAttr) {
         setCyBaseValue(SVGLength(this, LengthModeHeight, attr->value()));
-    else if (attr->name() == SVGNames::rxAttr) {
+    } else if (attr->name() == SVGNames::rxAttr) {
         setRxBaseValue(SVGLength(this, LengthModeWidth, attr->value()));
-        if (rx().value() < 0.0)
+        if (rx().value() < 0.0) {
             document()->accessSVGExtensions()->reportError("A negative value for ellipse <rx> is not allowed");
+        }
     } else if (attr->name() == SVGNames::ryAttr) {
         setRyBaseValue(SVGLength(this, LengthModeHeight, attr->value()));
-        if (ry().value() < 0.0)
+        if (ry().value() < 0.0) {
             document()->accessSVGExtensions()->reportError("A negative value for ellipse <ry> is not allowed");
+        }
     } else {
-        if (SVGTests::parseMappedAttribute(attr))
+        if (SVGTests::parseMappedAttribute(attr)) {
             return;
-        if (SVGLangSpace::parseMappedAttribute(attr))
+        }
+        if (SVGLangSpace::parseMappedAttribute(attr)) {
             return;
-        if (SVGExternalResourcesRequired::parseMappedAttribute(attr))
+        }
+        if (SVGExternalResourcesRequired::parseMappedAttribute(attr)) {
             return;
+        }
         SVGStyledTransformableElement::parseMappedAttribute(attr);
     }
 }
 
-void SVGEllipseElement::svgAttributeChanged(const QualifiedName& attrName)
+void SVGEllipseElement::svgAttributeChanged(const QualifiedName &attrName)
 {
     SVGStyledTransformableElement::svgAttributeChanged(attrName);
 
-    if (!renderer())
+    if (!renderer()) {
         return;
+    }
 
     if (attrName == SVGNames::cxAttr || attrName == SVGNames::cyAttr ||
-        attrName == SVGNames::rxAttr || attrName == SVGNames::ryAttr ||
-        SVGTests::isKnownAttribute(attrName) ||
-        SVGLangSpace::isKnownAttribute(attrName) ||
-        SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
-        SVGStyledTransformableElement::isKnownAttribute(attrName))
+            attrName == SVGNames::rxAttr || attrName == SVGNames::ryAttr ||
+            SVGTests::isKnownAttribute(attrName) ||
+            SVGLangSpace::isKnownAttribute(attrName) ||
+            SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
+            SVGStyledTransformableElement::isKnownAttribute(attrName)) {
         renderer()->setNeedsLayout(true);
+    }
 }
 
 Path SVGEllipseElement::toPathData() const
@@ -99,7 +107,7 @@ Path SVGEllipseElement::toPathData() const
     return Path::createEllipse(FloatPoint(cx().value(), cy().value()),
                                rx().value(), ry().value());
 }
- 
+
 bool SVGEllipseElement::hasRelativeValues() const
 {
     return (cx().isRelative() || cy().isRelative() ||

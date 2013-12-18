@@ -25,17 +25,19 @@
 
 #include <kjs/object.h>
 
-namespace KJS {
+namespace KJS
+{
 
-  class AudioConstructorImp : public JSObject {
-  public:
-    AudioConstructorImp(ExecState *exec, DOM::DocumentImpl* d);
+class AudioConstructorImp : public JSObject
+{
+public:
+    AudioConstructorImp(ExecState *exec, DOM::DocumentImpl *d);
     virtual bool implementsConstruct() const;
     using KJS::JSObject::construct;
-    virtual JSObject* construct(ExecState *exec, const List &args);
-  private:
+    virtual JSObject *construct(ExecState *exec, const List &args);
+private:
     SharedPtr<DOM::DocumentImpl> doc;
-  };
+};
 
 } // namespace KJS
 

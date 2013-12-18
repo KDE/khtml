@@ -3,7 +3,8 @@
 
 #include "imageloaderprovider.h"
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 class ImageLoader;
 
@@ -11,8 +12,8 @@ class QImageIOLoaderProvider: public ImageLoaderProvider
 {
 public:
     virtual Type type();
-    static const QStringList& mimeTypes();
-    virtual ImageLoader* loaderFor(const QByteArray& prefix);
+    static const QStringList &mimeTypes();
+    virtual ImageLoader *loaderFor(const QByteArray &prefix);
 };
 
 }

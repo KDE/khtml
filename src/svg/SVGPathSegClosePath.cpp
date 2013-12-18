@@ -25,7 +25,8 @@
 #if ENABLE(SVG)
 #include "SVGPathSegClosePath.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 SVGPathSegClosePath::SVGPathSegClosePath()
     : SVGPathSeg()
@@ -40,4 +41,3 @@ SVGPathSegClosePath::~SVGPathSegClosePath()
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

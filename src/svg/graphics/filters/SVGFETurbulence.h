@@ -25,7 +25,8 @@
 #if ENABLE(SVG) && ENABLE(SVG_FILTERS)
 #include "SVGFilterEffect.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 enum SVGTurbulanceType {
     SVG_TURBULENCE_TYPE_UNKNOWN      = 0,
@@ -33,9 +34,10 @@ enum SVGTurbulanceType {
     SVG_TURBULENCE_TYPE_TURBULENCE   = 2
 };
 
-class SVGFETurbulence : public SVGFilterEffect {
+class SVGFETurbulence : public SVGFilterEffect
+{
 public:
-    SVGFETurbulence(SVGResourceFilter*);
+    SVGFETurbulence(SVGResourceFilter *);
 
     SVGTurbulanceType type() const;
     void setType(SVGTurbulanceType);
@@ -55,7 +57,7 @@ public:
     bool stitchTiles() const;
     void setStitchTiles(bool);
 
-    virtual TextStream& externalRepresentation(TextStream&) const;
+    virtual TextStream &externalRepresentation(TextStream &) const;
 
 private:
     float m_baseFrequencyX;

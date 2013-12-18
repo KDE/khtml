@@ -29,12 +29,13 @@
 
 #include <QRectF>
 
-namespace WebCore {
+namespace WebCore
+{
 
-FloatRect::FloatRect(const QRectF& r)
+FloatRect::FloatRect(const QRectF &r)
     : m_location(r.topLeft())
     , m_size(r.width()
-    , r.height())
+             , r.height())
 {
 }
 
@@ -45,4 +46,3 @@ FloatRect::operator QRectF() const
 
 }
 
-// vim: ts=4 sw=4 et

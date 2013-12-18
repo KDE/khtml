@@ -3,12 +3,15 @@
 
 using namespace DOM;
 
-namespace khtml {
-
-IDTable<NamespaceFactory>* NamespaceFactory::s_idTable;
-IDTable<NamespaceFactory>* NamespaceFactory::initIdTable()
+namespace khtml
 {
-    if (s_idTable) return s_idTable; // Can happen if KHTMLGlobal was recreated..
+
+IDTable<NamespaceFactory> *NamespaceFactory::s_idTable;
+IDTable<NamespaceFactory> *NamespaceFactory::initIdTable()
+{
+    if (s_idTable) {
+        return s_idTable;    // Can happen if KHTMLGlobal was recreated..
+    }
     s_idTable = new IDTable<NamespaceFactory>();
     s_idTable->addStaticMapping(DOM::xmlNamespace, XML_NAMESPACE);
     s_idTable->addStaticMapping(DOM::xmlnsNamespace, XMLNS_NAMESPACE);
@@ -19,10 +22,12 @@ IDTable<NamespaceFactory>* NamespaceFactory::initIdTable()
     return s_idTable;
 }
 
-IDTable<LocalNameFactory>* LocalNameFactory::s_idTable;
-IDTable<LocalNameFactory>* LocalNameFactory::initIdTable()
+IDTable<LocalNameFactory> *LocalNameFactory::s_idTable;
+IDTable<LocalNameFactory> *LocalNameFactory::initIdTable()
 {
-    if (s_idTable) return s_idTable; // Can happen if KHTMLGlobal was recreated..
+    if (s_idTable) {
+        return s_idTable;    // Can happen if KHTMLGlobal was recreated..
+    }
     s_idTable = new IDTable<LocalNameFactory>();
     s_idTable->addStaticMapping(0, DOMString());
     s_idTable->addStaticMapping(localNamePart(ID_A), "a");
@@ -586,10 +591,12 @@ IDTable<LocalNameFactory>* LocalNameFactory::initIdTable()
     return s_idTable;
 }
 
-IDTable<PrefixFactory>* PrefixFactory::s_idTable;
-IDTable<PrefixFactory>* PrefixFactory::initIdTable()
+IDTable<PrefixFactory> *PrefixFactory::s_idTable;
+IDTable<PrefixFactory> *PrefixFactory::initIdTable()
 {
-    if (s_idTable) return s_idTable; // Can happen if KHTMLGlobal was recreated..
+    if (s_idTable) {
+        return s_idTable;    // Can happen if KHTMLGlobal was recreated..
+    }
     s_idTable = new IDTable<PrefixFactory>();
     s_idTable->addStaticMapping(DOM::emptyPrefix, DOMString());
     s_idTable->addStaticMapping(DOM::xmlPrefix, "xml");
@@ -599,28 +606,32 @@ IDTable<PrefixFactory>* PrefixFactory::initIdTable()
 
 }
 
-namespace DOM {
+namespace DOM
+{
 
 LocalName emptyLocalName;// = LocalName::fromId(0);
 PrefixName emptyPrefixName;// = PrefixName::fromId(0);
 NamespaceName emptyNamespaceName;// = NamespaceName::fromId(0);
 
-QString getPrintableName(int id) {
+QString getPrintableName(int id)
+{
     QString local = QString("null");
     QString namespacename = QString("null");
 
     if (localNamePart(id) != anyLocalName) {
         DOMString localName = LocalName::fromId(localNamePart(id)).toString();
-        if (localName.implementation())
+        if (localName.implementation()) {
             local = localName.string();
+        }
     } else {
         local = "*";
     }
 
     if (namespacePart(id) != anyNamespace) {
         DOMString namespaceName = NamespaceName::fromId(namespacePart(id)).toString();
-        if (namespaceName.implementation())
+        if (namespaceName.implementation()) {
             namespacename = namespaceName.string();
+        }
     } else {
         namespacename = "*";
     }

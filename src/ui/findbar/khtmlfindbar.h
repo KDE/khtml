@@ -30,7 +30,7 @@ class KHTMLFindBar : public KHTMLViewBarWidget, private Ui::KHTMLFindBarBase
 {
     Q_OBJECT
 public:
-    KHTMLFindBar( QWidget *parent = 0 );
+    KHTMLFindBar(QWidget *parent = 0);
 
     /**
      * Provide the list of @p strings to be displayed as the history
@@ -40,7 +40,7 @@ public:
      * @param history The find history.
      * @see findHistory
      */
-    void setFindHistory( const QStringList &history );
+    void setFindHistory(const QStringList &history);
 
     /**
      * Returns the list of history items.
@@ -62,7 +62,7 @@ public:
      *
      * @param hasSelection true if a selection exists
      */
-    void setHasSelection( bool hasSelection );
+    void setHasSelection(bool hasSelection);
 
     /**
      * Hide/show the 'from cursor' option, depending
@@ -71,7 +71,7 @@ public:
      * @param hasCursor true if the application features a cursor
      * This is assumed to be the case by default.
      */
-    void setHasCursor( bool hasCursor );
+    void setHasCursor(bool hasCursor);
 
     /**
      * Set the options which are checked.
@@ -81,7 +81,7 @@ public:
      * @see options()
      * @see KFind::Options
      */
-    void setOptions( long options );
+    void setOptions(long options);
 
     /**
      * Returns the state of the options. Disabled options may be returned in
@@ -97,12 +97,12 @@ public:
      */
     QString pattern() const;
 
-    void setFoundMatch( bool match );
-    void setAtEnd( bool atEnd );
-    virtual void setVisible( bool visible );
+    void setFoundMatch(bool match);
+    void setAtEnd(bool atEnd);
+    virtual void setVisible(bool visible);
 
 protected:
-    virtual bool event(QEvent* e);
+    virtual bool event(QEvent *e);
 
 private Q_SLOTS:
     void slotSelectedTextToggled(bool selec);

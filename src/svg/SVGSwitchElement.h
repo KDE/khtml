@@ -31,33 +31,38 @@
 
 namespace WebCore
 {
-    class SVGSwitchElement : public SVGStyledTransformableElement,
-                             public SVGTests,
-                             public SVGLangSpace,
-                             public SVGExternalResourcesRequired
+class SVGSwitchElement : public SVGStyledTransformableElement,
+    public SVGTests,
+    public SVGLangSpace,
+    public SVGExternalResourcesRequired
+{
+public:
+    SVGSwitchElement(const QualifiedName &, Document *);
+    virtual ~SVGSwitchElement();
+
+    virtual bool isValid() const
     {
-    public:
-        SVGSwitchElement(const QualifiedName&, Document*);
-        virtual ~SVGSwitchElement();
-        
-        virtual bool isValid() const { return SVGTests::isValid(); }
+        return SVGTests::isValid();
+    }
 
-        virtual bool childShouldCreateRenderer(Node*) const;
+    virtual bool childShouldCreateRenderer(Node *) const;
 
-        virtual RenderObject* createRenderer(RenderArena*, RenderStyle*);
+    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
 
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
 
-    private:
-        mutable bool m_insideRenderSection;
+private:
+    mutable bool m_insideRenderSection;
 
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
-    };
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

@@ -10,7 +10,6 @@
     copies of the Software, and to permit persons to whom the Software is
     furnished to do so, subject to the following conditions:
 
-
     The above copyright notice and this permission notice shall be included in
     all copies or substantial portions of the Software.
 
@@ -26,7 +25,8 @@
 #ifndef IMAGE_OWNER_H
 #define IMAGE_OWNER_H
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 /**
  The users of Image's need to inherit off ImageOwner, in order to receive the information about
@@ -39,25 +39,24 @@ public:
     /**
      Called to notify the owner when the intrinic size is available
     */
-    virtual void imageHasGeometry(Image* img, int width, int height) = 0;
+    virtual void imageHasGeometry(Image *img, int width, int height) = 0;
 
     /**
      Called to notify the owner that a portion has changed
      */
-    virtual void imageChange(Image* img, QRect region) = 0;
+    virtual void imageChange(Image *img, QRect region) = 0;
 
     /**
      Called to notify the owner that the image is broken
     */
-    virtual void imageError(Image* img) = 0;
+    virtual void imageError(Image *img) = 0;
 
     /**
      Called to notify the owner that the image is done
     */
-    virtual void imageDone(Image* img) = 0;
+    virtual void imageDone(Image *img) = 0;
 };
 
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

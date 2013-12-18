@@ -1,4 +1,3 @@
-// -*- c-basic-offset: 2 -*-
 /*
  *  This file is part of the KDE libraries
  *  Copyright (C) 2003 Apple Computer, Inc.
@@ -25,28 +24,36 @@
 #include "ecma/kjs_dom.h"
 #include "kio/jobclasses.h"
 
-namespace KJS {
+namespace KJS
+{
 
-  
-  class XMLSerializerConstructorImp : public JSObject {
-  public:
+class XMLSerializerConstructorImp : public JSObject
+{
+public:
     XMLSerializerConstructorImp(ExecState *);
     virtual bool implementsConstruct() const;
     using KJS::JSObject::construct;
     virtual JSObject *construct(ExecState *exec, const List &args);
-  };
+};
 
-  class XMLSerializer : public DOMObject {
-  public:
+class XMLSerializer : public DOMObject
+{
+public:
     XMLSerializer(ExecState *);
-    virtual bool toBoolean(ExecState *) const { return true; }
-    virtual const ClassInfo* classInfo() const { return &info; }
+    virtual bool toBoolean(ExecState *) const
+    {
+        return true;
+    }
+    virtual const ClassInfo *classInfo() const
+    {
+        return &info;
+    }
     static const ClassInfo info;
     enum { SerializeToString };
 
-  private:
+private:
     friend class XMLSerializerProtoFunc;
-  };
+};
 
 } // namespace
 

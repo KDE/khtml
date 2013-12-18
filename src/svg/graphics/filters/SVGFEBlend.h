@@ -25,7 +25,8 @@
 #if ENABLE(SVG) && ENABLE(SVG_FILTERS)
 #include "SVGFilterEffect.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 enum SVGBlendModeType {
     SVG_FEBLEND_MODE_UNKNOWN  = 0,
@@ -36,20 +37,21 @@ enum SVGBlendModeType {
     SVG_FEBLEND_MODE_LIGHTEN  = 5
 };
 
-class SVGFEBlend : public SVGFilterEffect {
+class SVGFEBlend : public SVGFilterEffect
+{
 public:
-    SVGFEBlend(SVGResourceFilter*);
+    SVGFEBlend(SVGResourceFilter *);
 
     String in2() const;
-    void setIn2(const String&);
+    void setIn2(const String &);
 
     SVGBlendModeType blendMode() const;
     void setBlendMode(SVGBlendModeType);
 
-    virtual TextStream& externalRepresentation(TextStream&) const;
+    virtual TextStream &externalRepresentation(TextStream &) const;
 
 #if PLATFORM(CI)
-    virtual CIFilter* getCIFilter(const FloatRect& bbox) const;
+    virtual CIFilter *getCIFilter(const FloatRect &bbox) const;
 #endif
 
 private:

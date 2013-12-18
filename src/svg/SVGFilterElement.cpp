@@ -31,9 +31,10 @@
 #include "SVGNames.h"
 #include "SVGUnitTypes.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFilterElement::SVGFilterElement(const QualifiedName& tagName, Document* doc)
+SVGFilterElement::SVGFilterElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledElement(tagName, doc)
     , SVGURIReference()
     , SVGLangSpace()
@@ -50,7 +51,7 @@ SVGFilterElement::SVGFilterElement(const QualifiedName& tagName, Document* doc)
     // Spec: If the attribute is not specified, the effect is as if a value of "-10%" were specified.
     setXBaseValue(SVGLength(this, LengthModeWidth, "-10%"));
     setYBaseValue(SVGLength(this, LengthModeHeight, "-10%"));
- 
+
     // Spec: If the attribute is not specified, the effect is as if a value of "120%" were specified.
     setWidthBaseValue(SVGLength(this, LengthModeWidth, "120%"));
     setHeightBaseValue(SVGLength(this, LengthModeHeight, "120%"));
@@ -73,43 +74,53 @@ void SVGFilterElement::setFilterRes(unsigned long, unsigned long) const
 {
 }
 
-void SVGFilterElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGFilterElement::parseMappedAttribute(MappedAttribute *attr)
 {
-    const String& value = attr->value();
+    const String &value = attr->value();
     if (attr->name() == SVGNames::filterUnitsAttr) {
-        if (value == "userSpaceOnUse")
+        if (value == "userSpaceOnUse") {
             setFilterUnitsBaseValue(SVGUnitTypes::SVG_UNIT_TYPE_USERSPACEONUSE);
-        else if (value == "objectBoundingBox")
+        } else if (value == "objectBoundingBox") {
             setFilterUnitsBaseValue(SVGUnitTypes::SVG_UNIT_TYPE_OBJECTBOUNDINGBOX);
+        }
     } else if (attr->name() == SVGNames::primitiveUnitsAttr) {
-        if (value == "userSpaceOnUse")
+        if (value == "userSpaceOnUse") {
             setPrimitiveUnitsBaseValue(SVGUnitTypes::SVG_UNIT_TYPE_USERSPACEONUSE);
-        else if (value == "objectBoundingBox")
+        } else if (value == "objectBoundingBox") {
             setPrimitiveUnitsBaseValue(SVGUnitTypes::SVG_UNIT_TYPE_OBJECTBOUNDINGBOX);
-    } else if (attr->name() == SVGNames::xAttr)
+        }
+    } else if (attr->name() == SVGNames::xAttr) {
         setXBaseValue(SVGLength(this, LengthModeWidth, value));
-    else if (attr->name() == SVGNames::yAttr)
+    } else if (attr->name() == SVGNames::yAttr) {
         setYBaseValue(SVGLength(this, LengthModeHeight, value));
-    else if (attr->name() == SVGNames::widthAttr)
+    } else if (attr->name() == SVGNames::widthAttr) {
         setWidthBaseValue(SVGLength(this, LengthModeWidth, value));
-    else if (attr->name() == SVGNames::heightAttr)
+    } else if (attr->name() == SVGNames::heightAttr) {
         setHeightBaseValue(SVGLength(this, LengthModeHeight, value));
-    else {
-        if (SVGURIReference::parseMappedAttribute(attr)) return;
-        if (SVGLangSpace::parseMappedAttribute(attr)) return;
-        if (SVGExternalResourcesRequired::parseMappedAttribute(attr)) return;
+    } else {
+        if (SVGURIReference::parseMappedAttribute(attr)) {
+            return;
+        }
+        if (SVGLangSpace::parseMappedAttribute(attr)) {
+            return;
+        }
+        if (SVGExternalResourcesRequired::parseMappedAttribute(attr)) {
+            return;
+        }
 
         SVGStyledElement::parseMappedAttribute(attr);
     }
 }
 
-SVGResource* SVGFilterElement::canvasResource()
+SVGResource *SVGFilterElement::canvasResource()
 {
-    if (!attached())
+    if (!attached()) {
         return 0;
+    }
 
-    if (!m_filter)
+    if (!m_filter) {
         m_filter = new SVGResourceFilter();
+    }
 
     bool filterBBoxMode = filterUnits() == SVGUnitTypes::SVG_UNIT_TYPE_OBJECTBOUNDINGBOX;
     m_filter->setFilterBoundingBoxMode(filterBBoxMode);
@@ -129,7 +140,7 @@ SVGResource* SVGFilterElement::canvasResource()
         _y = y().value();
         _width = width().value();
         _height = height().value();
-    } 
+    }
 
     m_filter->setFilterRect(FloatRect(_x, _y, _width, _height));
 
@@ -138,15 +149,17 @@ SVGResource* SVGFilterElement::canvasResource()
 
     // TODO : use switch/case instead?
     m_filter->clearEffects();
-    for (Node* n = firstChild(); n != 0; n = n->nextSibling()) {
-        SVGElement* element = 0;
-        if (n->isSVGElement())
-            element = static_cast<SVGElement*>(n);
+    for (Node *n = firstChild(); n != 0; n = n->nextSibling()) {
+        SVGElement *element = 0;
+        if (n->isSVGElement()) {
+            element = static_cast<SVGElement *>(n);
+        }
         if (element && element->isFilterEffect()) {
-            SVGFilterPrimitiveStandardAttributes* filterAttributes = static_cast<SVGFilterPrimitiveStandardAttributes*>(element);
-            SVGFilterEffect* filterEffect = filterAttributes->filterEffect(m_filter.get());
-            if (!filterEffect)
+            SVGFilterPrimitiveStandardAttributes *filterAttributes = static_cast<SVGFilterPrimitiveStandardAttributes *>(element);
+            SVGFilterEffect *filterEffect = filterAttributes->filterEffect(m_filter.get());
+            if (!filterEffect) {
                 continue;
+            }
 
             m_filter->addFilterEffect(filterEffect);
         }
@@ -159,4 +172,3 @@ SVGResource* SVGFilterElement::canvasResource()
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

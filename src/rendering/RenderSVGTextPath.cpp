@@ -32,9 +32,10 @@
 #include "SVGTextPathElement.h"
 #include "SVGTransformList.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-RenderSVGTextPath::RenderSVGTextPath(DOM::NodeImpl* n)
+RenderSVGTextPath::RenderSVGTextPath(DOM::NodeImpl *n)
     : RenderSVGInline(n)
     , m_startOffset(0.0f)
     , m_exactAlignment(true)
@@ -44,14 +45,15 @@ RenderSVGTextPath::RenderSVGTextPath(DOM::NodeImpl* n)
 
 Path RenderSVGTextPath::layoutPath() const
 {
-    SVGTextPathElement* textPathElement = static_cast<SVGTextPathElement*>(element());
-        String pathId = SVGURIReference::getTarget(textPathElement->href());
-    Element* targetElement = textPathElement->document()->getElementById(pathId);    
-    if (!targetElement || !targetElement->hasTagName(SVGNames::pathTag))
+    SVGTextPathElement *textPathElement = static_cast<SVGTextPathElement *>(element());
+    String pathId = SVGURIReference::getTarget(textPathElement->href());
+    Element *targetElement = textPathElement->document()->getElementById(pathId);
+    if (!targetElement || !targetElement->hasTagName(SVGNames::pathTag)) {
         return Path();
-    
-    SVGPathElement* pathElement = static_cast<SVGPathElement*>(targetElement);
-    
+    }
+
+    SVGPathElement *pathElement = static_cast<SVGPathElement *>(targetElement);
+
     Path pathData = pathElement->toPathData();
     // Spec:  The transform attribute on the referenced 'path' element represents a
     // supplemental transformation relative to the current user coordinate system for
@@ -64,33 +66,34 @@ Path RenderSVGTextPath::layoutPath() const
 
 float RenderSVGTextPath::startOffset() const
 {
-    return static_cast<SVGTextPathElement*>(element())->startOffset().valueAsPercentage();
+    return static_cast<SVGTextPathElement *>(element())->startOffset().valueAsPercentage();
 }
 
 bool RenderSVGTextPath::exactAlignment() const
 {
-    return static_cast<SVGTextPathElement*>(element())->spacing() == SVG_TEXTPATH_SPACINGTYPE_EXACT;
+    return static_cast<SVGTextPathElement *>(element())->spacing() == SVG_TEXTPATH_SPACINGTYPE_EXACT;
 }
 
 bool RenderSVGTextPath::stretchMethod() const
 {
-    return static_cast<SVGTextPathElement*>(element())->method() == SVG_TEXTPATH_METHODTYPE_STRETCH;
+    return static_cast<SVGTextPathElement *>(element())->method() == SVG_TEXTPATH_METHODTYPE_STRETCH;
 }
 
-void RenderSVGTextPath::absoluteRects(Vector<IntRect>& rects, int, int)
+void RenderSVGTextPath::absoluteRects(Vector<IntRect> &rects, int, int)
 {
-    InlineRunBox* firstBox = firstLineBox();
+    InlineRunBox *firstBox = firstLineBox();
 
-    SVGRootInlineBox* rootBox = firstBox ? static_cast<SVGInlineTextBox*>(firstBox)->svgRootInlineBox() : 0;
-    RenderObject* object = rootBox ? rootBox->object() : 0;
+    SVGRootInlineBox *rootBox = firstBox ? static_cast<SVGInlineTextBox *>(firstBox)->svgRootInlineBox() : 0;
+    RenderObject *object = rootBox ? rootBox->object() : 0;
 
-    if (!object)
+    if (!object) {
         return;
+    }
 
     int xRef = object->xPos() + xPos();
     int yRef = object->yPos() + yPos();
 
-    for (InlineRunBox* curr = firstBox; curr; curr = curr->nextLineBox()) {
+    for (InlineRunBox *curr = firstBox; curr; curr = curr->nextLineBox()) {
         FloatRect rect(xRef + curr->xPos(), yRef + curr->yPos(), curr->width(), curr->height());
         rects.append(enclosingIntRect(absoluteTransform().mapRect(rect)));
     }

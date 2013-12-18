@@ -26,22 +26,34 @@
 
 using WebCore::IntSize;
 
-namespace WTF {
+namespace WTF
+{
 
-    template<> struct IntHash<IntSize> {
-        static unsigned hash(const IntSize& key) { return intHash((static_cast<uint64_t>(key.width()) << 32 | key.height())); }
-        static bool equal(const IntSize& a, const IntSize& b) { return a == b; }
+template<> struct IntHash<IntSize> {
+    static unsigned hash(const IntSize &key)
+    {
+        return intHash((static_cast<uint64_t>(key.width()) << 32 | key.height()));
+    }
+    static bool equal(const IntSize &a, const IntSize &b)
+    {
+        return a == b;
+    }
 
-        static const bool safeToCompareToEmptyOrDeleted = true;
-    };
-    template<> struct DefaultHash<IntSize> { typedef IntHash<IntSize> Hash; };
-    
-    template<> struct HashTraits<IntSize> : GenericHashTraits<IntSize> {
-        static const bool emptyValueIsZero = true;
-        static const bool needsDestruction = false;
-        static const bool needsRef = false;
-        static IntSize deletedValue() { return IntSize(-1, -1); }
-    };
+    static const bool safeToCompareToEmptyOrDeleted = true;
+};
+template<> struct DefaultHash<IntSize> {
+    typedef IntHash<IntSize> Hash;
+};
+
+template<> struct HashTraits<IntSize> : GenericHashTraits<IntSize> {
+    static const bool emptyValueIsZero = true;
+    static const bool needsDestruction = false;
+    static const bool needsRef = false;
+    static IntSize deletedValue()
+    {
+        return IntSize(-1, -1);
+    }
+};
 } // namespace WTF
 
 #endif

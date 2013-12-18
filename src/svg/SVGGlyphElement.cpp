@@ -30,11 +30,12 @@
 #include "SVGParserUtilities.h"
 //FIXME khtml #include "SimpleFontData.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 using namespace SVGNames;
 
-SVGGlyphElement::SVGGlyphElement(const QualifiedName& tagName, Document* doc)
+SVGGlyphElement::SVGGlyphElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledElement(tagName, doc)
 {
 }
@@ -45,49 +46,53 @@ SVGGlyphElement::~SVGGlyphElement()
 
 void SVGGlyphElement::insertedIntoDocument()
 {
-    Node* fontNode = parentNode();
+    Node *fontNode = parentNode();
     if (fontNode && fontNode->hasTagName(fontTag)) {
-        if (SVGFontElement* element = static_cast<SVGFontElement*>(fontNode))
+        if (SVGFontElement *element = static_cast<SVGFontElement *>(fontNode)) {
             element->invalidateGlyphCache();
+        }
     }
     SVGStyledElement::insertedIntoDocument();
 }
 
 void SVGGlyphElement::removedFromDocument()
 {
-    Node* fontNode = parentNode();
+    Node *fontNode = parentNode();
     if (fontNode && fontNode->hasTagName(fontTag)) {
-        if (SVGFontElement* element = static_cast<SVGFontElement*>(fontNode))
+        if (SVGFontElement *element = static_cast<SVGFontElement *>(fontNode)) {
             element->invalidateGlyphCache();
+        }
     }
     SVGStyledElement::removedFromDocument();
 }
 
-static inline SVGGlyphIdentifier::ArabicForm parseArabicForm(const AtomicString& value)
+static inline SVGGlyphIdentifier::ArabicForm parseArabicForm(const AtomicString &value)
 {
-    if (value == "medial")
+    if (value == "medial") {
         return SVGGlyphIdentifier::Medial;
-    else if (value == "terminal")
+    } else if (value == "terminal") {
         return SVGGlyphIdentifier::Terminal;
-    else if (value == "isolated")
+    } else if (value == "isolated") {
         return SVGGlyphIdentifier::Isolated;
-    else if (value == "initial")
+    } else if (value == "initial") {
         return SVGGlyphIdentifier::Initial;
+    }
 
     return SVGGlyphIdentifier::None;
 }
 
-static inline SVGGlyphIdentifier::Orientation parseOrientation(const AtomicString& value)
+static inline SVGGlyphIdentifier::Orientation parseOrientation(const AtomicString &value)
 {
-    if (value == "h")
+    if (value == "h") {
         return SVGGlyphIdentifier::Horizontal;
-    else if (value == "v")
+    } else if (value == "v") {
         return SVGGlyphIdentifier::Vertical;
+    }
 
     return SVGGlyphIdentifier::Both;
 }
 
-static inline Path parsePathData(const AtomicString& value)
+static inline Path parsePathData(const AtomicString &value)
 {
     Path result;
     pathFromSVGData(result, value);
@@ -95,31 +100,36 @@ static inline Path parsePathData(const AtomicString& value)
     return result;
 }
 
-void SVGGlyphElement::inheritUnspecifiedAttributes(SVGGlyphIdentifier& identifier, const SVGFontData* svgFontData)
+void SVGGlyphElement::inheritUnspecifiedAttributes(SVGGlyphIdentifier &identifier, const SVGFontData *svgFontData)
 {
-    if (identifier.horizontalAdvanceX == SVGGlyphIdentifier::inheritedValue())
+    if (identifier.horizontalAdvanceX == SVGGlyphIdentifier::inheritedValue()) {
         identifier.horizontalAdvanceX = svgFontData->horizontalAdvanceX();
+    }
 
-    if (identifier.verticalOriginX == SVGGlyphIdentifier::inheritedValue())
+    if (identifier.verticalOriginX == SVGGlyphIdentifier::inheritedValue()) {
         identifier.verticalOriginX = svgFontData->verticalOriginX();
+    }
 
-    if (identifier.verticalOriginY == SVGGlyphIdentifier::inheritedValue())
+    if (identifier.verticalOriginY == SVGGlyphIdentifier::inheritedValue()) {
         identifier.verticalOriginY = svgFontData->verticalOriginY();
+    }
 
-    if (identifier.verticalAdvanceY == SVGGlyphIdentifier::inheritedValue())
+    if (identifier.verticalAdvanceY == SVGGlyphIdentifier::inheritedValue()) {
         identifier.verticalAdvanceY = svgFontData->verticalAdvanceY();
+    }
 }
 
-static inline float parseSVGGlyphAttribute(const SVGElement* element, const WebCore::QualifiedName& name)
+static inline float parseSVGGlyphAttribute(const SVGElement *element, const WebCore::QualifiedName &name)
 {
     AtomicString value(element->getAttribute(name));
-    if (value.isEmpty())
+    if (value.isEmpty()) {
         return SVGGlyphIdentifier::inheritedValue();
+    }
 
     return value.string().string().toFloat();
 }
 
-SVGGlyphIdentifier SVGGlyphElement::buildGenericGlyphIdentifier(const SVGElement* element)
+SVGGlyphIdentifier SVGGlyphElement::buildGenericGlyphIdentifier(const SVGElement *element)
 {
     SVGGlyphIdentifier identifier;
     identifier.pathData = parsePathData(element->getAttribute(dAttr));
@@ -156,8 +166,9 @@ SVGGlyphIdentifier SVGGlyphElement::buildGlyphIdentifier() const
     identifier.arabicForm = parseArabicForm(getAttribute(arabic_formAttr));
 
     String language = getAttribute(langAttr);
-    if (!language.isEmpty())
+    if (!language.isEmpty()) {
         identifier.languages = parseDelimitedString(language, ',');
+    }
 
     return identifier;
 }

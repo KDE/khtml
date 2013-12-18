@@ -38,19 +38,21 @@
 
 using namespace WTF::Unicode;
 
-namespace WebCore {
+namespace WebCore
+{
 
 static inline float convertEmUnitToPixel(float fontSize, float unitsPerEm, float value)
 {
-    if (unitsPerEm == 0.0f)
+    if (unitsPerEm == 0.0f) {
         return 0.0f;
+    }
 
     return value * fontSize / unitsPerEm;
 }
 
-static inline bool isVerticalWritingMode(const SVGRenderStyle* style)
+static inline bool isVerticalWritingMode(const SVGRenderStyle *style)
 {
-    return style->writingMode() == WM_TBRL || style->writingMode() == WM_TB; 
+    return style->writingMode() == WM_TBRL || style->writingMode() == WM_TB;
 }
 
 // Helper functions to determine the arabic character forms (initial, medial, terminal, isolated)
@@ -61,29 +63,30 @@ enum ArabicCharShapingMode {
 };
 
 static const ArabicCharShapingMode s_arabicCharShapingMode[222] = {
-    SRight, SRight, SRight, SRight, SDual , SRight, SDual , SRight, SDual , SDual , SDual , SDual , SDual , SRight,                 /* 0x0622 - 0x062F */
-    SRight, SRight, SRight, SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , SNone , SNone , SNone , SNone , SNone , /* 0x0630 - 0x063F */
-    SNone , SDual , SDual , SDual , SDual , SDual , SDual , SRight, SDual , SDual , SNone , SNone , SNone , SNone , SNone , SNone , /* 0x0640 - 0x064F */
-    SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , /* 0x0650 - 0x065F */
-    SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , /* 0x0660 - 0x066F */
-    SNone , SRight, SRight, SRight, SNone , SRight, SRight, SRight, SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , /* 0x0670 - 0x067F */
-    SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , SRight, SRight, SRight, SRight, SRight, SRight, SRight, SRight, /* 0x0680 - 0x068F */
-    SRight, SRight, SRight, SRight, SRight, SRight, SRight, SRight, SRight, SRight, SDual , SDual , SDual , SDual , SDual , SDual , /* 0x0690 - 0x069F */
-    SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , /* 0x06A0 - 0x06AF */
-    SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , SDual , /* 0x06B0 - 0x06BF */
-    SRight, SDual , SRight, SRight, SRight, SRight, SRight, SRight, SRight, SRight, SRight, SRight, SDual , SRight, SDual , SRight, /* 0x06C0 - 0x06CF */
-    SDual , SDual , SRight, SRight, SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , /* 0x06D0 - 0x06DF */
-    SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , /* 0x06E0 - 0x06EF */
-    SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SNone , SDual , SDual , SDual , SNone , SNone , SNone   /* 0x06F0 - 0x06FF */
+    SRight, SRight, SRight, SRight, SDual, SRight, SDual, SRight, SDual, SDual, SDual, SDual, SDual, SRight,                 /* 0x0622 - 0x062F */
+    SRight, SRight, SRight, SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, SNone, SNone, SNone, SNone, SNone, /* 0x0630 - 0x063F */
+    SNone, SDual, SDual, SDual, SDual, SDual, SDual, SRight, SDual, SDual, SNone, SNone, SNone, SNone, SNone, SNone, /* 0x0640 - 0x064F */
+    SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, /* 0x0650 - 0x065F */
+    SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, /* 0x0660 - 0x066F */
+    SNone, SRight, SRight, SRight, SNone, SRight, SRight, SRight, SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, /* 0x0670 - 0x067F */
+    SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, SRight, SRight, SRight, SRight, SRight, SRight, SRight, SRight, /* 0x0680 - 0x068F */
+    SRight, SRight, SRight, SRight, SRight, SRight, SRight, SRight, SRight, SRight, SDual, SDual, SDual, SDual, SDual, SDual, /* 0x0690 - 0x069F */
+    SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, /* 0x06A0 - 0x06AF */
+    SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, SDual, /* 0x06B0 - 0x06BF */
+    SRight, SDual, SRight, SRight, SRight, SRight, SRight, SRight, SRight, SRight, SRight, SRight, SDual, SRight, SDual, SRight, /* 0x06C0 - 0x06CF */
+    SDual, SDual, SRight, SRight, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, /* 0x06D0 - 0x06DF */
+    SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, /* 0x06E0 - 0x06EF */
+    SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SNone, SDual, SDual, SDual, SNone, SNone, SNone   /* 0x06F0 - 0x06FF */
 };
 
-static inline SVGGlyphIdentifier::ArabicForm processArabicFormDetection(const UChar& curChar, bool& lastCharShapesRight, SVGGlyphIdentifier::ArabicForm* prevForm)
+static inline SVGGlyphIdentifier::ArabicForm processArabicFormDetection(const UChar &curChar, bool &lastCharShapesRight, SVGGlyphIdentifier::ArabicForm *prevForm)
 {
     SVGGlyphIdentifier::ArabicForm curForm;
 
     ArabicCharShapingMode shapingMode = SNone;
-    if (curChar >= 0x0622 && curChar <= 0x06FF)
+    if (curChar >= 0x0622 && curChar <= 0x06FF) {
         shapingMode = s_arabicCharShapingMode[curChar - 0x0622];
+    }
 
     // Use a simple state machine to identify the actual arabic form
     // It depends on the order of the arabic form enum:
@@ -91,20 +94,21 @@ static inline SVGGlyphIdentifier::ArabicForm processArabicFormDetection(const UC
 
     if (lastCharShapesRight && shapingMode == SDual) {
         if (prevForm) {
-            int correctedForm = (int) *prevForm + 1;
+            int correctedForm = (int) * prevForm + 1;
             ASSERT(correctedForm >= SVGGlyphIdentifier::None && correctedForm <= SVGGlyphIdentifier::Medial);
             *prevForm = static_cast<SVGGlyphIdentifier::ArabicForm>(correctedForm);
         }
 
         curForm = SVGGlyphIdentifier::Initial;
-    } else
+    } else {
         curForm = shapingMode == SNone ? SVGGlyphIdentifier::None : SVGGlyphIdentifier::Isolated;
+    }
 
     lastCharShapesRight = shapingMode != SNone;
     return curForm;
 }
 
-static Vector<SVGGlyphIdentifier::ArabicForm> charactersWithArabicForm(const String& input, bool rtl)
+static Vector<SVGGlyphIdentifier::ArabicForm> charactersWithArabicForm(const String &input, bool rtl)
 {
     Vector<SVGGlyphIdentifier::ArabicForm> forms;
     unsigned int length = input.length();
@@ -117,41 +121,46 @@ static Vector<SVGGlyphIdentifier::ArabicForm> charactersWithArabicForm(const Str
         }
     }
 
-    if (!containsArabic)
+    if (!containsArabic) {
         return forms;
+    }
 
     bool lastCharShapesRight = false;
 
     // Start identifying arabic forms
     if (rtl)
-        for (int i = length - 1; i >= 0; --i)
+        for (int i = length - 1; i >= 0; --i) {
             forms.prepend(processArabicFormDetection(input[i], lastCharShapesRight, forms.isEmpty() ? 0 : &forms.first()));
+        }
     else
-        for (unsigned int i = 0; i < length; ++i)
+        for (unsigned int i = 0; i < length; ++i) {
             forms.append(processArabicFormDetection(input[i], lastCharShapesRight, forms.isEmpty() ? 0 : &forms.last()));
+        }
 
     return forms;
 }
 
-static inline bool isCompatibleArabicForm(const SVGGlyphIdentifier& identifier, const Vector<SVGGlyphIdentifier::ArabicForm>& chars, unsigned int startPosition, unsigned int endPosition)
+static inline bool isCompatibleArabicForm(const SVGGlyphIdentifier &identifier, const Vector<SVGGlyphIdentifier::ArabicForm> &chars, unsigned int startPosition, unsigned int endPosition)
 {
-    if (chars.isEmpty())
+    if (chars.isEmpty()) {
         return true;
+    }
 
     Vector<SVGGlyphIdentifier::ArabicForm>::const_iterator it = chars.begin() + startPosition;
     Vector<SVGGlyphIdentifier::ArabicForm>::const_iterator end = chars.begin() + endPosition;
 
     ASSERT(end <= chars.end());
     for (; it != end; ++it) {
-        if ((*it) != identifier.arabicForm && (*it) != SVGGlyphIdentifier::None)
+        if ((*it) != identifier.arabicForm && (*it) != SVGGlyphIdentifier::None) {
             return false;
+        }
     }
 
     return true;
 }
 
-static inline bool isCompatibleGlyph(const SVGGlyphIdentifier& identifier, bool isVerticalText, const String& language,
-                                     const Vector<SVGGlyphIdentifier::ArabicForm>& chars, unsigned int startPosition, unsigned int endPosition)
+static inline bool isCompatibleGlyph(const SVGGlyphIdentifier &identifier, bool isVerticalText, const String &language,
+                                     const Vector<SVGGlyphIdentifier::ArabicForm> &chars, unsigned int startPosition, unsigned int endPosition)
 {
     bool valid = true;
 
@@ -167,22 +176,25 @@ static inline bool isCompatibleGlyph(const SVGGlyphIdentifier& identifier, bool 
         break;
     }
 
-    if (!valid)
+    if (!valid) {
         return false;
+    }
 
     // Check whether languages are compatible
     if (!identifier.languages.isEmpty()) {
         // This glyph exists only in certain languages, if we're not specifying a
         // language on the referencing element we're unable to use this glyph.
-        if (language.isEmpty())
+        if (language.isEmpty()) {
             return false;
+        }
 
         // Split subcode from language, if existent.
         String languagePrefix;
 
         int subCodeSeparator = language.find('-');
-        if (subCodeSeparator != -1)
+        if (subCodeSeparator != -1) {
             languagePrefix = language.left(subCodeSeparator);
+        }
 
         Vector<String>::const_iterator it = identifier.languages.begin();
         Vector<String>::const_iterator end = identifier.languages.end();
@@ -197,20 +209,21 @@ static inline bool isCompatibleGlyph(const SVGGlyphIdentifier& identifier, bool 
             }
         }
 
-        if (!found)
+        if (!found) {
             return false;
+        }
     }
 
     // Check whether arabic form is compatible
     return isCompatibleArabicForm(identifier, chars, startPosition, endPosition);
 }
 
-static inline const SVGFontData* svgFontAndFontFaceElementForFontData(const SimpleFontData* fontData, SVGFontFaceElement*& fontFace, SVGFontElement*& font)
+static inline const SVGFontData *svgFontAndFontFaceElementForFontData(const SimpleFontData *fontData, SVGFontFaceElement *&fontFace, SVGFontElement *&font)
 {
     ASSERT(fontData->isCustomFont());
     ASSERT(fontData->isSVGFont());
 
-    const SVGFontData* svgFontData = static_cast<const SVGFontData*>(fontData->svgFontData());
+    const SVGFontData *svgFontData = static_cast<const SVGFontData *>(fontData->svgFontData());
 
     fontFace = svgFontData->svgFontFaceElement();
     ASSERT(fontFace);
@@ -223,10 +236,10 @@ static inline const SVGFontData* svgFontAndFontFaceElementForFontData(const Simp
 // - also respecting possibly defined ligatures - and invoke a callback for each found glyph.
 template<typename SVGTextRunData>
 struct SVGTextRunWalker {
-    typedef bool (*SVGTextRunWalkerCallback)(const SVGGlyphIdentifier&, SVGTextRunData&);
-    typedef void (*SVGTextRunWalkerMissingGlyphCallback)(const TextRun&, SVGTextRunData&);
+    typedef bool (*SVGTextRunWalkerCallback)(const SVGGlyphIdentifier &, SVGTextRunData &);
+    typedef void (*SVGTextRunWalkerMissingGlyphCallback)(const TextRun &, SVGTextRunData &);
 
-    SVGTextRunWalker(const SVGFontData* fontData, SVGFontElement* fontElement, SVGTextRunData& data,
+    SVGTextRunWalker(const SVGFontData *fontData, SVGFontElement *fontElement, SVGTextRunData &data,
                      SVGTextRunWalkerCallback callback, SVGTextRunWalkerMissingGlyphCallback missingGlyphCallback)
         : m_fontData(fontData)
         , m_fontElement(fontElement)
@@ -236,7 +249,7 @@ struct SVGTextRunWalker {
     {
     }
 
-    void walk(const TextRun& run, bool isVerticalText, const String& language, int from, int to)
+    void walk(const TextRun &run, bool isVerticalText, const String &language, int from, int to)
     {
         // Should hold true for SVG text, otherwhise sth. is wrong
         ASSERT(to - from == run.length());
@@ -250,9 +263,9 @@ struct SVGTextRunWalker {
 
         bool haveAltGlyph = false;
         SVGGlyphIdentifier altGlyphIdentifier;
-        if (RenderObject* renderObject = run.referencingRenderObject()) {
+        if (RenderObject *renderObject = run.referencingRenderObject()) {
             if (renderObject->element() && renderObject->element()->hasTagName(SVGNames::altGlyphTag)) {
-                SVGGlyphElement* glyphElement = static_cast<SVGAltGlyphElement*>(renderObject->element())->glyphElement();
+                SVGGlyphElement *glyphElement = static_cast<SVGAltGlyphElement *>(renderObject->element())->glyphElement();
                 if (glyphElement) {
                     haveAltGlyph = true;
                     altGlyphIdentifier = glyphElement->buildGlyphIdentifier();
@@ -270,14 +283,15 @@ struct SVGTextRunWalker {
 
             String lookupString(run.data(i), characterLookupRange);
             Vector<SVGGlyphIdentifier> glyphs;
-            if (haveAltGlyph)
+            if (haveAltGlyph) {
                 glyphs.append(altGlyphIdentifier);
-            else
+            } else {
                 m_fontElement->getGlyphIdentifiersForString(lookupString, glyphs);
+            }
 
             Vector<SVGGlyphIdentifier>::iterator it = glyphs.begin();
             Vector<SVGGlyphIdentifier>::iterator end = glyphs.end();
-            
+
             for (; it != end; ++it) {
                 identifier = *it;
                 if (identifier.isValid && isCompatibleGlyph(identifier, isVerticalText, language, chars, i, i + identifier.nameLength)) {
@@ -294,7 +308,7 @@ struct SVGTextRunWalker {
 
             if (!foundGlyph) {
                 ++m_walkerData.charsConsumed;
-                if (SVGMissingGlyphElement* element = m_fontElement->firstMissingGlyphElement()) {
+                if (SVGMissingGlyphElement *element = m_fontElement->firstMissingGlyphElement()) {
                     // <missing-glyph> element support
                     identifier = SVGGlyphElement::buildGenericGlyphIdentifier(element);
                     SVGGlyphElement::inheritUnspecifiedAttributes(identifier, m_fontData);
@@ -309,17 +323,18 @@ struct SVGTextRunWalker {
                 }
             }
 
-            if (!(*m_walkerCallback)(identifier, m_walkerData))
+            if (!(*m_walkerCallback)(identifier, m_walkerData)) {
                 break;
+            }
 
             foundGlyph = false;
         }
     }
 
 private:
-    const SVGFontData* m_fontData;
-    SVGFontElement* m_fontElement;
-    SVGTextRunData& m_walkerData;
+    const SVGFontData *m_fontData;
+    SVGFontElement *m_fontElement;
+    SVGTextRunData &m_walkerData;
     SVGTextRunWalkerCallback m_walkerCallback;
     SVGTextRunWalkerMissingGlyphCallback m_walkerMissingGlyphCallback;
 };
@@ -335,19 +350,20 @@ struct SVGTextRunWalkerMeasuredLengthData {
 
     float scale;
     float length;
-    const Font* font;
+    const Font *font;
 };
 
-bool floatWidthUsingSVGFontCallback(const SVGGlyphIdentifier& identifier, SVGTextRunWalkerMeasuredLengthData& data)
+bool floatWidthUsingSVGFontCallback(const SVGGlyphIdentifier &identifier, SVGTextRunWalkerMeasuredLengthData &data)
 {
-    if (data.at >= data.from && data.at < data.to)
+    if (data.at >= data.from && data.at < data.to) {
         data.length += identifier.horizontalAdvanceX * data.scale;
+    }
 
     data.at++;
     return data.at < data.to;
 }
 
-void floatWidthMissingGlyphCallback(const TextRun& run, SVGTextRunWalkerMeasuredLengthData& data)
+void floatWidthMissingGlyphCallback(const TextRun &run, SVGTextRunWalkerMeasuredLengthData &data)
 {
     // Handle system font fallback
     FontDescription fontDescription(data.font->fontDescription());
@@ -358,21 +374,22 @@ void floatWidthMissingGlyphCallback(const TextRun& run, SVGTextRunWalkerMeasured
     data.length += font.floatWidth(run);
 }
 
-
-SVGFontElement* Font::svgFont() const
-{ 
-    if (!isSVGFont())
+SVGFontElement *Font::svgFont() const
+{
+    if (!isSVGFont()) {
         return 0;
+    }
 
-    SVGFontElement* fontElement = 0;
-    SVGFontFaceElement* fontFaceElement = 0;
-    if (svgFontAndFontFaceElementForFontData(primaryFont(), fontFaceElement, fontElement))
+    SVGFontElement *fontElement = 0;
+    SVGFontFaceElement *fontFaceElement = 0;
+    if (svgFontAndFontFaceElementForFontData(primaryFont(), fontFaceElement, fontElement)) {
         return fontElement;
-    
+    }
+
     return 0;
 }
 
-static float floatWidthOfSubStringUsingSVGFont(const Font* font, const TextRun& run, int extraCharsAvailable, int from, int to, int& charsConsumed, String& glyphName)
+static float floatWidthOfSubStringUsingSVGFont(const Font *font, const TextRun &run, int extraCharsAvailable, int from, int to, int &charsConsumed, String &glyphName)
 {
     int newFrom = to > from ? from : to;
     int newTo = to > from ? to : from;
@@ -380,12 +397,13 @@ static float floatWidthOfSubStringUsingSVGFont(const Font* font, const TextRun& 
     from = newFrom;
     to = newTo;
 
-    SVGFontElement* fontElement = 0;
-    SVGFontFaceElement* fontFaceElement = 0;
+    SVGFontElement *fontElement = 0;
+    SVGFontFaceElement *fontFaceElement = 0;
 
-    if (const SVGFontData* fontData = svgFontAndFontFaceElementForFontData(font->primaryFont(), fontFaceElement, fontElement)) {
-        if (!fontElement)
+    if (const SVGFontData *fontData = svgFontAndFontFaceElementForFontData(font->primaryFont(), fontFaceElement, fontElement)) {
+        if (!fontElement) {
             return 0.0f;
+        }
 
         SVGTextRunWalkerMeasuredLengthData data;
 
@@ -402,11 +420,12 @@ static float floatWidthOfSubStringUsingSVGFont(const Font* font, const TextRun& 
         bool isVerticalText = false; // Holds true for HTML text
 
         // TODO: language matching & svg glyphs should be possible for HTML text, too.
-        if (RenderObject* renderObject = run.referencingRenderObject()) {
+        if (RenderObject *renderObject = run.referencingRenderObject()) {
             isVerticalText = isVerticalWritingMode(renderObject->style()->svgStyle());
 
-            if (SVGElement* element = static_cast<SVGElement*>(renderObject->element()))
+            if (SVGElement *element = static_cast<SVGElement *>(renderObject->element())) {
                 language = element->getAttribute(XMLNames::langAttr);
+            }
         }
 
         SVGTextRunWalker<SVGTextRunWalkerMeasuredLengthData> runWalker(fontData, fontElement, data, floatWidthUsingSVGFontCallback, floatWidthMissingGlyphCallback);
@@ -419,14 +438,14 @@ static float floatWidthOfSubStringUsingSVGFont(const Font* font, const TextRun& 
     return 0.0f;
 }
 
-float Font::floatWidthUsingSVGFont(const TextRun& run) const
+float Font::floatWidthUsingSVGFont(const TextRun &run) const
 {
     int charsConsumed;
     String glyphName;
     return floatWidthOfSubStringUsingSVGFont(this, run, 0, 0, run.length(), charsConsumed, glyphName);
 }
 
-float Font::floatWidthUsingSVGFont(const TextRun& run, int extraCharsAvailable, int& charsConsumed, String& glyphName) const
+float Font::floatWidthUsingSVGFont(const TextRun &run, int extraCharsAvailable, int &charsConsumed, String &glyphName) const
 {
     return floatWidthOfSubStringUsingSVGFont(this, run, extraCharsAvailable, 0, run.length(), charsConsumed, glyphName);
 }
@@ -440,41 +459,42 @@ struct SVGTextRunWalkerDrawTextData {
     Vector<UChar> fallbackCharacters;
 };
 
-bool drawTextUsingSVGFontCallback(const SVGGlyphIdentifier& identifier, SVGTextRunWalkerDrawTextData& data)
+bool drawTextUsingSVGFontCallback(const SVGGlyphIdentifier &identifier, SVGTextRunWalkerDrawTextData &data)
 {
     data.glyphIdentifiers.append(identifier);
     return true;
 }
 
-void drawTextMissingGlyphCallback(const TextRun& run, SVGTextRunWalkerDrawTextData& data)
+void drawTextMissingGlyphCallback(const TextRun &run, SVGTextRunWalkerDrawTextData &data)
 {
     ASSERT(run.length() == 1);
     data.glyphIdentifiers.append(SVGGlyphIdentifier());
     data.fallbackCharacters.append(run[0]);
 }
 
-void Font::drawTextUsingSVGFont(GraphicsContext* context, const TextRun& run, 
-                                const FloatPoint& point, int from, int to) const
+void Font::drawTextUsingSVGFont(GraphicsContext *context, const TextRun &run,
+                                const FloatPoint &point, int from, int to) const
 {
-    SVGFontElement* fontElement = 0;
-    SVGFontFaceElement* fontFaceElement = 0;
+    SVGFontElement *fontElement = 0;
+    SVGFontFaceElement *fontFaceElement = 0;
 
-    if (const SVGFontData* fontData = svgFontAndFontFaceElementForFontData(primaryFont(), fontFaceElement, fontElement)) {
-        if (!fontElement)
+    if (const SVGFontData *fontData = svgFontAndFontFaceElementForFontData(primaryFont(), fontFaceElement, fontElement)) {
+        if (!fontElement) {
             return;
+        }
 
         SVGTextRunWalkerDrawTextData data;
         FloatPoint currentPoint = point;
         float scale = convertEmUnitToPixel(size(), fontFaceElement->unitsPerEm(), 1.0f);
 
-        SVGPaintServer* activePaintServer = run.activePaintServer();
+        SVGPaintServer *activePaintServer = run.activePaintServer();
 
         // If renderObject is not set, we're dealing for HTML text rendered using SVG Fonts.
         if (!run.referencingRenderObject()) {
             ASSERT(!activePaintServer);
 
             // TODO: We're only supporting simple filled HTML text so far.
-            SVGPaintServerSolid* solidPaintServer = SVGPaintServer::sharedSolidPaintServer();
+            SVGPaintServerSolid *solidPaintServer = SVGPaintServer::sharedSolidPaintServer();
             solidPaintServer->setColor(context->fillColor());
 
             activePaintServer = solidPaintServer;
@@ -492,10 +512,11 @@ void Font::drawTextUsingSVGFont(GraphicsContext* context, const TextRun& run,
 
         // TODO: language matching & svg glyphs should be possible for HTML text, too.
         if (run.referencingRenderObject()) {
-            isVerticalText = isVerticalWritingMode(run.referencingRenderObject()->style()->svgStyle());    
+            isVerticalText = isVerticalWritingMode(run.referencingRenderObject()->style()->svgStyle());
 
-            if (SVGElement* element = static_cast<SVGElement*>(run.referencingRenderObject()->element()))
+            if (SVGElement *element = static_cast<SVGElement *>(run.referencingRenderObject()->element())) {
                 language = element->getAttribute(XMLNames::langAttr);
+            }
         }
 
         if (!isVerticalText) {
@@ -513,7 +534,7 @@ void Font::drawTextUsingSVGFont(GraphicsContext* context, const TextRun& run,
         unsigned numGlyphs = data.glyphIdentifiers.size();
         unsigned fallbackCharacterIndex = 0;
         for (unsigned i = 0; i < numGlyphs; ++i) {
-            const SVGGlyphIdentifier& identifier = data.glyphIdentifiers[run.rtl() ? numGlyphs - i - 1 : i];
+            const SVGGlyphIdentifier &identifier = data.glyphIdentifiers[run.rtl() ? numGlyphs - i - 1 : i];
             if (identifier.isValid) {
                 // FIXME: Support arbitrary SVG content as glyph (currently limited to <glyph d="..."> situations).
                 if (!identifier.pathData.isEmpty()) {
@@ -534,8 +555,9 @@ void Font::drawTextUsingSVGFont(GraphicsContext* context, const TextRun& run,
                         // Spec: Any properties specified on a text elements which represents a length, such as the
                         // 'stroke-width' property, might produce surprising results since the length value will be
                         // processed in the coordinate system of the glyph. (TODO: What other lengths? miter-limit? dash-offset?)
-                        if (targetType == ApplyToStrokeTargetType && scale != 0.0f)
+                        if (targetType == ApplyToStrokeTargetType && scale != 0.0f) {
                             context->setStrokeThickness(context->strokeThickness() / scale);
+                        }
 
                         activePaintServer->renderPath(context, run.referencingRenderObject(), targetType);
                         activePaintServer->teardown(context, run.referencingRenderObject(), targetType);
@@ -544,10 +566,11 @@ void Font::drawTextUsingSVGFont(GraphicsContext* context, const TextRun& run,
                     context->restore();
                 }
 
-                if (isVerticalText)
+                if (isVerticalText) {
                     currentPoint.move(0.0f, identifier.verticalAdvanceY * scale);
-                else
+                } else {
                     currentPoint.move(identifier.horizontalAdvanceX * scale, 0.0f);
+                }
             } else {
                 // Handle system font fallback
                 FontDescription fontDescription(context->font().fontDescription());
@@ -559,10 +582,11 @@ void Font::drawTextUsingSVGFont(GraphicsContext* context, const TextRun& run,
                 fallbackCharacterRun.setText(&data.fallbackCharacters[run.rtl() ? data.fallbackCharacters.size() - fallbackCharacterIndex - 1 : fallbackCharacterIndex], 1);
                 font.drawText(context, fallbackCharacterRun, currentPoint);
 
-                if (isVerticalText)
+                if (isVerticalText) {
                     currentPoint.move(0.0f, font.floatWidth(fallbackCharacterRun));
-                else
+                } else {
                     currentPoint.move(font.floatWidth(fallbackCharacterRun), 0.0f);
+                }
 
                 fallbackCharacterIndex++;
             }
@@ -570,7 +594,7 @@ void Font::drawTextUsingSVGFont(GraphicsContext* context, const TextRun& run,
     }
 }
 
-FloatRect Font::selectionRectForTextUsingSVGFont(const TextRun& run, const IntPoint& point, int height, int from, int to) const
+FloatRect Font::selectionRectForTextUsingSVGFont(const TextRun &run, const IntPoint &point, int height, int from, int to) const
 {
     int charsConsumed;
     String glyphName;
@@ -579,7 +603,7 @@ FloatRect Font::selectionRectForTextUsingSVGFont(const TextRun& run, const IntPo
                      point.y(), floatWidthOfSubStringUsingSVGFont(this, run, 0, from, to, charsConsumed, glyphName), height);
 }
 
-int Font::offsetForPositionForTextUsingSVGFont(const TextRun&, int position, bool includePartialGlyphs) const
+int Font::offsetForPositionForTextUsingSVGFont(const TextRun &, int position, bool includePartialGlyphs) const
 {
     // TODO: Fix text selection when HTML text is drawn using a SVG Font
     // We need to integrate the SVG text selection code in the offsetForPosition() framework.

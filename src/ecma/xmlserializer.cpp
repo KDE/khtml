@@ -1,4 +1,3 @@
-// -*- c-basic-offset: 2 -*-
 /*
  *  This file is part of the KDE libraries
  *  Copyright (C) 2003 Apple Computer, Inc.
@@ -34,69 +33,69 @@ using namespace KJS;
   serializeToString XMLSerializer::SerializeToString DontDelete|Function 1
 @end
 */
-namespace KJS {
+namespace KJS
+{
 KJS_DEFINE_PROTOTYPE(XMLSerializerProto)
 KJS_IMPLEMENT_PROTOFUNC(XMLSerializerProtoFunc)
-KJS_IMPLEMENT_PROTOTYPE("XMLSerializer", XMLSerializerProto,XMLSerializerProtoFunc, ObjectPrototype)
+KJS_IMPLEMENT_PROTOTYPE("XMLSerializer", XMLSerializerProto, XMLSerializerProtoFunc, ObjectPrototype)
 
-XMLSerializerConstructorImp::XMLSerializerConstructorImp(ExecState* exec)
+XMLSerializerConstructorImp::XMLSerializerConstructorImp(ExecState *exec)
     : JSObject(exec->lexicalInterpreter()->builtinObjectPrototype())
 {
 }
 
 bool XMLSerializerConstructorImp::implementsConstruct() const
 {
-  return true;
+    return true;
 }
 
 JSObject *XMLSerializerConstructorImp::construct(ExecState *exec, const List &)
 {
-  return new XMLSerializer(exec);
+    return new XMLSerializer(exec);
 }
 
 const ClassInfo XMLSerializer::info = { "XMLSerializer", 0, 0, 0 };
 
 XMLSerializer::XMLSerializer(ExecState *exec)
 {
-  setPrototype(XMLSerializerProto::self(exec));
+    setPrototype(XMLSerializerProto::self(exec));
 }
 
 JSValue *XMLSerializerProtoFunc::callAsFunction(ExecState *exec, JSObject *thisObj, const List &args)
 {
-  KJS_CHECK_THIS( XMLSerializer, thisObj );
+    KJS_CHECK_THIS(XMLSerializer, thisObj);
 
-  switch (id) {
-  case XMLSerializer::SerializeToString:
-    {
-      if (args.size() != 1) {
-	return jsUndefined();
-      }
+    switch (id) {
+    case XMLSerializer::SerializeToString: {
+        if (args.size() != 1) {
+            return jsUndefined();
+        }
 
-      if (!args[0]->toObject(exec)->inherits(&DOMNode::info)) {
-	return jsUndefined();
-      }
+        if (!args[0]->toObject(exec)->inherits(&DOMNode::info)) {
+            return jsUndefined();
+        }
 
-      DOM::NodeImpl* node = static_cast<KJS::DOMNode *>(args[0]->toObject(exec))->impl();
+        DOM::NodeImpl *node = static_cast<KJS::DOMNode *>(args[0]->toObject(exec))->impl();
 
-      if (!node) {
-	return jsUndefined();
-      }
+        if (!node) {
+            return jsUndefined();
+        }
 
-      DOMString body;
+        DOMString body;
 
-      try {
-	  body = node->toString();
-      } catch(DOM::DOMException&) {
-	  JSObject *err = Error::create(exec, GeneralError, "Exception serializing document");
-	  exec->setException(err);
-	  return err;
-      }
+        try {
+            body = node->toString();
+        } catch (DOM::DOMException &) {
+            JSObject *err = Error::create(exec, GeneralError, "Exception serializing document");
+            exec->setException(err);
+            return err;
+        }
 
-      return ::getStringOrNull(body);
+        return ::getStringOrNull(body);
     }
-  }
+    }
 
-  return jsUndefined();
+    return jsUndefined();
 }
 
 } // end namespace

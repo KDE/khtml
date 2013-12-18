@@ -28,9 +28,10 @@
 #include "SVGStyledTransformableElement.h"
 #include "SVGTransformList.h"
 
-namespace WebCore {
-    
-RenderSVGTransformableContainer::RenderSVGTransformableContainer(SVGStyledTransformableElement* node)
+namespace WebCore
+{
+
+RenderSVGTransformableContainer::RenderSVGTransformableContainer(SVGStyledTransformableElement *node)
     : RenderSVGContainer(node)
 {
 }
@@ -38,7 +39,7 @@ RenderSVGTransformableContainer::RenderSVGTransformableContainer(SVGStyledTransf
 bool RenderSVGTransformableContainer::calculateLocalTransform()
 {
     AffineTransform oldTransform = m_localTransform;
-    m_localTransform = static_cast<SVGStyledTransformableElement*>(element())->animatedLocalTransform();
+    m_localTransform = static_cast<SVGStyledTransformableElement *>(element())->animatedLocalTransform();
     return (m_localTransform != oldTransform);
 }
 

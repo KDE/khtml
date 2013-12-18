@@ -32,7 +32,8 @@
 #include <khtml_export.h>
 #include <dom/html_element.h>
 
-namespace DOM {
+namespace DOM
+{
 
 class HTMLBaseFontElementImpl;
 class DOMString;
@@ -51,13 +52,15 @@ public:
     HTMLBaseFontElement();
     HTMLBaseFontElement(const HTMLBaseFontElement &other);
     HTMLBaseFontElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLBaseFontElement(HTMLBaseFontElementImpl *impl);
 public:
 
-    HTMLBaseFontElement & operator = (const HTMLBaseFontElement &other);
-    HTMLBaseFontElement & operator = (const Node &other);
+    HTMLBaseFontElement &operator = (const HTMLBaseFontElement &other);
+    HTMLBaseFontElement &operator = (const Node &other);
 
     ~HTMLBaseFontElement();
 
@@ -72,7 +75,7 @@ public:
     /**
      * see color
      */
-    void setColor( const DOMString & );
+    void setColor(const DOMString &);
 
     /**
      * Font face identifier. See the <a
@@ -86,7 +89,7 @@ public:
     /**
      * see face
      */
-    void setFace( const DOMString & );
+    void setFace(const DOMString &);
 
     /**
      * Computed Font size. See the <a
@@ -97,10 +100,10 @@ public:
      */
     long getSize() const;
 
-     /**
-      * see size
-      */
-    void setSize( long );
+    /**
+     * see size
+     */
+    void setSize(long);
 
     /**
      * @deprecated
@@ -113,7 +116,7 @@ public:
      * @deprecated
      */
 #ifndef KDE_NO_DEPRECATED
-    KHTML_DEPRECATED void setSize( const DOMString & );
+    KHTML_DEPRECATED void setSize(const DOMString &);
 #endif
 };
 
@@ -143,11 +146,11 @@ public:
     HTMLCollection();
     HTMLCollection(const HTMLCollection &other);
 protected:
-    HTMLCollection(HTMLCollectionImpl* impl);
+    HTMLCollection(HTMLCollectionImpl *impl);
     HTMLCollection(NodeImpl *base, int type);
 public:
 
-    HTMLCollection & operator = (const HTMLCollection &other);
+    HTMLCollection &operator = (const HTMLCollection &other);
 
     ~HTMLCollection();
 
@@ -169,7 +172,7 @@ public:
      * index is out of range.
      *
      */
-    Node item ( unsigned long index ) const;
+    Node item(unsigned long index) const;
 
     /**
      * This method retrieves a \c Node using a name. It
@@ -187,7 +190,7 @@ public:
      * exists), returns \c null .
      *
      */
-    Node namedItem ( const DOMString &name ) const;
+    Node namedItem(const DOMString &name) const;
 
     /**
      * @internal
@@ -200,7 +203,7 @@ public:
     Node firstItem() const;
     Node nextItem() const;
     // In case of multiple items named the same way
-    Node nextNamedItem( const DOMString &name ) const;
+    Node nextNamedItem(const DOMString &name) const;
 
 protected:
     HTMLCollectionImpl *impl;

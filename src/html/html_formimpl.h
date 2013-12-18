@@ -35,21 +35,23 @@ class QTextCodec;
 
 namespace khtml
 {
-    class RenderFormElement;
-    class RenderTextArea;
-    class RenderSelect;
-    class RenderLineEdit;
-    class RenderRadioButton;
-    class RenderFileButton;
+class RenderFormElement;
+class RenderTextArea;
+class RenderSelect;
+class RenderLineEdit;
+class RenderRadioButton;
+class RenderFileButton;
 
-    typedef QList<QByteArray> encodingList;
+typedef QList<QByteArray> encodingList;
 }
 
-namespace KWallet {
-    class Wallet;
+namespace KWallet
+{
+class Wallet;
 }
 
-namespace DOM {
+namespace DOM
+{
 
 class HTMLFormElement;
 class DOMString;
@@ -69,25 +71,31 @@ public:
 
     virtual void insertedIntoDocument();
     virtual void removedFromDocument();
-    virtual void addId(const DOMString& id);
-    virtual void removeId(const DOMString& id);
+    virtual void addId(const DOMString &id);
+    virtual void removeId(const DOMString &id);
 
     // See "past names map" in HTML5, 4.10.3, "The form element"
-    HTMLGenericFormElementImpl* lookupByPastName(const DOMString& id);
-    void bindPastName(HTMLGenericFormElementImpl* element);
+    HTMLGenericFormElementImpl *lookupByPastName(const DOMString &id);
+    void bindPastName(HTMLGenericFormElementImpl *element);
 
     long length() const;
 
-    QByteArray formData(bool& ok);
+    QByteArray formData(bool &ok);
 
-    DOMString enctype() const { return m_enctype; }
+    DOMString enctype() const
+    {
+        return m_enctype;
+    }
     void setEnctype(const DOMString &);
 
     DOMString target() const;
     DOMString action() const;
-    HTMLCollectionImpl* elements();
+    HTMLCollectionImpl *elements();
 
-    bool autoComplete() const { return m_autocomplete; }
+    bool autoComplete() const
+    {
+        return m_autocomplete;
+    }
     void doAutoFill();
     void walletOpened(KWallet::Wallet *w);
 
@@ -105,20 +113,26 @@ public:
     void submit();
     void reset();
 
-    void setMalformed(bool malformed) { m_malformed = malformed; }
-    bool isMalformed() const { return m_malformed; }
+    void setMalformed(bool malformed)
+    {
+        m_malformed = malformed;
+    }
+    bool isMalformed() const
+    {
+        return m_malformed;
+    }
 
     friend class HTMLFormElement;
     friend class HTMLFormCollectionImpl;
 
 private:
     // Collects nodes that are inside the toGather set in tree order
-    WTF::Vector<HTMLGenericFormElementImpl*> gatherInTreeOrder(NodeImpl* root,
-                                               const WTF::HashSet<NodeImpl*>& toGather);
+    WTF::Vector<HTMLGenericFormElementImpl *> gatherInTreeOrder(NodeImpl *root,
+            const WTF::HashSet<NodeImpl *> &toGather);
 
     void gatherWalletData();
-    QList<HTMLGenericFormElementImpl*> formElements;
-    QList<HTMLImageElementImpl*> imgElements;
+    QList<HTMLGenericFormElementImpl *> formElements;
+    QList<HTMLImageElementImpl *> imgElements;
     DOMString m_target;
     DOMString m_enctype;
     QString m_boundary;
@@ -135,7 +149,7 @@ private:
     DOMString m_name;        // our name
     QMap<QString, QString> m_walletMap; // for wallet storage
 
-    QHash<DOMString, HTMLGenericFormElementImpl*> m_pastNamesMap;
+    QHash<DOMString, HTMLGenericFormElementImpl *> m_pastNamesMap;
 };
 
 // -------------------------------------------------------------------------
@@ -149,7 +163,10 @@ public:
     HTMLGenericFormElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0);
     virtual ~HTMLGenericFormElementImpl();
 
-    HTMLFormElementImpl *form() const { return m_form; }
+    HTMLFormElementImpl *form() const
+    {
+        return m_form;
+    }
 
     virtual void parseAttribute(AttributeImpl *attr);
     virtual void attach();
@@ -161,41 +178,74 @@ public:
     void onSelect();
     void onChange();
 
-    bool disabled() const { return m_disabled; }
+    bool disabled() const
+    {
+        return m_disabled;
+    }
     void setDisabled(bool _disabled);
 
     virtual bool isFocusableImpl(FocusType ft) const;
-    virtual bool isEnumerable() const { return false; }
-    virtual bool isDefault() const { return false; }
+    virtual bool isEnumerable() const
+    {
+        return false;
+    }
+    virtual bool isDefault() const
+    {
+        return false;
+    }
 
-    bool readOnly() const { return m_readOnly; }
-    void setReadOnly(bool _readOnly) { m_readOnly = _readOnly; }
+    bool readOnly() const
+    {
+        return m_readOnly;
+    }
+    void setReadOnly(bool _readOnly)
+    {
+        m_readOnly = _readOnly;
+    }
 
     DOMString name() const;
-    void setName(const DOMString& name);
+    void setName(const DOMString &name);
 
-    virtual bool isGenericFormElement() const { return true; }
-    virtual bool isHiddenInput() const { return false; }
-    
-    bool hasPastNames() const { return m_hasPastNames; }
-    void setHasPastNames() { m_hasPastNames = true; }
+    virtual bool isGenericFormElement() const
+    {
+        return true;
+    }
+    virtual bool isHiddenInput() const
+    {
+        return false;
+    }
+
+    bool hasPastNames() const
+    {
+        return m_hasPastNames;
+    }
+    void setHasPastNames()
+    {
+        m_hasPastNames = true;
+    }
 
     /*
      * override in derived classes to get the encoded name=value pair
      * for submitting
      * return true for a successful control (see HTML4-17.13.2)
      */
-    virtual bool encoding(const QTextCodec*, khtml::encodingList&, bool) { return false; }
+    virtual bool encoding(const QTextCodec *, khtml::encodingList &, bool)
+    {
+        return false;
+    }
 
     virtual void defaultEventHandler(EventImpl *evt);
     virtual bool isEditable();
 
-    virtual bool unsubmittedFormChanges() const { return false; }
+    virtual bool unsubmittedFormChanges() const
+    {
+        return false;
+    }
 
 protected:
     HTMLFormElementImpl *getForm() const;
 
-    DOMStringImpl* m_name;
+    DOMStringImpl *m_name;
     HTMLFormElementImpl *m_form;
     bool m_disabled, m_readOnly, m_hasPastNames;
 };
@@ -216,13 +266,19 @@ public:
     };
 
     virtual Id id() const;
-    virtual bool isEnumerable() const { return true; }
+    virtual bool isEnumerable() const
+    {
+        return true;
+    }
 
     DOMString type() const;
-    typeEnum buttonType() const { return KDE_CAST_BF_ENUM(typeEnum, m_type); }
+    typeEnum buttonType() const
+    {
+        return KDE_CAST_BF_ENUM(typeEnum, m_type);
+    }
     virtual void parseAttribute(AttributeImpl *attr);
     virtual void defaultEventHandler(EventImpl *evt);
-    virtual bool encoding(const QTextCodec*, khtml::encodingList&, bool);
+    virtual bool encoding(const QTextCodec *, khtml::encodingList &, bool);
     void activate();
     virtual void attach();
     void click();
@@ -280,28 +336,58 @@ public:
 
     virtual Id id() const;
 
-    virtual bool isEnumerable() const { return inputType() != IMAGE; }
-    virtual bool isDefault() const { return m_defaultChecked; }
-    virtual bool isHiddenInput() const { return inputType() == HIDDEN; }
+    virtual bool isEnumerable() const
+    {
+        return inputType() != IMAGE;
+    }
+    virtual bool isDefault() const
+    {
+        return m_defaultChecked;
+    }
+    virtual bool isHiddenInput() const
+    {
+        return inputType() == HIDDEN;
+    }
 
-    bool autoComplete() const { return m_autocomplete; }
+    bool autoComplete() const
+    {
+        return m_autocomplete;
+    }
 
-    bool defaultChecked() const { return m_defaultChecked; }
-    bool checked() const { return m_useDefaultChecked ? m_defaultChecked : m_checked; }
+    bool defaultChecked() const
+    {
+        return m_defaultChecked;
+    }
+    bool checked() const
+    {
+        return m_useDefaultChecked ? m_defaultChecked : m_checked;
+    }
     void setChecked(bool, bool setDefaultChecked = false);
-    bool indeterminate() const { return m_indeterminate; }
+    bool indeterminate() const
+    {
+        return m_indeterminate;
+    }
     void setIndeterminate(bool);
-    long maxLength() const { return m_maxLen; }
-    int size() const { return m_size; }
+    long maxLength() const
+    {
+        return m_maxLen;
+    }
+    int size() const
+    {
+        return m_size;
+    }
     DOMString type() const;
-    void setType(const DOMString& t);
+    void setType(const DOMString &t);
 
     DOMString value() const;
     void setValue(DOMString val);
 
     DOMString valueWithDefault() const;
 
-    virtual bool maintainsState() { return true; }
+    virtual bool maintainsState()
+    {
+        return true;
+    }
     virtual QString state();
     virtual void restoreState(const QString &state);
 
@@ -310,17 +396,26 @@ public:
 
     virtual void parseAttribute(AttributeImpl *attr);
 
-    virtual void copyNonAttributeProperties(const ElementImpl* source);
+    virtual void copyNonAttributeProperties(const ElementImpl *source);
 
     virtual void attach();
-    virtual bool encoding(const QTextCodec*, khtml::encodingList&, bool);
+    virtual bool encoding(const QTextCodec *, khtml::encodingList &, bool);
 
-    typeEnum inputType() const { return KDE_CAST_BF_ENUM(typeEnum, m_type); }
+    typeEnum inputType() const
+    {
+        return KDE_CAST_BF_ENUM(typeEnum, m_type);
+    }
     virtual void reset();
 
     // used in case input type=image was clicked.
-    int clickX() const { return xPos; }
-    int clickY() const { return yPos; }
+    int clickX() const
+    {
+        return xPos;
+    }
+    int clickY() const
+    {
+        return yPos;
+    }
 
     virtual void defaultEventHandler(EventImpl *evt);
     virtual bool isEditable();
@@ -328,22 +423,28 @@ public:
     DOMString altText() const;
     void activate();
 
-    void setUnsubmittedFormChange(bool unsubmitted) { m_unsubmittedFormChange = unsubmitted; }
-    virtual bool unsubmittedFormChanges() const { return m_unsubmittedFormChange; }
+    void setUnsubmittedFormChange(bool unsubmitted)
+    {
+        m_unsubmittedFormChange = unsubmitted;
+    }
+    virtual bool unsubmittedFormChanges() const
+    {
+        return m_unsubmittedFormChange;
+    }
 
     //Mozilla extensions.
     long selectionStart();
     long selectionEnd();
     void setSelectionStart(long pos);
-    void setSelectionEnd  (long pos);
+    void setSelectionEnd(long pos);
     void setSelectionRange(long start, long end);
 
     // HTML5
-    void setPlaceholder(const DOMString& p);
+    void setPlaceholder(const DOMString &p);
     DOMString placeholder() const;
 
 protected:
-    void parseType(const DOMString& t);
+    void parseType(const DOMString &t);
 
     DOMString m_value;
     int       xPos;
@@ -352,7 +453,7 @@ protected:
     short     yPos;
 
     KDE_BF_ENUM(typeEnum) m_type : 4;
-    bool m_clicked : 1 ;
+    bool m_clicked : 1;
     bool m_checked : 1;
     bool m_defaultChecked : 1; // could do without by checking ATTR_CHECKED
     bool m_useDefaultChecked : 1;
@@ -376,9 +477,9 @@ public:
     virtual void attach();
     virtual void defaultEventHandler(EventImpl *evt);
     virtual bool isFocusableImpl(FocusType ft) const;
-    NodeImpl* getFormElement();
+    NodeImpl *getFormElement();
 
- private:
+private:
     DOMString m_formElementID;
 };
 
@@ -395,7 +496,6 @@ public:
     virtual void parseAttribute(AttributeImpl *attr);
 };
 
-
 // -------------------------------------------------------------------------
 
 class HTMLSelectElementImpl : public HTMLGenericFormElementImpl
@@ -410,45 +510,60 @@ public:
 
     DOMString type() const;
 
-    HTMLCollectionImpl* options();
+    HTMLCollectionImpl *options();
 
     long selectedIndex() const;
-    void setSelectedIndex( long index );
+    void setSelectedIndex(long index);
 
-    virtual bool isEnumerable() const { return true; }
+    virtual bool isEnumerable() const
+    {
+        return true;
+    }
 
     long length() const;
 
-    long minWidth() const { return m_minwidth; }
+    long minWidth() const
+    {
+        return m_minwidth;
+    }
 
-    long size() const { return m_size; }
+    long size() const
+    {
+        return m_size;
+    }
 
-    bool multiple() const { return m_multiple; }
+    bool multiple() const
+    {
+        return m_multiple;
+    }
 
-    void add ( HTMLElementImpl* element, HTMLElementImpl* before, int& exceptioncode );
+    void add(HTMLElementImpl *element, HTMLElementImpl *before, int &exceptioncode);
     using DOM::NodeImpl::remove;
-    void remove ( long index );
+    void remove(long index);
 
     DOMString value() const;
-    void setValue(DOMStringImpl* value);
+    void setValue(DOMStringImpl *value);
 
-    virtual bool maintainsState() { return true; }
+    virtual bool maintainsState()
+    {
+        return true;
+    }
     virtual QString state();
     virtual void restoreState(const QString &state);
 
-    virtual NodeImpl *insertBefore ( NodeImpl *newChild, NodeImpl *refChild, int &exceptioncode );
-    virtual void      replaceChild ( NodeImpl *newChild, NodeImpl *oldChild, int &exceptioncode );
-    virtual void      removeChild ( NodeImpl *oldChild, int &exceptioncode );
+    virtual NodeImpl *insertBefore(NodeImpl *newChild, NodeImpl *refChild, int &exceptioncode);
+    virtual void      replaceChild(NodeImpl *newChild, NodeImpl *oldChild, int &exceptioncode);
+    virtual void      removeChild(NodeImpl *oldChild, int &exceptioncode);
     virtual void      removeChildren();
-    virtual NodeImpl *appendChild ( NodeImpl *newChild, int &exceptioncode );
-    virtual NodeImpl *addChild( NodeImpl* newChild );
+    virtual NodeImpl *appendChild(NodeImpl *newChild, int &exceptioncode);
+    virtual NodeImpl *addChild(NodeImpl *newChild);
 
     virtual void childrenChanged();
 
     virtual void parseAttribute(AttributeImpl *attr);
 
     virtual void attach();
-    virtual bool encoding(const QTextCodec*, khtml::encodingList&, bool);
+    virtual bool encoding(const QTextCodec *, khtml::encodingList &, bool);
 
     // get the actual listbox index of the optionIndexth option
     int optionToListIndex(int optionIndex) const;
@@ -457,25 +572,27 @@ public:
 
     void setRecalcListItems();
 
-    QVector<HTMLGenericFormElementImpl*> listItems() const
-     {
-         if (m_recalcListItems) const_cast<HTMLSelectElementImpl*>(this)->recalcListItems();
-         return m_listItems;
-     }
+    QVector<HTMLGenericFormElementImpl *> listItems() const
+    {
+        if (m_recalcListItems) {
+            const_cast<HTMLSelectElementImpl *>(this)->recalcListItems();
+        }
+        return m_listItems;
+    }
     virtual void reset();
     void notifyOptionSelected(HTMLOptionElementImpl *selectedOption, bool selected);
 
 private:
     void recalcListItems() const;
-    HTMLOptionElementImpl* firstSelectedItem() const;
+    HTMLOptionElementImpl *firstSelectedItem() const;
 
 protected:
-    mutable QVector<HTMLGenericFormElementImpl*> m_listItems;
+    mutable QVector<HTMLGenericFormElementImpl *> m_listItems;
     short m_minwidth;
     signed short m_size : 15;
     bool m_multiple : 1;
-    mutable bool m_recalcListItems :1;
-    mutable unsigned int   m_length:31;
+    mutable bool m_recalcListItems : 1;
+    mutable unsigned int   m_length: 31;
 };
 
 // -------------------------------------------------------------------------
@@ -490,13 +607,16 @@ public:
     DOMString type() const;
 
     long selectedIndex() const;
-    void setSelectedIndex( long index );
+    void setSelectedIndex(long index);
 
     // ### this is just a rough guess
-    virtual bool isEnumerable() const { return false; }
+    virtual bool isEnumerable() const
+    {
+        return false;
+    }
 
     virtual void parseAttribute(AttributeImpl *attr);
-    virtual bool encoding(const QTextCodec*, khtml::encodingList&, bool);
+    virtual bool encoding(const QTextCodec *, khtml::encodingList &, bool);
 
 };
 
@@ -506,11 +626,10 @@ class HTMLOptGroupElementImpl : public HTMLGenericFormElementImpl
 {
 public:
     HTMLOptGroupElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0)
-		: HTMLGenericFormElementImpl(doc, f) {}
+        : HTMLGenericFormElementImpl(doc, f) {}
 
     virtual Id id() const;
 };
-
 
 // ---------------------------------------------------------------------------
 
@@ -527,20 +646,26 @@ public:
     DOMString text() const;
 
     long index() const;
-    void setIndex( long );
+    void setIndex(long);
     virtual void parseAttribute(AttributeImpl *attr);
     DOMString value() const;
-    void setValue(DOMStringImpl* value);
+    void setValue(DOMStringImpl *value);
 
-    virtual bool isDefault() const { return m_defaultSelected; }    
+    virtual bool isDefault() const
+    {
+        return m_defaultSelected;
+    }
 
-	// For internal use --- just returns the bit
-    bool selectedBit() const { return m_selected; }
+    // For internal use --- just returns the bit
+    bool selectedBit() const
+    {
+        return m_selected;
+    }
 
-	// DOM use --- may recompute information of a parent <select>
-	bool selected() const;
+    // DOM use --- may recompute information of a parent <select>
+    bool selected() const;
     void setSelected(bool _selected);
-    void setDefaultSelected( bool _defaultSelected );
+    void setDefaultSelected(bool _defaultSelected);
 
     HTMLSelectElementImpl *getSelect() const;
 
@@ -549,7 +674,6 @@ protected:
     bool m_selected;
     bool m_defaultSelected;
 };
-
 
 // -------------------------------------------------------------------------
 
@@ -570,25 +694,40 @@ public:
     virtual Id id() const;
     virtual void childrenChanged();
 
-    long cols() const { return m_cols; }
+    long cols() const
+    {
+        return m_cols;
+    }
 
-    long rows() const { return m_rows; }
+    long rows() const
+    {
+        return m_rows;
+    }
 
-    WrapMethod wrap() const { return m_wrap; }
+    WrapMethod wrap() const
+    {
+        return m_wrap;
+    }
 
-    virtual bool isEnumerable() const { return true; }
+    virtual bool isEnumerable() const
+    {
+        return true;
+    }
 
     DOMString type() const;
 
-    virtual bool maintainsState() { return true; }
+    virtual bool maintainsState()
+    {
+        return true;
+    }
     virtual QString state();
     virtual void restoreState(const QString &state);
 
-    void select (  );
+    void select();
 
     virtual void parseAttribute(AttributeImpl *attr);
     virtual void attach();
-    virtual bool encoding(const QTextCodec*, khtml::encodingList&, bool);
+    virtual bool encoding(const QTextCodec *, khtml::encodingList &, bool);
     virtual void reset();
     DOMString value();
     void setValue(DOMString _value);
@@ -596,19 +735,25 @@ public:
     void setDefaultValue(DOMString _defaultValue);
 
     virtual bool isEditable();
-    void setUnsubmittedFormChange(bool unsubmitted) { m_unsubmittedFormChange = unsubmitted; }
-    virtual bool unsubmittedFormChanges() const { return m_unsubmittedFormChange; }
+    void setUnsubmittedFormChange(bool unsubmitted)
+    {
+        m_unsubmittedFormChange = unsubmitted;
+    }
+    virtual bool unsubmittedFormChanges() const
+    {
+        return m_unsubmittedFormChange;
+    }
 
     //Mozilla extensions.
     long selectionStart();
     long selectionEnd();
     void setSelectionStart(long pos);
-    void setSelectionEnd  (long pos);
+    void setSelectionEnd(long pos);
     void setSelectionRange(long start, long end);
     long textLength();
 
     // HTML5
-    void setPlaceholder(const DOMString& p);
+    void setPlaceholder(const DOMString &p);
     DOMString placeholder() const;
 
 protected:
@@ -633,9 +778,8 @@ public:
     virtual void parseAttribute(AttributeImpl *attr);
 
     DOMString prompt() const;
-    void setPrompt(const DOMString& _value);
+    void setPrompt(const DOMString &_value);
 };
-
 
 } //namespace
 

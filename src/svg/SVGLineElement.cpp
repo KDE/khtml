@@ -30,9 +30,10 @@
 #include "SVGLength.h"
 #include "SVGNames.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGLineElement::SVGLineElement(const QualifiedName& tagName, Document* doc)
+SVGLineElement::SVGLineElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledTransformableElement(tagName, doc)
     , SVGTests()
     , SVGLangSpace()
@@ -53,42 +54,46 @@ ANIMATED_PROPERTY_DEFINITIONS(SVGLineElement, SVGLength, Length, length, Y1, y1,
 ANIMATED_PROPERTY_DEFINITIONS(SVGLineElement, SVGLength, Length, length, X2, x2, SVGNames::x2Attr, m_x2)
 ANIMATED_PROPERTY_DEFINITIONS(SVGLineElement, SVGLength, Length, length, Y2, y2, SVGNames::y2Attr, m_y2)
 
-void SVGLineElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGLineElement::parseMappedAttribute(MappedAttribute *attr)
 {
-    if (attr->name() == SVGNames::x1Attr)
+    if (attr->name() == SVGNames::x1Attr) {
         setX1BaseValue(SVGLength(this, LengthModeWidth, attr->value()));
-    else if (attr->name() == SVGNames::y1Attr)
+    } else if (attr->name() == SVGNames::y1Attr) {
         setY1BaseValue(SVGLength(this, LengthModeHeight, attr->value()));
-    else if (attr->name() == SVGNames::x2Attr)
+    } else if (attr->name() == SVGNames::x2Attr) {
         setX2BaseValue(SVGLength(this, LengthModeWidth, attr->value()));
-    else if (attr->name() == SVGNames::y2Attr)
+    } else if (attr->name() == SVGNames::y2Attr) {
         setY2BaseValue(SVGLength(this, LengthModeHeight, attr->value()));
-    else
-    {
-        if (SVGTests::parseMappedAttribute(attr))
+    } else {
+        if (SVGTests::parseMappedAttribute(attr)) {
             return;
-        if (SVGLangSpace::parseMappedAttribute(attr))
+        }
+        if (SVGLangSpace::parseMappedAttribute(attr)) {
             return;
-        if (SVGExternalResourcesRequired::parseMappedAttribute(attr))
+        }
+        if (SVGExternalResourcesRequired::parseMappedAttribute(attr)) {
             return;
+        }
         SVGStyledTransformableElement::parseMappedAttribute(attr);
     }
 }
 
-void SVGLineElement::svgAttributeChanged(const QualifiedName& attrName)
+void SVGLineElement::svgAttributeChanged(const QualifiedName &attrName)
 {
     SVGStyledTransformableElement::svgAttributeChanged(attrName);
 
-    if (!renderer())
+    if (!renderer()) {
         return;
+    }
 
     if (attrName == SVGNames::x1Attr || attrName == SVGNames::y1Attr ||
-        attrName == SVGNames::x2Attr || attrName == SVGNames::y2Attr ||
-        SVGTests::isKnownAttribute(attrName) ||
-        SVGLangSpace::isKnownAttribute(attrName) ||
-        SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
-        SVGStyledTransformableElement::isKnownAttribute(attrName))
+            attrName == SVGNames::x2Attr || attrName == SVGNames::y2Attr ||
+            SVGTests::isKnownAttribute(attrName) ||
+            SVGLangSpace::isKnownAttribute(attrName) ||
+            SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
+            SVGStyledTransformableElement::isKnownAttribute(attrName)) {
         renderer()->setNeedsLayout(true);
+    }
 }
 
 Path SVGLineElement::toPathData() const

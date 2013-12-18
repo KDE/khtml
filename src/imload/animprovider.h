@@ -29,7 +29,8 @@
 
 class QPainter;
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 class PixmapPlane;
 class Image;
@@ -42,30 +43,30 @@ class Image;
 class AnimProvider
 {
 protected:
-    PixmapPlane* frame0;
-    PixmapPlane* curFrame;
-    Image*       image;
+    PixmapPlane *frame0;
+    PixmapPlane *curFrame;
+    Image       *image;
     bool         shouldSwitchFrame; //Set by AnimTimer
     KHTMLSettings::KAnimationAdvice animationAdvice;
 
     void nextFrame(); //Helper that goes to next frame or wraps around
 public:
-    AnimProvider(PixmapPlane* plane, Image* img):frame0(plane), curFrame(plane),
-                                     image(img), shouldSwitchFrame(false),
-                                     animationAdvice(KHTMLSettings::KAnimationEnabled)
+    AnimProvider(PixmapPlane *plane, Image *img): frame0(plane), curFrame(plane),
+        image(img), shouldSwitchFrame(false),
+        animationAdvice(KHTMLSettings::KAnimationEnabled)
     {}
 
     void switchFrame();
-    
+
     virtual ~AnimProvider();
 
     //Must be implemented to create animation provider for the given
     //plane describing the same animation
-    virtual AnimProvider* clone(PixmapPlane* newParentPlane) = 0;
+    virtual AnimProvider *clone(PixmapPlane *newParentPlane) = 0;
 
     //Must be implemented to paint the given region. Note that clipping to the
     //overall canvas will be performed already
-    virtual void paint(int dx, int dy, QPainter* p, int sx, int sy, int width, int height) = 0;
+    virtual void paint(int dx, int dy, QPainter *p, int sx, int sy, int width, int height) = 0;
 
     /**
      Enables or disables animations
@@ -76,4 +77,3 @@ public:
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

@@ -28,12 +28,13 @@ class QImage;
 
 #include "image.h"
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 /**
   A CanvasImage encapsulates a QImage that will be painted on externally,
   in order to permit scaling of it.  When drawing happens, however, the client must call the
-  contentUpdated() method to avoid out-of-date data being painted. 
+  contentUpdated() method to avoid out-of-date data being painted.
  */
 class CanvasImage : public Image
 {
@@ -44,11 +45,10 @@ public:
 private:
     void setupOriginalPlane(int width, int height);
     void flushAllCaches();
-    static ImageOwner* trivialOwner();
-    static ImageOwner* s_trivialOwner;
+    static ImageOwner *trivialOwner();
+    static ImageOwner *s_trivialOwner;
 };
 
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

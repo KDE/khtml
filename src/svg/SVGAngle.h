@@ -28,55 +28,60 @@
 #include "wtf/RefCounted.h"
 #include "SVGNames.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGStyledElement;
+class SVGStyledElement;
 
-    class SVGAngle : public RefCounted<SVGAngle> {
-    public:
-        SVGAngle();
-        virtual ~SVGAngle();
-        
-        enum SVGAngleType {
-            SVG_ANGLETYPE_UNKNOWN           = 0,
-            SVG_ANGLETYPE_UNSPECIFIED       = 1,
-            SVG_ANGLETYPE_DEG               = 2,
-            SVG_ANGLETYPE_RAD               = 3,
-            SVG_ANGLETYPE_GRAD              = 4
-        };
+class SVGAngle : public RefCounted<SVGAngle>
+{
+public:
+    SVGAngle();
+    virtual ~SVGAngle();
 
-        SVGAngleType unitType() const;
-
-        void setValue(float);
-        float value() const; 
-
-        void setValueInSpecifiedUnits(float valueInSpecifiedUnits);
-        float valueInSpecifiedUnits() const;
-
-        void setValueAsString(const String&);
-        String valueAsString() const;
-
-        void newValueSpecifiedUnits(unsigned short unitType, float valueInSpecifiedUnits);
-        void convertToSpecifiedUnits(unsigned short unitType);
-
-        // Helpers
-        static double todeg(double rad);
-        static double torad(double deg);
-
-        // Returns the angle that divides the shortest arc between the two angles.
-        static double shortestArcBisector(double angle1, double angle2);
-
-        // Throughout SVG 1.1 'SVGAngle' is only used for 'SVGMarkerElement' (orient-angle)
-        const QualifiedName& associatedAttributeName() const { return SVGNames::orientAttr; }
-
-    private:
-        SVGAngleType m_unitType;
-        float m_value;
-        float m_valueInSpecifiedUnits;
-        mutable String m_valueAsString;
-
-        void calculate();
+    enum SVGAngleType {
+        SVG_ANGLETYPE_UNKNOWN           = 0,
+        SVG_ANGLETYPE_UNSPECIFIED       = 1,
+        SVG_ANGLETYPE_DEG               = 2,
+        SVG_ANGLETYPE_RAD               = 3,
+        SVG_ANGLETYPE_GRAD              = 4
     };
+
+    SVGAngleType unitType() const;
+
+    void setValue(float);
+    float value() const;
+
+    void setValueInSpecifiedUnits(float valueInSpecifiedUnits);
+    float valueInSpecifiedUnits() const;
+
+    void setValueAsString(const String &);
+    String valueAsString() const;
+
+    void newValueSpecifiedUnits(unsigned short unitType, float valueInSpecifiedUnits);
+    void convertToSpecifiedUnits(unsigned short unitType);
+
+    // Helpers
+    static double todeg(double rad);
+    static double torad(double deg);
+
+    // Returns the angle that divides the shortest arc between the two angles.
+    static double shortestArcBisector(double angle1, double angle2);
+
+    // Throughout SVG 1.1 'SVGAngle' is only used for 'SVGMarkerElement' (orient-angle)
+    const QualifiedName &associatedAttributeName() const
+    {
+        return SVGNames::orientAttr;
+    }
+
+private:
+    SVGAngleType m_unitType;
+    float m_value;
+    float m_valueInSpecifiedUnits;
+    mutable String m_valueAsString;
+
+    void calculate();
+};
 
 } // namespace WebCore
 

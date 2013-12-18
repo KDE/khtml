@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef HTMLSourceElement_h
@@ -28,11 +28,13 @@
 
 #include "HTMLElement.h"
 
-namespace khtml {
+namespace khtml
+{
 
-class HTMLSourceElement : public HTMLElement {
+class HTMLSourceElement : public HTMLElement
+{
 public:
-    HTMLSourceElement(Document*);
+    HTMLSourceElement(Document *);
     virtual ~HTMLSourceElement();
 
     virtual Id id() const;
@@ -40,9 +42,9 @@ public:
     DOMString src() const;
     DOMString media() const;
     DOMString type() const;
-    void setSrc(const DOMString&);    
-    void setMedia(const DOMString&);
-    void setType(const DOMString&);
+    void setSrc(const DOMString &);
+    void setMedia(const DOMString &);
+    void setType(const DOMString &);
 };
 
 } //namespace

@@ -28,13 +28,13 @@
 #include "khtml_ext.h"
 #include <QImage>
 
-KHTMLRun::KHTMLRun( KHTMLPart *part, khtml::ChildFrame *child, const QUrl &url,
-                    const KParts::OpenUrlArguments& args,
-                    const KParts::BrowserArguments &browserArgs,
-                    bool hideErrorDialog )
-    : KParts::BrowserRun( url, args, browserArgs, part, part->widget() ? part->widget()->topLevelWidget() : 0,
-                          false, false, hideErrorDialog ),
-  m_child( child )
+KHTMLRun::KHTMLRun(KHTMLPart *part, khtml::ChildFrame *child, const QUrl &url,
+                   const KParts::OpenUrlArguments &args,
+                   const KParts::BrowserArguments &browserArgs,
+                   bool hideErrorDialog)
+    : KParts::BrowserRun(url, args, browserArgs, part, part->widget() ? part->widget()->topLevelWidget() : 0,
+                         false, false, hideErrorDialog),
+    m_child(child)
 {
     // Don't use an external browser for parts of a webpage we are rendering. (iframes at least are one example)
     setEnableExternalBrowser(false);
@@ -46,26 +46,28 @@ KHTMLRun::KHTMLRun( KHTMLPart *part, khtml::ChildFrame *child, const QUrl &url,
 //KHTMLPart *KHTMLRun::htmlPart() const
 //{ return static_cast<KHTMLPart *>(part()); }
 
-void KHTMLRun::foundMimeType( const QString &_type )
+void KHTMLRun::foundMimeType(const QString &_type)
 {
     //qDebug() << this << _type;
     Q_ASSERT(!hasFinished());
     QString mimeType = _type; // this ref comes from the job, we lose it when using KIO again
 
-    bool requestProcessed = static_cast<KHTMLPart *>(part())->processObjectRequest( m_child, KRun::url(), mimeType );
+    bool requestProcessed = static_cast<KHTMLPart *>(part())->processObjectRequest(m_child, KRun::url(), mimeType);
 
-    if ( requestProcessed )
-        setFinished( true );
-    else {
-        if ( hasFinished() ) // abort was called (this happens with the activex fallback for instance)
+    if (requestProcessed) {
+        setFinished(true);
+    } else {
+        if (hasFinished()) { // abort was called (this happens with the activex fallback for instance)
             return;
+        }
         // Couldn't embed -> call BrowserRun::handleNonEmbeddable()
         KService::Ptr selectedService;
-        KParts::BrowserRun::NonEmbeddableResult res = handleNonEmbeddable( mimeType, &selectedService );
-        if ( res == KParts::BrowserRun::Delayed )
+        KParts::BrowserRun::NonEmbeddableResult res = handleNonEmbeddable(mimeType, &selectedService);
+        if (res == KParts::BrowserRun::Delayed) {
             return;
-        setFinished( res == KParts::BrowserRun::Handled );
-        if ( hasFinished() ) { // saved or canceled -> flag completed
+        }
+        setFinished(res == KParts::BrowserRun::Handled);
+        if (hasFinished()) {   // saved or canceled -> flag completed
             m_child->m_bCompleted = true;
             static_cast<KHTMLPart *>(part())->checkCompleted();
         } else {
@@ -79,28 +81,28 @@ void KHTMLRun::foundMimeType( const QString &_type )
         }
     }
 
-    if ( hasFinished() ) {
+    if (hasFinished()) {
         // qDebug() << "finished";
         return;
     }
 
     //qDebug() << _type << " couldn't open";
-    KRun::foundMimeType( mimeType );
+    KRun::foundMimeType(mimeType);
 
     // "open" is finished -> flag completed
     m_child->m_bCompleted = true;
     static_cast<KHTMLPart *>(part())->checkCompleted();
 }
 
-void KHTMLRun::handleError(KJob*)
+void KHTMLRun::handleError(KJob *)
 {
     // Tell KHTML that loading failed.
-    static_cast<KHTMLPart *>(part())->processObjectRequest( m_child, QUrl(), QString() );
+    static_cast<KHTMLPart *>(part())->processObjectRequest(m_child, QUrl(), QString());
     setJob(0);
 }
 
-void KHTMLRun::save(const QUrl & url, const QString & suggestedFilename)
+void KHTMLRun::save(const QUrl &url, const QString &suggestedFilename)
 {
-    KHTMLPopupGUIClient::saveURL( part()->widget(), i18n( "Save As" ), url, arguments().metaData(), QString(), 0, suggestedFilename );
+    KHTMLPopupGUIClient::saveURL(part()->widget(), i18n("Save As"), url, arguments().metaData(), QString(), 0, suggestedFilename);
 }
 

@@ -29,9 +29,10 @@
 #include "SVGLength.h"
 #include "SVGNames.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGRectElement::SVGRectElement(const QualifiedName& tagName, Document *doc)
+SVGRectElement::SVGRectElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledTransformableElement(tagName, doc)
     , SVGTests()
     , SVGLangSpace()
@@ -56,55 +57,64 @@ ANIMATED_PROPERTY_DEFINITIONS(SVGRectElement, SVGLength, Length, length, Height,
 ANIMATED_PROPERTY_DEFINITIONS(SVGRectElement, SVGLength, Length, length, Rx, rx, SVGNames::rxAttr, m_rx)
 ANIMATED_PROPERTY_DEFINITIONS(SVGRectElement, SVGLength, Length, length, Ry, ry, SVGNames::ryAttr, m_ry)
 
-void SVGRectElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGRectElement::parseMappedAttribute(MappedAttribute *attr)
 {
     // qDebug() << "called with" << attr->localName() << attr->value() << endl;
-    if (attr->name() == SVGNames::xAttr)
+    if (attr->name() == SVGNames::xAttr) {
         setXBaseValue(SVGLength(this, LengthModeWidth, attr->value()));
-    else if (attr->name() == SVGNames::yAttr)
+    } else if (attr->name() == SVGNames::yAttr) {
         setYBaseValue(SVGLength(this, LengthModeHeight, attr->value()));
-    else if (attr->name() == SVGNames::rxAttr) {
+    } else if (attr->name() == SVGNames::rxAttr) {
         setRxBaseValue(SVGLength(this, LengthModeWidth, attr->value()));
-        if (rx().value() < 0.0)
+        if (rx().value() < 0.0) {
             document()->accessSVGExtensions()->reportError("A negative value for rect <rx> is not allowed");
+        }
     } else if (attr->name() == SVGNames::ryAttr) {
         setRyBaseValue(SVGLength(this, LengthModeHeight, attr->value()));
-        if (ry().value() < 0.0)
+        if (ry().value() < 0.0) {
             document()->accessSVGExtensions()->reportError("A negative value for rect <ry> is not allowed");
+        }
     } else if (attr->name() == SVGNames::widthAttr) {
         setWidthBaseValue(SVGLength(this, LengthModeWidth, attr->value()));
-        if (width().value() < 0.0)
+        if (width().value() < 0.0) {
             document()->accessSVGExtensions()->reportError("A negative value for rect <width> is not allowed");
+        }
     } else if (attr->name() == SVGNames::heightAttr) {
         setHeightBaseValue(SVGLength(this, LengthModeHeight, attr->value()));
-        if (height().value() < 0.0)
+        if (height().value() < 0.0) {
             document()->accessSVGExtensions()->reportError("A negative value for rect <height> is not allowed");
+        }
     } else {
-        if (SVGTests::parseMappedAttribute(attr))
+        if (SVGTests::parseMappedAttribute(attr)) {
             return;
-        if (SVGLangSpace::parseMappedAttribute(attr))
+        }
+        if (SVGLangSpace::parseMappedAttribute(attr)) {
             return;
-        if (SVGExternalResourcesRequired::parseMappedAttribute(attr))
+        }
+        if (SVGExternalResourcesRequired::parseMappedAttribute(attr)) {
             return;
+        }
         SVGStyledTransformableElement::parseMappedAttribute(attr);
     }
 }
 
-void SVGRectElement::svgAttributeChanged(const QualifiedName& attrName)
+void SVGRectElement::svgAttributeChanged(const QualifiedName &attrName)
 {
     SVGStyledTransformableElement::svgAttributeChanged(attrName);
 
-    if (!renderer())
+    if (!renderer()) {
         return;
+    }
 
     if (attrName == SVGNames::xAttr || attrName == SVGNames::yAttr ||
-        attrName == SVGNames::widthAttr || attrName == SVGNames::heightAttr ||
-        attrName == SVGNames::rxAttr || attrName == SVGNames::ryAttr ||
-        SVGTests::isKnownAttribute(attrName) ||
-        SVGLangSpace::isKnownAttribute(attrName) ||
-        SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
-        SVGStyledTransformableElement::isKnownAttribute(attrName))
+            attrName == SVGNames::widthAttr || attrName == SVGNames::heightAttr ||
+            attrName == SVGNames::rxAttr || attrName == SVGNames::ryAttr ||
+            SVGTests::isKnownAttribute(attrName) ||
+            SVGLangSpace::isKnownAttribute(attrName) ||
+            SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
+            SVGStyledTransformableElement::isKnownAttribute(attrName)) {
         renderer()->setNeedsLayout(true);
+    }
 }
 
 Path SVGRectElement::toPathData() const

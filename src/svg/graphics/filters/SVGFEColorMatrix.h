@@ -26,7 +26,8 @@
 #include "SVGFilterEffect.h"
 #include "SVGRenderTreeAsText.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 enum SVGColorMatrixType {
     SVG_FECOLORMATRIX_TYPE_UNKNOWN          = 0,
@@ -36,20 +37,21 @@ enum SVGColorMatrixType {
     SVG_FECOLORMATRIX_TYPE_LUMINANCETOALPHA = 4
 };
 
-class SVGFEColorMatrix : public SVGFilterEffect {
+class SVGFEColorMatrix : public SVGFilterEffect
+{
 public:
-    SVGFEColorMatrix(SVGResourceFilter*);
+    SVGFEColorMatrix(SVGResourceFilter *);
 
     SVGColorMatrixType type() const;
     void setType(SVGColorMatrixType);
 
-    const Vector<float>& values() const;
-    void setValues(const Vector<float>&);
+    const Vector<float> &values() const;
+    void setValues(const Vector<float> &);
 
-    virtual TextStream& externalRepresentation(TextStream&) const;
+    virtual TextStream &externalRepresentation(TextStream &) const;
 
 #if PLATFORM(CI)
-    virtual CIFilter* getCIFilter(const FloatRect& bbox) const;
+    virtual CIFilter *getCIFilter(const FloatRect &bbox) const;
 #endif
 
 private:

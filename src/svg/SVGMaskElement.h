@@ -30,46 +30,54 @@
 #include "SVGTests.h"
 #include "SVGURIReference.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGLength;
+class SVGLength;
 
-    class SVGMaskElement : public SVGStyledLocatableElement,
-                           public SVGURIReference,
-                           public SVGTests,
-                           public SVGLangSpace,
-                           public SVGExternalResourcesRequired {
-    public:
-        SVGMaskElement(const QualifiedName&, Document*);
-        virtual ~SVGMaskElement();
-        virtual bool isValid() const { return SVGTests::isValid(); }
+class SVGMaskElement : public SVGStyledLocatableElement,
+    public SVGURIReference,
+    public SVGTests,
+    public SVGLangSpace,
+    public SVGExternalResourcesRequired
+{
+public:
+    SVGMaskElement(const QualifiedName &, Document *);
+    virtual ~SVGMaskElement();
+    virtual bool isValid() const
+    {
+        return SVGTests::isValid();
+    }
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual void svgAttributeChanged(const QualifiedName&);
-        virtual void childrenChanged(bool changedByParser = false, Node* beforeChange = 0, Node* afterChange = 0, int childCountDelta = 0);
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual void svgAttributeChanged(const QualifiedName &);
+    virtual void childrenChanged(bool changedByParser = false, Node *beforeChange = 0, Node *afterChange = 0, int childCountDelta = 0);
 
-        virtual RenderObject* createRenderer(RenderArena*, RenderStyle*);
-        virtual SVGResource* canvasResource();
+    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
+    virtual SVGResource *canvasResource();
 
-        std::auto_ptr<ImageBuffer> drawMaskerContent(const FloatRect& targetRect, FloatRect& maskRect) const;
+    std::auto_ptr<ImageBuffer> drawMaskerContent(const FloatRect &targetRect, FloatRect &maskRect) const;
 
-    protected:
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
-            
-        ANIMATED_PROPERTY_DECLARATIONS(SVGMaskElement, int, int, MaskUnits, maskUnits)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGMaskElement, int, int, MaskContentUnits, maskContentUnits)
- 
-        ANIMATED_PROPERTY_DECLARATIONS(SVGMaskElement, SVGLength, SVGLength, X, x)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGMaskElement, SVGLength, SVGLength, Y, y)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGMaskElement, SVGLength, SVGLength, Width, width)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGMaskElement, SVGLength, SVGLength, Height, height)
+protected:
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
 
-        virtual const SVGElement* contextElement() const { return this; }
+    ANIMATED_PROPERTY_DECLARATIONS(SVGMaskElement, int, int, MaskUnits, maskUnits)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGMaskElement, int, int, MaskContentUnits, maskContentUnits)
 
-    private:
-        RefPtr<SVGResourceMasker> m_masker;
-    };
+    ANIMATED_PROPERTY_DECLARATIONS(SVGMaskElement, SVGLength, SVGLength, X, x)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGMaskElement, SVGLength, SVGLength, Y, y)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGMaskElement, SVGLength, SVGLength, Width, width)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGMaskElement, SVGLength, SVGLength, Height, height)
+
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
+
+private:
+    RefPtr<SVGResourceMasker> m_masker;
+};
 
 } // namespace WebCore
 

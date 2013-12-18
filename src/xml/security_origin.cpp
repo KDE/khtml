@@ -32,43 +32,47 @@
 
 #include <kprotocolinfo.h>
 
-namespace khtml {
+namespace khtml
+{
 
-static bool isDefaultPortForProtocol(unsigned short port, const QString& proto)
+static bool isDefaultPortForProtocol(unsigned short port, const QString &proto)
 {
     return (port == 80  && proto == QLatin1String("http")) ||
            (port == 443 && proto == QLatin1String("https"));
 }
 
-SecurityOrigin::SecurityOrigin(const QUrl& url) :
-      m_protocol(url.scheme())
+SecurityOrigin::SecurityOrigin(const QUrl &url) :
+    m_protocol(url.scheme())
     , m_host(url.host().toLower())
     , m_port(url.port())
     , m_domainWasSetInDOM(false)
     , m_isUnique(false)
 {
     // These protocols do not create security origins; the owner frame provides the origin
-    if (m_protocol == "about" || m_protocol == "javascript")
+    if (m_protocol == "about" || m_protocol == "javascript") {
         m_protocol = "";
+    }
 
     // For edge case URLs that were probably misparsed, make sure that the origin is unique.
-    if (m_host.isEmpty() && KProtocolInfo::protocolClass(m_protocol) == QLatin1String(":internet"))
+    if (m_host.isEmpty() && KProtocolInfo::protocolClass(m_protocol) == QLatin1String(":internet")) {
         m_isUnique = true;
+    }
 
     // document.domain starts as m_host, but can be set by the DOM.
     m_domain = m_host;
 
-    if (url.port() == -1 || isDefaultPortForProtocol(m_port, m_protocol))
+    if (url.port() == -1 || isDefaultPortForProtocol(m_port, m_protocol)) {
         m_port = 0;
+    }
 }
 
-SecurityOrigin::SecurityOrigin(const SecurityOrigin* other) : 
-      m_protocol(other->m_protocol)
+SecurityOrigin::SecurityOrigin(const SecurityOrigin *other) :
+    m_protocol(other->m_protocol)
     , m_host(other->m_host)
     , m_domain(other->m_domain)
     , m_port(other->m_port)
     , m_domainWasSetInDOM(other->m_domainWasSetInDOM)
-    , m_isUnique(other->m_isUnique)    
+    , m_isUnique(other->m_isUnique)
 {
 }
 
@@ -77,28 +81,30 @@ bool SecurityOrigin::isEmpty() const
     return m_protocol.isEmpty();
 }
 
-SecurityOrigin* SecurityOrigin::create(const QUrl& url)
+SecurityOrigin *SecurityOrigin::create(const QUrl &url)
 {
-    if (!url.isValid())
+    if (!url.isValid()) {
         return new SecurityOrigin(QUrl());
+    }
     return new SecurityOrigin(url);
 }
 
-SecurityOrigin* SecurityOrigin::createEmpty()
+SecurityOrigin *SecurityOrigin::createEmpty()
 {
     return create(QUrl());
 }
 
-void SecurityOrigin::setDomainFromDOM(const QString& newDomain)
+void SecurityOrigin::setDomainFromDOM(const QString &newDomain)
 {
     m_domainWasSetInDOM = true;
     m_domain = newDomain.toLower();
 }
 
-bool SecurityOrigin::canAccess(const SecurityOrigin* other) const
-{  
-    if (isUnique() || other->isUnique())
+bool SecurityOrigin::canAccess(const SecurityOrigin *other) const
+{
+    if (isUnique() || other->isUnique()) {
         return false;
+    }
 
     // Here are two cases where we should permit access:
     //
@@ -122,38 +128,44 @@ bool SecurityOrigin::canAccess(const SecurityOrigin* other) const
 
     if (m_protocol == other->m_protocol) {
         if (!m_domainWasSetInDOM && !other->m_domainWasSetInDOM) {
-            if (m_host == other->m_host && m_port == other->m_port)
+            if (m_host == other->m_host && m_port == other->m_port) {
                 return true;
+            }
         } else if (m_domainWasSetInDOM && other->m_domainWasSetInDOM) {
-            if (m_domain == other->m_domain)
+            if (m_domain == other->m_domain) {
                 return true;
+            }
         }
     }
-    
+
     return false;
 }
 
-bool SecurityOrigin::canRequest(const QUrl& url) const
+bool SecurityOrigin::canRequest(const QUrl &url) const
 {
-    if (isUnique())
+    if (isUnique()) {
         return false;
+    }
 
     WTF::RefPtr<SecurityOrigin> targetOrigin = SecurityOrigin::create(url);
-    if (targetOrigin->isUnique())
+    if (targetOrigin->isUnique()) {
         return false;
+    }
 
     // We call isSameSchemeHostPort here instead of canAccess because we want
     // to ignore document.domain effects.
-    if (isSameSchemeHostPort(targetOrigin.get()))
+    if (isSameSchemeHostPort(targetOrigin.get())) {
         return true;
+    }
 
     return false;
 }
 
-bool SecurityOrigin::taintsCanvas(const QUrl& url) const
+bool SecurityOrigin::taintsCanvas(const QUrl &url) const
 {
-    if (canRequest(url))
+    if (canRequest(url)) {
         return false;
+    }
 
     // This function exists because we treat data URLs as having a unique origin,
     // contrary to the current (9/19/2009) draft of the HTML5 specification.
@@ -161,8 +173,9 @@ bool SecurityOrigin::taintsCanvas(const QUrl& url) const
     // we special case data URLs below. If we change to match HTML5 w.r.t.
     // data URL security, then we can remove this function in favor of
     // !canRequest.
-    if (url.scheme() == QLatin1String("data"))
+    if (url.scheme() == QLatin1String("data")) {
         return false;
+    }
 
     return true;
 }
@@ -174,14 +187,17 @@ void SecurityOrigin::makeUnique()
 
 QString SecurityOrigin::toString() const
 {
-    if (isEmpty())
+    if (isEmpty()) {
         return "null";
+    }
 
-    if (isUnique())
+    if (isUnique()) {
         return "null";
+    }
 
-    if (m_protocol == "file")
+    if (m_protocol == "file") {
         return QString("file://");
+    }
 
     QString result;
     result += m_protocol;
@@ -192,28 +208,30 @@ QString SecurityOrigin::toString() const
         result += ":";
         result += QString::number(m_port);
     }
-    
+
     return result;
 }
 
-SecurityOrigin* SecurityOrigin::createFromString(const QString& originString)
+SecurityOrigin *SecurityOrigin::createFromString(const QString &originString)
 {
     return SecurityOrigin::create(QUrl(originString));
 }
 
-bool SecurityOrigin::isSameSchemeHostPort(const SecurityOrigin* other) const 
+bool SecurityOrigin::isSameSchemeHostPort(const SecurityOrigin *other) const
 {
-    if (m_host != other->m_host)
+    if (m_host != other->m_host) {
         return false;
+    }
 
-    if (m_protocol != other->m_protocol)
+    if (m_protocol != other->m_protocol) {
         return false;
+    }
 
-    if (m_port != other->m_port)
+    if (m_port != other->m_port) {
         return false;
+    }
 
     return true;
 }
-
 
 } // namespace khtml

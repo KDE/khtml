@@ -33,15 +33,16 @@
 
 #include "FloatRect.h"
 
-namespace WebCore {
-
-void SVGResourceClipper::applyClip(/*GraphicsContext* context*/QPainter* painter, const FloatRect& boundingBox) const
+namespace WebCore
 {
-    if (m_clipData.clipData().size() < 1)
+
+void SVGResourceClipper::applyClip(/*GraphicsContext* context*/QPainter *painter, const FloatRect &boundingBox) const
+{
+    if (m_clipData.clipData().size() < 1) {
         return;
+    }
 
     /*context->beginPath();*/
-
 
     QPainterPath newPath;
 
@@ -52,11 +53,13 @@ void SVGResourceClipper::applyClip(/*GraphicsContext* context*/QPainter* painter
         ClipData clipData = m_clipData.clipData()[x];
 
         QPainterPath path = *(clipData.path.platformPath());
-        if (path.isEmpty())
+        if (path.isEmpty()) {
             continue;
+        }
 
-        if (!newPath.isEmpty())
+        if (!newPath.isEmpty()) {
             newPath.closeSubpath();
+        }
 
         // Respect clipping units...
         QMatrix transform;
@@ -73,30 +76,29 @@ void SVGResourceClipper::applyClip(/*GraphicsContext* context*/QPainter* painter
             const QPainterPath::Element &cur = path.elementAt(i);
 
             switch (cur.type) {
-                case QPainterPath::MoveToElement:
-                    newPath.moveTo(QPointF(cur.x, cur.y) * transform);
-                    break;
-                case QPainterPath::LineToElement:
-                    newPath.lineTo(QPointF(cur.x, cur.y) * transform);
-                    break;
-                case QPainterPath::CurveToElement:
-                {
-                    const QPainterPath::Element &c1 = path.elementAt(i + 1);
-                    const QPainterPath::Element &c2 = path.elementAt(i + 2);
+            case QPainterPath::MoveToElement:
+                newPath.moveTo(QPointF(cur.x, cur.y) * transform);
+                break;
+            case QPainterPath::LineToElement:
+                newPath.lineTo(QPointF(cur.x, cur.y) * transform);
+                break;
+            case QPainterPath::CurveToElement: {
+                const QPainterPath::Element &c1 = path.elementAt(i + 1);
+                const QPainterPath::Element &c2 = path.elementAt(i + 2);
 
-                    Q_ASSERT(c1.type == QPainterPath::CurveToDataElement);
-                    Q_ASSERT(c2.type == QPainterPath::CurveToDataElement);
+                Q_ASSERT(c1.type == QPainterPath::CurveToDataElement);
+                Q_ASSERT(c2.type == QPainterPath::CurveToDataElement);
 
-                    newPath.cubicTo(QPointF(cur.x, cur.y) * transform,
-                                    QPointF(c1.x, c1.y) * transform,
-                                    QPointF(c2.x, c2.y) * transform);
+                newPath.cubicTo(QPointF(cur.x, cur.y) * transform,
+                                QPointF(c1.x, c1.y) * transform,
+                                QPointF(c2.x, c2.y) * transform);
 
-                    i += 2;
-                    break;
-                }
-                case QPainterPath::CurveToDataElement:
-                    Q_ASSERT(false);
-                    break;
+                i += 2;
+                break;
+            }
+            case QPainterPath::CurveToDataElement:
+                Q_ASSERT(false);
+                break;
             }
         }
     }
@@ -107,10 +109,11 @@ void SVGResourceClipper::applyClip(/*GraphicsContext* context*/QPainter* painter
         // we would have to detect such, draw to a mask, and then clip
         // to that mask
         // if (!CGContextIsPathEmpty(cgContext)) {
-            if (clipRule == RULE_EVENODD)
-                newPath.setFillRule(Qt::OddEvenFill);
-            else
-                newPath.setFillRule(Qt::WindingFill);
+        if (clipRule == RULE_EVENODD) {
+            newPath.setFillRule(Qt::OddEvenFill);
+        } else {
+            newPath.setFillRule(Qt::WindingFill);
+        }
         // }
     }
 
@@ -124,4 +127,3 @@ void SVGResourceClipper::applyClip(/*GraphicsContext* context*/QPainter* painter
 
 #endif
 
-// vim:ts=4

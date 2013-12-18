@@ -31,7 +31,8 @@
 #include <dom/dom_node.h>
 #include <dom/dom_misc.h>
 
-namespace DOM {
+namespace DOM
+{
 class Node;
 class NodeFilter;
 class NodeIteratorImpl;
@@ -64,7 +65,7 @@ public:
     NodeIterator();
     NodeIterator(const NodeIterator &other);
 
-    NodeIterator & operator = (const NodeIterator &other);
+    NodeIterator &operator = (const NodeIterator &other);
 
     ~NodeIterator();
 
@@ -156,7 +157,6 @@ protected:
     NodeIterator(NodeIteratorImpl *i);
 };
 
-
 /**
  * Filters are objects that know how to "filter out" nodes. If an
  * Iterator or \c TreeWalker is given a filter, before it
@@ -192,7 +192,7 @@ public:
     NodeFilter(const NodeFilter &other);
     NodeFilter(NodeFilterImpl *i);
 
-    virtual NodeFilter & operator = (const NodeFilter &other);
+    virtual NodeFilter &operator = (const NodeFilter &other);
 
     virtual ~NodeFilter();
     /**
@@ -243,7 +243,7 @@ public:
      * href="#Traversal-NodeFilter-acceptNode-constants"> above </a> .
      *
      */
-    virtual short acceptNode (const Node &n);
+    virtual short acceptNode(const Node &n);
 
     /**
      * @internal
@@ -291,11 +291,12 @@ protected:
  *
  */
 
-class KHTML_EXPORT CustomNodeFilter : public DomShared {
+class KHTML_EXPORT CustomNodeFilter : public DomShared
+{
 public:
     CustomNodeFilter();
     virtual ~CustomNodeFilter();
-    virtual short acceptNode (const Node &n);
+    virtual short acceptNode(const Node &n);
     virtual bool isNull();
 
     /**
@@ -343,10 +344,9 @@ public:
     TreeWalker();
     TreeWalker(const TreeWalker &other);
 
-    TreeWalker & operator = (const TreeWalker &other);
+    TreeWalker &operator = (const TreeWalker &other);
 
     ~TreeWalker();
-
 
     /**
      * The root node of the TreeWalker, as specified when it was created.
@@ -526,7 +526,6 @@ protected:
     TreeWalker(TreeWalkerImpl *i);
     TreeWalkerImpl *impl;
 };
-
 
 } // namespace
 

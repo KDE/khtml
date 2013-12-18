@@ -26,9 +26,10 @@
 
 #include "SVGNames.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGScriptElement::SVGScriptElement(const QualifiedName& tagName, Document* doc)
+SVGScriptElement::SVGScriptElement(const QualifiedName &tagName, Document *doc)
     : SVGElement(tagName, doc)
     , SVGURIReference()
     , SVGExternalResourcesRequired()
@@ -44,32 +45,33 @@ String SVGScriptElement::type() const
     return m_type;
 }
 
-void SVGScriptElement::setType(const String& type)
+void SVGScriptElement::setType(const String &type)
 {
     m_type = type;
 }
 
-void SVGScriptElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGScriptElement::parseMappedAttribute(MappedAttribute *attr)
 {
-    if (attr->name() == SVGNames::typeAttr)
+    if (attr->name() == SVGNames::typeAttr) {
         setType(attr->value());
-    else {
-        if (SVGURIReference::parseMappedAttribute(attr))
+    } else {
+        if (SVGURIReference::parseMappedAttribute(attr)) {
             return;
-        if (SVGExternalResourcesRequired::parseMappedAttribute(attr))
+        }
+        if (SVGExternalResourcesRequired::parseMappedAttribute(attr)) {
             return;
+        }
 
         SVGElement::parseMappedAttribute(attr);
     }
 }
 
-void SVGScriptElement::getSubresourceAttributeStrings(Vector<String>& urls) const
+void SVGScriptElement::getSubresourceAttributeStrings(Vector<String> &urls) const
 {
     urls.append(href());
 }
 
 }
 
-// vim:ts=4:noet
 #endif // ENABLE(SVG)
 

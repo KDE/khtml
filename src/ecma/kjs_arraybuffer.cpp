@@ -23,9 +23,10 @@
 
 #include "kjs_arraybuffer.lut.h"
 
-namespace KJS {
+namespace KJS
+{
 
-ArrayBufferConstructorImp::ArrayBufferConstructorImp(ExecState* exec, DOM::DocumentImpl* d)
+ArrayBufferConstructorImp::ArrayBufferConstructorImp(ExecState *exec, DOM::DocumentImpl *d)
     : JSObject(exec->lexicalInterpreter()->builtinObjectPrototype()), doc(d)
 {
 }
@@ -35,18 +36,18 @@ bool ArrayBufferConstructorImp::implementsConstruct() const
     return true;
 }
 
-JSObject *ArrayBufferConstructorImp::construct(ExecState* /*exec*/, const List &args)
+JSObject *ArrayBufferConstructorImp::construct(ExecState * /*exec*/, const List &args)
 {
     double sizeF = 0.0;
     size_t size = 0;
     if (args[0]->getNumber(sizeF)) {
-        if (!KJS::isNaN(sizeF) && !KJS::isInf(sizeF) && sizeF > 0)
+        if (!KJS::isNaN(sizeF) && !KJS::isInf(sizeF) && sizeF > 0) {
             size = static_cast<size_t>(sizeF);
+        }
     }
 
     return new ArrayBuffer(size);
 }
-
 
 /* Source for ArrayBufferProtoTable.
 
@@ -61,7 +62,6 @@ KJS_IMPLEMENT_PROTOFUNC(ArrayBufferProtoFunc)
 KJS_IMPLEMENT_PROTOTYPE("ArrayBuffer", ArrayBufferProto, ArrayBufferProtoFunc, ObjectPrototype)
 
 const ClassInfo ArrayBuffer::info = { "ArrayBuffer", 0, &ArrayBufferTable, 0 };
-
 
 /* Source for ArrayBufferTable.
 
@@ -82,7 +82,7 @@ ArrayBuffer::ArrayBuffer(size_t size)
     }
 }
 
-ArrayBuffer::ArrayBuffer(uint8_t* buffer, size_t size)
+ArrayBuffer::ArrayBuffer(uint8_t *buffer, size_t size)
     : JSObject(),
       m_size(size),
       m_buffer(0)
@@ -93,28 +93,25 @@ ArrayBuffer::ArrayBuffer(uint8_t* buffer, size_t size)
     }
 }
 
-
 ArrayBuffer::~ArrayBuffer()
 {
     delete[] m_buffer;
 }
 
-bool ArrayBuffer::getOwnPropertySlot(ExecState *exec, const Identifier& propertyName, PropertySlot& slot)
+bool ArrayBuffer::getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot)
 {
     return getStaticValueSlot<ArrayBuffer, JSObject>(exec, &ArrayBufferTable, this, propertyName, slot);
 }
 
-JSValue* ArrayBuffer::getValueProperty(ExecState* /*exec*/, int token) const
+JSValue *ArrayBuffer::getValueProperty(ExecState * /*exec*/, int token) const
 {
-    switch(token)
-    {
-        case ByteLength:
-            return jsNumber(m_size);
-        default:
-            return jsUndefined();
+    switch (token) {
+    case ByteLength:
+        return jsNumber(m_size);
+    default:
+        return jsUndefined();
     }
 }
-
 
 // -------------------------- ArrayBufferProtoFunc ----------------------------
 
@@ -124,44 +121,49 @@ JSValue *ArrayBufferProtoFunc::callAsFunction(ExecState *exec, JSObject *thisObj
         return throwError(exec, TypeError);
     }
 
-    ArrayBuffer* arraybuf = static_cast<ArrayBuffer*>(thisObj);
-    switch (id)
-    {
-        case ArrayBuffer::Splice:
-        {
-            // Slice takes max long/signed size_t
-            // If start or end are negative, it refers to an index from the end of the array
-            ssize_t start = 0;
-            ssize_t end = 0;
-            double tmp;
-            if (args[0]->getNumber(tmp))
-                start = static_cast<ssize_t>(tmp);
-            if (args.size() >= 2 && args[1]->getNumber(tmp))
-                end = static_cast<ssize_t>(tmp);
-
-            // turn negative start/end into a valid positive index
-            if (start < 0 && arraybuf->byteLength() > static_cast<size_t>(-start))
-                start = arraybuf->byteLength() + start;
-            if (end < 0 && arraybuf->byteLength() > static_cast<size_t>(-end))
-                end = arraybuf->byteLength() + end;
-
-            if (static_cast<size_t>(start) > arraybuf->byteLength())
-                start = arraybuf->byteLength();
-            if (static_cast<size_t>(end) > arraybuf->byteLength())
-                end = 0;
-
-            size_t length = 0;
-            if (start < end)
-                length = end - start;
-            else if (args.size() < 2 && start > 0 && arraybuf->byteLength() > static_cast<size_t>(start))
-                length = arraybuf->byteLength() - start;
-
-            ArrayBuffer* ret = new ArrayBuffer(length);
-            memcpy(ret->buffer(), arraybuf->buffer()+start, length);
-            return ret;
+    ArrayBuffer *arraybuf = static_cast<ArrayBuffer *>(thisObj);
+    switch (id) {
+    case ArrayBuffer::Splice: {
+        // Slice takes max long/signed size_t
+        // If start or end are negative, it refers to an index from the end of the array
+        ssize_t start = 0;
+        ssize_t end = 0;
+        double tmp;
+        if (args[0]->getNumber(tmp)) {
+            start = static_cast<ssize_t>(tmp);
         }
-        default:
-            return jsUndefined();
+        if (args.size() >= 2 && args[1]->getNumber(tmp)) {
+            end = static_cast<ssize_t>(tmp);
+        }
+
+        // turn negative start/end into a valid positive index
+        if (start < 0 && arraybuf->byteLength() > static_cast<size_t>(-start)) {
+            start = arraybuf->byteLength() + start;
+        }
+        if (end < 0 && arraybuf->byteLength() > static_cast<size_t>(-end)) {
+            end = arraybuf->byteLength() + end;
+        }
+
+        if (static_cast<size_t>(start) > arraybuf->byteLength()) {
+            start = arraybuf->byteLength();
+        }
+        if (static_cast<size_t>(end) > arraybuf->byteLength()) {
+            end = 0;
+        }
+
+        size_t length = 0;
+        if (start < end) {
+            length = end - start;
+        } else if (args.size() < 2 && start > 0 && arraybuf->byteLength() > static_cast<size_t>(start)) {
+            length = arraybuf->byteLength() - start;
+        }
+
+        ArrayBuffer *ret = new ArrayBuffer(length);
+        memcpy(ret->buffer(), arraybuf->buffer() + start, length);
+        return ret;
+    }
+    default:
+        return jsUndefined();
     }
 };
 

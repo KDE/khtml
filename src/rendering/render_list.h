@@ -43,28 +43,43 @@ class RenderListItem : public RenderBlock
 //    friend class CounterListItem;
 
 public:
-    RenderListItem(DOM::NodeImpl*);
+    RenderListItem(DOM::NodeImpl *);
 
-    virtual const char *renderName() const { return "RenderListItem"; }
+    virtual const char *renderName() const
+    {
+        return "RenderListItem";
+    }
 
     virtual void setStyle(RenderStyle *style);
 
-    virtual bool isListItem() const { return true; }
+    virtual bool isListItem() const
+    {
+        return true;
+    }
 
-    void setValue( long v ) { predefVal = v; }
+    void setValue(long v)
+    {
+        predefVal = v;
+    }
 
-    virtual void layout( );
-    virtual void detach( );
+    virtual void layout();
+    virtual void detach();
     virtual void calcMinMaxWidth();
     //virtual short marginLeft() const;
     //virtual short marginRight() const;
 
-    void setInsideList(bool b ) { m_insideList = b; }
+    void setInsideList(bool b)
+    {
+        m_insideList = b;
+    }
 
 protected:
 
     void updateMarkerLocation();
-    void resetListMarker() { m_marker = 0; }
+    void resetListMarker()
+    {
+        m_marker = 0;
+    }
 
     RenderListMarker *m_marker;
     CounterNode *m_counter;
@@ -78,35 +93,52 @@ protected:
 class RenderListMarker : public RenderBox
 {
 public:
-    RenderListMarker(DOM::NodeImpl* node);
+    RenderListMarker(DOM::NodeImpl *node);
     ~RenderListMarker();
 
     virtual void setStyle(RenderStyle *style);
 
-    virtual const char *renderName() const { return "RenderListMarker"; }
+    virtual const char *renderName() const
+    {
+        return "RenderListMarker";
+    }
     // so the marker gets to layout itself. Only needed for
     // list-style-position: inside
 
-    virtual void paint(PaintInfo& i, int xoff, int yoff);
-    virtual void layout( );
+    virtual void paint(PaintInfo &i, int xoff, int yoff);
+    virtual void layout();
     virtual void calcMinMaxWidth();
 
-    virtual short lineHeight( bool firstLine ) const;
-    virtual short baselinePosition( bool firstLine ) const;
+    virtual short lineHeight(bool firstLine) const;
+    virtual short baselinePosition(bool firstLine) const;
 
-    virtual void updatePixmap( const QRect&, CachedImage *);
+    virtual void updatePixmap(const QRect &, CachedImage *);
 
     virtual void calcWidth();
 
-    virtual bool isListMarker() const { return true; }
+    virtual bool isListMarker() const
+    {
+        return true;
+    }
 
-    virtual short markerWidth() const { return m_markerWidth; }
+    virtual short markerWidth() const
+    {
+        return m_markerWidth;
+    }
 
-    RenderListItem* listItem() const { return m_listItem; }
-    void setListItem(RenderListItem* listItem) { m_listItem = listItem; }
+    RenderListItem *listItem() const
+    {
+        return m_listItem;
+    }
+    void setListItem(RenderListItem *listItem)
+    {
+        m_listItem = listItem;
+    }
 
     bool listPositionInside() const
-    { return !m_listItem->m_insideList || style()->listStylePosition() == INSIDE; }
+    {
+        return !m_listItem->m_insideList || style()->listStylePosition() == INSIDE;
+    }
 
 protected:
     friend class RenderListItem;
@@ -114,7 +146,7 @@ protected:
     QString m_item;
     CachedImage *m_listImage;
     short m_markerWidth;
-    RenderListItem* m_listItem;
+    RenderListItem *m_listItem;
 };
 
 // Implementation of list-item counter

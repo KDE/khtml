@@ -30,40 +30,40 @@ class KHTMLPart;
 
 class StorePassBar : public KHTMLViewBarWidget, private Ui::StorePassBarBase
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  StorePassBar( QWidget *parent = 0 );
-    
-  void setHost(const QString& host);
-    
+    StorePassBar(QWidget *parent = 0);
+
+    void setHost(const QString &host);
+
 Q_SIGNALS:
-  void storeClicked();
-  void neverForThisSiteClicked();
-  void doNotStoreClicked();
+    void storeClicked();
+    void neverForThisSiteClicked();
+    void doNotStoreClicked();
 };
 
 class StorePass : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  StorePass( KHTMLPart *part );
-  ~StorePass();
-    
-  void saveLoginInformation(const QString& host, const QString& key,
-    const QMap<QString, QString>& walletMap);
-  void removeBar();
+    StorePass(KHTMLPart *part);
+    ~StorePass();
+
+    void saveLoginInformation(const QString &host, const QString &key,
+                              const QMap<QString, QString> &walletMap);
+    void removeBar();
 
 private Q_SLOTS:
-  void slotStoreClicked();
-  void slotNeverForThisSiteClicked();
-  void slotDoNotStoreClicked();
-   
+    void slotStoreClicked();
+    void slotNeverForThisSiteClicked();
+    void slotDoNotStoreClicked();
+
 private:
-  KHTMLPart *m_part;
-  
-  StorePassBar m_storePassBar;
-  QString m_host;
-  QString m_key;
-  QMap<QString, QString> m_walletMap;
+    KHTMLPart *m_part;
+
+    StorePassBar m_storePassBar;
+    QString m_host;
+    QString m_key;
+    QMap<QString, QString> m_walletMap;
 };
 #endif

@@ -26,9 +26,10 @@
 
 #include "SVGPointList.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGPointList::SVGPointList(const QualifiedName& attributeName)
+SVGPointList::SVGPointList(const QualifiedName &attributeName)
     : SVGPODList<FloatPoint>(attributeName)
 {
 }

@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef __dom_position_h__
@@ -28,7 +28,8 @@
 
 #include <QDebug>
 
-namespace DOM {
+namespace DOM
+{
 
 class ElementImpl;
 class NodeImpl;
@@ -47,16 +48,28 @@ public:
     Position(const Position &);
     ~Position();
 
-    NodeImpl *node() const { return m_node; }
-    long offset() const { return m_offset; }
+    NodeImpl *node() const
+    {
+        return m_node;
+    }
+    long offset() const
+    {
+        return m_offset;
+    }
 
     ElementImpl *element() const;
 
     long renderedOffset() const;
 
-    bool isEmpty() const { return m_node == 0; }
-    bool notEmpty() const { return m_node != 0; }
-    
+    bool isEmpty() const
+    {
+        return m_node == 0;
+    }
+    bool notEmpty() const
+    {
+        return m_node != 0;
+    }
+
     Position equivalentLeafPosition() const;
     Position previousRenderedEditablePosition() const;
     Position nextRenderedEditablePosition() const;
@@ -104,7 +117,7 @@ inline bool operator!=(const Position &a, const Position &b)
     return !(a == b);
 }
 
-QDebug operator<<(QDebug stream, const Position& position);
+QDebug operator<<(QDebug stream, const Position &position);
 
 } // namespace DOM
 

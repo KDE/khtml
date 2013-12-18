@@ -20,15 +20,16 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include "HTMLSourceElement.h"
 #include "HTMLDocument.h"
 
-namespace khtml {
+namespace khtml
+{
 
-HTMLSourceElement::HTMLSourceElement(Document* doc)
+HTMLSourceElement::HTMLSourceElement(Document *doc)
     : HTMLElement(doc)
 {
 }
@@ -47,7 +48,7 @@ DOMString HTMLSourceElement::src() const
     return document()->completeURL(getAttribute(ATTR_SRC).string());
 }
 
-void HTMLSourceElement::setSrc(const DOMString& url)
+void HTMLSourceElement::setSrc(const DOMString &url)
 {
     setAttribute(ATTR_SRC, url);
 }
@@ -57,7 +58,7 @@ DOMString HTMLSourceElement::media() const
     return getAttribute(ATTR_MEDIA);
 }
 
-void HTMLSourceElement::setMedia(const DOMString& media)
+void HTMLSourceElement::setMedia(const DOMString &media)
 {
     setAttribute(ATTR_MEDIA, media);
 }
@@ -67,7 +68,7 @@ DOMString HTMLSourceElement::type() const
     return getAttribute(ATTR_TYPE);
 }
 
-void HTMLSourceElement::setType(const DOMString& type)
+void HTMLSourceElement::setType(const DOMString &type)
 {
     setAttribute(ATTR_TYPE, type);
 }

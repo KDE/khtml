@@ -33,11 +33,13 @@ class KHTMLView;
 class QPainter;
 class QRect;
 
-namespace khtml {
-    class RenderObject;
+namespace khtml
+{
+class RenderObject;
 }
 
-namespace DOM {
+namespace DOM
+{
 
 class NodeImpl;
 class Position;
@@ -63,8 +65,14 @@ public:
     Selection(const Position &, const Position &);
     Selection(const Selection &);
 
-    EState state() const { return m_state; }
-    EAffinity affinity() const { return m_affinity; }
+    EState state() const
+    {
+        return m_state;
+    }
+    EAffinity affinity() const
+    {
+        return m_affinity;
+    }
     void setAffinity(EAffinity);
 
     void moveTo(const Range &);
@@ -85,21 +93,51 @@ public:
     void setEnd(const Position &pos);
     void setStartAndEnd(const Position &start, const Position &end);
 
-    Position base() const { return m_base; }
-    Position extent() const { return m_extent; }
-    Position start() const { return m_start; }
-    Position end() const { return m_end; }
-    Position caretPos() const { return m_baseIsStart ? m_end : m_start; }
-    Position nonCaretPos() const { return m_baseIsStart ? m_start : m_end; }
+    Position base() const
+    {
+        return m_base;
+    }
+    Position extent() const
+    {
+        return m_extent;
+    }
+    Position start() const
+    {
+        return m_start;
+    }
+    Position end() const
+    {
+        return m_end;
+    }
+    Position caretPos() const
+    {
+        return m_baseIsStart ? m_end : m_start;
+    }
+    Position nonCaretPos() const
+    {
+        return m_baseIsStart ? m_start : m_end;
+    }
 
     QRect getRepaintRect() const;
-    void setNeedsLayout(bool flag=true);
-    void clearModifyBias() { m_modifyBiasSet = false; }
+    void setNeedsLayout(bool flag = true);
+    void clearModifyBias()
+    {
+        m_modifyBiasSet = false;
+    }
 
-    bool isEmpty() const { return state() == NONE; }
-    bool notEmpty() const { return !isEmpty(); }
+    bool isEmpty() const
+    {
+        return state() == NONE;
+    }
+    bool notEmpty() const
+    {
+        return !isEmpty();
+    }
     Range toRange() const;
-    bool isCollapsed() const { return m_state == CARET; }
+    bool isCollapsed() const
+    {
+        return m_state == CARET;
+    }
 
     void getRange(NodeImpl *&start, long &so, NodeImpl *&end, long &eo) const;
 
@@ -107,8 +145,16 @@ public:
     void debugRenderer(khtml::RenderObject *r, bool selected) const;
 
     Selection &operator=(const Selection &o);
-    Selection &operator=(const Range &r) { moveTo(r); return *this; }
-    Selection &operator=(const Position &r) { moveTo(r); return *this; }
+    Selection &operator=(const Range &r)
+    {
+        moveTo(r);
+        return *this;
+    }
+    Selection &operator=(const Position &r)
+    {
+        moveTo(r);
+        return *this;
+    }
 
     friend bool operator==(const Selection &a, const Selection &b);
     friend bool operator!=(const Selection &a, const Selection &b);
@@ -120,20 +166,40 @@ private:
     enum EPositionType { START, END, BASE, EXTENT, CARETPOS };
 
     void init();
-    void validate(ETextGranularity granularity=CHARACTER);
-    void assignBase(const Position &pos) { m_base = pos; }
-    void assignExtent(const Position &pos) { m_extent = pos; }
-    void assignBaseAndExtent(const Position &base, const Position &extent) { m_base = base; m_extent = extent; }
-    void assignStart(const Position &pos) { m_start = pos; }
-    void assignEnd(const Position &pos) { m_end = pos; }
-    void assignStartAndEnd(const Position &start, const Position &end) { m_start = start; m_end = end; }
+    void validate(ETextGranularity granularity = CHARACTER);
+    void assignBase(const Position &pos)
+    {
+        m_base = pos;
+    }
+    void assignExtent(const Position &pos)
+    {
+        m_extent = pos;
+    }
+    void assignBaseAndExtent(const Position &base, const Position &extent)
+    {
+        m_base = base;
+        m_extent = extent;
+    }
+    void assignStart(const Position &pos)
+    {
+        m_start = pos;
+    }
+    void assignEnd(const Position &pos)
+    {
+        m_end = pos;
+    }
+    void assignStartAndEnd(const Position &start, const Position &end)
+    {
+        m_start = start;
+        m_end = end;
+    }
 
     void layoutCaret();
     void needsCaretRepaint();
     void paintCaret(QPainter *p, const QRect &rect);
 
     bool nodeIsBeforeNode(NodeImpl *n1, NodeImpl *n2) const;
-    int xPosForVerticalArrowNavigation(EPositionType, bool recalc=false) const;
+    int xPosForVerticalArrowNavigation(EPositionType, bool recalc = false) const;
 
     Position m_base;              // base position for the selection
     Position m_extent;            // extent position for the selection
@@ -150,10 +216,9 @@ private:
     bool m_baseIsStart : 1;       // true if base node is before the extent node
     bool m_needsCaretLayout : 1;  // true if the caret position needs to be calculated
     bool m_modifyBiasSet : 1;     // true if the selection has been horizontally
-                                  // modified with EAlter::EXTEND
+    // modified with EAlter::EXTEND
     bool m_visible : 1;           // true if caret should be painted
 };
-
 
 inline bool operator==(const Selection &a, const Selection &b)
 {
@@ -165,7 +230,7 @@ inline bool operator!=(const Selection &a, const Selection &b)
     return !(a == b);
 }
 
-QDebug operator<<(QDebug stream, const Selection& selection);
+QDebug operator<<(QDebug stream, const Selection &selection);
 
 } // namespace DOM
 

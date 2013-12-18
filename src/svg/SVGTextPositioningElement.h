@@ -26,27 +26,29 @@
 #if ENABLE(SVG)
 #include "SVGTextContentElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGLengthList;
-    class SVGNumberList;
+class SVGLengthList;
+class SVGNumberList;
 
-    class SVGTextPositioningElement : public SVGTextContentElement {
-    public:
-        SVGTextPositioningElement(const QualifiedName&, Document*);
-        virtual ~SVGTextPositioningElement();
+class SVGTextPositioningElement : public SVGTextContentElement
+{
+public:
+    SVGTextPositioningElement(const QualifiedName &, Document *);
+    virtual ~SVGTextPositioningElement();
 
-        virtual void parseMappedAttribute(MappedAttribute*);
+    virtual void parseMappedAttribute(MappedAttribute *);
 
-        bool isKnownAttribute(const QualifiedName&);
+    bool isKnownAttribute(const QualifiedName &);
 
-    private:
-        ANIMATED_PROPERTY_DECLARATIONS(SVGTextPositioningElement, SVGLengthList*, RefPtr<SVGLengthList>, X, x)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGTextPositioningElement, SVGLengthList*, RefPtr<SVGLengthList>, Y, y)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGTextPositioningElement, SVGLengthList*, RefPtr<SVGLengthList>, Dx, dx)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGTextPositioningElement, SVGLengthList*, RefPtr<SVGLengthList>, Dy, dy)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGTextPositioningElement, SVGNumberList*, RefPtr<SVGNumberList>, Rotate, rotate)
-    };
+private:
+    ANIMATED_PROPERTY_DECLARATIONS(SVGTextPositioningElement, SVGLengthList *, RefPtr<SVGLengthList>, X, x)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGTextPositioningElement, SVGLengthList *, RefPtr<SVGLengthList>, Y, y)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGTextPositioningElement, SVGLengthList *, RefPtr<SVGLengthList>, Dx, dx)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGTextPositioningElement, SVGLengthList *, RefPtr<SVGLengthList>, Dy, dy)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGTextPositioningElement, SVGNumberList *, RefPtr<SVGNumberList>, Rotate, rotate)
+};
 
 } // namespace WebCore
 

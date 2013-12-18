@@ -28,7 +28,8 @@
 #include "debugdocument.h"
 #include "interpreter_ctx.h"
 
-namespace KJSDebugger {
+namespace KJSDebugger
+{
 
 CallStackDock::CallStackDock(QWidget *parent)
     : QDockWidget(i18n("Call Stack"), parent)
@@ -47,7 +48,6 @@ CallStackDock::CallStackDock(QWidget *parent)
     connect(m_view, SIGNAL(itemDoubleClicked(QTableWidgetItem*)),
             this, SLOT(slotViewItem(QTableWidgetItem*)));
 
-
     setWidget(m_view);
 
     m_activeCtx = 0;
@@ -64,7 +64,7 @@ void CallStackDock::clearDisplay()
     m_view->setRowCount(0);
 }
 
-void CallStackDock::displayStack(InterpreterContext* ic)
+void CallStackDock::displayStack(InterpreterContext *ic)
 {
     m_activeCtx = ic;
 
@@ -80,14 +80,14 @@ void CallStackDock::displayStack(InterpreterContext* ic)
 
     for (int row = 0; row < ic->callStack.size(); ++row) {
         const CallStackEntry &entry =  ic->callStack[row];
-        
+
         int displayRow = ic->callStack.count() - row - 1; //Want newest entry on top
         QString fnLabel = entry.name;
         QString lnLabel = QString::number(entry.lineNumber + 1);
 
         dirty = dirty /* avoids latter stuff if may be null */
-            || m_view->item(displayRow, 0)->text() != fnLabel
-            || m_view->item(displayRow, 1)->text() != lnLabel;
+                || m_view->item(displayRow, 0)->text() != fnLabel
+                || m_view->item(displayRow, 1)->text() != lnLabel;
 
         QTableWidgetItem *function = new QTableWidgetItem(fnLabel);
         function->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
@@ -96,7 +96,7 @@ void CallStackDock::displayStack(InterpreterContext* ic)
         lineNumber->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
         m_view->setItem(displayRow, 1, lineNumber);
     }
-    
+
     m_view->resizeColumnsToContents();
     m_view->resizeRowsToContents();
 
@@ -106,23 +106,25 @@ void CallStackDock::displayStack(InterpreterContext* ic)
     }
 }
 
-void CallStackDock::slotViewItem(QTableWidgetItem* item)
+void CallStackDock::slotViewItem(QTableWidgetItem *item)
 {
-    if (!m_activeCtx)
+    if (!m_activeCtx) {
         return;
+    }
 
-    CallStackEntry& entry = m_activeCtx->callStack[m_view->rowCount() - m_view->row(item) - 1];
+    CallStackEntry &entry = m_activeCtx->callStack[m_view->rowCount() - m_view->row(item) - 1];
     emit displayScript(entry.doc.get(), entry.lineNumber);
 }
 
-KJS::ExecState* CallStackDock::selectedFrameContext()
+KJS::ExecState *CallStackDock::selectedFrameContext()
 {
-    QList<QTableWidgetItem*> selected = m_view->selectedItems();
-    if (selected.isEmpty())
+    QList<QTableWidgetItem *> selected = m_view->selectedItems();
+    if (selected.isEmpty()) {
         return 0;
+    }
 
     return m_activeCtx->execContexts[m_view->rowCount() - m_view->row(selected[0]) - 1];
-    
+
 }
 
 }

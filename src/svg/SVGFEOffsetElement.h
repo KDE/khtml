@@ -30,29 +30,31 @@
 namespace WebCore
 {
 
-    class SVGFEOffsetElement : public SVGFilterPrimitiveStandardAttributes
+class SVGFEOffsetElement : public SVGFilterPrimitiveStandardAttributes
+{
+public:
+    SVGFEOffsetElement(const QualifiedName &, Document *);
+    virtual ~SVGFEOffsetElement();
+
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual SVGFEOffset *filterEffect(SVGResourceFilter *) const;
+
+protected:
+    virtual const SVGElement *contextElement() const
     {
-    public:
-        SVGFEOffsetElement(const QualifiedName&, Document*);
-        virtual ~SVGFEOffsetElement();
+        return this;
+    }
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual SVGFEOffset* filterEffect(SVGResourceFilter*) const;
+private:
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFEOffsetElement, String, String, In1, in1)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFEOffsetElement, float, float, Dx, dx)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFEOffsetElement, float, float, Dy, dy)
 
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
-
-    private:
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFEOffsetElement, String, String, In1, in1)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFEOffsetElement, float, float, Dx, dx)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFEOffsetElement, float, float, Dy, dy)
-
-        mutable SVGFEOffset* m_filterEffect;
-    };
+    mutable SVGFEOffset *m_filterEffect;
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

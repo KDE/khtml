@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef SVGResource_h
@@ -36,66 +36,83 @@
 
 #include "Document.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    //class AtomicString; 
-    //class Document;
-    class SVGStyledElement;
-    //class TextStream;
+//class AtomicString;
+//class Document;
+class SVGStyledElement;
+//class TextStream;
 
-    enum SVGResourceType {
-        // Painting mode
-        ClipperResourceType = 0,
-        MarkerResourceType,
-        ImageResourceType,
-        FilterResourceType,
-        MaskerResourceType,
-        PaintServerResourceType,
-        
-        // For resource tracking we need to know how many types of resource there are
-        _ResourceTypeCount
-    };
+enum SVGResourceType {
+    // Painting mode
+    ClipperResourceType = 0,
+    MarkerResourceType,
+    ImageResourceType,
+    FilterResourceType,
+    MaskerResourceType,
+    PaintServerResourceType,
 
-    // The SVGResource file represent various graphics resources:
-    // - Filter resource
-    // - Clipper resource
-    // - Masker resource
-    // - Marker resource
-    // - Pattern resource
-    // - Linear/Radial gradient resource
-    //
-    // SVG creates/uses these resources.
+    // For resource tracking we need to know how many types of resource there are
+    _ResourceTypeCount
+};
 
-    class SVGResource : public RefCounted<SVGResource> {
-    public:
-        virtual ~SVGResource();
-      
-        virtual void invalidate();
+// The SVGResource file represent various graphics resources:
+// - Filter resource
+// - Clipper resource
+// - Masker resource
+// - Marker resource
+// - Pattern resource
+// - Linear/Radial gradient resource
+//
+// SVG creates/uses these resources.
 
-        void addClient(SVGStyledElement*);
-        virtual SVGResourceType resourceType() const = 0;
-        
-        bool isPaintServer() const { return resourceType() == PaintServerResourceType; }
-        bool isFilter() const { return resourceType() == FilterResourceType; }
-        bool isClipper() const { return resourceType() == ClipperResourceType; }
-        bool isMarker() const { return resourceType() == MarkerResourceType; }
-        bool isMasker() const { return resourceType() == MaskerResourceType; }
+class SVGResource : public RefCounted<SVGResource>
+{
+public:
+    virtual ~SVGResource();
 
-        /*virtual TextStream& externalRepresentation(TextStream&) const;*/
+    virtual void invalidate();
 
-        static void invalidateClients(HashSet<SVGStyledElement*>);
-        static void removeClient(SVGStyledElement*);
+    void addClient(SVGStyledElement *);
+    virtual SVGResourceType resourceType() const = 0;
 
-    protected:
-        SVGResource();
+    bool isPaintServer() const
+    {
+        return resourceType() == PaintServerResourceType;
+    }
+    bool isFilter() const
+    {
+        return resourceType() == FilterResourceType;
+    }
+    bool isClipper() const
+    {
+        return resourceType() == ClipperResourceType;
+    }
+    bool isMarker() const
+    {
+        return resourceType() == MarkerResourceType;
+    }
+    bool isMasker() const
+    {
+        return resourceType() == MaskerResourceType;
+    }
 
-    private:
-        HashSet<SVGStyledElement*> m_clients;
-    };
+    /*virtual TextStream& externalRepresentation(TextStream&) const;*/
 
-    SVGResource* getResourceById(Document*, const AtomicString&);
-    
-    /*TextStream& operator<<(TextStream&, const SVGResource&);*/
+    static void invalidateClients(HashSet<SVGStyledElement *>);
+    static void removeClient(SVGStyledElement *);
+
+protected:
+    SVGResource();
+
+private:
+    HashSet<SVGStyledElement *> m_clients;
+};
+
+SVGResource *getResourceById(Document *, const AtomicString &);
+
+/*TextStream& operator<<(TextStream&, const SVGResource&);*/
 
 } // namespace WebCore
 

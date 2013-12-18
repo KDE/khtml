@@ -41,24 +41,26 @@
 using namespace DOM;
 using namespace khtml;
 
-static DOMString escapeHTML( const DOMString& in )
+static DOMString escapeHTML(const DOMString &in)
 {
     return in.implementation()->escapeHTML();
 }
 
-CharacterDataImpl::CharacterDataImpl(DocumentImpl *doc, DOMStringImpl* _text)
+CharacterDataImpl::CharacterDataImpl(DocumentImpl *doc, DOMStringImpl *_text)
     : NodeImpl(doc)
 {
-    str = _text ? _text : new DOMStringImpl((QChar*)0, 0);
+    str = _text ? _text : new DOMStringImpl((QChar *)0, 0);
     str->ref();
 }
 
 CharacterDataImpl::~CharacterDataImpl()
 {
-    if(str) str->deref();
+    if (str) {
+        str->deref();
+    }
 }
 
-void CharacterDataImpl::setData( const DOMString &_data, int &exceptioncode )
+void CharacterDataImpl::setData(const DOMString &_data, int &exceptioncode)
 {
     // NO_MODIFICATION_ALLOWED_ERR: Raised when the node is readonly
     if (isReadOnly()) {
@@ -66,18 +68,24 @@ void CharacterDataImpl::setData( const DOMString &_data, int &exceptioncode )
         return;
     }
 
-    if(str == _data.impl) return; // ### fire DOMCharacterDataModified if modified?
+    if (str == _data.impl) {
+        return;    // ### fire DOMCharacterDataModified if modified?
+    }
     DOMStringImpl *oldStr = str;
     str = _data.impl;
-    if (!str)
-        str = new DOMStringImpl((QChar*)0, 0);
+    if (!str) {
+        str = new DOMStringImpl((QChar *)0, 0);
+    }
     str->ref();
-    if (m_render)
-      (static_cast<RenderText*>(m_render))->setText(str);
+    if (m_render) {
+        (static_cast<RenderText *>(m_render))->setText(str);
+    }
     setChanged(true);
 
     dispatchModifiedEvent(oldStr);
-    if(oldStr) oldStr->deref();
+    if (oldStr) {
+        oldStr->deref();
+    }
 }
 
 unsigned long CharacterDataImpl::length() const
@@ -85,20 +93,22 @@ unsigned long CharacterDataImpl::length() const
     return str->l;
 }
 
-DOMString CharacterDataImpl::substringData( const unsigned long offset, const unsigned long count, int &exceptioncode )
+DOMString CharacterDataImpl::substringData(const unsigned long offset, const unsigned long count, int &exceptioncode)
 {
     exceptioncode = 0;
-    if ((long)count < 0)
-	exceptioncode = DOMException::INDEX_SIZE_ERR;
-    else
-	checkCharDataOperation(offset, exceptioncode);
-    if (exceptioncode)
+    if ((long)count < 0) {
+        exceptioncode = DOMException::INDEX_SIZE_ERR;
+    } else {
+        checkCharDataOperation(offset, exceptioncode);
+    }
+    if (exceptioncode) {
         return DOMString();
+    }
 
-    return str->substring(offset,count);
+    return str->substring(offset, count);
 }
 
-void CharacterDataImpl::appendData( const DOMString &arg, int &exceptioncode )
+void CharacterDataImpl::appendData(const DOMString &arg, int &exceptioncode)
 {
     exceptioncode = 0;
 
@@ -112,78 +122,88 @@ void CharacterDataImpl::appendData( const DOMString &arg, int &exceptioncode )
     str = str->copy();
     str->ref();
     str->append(arg.impl);
-    if (m_render)
-      (static_cast<RenderText*>(m_render))->setText(str);
+    if (m_render) {
+        (static_cast<RenderText *>(m_render))->setText(str);
+    }
     setChanged(true);
 
     dispatchModifiedEvent(oldStr);
     oldStr->deref();
 }
 
-void CharacterDataImpl::insertData( const unsigned long offset, const DOMString &arg, int &exceptioncode )
+void CharacterDataImpl::insertData(const unsigned long offset, const DOMString &arg, int &exceptioncode)
 {
     exceptioncode = 0;
     checkCharDataOperation(offset, exceptioncode);
-    if (exceptioncode)
+    if (exceptioncode) {
         return;
+    }
 
     DOMStringImpl *oldStr = str;
     str = str->copy();
     str->ref();
     str->insert(arg.impl, offset);
-    if (m_render)
-      (static_cast<RenderText*>(m_render))->setText(str);
+    if (m_render) {
+        (static_cast<RenderText *>(m_render))->setText(str);
+    }
     setChanged(true);
 
     dispatchModifiedEvent(oldStr);
     oldStr->deref();
 }
 
-void CharacterDataImpl::deleteData( const unsigned long offset, const unsigned long count, int &exceptioncode )
+void CharacterDataImpl::deleteData(const unsigned long offset, const unsigned long count, int &exceptioncode)
 {
     exceptioncode = 0;
-    if ((long)count < 0)
-	exceptioncode = DOMException::INDEX_SIZE_ERR;
-    else
-	checkCharDataOperation(offset, exceptioncode);
-    if (exceptioncode)
+    if ((long)count < 0) {
+        exceptioncode = DOMException::INDEX_SIZE_ERR;
+    } else {
+        checkCharDataOperation(offset, exceptioncode);
+    }
+    if (exceptioncode) {
         return;
+    }
 
     DOMStringImpl *oldStr = str;
     str = str->copy();
     str->ref();
-    str->remove(offset,count);
-    if (m_render)
-      (static_cast<RenderText*>(m_render))->setText(str);
+    str->remove(offset, count);
+    if (m_render) {
+        (static_cast<RenderText *>(m_render))->setText(str);
+    }
     setChanged(true);
 
     dispatchModifiedEvent(oldStr);
     oldStr->deref();
 }
 
-void CharacterDataImpl::replaceData( const unsigned long offset, const unsigned long count, const DOMString &arg, int &exceptioncode )
+void CharacterDataImpl::replaceData(const unsigned long offset, const unsigned long count, const DOMString &arg, int &exceptioncode)
 {
     exceptioncode = 0;
-    if ((long)count < 0)
-	exceptioncode = DOMException::INDEX_SIZE_ERR;
-    else
-	checkCharDataOperation(offset, exceptioncode);
-    if (exceptioncode)
+    if ((long)count < 0) {
+        exceptioncode = DOMException::INDEX_SIZE_ERR;
+    } else {
+        checkCharDataOperation(offset, exceptioncode);
+    }
+    if (exceptioncode) {
         return;
+    }
 
     unsigned long realCount;
-    if (offset + count > str->l)
-        realCount = str->l-offset;
-    else
+    if (offset + count > str->l) {
+        realCount = str->l - offset;
+    } else {
         realCount = count;
+    }
 
     DOMStringImpl *oldStr = str;
     str = str->copy();
     str->ref();
-    str->remove(offset,realCount);
+    str->remove(offset, realCount);
     str->insert(arg.impl, offset);
-    if (m_render)
-      (static_cast<RenderText*>(m_render))->setText(str);
+    if (m_render) {
+        (static_cast<RenderText *>(m_render))->setText(str);
+    }
     setChanged(true);
 
     dispatchModifiedEvent(oldStr);
@@ -200,7 +220,7 @@ bool CharacterDataImpl::containsOnlyWhitespace() const
     return str->containsOnlyWhitespace();
 }
 
-void CharacterDataImpl::setNodeValue( const DOMString &_nodeValue, int &exceptioncode )
+void CharacterDataImpl::setNodeValue(const DOMString &_nodeValue, int &exceptioncode)
 {
     // NO_MODIFICATION_ALLOWED_ERR: taken care of by setData()
     setData(_nodeValue, exceptioncode);
@@ -208,30 +228,33 @@ void CharacterDataImpl::setNodeValue( const DOMString &_nodeValue, int &exceptio
 
 void CharacterDataImpl::dispatchModifiedEvent(DOMStringImpl *prevValue)
 {
-    if (parentNode())
+    if (parentNode()) {
         parentNode()->childrenChanged();
-    if ((str->length() == 0) != (prevValue->length() == 0)) {
-       // changes in emptiness triggers changes in :empty selector
-       if (parentNode() && parentNode()->isElementNode())
-           parentNode()->backwardsStructureChanged();
-       // ### to fully support dynamic changes to :contains selector
-       // backwardsStructureChanged should be called for all changes
     }
-    if (!document()->hasListenerType(DocumentImpl::DOMCHARACTERDATAMODIFIED_LISTENER))
+    if ((str->length() == 0) != (prevValue->length() == 0)) {
+        // changes in emptiness triggers changes in :empty selector
+        if (parentNode() && parentNode()->isElementNode()) {
+            parentNode()->backwardsStructureChanged();
+        }
+        // ### to fully support dynamic changes to :contains selector
+        // backwardsStructureChanged should be called for all changes
+    }
+    if (!document()->hasListenerType(DocumentImpl::DOMCHARACTERDATAMODIFIED_LISTENER)) {
         return;
+    }
 
     DOMStringImpl *newValue = str->copy();
     newValue->ref();
     int exceptioncode = 0;
-    MutationEventImpl* const evt = new MutationEventImpl(EventImpl::DOMCHARACTERDATAMODIFIED_EVENT,true,false,0,prevValue,newValue,DOMString(),0);
+    MutationEventImpl *const evt = new MutationEventImpl(EventImpl::DOMCHARACTERDATAMODIFIED_EVENT, true, false, 0, prevValue, newValue, DOMString(), 0);
     evt->ref();
-    dispatchEvent(evt,exceptioncode);
+    dispatchEvent(evt, exceptioncode);
     evt->deref();
     newValue->deref();
     dispatchSubtreeModifiedEvent();
 }
 
-void CharacterDataImpl::checkCharDataOperation( const unsigned long offset, int &exceptioncode )
+void CharacterDataImpl::checkCharDataOperation(const unsigned long offset, int &exceptioncode)
 {
     exceptioncode = 0;
 
@@ -251,8 +274,10 @@ void CharacterDataImpl::checkCharDataOperation( const unsigned long offset, int 
 
 long CharacterDataImpl::maxOffset() const
 {
-  RenderText *r = static_cast<RenderText *>(renderer());
-  if (!r || !r->isText()) return 0;
+    RenderText *r = static_cast<RenderText *>(renderer());
+    if (!r || !r->isText()) {
+        return 0;
+    }
     return (long)length();
 }
 
@@ -274,11 +299,11 @@ unsigned long CharacterDataImpl::caretMaxRenderedOffset() const
     return r ? r->caretMaxRenderedOffset() : length();
 }
 
-
 bool CharacterDataImpl::rendererIsNeeded(khtml::RenderStyle *style)
 {
-    if (!str || !str->l)
+    if (!str || !str->l) {
         return false;
+    }
     return NodeImpl::rendererIsNeeded(style);
 }
 
@@ -296,7 +321,7 @@ unsigned short CommentImpl::nodeType() const
 
 WTF::PassRefPtr<NodeImpl> CommentImpl::cloneNode(bool /*deep*/)
 {
-    return document()->createComment( str );
+    return document()->createComment(str);
 }
 
 NodeImpl::Id CommentImpl::id() const
@@ -305,7 +330,7 @@ NodeImpl::Id CommentImpl::id() const
 }
 
 // DOM Section 1.1.1
-bool CommentImpl::childTypeAllowed( unsigned short /*type*/ )
+bool CommentImpl::childTypeAllowed(unsigned short /*type*/)
 {
     return false;
 }
@@ -318,7 +343,7 @@ DOMString CommentImpl::toString() const
 
 // ---------------------------------------------------------------------------
 
-TextImpl *TextImpl::splitText( const unsigned long offset, int &exceptioncode )
+TextImpl *TextImpl::splitText(const unsigned long offset, int &exceptioncode)
 {
     exceptioncode = 0;
 
@@ -340,32 +365,35 @@ TextImpl *TextImpl::splitText( const unsigned long offset, int &exceptioncode )
     }
 
     DOMStringImpl *oldStr = str;
-    TextImpl *newText = createNew(str->substring(offset,str->l-offset));
+    TextImpl *newText = createNew(str->substring(offset, str->l - offset));
     str = str->copy();
     str->ref();
-    str->remove(offset,str->l-offset);
+    str->remove(offset, str->l - offset);
 
     dispatchModifiedEvent(oldStr);
     oldStr->deref();
 
-    if (parentNode())
-        parentNode()->insertBefore(newText,nextSibling(), exceptioncode );
-    if ( exceptioncode )
+    if (parentNode()) {
+        parentNode()->insertBefore(newText, nextSibling(), exceptioncode);
+    }
+    if (exceptioncode) {
         return 0;
+    }
 
-    if (m_render)
-        (static_cast<RenderText*>(m_render))->setText(str);
+    if (m_render) {
+        (static_cast<RenderText *>(m_render))->setText(str);
+    }
     setChanged(true);
     return newText;
 }
 
-static const TextImpl* earliestLogicallyAdjacentTextNode(const TextImpl* t)
+static const TextImpl *earliestLogicallyAdjacentTextNode(const TextImpl *t)
 {
-    const NodeImpl* n = t;
+    const NodeImpl *n = t;
     while ((n = n->previousSibling())) {
         unsigned short type = n->nodeType();
         if (type == Node::TEXT_NODE || type == Node::CDATA_SECTION_NODE) {
-            t = static_cast<const TextImpl*>(n);
+            t = static_cast<const TextImpl *>(n);
             continue;
         }
 
@@ -376,13 +404,13 @@ static const TextImpl* earliestLogicallyAdjacentTextNode(const TextImpl* t)
     return t;
 }
 
-static const TextImpl* latestLogicallyAdjacentTextNode(const TextImpl* t)
+static const TextImpl *latestLogicallyAdjacentTextNode(const TextImpl *t)
 {
-    const NodeImpl* n = t;
+    const NodeImpl *n = t;
     while ((n = n->nextSibling())) {
         unsigned short type = n->nodeType();
         if (type == Node::TEXT_NODE || type == Node::CDATA_SECTION_NODE) {
-            t = static_cast<const TextImpl*>(n);
+            t = static_cast<const TextImpl *>(n);
             continue;
         }
 
@@ -395,23 +423,24 @@ static const TextImpl* latestLogicallyAdjacentTextNode(const TextImpl* t)
 
 DOMString TextImpl::wholeText() const
 {
-    const TextImpl* startText = earliestLogicallyAdjacentTextNode(this);
-    const TextImpl* endText = latestLogicallyAdjacentTextNode(this);
+    const TextImpl *startText = earliestLogicallyAdjacentTextNode(this);
+    const TextImpl *endText = latestLogicallyAdjacentTextNode(this);
 
     DOMString result;
-    NodeImpl* onePastEndText = endText->nextSibling();
-    for (const NodeImpl* n = startText; n != onePastEndText; n = n->nextSibling()) {
-        if (!n->isTextNode())
+    NodeImpl *onePastEndText = endText->nextSibling();
+    for (const NodeImpl *n = startText; n != onePastEndText; n = n->nextSibling()) {
+        if (!n->isTextNode()) {
             continue;
-        const TextImpl* t = static_cast<const TextImpl*>(n);
-        const DOMString& data = t->data();
+        }
+        const TextImpl *t = static_cast<const TextImpl *>(n);
+        const DOMString &data = t->data();
         result += data;
     }
 
     return result;
 }
 
-TextImpl* TextImpl::replaceWholeText(const DOMString& newText, int &ec)
+TextImpl *TextImpl::replaceWholeText(const DOMString &newText, int &ec)
 {
     Q_UNUSED(ec);
     // We don't support "read-only" text nodes (no Entity node support)
@@ -420,11 +449,11 @@ TextImpl* TextImpl::replaceWholeText(const DOMString& newText, int &ec)
     // This method only raises exceptions when dealing with Entity nodes (which we don't support)
 
     // Protect startText and endText against mutation event handlers removing the last ref
-    RefPtr<TextImpl> startText = const_cast<TextImpl*>(earliestLogicallyAdjacentTextNode(this));
-    RefPtr<TextImpl> endText = const_cast<TextImpl*>(latestLogicallyAdjacentTextNode(this));
+    RefPtr<TextImpl> startText = const_cast<TextImpl *>(earliestLogicallyAdjacentTextNode(this));
+    RefPtr<TextImpl> endText = const_cast<TextImpl *>(latestLogicallyAdjacentTextNode(this));
 
     RefPtr<TextImpl> protectedThis(this); // Mutation event handlers could cause our last ref to go away
-    NodeImpl* parent = parentNode(); // Protect against mutation handlers moving this node during traversal
+    NodeImpl *parent = parentNode(); // Protect against mutation handlers moving this node during traversal
     int ignored = 0;
     for (RefPtr<NodeImpl> n = startText; n && n != this && n->isTextNode() && n->parentNode() == parent;) {
         RefPtr<NodeImpl> nodeToRemove(n.release());
@@ -433,7 +462,7 @@ TextImpl* TextImpl::replaceWholeText(const DOMString& newText, int &ec)
     }
 
     if (this != endText) {
-        NodeImpl* onePastEndText = endText->nextSibling();
+        NodeImpl *onePastEndText = endText->nextSibling();
         for (RefPtr<NodeImpl> n = nextSibling(); n && n != onePastEndText && n->isTextNode() && n->parentNode() == parent;) {
             RefPtr<NodeImpl> nodeToRemove(n.release());
             n = nodeToRemove->nextSibling();
@@ -442,8 +471,9 @@ TextImpl* TextImpl::replaceWholeText(const DOMString& newText, int &ec)
     }
 
     if (newText.isEmpty()) {
-        if (parent && parentNode() == parent)
+        if (parent && parentNode() == parent) {
             parent->removeChild(this, ignored);
+        }
         return 0;
     }
 
@@ -453,7 +483,7 @@ TextImpl* TextImpl::replaceWholeText(const DOMString& newText, int &ec)
 
 DOMString TextImpl::nodeName() const
 {
-  return "#text";
+    return "#text";
 }
 
 unsigned short TextImpl::nodeType() const
@@ -498,8 +528,9 @@ bool TextImpl::rendererIsNeeded(RenderStyle *style)
         }
 
         RenderObject *first = par->firstChild();
-        while (first && first->isFloatingOrPositioned())
+        while (first && first->isFloatingOrPositioned()) {
             first = first->nextSibling();
+        }
         RenderObject *next = nextRenderer();
         if (!first || next == first) {
             // Whitespace at the start of a block just goes away.  Don't even
@@ -514,9 +545,10 @@ bool TextImpl::rendererIsNeeded(RenderStyle *style)
 RenderObject *TextImpl::createRenderer(RenderArena *arena, RenderStyle * /*style*/)
 {
     // for SVG
-    if (parentNode()->isSVGElement())
-        return new (arena) WebCore::RenderSVGInlineText(this, str);
-    return new (arena) RenderText(this, str);
+    if (parentNode()->isSVGElement()) {
+        return new(arena) WebCore::RenderSVGInlineText(this, str);
+    }
+    return new(arena) RenderText(this, str);
 }
 
 void TextImpl::attach()
@@ -530,54 +562,58 @@ NodeImpl::Id TextImpl::id() const
     return ID_TEXT;
 }
 
-void TextImpl::recalcStyle( StyleChange change )
+void TextImpl::recalcStyle(StyleChange change)
 {
 //      qDebug("textImpl::recalcStyle");
     // Create renderer if now needed
-    if ( changed() && !m_render) {
+    if (changed() && !m_render) {
         createRendererIfNeeded();
     }
     if (change != NoChange && parentNode()) {
-// 	qDebug("DomText::recalcStyle");
-	if(m_render)
-	    m_render->setStyle(parentNode()->renderer()->style());
+//  qDebug("DomText::recalcStyle");
+        if (m_render) {
+            m_render->setStyle(parentNode()->renderer()->style());
+        }
     }
-    if ( changed() && m_render && m_render->isText() )
-	static_cast<RenderText*>(m_render)->setText(str);
-    setChanged( false );
+    if (changed() && m_render && m_render->isText()) {
+        static_cast<RenderText *>(m_render)->setText(str);
+    }
+    setChanged(false);
 }
 
 // DOM Section 1.1.1
-bool TextImpl::childTypeAllowed( unsigned short /*type*/ )
+bool TextImpl::childTypeAllowed(unsigned short /*type*/)
 {
     return false;
 }
 
 TextImpl *TextImpl::createNew(DOMStringImpl *_str)
 {
-    return new TextImpl(docPtr(),_str);
+    return new TextImpl(docPtr(), _str);
 }
 
-DOMStringImpl* TextImpl::renderString() const
+DOMStringImpl *TextImpl::renderString() const
 {
-    if (renderer())
-        return static_cast<RenderText*>(renderer())->string();
-    else
+    if (renderer()) {
+        return static_cast<RenderText *>(renderer())->string();
+    } else {
         return string();
+    }
 }
 
-static bool textNeedsEscaping( const NodeImpl *n )
+static bool textNeedsEscaping(const NodeImpl *n)
 {
     // Exceptions based on "Serializing HTML fragments" section of
     // HTML 5 specification (with some adaptions to reality)
     const NodeImpl *p = n->parentNode();
-    if ( !p )
+    if (!p) {
         return true;
-    switch ( p->id() ) {
+    }
+    switch (p->id()) {
     case ID_IFRAME:
-        // follow deviating examples of FF 3.5.6 and Opera 9.6
-        // case ID_NOEMBED:
-        // case ID_NOFRAMES:
+    // follow deviating examples of FF 3.5.6 and Opera 9.6
+    // case ID_NOEMBED:
+    // case ID_NOFRAMES:
     case ID_NOSCRIPT:
     case ID_PLAINTEXT:
     case ID_SCRIPT:
@@ -591,26 +627,29 @@ static bool textNeedsEscaping( const NodeImpl *n )
 
 DOMString TextImpl::toString() const
 {
-    return textNeedsEscaping( this ) ? escapeHTML( nodeValue() ) : nodeValue();
+    return textNeedsEscaping(this) ? escapeHTML(nodeValue()) : nodeValue();
 }
 
 DOMString TextImpl::toString(long long startOffset, long long endOffset) const
 {
     DOMString str = nodeValue();
-    if(endOffset >=0 || startOffset >0)
-	str = str.copy(); //we are going to modify this, so make a copy.  I hope I'm doing this right.
-    if(endOffset >= 0)
+    if (endOffset >= 0 || startOffset > 0) {
+        str = str.copy();    //we are going to modify this, so make a copy.  I hope I'm doing this right.
+    }
+    if (endOffset >= 0) {
         str.truncate(endOffset);
-    if(startOffset > 0)    //note the order of these 2 'if' statements so that it works right when n==m_startContainer==m_endContainer
+    }
+    if (startOffset > 0) { //note the order of these 2 'if' statements so that it works right when n==m_startContainer==m_endContainer
         str.remove(0, startOffset);
-    return textNeedsEscaping( this ) ? escapeHTML( str ) : str;
+    }
+    return textNeedsEscaping(this) ? escapeHTML(str) : str;
 }
 
 // ---------------------------------------------------------------------------
 
 DOMString CDATASectionImpl::nodeName() const
 {
-  return "#cdata-section";
+    return "#cdata-section";
 }
 
 unsigned short CDATASectionImpl::nodeType() const
@@ -624,14 +663,14 @@ WTF::PassRefPtr<NodeImpl> CDATASectionImpl::cloneNode(bool /*deep*/)
 }
 
 // DOM Section 1.1.1
-bool CDATASectionImpl::childTypeAllowed( unsigned short /*type*/ )
+bool CDATASectionImpl::childTypeAllowed(unsigned short /*type*/)
 {
     return false;
 }
 
 TextImpl *CDATASectionImpl::createNew(DOMStringImpl *_str)
 {
-    return new CDATASectionImpl(docPtr(),_str);
+    return new CDATASectionImpl(docPtr(), _str);
 }
 
 DOMString CDATASectionImpl::toString() const
@@ -660,4 +699,3 @@ bool EditingTextImpl::rendererIsNeeded(RenderStyle */*style*/)
     return true;
 }
 
-// kate: indent-width 4; replace-tabs on; tab-width 8; space-indent on;

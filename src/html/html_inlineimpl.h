@@ -26,8 +26,8 @@
 
 #include "html_elementimpl.h"
 
-namespace DOM {
-
+namespace DOM
+{
 
 class HTMLAnchorElementImpl : public HTMLElementImpl
 {

@@ -44,14 +44,15 @@
 
 #include <wtf/MathExtras.h>
 
-namespace WebCore {
+namespace WebCore
+{
 
 // RenderPath
-RenderPath::RenderPath(RenderStyle* style, SVGStyledTransformableElement* node)
+RenderPath::RenderPath(RenderStyle *style, SVGStyledTransformableElement *node)
     : RenderObject(node)
 {
     ASSERT(style != 0); Q_UNUSED(style);
-    ASSERT(static_cast<SVGElement*>(node)->isStyledTransformable());
+    ASSERT(static_cast<SVGElement *>(node)->isStyledTransformable());
 }
 
 RenderPath::~RenderPath()
@@ -63,53 +64,59 @@ AffineTransform RenderPath::localTransform() const
     return m_localTransform;
 }
 
-FloatPoint RenderPath::mapAbsolutePointToLocal(const FloatPoint& point) const
+FloatPoint RenderPath::mapAbsolutePointToLocal(const FloatPoint &point) const
 {
     // FIXME: does it make sense to map incoming points with the inverse of the
-    // absolute transform? 
+    // absolute transform?
     double localX;
     double localY;
     absoluteTransform().inverse().map(point.x(), point.y(), &localX, &localY);
     return FloatPoint::narrowPrecision(localX, localY);
 }
 
-bool RenderPath::fillContains(const FloatPoint& point, bool requiresFill) const
+bool RenderPath::fillContains(const FloatPoint &point, bool requiresFill) const
 {
-    if (m_path.isEmpty())
+    if (m_path.isEmpty()) {
         return false;
+    }
 
-    if (requiresFill && !SVGPaintServer::fillPaintServer(style(), this))
+    if (requiresFill && !SVGPaintServer::fillPaintServer(style(), this)) {
         return false;
+    }
 
     return m_path.contains(point, style()->svgStyle()->fillRule());
 }
 
 FloatRect RenderPath::relativeBBox(bool includeStroke) const
 {
-    if (m_path.isEmpty())
+    if (m_path.isEmpty()) {
         return FloatRect();
+    }
 
     if (includeStroke) {
         if (m_strokeBbox.isEmpty())
             /*m_strokeBbox = strokeBBox();*/
 
-        return m_strokeBbox;
+        {
+            return m_strokeBbox;
+        }
     }
 
-    if (m_fillBBox.isEmpty())
+    if (m_fillBBox.isEmpty()) {
         m_fillBBox = m_path.boundingRect();
+    }
 
     return m_fillBBox;
 }
 
-void RenderPath::setPath(const Path& newPath)
+void RenderPath::setPath(const Path &newPath)
 {
     m_path = newPath;
     m_strokeBbox = FloatRect();
     m_fillBBox = FloatRect();
 }
 
-const Path& RenderPath::path() const
+const Path &RenderPath::path() const
 {
     return m_path;
 }
@@ -117,7 +124,7 @@ const Path& RenderPath::path() const
 bool RenderPath::calculateLocalTransform()
 {
     AffineTransform oldTransform = m_localTransform;
-    m_localTransform = static_cast<SVGStyledTransformableElement*>(element())->animatedLocalTransform();
+    m_localTransform = static_cast<SVGStyledTransformableElement *>(element())->animatedLocalTransform();
     return (m_localTransform != oldTransform);
 }
 
@@ -130,10 +137,10 @@ void RenderPath::layout()
         oldBounds = m_absoluteBounds;
         //oldOutlineBox = absoluteOutlineBox();
     }
-        
+
     calculateLocalTransform();
 
-    setPath(static_cast<SVGStyledTransformableElement*>(element())->toPathData());
+    setPath(static_cast<SVGStyledTransformableElement *>(element())->toPathData());
 
     m_absoluteBounds = absoluteClippedOverflowRect();
 
@@ -154,12 +161,12 @@ IntRect RenderPath::absoluteClippedOverflowRect()
     // Markers can expand the bounding box
     repaintRect.unite(m_markerBounds);
 
-#if ENABLE(SVG_FILTERS)
+    #if ENABLE(SVG_FILTERS)
     // Filters can expand the bounding box
     SVGResourceFilter* filter = getFilterById(document(), SVGURIReference::getTarget(style()->svgStyle()->filter()));
     if (filter)
         repaintRect.unite(filter->filterBBoxForItemBBox(repaintRect));
-#endif
+    #endif
 
     if (!repaintRect.isEmpty())
         repaintRect.inflate(1); // inflate 1 pixel for antialiasing
@@ -184,28 +191,28 @@ short RenderPath::baselinePosition(bool b) const
     return static_cast<short>(relativeBBox(true).height());
 }
 
-static inline void fillAndStrokePath(const Path& path, QPainter* painter, RenderStyle* style, RenderPath* object)
+static inline void fillAndStrokePath(const Path &path, QPainter *painter, RenderStyle *style, RenderPath *object)
 {
     /*context->beginPath();*/
 
-    SVGPaintServer* fillPaintServer = SVGPaintServer::fillPaintServer(style, object);
+    SVGPaintServer *fillPaintServer = SVGPaintServer::fillPaintServer(style, object);
     if (fillPaintServer) {
         /*context->addPath(path);*/
         fillPaintServer->draw(painter, path.platformPath(), object, ApplyToFillTargetType);
     }
-    
-    SVGPaintServer* strokePaintServer = SVGPaintServer::strokePaintServer(style, object);
+
+    SVGPaintServer *strokePaintServer = SVGPaintServer::strokePaintServer(style, object);
     if (strokePaintServer) {
         /*context->addPath(path); // path is cleared when filled.*/
         strokePaintServer->draw(painter, path.platformPath(), object, ApplyToStrokeTargetType);
     }
 }
 
-void RenderPath::paint(PaintInfo& paintInfo, int, int)
+void RenderPath::paint(PaintInfo &paintInfo, int, int)
 {
     paintInfo.p->save();
     paintInfo.p->setWorldMatrix(localTransform(), true);
-    SVGResourceFilter* filter = 0;
+    SVGResourceFilter *filter = 0;
     prepareToRenderSVGContent(this, paintInfo, FloatRect(), filter/*boundingBox, filter*/);
     if (paintInfo.phase == PaintActionForeground) {
         fillAndStrokePath(m_path, paintInfo.p, style(), this);
@@ -215,7 +222,7 @@ void RenderPath::paint(PaintInfo& paintInfo, int, int)
 #if 0
     /*if (paintInfo.context->paintingDisabled() || style()->visibility() == HIDDEN || m_path.isEmpty())
         return;*/
-            
+
     //paintInfo.context->save();
     /*paintInfo.context->concatCTM(localTransform());*/
 
@@ -243,17 +250,17 @@ void RenderPath::paint(PaintInfo& paintInfo, int, int)
     if ((paintInfo.phase == PaintPhaseOutline || paintInfo.phase == PaintPhaseSelfOutline) && style()->outlineWidth())
         paintOutline(paintInfo.context, static_cast<int>(boundingBox.x()), static_cast<int>(boundingBox.y()),
             static_cast<int>(boundingBox.width()), static_cast<int>(boundingBox.height()), style());*/
-    
+
     //paintInfo.context->restore();
 #endif
 }
 
-/*void RenderPath::addFocusRingRects(GraphicsContext* graphicsContext, int, int) 
+/*void RenderPath::addFocusRingRects(GraphicsContext* graphicsContext, int, int)
 {
     graphicsContext->addFocusRingRect(enclosingIntRect(relativeBBox(true)));
 }*/
 
-void RenderPath::absoluteRects(Vector<IntRect>& rects, int, int, bool)
+void RenderPath::absoluteRects(Vector<IntRect> &rects, int, int, bool)
 {
     rects.append(absoluteClippedOverflowRect());
 }
@@ -263,7 +270,7 @@ void RenderPath::absoluteRects(Vector<IntRect>& rects, int, int, bool)
     // We only draw in the forground phase, so we only hit-test then.
     if (hitTestAction != HitTestForeground)
         return false;
-    
+
     IntPoint absolutePoint(_x, _y);
 
     PointerEventsHitRules hitRules(PointerEventsHitRules::SVG_PATH_HITTESTING, style()->svgStyle()->pointerEvents());
@@ -346,7 +353,7 @@ static void drawMarkerWithData(GraphicsContext* context, MarkerData &data)
 static inline void updateMarkerDataForElement(MarkerData& previousMarkerData, const PathElement* element)
 {
     FloatPoint* points = element->points;
-    
+
     switch (element->type) {
     case PathElementAddQuadCurveToPoint:
         // TODO

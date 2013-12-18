@@ -23,9 +23,10 @@
 #include "SVGFEOffset.h"
 #include "TextStream.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFEOffset::SVGFEOffset(SVGResourceFilter* filter)
+SVGFEOffset::SVGFEOffset(SVGResourceFilter *filter)
     : SVGFilterEffect(filter)
     , m_dx(0.0f)
     , m_dy(0.0f)
@@ -52,10 +53,10 @@ void SVGFEOffset::setDy(float dy)
     m_dy = dy;
 }
 
-TextStream& SVGFEOffset::externalRepresentation(TextStream& ts) const
+TextStream &SVGFEOffset::externalRepresentation(TextStream &ts) const
 {
     ts << "[type=OFFSET] "; SVGFilterEffect::externalRepresentation(ts)
-        << " [dx=" << dx() << " dy=" << dy() << "]";
+            << " [dx=" << dx() << " dy=" << dy() << "]";
     return ts;
 }
 

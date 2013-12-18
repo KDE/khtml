@@ -27,36 +27,56 @@
 using DOM::DOMString;
 using DOM::DOMStringImpl;
 
-namespace khtml {
+namespace khtml
+{
 
-class AtomicString {
+class AtomicString
+{
 public:
     static void init();
 
     AtomicString() { }
-    AtomicString(const char* s) : m_string(add(s)) { }
-    AtomicString(const QChar* s, int length) : m_string(add(s, length)) { }
-    AtomicString(const QChar* s) : m_string(add(s)) { }
+    AtomicString(const char *s) : m_string(add(s)) { }
+    AtomicString(const QChar *s, int length) : m_string(add(s, length)) { }
+    AtomicString(const QChar *s) : m_string(add(s)) { }
     //AtomicString(const KJS::UString& s) : m_string(add(s)) { }
     //AtomicString(const KJS::Identifier& s) : m_string(add(s)) { }
-    AtomicString(DOMStringImpl* imp) : m_string(add(imp)) { }
-    AtomicString(AtomicStringImpl* imp) : m_string(imp) { }
-    AtomicString(const DOMString& s) : m_string(add(s.implementation())) { }
+    AtomicString(DOMStringImpl *imp) : m_string(add(imp)) { }
+    AtomicString(AtomicStringImpl *imp) : m_string(imp) { }
+    AtomicString(const DOMString &s) : m_string(add(s.implementation())) { }
 
     //static AtomicStringImpl* find(const KJS::Identifier&);
 
-    operator const DOMString&() const { return m_string; }
-    const DOMString& string() const { return m_string; };
+    operator const DOMString &() const
+    {
+        return m_string;
+    }
+    const DOMString &string() const
+    {
+        return m_string;
+    };
 
     //operator KJS::UString() const;
 
-    AtomicStringImpl* impl() const { return static_cast<AtomicStringImpl *>(m_string.implementation()); }
-    
-    const QChar* characters() const { return m_string.characters(); }
-    unsigned length() const { return m_string.length(); }
-    
-    QChar operator[](unsigned int i) const { return m_string[i]; }
-    
+    AtomicStringImpl *impl() const
+    {
+        return static_cast<AtomicStringImpl *>(m_string.implementation());
+    }
+
+    const QChar *characters() const
+    {
+        return m_string.characters();
+    }
+    unsigned length() const
+    {
+        return m_string.length();
+    }
+
+    QChar operator[](unsigned int i) const
+    {
+        return m_string[i];
+    }
+
     /*FIXME: not yet implemented in DOMString
     bool contains(QChar c) const { return m_string.contains(c); }
     bool contains(const AtomicString& s, bool caseSensitive = true) const
@@ -65,7 +85,7 @@ public:
     int find(QChar c, int start = 0) const { return m_string.find(c, start); }
     int find(const AtomicString& s, int start = 0, bool caseSentitive = true) const
         { return m_string.find(s.string(), start, caseSentitive); }
-    
+
     bool startsWith(const AtomicString& s, bool caseSensitive = true) const
         { return m_string.startsWith(s.string(), caseSensitive); }
     bool endsWith(const AtomicString& s, bool caseSensitive = true) const
@@ -78,29 +98,44 @@ public:
     Length* toLengthArray(int& len) const { return m_string.toLengthArray(len); }
     Length* toCoordsArray(int& len) const { return m_string.toCoordsArray(len); }*/
 
-    bool isNull() const { return m_string.isNull(); }
-    bool isEmpty() const { return m_string.isEmpty(); }
+    bool isNull() const
+    {
+        return m_string.isNull();
+    }
+    bool isEmpty() const
+    {
+        return m_string.isEmpty();
+    }
 
-    static void remove(DOMStringImpl*);
+    static void remove(DOMStringImpl *);
 
 private:
     DOMString m_string;
 
-    static DOMStringImpl* add(const char*);
-    static DOMStringImpl* add(const QChar*, int length);
-    static DOMStringImpl* add(const QChar*);
-    static DOMStringImpl* add(DOMStringImpl*);
+    static DOMStringImpl *add(const char *);
+    static DOMStringImpl *add(const QChar *, int length);
+    static DOMStringImpl *add(const QChar *);
+    static DOMStringImpl *add(DOMStringImpl *);
     //static PassRefPtr<DOMStringImpl> add(const KJS::UString&);
     //static PassRefPtr<DOMStringImpl> add(const KJS::Identifier&);
 };
 
-inline bool operator==(const AtomicString& a, const AtomicString& b) { return a.impl() == b.impl(); }
-bool operator==(const AtomicString& a, const char* b);
+inline bool operator==(const AtomicString &a, const AtomicString &b)
+{
+    return a.impl() == b.impl();
+}
+bool operator==(const AtomicString &a, const char *b);
 //inline bool operator==(const AtomicString& a, const DOMString& b) { return equal(a.impl(), b.implementation()); }
-inline bool operator==(const char* a, const AtomicString& b) { return b == a; }
+inline bool operator==(const char *a, const AtomicString &b)
+{
+    return b == a;
+}
 /*inline bool operator==(const DOMString& a, const AtomicString& b) { return equal(a.implementation(), b.impl()); }*/
 
-inline bool operator!=(const AtomicString& a, const AtomicString& b) { return a.impl() != b.impl(); }
+inline bool operator!=(const AtomicString &a, const AtomicString &b)
+{
+    return a.impl() != b.impl();
+}
 /*inline bool operator!=(const AtomicString& a, const char *b) { return !(a == b); }
 inline bool operator!=(const AtomicString& a, const String& b) { return !equal(a.impl(), b.impl()); }
 inline bool operator!=(const char* a, const AtomicString& b) { return !(b == a); }
@@ -114,11 +149,11 @@ inline bool equalIgnoringCase(const String& a, const AtomicString& b) { return e
 
 // Define external global variables for the commonly used atomic strings.
 #ifndef ATOMICSTRING_HIDE_GLOBALS
-    extern const AtomicString nullAtom;
-    extern const AtomicString emptyAtom;
-    extern const AtomicString textAtom;
-    extern const AtomicString commentAtom;
-    extern const AtomicString starAtom;
+extern const AtomicString nullAtom;
+extern const AtomicString emptyAtom;
+extern const AtomicString textAtom;
+extern const AtomicString commentAtom;
+extern const AtomicString starAtom;
 #endif
 
 }

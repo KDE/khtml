@@ -29,41 +29,55 @@
 #include "SVGStyledTransformableElement.h"
 #include "SVGTests.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGLength;
+class SVGLength;
 
-    class SVGLineElement : public SVGStyledTransformableElement,
-                           public SVGTests,
-                           public SVGLangSpace,
-                           public SVGExternalResourcesRequired {
-    public:
-        SVGLineElement(const QualifiedName&, Document*);
-        virtual ~SVGLineElement();
-        
-        virtual bool isValid() const { return SVGTests::isValid(); }
+class SVGLineElement : public SVGStyledTransformableElement,
+    public SVGTests,
+    public SVGLangSpace,
+    public SVGExternalResourcesRequired
+{
+public:
+    SVGLineElement(const QualifiedName &, Document *);
+    virtual ~SVGLineElement();
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual void svgAttributeChanged(const QualifiedName&);
+    virtual bool isValid() const
+    {
+        return SVGTests::isValid();
+    }
 
-        virtual Path toPathData() const;
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual void svgAttributeChanged(const QualifiedName &);
 
-        virtual bool supportsMarkers() const { return true; }
+    virtual Path toPathData() const;
 
-        // KHTML ElementImpl pure virtual method
-        virtual quint32 id() const { return SVGNames::lineTag.id(); }
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
-        virtual bool hasRelativeValues() const;
+    virtual bool supportsMarkers() const
+    {
+        return true;
+    }
 
-    private:
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
- 
-        ANIMATED_PROPERTY_DECLARATIONS(SVGLineElement, SVGLength, SVGLength, X1, x1)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGLineElement, SVGLength, SVGLength, Y1, y1)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGLineElement, SVGLength, SVGLength, X2, x2)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGLineElement, SVGLength, SVGLength, Y2, y2)
-    };
+    // KHTML ElementImpl pure virtual method
+    virtual quint32 id() const
+    {
+        return SVGNames::lineTag.id();
+    }
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
+    virtual bool hasRelativeValues() const;
+
+private:
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
+
+    ANIMATED_PROPERTY_DECLARATIONS(SVGLineElement, SVGLength, SVGLength, X1, x1)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGLineElement, SVGLength, SVGLength, Y1, y1)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGLineElement, SVGLength, SVGLength, X2, x2)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGLineElement, SVGLength, SVGLength, Y2, y2)
+};
 
 } // namespace WebCore
 

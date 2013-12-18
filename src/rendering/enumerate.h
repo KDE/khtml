@@ -25,41 +25,44 @@
 
 class QString;
 
-namespace khtml {
+namespace khtml
+{
 
-namespace Enumerate {
+namespace Enumerate
+{
 
 // Numeric
-    QString toArabicIndic( int number );
-    QString toLao( int number );
-    QString toPersianUrdu( int number );
-    QString toThai( int number );
-    QString toTibetan( int number );
+QString toArabicIndic(int number);
+QString toLao(int number);
+QString toPersianUrdu(int number);
+QString toThai(int number);
+QString toTibetan(int number);
 
 // Alphabetic
-    QString toLowerLatin( int number );
-    QString toUpperLatin( int number );
-    QString toLowerGreek( int number );
-    QString toUpperGreek( int number );
-    QString toHiragana( int number );
-    QString toHiraganaIroha( int number );
-    QString toKatakana( int number );
-    QString toKatakanaIroha( int number );
+QString toLowerLatin(int number);
+QString toUpperLatin(int number);
+QString toLowerGreek(int number);
+QString toUpperGreek(int number);
+QString toHiragana(int number);
+QString toHiraganaIroha(int number);
+QString toKatakana(int number);
+QString toKatakanaIroha(int number);
 
 // Algorithmic
-    QString toRoman( int number, bool upper );
-    QString toHebrew( int number );
-    QString toGeorgian( int number );
-    QString toArmenian( int number );
+QString toRoman(int number, bool upper);
+QString toHebrew(int number);
+QString toGeorgian(int number);
+QString toArmenian(int number);
 
 // Ideographic
-    QString toJapaneseFormal   ( int number );
-    QString toJapaneseInformal ( int number );
-    QString toSimpChineseFormal   ( int number );
-    QString toSimpChineseInformal ( int number );
-    QString toTradChineseFormal   ( int number );
-    QString toTradChineseInformal ( int number );
+QString toJapaneseFormal(int number);
+QString toJapaneseInformal(int number);
+QString toSimpChineseFormal(int number);
+QString toSimpChineseInformal(int number);
+QString toTradChineseFormal(int number);
+QString toTradChineseInformal(int number);
 
-}} // namespaces
+}
+} // namespaces
 
 #endif

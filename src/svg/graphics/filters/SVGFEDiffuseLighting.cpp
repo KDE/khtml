@@ -24,9 +24,10 @@
 #include "SVGFEDiffuseLighting.h"
 #include "TextStream.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFEDiffuseLighting::SVGFEDiffuseLighting(SVGResourceFilter* filter)
+SVGFEDiffuseLighting::SVGFEDiffuseLighting(SVGResourceFilter *filter)
     : SVGFilterEffect(filter)
     , m_lightingColor()
     , m_surfaceScale(0.0f)
@@ -47,12 +48,12 @@ Color SVGFEDiffuseLighting::lightingColor() const
     return m_lightingColor;
 }
 
-void SVGFEDiffuseLighting::setLightingColor(const Color& lightingColor)
+void SVGFEDiffuseLighting::setLightingColor(const Color &lightingColor)
 {
     m_lightingColor = lightingColor;
 }
 
-float SVGFEDiffuseLighting::surfaceScale() const 
+float SVGFEDiffuseLighting::surfaceScale() const
 {
     return m_surfaceScale;
 }
@@ -92,26 +93,26 @@ void SVGFEDiffuseLighting::setKernelUnitLengthY(float kernelUnitLengthY)
     m_kernelUnitLengthY = kernelUnitLengthY;
 }
 
-const SVGLightSource* SVGFEDiffuseLighting::lightSource() const
+const SVGLightSource *SVGFEDiffuseLighting::lightSource() const
 {
     return m_lightSource;
 }
 
-void SVGFEDiffuseLighting::setLightSource(SVGLightSource* lightSource)
-{    
+void SVGFEDiffuseLighting::setLightSource(SVGLightSource *lightSource)
+{
     if (m_lightSource != lightSource) {
         delete m_lightSource;
         m_lightSource = lightSource;
     }
 }
 
-TextStream& SVGFEDiffuseLighting::externalRepresentation(TextStream& ts) const
+TextStream &SVGFEDiffuseLighting::externalRepresentation(TextStream &ts) const
 {
     ts << "[type=DIFFUSE-LIGHTING] ";
     SVGFilterEffect::externalRepresentation(ts);
     ts << " [surface scale=" << m_surfaceScale << "]"
-        << " [diffuse constant=" << m_diffuseConstant << "]"
-        << " [kernel unit length " << m_kernelUnitLengthX << ", " << m_kernelUnitLengthY << "]";
+       << " [diffuse constant=" << m_diffuseConstant << "]"
+       << " [kernel unit length " << m_kernelUnitLengthX << ", " << m_kernelUnitLengthY << "]";
     return ts;
 }
 

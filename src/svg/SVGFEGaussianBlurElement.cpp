@@ -27,9 +27,10 @@
 #include "SVGParserUtilities.h"
 #include "SVGResourceFilter.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFEGaussianBlurElement::SVGFEGaussianBlurElement(const QualifiedName& tagName, Document* doc)
+SVGFEGaussianBlurElement::SVGFEGaussianBlurElement(const QualifiedName &tagName, Document *doc)
     : SVGFilterPrimitiveStandardAttributes(tagName, doc)
     , m_stdDeviationX(0.0f)
     , m_stdDeviationY(0.0f)
@@ -50,31 +51,33 @@ void SVGFEGaussianBlurElement::setStdDeviation(float stdDeviationX, float stdDev
 {
 }
 
-void SVGFEGaussianBlurElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGFEGaussianBlurElement::parseMappedAttribute(MappedAttribute *attr)
 {
-    const String& value = attr->value();
+    const String &value = attr->value();
     if (attr->name() == SVGNames::stdDeviationAttr) {
         float x, y;
         if (parseNumberOptionalNumber(value, x, y)) {
             setStdDeviationXBaseValue(x);
             setStdDeviationYBaseValue(y);
         }
-    } else if (attr->name() == SVGNames::inAttr)
+    } else if (attr->name() == SVGNames::inAttr) {
         setIn1BaseValue(value);
-    else
+    } else {
         SVGFilterPrimitiveStandardAttributes::parseMappedAttribute(attr);
+    }
 }
 
-SVGFEGaussianBlur* SVGFEGaussianBlurElement::filterEffect(SVGResourceFilter* filter) const
+SVGFEGaussianBlur *SVGFEGaussianBlurElement::filterEffect(SVGResourceFilter *filter) const
 {
-    if (!m_filterEffect)
+    if (!m_filterEffect) {
         m_filterEffect = new SVGFEGaussianBlur(filter);
-    
+    }
+
     m_filterEffect->setIn(in1());
     m_filterEffect->setStdDeviationX(stdDeviationX());
     m_filterEffect->setStdDeviationY(stdDeviationY());
 
-    setStandardAttributes(m_filterEffect); 
+    setStandardAttributes(m_filterEffect);
     return m_filterEffect;
 }
 
@@ -82,4 +85,3 @@ SVGFEGaussianBlur* SVGFEGaussianBlurElement::filterEffect(SVGResourceFilter* fil
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

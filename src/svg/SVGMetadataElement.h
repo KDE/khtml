@@ -28,16 +28,15 @@
 
 namespace WebCore
 {
-    class SVGMetadataElement : public SVGElement
-    {
-    public:
-        SVGMetadataElement(const QualifiedName&, Document*);
-        virtual ~SVGMetadataElement();
-    };
+class SVGMetadataElement : public SVGElement
+{
+public:
+    SVGMetadataElement(const QualifiedName &, Document *);
+    virtual ~SVGMetadataElement();
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

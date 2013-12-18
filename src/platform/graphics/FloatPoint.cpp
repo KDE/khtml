@@ -21,7 +21,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include "FloatPoint.h"
@@ -30,13 +30,14 @@
 #include "FloatConversion.h"
 #include "IntPoint.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-FloatPoint::FloatPoint(const IntPoint& p) : m_x(p.x()), m_y(p.y())
+FloatPoint::FloatPoint(const IntPoint &p) : m_x(p.x()), m_y(p.y())
 {
 }
 
-FloatPoint FloatPoint::matrixTransform(const AffineTransform& transform) const
+FloatPoint FloatPoint::matrixTransform(const AffineTransform &transform) const
 {
     double newX, newY;
     transform.map(static_cast<double>(m_x), static_cast<double>(m_y), &newX, &newY);

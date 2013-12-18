@@ -55,7 +55,6 @@ StyleSheetImpl::StyleSheetImpl(StyleSheetImpl *parentSheet, DOMString href)
     m_strHref = href;
 }
 
-
 StyleSheetImpl::StyleSheetImpl(DOM::NodeImpl *parentNode, DOMString href)
     : StyleListImpl()
 {
@@ -76,48 +75,56 @@ StyleSheetImpl::StyleSheetImpl(StyleBaseImpl *owner, DOMString href)
 
 StyleSheetImpl::~StyleSheetImpl()
 {
-    if(m_media) {
-	m_media->setParent( 0 );
-	m_media->deref();
+    if (m_media) {
+        m_media->setParent(0);
+        m_media->deref();
     }
 }
 
 StyleSheetImpl *StyleSheetImpl::parentStyleSheet() const
 {
-    if( !m_parent ) return 0;
-    if( m_parent->isStyleSheet() ) return static_cast<StyleSheetImpl *>(m_parent);
-    if( m_parent->isRule() ) return m_parent->stylesheet();
+    if (!m_parent) {
+        return 0;
+    }
+    if (m_parent->isStyleSheet()) {
+        return static_cast<StyleSheetImpl *>(m_parent);
+    }
+    if (m_parent->isRule()) {
+        return m_parent->stylesheet();
+    }
     return 0;
 }
 
-void StyleSheetImpl::setMedia( MediaListImpl *media )
+void StyleSheetImpl::setMedia(MediaListImpl *media)
 {
-    if( media )
-	media->ref();
-    if( m_media ) {
-        m_media->setParent( 0 );
-	m_media->deref();
+    if (media) {
+        media->ref();
+    }
+    if (m_media) {
+        m_media->setParent(0);
+        m_media->deref();
     }
     m_media = media;
-    if (m_media)
-        m_media->setParent( this );
+    if (m_media) {
+        m_media->setParent(this);
+    }
 }
 
-void StyleSheetImpl::setDisabled( bool disabled )
+void StyleSheetImpl::setDisabled(bool disabled)
 {
     bool updateStyle = isCSSStyleSheet() && m_parentNode && disabled != m_disabled;
     m_disabled = disabled;
-    if (updateStyle)
+    if (updateStyle) {
         m_parentNode->document()->updateStyleSelector();
+    }
 }
 
 // -----------------------------------------------------------------------
 
-
 CSSStyleSheetImpl::CSSStyleSheetImpl(CSSStyleSheetImpl *parentSheet, DOMString href)
     : StyleSheetImpl(parentSheet, href)
 {
-    m_lstChildren = new QList<StyleBaseImpl*>;
+    m_lstChildren = new QList<StyleBaseImpl *>;
     m_doc = parentSheet ? parentSheet->doc() : 0;
     m_implicit = false;
     m_namespaces = 0;
@@ -128,7 +135,7 @@ CSSStyleSheetImpl::CSSStyleSheetImpl(CSSStyleSheetImpl *parentSheet, DOMString h
 CSSStyleSheetImpl::CSSStyleSheetImpl(DOM::NodeImpl *parentNode, DOMString href, bool _implicit)
     : StyleSheetImpl(parentNode, href)
 {
-    m_lstChildren = new QList<StyleBaseImpl*>;
+    m_lstChildren = new QList<StyleBaseImpl *>;
     m_doc = parentNode->document();
     m_implicit = _implicit;
     m_namespaces = 0;
@@ -139,8 +146,8 @@ CSSStyleSheetImpl::CSSStyleSheetImpl(DOM::NodeImpl *parentNode, DOMString href, 
 CSSStyleSheetImpl::CSSStyleSheetImpl(CSSRuleImpl *ownerRule, DOMString href)
     : StyleSheetImpl(ownerRule, href)
 {
-    m_lstChildren = new QList<StyleBaseImpl*>;
-    m_doc = static_cast<CSSStyleSheetImpl*>(ownerRule->stylesheet())->doc();
+    m_lstChildren = new QList<StyleBaseImpl *>;
+    m_doc = static_cast<CSSStyleSheetImpl *>(ownerRule->stylesheet())->doc();
     m_implicit = false;
     m_namespaces = 0;
     m_defaultNamespace = NamespaceName::fromId(anyNamespace);
@@ -150,11 +157,10 @@ CSSStyleSheetImpl::CSSStyleSheetImpl(CSSRuleImpl *ownerRule, DOMString href)
 CSSStyleSheetImpl::CSSStyleSheetImpl(DOM::NodeImpl *parentNode, CSSStyleSheetImpl *orig)
     : StyleSheetImpl(parentNode, orig->m_strHref)
 {
-    m_lstChildren = new QList<StyleBaseImpl*>;
+    m_lstChildren = new QList<StyleBaseImpl *>;
     StyleBaseImpl *rule;
-    QListIterator<StyleBaseImpl*> it( *orig->m_lstChildren );
-    while ( it.hasNext() )
-    {
+    QListIterator<StyleBaseImpl *> it(*orig->m_lstChildren);
+    while (it.hasNext()) {
         rule = it.next();
         m_lstChildren->append(rule);
         rule->setParent(this);
@@ -164,7 +170,7 @@ CSSStyleSheetImpl::CSSStyleSheetImpl(DOM::NodeImpl *parentNode, CSSStyleSheetImp
     m_namespaces = 0;
     m_defaultNamespace = NamespaceName::fromId(anyNamespace);
     m_loadedHint = false;
-    
+
     recomputeNamespaceInfo(); // as we cloned kids
 }
 
@@ -172,42 +178,45 @@ CSSStyleSheetImpl::CSSStyleSheetImpl(CSSRuleImpl *ownerRule, CSSStyleSheetImpl *
     : StyleSheetImpl(ownerRule, orig->m_strHref)
 {
     // m_lstChildren is deleted in StyleListImpl
-    m_lstChildren = new QList<StyleBaseImpl*>;
+    m_lstChildren = new QList<StyleBaseImpl *>;
     StyleBaseImpl *rule;
-    QListIterator<StyleBaseImpl*> it( *orig->m_lstChildren );
-    while ( it.hasNext() )
-    {
+    QListIterator<StyleBaseImpl *> it(*orig->m_lstChildren);
+    while (it.hasNext()) {
         rule = it.next();
         m_lstChildren->append(rule);
         rule->setParent(this);
     }
-    m_doc = static_cast<CSSStyleSheetImpl*>(ownerRule->stylesheet())->doc();
+    m_doc = static_cast<CSSStyleSheetImpl *>(ownerRule->stylesheet())->doc();
     m_implicit = false;
     m_namespaces = 0;
     m_defaultNamespace = NamespaceName::fromId(anyNamespace);
     m_loadedHint = false;
-    
+
     recomputeNamespaceInfo(); // as we cloned kids
 }
 
 CSSRuleImpl *CSSStyleSheetImpl::ownerRule() const
 {
-    if( !m_parent ) return 0;
-    if( m_parent->isRule() ) return static_cast<CSSRuleImpl *>(m_parent);
+    if (!m_parent) {
+        return 0;
+    }
+    if (m_parent->isRule()) {
+        return static_cast<CSSRuleImpl *>(m_parent);
+    }
     return 0;
 }
 
-unsigned long CSSStyleSheetImpl::insertRule( const DOMString &rule, unsigned long index, int &exceptioncode )
+unsigned long CSSStyleSheetImpl::insertRule(const DOMString &rule, unsigned long index, int &exceptioncode)
 {
     exceptioncode = 0;
     if (index > (unsigned) m_lstChildren->count()) {
         exceptioncode = DOMException::INDEX_SIZE_ERR;
         return 0;
     }
-    CSSParser p( strictParsing );
-    CSSRuleImpl *r = p.parseRule( this, rule );
+    CSSParser p(strictParsing);
+    CSSRuleImpl *r = p.parseRule(this, rule);
 
-    if(!r) {
+    if (!r) {
         exceptioncode = CSSException::SYNTAX_ERR + CSSException::_EXCEPTION_OFFSET;
         return 0;
     }
@@ -215,25 +224,28 @@ unsigned long CSSStyleSheetImpl::insertRule( const DOMString &rule, unsigned lon
     // HIERARCHY_REQUEST_ERR: Raised if the rule cannot be inserted at the specified index e.g. if an
     //@import rule is inserted after a standard rule set or other at-rule.
     m_lstChildren->insert(index, r);
-    if (m_doc)
+    if (m_doc) {
         m_doc->updateStyleSelector(true /*shallow*/);
-        
+    }
+
     if (r->type() == DOM::CSSRule::NAMESPACE_RULE) {
         dirtyNamespaceInfo();
-        if (static_cast<CSSNamespaceRuleImpl*>(r)->isDefault())
-            recomputeNamespaceInfo(); // default may have changed
-                                      // ### too late for some rules?
+        if (static_cast<CSSNamespaceRuleImpl *>(r)->isDefault()) {
+            recomputeNamespaceInfo();    // default may have changed
+        }
+        // ### too late for some rules?
     }
-        
+
     return index;
 }
 
-void CSSStyleSheetImpl::appendNamespaceRule(CSSNamespaceRuleImpl* ns)
+void CSSStyleSheetImpl::appendNamespaceRule(CSSNamespaceRuleImpl *ns)
 {
     append(ns);
     dirtyNamespaceInfo();
-    if (ns->isDefault())
+    if (ns->isDefault()) {
         recomputeNamespaceInfo();
+    }
 }
 
 CSSRuleListImpl *CSSStyleSheetImpl::cssRules(bool omitCharsetRules)
@@ -241,68 +253,75 @@ CSSRuleListImpl *CSSStyleSheetImpl::cssRules(bool omitCharsetRules)
     return new CSSRuleListImpl(this, omitCharsetRules);
 }
 
-void CSSStyleSheetImpl::deleteRule( unsigned long index, int &exceptioncode )
+void CSSStyleSheetImpl::deleteRule(unsigned long index, int &exceptioncode)
 {
     exceptioncode = 0;
-    if (index+1 > (unsigned) m_lstChildren->count()) {
+    if (index + 1 > (unsigned) m_lstChildren->count()) {
         exceptioncode = DOMException::INDEX_SIZE_ERR;
         return;
     }
     StyleBaseImpl *b = m_lstChildren->takeAt(index);
-    
-    if (b->isRule() && static_cast<CSSRuleImpl*>(b)->type() == DOM::CSSRule::NAMESPACE_RULE) {
+
+    if (b->isRule() && static_cast<CSSRuleImpl *>(b)->type() == DOM::CSSRule::NAMESPACE_RULE) {
         dirtyNamespaceInfo();
-        if (static_cast<CSSNamespaceRuleImpl*>(b)->isDefault())
-            recomputeNamespaceInfo(); // default may have changed
-                                      // ### too late for some rules?
+        if (static_cast<CSSNamespaceRuleImpl *>(b)->isDefault()) {
+            recomputeNamespaceInfo();    // default may have changed
+        }
+        // ### too late for some rules?
     }
 
     // TreeShared requires delete not deref when removed from tree
     b->setParent(0);
-    if( !b->refCount() ) delete b;
-    if (m_doc)
+    if (!b->refCount()) {
+        delete b;
+    }
+    if (m_doc) {
         m_doc->updateStyleSelector(true /*shallow*/);
+    }
 }
 
 void CSSStyleSheetImpl::recomputeNamespaceInfo()
 {
-    assert (!m_namespaces);
-    
-    m_namespaces = new QList<CSSNamespaceRuleImpl*>;
+    assert(!m_namespaces);
+
+    m_namespaces = new QList<CSSNamespaceRuleImpl *>;
     m_defaultNamespace = NamespaceName::fromId(anyNamespace);
-    
-    // Compute list of all the @namespace nodes, as well as the default one. 
+
+    // Compute list of all the @namespace nodes, as well as the default one.
     for (int i = 0; i < m_lstChildren->count(); ++i) {
-        StyleBaseImpl* b = m_lstChildren->at(i);
-        if (b->isRule() && static_cast<CSSRuleImpl*>(b)->type() == DOM::CSSRule::NAMESPACE_RULE) {
-            CSSNamespaceRuleImpl* nr = static_cast<CSSNamespaceRuleImpl*>(b);
+        StyleBaseImpl *b = m_lstChildren->at(i);
+        if (b->isRule() && static_cast<CSSRuleImpl *>(b)->type() == DOM::CSSRule::NAMESPACE_RULE) {
+            CSSNamespaceRuleImpl *nr = static_cast<CSSNamespaceRuleImpl *>(b);
             DOM::DOMString prefix = nr->prefix();
             DOM::DOMString uri    = nr->namespaceURI();
-            
-            if (uri.isNull())
+
+            if (uri.isNull()) {
                 continue;
-            
-            if (nr->isDefault())
+            }
+
+            if (nr->isDefault()) {
                 m_defaultNamespace = NamespaceName::fromString(uri);
-                
+            }
+
             m_namespaces->append(nr);
         }
     }
 }
 
-void CSSStyleSheetImpl::determineNamespace(NamespaceName& namespacename, const DOM::DOMString& prefix)
+void CSSStyleSheetImpl::determineNamespace(NamespaceName &namespacename, const DOM::DOMString &prefix)
 {
-    if (prefix.isEmpty())
-        namespacename = NamespaceName::fromId(emptyNamespace); // No namespace. If an element/attribute has a namespace, we won't match it.
-    else if (prefix == "*")
-        namespacename = NamespaceName::fromId(anyNamespace); // We'll match any namespace.
-    else {
-        if (!m_namespaces)
+    if (prefix.isEmpty()) {
+        namespacename = NamespaceName::fromId(emptyNamespace);    // No namespace. If an element/attribute has a namespace, we won't match it.
+    } else if (prefix == "*") {
+        namespacename = NamespaceName::fromId(anyNamespace);    // We'll match any namespace.
+    } else {
+        if (!m_namespaces) {
             recomputeNamespaceInfo();
-            
+        }
+
         // To lookup the name, we go backwards, so the latest one wins
         for (int p = m_namespaces->count() - 1; p >= 0; --p) {
-            CSSNamespaceRuleImpl* ns = m_namespaces->at(p);
+            CSSNamespaceRuleImpl *ns = m_namespaces->at(p);
             if (ns->prefix() == prefix) {
                 namespacename = NamespaceName::fromString(ns->namespaceURI());
                 return;
@@ -318,26 +337,23 @@ bool CSSStyleSheetImpl::parseString(const DOMString &string, bool strict)
 #endif
 
     strictParsing = strict;
-    CSSParser p( strict );
-    p.parseSheet( this, string );
+    CSSParser p(strict);
+    p.parseSheet(this, string);
     return true;
 }
 
 bool CSSStyleSheetImpl::isLoading() const
 {
     StyleBaseImpl *rule;
-    QListIterator<StyleBaseImpl*> it( *m_lstChildren );
-    while ( it.hasNext() )
-    {
+    QListIterator<StyleBaseImpl *> it(*m_lstChildren);
+    while (it.hasNext()) {
         rule = it.next();
-        if(rule->isImportRule())
-        {
+        if (rule->isImportRule()) {
             CSSImportRuleImpl *import = static_cast<CSSImportRuleImpl *>(rule);
 #ifdef CSS_STYLESHEET_DEBUG
             qDebug() << "found import";
 #endif
-            if(import->isLoading())
-            {
+            if (import->isLoading()) {
 #ifdef CSS_STYLESHEET_DEBUG
                 qDebug() << "--> not loaded";
 #endif
@@ -352,84 +368,96 @@ bool CSSStyleSheetImpl::isLoading() const
 
 void CSSStyleSheetImpl::checkLoaded() const
 {
-    if (isLoading()) 
+    if (isLoading()) {
         return;
-    if (m_parent) 
+    }
+    if (m_parent) {
         m_parent->checkLoaded();
-    if (m_parentNode)
+    }
+    if (m_parentNode) {
         m_loadedHint = m_parentNode->checkRemovePendingSheet();
-    else if (parentStyleSheet() && parentStyleSheet()->isCSSStyleSheet())
-        m_loadedHint = static_cast<CSSStyleSheetImpl*>(parentStyleSheet())->loadedHint();
-    else
+    } else if (parentStyleSheet() && parentStyleSheet()->isCSSStyleSheet()) {
+        m_loadedHint = static_cast<CSSStyleSheetImpl *>(parentStyleSheet())->loadedHint();
+    } else {
         m_loadedHint = true;
+    }
 }
 
 void CSSStyleSheetImpl::checkPending() const
 {
-    if (!m_loadedHint)
+    if (!m_loadedHint) {
         return;
-    if (m_parent)
+    }
+    if (m_parent) {
         m_parent->checkPending();
-    else if (m_parentNode)
+    } else if (m_parentNode) {
         m_parentNode->checkAddPendingSheet();
+    }
 }
 
 // ---------------------------------------------------------------------------
 
-
 StyleSheetListImpl::~StyleSheetListImpl()
 {
-    foreach (StyleSheetImpl* sh, styleSheets)
+    foreach (StyleSheetImpl *sh, styleSheets) {
         sh->deref();
-}
-
-void StyleSheetListImpl::add( StyleSheetImpl* s )
-{
-    if (managerDocument)
-        managerDocument->ensureStyleSheetListUpToDate();
-
-    // ### in cases this is document.styleSheets, maybe 
-    // we should route to DocumentImpl::addStyleSheets?
-
-    if ( !styleSheets.contains( s ) ) {
-        s->ref();
-        styleSheets.append( s );
     }
 }
 
-void StyleSheetListImpl::remove( StyleSheetImpl* s )
+void StyleSheetListImpl::add(StyleSheetImpl *s)
 {
-    if (managerDocument)
+    if (managerDocument) {
         managerDocument->ensureStyleSheetListUpToDate();
+    }
 
-    if ( styleSheets.removeAll( s ) )
+    // ### in cases this is document.styleSheets, maybe
+    // we should route to DocumentImpl::addStyleSheets?
+
+    if (!styleSheets.contains(s)) {
+        s->ref();
+        styleSheets.append(s);
+    }
+}
+
+void StyleSheetListImpl::remove(StyleSheetImpl *s)
+{
+    if (managerDocument) {
+        managerDocument->ensureStyleSheetListUpToDate();
+    }
+
+    if (styleSheets.removeAll(s)) {
         s->deref();
+    }
 }
 
 unsigned long StyleSheetListImpl::length() const
 {
-    if (managerDocument)
+    if (managerDocument) {
         managerDocument->ensureStyleSheetListUpToDate();
+    }
 
     // hack so implicit BODY stylesheets don't get counted here
     unsigned long l = 0;
-    foreach (StyleSheetImpl* sh, styleSheets) {
-        if (!sh->isCSSStyleSheet() || !static_cast<CSSStyleSheetImpl*>(sh)->implicit())
+    foreach (StyleSheetImpl *sh, styleSheets) {
+        if (!sh->isCSSStyleSheet() || !static_cast<CSSStyleSheetImpl *>(sh)->implicit()) {
             ++l;
+        }
     }
     return l;
 }
 
-StyleSheetImpl *StyleSheetListImpl::item ( unsigned long index )
+StyleSheetImpl *StyleSheetListImpl::item(unsigned long index)
 {
-    if (managerDocument)
+    if (managerDocument) {
         managerDocument->ensureStyleSheetListUpToDate();
+    }
 
     unsigned long l = 0;
-    foreach (StyleSheetImpl* sh, styleSheets) {
-        if (!sh->isCSSStyleSheet() || !static_cast<CSSStyleSheetImpl*>(sh)->implicit()) {
-            if (l == index)
+    foreach (StyleSheetImpl *sh, styleSheets) {
+        if (!sh->isCSSStyleSheet() || !static_cast<CSSStyleSheetImpl *>(sh)->implicit()) {
+            if (l == index) {
                 return sh;
+            }
             ++l;
         }
     }
@@ -466,9 +494,9 @@ StyleSheetImpl *StyleSheetListImpl::item ( unsigned long index )
  * throw SYNTAX_ERR exception.
  */
 
-MediaListImpl::MediaListImpl( CSSStyleSheetImpl *parentSheet,
-                              const DOMString &media, bool fallbackToDescriptor)
-    : StyleBaseImpl( parentSheet )
+MediaListImpl::MediaListImpl(CSSStyleSheetImpl *parentSheet,
+                             const DOMString &media, bool fallbackToDescriptor)
+    : StyleBaseImpl(parentSheet)
     , m_fallback(fallbackToDescriptor)
 {
     int ec = 0;
@@ -476,16 +504,17 @@ MediaListImpl::MediaListImpl( CSSStyleSheetImpl *parentSheet,
     // FIXME: parsing can fail. The problem with failing constructor is that
     // we would need additional flag saying MediaList is not valid
     // Parse can fail only when fallbackToDescriptor == false, i.e when HTML4 media descriptor
-    // forward-compatible syntax is not in use. 
+    // forward-compatible syntax is not in use.
     // DOMImplementationCSS seems to mandate that media descriptors are used
     // for both html and svg, even though svg:style doesn't use media descriptors
     // Currently the only places where parsing can fail are
     // creating <svg:style>, creating css media / import rules from js
-    if (ec)
+    if (ec) {
         setMediaText("invalid", ec);
+    }
 }
 
-MediaListImpl::MediaListImpl( CSSRuleImpl *parentRule, const DOMString &media, bool fallbackToDescriptor)
+MediaListImpl::MediaListImpl(CSSRuleImpl *parentRule, const DOMString &media, bool fallbackToDescriptor)
     : StyleBaseImpl(parentRule)
     , m_fallback(fallbackToDescriptor)
 {
@@ -494,13 +523,14 @@ MediaListImpl::MediaListImpl( CSSRuleImpl *parentRule, const DOMString &media, b
     // FIXME: parsing can fail. The problem with failing constructor is that
     // we would need additional flag saying MediaList is not valid
     // Parse can fail only when fallbackToDescriptor == false, i.e when HTML4 media descriptor
-    // forward-compatible syntax is not in use. 
+    // forward-compatible syntax is not in use.
     // DOMImplementationCSS seems to mandate that media descriptors are used
     // for both html and svg, even though svg:style doesn't use media descriptors
     // Currently the only places where parsing can fail are
     // creating <svg:style>, creating css media / import rules from js
-    if (ec)
+    if (ec) {
         setMediaText("invalid", ec);
+    }
 }
 
 MediaListImpl::~MediaListImpl()
@@ -510,17 +540,21 @@ MediaListImpl::~MediaListImpl()
 
 CSSStyleSheetImpl *MediaListImpl::parentStyleSheet() const
 {
-    if( m_parent->isCSSStyleSheet() ) return static_cast<CSSStyleSheetImpl *>(m_parent);
+    if (m_parent->isCSSStyleSheet()) {
+        return static_cast<CSSStyleSheetImpl *>(m_parent);
+    }
     return 0;
 }
 
 CSSRuleImpl *MediaListImpl::parentRule() const
 {
-    if( m_parent->isRule() ) return static_cast<CSSRuleImpl *>(m_parent);
+    if (m_parent->isRule()) {
+        return static_cast<CSSRuleImpl *>(m_parent);
+    }
     return 0;
 }
 
-static DOMString parseMediaDescriptor(const DOMString& s)
+static DOMString parseMediaDescriptor(const DOMString &s)
 {
     int len = s.length();
 
@@ -532,26 +566,28 @@ static DOMString parseMediaDescriptor(const DOMString& s)
     unsigned short c;
     for (i = 0; i < len; ++i) {
         c = s[i].unicode();
-        if (! ((c >= 'a' && c <= 'z')
-            || (c >= 'A' && c <= 'Z')
-            || (c >= '1' && c <= '9')
-            || (c == '-')))
+        if (!((c >= 'a' && c <= 'z')
+                || (c >= 'A' && c <= 'Z')
+                || (c >= '1' && c <= '9')
+                || (c == '-'))) {
             break;
+        }
     }
     return s.implementation()->substring(0, i);
 }
 
-void MediaListImpl::deleteMedium(const DOMString& oldMedium, int& ec)
+void MediaListImpl::deleteMedium(const DOMString &oldMedium, int &ec)
 {
     MediaListImpl tempMediaList;
     CSSParser p(true);
 
-    MediaQuery* oldQuery = 0;
+    MediaQuery *oldQuery = 0;
     bool deleteOldQuery = false;
 
     if (p.parseMediaQuery(&tempMediaList, oldMedium)) {
-        if (tempMediaList.m_queries.size() > 0)
+        if (tempMediaList.m_queries.size() > 0) {
             oldQuery = tempMediaList.m_queries[0];
+        }
     } else if (m_fallback) {
         DOMString medium = parseMediaDescriptor(oldMedium);
         if (!medium.isNull()) {
@@ -564,8 +600,8 @@ void MediaListImpl::deleteMedium(const DOMString& oldMedium, int& ec)
     ec = DOMException::NOT_FOUND_ERR;
 
     if (oldQuery) {
-        for(int i = 0; i < m_queries.size(); ++i) {
-            MediaQuery* a = m_queries[i];
+        for (int i = 0; i < m_queries.size(); ++i) {
+            MediaQuery *a = m_queries[i];
             if (*a == *oldQuery) {
                 m_queries.removeAt(i);
                 delete a;
@@ -573,8 +609,9 @@ void MediaListImpl::deleteMedium(const DOMString& oldMedium, int& ec)
                 break;
             }
         }
-        if (deleteOldQuery)
+        if (deleteOldQuery) {
             delete oldQuery;
+        }
     }
 }
 
@@ -582,45 +619,46 @@ DOM::DOMString MediaListImpl::mediaText() const
 {
     DOMString text;
     bool first = true;
-    const QList<MediaQuery*>::ConstIterator itEnd = m_queries.end();
+    const QList<MediaQuery *>::ConstIterator itEnd = m_queries.end();
 
-    for ( QList<MediaQuery*>::ConstIterator it = m_queries.begin(); it != itEnd; ++it ) {
-        if (!first)
+    for (QList<MediaQuery *>::ConstIterator it = m_queries.begin(); it != itEnd; ++it) {
+        if (!first) {
             text += ", ";
+        }
         text += (*it)->cssText();
         first = false;
     }
     return text;
 }
 
-void MediaListImpl::setMediaText(const DOM::DOMString &value, int& ec)
+void MediaListImpl::setMediaText(const DOM::DOMString &value, int &ec)
 {
     MediaListImpl tempMediaList;
     CSSParser p(true);
 
     const QString val = value.string();
-    const QStringList list = val.split( ',' );
+    const QStringList list = val.split(',');
 
     const QStringList::ConstIterator itEnd = list.end();
 
-    for ( QStringList::ConstIterator it = list.begin(); it != itEnd; ++it )
-    {
+    for (QStringList::ConstIterator it = list.begin(); it != itEnd; ++it) {
         const DOMString medium = (*it).trimmed();
-        if( !medium.isEmpty() ) {
+        if (!medium.isEmpty()) {
             if (!p.parseMediaQuery(&tempMediaList, medium)) {
                 if (m_fallback) {
                     DOMString mediaDescriptor = parseMediaDescriptor(medium);
-                    if (!mediaDescriptor.isNull())
+                    if (!mediaDescriptor.isNull()) {
                         tempMediaList.m_queries.append(new MediaQuery(MediaQuery::None, mediaDescriptor, 0));
+                    }
                 } else {
                     ec = CSSException::SYNTAX_ERR;
                     return;
                 }
-            }          
+            }
         } else if (!m_fallback) {
             ec = CSSException::SYNTAX_ERR;
             return;
-        }            
+        }
     }
     // ",,,," falls straight through, but is not valid unless fallback
     if (!m_fallback && list.begin() == list.end()) {
@@ -628,27 +666,26 @@ void MediaListImpl::setMediaText(const DOM::DOMString &value, int& ec)
         if (!s.isEmpty()) {
             ec = CSSException::SYNTAX_ERR;
             return;
-            }
+        }
     }
-    
+
     ec = 0;
     qDeleteAll(m_queries);
     m_queries = tempMediaList.m_queries;
     tempMediaList.m_queries.clear();
 }
 
- 
 DOMString MediaListImpl::item(unsigned long index) const
 {
     if (index < (unsigned)m_queries.size()) {
-        MediaQuery* query = m_queries[index];
+        MediaQuery *query = m_queries[index];
         return query->cssText();
     }
 
     return DOMString();
 }
 
-void MediaListImpl::appendMedium(const DOMString& newMedium, int& ec)
+void MediaListImpl::appendMedium(const DOMString &newMedium, int &ec)
 {
     ec = DOMException::INVALID_CHARACTER_ERR;
     CSSParser p(true);
@@ -663,9 +700,8 @@ void MediaListImpl::appendMedium(const DOMString& newMedium, int& ec)
     }
 }
 
-void MediaListImpl::appendMediaQuery(MediaQuery* mediaQuery)
+void MediaListImpl::appendMediaQuery(MediaQuery *mediaQuery)
 {
     m_queries.append(mediaQuery);
 }
 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on; hl c++;

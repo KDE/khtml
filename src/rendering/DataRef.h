@@ -26,7 +26,8 @@
 
 #include <wtf/RefPtr.h>
 
-namespace khtml {
+namespace khtml
+{
 
 template <class DATA>
 class DataRef
@@ -34,10 +35,10 @@ class DataRef
 public:
     DataRef()
     {
-        data=0;
+        data = 0;
     }
 
-    DataRef( const DataRef<DATA> &d )
+    DataRef(const DataRef<DATA> &d)
     {
         data = d.data;
         data->ref();
@@ -45,23 +46,24 @@ public:
 
     ~DataRef()
     {
-        if(data) data->deref();
+        if (data) {
+            data->deref();
+        }
     }
 
-    const DATA* operator->() const
+    const DATA *operator->() const
     {
         return data;
     }
 
-    const DATA* get() const
+    const DATA *get() const
     {
         return data;
     }
 
-    DATA* access()
+    DATA *access()
     {
-        if (!data->hasOneRef())
-        {
+        if (!data->hasOneRef()) {
             data->deref();
             data = new DATA(*data);
             data->ref();
@@ -75,12 +77,14 @@ public:
         data->ref();
     }
 
-    DataRef<DATA>& operator=(const DataRef<DATA>& d)
+    DataRef<DATA> &operator=(const DataRef<DATA> &d)
     {
-        if (data==d.data)
+        if (data == d.data) {
             return *this;
-        if (data)
+        }
+        if (data) {
             data->deref();
+        }
         data = d.data;
 
         data->ref();
@@ -88,16 +92,18 @@ public:
         return *this;
     }
 
-    bool operator == ( const DataRef<DATA> &o ) const {
-        return (*data == *(o.data) );
+    bool operator == (const DataRef<DATA> &o) const
+    {
+        return (*data == *(o.data));
     }
 
-    bool operator != ( const DataRef<DATA> &o ) const {
-        return (*data != *(o.data) );
+    bool operator != (const DataRef<DATA> &o) const
+    {
+        return (*data != *(o.data));
     }
 
 private:
-    DATA* data;
+    DATA *data;
 };
 
 } // namespace khtml

@@ -30,43 +30,46 @@
 #include "SVGExternalResourcesRequired.h"
 #include "SVGFEImage.h"
 
-namespace WebCore {
-    class SVGPreserveAspectRatio;
+namespace WebCore
+{
+class SVGPreserveAspectRatio;
 
-    class SVGFEImageElement : public SVGFilterPrimitiveStandardAttributes,
-                              public SVGURIReference,
-                              public SVGLangSpace,
-                              public SVGExternalResourcesRequired,
-                              public CachedResourceClient
+class SVGFEImageElement : public SVGFilterPrimitiveStandardAttributes,
+    public SVGURIReference,
+    public SVGLangSpace,
+    public SVGExternalResourcesRequired,
+    public CachedResourceClient
+{
+public:
+    SVGFEImageElement(const QualifiedName &, Document *);
+    virtual ~SVGFEImageElement();
+
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual void notifyFinished(CachedResource *);
+
+    virtual void getSubresourceAttributeStrings(Vector<String> &) const;
+
+protected:
+    virtual SVGFEImage *filterEffect(SVGResourceFilter *) const;
+
+protected:
+    virtual const SVGElement *contextElement() const
     {
-    public:
-        SVGFEImageElement(const QualifiedName&, Document*);
-        virtual ~SVGFEImageElement();
+        return this;
+    }
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual void notifyFinished(CachedResource*);
+private:
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
 
-        virtual void getSubresourceAttributeStrings(Vector<String>&) const;
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFEImageElement, SVGPreserveAspectRatio *, RefPtr<SVGPreserveAspectRatio>, PreserveAspectRatio, preserveAspectRatio)
 
-    protected:
-        virtual SVGFEImage* filterEffect(SVGResourceFilter*) const;
-
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
-
-    private:
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
- 
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFEImageElement, SVGPreserveAspectRatio*, RefPtr<SVGPreserveAspectRatio>, PreserveAspectRatio, preserveAspectRatio)
-
-        CachedImage* m_cachedImage;
-        mutable SVGFEImage* m_filterEffect;
-    };
+    CachedImage *m_cachedImage;
+    mutable SVGFEImage *m_filterEffect;
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

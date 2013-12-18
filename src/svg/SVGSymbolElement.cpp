@@ -27,9 +27,10 @@
 #include "PlatformString.h"
 #include "SVGFitToViewBox.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGSymbolElement::SVGSymbolElement(const QualifiedName& tagName, Document* doc)
+SVGSymbolElement::SVGSymbolElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledElement(tagName, doc)
     , SVGLangSpace()
     , SVGExternalResourcesRequired()
@@ -41,20 +42,22 @@ SVGSymbolElement::~SVGSymbolElement()
 {
 }
 
-void SVGSymbolElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGSymbolElement::parseMappedAttribute(MappedAttribute *attr)
 {
-    if (SVGLangSpace::parseMappedAttribute(attr))
+    if (SVGLangSpace::parseMappedAttribute(attr)) {
         return;
-    if (SVGExternalResourcesRequired::parseMappedAttribute(attr))
+    }
+    if (SVGExternalResourcesRequired::parseMappedAttribute(attr)) {
         return;
-    if (SVGFitToViewBox::parseMappedAttribute(attr))
+    }
+    if (SVGFitToViewBox::parseMappedAttribute(attr)) {
         return;
+    }
 
     SVGStyledElement::parseMappedAttribute(attr);
 }
 
 }
 
-// vim:ts=4:noet
 #endif // ENABLE(SVG)
 

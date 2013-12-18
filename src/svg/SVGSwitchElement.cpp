@@ -26,9 +26,10 @@
 #include "RenderSVGTransformableContainer.h"
 #include "SVGNames.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGSwitchElement::SVGSwitchElement(const QualifiedName& tagName, Document* doc)
+SVGSwitchElement::SVGSwitchElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledTransformableElement(tagName, doc)
     , SVGTests()
     , SVGLangSpace()
@@ -40,26 +41,26 @@ SVGSwitchElement::~SVGSwitchElement()
 {
 }
 
-bool SVGSwitchElement::childShouldCreateRenderer(Node* child) const
+bool SVGSwitchElement::childShouldCreateRenderer(Node *child) const
 {
-    for (Node* n = firstChild(); n != 0; n = n->nextSibling()) {
+    for (Node *n = firstChild(); n != 0; n = n->nextSibling()) {
         if (n->isSVGElement()) {
-            SVGElement* element = static_cast<SVGElement*>(n);
-            if (element && element->isValid())
-                return (n == child); // Only allow this child if it's the first valid child
+            SVGElement *element = static_cast<SVGElement *>(n);
+            if (element && element->isValid()) {
+                return (n == child);    // Only allow this child if it's the first valid child
+            }
         }
     }
 
     return false;
 }
 
-RenderObject* SVGSwitchElement::createRenderer(RenderArena* arena, RenderStyle*)
+RenderObject *SVGSwitchElement::createRenderer(RenderArena *arena, RenderStyle *)
 {
-    return new (arena) RenderSVGTransformableContainer(this);
+    return new(arena) RenderSVGTransformableContainer(this);
 }
 
 }
 
-// vim:ts=4:noet
 #endif // ENABLE(SVG)
 

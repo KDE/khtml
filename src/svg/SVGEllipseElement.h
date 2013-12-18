@@ -29,37 +29,45 @@
 #include "SVGStyledTransformableElement.h"
 #include "SVGTests.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGEllipseElement : public SVGStyledTransformableElement,
-                              public SVGTests,
-                              public SVGLangSpace,
-                              public SVGExternalResourcesRequired {
-    public:
-        SVGEllipseElement(const QualifiedName&, Document*);
-        virtual ~SVGEllipseElement();
-        
-        virtual bool isValid() const { return SVGTests::isValid(); }
+class SVGEllipseElement : public SVGStyledTransformableElement,
+    public SVGTests,
+    public SVGLangSpace,
+    public SVGExternalResourcesRequired
+{
+public:
+    SVGEllipseElement(const QualifiedName &, Document *);
+    virtual ~SVGEllipseElement();
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual void svgAttributeChanged(const QualifiedName&);
+    virtual bool isValid() const
+    {
+        return SVGTests::isValid();
+    }
 
-        virtual Path toPathData() const;
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual void svgAttributeChanged(const QualifiedName &);
 
-        // khtml
-        virtual quint32 id() const;
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
-        virtual bool hasRelativeValues() const;
+    virtual Path toPathData() const;
 
-    private:
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
- 
-        ANIMATED_PROPERTY_DECLARATIONS(SVGEllipseElement, SVGLength, SVGLength, Cx, cx)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGEllipseElement, SVGLength, SVGLength, Cy, cy)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGEllipseElement, SVGLength, SVGLength, Rx, rx)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGEllipseElement, SVGLength, SVGLength, Ry, ry)
-    };
+    // khtml
+    virtual quint32 id() const;
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
+    virtual bool hasRelativeValues() const;
+
+private:
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
+
+    ANIMATED_PROPERTY_DECLARATIONS(SVGEllipseElement, SVGLength, SVGLength, Cx, cx)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGEllipseElement, SVGLength, SVGLength, Cy, cy)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGEllipseElement, SVGLength, SVGLength, Rx, rx)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGEllipseElement, SVGLength, SVGLength, Ry, ry)
+};
 
 } // namespace WebCore
 

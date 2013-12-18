@@ -22,7 +22,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef css_mediaquery_h
@@ -33,12 +33,14 @@
 
 class KHTMLPart;
 
-namespace DOM {
+namespace DOM
+{
 class MediaListImpl;
 class ValueList;
 }
 
-namespace khtml {
+namespace khtml
+{
 
 class MediaQueryExp;
 
@@ -49,26 +51,37 @@ public:
         Only, Not, None
     };
 
-    MediaQuery(Restrictor r, const DOM::DOMString& mediaType, QList<MediaQueryExp*>* exprs);
+    MediaQuery(Restrictor r, const DOM::DOMString &mediaType, QList<MediaQueryExp *> *exprs);
     ~MediaQuery();
 
-    Restrictor restrictor() const { return m_restrictor; }
-    const QList<MediaQueryExp*>* expressions() const { return m_expressions; }
-    DOM::DOMString mediaType() const { return m_mediaType; }
-    bool operator==(const MediaQuery& other) const;
-    void append(MediaQueryExp* newExp) { m_expressions->append(newExp); }
+    Restrictor restrictor() const
+    {
+        return m_restrictor;
+    }
+    const QList<MediaQueryExp *> *expressions() const
+    {
+        return m_expressions;
+    }
+    DOM::DOMString mediaType() const
+    {
+        return m_mediaType;
+    }
+    bool operator==(const MediaQuery &other) const;
+    void append(MediaQueryExp *newExp)
+    {
+        m_expressions->append(newExp);
+    }
     DOM::DOMString cssText() const;
 
- private:
+private:
     Restrictor m_restrictor;
     DOM::DOMString m_mediaType;
-    QList<MediaQueryExp*>* m_expressions;
+    QList<MediaQueryExp *> *m_expressions;
 };
 
 class CSSStyleSelector;
 class RenderStyle;
 class MediaQueryExp;
-
 
 /**
  * Class that evaluates css media queries as defined in
@@ -95,57 +108,66 @@ public:
      *  Evaluator  returns true for acceptedMediaType and returns value of \mediafeatureResult
      *  for any media features
      */
-    MediaQueryEvaluator(const DOM::DOMString& acceptedMediaType, bool mediaFeatureResult = false);
-    MediaQueryEvaluator(const char* acceptedMediaType, bool mediaFeatureResult = false);
+    MediaQueryEvaluator(const DOM::DOMString &acceptedMediaType, bool mediaFeatureResult = false);
+    MediaQueryEvaluator(const char *acceptedMediaType, bool mediaFeatureResult = false);
 
     /** Creates evaluator which evaluates full media queries
      */
-    MediaQueryEvaluator(const DOM::DOMString& acceptedMediaType, KHTMLPart*, RenderStyle*);
+    MediaQueryEvaluator(const DOM::DOMString &acceptedMediaType, KHTMLPart *, RenderStyle *);
 
     ~MediaQueryEvaluator();
 
-    bool mediaTypeMatch(const DOM::DOMString& mediaTypeToMatch) const;
-    bool mediaTypeMatchSpecific(const char* mediaTypeToMatch) const;
+    bool mediaTypeMatch(const DOM::DOMString &mediaTypeToMatch) const;
+    bool mediaTypeMatchSpecific(const char *mediaTypeToMatch) const;
 
     /** Evaluates a list of media queries */
-    bool eval(const DOM::MediaListImpl*, CSSStyleSelector* = 0) const;
+    bool eval(const DOM::MediaListImpl *, CSSStyleSelector * = 0) const;
 
     /** Evaluates media query subexpression, ie "and (media-feature: value)" part */
-    bool eval(const MediaQueryExp*) const;
-    
+    bool eval(const MediaQueryExp *) const;
+
     static void cleanup();
 
 private:
     DOM::DOMString m_mediaType;
-    KHTMLPart* m_part; // not owned
-    RenderStyle* m_style; // not owned
+    KHTMLPart *m_part; // not owned
+    RenderStyle *m_style; // not owned
     bool m_expResult;
 };
 
 class MediaQueryExp
 {
 public:
-    MediaQueryExp(const DOM::DOMString& mediaFeature, DOM::ValueList* values);
+    MediaQueryExp(const DOM::DOMString &mediaFeature, DOM::ValueList *values);
     ~MediaQueryExp();
 
-    DOM::DOMString mediaFeature() const { return m_mediaFeature; }
-
-    DOM::CSSValueImpl* value() const { return m_value; }
-
-    bool operator==(const MediaQueryExp& other) const  {
-        return (other.m_mediaFeature == m_mediaFeature)
-            && ((!other.m_value && !m_value)
-                || (other.m_value && m_value && other.m_value->cssText() == m_value->cssText()));
+    DOM::DOMString mediaFeature() const
+    {
+        return m_mediaFeature;
     }
 
-    bool isViewportDependent() const { return m_viewportDependent; }
+    DOM::CSSValueImpl *value() const
+    {
+        return m_value;
+    }
+
+    bool operator==(const MediaQueryExp &other) const
+    {
+        return (other.m_mediaFeature == m_mediaFeature)
+               && ((!other.m_value && !m_value)
+                   || (other.m_value && m_value && other.m_value->cssText() == m_value->cssText()));
+    }
+
+    bool isViewportDependent() const
+    {
+        return m_viewportDependent;
+    }
 
 private:
     bool m_viewportDependent;
     DOM::DOMString m_mediaFeature;
-    DOM::CSSValueImpl* m_value;
+    DOM::CSSValueImpl *m_value;
 };
-
 
 } // namespace
 

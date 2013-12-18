@@ -28,8 +28,11 @@ class KSSLKeyGenWizardPage2 : public QWizardPage
 {
     Q_OBJECT
 public:
-    KSSLKeyGenWizardPage2(QWidget* parent);
-    ~KSSLKeyGenWizardPage2() { delete ui2; }
+    KSSLKeyGenWizardPage2(QWidget *parent);
+    ~KSSLKeyGenWizardPage2()
+    {
+        delete ui2;
+    }
     /*reimp*/ bool isComplete() const;
     QString password() const;
 

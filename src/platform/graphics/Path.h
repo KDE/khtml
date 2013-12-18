@@ -21,7 +21,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef Path_h
@@ -34,89 +34,101 @@
 
 typedef QPainterPath PlatformPath;
 
-namespace WebCore {
-    class AffineTransform;
+namespace WebCore
+{
+class AffineTransform;
 }
 
-namespace khtml {
-    using WebCore::AffineTransform;
-    using WebCore::FloatPoint;
-    using WebCore::FloatSize;
-    using WebCore::FloatRect;
-    //class String;
+namespace khtml
+{
+using WebCore::AffineTransform;
+using WebCore::FloatPoint;
+using WebCore::FloatSize;
+using WebCore::FloatRect;
+//class String;
 
-    enum WindRule {
-        RULE_NONZERO = 0,
-        RULE_EVENODD = 1
-    };
+enum WindRule {
+    RULE_NONZERO = 0,
+    RULE_EVENODD = 1
+};
 
-    enum PathElementType {
-        PathElementMoveToPoint,
-        PathElementAddLineToPoint,
-        PathElementAddQuadCurveToPoint,
-        PathElementAddCurveToPoint,
-        PathElementCloseSubpath
-    };
+enum PathElementType {
+    PathElementMoveToPoint,
+    PathElementAddLineToPoint,
+    PathElementAddQuadCurveToPoint,
+    PathElementAddCurveToPoint,
+    PathElementCloseSubpath
+};
 
-    struct PathElement {
-        PathElementType type;
-        FloatPoint* points;
-    };
+struct PathElement {
+    PathElementType type;
+    FloatPoint *points;
+};
 
-    typedef void (*PathApplierFunction) (void* info, const PathElement*);
+typedef void (*PathApplierFunction)(void *info, const PathElement *);
 
-    class Path {
-    public:
-        Path();
-        ~Path();
+class Path
+{
+public:
+    Path();
+    ~Path();
 
-        Path(const Path&);
-        Path& operator=(const Path&);
+    Path(const Path &);
+    Path &operator=(const Path &);
 
-        bool contains(const FloatPoint&, WindRule rule = RULE_NONZERO) const;
-        FloatRect boundingRect() const;
-        
-        float length();
-        FloatPoint pointAtLength(float length, bool& ok);
-        float normalAngleAtLength(float length, bool& ok);
+    bool contains(const FloatPoint &, WindRule rule = RULE_NONZERO) const;
+    FloatRect boundingRect() const;
 
-        void clear();
-        bool isEmpty() const;
+    float length();
+    FloatPoint pointAtLength(float length, bool &ok);
+    float normalAngleAtLength(float length, bool &ok);
 
-        void moveTo(const FloatPoint&);
-        void addLineTo(const FloatPoint&);
-        void addQuadCurveTo(const FloatPoint& controlPoint, const FloatPoint& point);
-        void addBezierCurveTo(const FloatPoint& controlPoint1, const FloatPoint& controlPoint2, const FloatPoint&);
-        void addArcTo(const FloatPoint&, const FloatPoint&, float radius);
-        void closeSubpath();
+    void clear();
+    bool isEmpty() const;
 
-        void addArc(const FloatPoint&, float radius, float startAngle, float endAngle, bool anticlockwise);
-        void addRect(const FloatRect&);
-        void addEllipse(const FloatRect&);
+    void moveTo(const FloatPoint &);
+    void addLineTo(const FloatPoint &);
+    void addQuadCurveTo(const FloatPoint &controlPoint, const FloatPoint &point);
+    void addBezierCurveTo(const FloatPoint &controlPoint1, const FloatPoint &controlPoint2, const FloatPoint &);
+    void addArcTo(const FloatPoint &, const FloatPoint &, float radius);
+    void closeSubpath();
 
-        void translate(const FloatSize&);
+    void addArc(const FloatPoint &, float radius, float startAngle, float endAngle, bool anticlockwise);
+    void addRect(const FloatRect &);
+    void addEllipse(const FloatRect &);
 
-        void setWindingRule(WindRule rule) { m_rule = rule; }
-        WindRule windingRule() const { return m_rule; }
+    void translate(const FloatSize &);
 
-        DOM::DOMString debugString() const;
+    void setWindingRule(WindRule rule)
+    {
+        m_rule = rule;
+    }
+    WindRule windingRule() const
+    {
+        return m_rule;
+    }
 
-        PlatformPath* platformPath() const { return m_path; }
+    DOM::DOMString debugString() const;
 
-        static Path createRoundedRectangle(const FloatRect&, const FloatSize& roundingRadii);
-        static Path createRoundedRectangle(const FloatRect&, const FloatSize& topLeftRadius, const FloatSize& topRightRadius, const FloatSize& bottomLeftRadius, const FloatSize& bottomRightRadius);
-        static Path createRectangle(const FloatRect&);
-        static Path createEllipse(const FloatPoint& center, float rx, float ry);
-        static Path createCircle(const FloatPoint& center, float r);
-        static Path createLine(const FloatPoint&, const FloatPoint&);
+    PlatformPath *platformPath() const
+    {
+        return m_path;
+    }
 
-        void apply(void* info, PathApplierFunction) const;
-        void transform(const AffineTransform&);
+    static Path createRoundedRectangle(const FloatRect &, const FloatSize &roundingRadii);
+    static Path createRoundedRectangle(const FloatRect &, const FloatSize &topLeftRadius, const FloatSize &topRightRadius, const FloatSize &bottomLeftRadius, const FloatSize &bottomRightRadius);
+    static Path createRectangle(const FloatRect &);
+    static Path createEllipse(const FloatPoint &center, float rx, float ry);
+    static Path createCircle(const FloatPoint &center, float r);
+    static Path createLine(const FloatPoint &, const FloatPoint &);
 
-    private:
-        PlatformPath* m_path;
-        WindRule m_rule;
-    };
+    void apply(void *info, PathApplierFunction) const;
+    void transform(const AffineTransform &);
+
+private:
+    PlatformPath *m_path;
+    WindRule m_rule;
+};
 
 }
 

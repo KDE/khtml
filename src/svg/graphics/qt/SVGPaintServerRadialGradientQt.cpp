@@ -32,9 +32,10 @@
 #include <QPainterPath>
 #include <QRadialGradient>
 
-namespace WebCore {
+namespace WebCore
+{
 
-QGradient SVGPaintServerRadialGradient::setupGradient(QPainter* painter, QPainterPath* painterPath, const RenderObject* object) const
+QGradient SVGPaintServerRadialGradient::setupGradient(QPainter *painter, QPainterPath *painterPath, const RenderObject *object) const
 {
     Q_UNUSED(object);
     //QPainter* painter(context ? context->platformContext() : 0);
@@ -42,7 +43,7 @@ QGradient SVGPaintServerRadialGradient::setupGradient(QPainter* painter, QPainte
 
     //QPainterPath* path(context ? context->currentPath() : 0);
     //Q_ASSERT(path);
-    QPainterPath* path(painterPath);
+    QPainterPath *path(painterPath);
 
     //RenderStyle* renderStyle = object->style();
 
@@ -50,7 +51,7 @@ QGradient SVGPaintServerRadialGradient::setupGradient(QPainter* painter, QPainte
 
     double cx, fx, cy, fy, r;
     if (boundingBoxMode()) {
-        QRectF bbox = path->boundingRect(); 
+        QRectF bbox = path->boundingRect();
         cx = double(bbox.left()) + (double(gradientCenter().x() / 100.0) * double(bbox.width()));
         cy = double(bbox.top()) + (double(gradientCenter().y() / 100.0) * double(bbox.height()));
         fx = double(bbox.left()) + (double(gradientFocal().x() / 100.0) * double(bbox.width())) - cx;
@@ -98,4 +99,3 @@ QGradient SVGPaintServerRadialGradient::setupGradient(QPainter* painter, QPainte
 
 #endif
 
-// vim:ts=4:noet

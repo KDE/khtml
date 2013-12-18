@@ -27,7 +27,8 @@
 
 #include "SVGStyledElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 SVGPathSegMovetoAbs::SVGPathSegMovetoAbs(float x, float y)
     : SVGPathSeg()
@@ -59,9 +60,6 @@ float SVGPathSegMovetoAbs::y() const
 {
     return m_y;
 }
-
-
-
 
 SVGPathSegMovetoRel::SVGPathSegMovetoRel(float x, float y)
     : SVGPathSeg()
@@ -98,4 +96,3 @@ float SVGPathSegMovetoRel::y() const
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

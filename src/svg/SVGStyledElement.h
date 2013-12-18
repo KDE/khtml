@@ -34,51 +34,68 @@
 //khtml compat
 #include "RenderStyle.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGStyledElement : public SVGElement,
-                             public SVGStylable {
-    public:
-        SVGStyledElement(const QualifiedName&, Document*);
-        virtual ~SVGStyledElement();
-        
-        virtual bool isStyled() const { return true; }
-        virtual bool supportsMarkers() const { return false; }
+class SVGStyledElement : public SVGElement,
+    public SVGStylable
+{
+public:
+    SVGStyledElement(const QualifiedName &, Document *);
+    virtual ~SVGStyledElement();
 
-        virtual PassRefPtr<DOM::CSSValueImpl> getPresentationAttribute(const DOMString& name);
-        virtual DOM::CSSStyleDeclarationImpl* style() { return StyledElement::style(); }
+    virtual bool isStyled() const
+    {
+        return true;
+    }
+    virtual bool supportsMarkers() const
+    {
+        return false;
+    }
 
-        bool isKnownAttribute(const QualifiedName&);
+    virtual PassRefPtr<DOM::CSSValueImpl> getPresentationAttribute(const DOMString &name);
+    virtual DOM::CSSStyleDeclarationImpl *style()
+    {
+        return StyledElement::style();
+    }
 
-        virtual bool rendererIsNeeded(RenderStyle*);
-        virtual SVGResource* canvasResource() { return 0; }
-        
-        /*virtual bool mapToEntry(const QualifiedName&, MappedAttributeEntry&) const;*/
-        virtual void parseMappedAttribute(MappedAttribute*);
+    bool isKnownAttribute(const QualifiedName &);
 
-        virtual void svgAttributeChanged(const QualifiedName&);
+    virtual bool rendererIsNeeded(RenderStyle *);
+    virtual SVGResource *canvasResource()
+    {
+        return 0;
+    }
 
-        using DOM::NodeImpl::childrenChanged;
-        virtual void childrenChanged(bool changedByParser = false, Node* beforeChange = 0, Node* afterChange = 0, int childCountDelta = 0);
+    /*virtual bool mapToEntry(const QualifiedName&, MappedAttributeEntry&) const;*/
+    virtual void parseMappedAttribute(MappedAttribute *);
 
-        // Centralized place to force a manual style resolution. Hacky but needed for now.
-        RenderStyle* resolveStyle(RenderStyle* parentStyle);
+    virtual void svgAttributeChanged(const QualifiedName &);
 
-        void invalidateResourcesInAncestorChain() const;        
-        virtual void detach();
-                                 
-        void setInstanceUpdatesBlocked(bool);
-        
-    protected:
-        virtual bool hasRelativeValues() const { return true; }
-        
-        static int cssPropertyIdForSVGAttributeName(const QualifiedName&);
+    using DOM::NodeImpl::childrenChanged;
+    virtual void childrenChanged(bool changedByParser = false, Node *beforeChange = 0, Node *afterChange = 0, int childCountDelta = 0);
 
-    private:
-        ANIMATED_PROPERTY_DECLARATIONS(SVGStyledElement, String, String, ClassName, className)
+    // Centralized place to force a manual style resolution. Hacky but needed for now.
+    RenderStyle *resolveStyle(RenderStyle *parentStyle);
 
-        void updateElementInstance(SVGDocumentExtensions*) const;
-    };
+    void invalidateResourcesInAncestorChain() const;
+    virtual void detach();
+
+    void setInstanceUpdatesBlocked(bool);
+
+protected:
+    virtual bool hasRelativeValues() const
+    {
+        return true;
+    }
+
+    static int cssPropertyIdForSVGAttributeName(const QualifiedName &);
+
+private:
+    ANIMATED_PROPERTY_DECLARATIONS(SVGStyledElement, String, String, ClassName, className)
+
+    void updateElementInstance(SVGDocumentExtensions *) const;
+};
 
 } // namespace WebCore
 

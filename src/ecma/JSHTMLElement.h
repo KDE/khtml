@@ -33,27 +33,29 @@
 // automatically generated from HTMLElement.idl
 //
 
-namespace khtml {
-  
-  class JSHTMLElement : public KJS::DOMElement
-  {
-  public:
-      JSHTMLElement(KJS::ExecState* exec, DOM::HTMLElementImpl* impl)
-         : KJS::DOMElement(KJS::DOMElementProto::self(exec), impl) { }
+namespace khtml
+{
 
-      virtual ~JSHTMLElement() { }
+class JSHTMLElement : public KJS::DOMElement
+{
+public:
+    JSHTMLElement(KJS::ExecState *exec, DOM::HTMLElementImpl *impl)
+        : KJS::DOMElement(KJS::DOMElementProto::self(exec), impl) { }
 
-      static const KJS::ClassInfo s_info;
-  };
+    virtual ~JSHTMLElement() { }
 
-  class JSHTMLElementPrototype : public KJS::JSObject {
-  public:
-      static KJS::JSObject* self(KJS::ExecState* exec)
-      {
-	  // ### should actually be DOMHTMLElementProto
-	  return KJS::DOMElementProto::self(exec);
-      }
-  };
+    static const KJS::ClassInfo s_info;
+};
+
+class JSHTMLElementPrototype : public KJS::JSObject
+{
+public:
+    static KJS::JSObject *self(KJS::ExecState *exec)
+    {
+        // ### should actually be DOMHTMLElementProto
+        return KJS::DOMElementProto::self(exec);
+    }
+};
 
 }
 

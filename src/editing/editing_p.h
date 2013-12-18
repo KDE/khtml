@@ -25,11 +25,13 @@
 
 #include <limits.h>
 
-namespace DOM {
-  class Editor;
+namespace DOM
+{
+class Editor;
 }
 
-namespace khtml {
+namespace khtml
+{
 
 /**
  * Contextual information about the caret and the built-in editor
@@ -37,45 +39,45 @@ namespace khtml {
  */
 struct EditorContext {
 
-  enum { NoXPosForVerticalArrowNavigation = INT_MIN };
+    enum { NoXPosForVerticalArrowNavigation = INT_MIN };
 
-  DOM::Selection::ETextGranularity m_selectionGranularity;
+    DOM::Selection::ETextGranularity m_selectionGranularity;
 
-  DOM::Selection m_selection;
-  DOM::Selection m_dragCaret;
-  int m_caretBlinkTimer;
+    DOM::Selection m_selection;
+    DOM::Selection m_dragCaret;
+    int m_caretBlinkTimer;
 
-  bool m_caretVisible:1;
-  bool m_caretBlinks:1;
-  bool m_caretPaint:1;
+    bool m_caretVisible: 1;
+    bool m_caretBlinks: 1;
+    bool m_caretPaint: 1;
 
-  bool m_beganSelectingText:1;
+    bool m_beganSelectingText: 1;
 
-  void beginSelectingText(DOM::Selection::ETextGranularity granularity) {
-    m_beganSelectingText   = true;
-    m_selectionGranularity = granularity;
-  }
+    void beginSelectingText(DOM::Selection::ETextGranularity granularity)
+    {
+        m_beganSelectingText   = true;
+        m_selectionGranularity = granularity;
+    }
 
-  int m_xPosForVerticalArrowNavigation;
-  DOM::Editor *m_editor;
+    int m_xPosForVerticalArrowNavigation;
+    DOM::Editor *m_editor;
 
-  EditorContext()
-  : m_caretBlinkTimer(-1),
-    m_caretVisible(true),
-    m_caretBlinks(true),
-    m_caretPaint(true),
-    m_beganSelectingText(false),
-    m_editor(0)
-  {
-  }
+    EditorContext()
+        : m_caretBlinkTimer(-1),
+          m_caretVisible(true),
+          m_caretBlinks(true),
+          m_caretPaint(true),
+          m_beganSelectingText(false),
+          m_editor(0)
+    {
+    }
 
-  ~EditorContext();
+    ~EditorContext();
 
-  void reset();
+    void reset();
 
 };
 
 }/*namespace khtml*/
-
 
 #endif

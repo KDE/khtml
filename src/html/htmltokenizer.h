@@ -43,113 +43,122 @@
 class KCharsets;
 class KHTMLView;
 
-namespace DOM {
-    class DocumentImpl;
-    class DocumentFragmentImpl;
+namespace DOM
+{
+class DocumentImpl;
+class DocumentFragmentImpl;
 }
 
-namespace khtml {
-    class CachedScript;
-    class KHTMLParser;
-    class ProspectiveTokenizer;
+namespace khtml
+{
+class CachedScript;
+class KHTMLParser;
+class ProspectiveTokenizer;
 
-    /**
-     * @internal
-     * represents one HTML tag. Consists of a numerical id, and the list
-     * of attributes. Can also represent text. In this case the id = 0 and
-     * text contains the text.
-     */
-    class Token
+/**
+ * @internal
+ * represents one HTML tag. Consists of a numerical id, and the list
+ * of attributes. Can also represent text. In this case the id = 0 and
+ * text contains the text.
+ */
+class Token
+{
+public:
+    Token()
     {
-    public:
-        Token() {
-            tid = 0;
+        tid = 0;
+        attrs = 0;
+        text = 0;
+        flat = false;
+        //qDebug("new token, creating %08lx", attrs);
+    }
+    ~Token()
+    {
+        if (attrs) {
+            attrs->deref();
+        }
+        if (text) {
+            text->deref();
+        }
+    }
+    void addAttribute(DocumentImpl * /*doc*/, QChar *buffer, const DOMString &_attrName, const DOMString &v)
+    {
+        DOMStringImpl *value = v.implementation();
+        LocalName localname = LocalName::fromId(0);
+        PrefixName prefixname = PrefixName::fromId(emptyPrefix);
+        if (buffer->unicode()) {
+            localname = LocalName::fromId(buffer->unicode());
+        } else if (!_attrName.isEmpty() && _attrName != "/") {
+            splitPrefixLocalName(_attrName, prefixname, localname, true /* htmlCompat*/);
+        }
+
+        if (value && localname.id()) {
+            if (!attrs) {
+                attrs = new DOM::NamedAttrMapImpl(0);
+                attrs->ref();
+            }
+            if (!attrs->getValue(makeId(emptyNamespace, localname.id()), prefixname))
+                // place attributes in the empty namespace
+            {
+                attrs->setValue(makeId(emptyNamespace, localname.id()), value, prefixname);
+            }
+        }
+    }
+    void reset()
+    {
+        if (attrs) {
+            attrs->deref();
             attrs = 0;
+        }
+        tid = 0;
+        if (text) {
+            text->deref();
             text = 0;
-            flat = false;
-            //qDebug("new token, creating %08lx", attrs);
         }
-        ~Token() {
-            if(attrs) attrs->deref();
-            if(text) text->deref();
-        }
-        void addAttribute(DocumentImpl* /*doc*/, QChar* buffer, const DOMString& _attrName, const DOMString& v)
-        {
-            DOMStringImpl *value = v.implementation();
-            LocalName localname = LocalName::fromId(0);
-            PrefixName prefixname = PrefixName::fromId(emptyPrefix);
-            if(buffer->unicode()) {
-                localname = LocalName::fromId(buffer->unicode());
-            }
-            else if ( !_attrName.isEmpty() && _attrName != "/" ) {
-                splitPrefixLocalName(_attrName, prefixname, localname, true /* htmlCompat*/);
-            }
+        flat = false;
+    }
+    DOM::NamedAttrMapImpl *attrs;
+    DOMStringImpl *text;
+    ushort tid;
+    bool flat;
+};
 
-            if (value && localname.id()) {
-                if(!attrs) {
-                    attrs = new DOM::NamedAttrMapImpl(0);
-                    attrs->ref();
-                }
-                if (!attrs->getValue(makeId(emptyNamespace, localname.id()), prefixname))
-                    // place attributes in the empty namespace
-                    attrs->setValue(makeId(emptyNamespace, localname.id()), value, prefixname);
-            }
-        }
-        void reset()
-        {
-            if(attrs) {
-                attrs->deref();
-                attrs = 0;
-            }
-            tid = 0;
-            if(text) {
-                text->deref();
-                text = 0;
-            }
-            flat = false;
-        }
-        DOM::NamedAttrMapImpl* attrs;
-        DOMStringImpl* text;
-        ushort tid;
-        bool flat;
-    };
-    
-    enum DoctypeState {
-        DoctypeBegin,
-        DoctypeBeforeName,
-        DoctypeName,
-        DoctypeAfterName,
-        DoctypeBeforePublicID,
-        DoctypePublicID,
-        DoctypeAfterPublicID,
-        DoctypeBeforeSystemID,
-        DoctypeSystemID,
-        DoctypeAfterSystemID,
-        DoctypeInternalSubset,
-        DoctypeAfterInternalSubset,
-        DoctypeBogus
-    };
-    
-    class DoctypeToken
+enum DoctypeState {
+    DoctypeBegin,
+    DoctypeBeforeName,
+    DoctypeName,
+    DoctypeAfterName,
+    DoctypeBeforePublicID,
+    DoctypePublicID,
+    DoctypeAfterPublicID,
+    DoctypeBeforeSystemID,
+    DoctypeSystemID,
+    DoctypeAfterSystemID,
+    DoctypeInternalSubset,
+    DoctypeAfterInternalSubset,
+    DoctypeBogus
+};
+
+class DoctypeToken
+{
+public:
+    DoctypeToken() {}
+
+    void reset()
     {
-    public:
-        DoctypeToken() {}
-        
-        void reset()
-        {
-            name.clear();
-            publicID.clear();
-            systemID.clear();
-            internalSubset.clear();
-            state = DoctypeBegin;
-        }
-        
-        DoctypeState state;
-        QString name;
-        QString publicID;
-        QString systemID;
-        QString internalSubset;
-    };
+        name.clear();
+        publicID.clear();
+        systemID.clear();
+        internalSubset.clear();
+        state = DoctypeBegin;
+    }
+
+    DoctypeState state;
+    QString name;
+    QString publicID;
+    QString systemID;
+    QString internalSubset;
+};
 
 // The count of spaces used for each tab.
 #define TAB_SIZE 8
@@ -165,17 +174,19 @@ public:
     virtual ~HTMLTokenizer();
 
     void begin();
-    void write( const khtml::TokenizerString &str, bool appendData );
+    void write(const khtml::TokenizerString &str, bool appendData);
     void end();
     void finish();
-    void timerEvent( QTimerEvent *e );
-    bool continueProcessing(int&);
+    void timerEvent(QTimerEvent *e);
+    bool continueProcessing(int &);
     void setNormalYieldDelay();
     virtual void setOnHold(bool _onHold);
-    void abort() { m_abort = true; }
+    void abort()
+    {
+        m_abort = true;
+    }
     virtual bool isWaitingForScripts() const;
     virtual bool isExecutingScript() const;
-
 
     virtual void executeScriptsWaitingForStylesheets();
 
@@ -197,20 +208,22 @@ protected:
     void parseEntity(khtml::TokenizerString &str, QChar *&dest, bool start = false);
     void parseProcessingInstruction(khtml::TokenizerString &str);
     void scriptHandler();
-    void scriptExecution(const QString& script, const QString& scriptURL = QString(), int baseLine = 0);
-    void setSrc(const TokenizerString& source);
+    void scriptExecution(const QString &script, const QString &scriptURL = QString(), int baseLine = 0);
+    void setSrc(const TokenizerString &source);
 
     // check if we have enough space in the buffer.
     // if not enlarge it
     inline void checkBuffer(int len = 10)
     {
-        if ( (dest - buffer) > size-len )
+        if ((dest - buffer) > size - len) {
             enlargeBuffer(len);
+        }
     }
     inline void checkRawContentBuffer(int len = 10)
     {
-        if ( rawContentSize + len >= rawContentMaxSize )
+        if (rawContentSize + len >= rawContentMaxSize) {
             enlargeRawContentBuffer(len);
+        }
     }
 
     void enlargeBuffer(int len);
@@ -235,27 +248,24 @@ protected:
     // Tokenizer flags
     //////////////////
     // are we in quotes within a html tag
-    enum
-    {
+    enum {
         NoQuote = 0,
         SingleQuote,
         DoubleQuote
     } tquote;
 
-    enum
-    {
+    enum {
         NonePending = 0,
         SpacePending,
         LFPending,
         TabPending
     } pending;
 
-    enum
-    {
+    enum {
         NoneDiscard = 0,
-        SpaceDiscard,	// Discard spaces after '=' within tags
-        LFDiscard,	// Discard line breaks immediately after start-tags
-        AllDiscard	// discard all spaces, LF's etc until next non white char
+        SpaceDiscard,   // Discard spaces after '=' within tags
+        LFDiscard,  // Discard line breaks immediately after start-tags
+        AllDiscard  // discard all spaces, LF's etc until next non white char
     } discard;
 
     // Discard the LF part of CRLF sequence
@@ -353,7 +363,7 @@ protected:
     // name of an unknown attribute
     DOMString attrName;
 
-    // Used to store the content of 
+    // Used to store the content of
     QChar *rawContent;
     // Size of the script sequenze stored in rawContent
     int rawContentSize;
@@ -371,7 +381,7 @@ protected:
     // The string we are searching for
     const QChar *searchFor;
     // the stopper string
-    const char* searchStopper;
+    const char *searchStopper;
     // the stopper len
     int searchStopperLen;
     // if no more data is coming, just parse what we have (including ext scripts that
@@ -390,7 +400,7 @@ protected:
     int m_externalScriptsTimerId;
     bool m_hasScriptsWaitingForStylesheets;
 
-    QQueue<khtml::CachedScript*> cachedScript;
+    QQueue<khtml::CachedScript *> cachedScript;
     // you can pause the tokenizer if you need to display a dialog or something
     bool onHold;
     // you can ask the tokenizer to abort the current write() call, e.g. to redirect somewhere else
@@ -409,10 +419,10 @@ protected:
     QTime m_scriptTime;
 
     // Set true if this tokenizer is used for documents and not fragments
-    bool m_documentTokenizer; 
+    bool m_documentTokenizer;
 
 #define CBUFLEN 1024
-    char cBuffer[CBUFLEN+2];
+    char cBuffer[CBUFLEN + 2];
     unsigned int cBufferPos;
     unsigned int entityLen;
 
@@ -423,7 +433,7 @@ protected:
 
     KHTMLView *view;
 
-    khtml::ProspectiveTokenizer* m_prospectiveTokenizer;
+    khtml::ProspectiveTokenizer *m_prospectiveTokenizer;
 };
 
 } // namespace

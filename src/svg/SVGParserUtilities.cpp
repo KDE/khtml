@@ -47,18 +47,19 @@
 #include <math.h>
 #include <wtf/MathExtras.h>
 
-namespace WebCore {
+namespace WebCore
+{
 
-/* We use this generic _parseNumber function to allow the Path parsing code to work 
+/* We use this generic _parseNumber function to allow the Path parsing code to work
  * at a higher precision internally, without any unnecessary runtime cost or code
  * complexity
- */    
-template <typename FloatType> static bool _parseNumber(const UChar*& ptr, const UChar* end, FloatType& number, bool skip)
+ */
+template <typename FloatType> static bool _parseNumber(const UChar *&ptr, const UChar *end, FloatType &number, bool skip)
 {
     int integer, exponent;
     FloatType decimal, frac;
     int sign, expsign;
-    const UChar* start = ptr;
+    const UChar *start = ptr;
 
     exponent = 0;
     integer = 0;
@@ -68,48 +69,54 @@ template <typename FloatType> static bool _parseNumber(const UChar*& ptr, const 
     expsign = 1;
 
     // read the sign
-    if (ptr < end && *ptr == '+')
+    if (ptr < end && *ptr == '+') {
         ptr++;
-    else if (ptr < end && *ptr == '-') {
+    } else if (ptr < end && *ptr == '-') {
         ptr++;
         sign = -1;
     }
-    
+
     if (ptr == end || ((*ptr < '0' || *ptr > '9') && *ptr != '.'))
         // The first character of a number must be one of [0-9+-.]
+    {
         return false;
+    }
 
     // read the integer part
-    while (ptr < end && *ptr >= '0' && *ptr <= '9')
+    while (ptr < end && *ptr >= '0' && *ptr <= '9') {
         integer = (integer * 10) + (ptr++)->unicode() - '0';
+    }
 
     if (ptr < end && *ptr == '.') { // read the decimals
         ptr++;
-        
+
         // There must be a least one digit following the .
-        if (ptr >= end || *ptr < '0' || *ptr > '9')
+        if (ptr >= end || *ptr < '0' || *ptr > '9') {
             return false;
-        
-        while (ptr < end && *ptr >= '0' && *ptr <= '9')
+        }
+
+        while (ptr < end && *ptr >= '0' && *ptr <= '9') {
             decimal += ((ptr++)->unicode() - '0') * (frac *= static_cast<FloatType>(0.1));
+        }
     }
 
     // read the exponent part
-    if (ptr != start && ptr + 1 < end && (*ptr == 'e' || *ptr == 'E') 
-        && (ptr[1] != 'x' && ptr[1] != 'm')) { 
+    if (ptr != start && ptr + 1 < end && (*ptr == 'e' || *ptr == 'E')
+            && (ptr[1] != 'x' && ptr[1] != 'm')) {
         ptr++;
 
         // read the sign of the exponent
-        if (*ptr == '+')
+        if (*ptr == '+') {
             ptr++;
-        else if (*ptr == '-') {
+        } else if (*ptr == '-') {
             ptr++;
             expsign = -1;
         }
-        
+
         // There must be an exponent
-        if (ptr >= end || *ptr < '0' || *ptr > '9')
+        if (ptr >= end || *ptr < '0' || *ptr > '9') {
             return false;
+        }
 
         while (ptr < end && *ptr >= '0' && *ptr <= '9') {
             exponent *= 10;
@@ -121,50 +128,56 @@ template <typename FloatType> static bool _parseNumber(const UChar*& ptr, const 
     number = integer + decimal;
     number *= sign * static_cast<FloatType>(pow(10.0, expsign * exponent));
 
-    if (start == ptr)
+    if (start == ptr) {
         return false;
+    }
 
-    if (skip)
+    if (skip) {
         skipOptionalSpacesOrDelimiter(ptr, end);
+    }
 
     return true;
 }
 
-bool parseNumber(const UChar*& ptr, const UChar* end, float& number, bool skip) 
+bool parseNumber(const UChar *&ptr, const UChar *end, float &number, bool skip)
 {
     return _parseNumber(ptr, end, number, skip);
 }
 
 // Only used for parsing Paths
-static bool parseNumber(const UChar*& ptr, const UChar* end, double& number, bool skip = true) 
+static bool parseNumber(const UChar *&ptr, const UChar *end, double &number, bool skip = true)
 {
     return _parseNumber(ptr, end, number, skip);
 }
 
-bool parseNumberOptionalNumber(const String& s, float& x, float& y)
+bool parseNumberOptionalNumber(const String &s, float &x, float &y)
 {
-    if (s.isEmpty())
+    if (s.isEmpty()) {
         return false;
-    const UChar* cur = s.characters();
-    const UChar* end = cur + s.length();
+    }
+    const UChar *cur = s.characters();
+    const UChar *end = cur + s.length();
 
-    if (!parseNumber(cur, end, x))
+    if (!parseNumber(cur, end, x)) {
         return false;
+    }
 
-    if (cur == end)
+    if (cur == end) {
         y = x;
-    else if (!parseNumber(cur, end, y, false))
+    } else if (!parseNumber(cur, end, y, false)) {
         return false;
+    }
 
     return cur == end;
 }
 
-bool pointsListFromSVGData(SVGPointList* pointsList, const String& points)
+bool pointsListFromSVGData(SVGPointList *pointsList, const String &points)
 {
-    if (points.isEmpty())
+    if (points.isEmpty()) {
         return true;
-    const UChar* cur = points.characters();
-    const UChar* end = cur + points.length();
+    }
+    const UChar *cur = points.characters();
+    const UChar *end = cur + points.length();
 
     skipOptionalSpaces(cur, end);
 
@@ -172,12 +185,14 @@ bool pointsListFromSVGData(SVGPointList* pointsList, const String& points)
     while (cur < end) {
         delimParsed = false;
         float xPos = 0.0f;
-        if (!parseNumber(cur, end, xPos))
-           return false;
+        if (!parseNumber(cur, end, xPos)) {
+            return false;
+        }
 
         float yPos = 0.0f;
-        if (!parseNumber(cur, end, yPos, false))
+        if (!parseNumber(cur, end, yPos, false)) {
             return false;
+        }
 
         skipOptionalSpaces(cur, end);
 
@@ -193,56 +208,96 @@ bool pointsListFromSVGData(SVGPointList* pointsList, const String& points)
     return cur == end && !delimParsed;
 }
 
-    /**
-     * Parser for svg path data, contained in the d attribute.
-     *
-     * The parser delivers encountered commands and parameters by calling
-     * methods that correspond to those commands. Clients have to derive
-     * from this class and implement the abstract command methods.
-     *
-     * There are two operating modes. By default the parser just delivers unaltered
-     * svg path data commands and parameters. In the second mode, it will convert all
-     * relative coordinates to absolute ones, and convert all curves to cubic beziers.
-     */
-    class SVGPathParser
-    {
-    public:
-        virtual ~SVGPathParser() { }
-        bool parseSVG(const String& d, bool process = false);
-
-    protected:
-        virtual void svgMoveTo(double x1, double y1, bool closed, bool abs = true) = 0;
-        virtual void svgLineTo(double x1, double y1, bool abs = true) = 0;
-        virtual void svgLineToHorizontal(double x, bool abs = true) { Q_UNUSED(x); Q_UNUSED(abs); }
-        virtual void svgLineToVertical(double y, bool abs = true) { Q_UNUSED(y); Q_UNUSED(abs); }
-        virtual void svgCurveToCubic(double x1, double y1, double x2, double y2, double x, double y, bool abs = true) = 0;
-        virtual void svgCurveToCubicSmooth(double x, double y, double x2, double y2, bool abs = true) { Q_UNUSED(x); Q_UNUSED(y); Q_UNUSED(x2); Q_UNUSED(y2); Q_UNUSED(abs); }
-        virtual void svgCurveToQuadratic(double x, double y, double x1, double y1, bool abs = true) { Q_UNUSED(x); Q_UNUSED(y); Q_UNUSED(x1); Q_UNUSED(y1); Q_UNUSED(abs); }
-        virtual void svgCurveToQuadraticSmooth(double x, double y, bool abs = true) {Q_UNUSED(x); Q_UNUSED(y); Q_UNUSED(abs);}
-        virtual void svgArcTo(double x, double y, double r1, double r2, double angle, bool largeArcFlag, bool sweepFlag, bool abs = true) { Q_UNUSED(x); Q_UNUSED(y); Q_UNUSED(r1); Q_UNUSED(r2); Q_UNUSED(angle);  Q_UNUSED(largeArcFlag); Q_UNUSED(sweepFlag); Q_UNUSED(abs);}
-        virtual void svgClosePath() = 0;
-    private:
-        void calculateArc(bool relative, double& curx, double& cury, double angle, double x, double y, double r1, double r2, bool largeArcFlag, bool sweepFlag);
-    };
-    
-bool SVGPathParser::parseSVG(const String& s, bool process)
+/**
+ * Parser for svg path data, contained in the d attribute.
+ *
+ * The parser delivers encountered commands and parameters by calling
+ * methods that correspond to those commands. Clients have to derive
+ * from this class and implement the abstract command methods.
+ *
+ * There are two operating modes. By default the parser just delivers unaltered
+ * svg path data commands and parameters. In the second mode, it will convert all
+ * relative coordinates to absolute ones, and convert all curves to cubic beziers.
+ */
+class SVGPathParser
 {
-    if (s.isEmpty())
-        return false;
+public:
+    virtual ~SVGPathParser() { }
+    bool parseSVG(const String &d, bool process = false);
 
-    const UChar* ptr = s.characters();
-    const UChar* end = ptr + s.length();
+protected:
+    virtual void svgMoveTo(double x1, double y1, bool closed, bool abs = true) = 0;
+    virtual void svgLineTo(double x1, double y1, bool abs = true) = 0;
+    virtual void svgLineToHorizontal(double x, bool abs = true)
+    {
+        Q_UNUSED(x);
+        Q_UNUSED(abs);
+    }
+    virtual void svgLineToVertical(double y, bool abs = true)
+    {
+        Q_UNUSED(y);
+        Q_UNUSED(abs);
+    }
+    virtual void svgCurveToCubic(double x1, double y1, double x2, double y2, double x, double y, bool abs = true) = 0;
+    virtual void svgCurveToCubicSmooth(double x, double y, double x2, double y2, bool abs = true)
+    {
+        Q_UNUSED(x);
+        Q_UNUSED(y);
+        Q_UNUSED(x2);
+        Q_UNUSED(y2);
+        Q_UNUSED(abs);
+    }
+    virtual void svgCurveToQuadratic(double x, double y, double x1, double y1, bool abs = true)
+    {
+        Q_UNUSED(x);
+        Q_UNUSED(y);
+        Q_UNUSED(x1);
+        Q_UNUSED(y1);
+        Q_UNUSED(abs);
+    }
+    virtual void svgCurveToQuadraticSmooth(double x, double y, bool abs = true)
+    {
+        Q_UNUSED(x);
+        Q_UNUSED(y);
+        Q_UNUSED(abs);
+    }
+    virtual void svgArcTo(double x, double y, double r1, double r2, double angle, bool largeArcFlag, bool sweepFlag, bool abs = true)
+    {
+        Q_UNUSED(x);
+        Q_UNUSED(y);
+        Q_UNUSED(r1);
+        Q_UNUSED(r2);
+        Q_UNUSED(angle);
+        Q_UNUSED(largeArcFlag);
+        Q_UNUSED(sweepFlag);
+        Q_UNUSED(abs);
+    }
+    virtual void svgClosePath() = 0;
+private:
+    void calculateArc(bool relative, double &curx, double &cury, double angle, double x, double y, double r1, double r2, bool largeArcFlag, bool sweepFlag);
+};
+
+bool SVGPathParser::parseSVG(const String &s, bool process)
+{
+    if (s.isEmpty()) {
+        return false;
+    }
+
+    const UChar *ptr = s.characters();
+    const UChar *end = ptr + s.length();
 
     double contrlx, contrly, curx, cury, subpathx, subpathy, tox, toy, x1, y1, x2, y2, xc, yc;
     double px1, py1, px2, py2, px3, py3;
     bool closed = true;
-    
-    if (!skipOptionalSpaces(ptr, end)) // skip any leading spaces
+
+    if (!skipOptionalSpaces(ptr, end)) { // skip any leading spaces
         return false;
-    
+    }
+
     char command = (ptr++)->unicode(), lastCommand = ' ';// or toLatin1() instead of unicode()???
-    if (command != 'm' && command != 'M') // path must start with moveto
+    if (command != 'm' && command != 'M') { // path must start with moveto
         return false;
+    }
 
     subpathx = subpathy = curx = cury = contrlx = contrly = 0.0;
     while (1) {
@@ -250,282 +305,283 @@ bool SVGPathParser::parseSVG(const String& s, bool process)
 
         bool relative = false;
 
-        switch(command)
-        {
-            case 'm':
-                relative = true;
-            case 'M':
-            {
-                if (!parseNumber(ptr, end, tox) || !parseNumber(ptr, end, toy))
-                    return false;
-
-                if (process) {
-                    subpathx = curx = relative ? curx + tox : tox;
-                    subpathy = cury = relative ? cury + toy : toy;
-
-                    svgMoveTo(narrowPrecisionToFloat(curx), narrowPrecisionToFloat(cury), closed);
-                } else
-                    svgMoveTo(narrowPrecisionToFloat(tox), narrowPrecisionToFloat(toy), closed, !relative);
-                closed = false;
-                break;
-            }
-            case 'l':
-                relative = true;
-            case 'L':
-            {
-                if (!parseNumber(ptr, end, tox) || !parseNumber(ptr, end, toy))
-                    return false;
-
-                if (process) {
-                    curx = relative ? curx + tox : tox;
-                    cury = relative ? cury + toy : toy;
-
-                    svgLineTo(narrowPrecisionToFloat(curx), narrowPrecisionToFloat(cury));
-                }
-                else
-                    svgLineTo(narrowPrecisionToFloat(tox), narrowPrecisionToFloat(toy), !relative);
-                break;
-            }
-            case 'h':
-            {
-                if (!parseNumber(ptr, end, tox))
-                    return false;
-                if (process) {
-                    curx = curx + tox;
-                    svgLineTo(narrowPrecisionToFloat(curx), narrowPrecisionToFloat(cury));
-                }
-                else
-                    svgLineToHorizontal(narrowPrecisionToFloat(tox), false);
-                break;
-            }
-            case 'H':
-            {
-                if (!parseNumber(ptr, end, tox))
-                    return false;
-                if (process) {
-                    curx = tox;
-                    svgLineTo(narrowPrecisionToFloat(curx), narrowPrecisionToFloat(cury));
-                }
-                else
-                    svgLineToHorizontal(narrowPrecisionToFloat(tox));
-                break;
-            }
-            case 'v':
-            {
-                if (!parseNumber(ptr, end, toy))
-                    return false;
-                if (process) {
-                    cury = cury + toy;
-                    svgLineTo(narrowPrecisionToFloat(curx), narrowPrecisionToFloat(cury));
-                }
-                else
-                    svgLineToVertical(narrowPrecisionToFloat(toy), false);
-                break;
-            }
-            case 'V':
-            {
-                if (!parseNumber(ptr, end, toy))
-                    return false;
-                if (process) {
-                    cury = toy;
-                    svgLineTo(narrowPrecisionToFloat(curx), narrowPrecisionToFloat(cury));
-                }
-                else
-                    svgLineToVertical(narrowPrecisionToFloat(toy));
-                break;
-            }
-            case 'z':
-            case 'Z':
-            {
-                // reset curx, cury for next path
-                if (process) {
-                    curx = subpathx;
-                    cury = subpathy;
-                }
-                closed = true;
-                svgClosePath();
-                break;
-            }
-            case 'c':
-                relative = true;
-            case 'C':
-            {
-                if (!parseNumber(ptr, end, x1)  || !parseNumber(ptr, end, y1) ||
-                    !parseNumber(ptr, end, x2)  || !parseNumber(ptr, end, y2) ||
-                    !parseNumber(ptr, end, tox) || !parseNumber(ptr, end, toy))
-                    return false;
-
-                if (process) {
-                    px1 = relative ? curx + x1 : x1;
-                    py1 = relative ? cury + y1 : y1;
-                    px2 = relative ? curx + x2 : x2;
-                    py2 = relative ? cury + y2 : y2;
-                    px3 = relative ? curx + tox : tox;
-                    py3 = relative ? cury + toy : toy;
-
-                    svgCurveToCubic(narrowPrecisionToFloat(px1), narrowPrecisionToFloat(py1), narrowPrecisionToFloat(px2), 
-                                    narrowPrecisionToFloat(py2), narrowPrecisionToFloat(px3), narrowPrecisionToFloat(py3));
-
-                    contrlx = relative ? curx + x2 : x2;
-                    contrly = relative ? cury + y2 : y2;
-                    curx = relative ? curx + tox : tox;
-                    cury = relative ? cury + toy : toy;
-                }
-                else
-                    svgCurveToCubic(narrowPrecisionToFloat(x1), narrowPrecisionToFloat(y1), narrowPrecisionToFloat(x2),
-                                    narrowPrecisionToFloat(y2), narrowPrecisionToFloat(tox), narrowPrecisionToFloat(toy), !relative);
-
-                break;
-            }
-            case 's':
-                relative = true;
-            case 'S':
-            {
-                if (!parseNumber(ptr, end, x2)  || !parseNumber(ptr, end, y2) ||
-                    !parseNumber(ptr, end, tox) || !parseNumber(ptr, end, toy))
-                    return false;
-
-                if (!(lastCommand == 'c' || lastCommand == 'C' ||
-                     lastCommand == 's' || lastCommand == 'S')) {
-                    contrlx = curx;
-                    contrly = cury;
-                }
-
-                if (process) {
-                    px1 = 2 * curx - contrlx;
-                    py1 = 2 * cury - contrly;
-                    px2 = relative ? curx + x2 : x2;
-                    py2 = relative ? cury + y2 : y2;
-                    px3 = relative ? curx + tox : tox;
-                    py3 = relative ? cury + toy : toy;
-
-                    svgCurveToCubic(narrowPrecisionToFloat(px1), narrowPrecisionToFloat(py1), narrowPrecisionToFloat(px2),
-                                    narrowPrecisionToFloat(py2), narrowPrecisionToFloat(px3), narrowPrecisionToFloat(py3));
-
-                    contrlx = relative ? curx + x2 : x2;
-                    contrly = relative ? cury + y2 : y2;
-                    curx = relative ? curx + tox : tox;
-                    cury = relative ? cury + toy : toy;
-                }
-                else
-                    svgCurveToCubicSmooth(narrowPrecisionToFloat(x2), narrowPrecisionToFloat(y2), 
-                                          narrowPrecisionToFloat(tox), narrowPrecisionToFloat(toy), !relative);
-                break;
-            }
-            case 'q':
-                relative = true;
-            case 'Q':
-            {
-                if (!parseNumber(ptr, end, x1)  || !parseNumber(ptr, end, y1) ||
-                    !parseNumber(ptr, end, tox) || !parseNumber(ptr, end, toy))
-                    return false;
-
-                if (process) {
-                    px1 = relative ? (curx + 2 * (x1 + curx)) * (1.0 / 3.0) : (curx + 2 * x1) * (1.0 / 3.0);
-                    py1 = relative ? (cury + 2 * (y1 + cury)) * (1.0 / 3.0) : (cury + 2 * y1) * (1.0 / 3.0);
-                    px2 = relative ? ((curx + tox) + 2 * (x1 + curx)) * (1.0 / 3.0) : (tox + 2 * x1) * (1.0 / 3.0);
-                    py2 = relative ? ((cury + toy) + 2 * (y1 + cury)) * (1.0 / 3.0) : (toy + 2 * y1) * (1.0 / 3.0);
-                    px3 = relative ? curx + tox : tox;
-                    py3 = relative ? cury + toy : toy;
-
-                    svgCurveToCubic(narrowPrecisionToFloat(px1), narrowPrecisionToFloat(py1), narrowPrecisionToFloat(px2),
-                                    narrowPrecisionToFloat(py2), narrowPrecisionToFloat(px3), narrowPrecisionToFloat(py3));
-
-                    contrlx = relative ? curx + x1 : x1;
-                    contrly = relative ? cury + y1 : y1;
-                    curx = relative ? curx + tox : tox;
-                    cury = relative ? cury + toy : toy;
-                }
-                else
-                    svgCurveToQuadratic(narrowPrecisionToFloat(x1), narrowPrecisionToFloat(y1),
-                                        narrowPrecisionToFloat(tox), narrowPrecisionToFloat(toy), !relative);
-                break;
-            }
-            case 't':
-                relative = true;
-            case 'T':
-            {
-                if (!parseNumber(ptr, end, tox) || !parseNumber(ptr, end, toy))
-                    return false;
-                if (!(lastCommand == 'q' || lastCommand == 'Q' ||
-                     lastCommand == 't' || lastCommand == 'T')) {
-                    contrlx = curx;
-                    contrly = cury;
-                }
-
-                if (process) {
-                    xc = 2 * curx - contrlx;
-                    yc = 2 * cury - contrly;
-
-                    px1 = relative ? (curx + 2 * xc) * (1.0 / 3.0) : (curx + 2 * xc) * (1.0 / 3.0);
-                    py1 = relative ? (cury + 2 * yc) * (1.0 / 3.0) : (cury + 2 * yc) * (1.0 / 3.0);
-                    px2 = relative ? ((curx + tox) + 2 * xc) * (1.0 / 3.0) : (tox + 2 * xc) * (1.0 / 3.0);
-                    py2 = relative ? ((cury + toy) + 2 * yc) * (1.0 / 3.0) : (toy + 2 * yc) * (1.0 / 3.0);
-                    px3 = relative ? curx + tox : tox;
-                    py3 = relative ? cury + toy : toy;
-
-                    svgCurveToCubic(narrowPrecisionToFloat(px1), narrowPrecisionToFloat(py1), narrowPrecisionToFloat(px2),
-                                    narrowPrecisionToFloat(py2), narrowPrecisionToFloat(px3), narrowPrecisionToFloat(py3));
-
-                    contrlx = xc;
-                    contrly = yc;
-                    curx = relative ? curx + tox : tox;
-                    cury = relative ? cury + toy : toy;
-                }
-                else
-                    svgCurveToQuadraticSmooth(narrowPrecisionToFloat(tox), narrowPrecisionToFloat(toy), !relative);
-                break;
-            }
-            case 'a':
-                relative = true;
-            case 'A':
-            {
-                bool largeArc, sweep;
-                double angle, rx, ry;
-                if (!parseNumber(ptr, end, rx)    || !parseNumber(ptr, end, ry) ||
-                    !parseNumber(ptr, end, angle) || !parseNumber(ptr, end, tox))
-                    return false;
-                largeArc = tox == 1;
-                if (!parseNumber(ptr, end, tox))
-                    return false;
-                sweep = tox == 1;
-                if (!parseNumber(ptr, end, tox) || !parseNumber(ptr, end, toy))
-                    return false;
-
-                // Spec: radii are nonnegative numbers
-                rx = fabs(rx);
-                ry = fabs(ry);
-
-                if (process)
-                    calculateArc(relative, curx, cury, angle, tox, toy, rx, ry, largeArc, sweep);
-                else
-                    svgArcTo(narrowPrecisionToFloat(tox), narrowPrecisionToFloat(toy), narrowPrecisionToFloat(rx), narrowPrecisionToFloat(ry),
-                             narrowPrecisionToFloat(angle), largeArc, sweep, !relative);
-                break;
-            }
-            default:
-                // FIXME: An error should go to the JavaScript console, or the like.
+        switch (command) {
+        case 'm':
+            relative = true;
+        case 'M': {
+            if (!parseNumber(ptr, end, tox) || !parseNumber(ptr, end, toy)) {
                 return false;
+            }
+
+            if (process) {
+                subpathx = curx = relative ? curx + tox : tox;
+                subpathy = cury = relative ? cury + toy : toy;
+
+                svgMoveTo(narrowPrecisionToFloat(curx), narrowPrecisionToFloat(cury), closed);
+            } else {
+                svgMoveTo(narrowPrecisionToFloat(tox), narrowPrecisionToFloat(toy), closed, !relative);
+            }
+            closed = false;
+            break;
+        }
+        case 'l':
+            relative = true;
+        case 'L': {
+            if (!parseNumber(ptr, end, tox) || !parseNumber(ptr, end, toy)) {
+                return false;
+            }
+
+            if (process) {
+                curx = relative ? curx + tox : tox;
+                cury = relative ? cury + toy : toy;
+
+                svgLineTo(narrowPrecisionToFloat(curx), narrowPrecisionToFloat(cury));
+            } else {
+                svgLineTo(narrowPrecisionToFloat(tox), narrowPrecisionToFloat(toy), !relative);
+            }
+            break;
+        }
+        case 'h': {
+            if (!parseNumber(ptr, end, tox)) {
+                return false;
+            }
+            if (process) {
+                curx = curx + tox;
+                svgLineTo(narrowPrecisionToFloat(curx), narrowPrecisionToFloat(cury));
+            } else {
+                svgLineToHorizontal(narrowPrecisionToFloat(tox), false);
+            }
+            break;
+        }
+        case 'H': {
+            if (!parseNumber(ptr, end, tox)) {
+                return false;
+            }
+            if (process) {
+                curx = tox;
+                svgLineTo(narrowPrecisionToFloat(curx), narrowPrecisionToFloat(cury));
+            } else {
+                svgLineToHorizontal(narrowPrecisionToFloat(tox));
+            }
+            break;
+        }
+        case 'v': {
+            if (!parseNumber(ptr, end, toy)) {
+                return false;
+            }
+            if (process) {
+                cury = cury + toy;
+                svgLineTo(narrowPrecisionToFloat(curx), narrowPrecisionToFloat(cury));
+            } else {
+                svgLineToVertical(narrowPrecisionToFloat(toy), false);
+            }
+            break;
+        }
+        case 'V': {
+            if (!parseNumber(ptr, end, toy)) {
+                return false;
+            }
+            if (process) {
+                cury = toy;
+                svgLineTo(narrowPrecisionToFloat(curx), narrowPrecisionToFloat(cury));
+            } else {
+                svgLineToVertical(narrowPrecisionToFloat(toy));
+            }
+            break;
+        }
+        case 'z':
+        case 'Z': {
+            // reset curx, cury for next path
+            if (process) {
+                curx = subpathx;
+                cury = subpathy;
+            }
+            closed = true;
+            svgClosePath();
+            break;
+        }
+        case 'c':
+            relative = true;
+        case 'C': {
+            if (!parseNumber(ptr, end, x1)  || !parseNumber(ptr, end, y1) ||
+                    !parseNumber(ptr, end, x2)  || !parseNumber(ptr, end, y2) ||
+                    !parseNumber(ptr, end, tox) || !parseNumber(ptr, end, toy)) {
+                return false;
+            }
+
+            if (process) {
+                px1 = relative ? curx + x1 : x1;
+                py1 = relative ? cury + y1 : y1;
+                px2 = relative ? curx + x2 : x2;
+                py2 = relative ? cury + y2 : y2;
+                px3 = relative ? curx + tox : tox;
+                py3 = relative ? cury + toy : toy;
+
+                svgCurveToCubic(narrowPrecisionToFloat(px1), narrowPrecisionToFloat(py1), narrowPrecisionToFloat(px2),
+                                narrowPrecisionToFloat(py2), narrowPrecisionToFloat(px3), narrowPrecisionToFloat(py3));
+
+                contrlx = relative ? curx + x2 : x2;
+                contrly = relative ? cury + y2 : y2;
+                curx = relative ? curx + tox : tox;
+                cury = relative ? cury + toy : toy;
+            } else
+                svgCurveToCubic(narrowPrecisionToFloat(x1), narrowPrecisionToFloat(y1), narrowPrecisionToFloat(x2),
+                                narrowPrecisionToFloat(y2), narrowPrecisionToFloat(tox), narrowPrecisionToFloat(toy), !relative);
+
+            break;
+        }
+        case 's':
+            relative = true;
+        case 'S': {
+            if (!parseNumber(ptr, end, x2)  || !parseNumber(ptr, end, y2) ||
+                    !parseNumber(ptr, end, tox) || !parseNumber(ptr, end, toy)) {
+                return false;
+            }
+
+            if (!(lastCommand == 'c' || lastCommand == 'C' ||
+                    lastCommand == 's' || lastCommand == 'S')) {
+                contrlx = curx;
+                contrly = cury;
+            }
+
+            if (process) {
+                px1 = 2 * curx - contrlx;
+                py1 = 2 * cury - contrly;
+                px2 = relative ? curx + x2 : x2;
+                py2 = relative ? cury + y2 : y2;
+                px3 = relative ? curx + tox : tox;
+                py3 = relative ? cury + toy : toy;
+
+                svgCurveToCubic(narrowPrecisionToFloat(px1), narrowPrecisionToFloat(py1), narrowPrecisionToFloat(px2),
+                                narrowPrecisionToFloat(py2), narrowPrecisionToFloat(px3), narrowPrecisionToFloat(py3));
+
+                contrlx = relative ? curx + x2 : x2;
+                contrly = relative ? cury + y2 : y2;
+                curx = relative ? curx + tox : tox;
+                cury = relative ? cury + toy : toy;
+            } else
+                svgCurveToCubicSmooth(narrowPrecisionToFloat(x2), narrowPrecisionToFloat(y2),
+                                      narrowPrecisionToFloat(tox), narrowPrecisionToFloat(toy), !relative);
+            break;
+        }
+        case 'q':
+            relative = true;
+        case 'Q': {
+            if (!parseNumber(ptr, end, x1)  || !parseNumber(ptr, end, y1) ||
+                    !parseNumber(ptr, end, tox) || !parseNumber(ptr, end, toy)) {
+                return false;
+            }
+
+            if (process) {
+                px1 = relative ? (curx + 2 * (x1 + curx)) * (1.0 / 3.0) : (curx + 2 * x1) * (1.0 / 3.0);
+                py1 = relative ? (cury + 2 * (y1 + cury)) * (1.0 / 3.0) : (cury + 2 * y1) * (1.0 / 3.0);
+                px2 = relative ? ((curx + tox) + 2 * (x1 + curx)) * (1.0 / 3.0) : (tox + 2 * x1) * (1.0 / 3.0);
+                py2 = relative ? ((cury + toy) + 2 * (y1 + cury)) * (1.0 / 3.0) : (toy + 2 * y1) * (1.0 / 3.0);
+                px3 = relative ? curx + tox : tox;
+                py3 = relative ? cury + toy : toy;
+
+                svgCurveToCubic(narrowPrecisionToFloat(px1), narrowPrecisionToFloat(py1), narrowPrecisionToFloat(px2),
+                                narrowPrecisionToFloat(py2), narrowPrecisionToFloat(px3), narrowPrecisionToFloat(py3));
+
+                contrlx = relative ? curx + x1 : x1;
+                contrly = relative ? cury + y1 : y1;
+                curx = relative ? curx + tox : tox;
+                cury = relative ? cury + toy : toy;
+            } else
+                svgCurveToQuadratic(narrowPrecisionToFloat(x1), narrowPrecisionToFloat(y1),
+                                    narrowPrecisionToFloat(tox), narrowPrecisionToFloat(toy), !relative);
+            break;
+        }
+        case 't':
+            relative = true;
+        case 'T': {
+            if (!parseNumber(ptr, end, tox) || !parseNumber(ptr, end, toy)) {
+                return false;
+            }
+            if (!(lastCommand == 'q' || lastCommand == 'Q' ||
+                    lastCommand == 't' || lastCommand == 'T')) {
+                contrlx = curx;
+                contrly = cury;
+            }
+
+            if (process) {
+                xc = 2 * curx - contrlx;
+                yc = 2 * cury - contrly;
+
+                px1 = relative ? (curx + 2 * xc) * (1.0 / 3.0) : (curx + 2 * xc) * (1.0 / 3.0);
+                py1 = relative ? (cury + 2 * yc) * (1.0 / 3.0) : (cury + 2 * yc) * (1.0 / 3.0);
+                px2 = relative ? ((curx + tox) + 2 * xc) * (1.0 / 3.0) : (tox + 2 * xc) * (1.0 / 3.0);
+                py2 = relative ? ((cury + toy) + 2 * yc) * (1.0 / 3.0) : (toy + 2 * yc) * (1.0 / 3.0);
+                px3 = relative ? curx + tox : tox;
+                py3 = relative ? cury + toy : toy;
+
+                svgCurveToCubic(narrowPrecisionToFloat(px1), narrowPrecisionToFloat(py1), narrowPrecisionToFloat(px2),
+                                narrowPrecisionToFloat(py2), narrowPrecisionToFloat(px3), narrowPrecisionToFloat(py3));
+
+                contrlx = xc;
+                contrly = yc;
+                curx = relative ? curx + tox : tox;
+                cury = relative ? cury + toy : toy;
+            } else {
+                svgCurveToQuadraticSmooth(narrowPrecisionToFloat(tox), narrowPrecisionToFloat(toy), !relative);
+            }
+            break;
+        }
+        case 'a':
+            relative = true;
+        case 'A': {
+            bool largeArc, sweep;
+            double angle, rx, ry;
+            if (!parseNumber(ptr, end, rx)    || !parseNumber(ptr, end, ry) ||
+                    !parseNumber(ptr, end, angle) || !parseNumber(ptr, end, tox)) {
+                return false;
+            }
+            largeArc = tox == 1;
+            if (!parseNumber(ptr, end, tox)) {
+                return false;
+            }
+            sweep = tox == 1;
+            if (!parseNumber(ptr, end, tox) || !parseNumber(ptr, end, toy)) {
+                return false;
+            }
+
+            // Spec: radii are nonnegative numbers
+            rx = fabs(rx);
+            ry = fabs(ry);
+
+            if (process) {
+                calculateArc(relative, curx, cury, angle, tox, toy, rx, ry, largeArc, sweep);
+            } else
+                svgArcTo(narrowPrecisionToFloat(tox), narrowPrecisionToFloat(toy), narrowPrecisionToFloat(rx), narrowPrecisionToFloat(ry),
+                         narrowPrecisionToFloat(angle), largeArc, sweep, !relative);
+            break;
+        }
+        default:
+            // FIXME: An error should go to the JavaScript console, or the like.
+            return false;
         }
         lastCommand = command;
 
-        if (ptr >= end)
+        if (ptr >= end) {
             return true;
+        }
 
         // Check for remaining coordinates in the current command.
         if ((*ptr == '+' || *ptr == '-' || (*ptr >= '0' && *ptr <= '9')) &&
-            (command != 'z' && command != 'Z')) {
-            if (command == 'M')
+                (command != 'z' && command != 'Z')) {
+            if (command == 'M') {
                 command = 'L';
-            else if (command == 'm')
+            } else if (command == 'm') {
                 command = 'l';
-        } else
-            command = (ptr++)->unicode(); // or toLatin1() instead of unicode()???
+            }
+        } else {
+            command = (ptr++)->unicode();    // or toLatin1() instead of unicode()???
+        }
 
         if (lastCommand != 'C' && lastCommand != 'c' &&
-            lastCommand != 'S' && lastCommand != 's' &&
-            lastCommand != 'Q' && lastCommand != 'q' &&
-            lastCommand != 'T' && lastCommand != 't') {
+                lastCommand != 'S' && lastCommand != 's' &&
+                lastCommand != 'Q' && lastCommand != 'q' &&
+                lastCommand != 'T' && lastCommand != 't') {
             contrlx = curx;
             contrly = cury;
         }
@@ -538,7 +594,7 @@ bool SVGPathParser::parseSVG(const String& s, bool process)
 // For each bezier found a svgToCurve call is done.
 // Adapted from Niko's code in kdelibs/kdecore/svgicons.
 // Maybe this can serve in some shared lib? (Rob)
-void SVGPathParser::calculateArc(bool relative, double& curx, double& cury, double angle, double x, double y, double r1, double r2, bool largeArcFlag, bool sweepFlag)
+void SVGPathParser::calculateArc(bool relative, double &curx, double &cury, double angle, double x, double y, double r1, double r2, bool largeArcFlag, bool sweepFlag)
 {
     double sin_th, cos_th;
     double a00, a01, a10, a11;
@@ -552,18 +608,20 @@ void SVGPathParser::calculateArc(bool relative, double& curx, double& cury, doub
 
     double dx;
 
-    if (!relative)
+    if (!relative) {
         dx = (curx - x) / 2.0;
-    else
+    } else {
         dx = -x / 2.0;
+    }
 
     double dy;
-        
-    if (!relative)
+
+    if (!relative) {
         dy = (cury - y) / 2.0;
-    else
+    } else {
         dy = -y / 2.0;
-        
+    }
+
     double _x1 =  cos_th * dx + sin_th * dy;
     double _y1 = -sin_th * dx + cos_th * dy;
     double Pr1 = r1 * r1;
@@ -586,15 +644,17 @@ void SVGPathParser::calculateArc(bool relative, double& curx, double& cury, doub
     x0 = a00 * curx + a01 * cury;
     y0 = a10 * curx + a11 * cury;
 
-    if (!relative)
+    if (!relative) {
         x1 = a00 * x + a01 * y;
-    else
+    } else {
         x1 = a00 * (curx + x) + a01 * (cury + y);
-        
-    if (!relative)
+    }
+
+    if (!relative) {
         y1 = a10 * x + a11 * y;
-    else
+    } else {
         y1 = a10 * (curx + x) + a11 * (cury + y);
+    }
 
     /* (x0, y0) is current point in transformed coordinate space.
        (x1, y1) is new point in transformed coordinate space.
@@ -606,13 +666,15 @@ void SVGPathParser::calculateArc(bool relative, double& curx, double& cury, doub
 
     sfactor_sq = 1.0 / d - 0.25;
 
-    if (sfactor_sq < 0)
+    if (sfactor_sq < 0) {
         sfactor_sq = 0;
+    }
 
     sfactor = sqrt(sfactor_sq);
 
-    if (sweepFlag == largeArcFlag)
+    if (sweepFlag == largeArcFlag) {
         sfactor = -sfactor;
+    }
 
     xc = 0.5 * (x0 + x1) - sfactor * (y1 - y0);
     yc = 0.5 * (y0 + y1) + sfactor * (x1 - x0);
@@ -622,14 +684,15 @@ void SVGPathParser::calculateArc(bool relative, double& curx, double& cury, doub
     th1 = atan2(y1 - yc, x1 - xc);
 
     th_arc = th1 - th0;
-    if (th_arc < 0 && sweepFlag)
+    if (th_arc < 0 && sweepFlag) {
         th_arc += 2 * piDouble;
-    else if (th_arc > 0 && !sweepFlag)
+    } else if (th_arc > 0 && !sweepFlag) {
         th_arc -= 2 * piDouble;
+    }
 
-    n_segs = (int) (int) ceil(fabs(th_arc / (piDouble * 0.5 + 0.001)));
+    n_segs = (int)(int) ceil(fabs(th_arc / (piDouble * 0.5 + 0.001)));
 
-    for(i = 0; i < n_segs; i++) {
+    for (i = 0; i < n_segs; i++) {
         double sin_th, cos_th;
         double a00, a01, a10, a11;
         double x1, y1, x2, y2, x3, y3;
@@ -662,21 +725,23 @@ void SVGPathParser::calculateArc(bool relative, double& curx, double& cury, doub
                         narrowPrecisionToFloat(a00 * x3 + a01 * y3), narrowPrecisionToFloat(a10 * x3 + a11 * y3));
     }
 
-    if (!relative)
+    if (!relative) {
         curx = x;
-    else
+    } else {
         curx += x;
+    }
 
-    if (!relative)
+    if (!relative) {
         cury = y;
-    else
-        cury += y;    
+    } else {
+        cury += y;
+    }
 }
 
 class PathBuilder : public SVGPathParser
 {
 public:
-    bool build(Path* path, const String& d)
+    bool build(Path *path, const String &d)
     {
         m_path = path;
         return parseSVG(d, true);
@@ -687,8 +752,9 @@ private:
     {
         current.setX(narrowPrecisionToFloat(abs ? x1 : current.x() + x1));
         current.setY(narrowPrecisionToFloat(abs ? y1 : current.y() + y1));
-        if (closed)
+        if (closed) {
             m_path->closeSubpath();
+        }
         m_path->moveTo(current);
     }
     virtual void svgLineTo(double x1, double y1, bool abs = true)
@@ -713,11 +779,11 @@ private:
     {
         m_path->closeSubpath();
     }
-    Path* m_path;
+    Path *m_path;
     FloatPoint current;
 };
 
-bool pathFromSVGData(Path& path, const String& d)
+bool pathFromSVGData(Path &path, const String &d)
 {
     PathBuilder builder;
     return builder.build(&path, d);
@@ -726,7 +792,7 @@ bool pathFromSVGData(Path& path, const String& d)
 class SVGPathSegListBuilder : public SVGPathParser
 {
 public:
-    bool build(SVGPathSegList* segList, const String& d, bool process)
+    bool build(SVGPathSegList *segList, const String &d, bool process)
     {
         m_pathSegList = segList;
         return parseSVG(d, process);
@@ -737,37 +803,41 @@ private:
     {
         ExceptionCode ec = 0;
 
-        if (abs)
+        if (abs) {
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegMovetoAbs(narrowPrecisionToFloat(x1), narrowPrecisionToFloat(y1)), ec);
-        else
+        } else {
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegMovetoRel(narrowPrecisionToFloat(x1), narrowPrecisionToFloat(y1)), ec);
+        }
     }
     virtual void svgLineTo(double x1, double y1, bool abs = true)
     {
         ExceptionCode ec = 0;
 
-        if (abs)
+        if (abs) {
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegLinetoAbs(narrowPrecisionToFloat(x1), narrowPrecisionToFloat(y1)), ec);
-        else
+        } else {
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegLinetoRel(narrowPrecisionToFloat(x1), narrowPrecisionToFloat(y1)), ec);
+        }
     }
     virtual void svgLineToHorizontal(double x, bool abs)
     {
         ExceptionCode ec = 0;
 
-        if (abs)
+        if (abs) {
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegLinetoHorizontalAbs(narrowPrecisionToFloat(x)), ec);
-        else
+        } else {
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegLinetoHorizontalRel(narrowPrecisionToFloat(x)), ec);
+        }
     }
     virtual void svgLineToVertical(double y, bool abs)
     {
         ExceptionCode ec = 0;
 
-        if (abs)
+        if (abs) {
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegLinetoVerticalAbs(narrowPrecisionToFloat(y)), ec);
-        else
+        } else {
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegLinetoVerticalRel(narrowPrecisionToFloat(y)), ec);
+        }
     }
     virtual void svgCurveToCubic(double x1, double y1, double x2, double y2, double x, double y, bool abs = true)
     {
@@ -775,12 +845,12 @@ private:
 
         if (abs)
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegCurvetoCubicAbs(narrowPrecisionToFloat(x), narrowPrecisionToFloat(y),
-                                                                                      narrowPrecisionToFloat(x1), narrowPrecisionToFloat(y1),
-                                                                                      narrowPrecisionToFloat(x2), narrowPrecisionToFloat(y2)), ec);
+                                      narrowPrecisionToFloat(x1), narrowPrecisionToFloat(y1),
+                                      narrowPrecisionToFloat(x2), narrowPrecisionToFloat(y2)), ec);
         else
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegCurvetoCubicRel(narrowPrecisionToFloat(x), narrowPrecisionToFloat(y),
-                                                                                      narrowPrecisionToFloat(x1), narrowPrecisionToFloat(y1),
-                                                                                      narrowPrecisionToFloat(x2), narrowPrecisionToFloat(y2)), ec);
+                                      narrowPrecisionToFloat(x1), narrowPrecisionToFloat(y1),
+                                      narrowPrecisionToFloat(x2), narrowPrecisionToFloat(y2)), ec);
     }
     virtual void svgCurveToCubicSmooth(double x, double y, double x2, double y2, bool abs)
     {
@@ -788,30 +858,31 @@ private:
 
         if (abs)
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegCurvetoCubicSmoothAbs(narrowPrecisionToFloat(x2), narrowPrecisionToFloat(y2),
-                                                                                            narrowPrecisionToFloat(x), narrowPrecisionToFloat(y)), ec);
+                                      narrowPrecisionToFloat(x), narrowPrecisionToFloat(y)), ec);
         else
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegCurvetoCubicSmoothRel(narrowPrecisionToFloat(x2), narrowPrecisionToFloat(y2),
-                                                                                            narrowPrecisionToFloat(x), narrowPrecisionToFloat(y)), ec);
+                                      narrowPrecisionToFloat(x), narrowPrecisionToFloat(y)), ec);
     }
     virtual void svgCurveToQuadratic(double x, double y, double x1, double y1, bool abs)
     {
         ExceptionCode ec = 0;
 
         if (abs)
-            m_pathSegList->appendItem(SVGPathElement::createSVGPathSegCurvetoQuadraticAbs(narrowPrecisionToFloat(x1), narrowPrecisionToFloat(y1), 
-                                                                                          narrowPrecisionToFloat(x), narrowPrecisionToFloat(y)), ec);
+            m_pathSegList->appendItem(SVGPathElement::createSVGPathSegCurvetoQuadraticAbs(narrowPrecisionToFloat(x1), narrowPrecisionToFloat(y1),
+                                      narrowPrecisionToFloat(x), narrowPrecisionToFloat(y)), ec);
         else
-            m_pathSegList->appendItem(SVGPathElement::createSVGPathSegCurvetoQuadraticRel(narrowPrecisionToFloat(x1), narrowPrecisionToFloat(y1), 
-                                                                                          narrowPrecisionToFloat(x), narrowPrecisionToFloat(y)), ec);
+            m_pathSegList->appendItem(SVGPathElement::createSVGPathSegCurvetoQuadraticRel(narrowPrecisionToFloat(x1), narrowPrecisionToFloat(y1),
+                                      narrowPrecisionToFloat(x), narrowPrecisionToFloat(y)), ec);
     }
     virtual void svgCurveToQuadraticSmooth(double x, double y, bool abs)
     {
         ExceptionCode ec = 0;
 
-        if (abs)
+        if (abs) {
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegCurvetoQuadraticSmoothAbs(narrowPrecisionToFloat(x), narrowPrecisionToFloat(y)), ec);
-        else
+        } else {
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegCurvetoQuadraticSmoothRel(narrowPrecisionToFloat(x), narrowPrecisionToFloat(y)), ec);
+        }
     }
     virtual void svgArcTo(double x, double y, double r1, double r2, double angle, bool largeArcFlag, bool sweepFlag, bool abs)
     {
@@ -819,48 +890,51 @@ private:
 
         if (abs)
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegArcAbs(narrowPrecisionToFloat(x), narrowPrecisionToFloat(y),
-                                                                             narrowPrecisionToFloat(r1), narrowPrecisionToFloat(r2), 
-                                                                             narrowPrecisionToFloat(angle), largeArcFlag, sweepFlag), ec);
+                                      narrowPrecisionToFloat(r1), narrowPrecisionToFloat(r2),
+                                      narrowPrecisionToFloat(angle), largeArcFlag, sweepFlag), ec);
         else
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegArcRel(narrowPrecisionToFloat(x), narrowPrecisionToFloat(y),
-                                                                             narrowPrecisionToFloat(r1), narrowPrecisionToFloat(r2),
-                                                                             narrowPrecisionToFloat(angle), largeArcFlag, sweepFlag), ec);
+                                      narrowPrecisionToFloat(r1), narrowPrecisionToFloat(r2),
+                                      narrowPrecisionToFloat(angle), largeArcFlag, sweepFlag), ec);
     }
     virtual void svgClosePath()
     {
         ExceptionCode ec = 0;
         m_pathSegList->appendItem(SVGPathElement::createSVGPathSegClosePath(), ec);
     }
-    SVGPathSegList* m_pathSegList;
+    SVGPathSegList *m_pathSegList;
 };
 
-bool pathSegListFromSVGData(SVGPathSegList* path , const String& d, bool process)
+bool pathSegListFromSVGData(SVGPathSegList *path, const String &d, bool process)
 {
     SVGPathSegListBuilder builder;
     return builder.build(path, d, process);
 }
 
-Vector<String> parseDelimitedString(const String& input, const char separator)
+Vector<String> parseDelimitedString(const String &input, const char separator)
 {
     Vector<String> values;
 
-    const UChar* ptr = input.characters();
-    const UChar* end = ptr + input.length();
+    const UChar *ptr = input.characters();
+    const UChar *end = ptr + input.length();
     skipOptionalSpaces(ptr, end);
 
     while (ptr < end) {
         // Leading and trailing white space, and white space before and after semicolon separators, will be ignored.
-        const UChar* inputStart = ptr;
-        while (ptr < end && *ptr != separator) // careful not to ignore whitespace inside inputs
+        const UChar *inputStart = ptr;
+        while (ptr < end && *ptr != separator) { // careful not to ignore whitespace inside inputs
             ptr++;
+        }
 
-        if (ptr == inputStart)
+        if (ptr == inputStart) {
             break;
+        }
 
         // walk backwards from the ; to ignore any whitespace
-        const UChar* inputEnd = ptr - 1;
-        while (inputStart < inputEnd && isWhitespace(*inputEnd))
+        const UChar *inputEnd = ptr - 1;
+        while (inputStart < inputEnd && isWhitespace(*inputEnd)) {
             inputEnd--;
+        }
 
         values.append(String(inputStart, inputEnd - inputStart + 1));
         skipOptionalSpacesOrDelimiter(ptr, end, separator);

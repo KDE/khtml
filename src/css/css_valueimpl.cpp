@@ -61,13 +61,15 @@ static int propertyID(const DOMString &s)
     char buffer[maxCSSPropertyNameLength];
 
     unsigned len = s.length();
-    if (len > maxCSSPropertyNameLength)
+    if (len > maxCSSPropertyNameLength) {
         return 0;
+    }
 
     for (unsigned i = 0; i != len; ++i) {
         unsigned short c = s[i].unicode();
-        if (c == 0 || c >= 0x7F)
-            return 0; // illegal character
+        if (c == 0 || c >= 0x7F) {
+            return 0;    // illegal character
+        }
         buffer[i] = s[i].toLower().unicode();
     }
 
@@ -75,24 +77,27 @@ static int propertyID(const DOMString &s)
 }
 
 // "ident" from the CSS tokenizer, minus backslash-escape sequences
-static bool isCSSTokenizerIdentifier(const DOMString& string)
+static bool isCSSTokenizerIdentifier(const DOMString &string)
 {
-    const QChar* p = string.unicode();
-    const QChar* end = p + string.length();
+    const QChar *p = string.unicode();
+    const QChar *end = p + string.length();
 
     // -?
-    if (p != end && p[0] == '-')
+    if (p != end && p[0] == '-') {
         ++p;
+    }
 
     // {nmstart}
-    if (p == end || !(p[0] == '_' || p[0] >= 128 || isASCIIAlpha(p->unicode())))
+    if (p == end || !(p[0] == '_' || p[0] >= 128 || isASCIIAlpha(p->unicode()))) {
         return false;
+    }
     ++p;
 
     // {nmchar}*
     for (; p != end; ++p) {
-        if (!(p[0] == '_' || p[0] == '-' || p[0] >= 128 || isASCIIAlphanumeric(p->unicode())))
+        if (!(p[0] == '_' || p[0] == '-' || p[0] >= 128 || isASCIIAlphanumeric(p->unicode()))) {
             return false;
+        }
     }
 
     return true;
@@ -120,27 +125,31 @@ CSSStyleDeclarationImpl::CSSStyleDeclarationImpl(CSSRuleImpl *parent)
     m_node = 0;
 }
 
-CSSStyleDeclarationImpl::CSSStyleDeclarationImpl(CSSRuleImpl *parent, QList<CSSProperty*> *lstValues)
+CSSStyleDeclarationImpl::CSSStyleDeclarationImpl(CSSRuleImpl *parent, QList<CSSProperty *> *lstValues)
     : StyleBaseImpl(parent)
 {
     m_lstValues = lstValues;
     m_node = 0;
 }
 
-CSSStyleDeclarationImpl&  CSSStyleDeclarationImpl::operator= (const CSSStyleDeclarationImpl& o)
+CSSStyleDeclarationImpl  &CSSStyleDeclarationImpl::operator= (const CSSStyleDeclarationImpl &o)
 {
-    if (this == &o) return *this;
+    if (this == &o) {
+        return *this;
+    }
 
     // don't attach it to the same node, just leave the current m_node value
-    if (m_lstValues)
+    if (m_lstValues) {
         qDeleteAll(*m_lstValues);
+    }
     delete m_lstValues;
     m_lstValues = 0;
     if (o.m_lstValues) {
-        m_lstValues = new QList<CSSProperty*>;
-        QListIterator<CSSProperty*> lstValuesIt(*o.m_lstValues);
-        while ( lstValuesIt.hasNext() )
+        m_lstValues = new QList<CSSProperty *>;
+        QListIterator<CSSProperty *> lstValuesIt(*o.m_lstValues);
+        while (lstValuesIt.hasNext()) {
             m_lstValues->append(new CSSProperty(*lstValuesIt.next()));
+        }
     }
 
     return *this;
@@ -148,8 +157,9 @@ CSSStyleDeclarationImpl&  CSSStyleDeclarationImpl::operator= (const CSSStyleDecl
 
 CSSStyleDeclarationImpl::~CSSStyleDeclarationImpl()
 {
-    if (m_lstValues)
-        qDeleteAll( *m_lstValues );
+    if (m_lstValues) {
+        qDeleteAll(*m_lstValues);
+    }
     delete m_lstValues;
     // we don't use refcounting for m_node, to avoid cyclic references (see ElementImpl)
 }
@@ -157,32 +167,36 @@ CSSStyleDeclarationImpl::~CSSStyleDeclarationImpl()
 CSSValueImpl *CSSStyleDeclarationImpl::getPropertyCSSValue(const DOMString &propertyName) const
 {
     int propID = propertyID(propertyName);
-    if (!propID)
+    if (!propID) {
         return 0;
+    }
     return getPropertyCSSValue(propID);
 }
 
 DOMString CSSStyleDeclarationImpl::getPropertyValue(const DOMString &propertyName) const
 {
     int propID = propertyID(propertyName);
-    if (!propID)
+    if (!propID) {
         return DOMString();
+    }
     return getPropertyValue(propID);
 }
 
 DOMString CSSStyleDeclarationImpl::getPropertyPriority(const DOMString &propertyName) const
 {
     int propID = propertyID(propertyName);
-    if (!propID)
+    if (!propID) {
         return DOMString();
+    }
     return getPropertyPriority(propID) ? "important" : "";
 }
 
 void CSSStyleDeclarationImpl::setProperty(const DOMString &propertyName, const DOMString &value, const DOMString &priority)
 {
     int propID = propertyID(propertyName);
-    if (!propID) // set exception?
+    if (!propID) { // set exception?
         return;
+    }
     bool important = priority.string().indexOf("important", 0, Qt::CaseInsensitive) != -1;
     setProperty(propID, value, important);
 }
@@ -190,188 +204,204 @@ void CSSStyleDeclarationImpl::setProperty(const DOMString &propertyName, const D
 DOMString CSSStyleDeclarationImpl::removeProperty(const DOMString &propertyName)
 {
     int propID = propertyID(propertyName);
-    if (!propID)
+    if (!propID) {
         return DOMString();
+    }
     DOMString old;
     removeProperty(propID, &old);
     return old;
 }
 
-DOMString CSSStyleDeclarationImpl::getPropertyValue( int propertyID ) const
+DOMString CSSStyleDeclarationImpl::getPropertyValue(int propertyID) const
 {
-    if(!m_lstValues) return DOMString();
-    CSSValueImpl* value = getPropertyCSSValue( propertyID );
-    if ( value )
+    if (!m_lstValues) {
+        return DOMString();
+    }
+    CSSValueImpl *value = getPropertyCSSValue(propertyID);
+    if (value) {
         return value->cssText();
+    }
 
     // Shorthand and 4-values properties
-    switch ( propertyID ) {
-    case CSS_PROP_BACKGROUND_POSITION:
-    {
+    switch (propertyID) {
+    case CSS_PROP_BACKGROUND_POSITION: {
         // ## Is this correct? The code in cssparser.cpp is confusing
         const int properties[2] = { CSS_PROP_BACKGROUND_POSITION_X,
-                                    CSS_PROP_BACKGROUND_POSITION_Y };
-        return getLayeredShortHandValue( properties, 2 );
+                                    CSS_PROP_BACKGROUND_POSITION_Y
+                                  };
+        return getLayeredShortHandValue(properties, 2);
     }
-    case CSS_PROP_BACKGROUND:
-    {
+    case CSS_PROP_BACKGROUND: {
         const int properties[6] = { CSS_PROP_BACKGROUND_IMAGE, CSS_PROP_BACKGROUND_REPEAT,
-                                    CSS_PROP_BACKGROUND_ATTACHMENT,CSS_PROP_BACKGROUND_POSITION_X,
-                                    CSS_PROP_BACKGROUND_POSITION_Y, CSS_PROP_BACKGROUND_COLOR };
-        return getLayeredShortHandValue( properties, 6 );
+                                    CSS_PROP_BACKGROUND_ATTACHMENT, CSS_PROP_BACKGROUND_POSITION_X,
+                                    CSS_PROP_BACKGROUND_POSITION_Y, CSS_PROP_BACKGROUND_COLOR
+                                  };
+        return getLayeredShortHandValue(properties, 6);
     }
-    case CSS_PROP_BORDER:
-    {
-            const int properties[3][4] = {{ CSS_PROP_BORDER_TOP_WIDTH,
-                                            CSS_PROP_BORDER_RIGHT_WIDTH,
-                                            CSS_PROP_BORDER_BOTTOM_WIDTH,
-                                            CSS_PROP_BORDER_LEFT_WIDTH },
-                                          { CSS_PROP_BORDER_TOP_STYLE,
-                                            CSS_PROP_BORDER_RIGHT_STYLE,
-                                            CSS_PROP_BORDER_BOTTOM_STYLE,
-                                            CSS_PROP_BORDER_LEFT_STYLE },
-                                          { CSS_PROP_BORDER_TOP_COLOR,
-                                            CSS_PROP_BORDER_RIGHT_COLOR,
-                                            CSS_PROP_BORDER_LEFT_COLOR,
-                                            CSS_PROP_BORDER_BOTTOM_COLOR }};
-            DOMString res;
-            const int nrprops = sizeof(properties) / sizeof(properties[0]);
-            for (int i = 0; i < nrprops; ++i) {
-                DOMString value = getCommonValue(properties[i], 4);
-                if (!value.isNull()) {
-                    if (!res.isNull())
-                        res += " ";
-                    res += value;
-                }
+    case CSS_PROP_BORDER: {
+        const int properties[3][4] = {{
+                CSS_PROP_BORDER_TOP_WIDTH,
+                CSS_PROP_BORDER_RIGHT_WIDTH,
+                CSS_PROP_BORDER_BOTTOM_WIDTH,
+                CSS_PROP_BORDER_LEFT_WIDTH
+            },
+            {
+                CSS_PROP_BORDER_TOP_STYLE,
+                CSS_PROP_BORDER_RIGHT_STYLE,
+                CSS_PROP_BORDER_BOTTOM_STYLE,
+                CSS_PROP_BORDER_LEFT_STYLE
+            },
+            {
+                CSS_PROP_BORDER_TOP_COLOR,
+                CSS_PROP_BORDER_RIGHT_COLOR,
+                CSS_PROP_BORDER_LEFT_COLOR,
+                CSS_PROP_BORDER_BOTTOM_COLOR
             }
-            return res;
+        };
+        DOMString res;
+        const int nrprops = sizeof(properties) / sizeof(properties[0]);
+        for (int i = 0; i < nrprops; ++i) {
+            DOMString value = getCommonValue(properties[i], 4);
+            if (!value.isNull()) {
+                if (!res.isNull()) {
+                    res += " ";
+                }
+                res += value;
+            }
+        }
+        return res;
 
     }
-    case CSS_PROP_BORDER_TOP:
-    {
+    case CSS_PROP_BORDER_TOP: {
         const int properties[3] = { CSS_PROP_BORDER_TOP_WIDTH, CSS_PROP_BORDER_TOP_STYLE,
-                                    CSS_PROP_BORDER_TOP_COLOR};
-        return getShortHandValue( properties, 3 );
+                                    CSS_PROP_BORDER_TOP_COLOR
+                                  };
+        return getShortHandValue(properties, 3);
     }
-    case CSS_PROP_BORDER_RIGHT:
-    {
+    case CSS_PROP_BORDER_RIGHT: {
         const int properties[3] = { CSS_PROP_BORDER_RIGHT_WIDTH, CSS_PROP_BORDER_RIGHT_STYLE,
-                                    CSS_PROP_BORDER_RIGHT_COLOR};
-        return getShortHandValue( properties, 3 );
+                                    CSS_PROP_BORDER_RIGHT_COLOR
+                                  };
+        return getShortHandValue(properties, 3);
     }
-    case CSS_PROP_BORDER_BOTTOM:
-    {
+    case CSS_PROP_BORDER_BOTTOM: {
         const int properties[3] = { CSS_PROP_BORDER_BOTTOM_WIDTH, CSS_PROP_BORDER_BOTTOM_STYLE,
-                                    CSS_PROP_BORDER_BOTTOM_COLOR};
-        return getShortHandValue( properties, 3 );
+                                    CSS_PROP_BORDER_BOTTOM_COLOR
+                                  };
+        return getShortHandValue(properties, 3);
     }
-    case CSS_PROP_BORDER_LEFT:
-    {
+    case CSS_PROP_BORDER_LEFT: {
         const int properties[3] = { CSS_PROP_BORDER_LEFT_WIDTH, CSS_PROP_BORDER_LEFT_STYLE,
-                                    CSS_PROP_BORDER_LEFT_COLOR};
-        return getShortHandValue( properties, 3 );
+                                    CSS_PROP_BORDER_LEFT_COLOR
+                                  };
+        return getShortHandValue(properties, 3);
     }
-    case CSS_PROP_OUTLINE:
-    {
+    case CSS_PROP_OUTLINE: {
         const int properties[3] = { CSS_PROP_OUTLINE_WIDTH, CSS_PROP_OUTLINE_STYLE,
-                                    CSS_PROP_OUTLINE_COLOR };
-        return getShortHandValue( properties, 3 );
+                                    CSS_PROP_OUTLINE_COLOR
+                                  };
+        return getShortHandValue(properties, 3);
     }
-    case CSS_PROP_BORDER_COLOR:
-    {
+    case CSS_PROP_BORDER_COLOR: {
         const int properties[4] = { CSS_PROP_BORDER_TOP_COLOR, CSS_PROP_BORDER_RIGHT_COLOR,
-                                    CSS_PROP_BORDER_BOTTOM_COLOR, CSS_PROP_BORDER_LEFT_COLOR };
-        return get4Values( properties );
+                                    CSS_PROP_BORDER_BOTTOM_COLOR, CSS_PROP_BORDER_LEFT_COLOR
+                                  };
+        return get4Values(properties);
     }
-    case CSS_PROP_BORDER_WIDTH:
-    {
+    case CSS_PROP_BORDER_WIDTH: {
         const int properties[4] = { CSS_PROP_BORDER_TOP_WIDTH, CSS_PROP_BORDER_RIGHT_WIDTH,
-                                    CSS_PROP_BORDER_BOTTOM_WIDTH, CSS_PROP_BORDER_LEFT_WIDTH };
-        return get4Values( properties );
+                                    CSS_PROP_BORDER_BOTTOM_WIDTH, CSS_PROP_BORDER_LEFT_WIDTH
+                                  };
+        return get4Values(properties);
     }
-    case CSS_PROP_BORDER_STYLE:
-    {
+    case CSS_PROP_BORDER_STYLE: {
         const int properties[4] = { CSS_PROP_BORDER_TOP_STYLE, CSS_PROP_BORDER_RIGHT_STYLE,
-                                    CSS_PROP_BORDER_BOTTOM_STYLE, CSS_PROP_BORDER_LEFT_STYLE };
-        return get4Values( properties );
+                                    CSS_PROP_BORDER_BOTTOM_STYLE, CSS_PROP_BORDER_LEFT_STYLE
+                                  };
+        return get4Values(properties);
     }
-    case CSS_PROP_MARGIN:
-    {
+    case CSS_PROP_MARGIN: {
         const int properties[4] = { CSS_PROP_MARGIN_TOP, CSS_PROP_MARGIN_RIGHT,
-                                    CSS_PROP_MARGIN_BOTTOM, CSS_PROP_MARGIN_LEFT };
-        return get4Values( properties );
+                                    CSS_PROP_MARGIN_BOTTOM, CSS_PROP_MARGIN_LEFT
+                                  };
+        return get4Values(properties);
     }
-    case CSS_PROP_PADDING:
-    {
+    case CSS_PROP_PADDING: {
         const int properties[4] = { CSS_PROP_PADDING_TOP, CSS_PROP_PADDING_RIGHT,
-                                    CSS_PROP_PADDING_BOTTOM, CSS_PROP_PADDING_LEFT };
-        return get4Values( properties );
+                                    CSS_PROP_PADDING_BOTTOM, CSS_PROP_PADDING_LEFT
+                                  };
+        return get4Values(properties);
     }
-    case CSS_PROP_LIST_STYLE:
-    {
+    case CSS_PROP_LIST_STYLE: {
         const int properties[3] = { CSS_PROP_LIST_STYLE_TYPE, CSS_PROP_LIST_STYLE_POSITION,
-                                    CSS_PROP_LIST_STYLE_IMAGE };
-        return getShortHandValue( properties, 3 );
+                                    CSS_PROP_LIST_STYLE_IMAGE
+                                  };
+        return getShortHandValue(properties, 3);
     }
     }
     //qDebug() << "property not found:" << propertyID;
     return DOMString();
 }
- 
+
 // only returns a non-null value if all properties have the same, non-null value
-DOMString CSSStyleDeclarationImpl::getCommonValue(const int* properties, int number) const
+DOMString CSSStyleDeclarationImpl::getCommonValue(const int *properties, int number) const
 {
     DOMString res;
     for (int i = 0; i < number; ++i) {
-        CSSValueImpl* value = getPropertyCSSValue(properties[i]);
-        if (!value)
+        CSSValueImpl *value = getPropertyCSSValue(properties[i]);
+        if (!value) {
             return DOMString();
+        }
         DOMString text = value->cssText();
-        if (text.isNull())
+        if (text.isNull()) {
             return DOMString();
-        if (res.isNull())
+        }
+        if (res.isNull()) {
             res = text;
-        else if (res != text)
+        } else if (res != text) {
             return DOMString();
+        }
     }
     return res;
 }
 
-DOMString CSSStyleDeclarationImpl::get4Values( const int* properties ) const
+DOMString CSSStyleDeclarationImpl::get4Values(const int *properties) const
 {
     DOMString res;
-    for ( int i = 0 ; i < 4 ; ++i ) {
+    for (int i = 0; i < 4; ++i) {
         if (!isPropertyImplicit(properties[i])) {
-            CSSValueImpl* value = getPropertyCSSValue( properties[i] );
-            if ( !value ) { // apparently all 4 properties must be specified.
+            CSSValueImpl *value = getPropertyCSSValue(properties[i]);
+            if (!value) {   // apparently all 4 properties must be specified.
                 return DOMString();
             }
-            if ( i > 0 )
+            if (i > 0) {
                 res += " ";
+            }
             res += value->cssText();
         }
     }
     return res;
 }
 
-DOMString CSSStyleDeclarationImpl::getLayeredShortHandValue(const int* properties, unsigned number) const
+DOMString CSSStyleDeclarationImpl::getLayeredShortHandValue(const int *properties, unsigned number) const
 {
     DOMString res;
     unsigned i;
     unsigned j;
 
     // Begin by collecting the properties into an array.
-    QVector<CSSValueImpl*> values(number);
+    QVector<CSSValueImpl *> values(number);
     unsigned numLayers = 0;
 
     for (i = 0; i < number; ++i) {
         values[i] = getPropertyCSSValue(properties[i]);
         if (values[i]) {
             if (values[i]->isValueList()) {
-                CSSValueListImpl* valueList = static_cast<CSSValueListImpl*>(values[i]);
+                CSSValueListImpl *valueList = static_cast<CSSValueListImpl *>(values[i]);
                 numLayers = qMax(valueList->length(), (unsigned long)numLayers);
-            } else
+            } else {
                 numLayers = qMax(1U, numLayers);
+            }
         }
     }
 
@@ -380,32 +410,36 @@ DOMString CSSStyleDeclarationImpl::getLayeredShortHandValue(const int* propertie
     for (i = 0; i < numLayers; i++) {
         DOMString layerRes;
         for (j = 0; j < number; j++) {
-            CSSValueImpl* value = 0;
+            CSSValueImpl *value = 0;
             if (values[j]) {
-                if (values[j]->isValueList())
-                    value = static_cast<CSSValueListImpl*>(values[j])->item(i);
-                else {
+                if (values[j]->isValueList()) {
+                    value = static_cast<CSSValueListImpl *>(values[j])->item(i);
+                } else {
                     value = values[j];
 
                     // Color only belongs in the last layer.
                     if (properties[j] == CSS_PROP_BACKGROUND_COLOR) {
-                        if (i != numLayers - 1)
+                        if (i != numLayers - 1) {
                             value = 0;
-                    } else if (i != 0) // Other singletons only belong in the first layer.
+                        }
+                    } else if (i != 0) { // Other singletons only belong in the first layer.
                         value = 0;
+                    }
                 }
             }
 
             if (value && !value->isImplicitInitialValue()) {
-                if (!layerRes.isNull())
+                if (!layerRes.isNull()) {
                     layerRes += " ";
+                }
                 layerRes += value->cssText();
             }
         }
 
         if (!layerRes.isNull()) {
-            if (!res.isNull())
+            if (!res.isNull()) {
                 res += ", ";
+            }
             res += layerRes;
         }
     }
@@ -413,42 +447,47 @@ DOMString CSSStyleDeclarationImpl::getLayeredShortHandValue(const int* propertie
     return res;
 }
 
-DOMString CSSStyleDeclarationImpl::getShortHandValue( const int* properties, int number ) const
+DOMString CSSStyleDeclarationImpl::getShortHandValue(const int *properties, int number) const
 {
     DOMString res;
-    for ( int i = 0 ; i < number ; ++i ) {
-        CSSValueImpl* value = getPropertyCSSValue( properties[i] );
-        if ( value ) { // TODO provide default value if !value
-            if ( !res.isNull() )
+    for (int i = 0; i < number; ++i) {
+        CSSValueImpl *value = getPropertyCSSValue(properties[i]);
+        if (value) {   // TODO provide default value if !value
+            if (!res.isNull()) {
                 res += " ";
+            }
             res += value->cssText();
         }
     }
     return res;
 }
 
- CSSValueImpl *CSSStyleDeclarationImpl::getPropertyCSSValue( int propertyID ) const
+CSSValueImpl *CSSStyleDeclarationImpl::getPropertyCSSValue(int propertyID) const
 {
-    if(!m_lstValues) return 0;
+    if (!m_lstValues) {
+        return 0;
+    }
 
-    QListIterator<CSSProperty*> lstValuesIt(*m_lstValues);
+    QListIterator<CSSProperty *> lstValuesIt(*m_lstValues);
     CSSProperty *current;
-    while ( lstValuesIt.hasNext() ) {
+    while (lstValuesIt.hasNext()) {
         current = lstValuesIt.next();
-        if (current->m_id == propertyID)
+        if (current->m_id == propertyID) {
             return current->value();
+        }
     }
     return 0;
 }
 
 bool CSSStyleDeclarationImpl::isPropertyImplicit(int propertyID) const
 {
-    QListIterator<CSSProperty*> lstValuesIt(*m_lstValues);
+    QListIterator<CSSProperty *> lstValuesIt(*m_lstValues);
     CSSProperty const *current;
-    while ( lstValuesIt.hasNext() ) {
+    while (lstValuesIt.hasNext()) {
         current = lstValuesIt.next();
-        if (current->m_id == propertyID)
+        if (current->m_id == propertyID) {
             return current->isImplicit();
+        }
     }
     return false;
 }
@@ -467,24 +506,30 @@ struct PropertyLonghand {
     {
     }
 
-    PropertyLonghand(const int* firstProperty, unsigned numProperties)
+    PropertyLonghand(const int *firstProperty, unsigned numProperties)
         : m_properties(firstProperty)
         , m_length(numProperties)
     {
     }
 
-    const int* properties() const { return m_properties; }
-    unsigned length() const { return m_length; }
+    const int *properties() const
+    {
+        return m_properties;
+    }
+    unsigned length() const
+    {
+        return m_length;
+    }
 
 private:
-    const int* m_properties;
+    const int *m_properties;
     unsigned m_length;
 };
 
-static void initShorthandMap(QHash<int, PropertyLonghand>& shorthandMap)
+static void initShorthandMap(QHash<int, PropertyLonghand> &shorthandMap)
 {
-    #define SET_SHORTHAND_MAP_ENTRY(map, propID, array) \
-        map.insert(propID, PropertyLonghand(array, sizeof(array) / sizeof(array[0])))
+#define SET_SHORTHAND_MAP_ENTRY(map, propID, array) \
+    map.insert(propID, PropertyLonghand(array, sizeof(array) / sizeof(array[0])))
 
     // FIXME: The 'font' property has "shorthand nature" but is not parsed as a shorthand.
 
@@ -623,28 +668,30 @@ static void initShorthandMap(QHash<int, PropertyLonghand>& shorthandMap)
         CSS_PROP__KHTML_BORDER_BOTTOM_RIGHT_RADIUS
     };
     SET_SHORTHAND_MAP_ENTRY(shorthandMap, CSS_PROP__KHTML_BORDER_RADIUS, prefixedBorderRadiusProperties);
-                                                
+
     static const int markerProperties[] = {
-        CSS_PROP_MARKER_START, 
+        CSS_PROP_MARKER_START,
         CSS_PROP_MARKER_MID,
         CSS_PROP_MARKER_END
     };
     SET_SHORTHAND_MAP_ENTRY(shorthandMap, CSS_PROP_MARKER, markerProperties);
 
-    #undef SET_SHORTHAND_MAP_ENTRY
+#undef SET_SHORTHAND_MAP_ENTRY
 }
 
 // -------------------------------------------
 
 void CSSStyleDeclarationImpl::removeProperty(int propertyID,
-                                             DOM::DOMString* old)
+        DOM::DOMString *old)
 {
-    if(!m_lstValues)
+    if (!m_lstValues) {
         return;
+    }
 
     static QHash<int, PropertyLonghand> shorthandMap;
-    if (shorthandMap.isEmpty())
+    if (shorthandMap.isEmpty()) {
         initShorthandMap(shorthandMap);
+    }
 
     PropertyLonghand longhand = shorthandMap.value(propertyID);
     if (longhand.length()) {
@@ -653,30 +700,31 @@ void CSSStyleDeclarationImpl::removeProperty(int propertyID,
         return;
     }
 
-    QMutableListIterator<CSSProperty*> lstValuesIt(*m_lstValues);
+    QMutableListIterator<CSSProperty *> lstValuesIt(*m_lstValues);
     CSSProperty *current;
     lstValuesIt.toBack();
-    while ( lstValuesIt.hasPrevious() ) {
+    while (lstValuesIt.hasPrevious()) {
         current = lstValuesIt.previous();
         if (current->m_id == propertyID) {
-            if (old)
+            if (old) {
                 *old = current->value()->cssText();
+            }
             delete lstValuesIt.value();
             lstValuesIt.remove();
             setChanged();
             break;
         }
-     }
+    }
 }
 
-void CSSStyleDeclarationImpl::removePropertiesInSet(const int* set, unsigned length)
+void CSSStyleDeclarationImpl::removePropertiesInSet(const int *set, unsigned length)
 {
     bool changed = false;
     for (unsigned i = 0; i < length; i++) {
-        QMutableListIterator<CSSProperty*> lstValuesIt(*m_lstValues);
+        QMutableListIterator<CSSProperty *> lstValuesIt(*m_lstValues);
         CSSProperty *current;
         lstValuesIt.toBack();
-        while ( lstValuesIt.hasPrevious() ) {
+        while (lstValuesIt.hasPrevious()) {
             current = lstValuesIt.previous();
             if (current->m_id == set[i]) {
                 delete lstValuesIt.value();
@@ -686,8 +734,9 @@ void CSSStyleDeclarationImpl::removePropertiesInSet(const int* set, unsigned len
             }
         }
     }
-    if (changed)
+    if (changed) {
         setChanged();
+    }
 }
 
 void CSSStyleDeclarationImpl::setChanged()
@@ -698,35 +747,37 @@ void CSSStyleDeclarationImpl::setChanged()
     }
 
     // ### quick&dirty hack for KDE 3.0... make this MUCH better! (Dirk)
-    for (StyleBaseImpl* stylesheet = this; stylesheet; stylesheet = stylesheet->parent())
+    for (StyleBaseImpl *stylesheet = this; stylesheet; stylesheet = stylesheet->parent())
         if (stylesheet->isCSSStyleSheet()) {
-            static_cast<CSSStyleSheetImpl*>(stylesheet)->doc()->updateStyleSelector();
+            static_cast<CSSStyleSheetImpl *>(stylesheet)->doc()->updateStyleSelector();
             break;
         }
 }
 
 void CSSStyleDeclarationImpl::clear()
 {
-    if (!m_lstValues)
+    if (!m_lstValues) {
         return;
+    }
 
-    QMutableListIterator<CSSProperty*> it(*m_lstValues);
+    QMutableListIterator<CSSProperty *> it(*m_lstValues);
     while (it.hasNext()) {
-            delete it.next();
-            it.remove();
+        delete it.next();
+        it.remove();
     }
 }
 
-bool CSSStyleDeclarationImpl::getPropertyPriority( int propertyID ) const
+bool CSSStyleDeclarationImpl::getPropertyPriority(int propertyID) const
 {
-    if ( m_lstValues) {
-	QListIterator<CSSProperty*> lstValuesIt(*m_lstValues);
-	CSSProperty *current;
-	while (lstValuesIt.hasNext()) {
+    if (m_lstValues) {
+        QListIterator<CSSProperty *> lstValuesIt(*m_lstValues);
+        CSSProperty *current;
+        while (lstValuesIt.hasNext()) {
             current = lstValuesIt.next();
-	    if( propertyID == current->m_id )
-		return current->m_important;
-	}
+            if (propertyID == current->m_id) {
+                return current->m_important;
+            }
+        }
     }
     return false;
 }
@@ -754,50 +805,51 @@ bool CSSStyleDeclarationImpl::setProperty(int id, const DOMString &value, bool i
 
 bool CSSStyleDeclarationImpl::setProperty(int id, const DOMString &value, bool important)
 {
-    if(!m_lstValues) {
-	m_lstValues = new QList<CSSProperty*>;
+    if (!m_lstValues) {
+        m_lstValues = new QList<CSSProperty *>;
     }
 
-    CSSParser parser( strictParsing );
-    bool success = parser.parseValue( this, id, value, important );
-    if(!success) {
-	// qDebug() << "CSSStyleDeclarationImpl::setProperty invalid property: [" << getPropertyName(id).string()
-			//<< "] value: [" << value.string() << "]"<< endl;
-    } else
+    CSSParser parser(strictParsing);
+    bool success = parser.parseValue(this, id, value, important);
+    if (!success) {
+        // qDebug() << "CSSStyleDeclarationImpl::setProperty invalid property: [" << getPropertyName(id).string()
+        //<< "] value: [" << value.string() << "]"<< endl;
+    } else {
         setChanged();
+    }
     return success;
 }
 
-void CSSStyleDeclarationImpl::setProperty(int id, int value, bool important )
+void CSSStyleDeclarationImpl::setProperty(int id, int value, bool important)
 {
-    if(!m_lstValues) {
-	m_lstValues = new QList<CSSProperty*>;
+    if (!m_lstValues) {
+        m_lstValues = new QList<CSSProperty *>;
     }
     removeProperty(id);
 
-    CSSValueImpl * cssValue = new CSSPrimitiveValueImpl(value);
+    CSSValueImpl *cssValue = new CSSPrimitiveValueImpl(value);
     setParsedValue(id, cssValue, important, m_lstValues);
     setChanged();
 }
 
-void CSSStyleDeclarationImpl::setLengthProperty(int id, const DOM::DOMString &value, bool important, bool _multiLength )
+void CSSStyleDeclarationImpl::setLengthProperty(int id, const DOM::DOMString &value, bool important, bool _multiLength)
 {
     bool parseMode = strictParsing;
     strictParsing = false;
     multiLength = _multiLength;
-    setProperty( id, value, important );
+    setProperty(id, value, important);
     strictParsing = parseMode;
     multiLength = false;
 }
 
-void CSSStyleDeclarationImpl::setProperty ( const DOMString &propertyString)
+void CSSStyleDeclarationImpl::setProperty(const DOMString &propertyString)
 {
-    if(!m_lstValues) {
-	m_lstValues = new QList<CSSProperty*>;
+    if (!m_lstValues) {
+        m_lstValues = new QList<CSSProperty *>;
     }
 
-    CSSParser parser( strictParsing );
-    parser.parseDeclaration( this, propertyString );
+    CSSParser parser(strictParsing);
+    parser.parseDeclaration(this, propertyString);
     setChanged();
 }
 
@@ -806,37 +858,39 @@ unsigned long CSSStyleDeclarationImpl::length() const
     return m_lstValues ? m_lstValues->count() : 0;
 }
 
-DOMString CSSStyleDeclarationImpl::item( unsigned long index ) const
+DOMString CSSStyleDeclarationImpl::item(unsigned long index) const
 {
-    if(m_lstValues && index < (unsigned)m_lstValues->count() && m_lstValues->at(index))
-	return getPropertyName(m_lstValues->at(index)->m_id);
+    if (m_lstValues && index < (unsigned)m_lstValues->count() && m_lstValues->at(index)) {
+        return getPropertyName(m_lstValues->at(index)->m_id);
+    }
     return DOMString();
 }
 
 CSSRuleImpl *CSSStyleDeclarationImpl::parentRule() const
 {
-    return (m_parent && m_parent->isRule() ) ?
-	static_cast<CSSRuleImpl *>(m_parent) : 0;
+    return (m_parent && m_parent->isRule()) ?
+           static_cast<CSSRuleImpl *>(m_parent) : 0;
 }
 
 DOM::DOMString CSSStyleDeclarationImpl::cssText() const
 {
     DOMString result;
 
-    const CSSProperty* positionXProp = 0;
-    const CSSProperty* positionYProp = 0;
+    const CSSProperty *positionXProp = 0;
+    const CSSProperty *positionYProp = 0;
 
-    if ( m_lstValues) {
-	QListIterator<CSSProperty*> lstValuesIt(*m_lstValues);
-	while (lstValuesIt.hasNext()) {
-	    const CSSProperty* cur = lstValuesIt.next();
-            if (cur->id() == CSS_PROP_BACKGROUND_POSITION_X)
+    if (m_lstValues) {
+        QListIterator<CSSProperty *> lstValuesIt(*m_lstValues);
+        while (lstValuesIt.hasNext()) {
+            const CSSProperty *cur = lstValuesIt.next();
+            if (cur->id() == CSS_PROP_BACKGROUND_POSITION_X) {
                 positionXProp = cur;
-            else if (cur->id() == CSS_PROP_BACKGROUND_POSITION_Y)
+            } else if (cur->id() == CSS_PROP_BACKGROUND_POSITION_Y) {
                 positionYProp = cur;
-            else
+            } else {
                 result += cur->cssText();
-	}
+            }
+        }
     }
 
     // FIXME: This is a not-so-nice way to turn x/y positions into single background-position in output.
@@ -846,37 +900,40 @@ DOM::DOMString CSSStyleDeclarationImpl::cssText() const
     if (positionXProp && positionYProp && positionXProp->isImportant() == positionYProp->isImportant()) {
         DOMString positionValue;
         const int properties[2] = { CSS_PROP_BACKGROUND_POSITION_X, CSS_PROP_BACKGROUND_POSITION_Y };
-        if (positionXProp->value()->isValueList() || positionYProp->value()->isValueList())
+        if (positionXProp->value()->isValueList() || positionYProp->value()->isValueList()) {
             positionValue = getLayeredShortHandValue(properties, 2);
-        else
+        } else {
             positionValue = positionXProp->value()->cssText() + DOMString(" ") + positionYProp->value()->cssText();
+        }
         result += DOMString("background-position: ") + positionValue
-                                                     + DOMString((positionXProp->isImportant() ? " !important" : ""))
-                                                     + DOMString("; ");
+                  + DOMString((positionXProp->isImportant() ? " !important" : ""))
+                  + DOMString("; ");
     } else {
-        if (positionXProp)
+        if (positionXProp) {
             result += positionXProp->cssText();
-        if (positionYProp)
+        }
+        if (positionYProp) {
             result += positionYProp->cssText();
+        }
     }
     return result;
 }
 
-void CSSStyleDeclarationImpl::setCssText(const DOM::DOMString& text)
+void CSSStyleDeclarationImpl::setCssText(const DOM::DOMString &text)
 {
     if (m_lstValues) {
         qDeleteAll(*m_lstValues);
-	m_lstValues->clear();
+        m_lstValues->clear();
     } else {
-	m_lstValues = new QList<CSSProperty*>;
+        m_lstValues = new QList<CSSProperty *>;
     }
 
-    CSSParser parser( strictParsing );
-    parser.parseDeclaration( this, text );
+    CSSParser parser(strictParsing);
+    parser.parseDeclaration(this, text);
     setChanged();
 }
 
-bool CSSStyleDeclarationImpl::parseString( const DOMString &/*string*/, bool )
+bool CSSStyleDeclarationImpl::parseString(const DOMString &/*string*/, bool)
 {
     // qDebug() << "WARNING: CSSStyleDeclarationImpl::parseString, unimplemented, was called";
     return false;
@@ -887,20 +944,21 @@ bool CSSStyleDeclarationImpl::parseString( const DOMString &/*string*/, bool )
 
 void CSSInlineStyleDeclarationImpl::setChanged()
 {
-    if (m_node)
+    if (m_node) {
         m_node->setNeedsStyleAttributeUpdate();
+    }
     CSSStyleDeclarationImpl::setChanged();
 }
 
 void CSSInlineStyleDeclarationImpl::updateFromAttribute(const DOMString &value)
 {
-    if(!m_lstValues) {
-	m_lstValues = new QList<CSSProperty*>;
+    if (!m_lstValues) {
+        m_lstValues = new QList<CSSProperty *>;
     } else {
         clear();
     }
-    CSSParser parser( strictParsing );
-    parser.parseDeclaration( this, value );
+    CSSParser parser(strictParsing);
+    parser.parseDeclaration(this, value);
     CSSStyleDeclarationImpl::setChanged();
 }
 
@@ -930,8 +988,9 @@ DOM::DOMString CSSInitialValueImpl::cssText() const
 
 CSSValueListImpl::~CSSValueListImpl()
 {
-    for (QListIterator<CSSValueImpl*> iterator(m_values); iterator.hasNext();)
+    for (QListIterator<CSSValueImpl *> iterator(m_values); iterator.hasNext();) {
         iterator.next()->deref();
+    }
 }
 
 unsigned short CSSValueListImpl::cssValueType() const
@@ -949,12 +1008,13 @@ DOM::DOMString CSSValueListImpl::cssText() const
 {
     DOMString result = "";
 
-    for (QListIterator<CSSValueImpl*> iterator(m_values); iterator.hasNext();) {
+    for (QListIterator<CSSValueImpl *> iterator(m_values); iterator.hasNext();) {
         if (!result.isEmpty()) {
-            if (m_separator == Comma)
+            if (m_separator == Comma) {
                 result += ", ";
-            else if (m_separator == Space)
+            } else if (m_separator == Space) {
                 result += " ";
+            }
         }
         result += iterator.next()->cssText();
     }
@@ -986,23 +1046,27 @@ CSSPrimitiveValueImpl::CSSPrimitiveValueImpl(double num, CSSPrimitiveValue::Unit
 CSSPrimitiveValueImpl::CSSPrimitiveValueImpl(const DOMString &str, CSSPrimitiveValue::UnitTypes type)
 {
     m_value.string = str.implementation();
-    if(m_value.string) m_value.string->ref();
+    if (m_value.string) {
+        m_value.string->ref();
+    }
     m_type = type;
 }
 
 CSSPrimitiveValueImpl::CSSPrimitiveValueImpl(CounterImpl *c)
 {
     m_value.counter = c;
-    if (m_value.counter)
-	m_value.counter->ref();
+    if (m_value.counter) {
+        m_value.counter->ref();
+    }
     m_type = CSSPrimitiveValue::CSS_COUNTER;
 }
 
-CSSPrimitiveValueImpl::CSSPrimitiveValueImpl( RectImpl *r)
+CSSPrimitiveValueImpl::CSSPrimitiveValueImpl(RectImpl *r)
 {
     m_value.rect = r;
-    if (m_value.rect)
-	m_value.rect->ref();
+    if (m_value.rect) {
+        m_value.rect->ref();
+    }
     m_type = CSSPrimitiveValue::CSS_RECT;
 }
 
@@ -1015,11 +1079,11 @@ CSSPrimitiveValueImpl::CSSPrimitiveValueImpl(QRgb color)
 CSSPrimitiveValueImpl::CSSPrimitiveValueImpl(PairImpl *p)
 {
     m_value.pair = p;
-    if (m_value.pair)
-	m_value.pair->ref();
+    if (m_value.pair) {
+        m_value.pair->ref();
+    }
     m_type = CSSPrimitiveValue::CSS_PAIR;
 }
-
 
 CSSPrimitiveValueImpl::~CSSPrimitiveValueImpl()
 {
@@ -1028,17 +1092,19 @@ CSSPrimitiveValueImpl::~CSSPrimitiveValueImpl()
 
 void CSSPrimitiveValueImpl::cleanup()
 {
-    switch(m_type) {
+    switch (m_type) {
     case CSSPrimitiveValue::CSS_STRING:
     case CSSPrimitiveValue::CSS_URI:
     case CSSPrimitiveValue::CSS_ATTR:
-	if(m_value.string) m_value.string->deref();
+        if (m_value.string) {
+            m_value.string->deref();
+        }
         break;
     case CSSPrimitiveValue::CSS_COUNTER:
-	m_value.counter->deref();
+        m_value.counter->deref();
         break;
     case CSSPrimitiveValue::CSS_RECT:
-	m_value.rect->deref();
+        m_value.rect->deref();
         break;
     case CSSPrimitiveValue::CSS_PAIR:
         m_value.pair->deref();
@@ -1050,64 +1116,63 @@ void CSSPrimitiveValueImpl::cleanup()
     m_type = 0;
 }
 
-int CSSPrimitiveValueImpl::computeLength( khtml::RenderStyle *style, int logicalDpiY)
+int CSSPrimitiveValueImpl::computeLength(khtml::RenderStyle *style, int logicalDpiY)
 {
-    return snapValue( computeLengthFloat( style, logicalDpiY ) );
+    return snapValue(computeLengthFloat(style, logicalDpiY));
 }
 
-double CSSPrimitiveValueImpl::computeLengthFloat( khtml::RenderStyle *style, int logicalDpiY)
+double CSSPrimitiveValueImpl::computeLengthFloat(khtml::RenderStyle *style, int logicalDpiY)
 {
     unsigned short type = primitiveType();
 
     double dpiY = 72.; // fallback
-    if ( logicalDpiY )
+    if (logicalDpiY) {
         dpiY = logicalDpiY;
-    if ( !khtml::printpainter && dpiY < 96 )
+    }
+    if (!khtml::printpainter && dpiY < 96) {
         dpiY = 96.;
+    }
 
     double factor = 1.;
-    switch(type)
-    {
+    switch (type) {
     case CSSPrimitiveValue::CSS_EMS:
         factor = style->font().pixelSize();
         break;
-    case CSSPrimitiveValue::CSS_EXS:
-	{
+    case CSSPrimitiveValue::CSS_EXS: {
         QFontMetrics fm = style->fontMetrics();
         factor = fm.xHeight();
         break;
-	}
+    }
     case CSSPrimitiveValue::CSS_PX:
         break;
     case CSSPrimitiveValue::CSS_CM:
-	factor = dpiY/2.54; //72dpi/(2.54 cm/in)
+        factor = dpiY / 2.54; //72dpi/(2.54 cm/in)
         break;
     case CSSPrimitiveValue::CSS_MM:
-	factor = dpiY/25.4;
+        factor = dpiY / 25.4;
         break;
     case CSSPrimitiveValue::CSS_IN:
         factor = dpiY;
         break;
     case CSSPrimitiveValue::CSS_PT:
-        factor = dpiY/72.;
+        factor = dpiY / 72.;
         break;
     case CSSPrimitiveValue::CSS_PC:
         // 1 pc == 12 pt
-        factor = dpiY*12./72.;
+        factor = dpiY * 12. / 72.;
         break;
     default:
         return -1;
     }
 
-    return floatValue(type)*factor;
+    return floatValue(type) * factor;
 }
 
 int CSSPrimitiveValueImpl::getDPIResolution() const
 {
     unsigned short type = primitiveType();
     double factor = 1.;
-    switch(type)
-    {
+    switch (type) {
     case CSSPrimitiveValue::CSS_DPI:
         break;
     case CSSPrimitiveValue::CSS_DPCM:
@@ -1117,38 +1182,37 @@ int CSSPrimitiveValueImpl::getDPIResolution() const
         return -1;
     }
 
-    return (int)(0.01+floatValue(type)*factor);
+    return (int)(0.01 + floatValue(type) * factor);
 }
 
-void CSSPrimitiveValueImpl::setFloatValue( unsigned short unitType, double floatValue, int &exceptioncode )
+void CSSPrimitiveValueImpl::setFloatValue(unsigned short unitType, double floatValue, int &exceptioncode)
 {
     exceptioncode = 0;
     cleanup();
     // ### check if property supports this type
-    if(m_type > CSSPrimitiveValue::CSS_DIMENSION) {
-	exceptioncode = CSSException::SYNTAX_ERR + CSSException::_EXCEPTION_OFFSET;
-	return;
+    if (m_type > CSSPrimitiveValue::CSS_DIMENSION) {
+        exceptioncode = CSSException::SYNTAX_ERR + CSSException::_EXCEPTION_OFFSET;
+        return;
     }
     //if(m_type > CSSPrimitiveValue::CSS_DIMENSION) throw DOMException(DOMException::INVALID_ACCESS_ERR);
     m_value.num = floatValue;
     m_type = unitType;
 }
 
-void CSSPrimitiveValueImpl::setStringValue( unsigned short stringType, const DOMString &stringValue, int &exceptioncode )
+void CSSPrimitiveValueImpl::setStringValue(unsigned short stringType, const DOMString &stringValue, int &exceptioncode)
 {
     exceptioncode = 0;
     cleanup();
     //if(m_type < CSSPrimitiveValue::CSS_STRING) throw DOMException(DOMException::INVALID_ACCESS_ERR);
     //if(m_type > CSSPrimitiveValue::CSS_ATTR) throw DOMException(DOMException::INVALID_ACCESS_ERR);
-    if(m_type < CSSPrimitiveValue::CSS_STRING || m_type > CSSPrimitiveValue::CSS_ATTR) {
-	exceptioncode = CSSException::SYNTAX_ERR + CSSException::_EXCEPTION_OFFSET;
-	return;
+    if (m_type < CSSPrimitiveValue::CSS_STRING || m_type > CSSPrimitiveValue::CSS_ATTR) {
+        exceptioncode = CSSException::SYNTAX_ERR + CSSException::_EXCEPTION_OFFSET;
+        return;
     }
-    if(stringType != CSSPrimitiveValue::CSS_IDENT)
-    {
-	m_value.string = stringValue.implementation();
-	m_value.string->ref();
-	m_type = stringType;
+    if (stringType != CSSPrimitiveValue::CSS_IDENT) {
+        m_value.string = stringValue.implementation();
+        m_value.string->ref();
+        m_type = stringType;
     }
     // ### parse ident
 }
@@ -1158,7 +1222,7 @@ unsigned short CSSPrimitiveValueImpl::cssValueType() const
     return CSSValue::CSS_PRIMITIVE_VALUE;
 }
 
-bool CSSPrimitiveValueImpl::parseString( const DOMString &/*string*/, bool )
+bool CSSPrimitiveValueImpl::parseString(const DOMString &/*string*/, bool)
 {
     // ###
     // qDebug() << "WARNING: CSSPrimitiveValueImpl::parseString, unimplemented, was called";
@@ -1167,7 +1231,9 @@ bool CSSPrimitiveValueImpl::parseString( const DOMString &/*string*/, bool )
 
 int CSSPrimitiveValueImpl::getIdent()
 {
-    if(m_type != CSSPrimitiveValue::CSS_IDENT) return 0;
+    if (m_type != CSSPrimitiveValue::CSS_IDENT) {
+        return 0;
+    }
     return m_value.ident;
 }
 
@@ -1176,122 +1242,122 @@ DOM::DOMString CSSPrimitiveValueImpl::cssText() const
     // ### return the original value instead of a generated one (e.g. color
     // name if it was specified) - check what spec says about this
     DOMString text;
-    switch ( m_type ) {
-	case CSSPrimitiveValue::CSS_UNKNOWN:
-	    // ###
-	    break;
-	case CSSPrimitiveValue::CSS_NUMBER:
-	    // We want to output integral values w/o a period, but others as-is
-	    if ( m_value.num == (int)m_value.num )
-		text = DOMString(QString::number( (int)m_value.num ));
-	    else
-		text = DOMString(QString::number( m_value.num ));
-	    break;
-	case CSSPrimitiveValue::CSS_PERCENTAGE:
-	    text = DOMString(QString::number( m_value.num ) + "%");
-	    break;
-	case CSSPrimitiveValue::CSS_EMS:
-	    text = DOMString(QString::number( m_value.num ) + "em");
-	    break;
-	case CSSPrimitiveValue::CSS_EXS:
-	    text = DOMString(QString::number( m_value.num ) + "ex");
-	    break;
-	case CSSPrimitiveValue::CSS_PX:
-	    text = DOMString(QString::number( m_value.num ) + "px");
-	    break;
-	case CSSPrimitiveValue::CSS_CM:
-	    text = DOMString(QString::number( m_value.num ) + "cm");
-	    break;
-	case CSSPrimitiveValue::CSS_MM:
-	    text = DOMString(QString::number( m_value.num ) + "mm");
-	    break;
-	case CSSPrimitiveValue::CSS_IN:
-	    text = DOMString(QString::number( m_value.num ) + "in");
-	    break;
-	case CSSPrimitiveValue::CSS_PT:
-	    text = DOMString(QString::number( m_value.num ) + "pt");
-	    break;
-	case CSSPrimitiveValue::CSS_PC:
-	    text = DOMString(QString::number( m_value.num ) + "pc");
-	    break;
-	case CSSPrimitiveValue::CSS_DEG:
-	    text = DOMString(QString::number( m_value.num ) + "deg");
-	    break;
-	case CSSPrimitiveValue::CSS_RAD:
-	    text = DOMString(QString::number( m_value.num ) + "rad");
-	    break;
-	case CSSPrimitiveValue::CSS_GRAD:
-	    text = DOMString(QString::number( m_value.num ) + "grad");
-	    break;
-	case CSSPrimitiveValue::CSS_MS:
-	    text = DOMString(QString::number( m_value.num ) + "ms");
-	    break;
-	case CSSPrimitiveValue::CSS_S:
-	    text = DOMString(QString::number( m_value.num ) + "s");
-	    break;
-	case CSSPrimitiveValue::CSS_HZ:
-	    text = DOMString(QString::number( m_value.num ) + "hz");
-	    break;
-	case CSSPrimitiveValue::CSS_KHZ:
-	    text = DOMString(QString::number( m_value.num ) + "khz");
-	    break;
-	case CSSPrimitiveValue::CSS_DIMENSION:
-	    // ###
-	    break;
-	case CSSPrimitiveValue::CSS_STRING:
-	    text = quoteStringIfNeeded(m_value.string);
-	    break;
-	case CSSPrimitiveValue::CSS_URI:
-            text  = "url(";
-	    text += DOMString( m_value.string );
-            text += ")";
-	    break;
-	case CSSPrimitiveValue::CSS_IDENT:
-	    text = getValueName(m_value.ident);
-	    break;
-	case CSSPrimitiveValue::CSS_ATTR:
-            text = "attr(";
-            text += DOMString( m_value.string );
-            text += ")";
-	    break;
-	case CSSPrimitiveValue::CSS_COUNTER:
-            text = "counter(";
-            text += m_value.counter->m_identifier;
-            text += ")";
-            // ### add list-style and separator
-	    break;
-	case CSSPrimitiveValue::CSS_RECT:
-        {
-            RectImpl* rectVal = getRectValue();
-            text = "rect(";
-            text += rectVal->top()->cssText() + DOMString(" ");
-            text += rectVal->right()->cssText() + DOMString(" ");
-            text += rectVal->bottom()->cssText() + DOMString(" ");
-            text += rectVal->left()->cssText() + DOMString(")");
-            break;
+    switch (m_type) {
+    case CSSPrimitiveValue::CSS_UNKNOWN:
+        // ###
+        break;
+    case CSSPrimitiveValue::CSS_NUMBER:
+        // We want to output integral values w/o a period, but others as-is
+        if (m_value.num == (int)m_value.num) {
+            text = DOMString(QString::number((int)m_value.num));
+        } else {
+            text = DOMString(QString::number(m_value.num));
         }
-	case CSSPrimitiveValue::CSS_RGBCOLOR:
-	    if (qAlpha(m_value.rgbcolor) != 0xFF) {
-		if (m_value.rgbcolor == khtml::transparentColor)
-		    text = "transparent";
-		else
-                    text = QString("rgba(" + QString::number(qRed  (m_value.rgbcolor)) + ", "
-				   + QString::number(qGreen(m_value.rgbcolor)) + ", "
-				   + QString::number(qBlue (m_value.rgbcolor)) + ", "
-                                   + QString::number(qAlpha(m_value.rgbcolor)/255.0) + ")");
-	    } else {
-                text = QString("rgb(" + QString::number(qRed  (m_value.rgbcolor)) + ", "
-                              + QString::number(qGreen(m_value.rgbcolor)) + ", "
-                              + QString::number(qBlue (m_value.rgbcolor)) + ")");
-	    }
-	    break;
-        case CSSPrimitiveValue::CSS_PAIR:
-            text = m_value.pair->first()->cssText();
-            text += " ";
-            text += m_value.pair->second()->cssText();
-            break;
-	default:
-	    break;
+        break;
+    case CSSPrimitiveValue::CSS_PERCENTAGE:
+        text = DOMString(QString::number(m_value.num) + "%");
+        break;
+    case CSSPrimitiveValue::CSS_EMS:
+        text = DOMString(QString::number(m_value.num) + "em");
+        break;
+    case CSSPrimitiveValue::CSS_EXS:
+        text = DOMString(QString::number(m_value.num) + "ex");
+        break;
+    case CSSPrimitiveValue::CSS_PX:
+        text = DOMString(QString::number(m_value.num) + "px");
+        break;
+    case CSSPrimitiveValue::CSS_CM:
+        text = DOMString(QString::number(m_value.num) + "cm");
+        break;
+    case CSSPrimitiveValue::CSS_MM:
+        text = DOMString(QString::number(m_value.num) + "mm");
+        break;
+    case CSSPrimitiveValue::CSS_IN:
+        text = DOMString(QString::number(m_value.num) + "in");
+        break;
+    case CSSPrimitiveValue::CSS_PT:
+        text = DOMString(QString::number(m_value.num) + "pt");
+        break;
+    case CSSPrimitiveValue::CSS_PC:
+        text = DOMString(QString::number(m_value.num) + "pc");
+        break;
+    case CSSPrimitiveValue::CSS_DEG:
+        text = DOMString(QString::number(m_value.num) + "deg");
+        break;
+    case CSSPrimitiveValue::CSS_RAD:
+        text = DOMString(QString::number(m_value.num) + "rad");
+        break;
+    case CSSPrimitiveValue::CSS_GRAD:
+        text = DOMString(QString::number(m_value.num) + "grad");
+        break;
+    case CSSPrimitiveValue::CSS_MS:
+        text = DOMString(QString::number(m_value.num) + "ms");
+        break;
+    case CSSPrimitiveValue::CSS_S:
+        text = DOMString(QString::number(m_value.num) + "s");
+        break;
+    case CSSPrimitiveValue::CSS_HZ:
+        text = DOMString(QString::number(m_value.num) + "hz");
+        break;
+    case CSSPrimitiveValue::CSS_KHZ:
+        text = DOMString(QString::number(m_value.num) + "khz");
+        break;
+    case CSSPrimitiveValue::CSS_DIMENSION:
+        // ###
+        break;
+    case CSSPrimitiveValue::CSS_STRING:
+        text = quoteStringIfNeeded(m_value.string);
+        break;
+    case CSSPrimitiveValue::CSS_URI:
+        text  = "url(";
+        text += DOMString(m_value.string);
+        text += ")";
+        break;
+    case CSSPrimitiveValue::CSS_IDENT:
+        text = getValueName(m_value.ident);
+        break;
+    case CSSPrimitiveValue::CSS_ATTR:
+        text = "attr(";
+        text += DOMString(m_value.string);
+        text += ")";
+        break;
+    case CSSPrimitiveValue::CSS_COUNTER:
+        text = "counter(";
+        text += m_value.counter->m_identifier;
+        text += ")";
+        // ### add list-style and separator
+        break;
+    case CSSPrimitiveValue::CSS_RECT: {
+        RectImpl *rectVal = getRectValue();
+        text = "rect(";
+        text += rectVal->top()->cssText() + DOMString(" ");
+        text += rectVal->right()->cssText() + DOMString(" ");
+        text += rectVal->bottom()->cssText() + DOMString(" ");
+        text += rectVal->left()->cssText() + DOMString(")");
+        break;
+    }
+    case CSSPrimitiveValue::CSS_RGBCOLOR:
+        if (qAlpha(m_value.rgbcolor) != 0xFF) {
+            if (m_value.rgbcolor == khtml::transparentColor) {
+                text = "transparent";
+            } else
+                text = QString("rgba(" + QString::number(qRed(m_value.rgbcolor)) + ", "
+                               + QString::number(qGreen(m_value.rgbcolor)) + ", "
+                               + QString::number(qBlue(m_value.rgbcolor)) + ", "
+                               + QString::number(qAlpha(m_value.rgbcolor) / 255.0) + ")");
+        } else {
+            text = QString("rgb(" + QString::number(qRed(m_value.rgbcolor)) + ", "
+                           + QString::number(qGreen(m_value.rgbcolor)) + ", "
+                           + QString::number(qBlue(m_value.rgbcolor)) + ")");
+        }
+        break;
+    case CSSPrimitiveValue::CSS_PAIR:
+        text = m_value.pair->first()->cssText();
+        text += " ";
+        text += m_value.pair->second()->cssText();
+        break;
+    default:
+        break;
     }
     return text;
 }
@@ -1308,37 +1374,61 @@ RectImpl::RectImpl()
 
 RectImpl::~RectImpl()
 {
-    if (m_top) m_top->deref();
-    if (m_right) m_right->deref();
-    if (m_bottom) m_bottom->deref();
-    if (m_left) m_left->deref();
+    if (m_top) {
+        m_top->deref();
+    }
+    if (m_right) {
+        m_right->deref();
+    }
+    if (m_bottom) {
+        m_bottom->deref();
+    }
+    if (m_left) {
+        m_left->deref();
+    }
 }
 
-void RectImpl::setTop( CSSPrimitiveValueImpl *top )
+void RectImpl::setTop(CSSPrimitiveValueImpl *top)
 {
-    if( top ) top->ref();
-    if ( m_top ) m_top->deref();
+    if (top) {
+        top->ref();
+    }
+    if (m_top) {
+        m_top->deref();
+    }
     m_top = top;
 }
 
-void RectImpl::setRight( CSSPrimitiveValueImpl *right )
+void RectImpl::setRight(CSSPrimitiveValueImpl *right)
 {
-    if( right ) right->ref();
-    if ( m_right ) m_right->deref();
+    if (right) {
+        right->ref();
+    }
+    if (m_right) {
+        m_right->deref();
+    }
     m_right = right;
 }
 
-void RectImpl::setBottom( CSSPrimitiveValueImpl *bottom )
+void RectImpl::setBottom(CSSPrimitiveValueImpl *bottom)
 {
-    if( bottom ) bottom->ref();
-    if ( m_bottom ) m_bottom->deref();
+    if (bottom) {
+        bottom->ref();
+    }
+    if (m_bottom) {
+        m_bottom->deref();
+    }
     m_bottom = bottom;
 }
 
-void RectImpl::setLeft( CSSPrimitiveValueImpl *left )
+void RectImpl::setLeft(CSSPrimitiveValueImpl *left)
 {
-    if( left ) left->ref();
-    if ( m_left ) m_left->deref();
+    if (left) {
+        left->ref();
+    }
+    if (m_left) {
+        m_left->deref();
+    }
     m_left = left;
 }
 
@@ -1346,41 +1436,61 @@ void RectImpl::setLeft( CSSPrimitiveValueImpl *left )
 
 PairImpl::~PairImpl()
 {
-    if (m_first) m_first->deref(); if (m_second) m_second->deref();
+    if (m_first) {
+        m_first->deref();
+    } if (m_second) {
+        m_second->deref();
+    }
 }
 
-void PairImpl::setFirst(CSSPrimitiveValueImpl* first)
+void PairImpl::setFirst(CSSPrimitiveValueImpl *first)
 {
-    if (first == m_first) return;
-    if (m_first) m_first->deref();
+    if (first == m_first) {
+        return;
+    }
+    if (m_first) {
+        m_first->deref();
+    }
     m_first = first;
-    if (m_first) m_first->ref();
+    if (m_first) {
+        m_first->ref();
+    }
 }
 
-void PairImpl::setSecond(CSSPrimitiveValueImpl* second)
+void PairImpl::setSecond(CSSPrimitiveValueImpl *second)
 {
-    if (second == m_second) return;
-    if (m_second) m_second->deref();
+    if (second == m_second) {
+        return;
+    }
+    if (m_second) {
+        m_second->deref();
+    }
     m_second = second;
-    if (m_second) m_second->ref();
+    if (m_second) {
+        m_second->ref();
+    }
 }
 
 // -----------------------------------------------------------------
 
-CSSImageValueImpl::CSSImageValueImpl(const DOMString &url, StyleBaseImpl* style)
+CSSImageValueImpl::CSSImageValueImpl(const DOMString &url, StyleBaseImpl *style)
     : CSSPrimitiveValueImpl(url, CSSPrimitiveValue::CSS_URI)
 {
     khtml::DocLoader *docLoader = 0;
     const StyleBaseImpl *root = style;
-    while (root->parent())
-	root = root->parent();
-    if (root->isCSSStyleSheet())
-	docLoader = static_cast<const CSSStyleSheetImpl*>(root)->docLoader();
+    while (root->parent()) {
+        root = root->parent();
+    }
+    if (root->isCSSStyleSheet()) {
+        docLoader = static_cast<const CSSStyleSheetImpl *>(root)->docLoader();
+    }
     if (docLoader) {
-    QUrl fullURL( style->baseURL().resolved(QUrl(khtml::parseURL(url).string())) );
-    m_image = docLoader->requestImage( fullURL.url() );
-    if(m_image) m_image->ref(this);
-}
+        QUrl fullURL(style->baseURL().resolved(QUrl(khtml::parseURL(url).string())));
+        m_image = docLoader->requestImage(fullURL.url());
+        if (m_image) {
+            m_image->ref(this);
+        }
+    }
 }
 
 CSSImageValueImpl::CSSImageValueImpl()
@@ -1391,13 +1501,15 @@ CSSImageValueImpl::CSSImageValueImpl()
 
 CSSImageValueImpl::~CSSImageValueImpl()
 {
-    if(m_image) m_image->deref(this);
+    if (m_image) {
+        m_image->deref(this);
+    }
 }
 
 // ------------------------------------------------------------------------
 
-FontFamilyValueImpl::FontFamilyValueImpl( const QString &string)
-: CSSPrimitiveValueImpl( DOMString(string), CSSPrimitiveValue::CSS_STRING)
+FontFamilyValueImpl::FontFamilyValueImpl(const QString &string)
+    : CSSPrimitiveValueImpl(DOMString(string), CSSPrimitiveValue::CSS_STRING)
 {
     static const QRegExp parenReg(" \\(.*\\)$");
 //  static const QRegExp braceReg(" \\[.*\\]$");
@@ -1420,24 +1532,27 @@ FontFamilyValueImpl::FontFamilyValueImpl( const QString &string)
     parsedFontName = parsedFontName.toLower();
     // qDebug() << "searching for face '" << parsedFontName << "'";
 
-    int pos = available.indexOf( ',' + parsedFontName + ',', 0, Qt::CaseInsensitive );
-    if ( pos == -1 ) {
+    int pos = available.indexOf(',' + parsedFontName + ',', 0, Qt::CaseInsensitive);
+    if (pos == -1) {
         // many pages add extra MSs to make sure it's windows only ;(
-        if ( parsedFontName.startsWith( "ms " ) )
-            parsedFontName = parsedFontName.mid( 3 );
-        if ( parsedFontName.endsWith( " ms" ) )
-            parsedFontName.truncate( parsedFontName.length() - 3 );
-        pos = available.indexOf( ",ms " + parsedFontName + ',', 0, Qt::CaseInsensitive );
-        if ( pos == -1 )
-            pos = available.indexOf( ',' + parsedFontName + " ms,", 0, Qt::CaseInsensitive );
+        if (parsedFontName.startsWith("ms ")) {
+            parsedFontName = parsedFontName.mid(3);
+        }
+        if (parsedFontName.endsWith(" ms")) {
+            parsedFontName.truncate(parsedFontName.length() - 3);
+        }
+        pos = available.indexOf(",ms " + parsedFontName + ',', 0, Qt::CaseInsensitive);
+        if (pos == -1) {
+            pos = available.indexOf(',' + parsedFontName + " ms,", 0, Qt::CaseInsensitive);
+        }
     }
 
-    if ( pos != -1 ) {
-       ++pos;
-       int p = available.indexOf(',', pos);
-       assert( p != -1 ); // available is supposed to start and end with ,
-       parsedFontName = available.mid( pos, p - pos);
-       // qDebug() << "going for '" << parsedFontName << "'";
+    if (pos != -1) {
+        ++pos;
+        int p = available.indexOf(',', pos);
+        assert(p != -1);   // available is supposed to start and end with ,
+        parsedFontName = available.mid(pos, p - pos);
+        // qDebug() << "going for '" << parsedFontName << "'";
     }
 
 #endif // !APPLE_CHANGES
@@ -1465,38 +1580,38 @@ DOMString FontValueImpl::cssText() const
     DOMString result("");
 
     if (style) {
-	result += style->cssText();
+        result += style->cssText();
     }
     if (variant) {
-	if (result.length() > 0) {
-	    result += " ";
-	}
-	result += variant->cssText();
+        if (result.length() > 0) {
+            result += " ";
+        }
+        result += variant->cssText();
     }
     if (weight) {
-	if (result.length() > 0) {
-	    result += " ";
-	}
-	result += weight->cssText();
+        if (result.length() > 0) {
+            result += " ";
+        }
+        result += weight->cssText();
     }
     if (size) {
-	if (result.length() > 0) {
-	    result += " ";
-	}
-	result += size->cssText();
+        if (result.length() > 0) {
+            result += " ";
+        }
+        result += size->cssText();
     }
     if (lineHeight) {
-	if (!size) {
-	    result += " ";
-	}
-	result += "/";
-	result += lineHeight->cssText();
+        if (!size) {
+            result += " ";
+        }
+        result += "/";
+        result += lineHeight->cssText();
     }
     if (family) {
-	if (result.length() > 0) {
-	    result += " ";
-	}
-	result += family->cssText();
+        if (result.length() > 0) {
+            result += " ";
+        }
+        result += family->cssText();
     }
 
     return result;
@@ -1512,7 +1627,7 @@ DOMString QuotesValueImpl::cssText() const
     return QString("\"" + data.join("\" \"") + "\"");
 }
 
-void QuotesValueImpl::addLevel(const QString& open, const QString& close)
+void QuotesValueImpl::addLevel(const QString &open, const QString &close)
 {
     data.append(open);
     data.append(close);
@@ -1521,29 +1636,37 @@ void QuotesValueImpl::addLevel(const QString& open, const QString& close)
 
 QString QuotesValueImpl::openQuote(int level) const
 {
-    if (levels == 0) return "";
+    if (levels == 0) {
+        return "";
+    }
     level--; // increments are calculated before openQuote is called
 //     qDebug() << "Open quote level:" << level;
-    if (level < 0) level = 0;
-    else
-    if (level >= (int) levels) level = (int) (levels-1);
-    return data[level*2];
+    if (level < 0) {
+        level = 0;
+    } else if (level >= (int) levels) {
+        level = (int)(levels - 1);
+    }
+    return data[level * 2];
 }
 
 QString QuotesValueImpl::closeQuote(int level) const
 {
-    if (levels == 0) return "";
+    if (levels == 0) {
+        return "";
+    }
 //     qDebug() << "Close quote level:" << level;
-    if (level < 0) level = 0;
-    else
-    if (level >= (int) levels) level = (int) (levels-1);
-    return data[level*2+1];
+    if (level < 0) {
+        level = 0;
+    } else if (level >= (int) levels) {
+        level = (int)(levels - 1);
+    }
+    return data[level * 2 + 1];
 }
 
 // Used for text-shadow and box-shadow
-ShadowValueImpl::ShadowValueImpl(CSSPrimitiveValueImpl* _x, CSSPrimitiveValueImpl* _y,
-                                 CSSPrimitiveValueImpl* _blur, CSSPrimitiveValueImpl* _color)
-    :x(_x), y(_y), blur(_blur), color(_color)
+ShadowValueImpl::ShadowValueImpl(CSSPrimitiveValueImpl *_x, CSSPrimitiveValueImpl *_y,
+                                 CSSPrimitiveValueImpl *_blur, CSSPrimitiveValueImpl *_color)
+    : x(_x), y(_y), blur(_blur), color(_color)
 {}
 
 ShadowValueImpl::~ShadowValueImpl()
@@ -1598,7 +1721,7 @@ DOMString CSSProperty::cssText() const
 // -------------------------------------------------------------------------
 
 #if 0
-    // ENABLE(SVG_FONTS)
+// ENABLE(SVG_FONTS)
 bool CSSFontFaceSrcValueImpl::isSVGFontFaceSrc() const
 {
     return !strcasecmp(m_format, "svg");
@@ -1611,14 +1734,15 @@ bool CSSFontFaceSrcValueImpl::isSupportedFormat() const
     // we will also check to see if the URL ends with .eot.  If so, we'll go ahead and assume that we shouldn't load it.
     if (m_format.isEmpty()) {
         // Check for .eot.
-        if (m_resource.endsWith(".eot") || m_resource.endsWith(".EOT"))
+        if (m_resource.endsWith(".eot") || m_resource.endsWith(".EOT")) {
             return false;
+        }
         return true;
     }
 
     return !strcasecmp(m_format, "truetype") || !strcasecmp(m_format, "opentype") || !strcasecmp(m_format, "woff")
 #if 0
-    //ENABLE(SVG_FONTS)
+           //ENABLE(SVG_FONTS)
            || isSVGFontFaceSrc()
 #endif
            ;
@@ -1627,10 +1751,11 @@ bool CSSFontFaceSrcValueImpl::isSupportedFormat() const
 DOMString CSSFontFaceSrcValueImpl::cssText() const
 {
     DOMString result;
-    if (isLocal())
+    if (isLocal()) {
         result += "local(";
-    else
+    } else {
         result += "url(";
+    }
     result += m_resource;
     result += ")";
     if (!m_format.isEmpty()) {

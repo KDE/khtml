@@ -25,15 +25,16 @@
 #if ENABLE(SVG) && ENABLE(SVG_FILTERS)
 #include "SVGFilterEffect.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 class SVGFETile : public SVGFilterEffect
 {
 public:
-    SVGFETile(SVGResourceFilter* filter) : SVGFilterEffect(filter) { }
+    SVGFETile(SVGResourceFilter *filter) : SVGFilterEffect(filter) { }
 
 #if PLATFORM(CI)
-    virtual CIFilter* getCIFilter(const FloatRect& bbox) const;
+    virtual CIFilter *getCIFilter(const FloatRect &bbox) const;
 #endif
 };
 

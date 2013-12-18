@@ -34,14 +34,16 @@
 #include "SVGInlineTextBox.h"
 #include "SVGRootInlineBox.h"
 
-namespace WebCore {
+namespace WebCore
+{
 using namespace khtml;
 
-static inline bool isChildOfHiddenContainer(RenderObject* start)
+static inline bool isChildOfHiddenContainer(RenderObject *start)
 {
     while (start) {
-        if (start->isSVGHiddenContainer())
+        if (start->isSVGHiddenContainer()) {
             return true;
+        }
 
         start = start->parent();
     }
@@ -49,12 +51,12 @@ static inline bool isChildOfHiddenContainer(RenderObject* start)
     return false;
 }
 
-RenderSVGInlineText::RenderSVGInlineText(Node* n, DOMStringImpl* str)
+RenderSVGInlineText::RenderSVGInlineText(Node *n, DOMStringImpl *str)
     : RenderText(n, str)
 {
 }
 
-void RenderSVGInlineText::absoluteRects(Vector<IntRect>& rects, int, int, bool)
+void RenderSVGInlineText::absoluteRects(Vector<IntRect> &rects, int, int, bool)
 {
     rects.append(computeAbsoluteRectForRange(0, stringLength()));
 }
@@ -64,12 +66,14 @@ IntRect RenderSVGInlineText::selectionRect(bool)
     ASSERT(!needsLayout());
 
     IntRect rect;
-    if (selectionState() == SelectionNone)
+    if (selectionState() == SelectionNone) {
         return rect;
+    }
 
     // Early exit if we're ie. a <text> within a <defs> section.
-    if (isChildOfHiddenContainer(this))
+    if (isChildOfHiddenContainer(this)) {
         return rect;
+    }
 
     // Now calculate startPos and endPos for painting selection.
     // We include a selection while endPos > 0
@@ -80,14 +84,16 @@ IntRect RenderSVGInlineText::selectionRect(bool)
         endPos = stringLength();
     } else {
         selectionStartEnd(startPos, endPos);
-        if (selectionState() == SelectionStart)
+        if (selectionState() == SelectionStart) {
             endPos = stringLength();
-        else if (selectionState() == SelectionEnd)
+        } else if (selectionState() == SelectionEnd) {
             startPos = 0;
+        }
     }
 
-    if (startPos == endPos)
+    if (startPos == endPos) {
         return rect;
+    }
 
     return computeAbsoluteRectForRange(startPos, endPos);
 }
@@ -98,13 +104,15 @@ IntRect RenderSVGInlineText::computeAbsoluteRectForRange(int startPos, int endPo
     Q_UNUSED(endPos);
     IntRect rect;
 
-    RenderBlock* cb = containingBlock();
-    if (!cb || !cb->container())
+    RenderBlock *cb = containingBlock();
+    if (!cb || !cb->container()) {
         return rect;
+    }
 
-    RenderSVGRoot* root = findSVGRootObject(parent());
-    if (!root)
+    RenderSVGRoot *root = findSVGRootObject(parent());
+    if (!root) {
         return rect;
+    }
 
     /*FIXME khtml for (InlineTextBox* box = firstTextBox(); box; box = box->nextTextBox())
         rect.unite(box->selectionRect(0, 0, startPos, endPos));*/
@@ -121,10 +129,10 @@ IntRect RenderSVGInlineText::computeAbsoluteRectForRange(int startPos, int endPo
     return enclosingIntRect(absoluteTransform().mapRect(fixedRect));
 }
 
-InlineTextBox* RenderSVGInlineText::createInlineTextBox()
+InlineTextBox *RenderSVGInlineText::createInlineTextBox()
 {
     // qDebug() << "allocate" << endl;
-    return new (renderArena()) SVGInlineTextBox(this);
+    return new(renderArena()) SVGInlineTextBox(this);
 }
 
 /*IntRect RenderSVGInlineText::caretRect(int offset, EAffinity affinity, int* extraWidthToEndOfLine)

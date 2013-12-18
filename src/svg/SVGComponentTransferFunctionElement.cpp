@@ -27,9 +27,10 @@
 #include "SVGNames.h"
 #include "SVGNumberList.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGComponentTransferFunctionElement::SVGComponentTransferFunctionElement(const QualifiedName& tagName, Document* doc)
+SVGComponentTransferFunctionElement::SVGComponentTransferFunctionElement(const QualifiedName &tagName, Document *doc)
     : SVGElement(tagName, doc)
     , m_type(SVG_FECOMPONENTTRANSFER_TYPE_UNKNOWN)
     , m_tableValues(SVGNumberList::create(SVGNames::tableValuesAttr))
@@ -46,43 +47,43 @@ SVGComponentTransferFunctionElement::~SVGComponentTransferFunctionElement()
 }
 
 ANIMATED_PROPERTY_DEFINITIONS(SVGComponentTransferFunctionElement, int, Enumeration, enumeration, Type, type, SVGNames::typeAttr, m_type)
-ANIMATED_PROPERTY_DEFINITIONS(SVGComponentTransferFunctionElement, SVGNumberList*, NumberList, numberList, TableValues, tableValues, SVGNames::tableValuesAttr, m_tableValues.get())
+ANIMATED_PROPERTY_DEFINITIONS(SVGComponentTransferFunctionElement, SVGNumberList *, NumberList, numberList, TableValues, tableValues, SVGNames::tableValuesAttr, m_tableValues.get())
 ANIMATED_PROPERTY_DEFINITIONS(SVGComponentTransferFunctionElement, float, Number, number, Slope, slope, SVGNames::slopeAttr, m_slope)
 ANIMATED_PROPERTY_DEFINITIONS(SVGComponentTransferFunctionElement, float, Number, number, Intercept, intercept, SVGNames::interceptAttr, m_intercept)
 ANIMATED_PROPERTY_DEFINITIONS(SVGComponentTransferFunctionElement, float, Number, number, Amplitude, amplitude, SVGNames::amplitudeAttr, m_amplitude)
 ANIMATED_PROPERTY_DEFINITIONS(SVGComponentTransferFunctionElement, float, Number, number, Exponent, exponent, SVGNames::exponentAttr, m_exponent)
 ANIMATED_PROPERTY_DEFINITIONS(SVGComponentTransferFunctionElement, float, Number, number, Offset, offset, SVGNames::offsetAttr, m_offset)
 
-void SVGComponentTransferFunctionElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGComponentTransferFunctionElement::parseMappedAttribute(MappedAttribute *attr)
 {
-    const String& value = attr->value();
-    if (attr->name() == SVGNames::typeAttr)
-    {
-        if (value == "identity")
+    const String &value = attr->value();
+    if (attr->name() == SVGNames::typeAttr) {
+        if (value == "identity") {
             setTypeBaseValue(SVG_FECOMPONENTTRANSFER_TYPE_IDENTITY);
-        else if (value == "table")
+        } else if (value == "table") {
             setTypeBaseValue(SVG_FECOMPONENTTRANSFER_TYPE_TABLE);
-        else if (value == "discrete")
+        } else if (value == "discrete") {
             setTypeBaseValue(SVG_FECOMPONENTTRANSFER_TYPE_DISCRETE);
-        else if (value == "linear")
+        } else if (value == "linear") {
             setTypeBaseValue(SVG_FECOMPONENTTRANSFER_TYPE_LINEAR);
-        else if (value == "gamma")
+        } else if (value == "gamma") {
             setTypeBaseValue(SVG_FECOMPONENTTRANSFER_TYPE_GAMMA);
-    }
-    else if (attr->name() == SVGNames::tableValuesAttr)
+        }
+    } else if (attr->name() == SVGNames::tableValuesAttr) {
         tableValuesBaseValue()->parse(value);
-    else if (attr->name() == SVGNames::slopeAttr)
+    } else if (attr->name() == SVGNames::slopeAttr) {
         setSlopeBaseValue(value.toFloat());
-    else if (attr->name() == SVGNames::interceptAttr)
+    } else if (attr->name() == SVGNames::interceptAttr) {
         setInterceptBaseValue(value.toFloat());
-    else if (attr->name() == SVGNames::amplitudeAttr)
+    } else if (attr->name() == SVGNames::amplitudeAttr) {
         setAmplitudeBaseValue(value.toFloat());
-    else if (attr->name() == SVGNames::exponentAttr)
+    } else if (attr->name() == SVGNames::exponentAttr) {
         setExponentBaseValue(value.toFloat());
-    else if (attr->name() == SVGNames::offsetAttr)
+    } else if (attr->name() == SVGNames::offsetAttr) {
         setOffsetBaseValue(value.toFloat());
-    else
+    } else {
         SVGElement::parseMappedAttribute(attr);
+    }
 }
 
 SVGComponentTransferFunction SVGComponentTransferFunctionElement::transferFunction() const
@@ -94,17 +95,17 @@ SVGComponentTransferFunction SVGComponentTransferFunctionElement::transferFuncti
     func.amplitude = amplitude();
     func.exponent = exponent();
     func.offset = offset();
-    SVGNumberList* numbers = tableValues();
+    SVGNumberList *numbers = tableValues();
 
     ExceptionCode ec = 0;
     unsigned int nr = numbers->numberOfItems();
-    for (unsigned int i = 0; i < nr; i++)
+    for (unsigned int i = 0; i < nr; i++) {
         func.tableValues.append(numbers->getItem(i, ec));
+    }
     return func;
 }
 
 }
 
-// vim:ts=4:noet
 #endif // ENABLE(SVG)
 

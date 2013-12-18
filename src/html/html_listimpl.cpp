@@ -38,8 +38,7 @@ NodeImpl::Id HTMLUListElementImpl::id() const
 
 void HTMLUListElementImpl::parseAttribute(AttributeImpl *attr)
 {
-    switch(attr->id())
-    {
+    switch (attr->id()) {
     case ATTR_TYPE:
         addCSSProperty(CSS_PROP_LIST_STYLE_TYPE, attr->value());
         break;
@@ -71,19 +70,19 @@ NodeImpl::Id HTMLOListElementImpl::id() const
 
 void HTMLOListElementImpl::parseAttribute(AttributeImpl *attr)
 {
-    switch(attr->id())
-    {
+    switch (attr->id()) {
     case ATTR_TYPE:
-        if ( strcmp( attr->value(), "a" ) == 0 )
+        if (strcmp(attr->value(), "a") == 0) {
             addCSSProperty(CSS_PROP_LIST_STYLE_TYPE, CSS_VAL_LOWER_ALPHA);
-        else if ( strcmp( attr->value(), "A" ) == 0 )
+        } else if (strcmp(attr->value(), "A") == 0) {
             addCSSProperty(CSS_PROP_LIST_STYLE_TYPE, CSS_VAL_UPPER_ALPHA);
-        else if ( strcmp( attr->value(), "i" ) == 0 )
+        } else if (strcmp(attr->value(), "i") == 0) {
             addCSSProperty(CSS_PROP_LIST_STYLE_TYPE, CSS_VAL_LOWER_ROMAN);
-        else if ( strcmp( attr->value(), "I" ) == 0 )
+        } else if (strcmp(attr->value(), "I") == 0) {
             addCSSProperty(CSS_PROP_LIST_STYLE_TYPE, CSS_VAL_UPPER_ROMAN);
-        else if ( strcmp( attr->value(), "1" ) == 0 )
+        } else if (strcmp(attr->value(), "1") == 0) {
             addCSSProperty(CSS_PROP_LIST_STYLE_TYPE, CSS_VAL_DECIMAL);
+        }
         break;
     case ATTR_START:
         _start = attr->val() ? attr->val()->toInt() : 1;
@@ -102,25 +101,26 @@ NodeImpl::Id HTMLLIElementImpl::id() const
 
 void HTMLLIElementImpl::parseAttribute(AttributeImpl *attr)
 {
-    switch(attr->id())
-    {
+    switch (attr->id()) {
     case ATTR_VALUE:
-        if(m_render && m_render->isListItem() && m_render->style()->display() == LIST_ITEM)
-            static_cast<RenderListItem*>(m_render)->setValue(attr->value().toInt());
+        if (m_render && m_render->isListItem() && m_render->style()->display() == LIST_ITEM) {
+            static_cast<RenderListItem *>(m_render)->setValue(attr->value().toInt());
+        }
         break;
     case ATTR_TYPE:
-        if ( strcmp( attr->value(), "a" ) == 0 )
+        if (strcmp(attr->value(), "a") == 0) {
             addCSSProperty(CSS_PROP_LIST_STYLE_TYPE, CSS_VAL_LOWER_ALPHA);
-        else if ( strcmp( attr->value(), "A" ) == 0 )
+        } else if (strcmp(attr->value(), "A") == 0) {
             addCSSProperty(CSS_PROP_LIST_STYLE_TYPE, CSS_VAL_UPPER_ALPHA);
-        else if ( strcmp( attr->value(), "i" ) == 0 )
+        } else if (strcmp(attr->value(), "i") == 0) {
             addCSSProperty(CSS_PROP_LIST_STYLE_TYPE, CSS_VAL_LOWER_ROMAN);
-        else if ( strcmp( attr->value(), "I" ) == 0 )
+        } else if (strcmp(attr->value(), "I") == 0) {
             addCSSProperty(CSS_PROP_LIST_STYLE_TYPE, CSS_VAL_UPPER_ROMAN);
-        else if ( strcmp( attr->value(), "1" ) == 0 )
+        } else if (strcmp(attr->value(), "1") == 0) {
             addCSSProperty(CSS_PROP_LIST_STYLE_TYPE, CSS_VAL_DECIMAL);
-        else
+        } else {
             addCSSProperty(CSS_PROP_LIST_STYLE_TYPE, attr->value());
+        }
         break;
     default:
         HTMLElementImpl::parseAttribute(attr);
@@ -133,12 +133,12 @@ void HTMLLIElementImpl::attach()
 
     HTMLElementImpl::attach();
 
-    if ( m_render && m_render->style()->display() == LIST_ITEM ) {
-        RenderListItem* render = static_cast<RenderListItem*>( renderer() );
-        NodeImpl* listNode = 0;
-        NodeImpl* n = parentNode();
-        while ( !listNode && n ) {
-            switch( n->id() ) {
+    if (m_render && m_render->style()->display() == LIST_ITEM) {
+        RenderListItem *render = static_cast<RenderListItem *>(renderer());
+        NodeImpl *listNode = 0;
+        NodeImpl *n = parentNode();
+        while (!listNode && n) {
+            switch (n->id()) {
             case ID_UL:
             case ID_OL:
                 listNode = n;
@@ -149,17 +149,16 @@ void HTMLLIElementImpl::attach()
 
         // if we are not in a list, then position us inside
         // can't use addCSSProperty cause its inherited attribute
-        render->setInsideList( listNode );
+        render->setInsideList(listNode);
 
         DOMString v = getAttribute(ATTR_VALUE);
-        if ( !v.isEmpty() )
-            render->setValue( v.implementation()->toInt() );
+        if (!v.isEmpty()) {
+            render->setValue(v.implementation()->toInt());
+        }
     }
 }
 
-
 // -------------------------------------------------------------------------
-
 
 NodeImpl::Id HTMLDListElementImpl::id() const
 {

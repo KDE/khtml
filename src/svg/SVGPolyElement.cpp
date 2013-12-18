@@ -32,9 +32,10 @@
 #include "SVGParserUtilities.h"
 #include "SVGPointList.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGPolyElement::SVGPolyElement(const QualifiedName& tagName, Document* doc)
+SVGPolyElement::SVGPolyElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledTransformableElement(tagName, doc)
     , SVGTests()
     , SVGLangSpace()
@@ -48,23 +49,24 @@ SVGPolyElement::~SVGPolyElement()
 {
 }
 
-SVGPointList* SVGPolyElement::points() const
+SVGPointList *SVGPolyElement::points() const
 {
-    if (!m_points)
+    if (!m_points) {
         m_points = SVGPointList::create(SVGNames::pointsAttr);
+    }
 
     return m_points.get();
 }
 
-SVGPointList* SVGPolyElement::animatedPoints() const
+SVGPointList *SVGPolyElement::animatedPoints() const
 {
     // FIXME!
     return 0;
 }
 
-void SVGPolyElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGPolyElement::parseMappedAttribute(MappedAttribute *attr)
 {
-    const AtomicString& value = attr->value();
+    const AtomicString &value = attr->value();
     if (attr->name() == SVGNames::pointsAttr) {
         ExceptionCode ec = 0;
         points()->clear(ec);
@@ -74,25 +76,30 @@ void SVGPolyElement::parseMappedAttribute(MappedAttribute* attr)
             /*FIXME khtml document()->accessSVGExtensions()->reportError("Problem parsing points=\"" + value.string() + "\"");*/
         }
     } else {
-        if (SVGTests::parseMappedAttribute(attr))
+        if (SVGTests::parseMappedAttribute(attr)) {
             return;
-        if (SVGLangSpace::parseMappedAttribute(attr))
+        }
+        if (SVGLangSpace::parseMappedAttribute(attr)) {
             return;
-        if (SVGExternalResourcesRequired::parseMappedAttribute(attr))
+        }
+        if (SVGExternalResourcesRequired::parseMappedAttribute(attr)) {
             return;
+        }
         SVGStyledTransformableElement::parseMappedAttribute(attr);
     }
 }
 
-void SVGPolyElement::svgAttributeChanged(const QualifiedName& attrName)
+void SVGPolyElement::svgAttributeChanged(const QualifiedName &attrName)
 {
-    if (m_ignoreAttributeChanges)
+    if (m_ignoreAttributeChanges) {
         return;
+    }
 
     SVGStyledTransformableElement::svgAttributeChanged(attrName);
 
-    if (!renderer())
+    if (!renderer()) {
         return;
+    }
 
     if (attrName == SVGNames::pointsAttr) {
         m_ignoreAttributeChanges = true;
@@ -121,10 +128,11 @@ void SVGPolyElement::svgAttributeChanged(const QualifiedName& attrName)
     }
 
     if (SVGTests::isKnownAttribute(attrName) ||
-        SVGLangSpace::isKnownAttribute(attrName) ||
-        SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
-        SVGStyledTransformableElement::isKnownAttribute(attrName))
+            SVGLangSpace::isKnownAttribute(attrName) ||
+            SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
+            SVGStyledTransformableElement::isKnownAttribute(attrName)) {
         renderer()->setNeedsLayout(true);
+    }
 }
 
 }

@@ -21,10 +21,11 @@
 
 #include "JSHTMLElement.h"
 
-namespace khtml {
+namespace khtml
+{
 
-    // ### missing table info 
-    const KJS::ClassInfo JSHTMLElement::s_info = { "HTMLElement", &KJS::DOMElement::info, 0, 0 };
+// ### missing table info
+const KJS::ClassInfo JSHTMLElement::s_info = { "HTMLElement", &KJS::DOMElement::info, 0, 0 };
 
 }
 

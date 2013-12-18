@@ -27,93 +27,113 @@
 
 #include "SVGPathSeg.h"
 
-namespace WebCore {
-    class SVGPathSegCurvetoCubicAbs : public SVGPathSeg { 
-    public:
-        static PassRefPtr<SVGPathSegCurvetoCubicAbs> create(float x, float y, float x1, float y1, float x2, float y2)
-        {
-            return adoptRef(new SVGPathSegCurvetoCubicAbs(x, y, x1, y1, x2, y2));
-        }
-        
-        virtual ~SVGPathSegCurvetoCubicAbs();
+namespace WebCore
+{
+class SVGPathSegCurvetoCubicAbs : public SVGPathSeg
+{
+public:
+    static PassRefPtr<SVGPathSegCurvetoCubicAbs> create(float x, float y, float x1, float y1, float x2, float y2)
+    {
+        return adoptRef(new SVGPathSegCurvetoCubicAbs(x, y, x1, y1, x2, y2));
+    }
 
-        virtual unsigned short pathSegType() const { return PATHSEG_CURVETO_CUBIC_ABS; }
-        virtual String pathSegTypeAsLetter() const { return "C"; }
-        virtual String toString() const { return String::format("C %.6lg %.6lg %.6lg %.6lg %.6lg %.6lg", m_x1, m_y1, m_x2, m_y2, m_x, m_y); }
+    virtual ~SVGPathSegCurvetoCubicAbs();
 
-        void setX(float);
-        float x() const;
+    virtual unsigned short pathSegType() const
+    {
+        return PATHSEG_CURVETO_CUBIC_ABS;
+    }
+    virtual String pathSegTypeAsLetter() const
+    {
+        return "C";
+    }
+    virtual String toString() const
+    {
+        return String::format("C %.6lg %.6lg %.6lg %.6lg %.6lg %.6lg", m_x1, m_y1, m_x2, m_y2, m_x, m_y);
+    }
 
-        void setY(float);
-        float y() const;
+    void setX(float);
+    float x() const;
 
-        void setX1(float);
-        float x1() const;
+    void setY(float);
+    float y() const;
 
-        void setY1(float);
-        float y1() const;
+    void setX1(float);
+    float x1() const;
 
-        void setX2(float);
-        float x2() const;
+    void setY1(float);
+    float y1() const;
 
-        void setY2(float);
-        float y2() const;
+    void setX2(float);
+    float x2() const;
 
-    private:
-        SVGPathSegCurvetoCubicAbs(float x, float y, float x1, float y1, float x2, float y2);
+    void setY2(float);
+    float y2() const;
 
-        float m_x;
-        float m_y;
-        float m_x1;
-        float m_y1;
-        float m_x2;
-        float m_y2;
-    };
+private:
+    SVGPathSegCurvetoCubicAbs(float x, float y, float x1, float y1, float x2, float y2);
 
-    class SVGPathSegCurvetoCubicRel : public SVGPathSeg { 
-    public:
-        static PassRefPtr<SVGPathSegCurvetoCubicRel> create(float x, float y, float x1, float y1, float x2, float y2)
-        {
-            return adoptRef(new SVGPathSegCurvetoCubicRel(x, y, x1, y1, x2, y2));
-        }        
-        virtual ~SVGPathSegCurvetoCubicRel();
+    float m_x;
+    float m_y;
+    float m_x1;
+    float m_y1;
+    float m_x2;
+    float m_y2;
+};
 
-        virtual unsigned short pathSegType() const { return PATHSEG_CURVETO_CUBIC_REL; }
-        virtual String pathSegTypeAsLetter() const { return "c"; }
-        virtual String toString() const { return String::format("c %.6lg %.6lg %.6lg %.6lg %.6lg %.6lg", m_x1, m_y1, m_x2, m_y2, m_x, m_y); }
+class SVGPathSegCurvetoCubicRel : public SVGPathSeg
+{
+public:
+    static PassRefPtr<SVGPathSegCurvetoCubicRel> create(float x, float y, float x1, float y1, float x2, float y2)
+    {
+        return adoptRef(new SVGPathSegCurvetoCubicRel(x, y, x1, y1, x2, y2));
+    }
+    virtual ~SVGPathSegCurvetoCubicRel();
 
-        void setX(float);
-        float x() const;
+    virtual unsigned short pathSegType() const
+    {
+        return PATHSEG_CURVETO_CUBIC_REL;
+    }
+    virtual String pathSegTypeAsLetter() const
+    {
+        return "c";
+    }
+    virtual String toString() const
+    {
+        return String::format("c %.6lg %.6lg %.6lg %.6lg %.6lg %.6lg", m_x1, m_y1, m_x2, m_y2, m_x, m_y);
+    }
 
-        void setY(float);
-        float y() const;
+    void setX(float);
+    float x() const;
 
-        void setX1(float);
-        float x1() const;
+    void setY(float);
+    float y() const;
 
-        void setY1(float);
-        float y1() const;
+    void setX1(float);
+    float x1() const;
 
-        void setX2(float);
-        float x2() const;
+    void setY1(float);
+    float y1() const;
 
-        void setY2(float);
-        float y2() const;
+    void setX2(float);
+    float x2() const;
 
-    private:
-        SVGPathSegCurvetoCubicRel(float x, float y, float x1, float y1, float x2, float y2);
+    void setY2(float);
+    float y2() const;
 
-        float m_x;
-        float m_y;
-        float m_x1;
-        float m_y1;
-        float m_x2;
-        float m_y2;
-    };
+private:
+    SVGPathSegCurvetoCubicRel(float x, float y, float x1, float y1, float x2, float y2);
+
+    float m_x;
+    float m_y;
+    float m_x1;
+    float m_y1;
+    float m_x2;
+    float m_y2;
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

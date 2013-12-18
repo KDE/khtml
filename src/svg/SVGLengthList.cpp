@@ -27,9 +27,10 @@
 
 #include "SVGParserUtilities.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGLengthList::SVGLengthList(const QualifiedName& attributeName)
+SVGLengthList::SVGLengthList(const QualifiedName &attributeName)
     : SVGPODList<SVGLength>(attributeName)
 {
 }
@@ -38,22 +39,25 @@ SVGLengthList::~SVGLengthList()
 {
 }
 
-void SVGLengthList::parse(const String& value, const SVGStyledElement* context, SVGLengthMode mode)
+void SVGLengthList::parse(const String &value, const SVGStyledElement *context, SVGLengthMode mode)
 {
     ExceptionCode ec = 0;
     clear(ec);
 
-    const UChar* ptr = value.characters();
-    const UChar* end = ptr + value.length();
+    const UChar *ptr = value.characters();
+    const UChar *end = ptr + value.length();
     while (ptr < end) {
-        const UChar* start = ptr;
-        while (ptr < end && *ptr != ',' && !isWhitespace(*ptr))
+        const UChar *start = ptr;
+        while (ptr < end && *ptr != ',' && !isWhitespace(*ptr)) {
             ptr++;
-        if (ptr == start)
+        }
+        if (ptr == start) {
             break;
+        }
         SVGLength length(context, mode);
-        if (!length.setValueAsString(String(start, ptr - start)))
+        if (!length.setValueAsString(String(start, ptr - start))) {
             return;
+        }
         appendItem(length, ec);
         skipOptionalSpacesOrDelimiter(ptr, end);
     }

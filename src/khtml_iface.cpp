@@ -26,8 +26,8 @@
 #include <QApplication>
 #include <QtCore/QVariant>
 
-KHTMLPartIface::KHTMLPartIface( KHTMLPart *_part )
-    : QDBusAbstractAdaptor( _part ), part(_part)
+KHTMLPartIface::KHTMLPartIface(KHTMLPart *_part)
+    : QDBusAbstractAdaptor(_part), part(_part)
 {
 }
 
@@ -40,7 +40,7 @@ QString KHTMLPartIface::url() const
     return part->url().toString();
 }
 
-void KHTMLPartIface::setJScriptEnabled( bool enable )
+void KHTMLPartIface::setJScriptEnabled(bool enable)
 {
     part->setJScriptEnabled(enable);
 }
@@ -60,7 +60,7 @@ bool KHTMLPartIface::metaRefreshEnabled() const
     return part->metaRefreshEnabled();
 }
 
-void KHTMLPartIface::setDndEnabled( bool b )
+void KHTMLPartIface::setDndEnabled(bool b)
 {
     part->setDNDEnabled(b);
 }
@@ -70,9 +70,9 @@ bool KHTMLPartIface::dndEnabled() const
     return part->dndEnabled();
 }
 
-void KHTMLPartIface::setJavaEnabled( bool enable )
+void KHTMLPartIface::setJavaEnabled(bool enable)
 {
-    part->setJavaEnabled( enable );
+    part->setJavaEnabled(enable);
 }
 
 bool KHTMLPartIface::javaEnabled() const
@@ -80,9 +80,9 @@ bool KHTMLPartIface::javaEnabled() const
     return part->javaEnabled();
 }
 
-void KHTMLPartIface::setPluginsEnabled( bool enable )
+void KHTMLPartIface::setPluginsEnabled(bool enable)
 {
-    part->setPluginsEnabled( enable );
+    part->setPluginsEnabled(enable);
 }
 
 bool KHTMLPartIface::pluginsEnabled() const
@@ -90,9 +90,9 @@ bool KHTMLPartIface::pluginsEnabled() const
     return part->pluginsEnabled();
 }
 
-void KHTMLPartIface::setAutoloadImages( bool enable )
+void KHTMLPartIface::setAutoloadImages(bool enable)
 {
-    part->setAutoloadImages( enable );
+    part->setAutoloadImages(enable);
 }
 
 bool KHTMLPartIface::autoloadImages() const
@@ -105,7 +105,7 @@ void KHTMLPartIface::setOnlyLocalReferences(bool enable)
     part->setOnlyLocalReferences(enable);
 }
 
-void KHTMLPartIface::setMetaRefreshEnabled( bool enable )
+void KHTMLPartIface::setMetaRefreshEnabled(bool enable)
 {
     part->setMetaRefreshEnabled(enable);
 }
@@ -115,7 +115,7 @@ bool KHTMLPartIface::onlyLocalReferences() const
     return part->onlyLocalReferences();
 }
 
-bool KHTMLPartIface::setEncoding( const QString &name )
+bool KHTMLPartIface::setEncoding(const QString &name)
 {
     return part->setEncoding(name);
 }
@@ -125,13 +125,13 @@ QString KHTMLPartIface::encoding() const
     return part->encoding();
 }
 
-void KHTMLPartIface::setFixedFont( const QString &name )
+void KHTMLPartIface::setFixedFont(const QString &name)
 {
     part->setFixedFont(name);
 
 }
 
-bool KHTMLPartIface::gotoAnchor( const QString &name )
+bool KHTMLPartIface::gotoAnchor(const QString &name)
 {
     return part->gotoAnchor(name);
 }
@@ -148,10 +148,10 @@ bool KHTMLPartIface::prevAnchor()
 
 void KHTMLPartIface::activateNode()
 {
-    KParts::ReadOnlyPart* p = part->currentFrame();
-    if ( p && p->widget() ) {
-        QKeyEvent ev( QKeyEvent::KeyPress, Qt::Key_Return, 0, "\n" );
-        QApplication::sendEvent( p->widget(), &ev );
+    KParts::ReadOnlyPart *p = part->currentFrame();
+    if (p && p->widget()) {
+        QKeyEvent ev(QKeyEvent::KeyPress, Qt::Key_Return, 0, "\n");
+        QApplication::sendEvent(p->widget(), &ev);
     }
 }
 
@@ -188,24 +188,26 @@ void KHTMLPartIface::viewDocumentSource()
 void KHTMLPartIface::saveBackground(const QString &destination)
 {
     QUrl back = part->backgroundURL();
-    if (back.isEmpty())
+    if (back.isEmpty()) {
         return;
+    }
 
     KIO::MetaData metaData;
     metaData["referrer"] = part->referrer();
-    KHTMLPopupGUIClient::saveURL( part->widget(), back, QUrl( destination ), metaData );
+    KHTMLPopupGUIClient::saveURL(part->widget(), back, QUrl(destination), metaData);
 }
 
 void KHTMLPartIface::saveDocument(const QString &destination)
 {
-    QUrl srcURL( part->url() );
+    QUrl srcURL(part->url());
 
-    if ( srcURL.fileName().isEmpty() )
-        srcURL.setPath( srcURL.path() + "index.html" );
+    if (srcURL.fileName().isEmpty()) {
+        srcURL.setPath(srcURL.path() + "index.html");
+    }
 
     KIO::MetaData metaData;
     // Referrer unknown?
-    KHTMLPopupGUIClient::saveURL( part->widget(), srcURL, QUrl( destination ), metaData, part->cacheId() );
+    KHTMLPopupGUIClient::saveURL(part->widget(), srcURL, QUrl(destination), metaData, part->cacheId());
 }
 
 void KHTMLPartIface::setUserStyleSheet(const QString &styleSheet)
@@ -228,7 +230,8 @@ QString KHTMLPartIface::evalJS(const QString &script)
     return part->executeScript(DOM::Node(), script).toString();
 }
 
-void KHTMLPartIface::print( bool quick ) {
-    part->view()->print( quick );
+void KHTMLPartIface::print(bool quick)
+{
+    part->view()->print(quick);
 }
 

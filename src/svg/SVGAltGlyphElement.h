@@ -29,34 +29,39 @@
 
 namespace WebCore
 {
-    class SVGGlyphElement;
+class SVGGlyphElement;
 
-    class SVGAltGlyphElement : public SVGTextPositioningElement, public SVGURIReference
+class SVGAltGlyphElement : public SVGTextPositioningElement, public SVGURIReference
+{
+public:
+    SVGAltGlyphElement(const QualifiedName &, Document *);
+    virtual ~SVGAltGlyphElement();
+
+    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
+    bool childShouldCreateRenderer(Node *) const;
+
+    DOMString glyphRef() const;
+    void setGlyphRef(const DOMString &, ExceptionCode &);
+    DOMString format() const;
+    void setFormat(const DOMString &, ExceptionCode &);
+
+    SVGGlyphElement *glyphElement() const;
+
+    // KHTML ElementImpl pure virtual method
+    virtual quint32 id() const
     {
-    public:
-        SVGAltGlyphElement(const QualifiedName&, Document*);
-        virtual ~SVGAltGlyphElement();
+        return SVGNames::textTag.id();
+    }
 
-        virtual RenderObject* createRenderer(RenderArena*, RenderStyle*);
-        bool childShouldCreateRenderer(Node*) const;
-
-        DOMString glyphRef() const;
-        void setGlyphRef(const DOMString&, ExceptionCode&);
-        DOMString format() const;
-        void setFormat(const DOMString&, ExceptionCode&);
-
-        SVGGlyphElement* glyphElement() const;
-
-        // KHTML ElementImpl pure virtual method
-        virtual quint32 id() const { return SVGNames::textTag.id(); }
-
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
-    };
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

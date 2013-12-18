@@ -34,9 +34,10 @@
 #include <limits.h>
 #include <QDebug>
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
-Image::Image(ImageOwner* _owner)
+Image::Image(ImageOwner *_owner)
 {
     owner       = _owner;
     loader      = 0;
@@ -65,8 +66,7 @@ void Image::requestUpdate(int line)
 {
     updatesStartLine = qMin(line, updatesStartLine);
     updatesEndLine   = qMax(line, updatesEndLine);
-    if (!updatesPending)
-    {
+    if (!updatesPending) {
         updatesPending = true;
         ImageManager::updater()->haveUpdates(this);
     }
@@ -101,21 +101,18 @@ void Image::loadError()
     owner->imageError(this);
 }
 
-bool Image::processData(uchar* data, int length)
+bool Image::processData(uchar *data, int length)
 {
-    if (inError)
+    if (inError) {
         return false;
+    }
 
     //...if we don't have a loder
-    if (!loader)
-    {
-        if (original)
-        {
+    if (!loader) {
+        if (original) {
             //We could have already discarded it as we're all done. remind the caller about it
             return false;
-        }
-        else
-        {
+        } else {
             //need to to do auto detection... so append all the data into a buffer
             int oldSize = bufferPreDetect.size();
             bufferPreDetect.resize(oldSize + length);
@@ -125,12 +122,10 @@ bool Image::processData(uchar* data, int length)
             loader = ImageManager::loaderDatabase()->loaderFor(bufferPreDetect);
 
             //if can't, return...
-            if (!loader)
-            {
+            if (!loader) {
                 //if there is more than 4K of data,
                 //and we see no use for it, abort.
-                if (bufferPreDetect.size() > 4096)
-                {
+                if (bufferPreDetect.size() > 4096) {
                     loadError();
                     return false;
                 }
@@ -148,46 +143,40 @@ bool Image::processData(uchar* data, int length)
 
     //If we got this far, we have the loader.
     //just feed it any buffered data, and the new data.
-    if (!bufferPreDetect.isEmpty())
-    {
-        do
-        {
-            stat = loader->processData(reinterpret_cast<uchar*>(bufferPreDetect.data() + pos),
-                                           bufferPreDetect.size() - pos);
-            if (stat == bufferPreDetect.size() - pos)
+    if (!bufferPreDetect.isEmpty()) {
+        do {
+            stat = loader->processData(reinterpret_cast<uchar *>(bufferPreDetect.data() + pos),
+                                       bufferPreDetect.size() - pos);
+            if (stat == bufferPreDetect.size() - pos) {
                 break;
+            }
 
             pos += stat;
-        }
-        while (stat > 0);
+        } while (stat > 0);
         bufferPreDetect.resize(0);
     }
 
-    if (length) //if there is something we did not feed from the buffer already..
-    {
+    if (length) { //if there is something we did not feed from the buffer already..
         pos = 0;
-        do
-        {
+        do {
             stat = loader->processData(data + pos, length - pos);
 
-            if (stat == length - pos)
+            if (stat == length - pos) {
                 break;
+            }
 
             pos  += stat;
-        }
-        while (stat > 0);
+        } while (stat > 0);
     }
 
     //If we just finished decoding...
-    if (stat == ImageLoader::Done)
-    {
+    if (stat == ImageLoader::Done) {
         fullyDecoded = true;
         owner->imageDone(this);
         return false;
     }
 
-    if (stat == ImageLoader::Error)
-    {
+    if (stat == ImageLoader::Error) {
         loadError();
         return false;
     }
@@ -197,12 +186,12 @@ bool Image::processData(uchar* data, int length)
 
 void Image::processEOF()
 {
-    if (inError) //Input error already - nothing to do
+    if (inError) { //Input error already - nothing to do
         return;
+    }
 
     //If no loader detected, and we're at EOF, it's an error
-    if (!loader)
-    {
+    if (!loader) {
         loadError();
         return;
     }
@@ -214,20 +203,17 @@ void Image::processEOF()
     delete loader;
     loader = 0;
 
-    if (!decodedOK)
-    {
+    if (!decodedOK) {
         loadError();
-    }
-    else
-    {
-        if (original && original->animProvider)
+    } else {
+        if (original && original->animProvider) {
             original->animProvider->setShowAnimations(animationAdvice);
+        }
 
         fullyDecoded = true;
         owner->imageDone(this);
     }
 }
-
 
 void Image::notifyImageInfo(int _width, int _height)
 {
@@ -242,7 +228,7 @@ void Image::notifyImageInfo(int _width, int _height)
     owner->imageHasGeometry(this, width, height);
 }
 
-void Image::notifyAppendFrame(int fwidth, int fheight, const ImageFormat& format)
+void Image::notifyAppendFrame(int fwidth, int fheight, const ImageFormat &format)
 {
     if (!ImageManager::isAcceptableSize(fwidth, fheight)) {
         qWarning() << "ImageLoader somehow fed us an illegal size, killing it!";
@@ -251,23 +237,20 @@ void Image::notifyAppendFrame(int fwidth, int fheight, const ImageFormat& format
     }
 
     //Create the new frame.
-    QImage image = format.makeImage (fwidth, fheight);
+    QImage image = format.makeImage(fwidth, fheight);
     //IMPORTANT: we use image.width(), etc., below for security/paranoia
     //reasons -- so we e.g. end up with a size 0 image if QImage overflow
     //checks kick in, etc. This is on top of the policy enforcement
     //enough, in case someone breaks it or such
-    RawImagePlane* iplane = new RawImagePlane(image.width(), image.height());
+    RawImagePlane *iplane = new RawImagePlane(image.width(), image.height());
     iplane->image         = image;
     iplane->format        = format;
-    PixmapPlane*   plane  = new PixmapPlane  (image.width(), image.height(), iplane);
+    PixmapPlane   *plane  = new PixmapPlane(image.width(), image.height(), iplane);
 
-    if (loaderPlane) //Had a previous plane
-    {
+    if (loaderPlane) { //Had a previous plane
         loaderPlane->nextFrame = plane;
         loaderPlane            = plane;
-    }
-    else
-    {
+    } else {
         //Created the first one
         loaderPlane = original = plane;
     }
@@ -280,51 +263,47 @@ void Image::notifyAppendFrame(int fwidth, int fheight, const ImageFormat& format
 static inline unsigned char premulComponent(unsigned original, unsigned alpha)
 {
     unsigned product = original * alpha; // this is conceptually 255 * intended value.
-    return (unsigned char)((product + product/256 + 128)/256);
+    return (unsigned char)((product + product / 256 + 128) / 256);
 }
 
 void Image::notifyQImage(uchar version, const QImage *image)
 {
-    RawImagePlane* plane = static_cast<RawImagePlane*>(loaderPlane->parent);
+    RawImagePlane *plane = static_cast<RawImagePlane *>(loaderPlane->parent);
 
     plane->image = *image;
 
     //Set the versions.
-    for(unsigned int i=0; i<plane->height;i++) {
+    for (unsigned int i = 0; i < plane->height; i++) {
         plane->versions[i] = version;
     }
 
     updatesStartLine = 0;
     updatesEndLine   = plane->height;
-    if (!updatesPending)
-    {
+    if (!updatesPending) {
         updatesPending = true;
         ImageManager::updater()->haveUpdates(this);
     }
 }
 
-void Image::notifyScanline(uchar version, uchar* data)
+void Image::notifyScanline(uchar version, uchar *data)
 {
-    RawImagePlane* plane = static_cast<RawImagePlane*>(loaderPlane->parent);
-    if (loaderScanline >= plane->height)
+    RawImagePlane *plane = static_cast<RawImagePlane *>(loaderPlane->parent);
+    if (loaderScanline >= plane->height) {
         return;
+    }
 
     //Load the data in..
-    if (plane->format.type != ImageFormat::Image_ARGB_32)
-    {
+    if (plane->format.type != ImageFormat::Image_ARGB_32) {
         //Can just copy
         std::memcpy(plane->image.scanLine(loaderScanline), data,
-            plane->format.depth() * plane->image.width());
-    }
-    else
-    {
+                    plane->format.depth() * plane->image.width());
+    } else {
         //Premultiply. Note that this is assuming that any combination
         //Will not actually look at the pixel.
-        QRgb* dst = reinterpret_cast<QRgb*>(plane->image.scanLine(loaderScanline));
-        uchar* src = data;
+        QRgb *dst = reinterpret_cast<QRgb *>(plane->image.scanLine(loaderScanline));
+        uchar *src = data;
         int planeImageWidth = plane->image.width();
-        for (int x = 0; x < planeImageWidth; ++x)
-        {
+        for (int x = 0; x < planeImageWidth; ++x) {
 #if Q_BYTE_ORDER == Q_BIG_ENDIAN
             unsigned a = src[0];
             unsigned r = src[1];
@@ -337,7 +316,7 @@ void Image::notifyScanline(uchar version, uchar* data)
             unsigned b = src[0];
 #endif
             dst[x]  = qRgba(premulComponent(r, a), premulComponent(g, a),
-                              premulComponent(b, a), a);
+                            premulComponent(b, a), a);
             src += 4;
         }
     }
@@ -350,19 +329,22 @@ void Image::notifyScanline(uchar version, uchar* data)
     //about what happens to updates in case of change of scaling.
     //We only do this for the first frame --- other stuff will only
     //be full-frame switches from the animation controller
-    if  (loaderPlane == original)
+    if (loaderPlane == original) {
         requestUpdate(loaderScanline);
+    }
 
     loaderScanline++;
-    if (loaderScanline == plane->height) //Next pass of progressive image
+    if (loaderScanline == plane->height) { //Next pass of progressive image
         loaderScanline = 0;
+    }
 }
 
-void Image::requestScanline(unsigned int lineNum, uchar* lineBuf)
+void Image::requestScanline(unsigned int lineNum, uchar *lineBuf)
 {
-    RawImagePlane* plane = static_cast<RawImagePlane*>(loaderPlane->parent);
-    if (lineNum >= plane->height)
+    RawImagePlane *plane = static_cast<RawImagePlane *>(loaderPlane->parent);
+    if (lineNum >= plane->height) {
         return;
+    }
 
     std::memcpy(lineBuf, plane->image.scanLine(lineNum),
                 plane->image.width() * plane->format.depth());
@@ -386,12 +368,13 @@ static QPair<int, int> trSize(QSize size)
     return qMakePair(size.width(), size.height());
 }
 
-PixmapPlane* Image::getSize(QSize size)
+PixmapPlane *Image::getSize(QSize size)
 {
     // If we're empty, we use ourselves as a placeholder,
     // to avoid trying scaling a 0x0 image
-    if (size == this->size() || this->size().isEmpty())
+    if (size == this->size() || this->size().isEmpty()) {
         return original;
+    }
 
     return scaled[trSize(size)];
 }
@@ -400,13 +383,14 @@ void Image::derefSize(QSize size)
 {
     assert(original);
 
-    if (size == this->size() || this->size().isEmpty()) return;
+    if (size == this->size() || this->size().isEmpty()) {
+        return;
+    }
 
     QPair<int, int> key = trSize(size);
-    PixmapPlane* plane = scaled[key];
+    PixmapPlane *plane = scaled[key];
     --plane->refCount;
-    if (plane->refCount == 0)
-    {
+    if (plane->refCount == 0) {
         delete plane;
         scaled.remove(key);
     }
@@ -416,16 +400,15 @@ void Image::refSize(QSize size)
 {
     assert(original);
 
-    if (size == this->size() || this->size().isEmpty()) return;
+    if (size == this->size() || this->size().isEmpty()) {
+        return;
+    }
 
     QPair<int, int> key = trSize(size);
-    PixmapPlane* plane = scaled[key];
-    if (plane)
-    {
+    PixmapPlane *plane = scaled[key];
+    if (plane) {
         ++plane->refCount;
-    }
-    else
-    {
+    } else {
         // Note: ImagePainter enforces our maximum image size, much like the load code does,
         // so we don't have to worry about extreme size.
 
@@ -435,36 +418,43 @@ void Image::refSize(QSize size)
         double hRatio = size.height() / double(height);
 
         //Go through and make scaled planes for each position
-        PixmapPlane* first = 0, *prev = 0;
+        PixmapPlane *first = 0, *prev = 0;
 
         //### might need unification with ScaledImagePlane's size handling
-        for (PixmapPlane* cur = original; cur; cur = cur->nextFrame)
-        {
+        for (PixmapPlane *cur = original; cur; cur = cur->nextFrame) {
             int newWidth  = qRound(cur->width  * wRatio);
             int newHeight = qRound(cur->height * hRatio);
 
             // Make 100% sure we do it precisely for the original image
-            if (cur->width == width)
+            if (cur->width == width) {
                 newWidth = size.width();
-            if (cur->height == height)
+            }
+            if (cur->height == height) {
                 newHeight = size.height();
+            }
 
             // Ensure non-empty..
-            if (newWidth  <= 0) newWidth  = 1;
-            if (newHeight <= 0) newHeight = 1;
+            if (newWidth  <= 0) {
+                newWidth  = 1;
+            }
+            if (newHeight <= 0) {
+                newHeight = 1;
+            }
 
-            ScaledImagePlane* splane = new ScaledImagePlane(
-                    newWidth, newHeight,
-                    static_cast<RawImagePlane*>(cur->parent));
-            PixmapPlane*      plane  = new PixmapPlane(
-                    newWidth, newHeight, splane);
-            if (cur->animProvider)
+            ScaledImagePlane *splane = new ScaledImagePlane(
+                newWidth, newHeight,
+                static_cast<RawImagePlane *>(cur->parent));
+            PixmapPlane      *plane  = new PixmapPlane(
+                newWidth, newHeight, splane);
+            if (cur->animProvider) {
                 plane->animProvider = cur->animProvider->clone(plane);
+            }
 
-            if (prev)
+            if (prev) {
                 prev->nextFrame = plane;
-            else
+            } else {
                 first           = plane;
+            }
 
             prev            = plane;
         }
@@ -474,31 +464,32 @@ void Image::refSize(QSize size)
     }
 }
 
-QImage* Image::qimage() const
+QImage *Image::qimage() const
 {
-    if (!original || !original->parent)
+    if (!original || !original->parent) {
         return 0;
+    }
 
-    return &static_cast<RawImagePlane*>(original->parent)->image;
+    return &static_cast<RawImagePlane *>(original->parent)->image;
 }
 
 bool Image::hasAlpha() const
 {
-    if (!original || !original->parent)
+    if (!original || !original->parent) {
         return false;
+    }
     return original->parent->format.hasAlpha();
 }
 
 void Image::setShowAnimations(KHTMLSettings::KAnimationAdvice newAdvice)
 {
-    if (animationAdvice != newAdvice)
-    {
+    if (animationAdvice != newAdvice) {
         animationAdvice = newAdvice;
-        if (original && original->animProvider)
+        if (original && original->animProvider) {
             original->animProvider->setShowAnimations(newAdvice);
+        }
     }
 }
 
 }
 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

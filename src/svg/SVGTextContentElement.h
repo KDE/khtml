@@ -29,46 +29,54 @@
 #include "SVGStyledElement.h"
 #include "SVGTests.h"
 
-namespace WebCore {
-    class SVGLength;
+namespace WebCore
+{
+class SVGLength;
 
-    class SVGTextContentElement : public SVGStyledElement,
-                                  public SVGTests,
-                                  public SVGLangSpace,
-                                  public SVGExternalResourcesRequired {
-    public:
-        enum SVGLengthAdjustType {
-            LENGTHADJUST_UNKNOWN            = 0,
-            LENGTHADJUST_SPACING            = 1,
-            LENGTHADJUST_SPACINGANDGLYPHS   = 2
-        };
-
-        SVGTextContentElement(const QualifiedName&, Document*);
-        virtual ~SVGTextContentElement();
-        
-        virtual bool isValid() const { return SVGTests::isValid(); }
-        virtual bool isTextContent() const { return true; }
-
-        long getNumberOfChars() const;
-        float getComputedTextLength() const;
-        float getSubStringLength(long charnum, long nchars, ExceptionCode&) const;
-        FloatPoint getStartPositionOfChar(long charnum, ExceptionCode&) const;
-        FloatPoint getEndPositionOfChar(long charnum, ExceptionCode&) const;
-        FloatRect getExtentOfChar(long charnum, ExceptionCode&) const;
-        float getRotationOfChar(long charnum, ExceptionCode&) const;
-        long getCharNumAtPosition(const FloatPoint&) const;
-        void selectSubString(long charnum, long nchars, ExceptionCode&) const;
-
-        virtual void parseMappedAttribute(MappedAttribute*);
-
-        bool isKnownAttribute(const QualifiedName&);
-
-    private:
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
-
-        ANIMATED_PROPERTY_DECLARATIONS(SVGTextContentElement, SVGLength, SVGLength, TextLength, textLength)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGTextContentElement, int, int, LengthAdjust, lengthAdjust)
+class SVGTextContentElement : public SVGStyledElement,
+    public SVGTests,
+    public SVGLangSpace,
+    public SVGExternalResourcesRequired
+{
+public:
+    enum SVGLengthAdjustType {
+        LENGTHADJUST_UNKNOWN            = 0,
+        LENGTHADJUST_SPACING            = 1,
+        LENGTHADJUST_SPACINGANDGLYPHS   = 2
     };
+
+    SVGTextContentElement(const QualifiedName &, Document *);
+    virtual ~SVGTextContentElement();
+
+    virtual bool isValid() const
+    {
+        return SVGTests::isValid();
+    }
+    virtual bool isTextContent() const
+    {
+        return true;
+    }
+
+    long getNumberOfChars() const;
+    float getComputedTextLength() const;
+    float getSubStringLength(long charnum, long nchars, ExceptionCode &) const;
+    FloatPoint getStartPositionOfChar(long charnum, ExceptionCode &) const;
+    FloatPoint getEndPositionOfChar(long charnum, ExceptionCode &) const;
+    FloatRect getExtentOfChar(long charnum, ExceptionCode &) const;
+    float getRotationOfChar(long charnum, ExceptionCode &) const;
+    long getCharNumAtPosition(const FloatPoint &) const;
+    void selectSubString(long charnum, long nchars, ExceptionCode &) const;
+
+    virtual void parseMappedAttribute(MappedAttribute *);
+
+    bool isKnownAttribute(const QualifiedName &);
+
+private:
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
+
+    ANIMATED_PROPERTY_DECLARATIONS(SVGTextContentElement, SVGLength, SVGLength, TextLength, textLength)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGTextContentElement, int, int, LengthAdjust, lengthAdjust)
+};
 
 } // namespace WebCore
 

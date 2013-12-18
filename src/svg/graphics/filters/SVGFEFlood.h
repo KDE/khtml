@@ -26,11 +26,13 @@
 #include "Color.h"
 #include "SVGFilterEffect.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-class SVGFEFlood : public SVGFilterEffect {
+class SVGFEFlood : public SVGFilterEffect
+{
 public:
-    SVGFEFlood(SVGResourceFilter*);
+    SVGFEFlood(SVGResourceFilter *);
 
     Color floodColor() const;
     void setFloodColor(const Color &);
@@ -38,10 +40,10 @@ public:
     float floodOpacity() const;
     void setFloodOpacity(float);
 
-    virtual TextStream& externalRepresentation(TextStream&) const;
+    virtual TextStream &externalRepresentation(TextStream &) const;
 
 #if PLATFORM(CI)
-    virtual CIFilter* getCIFilter(const FloatRect& bbox) const;
+    virtual CIFilter *getCIFilter(const FloatRect &bbox) const;
 #endif
 
 private:

@@ -26,9 +26,11 @@
 
 #include <wtf/RefCounted.h>
 
-namespace WebCore {
+namespace WebCore
+{
 
-class SVGUnitTypes : public RefCounted<SVGUnitTypes> {
+class SVGUnitTypes : public RefCounted<SVGUnitTypes>
+{
 public:
     enum SVGUnitType {
         SVG_UNIT_TYPE_UNKNOWN               = 0,
@@ -45,4 +47,3 @@ private:
 #endif // ENABLE(SVG)
 #endif // SVGUnitTypes_h
 
-// vim:ts=4:noet

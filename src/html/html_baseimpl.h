@@ -34,13 +34,15 @@
 
 class KHTMLPart;
 
-namespace khtml {
-    class RenderFrameSet;
-    class RenderFrame;
-    class RenderPartObject;
+namespace khtml
+{
+class RenderFrameSet;
+class RenderFrame;
+class RenderPartObject;
 }
 
-namespace DOM {
+namespace DOM
+{
 
 class DOMString;
 class CSSStyleSheetImpl;
@@ -57,23 +59,26 @@ public:
     virtual Id id() const;
 
     DOMString aLink() const;
-    void setALink( const DOMString &value );
+    void setALink(const DOMString &value);
     DOMString bgColor() const;
-    void setBgColor( const DOMString &value );
+    void setBgColor(const DOMString &value);
     DOMString link() const;
-    void setLink( const DOMString &value );
+    void setLink(const DOMString &value);
     DOMString text() const;
-    void setText( const DOMString &value );
+    void setText(const DOMString &value);
     DOMString vLink() const;
-    void setVLink( const DOMString &value );
-    
+    void setVLink(const DOMString &value);
+
     virtual void parseAttribute(AttributeImpl *);
     virtual void attach();
 
     virtual void insertedIntoDocument();
     virtual void removedFromDocument();
 
-    CSSStyleSheetImpl *sheet() const { return m_styleSheet; }
+    CSSStyleSheetImpl *sheet() const
+    {
+        return m_styleSheet;
+    }
 
 protected:
     CSSStyleSheetImpl *m_styleSheet;
@@ -99,14 +104,17 @@ public:
     virtual void attach();
     virtual void defaultEventHandler(EventImpl *evt);
 
-    bool noResize() { return noresize; }
-    void setLocation( const DOMString& str );
+    bool noResize()
+    {
+        return noresize;
+    }
+    void setLocation(const DOMString &str);
 
     virtual bool isFocusableImpl(FocusType ft) const;
     virtual void setFocus(bool);
 
-    DocumentImpl* contentDocument() const;
-    KHTMLPart*    contentPart() const;
+    DocumentImpl *contentDocument() const;
+    KHTMLPart    *contentPart() const;
 
     DOMString url;
     DOMString name; //Computed name for the frame map
@@ -141,19 +149,34 @@ public:
 
     virtual void defaultEventHandler(EventImpl *evt);
 
-    bool frameBorder() { return frameborder; }
-    bool noResize() { return noresize; }
+    bool frameBorder()
+    {
+        return frameborder;
+    }
+    bool noResize()
+    {
+        return noresize;
+    }
 
-    int totalRows() const { return m_totalRows; }
-    int totalCols() const { return m_totalCols; }
-    int border() const { return frameborder ? m_border : 0; }
+    int totalRows() const
+    {
+        return m_totalRows;
+    }
+    int totalCols() const
+    {
+        return m_totalCols;
+    }
+    int border() const
+    {
+        return frameborder ? m_border : 0;
+    }
     virtual void detach();
 
-    virtual void recalcStyle( StyleChange ch );
+    virtual void recalcStyle(StyleChange ch);
 
 protected:
-    khtml::Length* m_rows;
-    khtml::Length* m_cols;
+    khtml::Length *m_rows;
+    khtml::Length *m_cols;
 
     int m_totalRows;
     int m_totalCols;
@@ -187,7 +210,6 @@ public:
     virtual Id id() const;
 };
 
-
 // -------------------------------------------------------------------------
 
 class HTMLIFrameElementImpl : public HTMLFrameElementImpl
@@ -212,7 +234,6 @@ protected:
     void updateFrame();
     bool m_frame;
 };
-
 
 } //namespace
 

@@ -27,7 +27,8 @@
 #include "imageplane.h"
 #include <cstring>
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 /**
  A raw image plane merely contains a QImage.
@@ -36,7 +37,7 @@ class RawImagePlane: public ImagePlane
 {
 public:
     QImage image;
-    unsigned char* versions; //Versions of scanlines --- node that this is is padded to be of width / by 64
+    unsigned char *versions; //Versions of scanlines --- node that this is is padded to be of width / by 64
 
     RawImagePlane(unsigned int _width, unsigned int _height, char initialVer = 0):
         ImagePlane(_width, _height)
@@ -49,7 +50,7 @@ public:
     {
         delete[] versions;
     }
-    
+
     virtual void flushCache()
     {} // Nothing caches
 
@@ -60,17 +61,16 @@ public:
      with the state of the image proper. (Which might not even be in memory)
     */
     virtual bool isUpToDate(unsigned int tileX, unsigned int tileY,
-                            PixmapTile* tile);
+                            PixmapTile *tile);
 
     /**
      Ensures that the given pixmap tile is up-to-date.
     */
     virtual void ensureUpToDate(unsigned int tileX, unsigned int tileY,
-                            PixmapTile* tile);
+                                PixmapTile *tile);
 
 };
 
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

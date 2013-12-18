@@ -27,94 +27,93 @@
 #include <kconfiggroup.h>
 #include <QPalette>
 
-StorePassBar::StorePassBar( QWidget *parent ) :
-  KHTMLViewBarWidget( true, parent )
+StorePassBar::StorePassBar(QWidget *parent) :
+    KHTMLViewBarWidget(true, parent)
 {
-  setupUi( centralWidget() );
+    setupUi(centralWidget());
 
-  m_store->setIcon( QIcon::fromTheme( "document-save" ) );
-  // Same as KStandardGuiItem::no()
-  m_neverForThisSite->setIcon( QIcon::fromTheme( "process-stop" ) );
-  m_doNotStore->setIcon( QIcon::fromTheme( "dialog-cancel" ) );
-  centralWidget()->setFocusProxy( m_store );
+    m_store->setIcon(QIcon::fromTheme("document-save"));
+    // Same as KStandardGuiItem::no()
+    m_neverForThisSite->setIcon(QIcon::fromTheme("process-stop"));
+    m_doNotStore->setIcon(QIcon::fromTheme("dialog-cancel"));
+    centralWidget()->setFocusProxy(m_store);
 
-  QPalette pal = palette();
-  KColorScheme::adjustBackground(pal, KColorScheme::ActiveBackground);
-  setPalette(pal);
-  setBackgroundRole(QPalette::Base);
-  setAutoFillBackground(true);
+    QPalette pal = palette();
+    KColorScheme::adjustBackground(pal, KColorScheme::ActiveBackground);
+    setPalette(pal);
+    setBackgroundRole(QPalette::Base);
+    setAutoFillBackground(true);
 
-  connect( m_store, SIGNAL(clicked()), this, SIGNAL(storeClicked()) );
-  connect( m_neverForThisSite, SIGNAL(clicked()), this,
-    SIGNAL(neverForThisSiteClicked()) );
-  connect( m_doNotStore, SIGNAL(clicked()), this,
-    SIGNAL(doNotStoreClicked()) );
+    connect(m_store, SIGNAL(clicked()), this, SIGNAL(storeClicked()));
+    connect(m_neverForThisSite, SIGNAL(clicked()), this,
+            SIGNAL(neverForThisSiteClicked()));
+    connect(m_doNotStore, SIGNAL(clicked()), this,
+            SIGNAL(doNotStoreClicked()));
 
-  m_store->setFocus();
+    m_store->setFocus();
 }
 
-
-void StorePassBar::setHost(const QString& host)
+void StorePassBar::setHost(const QString &host)
 {
-  if(host.isEmpty())
-    m_label->setText( i18n("Do you want to store this password?") );
-  else
-    m_label->setText( i18n("Do you want to store this password for %1?", host) );
+    if (host.isEmpty()) {
+        m_label->setText(i18n("Do you want to store this password?"));
+    } else {
+        m_label->setText(i18n("Do you want to store this password for %1?", host));
+    }
 }
 
-
-
-StorePass::StorePass( KHTMLPart *part ) :
-  m_part( part )
+StorePass::StorePass(KHTMLPart *part) :
+    m_part(part)
 {
-  connect( &m_storePassBar, SIGNAL(storeClicked()), this, SLOT(slotStoreClicked()) );
-  connect( &m_storePassBar, SIGNAL(neverForThisSiteClicked()), this,
-    SLOT(slotNeverForThisSiteClicked()) );
-  connect( &m_storePassBar, SIGNAL(doNotStoreClicked()), this,
-    SLOT(slotDoNotStoreClicked()) );
+    connect(&m_storePassBar, SIGNAL(storeClicked()), this, SLOT(slotStoreClicked()));
+    connect(&m_storePassBar, SIGNAL(neverForThisSiteClicked()), this,
+            SLOT(slotNeverForThisSiteClicked()));
+    connect(&m_storePassBar, SIGNAL(doNotStoreClicked()), this,
+            SLOT(slotDoNotStoreClicked()));
 }
 
 StorePass::~StorePass()
 {
 }
 
-void StorePass::saveLoginInformation(const QString& host, const QString& key,
-  const QMap<QString, QString>& walletMap)
+void StorePass::saveLoginInformation(const QString &host, const QString &key,
+                                     const QMap<QString, QString> &walletMap)
 {
-  KConfigGroup config( KSharedConfig::openConfig(), "HTML Settings" );
-  if (!config.readEntry("OfferToSaveWebsitePassword", true))
-    return;
+    KConfigGroup config(KSharedConfig::openConfig(), "HTML Settings");
+    if (!config.readEntry("OfferToSaveWebsitePassword", true)) {
+        return;
+    }
 
-  m_host = host;
-  m_key = key;
-  m_walletMap = walletMap;
-  m_storePassBar.setHost(host);
+    m_host = host;
+    m_key = key;
+    m_walletMap = walletMap;
+    m_storePassBar.setHost(host);
 
-  m_part->pTopViewBar()->addBarWidget( &m_storePassBar );
-  m_part->pTopViewBar()->showBarWidget( &m_storePassBar );
+    m_part->pTopViewBar()->addBarWidget(&m_storePassBar);
+    m_part->pTopViewBar()->showBarWidget(&m_storePassBar);
 }
 
 void StorePass::removeBar()
 {
-  m_part->pTopViewBar()->hideCurrentBarWidget();
-  m_walletMap.clear();
-  m_host = m_key = "";
-  m_storePassBar.setHost(m_host);
+    m_part->pTopViewBar()->hideCurrentBarWidget();
+    m_walletMap.clear();
+    m_host = m_key = "";
+    m_storePassBar.setHost(m_host);
 }
 
 void StorePass::slotStoreClicked()
 {
-  m_part->saveToWallet(m_key, m_walletMap);
-  removeBar();
+    m_part->saveToWallet(m_key, m_walletMap);
+    removeBar();
 }
 
 void StorePass::slotNeverForThisSiteClicked()
 {
-  m_part->view()->addNonPasswordStorableSite(m_host);
-  removeBar();
+    m_part->view()->addNonPasswordStorableSite(m_host);
+    removeBar();
 }
 
 void StorePass::slotDoNotStoreClicked()
 {
-  removeBar();
+    removeBar();
 }

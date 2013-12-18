@@ -33,9 +33,10 @@
 
 #include "dom/dom_exception.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGAltGlyphElement::SVGAltGlyphElement(const QualifiedName& tagName, Document* doc)
+SVGAltGlyphElement::SVGAltGlyphElement(const QualifiedName &tagName, Document *doc)
     : SVGTextPositioningElement(tagName, doc)
 {
 }
@@ -44,7 +45,7 @@ SVGAltGlyphElement::~SVGAltGlyphElement()
 {
 }
 
-void SVGAltGlyphElement::setGlyphRef(const DOMString& type, ExceptionCode& ec)
+void SVGAltGlyphElement::setGlyphRef(const DOMString &type, ExceptionCode &ec)
 {
     Q_UNUSED(type);
     ec = DOMException::NO_MODIFICATION_ALLOWED_ERR;
@@ -55,7 +56,7 @@ DOMString SVGAltGlyphElement::glyphRef() const
     return getAttribute(SVGNames::glyphRefAttr);
 }
 
-void SVGAltGlyphElement::setFormat(const DOMString& type, ExceptionCode& ec)
+void SVGAltGlyphElement::setFormat(const DOMString &type, ExceptionCode &ec)
 {
     Q_UNUSED(type);
     ec = DOMException::NO_MODIFICATION_ALLOWED_ERR;
@@ -66,28 +67,29 @@ DOMString SVGAltGlyphElement::format() const
     return getAttribute(SVGNames::formatAttr);
 }
 
-bool SVGAltGlyphElement::childShouldCreateRenderer(Node* child) const
+bool SVGAltGlyphElement::childShouldCreateRenderer(Node *child) const
 {
-    if (child->isTextNode())
+    if (child->isTextNode()) {
         return true;
+    }
     return false;
 }
 
-RenderObject* SVGAltGlyphElement::createRenderer(RenderArena* arena, RenderStyle*)
+RenderObject *SVGAltGlyphElement::createRenderer(RenderArena *arena, RenderStyle *)
 {
-    return new (arena) RenderSVGTSpan(this);
+    return new(arena) RenderSVGTSpan(this);
 }
 
-SVGGlyphElement* SVGAltGlyphElement::glyphElement() const
+SVGGlyphElement *SVGAltGlyphElement::glyphElement() const
 {
-    Element* elt = document()->getElementById(getTarget(getAttribute(XLinkNames::hrefAttr)));
-    if (!elt || !elt->hasTagName(SVGNames::glyphTag))
+    Element *elt = document()->getElementById(getTarget(getAttribute(XLinkNames::hrefAttr)));
+    if (!elt || !elt->hasTagName(SVGNames::glyphTag)) {
         return 0;
-    return static_cast<SVGGlyphElement*>(elt);
+    }
+    return static_cast<SVGGlyphElement *>(elt);
 }
 
 }
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

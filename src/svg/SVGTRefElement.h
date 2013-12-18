@@ -29,29 +29,31 @@
 
 namespace WebCore
 {
-    class SVGTRefElement : public SVGTextPositioningElement, public SVGURIReference
+class SVGTRefElement : public SVGTextPositioningElement, public SVGURIReference
+{
+public:
+    SVGTRefElement(const QualifiedName &, Document *);
+    virtual ~SVGTRefElement();
+
+    virtual void parseMappedAttribute(MappedAttribute *);
+
+    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
+    bool childShouldCreateRenderer(Node *) const;
+
+protected:
+    virtual const SVGElement *contextElement() const
     {
-    public:
-        SVGTRefElement(const QualifiedName&, Document*);
-        virtual ~SVGTRefElement();
+        return this;
+    }
 
-        virtual void parseMappedAttribute(MappedAttribute*);
+private:
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)
 
-        virtual RenderObject* createRenderer(RenderArena*, RenderStyle*);
-        bool childShouldCreateRenderer(Node*) const;
-
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
-
-    private:
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)
-
-        void updateReferencedText();
-    };
+    void updateReferencedText();
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

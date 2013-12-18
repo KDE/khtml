@@ -28,39 +28,40 @@
 #include "ExceptionCode.h"
 #include "Document.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class AffineTransform;
-    class FloatRect;
-    class SVGElement;
-    class SVGStyledElement;
+class AffineTransform;
+class FloatRect;
+class SVGElement;
+class SVGStyledElement;
 
-    class SVGLocatable {
-    public:
-        SVGLocatable();
-        virtual ~SVGLocatable();
+class SVGLocatable
+{
+public:
+    SVGLocatable();
+    virtual ~SVGLocatable();
 
-        // 'SVGLocatable' functions
-        virtual SVGElement* nearestViewportElement() const = 0;
-        virtual SVGElement* farthestViewportElement() const = 0;
+    // 'SVGLocatable' functions
+    virtual SVGElement *nearestViewportElement() const = 0;
+    virtual SVGElement *farthestViewportElement() const = 0;
 
-        virtual FloatRect getBBox() const = 0;
-        virtual AffineTransform getCTM() const = 0;
-        virtual AffineTransform getScreenCTM() const = 0;
-        AffineTransform getTransformToElement(SVGElement*, ExceptionCode&) const;
+    virtual FloatRect getBBox() const = 0;
+    virtual AffineTransform getCTM() const = 0;
+    virtual AffineTransform getScreenCTM() const = 0;
+    AffineTransform getTransformToElement(SVGElement *, ExceptionCode &) const;
 
-        static SVGElement* nearestViewportElement(const SVGStyledElement*);
-        static SVGElement* farthestViewportElement(const SVGStyledElement*);
+    static SVGElement *nearestViewportElement(const SVGStyledElement *);
+    static SVGElement *farthestViewportElement(const SVGStyledElement *);
 
-    protected:
-        static FloatRect getBBox(const SVGStyledElement*);
-        static AffineTransform getCTM(const SVGElement*);
-        static AffineTransform getScreenCTM(const SVGElement*);
-    };
+protected:
+    static FloatRect getBBox(const SVGStyledElement *);
+    static AffineTransform getCTM(const SVGElement *);
+    static AffineTransform getScreenCTM(const SVGElement *);
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif // SVGLocatable_h
 
-// vim:ts=4:noet

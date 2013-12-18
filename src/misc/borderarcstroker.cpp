@@ -36,9 +36,8 @@
 #  include <xmmintrin.h>
 #endif
 
-
-namespace khtml {
-
+namespace khtml
+{
 
 // This is a helper class used by BorderArcStroker
 class KCubicBezier
@@ -62,15 +61,26 @@ public:
     qreal length() const;
     qreal convexHullLength() const;
 
-    QPointF p0() const { return QPointF(x0, y0); }
-    QPointF p1() const { return QPointF(x1, y1); }
-    QPointF p2() const { return QPointF(x2, y2); }
-    QPointF p3() const { return QPointF(x3, y3); }
+    QPointF p0() const
+    {
+        return QPointF(x0, y0);
+    }
+    QPointF p1() const
+    {
+        return QPointF(x1, y1);
+    }
+    QPointF p2() const
+    {
+        return QPointF(x2, y2);
+    }
+    QPointF p3() const
+    {
+        return QPointF(x3, y3);
+    }
 
 public:
     qreal x0, y0, x1, y1, x2, y2, x3, y3;
 };
-
 
 KCubicBezier::KCubicBezier(const QPointF &p0, const QPointF &p1, const QPointF &p2, const QPointF &p3)
 {
@@ -169,7 +179,7 @@ qreal KCubicBezier::slopeAt(qreal t) const
 {
     const QPointF delta = deltaAt(t);
     return qFuzzyIsNull(delta.x()) ?
-                (delta.y() < 0 ? -1 : 1) : delta.y() / delta.x();
+           (delta.y() < 0 ? -1 : 1) : delta.y() / delta.x();
 }
 
 // Returns the normal vector at t
@@ -248,29 +258,32 @@ qreal KCubicBezier::tAtLength(qreal l) const
 {
     const qreal error = 0.1;
 
-    if (l <= 0)
+    if (l <= 0) {
         return 0;
+    }
 
     qreal len = length();
 
-    if (l > len || qFuzzyCompare(l + 1.0, len + 1.0))
+    if (l > len || qFuzzyCompare(l + 1.0, len + 1.0)) {
         return 1;
+    }
 
     qreal upperT = 1;
     qreal lowerT = 0;
 
-    while (1)
-    {
+    while (1) {
         const qreal t = lowerT + (upperT - lowerT) / 2;
         const qreal len = leftSection(t).length();
 
-        if (qAbs(l - len) < error)
+        if (qAbs(l - len) < error) {
             return t;
+        }
 
-        if (l > len)
+        if (l > len) {
             lowerT = t;
-        else
+        } else {
             upperT = t;
+        }
     }
 }
 
@@ -288,19 +301,20 @@ qreal KCubicBezier::tAtIntersection(const QLineF &line) const
     const QLineF l = QLineF(line.pointAt(1.0 / len * -1e10), line.pointAt(1.0 / len * 1e10));
 
     // Check if the line intersects the curve at all
-    if (chord().intersect(l, 0) != QLineF::BoundedIntersection)
+    if (chord().intersect(l, 0) != QLineF::BoundedIntersection) {
         return 1;
+    }
 
     qreal upperT = 1;
     qreal lowerT = 0;
 
     KCubicBezier c = *this;
 
-    while (1)
-    {
+    while (1) {
         const qreal t = lowerT + (upperT - lowerT) / 2;
-        if (c.length() < error)
+        if (c.length() < error) {
             return t;
+        }
 
         KCubicBezier left, right;
         c.split(&left, &right);
@@ -316,11 +330,7 @@ qreal KCubicBezier::tAtIntersection(const QLineF &line) const
     }
 }
 
-
-
 // ----------------------------------------------------------------------------
-
-
 
 BorderArcStroker::BorderArcStroker()
 {
@@ -336,8 +346,9 @@ QPainterPath BorderArcStroker::createStroke(qreal *nextOffset) const
     const QRectF innerRect = rect.adjusted(hlw, vlw, -hlw, -vlw);
 
     // Avoid hitting the assert below if the radius is smaller than the border width
-    if (!outerRect.isValid() || !innerRect.isValid())
+    if (!outerRect.isValid() || !innerRect.isValid()) {
         return QPainterPath();
+    }
 
     QPainterPath innerPath, outerPath;
     innerPath.arcMoveTo(innerRect, angle);
@@ -352,15 +363,17 @@ QPainterPath BorderArcStroker::createStroke(qreal *nextOffset) const
     const KCubicBezier outer(outerPath.elementAt(0), outerPath.elementAt(1), outerPath.elementAt(2), outerPath.elementAt(3));
 
     qreal a = std::fmod(angle, qreal(360.0));
-    if (a < 0)
+    if (a < 0) {
         a += 360.0;
+    }
 
     // Figure out which border we're starting from
     qreal initialWidth;
-    if ((a >= 0 && a < 90) || (a >= 180 && a < 270))
+    if ((a >= 0 && a < 90) || (a >= 180 && a < 270)) {
         initialWidth = sweepLength > 0 ? hlw : vlw;
-    else
+    } else {
         initialWidth = sweepLength > 0 ? vlw : hlw;
+    }
 
     const qreal finalWidth = qMax(qreal(0.1), QLineF(outer.p3(), inner.p3()).length());
     const qreal dashAspect  = (pattern[0] / initialWidth);
@@ -381,8 +394,9 @@ QPainterPath BorderArcStroker::createStroke(qreal *nextOffset) const
         if (offset >= pattern[0]) {
             offset -= pattern[0];
             dash = false;
-        } else
+        } else {
             dash = true;
+        }
         pos = -offset;
     }
 
@@ -419,11 +433,12 @@ QPainterPath BorderArcStroker::createStroke(qreal *nextOffset) const
     if (nextOffset) {
         const qreal remainder = pos - length;
 
-        if (dash)
+        if (dash) {
             *nextOffset = -remainder;
-        else
+        } else {
             *nextOffset = (pattern[0] / initialWidth) * finalWidth - remainder;
-   }
+        }
+    }
 
     return path;
 }

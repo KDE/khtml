@@ -20,7 +20,6 @@
  *
  */
 
-
 #include "dom/dom_xml.h"
 #include "dom/dom_exception.h"
 #include "xml/dom_textimpl.h"
@@ -38,14 +37,16 @@ CDATASection::CDATASection(const CDATASection &) : Text()
 
 CDATASection &CDATASection::operator = (const Node &other)
 {
-    NodeImpl* ohandle = other.handle();
-    if ( impl != ohandle ) {
+    NodeImpl *ohandle = other.handle();
+    if (impl != ohandle) {
         if (!ohandle || ohandle->nodeType() != CDATA_SECTION_NODE) {
-	    if ( impl ) impl->deref();
+            if (impl) {
+                impl->deref();
+            }
             impl = 0;
-	} else {
+        } else {
             Node::operator =(other);
-	}
+        }
     }
     return *this;
 }
@@ -75,14 +76,16 @@ Entity::Entity(const Entity &) : Node()
 
 Entity &Entity::operator = (const Node &other)
 {
-    NodeImpl* ohandle = other.handle();
-    if ( impl != ohandle ) {
+    NodeImpl *ohandle = other.handle();
+    if (impl != ohandle) {
         if (!ohandle || ohandle->nodeType() != ENTITY_NODE) {
-	    if ( impl ) impl->deref();
+            if (impl) {
+                impl->deref();
+            }
             impl = 0;
-	} else {
+        } else {
             Node::operator =(other);
-	}
+        }
     }
     return *this;
 }
@@ -99,26 +102,29 @@ Entity::~Entity()
 
 DOMString Entity::publicId() const
 {
-    if (!impl)
-	return DOMString(); // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
+    if (!impl) {
+        return DOMString();    // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
+    }
 
-    return ((EntityImpl*)impl)->publicId();
+    return ((EntityImpl *)impl)->publicId();
 }
 
 DOMString Entity::systemId() const
 {
-    if (!impl)
-	return DOMString(); // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
+    if (!impl) {
+        return DOMString();    // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
+    }
 
-    return ((EntityImpl*)impl)->systemId();
+    return ((EntityImpl *)impl)->systemId();
 }
 
 DOMString Entity::notationName() const
 {
-    if (!impl)
-	return DOMString(); // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
+    if (!impl) {
+        return DOMString();    // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
+    }
 
-    return ((EntityImpl*)impl)->notationName();
+    return ((EntityImpl *)impl)->notationName();
 }
 
 Entity::Entity(EntityImpl *i) : Node(i)
@@ -137,14 +143,16 @@ EntityReference::EntityReference(const EntityReference &) : Node()
 
 EntityReference &EntityReference::operator = (const Node &other)
 {
-    NodeImpl* ohandle = other.handle();
-    if ( impl != ohandle ) {
+    NodeImpl *ohandle = other.handle();
+    if (impl != ohandle) {
         if (!ohandle || ohandle->nodeType() != ENTITY_REFERENCE_NODE) {
-	    if ( impl ) impl->deref();
+            if (impl) {
+                impl->deref();
+            }
             impl = 0;
-	} else {
+        } else {
             Node::operator =(other);
-	}
+        }
     }
     return *this;
 }
@@ -175,14 +183,16 @@ Notation::Notation(const Notation &) : Node()
 
 Notation &Notation::operator = (const Node &other)
 {
-    NodeImpl* ohandle = other.handle();
-    if ( impl != ohandle ) {
+    NodeImpl *ohandle = other.handle();
+    if (impl != ohandle) {
         if (!ohandle || ohandle->nodeType() != NOTATION_NODE) {
-	    if ( impl ) impl->deref();
+            if (impl) {
+                impl->deref();
+            }
             impl = 0;
-	} else {
+        } else {
             Node::operator =(other);
-	}
+        }
     }
     return *this;
 }
@@ -199,24 +209,25 @@ Notation::~Notation()
 
 DOMString Notation::publicId() const
 {
-    if (!impl)
-	return DOMString(); // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
+    if (!impl) {
+        return DOMString();    // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
+    }
 
-    return ((NotationImpl*)impl)->publicId();
+    return ((NotationImpl *)impl)->publicId();
 }
 
 DOMString Notation::systemId() const
 {
-    if (!impl)
-	return DOMString(); // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
+    if (!impl) {
+        return DOMString();    // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
+    }
 
-    return ((NotationImpl*)impl)->systemId();
+    return ((NotationImpl *)impl)->systemId();
 }
 
 Notation::Notation(NotationImpl *i) : Node(i)
 {
 }
-
 
 // ----------------------------------------------------------------------------
 
@@ -231,14 +242,16 @@ ProcessingInstruction::ProcessingInstruction(const ProcessingInstruction &)
 
 ProcessingInstruction &ProcessingInstruction::operator = (const Node &other)
 {
-    NodeImpl* ohandle = other.handle();
-    if ( impl != ohandle ) {
+    NodeImpl *ohandle = other.handle();
+    if (impl != ohandle) {
         if (!ohandle || ohandle->nodeType() != PROCESSING_INSTRUCTION_NODE) {
-	    if ( impl ) impl->deref();
+            if (impl) {
+                impl->deref();
+            }
             impl = 0;
-	} else {
+        } else {
             Node::operator =(other);
-	}
+        }
     }
     return *this;
 }
@@ -255,29 +268,33 @@ ProcessingInstruction::~ProcessingInstruction()
 
 DOMString ProcessingInstruction::target() const
 {
-    if (!impl)
-	return DOMString(); // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
+    if (!impl) {
+        return DOMString();    // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
+    }
 
-    return ((ProcessingInstructionImpl*)impl)->target();
+    return ((ProcessingInstructionImpl *)impl)->target();
 }
 
 DOMString ProcessingInstruction::data() const
 {
-    if (!impl)
-	return DOMString(); // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
+    if (!impl) {
+        return DOMString();    // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
+    }
 
-    return ((ProcessingInstructionImpl*)impl)->data();
+    return ((ProcessingInstructionImpl *)impl)->data();
 }
 
-void ProcessingInstruction::setData( const DOMString &_data )
+void ProcessingInstruction::setData(const DOMString &_data)
 {
-    if (!impl)
-	return; // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
+    if (!impl) {
+        return;    // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
+    }
 
     int exceptioncode = 0;
-    ((ProcessingInstructionImpl*)impl)->setData(_data, exceptioncode);
-    if (exceptioncode)
-	throw DOMException(exceptioncode);
+    ((ProcessingInstructionImpl *)impl)->setData(_data, exceptioncode);
+    if (exceptioncode) {
+        throw DOMException(exceptioncode);
+    }
 }
 
 ProcessingInstruction::ProcessingInstruction(ProcessingInstructionImpl *i) : Node(i)
@@ -286,8 +303,9 @@ ProcessingInstruction::ProcessingInstruction(ProcessingInstructionImpl *i) : Nod
 
 StyleSheet ProcessingInstruction::sheet() const
 {
-    if (impl) return ((ProcessingInstructionImpl*)impl)->sheet();
+    if (impl) {
+        return ((ProcessingInstructionImpl *)impl)->sheet();
+    }
     return 0;
 }
-
 

@@ -42,19 +42,18 @@
 #include <QtGlobal>
 
 struct MetricsInfo {
-    const char* name;
+    const char *name;
     int ascent;
     int descent;
     int leading;
 };
 
-
 typedef QFixed QtFontDim;
 
-static int dimToInt(QtFontDim dim) {
+static int dimToInt(QtFontDim dim)
+{
     return dim.toInt();
 }
-
 
 static const MetricsInfo compatMetrics[] = {
     {"-Adobe-Courier-Medium-R-Normal--10-100-75-75-M-60-ISO10646-1", 8, 1, 2},
@@ -156,11 +155,12 @@ static const MetricsInfo compatMetrics[] = {
     {0, 0, 0, 0}
 };
 
-static const MetricsInfo* grabMetrics(const QString &name)
+static const MetricsInfo *grabMetrics(const QString &name)
 {
     for (int pos = 0; compatMetrics[pos].name; ++pos)
-        if (name == QLatin1String(compatMetrics[pos].name))
+        if (name == QLatin1String(compatMetrics[pos].name)) {
             return &compatMetrics[pos];
+        }
     return 0;
 }
 
@@ -169,22 +169,24 @@ class QFakeFontEngine : public QFontEngineXLFD
 public:
     QString name;
 
-    QFakeFontEngine( XFontStruct *fs, const char *name, int size );
+    QFakeFontEngine(XFontStruct *fs, const char *name, int size);
     ~QFakeFontEngine();
 
     bool  haveMetrics;
     QtFontDim m_ascent, m_descent, m_leading;
     bool  ahem;
     int   pixS;
-    XFontStruct* xfs;
+    XFontStruct *xfs;
 
-    QtFontDim fallBackWidth() const {
+    QtFontDim fallBackWidth() const
+    {
         QtFontDim fbw = xfs->min_bounds.width;
         if (xfs->per_char) {
-            if (haveMetrics)
-                fbw = m_ascent; //### we really should get rid of these and regen..
-            else
+            if (haveMetrics) {
+                fbw = m_ascent;    //### we really should get rid of these and regen..
+            } else {
                 fbw = xfs->ascent;
+            }
         }
         return fbw;
     }
@@ -198,10 +200,11 @@ public:
         QtFontDim fbw = fallBackWidth();
 
         for (int c = 0; c < glyphs->numGlyphs; ++c) {
-            if (glyphs->glyphs[c] == 0x200B) // ZERO WIDTH SPACE
+            if (glyphs->glyphs[c] == 0x200B) { // ZERO WIDTH SPACE
                 glyphs->advances_x[c] = 0;
-            else if (!glyphs->glyphs[c])
+            } else if (!glyphs->glyphs[c]) {
                 glyphs->advances_x[c] = fbw;
+            }
         }
     }
 
@@ -209,38 +212,41 @@ public:
     {
         if (ahem) {
             return QFontEngine::Freetype;
-        } else
+        } else {
             return QFontEngine::XLFD;
+        }
     }
-
 
     QtFontDim ascent() const
     {
-      if (haveMetrics)
-        return m_ascent;
-      else
-        return QFontEngineXLFD::ascent();
+        if (haveMetrics) {
+            return m_ascent;
+        } else {
+            return QFontEngineXLFD::ascent();
+        }
     }
 
     QtFontDim descent() const
     {
-      if (haveMetrics)
-        return m_descent;
-      else
-        return QFontEngineXLFD::descent();
+        if (haveMetrics) {
+            return m_descent;
+        } else {
+            return QFontEngineXLFD::descent();
+        }
     }
 
     QtFontDim leading() const
     {
-      if (ahem)
-        return 0;
-      else if (haveMetrics)
-        return m_leading;
-      else
-        return QFontEngineXLFD::leading();
+        if (ahem) {
+            return 0;
+        } else if (haveMetrics) {
+            return m_leading;
+        } else {
+            return QFontEngineXLFD::leading();
+        }
     }
 
-    bool canRender( const QChar *string,  int len );
+    bool canRender(const QChar *string,  int len);
 };
 
 //OK. This is evil. Since we don't use Xft, we hijack the FreeType painting hook in the X11 engine
@@ -254,10 +260,11 @@ void QX11PaintEngine::drawFreetype(const QPointF &p, const QTextItemInt &si)
 {
     int cnt = si.glyphs.numGlyphs;
 
-    if (!cnt) return;
+    if (!cnt) {
+        return;
+    }
 
-    QFakeFontEngine *eng = static_cast<QFakeFontEngine*>(si.fontEngine);
-
+    QFakeFontEngine *eng = static_cast<QFakeFontEngine *>(si.fontEngine);
 
     int x       = int(p.x());
     int y       = int(p.y());
@@ -266,18 +273,15 @@ void QX11PaintEngine::drawFreetype(const QPointF &p, const QTextItemInt &si)
     int ascent  = dimToInt(eng->ascent());
     int descent = dimToInt(eng->descent());
 
-    if (si.flags & QTextItem::RightToLeft)
-    {
+    if (si.flags & QTextItem::RightToLeft) {
         x       = x + advance * (cnt - 1);
         advance = -advance;
     }
 
-    for (int pos = 0; pos < cnt; ++pos)
-    {
+    for (int pos = 0; pos < cnt; ++pos) {
         QRect rect;
 
-        switch (si.chars[pos].unicode())
-        {
+        switch (si.chars[pos].unicode()) {
         case ' ':
         case 0x00A0: // NON-BREAKING SPACE
             rect = QRect();
@@ -297,197 +301,202 @@ void QX11PaintEngine::drawFreetype(const QPointF &p, const QTextItemInt &si)
             rect = QRect(x, y - ascent, pixS, pixS);
         }
 
-        QPainter* p = painter();
+        QPainter *p = painter();
         p->fillRect(rect, p->pen().color());
 
         x += advance;
     }
 }
 
-
-QFakeFontEngine::QFakeFontEngine( XFontStruct *fs, const char *name, int size )
-    : QFontEngineXLFD( fs,  name,  0)
+QFakeFontEngine::QFakeFontEngine(XFontStruct *fs, const char *name, int size)
+    : QFontEngineXLFD(fs,  name,  0)
 {
     xfs = fs;
     pixS = size;
     this->name = QLatin1String(name);
     ahem = this->name.contains("ahem");
 
-    const MetricsInfo* metrics = grabMetrics(name);
-    if (metrics)
-    {
+    const MetricsInfo *metrics = grabMetrics(name);
+    if (metrics) {
         haveMetrics = true;
         m_ascent  = metrics->ascent;
         m_descent = metrics->descent;
         m_leading = metrics->leading;
-    }
-    else
+    } else {
         haveMetrics = false;
+    }
 }
 
 QFakeFontEngine::~QFakeFontEngine()
 {
 }
 
-
-bool QFakeFontEngine::canRender( const QChar *, int )
+bool QFakeFontEngine::canRender(const QChar *, int)
 {
     return true;
 }
 
-static QString courier_pickxlfd( int pixelsize, bool italic, bool bold )
+static QString courier_pickxlfd(int pixelsize, bool italic, bool bold)
 {
-    if ( pixelsize >= 24 )
+    if (pixelsize >= 24) {
         pixelsize = 24;
-    else if ( pixelsize >= 18 )
+    } else if (pixelsize >= 18) {
         pixelsize = 18;
-    else if ( pixelsize >= 12 )
+    } else if (pixelsize >= 12) {
         pixelsize = 12;
-    else
+    } else {
         pixelsize = 10;
+    }
 
-    return QString( "-adobe-courier-%1-%2-normal--%3-*-75-75-m-*-iso10646-1" ).arg( bold ? "bold" : "medium" ).arg( italic ? "o" : "r" ).arg( pixelsize );
+    return QString("-adobe-courier-%1-%2-normal--%3-*-75-75-m-*-iso10646-1").arg(bold ? "bold" : "medium").arg(italic ? "o" : "r").arg(pixelsize);
 }
 
-static QString ahem_pickxlfd( int pixelsize )
+static QString ahem_pickxlfd(int pixelsize)
 {
-    return QString( "-misc-ahem-medium-r-normal--%1-*-100-100-c-*-iso10646-1" ).arg( pixelsize );
+    return QString("-misc-ahem-medium-r-normal--%1-*-100-100-c-*-iso10646-1").arg(pixelsize);
 }
 
-static QString helv_pickxlfd( int pixelsize, bool italic, bool bold )
+static QString helv_pickxlfd(int pixelsize, bool italic, bool bold)
 {
-    if ( pixelsize >= 24 )
+    if (pixelsize >= 24) {
         pixelsize = 24;
-    else if ( pixelsize >= 18 )
+    } else if (pixelsize >= 18) {
         pixelsize = 18;
-    else if ( pixelsize >= 12 )
+    } else if (pixelsize >= 12) {
         pixelsize = 12;
-    else
+    } else {
         pixelsize = 10;
+    }
 
-    return QString( "-adobe-helvetica-%1-%2-normal--%3-*-75-75-p-*-iso10646-1" ).arg( bold ? "bold" : "medium" ).arg( italic ? "o" : "r" ).arg( pixelsize );
+    return QString("-adobe-helvetica-%1-%2-normal--%3-*-75-75-p-*-iso10646-1").arg(bold ? "bold" : "medium").arg(italic ? "o" : "r").arg(pixelsize);
 
 }
 
-static QFontEngine* loadFont(const QFontDef& request)
+static QFontEngine *loadFont(const QFontDef &request)
 {
     QString xlfd;
     QStringList flist = request.family.toLower().split(",");
     foreach (QString family, flist) {
-        if (!KHTMLSettings::availableFamilies().contains( ","+ family + ",", Qt::CaseInsensitive ))
+        if (!KHTMLSettings::availableFamilies().contains("," + family + ",", Qt::CaseInsensitive)) {
             continue;
+        }
 
-        if ( family == "adobe courier" || family == "courier" || family == "fixed" ) {
-            xlfd = courier_pickxlfd( request.pixelSize, request.style == QFont::StyleItalic, request.weight > 50 );
-        } else if ( family == "times new roman" || family == "times" ) {
+        if (family == "adobe courier" || family == "courier" || family == "fixed") {
+            xlfd = courier_pickxlfd(request.pixelSize, request.style == QFont::StyleItalic, request.weight > 50);
+        } else if (family == "times new roman" || family == "times") {
             xlfd = "-adobe-times-medium-r-normal--8-80-75-75-p-44-iso10646-1";
-        } else if ( family == "ahem" ) {
-            xlfd = ahem_pickxlfd( request.pixelSize );
+        } else if (family == "ahem") {
+            xlfd = ahem_pickxlfd(request.pixelSize);
         } else {
-            xlfd = helv_pickxlfd( request.pixelSize,  request.style == QFont::StyleItalic, request.weight > 50 );
+            xlfd = helv_pickxlfd(request.pixelSize,  request.style == QFont::StyleItalic, request.weight > 50);
         }
         break;
     }
     if (xlfd.isEmpty()) {
-        xlfd = helv_pickxlfd( request.pixelSize,  request.style == QFont::StyleItalic, request.weight > 50 );
+        xlfd = helv_pickxlfd(request.pixelSize,  request.style == QFont::StyleItalic, request.weight > 50);
     }
 
     QFontEngine *fe = 0;
 
     XFontStruct *xfs;
-	xfs = XLoadQueryFont( QX11Info::display(), xlfd.toLatin1() );
-    if (!xfs) // as long as you don't do screenshots, it's maybe fine
-	qFatal("we need some fonts. So make sure you have %s installed.", qPrintable(xlfd));
+    xfs = XLoadQueryFont(QX11Info::display(), xlfd.toLatin1());
+    if (!xfs) { // as long as you don't do screenshots, it's maybe fine
+        qFatal("we need some fonts. So make sure you have %s installed.", qPrintable(xlfd));
+    }
 
     unsigned long value;
-    if ( !XGetFontProperty( xfs, XA_FONT, &value ) )
+    if (!XGetFontProperty(xfs, XA_FONT, &value)) {
         return 0;
+    }
 
-	char *n = XGetAtomName( QX11Info::display(), value );
+    char *n = XGetAtomName(QX11Info::display(), value);
     xlfd = n;
-    if ( n )
-        XFree( n );
+    if (n) {
+        XFree(n);
+    }
 
-    fe = new QFakeFontEngine( xfs, xlfd.toLatin1(),request.pixelSize );
+    fe = new QFakeFontEngine(xfs, xlfd.toLatin1(), request.pixelSize);
     return fe;
 }
 
 Q_DECL_EXPORT
 QFontEngine *QFontDatabase::loadXlfd(int /* screen */, int /* script */,
-            const QFontDef &request, int /* force_encoding_id */)
+                                     const QFontDef &request, int /* force_encoding_id */)
 {
     return loadFont(request);
 }
 
-extern "C" Q_DECL_EXPORT int FcInit() {
+extern "C" Q_DECL_EXPORT int FcInit()
+{
     /* Make sure Qt uses the Xlfd path, which we intercept */
     return 0;
 }
 
-Q_DECL_EXPORT bool QFontDatabase::isBitmapScalable( const QString &,
-				      const QString &) const
+Q_DECL_EXPORT bool QFontDatabase::isBitmapScalable(const QString &,
+        const QString &) const
 {
     return true;
 }
 
-Q_DECL_EXPORT bool  QFontDatabase::isSmoothlyScalable( const QString &,
-                                         const QString &) const
+Q_DECL_EXPORT bool  QFontDatabase::isSmoothlyScalable(const QString &,
+        const QString &) const
 {
     return true;
 }
 
 const QString &KHTMLSettings::availableFamilies()
 {
-    if ( !avFamilies ) {
+    if (!avFamilies) {
         avFamilies = new QString;
         *avFamilies = ",Adobe Courier,Arial,Comic Sans MS,Courier,Helvetica,Times,Times New Roman,Utopia,Fixed,Ahem,";
     }
 
-  return *avFamilies;
+    return *avFamilies;
 }
-
 
 bool KHTMLSettings::unfinishedImageFrame() const
 {
-  return false;
+    return false;
 }
 
-Q_DECL_EXPORT int QX11Info::appDpiY( int )
+Q_DECL_EXPORT int QX11Info::appDpiY(int)
 {
     return 100;
 }
 
-Q_DECL_EXPORT int QX11Info::appDpiX( int )
+Q_DECL_EXPORT int QX11Info::appDpiX(int)
 {
     return 100;
 }
 
 Q_DECL_EXPORT void QFont::insertSubstitution(const QString &,
-                               const QString &)
+        const QString &)
 {
 }
 
 Q_DECL_EXPORT void QFont::insertSubstitutions(const QString &,
-                                const QStringList &)
+        const QStringList &)
 {
 }
 
 #include <kprotocolinfo.h>
-bool KProtocolInfo::isKnownProtocol( const QString& _protocol )
+bool KProtocolInfo::isKnownProtocol(const QString &_protocol)
 {
-    return ( _protocol == "file" );
+    return (_protocol == "file");
 }
 
 #include <kprotocolinfofactory.h>
 
-QString KProtocolInfo::exec( const QString& _protocol )
+QString KProtocolInfo::exec(const QString &_protocol)
 {
-    if ( _protocol != "file" )
+    if (_protocol != "file") {
         return QString();
+    }
 
     KProtocolInfo::Ptr prot = KProtocolInfoFactory::self()->findProtocol(_protocol);
-    if ( !prot )
+    if (!prot) {
         return QString();
+    }
 
     return prot->m_exec;
 }
@@ -512,16 +521,19 @@ void DCOPClient::processSocketData( int )
 #include <QPalette>
 
 #if 0
-Q_DECL_EXPORT void QApplication::setPalette( const QPalette &, bool ,
-                               const char*  )
+Q_DECL_EXPORT void QApplication::setPalette(const QPalette &, bool,
+        const char *)
 {
     static bool done = false;
-    if (done) return;
+    if (done) {
+        return;
+    }
     QString xlfd = AHEM;
     XFontStruct *xfs;
-    xfs = XLoadQueryFont(QPaintDevice::x11AppDisplay(), xlfd.toLatin1().constData() );
-    if (!xfs) // as long as you don't do screenshots, it's maybe fine
-	qFatal("We will need some fonts. So make sure you have %s installed.", xlfd.toLatin1().constData());
+    xfs = XLoadQueryFont(QPaintDevice::x11AppDisplay(), xlfd.toLatin1().constData());
+    if (!xfs) { // as long as you don't do screenshots, it's maybe fine
+        qFatal("We will need some fonts. So make sure you have %s installed.", xlfd.toLatin1().constData());
+    }
     XFreeFont(QPaintDevice::x11AppDisplay(), xfs);
     done = true;
 }
@@ -529,21 +541,32 @@ Q_DECL_EXPORT void QApplication::setPalette( const QPalette &, bool ,
 
 #include <kparts/historyprovider.h>
 
-bool KParts::HistoryProvider::contains( const QString& t ) const
+bool KParts::HistoryProvider::contains(const QString &t) const
 {
-    return ( t == "http://www.kde.org/" || t == "http://www.google.com/");
+    return (t == "http://www.kde.org/" || t == "http://www.google.com/");
 }
-
 
 #include <ksslsettings.h>
 
-bool KSSLSettings::warnOnEnter() const       { return false; }
-bool KSSLSettings::warnOnUnencrypted() const { return false; }
-bool KSSLSettings::warnOnLeave() const       { return false; }
+bool KSSLSettings::warnOnEnter() const
+{
+    return false;
+}
+bool KSSLSettings::warnOnUnencrypted() const
+{
+    return false;
+}
+bool KSSLSettings::warnOnLeave() const
+{
+    return false;
+}
 
 #include <kparts/plugin.h>
 
-KParts::Plugin* KParts::Plugin::loadPlugin( QObject * /* parent */, const char* /* libname */) { return 0; }
+KParts::Plugin *KParts::Plugin::loadPlugin(QObject * /* parent */, const char * /* libname */)
+{
+    return 0;
+}
 
 #include <klineedit.h>
 

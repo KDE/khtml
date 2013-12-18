@@ -28,20 +28,22 @@
 #include <QTimer>
 #include <QVector>
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 AnimTimer::AnimTimer()
 {
     animTicks = new QTimer(this);
     connect(animTicks, SIGNAL(timeout()),
-            this,      SLOT  (tick()));
+            this,      SLOT(tick()));
 }
 
-void AnimTimer::nextFrameIn(AnimProvider* provider, int ms)
+void AnimTimer::nextFrameIn(AnimProvider *provider, int ms)
 {
-    if (pending.contains(provider))
+    if (pending.contains(provider)) {
         return;
-        
+    }
+
     pending[provider] = ms;
 
     if (!animTicks->isActive()) {
@@ -55,36 +57,37 @@ void AnimTimer::tick()
     QTime newTime = QTime::currentTime();
     int   change  = lastTime.msecsTo(newTime);
     lastTime      = newTime;
-    if (change < 1) change = 1; //Just in case someone changes the clock or something
-
-    QVector<AnimProvider*> toHandle;
-    
-    for (QMap<AnimProvider*, int>::iterator iter = pending.begin(); 
-         iter != pending.end(); ++iter)
-    {
-        iter.value() -= change;
-        if (iter.value() <= 0)
-            toHandle.append(iter.key());
+    if (change < 1) {
+        change = 1;    //Just in case someone changes the clock or something
     }
-        
+
+    QVector<AnimProvider *> toHandle;
+
+    for (QMap<AnimProvider *, int>::iterator iter = pending.begin();
+            iter != pending.end(); ++iter) {
+        iter.value() -= change;
+        if (iter.value() <= 0) {
+            toHandle.append(iter.key());
+        }
+    }
+
     //Notify all images for the given slice.
-    QVector<AnimProvider*>::const_iterator iter;
+    QVector<AnimProvider *>::const_iterator iter;
     for (iter  = toHandle.constBegin();
-         iter != toHandle.constEnd()  ; ++iter)
-    {
+            iter != toHandle.constEnd(); ++iter) {
         pending.remove(*iter);
         (*iter)->switchFrame();
     }
 
-    if (pending.isEmpty())
+    if (pending.isEmpty()) {
         animTicks->stop();
+    }
 }
 
-void AnimTimer::destroyed(AnimProvider* provider)
+void AnimTimer::destroyed(AnimProvider *provider)
 {
     pending.remove(provider);
 }
 
 }
 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

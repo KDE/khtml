@@ -22,7 +22,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include <wtf/Platform.h>
@@ -46,9 +46,10 @@ const double doubleMax = 999999999.8; // ### numeric_limits<double>::max()
 const double doubleInf = 999999999.0; // ### numeric_limits<double>::infinity()
 
 using namespace DOM;
-namespace khtml {
+namespace khtml
+{
 
-HTMLMediaElement::HTMLMediaElement(Document* doc)
+HTMLMediaElement::HTMLMediaElement(Document *doc)
     : HTMLElement(doc)
     , m_defaultPlaybackRate(1.0f)
     , m_networkState(NETWORK_EMPTY)
@@ -75,21 +76,21 @@ void HTMLMediaElement::attach()
     assert(!m_render);
     assert(parentNode());
 
-    RenderStyle* _style = document()->styleSelector()->styleForElement(this);
+    RenderStyle *_style = document()->styleSelector()->styleForElement(this);
     _style->ref();
     if (parentNode()->renderer() && parentNode()->renderer()->childAllowed() &&
-        _style->display() != NONE)
-    {
-        m_render = new (document()->renderArena()) RenderMedia(this);
-        static_cast<RenderMedia*>(m_render)->setPlayer(m_player.data());
+            _style->display() != NONE) {
+        m_render = new(document()->renderArena()) RenderMedia(this);
+        static_cast<RenderMedia *>(m_render)->setPlayer(m_player.data());
         m_render->setStyle(_style);
         parentNode()->renderer()->addChild(m_render, nextRenderer());
     }
     _style->deref();
 
     NodeBaseImpl::attach();
-    if (m_render)
-	m_render->updateFromElement();
+    if (m_render) {
+        m_render->updateFromElement();
+    }
     setRenderer(m_render);
     updateLoadState();
 }
@@ -98,13 +99,16 @@ void HTMLMediaElement::close()
 {
     HTMLElement::close();
     updateLoadState();
-    if (renderer())
+    if (renderer()) {
         renderer()->updateFromElement();
+    }
 }
 
 HTMLMediaElement::~HTMLMediaElement()
 {
-    if (m_player) m_player->deleteLater();
+    if (m_player) {
+        m_player->deleteLater();
+    }
 }
 
 void HTMLMediaElement::attributeChanged(NodeImpl::Id attrId)
@@ -114,16 +118,18 @@ void HTMLMediaElement::attributeChanged(NodeImpl::Id attrId)
     if (attrId == ATTR_SRC) {
         // 3.14.9.2.
         // change to src attribute triggers load()
-        if (inDocument() && m_networkState == NETWORK_EMPTY)
+        if (inDocument() && m_networkState == NETWORK_EMPTY) {
             scheduleLoad();
-	updateLoadState();
+        }
+        updateLoadState();
     } if (attrId == ATTR_CONTROLS) {
         /*if (!isVideo() && attached() && (controls() != (renderer() != 0))) {
             detach();
             attach();
         }*/
-        if (renderer())
+        if (renderer()) {
             renderer()->updateFromElement();
+        }
     }
 }
 
@@ -140,7 +146,7 @@ String serializeTimeOffset(float time)
     return timeString;
 }
 
-PassRefPtr<MediaError> HTMLMediaElement::error() const 
+PassRefPtr<MediaError> HTMLMediaElement::error() const
 {
     return m_error;
 }
@@ -150,7 +156,7 @@ String HTMLMediaElement::src() const
     return document()->completeURL(getAttribute(ATTR_SRC).string());
 }
 
-void HTMLMediaElement::setSrc(const String& url)
+void HTMLMediaElement::setSrc(const String &url)
 {
     setAttribute(ATTR_SRC, url);
 }
@@ -167,7 +173,7 @@ HTMLMediaElement::NetworkState HTMLMediaElement::networkState() const
 
 bool HTMLMediaElement::autobuffer() const
 {
-   return m_autobuffer;
+    return m_autobuffer;
 }
 
 void HTMLMediaElement::setAutobuffer(bool b)
@@ -175,7 +181,7 @@ void HTMLMediaElement::setAutobuffer(bool b)
     m_autobuffer = b;
 }
 
-void HTMLMediaElement::load(ExceptionCode&)
+void HTMLMediaElement::load(ExceptionCode &)
 {
     loadResource(m_currentSrc);
 }
@@ -183,22 +189,24 @@ void HTMLMediaElement::load(ExceptionCode&)
 void HTMLMediaElement::loadResource(String &url)
 {
     QUrl kurl(url.string());
-    if (!m_player)
+    if (!m_player) {
         return;
-    if (autoplay())
+    }
+    if (autoplay()) {
         m_player->play(kurl);
-    else
+    } else {
         m_player->load(kurl);
+    }
 }
 
 void HTMLMediaElement::updateLoadState()
 {
     String url = pickMedia();
     if (currentSrc() != url) {
-	m_currentSrc = url;
-	if (m_autobuffer) {
-	    loadResource(url);
-	}
+        m_currentSrc = url;
+        if (m_autobuffer) {
+            loadResource(url);
+        }
     }
 }
 
@@ -206,25 +214,30 @@ String HTMLMediaElement::canPlayType(String type)
 {
     QString theType = type.string().simplified();
     int paramsIdx = theType.indexOf(';');
-    bool hasParams = (paramsIdx > 0 );
+    bool hasParams = (paramsIdx > 0);
     // FIXME: Phonon doesn't provide the API to handle codec parameters yet
-    if (hasParams)
+    if (hasParams) {
         theType.truncate(paramsIdx);
-    if (theType == QLatin1String("audio/ogg") || theType == QLatin1String("video/ogg"))
+    }
+    if (theType == QLatin1String("audio/ogg") || theType == QLatin1String("video/ogg")) {
         theType = QLatin1String("application/ogg");
-    if (Phonon::BackendCapabilities::isMimeTypeAvailable(theType))
+    }
+    if (Phonon::BackendCapabilities::isMimeTypeAvailable(theType)) {
         return "probably";
-    if (theType == QLatin1String("application/octet-stream") && hasParams)
+    }
+    if (theType == QLatin1String("application/octet-stream") && hasParams) {
         return "";
+    }
     return "maybe";
 }
 
 void HTMLMediaElement::setReadyState(ReadyState state)
 {
     // 3.14.9.6. The ready states
-    if (m_readyState == state)
+    if (m_readyState == state) {
         return;
-    
+    }
+
     // ###
 
     updatePlayState();
@@ -243,14 +256,16 @@ bool HTMLMediaElement::seeking() const
 // playback state
 float HTMLMediaElement::currentTime() const
 {
-    if (!m_player)
+    if (!m_player) {
         return 0;
-    if (m_seeking)
+    }
+    if (m_seeking) {
         return m_currentTimeDuringSeek;
+    }
     return m_player->currentTime();
 }
 
-void HTMLMediaElement::setCurrentTime(float time, ExceptionCode& ec)
+void HTMLMediaElement::setCurrentTime(float time, ExceptionCode &ec)
 {
     Q_UNUSED(time);
     Q_UNUSED(ec);
@@ -277,7 +292,7 @@ float HTMLMediaElement::defaultPlaybackRate() const
     return m_defaultPlaybackRate;
 }
 
-void HTMLMediaElement::setDefaultPlaybackRate(float rate, ExceptionCode& ec)
+void HTMLMediaElement::setDefaultPlaybackRate(float rate, ExceptionCode &ec)
 {
     if (rate == 0.0f) {
         ec = DOMException::NOT_SUPPORTED_ERR;
@@ -294,12 +309,12 @@ float HTMLMediaElement::playbackRate() const
     return 0; // stub...
 }
 
-void HTMLMediaElement::setPlaybackRate(float rate, ExceptionCode& ec)
+void HTMLMediaElement::setPlaybackRate(float rate, ExceptionCode &ec)
 {
     Q_UNUSED(rate);
     Q_UNUSED(ec);
     // stub
-    #if 0
+#if 0
     if (rate == 0.0f) {
         ec = DOMException::NOT_SUPPORTED_ERR;
         return;
@@ -308,7 +323,7 @@ void HTMLMediaElement::setPlaybackRate(float rate, ExceptionCode& ec)
         m_player->setRate(rate);
         // ### dispatchEventAsync(ratechangeEvent);
     }
-    #endif
+#endif
 }
 
 bool HTMLMediaElement::ended() const
@@ -336,39 +351,41 @@ void HTMLMediaElement::setLoop(bool b)
     setBooleanAttribute(ATTR_LOOP, b);
 }
 
-void HTMLMediaElement::play(ExceptionCode& ec)
+void HTMLMediaElement::play(ExceptionCode &ec)
 {
     // 3.14.9.7. Playing the media resource
     if (!m_player || networkState() == NETWORK_EMPTY) {
         ec = 0;
         load(ec);
-        if (ec)
+        if (ec) {
             return;
+        }
     }
     ExceptionCode unused;
     if (endedPlayback()) {
         // ### seek(effectiveStart(), unused);
     }
     setPlaybackRate(defaultPlaybackRate(), unused);
-    
+
     if (m_paused) {
         m_paused = false;
         // ### dispatchEventAsync(playEvent);
     }
 
     m_autoplaying = false;
-    
+
     updatePlayState();
 }
 
-void HTMLMediaElement::pause(ExceptionCode& ec)
+void HTMLMediaElement::pause(ExceptionCode &ec)
 {
     // 3.14.9.7. Playing the media resource
     if (!m_player || networkState() == NETWORK_EMPTY) {
         ec = 0;
         load(ec);
-        if (ec)
+        if (ec) {
             return;
+        }
     }
 
     if (!m_paused) {
@@ -378,7 +395,7 @@ void HTMLMediaElement::pause(ExceptionCode& ec)
     }
 
     m_autoplaying = false;
-    
+
     updatePlayState();
 }
 
@@ -397,13 +414,13 @@ float HTMLMediaElement::volume() const
     return m_volume;
 }
 
-void HTMLMediaElement::setVolume(float vol, ExceptionCode& ec)
+void HTMLMediaElement::setVolume(float vol, ExceptionCode &ec)
 {
     if (vol < 0.0f || vol > 1.0f) {
         ec = DOMException::INDEX_SIZE_ERR;
         return;
     }
-    
+
     if (m_volume != vol) {
         m_volume = vol;
         updateVolume();
@@ -427,39 +444,43 @@ void HTMLMediaElement::setMuted(bool muted)
 
 String HTMLMediaElement::pickMedia()
 {
-    if (!document())
-	return String();
+    if (!document()) {
+        return String();
+    }
     // 3.14.9.2. Location of the media resource
     String mediaSrc = getAttribute(ATTR_SRC);
     String maybeSrc;
     if (mediaSrc.isEmpty()) {
-        for (NodeImpl* n = firstChild(); n; n = n->nextSibling()) {
+        for (NodeImpl *n = firstChild(); n; n = n->nextSibling()) {
             if (n->id() == ID_SOURCE) {
                 String match = "maybe";
-                HTMLSourceElement* source = static_cast<HTMLSourceElement*>(n);
-                if (!source->hasAttribute(ATTR_SRC))
+                HTMLSourceElement *source = static_cast<HTMLSourceElement *>(n);
+                if (!source->hasAttribute(ATTR_SRC)) {
                     continue;
+                }
                 if (source->hasAttribute(ATTR_TYPE)) {
                     String type = source->type();
                     match = canPlayType(type);
                 }
-                if (match == "maybe" && maybeSrc.isEmpty())
+                if (match == "maybe" && maybeSrc.isEmpty()) {
                     maybeSrc = source->src().string();
-                else
-                if (match == "probably") {
+                } else if (match == "probably") {
                     mediaSrc = source->src().string();
                     break;
                 }
             }
         }
     }
-    if (mediaSrc.isEmpty())
+    if (mediaSrc.isEmpty()) {
         mediaSrc = maybeSrc;
-    if (mediaSrc.isEmpty())
-	return mediaSrc;
-    DocLoader* loader = document()->docLoader();
-    if (!loader || !loader->willLoadMediaElement(mediaSrc))
-	return String();
+    }
+    if (mediaSrc.isEmpty()) {
+        return mediaSrc;
+    }
+    DocLoader *loader = document()->docLoader();
+    if (!loader || !loader->willLoadMediaElement(mediaSrc)) {
+        return String();
+    }
     mediaSrc = document()->completeURL(mediaSrc.string());
     return mediaSrc;
 }
@@ -472,11 +493,12 @@ void HTMLMediaElement::checkIfSeekNeeded()
 PassRefPtr<TimeRanges> HTMLMediaElement::buffered() const
 {
     // FIXME real ranges support
-    #if 0
-    if (!m_player || !m_player->maxTimeBuffered())
+#if 0
+    if (!m_player || !m_player->maxTimeBuffered()) {
         return new TimeRanges;
+    }
     return new TimeRanges(0, m_player->maxTimeBuffered());
-    #endif
+#endif
     return new TimeRanges(0, 0.0f); // stub
 }
 
@@ -488,12 +510,13 @@ PassRefPtr<TimeRanges> HTMLMediaElement::played() const
 
 PassRefPtr<TimeRanges> HTMLMediaElement::seekable() const
 {
-    #if 0
+#if 0
     // FIXME real ranges support
-    if (!m_player || !m_player->maxTimeSeekable())
+    if (!m_player || !m_player->maxTimeSeekable()) {
         return new TimeRanges;
+    }
     return new TimeRanges(0, m_player->maxTimeSeekable());
-    #endif
+#endif
     return new TimeRanges(0, 0.0f); // stub
 }
 
@@ -507,26 +530,31 @@ bool HTMLMediaElement::endedPlayback() const
 
 void HTMLMediaElement::updateVolume()
 {
-    if (!m_player)
+    if (!m_player) {
         return;
+    }
 
     m_player->setVolume(m_muted ? 0 : m_volume);
-    
-    if (renderer())
+
+    if (renderer()) {
         renderer()->updateFromElement();
+    }
 }
 
 void HTMLMediaElement::updatePlayState()
 {
-    if (!m_player)
+    if (!m_player) {
         return;
-    if (m_autoplaying)
+    }
+    if (m_autoplaying) {
         return;
-    if (m_paused && !m_player->isPaused())
+    }
+    if (m_paused && !m_player->isPaused()) {
         m_player->pause();
-    if (!m_paused && !m_player->isPlaying())
+    }
+    if (!m_paused && !m_player->isPlaying()) {
         m_player->play();
+    }
 }
 
 }
-// kate: indent-width 4; replace-tabs on; tab-width 8; space-indent on;

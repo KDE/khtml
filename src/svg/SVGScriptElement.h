@@ -30,38 +30,43 @@
 
 namespace WebCore
 {
-    class SVGScriptElement : public SVGElement,
-                             public SVGURIReference,
-                             public SVGExternalResourcesRequired
+class SVGScriptElement : public SVGElement,
+    public SVGURIReference,
+    public SVGExternalResourcesRequired
+{
+public:
+    SVGScriptElement(const QualifiedName &, Document *);
+    virtual ~SVGScriptElement();
+
+    // 'SVGScriptElement' functions
+    String type() const;
+    void setType(const String &);
+
+    // Internal
+    virtual void parseMappedAttribute(MappedAttribute *attr);
+
+    virtual void getSubresourceAttributeStrings(Vector<String> &) const;
+
+    // KHTML ElementImpl pure virtual method
+    virtual quint32 id() const
     {
-    public:
-        SVGScriptElement(const QualifiedName&, Document*);
-        virtual ~SVGScriptElement();
+        return SVGNames::scriptTag.id();
+    }
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
 
-        // 'SVGScriptElement' functions
-        String type() const;
-        void setType(const String&);
+private:
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
 
-        // Internal
-        virtual void parseMappedAttribute(MappedAttribute *attr);
-
-        virtual void getSubresourceAttributeStrings(Vector<String>&) const;
-
-        // KHTML ElementImpl pure virtual method
-        virtual quint32 id() const { return SVGNames::scriptTag.id(); }
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
-
-    private:
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
-
-        String m_type;
-    };
+    String m_type;
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

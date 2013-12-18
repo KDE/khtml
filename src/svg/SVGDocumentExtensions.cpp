@@ -42,9 +42,10 @@
 #include "kjs_proxy.h"
 #include "khtml_part.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGDocumentExtensions::SVGDocumentExtensions(Document* doc)
+SVGDocumentExtensions::SVGDocumentExtensions(Document *doc)
     : m_doc(doc)
 {
 }
@@ -55,24 +56,25 @@ SVGDocumentExtensions::~SVGDocumentExtensions()
     deleteAllValues(m_elementInstances);
 }
 
-EventListener* SVGDocumentExtensions::createSVGEventListener(const DOMString& functionName, const DOMString& code, DOM::NodeImpl* node)
+EventListener *SVGDocumentExtensions::createSVGEventListener(const DOMString &functionName, const DOMString &code, DOM::NodeImpl *node)
 {
     /*if (Frame* frame = m_doc->frame())
         if (frame->scriptProxy()->isEnabled())
             return frame->scriptProxy()->createSVGEventHandler(functionName, code, node);*/
-    if (!m_doc || !m_doc->part())
+    if (!m_doc || !m_doc->part()) {
         return 0;
+    }
     // qDebug() << "create listener: (" << code << functionName << node << ")" << endl;
     return m_doc->part()->createHTMLEventListener(code.string(), functionName.string(), node, true/*svg*/);
 }
 
-void SVGDocumentExtensions::addTimeContainer(SVGSVGElement* element)
+void SVGDocumentExtensions::addTimeContainer(SVGSVGElement *element)
 {
     Q_UNUSED(element);
     /*m_timeContainers.add(element);*/
 }
 
-void SVGDocumentExtensions::removeTimeContainer(SVGSVGElement* element)
+void SVGDocumentExtensions::removeTimeContainer(SVGSVGElement *element)
 {
     Q_UNUSED(element);
     /*m_timeContainers.remove(element);*/
@@ -83,47 +85,51 @@ void SVGDocumentExtensions::startAnimations()
     // FIXME: Eventually every "Time Container" will need a way to latch on to some global timer
     // starting animations for a document will do this "latching"
 #if ENABLE(SVG_ANIMATION)
-    HashSet<SVGSVGElement*>::iterator end = m_timeContainers.end();
-    for (HashSet<SVGSVGElement*>::iterator itr = m_timeContainers.begin(); itr != end; ++itr)
+    HashSet<SVGSVGElement *>::iterator end = m_timeContainers.end();
+    for (HashSet<SVGSVGElement *>::iterator itr = m_timeContainers.begin(); itr != end; ++itr) {
         (*itr)->timeContainer()->begin();
+    }
 #endif
 }
 
 void SVGDocumentExtensions::pauseAnimations()
 {
-    HashSet<SVGSVGElement*>::iterator end = m_timeContainers.end();
-    for (HashSet<SVGSVGElement*>::iterator itr = m_timeContainers.begin(); itr != end; ++itr)
+    HashSet<SVGSVGElement *>::iterator end = m_timeContainers.end();
+    for (HashSet<SVGSVGElement *>::iterator itr = m_timeContainers.begin(); itr != end; ++itr) {
         (*itr)->pauseAnimations();
+    }
 }
 
 void SVGDocumentExtensions::unpauseAnimations()
 {
-    HashSet<SVGSVGElement*>::iterator end = m_timeContainers.end();
-    for (HashSet<SVGSVGElement*>::iterator itr = m_timeContainers.begin(); itr != end; ++itr)
+    HashSet<SVGSVGElement *>::iterator end = m_timeContainers.end();
+    for (HashSet<SVGSVGElement *>::iterator itr = m_timeContainers.begin(); itr != end; ++itr) {
         (*itr)->unpauseAnimations();
+    }
 }
 
-void SVGDocumentExtensions::reportWarning(const String& message)
+void SVGDocumentExtensions::reportWarning(const String &message)
 {
     Q_UNUSED(message);
     /*if (Frame* frame = m_doc->frame())
         frame->domWindow()->console()->addMessage(JSMessageSource, ErrorMessageLevel, "Warning: " + message, m_doc->tokenizer() ? m_doc->tokenizer()->lineNumber() : 1, String());*/
 }
 
-void SVGDocumentExtensions::reportError(const String& message)
+void SVGDocumentExtensions::reportError(const String &message)
 {
     Q_UNUSED(message);
     /*if (Frame* frame = m_doc->frame())
         frame->domWindow()->console()->addMessage(JSMessageSource, ErrorMessageLevel, "Error: " + message, m_doc->tokenizer() ? m_doc->tokenizer()->lineNumber() : 1, String());*/
 }
 
-void SVGDocumentExtensions::addPendingResource(const AtomicString& id, SVGStyledElement* obj)
+void SVGDocumentExtensions::addPendingResource(const AtomicString &id, SVGStyledElement *obj)
 {
     ASSERT(obj);
     Q_UNUSED(obj);
 
-    if (id.isEmpty())
+    if (id.isEmpty()) {
         return;
+    }
 
     /*if (m_pendingResources.contains(id))
         m_pendingResources.get(id)->add(obj);
@@ -135,18 +141,18 @@ void SVGDocumentExtensions::addPendingResource(const AtomicString& id, SVGStyled
     }*/
 }
 
-bool SVGDocumentExtensions::isPendingResource(const AtomicString& id) const
+bool SVGDocumentExtensions::isPendingResource(const AtomicString &id) const
 {
     Q_UNUSED(id);
     /*if (id.isEmpty())
         return false;
 
     return m_pendingResources.contains(id);*/
-	ASSERT(false);
-	return false;
+    ASSERT(false);
+    return false;
 }
 
-std::auto_ptr<HashSet<SVGStyledElement*> > SVGDocumentExtensions::removePendingResource(const AtomicString& id)
+std::auto_ptr<HashSet<SVGStyledElement *> > SVGDocumentExtensions::removePendingResource(const AtomicString &id)
 {
     Q_UNUSED(id);
     /*ASSERT(m_pendingResources.contains(id));
@@ -154,36 +160,37 @@ std::auto_ptr<HashSet<SVGStyledElement*> > SVGDocumentExtensions::removePendingR
     std::auto_ptr<HashSet<SVGStyledElement*> > set(m_pendingResources.get(id));
     m_pendingResources.remove(id);
     return set;*/
-	ASSERT(false);
-	return std::auto_ptr<HashSet<SVGStyledElement*> >();
+    ASSERT(false);
+    return std::auto_ptr<HashSet<SVGStyledElement *> >();
 }
 
-void SVGDocumentExtensions::mapInstanceToElement(SVGElementInstance* instance, SVGElement* element)
+void SVGDocumentExtensions::mapInstanceToElement(SVGElementInstance *instance, SVGElement *element)
 {
     ASSERT(instance);
     ASSERT(element);
 
-    if (m_elementInstances.contains(element))
+    if (m_elementInstances.contains(element)) {
         m_elementInstances.get(element)->add(instance);
-    else {
-        HashSet<SVGElementInstance*>* set = new HashSet<SVGElementInstance*>();
+    } else {
+        HashSet<SVGElementInstance *> *set = new HashSet<SVGElementInstance *>();
         set->add(instance);
 
         m_elementInstances.add(element, set);
     }
 }
 
-void SVGDocumentExtensions::removeInstanceMapping(SVGElementInstance* instance, SVGElement* element)
+void SVGDocumentExtensions::removeInstanceMapping(SVGElementInstance *instance, SVGElement *element)
 {
     ASSERT(instance);
 
-    if (!m_elementInstances.contains(element))
+    if (!m_elementInstances.contains(element)) {
         return;
+    }
 
     m_elementInstances.get(element)->remove(instance);
 }
 
-HashSet<SVGElementInstance*>* SVGDocumentExtensions::instancesForElement(SVGElement* element) const
+HashSet<SVGElementInstance *> *SVGDocumentExtensions::instancesForElement(SVGElement *element) const
 {
     ASSERT(element);
     return m_elementInstances.get(element);

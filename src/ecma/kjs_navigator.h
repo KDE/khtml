@@ -1,4 +1,3 @@
-// -*- c-basic-offset: 2 -*-
 /*
  *  This file is part of the KDE libraries
  *  Copyright (C) 2000 Harri Porten (porten@kde.org)
@@ -26,29 +25,38 @@
 
 class KHTMLPart;
 
-namespace KJS {
+namespace KJS
+{
 
-  class Navigator : public JSObject {
-  public:
+class Navigator : public JSObject
+{
+public:
     Navigator(ExecState *exec, KHTMLPart *p);
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier& propertyName, PropertySlot& slot);
+    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
     JSValue *getValueProperty(ExecState *exec, int token) const;
-    virtual const ClassInfo* classInfo() const { return &info; }
+    virtual const ClassInfo *classInfo() const
+    {
+        return &info;
+    }
     static const ClassInfo info;
     enum { AppCodeName, AppName, AppVersion, Language, UserAgent, UserLanguage, Platform,
            _Plugins, _MimeTypes, Product,  ProductSub, Vendor, VendorSub, CookieEnabled, JavaEnabled,
-           BrowserLanguage, CpuClass };
-    KHTMLPart *part() const { return m_part; }
-  private:
+           BrowserLanguage, CpuClass
+         };
+    KHTMLPart *part() const
+    {
+        return m_part;
+    }
+private:
     KHTMLPart *m_part;
-  };
+};
 
-  // Hashtable enums
-  enum { Plugins_Refresh, Plugins_Length, Plugins_Item, Plugins_NamedItem };
-  enum { MimeTypes_Length, MimeTypes_Item, MimeTypes_NamedItem };
-  enum { Plugin_Name, Plugin_FileName, Plugin_Description, Plugin_Length, Plugin_Item, Plugin_NamedItem };
-  enum { MimeType_Type, MimeType_Description, MimeType_EnabledPlugin, MimeType_Suffixes };
+// Hashtable enums
+enum { Plugins_Refresh, Plugins_Length, Plugins_Item, Plugins_NamedItem };
+enum { MimeTypes_Length, MimeTypes_Item, MimeTypes_NamedItem };
+enum { Plugin_Name, Plugin_FileName, Plugin_Description, Plugin_Length, Plugin_Item, Plugin_NamedItem };
+enum { MimeType_Type, MimeType_Description, MimeType_EnabledPlugin, MimeType_Suffixes };
 
 } // namespace
 

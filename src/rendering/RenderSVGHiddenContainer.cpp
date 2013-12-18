@@ -28,9 +28,10 @@
 #include "RenderPath.h"
 #include "SVGStyledElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-RenderSVGHiddenContainer::RenderSVGHiddenContainer(SVGStyledElement* element)
+RenderSVGHiddenContainer::RenderSVGHiddenContainer(SVGStyledElement *element)
     : RenderSVGContainer(element)
 {
 }
@@ -59,22 +60,25 @@ short RenderSVGHiddenContainer::baselinePosition(bool b) const
 void RenderSVGHiddenContainer::layout()
 {
     ASSERT(needsLayout());
- 
+
     // Layout our kids to prevent a kid from being marked as needing layout
     // then never being asked to layout.
-    for (RenderObject* child = firstChild(); child; child = child->nextSibling()) {
-        if (child->isText()) continue; // FIXME remove it, vtokarev
-        if (selfNeedsLayout())
+    for (RenderObject *child = firstChild(); child; child = child->nextSibling()) {
+        if (child->isText()) {
+            continue;    // FIXME remove it, vtokarev
+        }
+        if (selfNeedsLayout()) {
             child->setNeedsLayout(true);
-        
+        }
+
         child->layoutIfNeeded();
         //FIXME khtml vtokarev ASSERT(!child->needsLayout());
     }
-    
-    setNeedsLayout(false);    
+
+    setNeedsLayout(false);
 }
 
-void RenderSVGHiddenContainer::paint(PaintInfo&, int, int)
+void RenderSVGHiddenContainer::paint(PaintInfo &, int, int)
 {
     // This subtree does not paint.
 }
@@ -84,7 +88,7 @@ IntRect RenderSVGHiddenContainer::absoluteClippedOverflowRect()
     return IntRect();
 }
 
-void RenderSVGHiddenContainer::absoluteRects(Vector<IntRect>& rects, int, int, bool)
+void RenderSVGHiddenContainer::absoluteRects(Vector<IntRect> &rects, int, int, bool)
 {
     Q_UNUSED(rects);
     // This subtree does not take up space or paint

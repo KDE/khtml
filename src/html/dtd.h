@@ -44,16 +44,18 @@ extern const tagStatus endTagArray[];
 inline unsigned short tagPriority(quint32 tagId)
 {
     // Treat custom elements the same as <span>; also don't read past the end of the array.
-    if (tagId > ID_LAST_TAG)
+    if (tagId > ID_LAST_TAG) {
         return tagPriorityArray[ID_SPAN];
+    }
     return tagPriorityArray[tagId];
 }
 
 inline tagStatus endTagRequirement(quint32 tagId)
 {
     // Treat custom elements the same as <span>; also don't read past the end of the array.
-    if (tagId > ID_LAST_TAG)
+    if (tagId > ID_LAST_TAG) {
         return endTagArray[ID_SPAN];
+    }
     return endTagArray[tagId];
 }
 

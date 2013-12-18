@@ -27,20 +27,22 @@
 #include <QHash>
 #include <QBitArray>
 
-namespace khtml {
+namespace khtml
+{
 
 // Updateable Multi-String Matcher based on Rabin-Karp's algorithm
-class StringsMatcher {
+class StringsMatcher
+{
 public:
     // add filter to matching set
-    void addString(const QString& pattern);
+    void addString(const QString &pattern);
 
     // check if string matches at least one string from matching set,
     // optionally return the matching string or filter
-    bool isMatched(const QString& str, QString *by = 0) const;
+    bool isMatched(const QString &str, QString *by = 0) const;
 
     // add filter to matching set with wildcards (*,?) in it
-    void addWildedString(const QString& prefix, const QRegExp& rx);
+    void addWildedString(const QString &prefix, const QRegExp &rx);
 
     void clear();
 
@@ -56,14 +58,15 @@ private:
 
 // This represents a set of filters that may match URLs.
 // Currently it supports a subset of AddBlock Plus functionality.
-class FilterSet {
+class FilterSet
+{
 public:
     // Parses and registers a filter. This will also strip @@ for exclusion rules, skip comments, etc.
     // The user does have to split black and white lists into separate sets, however
-    void addFilter(const QString& filter);
+    void addFilter(const QString &filter);
 
-    bool isUrlMatched(const QString& url);
-    QString urlMatchedBy(const QString& url);
+    bool isUrlMatched(const QString &url);
+    QString urlMatchedBy(const QString &url);
 
     void clear();
 
@@ -74,4 +77,3 @@ private:
 
 }
 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

@@ -27,47 +27,73 @@
 
 #include "SVGPathSeg.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGPathSegLinetoVerticalAbs : public SVGPathSeg {
-    public:
-        static PassRefPtr<SVGPathSegLinetoVerticalAbs> create(float y) { return adoptRef(new SVGPathSegLinetoVerticalAbs(y)); }
-        virtual~SVGPathSegLinetoVerticalAbs();
+class SVGPathSegLinetoVerticalAbs : public SVGPathSeg
+{
+public:
+    static PassRefPtr<SVGPathSegLinetoVerticalAbs> create(float y)
+    {
+        return adoptRef(new SVGPathSegLinetoVerticalAbs(y));
+    }
+    virtual~SVGPathSegLinetoVerticalAbs();
 
-        virtual unsigned short pathSegType() const { return PATHSEG_LINETO_VERTICAL_ABS; }
-        virtual String pathSegTypeAsLetter() const { return "V"; }
-        virtual String toString() const { return String::format("V %.6lg", m_y); }
+    virtual unsigned short pathSegType() const
+    {
+        return PATHSEG_LINETO_VERTICAL_ABS;
+    }
+    virtual String pathSegTypeAsLetter() const
+    {
+        return "V";
+    }
+    virtual String toString() const
+    {
+        return String::format("V %.6lg", m_y);
+    }
 
-        void setY(float);
-        float y() const;
+    void setY(float);
+    float y() const;
 
-    private:
-        SVGPathSegLinetoVerticalAbs(float y);
-        
-        float m_y;
-    };
+private:
+    SVGPathSegLinetoVerticalAbs(float y);
 
-    class SVGPathSegLinetoVerticalRel : public SVGPathSeg {
-    public:
-        static PassRefPtr<SVGPathSegLinetoVerticalRel> create(float y) { return adoptRef(new SVGPathSegLinetoVerticalRel(y)); }
-        virtual ~SVGPathSegLinetoVerticalRel();
+    float m_y;
+};
 
-        virtual unsigned short pathSegType() const { return PATHSEG_LINETO_VERTICAL_REL; }
-        virtual String pathSegTypeAsLetter() const { return "v"; }
-        virtual String toString() const { return String::format("v %.6lg", m_y); }
+class SVGPathSegLinetoVerticalRel : public SVGPathSeg
+{
+public:
+    static PassRefPtr<SVGPathSegLinetoVerticalRel> create(float y)
+    {
+        return adoptRef(new SVGPathSegLinetoVerticalRel(y));
+    }
+    virtual ~SVGPathSegLinetoVerticalRel();
 
-        void setY(float);
-        float y() const;
+    virtual unsigned short pathSegType() const
+    {
+        return PATHSEG_LINETO_VERTICAL_REL;
+    }
+    virtual String pathSegTypeAsLetter() const
+    {
+        return "v";
+    }
+    virtual String toString() const
+    {
+        return String::format("v %.6lg", m_y);
+    }
 
-    private:
-        SVGPathSegLinetoVerticalRel(float y);
+    void setY(float);
+    float y() const;
 
-        float m_y;
-    };
+private:
+    SVGPathSegLinetoVerticalRel(float y);
+
+    float m_y;
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

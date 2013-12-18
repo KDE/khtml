@@ -28,39 +28,47 @@
 
 #include <wtf/RefPtr.h>
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGElement;
-    class SVGSVGElement;
-    class SVGTransformList;
+class SVGElement;
+class SVGSVGElement;
+class SVGTransformList;
 
-    class SVGViewSpec : public SVGFitToViewBox,
-                        public SVGZoomAndPan {
-    public:
-        SVGViewSpec(const SVGSVGElement*);
-        virtual ~SVGViewSpec();
+class SVGViewSpec : public SVGFitToViewBox,
+    public SVGZoomAndPan
+{
+public:
+    SVGViewSpec(const SVGSVGElement *);
+    virtual ~SVGViewSpec();
 
-        bool parseViewSpec(const String&);
+    bool parseViewSpec(const String &);
 
-        void setTransform(const String&);
-        SVGTransformList* transform() const { return m_transform.get(); }
+    void setTransform(const String &);
+    SVGTransformList *transform() const
+    {
+        return m_transform.get();
+    }
 
-        void setViewBoxString(const String&);
+    void setViewBoxString(const String &);
 
-        void setPreserveAspectRatioString(const String&);
+    void setPreserveAspectRatioString(const String &);
 
-        void setViewTargetString(const String&);
-        String viewTargetString() const { return m_viewTargetString; }
-        SVGElement* viewTarget() const;
+    void setViewTargetString(const String &);
+    String viewTargetString() const
+    {
+        return m_viewTargetString;
+    }
+    SVGElement *viewTarget() const;
 
-    protected:
-        virtual const SVGElement* contextElement() const;
+protected:
+    virtual const SVGElement *contextElement() const;
 
-    private:
-        mutable RefPtr<SVGTransformList> m_transform;
-        const SVGSVGElement* m_contextElement;
-        String m_viewTargetString;
-    };
+private:
+    mutable RefPtr<SVGTransformList> m_transform;
+    const SVGSVGElement *m_contextElement;
+    String m_viewTargetString;
+};
 
 } // namespace WebCore
 

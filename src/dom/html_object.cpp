@@ -43,7 +43,7 @@ HTMLAppletElement::HTMLAppletElement(HTMLAppletElementImpl *impl)
 
 HTMLAppletElement &HTMLAppletElement::operator = (const Node &other)
 {
-    assignOther( other, ID_APPLET );
+    assignOther(other, ID_APPLET);
     return *this;
 }
 
@@ -59,154 +59,205 @@ HTMLAppletElement::~HTMLAppletElement()
 
 DOMString HTMLAppletElement::align() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_ALIGN);
 }
 
-void HTMLAppletElement::setAlign( const DOMString &value )
+void HTMLAppletElement::setAlign(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_ALIGN, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_ALIGN, value);
+    }
 }
 
 DOMString HTMLAppletElement::alt() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_ALT);
 }
 
-void HTMLAppletElement::setAlt( const DOMString &value )
+void HTMLAppletElement::setAlt(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_ALT, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_ALT, value);
+    }
 }
 
 DOMString HTMLAppletElement::archive() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_ARCHIVE);
 }
 
-void HTMLAppletElement::setArchive( const DOMString &value )
+void HTMLAppletElement::setArchive(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_ARCHIVE, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_ARCHIVE, value);
+    }
 }
 
 DOMString HTMLAppletElement::code() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_CODE);
 }
 
-void HTMLAppletElement::setCode( const DOMString &value )
+void HTMLAppletElement::setCode(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_CODE, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_CODE, value);
+    }
 }
 
 DOMString HTMLAppletElement::codeBase() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_CODEBASE);
 }
 
-void HTMLAppletElement::setCodeBase( const DOMString &value )
+void HTMLAppletElement::setCodeBase(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_CODEBASE, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_CODEBASE, value);
+    }
 }
 
 DOMString HTMLAppletElement::height() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_HEIGHT);
 }
 
-void HTMLAppletElement::setHeight( const DOMString &value )
+void HTMLAppletElement::setHeight(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_HEIGHT, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_HEIGHT, value);
+    }
 }
 
 #ifndef KDE_NO_DEPRECATED
 DOMString HTMLAppletElement::hspace() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_HSPACE);
 }
 #endif
 
 #ifndef KDE_NO_DEPRECATED
-void HTMLAppletElement::setHspace( const DOMString &value )
+void HTMLAppletElement::setHspace(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_HSPACE, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_HSPACE, value);
+    }
 }
 #endif
 
 long HTMLAppletElement::getHspace() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_HSPACE).toInt();
 }
 
-void HTMLAppletElement::setHspace( long value )
+void HTMLAppletElement::setHspace(long value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_HSPACE, QString::number(value));
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_HSPACE, QString::number(value));
+    }
 }
 
 DOMString HTMLAppletElement::name() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_NAME);
 }
 
-void HTMLAppletElement::setName( const DOMString &value )
+void HTMLAppletElement::setName(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_NAME, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_NAME, value);
+    }
 }
 
 DOMString HTMLAppletElement::object() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_OBJECT);
 }
 
-void HTMLAppletElement::setObject( const DOMString &value )
+void HTMLAppletElement::setObject(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_OBJECT, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_OBJECT, value);
+    }
 }
 
 #ifndef KDE_NO_DEPRECATED
 DOMString HTMLAppletElement::vspace() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_VSPACE);
 }
 #endif
 
 #ifndef KDE_NO_DEPRECATED
-void HTMLAppletElement::setVspace( const DOMString &value )
+void HTMLAppletElement::setVspace(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_VSPACE, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_VSPACE, value);
+    }
 }
 #endif
 
 long HTMLAppletElement::getVspace() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_VSPACE).toInt();
 }
 
-void HTMLAppletElement::setVspace( long value )
+void HTMLAppletElement::setVspace(long value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_VSPACE, QString::number(value));
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_VSPACE, QString::number(value));
+    }
 }
-
 
 DOMString HTMLAppletElement::width() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_WIDTH);
 }
 
-void HTMLAppletElement::setWidth( const DOMString &value )
+void HTMLAppletElement::setWidth(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_WIDTH, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_WIDTH, value);
+    }
 }
 
 // --------------------------------------------------------------------------
@@ -225,7 +276,7 @@ HTMLObjectElement::HTMLObjectElement(HTMLObjectElementImpl *impl) : HTMLElement(
 
 HTMLObjectElement &HTMLObjectElement::operator = (const Node &other)
 {
-    assignOther( other, ID_OBJECT );
+    assignOther(other, ID_OBJECT);
     return *this;
 }
 
@@ -241,239 +292,315 @@ HTMLObjectElement::~HTMLObjectElement()
 
 HTMLFormElement HTMLObjectElement::form() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return ((HTMLObjectElementImpl *)impl)->form();
 }
 
 DOMString HTMLObjectElement::code() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_CODE);
 }
 
-void HTMLObjectElement::setCode( const DOMString &value )
+void HTMLObjectElement::setCode(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_CODE, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_CODE, value);
+    }
 }
 
 DOMString HTMLObjectElement::align() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_ALIGN);
 }
 
-void HTMLObjectElement::setAlign( const DOMString &value )
+void HTMLObjectElement::setAlign(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_ALIGN, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_ALIGN, value);
+    }
 }
 
 DOMString HTMLObjectElement::archive() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_ARCHIVE);
 }
 
-void HTMLObjectElement::setArchive( const DOMString &value )
+void HTMLObjectElement::setArchive(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_ARCHIVE, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_ARCHIVE, value);
+    }
 }
 
 DOMString HTMLObjectElement::border() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_BORDER);
 }
 
-void HTMLObjectElement::setBorder( const DOMString &value )
+void HTMLObjectElement::setBorder(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_BORDER, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_BORDER, value);
+    }
 }
 
 DOMString HTMLObjectElement::codeBase() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_CODEBASE);
 }
 
-void HTMLObjectElement::setCodeBase( const DOMString &value )
+void HTMLObjectElement::setCodeBase(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_CODEBASE, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_CODEBASE, value);
+    }
 }
 
 DOMString HTMLObjectElement::codeType() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_CODETYPE);
 }
 
-void HTMLObjectElement::setCodeType( const DOMString &value )
+void HTMLObjectElement::setCodeType(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_CODETYPE, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_CODETYPE, value);
+    }
 }
 
 DOMString HTMLObjectElement::data() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_DATA);
 }
 
-void HTMLObjectElement::setData( const DOMString &value )
+void HTMLObjectElement::setData(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_DATA, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_DATA, value);
+    }
 }
 
 bool HTMLObjectElement::declare() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return !((ElementImpl *)impl)->getAttribute(ATTR_DECLARE).isNull();
 }
 
-void HTMLObjectElement::setDeclare( bool _declare )
+void HTMLObjectElement::setDeclare(bool _declare)
 {
-   if(impl)
-    {
-	DOMString str;
-	if( _declare )
-	    str = "";
-	((ElementImpl *)impl)->setAttribute(ATTR_DECLARE, str);
+    if (impl) {
+        DOMString str;
+        if (_declare) {
+            str = "";
+        }
+        ((ElementImpl *)impl)->setAttribute(ATTR_DECLARE, str);
     }
 }
 
 DOMString HTMLObjectElement::height() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_HEIGHT);
 }
 
-void HTMLObjectElement::setHeight( const DOMString &value )
+void HTMLObjectElement::setHeight(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_HEIGHT, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_HEIGHT, value);
+    }
 }
 
 #ifndef KDE_NO_DEPRECATED
 DOMString HTMLObjectElement::hspace() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_HSPACE);
 }
 #endif
 
 #ifndef KDE_NO_DEPRECATED
-void HTMLObjectElement::setHspace( const DOMString &value )
+void HTMLObjectElement::setHspace(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_HSPACE, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_HSPACE, value);
+    }
 }
 #endif
 
 long HTMLObjectElement::getHspace() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_HSPACE).toInt();
 }
 
-void HTMLObjectElement::setHspace( long value )
+void HTMLObjectElement::setHspace(long value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_HSPACE, QString::number(value));
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_HSPACE, QString::number(value));
+    }
 }
 
 DOMString HTMLObjectElement::name() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_NAME);
 }
 
-void HTMLObjectElement::setName( const DOMString &value )
+void HTMLObjectElement::setName(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_NAME, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_NAME, value);
+    }
 }
 
 DOMString HTMLObjectElement::standby() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_STANDBY);
 }
 
-void HTMLObjectElement::setStandby( const DOMString &value )
+void HTMLObjectElement::setStandby(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_STANDBY, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_STANDBY, value);
+    }
 }
 
 long HTMLObjectElement::tabIndex() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_TABINDEX).toInt();
 }
 
-void HTMLObjectElement::setTabIndex( long _tabIndex )
+void HTMLObjectElement::setTabIndex(long _tabIndex)
 {
-    if(impl) {
-	DOMString value(QString::number(_tabIndex));
-        ((ElementImpl *)impl)->setAttribute(ATTR_TABINDEX,value);
+    if (impl) {
+        DOMString value(QString::number(_tabIndex));
+        ((ElementImpl *)impl)->setAttribute(ATTR_TABINDEX, value);
     }
 }
 
 DOMString HTMLObjectElement::type() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_TYPE);
 }
 
-void HTMLObjectElement::setType( const DOMString &value )
+void HTMLObjectElement::setType(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_TYPE, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_TYPE, value);
+    }
 }
 
 DOMString HTMLObjectElement::useMap() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_USEMAP);
 }
 
-void HTMLObjectElement::setUseMap( const DOMString &value )
+void HTMLObjectElement::setUseMap(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_USEMAP, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_USEMAP, value);
+    }
 }
 
 #ifndef KDE_NO_DEPRECATED
 DOMString HTMLObjectElement::vspace() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_VSPACE);
 }
 #endif
 
 #ifndef KDE_NO_DEPRECATED
-void HTMLObjectElement::setVspace( const DOMString &value )
+void HTMLObjectElement::setVspace(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_VSPACE, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_VSPACE, value);
+    }
 }
 #endif
 
 long HTMLObjectElement::getVspace() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_VSPACE).toInt();
 }
 
-void HTMLObjectElement::setVspace( long value )
+void HTMLObjectElement::setVspace(long value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_VSPACE, QString::number(value));
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_VSPACE, QString::number(value));
+    }
 }
 
 DOMString HTMLObjectElement::width() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_WIDTH);
 }
 
-void HTMLObjectElement::setWidth( const DOMString &value )
+void HTMLObjectElement::setWidth(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_WIDTH, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_WIDTH, value);
+    }
 }
 
 Document HTMLObjectElement::contentDocument() const
 {
-    if (impl) return static_cast<HTMLObjectElementImpl*>(impl)->contentDocument();
+    if (impl) {
+        return static_cast<HTMLObjectElementImpl *>(impl)->contentDocument();
+    }
     return Document();
 }
 
@@ -493,7 +620,7 @@ HTMLParamElement::HTMLParamElement(HTMLParamElementImpl *impl) : HTMLElement(imp
 
 HTMLParamElement &HTMLParamElement::operator = (const Node &other)
 {
-    assignOther( other, ID_PARAM );
+    assignOther(other, ID_PARAM);
     return *this;
 }
 
@@ -509,45 +636,61 @@ HTMLParamElement::~HTMLParamElement()
 
 DOMString HTMLParamElement::name() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_NAME);
 }
 
-void HTMLParamElement::setName( const DOMString &value )
+void HTMLParamElement::setName(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_NAME, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_NAME, value);
+    }
 }
 
 DOMString HTMLParamElement::type() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_TYPE);
 }
 
-void HTMLParamElement::setType( const DOMString &value )
+void HTMLParamElement::setType(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_TYPE, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_TYPE, value);
+    }
 }
 
 DOMString HTMLParamElement::value() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_VALUE);
 }
 
-void HTMLParamElement::setValue( const DOMString &value )
+void HTMLParamElement::setValue(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_VALUE, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_VALUE, value);
+    }
 }
 
 DOMString HTMLParamElement::valueType() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return ((ElementImpl *)impl)->getAttribute(ATTR_VALUETYPE);
 }
 
-void HTMLParamElement::setValueType( const DOMString &value )
+void HTMLParamElement::setValueType(const DOMString &value)
 {
-    if(impl) ((ElementImpl *)impl)->setAttribute(ATTR_VALUETYPE, value);
+    if (impl) {
+        ((ElementImpl *)impl)->setAttribute(ATTR_VALUETYPE, value);
+    }
 }
 

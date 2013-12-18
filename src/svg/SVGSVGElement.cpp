@@ -53,13 +53,14 @@
 #include "SMILTimeContainer.h"*/
 #include "khtml_part.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 /*using namespace HTMLNames;
 using namespace EventNames;*/
 using namespace SVGNames;
 
-SVGSVGElement::SVGSVGElement(const QualifiedName& tagName, Document* doc)
+SVGSVGElement::SVGSVGElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledLocatableElement(tagName, doc)
     , SVGTests()
     , SVGLangSpace()
@@ -71,8 +72,8 @@ SVGSVGElement::SVGSVGElement(const QualifiedName& tagName, Document* doc)
     , m_width(this, LengthModeWidth)
     , m_height(this, LengthModeHeight)
     , m_useCurrentView(false)
-    /*, m_timeContainer(SMILTimeContainer::create(this))
-    , m_viewSpec(0)*/
+/*, m_timeContainer(SMILTimeContainer::create(this))
+, m_viewSpec(0)*/
 {
     setWidthBaseValue(SVGLength(this, LengthModeWidth, "100%"));
     setHeightBaseValue(SVGLength(this, LengthModeHeight, "100%"));
@@ -99,7 +100,7 @@ DOMString SVGSVGElement::contentScriptType() const
     return n.isNull() ? defaultValue : n;
 }
 
-void SVGSVGElement::setContentScriptType(const DOMString& type)
+void SVGSVGElement::setContentScriptType(const DOMString &type)
 {
     setAttribute(SVGNames::contentScriptTypeAttr, type);
 }
@@ -111,7 +112,7 @@ DOMString SVGSVGElement::contentStyleType() const
     return n.isNull() ? defaultValue : n;
 }
 
-void SVGSVGElement::setContentStyleType(const DOMString& type)
+void SVGSVGElement::setContentStyleType(const DOMString &type)
 {
     setAttribute(SVGNames::contentStyleTypeAttr, type);
 }
@@ -126,10 +127,11 @@ bool SVGSVGElement::hasSetContainerSize() const
 
 IntSize SVGSVGElement::containerSize() const
 {
-    if (KHTMLView* v = document()->view())
+    if (KHTMLView *v = document()->view()) {
         return IntSize(v->visibleWidth(), v->visibleHeight());
-    else
+    } else {
         return IntSize(300, 150);
+    }
 }
 
 FloatRect SVGSVGElement::viewport() const
@@ -153,8 +155,9 @@ FloatRect SVGSVGElement::viewport() const
 int SVGSVGElement::relativeWidthValue() const
 {
     SVGLength w = width();
-    if (w.unitType() != LengthTypePercentage)
+    if (w.unitType() != LengthTypePercentage) {
         return 0;
+    }
 
     return static_cast<int>(w.valueAsPercentage() * containerSize().width());
 }
@@ -162,8 +165,9 @@ int SVGSVGElement::relativeWidthValue() const
 int SVGSVGElement::relativeHeightValue() const
 {
     SVGLength h = height();
-    if (h.unitType() != LengthTypePercentage)
+    if (h.unitType() != LengthTypePercentage) {
         return 0;
+    }
 
     return static_cast<int>(h.valueAsPercentage() * containerSize().height());
 }
@@ -200,10 +204,11 @@ void SVGSVGElement::setUseCurrentView(bool currentView)
     m_useCurrentView = currentView;
 }
 
-SVGViewSpec* SVGSVGElement::currentView() const
+SVGViewSpec *SVGSVGElement::currentView() const
 {
-    if (!m_viewSpec)
+    if (!m_viewSpec) {
         m_viewSpec.set(new SVGViewSpec(this));
+    }
 
     return m_viewSpec.get();
 }
@@ -230,21 +235,22 @@ FloatPoint SVGSVGElement::currentTranslate() const
 void SVGSVGElement::setCurrentTranslate(const FloatPoint &translation)
 {
     m_translation = translation;
-    if (parentNode() == document() && document()->renderer())
+    if (parentNode() == document() && document()->renderer()) {
         document()->renderer()->repaint();
+    }
 }
 
-void SVGSVGElement::addSVGWindowEventListener(const AtomicString& eventType, const Attribute* attr)
+void SVGSVGElement::addSVGWindowEventListener(const AtomicString &eventType, const Attribute *attr)
 {
     Q_UNUSED(eventType);
     // FIXME: None of these should be window events long term.
     // Once we propertly support SVGLoad, etc.
     RefPtr<EventListener> listener = document()->accessSVGExtensions()->
-        createSVGEventListener(attr->localName().string(), attr->value(), this);
+                                     createSVGEventListener(attr->localName().string(), attr->value(), this);
     //document()->setHTMLWindowEventListener(eventType, listener.release());
 }
 
-void SVGSVGElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGSVGElement::parseMappedAttribute(MappedAttribute *attr)
 {
     // qDebug() << "parse attribute: " << attr->localName() << attr->value() << endl;
     if (!nearestViewportElement()) {
@@ -262,11 +268,11 @@ void SVGSVGElement::parseMappedAttribute(MappedAttribute* attr)
         else if (attr->name() == SVGNames::onzoomAttr)
             addSVGWindowEventListener(zoomEvent, attr);*/
     }
-    if (attr->name() == SVGNames::xAttr)
+    if (attr->name() == SVGNames::xAttr) {
         setXBaseValue(SVGLength(this, LengthModeWidth, attr->value()));
-    else if (attr->name() == SVGNames::yAttr)
+    } else if (attr->name() == SVGNames::yAttr) {
         setYBaseValue(SVGLength(this, LengthModeHeight, attr->value()));
-    else if (attr->name() == SVGNames::widthAttr) {
+    } else if (attr->name() == SVGNames::widthAttr) {
         // qDebug() << "set width" << attr->value() << endl;
         setWidthBaseValue(SVGLength(this, LengthModeWidth, attr->value()));
         addCSSProperty(attr, CSSPropertyWidth, attr->value());
@@ -294,12 +300,13 @@ void SVGSVGElement::parseMappedAttribute(MappedAttribute* attr)
     }
 }
 
-void SVGSVGElement::svgAttributeChanged(const QualifiedName& attrName)
+void SVGSVGElement::svgAttributeChanged(const QualifiedName &attrName)
 {
     SVGStyledElement::svgAttributeChanged(attrName);
 
-    if (!renderer())
+    if (!renderer()) {
         return;
+    }
 
     /*if (attrName == SVGNames::xAttr || attrName == SVGNames::yAttr ||
         attrName == SVGNames::widthAttr || attrName == SVGNames::heightAttr ||
@@ -318,7 +325,7 @@ unsigned long SVGSVGElement::suspendRedraw(unsigned long /* max_wait_millisecond
     return 0;
 }
 
-void SVGSVGElement::unsuspendRedraw(unsigned long /* suspend_handle_id */, ExceptionCode& /*ec*/)
+void SVGSVGElement::unsuspendRedraw(unsigned long /* suspend_handle_id */, ExceptionCode & /*ec*/)
 {
     // if suspend_handle_id is not found, throw exception
     // FIXME: Implement me (see bug 11275)
@@ -334,21 +341,21 @@ void SVGSVGElement::forceRedraw()
     // FIXME: Implement me (see bug 11275)
 }
 
-DOM::NodeListImpl* SVGSVGElement::getIntersectionList(const FloatRect& rect, SVGElement*)
+DOM::NodeListImpl *SVGSVGElement::getIntersectionList(const FloatRect &rect, SVGElement *)
 {
     Q_UNUSED(rect);
     // FIXME: Implement me (see bug 11274)
     return 0;
 }
 
-DOM::NodeListImpl* SVGSVGElement::getEnclosureList(const FloatRect& rect, SVGElement*)
+DOM::NodeListImpl *SVGSVGElement::getEnclosureList(const FloatRect &rect, SVGElement *)
 {
     Q_UNUSED(rect);
     // FIXME: Implement me (see bug 11274)
     return 0;
 }
 
-bool SVGSVGElement::checkIntersection(SVGElement* element, const FloatRect& rect)
+bool SVGSVGElement::checkIntersection(SVGElement *element, const FloatRect &rect)
 {
     Q_UNUSED(element);
     // TODO : take into account pointer-events?
@@ -357,7 +364,7 @@ bool SVGSVGElement::checkIntersection(SVGElement* element, const FloatRect& rect
     return rect.intersects(getBBox());
 }
 
-bool SVGSVGElement::checkEnclosure(SVGElement* element, const FloatRect& rect)
+bool SVGSVGElement::checkEnclosure(SVGElement *element, const FloatRect &rect)
 {
     Q_UNUSED(element);
     // TODO : take into account pointer-events?
@@ -381,7 +388,7 @@ SVGLength SVGSVGElement::createSVGLength()
     return SVGLength();
 }
 
-SVGAngle* SVGSVGElement::createSVGAngle()
+SVGAngle *SVGSVGElement::createSVGAngle()
 {
     return new SVGAngle();
 }
@@ -406,7 +413,7 @@ SVGTransform SVGSVGElement::createSVGTransform()
     return SVGTransform();
 }
 
-SVGTransform SVGSVGElement::createSVGTransformFromMatrix(const AffineTransform& matrix)
+SVGTransform SVGSVGElement::createSVGTransformFromMatrix(const AffineTransform &matrix)
 {
     return SVGTransform(matrix);
 }
@@ -414,8 +421,9 @@ SVGTransform SVGSVGElement::createSVGTransformFromMatrix(const AffineTransform& 
 AffineTransform SVGSVGElement::getCTM() const
 {
     AffineTransform mat;
-    if (!isOutermostSVG())
+    if (!isOutermostSVG()) {
         mat.translate(x().value(), y().value());
+    }
 
     if (attributes()->getNamedItem(SVGNames::viewBoxAttr)) {
         AffineTransform viewBox = viewBoxToViewTransform(width().value(), height().value());
@@ -455,14 +463,14 @@ AffineTransform SVGSVGElement::getScreenCTM() const
     }
 
     return mat;*/
-	ASSERT(false);
-	return AffineTransform();
+    ASSERT(false);
+    return AffineTransform();
 }
 
-RenderObject* SVGSVGElement::createRenderer(RenderArena* arena, RenderStyle*)
+RenderObject *SVGSVGElement::createRenderer(RenderArena *arena, RenderStyle *)
 {
     // qDebug() << "create RenderSVGRoot from <svg> element" << endl;
-    return new (arena) RenderSVGRoot(this);
+    return new(arena) RenderSVGRoot(this);
     /*if (isOutermostSVG())
         return new (arena) RenderSVGRoot(this);
     else
@@ -496,15 +504,15 @@ void SVGSVGElement::unpauseAnimations()
 bool SVGSVGElement::animationsPaused() const
 {
     //return m_timeContainer->isPaused();
-	ASSERT(false);
-	return false;
+    ASSERT(false);
+    return false;
 }
 
 float SVGSVGElement::getCurrentTime() const
 {
     //return narrowPrecisionToFloat(m_timeContainer->elapsed().value());
-	ASSERT(false);
-	return 0.0;
+    ASSERT(false);
+    return 0.0;
 }
 
 void SVGSVGElement::setCurrentTime(float /* seconds */)
@@ -528,19 +536,23 @@ AffineTransform SVGSVGElement::viewBoxToViewTransform(float viewWidth, float vie
 {
     FloatRect viewBoxRect;
     if (useCurrentView()) {
-        if (currentView()) // what if we should use it but it is not set?
+        if (currentView()) { // what if we should use it but it is not set?
             viewBoxRect = currentView()->viewBox();
-    } else
+        }
+    } else {
         viewBoxRect = viewBox();
-    if (!viewBoxRect.width() || !viewBoxRect.height())
+    }
+    if (!viewBoxRect.width() || !viewBoxRect.height()) {
         return AffineTransform();
+    }
 
     AffineTransform ctm = preserveAspectRatio()->getCTM(viewBoxRect.x(),
-            viewBoxRect.y(), viewBoxRect.width(), viewBoxRect.height(),
-            0, 0, viewWidth, viewHeight);
+                          viewBoxRect.y(), viewBoxRect.width(), viewBoxRect.height(),
+                          0, 0, viewWidth, viewHeight);
 
-    if (useCurrentView() && currentView())
+    if (useCurrentView() && currentView()) {
         return currentView()->transform()->concatenate().matrix() * ctm;
+    }
 
     return ctm;
 }
@@ -575,10 +587,12 @@ void SVGSVGElement::willRestoreFromCache()
 }
 
 // KHTML stuff
-quint32 SVGSVGElement::id() const { return SVGNames::svgTag.id(); }
+quint32 SVGSVGElement::id() const
+{
+    return SVGNames::svgTag.id();
+}
 
 }
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

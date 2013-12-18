@@ -41,16 +41,18 @@
 #include <qglobal.h>
 #ifdef Q_OS_WIN
 #undef UNICODE
-#endif 
+#endif
 #ifdef SOLARIS
 #undef UNICODE
-#endif 
-namespace khtml {
-    class guess_arc {
-    public:
-        unsigned int next;          /* next state */
-        double score;               /* score */
-    };
+#endif
+namespace khtml
+{
+class guess_arc
+{
+public:
+    unsigned int next;          /* next state */
+    double score;               /* score */
+};
 }
 
 using namespace khtml;
@@ -65,49 +67,53 @@ extern guess_arc guess_sjis_ar[6];
 extern const dfa_table guess_utf8_st[];
 extern guess_arc guess_utf8_ar[11];
 
-namespace khtml {
+namespace khtml
+{
 
-    class guess_dfa {
-    public:
-        const dfa_table *states;
-        const guess_arc *arcs;
-        int state;
-        double score;
+class guess_dfa
+{
+public:
+    const dfa_table *states;
+    const guess_arc *arcs;
+    int state;
+    double score;
 
-        guess_dfa (const dfa_table stable[], const guess_arc *atable) :
-            states(stable), arcs(atable)
-        {
-            state = 0;
-            score = 1.0;
-        }
-    };
-
-    class JapaneseCode
+    guess_dfa(const dfa_table stable[], const guess_arc *atable) :
+        states(stable), arcs(atable)
     {
-    public:
-        enum Type {ASCII, JIS, EUC, SJIS, UNICODE, UTF8 };
-        enum Type guess_jp(const char* buf, int buflen);
+        state = 0;
+        score = 1.0;
+    }
+};
 
-        JapaneseCode () {
-            eucj = new guess_dfa(guess_eucj_st, guess_eucj_ar);
-            sjis = new guess_dfa(guess_sjis_st, guess_sjis_ar);
-            utf8 = new guess_dfa(guess_utf8_st, guess_utf8_ar);
-            last_JIS_escape = false;
-        }
+class JapaneseCode
+{
+public:
+    enum Type {ASCII, JIS, EUC, SJIS, UNICODE, UTF8 };
+    enum Type guess_jp(const char *buf, int buflen);
 
-        ~JapaneseCode () {
-            delete eucj;
-            delete sjis;
-            delete utf8;
-        }
+    JapaneseCode()
+    {
+        eucj = new guess_dfa(guess_eucj_st, guess_eucj_ar);
+        sjis = new guess_dfa(guess_sjis_st, guess_sjis_ar);
+        utf8 = new guess_dfa(guess_utf8_st, guess_utf8_ar);
+        last_JIS_escape = false;
+    }
 
-    protected:
-        guess_dfa *eucj;
-        guess_dfa *sjis;
-        guess_dfa *utf8;
+    ~JapaneseCode()
+    {
+        delete eucj;
+        delete sjis;
+        delete utf8;
+    }
 
-        bool last_JIS_escape;
-    };
+protected:
+    guess_dfa *eucj;
+    guess_dfa *sjis;
+    guess_dfa *utf8;
+
+    bool last_JIS_escape;
+};
 }
 
 #define DFA_NEXT(dfa, ch)                               \

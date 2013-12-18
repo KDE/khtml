@@ -26,36 +26,35 @@
 
 using namespace DOM;
 
-
 DOMString::DOMString(const QChar *str, uint len)
 {
     if (!str) {
-       impl = 0;
-       return;
+        impl = 0;
+        return;
     }
-    impl = new DOMStringImpl( str, len );
+    impl = new DOMStringImpl(str, len);
     impl->ref();
 }
 
 DOMString::DOMString(const QString &str)
 {
     if (str.isNull()) {
-	impl = 0;
-	return;
+        impl = 0;
+        return;
     }
 
-    impl = new DOMStringImpl( str.unicode(), str.length() );
+    impl = new DOMStringImpl(str.unicode(), str.length());
     impl->ref();
 }
 
 DOMString::DOMString(const char *str)
 {
     if (!str) {
-	impl = 0;
-	return;
+        impl = 0;
+        return;
     }
 
-    impl = new DOMStringImpl( str );
+    impl = new DOMStringImpl(str);
     impl->ref();
 }
 
@@ -72,59 +71,69 @@ DOMString::DOMString(const char *str, uint len)
 DOMString::DOMString(DOMStringImpl *i)
 {
     impl = i;
-    if(impl) impl->ref();
+    if (impl) {
+        impl->ref();
+    }
 }
 
 DOMString::DOMString(const DOMString &other)
 {
     impl = other.impl;
-    if(impl) impl->ref();
+    if (impl) {
+        impl->ref();
+    }
 }
 
 DOMString::~DOMString()
 {
-    if(impl) impl->deref();
+    if (impl) {
+        impl->deref();
+    }
 }
 
 DOMString &DOMString::operator =(const DOMString &other)
 {
-    if ( impl != other.impl ) {
-        if(impl) impl->deref();
+    if (impl != other.impl) {
+        if (impl) {
+            impl->deref();
+        }
         impl = other.impl;
-        if(impl) impl->ref();
+        if (impl) {
+            impl->ref();
+        }
     }
     return *this;
 }
 
 DOMString &DOMString::operator += (const DOMString &str)
 {
-    if(!impl)
-    {
-	// ### FIXME!!!
-	impl = str.impl;
-	if (impl)
-	     impl->ref();
-	return *this;
+    if (!impl) {
+        // ### FIXME!!!
+        impl = str.impl;
+        if (impl) {
+            impl->ref();
+        }
+        return *this;
     }
-    if(str.impl)
-    {
-	DOMStringImpl *i = impl->copy();
-	impl->deref();
-	impl = i;
-	impl->ref();
-	impl->append(str.impl);
+    if (str.impl) {
+        DOMStringImpl *i = impl->copy();
+        impl->deref();
+        impl = i;
+        impl->ref();
+        impl->append(str.impl);
     }
     return *this;
 }
 
 DOMString DOMString::operator + (const DOMString &str)
 {
-    if(!impl) return str.copy();
-    if(str.impl)
-    {
-	DOMString s = copy();
-	s += str;
-	return s;
+    if (!impl) {
+        return str.copy();
+    }
+    if (str.impl) {
+        DOMString s = copy();
+        s += str;
+        return s;
     }
 
     return copy();
@@ -132,33 +141,36 @@ DOMString DOMString::operator + (const DOMString &str)
 
 void DOMString::insert(DOMString str, uint pos)
 {
-    if(!impl)
-    {
-	impl = str.impl->copy();
-	impl->ref();
+    if (!impl) {
+        impl = str.impl->copy();
+        impl->ref();
+    } else {
+        impl->insert(str.impl, pos);
     }
-    else
-	impl->insert(str.impl, pos);
 }
-
 
 const QChar &DOMString::operator [](unsigned int i) const
 {
     static const QChar nullChar = 0;
 
-    if(!impl || i >= impl->l ) return nullChar;
+    if (!impl || i >= impl->l) {
+        return nullChar;
+    }
 
-    return *(impl->s+i);
+    return *(impl->s + i);
 }
 
 int DOMString::find(const QChar c, int start) const
 {
     unsigned int l = start;
-    if(!impl || l >= impl->l ) return -1;
-    while( l < impl->l )
-    {
-	if( *(impl->s+l) == c ) return l;
-	l++;
+    if (!impl || l >= impl->l) {
+        return -1;
+    }
+    while (l < impl->l) {
+        if (*(impl->s + l) == c) {
+            return l;
+        }
+        l++;
     }
     return -1;
 }
@@ -166,13 +178,18 @@ int DOMString::find(const QChar c, int start) const
 int DOMString::reverseFind(const QChar c, int start) const
 {
     unsigned int l = start;
-    if (!impl || l < -impl->l) return -1;
+    if (!impl || l < -impl->l) {
+        return -1;
+    }
     l += impl->l;
     while (1) {
-        if (*(impl->s + l) == c) return l;
+        if (*(impl->s + l) == c) {
+            return l;
+        }
         l--;
-        if (l == 0)
+        if (l == 0) {
             return -1;
+        }
     }
     return -1;
 }
@@ -184,70 +201,91 @@ DOMString DOMString::substring(unsigned pos, unsigned len) const
 
 uint DOMString::length() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return impl->l;
 }
 
-void DOMString::truncate( unsigned int len )
+void DOMString::truncate(unsigned int len)
 {
-    if(impl) impl->truncate(len);
+    if (impl) {
+        impl->truncate(len);
+    }
 }
 
 void DOMString::remove(unsigned int pos, int len)
 {
-  if(impl) impl->remove(pos, len);
+    if (impl) {
+        impl->remove(pos, len);
+    }
 }
 
 DOMString DOMString::split(unsigned int pos)
 {
-  if(!impl) return DOMString();
-  return impl->split(pos);
+    if (!impl) {
+        return DOMString();
+    }
+    return impl->split(pos);
 }
 
 DOMString DOMString::lower() const
 {
-  if(!impl) return DOMString();
-  return impl->lower();
+    if (!impl) {
+        return DOMString();
+    }
+    return impl->lower();
 }
 
 DOMString DOMString::upper() const
 {
-  if(!impl) return DOMString();
-  return impl->upper();
+    if (!impl) {
+        return DOMString();
+    }
+    return impl->upper();
 }
 
 bool DOMString::percentage(int &_percentage) const
 {
-    if(!impl || !impl->l) return false;
+    if (!impl || !impl->l) {
+        return false;
+    }
 
-    if ( *(impl->s+impl->l-1) != QChar('%'))
-       return false;
+    if (*(impl->s + impl->l - 1) != QChar('%')) {
+        return false;
+    }
 
-    _percentage = QString::fromRawData(impl->s, impl->l-1).toInt();
+    _percentage = QString::fromRawData(impl->s, impl->l - 1).toInt();
     return true;
 }
 
 QChar *DOMString::unicode() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
     return impl->unicode();
 }
 
 QString DOMString::string() const
 {
-    if(!impl) return QString();
+    if (!impl) {
+        return QString();
+    }
 
     return impl->string();
 }
 
 int DOMString::toInt() const
 {
-    if(!impl) return 0;
+    if (!impl) {
+        return 0;
+    }
 
     return impl->toInt();
 }
 
-int DOMString::toInt(bool* ok) const
+int DOMString::toInt(bool *ok) const
 {
     if (!impl) {
         *ok = false;
@@ -257,11 +295,12 @@ int DOMString::toInt(bool* ok) const
     return impl->toInt(ok);
 }
 
-float DOMString::toFloat(bool* ok) const
+float DOMString::toFloat(bool *ok) const
 {
     if (!impl) {
-	if (ok)
-	    *ok = false;
+        if (ok) {
+            *ok = false;
+        }
         return 0;
     }
     return impl->toFloat(ok);
@@ -274,42 +313,52 @@ DOMString DOMString::number(float f)
 
 DOMString DOMString::copy() const
 {
-    if(!impl) return DOMString();
+    if (!impl) {
+        return DOMString();
+    }
     return impl->copy();
 }
 
-bool DOMString::endsWith(const DOMString& str) const 
+bool DOMString::endsWith(const DOMString &str) const
 {
-    if (str.length() > length()) return false;
+    if (str.length() > length()) {
+        return false;
+    }
     return impl->endsWith(str.implementation());
 }
 
-bool DOMString::startsWith(const DOMString& str) const 
+bool DOMString::startsWith(const DOMString &str) const
 {
-    if (str.length() > length()) return false;
+    if (str.length() > length()) {
+        return false;
+    }
     return impl->startsWith(str.implementation());
 }
 
 // ------------------------------------------------------------------------
 
-bool DOM::strcasecmp( const DOMString &as, const DOMString &bs )
+bool DOM::strcasecmp(const DOMString &as, const DOMString &bs)
 {
     return strcasecmp(as.implementation(), bs.implementation());
 }
 
-bool DOM::strcasecmp( const DOMString &as, const char* bs )
+bool DOM::strcasecmp(const DOMString &as, const char *bs)
 {
     const QChar *a = as.unicode();
     int l = as.length();
-    if ( !bs ) return ( l != 0 );
-    while ( l-- ) {
-        if ( a->toLatin1() != *bs ) {
-            char cc = ( ( *bs >= 'A' ) && ( *bs <= 'Z' ) ) ? ( ( *bs ) + 'a' - 'A' ) : ( *bs );
-            if ( a->toLower().toLatin1() != cc ) return true;
+    if (!bs) {
+        return (l != 0);
+    }
+    while (l--) {
+        if (a->toLatin1() != *bs) {
+            char cc = ((*bs >= 'A') && (*bs <= 'Z')) ? ((*bs) + 'a' - 'A') : (*bs);
+            if (a->toLower().toLatin1() != cc) {
+                return true;
+            }
         }
         a++, bs++;
     }
-    return ( *bs != '\0' );
+    return (*bs != '\0');
 }
 
 bool DOMString::isEmpty() const
@@ -350,7 +399,7 @@ DOMString DOMString::format(const char *format, ...)
     }
     unsigned len = result;
     buffer.grow(len + 1);
-    
+
     // Now do the formatting again, guaranteed to fit.
     qvsnprintf(buffer.data(), buffer.size(), format, args);
 
@@ -362,36 +411,42 @@ DOMString DOMString::format(const char *format, ...)
 
 //-----------------------------------------------------------------------------
 
-bool DOM::operator==( const DOMString &a, const DOMString &b )
+bool DOM::operator==(const DOMString &a, const DOMString &b)
 {
     return !strcmp(a.implementation(), b.implementation());
 }
 
-bool DOM::operator==( const DOMString &a, const QString &b )
+bool DOM::operator==(const DOMString &a, const QString &b)
 {
     int l = a.length();
 
-    if( l != b.length() ) return false;
+    if (l != b.length()) {
+        return false;
+    }
 
-    if(!memcmp(a.unicode(), b.unicode(), l*sizeof(QChar)))
-	return true;
+    if (!memcmp(a.unicode(), b.unicode(), l * sizeof(QChar))) {
+        return true;
+    }
     return false;
 }
 
-bool DOM::operator==( const DOMString &a, const char *b )
+bool DOM::operator==(const DOMString &a, const char *b)
 {
-    DOMStringImpl* aimpl = a.impl;
-    if ( !b ) return !aimpl;
+    DOMStringImpl *aimpl = a.impl;
+    if (!b) {
+        return !aimpl;
+    }
 
-    if ( aimpl ) {
+    if (aimpl) {
         int alen = aimpl->l;
         const QChar *aptr = aimpl->s;
-        while ( alen-- ) {
+        while (alen--) {
             unsigned char c = *b++;
-            if ( !c || ( *aptr++ ).unicode() != c )
+            if (!c || (*aptr++).unicode() != c) {
                 return false;
+            }
         }
     }
 
-    return !*b;    
+    return !*b;
 }

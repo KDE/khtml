@@ -42,14 +42,15 @@
 #include "SVGUseElement.h"
 #include "RegisteredEventListener.h"*/
 
-namespace WebCore {
+namespace WebCore
+{
 
 using namespace DOM;
 
 //using namespace HTMLNames;
 //using namespace EventNames;
 
-SVGElement::SVGElement(const QualifiedName& tagName, Document* doc)
+SVGElement::SVGElement(const QualifiedName &tagName, Document *doc)
     : StyledElement(doc) // it's wrong, remove it!!! FIXME: vtokarev
 //    : StyledElement(tagName, doc)
 //    , m_shadowParent(0)
@@ -61,40 +62,38 @@ SVGElement::~SVGElement()
 {
 }
 
-bool SVGElement::isSupported(StringImpl* feature, StringImpl* version) const
+bool SVGElement::isSupported(StringImpl *feature, StringImpl *version) const
 {
     return DOMImplementation::hasFeature(feature, version);
 }
-
 
 String SVGElement::attrid() const
 {
     return getAttribute(idAttr);
 }
 
-
-void SVGElement::setId(const String& value, ExceptionCode&)
+void SVGElement::setId(const String &value, ExceptionCode &)
 {
     setAttribute(idAttr, value);
 }
-
 
 String SVGElement::xmlbase() const
 {
     return getAttribute(ATTR_XML_BASE);
 }
 
-void SVGElement::setXmlbase(const String& value, ExceptionCode&)
+void SVGElement::setXmlbase(const String &value, ExceptionCode &)
 {
     setAttribute(ATTR_XML_BASE, value);
 }
 
-SVGSVGElement* SVGElement::ownerSVGElement() const
+SVGSVGElement *SVGElement::ownerSVGElement() const
 {
-    Node* n = isShadowNode() ? const_cast<SVGElement*>(this)->shadowParentNode() : parentNode();
+    Node *n = isShadowNode() ? const_cast<SVGElement *>(this)->shadowParentNode() : parentNode();
     while (n) {
-        if (/*n->hasTagName(SVGNames::svgTag)*/n->id() == SVGNames::svgTag.id())
-            return static_cast<SVGSVGElement*>(n);
+        if (/*n->hasTagName(SVGNames::svgTag)*/n->id() == SVGNames::svgTag.id()) {
+            return static_cast<SVGSVGElement *>(n);
+        }
 
         n = n->isShadowNode() ? n->shadowParentNode() : n->parentNode();
     }
@@ -102,7 +101,7 @@ SVGSVGElement* SVGElement::ownerSVGElement() const
     return 0;
 }
 
-SVGElement* SVGElement::viewportElement() const
+SVGElement *SVGElement::viewportElement() const
 {
     // This function needs shadow tree support - as RenderSVGContainer uses this function
     // to determine the "overflow" property. <use> on <symbol> wouldn't work otherwhise.
@@ -117,21 +116,21 @@ SVGElement* SVGElement::viewportElement() const
     return 0;
 }
 
-void SVGElement::addSVGEventListener(/*const AtomicString& eventType*/const EventImpl::EventId& eventType, const Attribute* attr)
+void SVGElement::addSVGEventListener(/*const AtomicString& eventType*/const EventImpl::EventId &eventType, const Attribute *attr)
 {
     // qDebug() << "add listener for: " << EventName::fromId(eventType).toString() << endl;
     Element::setHTMLEventListener(EventName::fromId(eventType), document()->accessSVGExtensions()->
-        createSVGEventListener(attr->localName().string(), attr->value(), this));
+                                  createSVGEventListener(attr->localName().string(), attr->value(), this));
 }
 
-void SVGElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGElement::parseMappedAttribute(MappedAttribute *attr)
 {
     // standard events
-    if (/*attr->name() == onloadAttr*/attr->id() == ATTR_ONLOAD)
+    if (/*attr->name() == onloadAttr*/attr->id() == ATTR_ONLOAD) {
         addSVGEventListener(/*loadEvent*/EventImpl::LOAD_EVENT, attr);
-    else if (/*attr->name() == onclickAttr*/attr->id() == ATTR_ONCLICK)
+    } else if (/*attr->name() == onclickAttr*/attr->id() == ATTR_ONCLICK) {
         addSVGEventListener(/*clickEvent*/EventImpl::CLICK_EVENT, attr);
-    else /*if (attr->name() == onmousedownAttr)
+    } else /*if (attr->name() == onmousedownAttr)
         addSVGEventListener(mousedownEvent, attr);
     else if (attr->name() == onmousemoveAttr)
         addSVGEventListener(mousemoveEvent, attr);
@@ -147,38 +146,40 @@ void SVGElement::parseMappedAttribute(MappedAttribute* attr)
         addSVGEventListener(DOMFocusOutEvent, attr);
     else if (attr->name() == SVGNames::onactivateAttr)
         addSVGEventListener(DOMActivateEvent, attr);
-    else*/
-    if (attr->id() == ATTR_ID) {
-        setHasID();
-        document()->incDOMTreeVersion(DocumentImpl::TV_IDNameHref);
-    } else
-        StyledElement::parseAttribute(attr);
+    else*/ if (attr->id() == ATTR_ID) {
+            setHasID();
+            document()->incDOMTreeVersion(DocumentImpl::TV_IDNameHref);
+        } else {
+            StyledElement::parseAttribute(attr);
+        }
 }
 
 bool SVGElement::haveLoadedRequiredResources()
 {
-    Node* child = firstChild();
+    Node *child = firstChild();
     while (child) {
-        if (child->isSVGElement() && !static_cast<SVGElement*>(child)->haveLoadedRequiredResources())
+        if (child->isSVGElement() && !static_cast<SVGElement *>(child)->haveLoadedRequiredResources()) {
             return false;
+        }
         child = child->nextSibling();
     }
     return true;
 }
 
-static bool hasLoadListener(SVGElement* node)
+static bool hasLoadListener(SVGElement *node)
 {
-    Node* currentNode = node;
+    Node *currentNode = node;
     while (currentNode && currentNode->isElementNode()) {
-        QList<RegisteredEventListener> *list = static_cast<Element*>(currentNode)->localEventListeners();
+        QList<RegisteredEventListener> *list = static_cast<Element *>(currentNode)->localEventListeners();
         if (list) {
             QList<RegisteredEventListener>::Iterator end = list->end();
             for (QList<RegisteredEventListener>::Iterator it = list->begin(); it != end; ++it)
-                if ((*it).useCapture || (*it).eventName.id() == EventImpl::LOAD_EVENT/* || currentNode == node*/)
+                if ((*it).useCapture || (*it).eventName.id() == EventImpl::LOAD_EVENT/* || currentNode == node*/) {
                     return true;
-                /*if ((*it)->eventType() == loadEvent &&
-                    (*it)->useCapture() == true || currentNode == node)
-                    return true;*/
+                }
+            /*if ((*it)->eventType() == loadEvent &&
+                (*it)->useCapture() == true || currentNode == node)
+                return true;*/
         }
         currentNode = currentNode->parentNode();
     }
@@ -193,8 +194,9 @@ void SVGElement::sendSVGLoadEventIfPossible(bool sendParentLoadEvents)
     // qDebug() << currentTarget << currentTarget->haveLoadedRequiredResources() << endl;
     while (currentTarget && currentTarget->haveLoadedRequiredResources()) {
         RefPtr<Node> parent;
-        if (sendParentLoadEvents)
-            parent = currentTarget->parentNode(); // save the next parent to dispatch too incase dispatching the event changes the tree
+        if (sendParentLoadEvents) {
+            parent = currentTarget->parentNode();    // save the next parent to dispatch too incase dispatching the event changes the tree
+        }
         // qDebug() << hasLoadListener(currentTarget.get()) << endl;
         if (hasLoadListener(currentTarget.get())) {
             //Event* event = new Event(EventImpl::LOAD_EVENT, true/*false*/, false);
@@ -214,10 +216,11 @@ void SVGElement::finishParsingChildren()
     sendSVGLoadEventIfPossible();
 }
 
-bool SVGElement::childShouldCreateRenderer(Node* child) const
+bool SVGElement::childShouldCreateRenderer(Node *child) const
 {
-    if (child->isSVGElement())
-        return static_cast<SVGElement*>(child)->isValid();
+    if (child->isSVGElement()) {
+        return static_cast<SVGElement *>(child)->isValid();
+    }
     return false;
 }
 
@@ -242,9 +245,9 @@ void SVGElement::insertedIntoDocument()
     }*/
 }
 
-static Node* shadowTreeParentElementForShadowTreeElement(Node* node)
+static Node *shadowTreeParentElementForShadowTreeElement(Node *node)
 {
-    for (Node* n = node; n; n = n->parentNode()) {
+    for (Node *n = node; n; n = n->parentNode()) {
         /*if (n->isShadowNode())
             return n->shadowParentNode();*/
     }
@@ -252,7 +255,7 @@ static Node* shadowTreeParentElementForShadowTreeElement(Node* node)
     return 0;
 }
 
-bool SVGElement::dispatchEvent(Event* e, ExceptionCode& ec, bool tempEvent)
+bool SVGElement::dispatchEvent(Event *e, ExceptionCode &ec, bool tempEvent)
 {
     Q_UNUSED(e);
     Q_UNUSED(ec);
@@ -279,41 +282,45 @@ bool SVGElement::dispatchEvent(Event* e, ExceptionCode& ec, bool tempEvent)
 
     RefPtr<FrameView> view = document()->view();
     return EventTargetNode::dispatchGenericEvent(this, e, ec, tempEvent);*/
-	ASSERT(false);
-	return false;
+    ASSERT(false);
+    return false;
 }
 
-void SVGElement::attributeChanged(Attribute* attr, bool preserveDecls)
+void SVGElement::attributeChanged(Attribute *attr, bool preserveDecls)
 {
     ASSERT(attr);
-    if (!attr)
+    if (!attr) {
         return;
+    }
 
     StyledElement::attributeChanged(attr, preserveDecls);
     svgAttributeChanged(attr->name());
 }
 
 // for KHTML compatibility
-void SVGElement::addCSSProperty(Attribute* attr, int id, const String& value)
+void SVGElement::addCSSProperty(Attribute *attr, int id, const String &value)
 {
     Q_UNUSED(attr);
     // qDebug() << "called with: " << id << " " << value << endl;
     /* WARNING: copy&past'ed from HTMLElementImpl class */
-    if (!m_hasCombinedStyle) createNonCSSDecl();
+    if (!m_hasCombinedStyle) {
+        createNonCSSDecl();
+    }
     nonCSSStyleDecls()->setProperty(id, value, false);
     setChanged();
 }
 
-void SVGElement::addCSSProperty(Attribute* attr, int id, int value)
+void SVGElement::addCSSProperty(Attribute *attr, int id, int value)
 {
     Q_UNUSED(attr);
     // qDebug() << "called with: " << id << " " << value << endl;
     /* WARNING: copy&past'ed from HTMLElementImpl class */
-    if (!m_hasCombinedStyle) createNonCSSDecl();
+    if (!m_hasCombinedStyle) {
+        createNonCSSDecl();
+    }
     nonCSSStyleDecls()->setProperty(id, value, false);
     setChanged();
 }
-
 
 }
 

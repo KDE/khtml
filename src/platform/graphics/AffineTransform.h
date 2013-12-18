@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef AffineTransform_h
@@ -37,14 +37,16 @@
 #include <wx/graphics.h>
 #endif
 
-namespace WebCore {
+namespace WebCore
+{
 
 class IntPoint;
 class IntRect;
 class FloatPoint;
 class FloatRect;
 
-class AffineTransform {
+class AffineTransform
+{
 public:
     AffineTransform();
     AffineTransform(double a, double b, double c, double d, double e, double f);
@@ -60,13 +62,13 @@ public:
 
     void setMatrix(double a, double b, double c, double d, double e, double f);
     void map(double x, double y, double *x2, double *y2) const;
-    IntPoint mapPoint(const IntPoint&) const;
-    FloatPoint mapPoint(const FloatPoint&) const;
-    IntRect mapRect(const IntRect&) const;
-    FloatRect mapRect(const FloatRect&) const;
-    
+    IntPoint mapPoint(const IntPoint &) const;
+    FloatPoint mapPoint(const FloatPoint &) const;
+    IntRect mapRect(const IntRect &) const;
+    FloatRect mapRect(const FloatRect &) const;
+
     bool isIdentity() const;
-    
+
     double a() const;
     void setA(double a);
 
@@ -87,20 +89,20 @@ public:
 
     void reset();
 
-    AffineTransform& multiply(const AffineTransform&);
-    AffineTransform& scale(double); 
-    AffineTransform& scale(double sx, double sy); 
-    AffineTransform& scaleNonUniform(double sx, double sy);
-    AffineTransform& rotate(double d);
-    AffineTransform& rotateFromVector(double x, double y);
-    AffineTransform& translate(double tx, double ty);
-    AffineTransform& shear(double sx, double sy);
-    AffineTransform& flipX();
-    AffineTransform& flipY();
-    AffineTransform& skew(double angleX, double angleY);
-    AffineTransform& skewX(double angle);
-    AffineTransform& skewY(double angle);
- 
+    AffineTransform &multiply(const AffineTransform &);
+    AffineTransform &scale(double);
+    AffineTransform &scale(double sx, double sy);
+    AffineTransform &scaleNonUniform(double sx, double sy);
+    AffineTransform &rotate(double d);
+    AffineTransform &rotateFromVector(double x, double y);
+    AffineTransform &translate(double tx, double ty);
+    AffineTransform &shear(double sx, double sy);
+    AffineTransform &flipX();
+    AffineTransform &flipY();
+    AffineTransform &skew(double angleX, double angleY);
+    AffineTransform &skewX(double angle);
+    AffineTransform &skewY(double angle);
+
     double det() const;
     bool isInvertible() const;
     AffineTransform inverse() const;
@@ -115,11 +117,14 @@ public:
     operator wxGraphicsMatrix() const;
 #endif
 
-    bool operator==(const AffineTransform&) const;
-    bool operator!=(const AffineTransform& other) const { return !(*this == other); }
-    AffineTransform& operator*=(const AffineTransform&);
-    AffineTransform operator*(const AffineTransform&);
-    
+    bool operator==(const AffineTransform &) const;
+    bool operator!=(const AffineTransform &other) const
+    {
+        return !(*this == other);
+    }
+    AffineTransform &operator*=(const AffineTransform &);
+    AffineTransform operator*(const AffineTransform &);
+
 private:
 #if PLATFORM(CG)
     CGAffineTransform m_transform;

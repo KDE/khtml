@@ -23,9 +23,10 @@
 #include "SVGFESpecularLighting.h"
 #include "TextStream.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFESpecularLighting::SVGFESpecularLighting(SVGResourceFilter* filter)
+SVGFESpecularLighting::SVGFESpecularLighting(SVGResourceFilter *filter)
     : SVGFilterEffect(filter)
     , m_lightingColor()
     , m_surfaceScale(0.0f)
@@ -47,7 +48,7 @@ Color SVGFESpecularLighting::lightingColor() const
     return m_lightingColor;
 }
 
-void SVGFESpecularLighting::setLightingColor(const Color& lightingColor)
+void SVGFESpecularLighting::setLightingColor(const Color &lightingColor)
 {
     m_lightingColor = lightingColor;
 }
@@ -102,12 +103,12 @@ void SVGFESpecularLighting::setKernelUnitLengthY(float kernelUnitLengthY)
     m_kernelUnitLengthY = kernelUnitLengthY;
 }
 
-const SVGLightSource* SVGFESpecularLighting::lightSource() const
+const SVGLightSource *SVGFESpecularLighting::lightSource() const
 {
     return m_lightSource;
 }
 
-void SVGFESpecularLighting::setLightSource(SVGLightSource* lightSource)
+void SVGFESpecularLighting::setLightSource(SVGLightSource *lightSource)
 {
     if (m_lightSource != lightSource) {
         delete m_lightSource;
@@ -115,13 +116,13 @@ void SVGFESpecularLighting::setLightSource(SVGLightSource* lightSource)
     }
 }
 
-TextStream& SVGFESpecularLighting::externalRepresentation(TextStream& ts) const
+TextStream &SVGFESpecularLighting::externalRepresentation(TextStream &ts) const
 {
     ts << "[type=SPECULAR-LIGHTING] ";
     SVGFilterEffect::externalRepresentation(ts);
     ts << " [surface scale=" << m_surfaceScale << "]"
-        << " [specual constant=" << m_specularConstant << "]"
-        << " [specular exponent=" << m_specularExponent << "]";
+       << " [specual constant=" << m_specularConstant << "]"
+       << " [specular exponent=" << m_specularExponent << "]";
     return ts;
 }
 

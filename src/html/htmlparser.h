@@ -38,7 +38,6 @@
 #include <QDateTime>
 #endif
 
-
 #include "dom/dom_string.h"
 #include "xml/dom_nodeimpl.h"
 #include "html/html_documentimpl.h"
@@ -47,17 +46,19 @@
 class KHTMLView;
 class HTMLStackElem;
 
-namespace DOM {
-    class HTMLDocumentImpl;
-    class DocumentImpl;
-    class NodeImpl;
-    class HTMLFormElementImpl;
-    class HTMLMapElementImpl;
-    class HTMLHeadElementImpl;
-    class DocumentFragmentImpl;
+namespace DOM
+{
+class HTMLDocumentImpl;
+class DocumentImpl;
+class NodeImpl;
+class HTMLFormElementImpl;
+class HTMLMapElementImpl;
+class HTMLHeadElementImpl;
+class DocumentFragmentImpl;
 }
 
-namespace khtml {
+namespace khtml
+{
 
 class Token;
 class DoctypeToken;
@@ -69,15 +70,15 @@ class DoctypeToken;
 class KHTMLParser
 {
 public:
-    KHTMLParser( KHTMLView *w, DOM::DocumentImpl *i );
-    KHTMLParser( DOM::DocumentFragmentImpl *frag, DOM::DocumentImpl *doc );
+    KHTMLParser(KHTMLView *w, DOM::DocumentImpl *i);
+    KHTMLParser(DOM::DocumentFragmentImpl *frag, DOM::DocumentImpl *doc);
     virtual ~KHTMLParser();
 
     /**
      * parses one token delivered by the tokenizer
      */
     void parseToken(Token *_t);
-    
+
     /**
      * parses a doctype token delivered by the tokenizer
      */
@@ -88,14 +89,32 @@ public:
      */
     void reset();
 
-    bool skipMode() const { return (discard_until != 0); }
-    bool noSpaces() const { return (inSelect || !m_inline  || !inBody); }
-    bool selectMode() const { return inSelect; }
+    bool skipMode() const
+    {
+        return (discard_until != 0);
+    }
+    bool noSpaces() const
+    {
+        return (inSelect || !m_inline  || !inBody);
+    }
+    bool selectMode() const
+    {
+        return inSelect;
+    }
 
-    DOM::HTMLDocumentImpl *doc() const { return static_cast<DOM::HTMLDocumentImpl *>(document); }
-    DOM::DocumentImpl *docPtr() const { return document; }
+    DOM::HTMLDocumentImpl *doc() const
+    {
+        return static_cast<DOM::HTMLDocumentImpl *>(document);
+    }
+    DOM::DocumentImpl *docPtr() const
+    {
+        return document;
+    }
 
-    DOM::HTMLScriptElementImpl *currentScriptElement() const { return (current && current->id() == ID_SCRIPT) ? static_cast<DOM::HTMLScriptElementImpl*>(current) : 0;}
+    DOM::HTMLScriptElementImpl *currentScriptElement() const
+    {
+        return (current && current->id() == ID_SCRIPT) ? static_cast<DOM::HTMLScriptElementImpl *>(current) : 0;
+    }
 
 protected:
 
@@ -114,10 +133,14 @@ protected:
     /*
      * The currently active element (the one new elements will be added to)
      */
-    void setCurrent( DOM::NodeImpl* newNode )
+    void setCurrent(DOM::NodeImpl *newNode)
     {
-        if ( newNode ) newNode->ref();
-        if ( current ) current->deref();
+        if (newNode) {
+            newNode->ref();
+        }
+        if (current) {
+            current->deref();
+        }
         current = newNode;
     }
 
@@ -126,24 +149,24 @@ private:
 
     HTMLStackElem *blockStack;
 
-    void pushBlock( int _id, int _level);
+    void pushBlock(int _id, int _level);
 
-    void generateImpliedEndTags( int _id );
-    void popOptionalBlock( int _id );
-    void popBlock( int _id );
+    void generateImpliedEndTags(int _id);
+    void popOptionalBlock(int _id);
+    void popBlock(int _id);
     void popOneBlock(bool delBlock = true);
     void popInlineBlocks();
-    bool isElementInScope( int _id );
+    bool isElementInScope(int _id);
     bool isHeadingInScope();
 
-    void freeBlock( void);
+    void freeBlock(void);
 
     void createHead();
 
     bool isResidualStyleTag(int _id);
     bool isAffectedByResidualStyle(int _id);
-    void handleResidualStyleCloseTagAcrossBlocks(HTMLStackElem* elem);
-    void reopenResidualStyleTags(HTMLStackElem* elem, DOM::NodeImpl* malformedTableParent);
+    void handleResidualStyleCloseTagAcrossBlocks(HTMLStackElem *elem);
+    void reopenResidualStyleTags(HTMLStackElem *elem, DOM::NodeImpl *malformedTableParent);
 
     ushort *forbiddenTag;
 
@@ -167,7 +190,7 @@ private:
      * html from the stone age
      */
     DOM::NodeImpl *isindex;
-    DOM::NodeImpl *handleIsindex( Token *t );
+    DOM::NodeImpl *handleIsindex(Token *t);
 
     /*
      * inserts the stupid isIndex element.
@@ -182,7 +205,6 @@ private:
     bool m_inline;
     bool end;
     bool inSelect;
-
 
     /*
      * tells the parser to discard all tags, until it reaches the one specified

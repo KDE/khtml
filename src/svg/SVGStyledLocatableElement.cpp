@@ -30,9 +30,10 @@
 #include "AffineTransform.h"
 #include "SVGSVGElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGStyledLocatableElement::SVGStyledLocatableElement(const QualifiedName& tagName, Document* doc)
+SVGStyledLocatableElement::SVGStyledLocatableElement(const QualifiedName &tagName, Document *doc)
     : SVGLocatable()
     , SVGStyledElement(tagName, doc)
 {
@@ -42,12 +43,12 @@ SVGStyledLocatableElement::~SVGStyledLocatableElement()
 {
 }
 
-SVGElement* SVGStyledLocatableElement::nearestViewportElement() const
+SVGElement *SVGStyledLocatableElement::nearestViewportElement() const
 {
     return SVGLocatable::nearestViewportElement(this);
 }
 
-SVGElement* SVGStyledLocatableElement::farthestViewportElement() const
+SVGElement *SVGStyledLocatableElement::farthestViewportElement() const
 {
     return SVGLocatable::farthestViewportElement(this);
 }

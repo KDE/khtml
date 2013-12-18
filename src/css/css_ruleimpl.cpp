@@ -37,14 +37,14 @@ using namespace DOM;
 
 CSSStyleSheetImpl *CSSRuleImpl::parentStyleSheet() const
 {
-    return ( m_parent && m_parent->isCSSStyleSheet() )  ?
-	static_cast<CSSStyleSheetImpl *>(m_parent) : 0;
+    return (m_parent && m_parent->isCSSStyleSheet())  ?
+           static_cast<CSSStyleSheetImpl *>(m_parent) : 0;
 }
 
 CSSRuleImpl *CSSRuleImpl::parentRule() const
 {
-    return ( m_parent && m_parent->isRule() )  ?
-	static_cast<CSSRuleImpl *>(m_parent) : 0;
+    return (m_parent && m_parent->isRule())  ?
+           static_cast<CSSRuleImpl *>(m_parent) : 0;
 }
 
 DOM::DOMString CSSRuleImpl::cssText() const
@@ -69,16 +69,18 @@ CSSFontFaceRuleImpl::CSSFontFaceRuleImpl(StyleBaseImpl *parent)
 
 CSSFontFaceRuleImpl::~CSSFontFaceRuleImpl()
 {
-    if (m_style)
+    if (m_style) {
         m_style->deref();
+    }
 }
 
-void CSSFontFaceRuleImpl::setDeclaration( CSSStyleDeclarationImpl* decl)
+void CSSFontFaceRuleImpl::setDeclaration(CSSStyleDeclarationImpl *decl)
 {
     assert(!m_style);
     m_style = decl;
-    if (m_style)
+    if (m_style) {
         m_style->ref();
+    }
 }
 
 DOMString CSSFontFaceRuleImpl::cssText() const
@@ -94,17 +96,18 @@ DOMString CSSFontFaceRuleImpl::cssText() const
 
 // --------------------------------------------------------------------------
 
-CSSImportRuleImpl::CSSImportRuleImpl( StyleBaseImpl *parent,
-                                      const DOM::DOMString &href,
-                                      MediaListImpl *media )
+CSSImportRuleImpl::CSSImportRuleImpl(StyleBaseImpl *parent,
+                                     const DOM::DOMString &href,
+                                     MediaListImpl *media)
     : CSSRuleImpl(parent)
 {
     m_type = CSSRule::IMPORT_RULE;
 
     m_lstMedia = media;
-    if ( !m_lstMedia )
-	m_lstMedia = new MediaListImpl( this, DOMString() );
-    m_lstMedia->setParent( this );
+    if (!m_lstMedia) {
+        m_lstMedia = new MediaListImpl(this, DOMString());
+    }
+    m_lstMedia->setParent(this);
     m_lstMedia->ref();
 
     m_strHref = href;
@@ -114,14 +117,14 @@ CSSImportRuleImpl::CSSImportRuleImpl( StyleBaseImpl *parent,
 
     init();
 }
-CSSImportRuleImpl::CSSImportRuleImpl( StyleBaseImpl *parent,
-                                      const DOM::DOMString &href,
-                                      const DOM::DOMString &media )
+CSSImportRuleImpl::CSSImportRuleImpl(StyleBaseImpl *parent,
+                                     const DOM::DOMString &href,
+                                     const DOM::DOMString &media)
     : CSSRuleImpl(parent)
 {
     m_type = CSSRule::IMPORT_RULE;
 
-    m_lstMedia = new MediaListImpl( this, media );
+    m_lstMedia = new MediaListImpl(this, media);
     m_lstMedia->ref();
 
     m_strHref = href;
@@ -134,28 +137,31 @@ CSSImportRuleImpl::CSSImportRuleImpl( StyleBaseImpl *parent,
 
 CSSImportRuleImpl::~CSSImportRuleImpl()
 {
-    if( m_lstMedia ) {
- 	m_lstMedia->setParent( 0 );
-	m_lstMedia->deref();
+    if (m_lstMedia) {
+        m_lstMedia->setParent(0);
+        m_lstMedia->deref();
     }
-    if(m_styleSheet) {
+    if (m_styleSheet) {
         m_styleSheet->setParent(0);
         m_styleSheet->deref();
     }
 
-    if(m_cachedSheet) m_cachedSheet->deref(this);
+    if (m_cachedSheet) {
+        m_cachedSheet->deref(this);
+    }
 }
 
 void CSSImportRuleImpl::checkLoaded() const
 {
-    if (isLoading())
+    if (isLoading()) {
         return;
+    }
     CSSRuleImpl::checkLoaded();
 }
 
 void CSSImportRuleImpl::setStyleSheet(const DOM::DOMString &url, const DOM::DOMString &sheetStr, const DOM::DOMString &charset, const DOM::DOMString &mimetype)
 {
-    if ( m_styleSheet ) {
+    if (m_styleSheet) {
         m_styleSheet->setParent(0);
         m_styleSheet->deref();
     }
@@ -166,9 +172,10 @@ void CSSImportRuleImpl::setStyleSheet(const DOM::DOMString &url, const DOM::DOMS
     CSSStyleSheetImpl *parent = parentStyleSheet();
     bool strict = parent ? parent->useStrictParsing() : true;
     DOMString sheet = sheetStr;
-    if (strict && !khtml::isAcceptableCSSMimetype(mimetype))
+    if (strict && !khtml::isAcceptableCSSMimetype(mimetype)) {
         sheet = "";
-    m_styleSheet->parseString( sheet, strict );
+    }
+    m_styleSheet->parseString(sheet, strict);
     m_loading = false;
     m_done = true;
 
@@ -177,7 +184,7 @@ void CSSImportRuleImpl::setStyleSheet(const DOM::DOMString &url, const DOM::DOMS
 
 void CSSImportRuleImpl::error(int /*err*/, const QString &/*text*/)
 {
-    if ( m_styleSheet ) {
+    if (m_styleSheet) {
         m_styleSheet->setParent(0);
         m_styleSheet->deref();
     }
@@ -191,7 +198,7 @@ void CSSImportRuleImpl::error(int /*err*/, const QString &/*text*/)
 
 bool CSSImportRuleImpl::isLoading() const
 {
-    return ( m_loading || (m_styleSheet && m_styleSheet->isLoading()) );
+    return (m_loading || (m_styleSheet && m_styleSheet->isLoading()));
 }
 
 void CSSImportRuleImpl::init()
@@ -201,43 +208,45 @@ void CSSImportRuleImpl::init()
     khtml::DocLoader *docLoader = 0;
     StyleBaseImpl *root = this;
     StyleBaseImpl *parent;
-    while ( ( parent = root->parent()) )
-	root = parent;
-    if (root->isCSSStyleSheet())
-	docLoader = static_cast<CSSStyleSheetImpl*>(root)->docLoader();
+    while ((parent = root->parent())) {
+        root = parent;
+    }
+    if (root->isCSSStyleSheet()) {
+        docLoader = static_cast<CSSStyleSheetImpl *>(root)->docLoader();
+    }
 
     DOMString absHref = m_strHref;
     CSSStyleSheetImpl *parentSheet = parentStyleSheet();
     if (!parentSheet->href().isNull()) {
-      // use parent styleheet's URL as the base URL
-      absHref = QUrl(parentSheet->href().string()).resolved(QUrl(m_strHref.string())).toString();
+        // use parent styleheet's URL as the base URL
+        absHref = QUrl(parentSheet->href().string()).resolved(QUrl(m_strHref.string())).toString();
     }
-/*
-    else {
-      // use documents's URL as the base URL
-      DocumentImpl *doc = static_cast<CSSStyleSheetImpl*>(root)->doc();
-      absHref = QUrl(doc->URL()).resolved(QUrl(m_strHref.string())).toString();
-    }
-*/
+    /*
+        else {
+          // use documents's URL as the base URL
+          DocumentImpl *doc = static_cast<CSSStyleSheetImpl*>(root)->doc();
+          absHref = QUrl(doc->URL()).resolved(QUrl(m_strHref.string())).toString();
+        }
+    */
     // Check for a cycle in our import chain.  If we encounter a stylesheet
     // in our parent chain with the same URL, then just bail.
-    for ( parent = static_cast<StyleBaseImpl*>( this )->parent();
-         parent;
-          parent = parent->parent() )
-        if ( absHref == parent->baseURL().url() )
+    for (parent = static_cast<StyleBaseImpl *>(this)->parent();
+            parent;
+            parent = parent->parent())
+        if (absHref == parent->baseURL().url()) {
             return;
+        }
 
     m_cachedSheet = docLoader->requestStyleSheet(absHref, parentStyleSheet()->charset().string());
 
-    if (m_cachedSheet)
-    {
-      // if the import rule is issued dynamically, the sheet may have already been
-      // removed from the pending sheet count, so let the doc know
-      // the sheet being imported is pending.
-      checkPending();
+    if (m_cachedSheet) {
+        // if the import rule is issued dynamically, the sheet may have already been
+        // removed from the pending sheet count, so let the doc know
+        // the sheet being imported is pending.
+        checkPending();
 
-      m_loading = true;
-      m_cachedSheet->ref(this);
+        m_loading = true;
+        m_cachedSheet->ref(this);
     }
 }
 
@@ -257,19 +266,20 @@ DOMString CSSImportRuleImpl::cssText() const
 }
 
 // --------------------------------------------------------------------------
-CSSMediaRuleImpl::CSSMediaRuleImpl( StyleBaseImpl *parent, MediaListImpl *mediaList, CSSRuleListImpl *ruleList )
-    :   CSSRuleImpl( parent )
+CSSMediaRuleImpl::CSSMediaRuleImpl(StyleBaseImpl *parent, MediaListImpl *mediaList, CSSRuleListImpl *ruleList)
+    :   CSSRuleImpl(parent)
 {
     m_type = CSSRule::MEDIA_RULE;
     m_lstMedia = mediaList;
-    if (m_lstMedia)
+    if (m_lstMedia) {
         m_lstMedia->ref();
+    }
     m_lstCSSRules = ruleList;
     m_lstCSSRules->ref();
 }
 
 CSSMediaRuleImpl::CSSMediaRuleImpl(StyleBaseImpl *parent)
-    :   CSSRuleImpl( parent )
+    :   CSSRuleImpl(parent)
 {
     m_type = CSSRule::MEDIA_RULE;
     m_lstMedia = 0;
@@ -277,11 +287,11 @@ CSSMediaRuleImpl::CSSMediaRuleImpl(StyleBaseImpl *parent)
     m_lstCSSRules->ref();
 }
 
-CSSMediaRuleImpl::CSSMediaRuleImpl( StyleBaseImpl *parent, const DOM::DOMString &media )
-:   CSSRuleImpl( parent )
+CSSMediaRuleImpl::CSSMediaRuleImpl(StyleBaseImpl *parent, const DOM::DOMString &media)
+    :   CSSRuleImpl(parent)
 {
     m_type = CSSRule::MEDIA_RULE;
-    m_lstMedia = new MediaListImpl( this, media );
+    m_lstMedia = new MediaListImpl(this, media);
     m_lstMedia->ref();
     m_lstCSSRules = new CSSRuleListImpl();
     m_lstCSSRules->ref();
@@ -289,27 +299,28 @@ CSSMediaRuleImpl::CSSMediaRuleImpl( StyleBaseImpl *parent, const DOM::DOMString 
 
 CSSMediaRuleImpl::~CSSMediaRuleImpl()
 {
-    if( m_lstMedia ) {
-	m_lstMedia->setParent( 0 );
+    if (m_lstMedia) {
+        m_lstMedia->setParent(0);
         m_lstMedia->deref();
     }
-    for ( unsigned int i = 0; i < m_lstCSSRules->length(); ++i )
-        m_lstCSSRules->item(  i )->setParent(  0 );
+    for (unsigned int i = 0; i < m_lstCSSRules->length(); ++i) {
+        m_lstCSSRules->item(i)->setParent(0);
+    }
     m_lstCSSRules->deref();
 }
 
-unsigned long CSSMediaRuleImpl::append( CSSRuleImpl *rule )
+unsigned long CSSMediaRuleImpl::append(CSSRuleImpl *rule)
 {
-    return rule ? m_lstCSSRules->insertRule( rule, m_lstCSSRules->length() ) : 0;
+    return rule ? m_lstCSSRules->insertRule(rule, m_lstCSSRules->length()) : 0;
 }
 
-unsigned long CSSMediaRuleImpl::insertRule( const DOMString &rule,
-                                            unsigned long index )
+unsigned long CSSMediaRuleImpl::insertRule(const DOMString &rule,
+        unsigned long index)
 {
-    CSSParser p( strictParsing );
-    CSSRuleImpl *newRule = p.parseRule( parentStyleSheet(), rule );
+    CSSParser p(strictParsing);
+    CSSRuleImpl *newRule = p.parseRule(parentStyleSheet(), rule);
 
-    return newRule ? m_lstCSSRules->insertRule( newRule, index ) : 0;
+    return newRule ? m_lstCSSRules->insertRule(newRule, index) : 0;
 }
 
 DOM::DOMString CSSMediaRuleImpl::cssText() const
@@ -345,7 +356,9 @@ CSSPageRuleImpl::CSSPageRuleImpl(StyleBaseImpl *parent)
 
 CSSPageRuleImpl::~CSSPageRuleImpl()
 {
-    if(m_style) m_style->deref();
+    if (m_style) {
+        m_style->deref();
+    }
 }
 
 DOM::DOMString CSSPageRuleImpl::selectorText() const
@@ -371,9 +384,9 @@ CSSStyleRuleImpl::CSSStyleRuleImpl(StyleBaseImpl *parent)
 
 CSSStyleRuleImpl::~CSSStyleRuleImpl()
 {
-    if(m_style) {
-	m_style->setParent( 0 );
-	m_style->deref();
+    if (m_style) {
+        m_style->setParent(0);
+        m_style->deref();
     }
     qDeleteAll(*m_selector);
     delete m_selector;
@@ -395,8 +408,9 @@ DOM::DOMString CSSStyleRuleImpl::selectorText() const
     if (m_selector) {
         DOMString str;
         foreach (CSSSelector *s, *m_selector) {
-            if (s != m_selector->at(0))
+            if (s != m_selector->at(0)) {
                 str += ", ";
+            }
             str += s->selectorText();
         }
         return str;
@@ -409,24 +423,28 @@ void CSSStyleRuleImpl::setSelectorText(DOM::DOMString /*str*/)
     // ###
 }
 
-bool CSSStyleRuleImpl::parseString( const DOMString &/*string*/, bool )
+bool CSSStyleRuleImpl::parseString(const DOMString &/*string*/, bool)
 {
     // ###
     return false;
 }
 
-void CSSStyleRuleImpl::setDeclaration( CSSStyleDeclarationImpl *style)
+void CSSStyleRuleImpl::setDeclaration(CSSStyleDeclarationImpl *style)
 {
-    if ( m_style != style ) {
-        if(m_style) m_style->deref();
+    if (m_style != style) {
+        if (m_style) {
+            m_style->deref();
+        }
         m_style = style;
-        if(m_style) m_style->ref();
+        if (m_style) {
+            m_style->ref();
+        }
     }
 }
 
 // --------------------------------------------------------------------
 
-CSSNamespaceRuleImpl::CSSNamespaceRuleImpl(StyleBaseImpl *parent, const DOMString& prefix, const DOMString& ns)
+CSSNamespaceRuleImpl::CSSNamespaceRuleImpl(StyleBaseImpl *parent, const DOMString &prefix, const DOMString &ns)
     : CSSRuleImpl(parent)
 {
     m_type      = CSSRule::NAMESPACE_RULE;
@@ -436,29 +454,32 @@ CSSNamespaceRuleImpl::CSSNamespaceRuleImpl(StyleBaseImpl *parent, const DOMStrin
 
 // --------------------------------------------------------------------
 
-CSSRuleListImpl::CSSRuleListImpl(StyleListImpl* const list, bool omitCharsetRules)
+CSSRuleListImpl::CSSRuleListImpl(StyleListImpl *const list, bool omitCharsetRules)
 {
-     m_list = list;
-     if (list && omitCharsetRules) {
-         m_list = 0;
-         unsigned len = list->length();
-         for (unsigned i = 0; i < len; ++i) {
-             StyleBaseImpl* rule = list->item(i);
-             if (rule->isRule() && !rule->isCharsetRule())
-                 append(static_cast<CSSRuleImpl*>(rule));
-         }
-     } else if (m_list) {
-         m_list->ref();
-     }
+    m_list = list;
+    if (list && omitCharsetRules) {
+        m_list = 0;
+        unsigned len = list->length();
+        for (unsigned i = 0; i < len; ++i) {
+            StyleBaseImpl *rule = list->item(i);
+            if (rule->isRule() && !rule->isCharsetRule()) {
+                append(static_cast<CSSRuleImpl *>(rule));
+            }
+        }
+    } else if (m_list) {
+        m_list->ref();
+    }
 }
 
 CSSRuleListImpl::~CSSRuleListImpl()
 {
-    CSSRuleImpl* rule;
-    while ( !m_lstCSSRules.isEmpty() && ( rule = m_lstCSSRules.takeFirst() ) )
+    CSSRuleImpl *rule;
+    while (!m_lstCSSRules.isEmpty() && (rule = m_lstCSSRules.takeFirst())) {
         rule->deref();
-    if (m_list)
+    }
+    if (m_list) {
         m_list->deref();
+    }
 }
 
 unsigned long CSSRuleListImpl::length() const
@@ -466,46 +487,45 @@ unsigned long CSSRuleListImpl::length() const
     return m_list ? m_list->length() : m_lstCSSRules.count();
 }
 
-CSSRuleImpl* CSSRuleListImpl::item(unsigned long index)
+CSSRuleImpl *CSSRuleListImpl::item(unsigned long index)
 {
     if (m_list) {
-        StyleBaseImpl* rule = m_list->item(index);
+        StyleBaseImpl *rule = m_list->item(index);
         assert(!rule || rule->isRule());
-        return static_cast<CSSRuleImpl*>(rule);
+        return static_cast<CSSRuleImpl *>(rule);
     }
     return index < length() ? m_lstCSSRules.at(index) : 0;
 }
 
-void CSSRuleListImpl::deleteRule ( unsigned long index )
+void CSSRuleListImpl::deleteRule(unsigned long index)
 {
     assert(!m_list);
-    if (index+1 > (unsigned) m_lstCSSRules.size()) {
+    if (index + 1 > (unsigned) m_lstCSSRules.size()) {
         return;
         // ### Throw INDEX_SIZE_ERR exception here (TODO)
     }
-    CSSRuleImpl *rule = m_lstCSSRules.takeAt( index );
+    CSSRuleImpl *rule = m_lstCSSRules.takeAt(index);
     rule->deref();
 }
 
-void CSSRuleListImpl::append(CSSRuleImpl* rule)
+void CSSRuleListImpl::append(CSSRuleImpl *rule)
 {
     assert(!m_list);
     rule->ref();
-    m_lstCSSRules.append( rule );
+    m_lstCSSRules.append(rule);
 }
 
-unsigned long CSSRuleListImpl::insertRule( CSSRuleImpl *rule,
-                                           unsigned long index )
+unsigned long CSSRuleListImpl::insertRule(CSSRuleImpl *rule,
+        unsigned long index)
 {
     assert(!m_list);
     if (index > (unsigned) m_lstCSSRules.size()) {
         return 0;
         // ### Throw INDEX_SIZE_ERR exception here (TODO)
     }
-    
-    if( rule )
-    {
-        m_lstCSSRules.insert( index, rule );
+
+    if (rule) {
+        m_lstCSSRules.insert(index, rule);
         rule->ref();
         return index;
     }

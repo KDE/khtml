@@ -29,36 +29,44 @@
 #include "SVGStyledTransformableElement.h"
 #include "SVGTests.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGCircleElement : public SVGStyledTransformableElement,
-                             public SVGTests,
-                             public SVGLangSpace,
-                             public SVGExternalResourcesRequired {
-    public:
-        SVGCircleElement(const QualifiedName&, Document*);
-        virtual ~SVGCircleElement();
+class SVGCircleElement : public SVGStyledTransformableElement,
+    public SVGTests,
+    public SVGLangSpace,
+    public SVGExternalResourcesRequired
+{
+public:
+    SVGCircleElement(const QualifiedName &, Document *);
+    virtual ~SVGCircleElement();
 
-        virtual bool isValid() const { return SVGTests::isValid(); }
+    virtual bool isValid() const
+    {
+        return SVGTests::isValid();
+    }
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual void svgAttributeChanged(const QualifiedName&);
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual void svgAttributeChanged(const QualifiedName &);
 
-        virtual Path toPathData() const;
+    virtual Path toPathData() const;
 
-        // KHTML ElementImpl pure virtual method
-        virtual quint32 id() const;
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
-        virtual bool hasRelativeValues() const;
+    // KHTML ElementImpl pure virtual method
+    virtual quint32 id() const;
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
+    virtual bool hasRelativeValues() const;
 
-    private:
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
+private:
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
 
-        ANIMATED_PROPERTY_DECLARATIONS(SVGCircleElement, SVGLength, SVGLength, Cx, cx)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGCircleElement, SVGLength, SVGLength, Cy, cy)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGCircleElement, SVGLength, SVGLength, R, r)
-    };
+    ANIMATED_PROPERTY_DECLARATIONS(SVGCircleElement, SVGLength, SVGLength, Cx, cx)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGCircleElement, SVGLength, SVGLength, Cy, cy)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGCircleElement, SVGLength, SVGLength, R, r)
+};
 
 } // namespace WebCore
 

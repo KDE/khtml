@@ -27,29 +27,31 @@
 //#include "AtomicString.h"
 #include "Document.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    //class MappedAttribute;
-    //class QualifiedName;
+//class MappedAttribute;
+//class QualifiedName;
 
-    class SVGLangSpace {
-    public:
-        SVGLangSpace();
-        virtual ~SVGLangSpace();
+class SVGLangSpace
+{
+public:
+    SVGLangSpace();
+    virtual ~SVGLangSpace();
 
-        const AtomicString& xmllang() const;
-        void setXmllang(const AtomicString& xmlLang);
+    const AtomicString &xmllang() const;
+    void setXmllang(const AtomicString &xmlLang);
 
-        const AtomicString& xmlspace() const;
-        void setXmlspace(const AtomicString& xmlSpace);
+    const AtomicString &xmlspace() const;
+    void setXmlspace(const AtomicString &xmlSpace);
 
-        bool parseMappedAttribute(MappedAttribute*);
-        bool isKnownAttribute(const QualifiedName&);
+    bool parseMappedAttribute(MappedAttribute *);
+    bool isKnownAttribute(const QualifiedName &);
 
-    private:
-        AtomicString m_lang;
-        AtomicString m_space;
-    };
+private:
+    AtomicString m_lang;
+    AtomicString m_space;
+};
 
 } // namespace WebCore
 

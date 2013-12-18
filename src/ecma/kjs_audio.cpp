@@ -22,9 +22,10 @@
 
 #include <html/HTMLAudioElement.h>
 
-namespace KJS {
+namespace KJS
+{
 
-AudioConstructorImp::AudioConstructorImp(ExecState* exec, DOM::DocumentImpl* d)
+AudioConstructorImp::AudioConstructorImp(ExecState *exec, DOM::DocumentImpl *d)
     : JSObject(exec->lexicalInterpreter()->builtinObjectPrototype()), doc(d)
 {
 }
@@ -36,13 +37,14 @@ bool AudioConstructorImp::implementsConstruct() const
 
 JSObject *AudioConstructorImp::construct(ExecState *exec, const List &list)
 {
-    khtml::HTMLAudioElement* audio = static_cast<khtml::HTMLAudioElement*>(doc->createElement("audio"));
+    khtml::HTMLAudioElement *audio = static_cast<khtml::HTMLAudioElement *>(doc->createElement("audio"));
 
     QString url;
     if (list.size() > 0) {
         url = list.at(0)->toString(exec).qstring();
-        if (!url.isEmpty())
+        if (!url.isEmpty()) {
             audio->setSrc(url);
+        }
     }
     return getDOMNode(exec, audio)->getObject();
 }

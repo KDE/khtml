@@ -32,9 +32,10 @@
 #include <QPainter>
 #include <QPainterPath>
 
-namespace WebCore {
+namespace WebCore
+{
 
-QGradient SVGPaintServerLinearGradient::setupGradient(QPainter* painter, QPainterPath* painterPath, const RenderObject* object) const
+QGradient SVGPaintServerLinearGradient::setupGradient(QPainter *painter, QPainterPath *painterPath, const RenderObject *object) const
 {
     Q_UNUSED(painter);
     Q_UNUSED(object);
@@ -64,4 +65,3 @@ QGradient SVGPaintServerLinearGradient::setupGradient(QPainter* painter, QPainte
 
 #endif
 
-// vim:ts=4:noet

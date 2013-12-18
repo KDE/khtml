@@ -21,7 +21,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include "htmlprospectivetokenizer.h"
@@ -51,10 +51,10 @@
 #else
 // Not inlined for non-GCC compilers
 struct entity {
-    const char* name;
+    const char *name;
     int code;
 };
-const struct entity *kde_findEntity (register const char *str, register unsigned int len);
+const struct entity *kde_findEntity(register const char *str, register unsigned int len);
 #endif
 
 #define PRELOAD_DEBUG 0
@@ -63,8 +63,8 @@ const struct entity *kde_findEntity (register const char *str, register unsigned
 #define U16_LEAD(sup) (ushort)(((sup)>>10)+0xd7c0)
 
 using namespace khtml;
-    
-ProspectiveTokenizer::ProspectiveTokenizer(DOM::DocumentImpl * doc)
+
+ProspectiveTokenizer::ProspectiveTokenizer(DOM::DocumentImpl *doc)
     : m_inProgress(false)
     , m_tagName(32)
     , m_attributeName(32)
@@ -78,7 +78,7 @@ ProspectiveTokenizer::ProspectiveTokenizer(DOM::DocumentImpl * doc)
     qDebug() << "CREATING PRELOAD SCANNER FOR" << m_document << m_document->URL().toDisplayString();
 #endif
 }
-    
+
 ProspectiveTokenizer::~ProspectiveTokenizer()
 {
 #if PRELOAD_DEBUG
@@ -86,24 +86,24 @@ ProspectiveTokenizer::~ProspectiveTokenizer()
     fprintf(stderr, "TOTAL TIME USED %dms\n", m_timeUsed);
 #endif
 }
-    
-void ProspectiveTokenizer::begin() 
-{ 
-    assert(!m_inProgress); 
-    reset(); 
-    m_inProgress = true; 
+
+void ProspectiveTokenizer::begin()
+{
+    assert(!m_inProgress);
+    reset();
+    m_inProgress = true;
 }
-    
-void ProspectiveTokenizer::end() 
-{ 
-    assert(m_inProgress); 
-    m_inProgress = false; 
+
+void ProspectiveTokenizer::end()
+{
+    assert(m_inProgress);
+    m_inProgress = false;
 }
 
 void ProspectiveTokenizer::reset()
 {
     m_source.clear();
-    
+
     m_state = Data;
     m_escape = false;
     m_contentModel = PCDATA;
@@ -115,18 +115,18 @@ void ProspectiveTokenizer::reset()
     m_attributeValue.clear();
     m_lastStartTag.clear();
     m_lastStartTagId = 0;
-    
+
     m_urlToLoad = "";
     m_linkIsStyleSheet = false;
     m_lastCharacterIndex = 0;
     clearLastCharacters();
-    
+
     m_cssState = CSSInitial;
     m_cssRule.clear();
     m_cssRuleValue.clear();
 }
-    
-void ProspectiveTokenizer::write(const TokenizerString& source)
+
+void ProspectiveTokenizer::write(const TokenizerString &source)
 {
 #if PRELOAD_DEBUG
     QTime t;
@@ -139,49 +139,53 @@ void ProspectiveTokenizer::write(const TokenizerString& source)
     m_timeUsed += t.elapsed();
 #endif
 }
-    
-static inline bool isWhitespace(const QChar& c)
+
+static inline bool isWhitespace(const QChar &c)
 {
     unsigned short u = c.unicode();
-    if (u > 0x20)
+    if (u > 0x20) {
         return false;
+    }
     return u == ' ' || u == '\n' || u == '\r' || u == '\t';
 }
-    
+
 inline void ProspectiveTokenizer::clearLastCharacters()
 {
     memset(m_lastCharacters, 0, lastCharactersBufferSize * sizeof(QChar));
 }
-    
+
 inline void ProspectiveTokenizer::rememberCharacter(QChar c)
 {
     m_lastCharacterIndex = (m_lastCharacterIndex + 1) % lastCharactersBufferSize;
     m_lastCharacters[m_lastCharacterIndex] = c;
 }
-    
-inline bool ProspectiveTokenizer::lastCharactersMatch(const char* chars, unsigned count) const
+
+inline bool ProspectiveTokenizer::lastCharactersMatch(const char *chars, unsigned count) const
 {
     unsigned pos = m_lastCharacterIndex;
     while (count) {
-        if (chars[count - 1] != m_lastCharacters[pos])
+        if (chars[count - 1] != m_lastCharacters[pos]) {
             return false;
+        }
         --count;
-        if (!pos)
+        if (!pos) {
             pos = lastCharactersBufferSize;
+        }
         --pos;
     }
     return true;
 }
-    
+
 static inline unsigned legalEntityFor(unsigned value)
 {
     // FIXME There is a table for more exceptions in the HTML5 specification.
-    if (value == 0 || value > 0x10FFFF || (value >= 0xD800 && value <= 0xDFFF))
+    if (value == 0 || value > 0x10FFFF || (value >= 0xD800 && value <= 0xDFFF)) {
         return 0xFFFD;
+    }
     return value;
 }
-    
-unsigned ProspectiveTokenizer::consumeEntity(TokenizerString& source, bool& notEnoughCharacters)
+
+unsigned ProspectiveTokenizer::consumeEntity(TokenizerString &source, bool &notEnoughCharacters)
 {
     enum EntityState {
         Initial,
@@ -195,26 +199,27 @@ unsigned ProspectiveTokenizer::consumeEntity(TokenizerString& source, bool& notE
     unsigned result = 0;
     QVarLengthArray<QChar> seenChars;
     QVarLengthArray<char>  entityName;
-    
+
     while (!source.isEmpty()) {
         seenChars.append(*source);
         ushort cc = source->unicode();
         switch (entityState) {
         case Initial:
-            if (isWhitespace(cc) || cc == '<' || cc == '&')
+            if (isWhitespace(cc) || cc == '<' || cc == '&') {
                 return 0;
-            else if (cc == '#') 
+            } else if (cc == '#') {
                 entityState = NumberType;
-            else if ((cc >= 'a' && cc <= 'z') || (cc >= 'A' && cc <= 'Z')) {
+            } else if ((cc >= 'a' && cc <= 'z') || (cc >= 'A' && cc <= 'Z')) {
                 entityName.append(cc);
                 entityState = Named;
-            } else
+            } else {
                 return 0;
+            }
             break;
         case NumberType:
-            if (cc == 'x' || cc == 'X')
+            if (cc == 'x' || cc == 'X') {
                 entityState = MaybeHex;
-            else if (cc >= '0' && cc <= '9') {
+            } else if (cc >= '0' && cc <= '9') {
                 entityState = Decimal;
                 result = cc - '0';
             } else {
@@ -223,13 +228,13 @@ unsigned ProspectiveTokenizer::consumeEntity(TokenizerString& source, bool& notE
             }
             break;
         case MaybeHex:
-            if (cc >= '0' && cc <= '9')
+            if (cc >= '0' && cc <= '9') {
                 result = cc - '0';
-            else if (cc >= 'a' && cc <= 'f')
+            } else if (cc >= 'a' && cc <= 'f') {
                 result = 10 + cc - 'a';
-            else if (cc >= 'A' && cc <= 'F')
+            } else if (cc >= 'A' && cc <= 'F') {
                 result = 10 + cc - 'A';
-            else {
+            } else {
                 source.push(seenChars[1]);
                 source.push('#');
                 return 0;
@@ -237,32 +242,34 @@ unsigned ProspectiveTokenizer::consumeEntity(TokenizerString& source, bool& notE
             entityState = Hex;
             break;
         case Hex:
-            if (cc >= '0' && cc <= '9')
+            if (cc >= '0' && cc <= '9') {
                 result = result * 16 + cc - '0';
-            else if (cc >= 'a' && cc <= 'f')
+            } else if (cc >= 'a' && cc <= 'f') {
                 result = result * 16 + 10 + cc - 'a';
-            else if (cc >= 'A' && cc <= 'F')
+            } else if (cc >= 'A' && cc <= 'F') {
                 result = result * 16 + 10 + cc - 'A';
-            else if (cc == ';') {
+            } else if (cc == ';') {
                 source.advance();
                 return legalEntityFor(result);
-            } else 
+            } else {
                 return legalEntityFor(result);
+            }
             break;
         case Decimal:
-            if (cc >= '0' && cc <= '9')
+            if (cc >= '0' && cc <= '9') {
                 result = result * 10 + cc - '0';
-            else if (cc == ';') {
+            } else if (cc == ';') {
                 source.advance();
                 return legalEntityFor(result);
-            } else
+            } else {
                 return legalEntityFor(result);
-            break;               
+            }
+            break;
         case Named:
             // This is the attribute only version, generic version matches somewhat differently
             while (entityName.size() <= 8) {
                 if (cc == ';') {
-                    const entity* e = kde_findEntity(entityName.data(), entityName.size());
+                    const entity *e = kde_findEntity(entityName.data(), entityName.size());
                     if (e) {
                         source.advance();
                         return e->code;
@@ -270,25 +277,28 @@ unsigned ProspectiveTokenizer::consumeEntity(TokenizerString& source, bool& notE
                     break;
                 }
                 if (!(cc >= 'a' && cc <= 'z') && !(cc >= 'A' && cc <= 'Z') && !(cc >= '0' && cc <= '9')) {
-                    const entity* e = kde_findEntity(entityName.data(), entityName.size());
-                    if (e)
+                    const entity *e = kde_findEntity(entityName.data(), entityName.size());
+                    if (e) {
                         return e->code;
+                    }
                     break;
                 }
                 entityName.append(cc);
                 source.advance();
-                if (source.isEmpty())
+                if (source.isEmpty()) {
                     goto outOfCharacters;
+                }
                 cc = source->unicode();
                 seenChars.append(cc);
             }
-            if (seenChars.size() == 2)
+            if (seenChars.size() == 2) {
                 source.push(seenChars[0]);
-            else if (seenChars.size() == 3) {
+            } else if (seenChars.size() == 3) {
                 source.push(seenChars[1]);
                 source.push(seenChars[0]);
-            } else
+            } else {
                 source.prepend(TokenizerString(QString(seenChars.data(), seenChars.size() - 1)));
+            }
             return 0;
         }
         source.advance();
@@ -299,10 +309,10 @@ outOfCharacters:
     return 0;
 }
 
-void ProspectiveTokenizer::tokenize(const TokenizerString& source)
+void ProspectiveTokenizer::tokenize(const TokenizerString &source)
 {
     assert(m_inProgress);
-    
+
     m_source.append(source);
 
     // This is a simplified HTML5 Tokenizer
@@ -320,8 +330,9 @@ void ProspectiveTokenizer::tokenize(const TokenizerString& source)
                     }
                 } else if (cc == '-') {
                     if ((m_contentModel == RCDATA || m_contentModel == CDATA) && !m_escape) {
-                        if (lastCharactersMatch("<!--", 4))
+                        if (lastCharactersMatch("<!--", 4)) {
                             m_escape = true;
+                        }
                     }
                 } else if (cc == '<') {
                     if (m_contentModel == PCDATA || ((m_contentModel == RCDATA || m_contentModel == CDATA) && !m_escape)) {
@@ -329,15 +340,17 @@ void ProspectiveTokenizer::tokenize(const TokenizerString& source)
                         break;
                     }
                 } else if (cc == '>') {
-                     if ((m_contentModel == RCDATA || m_contentModel == CDATA) && m_escape) {
-                         if (lastCharactersMatch("-->", 3))
-                             m_escape = false;
-                     }
+                    if ((m_contentModel == RCDATA || m_contentModel == CDATA) && m_escape) {
+                        if (lastCharactersMatch("-->", 3)) {
+                            m_escape = false;
+                        }
+                    }
                 }
                 emitCharacter(cc);
                 m_source.advance();
-                if (m_source.isEmpty())
-                     return;
+                if (m_source.isEmpty()) {
+                    return;
+                }
                 cc = m_source->unicode();
             }
             break;
@@ -347,18 +360,18 @@ void ProspectiveTokenizer::tokenize(const TokenizerString& source)
             break;
         case TagOpen:
             if (m_contentModel == RCDATA || m_contentModel == CDATA) {
-                if (cc == '/')
+                if (cc == '/') {
                     m_state = CloseTagOpen;
-                else {
+                } else {
                     m_state = Data;
                     continue;
                 }
             } else if (m_contentModel == PCDATA) {
-                if (cc == '!')
+                if (cc == '!') {
                     m_state = MarkupDeclarationOpen;
-                else if (cc == '/')
+                } else if (cc == '/') {
                     m_state = CloseTagOpen;
-                else if (cc >= 'A' && cc <= 'Z') {
+                } else if (cc >= 'A' && cc <= 'Z') {
                     m_tagName.clear();
                     m_tagName.append(cc + 0x20);
                     m_closeTag = false;
@@ -384,15 +397,17 @@ void ProspectiveTokenizer::tokenize(const TokenizerString& source)
                     m_state = Data;
                     continue;
                 }
-                if ((unsigned)m_source.length() < m_lastStartTag.size() + 1)
+                if ((unsigned)m_source.length() < m_lastStartTag.size() + 1) {
                     return;
+                }
                 QVector<QChar> tmpString;
                 QChar tmpChar = 0;
                 bool match = true;
                 for (unsigned n = 0; n < m_lastStartTag.size() + 1; n++) {
                     tmpChar = m_source->toLower();
-                    if (n < m_lastStartTag.size() && tmpChar != m_lastStartTag[n])
+                    if (n < m_lastStartTag.size() && tmpChar != m_lastStartTag[n]) {
                         match = false;
+                    }
                     tmpString.append(tmpChar);
                     m_source.advance();
                 }
@@ -414,8 +429,9 @@ void ProspectiveTokenizer::tokenize(const TokenizerString& source)
                 m_state = TagName;
             } else if (cc == '>') {
                 m_state = Data;
-            } else
+            } else {
                 m_state = BogusComment;
+            }
             break;
         case TagName:
             while (1) {
@@ -432,13 +448,15 @@ void ProspectiveTokenizer::tokenize(const TokenizerString& source)
                     m_state = BeforeAttributeName;
                     break;
                 }
-                if (cc >= 'A' && cc <= 'Z')
+                if (cc >= 'A' && cc <= 'Z') {
                     m_tagName.append(cc + 0x20);
-                else
+                } else {
                     m_tagName.append(cc);
+                }
                 m_source.advance();
-                if (m_source.isEmpty())
+                if (m_source.isEmpty()) {
                     return;
+                }
                 cc = m_source->unicode();
             }
             break;
@@ -476,27 +494,29 @@ void ProspectiveTokenizer::tokenize(const TokenizerString& source)
                     emitTag();
                     m_state = Data;
                     break;
-                } 
+                }
                 if (cc == '/') {
                     m_state = BeforeAttributeName;
                     break;
                 }
-                if (cc >= 'A' && cc <= 'Z')
+                if (cc >= 'A' && cc <= 'Z') {
                     m_attributeName.append(cc + 0x20);
-                else
+                } else {
                     m_attributeName.append(cc);
+                }
                 m_source.advance();
-                if (m_source.isEmpty())
+                if (m_source.isEmpty()) {
                     return;
+                }
                 cc = m_source->unicode();
             }
             break;
         case AfterAttributeName:
             if (isWhitespace(cc))
                 ;
-            else if (cc == '=')
-                m_state = BeforeAttributeValue; 
-            else if (cc == '>') {
+            else if (cc == '=') {
+                m_state = BeforeAttributeValue;
+            } else if (cc == '>') {
                 emitTag();
                 m_state = Data;
             } else if (cc >= 'A' && cc <= 'Z') {
@@ -504,9 +524,9 @@ void ProspectiveTokenizer::tokenize(const TokenizerString& source)
                 m_attributeValue.clear();
                 m_attributeName.append(cc + 0x20);
                 m_state = AttributeName;
-            } else if (cc == '/')
+            } else if (cc == '/') {
                 m_state = BeforeAttributeName;
-            else {
+            } else {
                 m_attributeName.clear();
                 m_attributeValue.clear();
                 m_attributeName.append(cc);
@@ -516,14 +536,14 @@ void ProspectiveTokenizer::tokenize(const TokenizerString& source)
         case BeforeAttributeValue:
             if (isWhitespace(cc))
                 ;
-            else if (cc == '"')
+            else if (cc == '"') {
                 m_state = AttributeValueDoubleQuoted;
-            else if (cc == '&') {
+            } else if (cc == '&') {
                 m_state = AttributeValueUnquoted;
                 continue;
-            } else if (cc == '\'')
+            } else if (cc == '\'') {
                 m_state = AttributeValueSingleQuoted;
-            else if (cc == '>') {
+            } else if (cc == '>') {
                 emitTag();
                 m_state = Data;
             } else {
@@ -542,11 +562,12 @@ void ProspectiveTokenizer::tokenize(const TokenizerString& source)
                     m_stateBeforeEntityInAttributeValue = m_state;
                     m_state = EntityInAttributeValue;
                     break;
-                } 
+                }
                 m_attributeValue.append(cc);
                 m_source.advance();
-                if (m_source.isEmpty())
+                if (m_source.isEmpty()) {
                     return;
+                }
                 cc = m_source->unicode();
             }
             break;
@@ -561,11 +582,12 @@ void ProspectiveTokenizer::tokenize(const TokenizerString& source)
                     m_stateBeforeEntityInAttributeValue = m_state;
                     m_state = EntityInAttributeValue;
                     break;
-                } 
+                }
                 m_attributeValue.append(cc);
                 m_source.advance();
-                if (m_source.isEmpty())
+                if (m_source.isEmpty()) {
                     return;
+                }
                 cc = m_source->unicode();
             }
             break;
@@ -589,27 +611,29 @@ void ProspectiveTokenizer::tokenize(const TokenizerString& source)
                 }
                 m_attributeValue.append(cc);
                 m_source.advance();
-                if (m_source.isEmpty())
+                if (m_source.isEmpty()) {
                     return;
+                }
                 cc = m_source->unicode();
             }
             break;
-        case EntityInAttributeValue: 
-            {
-                bool notEnoughCharacters = false; 
-                unsigned entity = consumeEntity(m_source, notEnoughCharacters);
-                if (notEnoughCharacters)
-                    return;
-                if (entity > 0xFFFF) {
-                    m_attributeValue.append(U16_LEAD(entity));
-                    m_attributeValue.append(U16_TRAIL(entity));
-                } else if (entity)
-                    m_attributeValue.append(entity);
-                else
-                    m_attributeValue.append('&');
+        case EntityInAttributeValue: {
+            bool notEnoughCharacters = false;
+            unsigned entity = consumeEntity(m_source, notEnoughCharacters);
+            if (notEnoughCharacters) {
+                return;
             }
-            m_state = m_stateBeforeEntityInAttributeValue;
-            continue;
+            if (entity > 0xFFFF) {
+                m_attributeValue.append(U16_LEAD(entity));
+                m_attributeValue.append(U16_TRAIL(entity));
+            } else if (entity) {
+                m_attributeValue.append(entity);
+            } else {
+                m_attributeValue.append('&');
+            }
+        }
+        m_state = m_stateBeforeEntityInAttributeValue;
+        continue;
         case BogusComment:
             while (1) {
                 if (cc == '>') {
@@ -617,24 +641,26 @@ void ProspectiveTokenizer::tokenize(const TokenizerString& source)
                     break;
                 }
                 m_source.advance();
-                if (m_source.isEmpty())
+                if (m_source.isEmpty()) {
                     return;
+                }
                 cc = m_source->unicode();
             }
             break;
         case MarkupDeclarationOpen: {
             if (cc == '-') {
-                if (m_source.length() < 2)
+                if (m_source.length() < 2) {
                     return;
+                }
                 m_source.advance();
                 cc = m_source->unicode();
-                if (cc == '-')
+                if (cc == '-') {
                     m_state = CommentStart;
-                else {
+                } else {
                     m_state = BogusComment;
                     continue;
                 }
-            // If we cared about the DOCTYPE we would test to enter those states here
+                // If we cared about the DOCTYPE we would test to enter those states here
             } else {
                 m_state = BogusComment;
                 continue;
@@ -642,20 +668,22 @@ void ProspectiveTokenizer::tokenize(const TokenizerString& source)
             break;
         }
         case CommentStart:
-            if (cc == '-')
+            if (cc == '-') {
                 m_state = CommentStartDash;
-            else if (cc == '>')
+            } else if (cc == '>') {
                 m_state = Data;
-            else
+            } else {
                 m_state = Comment;
+            }
             break;
         case CommentStartDash:
-            if (cc == '-')
+            if (cc == '-') {
                 m_state = CommentEnd;
-            else if (cc == '>')
+            } else if (cc == '>') {
                 m_state = Data;
-            else
+            } else {
                 m_state = Comment;
+            }
             break;
         case Comment:
             while (1) {
@@ -664,30 +692,33 @@ void ProspectiveTokenizer::tokenize(const TokenizerString& source)
                     break;
                 }
                 m_source.advance();
-                if (m_source.isEmpty())
+                if (m_source.isEmpty()) {
                     return;
+                }
                 cc = m_source->unicode();
             }
             break;
         case CommentEndDash:
-            if (cc == '-')
+            if (cc == '-') {
                 m_state = CommentEnd;
-            else 
+            } else {
                 m_state = Comment;
+            }
             break;
         case CommentEnd:
-            if (cc == '>')
+            if (cc == '>') {
                 m_state = Data;
-            else if (cc == '-')
+            } else if (cc == '-')
                 ;
-            else 
+            else {
                 m_state = Comment;
+            }
             break;
         }
         m_source.advance();
     }
 }
-    
+
 void ProspectiveTokenizer::processAttribute()
 {
     DOMStringImpl tagNameDS(DOMStringImpl::ShallowCopy, m_tagName.data(), m_tagName.size());
@@ -697,24 +728,23 @@ void ProspectiveTokenizer::processAttribute()
     switch (tag) {
     case ID_SCRIPT:
     case ID_IMAGE:
-    case ID_IMG:
-    {
+    case ID_IMG: {
         DOMStringImpl attrDS(DOMStringImpl::ShallowCopy, m_attributeName.data(), m_attributeName.size());
         LocalName attrLocal = LocalName::fromString(&attrDS, IDS_NormalizeLower);
         uint attribute = attrLocal.id();
-        if (attribute == localNamePart(ATTR_SRC) && m_urlToLoad.isEmpty())
+        if (attribute == localNamePart(ATTR_SRC) && m_urlToLoad.isEmpty()) {
             m_urlToLoad = parseURL(DOMString(m_attributeValue.data(), m_attributeValue.size()));
+        }
         break;
     }
-    case ID_LINK:
-    {
+    case ID_LINK: {
         DOMStringImpl attrDS(DOMStringImpl::ShallowCopy, m_attributeName.data(), m_attributeName.size());
         LocalName attrLocal = LocalName::fromString(&attrDS, IDS_NormalizeLower);
         uint attribute = attrLocal.id();
-        if (attribute == localNamePart(ATTR_HREF) && m_urlToLoad.isEmpty())
+        if (attribute == localNamePart(ATTR_HREF) && m_urlToLoad.isEmpty()) {
             m_urlToLoad = parseURL(DOMString(m_attributeValue.data(), m_attributeValue.size()));
-        else if (attribute == localNamePart(ATTR_REL)) {
-            DOMStringImpl* lowerAttribute = DOMStringImpl(DOMStringImpl::ShallowCopy, m_attributeValue.data(), m_attributeValue.size()).lower();
+        } else if (attribute == localNamePart(ATTR_REL)) {
+            DOMStringImpl *lowerAttribute = DOMStringImpl(DOMStringImpl::ShallowCopy, m_attributeValue.data(), m_attributeValue.size()).lower();
             QString val = lowerAttribute->string();
             delete lowerAttribute;
             m_linkIsStyleSheet = val.contains("stylesheet") && !val.contains("alternate") && !val.contains("icon");
@@ -724,41 +754,46 @@ void ProspectiveTokenizer::processAttribute()
         break;
     }
 }
-    
+
 inline void ProspectiveTokenizer::emitCharacter(QChar c)
 {
-    if (m_contentModel == CDATA && m_lastStartTagId == ID_STYLE) 
+    if (m_contentModel == CDATA && m_lastStartTagId == ID_STYLE) {
         tokenizeCSS(c);
+    }
 }
-    
+
 inline void ProspectiveTokenizer::tokenizeCSS(QChar c)
-{    
+{
     // We are just interested in @import rules, no need for real tokenization here
     // Searching for other types of resources is probably low payoff
     switch (m_cssState) {
     case CSSInitial:
-        if (c == '@')
+        if (c == '@') {
             m_cssState = CSSRuleStart;
-        else if (c == '/')
+        } else if (c == '/') {
             m_cssState = CSSMaybeComment;
+        }
         break;
     case CSSMaybeComment:
-        if (c == '*')
+        if (c == '*') {
             m_cssState = CSSComment;
-        else
+        } else {
             m_cssState = CSSInitial;
+        }
         break;
     case CSSComment:
-        if (c == '*')
+        if (c == '*') {
             m_cssState = CSSMaybeCommentEnd;
+        }
         break;
     case CSSMaybeCommentEnd:
-        if (c == '/')
+        if (c == '/') {
             m_cssState = CSSInitial;
-        else if (c == '*')
+        } else if (c == '*')
             ;
-        else
+        else {
             m_cssState = CSSComment;
+        }
         break;
     case CSSRuleStart:
         if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
@@ -766,35 +801,38 @@ inline void ProspectiveTokenizer::tokenizeCSS(QChar c)
             m_cssRuleValue.clear();
             m_cssRule.append(c);
             m_cssState = CSSRule;
-        } else
+        } else {
             m_cssState = CSSInitial;
+        }
         break;
     case CSSRule:
-        if (isWhitespace(c))
+        if (isWhitespace(c)) {
             m_cssState = CSSAfterRule;
-        else if (c == ';')
+        } else if (c == ';') {
             m_cssState = CSSInitial;
-        else
+        } else {
             m_cssRule.append(c);
+        }
         break;
     case CSSAfterRule:
         if (isWhitespace(c))
             ;
-        else if (c == ';')
+        else if (c == ';') {
             m_cssState = CSSInitial;
-        else {
+        } else {
             m_cssState = CSSRuleValue;
             m_cssRuleValue.append(c);
         }
         break;
     case CSSRuleValue:
-        if (isWhitespace(c))
+        if (isWhitespace(c)) {
             m_cssState = CSSAferRuleValue;
-        else if (c == ';') {
+        } else if (c == ';') {
             emitCSSRule();
             m_cssState = CSSInitial;
-        } else 
+        } else {
             m_cssRuleValue.append(c);
+        }
         break;
     case CSSAferRuleValue:
         if (isWhitespace(c))
@@ -804,12 +842,12 @@ inline void ProspectiveTokenizer::tokenizeCSS(QChar c)
             m_cssState = CSSInitial;
         } else {
             // FIXME media rules
-             m_cssState = CSSInitial;
+            m_cssState = CSSInitial;
         }
         break;
     }
 }
-    
+
 void ProspectiveTokenizer::emitTag()
 {
     if (m_closeTag) {
@@ -818,7 +856,7 @@ void ProspectiveTokenizer::emitTag()
         clearLastCharacters();
         return;
     }
-  
+
     DOMStringImpl tagNameDS(DOMStringImpl::ShallowCopy, m_tagName.data(), m_tagName.size());
     LocalName tagLocal = LocalName::fromString(&tagNameDS, IDS_NormalizeLower);
     uint tag = tagLocal.id();
@@ -826,26 +864,26 @@ void ProspectiveTokenizer::emitTag()
     m_lastStartTag = m_tagName;
 
     switch (tag) {
-      case ID_TEXTAREA:
-      case ID_TITLE:
+    case ID_TEXTAREA:
+    case ID_TITLE:
         m_contentModel = RCDATA;
         break;
-      case ID_STYLE:
-      case ID_XMP:
-      case ID_SCRIPT:
-      case ID_IFRAME:
-      case ID_NOEMBED:
-      case ID_NOFRAMES:
+    case ID_STYLE:
+    case ID_XMP:
+    case ID_SCRIPT:
+    case ID_IFRAME:
+    case ID_NOEMBED:
+    case ID_NOFRAMES:
         m_contentModel = CDATA;
         break;
-      case ID_NOSCRIPT:
+    case ID_NOSCRIPT:
         // we wouldn't be here if scripts were disabled
         m_contentModel = CDATA;
         break;
-      case ID_PLAINTEXT:
+    case ID_PLAINTEXT:
         m_contentModel = PLAINTEXT;
         break;
-      default:
+    default:
         m_contentModel = PCDATA;
     }
 
@@ -854,31 +892,34 @@ void ProspectiveTokenizer::emitTag()
         return;
     }
 
-    CachedObject* o = 0;
-    if (tag == ID_SCRIPT)
-         o = m_document->docLoader()->requestScript( m_urlToLoad, m_document->part()->encoding() );
-    else if (tag == ID_IMAGE || tag == ID_IMG) 
-         o = m_document->docLoader()->requestImage( m_urlToLoad );
-    else if (tag == ID_LINK && m_linkIsStyleSheet) 
-        o = m_document->docLoader()->requestStyleSheet( m_urlToLoad, m_document->part()->encoding() );
+    CachedObject *o = 0;
+    if (tag == ID_SCRIPT) {
+        o = m_document->docLoader()->requestScript(m_urlToLoad, m_document->part()->encoding());
+    } else if (tag == ID_IMAGE || tag == ID_IMG) {
+        o = m_document->docLoader()->requestImage(m_urlToLoad);
+    } else if (tag == ID_LINK && m_linkIsStyleSheet) {
+        o = m_document->docLoader()->requestStyleSheet(m_urlToLoad, m_document->part()->encoding());
+    }
 
-    if (o)
-        m_document->docLoader()->registerPreload( o );
+    if (o) {
+        m_document->docLoader()->registerPreload(o);
+    }
 
     m_urlToLoad = DOMString();
     m_linkIsStyleSheet = false;
 }
-    
+
 void ProspectiveTokenizer::emitCSSRule()
 {
     QString rule(m_cssRule.data(), m_cssRule.size());
     if (rule.toLower() == "import" && !m_cssRuleValue.isEmpty()) {
         DOMString value = DOMString(m_cssRuleValue.data(), m_cssRuleValue.size());
         DOMString url = parseURL(value);
-        if (!url.isEmpty())
-            m_document->docLoader()->registerPreload( m_document->docLoader()->requestStyleSheet( m_urlToLoad, m_document->part()->encoding() ) ); // #### charset
+        if (!url.isEmpty()) {
+            m_document->docLoader()->registerPreload(m_document->docLoader()->requestStyleSheet(m_urlToLoad, m_document->part()->encoding()));    // #### charset
+        }
     }
     m_cssRule.clear();
     m_cssRuleValue.clear();
 }
-        
+

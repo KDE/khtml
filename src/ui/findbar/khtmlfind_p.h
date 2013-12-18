@@ -39,85 +39,107 @@ class KFind;
 /**
  * This class implements the find activity for the @p KHTMLPart.
  *
- * 
+ *
  *
  * @author Bernhard Beschow <bbeschow cs tu berlin de>
  */
 class KHTMLFind : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  KHTMLFind( KHTMLPart *part, KHTMLFind *parent=0 );
-  ~KHTMLFind();
-  void findTextBegin();
-  bool initFindNode( bool selection, bool reverse, bool fromCursor );
-  void createNewKFind( const QString &str, long options, QWidget *parent, KFindDialog *findDialog );
-  bool findTextNext( bool reverse = false );
-  KHTMLFindBar *findBar() const { return m_parent ? m_parent->findBar() : m_findDialog.data(); }
+    KHTMLFind(KHTMLPart *part, KHTMLFind *parent = 0);
+    ~KHTMLFind();
+    void findTextBegin();
+    bool initFindNode(bool selection, bool reverse, bool fromCursor);
+    void createNewKFind(const QString &str, long options, QWidget *parent, KFindDialog *findDialog);
+    bool findTextNext(bool reverse = false);
+    KHTMLFindBar *findBar() const
+    {
+        return m_parent ? m_parent->findBar() : m_findDialog.data();
+    }
 
 public Q_SLOTS:
-  void activate();
-  void deactivate();
+    void activate();
+    void deactivate();
 
 private Q_SLOTS:
-  void slotFindDestroyed();
-  void slotSelectionChanged();
-  void slotHighlight( const QString &, int index, int length );
-  void slotSearchChanged();
-  void slotFindNext();
-  void slotFindPrevious();
+    void slotFindDestroyed();
+    void slotSelectionChanged();
+    void slotHighlight(const QString &, int index, int length);
+    void slotSearchChanged();
+    void slotFindNext();
+    void slotFindPrevious();
 
 Q_SIGNALS:
-  void foundMatch( const DOM::Selection &selection, int length );
+    void foundMatch(const DOM::Selection &selection, int length);
 
 protected:
-  KFind *find() const { return m_find; }
+    KFind *find() const
+    {
+        return m_find;
+    }
 
 private:
-  KHTMLPart *m_part;
+    KHTMLPart *m_part;
 
-  struct StringPortion
-  {
-      // Just basic ref/deref on our node to make sure it doesn't get deleted
-      StringPortion( int i, DOM::NodeImpl* n ) : index(i), node(n) { if (node) node->ref(); }
-      StringPortion() : index(0), node(0) {} // for QValueList
-      StringPortion( const StringPortion& other ) : node(0) { operator=(other); }
-      StringPortion& operator=( const StringPortion& other ) {
-          index=other.index;
-          if (other.node) other.node->ref();
-          if (node) node->deref();
-          node=other.node;
-          return *this;
-      }
-      ~StringPortion() { if (node) node->deref(); }
+    struct StringPortion {
+        // Just basic ref/deref on our node to make sure it doesn't get deleted
+        StringPortion(int i, DOM::NodeImpl *n) : index(i), node(n)
+        {
+            if (node) {
+                node->ref();
+            }
+        }
+        StringPortion() : index(0), node(0) {} // for QValueList
+        StringPortion(const StringPortion &other) : node(0)
+        {
+            operator=(other);
+        }
+        StringPortion &operator=(const StringPortion &other)
+        {
+            index = other.index;
+            if (other.node) {
+                other.node->ref();
+            }
+            if (node) {
+                node->deref();
+            }
+            node = other.node;
+            return *this;
+        }
+        ~StringPortion()
+        {
+            if (node) {
+                node->deref();
+            }
+        }
 
-      int index;
-      DOM::NodeImpl *node;
-  };
-  QList<StringPortion> m_stringPortions;
+        int index;
+        DOM::NodeImpl *node;
+    };
+    QList<StringPortion> m_stringPortions;
 
-  KFind *m_find;
-  KHTMLFind *m_parent;
-  QPointer<KHTMLFindBar> m_findDialog;
+    KFind *m_find;
+    KHTMLFind *m_parent;
+    QPointer<KHTMLFindBar> m_findDialog;
 
-  struct findState
-  {
-    findState() : options( 0 ), last_dir( -1 ) {}
-    QStringList history;
-    QString text;
-    int options;
-    int last_dir; // -1=unknown,0=forward,1=backward
-  };
+    struct findState {
+        findState() : options(0), last_dir(-1) {}
+        QStringList history;
+        QString text;
+        int options;
+        int last_dir; // -1=unknown,0=forward,1=backward
+    };
 
-  findState m_lastFindState;
+    findState m_lastFindState;
 
-  DOM::NodeImpl *m_findNode; // current node
-  DOM::NodeImpl *m_findNodeEnd; // end node
-  DOM::NodeImpl *m_findNodeStart; // start node
-  DOM::NodeImpl *m_findNodePrevious; // previous node used for find
-  int m_findPos; // current pos in current node
-  int m_findPosEnd; // pos in end node
-  int m_findPosStart; // pos in start node
+    DOM::NodeImpl *m_findNode; // current node
+    DOM::NodeImpl *m_findNodeEnd; // end node
+    DOM::NodeImpl *m_findNodeStart; // start node
+    DOM::NodeImpl *m_findNodePrevious; // previous node used for find
+    int m_findPos; // current pos in current node
+    int m_findPosEnd; // pos in end node
+    int m_findPosStart; // pos in start node
 };
 
 #endif

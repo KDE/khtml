@@ -5,7 +5,7 @@
 
 namespace WebCore
 {
-    using namespace khtml;
+using namespace khtml;
 }
 
 #endif // CSSHelper_h

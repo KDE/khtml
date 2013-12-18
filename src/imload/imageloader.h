@@ -28,18 +28,19 @@
 #include "imageformat.h"
 #include "image.h"
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 class Image;
 
 /**
- A base class for decoders. The decoders should inherit off this, and use the protected functions to  
+ A base class for decoders. The decoders should inherit off this, and use the protected functions to
  feed their images data
 */
 class ImageLoader
 {
 protected:
-    Image* image;
+    Image *image;
 
     ImageLoader()
     {
@@ -57,7 +58,7 @@ protected:
     /**
      Call to declare frame geometry, should be called for each frame.
     */
-    void notifyAppendFrame(int fwidth, int fheight, const ImageFormat& format)
+    void notifyAppendFrame(int fwidth, int fheight, const ImageFormat &format)
     {
         image->notifyAppendFrame(fwidth, fheight, format);
     }
@@ -65,9 +66,9 @@ protected:
     /**
      wrapper for the above method for single-frame images
     */
-    void notifySingleFrameImage(int width, int height, const ImageFormat& format)
+    void notifySingleFrameImage(int width, int height, const ImageFormat &format)
     {
-        notifyImageInfo  (width, height);
+        notifyImageInfo(width, height);
         notifyAppendFrame(width, height, format);
     }
 
@@ -77,12 +78,12 @@ protected:
      and incrementing versions. When it's done, it should either feed the last
      version with FinalVersionID, or call notifyFinished() separately.
     */
-    void notifyScanline(unsigned char version, unsigned char* line)
+    void notifyScanline(unsigned char version, unsigned char *line)
     {
         image->notifyScanline(version, line);
     }
 
-    void notifyQImage(unsigned char version, const QImage* qimage)
+    void notifyQImage(unsigned char version, const QImage *qimage)
     {
         image->notifyQImage(version, qimage);
     }
@@ -90,7 +91,7 @@ protected:
     /**
      Call this to exract the current state of a scanline to the provided bufer
     */
-    void requestScanline(unsigned int lineNum, unsigned char* lineBuf)
+    void requestScanline(unsigned int lineNum, unsigned char *lineBuf)
     {
         image->requestScanline(lineNum, lineBuf);
     }
@@ -98,44 +99,42 @@ protected:
     /**
      Call this to get the first frame
     */
-    PixmapPlane* requestFrame0()
+    PixmapPlane *requestFrame0()
     {
         return image->getSize(image->size());
     }
-    
+
 public:
     //Some constants. Not consts since some compilers are broken
-    enum 
-    {
+    enum {
         DefaultFrame   = 0,
-        FinalVersionID = 0xff 
+        FinalVersionID = 0xff
     };
 
-    void setImage(Image* _image)
+    void setImage(Image *_image)
     {
         image = _image;
     }
-    
+
     virtual ~ImageLoader()
     {}
-    
-    enum Status
-    {
+
+    enum Status {
         Done  = -2,
         Error = -1
     };
-    
-    /**
-     Decodes a portion of the image, and returns the appropriate 
-     status, or the number of bytes read
-    */
-    virtual int processData(uchar* data, int length) = 0;
 
     /**
-     This method is called to notify the decoder that the input is done, if the decoder 
-     has not already indicated some sort of completion on the stream; this is intended 
-     mostly for non-incremental decoders. It should return Done if all is OK. Note that 
-     the "if" above should mean that the non-incremental decoders should just return 
+     Decodes a portion of the image, and returns the appropriate
+     status, or the number of bytes read
+    */
+    virtual int processData(uchar *data, int length) = 0;
+
+    /**
+     This method is called to notify the decoder that the input is done, if the decoder
+     has not already indicated some sort of completion on the stream; this is intended
+     mostly for non-incremental decoders. It should return Done if all is OK. Note that
+     the "if" above should mean that the non-incremental decoders should just return
      the bytes read in processData
     */
     virtual int processEOF()
@@ -147,4 +146,3 @@ public:
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

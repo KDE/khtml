@@ -27,9 +27,10 @@
 
 #include "RenderSVGTransformableContainer.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGGElement::SVGGElement(const QualifiedName& tagName, Document* doc)
+SVGGElement::SVGGElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledTransformableElement(tagName, doc)
     , SVGTests()
     , SVGLangSpace()
@@ -41,43 +42,49 @@ SVGGElement::~SVGGElement()
 {
 }
 
-void SVGGElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGGElement::parseMappedAttribute(MappedAttribute *attr)
 {
-    if (SVGTests::parseMappedAttribute(attr))
+    if (SVGTests::parseMappedAttribute(attr)) {
         return;
-    if (SVGLangSpace::parseMappedAttribute(attr))
+    }
+    if (SVGLangSpace::parseMappedAttribute(attr)) {
         return;
-    if (SVGExternalResourcesRequired::parseMappedAttribute(attr))
+    }
+    if (SVGExternalResourcesRequired::parseMappedAttribute(attr)) {
         return;
+    }
 
     SVGStyledTransformableElement::parseMappedAttribute(attr);
 }
 
-void SVGGElement::svgAttributeChanged(const QualifiedName& attrName)
+void SVGGElement::svgAttributeChanged(const QualifiedName &attrName)
 {
     SVGStyledTransformableElement::svgAttributeChanged(attrName);
 
-    if (!renderer())
+    if (!renderer()) {
         return;
+    }
 
-    if (SVGTests::isKnownAttribute(attrName) || 
-        SVGLangSpace::isKnownAttribute(attrName) ||
-        SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
-        SVGStyledTransformableElement::isKnownAttribute(attrName))
+    if (SVGTests::isKnownAttribute(attrName) ||
+            SVGLangSpace::isKnownAttribute(attrName) ||
+            SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
+            SVGStyledTransformableElement::isKnownAttribute(attrName)) {
         renderer()->setNeedsLayout(true);
+    }
 }
 
-void SVGGElement::childrenChanged(bool changedByParser, Node* beforeChange, Node* afterChange, int childCountDelta)
+void SVGGElement::childrenChanged(bool changedByParser, Node *beforeChange, Node *afterChange, int childCountDelta)
 {
     SVGStyledTransformableElement::childrenChanged(changedByParser, beforeChange, afterChange, childCountDelta);
 
-    if (renderer())
+    if (renderer()) {
         renderer()->setNeedsLayout(true);
+    }
 }
 
-RenderObject* SVGGElement::createRenderer(RenderArena* arena, RenderStyle*)
+RenderObject *SVGGElement::createRenderer(RenderArena *arena, RenderStyle *)
 {
-    return new (arena) RenderSVGTransformableContainer(this);
+    return new(arena) RenderSVGTransformableContainer(this);
 }
 
 }

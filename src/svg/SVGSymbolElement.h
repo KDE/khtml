@@ -31,31 +31,39 @@
 
 namespace WebCore
 {
-    class SVGSymbolElement : public SVGStyledElement,
-                             public SVGLangSpace,
-                             public SVGExternalResourcesRequired,
-                             public SVGFitToViewBox
+class SVGSymbolElement : public SVGStyledElement,
+    public SVGLangSpace,
+    public SVGExternalResourcesRequired,
+    public SVGFitToViewBox
+{
+public:
+    SVGSymbolElement(const QualifiedName &, Document *);
+    virtual ~SVGSymbolElement();
+
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual bool shouldAttachChild(Element *) const
     {
-    public:
-        SVGSymbolElement(const QualifiedName&, Document*);
-        virtual ~SVGSymbolElement();
+        return false;
+    }
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual bool shouldAttachChild(Element*) const { return false; }
-    
-        virtual bool rendererIsNeeded(RenderStyle*) { return false; }
+    virtual bool rendererIsNeeded(RenderStyle *)
+    {
+        return false;
+    }
 
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
- 
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)       
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGFitToViewBox, FloatRect, ViewBox, viewBox)
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGFitToViewBox, SVGPreserveAspectRatio*, PreserveAspectRatio, preserveAspectRatio)
-    };
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
+
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGFitToViewBox, FloatRect, ViewBox, viewBox)
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGFitToViewBox, SVGPreserveAspectRatio *, PreserveAspectRatio, preserveAspectRatio)
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

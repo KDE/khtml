@@ -28,22 +28,26 @@
 #include "khtmlpart_p.h"
 #include "khtml_part.h"
 
-namespace khtml {
+namespace khtml
+{
 
-ChildFrame::ChildFrame() : QObject (0) {
-    setObjectName( "khtml_child_frame" );
+ChildFrame::ChildFrame() : QObject(0)
+{
+    setObjectName("khtml_child_frame");
     m_jscript = 0L;
     m_bCompleted = false; m_bPreloaded = false; m_type = Frame; m_bNotify = false;
     m_bPendingRedirection = false;
 }
 
-ChildFrame::~ChildFrame() {
-    if (m_run)
+ChildFrame::~ChildFrame()
+{
+    if (m_run) {
         m_run.data()->abort();
+    }
     delete m_jscript;
 }
 
-const char* ChildFrame::typeString() const
+const char *ChildFrame::typeString() const
 {
     switch (m_type) {
     case khtml::ChildFrame::Frame:
@@ -57,43 +61,44 @@ const char* ChildFrame::typeString() const
     }
 }
 
-static QDebug& ind(const QDebug& dbgIn, int ind)
+static QDebug &ind(const QDebug &dbgIn, int ind)
 {
-    QDebug& dbg = const_cast<QDebug&>(dbgIn);
+    QDebug &dbg = const_cast<QDebug &>(dbgIn);
 
-    for (int i = 0; i < ind; ++i)
+    for (int i = 0; i < ind; ++i) {
         dbg << " ";
+    }
     return dbg;
 }
 
 void ChildFrame::dump(int i)
 {
     ind(qDebug(), i) << typeString() << m_name
-                << this << m_part.data()
-                << "url:" << (m_part.isNull() ?
-                                QString::fromLatin1("") :
-                                m_part->url().toString())
-                << "el:" << (m_partContainerElement.isNull() ?
-                                QString::fromLatin1("") :
-                                DOM::getPrintableName(m_partContainerElement.data()->id()))
-                << "sn:" << m_serviceName << "st:" << m_serviceType
-                << "kr:" << m_run.data() << "comp:" << m_bCompleted;
+                     << this << m_part.data()
+                     << "url:" << (m_part.isNull() ?
+                                   QString::fromLatin1("") :
+                                   m_part->url().toString())
+                     << "el:" << (m_partContainerElement.isNull() ?
+                                  QString::fromLatin1("") :
+                                  DOM::getPrintableName(m_partContainerElement.data()->id()))
+                     << "sn:" << m_serviceName << "st:" << m_serviceType
+                     << "kr:" << m_run.data() << "comp:" << m_bCompleted;
 }
 
-void ChildFrame::dumpFrameTree(KHTMLPart* part)
+void ChildFrame::dumpFrameTree(KHTMLPart *part)
 {
     static int i = 0;
 
-    KHTMLPartPrivate* d = part->impl();
-    
+    KHTMLPartPrivate *d = part->impl();
+
     if (!d->m_objects.isEmpty()) {
         ind(qDebug(), i) << "objects:";
         i += 4;
 
-        for (QList<khtml::ChildFrame*>::Iterator io = d->m_objects.begin(); io != d->m_objects.end(); ++io) {
-            khtml::ChildFrame* cf = (*io);
+        for (QList<khtml::ChildFrame *>::Iterator io = d->m_objects.begin(); io != d->m_objects.end(); ++io) {
+            khtml::ChildFrame *cf = (*io);
             cf->dump(i);
-            if (KHTMLPart* p = ::qobject_cast<KHTMLPart*>(cf->m_part.data())) {
+            if (KHTMLPart *p = ::qobject_cast<KHTMLPart *>(cf->m_part.data())) {
                 i += 4;
                 dumpFrameTree(p);
                 i -= 4;
@@ -106,10 +111,10 @@ void ChildFrame::dumpFrameTree(KHTMLPart* part)
         ind(qDebug(), i) << "frames:";
         i += 4;
 
-        for (QList<khtml::ChildFrame*>::Iterator ifr = d->m_frames.begin(); ifr != d->m_frames.end(); ++ifr) {
-            khtml::ChildFrame* cf = (*ifr);
+        for (QList<khtml::ChildFrame *>::Iterator ifr = d->m_frames.begin(); ifr != d->m_frames.end(); ++ifr) {
+            khtml::ChildFrame *cf = (*ifr);
             cf->dump(i);
-            if (KHTMLPart* p = ::qobject_cast<KHTMLPart*>(cf->m_part.data())) {
+            if (KHTMLPart *p = ::qobject_cast<KHTMLPart *>(cf->m_part.data())) {
                 i += 4;
                 dumpFrameTree(p);
                 i -= 4;
@@ -119,20 +124,18 @@ void ChildFrame::dumpFrameTree(KHTMLPart* part)
     }
 }
 
-
 } // namespace khtml
 
-
-KHTMLFrameList::Iterator KHTMLFrameList::find( const QString &name )
+KHTMLFrameList::Iterator KHTMLFrameList::find(const QString &name)
 {
     Iterator it = begin();
     const Iterator e = end();
 
-    for (; it!=e; ++it )
-        if ( (*it)->m_name==name )
+    for (; it != e; ++it)
+        if ((*it)->m_name == name) {
             break;
+        }
 
     return it;
 }
 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

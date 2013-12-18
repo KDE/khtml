@@ -26,17 +26,19 @@
 #include "Color.h"
 #include "SVGFilterEffect.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 class SVGLightSource;
 
-class SVGFEDiffuseLighting : public SVGFilterEffect {
+class SVGFEDiffuseLighting : public SVGFilterEffect
+{
 public:
-    SVGFEDiffuseLighting(SVGResourceFilter*);
+    SVGFEDiffuseLighting(SVGResourceFilter *);
     virtual ~SVGFEDiffuseLighting();
 
     Color lightingColor() const;
-    void setLightingColor(const Color&);
+    void setLightingColor(const Color &);
 
     float surfaceScale() const;
     void setSurfaceScale(float);
@@ -50,13 +52,13 @@ public:
     float kernelUnitLengthY() const;
     void setKernelUnitLengthY(float);
 
-    const SVGLightSource* lightSource() const;
-    void setLightSource(SVGLightSource*);
+    const SVGLightSource *lightSource() const;
+    void setLightSource(SVGLightSource *);
 
-    virtual TextStream& externalRepresentation(TextStream&) const;
+    virtual TextStream &externalRepresentation(TextStream &) const;
 
 #if PLATFORM(CI)
-    virtual CIFilter* getCIFilter(const FloatRect& bbox) const;
+    virtual CIFilter *getCIFilter(const FloatRect &bbox) const;
 #endif
 
 private:
@@ -65,7 +67,7 @@ private:
     float m_diffuseConstant;
     float m_kernelUnitLengthX;
     float m_kernelUnitLengthY;
-    SVGLightSource* m_lightSource;
+    SVGLightSource *m_lightSource;
 };
 
 } // namespace WebCore

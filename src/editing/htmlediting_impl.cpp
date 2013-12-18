@@ -80,8 +80,8 @@ using DOM::Editor;
 
 #define DEBUG_COMMANDS 0
 
-namespace khtml {
-
+namespace khtml
+{
 
 static inline bool isNBSP(const QChar &c)
 {
@@ -95,19 +95,22 @@ static inline bool isWS(const QChar &c)
 
 static inline bool isWS(const DOMString &text)
 {
-    if (text.length() != 1)
+    if (text.length() != 1) {
         return false;
+    }
 
     return isWS(text[0]);
 }
 
 static inline bool isWS(const Position &pos)
 {
-    if (!pos.node())
+    if (!pos.node()) {
         return false;
+    }
 
-    if (!pos.node()->isTextNode())
+    if (!pos.node()->isTextNode()) {
         return false;
+    }
 
     const DOMString &string = static_cast<TextImpl *>(pos.node())->data();
     return isWS(string[pos.offset()]);
@@ -115,37 +118,46 @@ static inline bool isWS(const Position &pos)
 
 static bool shouldPruneNode(NodeImpl *node)
 {
-    if (!node)
-        return false;
-
-    RenderObject *renderer = node->renderer();
-    if (!renderer)
-        return true;
-
-    if (node->hasChildNodes())
-        return false;
-
-    if (node->rootEditableElement() == node)
-        return false;
-
-    if (renderer->isBR() || renderer->isReplaced())
-        return false;
-
-    if (node->isTextNode()) {
-        TextImpl *text = static_cast<TextImpl *>(node);
-        if (text->length() == 0)
-            return true;
+    if (!node) {
         return false;
     }
 
-    if (!node->isHTMLElement()/* && !node->isXMLElementNode()*/)
-        return false;
+    RenderObject *renderer = node->renderer();
+    if (!renderer) {
+        return true;
+    }
 
-    if (node->id() == ID_BODY)
+    if (node->hasChildNodes()) {
         return false;
+    }
 
-    if (!node->isContentEditable())
+    if (node->rootEditableElement() == node) {
         return false;
+    }
+
+    if (renderer->isBR() || renderer->isReplaced()) {
+        return false;
+    }
+
+    if (node->isTextNode()) {
+        TextImpl *text = static_cast<TextImpl *>(node);
+        if (text->length() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    if (!node->isHTMLElement()/* && !node->isXMLElementNode()*/) {
+        return false;
+    }
+
+    if (node->id() == ID_BODY) {
+        return false;
+    }
+
+    if (!node->isContentEditable()) {
+        return false;
+    }
 
     return true;
 }
@@ -158,8 +170,9 @@ static Position leadingWhitespacePosition(const Position &pos)
     Position prev = pos.previousCharacterPosition();
     if (prev != pos && prev.node()->inSameContainingBlockFlowElement(pos.node()) && prev.node()->isTextNode()) {
         DOMString string = static_cast<TextImpl *>(prev.node())->data();
-        if (isWS(string[prev.offset()]))
+        if (isWS(string[prev.offset()])) {
             return prev;
+        }
     }
 
     return Position();
@@ -175,14 +188,15 @@ static Position trailingWhitespacePosition(const Position &pos)
             Position next = pos.nextCharacterPosition();
             if (next != pos && next.node()->inSameContainingBlockFlowElement(pos.node()) && next.node()->isTextNode()) {
                 DOMString string = static_cast<TextImpl *>(next.node())->data();
-                if (isWS(string[0]))
+                if (isWS(string[0])) {
                     return next;
+                }
             }
-        }
-        else {
+        } else {
             DOMString string = static_cast<TextImpl *>(pos.node())->data();
-            if (isWS(string[pos.offset()]))
+            if (isWS(string[pos.offset()])) {
                 return pos;
+            }
         }
     }
 
@@ -237,8 +251,9 @@ void EditCommandImpl::apply()
 
     m_state = Applied;
 
-    if (!isCompositeStep())
+    if (!isCompositeStep()) {
         m_document->part()->editor()->appliedEditing(this);
+    }
 }
 
 void EditCommandImpl::unapply()
@@ -251,8 +266,9 @@ void EditCommandImpl::unapply()
 
     m_state = NotApplied;
 
-    if (!isCompositeStep())
+    if (!isCompositeStep()) {
         m_document->part()->editor()->unappliedEditing(this);
+    }
 }
 
 void EditCommandImpl::reapply()
@@ -265,8 +281,9 @@ void EditCommandImpl::reapply()
 
     m_state = Applied;
 
-    if (!isCompositeStep())
+    if (!isCompositeStep()) {
         m_document->part()->editor()->reappliedEditing(this);
+    }
 }
 
 void EditCommandImpl::doReapply()
@@ -294,12 +311,12 @@ void EditCommandImpl::setEndingSelection(const Selection &s)
     }
 }
 
-EditCommandImpl* EditCommandImpl::parent() const
+EditCommandImpl *EditCommandImpl::parent() const
 {
     return m_parent.get();
 }
 
-void EditCommandImpl::setParent(EditCommandImpl* cmd)
+void EditCommandImpl::setParent(EditCommandImpl *cmd)
 {
     m_parent = cmd;
 }
@@ -322,8 +339,9 @@ void CompositeEditCommandImpl::doUnapply()
         return;
     }
 
-    for (int i = m_cmds.count() - 1; i >= 0; --i)
+    for (int i = m_cmds.count() - 1; i >= 0; --i) {
         m_cmds[i]->unapply();
+    }
 
     setState(NotApplied);
 }
@@ -334,8 +352,9 @@ void CompositeEditCommandImpl::doReapply()
         return;
     }
     QMutableListIterator<RefPtr<EditCommandImpl> > it(m_cmds);
-    while (it.hasNext())
+    while (it.hasNext()) {
         it.next()->reapply();
+    }
 
     setState(Applied);
 }
@@ -362,8 +381,7 @@ void CompositeEditCommandImpl::insertNodeAfter(NodeImpl *insertChild, NodeImpl *
 {
     if (refChild->parentNode()->lastChild() == refChild) {
         appendNode(refChild->parentNode(), insertChild);
-    }
-    else {
+    } else {
         assert(refChild->nextSibling());
         insertNodeBefore(insertChild, refChild->nextSibling());
     }
@@ -373,21 +391,20 @@ void CompositeEditCommandImpl::insertNodeAt(NodeImpl *insertChild, NodeImpl *ref
 {
     if (refChild->hasChildNodes() || (refChild->renderer() && refChild->renderer()->isBlockFlow())) {
         NodeImpl *child = refChild->firstChild();
-        for (long i = 0; child && i < offset; i++)
+        for (long i = 0; child && i < offset; i++) {
             child = child->nextSibling();
-        if (child)
+        }
+        if (child) {
             insertNodeBefore(insertChild, child);
-        else
+        } else {
             appendNode(refChild, insertChild);
-    }
-    else if (refChild->caretMinOffset() >= offset) {
+        }
+    } else if (refChild->caretMinOffset() >= offset) {
         insertNodeBefore(insertChild, refChild);
-    }
-    else if (refChild->isTextNode() && refChild->caretMaxOffset() > offset) {
+    } else if (refChild->isTextNode() && refChild->caretMaxOffset() > offset) {
         splitTextNode(static_cast<TextImpl *>(refChild), offset);
         insertNodeBefore(insertChild, refChild);
-    }
-    else {
+    } else {
         insertNodeAfter(insertChild, refChild);
     }
 }
@@ -529,10 +546,12 @@ AppendNodeCommandImpl::AppendNodeCommandImpl(DocumentImpl *document, NodeImpl *p
 
 AppendNodeCommandImpl::~AppendNodeCommandImpl()
 {
-    if (m_parentNode)
+    if (m_parentNode) {
         m_parentNode->deref();
-    if (m_appendChild)
+    }
+    if (m_appendChild) {
         m_appendChild->deref();
+    }
 }
 
 void AppendNodeCommandImpl::doApply()
@@ -572,37 +591,37 @@ ApplyStyleCommandImpl::~ApplyStyleCommandImpl()
     m_style->deref();
 }
 
-static bool isBlockLevelStyle(const CSSStyleDeclarationImpl* style)
+static bool isBlockLevelStyle(const CSSStyleDeclarationImpl *style)
 {
-    QListIterator<CSSProperty*> it(*(style->values()));
+    QListIterator<CSSProperty *> it(*(style->values()));
     while (it.hasNext()) {
         CSSProperty *property = it.next();
         switch (property->id()) {
-            case CSS_PROP_TEXT_ALIGN:
-                return true;
-                /*case CSS_PROP_FONT_WEIGHT:
-                    if (strcasecmp(property->value()->cssText(), "bold") == 0)
-                        styleChange.applyBold = true;
+        case CSS_PROP_TEXT_ALIGN:
+            return true;
+            /*case CSS_PROP_FONT_WEIGHT:
+                if (strcasecmp(property->value()->cssText(), "bold") == 0)
+                    styleChange.applyBold = true;
+                else
+                    styleChange.cssStyle += property->cssText();
+                break;
+            case CSS_PROP_FONT_STYLE: {
+                    DOMString cssText(property->value()->cssText());
+                    if (strcasecmp(cssText, "italic") == 0 || strcasecmp(cssText, "oblique") == 0)
+                        styleChange.applyItalic = true;
                     else
                         styleChange.cssStyle += property->cssText();
-                    break;
-                case CSS_PROP_FONT_STYLE: {
-                        DOMString cssText(property->value()->cssText());
-                        if (strcasecmp(cssText, "italic") == 0 || strcasecmp(cssText, "oblique") == 0)
-                            styleChange.applyItalic = true;
-                        else
-                            styleChange.cssStyle += property->cssText();
-                    }
-                    break;
-                default:
-                    styleChange.cssStyle += property->cssText();
-                    break;*/
+                }
+                break;
+            default:
+                styleChange.cssStyle += property->cssText();
+                break;*/
         }
     }
     return false;
 }
 
-static void applyStyleChangeOnTheNode(ElementImpl* element, CSSStyleDeclarationImpl* style)
+static void applyStyleChangeOnTheNode(ElementImpl *element, CSSStyleDeclarationImpl *style)
 {
     CSSStyleDeclarationImpl *computedStyle = element->document()->defaultView()->getComputedStyle(element, 0);
     assert(computedStyle);
@@ -610,8 +629,8 @@ static void applyStyleChangeOnTheNode(ElementImpl* element, CSSStyleDeclarationI
     qDebug() << "[change style]" << element << endl;
 #endif
 
-    QListIterator<CSSProperty*> it(*(style->values()));
-    while ( it.hasNext() ) {
+    QListIterator<CSSProperty *> it(*(style->values()));
+    while (it.hasNext()) {
         CSSProperty *property = it.next();
         CSSValueImpl *computedValue = computedStyle->getPropertyCSSValue(property->id());
         DOMString newValue = property->value()->cssText();
@@ -628,8 +647,9 @@ static void applyStyleChangeOnTheNode(ElementImpl* element, CSSStyleDeclarationI
 
 void ApplyStyleCommandImpl::doApply()
 {
-    if (endingSelection().state() != Selection::RANGE)
+    if (endingSelection().state() != Selection::RANGE) {
         return;
+    }
 
     // adjust to the positions we want to use for applying style
     Position start(endingSelection().start().equivalentDownstreamPosition().equivalentRangeCompliantPosition());
@@ -649,12 +669,12 @@ void ApplyStyleCommandImpl::doApply()
         qDebug() << startBlock << startBlock->nodeName() << endl;
 #endif
         if (startBlock == endBlock && startBlock == start.node()->rootEditableElement()) {
-            ElementImpl* block = document()->createHTMLElement("DIV");
+            ElementImpl *block = document()->createHTMLElement("DIV");
 #ifdef DEBUG_COMMANDS
             qDebug() << "[Create DIV with Style:]" << m_style->cssText() << endl;
 #endif
             block->setAttribute(ATTR_STYLE, m_style->cssText());
-            for (NodeImpl* node = startBlock->firstChild(); node; node = startBlock->firstChild()) {
+            for (NodeImpl *node = startBlock->firstChild(); node; node = startBlock->firstChild()) {
 #ifdef DEBUG_COMMANDS
                 qDebug() << "[reparent node]" << node << node->nodeName() << endl;
 #endif
@@ -695,15 +715,16 @@ void ApplyStyleCommandImpl::doApply()
                 NodeImpl *runStart = node;
                 while (1) {
                     if (runStart->parentNode() != node->parentNode() || node->isHTMLElement() || node == end.node() ||
-                        (node->renderer() && !node->renderer()->isInline())) {
+                            (node->renderer() && !node->renderer()->isInline())) {
                         applyStyleIfNeeded(runStart, node);
                         break;
                     }
                     node = node->traverseNextNode();
                 }
             }
-            if (node == end.node())
+            if (node == end.node()) {
                 break;
+            }
             node = node->traverseNextNode();
         }
     }
@@ -714,18 +735,20 @@ void ApplyStyleCommandImpl::doApply()
 
 bool ApplyStyleCommandImpl::isHTMLStyleNode(HTMLElementImpl *elem)
 {
-    QListIterator<CSSProperty*> it(*(style()->values()));
+    QListIterator<CSSProperty *> it(*(style()->values()));
     while (it.hasNext()) {
         CSSProperty *property = it.next();
         switch (property->id()) {
-            case CSS_PROP_FONT_WEIGHT:
-                if (elem->id() == ID_B)
-                    return true;
-                break;
-            case CSS_PROP_FONT_STYLE:
-                if (elem->id() == ID_I)
-                    return true;
-                break;
+        case CSS_PROP_FONT_WEIGHT:
+            if (elem->id() == ID_B) {
+                return true;
+            }
+            break;
+        case CSS_PROP_FONT_STYLE:
+            if (elem->id() == ID_I) {
+                return true;
+            }
+            break;
         }
     }
 
@@ -747,14 +770,16 @@ void ApplyStyleCommandImpl::removeCSSStyle(HTMLElementImpl *elem)
     assert(elem);
 
     CSSStyleDeclarationImpl *decl = elem->inlineStyleDecls();
-    if (!decl)
+    if (!decl) {
         return;
+    }
 
-    QListIterator<CSSProperty*> it(*(style()->values()));
-    while ( it.hasNext() ) {
+    QListIterator<CSSProperty *> it(*(style()->values()));
+    while (it.hasNext()) {
         CSSProperty *property = it.next();
-        if (decl->getPropertyCSSValue(property->id()))
+        if (decl->getPropertyCSSValue(property->id())) {
             removeCSSProperty(decl, property->id());
+        }
     }
 
     if (elem->id() == ID_SPAN) {
@@ -763,8 +788,9 @@ void ApplyStyleCommandImpl::removeCSSStyle(HTMLElementImpl *elem)
         // class marker, remove the span.
         NamedAttrMapImpl *map = elem->attributes();
         if (map && (map->length() == 1 || (map->length() == 2 && elem->getAttribute(ATTR_STYLE).isEmpty())) &&
-                elem->getAttribute(ATTR_CLASS) == styleSpanClassString())
+                elem->getAttribute(ATTR_CLASS) == styleSpanClassString()) {
             removeNodePreservingChildren(elem);
+        }
     }
 }
 
@@ -775,13 +801,15 @@ void ApplyStyleCommandImpl::removeStyle(const Position &start, const Position &e
         NodeImpl *next = node->traverseNextNode();
         if (node->isHTMLElement() && nodeFullySelected(node)) {
             HTMLElementImpl *elem = static_cast<HTMLElementImpl *>(node);
-            if (isHTMLStyleNode(elem))
+            if (isHTMLStyleNode(elem)) {
                 removeHTMLStyleNode(elem);
-            else
+            } else {
                 removeCSSStyle(elem);
+            }
         }
-        if (node == end.node())
+        if (node == end.node()) {
             break;
+        }
         node = next;
     }
 }
@@ -792,12 +820,14 @@ bool ApplyStyleCommandImpl::nodeFullySelected(const NodeImpl *node) const
 
     Position end(endingSelection().end().equivalentUpstreamPosition());
 
-    if (node == end.node())
+    if (node == end.node()) {
         return end.offset() >= node->caretMaxOffset();
+    }
 
     for (NodeImpl *child = node->lastChild(); child; child = child->lastChild()) {
-        if (child == end.node())
+        if (child == end.node()) {
             return end.offset() >= child->caretMaxOffset();
+        }
     }
 
     return node == end.node() || !node->isAncestor(end.node());
@@ -852,13 +882,14 @@ void ApplyStyleCommandImpl::surroundNodeRangeWithElement(NodeImpl *startNode, No
             removeNode(node);
             appendNode(element, node);
         }
-        if (node == endNode)
+        if (node == endNode) {
             break;
+        }
         node = next;
     }
 }
 
-static bool /*ApplyStyleCommandImpl::*/checkIfNewStylingNeeded(ElementImpl* element, CSSStyleDeclarationImpl *style)
+static bool /*ApplyStyleCommandImpl::*/checkIfNewStylingNeeded(ElementImpl *element, CSSStyleDeclarationImpl *style)
 {
     CSSStyleDeclarationImpl *computedStyle = element->document()->defaultView()->getComputedStyle(element, 0);
     assert(computedStyle);
@@ -866,8 +897,8 @@ static bool /*ApplyStyleCommandImpl::*/checkIfNewStylingNeeded(ElementImpl* elem
     qDebug() << "[check styling]" << element << endl;
 #endif
 
-    QListIterator<CSSProperty*> it(*(style->values()));
-    while ( it.hasNext() ) {
+    QListIterator<CSSProperty *> it(*(style->values()));
+    while (it.hasNext()) {
         CSSProperty *property = it.next();
         CSSValueImpl *computedValue = computedStyle->getPropertyCSSValue(property->id());
         DOMString newValue = property->value()->cssText();
@@ -875,8 +906,9 @@ static bool /*ApplyStyleCommandImpl::*/checkIfNewStylingNeeded(ElementImpl* elem
         qDebug() << "[new value]:" << property->cssText() << endl;
         qDebug() << "[computedValue]:" << computedValue->cssText() << endl;
 #endif
-        if (strcasecmp(computedValue->cssText(), newValue))
+        if (strcasecmp(computedValue->cssText(), newValue)) {
             return true;
+        }
     }
     return false;
 }
@@ -884,8 +916,9 @@ static bool /*ApplyStyleCommandImpl::*/checkIfNewStylingNeeded(ElementImpl* elem
 void ApplyStyleCommandImpl::applyStyleIfNeeded(DOM::NodeImpl *startNode, DOM::NodeImpl *endNode)
 {
     ElementImpl *parent = Position(startNode, 0).element();
-    if (!checkIfNewStylingNeeded(parent, style()))
+    if (!checkIfNewStylingNeeded(parent, style())) {
         return;
+    }
     ElementImpl *styleElement = 0;
     if (parent->id() == ID_SPAN && parent->firstChild() == startNode && parent->lastChild() == endNode) {
         styleElement = parent;
@@ -915,8 +948,8 @@ ApplyStyleCommandImpl::StyleChange ApplyStyleCommandImpl::computeStyleChange(con
 
     StyleChange styleChange;
 
-    QListIterator<CSSProperty*> it(*(style->values()));
-    while ( it.hasNext() ) {
+    QListIterator<CSSProperty *> it(*(style->values()));
+    while (it.hasNext()) {
         CSSProperty *property = it.next();
 #ifdef DEBUG_COMMANDS
         qDebug() << "[CSS property]:" << property->cssText() << endl;
@@ -926,23 +959,25 @@ ApplyStyleCommandImpl::StyleChange ApplyStyleCommandImpl::computeStyleChange(con
             qDebug() << "[Add to style change]" << endl;
 #endif
             switch (property->id()) {
-                case CSS_PROP_FONT_WEIGHT:
-                    if (strcasecmp(property->value()->cssText(), "bold") == 0)
-                        styleChange.applyBold = true;
-                    else
-                        styleChange.cssStyle += property->cssText();
-                    break;
-                case CSS_PROP_FONT_STYLE: {
-                        DOMString cssText(property->value()->cssText());
-                        if (strcasecmp(cssText, "italic") == 0 || strcasecmp(cssText, "oblique") == 0)
-                            styleChange.applyItalic = true;
-                        else
-                            styleChange.cssStyle += property->cssText();
-                    }
-                    break;
-                default:
+            case CSS_PROP_FONT_WEIGHT:
+                if (strcasecmp(property->value()->cssText(), "bold") == 0) {
+                    styleChange.applyBold = true;
+                } else {
                     styleChange.cssStyle += property->cssText();
-                    break;
+                }
+                break;
+            case CSS_PROP_FONT_STYLE: {
+                DOMString cssText(property->value()->cssText());
+                if (strcasecmp(cssText, "italic") == 0 || strcasecmp(cssText, "oblique") == 0) {
+                    styleChange.applyItalic = true;
+                } else {
+                    styleChange.cssStyle += property->cssText();
+                }
+            }
+            break;
+            default:
+                styleChange.cssStyle += property->cssText();
+                break;
             }
         }
     }
@@ -962,16 +997,18 @@ Position ApplyStyleCommandImpl::positionInsertionPoint(Position pos)
     // a boundary between nodes where one of the nodes has the desired style. In other
     // words, it is possible for content to be merged into existing nodes rather than adding
     // additional markup.
-    if (currentlyHasStyle(pos))
+    if (currentlyHasStyle(pos)) {
         return pos;
+    }
 
     // try next node
     if (pos.offset() >= pos.node()->caretMaxOffset()) {
         NodeImpl *nextNode = pos.node()->traverseNextNode();
         if (nextNode) {
             Position next = Position(nextNode, 0);
-            if (currentlyHasStyle(next))
+            if (currentlyHasStyle(next)) {
                 return next;
+            }
         }
     }
 
@@ -980,8 +1017,9 @@ Position ApplyStyleCommandImpl::positionInsertionPoint(Position pos)
         NodeImpl *prevNode = pos.node()->traversePreviousNode();
         if (prevNode) {
             Position prev = Position(prevNode, prevNode->maxOffset());
-            if (currentlyHasStyle(prev))
+            if (currentlyHasStyle(prev)) {
                 return prev;
+            }
         }
     }
 #endif
@@ -1008,22 +1046,27 @@ DeleteCollapsibleWhitespaceCommandImpl::~DeleteCollapsibleWhitespaceCommandImpl(
 
 static bool shouldDeleteUpstreamPosition(const Position &pos)
 {
-    if (!pos.node()->isTextNode())
+    if (!pos.node()->isTextNode()) {
         return false;
+    }
 
     RenderObject *renderer = pos.node()->renderer();
-    if (!renderer)
+    if (!renderer) {
         return true;
+    }
 
     TextImpl *textNode = static_cast<TextImpl *>(pos.node());
-    if (pos.offset() >= (long)textNode->length())
+    if (pos.offset() >= (long)textNode->length()) {
         return false;
+    }
 
-    if (pos.isLastRenderedPositionInEditableBlock())
+    if (pos.isLastRenderedPositionInEditableBlock()) {
         return false;
+    }
 
-    if (pos.isFirstRenderedPositionOnLine() || pos.isLastRenderedPositionOnLine())
+    if (pos.isFirstRenderedPositionOnLine() || pos.isLastRenderedPositionOnLine()) {
         return false;
+    }
 
     return false;
     // TODO we need to match DOM - Rendered offset first
@@ -1054,14 +1097,16 @@ Position DeleteCollapsibleWhitespaceCommandImpl::deleteWhitespace(const Position
     qDebug() << "[delete upstream]" << del << endl;
 #endif
 
-    if (upstream == downstream)
+    if (upstream == downstream) {
         return upstream;
+    }
 
 #ifdef DEBUG_COMMANDS
     PositionIterator iter(upstream);
     qDebug() << "[before print]" << endl;
-    for (iter.next(); iter.current() != downstream; iter.next())
+    for (iter.next(); iter.current() != downstream; iter.next()) {
         qDebug() << "[iterate]" << iter.current() << endl;
+    }
     qDebug() << "[after print]" << endl;
 #endif
 
@@ -1069,8 +1114,9 @@ Position DeleteCollapsibleWhitespaceCommandImpl::deleteWhitespace(const Position
     Position deleteStart = upstream;
     if (!del) {
         deleteStart = it.peekNext();
-        if (deleteStart == downstream)
+        if (deleteStart == downstream) {
             return upstream;
+        }
     }
 
     Position endingPosition = upstream;
@@ -1089,12 +1135,13 @@ Position DeleteCollapsibleWhitespaceCommandImpl::deleteWhitespace(const Position
 #ifdef DEBUG_COMMANDS
                     qDebug() << "   removeNodeAndPrune 1:" << textNode;
 #endif
-                    if (textNode == endingPosition.node())
+                    if (textNode == endingPosition.node()) {
                         endingPosition = Position(next.node(), next.node()->caretMinOffset());
+                    }
                     removeNodeAndPrune(textNode);
                 } else {
 #ifdef DEBUG_COMMANDS
-                    qDebug() << "   deleteText 1:" <<  textNode << "t len:" << textNode->length()<<"start:" <<  deleteStart.offset() << "del len:" << (it.current().offset() - deleteStart.offset());
+                    qDebug() << "   deleteText 1:" <<  textNode << "t len:" << textNode->length() << "start:" <<  deleteStart.offset() << "del len:" << (it.current().offset() - deleteStart.offset());
 #endif
                     deleteText(textNode, deleteStart.offset(), count);
                 }
@@ -1112,12 +1159,12 @@ Position DeleteCollapsibleWhitespaceCommandImpl::deleteWhitespace(const Position
             assert(count <= textNode->length());
             if (count == textNode->length()) {
 #ifdef DEBUG_COMMANDS
-                qDebug() << "   removeNodeAndPrune 2:"<<textNode;
+                qDebug() << "   removeNodeAndPrune 2:" << textNode;
 #endif
                 removeNodeAndPrune(textNode);
             } else {
 #ifdef DEBUG_COMMANDS
-                qDebug() << "   deleteText 2:"<< textNode<< "t len:" <<  textNode->length() <<"start:" <<deleteStart.offset() << "del len:" <<  count;
+                qDebug() << "   deleteText 2:" << textNode << "t len:" <<  textNode->length() << "start:" << deleteStart.offset() << "del len:" <<  count;
 #endif
                 deleteText(textNode, deleteStart.offset(), count);
                 m_charactersDeleted = count;
@@ -1135,8 +1182,9 @@ void DeleteCollapsibleWhitespaceCommandImpl::doApply()
 {
     // If selection has not been set to a custom selection when the command was created,
     // use the current ending selection.
-    if (!m_hasSelectionToCollapse)
+    if (!m_hasSelectionToCollapse) {
         m_selectionToCollapse = endingSelection();
+    }
     int state = m_selectionToCollapse.state();
     if (state == Selection::CARET) {
         Position endPosition = deleteWhitespace(m_selectionToCollapse.start());
@@ -1144,8 +1192,7 @@ void DeleteCollapsibleWhitespaceCommandImpl::doApply()
 #ifdef DEBUG_COMMANDS
         qDebug() << "-----------------------------------------------------";
 #endif
-    }
-    else if (state == Selection::RANGE) {
+    } else if (state == Selection::RANGE) {
         Position startPosition = deleteWhitespace(m_selectionToCollapse.start());
 #ifdef DEBUG_COMMANDS
         qDebug() <<  "-----------------------------------------------------";
@@ -1186,21 +1233,24 @@ void DeleteSelectionCommandImpl::joinTextNodesWithSameStyle()
 {
     Selection selection = endingSelection();
 
-    if (selection.state() != Selection::CARET)
+    if (selection.state() != Selection::CARET) {
         return;
+    }
 
     Position pos(selection.start());
 
-    if (!pos.node()->isTextNode())
+    if (!pos.node()->isTextNode()) {
         return;
+    }
 
     TextImpl *textNode = static_cast<TextImpl *>(pos.node());
 
     if (pos.offset() == 0) {
         PositionIterator it(pos);
         Position prev = it.previous();
-        if (prev == pos)
+        if (prev == pos) {
             return;
+        }
         if (prev.node()->isTextNode()) {
             TextImpl *prevTextNode = static_cast<TextImpl *>(prev.node());
             if (textNodesAreJoinable(prevTextNode, textNode)) {
@@ -1214,8 +1264,9 @@ void DeleteSelectionCommandImpl::joinTextNodesWithSameStyle()
     } else if (pos.offset() == (long)textNode->length()) {
         PositionIterator it(pos);
         Position next = it.next();
-        if (next == pos)
+        if (next == pos) {
             return;
+        }
         if (next.node()->isTextNode()) {
             TextImpl *nextTextNode = static_cast<TextImpl *>(next.node());
             if (textNodesAreJoinable(textNode, nextTextNode)) {
@@ -1235,17 +1286,21 @@ bool DeleteSelectionCommandImpl::containsOnlyWhitespace(const Position &start, c
     // This is inclusive of the start, but not of the end.
     PositionIterator it(start);
     while (!it.atEnd()) {
-        if (!it.current().node()->isTextNode())
+        if (!it.current().node()->isTextNode()) {
             return false;
+        }
         const DOMString &text = static_cast<TextImpl *>(it.current().node())->data();
         // EDIT FIXME: signed/unsigned mismatch
-        if (text.length() > INT_MAX)
+        if (text.length() > INT_MAX) {
             return false;
-        if (it.current().offset() < (int)text.length() && !isWS(text[it.current().offset()]))
+        }
+        if (it.current().offset() < (int)text.length() && !isWS(text[it.current().offset()])) {
             return false;
+        }
         it.next();
-        if (it.current() == end)
+        if (it.current() == end) {
             break;
+        }
     }
     return true;
 }
@@ -1257,15 +1312,16 @@ void DeleteSelectionCommandImpl::deleteContentInsideNode(NodeImpl *node, int sta
 #endif
     if (node->isTextNode()) {
         // check if nothing to delete
-        if (startOffset == endOffset)
+        if (startOffset == endOffset) {
             return;
+        }
         // check if node is fully covered then remove node completely
         if (!startOffset && endOffset == node->maxOffset()) {
             removeNodeAndPrune(node);
             return;
         }
         // delete only substring
-        deleteText(static_cast<TextImpl*>(node), startOffset, endOffset - startOffset);
+        deleteText(static_cast<TextImpl *>(node), startOffset, endOffset - startOffset);
         return;
     }
 #ifdef DEBUG_COMMANDS
@@ -1280,19 +1336,22 @@ void DeleteSelectionCommandImpl::deleteContentBeforeOffset(NodeImpl *node, int o
 
 void DeleteSelectionCommandImpl::deleteContentAfterOffset(NodeImpl *node, int offset)
 {
-    if (node->isTextNode())
+    if (node->isTextNode()) {
         deleteContentInsideNode(node, offset, node->maxOffset());
+    }
 }
 
 void DeleteSelectionCommandImpl::doApply()
 {
     // If selection has not been set to a custom selection when the command was created,
     // use the current ending selection.
-    if (!m_hasSelectionToDelete)
+    if (!m_hasSelectionToDelete) {
         m_selectionToDelete = endingSelection();
+    }
 
-    if (m_selectionToDelete.state() != Selection::RANGE)
+    if (m_selectionToDelete.state() != Selection::RANGE) {
         return;
+    }
 
     deleteCollapsibleWhitespace(m_selectionToDelete);
     Selection selection = endingSelection();
@@ -1310,12 +1369,15 @@ void DeleteSelectionCommandImpl::doApply()
     qDebug() << "[Delete:End]" << upstreamEnd << downstreamEnd << endl;
     printEnclosingBlockTree(upstreamStart.node());
 #endif
-    if (startBlock != endBlock)
+    if (startBlock != endBlock) {
         printEnclosingBlockTree(downstreamEnd.node());
+    }
 
     if (upstreamStart == downstreamEnd)
         // after collapsing whitespace, selection is empty...no work to do
+    {
         return;
+    }
 
     // remove all the nodes that are completely covered by the selection
     if (upstreamStart.node() != downstreamEnd.node()) {
@@ -1325,8 +1387,9 @@ void DeleteSelectionCommandImpl::doApply()
             qDebug() << "[traverse and delete]" << node << (node->renderer() && node->renderer()->isEditable()) << endl;
 #endif
             next = node->traverseNextNode();
-            if (node->renderer() && node->renderer()->isEditable())
-                removeNode(node); // removeAndPrune?
+            if (node->renderer() && node->renderer()->isEditable()) {
+                removeNode(node);    // removeAndPrune?
+            }
         }
     }
 
@@ -1341,9 +1404,9 @@ void DeleteSelectionCommandImpl::doApply()
         }
     }
 
-    if (upstreamStart.node() == downstreamEnd.node())
+    if (upstreamStart.node() == downstreamEnd.node()) {
         deleteContentInsideNode(upstreamEnd.node(), upstreamStart.offset(), downstreamEnd.offset());
-    else {
+    } else {
         deleteContentAfterOffset(upstreamStart.node(), upstreamStart.offset());
         deleteContentBeforeOffset(downstreamEnd.node(), downstreamEnd.offset());
     }
@@ -1357,14 +1420,14 @@ void DeleteSelectionCommandImpl::doApply()
     qDebug() << "[OnlyWhitespace]" << onlyWhitespace << endl;
 
     bool startCompletelySelected = !onlyWhitespace &&
-        (downstreamStart.offset() <= downstreamStart.node()->caretMinOffset() &&
-        ((downstreamStart.node() != upstreamEnd.node()) ||
-         (upstreamEnd.offset() >= upstreamEnd.node()->caretMaxOffset())));
+                                   (downstreamStart.offset() <= downstreamStart.node()->caretMinOffset() &&
+                                    ((downstreamStart.node() != upstreamEnd.node()) ||
+                                     (upstreamEnd.offset() >= upstreamEnd.node()->caretMaxOffset())));
 
     bool endCompletelySelected = !onlyWhitespace &&
-        (upstreamEnd.offset() >= upstreamEnd.node()->caretMaxOffset() &&
-        ((downstreamStart.node() != upstreamEnd.node()) ||
-         (downstreamStart.offset() <= downstreamStart.node()->caretMinOffset())));
+                                 (upstreamEnd.offset() >= upstreamEnd.node()->caretMaxOffset() &&
+                                  ((downstreamStart.node() != upstreamEnd.node()) ||
+                                   (downstreamStart.offset() <= downstreamStart.node()->caretMinOffset())));
 
     qDebug() << "[{start:end}CompletelySelected]" << startCompletelySelected << endCompletelySelected << endl;
 
@@ -1372,7 +1435,7 @@ void DeleteSelectionCommandImpl::doApply()
 
     bool startAtStartOfRootEditableElement = startRenderedOffset == 0 && downstreamStart.inFirstEditableInRootEditableElement();
     bool startAtStartOfBlock = startAtStartOfRootEditableElement ||
-        (startRenderedOffset == 0 && downstreamStart.inFirstEditableInContainingEditableBlock());
+                               (startRenderedOffset == 0 && downstreamStart.inFirstEditableInContainingEditableBlock());
     bool endAtEndOfBlock = downstreamEnd.isLastRenderedPositionInEditableBlock();
 
     qDebug() << "[startAtStartOfRootEditableElement]" << startAtStartOfRootEditableElement << endl;
@@ -1391,9 +1454,9 @@ void DeleteSelectionCommandImpl::doApply()
     debugPosition("downstreamEnd:       ", downstreamEnd);
     qDebug() << "start selected:" << (startCompletelySelected ? "YES" : "NO");
     qDebug() << "at start block:" << (startAtStartOfBlock ? "YES" : "NO");
-    qDebug() << "at start root block:"<< (startAtStartOfRootEditableElement ? "YES" : "NO");
-    qDebug() << "at end block:"<< (endAtEndOfBlock ? "YES" : "NO");
-    qDebug() << "only whitespace:"<< (onlyWhitespace ? "YES" : "NO");
+    qDebug() << "at start root block:" << (startAtStartOfRootEditableElement ? "YES" : "NO");
+    qDebug() << "at end block:" << (endAtEndOfBlock ? "YES" : "NO");
+    qDebug() << "only whitespace:" << (onlyWhitespace ? "YES" : "NO");
 
     // Determine where to put the caret after the deletion
     if (startAtStartOfBlock) {
@@ -1403,13 +1466,15 @@ void DeleteSelectionCommandImpl::doApply()
     } else if (!startCompletelySelected) {
         qDebug() << "ending position case 2";
         endingPosition = upstreamEnd; // FIXME ??????????? upstreamStart;
-        if (upstreamStart.node()->id() == ID_BR && upstreamStart.offset() == 1)
+        if (upstreamStart.node()->id() == ID_BR && upstreamStart.offset() == 1) {
             adjustEndingPositionDownstream = true;
+        }
     } else if (upstreamStart != downstreamStart) {
         qDebug() << "ending position case 3";
         endingPosition = upstreamStart;
-        if (upstreamStart.node()->id() == ID_BR && upstreamStart.offset() == 1)
+        if (upstreamStart.node()->id() == ID_BR && upstreamStart.offset() == 1) {
             adjustEndingPositionDownstream = true;
+        }
     }
 
     //
@@ -1421,8 +1486,9 @@ void DeleteSelectionCommandImpl::doApply()
         if (trailing.notEmpty()) {
             debugPosition("convertTrailingWhitespace: ", trailing);
             Position collapse = trailing.nextCharacterPosition();
-            if (collapse != trailing)
+            if (collapse != trailing) {
                 deleteCollapsibleWhitespace(collapse);
+            }
             TextImpl *textNode = static_cast<TextImpl *>(trailing.node());
             replaceText(textNode, trailing.offset(), 1, nonBreakingSpaceString());
         }
@@ -1465,8 +1531,9 @@ void DeleteSelectionCommandImpl::doApply()
         int offset = upstreamStart.offset();
         // EDIT FIXME: Signed/unsigned mismatch
         int length = text->length();
-        if (length == upstreamStart.offset())
+        if (length == upstreamStart.offset()) {
             offset--;
+        }
         // FIXME ??? deleteText(text, offset, 1);
     } else if (downstreamStart.node()->isTextNode()) {
         qDebug() << "start node delete case 3";
@@ -1487,24 +1554,24 @@ void DeleteSelectionCommandImpl::doApply()
         while (n && n != upstreamEnd.node()) {
             NodeImpl *d = n;
             n = n->traverseNextNode();
-            if (d->renderer() && d->renderer()->isEditable())
+            if (d->renderer() && d->renderer()->isEditable()) {
                 removeNodeAndPrune(d, startBlock);
+            }
         }
-        if (!n)
+        if (!n) {
             return;
+        }
 
         // work on end node
         assert(n == upstreamEnd.node());
         if (endCompletelySelected) {
             removeNodeAndPrune(upstreamEnd.node(), startBlock);
-        }
-        else if (upstreamEnd.node()->isTextNode()) {
+        } else if (upstreamEnd.node()->isTextNode()) {
             if (upstreamEnd.offset() > 0) {
                 TextImpl *text = static_cast<TextImpl *>(upstreamEnd.node());
                 deleteText(text, 0, upstreamEnd.offset());
             }
-        }
-        else {
+        } else {
             // we have clipped the beginning of a non-text element
             // the offset must be 0 here. if it is, do nothing and move on.
             assert(downstreamStart.offset() == 0);
@@ -1554,8 +1621,9 @@ DeleteTextCommandImpl::DeleteTextCommandImpl(DocumentImpl *document, TextImpl *n
 
 DeleteTextCommandImpl::~DeleteTextCommandImpl()
 {
-    if (m_node)
+    if (m_node) {
         m_node->deref();
+    }
 }
 
 void DeleteTextCommandImpl::doApply()
@@ -1599,10 +1667,11 @@ void InputNewlineCommandImpl::insertNodeAfterPosition(NodeImpl *node, const Posi
     // the BR *after* the block.
     Position upstream(pos.equivalentUpstreamPosition());
     NodeImpl *cb = pos.node()->enclosingBlockFlowElement();
-    if (cb == pos.node())
+    if (cb == pos.node()) {
         appendNode(cb, node);
-    else
+    } else {
         insertNodeAfter(node, pos.node());
+    }
 }
 
 void InputNewlineCommandImpl::insertNodeBeforePosition(NodeImpl *node, const Position &pos)
@@ -1612,10 +1681,11 @@ void InputNewlineCommandImpl::insertNodeBeforePosition(NodeImpl *node, const Pos
     // the BR *before* the block.
     Position upstream(pos.equivalentUpstreamPosition());
     NodeImpl *cb = pos.node()->enclosingBlockFlowElement();
-    if (cb == pos.node())
+    if (cb == pos.node()) {
         appendNode(cb, node);
-    else
+    } else {
         insertNodeBefore(node, pos.node());
+    }
 }
 
 void InputNewlineCommandImpl::doApply()
@@ -1641,7 +1711,7 @@ void InputNewlineCommandImpl::doApply()
         bool atBlockEnd = pos.isLastRenderedPositionInEditableBlock();
         // split text node into 2 if we are in the middle
         if (node->isTextNode() && !atBlockStart && !atBlockEnd) {
-            TextImpl *textNode = static_cast<TextImpl*>(node);
+            TextImpl *textNode = static_cast<TextImpl *>(node);
             TextImpl *textBeforeNode = document()->createTextNode(textNode->substringData(0, selection.start().offset(), exceptionCode));
             deleteText(textNode, 0, pos.offset());
             insertNodeBefore(textBeforeNode, textNode);
@@ -1667,8 +1737,9 @@ void InputNewlineCommandImpl::doApply()
                     appendNode(newParent.get(), node);
                 }
                 node = newParent.get();
-                if (parent == enclosingBlock)
+                if (parent == enclosingBlock) {
                     break;
+                }
             }
         } else if (node->isTextNode()) {
             // insert <br> node either as previous list or the next one
@@ -1781,8 +1852,9 @@ void InputTextCommandImpl::deleteCharacter()
 
     Selection selection = endingSelection();
 
-    if (!selection.start().node()->isTextNode())
+    if (!selection.start().node()->isTextNode()) {
         return;
+    }
 
     int exceptionCode = 0;
     int offset = selection.start().offset() - 1;
@@ -1808,10 +1880,11 @@ Position InputTextCommandImpl::prepareForTextInsertion(bool adjustDownstream)
 #endif
 
     Position pos = selection.start();
-    if (adjustDownstream)
+    if (adjustDownstream) {
         pos = pos.equivalentDownstreamPosition();
-    else
+    } else {
         pos = pos.equivalentUpstreamPosition();
+    }
 
 #ifdef DEBUG_COMMANDS
     qDebug() << "[prepare position]" << pos << endl;
@@ -1841,8 +1914,9 @@ Position InputTextCommandImpl::prepareForTextInsertion(bool adjustDownstream)
         } else if (pos.node()->caretMaxOffset() == pos.offset()) {
             qDebug() << "prepareForTextInsertion case 4";
             insertNodeAfter(nodeToInsert, pos.node());
-        } else
+        } else {
             assert(false);
+        }
 
         pos = Position(textNode, 0);
     } else {
@@ -1864,10 +1938,11 @@ Position InputTextCommandImpl::prepareForTextInsertion(bool adjustDownstream)
             assert(exceptionCode == 0);
 
             NodeImpl *node = endingSelection().start().node();
-            if (endingSelection().start().isLastRenderedPositionOnLine())
+            if (endingSelection().start().isLastRenderedPositionOnLine()) {
                 insertNodeAfter(styleElement, node);
-            else
+            } else {
                 insertNodeBefore(styleElement, node);
+            }
             pos = Position(editingTextNode, 0);
         }
     }
@@ -1893,10 +1968,11 @@ void InputTextCommandImpl::execute(const DOMString &text)
 #endif
 
     // Delete the current selection, or collapse whitespace, as needed
-    if (selection.state() == Selection::RANGE)
+    if (selection.state() == Selection::RANGE) {
         deleteSelection();
-    else
+    } else {
         deleteCollapsibleWhitespace();
+    }
 
 #ifdef DEBUG_COMMANDS
     qDebug() << "[after collapsible whitespace deletion]" << endl;
@@ -1921,9 +1997,9 @@ void InputTextCommandImpl::execute(const DOMString &text)
     // This is a temporary implementation for inserting adjoining spaces
     // into a document. We are working on a CSS-related whitespace solution
     // that will replace this some day.
-    if (isWS(text))
+    if (isWS(text)) {
         insertSpace(textNode, offset);
-    else {
+    } else {
         const DOMString &existingText = textNode->data();
         if (textNode->length() >= 2 && offset >= 2 && isNBSP(existingText[offset - 1]) && !isWS(existingText[offset - 2])) {
             // DOM looks like this:
@@ -1951,20 +2027,23 @@ void InputTextCommandImpl::insertSpace(TextImpl *textNode, unsigned long offset)
     // this will work out OK since the offset we have been passed has been upstream-ized
     int count = 0;
     for (unsigned int i = offset; i < text.length(); i++) {
-        if (isWS(text[i]))
+        if (isWS(text[i])) {
             count++;
-        else
+        } else {
             break;
+        }
     }
     if (count > 0) {
         // By checking the character at the downstream position, we can
         // check if there is a rendered WS at the caret
         Position pos(textNode, offset);
         Position downstream = pos.equivalentDownstreamPosition();
-        if (downstream.offset() < (long)text.length() && isWS(text[downstream.offset()]))
-            count--; // leave this WS in
-        if (count > 0)
+        if (downstream.offset() < (long)text.length() && isWS(text[downstream.offset()])) {
+            count--;    // leave this WS in
+        }
+        if (count > 0) {
             deleteText(textNode, offset, count);
+        }
     }
 
     if (offset > 0 && offset <= text.length() - 1 && !isWS(text[offset]) && !isWS(text[offset - 1])) {
@@ -2000,10 +2079,12 @@ InsertNodeBeforeCommandImpl::InsertNodeBeforeCommandImpl(DocumentImpl *document,
 
 InsertNodeBeforeCommandImpl::~InsertNodeBeforeCommandImpl()
 {
-    if (m_insertChild)
+    if (m_insertChild) {
         m_insertChild->deref();
-    if (m_refChild)
+    }
+    if (m_refChild) {
         m_refChild->deref();
+    }
 }
 
 void InsertNodeBeforeCommandImpl::doApply()
@@ -2044,8 +2125,9 @@ InsertTextCommandImpl::InsertTextCommandImpl(DocumentImpl *document, TextImpl *n
 
 InsertTextCommandImpl::~InsertTextCommandImpl()
 {
-    if (m_node)
+    if (m_node) {
         m_node->deref();
+    }
 }
 
 void InsertTextCommandImpl::doApply()
@@ -2086,10 +2168,12 @@ JoinTextNodesCommandImpl::JoinTextNodesCommandImpl(DocumentImpl *document, TextI
 
 JoinTextNodesCommandImpl::~JoinTextNodesCommandImpl()
 {
-    if (m_text1)
+    if (m_text1) {
         m_text1->deref();
-    if (m_text2)
+    }
+    if (m_text2) {
         m_text2->deref();
+    }
 }
 
 void JoinTextNodesCommandImpl::doApply()
@@ -2145,10 +2229,11 @@ void ReplaceSelectionCommandImpl::doApply()
     Selection selection = endingSelection();
 
     // Delete the current selection, or collapse whitespace, as needed
-    if (selection.state() == Selection::RANGE)
+    if (selection.state() == Selection::RANGE) {
         deleteSelection();
-    else
+    } else {
         deleteCollapsibleWhitespace();
+    }
 
     selection = endingSelection();
     assert(!selection.isEmpty());
@@ -2163,8 +2248,7 @@ void ReplaceSelectionCommandImpl::doApply()
         if (m_selectReplacement) {
             setEndingSelection(Selection(base, endingSelection().extent()));
         }
-    }
-    else {
+    } else {
         // HTML fragment paste.
         NodeImpl *beforeNode = firstChild;
         NodeImpl *node = firstChild->nextSibling();
@@ -2184,18 +2268,20 @@ void ReplaceSelectionCommandImpl::doApply()
         NodeImpl *lastLeaf = lastChild;
         while (1) {
             NodeImpl *nextChild = lastLeaf->lastChild();
-            if (!nextChild)
+            if (!nextChild) {
                 break;
+            }
             lastLeaf = nextChild;
         }
 
-	if (m_selectReplacement) {
+        if (m_selectReplacement) {
             // Find the first leaf.
             NodeImpl *firstLeaf = firstChild;
             while (1) {
                 NodeImpl *nextChild = firstLeaf->firstChild();
-                if (!nextChild)
+                if (!nextChild) {
                     break;
+                }
                 firstLeaf = nextChild;
             }
             // Select what was inserted.
@@ -2211,7 +2297,7 @@ void ReplaceSelectionCommandImpl::doApply()
 // MoveSelectionCommandImpl
 
 MoveSelectionCommandImpl::MoveSelectionCommandImpl(DocumentImpl *document, DOM::DocumentFragmentImpl *fragment, DOM::Position &position)
-: CompositeEditCommandImpl(document), m_fragment(fragment), m_position(position)
+    : CompositeEditCommandImpl(document), m_fragment(fragment), m_position(position)
 {
 }
 
@@ -2333,23 +2419,28 @@ RemoveNodeCommandImpl::RemoveNodeCommandImpl(DocumentImpl *document, NodeImpl *r
     NodeListImpl *children = m_parent->childNodes();
     for (int i = children->length(); i >= 0; i--) {
         NodeImpl *node = children->item(i);
-        if (node == m_removeChild)
+        if (node == m_removeChild) {
             break;
+        }
         m_refChild = node;
     }
 
-    if (m_refChild)
+    if (m_refChild) {
         m_refChild->ref();
+    }
 }
 
 RemoveNodeCommandImpl::~RemoveNodeCommandImpl()
 {
-    if (m_parent)
+    if (m_parent) {
         m_parent->deref();
-    if (m_removeChild)
+    }
+    if (m_removeChild) {
         m_removeChild->deref();
-    if (m_refChild)
+    }
+    if (m_refChild) {
         m_refChild->deref();
+    }
 }
 
 void RemoveNodeCommandImpl::doApply()
@@ -2368,10 +2459,11 @@ void RemoveNodeCommandImpl::doUnapply()
     assert(m_removeChild);
 
     int exceptionCode = 0;
-    if (m_refChild)
+    if (m_refChild) {
         m_parent->insertBefore(m_removeChild, m_refChild, exceptionCode);
-    else
+    } else {
         m_parent->appendChild(m_removeChild, exceptionCode);
+    }
     assert(exceptionCode == 0);
 }
 
@@ -2383,15 +2475,17 @@ RemoveNodeAndPruneCommandImpl::RemoveNodeAndPruneCommandImpl(DocumentImpl *docum
 {
     assert(m_pruneNode);
     m_pruneNode->ref();
-    if (m_stopNode)
+    if (m_stopNode) {
         m_stopNode->ref();
+    }
 }
 
 RemoveNodeAndPruneCommandImpl::~RemoveNodeAndPruneCommandImpl()
 {
     m_pruneNode->deref();
-    if (m_stopNode)
+    if (m_stopNode) {
         m_stopNode->deref();
+    }
 }
 
 void RemoveNodeAndPruneCommandImpl::doApply()
@@ -2401,8 +2495,9 @@ void RemoveNodeAndPruneCommandImpl::doApply()
     NodeImpl *node = pruneNode->traversePreviousNode();
     removeNode(pruneNode);
     while (1) {
-        if (node == m_stopNode || editableBlock != node->enclosingBlockFlowElement() || !shouldPruneNode(node))
+        if (node == m_stopNode || editableBlock != node->enclosingBlockFlowElement() || !shouldPruneNode(node)) {
             break;
+        }
         pruneNode = node;
         node = node->traversePreviousNode();
         removeNode(pruneNode);
@@ -2421,8 +2516,9 @@ RemoveNodePreservingChildrenCommandImpl::RemoveNodePreservingChildrenCommandImpl
 
 RemoveNodePreservingChildrenCommandImpl::~RemoveNodePreservingChildrenCommandImpl()
 {
-    if (m_node)
+    if (m_node) {
         m_node->deref();
+    }
 }
 
 void RemoveNodePreservingChildrenCommandImpl::doApply()
@@ -2450,8 +2546,9 @@ SetNodeAttributeCommandImpl::SetNodeAttributeCommandImpl(DocumentImpl *document,
 
 SetNodeAttributeCommandImpl::~SetNodeAttributeCommandImpl()
 {
-    if (m_element)
+    if (m_element) {
         m_element->deref();
+    }
 }
 
 void SetNodeAttributeCommandImpl::doApply()
@@ -2489,10 +2586,12 @@ SplitTextNodeCommandImpl::SplitTextNodeCommandImpl(DocumentImpl *document, TextI
 
 SplitTextNodeCommandImpl::~SplitTextNodeCommandImpl()
 {
-    if (m_text1)
+    if (m_text1) {
         m_text1->deref();
-    if (m_text2)
+    }
+    if (m_text2) {
         m_text2->deref();
+    }
 }
 
 void SplitTextNodeCommandImpl::doApply()
@@ -2574,7 +2673,7 @@ void TypingCommandImpl::insertText(const DOMString &text)
     } else {
         EditCommandImpl *lastCommand = m_cmds.last().get();
         if (lastCommand->isInputTextCommand()) {
-            static_cast<InputTextCommandImpl*>(lastCommand)->input(text);
+            static_cast<InputTextCommandImpl *>(lastCommand)->input(text);
         } else {
             RefPtr<InputTextCommandImpl> cmd = new InputTextCommandImpl(document());
             applyCommandToComposite(cmd);
@@ -2631,8 +2730,7 @@ void TypingCommandImpl::deleteKeyPressed()
 #if 0
     if (m_cmds.count() == 0) {
         issueCommandForDeleteKey();
-    }
-    else {
+    } else {
         EditCommand lastCommand = m_cmds.last();
         if (lastCommand.commandID() == InputTextCommandID) {
             InputTextCommand cmd = static_cast<InputTextCommand &>(lastCommand);
@@ -2640,12 +2738,10 @@ void TypingCommandImpl::deleteKeyPressed()
             if (cmd.charactersAdded() == 0) {
                 removeCommand(cmd);
             }
-        }
-        else if (lastCommand.commandID() == InputNewlineCommandID) {
+        } else if (lastCommand.commandID() == InputNewlineCommandID) {
             lastCommand.unapply();
             removeCommand(lastCommand);
-        }
-        else {
+        } else {
             issueCommandForDeleteKey();
         }
     }
@@ -2660,16 +2756,17 @@ void TypingCommandImpl::removeCommand(const PassRefPtr<EditCommandImpl> cmd)
     // not do this, but we could.
 
     m_cmds.removeAll(cmd);
-    if (m_cmds.count() == 0)
+    if (m_cmds.count() == 0) {
         setEndingSelection(startingSelection());
-    else
+    } else {
         setEndingSelection(m_cmds.last()->endingSelection());
+    }
 }
 
 static bool isOpenForMoreTypingCommand(const EditCommandImpl *command)
 {
     return command && command->isTypingCommand() &&
-        static_cast<const TypingCommandImpl*>(command)->openForMoreTyping();
+           static_cast<const TypingCommandImpl *>(command)->openForMoreTyping();
 }
 
 void TypingCommandImpl::deleteKeyPressed0(DocumentImpl *document)
@@ -2692,7 +2789,7 @@ void TypingCommandImpl::insertNewline0(DocumentImpl *document)
     assert(ed);
     EditCommandImpl *lastEditCommand = ed->lastEditCommand().get();
     if (isOpenForMoreTypingCommand(lastEditCommand)) {
-        static_cast<TypingCommandImpl*>(lastEditCommand)->insertNewline();
+        static_cast<TypingCommandImpl *>(lastEditCommand)->insertNewline();
     } else {
         RefPtr<TypingCommandImpl> command = new TypingCommandImpl(document);
         command->apply();
@@ -2710,14 +2807,13 @@ void TypingCommandImpl::insertText0(DocumentImpl *document, const DOMString &tex
     assert(ed);
     EditCommandImpl *lastEditCommand = ed->lastEditCommand().get();
     if (isOpenForMoreTypingCommand(lastEditCommand)) {
-        static_cast<TypingCommandImpl*>(lastEditCommand)->insertText(text);
+        static_cast<TypingCommandImpl *>(lastEditCommand)->insertText(text);
     } else {
         RefPtr<TypingCommandImpl> command = new TypingCommandImpl(document);
         command->apply();
         command->insertText(text);
     }
 }
-
 
 //------------------------------------------------------------------------------------------
 // InsertListCommandImpl
@@ -2883,8 +2979,9 @@ void IndentOutdentCommandImpl::indent()
                 nextNode = node->nextSibling();
                 removeNode(node);
                 appendNode(nestedList.get(), node);
-                if (node == endBlock)
+                if (node == endBlock) {
                     break;
+                }
             }
         } else {
 #ifdef DEBUG_COMMANDS
@@ -2898,8 +2995,9 @@ static bool hasPreviousListItem(NodeImpl *node)
 {
     while (node) {
         node = node->previousSibling();
-        if (node && node->id() == ID_LI)
+        if (node && node->id() == ID_LI) {
             return true;
+        }
     }
     return false;
 }
@@ -2908,8 +3006,9 @@ static bool hasNextListItem(NodeImpl *node)
 {
     while (node) {
         node = node->nextSibling();
-        if (node && node->id() == ID_LI)
+        if (node && node->id() == ID_LI) {
             return true;
+        }
     }
     return false;
 }
@@ -2957,22 +3056,24 @@ void IndentOutdentCommandImpl::outdent()
         for (NodeImpl *node = firstItemSelected ? startBlock : endBlock;; node = nextNode) {
             nextNode = firstItemSelected ? node->nextSibling() : node->previousSibling();
             removeNode(node);
-            if (firstItemSelected)
+            if (firstItemSelected) {
                 insertNodeBefore(node, listNode);
-            else
+            } else {
                 insertNodeAfter(node, listNode);
+            }
             if (!hasParentList && node->id() == ID_LI) {
                 insertNodeAfter(document()->createHTMLElement("BR"), node);
                 removeNodePreservingChildren(node);
             }
-            if (node == (firstItemSelected ? endBlock : startBlock))
+            if (node == (firstItemSelected ? endBlock : startBlock)) {
                 break;
+            }
         }
-        if (listFullySelected)
+        if (listFullySelected) {
             removeNode(listNode);
+        }
         return;
     }
-
 
     if (startBlock == endBlock) {
         if (startBlock->id() == ID_BLOCKQUOTE) {
@@ -2991,10 +3092,11 @@ void IndentOutdentCommandImpl::outdent()
 
 void IndentOutdentCommandImpl::doApply()
 {
-    if (m_commandType == Indent)
+    if (m_commandType == Indent) {
         indent();
-    else
+    } else {
         outdent();
+    }
 }
 
 //------------------------------------------------------------------------------------------

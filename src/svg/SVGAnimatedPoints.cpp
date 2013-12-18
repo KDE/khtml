@@ -25,7 +25,8 @@
 #if ENABLE(SVG)
 #include "SVGAnimatedPoints.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 SVGAnimatedPoints::SVGAnimatedPoints()
 {
@@ -39,4 +40,3 @@ SVGAnimatedPoints::~SVGAnimatedPoints()
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

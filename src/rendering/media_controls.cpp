@@ -22,7 +22,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include "media_controls.h"
@@ -35,12 +35,13 @@
 #include <kglobalaccel.h>
 #include <klocalizedstring.h>
 
-namespace khtml {
+namespace khtml
+{
 
-MediaControls::MediaControls(MediaPlayer* mediaPlayer, QWidget* parent) : QWidget(parent)
+MediaControls::MediaControls(MediaPlayer *mediaPlayer, QWidget *parent) : QWidget(parent)
 {
     m_mediaPlayer = mediaPlayer;
-    Phonon::MediaObject* mediaObject = m_mediaPlayer->mediaObject();
+    Phonon::MediaObject *mediaObject = m_mediaPlayer->mediaObject();
     setLayout(new QHBoxLayout(this));
     m_play = new QPushButton(QIcon::fromTheme("media-playback-start"), i18n("Play"), this);
     connect(m_play, SIGNAL(clicked()), mediaObject, SLOT(play()));
@@ -49,13 +50,13 @@ MediaControls::MediaControls(MediaPlayer* mediaPlayer, QWidget* parent) : QWidge
     connect(m_pause, SIGNAL(clicked()), mediaObject, SLOT(pause()));
     layout()->addWidget(m_pause);
     layout()->addWidget(new Phonon::SeekSlider(mediaObject, this));
-    QAction* fsac = new KToggleFullScreenAction(this);
+    QAction *fsac = new KToggleFullScreenAction(this);
     fsac->setObjectName("KHTMLMediaPlayerFullScreenAction"); // needed for global shortcut activation.
     m_fullscreen = new QToolButton(this);
     m_fullscreen->setDefaultAction(fsac);
     m_fullscreen->setCheckable(true);
     connect(fsac, SIGNAL(toggled(bool)), this, SLOT(slotToggled(bool)));
-    layout()->addWidget(m_fullscreen); 
+    layout()->addWidget(m_fullscreen);
 
     slotStateChanged(mediaObject->state());
     connect(mediaObject, SIGNAL(stateChanged(Phonon::State,Phonon::State)), SLOT(slotStateChanged(Phonon::State)));
@@ -76,10 +77,10 @@ void MediaControls::slotStateChanged(Phonon::State state)
 {
     if (state == Phonon::PlayingState) {
         m_play->hide();
-	m_pause->show();
+        m_pause->show();
     } else {
         m_pause->hide();
-	m_play->show();
+        m_play->show();
     }
 }
 

@@ -26,28 +26,33 @@
 #if ENABLE(SVG)
 #include "RenderSVGInline.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class RenderSVGTextPath : public RenderSVGInline {
-    public:
-        RenderSVGTextPath(DOM::NodeImpl*);
+class RenderSVGTextPath : public RenderSVGInline
+{
+public:
+    RenderSVGTextPath(DOM::NodeImpl *);
 
-        Path layoutPath() const;
-        float startOffset() const;
-        bool exactAlignment() const;
-        bool stretchMethod() const;
+    Path layoutPath() const;
+    float startOffset() const;
+    bool exactAlignment() const;
+    bool stretchMethod() const;
 
-        virtual const char* renderName() const { return "RenderSVGTextPath"; }
-        virtual void absoluteRects(Vector<IntRect>& rects, int tx, int ty);
+    virtual const char *renderName() const
+    {
+        return "RenderSVGTextPath";
+    }
+    virtual void absoluteRects(Vector<IntRect> &rects, int tx, int ty);
 
-    private:
-        float m_startOffset;
+private:
+    float m_startOffset;
 
-        bool m_exactAlignment : 1;
-        bool m_stretchMethod : 1;
+    bool m_exactAlignment : 1;
+    bool m_stretchMethod : 1;
 
-        Path m_layoutPath;
-    };
+    Path m_layoutPath;
+};
 }
 
 #endif // ENABLE(SVG)

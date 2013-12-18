@@ -26,11 +26,13 @@
 #include "FloatPoint3D.h"
 #include "SVGLightSource.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-class SVGSpotLightSource : public SVGLightSource {
+class SVGSpotLightSource : public SVGLightSource
+{
 public:
-    SVGSpotLightSource(const FloatPoint3D& position, const FloatPoint3D& direction, float specularExponent, float limitingConeAngle)
+    SVGSpotLightSource(const FloatPoint3D &position, const FloatPoint3D &direction, float specularExponent, float limitingConeAngle)
         : SVGLightSource(LS_SPOT)
         , m_position(position)
         , m_direction(direction)
@@ -38,13 +40,25 @@ public:
         , m_limitingConeAngle(limitingConeAngle)
     { }
 
-    const FloatPoint3D& position() const { return m_position; }
-    const FloatPoint3D& direction() const { return m_direction; }
+    const FloatPoint3D &position() const
+    {
+        return m_position;
+    }
+    const FloatPoint3D &direction() const
+    {
+        return m_direction;
+    }
 
-    float specularExponent() const { return m_specularExponent; }
-    float limitingConeAngle() const { return m_limitingConeAngle; }
+    float specularExponent() const
+    {
+        return m_specularExponent;
+    }
+    float limitingConeAngle() const
+    {
+        return m_limitingConeAngle;
+    }
 
-    virtual TextStream& externalRepresentation(TextStream&) const;
+    virtual TextStream &externalRepresentation(TextStream &) const;
 
 private:
     FloatPoint3D m_position;

@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #if ENABLE(SVG)
@@ -31,7 +31,8 @@
 #include "RenderSVGViewportContainer.h"
 #include "TextStream.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 SVGResourceMarker::SVGResourceMarker()
     : SVGResource()
@@ -47,7 +48,7 @@ SVGResourceMarker::~SVGResourceMarker()
 {
 }
 
-void SVGResourceMarker::setMarker(RenderSVGViewportContainer* marker)
+void SVGResourceMarker::setMarker(RenderSVGViewportContainer *marker)
 {
     m_marker = marker;
 }
@@ -58,16 +59,18 @@ void SVGResourceMarker::setRef(double refX, double refY)
     m_refY = refY;
 }
 
-void SVGResourceMarker::draw(GraphicsContext* context, const FloatRect& rect, double x, double y, double strokeWidth, double angle)
+void SVGResourceMarker::draw(GraphicsContext *context, const FloatRect &rect, double x, double y, double strokeWidth, double angle)
 {
-    if (!m_marker)
+    if (!m_marker) {
         return;
+    }
 
-    static HashSet<SVGResourceMarker*> currentlyDrawingMarkers;
+    static HashSet<SVGResourceMarker *> currentlyDrawingMarkers;
 
     // avoid drawing circular marker references
-    if (currentlyDrawingMarkers.contains(this))
+    if (currentlyDrawingMarkers.contains(this)) {
         return;
+    }
 
     currentlyDrawingMarkers.add(this);
 
@@ -78,15 +81,17 @@ void SVGResourceMarker::draw(GraphicsContext* context, const FloatRect& rect, do
     // refX and refY are given in coordinates relative to the viewport established by the marker, yet they affect
     // the translation performed on the viewport itself.
     AffineTransform viewportTransform;
-    if (m_useStrokeWidth)
+    if (m_useStrokeWidth) {
         viewportTransform.scale(strokeWidth, strokeWidth);
+    }
     viewportTransform *= m_marker->viewportTransform();
     double refX, refY;
     viewportTransform.map(m_refX, m_refY, &refX, &refY);
     transform.translate(-refX, -refY);
 
-    if (m_useStrokeWidth)
+    if (m_useStrokeWidth) {
         transform.scale(strokeWidth, strokeWidth);
+    }
 
     // FIXME: PaintInfo should be passed into this method instead of being created here
     // FIXME: bounding box fractions are lost
@@ -109,25 +114,27 @@ FloatRect SVGResourceMarker::cachedBounds() const
     return m_cachedBounds;
 }
 
-TextStream& SVGResourceMarker::externalRepresentation(TextStream& ts) const
+TextStream &SVGResourceMarker::externalRepresentation(TextStream &ts) const
 {
     ts << "[type=MARKER]"
-        << " [angle=";
+       << " [angle=";
 
-    if (angle() == -1)
+    if (angle() == -1) {
         ts << "auto" << "]";
-    else
+    } else {
         ts << angle() << "]";
+    }
 
     ts << " [ref x=" << refX() << " y=" << refY() << "]";
     return ts;
 }
 
-SVGResourceMarker* getMarkerById(Document* document, const AtomicString& id)
+SVGResourceMarker *getMarkerById(Document *document, const AtomicString &id)
 {
-    SVGResource* resource = getResourceById(document, id);
-    if (resource && resource->isMarker())
-        return static_cast<SVGResourceMarker*>(resource);
+    SVGResource *resource = getResourceById(document, id);
+    if (resource && resource->isMarker()) {
+        return static_cast<SVGResourceMarker *>(resource);
+    }
 
     return 0;
 }

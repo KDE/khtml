@@ -34,9 +34,10 @@
 #include "SVGZoomEvent.h"
 #include "SVGZoomAndPan.h"*/
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGDocument::SVGDocument( Frame* frame)
+SVGDocument::SVGDocument(Frame *frame)
     : Document(frame)
 {
 }
@@ -45,11 +46,12 @@ SVGDocument::~SVGDocument()
 {
 }
 
-SVGSVGElement* SVGDocument::rootElement() const
+SVGSVGElement *SVGDocument::rootElement() const
 {
-    Element* elem = documentElement();
-    if (elem && elem->hasTagName(SVGNames::svgTag))
-        return static_cast<SVGSVGElement*>(elem);
+    Element *elem = documentElement();
+    if (elem && elem->hasTagName(SVGNames::svgTag)) {
+        return static_cast<SVGSVGElement *>(elem);
+    }
 
     return 0;
 }
@@ -59,7 +61,7 @@ void SVGDocument::dispatchZoomEvent(float prevScale, float newScale)
     Q_UNUSED(prevScale);
     Q_UNUSED(newScale);
 
-	/*ExceptionCode ec = 0;
+    /*ExceptionCode ec = 0;
     RefPtr<SVGZoomEvent> event = static_pointer_cast<SVGZoomEvent>(createEvent("SVGZoomEvents", ec));
     event->initEvent(EventNames::zoomEvent, true, false);
     event->setPreviousScale(prevScale);
@@ -88,14 +90,14 @@ bool SVGDocument::zoomAndPanEnabled() const
     return false;
 }
 
-void SVGDocument::startPan(const FloatPoint& start)
+void SVGDocument::startPan(const FloatPoint &start)
 {
     Q_UNUSED(start);
     /*if (rootElement())
         m_translate = FloatPoint(start.x() - rootElement()->currentTranslate().x(), rootElement()->currentTranslate().y() + start.y());*/
 }
 
-void SVGDocument::updatePan(const FloatPoint& pos) const
+void SVGDocument::updatePan(const FloatPoint &pos) const
 {
     Q_UNUSED(pos);
     if (rootElement()) {
@@ -107,16 +109,15 @@ void SVGDocument::updatePan(const FloatPoint& pos) const
 
 void SVGDocument::close()
 {
-     bool doload = !parsing() && m_tokenizer;
+    bool doload = !parsing() && m_tokenizer;
 
-     DocumentImpl::close();
+    DocumentImpl::close();
 
-     if (doload) {
-         document()->dispatchWindowEvent(DOM::EventImpl::LOAD_EVENT, false, false);
-     }
+    if (doload) {
+        document()->dispatchWindowEvent(DOM::EventImpl::LOAD_EVENT, false, false);
+    }
 }
 
 }
 
-// vim:ts=4:noet
 #endif // ENABLE(SVG)

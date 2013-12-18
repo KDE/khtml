@@ -32,7 +32,8 @@
 // khtml
 #include <wtf/PassRefPtr.h>
 
-namespace WebCore {
+namespace WebCore
+{
 
 SVGExternalResourcesRequired::SVGExternalResourcesRequired()
     : m_externalResourcesRequired(false)
@@ -45,7 +46,7 @@ SVGExternalResourcesRequired::~SVGExternalResourcesRequired()
 
 ANIMATED_PROPERTY_DEFINITIONS_WITH_CONTEXT(SVGExternalResourcesRequired, bool, Boolean, boolean, ExternalResourcesRequired, externalResourcesRequired, SVGNames::externalResourcesRequiredAttr, m_externalResourcesRequired)
 
-bool SVGExternalResourcesRequired::parseMappedAttribute(MappedAttribute* attr)
+bool SVGExternalResourcesRequired::parseMappedAttribute(MappedAttribute *attr)
 {
     if (attr->name() == SVGNames::externalResourcesRequiredAttr) {
         setExternalResourcesRequiredBaseValue(attr->value() == "true");
@@ -55,7 +56,7 @@ bool SVGExternalResourcesRequired::parseMappedAttribute(MappedAttribute* attr)
     return false;
 }
 
-bool SVGExternalResourcesRequired::isKnownAttribute(const QualifiedName& attrName)
+bool SVGExternalResourcesRequired::isKnownAttribute(const QualifiedName &attrName)
 {
     return attrName == SVGNames::externalResourcesRequiredAttr;
 }

@@ -23,9 +23,10 @@
 #include "SVGFETurbulence.h"
 #include "TextStream.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFETurbulence::SVGFETurbulence(SVGResourceFilter* filter)
+SVGFETurbulence::SVGFETurbulence(SVGResourceFilter *filter)
     : SVGFilterEffect(filter)
     , m_baseFrequencyX(0.0f)
     , m_baseFrequencyY(0.0f)
@@ -63,12 +64,12 @@ float SVGFETurbulence::baseFrequencyX() const
 
 void SVGFETurbulence::setBaseFrequencyX(float baseFrequencyX)
 {
-       m_baseFrequencyX = baseFrequencyX;
+    m_baseFrequencyX = baseFrequencyX;
 }
 
 float SVGFETurbulence::seed() const
 {
-    return m_seed; 
+    return m_seed;
 }
 
 void SVGFETurbulence::setSeed(float seed)
@@ -96,29 +97,28 @@ void SVGFETurbulence::setStitchTiles(bool stitch)
     m_stitchTiles = stitch;
 }
 
-static TextStream& operator<<(TextStream& ts, SVGTurbulanceType t)
+static TextStream &operator<<(TextStream &ts, SVGTurbulanceType t)
 {
-    switch (t)
-    {
-        case SVG_TURBULENCE_TYPE_UNKNOWN:
-            ts << "UNKNOWN"; break;
-        case SVG_TURBULENCE_TYPE_TURBULENCE:
-            ts << "TURBULANCE"; break;
-        case SVG_TURBULENCE_TYPE_FRACTALNOISE:
-            ts << "NOISE"; break;
+    switch (t) {
+    case SVG_TURBULENCE_TYPE_UNKNOWN:
+        ts << "UNKNOWN"; break;
+    case SVG_TURBULENCE_TYPE_TURBULENCE:
+        ts << "TURBULANCE"; break;
+    case SVG_TURBULENCE_TYPE_FRACTALNOISE:
+        ts << "NOISE"; break;
     }
     return ts;
 }
 
-TextStream& SVGFETurbulence::externalRepresentation(TextStream& ts) const
+TextStream &SVGFETurbulence::externalRepresentation(TextStream &ts) const
 {
     ts << "[type=TURBULENCE] ";
     SVGFilterEffect::externalRepresentation(ts);
     ts << " [turbulence type=" << type() << "]"
-        << " [base frequency x=" << baseFrequencyX() << " y=" << baseFrequencyY() << "]"
-        << " [seed=" << seed() << "]"
-        << " [num octaves=" << numOctaves() << "]"
-        << " [stitch tiles=" << stitchTiles() << "]";
+       << " [base frequency x=" << baseFrequencyX() << " y=" << baseFrequencyY() << "]"
+       << " [seed=" << seed() << "]"
+       << " [num octaves=" << numOctaves() << "]"
+       << " [stitch tiles=" << stitchTiles() << "]";
     return ts;
 
 }

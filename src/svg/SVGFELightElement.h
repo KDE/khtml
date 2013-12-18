@@ -28,29 +28,29 @@
 
 namespace WebCore
 {
-    class SVGNumberList;
-    
-    class SVGFELightElement : public SVGElement
-    {
-    public:
-        SVGFELightElement(const QualifiedName&, Document*);
-        virtual ~SVGFELightElement();
-        
-        virtual SVGLightSource* lightSource() const = 0;
-        virtual void parseMappedAttribute(MappedAttribute*);
+class SVGNumberList;
 
-    private:
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFELightElement, float, float, Azimuth, azimuth)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFELightElement, float, float, Elevation, elevation)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFELightElement, float, float, X, x)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFELightElement, float, float, Y, y)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFELightElement, float, float, Z, z)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFELightElement, float, float, PointsAtX, pointsAtX)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFELightElement, float, float, PointsAtY, pointsAtY)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFELightElement, float, float, PointsAtZ, pointsAtZ)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFELightElement, float, float, SpecularExponent, specularExponent)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFELightElement, float, float, LimitingConeAngle, limitingConeAngle)
-    };
+class SVGFELightElement : public SVGElement
+{
+public:
+    SVGFELightElement(const QualifiedName &, Document *);
+    virtual ~SVGFELightElement();
+
+    virtual SVGLightSource *lightSource() const = 0;
+    virtual void parseMappedAttribute(MappedAttribute *);
+
+private:
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFELightElement, float, float, Azimuth, azimuth)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFELightElement, float, float, Elevation, elevation)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFELightElement, float, float, X, x)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFELightElement, float, float, Y, y)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFELightElement, float, float, Z, z)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFELightElement, float, float, PointsAtX, pointsAtX)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFELightElement, float, float, PointsAtY, pointsAtY)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFELightElement, float, float, PointsAtZ, pointsAtZ)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFELightElement, float, float, SpecularExponent, specularExponent)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFELightElement, float, float, LimitingConeAngle, limitingConeAngle)
+};
 
 } // namespace WebCore
 

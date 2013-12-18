@@ -34,9 +34,10 @@
 #include "SVGStyledElement.h"
 #include "SVGURIReference.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-RenderSVGContainer::RenderSVGContainer(SVGStyledElement* node)
+RenderSVGContainer::RenderSVGContainer(SVGStyledElement *node)
     : RenderObject(node)
     , m_firstChild(0)
     , m_lastChild(0)
@@ -56,12 +57,12 @@ bool RenderSVGContainer::canHaveChildren() const
     return true;
 }
 
-void RenderSVGContainer::addChild(RenderObject* newChild, RenderObject* beforeChild)
+void RenderSVGContainer::addChild(RenderObject *newChild, RenderObject *beforeChild)
 {
     insertChildNode(newChild, beforeChild);
 }
 
-void RenderSVGContainer::removeChild(RenderObject* oldChild)
+void RenderSVGContainer::removeChild(RenderObject *oldChild)
 {
     // We do this here instead of in removeChildNode, since the only extremely low-level uses of remove/appendChildNode
     // cannot affect the positioned object list, and the floating object list is irrelevant (since the list gets cleared on
@@ -88,7 +89,7 @@ void RenderSVGContainer::destroyLeftoverChildren()
     }*/
 }
 
-RenderObject* RenderSVGContainer::removeChildNode(RenderObject* oldChild)
+RenderObject *RenderSVGContainer::removeChildNode(RenderObject *oldChild)
 {
     ASSERT(oldChild->parent() == this);
     bool inCleanup = documentBeingDestroyed();
@@ -96,20 +97,20 @@ RenderObject* RenderSVGContainer::removeChildNode(RenderObject* oldChild)
     // So that we'll get the appropriate dirty bit set (either that a normal flow child got yanked or
     // that a positioned child got yanked).  We also repaint, so that the area exposed when the child
     // disappears gets repainted properly.
-    
+
     if (!inCleanup) {
         oldChild->setNeedsLayoutAndMinMaxRecalc(); // Dirty the containing block chain
-        oldChild->setNeedsLayout( false ); // The child itself does not need to layout - it's going away.
+        oldChild->setNeedsLayout(false);   // The child itself does not need to layout - it's going away.
         oldChild->repaint();
     }
 
     // detach the place holder box
     if (oldChild->isBox()) {
-        RenderBox* rb = static_cast<RenderBox*>(oldChild);
-        InlineBox* ph = rb->placeHolderBox();
+        RenderBox *rb = static_cast<RenderBox *>(oldChild);
+        InlineBox *ph = rb->placeHolderBox();
         if (ph) {
             ph->detach(rb->renderArena(), inCleanup /*NoRemove*/);
-            rb->setPlaceHolderBox( 0 );
+            rb->setPlaceHolderBox(0);
         }
     }
 
@@ -120,20 +121,25 @@ RenderObject* RenderSVGContainer::removeChildNode(RenderObject* oldChild)
         // is notified of DOM mutations.
         /* FIXME if (oldChild->isSelectionBorder())
             view()->clearSelection();*/
-        if (oldChild->isSelectionBorder())
+        if (oldChild->isSelectionBorder()) {
             canvas()->clearSelection();
+        }
     }
 
     // remove the child
-    if (oldChild->previousSibling())
+    if (oldChild->previousSibling()) {
         oldChild->previousSibling()->setNextSibling(oldChild->nextSibling());
-    if (oldChild->nextSibling())
+    }
+    if (oldChild->nextSibling()) {
         oldChild->nextSibling()->setPreviousSibling(oldChild->previousSibling());
+    }
 
-    if (m_firstChild == oldChild)
+    if (m_firstChild == oldChild) {
         m_firstChild = oldChild->nextSibling();
-    if (m_lastChild == oldChild)
+    }
+    if (m_lastChild == oldChild) {
         m_lastChild = oldChild->previousSibling();
+    }
 
     oldChild->setPreviousSibling(0);
     oldChild->setNextSibling(0);
@@ -145,32 +151,34 @@ RenderObject* RenderSVGContainer::removeChildNode(RenderObject* oldChild)
     return oldChild;
 }
 
-void RenderSVGContainer::appendChildNode(RenderObject* newChild)
+void RenderSVGContainer::appendChildNode(RenderObject *newChild)
 {
     ASSERT(!newChild->parent());
     /*khtml vtokarevASSERT(newChild->element()->isSVGElement());*/
     // remove it when I have SVG render text; SVGInlineText
 
     newChild->setParent(this);
-    RenderObject* lChild = m_lastChild;
+    RenderObject *lChild = m_lastChild;
 
     if (lChild) {
         newChild->setPreviousSibling(lChild);
         lChild->setNextSibling(newChild);
-    } else
+    } else {
         m_firstChild = newChild;
+    }
 
     m_lastChild = newChild;
 
     newChild->setNeedsLayoutAndMinMaxRecalc(); // Goes up the containing block hierarchy.*/
-    if (!normalChildNeedsLayout())
-        setChildNeedsLayout(true); // We may supply the static position for an absolute positioned child.
+    if (!normalChildNeedsLayout()) {
+        setChildNeedsLayout(true);    // We may supply the static position for an absolute positioned child.
+    }
 
     /*if (AXObjectCache::accessibilityEnabled())
         document()->axObjectCache()->childrenChanged(this);*/
 }
 
-void RenderSVGContainer::insertChildNode(RenderObject* child, RenderObject* beforeChild)
+void RenderSVGContainer::insertChildNode(RenderObject *child, RenderObject *beforeChild)
 {
     if (!beforeChild) {
         appendChildNode(child);
@@ -181,21 +189,24 @@ void RenderSVGContainer::insertChildNode(RenderObject* child, RenderObject* befo
     ASSERT(beforeChild->parent() == this);
     ASSERT(child->element()->isSVGElement());
 
-    if (beforeChild == m_firstChild)
+    if (beforeChild == m_firstChild) {
         m_firstChild = child;
+    }
 
-    RenderObject* prev = beforeChild->previousSibling();
+    RenderObject *prev = beforeChild->previousSibling();
     child->setNextSibling(beforeChild);
     beforeChild->setPreviousSibling(child);
-    if (prev)
+    if (prev) {
         prev->setNextSibling(child);
+    }
     child->setPreviousSibling(prev);
 
     child->setParent(this);
 
     child->setNeedsLayoutAndMinMaxRecalc();
-    if (!normalChildNeedsLayout())
-        setChildNeedsLayout(true); // We may supply the static position for an absolute positioned child.
+    if (!normalChildNeedsLayout()) {
+        setChildNeedsLayout(true);    // We may supply the static position for an absolute positioned child.
+    }
 
     /*if (AXObjectCache::accessibilityEnabled())
         document()->axObjectCache()->childrenChanged(this);*/
@@ -254,12 +265,14 @@ void RenderSVGContainer::layout()
         oldBounds = m_absoluteBounds;
         oldOutlineBox = absoluteOutlineBox();
     }*/
-    
+
     calculateLocalTransform();
 
-    for (RenderObject* child = firstChild(); child; child = child->nextSibling()) {
+    for (RenderObject *child = firstChild(); child; child = child->nextSibling()) {
         // ### TODO: we only want to relayout if our size/transform changed kids
-        if (child->isText()) continue;
+        if (child->isText()) {
+            continue;
+        }
         child->setNeedsLayout(true);
         child->layoutIfNeeded();
         ASSERT(!child->needsLayout());
@@ -279,8 +292,7 @@ int RenderSVGContainer::calcReplacedWidth() const
     switch (style()->width().type()) {
     case Fixed:
         return qMax(0, style()->width().value());
-    case Percent:
-    {
+    case Percent: {
         const int cw = containingBlockWidth();
         return cw > 0 ? qMax(0, style()->width().minWidth(cw)) : 0;
     }
@@ -294,9 +306,8 @@ int RenderSVGContainer::calcReplacedHeight() const
     switch (style()->height().type()) {
     case Fixed:
         return qMax(0, style()->height().value());
-    case Percent:
-    {
-        RenderBlock* cb = containingBlock();
+    case Percent: {
+        RenderBlock *cb = containingBlock();
         return style()->height().width(cb->availableHeight());
     }
     default:
@@ -304,14 +315,15 @@ int RenderSVGContainer::calcReplacedHeight() const
     }
 }
 
-void RenderSVGContainer::applyContentTransforms(PaintInfo& paintInfo)
+void RenderSVGContainer::applyContentTransforms(PaintInfo &paintInfo)
 {
-    if (!localTransform().isIdentity())
+    if (!localTransform().isIdentity()) {
         paintInfo.p->setWorldMatrix(localTransform(), true);
-        /*paintInfo.context->concatCTM(localTransform());*/
+    }
+    /*paintInfo.context->concatCTM(localTransform());*/
 }
 
-void RenderSVGContainer::applyAdditionalTransforms(PaintInfo& paintInfo)
+void RenderSVGContainer::applyAdditionalTransforms(PaintInfo &paintInfo)
 {
     Q_UNUSED(paintInfo);
     // no-op
@@ -327,56 +339,59 @@ void RenderSVGContainer::calcBounds()
 bool RenderSVGContainer::selfWillPaint() const
 {
 #if ENABLE(SVG_FILTERS)
-    const SVGRenderStyle* svgStyle = style()->svgStyle();
+    const SVGRenderStyle *svgStyle = style()->svgStyle();
     AtomicString filterId(SVGURIReference::getTarget(svgStyle->filter()));
-    SVGResourceFilter* filter = getFilterById(document(), filterId);
-    if (filter)
+    SVGResourceFilter *filter = getFilterById(document(), filterId);
+    if (filter) {
         return true;
+    }
 #endif
     return false;
 }
 
-void RenderSVGContainer::paint(PaintInfo& paintInfo, int parentX, int parentY)
+void RenderSVGContainer::paint(PaintInfo &paintInfo, int parentX, int parentY)
 {
     Q_UNUSED(parentX);
     Q_UNUSED(parentY);
-    if (/*paintInfo.context->paintingDisabled() || */!drawsContents())
+    if (/*paintInfo.context->paintingDisabled() || */!drawsContents()) {
         return;
+    }
 
     // Spec: groups w/o children still may render filter content.
     /*if (!firstChild() && !selfWillPaint())
         return;*/
-    
+
     paintInfo.p->save();
     applyContentTransforms(paintInfo);
 
-    SVGResourceFilter* filter = 0;
+    SVGResourceFilter *filter = 0;
     /*PaintInfo savedInfo(paintInfo);*/
 
     FloatRect boundingBox = relativeBBox(true);
     /*if (paintInfo.phase == PaintPhaseForeground)*/
-        prepareToRenderSVGContent(this, paintInfo, boundingBox, filter);
+    prepareToRenderSVGContent(this, paintInfo, boundingBox, filter);
 
     applyAdditionalTransforms(paintInfo);
 
     // default implementation. Just pass paint through to the children
     PaintInfo childInfo(paintInfo);
     /*childInfo.paintingRoot = paintingRootForChildren(paintInfo);*/
-    for (RenderObject* child = firstChild(); child; child = child->nextSibling())
+    for (RenderObject *child = firstChild(); child; child = child->nextSibling()) {
         child->paint(childInfo, 0, 0);
+    }
 
     /*if (paintInfo.phase == PaintPhaseForeground)
         finishRenderSVGContent(this, paintInfo, boundingBox, filter, savedInfo.context);*/
 
     paintInfo.p->restore();
-    
+
     /*if ((paintInfo.phase == PaintPhaseOutline || paintInfo.phase == PaintPhaseSelfOutline) && style()->outlineWidth() && style()->visibility() == VISIBLE)
         paintOutline(paintInfo.context, m_absoluteBounds.x(), m_absoluteBounds.y(), m_absoluteBounds.width(), m_absoluteBounds.height(), style());*/
 }
 
 AffineTransform RenderSVGContainer::viewportTransform() const
 {
-     return AffineTransform();
+    return AffineTransform();
 }
 
 IntRect RenderSVGContainer::absoluteClippedOverflowRect()
@@ -386,22 +401,22 @@ IntRect RenderSVGContainer::absoluteClippedOverflowRect()
     for (RenderObject* current = firstChild(); current != 0; current = current->nextSibling())
         repaintRect.unite(current->absoluteClippedOverflowRect());
 
-#if ENABLE(SVG_FILTERS)
+    #if ENABLE(SVG_FILTERS)
     // Filters can expand the bounding box
     SVGResourceFilter* filter = getFilterById(document(), SVGURIReference::getTarget(style()->svgStyle()->filter()));
     if (filter)
         repaintRect.unite(filter->filterBBoxForItemBBox(repaintRect));
-#endif
+    #endif
 
     if (!repaintRect.isEmpty())
         repaintRect.inflate(1); // inflate 1 pixel for antialiasing
 
     return enclosingIntRect(repaintRect);*/
-	ASSERT(false);
-	return IntRect();
+    ASSERT(false);
+    return IntRect();
 }
 
-void RenderSVGContainer::absoluteRects(Vector<IntRect>& rects, int, int, bool)
+void RenderSVGContainer::absoluteRects(Vector<IntRect> &rects, int, int, bool)
 {
     Q_UNUSED(rects);
     //FIXME rects.append(absoluteClippedOverflowRect());
@@ -410,15 +425,16 @@ void RenderSVGContainer::absoluteRects(Vector<IntRect>& rects, int, int, bool)
 FloatRect RenderSVGContainer::relativeBBox(bool includeStroke) const
 {
     FloatRect rect;
-    
-    RenderObject* current = firstChild();
+
+    RenderObject *current = firstChild();
     for (; current != 0; current = current->nextSibling()) {
         FloatRect childBBox = current->relativeBBox(includeStroke);
         FloatRect mappedBBox = current->localTransform().mapRect(childBBox);
 
         // <svg> can have a viewBox contributing to the bbox
-        if (current->isSVGContainer())
-            mappedBBox = static_cast<RenderSVGContainer*>(current)->viewportTransform().mapRect(mappedBBox);
+        if (current->isSVGContainer()) {
+            mappedBBox = static_cast<RenderSVGContainer *>(current)->viewportTransform().mapRect(mappedBBox);
+        }
 
         rect.unite(mappedBBox);
     }
@@ -444,4 +460,3 @@ FloatRect RenderSVGContainer::relativeBBox(bool includeStroke) const
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4

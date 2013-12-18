@@ -28,39 +28,43 @@
 #include "Document.h"
 #include "FloatPoint.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    //class DOMImplementation;
-    class SVGElement;
-    class SVGSVGElement;
+//class DOMImplementation;
+class SVGElement;
+class SVGSVGElement;
 
-    class SVGDocument : public Document {
-    public:
-        SVGDocument(Frame*);
-        virtual ~SVGDocument();
-        
-        virtual bool isSVGDocument() const { return true; }
+class SVGDocument : public Document
+{
+public:
+    SVGDocument(Frame *);
+    virtual ~SVGDocument();
 
-        SVGSVGElement* rootElement() const;
-        
-        void dispatchZoomEvent(float prevScale, float newScale);
-        void dispatchScrollEvent();
+    virtual bool isSVGDocument() const
+    {
+        return true;
+    }
 
-        bool zoomAndPanEnabled() const;
+    SVGSVGElement *rootElement() const;
 
-        void startPan(const FloatPoint& start);
-        void updatePan(const FloatPoint& pos) const;
+    void dispatchZoomEvent(float prevScale, float newScale);
+    void dispatchScrollEvent();
 
-        // KHTML
-        virtual void close();
+    bool zoomAndPanEnabled() const;
 
-    private:
-        FloatPoint m_translate;
-    };
+    void startPan(const FloatPoint &start);
+    void updatePan(const FloatPoint &pos) const;
+
+    // KHTML
+    virtual void close();
+
+private:
+    FloatPoint m_translate;
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif // SVGDocument_h
 
-// vim:ts=4:noet

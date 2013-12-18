@@ -26,25 +26,30 @@
 #if ENABLE(SVG)
 #include "RenderObject.h"
 
-namespace WebCore {
-    
-    class SVGGradientElement;
-    class SVGStopElement;
-    
-    // This class exists mostly so we can hear about gradient stop style changes
-    class RenderSVGGradientStop : public RenderObject {
-    public:
-        RenderSVGGradientStop(SVGStopElement*);
-        virtual ~RenderSVGGradientStop();
-        
-        virtual const char* renderName() const { return "RenderSVGGradientStop"; }
-        
-        virtual void layout();
-        virtual void setStyle(khtml::RenderStyle*);
-        
-    private:
-        SVGGradientElement* gradientElement() const;
-    };
+namespace WebCore
+{
+
+class SVGGradientElement;
+class SVGStopElement;
+
+// This class exists mostly so we can hear about gradient stop style changes
+class RenderSVGGradientStop : public RenderObject
+{
+public:
+    RenderSVGGradientStop(SVGStopElement *);
+    virtual ~RenderSVGGradientStop();
+
+    virtual const char *renderName() const
+    {
+        return "RenderSVGGradientStop";
+    }
+
+    virtual void layout();
+    virtual void setStyle(khtml::RenderStyle *);
+
+private:
+    SVGGradientElement *gradientElement() const;
+};
 }
 
 #endif // ENABLE(SVG)

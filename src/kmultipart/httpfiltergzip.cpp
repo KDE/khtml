@@ -51,8 +51,9 @@ HTTPFilterGZip::~HTTPFilterGZip()
 void
 HTTPFilterGZip::slotInput(const QByteArray &d)
 {
-    if (d.isEmpty())
+    if (d.isEmpty()) {
         return;
+    }
 
     //qDebug() << "Got" << d.size() << "bytes as input";
     if (m_firstData) {
@@ -70,8 +71,7 @@ HTTPFilterGZip::slotInput(const QByteArray &d)
         //qDebug() << "uncompress returned" << result;
         switch (result) {
         case KFilterBase::Ok:
-        case KFilterBase::End:
-        {
+        case KFilterBase::End: {
             const int bytesOut = sizeof(buf) - m_gzipFilter->outBufferAvailable();
             if (bytesOut) {
                 emit output(QByteArray(buf, bytesOut));

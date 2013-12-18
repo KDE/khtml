@@ -25,7 +25,8 @@
 #include "SVGRenderTreeAsText.h"
 #include "SVGFilterEffect.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 SVGResourceFilter::SVGResourceFilter()
     : m_platformData(createPlatformData())
@@ -41,7 +42,7 @@ void SVGResourceFilter::clearEffects()
     m_effects.clear();
 }
 
-void SVGResourceFilter::addFilterEffect(SVGFilterEffect* effect)
+void SVGResourceFilter::addFilterEffect(SVGFilterEffect *effect)
 {
     ASSERT(effect);
 
@@ -51,7 +52,7 @@ void SVGResourceFilter::addFilterEffect(SVGFilterEffect* effect)
     }
 }
 
-FloatRect SVGResourceFilter::filterBBoxForItemBBox(const FloatRect& itemBBox) const
+FloatRect SVGResourceFilter::filterBBoxForItemBBox(const FloatRect &itemBBox) const
 {
     FloatRect filterBBox = filterRect();
 
@@ -69,17 +70,19 @@ FloatRect SVGResourceFilter::filterBBoxForItemBBox(const FloatRect& itemBBox) co
                                filterBBox.width() * itemBBox.width(),
                                filterBBox.height() * itemBBox.height());
     } else {
-        if (xBoundingBoxMode())
+        if (xBoundingBoxMode()) {
             filterBBox.setX(xOffset + filterBBox.x());
+        }
 
-        if (yBoundingBoxMode())
+        if (yBoundingBoxMode()) {
             filterBBox.setY(yOffset + filterBBox.y());
+        }
     }
 
     return filterBBox;
 }
 
-TextStream& SVGResourceFilter::externalRepresentation(TextStream& ts) const
+TextStream &SVGResourceFilter::externalRepresentation(TextStream &ts) const
 {
     ts << "[type=FILTER] ";
 
@@ -91,30 +94,34 @@ TextStream& SVGResourceFilter::externalRepresentation(TextStream& ts) const
         if (filterBoundingBoxMode()) {
             bbox.scale(100.f);
             ts << "at (" << bbox.x() << "%," <<  bbox.y() << "%) size " << bbox.width() << "%x" << bbox.height() << "%";
-        } else
+        } else {
             ts << filterRect();
+        }
         ts << "]";
     }
 
-    if (!filterBoundingBoxMode()) // default is true
+    if (!filterBoundingBoxMode()) { // default is true
         ts << " [bounding box mode=" << filterBoundingBoxMode() << "]";
-    if (effectBoundingBoxMode()) // default is false
+    }
+    if (effectBoundingBoxMode()) { // default is false
         ts << " [effect bounding box mode=" << effectBoundingBoxMode() << "]";
-    if (m_effects.size() > 0)
+    }
+    if (m_effects.size() > 0) {
         ts << " [effects=" << m_effects << "]";
+    }
 
     return ts;
 }
 
-SVGResourceFilter* getFilterById(Document* document, const AtomicString& id)
+SVGResourceFilter *getFilterById(Document *document, const AtomicString &id)
 {
-    SVGResource* resource = getResourceById(document, id);
-    if (resource && resource->isFilter())
-        return static_cast<SVGResourceFilter*>(resource);
+    SVGResource *resource = getResourceById(document, id);
+    if (resource && resource->isFilter()) {
+        return static_cast<SVGResourceFilter *>(resource);
+    }
 
     return 0;
 }
-
 
 } // namespace WebCore
 

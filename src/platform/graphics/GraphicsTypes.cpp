@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include "GraphicsTypes.h"
@@ -28,9 +28,10 @@
 #include "PlatformString.h"
 #include <wtf/Assertions.h>
 
-namespace khtml {
+namespace khtml
+{
 
-static const char* const compositeOperatorNames[] = {
+static const char *const compositeOperatorNames[] = {
     "clear",
     "copy",
     "source-over",
@@ -48,7 +49,7 @@ static const char* const compositeOperatorNames[] = {
 };
 const int numCompositeOperatorNames = sizeof(compositeOperatorNames) / sizeof(compositeOperatorNames[0]);
 
-bool parseCompositeOperator(const DOM::DOMString& s, CompositeOperator& op)
+bool parseCompositeOperator(const DOM::DOMString &s, CompositeOperator &op)
 {
     for (int i = 0; i < numCompositeOperatorNames; i++)
         if (s == compositeOperatorNames[i]) {
@@ -65,7 +66,7 @@ DOM::DOMString compositeOperatorName(CompositeOperator op)
     return compositeOperatorNames[op];
 }
 
-bool parseLineCap(const DOM::DOMString& s, LineCap& cap)
+bool parseLineCap(const DOM::DOMString &s, LineCap &cap)
 {
     if (s == "butt") {
         cap = ButtCap;
@@ -86,11 +87,11 @@ DOM::DOMString lineCapName(LineCap cap)
 {
     ASSERT(cap >= 0);
     ASSERT(cap < 3);
-    const char* const names[3] = { "butt", "round", "square" };
+    const char *const names[3] = { "butt", "round", "square" };
     return names[cap];
 }
 
-bool parseLineJoin(const DOM::DOMString& s, LineJoin& join)
+bool parseLineJoin(const DOM::DOMString &s, LineJoin &join)
 {
     if (s == "miter") {
         join = MiterJoin;
@@ -111,7 +112,7 @@ DOM::DOMString lineJoinName(LineJoin join)
 {
     ASSERT(join >= 0);
     ASSERT(join < 3);
-    const char* const names[3] = { "miter", "round", "bevel" };
+    const char *const names[3] = { "miter", "round", "bevel" };
     return names[join];
 }
 

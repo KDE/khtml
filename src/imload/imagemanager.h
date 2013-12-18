@@ -32,65 +32,69 @@
 
 class QPixmap;
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 class ImageManager
 {
 private:
-    static AnimTimer* anmTimer;
-    static TileCache* imgCache;
-    static TileCache* pixCache;
-    static LoaderDatabase* loaderDB;
-    static Updater*        theUpdater;
-    static QPixmap*        emptyPix;
-    
+    static AnimTimer *anmTimer;
+    static TileCache *imgCache;
+    static TileCache *pixCache;
+    static LoaderDatabase *loaderDB;
+    static Updater        *theUpdater;
+    static QPixmap        *emptyPix;
+
     static unsigned int pixmapCacheSize();
     static unsigned int imageCacheSize();
-    
+
     static void initLoaders();
 public:
     // IMPORTANT: Don't even think about changing these to signed; it's security-critical
     // This method determines whether we'll ever accept an image so large
     static bool isAcceptableSize(unsigned width, unsigned height);
-    
+
     // IMPORTANT: Don't even think about changing these to signed; it's security-critical
-    // Says whether the target size is OK to scale an image too. This is much 
-    // bigger than the above, as we store the actual data in the tile cache, so 
+    // Says whether the target size is OK to scale an image too. This is much
+    // bigger than the above, as we store the actual data in the tile cache, so
     // we just need some control information, which is much smaller
     static bool isAcceptableScaleSize(unsigned width, unsigned height);
 
-    static AnimTimer* animTimer()
+    static AnimTimer *animTimer()
     {
-        if (!anmTimer)
+        if (!anmTimer) {
             anmTimer = new AnimTimer();
+        }
         return anmTimer;
     }
 
-    static TileCache* imageCache() 
+    static TileCache *imageCache()
     {
-        if (!imgCache)
+        if (!imgCache) {
             imgCache = new TileCache(imageCacheSize());
+        }
         return imgCache;
     }
-    
-    static TileCache* pixmapCache()
+
+    static TileCache *pixmapCache()
     {
-        if (!pixCache)
+        if (!pixCache) {
             pixCache = new TileCache(pixmapCacheSize());
+        }
         return pixCache;
     }
-    
-    static Updater* updater()
+
+    static Updater *updater()
     {
-        if (!theUpdater)
+        if (!theUpdater) {
             theUpdater = new Updater();
+        }
         return theUpdater;
     }
-    
-    static LoaderDatabase* loaderDatabase()
+
+    static LoaderDatabase *loaderDatabase()
     {
-        if (!loaderDB)
-        {
+        if (!loaderDB) {
             loaderDB = new LoaderDatabase();
             initLoaders(); //Register built-in decoders
         }
@@ -101,4 +105,3 @@ public:
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

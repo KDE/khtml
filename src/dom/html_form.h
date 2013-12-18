@@ -33,7 +33,8 @@
 #include <dom/html_element.h>
 #include <dom/html_misc.h>
 
-namespace DOM {
+namespace DOM
+{
 
 class HTMLButtonElementImpl;
 class HTMLFormElement;
@@ -51,13 +52,15 @@ public:
     HTMLButtonElement();
     HTMLButtonElement(const HTMLButtonElement &other);
     HTMLButtonElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLButtonElement(HTMLButtonElementImpl *impl);
 public:
 
-    HTMLButtonElement & operator = (const HTMLButtonElement &other);
-    HTMLButtonElement & operator = (const Node &other);
+    HTMLButtonElement &operator = (const HTMLButtonElement &other);
+    HTMLButtonElement &operator = (const Node &other);
 
     ~HTMLButtonElement();
 
@@ -81,7 +84,7 @@ public:
     /**
      * see accessKey
      */
-    void setAccessKey( const DOMString & );
+    void setAccessKey(const DOMString &);
 
     /**
      * The control is unavailable in this context. See the <a
@@ -94,7 +97,7 @@ public:
     /**
      * see disabled
      */
-    void setDisabled( bool );
+    void setDisabled(bool);
 
     /**
      * Form control or object name when submitted with a form. See the
@@ -108,7 +111,7 @@ public:
     /**
      * see name
      */
-    void setName( const DOMString & );
+    void setName(const DOMString &);
 
     /**
      * Index that represents the element's position in the tabbing
@@ -122,7 +125,7 @@ public:
     /**
      * see tabIndex
      */
-    void setTabIndex( long );
+    void setTabIndex(long);
 
     /**
      * The type of button. See the <a
@@ -143,19 +146,19 @@ public:
     /**
      * see value
      */
-    void setValue( const DOMString & );
+    void setValue(const DOMString &);
 
     /**
      * Removes keyboard focus from this element.
      *
      */
-    void blur (  );
+    void blur();
 
     /**
      * Gives keyboard focus to this element.
      *
      */
-    void focus (  );
+    void focus();
 };
 
 // --------------------------------------------------------------------------
@@ -173,13 +176,15 @@ public:
     HTMLFieldSetElement();
     HTMLFieldSetElement(const HTMLFieldSetElement &other);
     HTMLFieldSetElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLFieldSetElement(HTMLFieldSetElementImpl *impl);
 public:
 
-    HTMLFieldSetElement & operator = (const HTMLFieldSetElement &other);
-    HTMLFieldSetElement & operator = (const Node &other);
+    HTMLFieldSetElement &operator = (const HTMLFieldSetElement &other);
+    HTMLFieldSetElement &operator = (const Node &other);
 
     ~HTMLFieldSetElement();
 
@@ -218,13 +223,15 @@ public:
     HTMLFormElement();
     HTMLFormElement(const HTMLFormElement &other);
     HTMLFormElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLFormElement(HTMLFormElementImpl *impl);
 public:
 
-    HTMLFormElement & operator = (const HTMLFormElement &other);
-    HTMLFormElement & operator = (const Node &other);
+    HTMLFormElement &operator = (const HTMLFormElement &other);
+    HTMLFormElement &operator = (const Node &other);
 
     ~HTMLFormElement();
 
@@ -249,7 +256,7 @@ public:
     /**
      * see name
      */
-    void setName( const DOMString & );
+    void setName(const DOMString &);
 
     /**
      * List of character sets supported by the server. See the <a
@@ -262,7 +269,7 @@ public:
     /**
      * see acceptCharset
      */
-    void setAcceptCharset( const DOMString & );
+    void setAcceptCharset(const DOMString &);
 
     /**
      * Server-side form handler. See the <a
@@ -275,7 +282,7 @@ public:
     /**
      * see action
      */
-    void setAction( const DOMString & );
+    void setAction(const DOMString &);
 
     /**
      * The content type of the submitted form, generally
@@ -289,7 +296,7 @@ public:
     /**
      * see enctype
      */
-    void setEnctype( const DOMString & );
+    void setEnctype(const DOMString &);
 
     /**
      * HTTP method used to submit form. See the <a
@@ -302,7 +309,7 @@ public:
     /**
      * see method
      */
-    void setMethod( const DOMString & );
+    void setMethod(const DOMString &);
 
     /**
      * Frame to render the resource in. See the <a
@@ -315,21 +322,21 @@ public:
     /**
      * see target
      */
-    void setTarget( const DOMString & );
+    void setTarget(const DOMString &);
 
     /**
      * Submits the form. It performs the same action as a submit
      * button.
      *
      */
-    void submit (  );
+    void submit();
 
     /**
      * Restores a form element's default values. It performs the same
      * action as a reset button.
      *
      */
-    void reset (  );
+    void reset();
 };
 
 // --------------------------------------------------------------------------
@@ -350,13 +357,15 @@ public:
     HTMLInputElement();
     HTMLInputElement(const HTMLInputElement &other);
     HTMLInputElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLInputElement(HTMLInputElementImpl *impl);
 public:
 
-    HTMLInputElement & operator = (const HTMLInputElement &other);
-    HTMLInputElement & operator = (const Node &other);
+    HTMLInputElement &operator = (const HTMLInputElement &other);
+    HTMLInputElement &operator = (const Node &other);
 
     ~HTMLInputElement();
 
@@ -370,7 +379,7 @@ public:
     /**
      * see defaultValue
      */
-    void setDefaultValue( const DOMString & );
+    void setDefaultValue(const DOMString &);
 
     /**
      * When \c type has the value "Radio" or "Checkbox",
@@ -383,7 +392,7 @@ public:
     /**
      * see defaultChecked
      */
-    void setDefaultChecked( bool );
+    void setDefaultChecked(bool);
 
     /**
      * ### KDE 4.0: remove.
@@ -402,7 +411,7 @@ public:
     /**
      * see accept
      */
-    void setAccept( const DOMString & );
+    void setAccept(const DOMString &);
 
     /**
      * A single character access key to give access to the form
@@ -416,7 +425,7 @@ public:
     /**
      * see accessKey
      */
-    void setAccessKey( const DOMString & );
+    void setAccessKey(const DOMString &);
 
     /**
      * Aligns this object (vertically or horizontally) with respect to
@@ -431,7 +440,7 @@ public:
     /**
      * see align
      */
-    void setAlign( const DOMString & );
+    void setAlign(const DOMString &);
 
     /**
      * Alternate text for user agents not rendering the normal content
@@ -445,7 +454,7 @@ public:
     /**
      * see alt
      */
-    void setAlt( const DOMString & );
+    void setAlt(const DOMString &);
 
     /**
      * Describes whether a radio or check box is checked, when
@@ -461,7 +470,7 @@ public:
     /**
      * see checked
      */
-    void setChecked( bool );
+    void setChecked(bool);
 
     /**
      * Describes whether a radio box is indeterminate
@@ -471,7 +480,7 @@ public:
     /**
      * see indeterminate
      */
-    void setIndeterminate( bool );
+    void setIndeterminate(bool);
 
     /**
      * The control is unavailable in this context. See the <a
@@ -484,7 +493,7 @@ public:
     /**
      * see disabled
      */
-    void setDisabled( bool );
+    void setDisabled(bool);
 
     /**
      * Maximum number of characters for text fields, when \c type
@@ -498,7 +507,7 @@ public:
     /**
      * see maxLength
      */
-    void setMaxLength( long );
+    void setMaxLength(long);
 
     /**
      * Form control or object name when submitted with a form. See the
@@ -512,7 +521,7 @@ public:
     /**
      * see name
      */
-    void setName( const DOMString & );
+    void setName(const DOMString &);
 
     /**
      * This control is read-only. When \c type has the
@@ -527,7 +536,7 @@ public:
     /**
      * see readOnly
      */
-    void setReadOnly( bool );
+    void setReadOnly(bool);
 
     /**
      * @deprecated
@@ -540,7 +549,7 @@ public:
      * @deprecated
      */
 #ifndef KDE_NO_DEPRECATED
-    KHTML_DEPRECATED void setSize( const DOMString & );
+    KHTML_DEPRECATED void setSize(const DOMString &);
 #endif
 
     /**
@@ -555,7 +564,7 @@ public:
     /**
      * see getSize
      */
-    void setSize( long );
+    void setSize(long);
 
     /**
      * When the \c type attribute has the value "Image",
@@ -570,7 +579,7 @@ public:
     /**
      * see src
      */
-    void setSrc( const DOMString & );
+    void setSrc(const DOMString &);
 
     /**
      * Index that represents the element's position in the tabbing
@@ -584,7 +593,7 @@ public:
     /**
      * see tabIndex
      */
-    void setTabIndex( long );
+    void setTabIndex(long);
 
     /**
      * The type of control created. See the <a
@@ -597,7 +606,7 @@ public:
     /**
      * see type
      */
-    void setType(const DOMString&);
+    void setType(const DOMString &);
 
     /**
      * Use client-side image map. See the <a
@@ -610,7 +619,7 @@ public:
     /**
      * see useMap
      */
-    void setUseMap( const DOMString & );
+    void setUseMap(const DOMString &);
 
     /**
      * The current form control value. Used for radio buttons and
@@ -624,19 +633,19 @@ public:
     /**
      * see value
      */
-    void setValue( const DOMString & );
+    void setValue(const DOMString &);
 
     /**
      * Removes keyboard focus from this element.
      *
      */
-    void blur (  );
+    void blur();
 
     /**
      * Gives keyboard focus to this element.
      *
      */
-    void focus (  );
+    void focus();
 
     /**
      * Select the contents of the text area. For \c INPUT
@@ -644,15 +653,14 @@ public:
      * following values: "Text", "File", or "Password".
      *
      */
-    void select (  );
+    void select();
 
     /**
      * Simulate a mouse-click. For \c INPUT elements whose
      * \c type attribute has one of the following values:
      * "Button", "Checkbox", "Radio", "Reset", or "Submit".
      */
-    void click (  );
-
+    void click();
 
     /**
      * Returns the character offset of beginning of selection, or if none,
@@ -663,11 +671,11 @@ public:
      */
     long selectionStart();
 
-     /**
-      * Move the beginning of the selection to the given offset in text
-      * This call has no effect if the type of this input element isn't text
-      * NOTE: this method is not part of the DOM, but a Mozilla extension
-      */
+    /**
+     * Move the beginning of the selection to the given offset in text
+     * This call has no effect if the type of this input element isn't text
+     * NOTE: this method is not part of the DOM, but a Mozilla extension
+     */
     void setSelectionStart(long offset);
 
     /**
@@ -677,20 +685,20 @@ public:
      * otherwise -1 is returned.
      * NOTE: this method is not part of the DOM, but a Mozilla extension
      */
-     long selectionEnd();
+    long selectionEnd();
 
-     /**
-      * Move the end of the selection (and the cursor) to the given offset in text
-      * This call has no effect if the type of this input element isn't text
-      * NOTE: this method is not part of the DOM, but a Mozilla extension
-      */
+    /**
+     * Move the end of the selection (and the cursor) to the given offset in text
+     * This call has no effect if the type of this input element isn't text
+     * NOTE: this method is not part of the DOM, but a Mozilla extension
+     */
     void setSelectionEnd(long offset);
 
-     /**
-      * Makes the position span from start to end, and positions the cursor after the selection.
-      * This call has no effect if the type of this input element isn't text or if it is not rendered.
-      * NOTE: this method is not part of the DOM, but a Mozilla extension
-      */
+    /**
+     * Makes the position span from start to end, and positions the cursor after the selection.
+     * This call has no effect if the type of this input element isn't text or if it is not rendered.
+     * NOTE: this method is not part of the DOM, but a Mozilla extension
+     */
     void setSelectionRange(long start, long end);
 
 };
@@ -710,13 +718,15 @@ public:
     HTMLLabelElement();
     HTMLLabelElement(const HTMLLabelElement &other);
     HTMLLabelElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLLabelElement(HTMLLabelElementImpl *impl);
 public:
 
-    HTMLLabelElement & operator = (const HTMLLabelElement &other);
-    HTMLLabelElement & operator = (const Node &other);
+    HTMLLabelElement &operator = (const HTMLLabelElement &other);
+    HTMLLabelElement &operator = (const Node &other);
 
     ~HTMLLabelElement();
 
@@ -732,7 +742,7 @@ public:
     /**
      * see accessKey
      */
-    void setAccessKey( const DOMString & );
+    void setAccessKey(const DOMString &);
 
     /**
      * This attribute links this label with another form control by
@@ -746,7 +756,7 @@ public:
     /**
      * see htmlFor
      */
-    void setHtmlFor( const DOMString & );
+    void setHtmlFor(const DOMString &);
 };
 
 // --------------------------------------------------------------------------
@@ -765,13 +775,15 @@ public:
     HTMLLegendElement();
     HTMLLegendElement(const HTMLLegendElement &other);
     HTMLLegendElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLLegendElement(HTMLLegendElementImpl *impl);
 public:
 
-    HTMLLegendElement & operator = (const HTMLLegendElement &other);
-    HTMLLegendElement & operator = (const Node &other);
+    HTMLLegendElement &operator = (const HTMLLegendElement &other);
+    HTMLLegendElement &operator = (const Node &other);
 
     ~HTMLLegendElement();
 
@@ -792,7 +804,7 @@ public:
     /**
      * see accessKey
      */
-    void setAccessKey( const DOMString & );
+    void setAccessKey(const DOMString &);
 
     /**
      * Text alignment relative to \c FIELDSET . See the <a
@@ -806,7 +818,7 @@ public:
     /**
      * see align
      */
-    void setAlign( const DOMString & );
+    void setAlign(const DOMString &);
 };
 
 // --------------------------------------------------------------------------
@@ -824,13 +836,15 @@ public:
     HTMLOptGroupElement();
     HTMLOptGroupElement(const HTMLOptGroupElement &other);
     HTMLOptGroupElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLOptGroupElement(HTMLOptGroupElementImpl *impl);
 public:
 
-    HTMLOptGroupElement & operator = (const HTMLOptGroupElement &other);
-    HTMLOptGroupElement & operator = (const Node &other);
+    HTMLOptGroupElement &operator = (const HTMLOptGroupElement &other);
+    HTMLOptGroupElement &operator = (const Node &other);
 
     ~HTMLOptGroupElement();
 
@@ -845,7 +859,7 @@ public:
     /**
      * see disabled
      */
-    void setDisabled( bool );
+    void setDisabled(bool);
 
     /**
      * Assigns a label to this option group. See the <a
@@ -858,7 +872,7 @@ public:
     /**
      * see label
      */
-    void setLabel( const DOMString & );
+    void setLabel(const DOMString &);
 };
 
 // --------------------------------------------------------------------------
@@ -878,13 +892,15 @@ public:
     HTMLSelectElement();
     HTMLSelectElement(const HTMLSelectElement &other);
     HTMLSelectElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLSelectElement(HTMLSelectElementImpl *impl);
 public:
 
-    HTMLSelectElement & operator = (const HTMLSelectElement &other);
-    HTMLSelectElement & operator = (const Node &other);
+    HTMLSelectElement &operator = (const HTMLSelectElement &other);
+    HTMLSelectElement &operator = (const Node &other);
 
     ~HTMLSelectElement();
 
@@ -905,7 +921,7 @@ public:
     /**
      * see selectedIndex
      */
-    void setSelectedIndex( long );
+    void setSelectedIndex(long);
 
     /**
      * The current form control value.
@@ -916,7 +932,7 @@ public:
     /**
      * see value
      */
-    void setValue( const DOMString & );
+    void setValue(const DOMString &);
 
     /**
      * The number of options in this \c SELECT .
@@ -947,7 +963,7 @@ public:
     /**
      * see disabled
      */
-    void setDisabled( bool );
+    void setDisabled(bool);
 
     /**
      * If true, multiple \c OPTION elements may be
@@ -961,7 +977,7 @@ public:
     /**
      * see multiple
      */
-    void setMultiple( bool );
+    void setMultiple(bool);
 
     /**
      * Form control or object name when submitted with a form. See the
@@ -975,7 +991,7 @@ public:
     /**
      * see name
      */
-    void setName( const DOMString & );
+    void setName(const DOMString &);
 
     /**
      * Number of visible rows. See the <a
@@ -988,7 +1004,7 @@ public:
     /**
      * see size
      */
-    void setSize( long );
+    void setSize(long);
 
     /**
      * Index that represents the element's position in the tabbing
@@ -1002,7 +1018,7 @@ public:
     /**
      * see tabIndex
      */
-    void setTabIndex( long );
+    void setTabIndex(long);
 
     /**
      * Add a new element to the collection of \c OPTION
@@ -1014,7 +1030,7 @@ public:
      * tail of the list.
      *
      */
-    void add ( const HTMLElement &element, const HTMLElement &before );
+    void add(const HTMLElement &element, const HTMLElement &before);
 
     /**
      * Remove an element from the collection of \c OPTION
@@ -1024,19 +1040,19 @@ public:
      * @param index The index of the item to remove.
      *
      */
-    void remove ( long index );
+    void remove(long index);
 
     /**
      * Removes keyboard focus from this element.
      *
      */
-    void blur (  );
+    void blur();
 
     /**
      * Gives keyboard focus to this element.
      *
      */
-    void focus (  );
+    void focus();
 };
 
 // --------------------------------------------------------------------------
@@ -1054,13 +1070,15 @@ public:
     HTMLTextAreaElement();
     HTMLTextAreaElement(const HTMLTextAreaElement &other);
     HTMLTextAreaElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLTextAreaElement(HTMLTextAreaElementImpl *impl);
 public:
 
-    HTMLTextAreaElement & operator = (const HTMLTextAreaElement &other);
-    HTMLTextAreaElement & operator = (const Node &other);
+    HTMLTextAreaElement &operator = (const HTMLTextAreaElement &other);
+    HTMLTextAreaElement &operator = (const Node &other);
 
     ~HTMLTextAreaElement();
 
@@ -1074,7 +1092,7 @@ public:
     /**
      * see defaultValue
      */
-    void setDefaultValue( const DOMString & );
+    void setDefaultValue(const DOMString &);
 
     /**
      * ### KDE 4.0: remove.
@@ -1093,7 +1111,7 @@ public:
     /**
      * see accessKey
      */
-    void setAccessKey( const DOMString & );
+    void setAccessKey(const DOMString &);
 
     /**
      * Width of control (in characters). See the <a
@@ -1106,7 +1124,7 @@ public:
     /**
      * see cols
      */
-    void setCols( long );
+    void setCols(long);
 
     /**
      * The control is unavailable in this context. See the <a
@@ -1119,7 +1137,7 @@ public:
     /**
      * see disabled
      */
-    void setDisabled( bool );
+    void setDisabled(bool);
 
     /**
      * Form control or object name when submitted with a form. See the
@@ -1133,7 +1151,7 @@ public:
     /**
      * see name
      */
-    void setName( const DOMString & );
+    void setName(const DOMString &);
 
     /**
      * This control is read-only. See the <a
@@ -1146,7 +1164,7 @@ public:
     /**
      * see readOnly
      */
-    void setReadOnly( bool );
+    void setReadOnly(bool);
 
     /**
      * Number of text rows. See the <a
@@ -1159,7 +1177,7 @@ public:
     /**
      * see rows
      */
-    void setRows( long );
+    void setRows(long);
 
     /**
      * Index that represents the element's position in the tabbing
@@ -1173,7 +1191,7 @@ public:
     /**
      * see tabIndex
      */
-    void setTabIndex( long );
+    void setTabIndex(long);
 
     /**
      * The type of this form control.
@@ -1192,22 +1210,22 @@ public:
     /**
      * see value
      */
-    void setValue( const DOMString & );
+    void setValue(const DOMString &);
 
     /**
      * Removes keyboard focus from this element.
      */
-    void blur (  );
+    void blur();
 
     /**
      * Gives keyboard focus to this element.
      */
-    void focus (  );
+    void focus();
 
     /**
      * Select the contents of the \c TEXTAREA .
      */
-    void select (  );
+    void select();
 
     /**
      * Returns the character offset of beginning of selection, or if none,
@@ -1216,10 +1234,10 @@ public:
      */
     long selectionStart();
 
-     /**
-      * Move the beginning of the selection to the given offset in text
-      * NOTE: this method is not part of the DOM, but a Mozilla extension
-      */
+    /**
+     * Move the beginning of the selection to the given offset in text
+     * NOTE: this method is not part of the DOM, but a Mozilla extension
+     */
     void setSelectionStart(long offset);
 
     /**
@@ -1227,25 +1245,25 @@ public:
      * the cursor position.
      * NOTE: this method is not part of the DOM, but a Mozilla extension
      */
-     long selectionEnd();
+    long selectionEnd();
 
-     /**
-      * Move the end of the selection (and the cursor) to the given offset in text
-      * NOTE: this method is not part of the DOM, but a Mozilla extension
-      */
+    /**
+     * Move the end of the selection (and the cursor) to the given offset in text
+     * NOTE: this method is not part of the DOM, but a Mozilla extension
+     */
     void setSelectionEnd(long offset);
 
-     /**
-      * Selects the text from start to end, and positions the cursor after the selection.
-      * NOTE: this method is not part of the DOM, but a Mozilla extension
-      */
+    /**
+     * Selects the text from start to end, and positions the cursor after the selection.
+     * NOTE: this method is not part of the DOM, but a Mozilla extension
+     */
     void setSelectionRange(long start, long end);
 
-     /**
-      * Returns the length of the text.
-      * NOTE: this method is not part of the DOM, but a Mozilla extension
-      */
-      long textLength();
+    /**
+     * Returns the length of the text.
+     * NOTE: this method is not part of the DOM, but a Mozilla extension
+     */
+    long textLength();
 };
 
 // --------------------------------------------------------------------------
@@ -1263,13 +1281,15 @@ public:
     HTMLOptionElement();
     HTMLOptionElement(const HTMLOptionElement &other);
     HTMLOptionElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLOptionElement(HTMLOptionElementImpl *impl);
 public:
 
-    HTMLOptionElement & operator = (const HTMLOptionElement &other);
-    HTMLOptionElement & operator = (const Node &other);
+    HTMLOptionElement &operator = (const HTMLOptionElement &other);
+    HTMLOptionElement &operator = (const Node &other);
 
     ~HTMLOptionElement();
 
@@ -1288,7 +1308,7 @@ public:
     /**
      * see defaultSelected
      */
-    void setDefaultSelected( bool );
+    void setDefaultSelected(bool);
 
     /**
      * The text contained within the option element.
@@ -1309,7 +1329,7 @@ public:
      * This function is obsolete - the index property is actually supposed to be read-only
      * (http://www.w3.org/DOM/updates/REC-DOM-Level-1-19981001-errata.html)
      */
-    void setIndex( long );
+    void setIndex(long);
 
     /**
      * The control is unavailable in this context. See the <a
@@ -1322,7 +1342,7 @@ public:
     /**
      * see disabled
      */
-    void setDisabled( bool );
+    void setDisabled(bool);
 
     /**
      * Option label for use in hierarchical menus. See the <a
@@ -1335,7 +1355,7 @@ public:
     /**
      * see label
      */
-    void setLabel( const DOMString & );
+    void setLabel(const DOMString &);
 
     /**
      * Means that this option is initially selected. See the <a
@@ -1348,7 +1368,7 @@ public:
     /**
      * see selected
      */
-    void setSelected( bool );
+    void setSelected(bool);
 
     /**
      * The current form control value. See the <a
@@ -1361,9 +1381,8 @@ public:
     /**
      * see value
      */
-    void setValue( const DOMString & );
+    void setValue(const DOMString &);
 };
-
 
 // --------------------------------------------------------------------------
 
@@ -1383,13 +1402,15 @@ public:
     HTMLIsIndexElement();
     HTMLIsIndexElement(const HTMLIsIndexElement &other);
     HTMLIsIndexElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLIsIndexElement(HTMLIsIndexElementImpl *impl);
 public:
 
-    HTMLIsIndexElement & operator = (const HTMLIsIndexElement &other);
-    HTMLIsIndexElement & operator = (const Node &other);
+    HTMLIsIndexElement &operator = (const HTMLIsIndexElement &other);
+    HTMLIsIndexElement &operator = (const Node &other);
 
     ~HTMLIsIndexElement();
 
@@ -1410,7 +1431,7 @@ public:
     /**
      * see prompt
      */
-    void setPrompt( const DOMString & );
+    void setPrompt(const DOMString &);
 };
 
 } //namespace

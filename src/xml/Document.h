@@ -46,26 +46,26 @@
 
 namespace WebCore
 {
-    typedef DOM::DocumentImpl Document;
-    typedef DOM::DOMImplementationImpl DOMImplementation;
-    typedef DOM::ElementImpl Element;
-    typedef DOM::ElementImpl StyledElement;
-    typedef DOM::DOMString String;
-    typedef DOM::DOMStringImpl StringImpl;
-    typedef DOM::NodeImpl Node;
-    typedef DOM::AttributeImpl Attribute;
-    typedef DOM::EventImpl Event;
-    typedef DOM::EventListener EventListener;
-    typedef DOM::RegisteredListenerList RegisteredEventListenerList;
-    typedef DOM::CSSStyleDeclarationImpl CSSStyleDeclaration;
-    typedef QChar UChar;
-    typedef DOM::AttributeImpl MappedAttribute;
-    //typedef RenderCanvas RenderView;
-    typedef DOM::StyleSheetImpl StyleSheet;
-    //typedef QColor Color;
-    typedef DOM::NodeImpl EventTargetNode;
-    typedef DOM::QualifiedName QualifiedName;
-    typedef DOM::DOMException  DOMException;
+typedef DOM::DocumentImpl Document;
+typedef DOM::DOMImplementationImpl DOMImplementation;
+typedef DOM::ElementImpl Element;
+typedef DOM::ElementImpl StyledElement;
+typedef DOM::DOMString String;
+typedef DOM::DOMStringImpl StringImpl;
+typedef DOM::NodeImpl Node;
+typedef DOM::AttributeImpl Attribute;
+typedef DOM::EventImpl Event;
+typedef DOM::EventListener EventListener;
+typedef DOM::RegisteredListenerList RegisteredEventListenerList;
+typedef DOM::CSSStyleDeclarationImpl CSSStyleDeclaration;
+typedef QChar UChar;
+typedef DOM::AttributeImpl MappedAttribute;
+//typedef RenderCanvas RenderView;
+typedef DOM::StyleSheetImpl StyleSheet;
+//typedef QColor Color;
+typedef DOM::NodeImpl EventTargetNode;
+typedef DOM::QualifiedName QualifiedName;
+typedef DOM::DOMException  DOMException;
 }
 
 #endif

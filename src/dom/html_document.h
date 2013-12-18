@@ -38,7 +38,8 @@
 class KHTMLView;
 class KHTMLPart;
 
-namespace DOM {
+namespace DOM
+{
 
 class HTMLDocumentImpl;
 class DOMImplementation;
@@ -85,13 +86,15 @@ public:
     HTMLDocument(KHTMLView *parent);
     HTMLDocument(const HTMLDocument &other);
     HTMLDocument(const Node &other) : Document(false)
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLDocument(HTMLDocumentImpl *impl);
 public:
 
-    HTMLDocument & operator = (const HTMLDocument &other);
-    HTMLDocument & operator = (const Node &other);
+    HTMLDocument &operator = (const HTMLDocument &other);
+    HTMLDocument &operator = (const Node &other);
 
     ~HTMLDocument();
 
@@ -105,7 +108,7 @@ public:
     /**
      * see title
      */
-    void setTitle( const DOMString & );
+    void setTitle(const DOMString &);
 
     /**
      * Returns the URI of the page that linked to this page. The value
@@ -207,7 +210,7 @@ public:
     /**
      * see cookie
      */
-    void setCookie( const DOMString & );
+    void setCookie(const DOMString &);
 
     /**
      * Note. This method and the ones following allow a user to add to
@@ -224,7 +227,7 @@ public:
      * @return
      *
      */
-    void open (  );
+    void open();
 
     /**
      * Closes a document stream opened by \c open() and
@@ -233,7 +236,7 @@ public:
      * @return
      *
      */
-    void close (  );
+    void close();
 
     /**
      * Write a string of text to a document stream opened by
@@ -246,7 +249,7 @@ public:
      * @return
      *
      */
-    void write ( const DOMString &text );
+    void write(const DOMString &text);
 
     /**
      * Write a string of text followed by a newline character to a
@@ -259,7 +262,7 @@ public:
      * @return
      *
      */
-    void writeln ( const DOMString &text );
+    void writeln(const DOMString &text);
 
     /**
      * Returns the (possibly empty) collection of elements whose
@@ -271,7 +274,7 @@ public:
      * @return The matching elements.
      *
      */
-    NodeList getElementsByName ( const DOMString &elementName );
+    NodeList getElementsByName(const DOMString &elementName);
 
     /**
      * not part of the DOM
@@ -280,7 +283,7 @@ public:
      * full-qualified one, using the baseURL / document URL for
      * the missing parts.
      */
-    DOMString completeURL( const DOMString& url) const;
+    DOMString completeURL(const DOMString &url) const;
 
     /**
      * Not part of the DOM

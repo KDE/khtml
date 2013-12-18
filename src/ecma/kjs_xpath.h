@@ -19,20 +19,24 @@
 #include "kjs_binding.h"
 #include "xml/dom3_xpathimpl.h"
 
-namespace KJS {
+namespace KJS
+{
 
 DEFINE_PSEUDO_CONSTRUCTOR(XPathResultPseudoCtor)
 
 class XPathResult: public DOMWrapperObject<khtml::XPathResultImpl>
 {
 public:
-    XPathResult(ExecState* exec, khtml::XPathResultImpl* impl);
+    XPathResult(ExecState *exec, khtml::XPathResultImpl *impl);
 
-    virtual bool getOwnPropertySlot(ExecState *, const Identifier&, PropertySlot&);
+    virtual bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &);
     using JSObject::getOwnPropertySlot;
     JSValue *getValueProperty(ExecState *exec, int token) const;
 
-    virtual const ClassInfo* classInfo() const { return &info; }
+    virtual const ClassInfo *classInfo() const
+    {
+        return &info;
+    }
     static const ClassInfo info;
 
     // The various constants are in separate constant table node
@@ -50,9 +54,12 @@ DEFINE_PSEUDO_CONSTRUCTOR(XPathExpressionPseudoCtor)
 class XPathExpression: public DOMWrapperObject<khtml::XPathExpressionImpl>
 {
 public:
-    XPathExpression(ExecState* exec, khtml::XPathExpressionImpl* impl);
-    
-    virtual const ClassInfo* classInfo() const { return &info; }
+    XPathExpression(ExecState *exec, khtml::XPathExpressionImpl *impl);
+
+    virtual const ClassInfo *classInfo() const
+    {
+        return &info;
+    }
     static const ClassInfo info;
 
     enum {
@@ -62,9 +69,12 @@ public:
 
     virtual void mark();
 
-    void setAssociatedResolver(JSObject* res) { jsResolver = res; }
+    void setAssociatedResolver(JSObject *res)
+    {
+        jsResolver = res;
+    }
 private:
-    JSObject* jsResolver; // see notes below.
+    JSObject *jsResolver; // see notes below.
 };
 
 // For NS resolver, we need to do two things:
@@ -74,7 +84,7 @@ private:
 // 2) Pass in JS-implemented resolvers to DOM methods, which might retain them.
 // This is a bit tricky memory management-wise, as it involves the DOM
 // referring to a JS object. The solution we take is to have the wrapper
-// for XPathExpression mark the corresponding resolver. 
+// for XPathExpression mark the corresponding resolver.
 //
 // The class XPathNSResolver   does (1)
 // The class JSXPathNSResolver does (2).
@@ -84,9 +94,12 @@ DEFINE_PSEUDO_CONSTRUCTOR(XPathNSResolverPseudoCtor)
 class XPathNSResolver: public DOMWrapperObject<khtml::XPathNSResolverImpl>
 {
 public:
-    XPathNSResolver(ExecState* exec, khtml::XPathNSResolverImpl* impl);
+    XPathNSResolver(ExecState *exec, khtml::XPathNSResolverImpl *impl);
 
-    virtual const ClassInfo* classInfo() const { return &info; }
+    virtual const ClassInfo *classInfo() const
+    {
+        return &info;
+    }
     static const ClassInfo info;
 
     enum {
@@ -98,21 +111,22 @@ public:
 class JSXPathNSResolver: public khtml::XPathNSResolverImpl
 {
 public:
-    JSXPathNSResolver(Interpreter* ctx, JSObject* impl);
+    JSXPathNSResolver(Interpreter *ctx, JSObject *impl);
     virtual Type type();
-    DOM::DOMString lookupNamespaceURI( const DOM::DOMString& prefix );
+    DOM::DOMString lookupNamespaceURI(const DOM::DOMString &prefix);
 
-    JSObject* resolverObject() { return impl; }
+    JSObject *resolverObject()
+    {
+        return impl;
+    }
 private:
-    JSObject* impl;
-    Interpreter* ctx;
+    JSObject *impl;
+    Interpreter *ctx;
 };
 
 // Convert JS -> DOM. Might make a new JSXPathNSResolver. It does not
 // protect the JS resolver from collection in any way.
-khtml::XPathNSResolverImpl* toResolver(ExecState* exec, JSValue* impl);
-
+khtml::XPathNSResolverImpl *toResolver(ExecState *exec, JSValue *impl);
 
 }
 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

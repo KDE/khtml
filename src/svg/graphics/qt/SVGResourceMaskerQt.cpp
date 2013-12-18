@@ -22,9 +22,10 @@
 #if ENABLE(SVG)
 #include "SVGResourceMasker.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-void SVGResourceMasker::applyMask(GraphicsContext*, const FloatRect&)
+void SVGResourceMasker::applyMask(GraphicsContext *, const FloatRect &)
 {
     // FIXME: implement me :-)
 }
@@ -33,4 +34,3 @@ void SVGResourceMasker::applyMask(GraphicsContext*, const FloatRect&)
 
 #endif
 
-// vim:ts=4:noet

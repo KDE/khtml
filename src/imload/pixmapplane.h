@@ -29,7 +29,8 @@
 #include "imageplane.h"
 #include "pixmaptile.h"
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 class AnimProvider;
 
@@ -40,22 +41,22 @@ class AnimProvider;
 class PixmapPlane: public Plane
 {
 public:
-    ImagePlane*         parent;
+    ImagePlane         *parent;
     int                 refCount;//For image's use
 private:
     Array2D<PixmapTile> tiles;
 public:
-    PixmapPlane(unsigned int _width, unsigned int _height, ImagePlane* _parent):
-            Plane(_width, _height), parent(_parent), tiles(tilesWidth, tilesHeight)
+    PixmapPlane(unsigned int _width, unsigned int _height, ImagePlane *_parent):
+        Plane(_width, _height), parent(_parent), tiles(tilesWidth, tilesHeight)
     {
         nextFrame    = 0;
         animProvider = 0;
         refCount     = 0;
     }
 
-    PixmapPlane*  nextFrame;
-    AnimProvider* animProvider;
-    
+    PixmapPlane  *nextFrame;
+    AnimProvider *animProvider;
+
     void flushCache();
 
     ~PixmapPlane()
@@ -66,14 +67,13 @@ public:
     }
 
     /**
-     Paints a portion of the frame on the painter 'p' at dx and dy. 
+     Paints a portion of the frame on the painter 'p' at dx and dy.
      The source rectangle starts at sx, sy and has dimension width * height.
     */
-    void paint(int dx, int dy, QPainter* p,
+    void paint(int dx, int dy, QPainter *p,
                int sx, int sy, int width = -1, int height = -1);
 };
 
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

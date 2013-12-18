@@ -28,20 +28,25 @@
 #include <wtf/PassRefPtr.h>
 #include "xml/Document.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    //class String;
+//class String;
 
-    class SVGNumberList : public SVGList<float> {
-    public:
-        static PassRefPtr<SVGNumberList> create(const QualifiedName& attributeName) { return adoptRef(new SVGNumberList(attributeName)); }
-        virtual ~SVGNumberList();
+class SVGNumberList : public SVGList<float>
+{
+public:
+    static PassRefPtr<SVGNumberList> create(const QualifiedName &attributeName)
+    {
+        return adoptRef(new SVGNumberList(attributeName));
+    }
+    virtual ~SVGNumberList();
 
-        void parse(const String& value);
-        
-    private:
-        SVGNumberList(const QualifiedName&);
-    };
+    void parse(const String &value);
+
+private:
+    SVGNumberList(const QualifiedName &);
+};
 
 } // namespace WebCore
 

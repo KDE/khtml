@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef SVGResourceMasker_h
@@ -36,35 +36,43 @@
 #include <wtf/OwnPtr.h>
 #include <wtf/PassRefPtr.h>
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class FloatRect;
-    class ImageBuffer;
-    class SVGMaskElement;
+class FloatRect;
+class ImageBuffer;
+class SVGMaskElement;
 
-    class SVGResourceMasker : public SVGResource {
-    public:
-        static PassRefPtr<SVGResourceMasker> create(const SVGMaskElement* ownerElement) { return adoptRef(new SVGResourceMasker(ownerElement)); }
-        virtual ~SVGResourceMasker();
-        
-        virtual void invalidate();
-        
-        virtual SVGResourceType resourceType() const { return MaskerResourceType; }
-        /*virtual TextStream& externalRepresentation(TextStream&) const;*/
+class SVGResourceMasker : public SVGResource
+{
+public:
+    static PassRefPtr<SVGResourceMasker> create(const SVGMaskElement *ownerElement)
+    {
+        return adoptRef(new SVGResourceMasker(ownerElement));
+    }
+    virtual ~SVGResourceMasker();
 
-        // To be implemented by the specific rendering devices
-        void applyMask(/*GraphicsContext**/QPainter* painter, const FloatRect& boundingBox);
+    virtual void invalidate();
 
-    private:
-        SVGResourceMasker(const SVGMaskElement*);
+    virtual SVGResourceType resourceType() const
+    {
+        return MaskerResourceType;
+    }
+    /*virtual TextStream& externalRepresentation(TextStream&) const;*/
 
-        const SVGMaskElement* m_ownerElement;
-        
-        OwnPtr<ImageBuffer> m_mask;
-        FloatRect m_maskRect;
-    };
+    // To be implemented by the specific rendering devices
+    void applyMask(/*GraphicsContext**/QPainter *painter, const FloatRect &boundingBox);
 
-    SVGResourceMasker* getMaskerById(Document*, const AtomicString&);
+private:
+    SVGResourceMasker(const SVGMaskElement *);
+
+    const SVGMaskElement *m_ownerElement;
+
+    OwnPtr<ImageBuffer> m_mask;
+    FloatRect m_maskRect;
+};
+
+SVGResourceMasker *getMaskerById(Document *, const AtomicString &);
 
 } // namespace WebCore
 

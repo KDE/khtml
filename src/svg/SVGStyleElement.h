@@ -27,49 +27,53 @@
 #include <SVGElement.h>
 //#include "StyleElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGStyleElement : public SVGElement/*, public StyleElement*/ {
-    public:
-        SVGStyleElement(const QualifiedName&, Document*);
+class SVGStyleElement : public SVGElement/*, public StyleElement*/
+{
+public:
+    SVGStyleElement(const QualifiedName &, Document *);
 
-        // Derived from: 'Element'
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual void insertedIntoDocument();
-        virtual void removedFromDocument();
-        using DOM::NodeImpl::childrenChanged;
-        virtual void childrenChanged(bool changedByParser = false, Node* beforeChange = 0, Node* afterChange = 0, int childCountDelta = 0);
+    // Derived from: 'Element'
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual void insertedIntoDocument();
+    virtual void removedFromDocument();
+    using DOM::NodeImpl::childrenChanged;
+    virtual void childrenChanged(bool changedByParser = false, Node *beforeChange = 0, Node *afterChange = 0, int childCountDelta = 0);
 
-        void setCreatedByParser(bool createdByParser) { m_createdByParser = createdByParser; }
-        virtual void finishParsingChildren();
+    void setCreatedByParser(bool createdByParser)
+    {
+        m_createdByParser = createdByParser;
+    }
+    virtual void finishParsingChildren();
 
-        // 'SVGStyleElement' functions
-        DOMString xmlspace() const;
-        void setXmlspace(const DOMString&, ExceptionCode&);
+    // 'SVGStyleElement' functions
+    DOMString xmlspace() const;
+    void setXmlspace(const DOMString &, ExceptionCode &);
 
-        virtual bool sheetLoaded();
+    virtual bool sheetLoaded();
 
-        virtual const DOMString type() const;
-        void setType(const DOMString&, ExceptionCode&);
+    virtual const DOMString type() const;
+    void setType(const DOMString &, ExceptionCode &);
 
-        virtual const DOMString media() const;
-        void setMedia(const DOMString&, ExceptionCode&);
+    virtual const DOMString media() const;
+    void setMedia(const DOMString &, ExceptionCode &);
 
-        virtual String title() const;
-        void setTitle(const DOMString&, ExceptionCode&);
+    virtual String title() const;
+    void setTitle(const DOMString &, ExceptionCode &);
 
-        StyleSheet* sheet();
+    StyleSheet *sheet();
 
-        //khtml compatibility methods
-        virtual quint32 id() const;
-    protected:
-        bool m_createdByParser;
-        StyleSheet* m_sheet;
-    };
+    //khtml compatibility methods
+    virtual quint32 id() const;
+protected:
+    bool m_createdByParser;
+    StyleSheet *m_sheet;
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif // SVGStyleElement_h
 
-// vim:ts=4

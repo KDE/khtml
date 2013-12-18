@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef GraphicsTypes_h
@@ -28,45 +28,45 @@
 
 #include "dom/dom_string.h"
 
-
 using DOM::DOMString;
 
-namespace khtml {
+namespace khtml
+{
 
-    // Note: These constants exactly match the NSCompositeOperator constants of
-    // AppKit on Mac OS X Tiger. If these ever change, we'll need to change the
-    // Mac OS X Tiger platform code to map one to the other.
-    enum CompositeOperator {
-        CompositeClear,
-        CompositeCopy,
-        CompositeSourceOver,
-        CompositeSourceIn,
-        CompositeSourceOut,
-        CompositeSourceAtop,
-        CompositeDestinationOver,
-        CompositeDestinationIn,
-        CompositeDestinationOut,
-        CompositeDestinationAtop,
-        CompositeXOR,
-        CompositePlusDarker,
-        CompositeHighlight,
-        CompositePlusLighter
-    };
+// Note: These constants exactly match the NSCompositeOperator constants of
+// AppKit on Mac OS X Tiger. If these ever change, we'll need to change the
+// Mac OS X Tiger platform code to map one to the other.
+enum CompositeOperator {
+    CompositeClear,
+    CompositeCopy,
+    CompositeSourceOver,
+    CompositeSourceIn,
+    CompositeSourceOut,
+    CompositeSourceAtop,
+    CompositeDestinationOver,
+    CompositeDestinationIn,
+    CompositeDestinationOut,
+    CompositeDestinationAtop,
+    CompositeXOR,
+    CompositePlusDarker,
+    CompositeHighlight,
+    CompositePlusLighter
+};
 
-    enum LineCap { ButtCap, RoundCap, SquareCap };
+enum LineCap { ButtCap, RoundCap, SquareCap };
 
-    enum LineJoin { MiterJoin, RoundJoin, BevelJoin };
+enum LineJoin { MiterJoin, RoundJoin, BevelJoin };
 
-    enum HorizontalAlignment { AlignLeft, AlignRight, AlignHCenter };
+enum HorizontalAlignment { AlignLeft, AlignRight, AlignHCenter };
 
-    DOMString compositeOperatorName(CompositeOperator);
-    bool parseCompositeOperator(const DOMString&, CompositeOperator&);
+DOMString compositeOperatorName(CompositeOperator);
+bool parseCompositeOperator(const DOMString &, CompositeOperator &);
 
-    DOMString lineCapName(LineCap);
-    bool parseLineCap(const DOMString&, LineCap&);
+DOMString lineCapName(LineCap);
+bool parseLineCap(const DOMString &, LineCap &);
 
-    DOMString lineJoinName(LineJoin);
-    bool parseLineJoin(const DOMString&, LineJoin&);
+DOMString lineJoinName(LineJoin);
+bool parseLineJoin(const DOMString &, LineJoin &);
 
 }
 

@@ -30,83 +30,110 @@
 #include <wtf/RefPtr.h>
 #include <wtf/PassRefPtr.h>
 
-namespace WebCore {
-    class SVGElement;
-    class SVGUseElement;
-    class SVGElementInstanceList;
+namespace WebCore
+{
+class SVGElement;
+class SVGUseElement;
+class SVGElementInstanceList;
 
-    class SVGElementInstance /*: public EventTarget*/ {
-    public:
-        SVGElementInstance(SVGUseElement*, PassRefPtr<SVGElement> originalElement);
-        virtual ~SVGElementInstance();
+class SVGElementInstance /*: public EventTarget*/
+{
+public:
+    SVGElementInstance(SVGUseElement *, PassRefPtr<SVGElement> originalElement);
+    virtual ~SVGElementInstance();
 
-        // 'SVGElementInstance' functions
-        SVGElement* correspondingElement() const;
-        SVGUseElement* correspondingUseElement() const;
+    // 'SVGElementInstance' functions
+    SVGElement *correspondingElement() const;
+    SVGUseElement *correspondingUseElement() const;
 
-        SVGElementInstance* parentNode() const;
-        PassRefPtr<SVGElementInstanceList> childNodes();
+    SVGElementInstance *parentNode() const;
+    PassRefPtr<SVGElementInstanceList> childNodes();
 
-        SVGElementInstance* previousSibling() const;
-        SVGElementInstance* nextSibling() const;
+    SVGElementInstance *previousSibling() const;
+    SVGElementInstance *nextSibling() const;
 
-        SVGElementInstance* firstChild() const;
-        SVGElementInstance* lastChild() const;
+    SVGElementInstance *firstChild() const;
+    SVGElementInstance *lastChild() const;
 
-        // Internal usage only!
-        SVGElement* shadowTreeElement() const; 
-        void setShadowTreeElement(SVGElement*);
+    // Internal usage only!
+    SVGElement *shadowTreeElement() const;
+    void setShadowTreeElement(SVGElement *);
 
-        // Model the TreeShared concept, integrated within EventTarget inheritance.
-        virtual void refEventTarget() { ++m_refCount;  }
-        virtual void derefEventTarget() { if (--m_refCount <= 0 && !m_parent) delete this; }
-        // khtml compat
-        virtual void ref() { refEventTarget(); }
-        virtual void deref() { derefEventTarget(); }
+    // Model the TreeShared concept, integrated within EventTarget inheritance.
+    virtual void refEventTarget()
+    {
+        ++m_refCount;
+    }
+    virtual void derefEventTarget()
+    {
+        if (--m_refCount <= 0 && !m_parent) {
+            delete this;
+        }
+    }
+    // khtml compat
+    virtual void ref()
+    {
+        refEventTarget();
+    }
+    virtual void deref()
+    {
+        derefEventTarget();
+    }
 
-        bool hasOneRef() { return m_refCount == 1; }
-        int refCount() const { return m_refCount; }
+    bool hasOneRef()
+    {
+        return m_refCount == 1;
+    }
+    int refCount() const
+    {
+        return m_refCount;
+    }
 
-        void setParent(SVGElementInstance* parent) { m_parent = parent; }
-        SVGElementInstance* parent() const { return m_parent; }
+    void setParent(SVGElementInstance *parent)
+    {
+        m_parent = parent;
+    }
+    SVGElementInstance *parent() const
+    {
+        return m_parent;
+    }
 
-        // SVGElementInstance supports both toSVGElementInstance and toNode since so much mouse handling code depends on toNode returning a valid node.
-        virtual EventTargetNode* toNode();
-        virtual SVGElementInstance* toSVGElementInstance();
+    // SVGElementInstance supports both toSVGElementInstance and toNode since so much mouse handling code depends on toNode returning a valid node.
+    virtual EventTargetNode *toNode();
+    virtual SVGElementInstance *toSVGElementInstance();
 
-        virtual void addEventListener(const AtomicString& eventType, PassRefPtr<EventListener>, bool useCapture);
-        virtual void removeEventListener(const AtomicString& eventType, EventListener*, bool useCapture);
-        virtual bool dispatchEvent(PassRefPtr<Event>, ExceptionCode&, bool tempEvent = false);
- 
-    private:
-        SVGElementInstance(const SVGElementInstance&);
-        SVGElementInstance& operator=(const SVGElementInstance&);
+    virtual void addEventListener(const AtomicString &eventType, PassRefPtr<EventListener>, bool useCapture);
+    virtual void removeEventListener(const AtomicString &eventType, EventListener *, bool useCapture);
+    virtual bool dispatchEvent(PassRefPtr<Event>, ExceptionCode &, bool tempEvent = false);
 
-    private: // Helper methods
-        friend class SVGUseElement;
-        void appendChild(PassRefPtr<SVGElementInstance> child);
+private:
+    SVGElementInstance(const SVGElementInstance &);
+    SVGElementInstance &operator=(const SVGElementInstance &);
 
-        friend class SVGStyledElement;
-        void updateInstance(SVGElement*);
+private: // Helper methods
+    friend class SVGUseElement;
+    void appendChild(PassRefPtr<SVGElementInstance> child);
 
-    private:
-        int m_refCount;
-        SVGElementInstance* m_parent;
+    friend class SVGStyledElement;
+    void updateInstance(SVGElement *);
 
-        SVGUseElement* m_useElement;
-        RefPtr<SVGElement> m_element;
-        SVGElement* m_shadowTreeElement;
+private:
+    int m_refCount;
+    SVGElementInstance *m_parent;
 
-        SVGElementInstance* m_previousSibling;
-        SVGElementInstance* m_nextSibling;
+    SVGUseElement *m_useElement;
+    RefPtr<SVGElement> m_element;
+    SVGElement *m_shadowTreeElement;
 
-        SVGElementInstance* m_firstChild;
-        SVGElementInstance* m_lastChild;
-    };
+    SVGElementInstance *m_previousSibling;
+    SVGElementInstance *m_nextSibling;
+
+    SVGElementInstance *m_firstChild;
+    SVGElementInstance *m_lastChild;
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

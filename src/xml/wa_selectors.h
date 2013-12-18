@@ -24,24 +24,26 @@
 #include "dom/dom_string.h"
 #include <wtf/PassRefPtr.h>
 
-namespace DOM {
-    class NodeImpl;
-    class ElementImpl;
-    class NodeListImpl;
+namespace DOM
+{
+class NodeImpl;
+class ElementImpl;
+class NodeListImpl;
 }
 
-namespace khtml {
+namespace khtml
+{
 
 /**
  Implementation of Web Applications Selectors API (level 1)
 */
-namespace SelectorQuery {
-    WTF::PassRefPtr<DOM::ElementImpl>  querySelector(DOM::NodeImpl* root, const DOM::DOMString& query, int& ec);
-    WTF::PassRefPtr<DOM::NodeListImpl> querySelectorAll(DOM::NodeImpl* root, const DOM::DOMString& query, int& ec);
+namespace SelectorQuery
+{
+WTF::PassRefPtr<DOM::ElementImpl>  querySelector(DOM::NodeImpl *root, const DOM::DOMString &query, int &ec);
+WTF::PassRefPtr<DOM::NodeListImpl> querySelectorAll(DOM::NodeImpl *root, const DOM::DOMString &query, int &ec);
 } // namespace SelectorQuery
- 
+
 } // namespace khtml
 
 #endif
 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

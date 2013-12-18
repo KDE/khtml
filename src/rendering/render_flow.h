@@ -29,7 +29,8 @@
 #include "bidi.h"
 #include "render_line.h"
 
-namespace khtml {
+namespace khtml
+{
 
 /**
  * all geometry managing stuff is only in the block elements.
@@ -43,64 +44,78 @@ namespace khtml {
 class RenderFlow : public RenderBox
 {
 public:
-    RenderFlow(DOM::NodeImpl* node)
-      : RenderBox(node)
-    { m_continuation = 0; m_firstLineBox = 0; m_lastLineBox = 0; }
+    RenderFlow(DOM::NodeImpl *node)
+        : RenderBox(node)
+    {
+        m_continuation = 0;
+        m_firstLineBox = 0;
+        m_lastLineBox = 0;
+    }
 
-    virtual RenderFlow* continuation() const { return m_continuation; }
-    void setContinuation(RenderFlow* c) { m_continuation = c; }
-    RenderFlow* continuationBefore(RenderObject* beforeChild);
+    virtual RenderFlow *continuation() const
+    {
+        return m_continuation;
+    }
+    void setContinuation(RenderFlow *c)
+    {
+        m_continuation = c;
+    }
+    RenderFlow *continuationBefore(RenderObject *beforeChild);
 
-    void addChildWithContinuation(RenderObject* newChild, RenderObject* beforeChild);
-    virtual void addChildToFlow(RenderObject* newChild, RenderObject* beforeChild) = 0;
+    void addChildWithContinuation(RenderObject *newChild, RenderObject *beforeChild);
+    virtual void addChildToFlow(RenderObject *newChild, RenderObject *beforeChild) = 0;
     virtual void addChild(RenderObject *newChild, RenderObject *beforeChild = 0);
 
-    static RenderFlow* createFlow(DOM::NodeImpl* node, RenderStyle* style, RenderArena* arena);
-    
+    static RenderFlow *createFlow(DOM::NodeImpl *node, RenderStyle *style, RenderArena *arena);
+
     virtual void detach();
 
-    void attachLineBox(InlineFlowBox* box);
-    void extractLineBox(InlineFlowBox* box);
+    void attachLineBox(InlineFlowBox *box);
+    void extractLineBox(InlineFlowBox *box);
 
-    virtual void deleteLastLineBox(RenderArena* arena=0);
-    virtual void deleteInlineBoxes(RenderArena* arena=0);
-    virtual void removeInlineBox(InlineBox* box);
+    virtual void deleteLastLineBox(RenderArena *arena = 0);
+    virtual void deleteInlineBoxes(RenderArena *arena = 0);
+    virtual void removeInlineBox(InlineBox *box);
     virtual void dirtyInlineBoxes(bool fullLayout, bool isRootLineBox = false);
-    
-    void dirtyLinesFromChangedChild(RenderObject* child);
 
+    void dirtyLinesFromChangedChild(RenderObject *child);
 
-    InlineFlowBox* firstLineBox() const { return m_firstLineBox; }
-    InlineFlowBox* lastLineBox() const { return m_lastLineBox; }
+    InlineFlowBox *firstLineBox() const
+    {
+        return m_firstLineBox;
+    }
+    InlineFlowBox *lastLineBox() const
+    {
+        return m_lastLineBox;
+    }
 
     virtual QList< QRectF > getClientRects();
 
-    virtual InlineBox* createInlineBox(bool makePlaceHolderBox, bool isRootLineBox);
+    virtual InlineBox *createInlineBox(bool makePlaceHolderBox, bool isRootLineBox);
 
-    void paintLines(PaintInfo& i, int _tx, int _ty);
-    bool hitTestLines(NodeInfo& i, int x, int y, int tx, int ty, HitTestAction hitTestAction);
+    void paintLines(PaintInfo &i, int _tx, int _ty);
+    bool hitTestLines(NodeInfo &i, int x, int y, int tx, int ty, HitTestAction hitTestAction);
 
-    virtual void repaint(Priority p=NormalPriority);
+    virtual void repaint(Priority p = NormalPriority);
 
-    virtual int highestPosition(bool includeOverflowInterior=true, bool includeSelf=true) const;
-    virtual int lowestPosition(bool includeOverflowInterior=true, bool includeSelf=true) const;
-    virtual int rightmostPosition(bool includeOverflowInterior=true, bool includeSelf=true) const;
-    virtual int leftmostPosition(bool includeOverflowInterior=true, bool includeSelf=true) const;
+    virtual int highestPosition(bool includeOverflowInterior = true, bool includeSelf = true) const;
+    virtual int lowestPosition(bool includeOverflowInterior = true, bool includeSelf = true) const;
+    virtual int rightmostPosition(bool includeOverflowInterior = true, bool includeSelf = true) const;
+    virtual int leftmostPosition(bool includeOverflowInterior = true, bool includeSelf = true) const;
 
 protected:
     // An inline can be split with blocks occurring in between the inline content.
     // When this occurs we need a pointer to our next object.  We can basically be
     // split into a sequence of inlines and blocks.  The continuation will either be
     // an anonymous block (that houses other blocks) or it will be an inline flow.
-    RenderFlow* m_continuation;
+    RenderFlow *m_continuation;
 
     // For block flows, each box represents the root inline box for a line in the
     // paragraph.
     // For inline flows, each box represents a portion of that inline.
-    InlineFlowBox* m_firstLineBox;
-    InlineFlowBox* m_lastLineBox;
+    InlineFlowBox *m_firstLineBox;
+    InlineFlowBox *m_lastLineBox;
 };
-
 
 } //namespace
 

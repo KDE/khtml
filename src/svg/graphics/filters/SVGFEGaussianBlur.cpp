@@ -23,9 +23,10 @@
 #include "SVGFEGaussianBlur.h"
 #include "TextStream.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFEGaussianBlur::SVGFEGaussianBlur(SVGResourceFilter* filter)
+SVGFEGaussianBlur::SVGFEGaussianBlur(SVGResourceFilter *filter)
     : SVGFilterEffect(filter)
     , m_x(0.0f)
     , m_y(0.0f)
@@ -52,7 +53,7 @@ void SVGFEGaussianBlur::setStdDeviationY(float y)
     m_y = y;
 }
 
-TextStream& SVGFEGaussianBlur::externalRepresentation(TextStream& ts) const
+TextStream &SVGFEGaussianBlur::externalRepresentation(TextStream &ts) const
 {
     ts << "[type=GAUSSIAN-BLUR] ";
     SVGFilterEffect::externalRepresentation(ts);

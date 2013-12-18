@@ -29,41 +29,49 @@
 
 #include <wtf/OwnPtr.h>
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGTextElement : public SVGTextPositioningElement,
-                           public SVGTransformable {
-    public:
-        SVGTextElement(const QualifiedName&, Document*);
-        virtual ~SVGTextElement();
+class SVGTextElement : public SVGTextPositioningElement,
+    public SVGTransformable
+{
+public:
+    SVGTextElement(const QualifiedName &, Document *);
+    virtual ~SVGTextElement();
 
-        virtual void parseMappedAttribute(MappedAttribute*);
+    virtual void parseMappedAttribute(MappedAttribute *);
 
-        virtual SVGElement* nearestViewportElement() const;
-        virtual SVGElement* farthestViewportElement() const;
+    virtual SVGElement *nearestViewportElement() const;
+    virtual SVGElement *farthestViewportElement() const;
 
-        virtual FloatRect getBBox() const;
-        virtual AffineTransform getCTM() const;
-        virtual AffineTransform getScreenCTM() const;
-        virtual AffineTransform animatedLocalTransform() const;
-        virtual AffineTransform* supplementalTransform();
+    virtual FloatRect getBBox() const;
+    virtual AffineTransform getCTM() const;
+    virtual AffineTransform getScreenCTM() const;
+    virtual AffineTransform animatedLocalTransform() const;
+    virtual AffineTransform *supplementalTransform();
 
-        virtual RenderObject* createRenderer(RenderArena*, RenderStyle*);
-        virtual bool childShouldCreateRenderer(Node*) const;
-                
-        virtual void svgAttributeChanged(const QualifiedName&);
+    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
+    virtual bool childShouldCreateRenderer(Node *) const;
 
-        // KHTML ElementImpl pure virtual method
-        virtual quint32 id() const { return SVGNames::textTag.id(); }
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
+    virtual void svgAttributeChanged(const QualifiedName &);
 
-    private:
-        ANIMATED_PROPERTY_DECLARATIONS(SVGTextElement, SVGTransformList*, RefPtr<SVGTransformList>, Transform, transform)
-       
-       // Used by <animateMotion>
-       OwnPtr<AffineTransform> m_supplementalTransform;
-    };
+    // KHTML ElementImpl pure virtual method
+    virtual quint32 id() const
+    {
+        return SVGNames::textTag.id();
+    }
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
+
+private:
+    ANIMATED_PROPERTY_DECLARATIONS(SVGTextElement, SVGTransformList *, RefPtr<SVGTransformList>, Transform, transform)
+
+    // Used by <animateMotion>
+    OwnPtr<AffineTransform> m_supplementalTransform;
+};
 
 } // namespace WebCore
 

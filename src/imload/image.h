@@ -25,19 +25,20 @@
 #ifndef IMAGE_H
 #define IMAGE_H
 
-#include <QByteArray> 
+#include <QByteArray>
 #include <QSize>
 #include <QTimer>
 #include <QPair>
 #include <QMap>
 
 #include <khtml_settings.h>
- 
+
 #include "imageformat.h"
 
 class QPainter;
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 class ImageOwner;
 class ImageLoader;
@@ -52,33 +53,33 @@ class Image
 public:
     /**
      Creates an image with a given owner; the owner will be notified about the repaint event, the image geometry,
-     and so on; and also if the image can not be decoded. The image must be fed data through the processData() 
+     and so on; and also if the image can not be decoded. The image must be fed data through the processData()
      call; and it will take care of the rest automatically.
     */
-    Image(ImageOwner* owner);
-    
+    Image(ImageOwner *owner);
+
     /**
-     Provides new data for decoding. The method will return false if there is no longer any use to feeding it more data 
+     Provides new data for decoding. The method will return false if there is no longer any use to feeding it more data
      (i.e. if the image is complete, or broken, etc.); however, it is safe to do so.
     */
-    bool processData(uchar* data, int length);
-    
+    bool processData(uchar *data, int length);
+
     /**
-     Notifies the image that the data source is exhausted, in case it cares. This should be called at the 
+     Notifies the image that the data source is exhausted, in case it cares. This should be called at the
      end of the data stream in order for non-incremental decoders to work
     */
     void processEOF();
-    
+
     /**
      Cleans up
     */
     ~Image();
-    
+
     /**
      Returns the image's size
     */
     QSize size() const;
-    
+
     /**
      Returns true if the image has been fully loaded
     */
@@ -93,7 +94,7 @@ public:
      Returns the image of basic content. Should be treated as READ ONLY.
      (but see CanvasImage)
     */
-    QImage* qimage()  const;
+    QImage *qimage()  const;
 
     /**
      Enables or disables animations
@@ -102,47 +103,50 @@ public:
 private:
     //Interface to the loader.
     friend class ImageLoader;
-    
+
     /**
      Called from the loader to notify of canvas geometry.
      The loader must also call notifyAppendFrame to
      create 1 or more frames
     */
-    void notifyImageInfo(int width, int height); 
-    
+    void notifyImageInfo(int width, int height);
+
     /**
      Called to notify of format of a frame
     */
-    void notifyAppendFrame(int fwidth, int fheight, const ImageFormat& format);
-    
+    void notifyAppendFrame(int fwidth, int fheight, const ImageFormat &format);
+
     /**
      Called from the loader to feed a new scanline (in consecutive order in each frame), through
      various progressive versions
      */
-    void notifyScanline(unsigned char version, unsigned char* data);
-    
+    void notifyScanline(unsigned char version, unsigned char *data);
+
     /**
      Called from the loader to feed a new image, through
      various progressive versions
      */
-    void notifyQImage(unsigned char version, const QImage* image);
+    void notifyQImage(unsigned char version, const QImage *image);
 
     /**
      Called from loader to request the current contents of the line in the basic plane
      */
-    void requestScanline(unsigned int lineNum, unsigned char* lineBuf);
+    void requestScanline(unsigned int lineNum, unsigned char *lineBuf);
 
     //### FIXME: restore the animprovider interface
 
 private: //Interface to the painter.
     friend class ImagePainter;
-    bool mayPaint() { return original; }
+    bool mayPaint()
+    {
+        return original;
+    }
     void derefSize(QSize size);
-    void refSize  (QSize size);
-    PixmapPlane* getSize(QSize size);
+    void refSize(QSize size);
+    PixmapPlane *getSize(QSize size);
 
 protected:
-    ImageOwner * owner;
+    ImageOwner *owner;
 
     //Update reporting to owner
     friend class Updater;
@@ -153,10 +157,10 @@ protected:
 
     //Incorporate the scanline into update range
     void requestUpdate(int line);
-    
+
     //Sets the state as not having updates
     void noUpdates();
-    
+
     /**
      Called by the updater when the image should tell its owners about new changes
     */
@@ -169,8 +173,8 @@ protected:
 
     //Loader stuff.
     QByteArray bufferPreDetect;
-    ImageLoader* loader;
-    PixmapPlane* loaderPlane;
+    ImageLoader *loader;
+    PixmapPlane *loaderPlane;
     unsigned int loaderScanline;
 
     bool fullyDecoded;
@@ -181,8 +185,8 @@ protected:
 
     //Image state
     unsigned int width, height;
-    PixmapPlane* original;
-    QMap<QPair<int, int>, PixmapPlane*> scaled;
+    PixmapPlane *original;
+    QMap<QPair<int, int>, PixmapPlane *> scaled;
     KHTMLSettings::KAnimationAdvice animationAdvice;
 
 };
@@ -190,4 +194,3 @@ protected:
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

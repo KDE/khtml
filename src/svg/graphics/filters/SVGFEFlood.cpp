@@ -23,9 +23,10 @@
 #include "SVGRenderTreeAsText.h"
 #include "SVGFEFlood.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFEFlood::SVGFEFlood(SVGResourceFilter* filter)
+SVGFEFlood::SVGFEFlood(SVGResourceFilter *filter)
     : SVGFilterEffect(filter)
     , m_floodColor()
     , m_floodOpacity(0.0f)
@@ -37,7 +38,7 @@ Color SVGFEFlood::floodColor() const
     return m_floodColor;
 }
 
-void SVGFEFlood::setFloodColor(const Color& color)
+void SVGFEFlood::setFloodColor(const Color &color)
 {
     m_floodColor = color;
 }
@@ -52,12 +53,12 @@ void SVGFEFlood::setFloodOpacity(float floodOpacity)
     m_floodOpacity = floodOpacity;
 }
 
-TextStream& SVGFEFlood::externalRepresentation(TextStream& ts) const
+TextStream &SVGFEFlood::externalRepresentation(TextStream &ts) const
 {
     ts << "[type=FLOOD] ";
     SVGFilterEffect::externalRepresentation(ts);
     ts << " [color=" << floodColor() << "]"
-        << " [opacity=" << floodOpacity() << "]";
+       << " [opacity=" << floodOpacity() << "]";
     return ts;
 }
 

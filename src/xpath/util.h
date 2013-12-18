@@ -29,51 +29,53 @@
 #include <misc/shared.h>
 #include <dom/dom_string.h>
 
-namespace DOM {
-	class NodeImpl;
-	class StaticNodeListImpl;
+namespace DOM
+{
+class NodeImpl;
+class StaticNodeListImpl;
 }
 
-namespace khtml {
-namespace XPath {
+namespace khtml
+{
+namespace XPath
+{
 
 // ### removeme
 typedef SharedPtr<DOM::StaticNodeListImpl> DomNodeList;
 
-
 /* @return whether the given node is the root node.
  */
-bool isRootDomNode( DOM::NodeImpl *node );
+bool isRootDomNode(DOM::NodeImpl *node);
 
 /* @return the 'string-value' of the given node as specified by
    http://www.w3.org/TR/xpath
  */
-DOM::DOMString stringValue( DOM::NodeImpl *node );
+DOM::DOMString stringValue(DOM::NodeImpl *node);
 
 /* @return append all descendant nodes of the given node, in document order,
    to the given set
  */
-void collectChildrenRecursively( SharedPtr<DOM::StaticNodeListImpl> out,
-                                 DOM::NodeImpl *root );
+void collectChildrenRecursively(SharedPtr<DOM::StaticNodeListImpl> out,
+                                DOM::NodeImpl *root);
 
 /* this one is in reverse order */
-void collectChildrenReverse( SharedPtr<DOM::StaticNodeListImpl> out,
-                             DOM::NodeImpl *root );
+void collectChildrenReverse(SharedPtr<DOM::StaticNodeListImpl> out,
+                            DOM::NodeImpl *root);
 
 /* @return whether the given node is a valid context node
  */
-bool isValidContextNode( DOM::NodeImpl *node );
+bool isValidContextNode(DOM::NodeImpl *node);
 
 /* @returns the parent node of the given node under the XPath model
   (which has some additional links that DOM doesn't
 */
-DOM::NodeImpl *xpathParentNode( DOM::NodeImpl *node );
+DOM::NodeImpl *xpathParentNode(DOM::NodeImpl *node);
 
 /* @returns the first/last kid of the given node under the XPath model,
    which doesn't have text nodes or the likes under attributes
 */
-DOM::NodeImpl *xpathFirstChild( DOM::NodeImpl *node );
-DOM::NodeImpl *xpathLastChild( DOM::NodeImpl *node );
+DOM::NodeImpl *xpathFirstChild(DOM::NodeImpl *node);
+DOM::NodeImpl *xpathLastChild(DOM::NodeImpl *node);
 
 /* @returns a slightly generalized notion of a sibling needed to implement
    the following axis. Essentially, for that axis, and only that axis,
@@ -81,16 +83,14 @@ DOM::NodeImpl *xpathLastChild( DOM::NodeImpl *node );
      <node attr1 attr2><kid></node>
    the <kid> is considered to be the next thing following attr1
 */
-DOM::NodeImpl *nextSiblingForFollowing( DOM::NodeImpl *node );
+DOM::NodeImpl *nextSiblingForFollowing(DOM::NodeImpl *node);
 
 // Enable for some low debug output.
 // #define XPATH_VERBOSE
 
-
 } // namespace XPath
 
 } // namespace khtml
-
 
 #endif // UTIL_H
 

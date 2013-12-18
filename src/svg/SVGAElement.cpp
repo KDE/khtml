@@ -43,11 +43,12 @@
 #include "SVGNames.h"
 #include "XLinkNames.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 //using namespace EventNames;
 
-SVGAElement::SVGAElement(const QualifiedName& tagName, Document *doc)
+SVGAElement::SVGAElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledTransformableElement(tagName, doc)
     , SVGURIReference()
     , SVGTests()
@@ -67,24 +68,28 @@ String SVGAElement::title() const
 
 ANIMATED_PROPERTY_DEFINITIONS(SVGAElement, String, String, string, Target, target, SVGNames::targetAttr, m_target)
 
-void SVGAElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGAElement::parseMappedAttribute(MappedAttribute *attr)
 {
-    if (attr->name() == SVGNames::targetAttr)
+    if (attr->name() == SVGNames::targetAttr) {
         setTargetBaseValue(attr->value());
-    else {
-        if (SVGURIReference::parseMappedAttribute(attr))
+    } else {
+        if (SVGURIReference::parseMappedAttribute(attr)) {
             return;
-        if (SVGTests::parseMappedAttribute(attr))
+        }
+        if (SVGTests::parseMappedAttribute(attr)) {
             return;
-        if (SVGLangSpace::parseMappedAttribute(attr))
+        }
+        if (SVGLangSpace::parseMappedAttribute(attr)) {
             return;
-        if (SVGExternalResourcesRequired::parseMappedAttribute(attr))
+        }
+        if (SVGExternalResourcesRequired::parseMappedAttribute(attr)) {
             return;
+        }
         SVGStyledTransformableElement::parseMappedAttribute(attr);
     }
 }
 
-void SVGAElement::svgAttributeChanged(const QualifiedName& attrName)
+void SVGAElement::svgAttributeChanged(const QualifiedName &attrName)
 {
     SVGStyledTransformableElement::svgAttributeChanged(attrName);
 
@@ -99,31 +104,32 @@ void SVGAElement::svgAttributeChanged(const QualifiedName& attrName)
     }
 }
 
-RenderObject* SVGAElement::createRenderer(RenderArena* arena, RenderStyle* style)
+RenderObject *SVGAElement::createRenderer(RenderArena *arena, RenderStyle *style)
 {
     Q_UNUSED(style);
-    if (static_cast<SVGElement*>(parent())->isTextContent())
-        return new (arena) RenderSVGInline(this);
+    if (static_cast<SVGElement *>(parent())->isTextContent()) {
+        return new(arena) RenderSVGInline(this);
+    }
 
-    return new (arena) RenderSVGTransformableContainer(this);
+    return new(arena) RenderSVGTransformableContainer(this);
 }
 
-void SVGAElement::defaultEventHandler(Event* evt)
+void SVGAElement::defaultEventHandler(Event *evt)
 {
     /*if (m_isLink && (evt->type() == clickEvent || (evt->type() == keydownEvent && m_focused))) {
         MouseEvent* e = 0;
         if (evt->type() == clickEvent && evt->isMouseEvent())
             e = static_cast<MouseEvent*>(evt);
-        
+
         KeyboardEvent* k = 0;
         if (evt->type() == keydownEvent && evt->isKeyboardEvent())
             k = static_cast<KeyboardEvent*>(evt);
-        
+
         if (e && e->button() == RightButton) {
             SVGStyledTransformableElement::defaultEventHandler(evt);
             return;
         }
-        
+
         if (k) {
             if (k->keyIdentifier() != "Enter") {
                 SVGStyledTransformableElement::defaultEventHandler(evt);
@@ -133,7 +139,7 @@ void SVGAElement::defaultEventHandler(Event* evt)
             dispatchSimulatedClick(evt);
             return;
         }
-        
+
         String target = this->target();
         if (e && e->button() == MiddleButton)
             target = "_blank";
@@ -142,7 +148,7 @@ void SVGAElement::defaultEventHandler(Event* evt)
 
         if (!evt->defaultPrevented()) {
             String url = parseURL(href());
-#if ENABLE(SVG_ANIMATION)
+    #if ENABLE(SVG_ANIMATION)
             if (url.startsWith("#")) {
                 Element* targetElement = document()->getElementById(url.substring(1));
                 if (SVGSMILElement::isSMILElement(targetElement)) {
@@ -153,7 +159,7 @@ void SVGAElement::defaultEventHandler(Event* evt)
                     return;
                 }
             }
-#endif
+    #endif
             if (document()->frame())
                 document()->frame()->loader()->urlSelected(document()->completeURL(url), target, evt, false, true);
         }
@@ -173,24 +179,28 @@ bool SVGAElement::supportsFocus() const
 
 bool SVGAElement::isFocusableImpl(FocusType ft) const
 {
-    if (ft == FT_Mouse)
+    if (ft == FT_Mouse) {
         return false;
+    }
 
-    if (isContentEditable())
+    if (isContentEditable()) {
         return SVGStyledTransformableElement::isFocusableImpl(ft);
+    }
 
     // TODO: implement focus rules for SVG
     return false;
 }
 
-bool SVGAElement::childShouldCreateRenderer(Node* child) const
+bool SVGAElement::childShouldCreateRenderer(Node *child) const
 {
     // http://www.w3.org/2003/01/REC-SVG11-20030114-errata#linking-text-environment
     // The 'a' element may contain any element that its parent may contain, except itself.
-    if (child->hasTagName(SVGNames::aTag))
+    if (child->hasTagName(SVGNames::aTag)) {
         return false;
-    if (parent() && parent()->isSVGElement())
-        return static_cast<SVGElement*>(parent())->childShouldCreateRenderer(child);
+    }
+    if (parent() && parent()->isSVGElement()) {
+        return static_cast<SVGElement *>(parent())->childShouldCreateRenderer(child);
+    }
 
     return SVGElement::childShouldCreateRenderer(child);
 }

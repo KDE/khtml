@@ -25,10 +25,11 @@
 #if ENABLE(SVG) && ENABLE(SVG_FILTERS)
 #include "SVGFilterEffect.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 enum SVGCompositeOperationType {
-    SVG_FECOMPOSITE_OPERATOR_UNKNOWN    = 0, 
+    SVG_FECOMPOSITE_OPERATOR_UNKNOWN    = 0,
     SVG_FECOMPOSITE_OPERATOR_OVER       = 1,
     SVG_FECOMPOSITE_OPERATOR_IN         = 2,
     SVG_FECOMPOSITE_OPERATOR_OUT        = 3,
@@ -37,12 +38,13 @@ enum SVGCompositeOperationType {
     SVG_FECOMPOSITE_OPERATOR_ARITHMETIC = 6
 };
 
-class SVGFEComposite : public SVGFilterEffect {
+class SVGFEComposite : public SVGFilterEffect
+{
 public:
-    SVGFEComposite(SVGResourceFilter*);
+    SVGFEComposite(SVGResourceFilter *);
 
     String in2() const;
-    void setIn2(const String&);
+    void setIn2(const String &);
 
     SVGCompositeOperationType operation() const;
     void setOperation(SVGCompositeOperationType);
@@ -59,10 +61,10 @@ public:
     float k4() const;
     void setK4(float);
 
-    virtual TextStream& externalRepresentation(TextStream&) const;
+    virtual TextStream &externalRepresentation(TextStream &) const;
 
 #if PLATFORM(CI)
-    virtual CIFilter* getCIFilter(const FloatRect& bbox) const;
+    virtual CIFilter *getCIFilter(const FloatRect &bbox) const;
 #endif
 
 private:

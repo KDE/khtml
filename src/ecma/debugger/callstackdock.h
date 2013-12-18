@@ -25,11 +25,13 @@
 class QTableWidget;
 class QTableWidgetItem;
 
-namespace KJS {
-    class ExecState;
+namespace KJS
+{
+class ExecState;
 }
 
-namespace KJSDebugger {
+namespace KJSDebugger
+{
 class DebugDocument;
 struct InterpreterContext;
 
@@ -40,16 +42,16 @@ public:
     CallStackDock(QWidget *parent = 0);
     ~CallStackDock();
 
-    void displayStack(InterpreterContext* ctx);
+    void displayStack(InterpreterContext *ctx);
     void clearDisplay();
 
-    KJS::ExecState* selectedFrameContext();
+    KJS::ExecState *selectedFrameContext();
 private Q_SLOTS:
-    void slotViewItem(QTableWidgetItem* item);
+    void slotViewItem(QTableWidgetItem *item);
 Q_SIGNALS:
-    void displayScript(KJSDebugger::DebugDocument* doc, int line);
+    void displayScript(KJSDebugger::DebugDocument *doc, int line);
 private:
-    InterpreterContext* m_activeCtx;
+    InterpreterContext *m_activeCtx;
     QTableWidget *m_view;
 };
 

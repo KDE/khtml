@@ -28,45 +28,58 @@
 #include "xml/dom_nodeimpl.h"
 #include "dom/dom_string.h"
 
-namespace DOM {
+namespace DOM
+{
 
-    class DocumentImpl;
-    class CharacterData;
-    class Text;
+class DocumentImpl;
+class CharacterData;
+class Text;
 
 class CharacterDataImpl : public NodeImpl
 {
 public:
-    CharacterDataImpl(DocumentImpl *doc, DOMStringImpl* _text);
+    CharacterDataImpl(DocumentImpl *doc, DOMStringImpl *_text);
 
     virtual ~CharacterDataImpl();
 
     // DOM methods & attributes for CharacterData
 
-    virtual void setData( const DOMString &_data, int &exceptioncode );
-    virtual unsigned long length (  ) const;
-    virtual DOMString substringData ( const unsigned long offset, const unsigned long count, int &exceptioncode );
-    virtual void appendData ( const DOMString &arg, int &exceptioncode );
-    virtual void insertData ( const unsigned long offset, const DOMString &arg, int &exceptioncode );
-    virtual void deleteData ( const unsigned long offset, const unsigned long count, int &exceptioncode );
-    virtual void replaceData ( const unsigned long offset, const unsigned long count, const DOMString &arg, int &exceptioncode );
+    virtual void setData(const DOMString &_data, int &exceptioncode);
+    virtual unsigned long length() const;
+    virtual DOMString substringData(const unsigned long offset, const unsigned long count, int &exceptioncode);
+    virtual void appendData(const DOMString &arg, int &exceptioncode);
+    virtual void insertData(const unsigned long offset, const DOMString &arg, int &exceptioncode);
+    virtual void deleteData(const unsigned long offset, const unsigned long count, int &exceptioncode);
+    virtual void replaceData(const unsigned long offset, const unsigned long count, const DOMString &arg, int &exceptioncode);
 
     virtual bool containsOnlyWhitespace() const;
 
     // DOM methods overridden from  parent classes
 
     virtual DOMString nodeValue() const;
-    virtual void setNodeValue( const DOMString &_nodeValue, int &exceptioncode );
+    virtual void setNodeValue(const DOMString &_nodeValue, int &exceptioncode);
 
     // Other methods (not part of DOM)
 
-    DOMStringImpl *string() const { return str; }
-    DOMString data() const { return str; }
+    DOMStringImpl *string() const
+    {
+        return str;
+    }
+    DOMString data() const
+    {
+        return str;
+    }
 
-    virtual void checkCharDataOperation( const unsigned long offset, int &exceptioncode );
+    virtual void checkCharDataOperation(const unsigned long offset, int &exceptioncode);
 
-    virtual bool offsetInCharacters() const { return true; }
-    virtual int maxCharacterOffset() const { return static_cast<int>(length()); }
+    virtual bool offsetInCharacters() const
+    {
+        return true;
+    }
+    virtual int maxCharacterOffset() const
+    {
+        return static_cast<int>(length());
+    }
 
     virtual long maxOffset() const;
     virtual long caretMinOffset() const;
@@ -88,7 +101,7 @@ protected:
 class CommentImpl : public CharacterDataImpl
 {
 public:
-    CommentImpl(DocumentImpl *doc, DOMStringImpl* _text)
+    CommentImpl(DocumentImpl *doc, DOMStringImpl *_text)
         : CharacterDataImpl(doc, _text) {}
     CommentImpl(DocumentImpl *doc)
         : CharacterDataImpl(doc, 0) {}
@@ -100,7 +113,7 @@ public:
     // Other methods (not part of DOM)
 
     virtual Id id() const;
-    virtual bool childTypeAllowed( unsigned short type );
+    virtual bool childTypeAllowed(unsigned short type);
 
     virtual DOMString toString() const;
 };
@@ -110,18 +123,18 @@ public:
 class TextImpl : public CharacterDataImpl
 {
 public:
-    TextImpl(DocumentImpl *impl, DOMStringImpl* _text)
+    TextImpl(DocumentImpl *impl, DOMStringImpl *_text)
         : CharacterDataImpl(impl, _text) {}
     TextImpl(DocumentImpl *impl)
         : CharacterDataImpl(impl, 0) {}
 
     // DOM methods & attributes for CharacterData
 
-    TextImpl *splitText ( const unsigned long offset, int &exceptioncode );
+    TextImpl *splitText(const unsigned long offset, int &exceptioncode);
 
     // DOM Level 3: http://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-1312295772
     DOMString wholeText() const;
-    TextImpl* replaceWholeText(const DOMString& newText, int &ec);
+    TextImpl *replaceWholeText(const DOMString &newText, int &ec);
 
     // DOM methods overridden from  parent classes
     virtual DOMString nodeName() const;
@@ -130,14 +143,20 @@ public:
 
     // Other methods (not part of DOM)
 
-    virtual bool isTextNode() const { return true; }
+    virtual bool isTextNode() const
+    {
+        return true;
+    }
     virtual Id id() const;
     virtual void attach();
     virtual bool rendererIsNeeded(khtml::RenderStyle *);
     virtual khtml::RenderObject *createRenderer(khtml::RenderArena *, khtml::RenderStyle *);
-    virtual void recalcStyle( StyleChange = NoChange );
-    virtual bool affectedByNoInherit() const { return true; }
-    virtual bool childTypeAllowed( unsigned short type );
+    virtual void recalcStyle(StyleChange = NoChange);
+    virtual bool affectedByNoInherit() const
+    {
+        return true;
+    }
+    virtual bool childTypeAllowed(unsigned short type);
 
     DOMStringImpl *renderString() const;
 
@@ -157,7 +176,7 @@ protected:
 class CDATASectionImpl : public TextImpl
 {
 public:
-    CDATASectionImpl(DocumentImpl *impl, DOMStringImpl* _text)
+    CDATASectionImpl(DocumentImpl *impl, DOMStringImpl *_text)
         : TextImpl(impl, _text) {}
     CDATASectionImpl(DocumentImpl *impl)
         : TextImpl(impl) {}
@@ -169,7 +188,7 @@ public:
 
     // Other methods (not part of DOM)
 
-    virtual bool childTypeAllowed( unsigned short type );
+    virtual bool childTypeAllowed(unsigned short type);
 
     virtual DOMString toString() const;
 

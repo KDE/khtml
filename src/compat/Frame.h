@@ -5,8 +5,8 @@
 
 namespace WebCore
 {
-    using namespace khtml;
-    typedef KHTMLView Frame;
+using namespace khtml;
+typedef KHTMLView Frame;
 } // namespace WebCore
 
 #endif

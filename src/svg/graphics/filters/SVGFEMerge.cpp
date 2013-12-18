@@ -23,19 +23,20 @@
 #include "SVGFEMerge.h"
 #include "TextStream.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-const Vector<String>& SVGFEMerge::mergeInputs() const
+const Vector<String> &SVGFEMerge::mergeInputs() const
 {
     return m_mergeInputs;
 }
 
-void SVGFEMerge::setMergeInputs(const Vector<String>& mergeInputs)
+void SVGFEMerge::setMergeInputs(const Vector<String> &mergeInputs)
 {
     m_mergeInputs = mergeInputs;
 }
 
-TextStream& SVGFEMerge::externalRepresentation(TextStream& ts) const
+TextStream &SVGFEMerge::externalRepresentation(TextStream &ts) const
 {
     ts << "[type=MERGE] ";
     SVGFilterEffect::externalRepresentation(ts);
@@ -45,8 +46,9 @@ TextStream& SVGFEMerge::externalRepresentation(TextStream& ts) const
     while (x < size) {
         ts << m_mergeInputs[x];
         x++;
-        if (x < m_mergeInputs.size())
+        if (x < m_mergeInputs.size()) {
             ts << ", ";
+        }
     }
     ts << "]]";
     return ts;

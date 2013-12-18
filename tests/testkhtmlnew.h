@@ -31,7 +31,7 @@ public:
     KHTMLPart *doc() const;
 
 public Q_SLOTS:
-    void openUrl(const QUrl &url, const KParts::OpenUrlArguments&, const KParts::BrowserArguments &args);
+    void openUrl(const QUrl &url, const KParts::OpenUrlArguments &, const KParts::BrowserArguments &args);
     void openUrl(const QUrl &url);
     void openUrl(const QString &url);
     void openUrl();

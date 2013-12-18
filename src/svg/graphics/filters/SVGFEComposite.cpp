@@ -23,9 +23,10 @@
 #include "SVGFEComposite.h"
 #include "TextStream.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFEComposite::SVGFEComposite(SVGResourceFilter* filter)
+SVGFEComposite::SVGFEComposite(SVGResourceFilter *filter)
     : SVGFilterEffect(filter)
     , m_operation(SVG_FECOMPOSITE_OPERATOR_UNKNOWN)
     , m_k1(0.0f)
@@ -40,7 +41,7 @@ String SVGFEComposite::in2() const
     return m_in2;
 }
 
-void SVGFEComposite::setIn2(const String& in2)
+void SVGFEComposite::setIn2(const String &in2)
 {
     m_in2 = in2;
 }
@@ -95,12 +96,13 @@ void SVGFEComposite::setK4(float k4)
     m_k4 = k4;
 }
 
-TextStream& SVGFEComposite::externalRepresentation(TextStream& ts) const
+TextStream &SVGFEComposite::externalRepresentation(TextStream &ts) const
 {
     ts << "[type=COMPOSITE] ";
     SVGFilterEffect::externalRepresentation(ts);
-    if (!in2().isEmpty())
+    if (!in2().isEmpty()) {
         ts << " [in2=\"" << in2() << "\"]";
+    }
     ts << " [k1=" << k1() << " k2=" << k2() << " k3=" << k3() << " k4=" << k4() << "]";
     return ts;
 }

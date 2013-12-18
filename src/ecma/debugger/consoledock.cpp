@@ -35,7 +35,8 @@
 #include <khistorycombobox.h>
 #include <klocalizedstring.h>
 
-namespace KJSDebugger {
+namespace KJSDebugger
+{
 
 class ConsoleItemDelegate : public QAbstractItemDelegate
 {
@@ -53,12 +54,10 @@ private:
     void drawTextLayout(QPainter *painter, const QTextLayout &layout, const QRect &rect) const;
 };
 
-
 ConsoleItemDelegate::ConsoleItemDelegate(QObject *parent)
     : QAbstractItemDelegate(parent)
 {
 }
-
 
 ConsoleItemDelegate::~ConsoleItemDelegate()
 {
@@ -77,8 +76,9 @@ void ConsoleItemDelegate::setLayoutOption(QTextLayout &layout, const QStyleOptio
 
 QSize ConsoleItemDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    if (!index.isValid())
+    if (!index.isValid()) {
         return QSize();
+    }
 
     QFont normalFont = option.font;
     QFont boldFont = normalFont;
@@ -89,7 +89,7 @@ QSize ConsoleItemDelegate::sizeHint(const QStyleOptionViewItem &option, const QM
     QString result     = index.data(ResultRole).toString();
 
     QStyleOptionViewItemV3 opt(option);
-    int maxWidth = static_cast<const QListView*>(opt.widget)->viewport()->width();
+    int maxWidth = static_cast<const QListView *>(opt.widget)->viewport()->width();
 
     QTextLayout inputLayout, resultLayout;
     setLayoutOption(inputLayout, opt, Qt::AlignLeft);
@@ -121,8 +121,7 @@ QSize ConsoleItemDelegate::layoutText(QTextLayout &layout, const QString &text, 
     layout.setText(text);
 
     layout.beginLayout();
-    while ((line = layout.createLine()).isValid())
-    {
+    while ((line = layout.createLine()).isValid()) {
         height += leading;
 
         line.setLineWidth(maxWidth);
@@ -133,8 +132,9 @@ QSize ConsoleItemDelegate::layoutText(QTextLayout &layout, const QString &text, 
         if (height + metrics.height() * 2 + leading >= constraints.height()) {
             line.setLineWidth(INT_MAX);
             line.setLineWidth(line.naturalTextWidth());
-        } else
+        } else {
             line.setLineWidth(maxWidth);
+        }
 
         line.setPosition(QPoint(0, height));
 
@@ -156,8 +156,7 @@ void ConsoleItemDelegate::drawTextLayout(QPainter *painter, const QTextLayout &l
     bool leftAligned = layout.textOption().alignment() & Qt::AlignLeft;
 
     // Draw each line in the layout
-    for (int i = 0; i < layout.lineCount(); i++)
-    {
+    for (int i = 0; i < layout.lineCount(); i++) {
         QTextLine line = layout.lineAt(i);
 
         int width = line.naturalTextWidth();
@@ -168,8 +167,9 @@ void ConsoleItemDelegate::drawTextLayout(QPainter *painter, const QTextLayout &l
 
 void ConsoleItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    if (!index.isValid())
+    if (!index.isValid()) {
         return;
+    }
 
     painter->save();
 
@@ -187,8 +187,9 @@ void ConsoleItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
 
     QStyle *style = opt.widget->style();
     style->drawPrimitive(QStyle::PE_PanelItemViewRow, &opt, painter, opt.widget);
-    if (selected)
+    if (selected) {
         painter->setPen(option.palette.color(QPalette::HighlightedText));
+    }
 
     // Draw the text
     QTextLayout inputLayout, resultLayout;
@@ -220,7 +221,7 @@ ConsoleDock::ConsoleDock(QWidget *parent)
 {
     setFeatures(DockWidgetMovable | DockWidgetFloatable);
 
-    QWidget* mainFrame = new QWidget(this);
+    QWidget *mainFrame = new QWidget(this);
 
     consoleView = new QListWidget(mainFrame);
     consoleView->setWordWrap(true);
@@ -237,7 +238,7 @@ ConsoleDock::ConsoleDock(QWidget *parent)
                                 QSizePolicy::Fixed);
 
     connect(consoleInput, SIGNAL(returnPressed()),
-           this, SLOT(slotUserRequestedEval()));
+            this, SLOT(slotUserRequestedEval()));
 
     consoleInputButton = new QPushButton(i18n("Enter"), mainFrame);
     connect(consoleInputButton, SIGNAL(clicked(bool)),
@@ -263,14 +264,14 @@ ConsoleDock::~ConsoleDock()
 {
 }
 
-void ConsoleDock::reportResult(const QString& src, const QString& msg)
+void ConsoleDock::reportResult(const QString &src, const QString &msg)
 {
-    QListWidgetItem* item = new QListWidgetItem(src, consoleView);
+    QListWidgetItem *item = new QListWidgetItem(src, consoleView);
     item->setData(ConsoleItemDelegate::ResultRole, msg);
     consoleView->scrollToItem(item);
 }
 
-void ConsoleDock::slotPasteItem(QListWidgetItem* item)
+void ConsoleDock::slotPasteItem(QListWidgetItem *item)
 {
     consoleInput->lineEdit()->setText(item->data(Qt::DisplayRole).toString());
 }

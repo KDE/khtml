@@ -26,25 +26,31 @@
 #include "SVGList.h"
 #include "SVGPathSeg.h"
 
-namespace khtml {
-    class Path;
+namespace khtml
+{
+class Path;
 }
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGElement;
- 
-    class SVGPathSegList : public SVGList<RefPtr<SVGPathSeg> > {
-    public:
-        static PassRefPtr<SVGPathSegList> create(const QualifiedName& attributeName) { return adoptRef(new SVGPathSegList(attributeName)); }
-        virtual ~SVGPathSegList();
+class SVGElement;
 
-        unsigned getPathSegAtLength(double);
-        khtml::Path toPathData();
-        
-    private:
-        SVGPathSegList(const QualifiedName&);
-    };
+class SVGPathSegList : public SVGList<RefPtr<SVGPathSeg> >
+{
+public:
+    static PassRefPtr<SVGPathSegList> create(const QualifiedName &attributeName)
+    {
+        return adoptRef(new SVGPathSegList(attributeName));
+    }
+    virtual ~SVGPathSegList();
+
+    unsigned getPathSegAtLength(double);
+    khtml::Path toPathData();
+
+private:
+    SVGPathSegList(const QualifiedName &);
+};
 
 } // namespace WebCore
 

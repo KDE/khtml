@@ -32,9 +32,10 @@
 #include "SVGPreserveAspectRatio.h"
 #include "SVGResourceFilter.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFEImageElement::SVGFEImageElement(const QualifiedName& tagName, Document* doc)
+SVGFEImageElement::SVGFEImageElement(const QualifiedName &tagName, Document *doc)
     : SVGFilterPrimitiveStandardAttributes(tagName, doc)
     , SVGURIReference()
     , SVGLangSpace()
@@ -48,60 +49,68 @@ SVGFEImageElement::SVGFEImageElement(const QualifiedName& tagName, Document* doc
 SVGFEImageElement::~SVGFEImageElement()
 {
     delete m_filterEffect;
-    if (m_cachedImage)
+    if (m_cachedImage) {
         m_cachedImage->removeClient(this);
+    }
 }
 
-ANIMATED_PROPERTY_DEFINITIONS(SVGFEImageElement, SVGPreserveAspectRatio*, PreserveAspectRatio, preserveAspectRatio, PreserveAspectRatio, preserveAspectRatio, SVGNames::preserveAspectRatioAttr, m_preserveAspectRatio.get())
+ANIMATED_PROPERTY_DEFINITIONS(SVGFEImageElement, SVGPreserveAspectRatio *, PreserveAspectRatio, preserveAspectRatio, PreserveAspectRatio, preserveAspectRatio, SVGNames::preserveAspectRatioAttr, m_preserveAspectRatio.get())
 
-void SVGFEImageElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGFEImageElement::parseMappedAttribute(MappedAttribute *attr)
 {
-    const String& value = attr->value();
+    const String &value = attr->value();
     if (attr->name() == SVGNames::preserveAspectRatioAttr) {
-        const UChar* c = value.characters();
-        const UChar* end = c + value.length();
+        const UChar *c = value.characters();
+        const UChar *end = c + value.length();
         preserveAspectRatioBaseValue()->parsePreserveAspectRatio(c, end);
     } else {
         if (SVGURIReference::parseMappedAttribute(attr)) {
             if (!href().startsWith("#")) {
                 // FIXME: this code needs to special-case url fragments and later look them up using getElementById instead of loading them here
-                if (m_cachedImage)
+                if (m_cachedImage) {
                     m_cachedImage->removeClient(this);
+                }
                 m_cachedImage = ownerDocument()->docLoader()->requestImage(href());
-                if (m_cachedImage)
+                if (m_cachedImage) {
                     m_cachedImage->addClient(this);
+                }
             }
             return;
         }
-        if (SVGLangSpace::parseMappedAttribute(attr))
+        if (SVGLangSpace::parseMappedAttribute(attr)) {
             return;
-        if (SVGExternalResourcesRequired::parseMappedAttribute(attr))
+        }
+        if (SVGExternalResourcesRequired::parseMappedAttribute(attr)) {
             return;
+        }
 
         SVGFilterPrimitiveStandardAttributes::parseMappedAttribute(attr);
     }
 }
 
-void SVGFEImageElement::notifyFinished(CachedResource* finishedObj)
+void SVGFEImageElement::notifyFinished(CachedResource *finishedObj)
 {
-    if (finishedObj == m_cachedImage && m_filterEffect)
+    if (finishedObj == m_cachedImage && m_filterEffect) {
         m_filterEffect->setCachedImage(m_cachedImage);
+    }
 }
 
-SVGFEImage* SVGFEImageElement::filterEffect(SVGResourceFilter* filter) const
+SVGFEImage *SVGFEImageElement::filterEffect(SVGResourceFilter *filter) const
 {
-    if (!m_filterEffect)
+    if (!m_filterEffect) {
         m_filterEffect = new SVGFEImage(filter);
-    
+    }
+
     // The resource may already be loaded!
-    if (m_cachedImage)
+    if (m_cachedImage) {
         m_filterEffect->setCachedImage(m_cachedImage);
+    }
 
     setStandardAttributes(m_filterEffect);
     return m_filterEffect;
 }
 
-void SVGFEImageElement::getSubresourceAttributeStrings(Vector<String>& urls) const
+void SVGFEImageElement::getSubresourceAttributeStrings(Vector<String> &urls) const
 {
     urls.append(href());
 }
@@ -110,4 +119,3 @@ void SVGFEImageElement::getSubresourceAttributeStrings(Vector<String>& urls) con
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

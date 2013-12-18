@@ -29,20 +29,21 @@ class khtml::MouseEvent::MouseEventPrivate
 {
 };
 
-khtml::MouseEvent::MouseEvent( const char *name, QMouseEvent *qmouseEvent, int x, int y,
-                               const DOM::DOMString &url, const DOM::DOMString& target,
-	                const DOM::Node &innerNode )
-: KParts::Event( name ), m_qmouseEvent( qmouseEvent ), m_x( x ), m_y( y ),
-  m_url( url ), m_target(target), m_innerNode( innerNode )
+khtml::MouseEvent::MouseEvent(const char *name, QMouseEvent *qmouseEvent, int x, int y,
+                              const DOM::DOMString &url, const DOM::DOMString &target,
+                              const DOM::Node &innerNode)
+    : KParts::Event(name), m_qmouseEvent(qmouseEvent), m_x(x), m_y(y),
+      m_url(url), m_target(target), m_innerNode(innerNode)
 {
-  d = 0;
-  if (innerNode.handle() && innerNode.handle()->renderer())
-      innerNode.handle()->renderer()->absolutePosition(m_nodeAbsX, m_nodeAbsY);
+    d = 0;
+    if (innerNode.handle() && innerNode.handle()->renderer()) {
+        innerNode.handle()->renderer()->absolutePosition(m_nodeAbsX, m_nodeAbsY);
+    }
 }
 
 khtml::MouseEvent::~MouseEvent()
 {
-  delete d;
+    delete d;
 }
 
 long khtml::MouseEvent::offset() const
@@ -51,8 +52,9 @@ long khtml::MouseEvent::offset() const
     if (innerNode().handle()) {
         // FIXME: Shouldn't be necessary to skip text nodes.
         DOM::Node inner = innerNode();
-        if (inner.nodeType() == Node::TEXT_NODE)
+        if (inner.nodeType() == Node::TEXT_NODE) {
             inner = inner.parentNode();
+        }
         pos = inner.handle()->positionForCoordinates(m_x, m_y).position();
     }
     return pos.offset();
@@ -71,23 +73,23 @@ const char *khtml::DrawContentsEvent::s_strDrawContentsEvent = "khtml/Events/Dra
 class khtml::DrawContentsEvent::DrawContentsEventPrivate
 {
 public:
-  DrawContentsEventPrivate()
-  {
-  }
-  ~DrawContentsEventPrivate()
-  {
-  }
+    DrawContentsEventPrivate()
+    {
+    }
+    ~DrawContentsEventPrivate()
+    {
+    }
 };
 
-khtml::DrawContentsEvent::DrawContentsEvent( QPainter *painter, int clipx, int clipy, int clipw, int cliph )
-  : KParts::Event( s_strDrawContentsEvent ), m_painter( painter ), m_clipx( clipx ), m_clipy( clipy ),
-    m_clipw( clipw ), m_cliph( cliph )
+khtml::DrawContentsEvent::DrawContentsEvent(QPainter *painter, int clipx, int clipy, int clipw, int cliph)
+    : KParts::Event(s_strDrawContentsEvent), m_painter(painter), m_clipx(clipx), m_clipy(clipy),
+      m_clipw(clipw), m_cliph(cliph)
 {
-  d = new DrawContentsEventPrivate;
+    d = new DrawContentsEventPrivate;
 }
 
 khtml::DrawContentsEvent::~DrawContentsEvent()
 {
-  delete d;
+    delete d;
 }
 

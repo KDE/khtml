@@ -36,7 +36,8 @@
 
 #include "value2string.h"
 
-namespace KJSDebugger {
+namespace KJSDebugger
+{
 
 LocalVariablesDock::LocalVariablesDock(QWidget *parent)
     : QDockWidget(i18n("Local Variables"), parent), m_execState(0)
@@ -52,7 +53,7 @@ LocalVariablesDock::LocalVariablesDock(QWidget *parent)
     m_view->setHeaderLabels(headers);
 
     connect(m_view, SIGNAL(itemExpanded(QTreeWidgetItem*)),
-            this,   SLOT  (slotItemExpanded(QTreeWidgetItem*)));
+            this,   SLOT(slotItemExpanded(QTreeWidgetItem*)));
 
     setWidget(m_view);
 }
@@ -61,27 +62,24 @@ LocalVariablesDock::~LocalVariablesDock()
 {
 }
 
-void LocalVariablesDock::updateValue(KJS::ExecState* exec, KJS::JSValue* val,
-                                     QTreeWidgetItem* item, bool recurse)
+void LocalVariablesDock::updateValue(KJS::ExecState *exec, KJS::JSValue *val,
+                                     QTreeWidgetItem *item, bool recurse)
 {
     // Note: parent is responsible for setting our name..
     item->setText(1, valueToString(val));
     if (recurse) {
-        if (val->isObject())
-        {
+        if (val->isObject()) {
             updateObjectProperties(exec, val, item);
-        }
-        else
-        {
+        } else {
             // It has no kids, so treeview item better not, either
-            QList<QTreeWidgetItem*> kids = item->takeChildren();
+            QList<QTreeWidgetItem *> kids = item->takeChildren();
             qDeleteAll(kids);
         }
-    }   
+    }
 }
 
-void LocalVariablesDock::updateObjectProperties(KJS::ExecState* exec, KJS::JSValue* val,
-                                                QTreeWidgetItem* item, bool globalObject)
+void LocalVariablesDock::updateObjectProperties(KJS::ExecState *exec, KJS::JSValue *val,
+        QTreeWidgetItem *item, bool globalObject)
 {
     bool root = (item == m_view->invisibleRootItem());
 
@@ -90,13 +88,12 @@ void LocalVariablesDock::updateObjectProperties(KJS::ExecState* exec, KJS::JSVal
     bool recurse = item->isExpanded() || root;
 
     QStringList props;
-    KJS::JSObject* obj = 0;
+    KJS::JSObject *obj = 0;
 
     // Get the list of all relevant properties..
     // Note: val may be null for root case..
-    if (val)
-    {
-        assert (val->isObject());
+    if (val) {
+        assert(val->isObject());
 
         obj = val->getObject();
         KJS::PropertyNameArray jsProps;
@@ -105,50 +102,54 @@ void LocalVariablesDock::updateObjectProperties(KJS::ExecState* exec, KJS::JSVal
         // to not include things from the prototype
         obj->getOwnPropertyNames(exec, jsProps, KJS::PropertyMap::ExcludeDontEnumProperties);
 
-        for (int pos = 0; pos < jsProps.size(); ++pos) 
-        {
-            // For global (window) objects, we only show hash table properties, 
+        for (int pos = 0; pos < jsProps.size(); ++pos) {
+            // For global (window) objects, we only show hash table properties,
             // for less cluttered display.
-            if (globalObject && !obj->getDirect(jsProps[pos]))
+            if (globalObject && !obj->getDirect(jsProps[pos])) {
                 continue;
+            }
 
             props.append(jsProps[pos].ustring().qstring());
         }
     }
 
     // If we're not an activation, also list the prototype, as __proto__
-    if (val && !val->getObject()->isActivation())
+    if (val && !val->getObject()->isActivation()) {
         props << QLatin1String("__proto__");
+    }
 
     // If we're the root, also pretend 'this' is there.
-    if (root && exec)
+    if (root && exec) {
         props << QLatin1String("this");
+    }
 
     // Sort them, to make updates easier.
     props.sort();
 
     // Do we need more or less nodes?
-    while (props.size() < item->childCount())
+    while (props.size() < item->childCount()) {
         delete item->takeChild(item->childCount() - 1);
+    }
 
-    while (props.size() > item->childCount())
+    while (props.size() > item->childCount()) {
         item->addChild(new QTreeWidgetItem);
+    }
 
     // Update names and values.
-    for (int pos = 0; pos < props.size(); ++pos) 
-    {
+    for (int pos = 0; pos < props.size(); ++pos) {
         QString propName = props[pos];
-        QTreeWidgetItem* kid = item->child(pos);
+        QTreeWidgetItem *kid = item->child(pos);
         kid->setText(0, propName);
 
-        if (root && propName == "this")
+        if (root && propName == "this") {
             updateValue(exec, exec->thisValue(), kid, true);
-        else
+        } else {
             updateValue(exec, obj->get(exec, KJS::Identifier(KJS::UString(props[pos]))), kid, recurse);
+        }
     }
 }
 
-void LocalVariablesDock::slotItemExpanded(QTreeWidgetItem* item)
+void LocalVariablesDock::slotItemExpanded(QTreeWidgetItem *item)
 {
     Q_UNUSED(item);
     updateDisplay(m_execState);
@@ -159,23 +160,23 @@ void LocalVariablesDock::updateDisplay(KJS::ExecState *exec)
     m_execState = exec;
 
     // Find out out scope object...
-    KJS::JSObject* scopeObject = 0;
-    KJS::Context*  context =0;
+    KJS::JSObject *scopeObject = 0;
+    KJS::Context  *context = 0;
 
-    if (exec)
+    if (exec) {
         context = exec->context();
+    }
 
-    // Find the nearest local scope, or 
+    // Find the nearest local scope, or
     // failing that the topmost scope
-    if (context)
-    {
+    if (context) {
         KJS::ScopeChain chain = context->scopeChain();
-        for( KJS::ScopeChainIterator iter = chain.begin();
-            iter != chain.end(); ++iter)
-        {
+        for (KJS::ScopeChainIterator iter = chain.begin();
+                iter != chain.end(); ++iter) {
             scopeObject = *iter;
-            if (scopeObject->isActivation())
+            if (scopeObject->isActivation()) {
                 break;
+            }
         }
     }
 

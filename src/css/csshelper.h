@@ -24,19 +24,16 @@
 
 #include "dom/dom_string.h"
 
-
 namespace khtml
 {
-    
-    /*
-     * mostly just removes the url("...") brace
-     */
-    DOM::DOMString parseURL(const DOM::DOMString &url);
 
-    const float cssPixelsPerInch = 96.0f;
+/*
+ * mostly just removes the url("...") brace
+ */
+DOM::DOMString parseURL(const DOM::DOMString &url);
+
+const float cssPixelsPerInch = 96.0f;
 
 }
-
-
 
 #endif

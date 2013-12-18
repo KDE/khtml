@@ -23,7 +23,8 @@
 #include <QPainterPath>
 #include <QRect>
 
-namespace khtml {
+namespace khtml
+{
 
 class BorderArcStroker
 {
@@ -31,10 +32,18 @@ public:
     BorderArcStroker();
     ~BorderArcStroker();
 
-    void setArc(const QRectF &r, qreal startAngle, qreal _sweepLength) { rect = r; angle = startAngle; sweepLength = _sweepLength; }
+    void setArc(const QRectF &r, qreal startAngle, qreal _sweepLength)
+    {
+        rect = r;
+        angle = startAngle;
+        sweepLength = _sweepLength;
+    }
     void setPenWidth(qreal leftRight, qreal topBottom);
     void setDashPattern(qreal dashLength, qreal spaceLength);
-    void setDashOffset(qreal offset) { patternOffset = offset; }
+    void setDashOffset(qreal offset)
+    {
+        patternOffset = offset;
+    }
 
     QPainterPath createStroke(qreal *nextOffset = 0) const;
 

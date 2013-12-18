@@ -38,7 +38,8 @@ class CIFilter;
 #endif
 #endif
 
-namespace WebCore {
+namespace WebCore
+{
 
 enum SVGComponentTransferType {
     SVG_FECOMPONENTTRANSFER_TYPE_UNKNOWN  = 0,
@@ -71,29 +72,30 @@ struct SVGComponentTransferFunction {
     Vector<float> tableValues;
 };
 
-class SVGFEComponentTransfer : public SVGFilterEffect {
+class SVGFEComponentTransfer : public SVGFilterEffect
+{
 public:
-    SVGFEComponentTransfer(SVGResourceFilter*);
+    SVGFEComponentTransfer(SVGResourceFilter *);
 
     SVGComponentTransferFunction redFunction() const;
-    void setRedFunction(const SVGComponentTransferFunction&);
+    void setRedFunction(const SVGComponentTransferFunction &);
 
     SVGComponentTransferFunction greenFunction() const;
-    void setGreenFunction(const SVGComponentTransferFunction&);
+    void setGreenFunction(const SVGComponentTransferFunction &);
 
     SVGComponentTransferFunction blueFunction() const;
-    void setBlueFunction(const SVGComponentTransferFunction&);
+    void setBlueFunction(const SVGComponentTransferFunction &);
 
     SVGComponentTransferFunction alphaFunction() const;
-    void setAlphaFunction(const SVGComponentTransferFunction&);
+    void setAlphaFunction(const SVGComponentTransferFunction &);
 
-    virtual TextStream& externalRepresentation(TextStream&) const;
+    virtual TextStream &externalRepresentation(TextStream &) const;
 
 #if PLATFORM(CI)
-    virtual CIFilter* getCIFilter(const FloatRect& bbox) const;
+    virtual CIFilter *getCIFilter(const FloatRect &bbox) const;
 
 private:
-    CIFilter* getFunctionFilter(SVGChannelSelectorType, CIImage* inputImage) const;
+    CIFilter *getFunctionFilter(SVGChannelSelectorType, CIImage *inputImage) const;
 #endif
 
 private:

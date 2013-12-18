@@ -51,8 +51,8 @@ class QTabWidget;
 class QFrame;
 class QEventLoop;
 
-
-namespace KJSDebugger {
+namespace KJSDebugger
+{
 
 class CallStackDock;
 class WatchesDock;
@@ -60,7 +60,6 @@ class LocalVariablesDock;
 class ScriptsDock;
 class BreakpointsDock;
 class ConsoleDock;
-
 
 /**
 * DebuggerWindow
@@ -72,7 +71,7 @@ class ConsoleDock;
 * There is only one debug window per program. This can be obtained by calling #instance
 */
 class DebugWindow : public KXmlGuiWindow, public KJS::Debugger, public KComponentData,
-                    public khtml::Shared<DebugWindow>
+    public khtml::Shared<DebugWindow>
 {
     Q_OBJECT
 
@@ -90,7 +89,10 @@ public:
     // Returns if we blocked execution; KHTML will attempt to use it
     // to prevent some kinds of accidental recursion. Should go
     // if proper modal dialog manager shows up
-    bool inSession() const { return !m_activeSessionCtxs.isEmpty(); }
+    bool inSession() const
+    {
+        return !m_activeSessionCtxs.isEmpty();
+    }
 
 public:
 
@@ -107,7 +109,7 @@ public:
     bool shouldReindentSources() const;
 
     // Called by KJSProxy when we navigate away from a page
-    void clearInterpreter(KJS::Interpreter* interp);
+    void clearInterpreter(KJS::Interpreter *interp);
 
     // Hook for activating the debugger from gdb or such
     static void forceStopAtNext();
@@ -123,7 +125,7 @@ public Q_SLOTS:
                  KTextEditor::MarkInterface::MarkChangeAction action);
 
 protected:
-    virtual void closeEvent(QCloseEvent* event);
+    virtual void closeEvent(QCloseEvent *event);
 
     bool eventFilter(QObject *object, QEvent *event);
     void disableOtherWindows();
@@ -136,9 +138,9 @@ private Q_SLOTS:
     void displayScript(KJSDebugger::DebugDocument *document, int line); // -1 denotes not focusing on the line
     void updateVarView();
     void closeTab();
-    void documentDestroyed(KJSDebugger::DebugDocument* doc);
+    void documentDestroyed(KJSDebugger::DebugDocument *doc);
 
-    void doEval(const QString& code);
+    void doEval(const QString &code);
 private:
     void createActions();
     void createMenus();
@@ -157,14 +159,14 @@ private:
 
     enum RunMode { Running, Stopped };
 
-    void setUIMode        (RunMode mode);
+    void setUIMode(RunMode mode);
     void updateStoppedMark(RunMode mode);
 private:
     void cleanupDocument(DebugDocument::Ptr document);
 
     // Checks to see whether we should stop at the given location, based on the current
     // mode and breakpoints. Returns false if we should abort
-    bool checkSourceLocation(KJS::ExecState* exec, int sourceId, int firstLine, int lastLine);
+    bool checkSourceLocation(KJS::ExecState *exec, int sourceId, int firstLine, int lastLine);
 
     // Standard actions
     QAction *m_exitAct;
@@ -189,14 +191,14 @@ private:
     QTabWidget *m_tabWidget;
 
     // e.g. not aborted
-    bool shouldContinue(InterpreterContext* ic);
+    bool shouldContinue(InterpreterContext *ic);
 
     // This keeps track of modal dialogs we've put up
     // that may disable the CPU guard.
     int m_modalLevel;
 
     // This is all the nested event loops that are active
-    QStack<QEventLoop*> m_activeEventLoops;
+    QStack<QEventLoop *> m_activeEventLoops;
 
     void resetTimeoutsIfNeeded();
 
@@ -211,40 +213,38 @@ private:
     // should work globally.
     bool m_breakAtNext;
 
-    InterpreterContext* ctx() { return m_activeSessionCtxs.isEmpty() ? 0 : m_activeSessionCtxs.top(); }
+    InterpreterContext *ctx()
+    {
+        return m_activeSessionCtxs.isEmpty() ? 0 : m_activeSessionCtxs.top();
+    }
 
     QHash<int,     DebugDocument::Ptr> m_docForSid;
 
     // For each interpreter, we keep track of what documents belong to it
     // so we can discard them when needed, as well as flush for reload
-    QHash<KJS::Interpreter*, QList<DebugDocument::Ptr> > m_docsForIntrp;
+    QHash<KJS::Interpreter *, QList<DebugDocument::Ptr> > m_docsForIntrp;
 
     // Some of the state we want to keep track of while debugging, such as backtraces,
     // is per-interpreter, and this lets us look uit up.
-    QHash<KJS::Interpreter*, InterpreterContext*> m_contexts;
+    QHash<KJS::Interpreter *, InterpreterContext *> m_contexts;
 
     // This keeps track of the contexts for the various debuggers
     // we may be in session for. It's needed because the same window is
     // used for all, so we may occassionally be a few levels of recursion in,
     // so we need to know exactly how to unwind, etc.
-    QStack<InterpreterContext*> m_activeSessionCtxs;
+    QStack<InterpreterContext *> m_activeSessionCtxs;
 
     // This denotes the session we were in once we entered the running UI
     // mode. May be null
-    InterpreterContext* m_runningSessionCtx;
-
+    InterpreterContext *m_runningSessionCtx;
 
     // The documents that are currently open for viewing.
     // The index matches that of the tab widget;
-    QList<DebugDocument*> m_openDocuments;
+    QList<DebugDocument *> m_openDocuments;
 
     static DebugWindow *s_debugger;
 };
 
-
-
-
 } // namespace
-
 
 #endif // DEBUGWINDOW_H

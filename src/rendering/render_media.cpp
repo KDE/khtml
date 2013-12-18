@@ -21,7 +21,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include "render_media.h"
@@ -35,20 +35,25 @@ const double doubleInf = 999999999.0; // ### numeric_limits<double>::infinity()
 
 using namespace DOM;
 
-namespace khtml {
+namespace khtml
+{
 
-RenderMedia::RenderMedia(HTMLMediaElement* element) : RenderWidget(element), m_player(0)
+RenderMedia::RenderMedia(HTMLMediaElement *element) : RenderWidget(element), m_player(0)
 {
     setInline(true); // <video> is an inline element.
-    QWidget* container = new QWidget();
+    QWidget *container = new QWidget();
     container->setLayout(new QVBoxLayout(container));
     setQWidget(container);
 }
 
-void RenderMedia::setPlayer(MediaPlayer* player)
+void RenderMedia::setPlayer(MediaPlayer *player)
 {
-    if (m_player == player) return;
-    if (m_player) m_player->deleteLater();
+    if (m_player == player) {
+        return;
+    }
+    if (m_player) {
+        m_player->deleteLater();
+    }
     m_player = player;
     connect(player->mediaObject(), SIGNAL(metaDataChanged()), SLOT(slotMetaDataChanged()));
     player->setParent(widget());
@@ -63,28 +68,29 @@ void RenderMedia::layout()
     RenderWidget::layout();
 
     if (mediaElement()->controls() && widget()->layout()->count() == 1) {
-        MediaControls* toolbox = new MediaControls(player(), widget());
-	widget()->layout()->addWidget(toolbox);
-	if ((!widget()->underMouse()) && mediaElement()->isVideo())
-	    toolbox->hide();
-	else
-	    toolbox->show();
+        MediaControls *toolbox = new MediaControls(player(), widget());
+        widget()->layout()->addWidget(toolbox);
+        if ((!widget()->underMouse()) && mediaElement()->isVideo()) {
+            toolbox->hide();
+        } else {
+            toolbox->show();
+        }
     }
 }
 
-bool RenderMedia::eventFilter(QObject* o, QEvent* e)
+bool RenderMedia::eventFilter(QObject *o, QEvent *e)
 {
     if (widget()->layout()->count() > 1 && mediaElement()->isVideo()) {
-        switch(e->type()) {
+        switch (e->type()) {
         case QEvent::Enter:
-	case QEvent::FocusIn:
-	    widget()->layout()->itemAt(1)->widget()->show();
-	    break;
-	case QEvent::Leave:
-	case QEvent::FocusOut:
-	    widget()->layout()->itemAt(1)->widget()->hide();
-	    break;
-	default: ;
+        case QEvent::FocusIn:
+            widget()->layout()->itemAt(1)->widget()->show();
+            break;
+        case QEvent::Leave:
+        case QEvent::FocusOut:
+            widget()->layout()->itemAt(1)->widget()->hide();
+            break;
+        default:;
         }
     }
 
@@ -100,15 +106,15 @@ void RenderMedia::slotMetaDataChanged()
 {
     if (mediaElement()->isVideo()) {
         if (player()->videoWidget()->sizeHint().isValid()) {
-	    setIntrinsicWidth(player()->videoWidget()->sizeHint().width());
-	    setIntrinsicHeight(player()->videoWidget()->sizeHint().height());
+            setIntrinsicWidth(player()->videoWidget()->sizeHint().width());
+            setIntrinsicHeight(player()->videoWidget()->sizeHint().height());
         }
     } else {
         if (widget()->sizeHint().isValid()) {
-	    setIntrinsicWidth(widget()->sizeHint().width());
-	    setIntrinsicHeight(widget()->sizeHint().height());
+            setIntrinsicWidth(widget()->sizeHint().width());
+            setIntrinsicHeight(widget()->sizeHint().height());
         }
-	player()->hide();
+        player()->hide();
     }
 
     setNeedsLayoutAndMinMaxRecalc();

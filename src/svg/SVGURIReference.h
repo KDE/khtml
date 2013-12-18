@@ -27,26 +27,28 @@
 #include "SVGElement.h"
 #include "xml/Document.h" //khtml
 
-namespace WebCore {
+namespace WebCore
+{
 
-    //class MappedAttribute;
+//class MappedAttribute;
 
-    class SVGURIReference {
-    public:
-        SVGURIReference();
-        virtual ~SVGURIReference();
+class SVGURIReference
+{
+public:
+    SVGURIReference();
+    virtual ~SVGURIReference();
 
-        bool parseMappedAttribute(MappedAttribute*);
-        bool isKnownAttribute(const QualifiedName&);
+    bool parseMappedAttribute(MappedAttribute *);
+    bool isKnownAttribute(const QualifiedName &);
 
-        static String getTarget(const String& url);
+    static String getTarget(const String &url);
 
-    protected:
-        virtual const SVGElement* contextElement() const = 0;
+protected:
+    virtual const SVGElement *contextElement() const = 0;
 
-    private:
-        ANIMATED_PROPERTY_DECLARATIONS_WITH_CONTEXT(SVGURIReference, String, String, Href, href)
-    };
+private:
+    ANIMATED_PROPERTY_DECLARATIONS_WITH_CONTEXT(SVGURIReference, String, String, Href, href)
+};
 
 } // namespace WebCore
 

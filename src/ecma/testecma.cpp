@@ -38,30 +38,30 @@
 #include "dom/dom_string.h"
 #include "ecma/kjs_dom.h"
 
-
 using namespace KJS;
 
 int main(int, char **)
 {
-  KJScript kjs;
-  kjs.enableDebug();
-  DOM::Document doc;
+    KJScript kjs;
+    kjs.enableDebug();
+    DOM::Document doc;
 
-  DOMDocument *dd = new DOMDocument(&doc);
-  Global::current().put("document", KJSO(dd));
+    DOMDocument *dd = new DOMDocument(&doc);
+    Global::current().put("document", KJSO(dd));
 
-  printf("Entering interactive mode.\n"
-	 "You may access the DOM via the 'document' property.\n"
-	 "Use debug() to print to the console. Press C-d or C-c to exit.\n\n");
+    printf("Entering interactive mode.\n"
+           "You may access the DOM via the 'document' property.\n"
+           "Use debug() to print to the console. Press C-d or C-c to exit.\n\n");
 
-  char buffer[1000];
-  FILE *in = fdopen(0, "r");
+    char buffer[1000];
+    FILE *in = fdopen(0, "r");
 
-  while (1) {
-    printf("KJS> ");
-    if (!fgets(buffer, 999, in))
-      break;
-    kjs.evaluate(buffer);
-  }
-  printf("\n");
+    while (1) {
+        printf("KJS> ");
+        if (!fgets(buffer, 999, in)) {
+            break;
+        }
+        kjs.evaluate(buffer);
+    }
+    printf("\n");
 }

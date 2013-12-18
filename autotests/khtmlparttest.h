@@ -25,7 +25,7 @@ class KHTMLView;
 
 class KHTMLPartTest : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
 private Q_SLOTS:
     void initTestCase();
     void testConstructKHTMLViewFromInitList();

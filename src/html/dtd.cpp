@@ -58,7 +58,7 @@ const unsigned short DOM::tagPriorityArray[] = {
     1, // ID_BDO
     1, // ID_BIG
     5, // ID_BLOCKQUOTE
-   10, // ID_BODY
+    10, // ID_BODY
     0, // ID_BR
     1, // ID_BUTTON
     1, // ID_CANVAS
@@ -81,16 +81,16 @@ const unsigned short DOM::tagPriorityArray[] = {
     1, // ID_FONT
     3, // ID_FORM
     0, // ID_FRAME
-   10,// ID_FRAMESET
+    10,// ID_FRAMESET
     5, // ID_H1
     5, // ID_H2
     5, // ID_H3
     5, // ID_H4
     5, // ID_H5
     5, // ID_H6
-   10,// ID_HEAD
+    10,// ID_HEAD
     0, // ID_HR
-   11,// ID_HTML
+    11,// ID_HTML
     1, // ID_I
     1, // ID_IFRAME
     1, // ID_ILAYER
@@ -112,8 +112,8 @@ const unsigned short DOM::tagPriorityArray[] = {
     5, // ID_MENU
     0, // ID_META
     5, // ID_NOBR
-   10,// ID_NOEMBED
-   10,// ID_NOFRAMES
+    10,// ID_NOEMBED
+    10,// ID_NOFRAMES
     3, // ID_NOSCRIPT
     1, // ID_NOLAYER
     5, // ID_OBJECT
@@ -382,7 +382,6 @@ static const ushort tag_list_quirk_block[] = {
     0
 };
 
-
 static const ushort tag_list_select[] = {
     ID_TEXT,
     ID_OPTGROUP,
@@ -430,14 +429,14 @@ static const ushort scope_boundary[] = {
 static bool check_array(ushort child, const ushort *tagList)
 {
     int i = 0;
-    while(tagList[i] != 0)
-    {
-        if(tagList[i] == child) return true;
+    while (tagList[i] != 0) {
+        if (tagList[i] == child) {
+            return true;
+        }
         i++;
     }
     return false;
 }
-
 
 static bool check_block(ushort childID, bool strict)
 {
@@ -465,16 +464,19 @@ bool DOM::checkChild(ushort tagID, ushort childID, bool strict)
 {
     //qDebug() << "checkChild: " << tagID << "/" << childID;
 
-    if (childID == ID_COMMENT) return true;
+    if (childID == ID_COMMENT) {
+        return true;
+    }
 
     // Treat custom elements the same as <span>.
-    if (tagID > ID_LAST_TAG)
+    if (tagID > ID_LAST_TAG) {
         tagID = ID_SPAN;
-    if (childID > ID_LAST_TAG)
+    }
+    if (childID > ID_LAST_TAG) {
         childID = ID_SPAN;
+    }
 
-    switch(tagID)
-    {
+    switch (tagID) {
     case ID_TT:
     case ID_I:
     case ID_B:
@@ -507,7 +509,7 @@ bool DOM::checkChild(ushort tagID, ushort childID, bool strict)
     case ID_P:
         // P: %inline *
         return check_inline(childID, strict) ||
-               (!strict && childID == ID_TABLE );
+               (!strict && childID == ID_TABLE);
     case ID_H1:
     case ID_H2:
     case ID_H3:
@@ -544,7 +546,7 @@ bool DOM::checkChild(ushort tagID, ushort childID, bool strict)
     case ID_DT:
         // DT: %inline *
         return check_inline(childID, strict) ||
-              (!strict && check_block(childID, true) && childID != ID_DL);
+               (!strict && check_block(childID, true) && childID != ID_DL);
     case ID_LI:
     case ID_DIV:
     case ID_SPAN:
@@ -601,39 +603,48 @@ bool DOM::checkChild(ushort tagID, ushort childID, bool strict)
         return check_inline(childID, strict) ||
                (!strict && check_block(childID, true));
     case ID_KEYGEN:
-        // KEYGEN does not really allow any children
-        // from outside, just need this to be able
-        // to add the keylengths ourself
-        // Yes, consider it a hack (Dirk)
+    // KEYGEN does not really allow any children
+    // from outside, just need this to be able
+    // to add the keylengths ourself
+    // Yes, consider it a hack (Dirk)
     case ID_SELECT:
         // SELECT: _7 +
         return check_array(childID, tag_list_select);
     case ID_OPTGROUP:
         // OPTGROUP: OPTION +
-        if(childID == ID_OPTION) return true;
+        if (childID == ID_OPTION) {
+            return true;
+        }
         return false;
     case ID_OPTION:
-        if(childID == ID_SCRIPT) return true;
-        // fallthrough intentional
+        if (childID == ID_SCRIPT) {
+            return true;
+        }
+    // fallthrough intentional
     case ID_TEXTAREA:
     case ID_TITLE:
     case ID_STYLE:
     case ID_SCRIPT:
         // OPTION: TEXT
-        if(childID == ID_TEXT) return true;
+        if (childID == ID_TEXT) {
+            return true;
+        }
         return false;
     case ID_FIELDSET:
         // FIELDSET: ( TEXT , LEGEND , %flow * )
-        if(childID == ID_TEXT) return true;
-        if(childID == ID_LEGEND) return true;
+        if (childID == ID_TEXT) {
+            return true;
+        }
+        if (childID == ID_LEGEND) {
+            return true;
+        }
         return check_flow(childID, strict);
     case ID_BUTTON:
         // BUTTON: %flow * - _8
         return check_flow(childID, strict);
     case ID_TABLE:
         // TABLE: ( CAPTION ? , ( COL * | COLGROUP * ) , THEAD ? , TFOOT ? , TBODY + )
-        switch(childID)
-        {
+        switch (childID) {
         case ID_CAPTION:
         case ID_COL:
         case ID_COLGROUP:
@@ -650,11 +661,15 @@ bool DOM::checkChild(ushort tagID, ushort childID, bool strict)
     case ID_TFOOT:
     case ID_TBODY:
         // THEAD: TR +
-        if(childID == ID_TR || childID == ID_SCRIPT) return true;
+        if (childID == ID_TR || childID == ID_SCRIPT) {
+            return true;
+        }
         return false;
     case ID_COLGROUP:
         // COLGROUP: COL *
-        if(childID == ID_COL) return true;
+        if (childID == ID_COL) {
+            return true;
+        }
         return false;
     case ID_TR:
         // TR: (TD, TH)
@@ -667,8 +682,7 @@ bool DOM::checkChild(ushort tagID, ushort childID, bool strict)
         return check_array(childID, tag_list_head);
     case ID_HTML:
         // HTML: ( HEAD , COMMENT, ( BODY | ( FRAMESET & NOFRAMES ? ) ) )
-        switch(childID)
-        {
+        switch (childID) {
         case ID_HEAD:
         case ID_BODY:
         case ID_FRAMESET:
@@ -686,8 +700,7 @@ bool DOM::checkChild(ushort tagID, ushort childID, bool strict)
 
 void DOM::addForbidden(int tagId, ushort *forbiddenTags)
 {
-    switch(tagId)
-    {
+    switch (tagId) {
     case ID_A:
         // we allow nested anchors. The innermost one wil be taken...
         //forbiddenTags[ID_A]++;
@@ -695,7 +708,7 @@ void DOM::addForbidden(int tagId, ushort *forbiddenTags)
     case ID_NOBR:
         forbiddenTags[ID_PRE]++;
         forbiddenTags[ID_LISTING]++;
-        // fall through
+    // fall through
     case ID_PRE:
     case ID_LISTING:
     case ID_PLAINTEXT:
@@ -734,15 +747,14 @@ void DOM::addForbidden(int tagId, ushort *forbiddenTags)
 
 void DOM::removeForbidden(int tagId, ushort *forbiddenTags)
 {
-    switch(tagId)
-    {
+    switch (tagId) {
     case ID_A:
         //forbiddenTags[ID_A]--;
         break;
     case ID_NOBR:
         forbiddenTags[ID_PRE]--;
         forbiddenTags[ID_LISTING]--;
-        // fall through
+    // fall through
     case ID_PRE:
     case ID_LISTING:
     case ID_XMP:

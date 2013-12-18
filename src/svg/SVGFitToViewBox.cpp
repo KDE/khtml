@@ -33,7 +33,8 @@
 #include "SVGPreserveAspectRatio.h"
 //#include "StringImpl.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 SVGFitToViewBox::SVGFitToViewBox()
     : m_viewBox()
@@ -46,19 +47,20 @@ SVGFitToViewBox::~SVGFitToViewBox()
 }
 
 ANIMATED_PROPERTY_DEFINITIONS_WITH_CONTEXT(SVGFitToViewBox, FloatRect, Rect, rect, ViewBox, viewBox, SVGNames::viewBoxAttr, m_viewBox)
-ANIMATED_PROPERTY_DEFINITIONS_WITH_CONTEXT(SVGFitToViewBox, SVGPreserveAspectRatio*, PreserveAspectRatio, preserveAspectRatio, PreserveAspectRatio, preserveAspectRatio, SVGNames::preserveAspectRatioAttr, m_preserveAspectRatio.get())
+ANIMATED_PROPERTY_DEFINITIONS_WITH_CONTEXT(SVGFitToViewBox, SVGPreserveAspectRatio *, PreserveAspectRatio, preserveAspectRatio, PreserveAspectRatio, preserveAspectRatio, SVGNames::preserveAspectRatioAttr, m_preserveAspectRatio.get())
 
-bool SVGFitToViewBox::parseViewBox(const UChar*& c, const UChar* end, float& x, float& y, float& w, float& h, bool validate)
+bool SVGFitToViewBox::parseViewBox(const UChar *&c, const UChar *end, float &x, float &y, float &w, float &h, bool validate)
 {
-    Document* doc = contextElement()->document();
+    Document *doc = contextElement()->document();
     String str(c, end - c);
 
     skipOptionalSpaces(c, end);
 
     bool valid = (parseNumber(c, end, x) && parseNumber(c, end, y) &&
-          parseNumber(c, end, w) && parseNumber(c, end, h, false));
-    if (!validate)
+                  parseNumber(c, end, w) && parseNumber(c, end, h, false));
+    if (!validate) {
         return true;
+    }
     if (!valid) {
         //FIXME vtokarev doc->accessSVGExtensions()->reportWarning("Problem parsing viewBox=\"" + str + "\"");
         return false;
@@ -84,26 +86,28 @@ bool SVGFitToViewBox::parseViewBox(const UChar*& c, const UChar* end, float& x, 
 AffineTransform SVGFitToViewBox::viewBoxToViewTransform(float viewWidth, float viewHeight) const
 {
     FloatRect viewBoxRect = viewBox();
-    if (!viewBoxRect.width() || !viewBoxRect.height())
+    if (!viewBoxRect.width() || !viewBoxRect.height()) {
         return AffineTransform();
+    }
 
     return preserveAspectRatio()->getCTM(viewBoxRect.x(),
-            viewBoxRect.y(), viewBoxRect.width(), viewBoxRect.height(),
-            0, 0, viewWidth, viewHeight);
+                                         viewBoxRect.y(), viewBoxRect.width(), viewBoxRect.height(),
+                                         0, 0, viewWidth, viewHeight);
 }
 
-bool SVGFitToViewBox::parseMappedAttribute(MappedAttribute* attr)
+bool SVGFitToViewBox::parseMappedAttribute(MappedAttribute *attr)
 {
     if (attr->name() == SVGNames::viewBoxAttr) {
         float x = 0.0f, y = 0.0f, w = 0.0f, h = 0.0f;
-        const UChar* c = attr->value().characters();
-        const UChar* end = c + attr->value().length();
-        if (parseViewBox(c, end, x, y, w, h))
+        const UChar *c = attr->value().characters();
+        const UChar *end = c + attr->value().length();
+        if (parseViewBox(c, end, x, y, w, h)) {
             setViewBoxBaseValue(FloatRect(x, y, w, h));
+        }
         return true;
     } else if (attr->name() == SVGNames::preserveAspectRatioAttr) {
-        const UChar* c = attr->value().characters();
-        const UChar* end = c + attr->value().length();
+        const UChar *c = attr->value().characters();
+        const UChar *end = c + attr->value().length();
         preserveAspectRatioBaseValue()->parsePreserveAspectRatio(c, end);
         return true;
     }
@@ -111,7 +115,7 @@ bool SVGFitToViewBox::parseMappedAttribute(MappedAttribute* attr)
     return false;
 }
 
-bool SVGFitToViewBox::isKnownAttribute(const QualifiedName& attrName)
+bool SVGFitToViewBox::isKnownAttribute(const QualifiedName &attrName)
 {
     return (attrName == SVGNames::viewBoxAttr ||
             attrName == SVGNames::preserveAspectRatioAttr);

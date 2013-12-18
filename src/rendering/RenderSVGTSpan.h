@@ -27,12 +27,17 @@
 #if ENABLE(SVG)
 #include "RenderSVGInline.h"
 
-namespace WebCore {
-class RenderSVGTSpan : public RenderSVGInline {
+namespace WebCore
+{
+class RenderSVGTSpan : public RenderSVGInline
+{
 public:
-    RenderSVGTSpan(DOM::NodeImpl*);
-    virtual const char* renderName() const { return "RenderSVGTSpan"; }
-    virtual void absoluteRects(Vector<IntRect>& rects, int tx, int ty, bool topLevel = true);
+    RenderSVGTSpan(DOM::NodeImpl *);
+    virtual const char *renderName() const
+    {
+        return "RenderSVGTSpan";
+    }
+    virtual void absoluteRects(Vector<IntRect> &rects, int tx, int ty, bool topLevel = true);
 };
 }
 

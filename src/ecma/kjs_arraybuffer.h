@@ -24,43 +24,55 @@
 
 #include <kjs/object.h>
 
-namespace KJS {
+namespace KJS
+{
 
-    class ArrayBufferConstructorImp : public JSObject {
-    public:
-        ArrayBufferConstructorImp(ExecState *exec, DOM::DocumentImpl* d);
-        virtual bool implementsConstruct() const;
-        using KJS::JSObject::construct;
-        virtual JSObject* construct(ExecState *exec, const List &args);
-    private:
-        SharedPtr<DOM::DocumentImpl> doc;
+class ArrayBufferConstructorImp : public JSObject
+{
+public:
+    ArrayBufferConstructorImp(ExecState *exec, DOM::DocumentImpl *d);
+    virtual bool implementsConstruct() const;
+    using KJS::JSObject::construct;
+    virtual JSObject *construct(ExecState *exec, const List &args);
+private:
+    SharedPtr<DOM::DocumentImpl> doc;
+};
+
+class ArrayBuffer : public JSObject
+{
+public:
+    explicit ArrayBuffer(size_t size);
+    //copy the buffer
+    explicit ArrayBuffer(uint8_t *buffer, size_t size);
+    virtual ~ArrayBuffer();
+
+    enum {
+        ByteLength, Splice
     };
 
-    class ArrayBuffer : public JSObject {
-    public:
-        explicit ArrayBuffer(size_t size);
-        //copy the buffer
-        explicit ArrayBuffer(uint8_t* buffer, size_t size);
-        virtual ~ArrayBuffer();
+    using KJS::JSObject::getOwnPropertySlot;
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    JSValue *getValueProperty(ExecState *exec, int token) const;
 
-        enum {
-            ByteLength, Splice
-        };
+    virtual const ClassInfo *classInfo() const
+    {
+        return &info;
+    }
+    static const ClassInfo info;
 
-        using KJS::JSObject::getOwnPropertySlot;
-        bool getOwnPropertySlot(ExecState *exec, const Identifier& propertyName, PropertySlot& slot);
-        JSValue *getValueProperty(ExecState *exec, int token) const;
+    size_t byteLength() const
+    {
+        return m_size;
+    }
+    uint8_t *buffer() const
+    {
+        return m_buffer;
+    }
 
-        virtual const ClassInfo* classInfo() const { return &info; }
-        static const ClassInfo info;
-
-        size_t byteLength() const { return m_size; }
-        uint8_t* buffer() const { return m_buffer; }
-
-    private:
-        size_t m_size;
-        uint8_t* m_buffer;
-    };
+private:
+    size_t m_size;
+    uint8_t *m_buffer;
+};
 
 } // namespace KJS
 

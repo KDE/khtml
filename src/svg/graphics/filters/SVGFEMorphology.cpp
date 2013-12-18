@@ -23,9 +23,10 @@
 #include "SVGFEMorphology.h"
 #include "TextStream.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFEMorphology::SVGFEMorphology(SVGResourceFilter* filter)
+SVGFEMorphology::SVGFEMorphology(SVGResourceFilter *filter)
     : SVGFilterEffect(filter)
     , m_operator(SVG_MORPHOLOGY_OPERATOR_UNKNOWN)
     , m_radiusX(0.0f)
@@ -63,26 +64,25 @@ void SVGFEMorphology::setRadiusY(float radiusY)
     m_radiusY = radiusY;
 }
 
-static TextStream& operator<<(TextStream& ts, SVGMorphologyOperatorType t)
+static TextStream &operator<<(TextStream &ts, SVGMorphologyOperatorType t)
 {
-    switch (t)
-    {
-        case SVG_MORPHOLOGY_OPERATOR_UNKNOWN:
-            ts << "UNKNOWN"; break;
-        case SVG_MORPHOLOGY_OPERATOR_ERODE:
-            ts << "ERODE"; break;
-        case SVG_MORPHOLOGY_OPERATOR_DIALATE:
-            ts << "DIALATE"; break;
+    switch (t) {
+    case SVG_MORPHOLOGY_OPERATOR_UNKNOWN:
+        ts << "UNKNOWN"; break;
+    case SVG_MORPHOLOGY_OPERATOR_ERODE:
+        ts << "ERODE"; break;
+    case SVG_MORPHOLOGY_OPERATOR_DIALATE:
+        ts << "DIALATE"; break;
     }
     return ts;
 }
 
-TextStream& SVGFEMorphology::externalRepresentation(TextStream& ts) const
+TextStream &SVGFEMorphology::externalRepresentation(TextStream &ts) const
 {
     ts << "[type=MORPHOLOGY-OPERATOR] ";
     SVGFilterEffect::externalRepresentation(ts);
     ts << " [operator type=" << morphologyOperator() << "]"
-        << " [radius x=" << radiusX() << " y=" << radiusY() << "]";
+       << " [radius x=" << radiusX() << " y=" << radiusY() << "]";
     return ts;
 }
 

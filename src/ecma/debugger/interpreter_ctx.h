@@ -24,33 +24,34 @@
 #include <QString>
 #include "debugdocument.h"
 
-namespace KJS {
-    class ExecState;
-}
-
-namespace KTextEditor {
-    class MarkInterface;
-}
-
-namespace KJSDebugger {
-
-enum Mode
+namespace KJS
 {
+class ExecState;
+}
+
+namespace KTextEditor
+{
+class MarkInterface;
+}
+
+namespace KJSDebugger
+{
+
+enum Mode {
     Normal   = 0, // Only stop at breakpoints
     StepOver = 1, // Will break on next statement in current context
     StepOut  = 2, // Will break one or more contexts above.
     Step     = 3, // Will break on next statement in current or deeper context
     Abort    = 4  // The script will stop execution completely,
-                    // as soon as possible
+               // as soon as possible
 };
 
-struct CallStackEntry
-{
+struct CallStackEntry {
     QString name;
     int lineNumber;
     DebugDocument::Ptr doc;
 
-    bool operator==(const CallStackEntry& other) const
+    bool operator==(const CallStackEntry &other) const
     {
         return ((other.name == name) &&
                 (other.lineNumber == lineNumber) &&
@@ -59,13 +60,12 @@ struct CallStackEntry
 };
 
 // This contains information we have to keep track of per-interpreter,
-// such as the stack information. 
-struct InterpreterContext
-{
+// such as the stack information.
+struct InterpreterContext {
     Mode mode;
-    QStack<KJS::ExecState*> execContexts;
+    QStack<KJS::ExecState *> execContexts;
     int  depthAtSkip; // How far we were in on stepOut
-                      // our stepOver.
+    // our stepOver.
     QStack<CallStackEntry> callStack;
 
     // Document and line we're currently in
@@ -98,6 +98,4 @@ struct InterpreterContext
 }
 
 #endif
-
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;
 

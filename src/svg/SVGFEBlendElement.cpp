@@ -25,9 +25,10 @@
 
 #include "SVGResourceFilter.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFEBlendElement::SVGFEBlendElement(const QualifiedName& tagName, Document* doc)
+SVGFEBlendElement::SVGFEBlendElement(const QualifiedName &tagName, Document *doc)
     : SVGFilterPrimitiveStandardAttributes(tagName, doc)
     , m_mode(SVG_FEBLEND_MODE_NORMAL)
     , m_filterEffect(0)
@@ -43,33 +44,36 @@ ANIMATED_PROPERTY_DEFINITIONS(SVGFEBlendElement, String, String, string, In1, in
 ANIMATED_PROPERTY_DEFINITIONS(SVGFEBlendElement, String, String, string, In2, in2, SVGNames::in2Attr, m_in2)
 ANIMATED_PROPERTY_DEFINITIONS(SVGFEBlendElement, int, Enumeration, enumeration, Mode, mode, SVGNames::modeAttr, m_mode)
 
-void SVGFEBlendElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGFEBlendElement::parseMappedAttribute(MappedAttribute *attr)
 {
-    const String& value = attr->value();
+    const String &value = attr->value();
     if (attr->name() == SVGNames::modeAttr) {
-        if (value == "normal")
+        if (value == "normal") {
             setModeBaseValue(SVG_FEBLEND_MODE_NORMAL);
-        else if (value == "multiply")
+        } else if (value == "multiply") {
             setModeBaseValue(SVG_FEBLEND_MODE_MULTIPLY);
-        else if (value == "screen")
+        } else if (value == "screen") {
             setModeBaseValue(SVG_FEBLEND_MODE_SCREEN);
-        else if (value == "darken")
+        } else if (value == "darken") {
             setModeBaseValue(SVG_FEBLEND_MODE_DARKEN);
-        else if (value == "lighten")
+        } else if (value == "lighten") {
             setModeBaseValue(SVG_FEBLEND_MODE_LIGHTEN);
-    } else if (attr->name() == SVGNames::inAttr)
+        }
+    } else if (attr->name() == SVGNames::inAttr) {
         setIn1BaseValue(value);
-    else if (attr->name() == SVGNames::in2Attr)
+    } else if (attr->name() == SVGNames::in2Attr) {
         setIn2BaseValue(value);
-    else
+    } else {
         SVGFilterPrimitiveStandardAttributes::parseMappedAttribute(attr);
+    }
 }
 
-SVGFEBlend* SVGFEBlendElement::filterEffect(SVGResourceFilter* filter) const
+SVGFEBlend *SVGFEBlendElement::filterEffect(SVGResourceFilter *filter) const
 {
-    if (!m_filterEffect)
+    if (!m_filterEffect) {
         m_filterEffect = new SVGFEBlend(filter);
-    
+    }
+
     m_filterEffect->setBlendMode((SVGBlendModeType) mode());
     m_filterEffect->setIn(in1());
     m_filterEffect->setIn2(in2());
@@ -81,4 +85,3 @@ SVGFEBlend* SVGFEBlendElement::filterEffect(SVGResourceFilter* filter) const
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

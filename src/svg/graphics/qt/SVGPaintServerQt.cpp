@@ -32,9 +32,10 @@
 #include <QPainter>
 #include <QVector>
 
-namespace WebCore {
+namespace WebCore
+{
 
-void SVGPaintServer::setPenProperties(const RenderObject* object, const RenderStyle* style, QPen& pen) const
+void SVGPaintServer::setPenProperties(const RenderObject *object, const RenderStyle *style, QPen &pen) const
 {
     pen.setWidthF(SVGRenderStyle::cssPrimitiveToLength(object, style->svgStyle()->strokeWidth(), 1.0));
 
@@ -67,16 +68,17 @@ void SVGPaintServer::setPenProperties(const RenderObject* object, const RenderSt
     }*/
 }
 
-void SVGPaintServer::draw(QPainter* painter, QPainterPath* painterPath, const RenderObject* path, SVGPaintTargetType type) const
+void SVGPaintServer::draw(QPainter *painter, QPainterPath *painterPath, const RenderObject *path, SVGPaintTargetType type) const
 {
-    if (!setup(painter, painterPath, path, type))
+    if (!setup(painter, painterPath, path, type)) {
         return;
+    }
 
     renderPath(painter, painterPath, path, type);
     teardown(painter, painterPath, path, type);
 }
 
-void SVGPaintServer::teardown(QPainter* painter, QPainterPath* painterPath, const RenderObject*, SVGPaintTargetType, bool isPaintingText) const
+void SVGPaintServer::teardown(QPainter *painter, QPainterPath *painterPath, const RenderObject *, SVGPaintTargetType, bool isPaintingText) const
 {
     Q_UNUSED(painter);
     Q_UNUSED(painterPath);
@@ -84,9 +86,9 @@ void SVGPaintServer::teardown(QPainter* painter, QPainterPath* painterPath, cons
     // no-op
 }
 
-void SVGPaintServer::renderPath(QPainter* painter, QPainterPath* painterPath, const RenderObject* path, SVGPaintTargetType type) const
+void SVGPaintServer::renderPath(QPainter *painter, QPainterPath *painterPath, const RenderObject *path, SVGPaintTargetType type) const
 {
-    RenderStyle* renderStyle = path->style();
+    RenderStyle *renderStyle = path->style();
 
     //QPainter* painter(context ? context->platformContext() : 0);
     //Q_ASSERT(painter);
@@ -94,15 +96,16 @@ void SVGPaintServer::renderPath(QPainter* painter, QPainterPath* painterPath, co
     //QPainterPath* painterPath(context ? context->currentPath() : 0);
     //Q_ASSERT(painterPath);
 
-    if ((type & ApplyToFillTargetType) && renderStyle->svgStyle()->hasFill())
+    if ((type & ApplyToFillTargetType) && renderStyle->svgStyle()->hasFill()) {
         painter->fillPath(*painterPath, painter->brush());
+    }
 
-    if ((type & ApplyToStrokeTargetType) && renderStyle->svgStyle()->hasStroke())
+    if ((type & ApplyToStrokeTargetType) && renderStyle->svgStyle()->hasStroke()) {
         painter->strokePath(*painterPath, painter->pen());
+    }
 }
 
 } // namespace WebCore
 
 #endif
 
-// vim:ts=4

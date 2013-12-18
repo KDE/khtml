@@ -34,7 +34,8 @@
 
 class KHTMLView;
 
-namespace DOM {
+namespace DOM
+{
 
 class HTMLElementImpl;
 class DOMString;
@@ -78,14 +79,16 @@ public:
     HTMLElement();
     HTMLElement(const HTMLElement &other);
     HTMLElement(const Node &other) : Element()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 
 protected:
     HTMLElement(HTMLElementImpl *impl);
 public:
 
-    HTMLElement & operator = (const HTMLElement &other);
-    HTMLElement & operator = (const Node &other);
+    HTMLElement &operator = (const HTMLElement &other);
+    HTMLElement &operator = (const Node &other);
 
     ~HTMLElement();
 
@@ -100,7 +103,7 @@ public:
     /**
      * see id
      */
-    void setId( const DOMString & );
+    void setId(const DOMString &);
 
     /**
      * The element's advisory title. See the <a
@@ -113,7 +116,7 @@ public:
     /**
      * see title
      */
-    void setTitle( const DOMString & );
+    void setTitle(const DOMString &);
 
     /**
      * Language code defined in RFC 1766. See the <a
@@ -126,7 +129,7 @@ public:
     /**
      * see lang
      */
-    void setLang( const DOMString & );
+    void setLang(const DOMString &);
 
     /**
      * Specifies the base direction of directionally neutral text and
@@ -140,7 +143,7 @@ public:
     /**
      * see dir
      */
-    void setDir( const DOMString & );
+    void setDir(const DOMString &);
 
     /**
      * The class attribute of the element. This attribute has been
@@ -155,7 +158,7 @@ public:
     /**
      * see className
      */
-    void setClassName( const DOMString & );
+    void setClassName(const DOMString &);
 
     /**
      * The HTML code contained in this element.
@@ -170,7 +173,7 @@ public:
      * NO_MODIFICATION_ALLOWED_ERR: Raised if there is the element does not allow
      * children.
      */
-    void setInnerHTML( const DOMString &html );
+    void setInnerHTML(const DOMString &html);
 
     /**
      * The text contained in this element.
@@ -185,7 +188,7 @@ public:
      * NO_MODIFICATION_ALLOWED_ERR: Raised if there is the element does not allow
      * children.
      */
-    void setInnerText( const DOMString &text );
+    void setInnerText(const DOMString &text);
 
     /**
      * Retrieves a collection of nodes that are direct descendants of this node.
@@ -232,18 +235,18 @@ public:
     /*
      * @internal
      */
-    void removeCSSProperty( const DOMString& property );
+    void removeCSSProperty(const DOMString &property);
 
     /*
      * @internal
      */
-    void addCSSProperty( const DOMString &property, const DOMString &value );
+    void addCSSProperty(const DOMString &property, const DOMString &value);
 
 protected:
     /*
      * @internal
      */
-    void assignOther( const Node &other, int elementId );
+    void assignOther(const Node &other, int elementId);
 };
 
 } //namespace

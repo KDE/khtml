@@ -26,9 +26,11 @@
 
 #include <wtf/RefCounted.h>
 
-namespace WebCore {
+namespace WebCore
+{
 
-class SVGRenderingIntent : public RefCounted<SVGRenderingIntent> {
+class SVGRenderingIntent : public RefCounted<SVGRenderingIntent>
+{
 public:
     enum SVGRenderingIntentType {
         RENDERING_INTENT_UNKNOWN                  = 0,
@@ -48,4 +50,3 @@ private:
 #endif // ENABLE(SVG)
 #endif // SVGRenderingIntent_h
 
-// vim:ts=4:noet

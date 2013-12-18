@@ -25,7 +25,8 @@
 #if ENABLE(SVG) && ENABLE(SVG_FILTERS)
 #include "SVGFilterEffect.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 enum SVGMorphologyOperatorType {
     SVG_MORPHOLOGY_OPERATOR_UNKNOWN = 0,
@@ -33,9 +34,10 @@ enum SVGMorphologyOperatorType {
     SVG_MORPHOLOGY_OPERATOR_DIALATE = 2
 };
 
-class SVGFEMorphology : public SVGFilterEffect {
+class SVGFEMorphology : public SVGFilterEffect
+{
 public:
-    SVGFEMorphology(SVGResourceFilter*);
+    SVGFEMorphology(SVGResourceFilter *);
 
     SVGMorphologyOperatorType morphologyOperator() const;
     void setMorphologyOperator(SVGMorphologyOperatorType);
@@ -46,7 +48,7 @@ public:
     float radiusY() const;
     void setRadiusY(float);
 
-    virtual TextStream& externalRepresentation(TextStream&) const;
+    virtual TextStream &externalRepresentation(TextStream &) const;
 
 private:
     SVGMorphologyOperatorType m_operator;

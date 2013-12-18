@@ -29,9 +29,10 @@
 
 #include <QPointF>
 
-namespace WebCore {
+namespace WebCore
+{
 
-FloatPoint::FloatPoint(const QPointF& p)
+FloatPoint::FloatPoint(const QPointF &p)
     : m_x(p.x())
     , m_y(p.y())
 {
@@ -44,4 +45,3 @@ FloatPoint::operator QPointF() const
 
 }
 
-// vim: ts=4 sw=4 et

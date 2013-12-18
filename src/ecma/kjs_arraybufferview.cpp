@@ -19,7 +19,8 @@
 
 #include "ecma/kjs_arraybufferview.h"
 
-namespace KJS {
+namespace KJS
+{
 
 /* Source for ArrayBufferViewProtoTable.
 

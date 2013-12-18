@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef SVGPaintServerLinearGradient_h
@@ -31,33 +31,41 @@
 #include "FloatPoint.h"
 #include "SVGPaintServerGradient.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGPaintServerLinearGradient : public SVGPaintServerGradient {
-    public:
-        static PassRefPtr<SVGPaintServerLinearGradient> create(const SVGGradientElement* owner) { return adoptRef(new SVGPaintServerLinearGradient(owner)); }
-        virtual ~SVGPaintServerLinearGradient();
+class SVGPaintServerLinearGradient : public SVGPaintServerGradient
+{
+public:
+    static PassRefPtr<SVGPaintServerLinearGradient> create(const SVGGradientElement *owner)
+    {
+        return adoptRef(new SVGPaintServerLinearGradient(owner));
+    }
+    virtual ~SVGPaintServerLinearGradient();
 
-        virtual SVGPaintServerType type() const { return LinearGradientPaintServer; }
+    virtual SVGPaintServerType type() const
+    {
+        return LinearGradientPaintServer;
+    }
 
-        FloatPoint gradientStart() const;
-        void setGradientStart(const FloatPoint&);
+    FloatPoint gradientStart() const;
+    void setGradientStart(const FloatPoint &);
 
-        FloatPoint gradientEnd() const;
-        void setGradientEnd(const FloatPoint&);
+    FloatPoint gradientEnd() const;
+    void setGradientEnd(const FloatPoint &);
 
-        /*virtual TextStream& externalRepresentation(TextStream&) const;*/
+    /*virtual TextStream& externalRepresentation(TextStream&) const;*/
 
 #if PLATFORM(QT)
-        virtual QGradient setupGradient(QPainter* painter, QPainterPath* painterPath, const RenderObject*) const;
+    virtual QGradient setupGradient(QPainter *painter, QPainterPath *painterPath, const RenderObject *) const;
 #endif
 
-    private:
-        SVGPaintServerLinearGradient(const SVGGradientElement* owner);
+private:
+    SVGPaintServerLinearGradient(const SVGGradientElement *owner);
 
-        FloatPoint m_start;
-        FloatPoint m_end;
-    };
+    FloatPoint m_start;
+    FloatPoint m_end;
+};
 
 } // namespace WebCore
 

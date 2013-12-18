@@ -31,13 +31,14 @@
 #include "tile.h"
 #include "imagemanager.h"
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 class PixmapTile: public Tile
 {
 public:
-    QPixmap*       pixmap;
-    
+    QPixmap       *pixmap;
+
     virtual void discard()
     {
         delete pixmap;
@@ -49,8 +50,9 @@ public:
 
     virtual ~PixmapTile()
     {
-        if (cacheNode)
+        if (cacheNode) {
             ImageManager::pixmapCache()->removeEntry(this);
+        }
         delete pixmap;
     }
 };
@@ -58,4 +60,3 @@ public:
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

@@ -27,9 +27,10 @@
 
 #include "SVGPointList.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGPolygonElement::SVGPolygonElement(const QualifiedName& tagName, Document* doc)
+SVGPolygonElement::SVGPolygonElement(const QualifiedName &tagName, Document *doc)
     : SVGPolyElement(tagName, doc)
 {
 }
@@ -43,14 +44,16 @@ Path SVGPolygonElement::toPathData() const
     Path polyData;
 
     int len = points()->numberOfItems();
-    if (len < 1)
+    if (len < 1) {
         return polyData;
-    
+    }
+
     ExceptionCode ec = 0;
     polyData.moveTo(points()->getItem(0, ec));
 
-    for (int i = 1; i < len; ++i)
+    for (int i = 1; i < len; ++i) {
         polyData.addLineTo(points()->getItem(i, ec));
+    }
 
     polyData.closeSubpath();
     return polyData;
@@ -61,7 +64,6 @@ quint32 SVGPolygonElement::id() const
 {
     return SVGNames::polygonTag.id();
 }
-
 
 }
 

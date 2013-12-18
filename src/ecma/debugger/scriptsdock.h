@@ -26,7 +26,8 @@
 class QTreeWidget;
 class QTreeWidgetItem;
 
-namespace KJSDebugger {
+namespace KJSDebugger
+{
 class DebugDocument;
 
 class ScriptsDock : public QDockWidget
@@ -47,8 +48,8 @@ private Q_SLOTS:
 
 private:
     QTreeWidget *m_widget;
-    QHash<DebugDocument*, QTreeWidgetItem*> m_documents;
-    QHash<QString, QTreeWidgetItem*> m_headers;
+    QHash<DebugDocument *, QTreeWidgetItem *> m_documents;
+    QHash<QString, QTreeWidgetItem *> m_headers;
 };
 
 }

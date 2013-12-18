@@ -19,7 +19,6 @@
  *
  */
 
-
 #ifndef MISC_ENUM_H
 #define MISC_ENUM_H
 

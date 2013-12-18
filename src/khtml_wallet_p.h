@@ -39,50 +39,53 @@
 
 class KHTMLWalletQueue : public QObject
 {
-  Q_OBJECT
-  public:
-    KHTMLWalletQueue(QObject *parent) : QObject(parent) {
-      wallet = 0L;
+    Q_OBJECT
+public:
+    KHTMLWalletQueue(QObject *parent) : QObject(parent)
+    {
+        wallet = 0L;
     }
 
-    virtual ~KHTMLWalletQueue() {
-      delete wallet;
-      wallet = 0L;
+    virtual ~KHTMLWalletQueue()
+    {
+        delete wallet;
+        wallet = 0L;
     }
 
     KWallet::Wallet *wallet;
-    typedef QPair<DOM::HTMLFormElementImpl*, QPointer<DOM::DocumentImpl> > Caller;
+    typedef QPair<DOM::HTMLFormElementImpl *, QPointer<DOM::DocumentImpl> > Caller;
     typedef QList<Caller> CallerList;
     CallerList callers;
     QList<QPair<QString, QMap<QString, QString> > > savers;
 
-  Q_SIGNALS:
-    void walletOpened(KWallet::Wallet*);
+Q_SIGNALS:
+    void walletOpened(KWallet::Wallet *);
 
-  public Q_SLOTS:
-    void walletOpened(bool success) {
-      if (!success) {
-        delete wallet;
-        wallet = 0L;
-      }
-      emit walletOpened(wallet);
-      if (wallet) {
-        if (!wallet->hasFolder(KWallet::Wallet::FormDataFolder())) {
-          wallet->createFolder(KWallet::Wallet::FormDataFolder());
+public Q_SLOTS:
+    void walletOpened(bool success)
+    {
+        if (!success) {
+            delete wallet;
+            wallet = 0L;
         }
-        for (CallerList::Iterator i = callers.begin(); i != callers.end(); ++i) {
-          if ((*i).first && (*i).second) {
-            (*i).first->walletOpened(wallet);
-          }
+        emit walletOpened(wallet);
+        if (wallet) {
+            if (!wallet->hasFolder(KWallet::Wallet::FormDataFolder())) {
+                wallet->createFolder(KWallet::Wallet::FormDataFolder());
+            }
+            for (CallerList::Iterator i = callers.begin(); i != callers.end(); ++i) {
+                if ((*i).first && (*i).second) {
+                    (*i).first->walletOpened(wallet);
+                }
+            }
+            wallet->setFolder(KWallet::Wallet::FormDataFolder());
+            for (QList<QPair<QString, QMap<QString, QString> > >::Iterator i = savers.begin(); i != savers.end(); ++i) {
+                wallet->writeMap((*i).first, (*i).second);
+            }
         }
-        wallet->setFolder(KWallet::Wallet::FormDataFolder());
-        for (QList<QPair<QString, QMap<QString, QString> > >::Iterator i = savers.begin(); i != savers.end(); ++i) {
-          wallet->writeMap((*i).first, (*i).second);
-        }
-      }
-      callers.clear();
-      savers.clear();
-      wallet = 0L; // gave it away
+        callers.clear();
+        savers.clear();
+        wallet = 0L; // gave it away
     }
 };
 

@@ -36,19 +36,20 @@
 
 #include "rendering/render_line.h"
 
-namespace WebCore {
+namespace WebCore
+{
 using namespace khtml;
 using namespace DOM;
 
 // Helper function
-static float calculateBaselineShift(RenderObject* item)
+static float calculateBaselineShift(RenderObject *item)
 {
-    const Font& font = item->style()->htmlFont();
-    const SVGRenderStyle* svgStyle = item->style()->svgStyle();
+    const Font &font = item->style()->htmlFont();
+    const SVGRenderStyle *svgStyle = item->style()->svgStyle();
 
     float baselineShift = 0.0f;
     if (svgStyle->baselineShift() == BS_LENGTH) {
-        CSSPrimitiveValueImpl* primitive = static_cast<CSSPrimitiveValueImpl*>(svgStyle->baselineShiftValue());
+        CSSPrimitiveValueImpl *primitive = static_cast<CSSPrimitiveValueImpl *>(svgStyle->baselineShiftValue());
         baselineShift = primitive->floatValue();
 
         /*FIXME khtml if (primitive->primitiveType() == CSSPrimitiveValue::CSS_PERCENTAGE)
@@ -73,7 +74,7 @@ static float calculateBaselineShift(RenderObject* item)
     return baselineShift;
 }
 
-SVGCharacterLayoutInfo::SVGCharacterLayoutInfo(Vector<SVGChar>& chars)
+SVGCharacterLayoutInfo::SVGCharacterLayoutInfo(Vector<SVGChar> &chars)
     : curx(0.0f)
     , cury(0.0f)
     , angle(0.0f)
@@ -228,11 +229,13 @@ void SVGCharacterLayoutInfo::processedChunk(float savedShiftX, float savedShiftY
 
 bool SVGCharacterLayoutInfo::nextPathLayoutPointAndAngle(float glyphAdvance, float extraAdvance, float newOffset)
 {
-    if (layoutPathLength <= 0.0f)
+    if (layoutPathLength <= 0.0f) {
         return false;
+    }
 
-    if (newOffset != FLT_MIN)
+    if (newOffset != FLT_MIN) {
         currentOffset = startOffset + newOffset;
+    }
 
     // Respect translation along path (extraAdvance is orthogonal to the path)
     currentOffset += extraAdvance;
@@ -240,10 +243,11 @@ bool SVGCharacterLayoutInfo::nextPathLayoutPointAndAngle(float glyphAdvance, flo
     float offset = currentOffset + glyphAdvance / 2.0f;
     currentOffset += glyphAdvance + pathExtraAdvance;
 
-    if (offset < 0.0f || offset > layoutPathLength)
+    if (offset < 0.0f || offset > layoutPathLength) {
         return false;
+    }
 
-    bool ok = false; 
+    bool ok = false;
     FloatPoint point = layoutPath.pointAtLength(offset, ok);
     ASSERT(ok);
 
@@ -271,14 +275,14 @@ void SVGCharacterLayoutInfo::setInPathLayout(bool value)
     pathChunkLength = 0.0f;
 }
 
-void SVGCharacterLayoutInfo::addLayoutInformation(InlineFlowBox* flowBox, float textAnchorStartOffset)
+void SVGCharacterLayoutInfo::addLayoutInformation(InlineFlowBox *flowBox, float textAnchorStartOffset)
 {
     bool isInitialLayout = xStack.isEmpty() && yStack.isEmpty() &&
                            dxStack.isEmpty() && dyStack.isEmpty() &&
                            angleStack.isEmpty() && baselineShiftStack.isEmpty() &&
                            curx == 0.0f && cury == 0.0f;
 
-    RenderSVGTextPath* textPath = static_cast<RenderSVGTextPath*>(flowBox->object());
+    RenderSVGTextPath *textPath = static_cast<RenderSVGTextPath *>(flowBox->object());
     Path path = textPath->layoutPath();
 
     float baselineShift = calculateBaselineShift(textPath);
@@ -286,13 +290,15 @@ void SVGCharacterLayoutInfo::addLayoutInformation(InlineFlowBox* flowBox, float 
     layoutPath = path;
     layoutPathLength = path.length();
 
-    if (layoutPathLength <= 0.0f)
+    if (layoutPathLength <= 0.0f) {
         return;
+    }
 
     startOffset = textPath->startOffset();
 
-    if (textPath->startOffset() >= 0.0f && textPath->startOffset() <= 1.0f)
+    if (textPath->startOffset() >= 0.0f && textPath->startOffset() <= 1.0f) {
         startOffset *= layoutPathLength;
+    }
 
     startOffset += textAnchorStartOffset;
     currentOffset = startOffset;
@@ -310,7 +316,7 @@ void SVGCharacterLayoutInfo::addLayoutInformation(InlineFlowBox* flowBox, float 
     }
 }
 
-void SVGCharacterLayoutInfo::addLayoutInformation(SVGTextPositioningElement* element)
+void SVGCharacterLayoutInfo::addLayoutInformation(SVGTextPositioningElement *element)
 {
     bool isInitialLayout = xStack.isEmpty() && yStack.isEmpty() &&
                            dxStack.isEmpty() && dyStack.isEmpty() &&
@@ -336,11 +342,12 @@ void SVGCharacterLayoutInfo::addLayoutInformation(SVGTextPositioningElement* ele
     }
 }
 
-void SVGCharacterLayoutInfo::addStackContent(StackType type, SVGNumberList* list)
+void SVGCharacterLayoutInfo::addStackContent(StackType type, SVGNumberList *list)
 {
     unsigned length = list->numberOfItems();
-    if (!length)
+    if (!length) {
         return;
+    }
 
     PositionedFloatVector newLayoutInfo;
 
@@ -356,11 +363,12 @@ void SVGCharacterLayoutInfo::addStackContent(StackType type, SVGNumberList* list
     addStackContent(type, newLayoutInfo);
 }
 
-void SVGCharacterLayoutInfo::addStackContent(StackType type, SVGLengthList* list)
+void SVGCharacterLayoutInfo::addStackContent(StackType type, SVGLengthList *list)
 {
     unsigned length = list->numberOfItems();
-    if (!length)
+    if (!length) {
         return;
+    }
 
     PositionedFloatVector newLayoutInfo;
 
@@ -375,7 +383,7 @@ void SVGCharacterLayoutInfo::addStackContent(StackType type, SVGLengthList* list
     addStackContent(type, newLayoutInfo);
 }
 
-void SVGCharacterLayoutInfo::addStackContent(StackType type, const PositionedFloatVector& list)
+void SVGCharacterLayoutInfo::addStackContent(StackType type, const PositionedFloatVector &list)
 {
     switch (type) {
     case XStack:
@@ -394,19 +402,20 @@ void SVGCharacterLayoutInfo::addStackContent(StackType type, const PositionedFlo
         dyStackChanged = true;
         dyStack.append(list);
         break;
-   case AngleStack:
+    case AngleStack:
         angleStackChanged = true;
         angleStack.append(list);
-        break; 
-   default:
+        break;
+    default:
         ASSERT_NOT_REACHED();
     }
 }
 
 void SVGCharacterLayoutInfo::addStackContent(StackType type, float value)
 {
-    if (value == 0.0f)
+    if (value == 0.0f) {
         return;
+    }
 
     switch (type) {
     case BaselineShiftStack:
@@ -423,7 +432,7 @@ void SVGCharacterLayoutInfo::xStackWalk()
     unsigned i = 1;
 
     while (!xStack.isEmpty()) {
-        PositionedFloatVector& cur = xStack.last();
+        PositionedFloatVector &cur = xStack.last();
         if (i + cur.position() < cur.size()) {
             cur.advance(i);
             break;
@@ -440,7 +449,7 @@ void SVGCharacterLayoutInfo::yStackWalk()
     unsigned i = 1;
 
     while (!yStack.isEmpty()) {
-        PositionedFloatVector& cur = yStack.last();
+        PositionedFloatVector &cur = yStack.last();
         if (i + cur.position() < cur.size()) {
             cur.advance(i);
             break;
@@ -457,7 +466,7 @@ void SVGCharacterLayoutInfo::dxStackWalk()
     unsigned i = 1;
 
     while (!dxStack.isEmpty()) {
-        PositionedFloatVector& cur = dxStack.last();
+        PositionedFloatVector &cur = dxStack.last();
         if (i + cur.position() < cur.size()) {
             cur.advance(i);
             break;
@@ -474,7 +483,7 @@ void SVGCharacterLayoutInfo::dyStackWalk()
     unsigned i = 1;
 
     while (!dyStack.isEmpty()) {
-        PositionedFloatVector& cur = dyStack.last();
+        PositionedFloatVector &cur = dyStack.last();
         if (i + cur.position() < cur.size()) {
             cur.advance(i);
             break;
@@ -491,7 +500,7 @@ void SVGCharacterLayoutInfo::angleStackWalk()
     unsigned i = 1;
 
     while (!angleStack.isEmpty()) {
-        PositionedFloatVector& cur = angleStack.last();
+        PositionedFloatVector &cur = angleStack.last();
         if (i + cur.position() < cur.size()) {
             cur.advance(i);
             break;

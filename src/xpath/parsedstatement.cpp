@@ -31,61 +31,63 @@
 
 using namespace DOM;
 
-namespace khtml {
-namespace XPath {
-
-Expression *khtmlParseXPathStatement( const DOMString &statement, int& ec );
-
-ParsedStatement::ParsedStatement( const DOMString &statement, khtml::XPathNSResolverImpl* res )
-	: m_res( res ), m_expr( 0 ), m_ec( 0 ) 
+namespace khtml
 {
-	parse( statement );
+namespace XPath
+{
+
+Expression *khtmlParseXPathStatement(const DOMString &statement, int &ec);
+
+ParsedStatement::ParsedStatement(const DOMString &statement, khtml::XPathNSResolverImpl *res)
+    : m_res(res), m_expr(0), m_ec(0)
+{
+    parse(statement);
 }
 
 ParsedStatement::~ParsedStatement()
 {
-	delete m_expr;
+    delete m_expr;
 }
 
-void ParsedStatement::parse( const DOMString &statement )
+void ParsedStatement::parse(const DOMString &statement)
 {
-	// qDebug() << "parsing:" << statement.string();
-	m_ec = 0;
-	delete m_expr;
-	Expression::evaluationContext().reset( 0, m_res.get() );
-	
-	m_expr = khtmlParseXPathStatement( statement, m_ec );
-	
-	// qDebug() << "AST:" << (m_expr ? m_expr->dump() : QString::fromLatin1("*** parse error ***"));
+    // qDebug() << "parsing:" << statement.string();
+    m_ec = 0;
+    delete m_expr;
+    Expression::evaluationContext().reset(0, m_res.get());
+
+    m_expr = khtmlParseXPathStatement(statement, m_ec);
+
+    // qDebug() << "AST:" << (m_expr ? m_expr->dump() : QString::fromLatin1("*** parse error ***"));
 }
 
 void ParsedStatement::optimize()
 {
-	if ( !m_expr ) {
-		return;
-	}
-	m_expr->optimize();
+    if (!m_expr) {
+        return;
+    }
+    m_expr->optimize();
 }
 
-Value ParsedStatement::evaluate(NodeImpl* context, int& ec) const
+Value ParsedStatement::evaluate(NodeImpl *context, int &ec) const
 {
-	Expression::evaluationContext().reset(context, m_res.get());
-	Value res = m_expr->evaluate();
-	ec = Expression::evaluationContext().exceptionCode;
+    Expression::evaluationContext().reset(context, m_res.get());
+    Value res = m_expr->evaluate();
+    ec = Expression::evaluationContext().exceptionCode;
 
-	// If the result is a nodeset, we need to put it in document order
-	// and remove duplicates.
-	if ( res.isNodeset() )
+    // If the result is a nodeset, we need to put it in document order
+    // and remove duplicates.
+    if (res.isNodeset()) {
         res.toNodeset()->normalizeUpto(StaticNodeListImpl::DocumentOrder);
+    }
     return res;
 }
 
 QString ParsedStatement::dump() const
 {
-	return m_expr->dump();
+    return m_expr->dump();
 }
 
 } // namespace XPath
 } // namespace khtml
 
-// kate: indent-width 4; replace-tabs off; tab-width 4; space-indent off;

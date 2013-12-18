@@ -32,7 +32,7 @@ class KComponentData;
 
 namespace khtml
 {
-    class CachedImage;
+class CachedImage;
 }
 
 /**
@@ -46,13 +46,16 @@ public:
     KHTMLImageFactory();
     virtual ~KHTMLImageFactory();
 
-    virtual QObject *create(const char* iface,
+    virtual QObject *create(const char *iface,
                             QWidget *parentWidget,
                             QObject *parent,
-                            const QVariantList& args,
+                            const QVariantList &args,
                             const QString &keyword);
 
-    static const KAboutData &aboutData() { return *s_aboutData; }
+    static const KAboutData &aboutData()
+    {
+        return *s_aboutData;
+    }
 
 private:
     static KAboutData *s_aboutData;
@@ -65,31 +68,37 @@ class KHTMLImage : public KParts::ReadOnlyPart, public khtml::CachedObjectClient
 {
     Q_OBJECT
 public:
-    KHTMLImage( QWidget *parentWidget,
-                QObject *parent, KHTMLPart::GUIProfile prof );
+    KHTMLImage(QWidget *parentWidget,
+               QObject *parent, KHTMLPart::GUIProfile prof);
     virtual ~KHTMLImage();
 
-    virtual bool openFile() { return true; } // grmbl, should be non-pure in part.h, IMHO
+    virtual bool openFile()
+    {
+        return true;    // grmbl, should be non-pure in part.h, IMHO
+    }
 
     virtual bool openUrl(const QUrl &url);
 
     virtual bool closeUrl();
 
-    KHTMLPart *doc() const { return m_khtml; }
+    KHTMLPart *doc() const
+    {
+        return m_khtml;
+    }
 
-    virtual void notifyFinished( khtml::CachedObject *o );
+    virtual void notifyFinished(khtml::CachedObject *o);
 
 protected:
-    virtual void guiActivateEvent( KParts::GUIActivateEvent *e );
+    virtual void guiActivateEvent(KParts::GUIActivateEvent *e);
 
 private Q_SLOTS:
     void restoreScrollPosition();
 
-    void slotPopupMenu( const QPoint &global, const QUrl &url, mode_t mode,
-                        const KParts::OpenUrlArguments &args,
-                        const KParts::BrowserArguments &browserArgs,
-                        KParts::BrowserExtension::PopupFlags flags,
-                        const KParts::BrowserExtension::ActionGroupMap& actionGroups );
+    void slotPopupMenu(const QPoint &global, const QUrl &url, mode_t mode,
+                       const KParts::OpenUrlArguments &args,
+                       const KParts::BrowserArguments &browserArgs,
+                       KParts::BrowserExtension::PopupFlags flags,
+                       const KParts::BrowserExtension::ActionGroupMap &actionGroups);
 
 //    void slotImageJobFinished( KIO::Job *job );
 
@@ -113,7 +122,7 @@ class KHTMLImageBrowserExtension : public KParts::BrowserExtension
 {
     Q_OBJECT
 public:
-    KHTMLImageBrowserExtension( KHTMLImage *parent );
+    KHTMLImageBrowserExtension(KHTMLImage *parent);
 
     virtual int xOffset();
     virtual int yOffset();

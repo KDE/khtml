@@ -42,23 +42,23 @@
  */
 class KHTMLPartBrowserExtension : public KParts::BrowserExtension
 {
-  Q_OBJECT
-  friend class KHTMLPart;
-  friend class KHTMLView;
+    Q_OBJECT
+    friend class KHTMLPart;
+    friend class KHTMLView;
 public:
-  KHTMLPartBrowserExtension( KHTMLPart *parent );
+    KHTMLPartBrowserExtension(KHTMLPart *parent);
 
-  virtual int xOffset();
-  virtual int yOffset();
+    virtual int xOffset();
+    virtual int yOffset();
 
-  virtual void saveState( QDataStream &stream );
-  virtual void restoreState( QDataStream &stream );
+    virtual void saveState(QDataStream &stream);
+    virtual void restoreState(QDataStream &stream);
 
     // internal
-    void editableWidgetFocused( QWidget *widget );
-    void editableWidgetBlurred( QWidget *widget );
+    void editableWidgetFocused(QWidget *widget);
+    void editableWidgetBlurred(QWidget *widget);
 
-    void setExtensionProxy( KParts::BrowserExtension *proxyExtension );
+    void setExtensionProxy(KParts::BrowserExtension *proxyExtension);
 
 public Q_SLOTS:
     void cut();
@@ -75,7 +75,7 @@ public Q_SLOTS:
 
 private Q_SLOTS:
     // connected to a frame's browserextensions enableAction signal
-    void extensionProxyActionEnabled( const char *action, bool enable );
+    void extensionProxyActionEnabled(const char *action, bool enable);
     void extensionProxyEditableWidgetFocused();
     void extensionProxyEditableWidgetBlurred();
 
@@ -83,7 +83,7 @@ Q_SIGNALS:
     void editableWidgetFocused();
     void editableWidgetBlurred();
 private:
-    void callExtensionProxyMethod( const char *method );
+    void callExtensionProxyMethod(const char *method);
 
     KHTMLPart *m_part;
     QPointer<QWidget> m_editableFormWidget;
@@ -94,19 +94,19 @@ private:
 class KHTMLPartBrowserHostExtension : public KParts::BrowserHostExtension
 {
 public:
-  KHTMLPartBrowserHostExtension( KHTMLPart *part );
-  virtual ~KHTMLPartBrowserHostExtension();
+    KHTMLPartBrowserHostExtension(KHTMLPart *part);
+    virtual ~KHTMLPartBrowserHostExtension();
 
-  virtual QStringList frameNames() const;
+    virtual QStringList frameNames() const;
 
-  virtual const QList<KParts::ReadOnlyPart*> frames() const;
+    virtual const QList<KParts::ReadOnlyPart *> frames() const;
 
-  virtual BrowserHostExtension* findFrameParent( KParts::ReadOnlyPart *callingPart, const QString &frame );
+    virtual BrowserHostExtension *findFrameParent(KParts::ReadOnlyPart *callingPart, const QString &frame);
 
-    virtual bool openUrlInFrame(const QUrl &url, const KParts::OpenUrlArguments& arguments, const KParts::BrowserArguments &browserArguments);
+    virtual bool openUrlInFrame(const QUrl &url, const KParts::OpenUrlArguments &arguments, const KParts::BrowserArguments &browserArguments);
 
 private:
-  KHTMLPart *m_part;
+    KHTMLPart *m_part;
 };
 
 /**
@@ -115,58 +115,58 @@ private:
  */
 class KHTMLPopupGUIClient : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  KHTMLPopupGUIClient( KHTMLPart *khtml, const QUrl &url );
-  virtual ~KHTMLPopupGUIClient();
+    KHTMLPopupGUIClient(KHTMLPart *khtml, const QUrl &url);
+    virtual ~KHTMLPopupGUIClient();
 
     KParts::BrowserExtension::ActionGroupMap actionGroups() const;
 
-  static void saveURL( QWidget *parent, const QString &caption, const QUrl &url,
-                       const QMap<QString, QString> &metaData = KIO::MetaData(),
-                       const QString &filter = QString(), long cacheId = 0,
-                       const QString &suggestedFilename = QString() );
+    static void saveURL(QWidget *parent, const QString &caption, const QUrl &url,
+                        const QMap<QString, QString> &metaData = KIO::MetaData(),
+                        const QString &filter = QString(), long cacheId = 0,
+                        const QString &suggestedFilename = QString());
 
-  static void saveURL( QWidget* parent, const QUrl &url, const QUrl &destination,
-                       const QMap<QString, QString> &metaData = KIO::MetaData(),
-                       long cacheId = 0 );
+    static void saveURL(QWidget *parent, const QUrl &url, const QUrl &destination,
+                        const QMap<QString, QString> &metaData = KIO::MetaData(),
+                        long cacheId = 0);
 
-    static QString selectedTextAsOneLine(KHTMLPart* part);
+    static QString selectedTextAsOneLine(KHTMLPart *part);
 
 private Q_SLOTS:
-  void slotSaveLinkAs();
-  void slotSaveImageAs();
-  void slotCopyLinkLocation();
-  void slotSendImage();
-  void slotStopAnimations();
-  void slotCopyImageLocation();
-  void slotCopyImage();
-  void slotViewImage();
-  void slotReloadFrame();
-  void slotFrameInWindow();
-  void slotFrameInTop();
-  void slotFrameInTab();
-  void slotBlockImage();
-  void slotBlockHost();
-  void slotBlockIFrame();
+    void slotSaveLinkAs();
+    void slotSaveImageAs();
+    void slotCopyLinkLocation();
+    void slotSendImage();
+    void slotStopAnimations();
+    void slotCopyImageLocation();
+    void slotCopyImage();
+    void slotViewImage();
+    void slotReloadFrame();
+    void slotFrameInWindow();
+    void slotFrameInTop();
+    void slotFrameInTab();
+    void slotBlockImage();
+    void slotBlockHost();
+    void slotBlockIFrame();
     void openSelection();
 
 private:
-    void addSearchActions(QList<QAction *>& editActions);
+    void addSearchActions(QList<QAction *> &editActions);
 
-  class KHTMLPopupGUIClientPrivate;
-  KHTMLPopupGUIClientPrivate* const d;
+    class KHTMLPopupGUIClientPrivate;
+    KHTMLPopupGUIClientPrivate *const d;
 };
 
 class KHTMLZoomFactorAction : public KSelectAction
 {
     Q_OBJECT
 public:
-    KHTMLZoomFactorAction(KHTMLPart *part, bool direction, const QString& iconName, const QString& text, QObject *parent);
+    KHTMLZoomFactorAction(KHTMLPart *part, bool direction, const QString &iconName, const QString &text, QObject *parent);
     virtual ~KHTMLZoomFactorAction();
 
 protected Q_SLOTS:
-    void slotTriggered(QAction* action);
+    void slotTriggered(QAction *action);
 private:
     void init(KHTMLPart *part, bool direction);
 private:
@@ -182,13 +182,13 @@ class KHTMLTextExtension : public KParts::TextExtension
 {
     Q_OBJECT
 public:
-    KHTMLTextExtension(KHTMLPart* part);
+    KHTMLTextExtension(KHTMLPart *part);
 
     virtual bool hasSelection() const;
     virtual QString selectedText(Format format) const;
     virtual QString completeText(Format format) const;
 
-    KHTMLPart* part() const;
+    KHTMLPart *part() const;
 };
 
 /**
@@ -196,15 +196,15 @@ public:
  * Implements the HtmlExtension interface
  */
 class KHTMLHtmlExtension : public KParts::HtmlExtension,
-                           public KParts::SelectorInterface,
-                           public KParts::HtmlSettingsInterface
+    public KParts::SelectorInterface,
+    public KParts::HtmlSettingsInterface
 {
     Q_OBJECT
     Q_INTERFACES(KParts::SelectorInterface)
     Q_INTERFACES(KParts::HtmlSettingsInterface)
 
 public:
-    KHTMLHtmlExtension(KHTMLPart* part);
+    KHTMLHtmlExtension(KHTMLPart *part);
 
     // HtmlExtension
     virtual QUrl baseUrl() const;
@@ -212,14 +212,14 @@ public:
 
     // SelectorInterface
     virtual QueryMethods supportedQueryMethods() const;
-    virtual Element querySelector(const QString& query, QueryMethod method) const;
-    virtual QList<Element> querySelectorAll(const QString& query, QueryMethod method) const;
+    virtual Element querySelector(const QString &query, QueryMethod method) const;
+    virtual QList<Element> querySelectorAll(const QString &query, QueryMethod method) const;
 
     // SettingsInterface
     virtual QVariant htmlSettingsProperty(HtmlSettingsType type) const;
-    virtual bool setHtmlSettingsProperty(HtmlSettingsType type, const QVariant& value);
+    virtual bool setHtmlSettingsProperty(HtmlSettingsType type, const QVariant &value);
 
-    KHTMLPart* part() const;
+    KHTMLPart *part() const;
 };
 
 #endif

@@ -25,33 +25,37 @@
 #if ENABLE(SVG) && ENABLE(SVG_FILTERS)
 #include "SVGFilterPrimitiveStandardAttributes.h"
 
-namespace WebCore {
-    class SVGFEDiffuseLighting;
-    class SVGColor;
+namespace WebCore
+{
+class SVGFEDiffuseLighting;
+class SVGColor;
 
-    class SVGFEDiffuseLightingElement : public SVGFilterPrimitiveStandardAttributes
+class SVGFEDiffuseLightingElement : public SVGFilterPrimitiveStandardAttributes
+{
+public:
+    SVGFEDiffuseLightingElement(const QualifiedName &, Document *);
+    virtual ~SVGFEDiffuseLightingElement();
+
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual SVGFilterEffect *filterEffect(SVGResourceFilter *) const;
+
+protected:
+    virtual const SVGElement *contextElement() const
     {
-    public:
-        SVGFEDiffuseLightingElement(const QualifiedName&, Document*);
-        virtual ~SVGFEDiffuseLightingElement();
+        return this;
+    }
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual SVGFilterEffect* filterEffect(SVGResourceFilter*) const;
+private:
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFEDiffuseLightingElement, String, String, In1, in1)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFEDiffuseLightingElement, float, float, DiffuseConstant, diffuseConstant)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFEDiffuseLightingElement, float, float, SurfaceScale, surfaceScale)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFEDiffuseLightingElement, float, float, KernelUnitLengthX, kernelUnitLengthX)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFEDiffuseLightingElement, float, float, KernelUnitLengthY, kernelUnitLengthY)
 
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
+    mutable SVGFEDiffuseLighting *m_filterEffect;
 
-    private:
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFEDiffuseLightingElement, String, String, In1, in1)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFEDiffuseLightingElement, float, float, DiffuseConstant, diffuseConstant)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFEDiffuseLightingElement, float, float, SurfaceScale, surfaceScale)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFEDiffuseLightingElement, float, float, KernelUnitLengthX, kernelUnitLengthX)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFEDiffuseLightingElement, float, float, KernelUnitLengthY, kernelUnitLengthY)
-
-        mutable SVGFEDiffuseLighting* m_filterEffect;
-        
-        void updateLights() const;
-    };
+    void updateLights() const;
+};
 
 } // namespace WebCore
 

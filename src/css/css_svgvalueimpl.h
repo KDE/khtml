@@ -28,21 +28,33 @@
 #include <QColor>
 #include "css/css_valueimpl.h"
 
-namespace DOM {
+namespace DOM
+{
 
-class SVGCSSValueImpl : public CSSValueImpl {
+class SVGCSSValueImpl : public CSSValueImpl
+{
 public:
-    virtual bool isSVGColor() const { return false; }
-    virtual bool isSVGPaint() const { return false; }
+    virtual bool isSVGColor() const
+    {
+        return false;
+    }
+    virtual bool isSVGPaint() const
+    {
+        return false;
+    }
 
-    virtual unsigned short cssValueType() const { return DOM::CSSValue::CSS_SVG_VALUE; }
+    virtual unsigned short cssValueType() const
+    {
+        return DOM::CSSValue::CSS_SVG_VALUE;
+    }
 };
 
-class SVGColorImpl : public SVGCSSValueImpl {
+class SVGColorImpl : public SVGCSSValueImpl
+{
 public:
     SVGColorImpl();
-    SVGColorImpl(const DOMString& rgbColor);
-    SVGColorImpl(const QColor& c);
+    SVGColorImpl(const DOMString &rgbColor);
+    SVGColorImpl(const QColor &c);
     SVGColorImpl(unsigned short colorType);
     virtual ~SVGColorImpl();
 
@@ -57,28 +69,38 @@ public:
     unsigned short colorType() const;
 
     unsigned rgbColor() const;
-    
-    static QColor colorFromRGBColorString(const DOMString&);
-    void setRGBColor(const DOMString& rgbColor) { int ignored = 0; setRGBColor(rgbColor, ignored); }
-    void setRGBColor(const DOMString& rgbColor, int&);
-    void setRGBColorICCColor(const DOMString& rgbColor, const DOMString& iccColor, int&);
-    void setColor(unsigned short colorType, const DOMString& rgbColor, const DOMString& iccColor, int&);
+
+    static QColor colorFromRGBColorString(const DOMString &);
+    void setRGBColor(const DOMString &rgbColor)
+    {
+        int ignored = 0;
+        setRGBColor(rgbColor, ignored);
+    }
+    void setRGBColor(const DOMString &rgbColor, int &);
+    void setRGBColorICCColor(const DOMString &rgbColor, const DOMString &iccColor, int &);
+    void setColor(unsigned short colorType, const DOMString &rgbColor, const DOMString &iccColor, int &);
 
     virtual DOMString cssText() const;
 
     // Helpers
-    const QColor& color() const;
+    const QColor &color() const;
 
-    virtual bool isSVGColor() const { return true; }
+    virtual bool isSVGColor() const
+    {
+        return true;
+    }
 
-    virtual unsigned short cssValueType() const { return DOM::CSSValue::CSS_SVG_VALUE; }
+    virtual unsigned short cssValueType() const
+    {
+        return DOM::CSSValue::CSS_SVG_VALUE;
+    }
 private:
     QColor m_color;
     unsigned short m_colorType;
 };
 
-
-class SVGPaintImpl : public SVGColorImpl {
+class SVGPaintImpl : public SVGColorImpl
+{
 public:
     enum SVGPaintType {
         SVG_PAINTTYPE_UNKNOWN               = 0,
@@ -94,26 +116,32 @@ public:
     };
 
     SVGPaintImpl();
-    SVGPaintImpl(const DOMString& uri);
+    SVGPaintImpl(const DOMString &uri);
     SVGPaintImpl(SVGPaintType);
-    SVGPaintImpl(SVGPaintType, const DOMString& uri, const DOMString& rgbPaint = DOMString(), const DOMString& iccPaint = DOMString());
-    SVGPaintImpl(const QColor& c);
-    SVGPaintImpl(const DOMString& uri, const QColor& c);
+    SVGPaintImpl(SVGPaintType, const DOMString &uri, const DOMString &rgbPaint = DOMString(), const DOMString &iccPaint = DOMString());
+    SVGPaintImpl(const QColor &c);
+    SVGPaintImpl(const DOMString &uri, const QColor &c);
     virtual ~SVGPaintImpl();
 
     // 'SVGPaint' functions
-    SVGPaintType paintType() const { return m_paintType; }
+    SVGPaintType paintType() const
+    {
+        return m_paintType;
+    }
     DOMString uri() const;
 
-    void setUri(const DOMString&);
-    void setPaint(SVGPaintType, const DOMString& uri, const DOMString& rgbPaint, const DOMString& iccPaint, int&);
+    void setUri(const DOMString &);
+    void setPaint(SVGPaintType, const DOMString &uri, const DOMString &rgbPaint, const DOMString &iccPaint, int &);
 
     virtual DOMString cssText() const;
-    
-    static SVGPaintImpl* defaultFill();
-    static SVGPaintImpl* defaultStroke();
 
-    virtual bool isSVGPaint() const { return true; }
+    static SVGPaintImpl *defaultFill();
+    static SVGPaintImpl *defaultStroke();
+
+    virtual bool isSVGPaint() const
+    {
+        return true;
+    }
 private:
     SVGPaintType m_paintType;
     DOMString m_uri;
@@ -121,6 +149,5 @@ private:
 
 } // namespace DOM
 
-#endif 
+#endif
 
-// vim:ts=4

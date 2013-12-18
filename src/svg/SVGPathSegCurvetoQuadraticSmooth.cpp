@@ -27,7 +27,8 @@
 
 #include "SVGStyledElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 SVGPathSegCurvetoQuadraticSmoothAbs::SVGPathSegCurvetoQuadraticSmoothAbs(float x, float y)
     : SVGPathSeg()
@@ -59,8 +60,6 @@ float SVGPathSegCurvetoQuadraticSmoothAbs::y() const
 {
     return m_y;
 }
-
-
 
 SVGPathSegCurvetoQuadraticSmoothRel::SVGPathSegCurvetoQuadraticSmoothRel(float x, float y)
     : SVGPathSeg()
@@ -97,4 +96,3 @@ float SVGPathSegCurvetoQuadraticSmoothRel::y() const
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

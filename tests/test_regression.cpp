@@ -73,16 +73,12 @@
 #warning "Kill this at some point"
 #endif
 
-
-
-struct PalInfo
-{
+struct PalInfo {
     QPalette::ColorRole role;
     quint32            color;
 };
 
-PalInfo palInfo[] =
-{
+PalInfo palInfo[] = {
     {QPalette::WindowText, 0xff000000},
     {QPalette::Button, 0xffc0c0c0},
     {QPalette::Light, 0xffffffff},
@@ -102,8 +98,7 @@ PalInfo palInfo[] =
     {QPalette::LinkVisited, 0}
 };
 
-PalInfo disPalInfo[] =
-{
+PalInfo disPalInfo[] = {
     {QPalette::WindowText, 0xff808080},
     {QPalette::Button, 0xffc0c0c0},
     {QPalette::Light, 0xffffffff},
@@ -123,39 +118,34 @@ PalInfo disPalInfo[] =
     {QPalette::LinkVisited, 0}
 };
 
-
-
 class TestStyle: public QCommonStyle // was QWindowsStyle in Qt4. TODO: Check if this draws everything we need in Qt5...
 {
 public:
     TestStyle()
     {}
 
-    virtual void drawControl(ControlElement element, const QStyleOption* option, QPainter* painter, const QWidget* widget) const
+    virtual void drawControl(ControlElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget) const
     {
-        switch (element)
-        {
+        switch (element) {
         case CE_ScrollBarSubLine:
         case CE_ScrollBarAddLine:
         case CE_ScrollBarSubPage:
         case CE_ScrollBarAddPage:
         case CE_ScrollBarFirst:
         case CE_ScrollBarLast:
-        case CE_ScrollBarSlider:
-        {
-            const QStyleOptionSlider* sbOpt = qstyleoption_cast<const QStyleOptionSlider*>(option);
+        case CE_ScrollBarSlider: {
+            const QStyleOptionSlider *sbOpt = qstyleoption_cast<const QStyleOptionSlider *>(option);
 
-            if (sbOpt->minimum == sbOpt->maximum)
-            {
-                const_cast<QStyleOptionSlider*>(sbOpt)->state ^= QStyle::State_Enabled;
-                if (element == CE_ScrollBarSlider)
+            if (sbOpt->minimum == sbOpt->maximum) {
+                const_cast<QStyleOptionSlider *>(sbOpt)->state ^= QStyle::State_Enabled;
+                if (element == CE_ScrollBarSlider) {
                     element = CE_ScrollBarAddPage;
+                }
             }
 
-            if (element == CE_ScrollBarAddPage || element == CE_ScrollBarSubPage)
-            {
+            if (element == CE_ScrollBarAddPage || element == CE_ScrollBarSubPage) {
                 //Fun. in Qt4, the brush offset seems to be sensitive to window position??
-                painter->setBrushOrigin(0,1);
+                painter->setBrushOrigin(0, 1);
             }
             break;
         }
@@ -166,39 +156,38 @@ public:
         QCommonStyle::drawControl(element, option, painter, widget);
     }
 
-    virtual QRect subControlRect(ComplexControl control, const QStyleOptionComplex* option,
-                                 SubControl subControl, const QWidget* widget) const
+    virtual QRect subControlRect(ComplexControl control, const QStyleOptionComplex *option,
+                                 SubControl subControl, const QWidget *widget) const
     {
         QRect rect = QCommonStyle::subControlRect(control, option, subControl, widget);
 
-        switch (control)
-        {
+        switch (control) {
         case CC_ComboBox:
-            if (subControl == SC_ComboBoxEditField)
-                return rect.translated(3,0);
-            else
+            if (subControl == SC_ComboBoxEditField) {
+                return rect.translated(3, 0);
+            } else {
                 return rect;
+            }
         default:
             return rect;
         }
     }
 
-    virtual QSize sizeFromContents(ContentsType type, const QStyleOption* option, const QSize& contentsSize, const QWidget* widget) const
+    virtual QSize sizeFromContents(ContentsType type, const QStyleOption *option, const QSize &contentsSize, const QWidget *widget) const
     {
         QSize size = QCommonStyle::sizeFromContents(type, option, contentsSize, widget);
 
-        switch (type)
-        {
+        switch (type) {
         case CT_PushButton:
             return QSize(size.width(), size.height() - 1);
         case CT_LineEdit:
-	    if (widget && widget->parentWidget() && !qstricmp(widget->parentWidget()->metaObject()->className(), "KUrlRequester"))
-		return QSize(size.width() + 1, size.height());
+            if (widget && widget->parentWidget() && !qstricmp(widget->parentWidget()->metaObject()->className(), "KUrlRequester")) {
+                return QSize(size.width() + 1, size.height());
+            }
             return QSize(size.width() + 2, size.height() + 2);
-        case CT_ComboBox:
-        {
-            const QStyleOptionComboBox* cbOpt = qstyleoption_cast<const QStyleOptionComboBox*>(option);
-			Q_UNUSED(cbOpt); // is 'cbOpt' needed at all here?
+        case CT_ComboBox: {
+            const QStyleOptionComboBox *cbOpt = qstyleoption_cast<const QStyleOptionComboBox *>(option);
+            Q_UNUSED(cbOpt); // is 'cbOpt' needed at all here?
             return QSize(qMax(43, size.width() + 6), size.height());
         }
         default:
@@ -207,19 +196,19 @@ public:
 
     }
 
-    virtual int pixelMetric(PixelMetric metric, const QStyleOption* option, const QWidget* widget) const
+    virtual int pixelMetric(PixelMetric metric, const QStyleOption *option, const QWidget *widget) const
     {
-        if (metric == PM_ButtonMargin)
+        if (metric == PM_ButtonMargin) {
             return 7;
+        }
         return QCommonStyle::pixelMetric(metric, option, widget);
     }
 
 };
 
-const char* imageMissingIcon =
-"iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAzrAAAM6wHl1kTSAAAB2ElEQVQ4jZWTMWsiQRTHfxlDCln2iFhIClksRUIQC6t8BkurzTewEBGx2GKrICmsUsg218rBWV2xdQqLRVJYhUQkBCKLeN6iixB5d0WyYOKGcP9mmHm83/u/NzMHvOobcMz/6Tfw5/Btc+z7/oWIoJRCKQWwt0ZSSqHr+vddACLyZck44GFc8OnpiX6/z3Q6RSmFYRhUq1UMw9gDqF2AUorRaES73WYymVAsFsnlcnieR6PRwPO8dy3uAcIwxHEcADRNo1qt0mq16PV6ZDIZut0uYRh+Dri7u2O1WlGr1QCwLIsgCMhkMlQqFebzOePx+P1cdgG+7wNQKpWwbRsRodlsslgsOD8/R0R4fHyMdwBwcnKCiHBzc0M6neby8hIRoV6vMxwOERGy2eznDvL5PJqmMRgMmM1mpFIprq6uEBFs20bXdc7OzkgkEvvXGA2uVqth2zamaVIul9E0jeVyiVKKdrtNMplkvV7HAwDK5TLX19c4jsN4PEZEKBQKmKbJdrvl/v4e13UfgAXAwVueEYbhRdwzTiQSvLy8cHt7y+npKZ1O59myrB8RQH10EKcgCDg6OoqSf/L6keJbiNNms8F13QfLsn69Jf+NYlELGpD+grMAgo+H/wARELhn1VB8lwAAAABJRU5ErkJggg==";
+const char *imageMissingIcon =
+    "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAzrAAAM6wHl1kTSAAAB2ElEQVQ4jZWTMWsiQRTHfxlDCln2iFhIClksRUIQC6t8BkurzTewEBGx2GKrICmsUsg218rBWV2xdQqLRVJYhUQkBCKLeN6iixB5d0WyYOKGcP9mmHm83/u/NzMHvOobcMz/6Tfw5/Btc+z7/oWIoJRCKQWwt0ZSSqHr+vddACLyZck44GFc8OnpiX6/z3Q6RSmFYRhUq1UMw9gDqF2AUorRaES73WYymVAsFsnlcnieR6PRwPO8dy3uAcIwxHEcADRNo1qt0mq16PV6ZDIZut0uYRh+Dri7u2O1WlGr1QCwLIsgCMhkMlQqFebzOePx+P1cdgG+7wNQKpWwbRsRodlsslgsOD8/R0R4fHyMdwBwcnKCiHBzc0M6neby8hIRoV6vMxwOERGy2eznDvL5PJqmMRgMmM1mpFIprq6uEBFs20bXdc7OzkgkEvvXGA2uVqth2zamaVIul9E0jeVyiVKKdrtNMplkvV7HAwDK5TLX19c4jsN4PEZEKBQKmKbJdrvl/v4e13UfgAXAwVueEYbhRdwzTiQSvLy8cHt7y+npKZ1O59myrB8RQH10EKcgCDg6OoqSf/L6keJbiNNms8F13QfLsn69Jf+NYlELGpD+grMAgo+H/wARELhn1VB8lwAAAABJRU5ErkJggg==";
 //r 727816 of oxygen's image-missing, base64'd PNG
-
 
 #include <kio/job.h>
 #include <kmainwindow.h>
@@ -273,52 +262,57 @@ PartMonitor::PartMonitor(KHTMLPart *_part)
 {
     m_part = _part;
     m_completed = false;
-    connect(m_part,SIGNAL(completed()),this,SLOT(partCompleted()));
+    connect(m_part, SIGNAL(completed()), this, SLOT(partCompleted()));
     m_timer_waits = 200;
     m_timeout_timer = new QTimer(this);
 }
 
 PartMonitor::~PartMonitor()
 {
-   if (this == sm_highestMonitor)
-	sm_highestMonitor = 0;
-   while (!m_eventLoopStack.isEmpty())
-       exitLoop();
+    if (this == sm_highestMonitor) {
+        sm_highestMonitor = 0;
+    }
+    while (!m_eventLoopStack.isEmpty()) {
+        exitLoop();
+    }
 }
-
 
 void PartMonitor::waitForCompletion()
 {
     if (!m_completed) {
 
-        if (sm_highestMonitor)
-		return;
+        if (sm_highestMonitor) {
+            return;
+        }
 
-	sm_highestMonitor = this;
+        sm_highestMonitor = this;
 
         enterLoop();
 
         //connect(m_timeout_timer, SIGNAL(timeout()), this, SLOT(timeout()) );
         //m_timeout_timer->stop();
-	//m_timeout_timer->start( visual ? 100 : 2, true );
+        //m_timeout_timer->start( visual ? 100 : 2, true );
     }
-    QTimer::singleShot( 0, this, SLOT(finishTimers()) );
+    QTimer::singleShot(0, this, SLOT(finishTimers()));
     enterLoop();
 }
 
 void PartMonitor::enterLoop()
 {
-    if (m_eventLoopStack.isEmpty() || m_eventLoopStack.top()->isRunning())
+    if (m_eventLoopStack.isEmpty() || m_eventLoopStack.top()->isRunning()) {
         m_eventLoopStack.push(new QEventLoop());
+    }
     m_eventLoopStack.top()->exec();
 }
 
 void PartMonitor::exitLoop()
 {
-    while (!m_eventLoopStack.isEmpty() && !m_eventLoopStack.top()->isRunning())
+    while (!m_eventLoopStack.isEmpty() && !m_eventLoopStack.top()->isRunning()) {
         delete m_eventLoopStack.pop();
-    if (!m_eventLoopStack.isEmpty())
+    }
+    if (!m_eventLoopStack.isEmpty()) {
         m_eventLoopStack.top()->exit();
+    }
 }
 
 void PartMonitor::timeout()
@@ -329,11 +323,11 @@ void PartMonitor::timeout()
 void PartMonitor::finishTimers()
 {
 
-    KJS::Window *w = KJS::Window::retrieveWindow( m_part );
+    KJS::Window *w = KJS::Window::retrieveWindow(m_part);
     --m_timer_waits;
-    if ( m_timer_waits && ((w && w->winq->hasTimers()) || m_part->inProgress())) {
+    if (m_timer_waits && ((w && w->winq->hasTimers()) || m_part->inProgress())) {
         // wait a bit
-        QTimer::singleShot( 10, this, SLOT(finishTimers()) );
+        QTimer::singleShot(10, this, SLOT(finishTimers()));
         return;
     }
     exitLoop();
@@ -343,37 +337,38 @@ void PartMonitor::partCompleted()
 {
     m_completed = true;
     m_timeout_timer->stop();
-    connect(m_timeout_timer, SIGNAL(timeout()),this, SLOT(timeout()) );
-	m_timeout_timer->setSingleShot(true);
-	m_timeout_timer->start(visual ? 100 : 2);
-    disconnect(m_part,SIGNAL(completed()),this,SLOT(partCompleted()));
+    connect(m_timeout_timer, SIGNAL(timeout()), this, SLOT(timeout()));
+    m_timeout_timer->setSingleShot(true);
+    m_timeout_timer->start(visual ? 100 : 2);
+    disconnect(m_part, SIGNAL(completed()), this, SLOT(partCompleted()));
 }
 
-static void signal_handler( int )
+static void signal_handler(int)
 {
-    printf( "timeout - this should *NOT* happen, it is likely the part's completed() signal was not emitted - FIXME!!\n" );
-    if (PartMonitor::sm_highestMonitor)
+    printf("timeout - this should *NOT* happen, it is likely the part's completed() signal was not emitted - FIXME!!\n");
+    if (PartMonitor::sm_highestMonitor) {
         PartMonitor::sm_highestMonitor->exitLoop();
-    else
+    } else {
         abort();
+    }
 }
 // -------------------------------------------------------------------------
 
 RegTestObject::RegTestObject(ExecState *exec, RegressionTest *_regTest)
 {
     m_regTest = _regTest;
-    putDirect("print",new RegTestFunction(exec,m_regTest,RegTestFunction::Print,1), DontEnum);
-    putDirect("reportResult",new RegTestFunction(exec,m_regTest,RegTestFunction::ReportResult,3), DontEnum);
-    putDirect("checkOutput",new RegTestFunction(exec,m_regTest,RegTestFunction::CheckOutput,1), DontEnum);
+    putDirect("print", new RegTestFunction(exec, m_regTest, RegTestFunction::Print, 1), DontEnum);
+    putDirect("reportResult", new RegTestFunction(exec, m_regTest, RegTestFunction::ReportResult, 3), DontEnum);
+    putDirect("checkOutput", new RegTestFunction(exec, m_regTest, RegTestFunction::CheckOutput, 1), DontEnum);
     // add "quit" for compatibility with the mozilla js shell
-    putDirect("quit", new RegTestFunction(exec,m_regTest,RegTestFunction::Quit,1), DontEnum );
+    putDirect("quit", new RegTestFunction(exec, m_regTest, RegTestFunction::Quit, 1), DontEnum);
 }
 
-RegTestFunction::RegTestFunction(ExecState* /*exec*/, RegressionTest *_regTest, int _id, int length)
+RegTestFunction::RegTestFunction(ExecState * /*exec*/, RegressionTest *_regTest, int _id, int length)
 {
     m_regTest = _regTest;
     id = _id;
-    putDirect("length",length);
+    putDirect("length", length);
 }
 
 bool RegTestFunction::implementsCall() const
@@ -381,63 +376,71 @@ bool RegTestFunction::implementsCall() const
     return true;
 }
 
-JSValue* RegTestFunction::callAsFunction(ExecState *exec, JSObject* /*thisObj*/, const List &args)
+JSValue *RegTestFunction::callAsFunction(ExecState *exec, JSObject * /*thisObj*/, const List &args)
 {
-    JSValue* result = jsUndefined();
-    if ( m_regTest->ignore_errors )
+    JSValue *result = jsUndefined();
+    if (m_regTest->ignore_errors) {
         return result;
+    }
 
     switch (id) {
-	case Print: {
-	    UString str = args[0]->toString(exec);
-            if ( str.qstring().toLower().indexOf( "failed!" ) >= 0 )
-                m_regTest->saw_failure = true;
-            QString res = str.qstring().replace('\007', "");
-            m_regTest->m_currentOutput += res + "\n";	//krazy:exclude=duoblequote_chars DOM demands chars
-	    break;
-	}
-	case ReportResult: {
-            bool passed = args[0]->toBoolean(exec);
-            QString description = args[1]->toString(exec).qstring();
-            if (args[1]->type() == UndefinedType || args[1]->type() == NullType)
-                description.clear();
-            m_regTest->reportResult(passed,description);
-            if ( !passed )
-                m_regTest->saw_failure = true;
-            break;
+    case Print: {
+        UString str = args[0]->toString(exec);
+        if (str.qstring().toLower().indexOf("failed!") >= 0) {
+            m_regTest->saw_failure = true;
         }
-	case CheckOutput: {
-            DOM::DocumentImpl* docimpl = static_cast<DOM::DocumentImpl*>( m_regTest->m_part->document().handle() );
-            if ( docimpl && docimpl->view() && docimpl->renderer() )
-            {
-                docimpl->updateRendering();
-            }
-            QString filename = args[0]->toString(exec).qstring();
-            filename = RegressionTest::curr->m_currentCategory+"/"+filename;	//krazy:exclude=duoblequote_chars DOM demands chars
-            int failures = RegressionTest::NoFailure;
-            if ( m_regTest->m_genOutput ) {
-                if ( !m_regTest->reportResult( m_regTest->checkOutput(filename+"-dom"),
-                                               "Script-generated " + filename + "-dom") )
-                    failures |= RegressionTest::DomFailure;
-                if ( !m_regTest->reportResult( m_regTest->checkOutput(filename+"-render"),
-                                         "Script-generated " + filename + "-render") )
-                    failures |= RegressionTest::RenderFailure;
-            } else {
-                // compare with output file
-                if ( !m_regTest->reportResult( m_regTest->checkOutput(filename+"-dom"), "DOM") )
-                    failures |= RegressionTest::DomFailure;
-                if ( !m_regTest->reportResult( m_regTest->checkOutput(filename+"-render"), "RENDER") )
-                    failures |= RegressionTest::RenderFailure;
-            }
-            RegressionTest::curr->doFailureReport( filename, failures );
-            break;
+        QString res = str.qstring().replace('\007', "");
+        m_regTest->m_currentOutput += res + "\n";   //krazy:exclude=duoblequote_chars DOM demands chars
+        break;
+    }
+    case ReportResult: {
+        bool passed = args[0]->toBoolean(exec);
+        QString description = args[1]->toString(exec).qstring();
+        if (args[1]->type() == UndefinedType || args[1]->type() == NullType) {
+            description.clear();
         }
-        case Quit:
-            m_regTest->reportResult(true,
-				    "Called quit" );
-            if ( !m_regTest->saw_failure )
-                m_regTest->ignore_errors = true;
-            break;
+        m_regTest->reportResult(passed, description);
+        if (!passed) {
+            m_regTest->saw_failure = true;
+        }
+        break;
+    }
+    case CheckOutput: {
+        DOM::DocumentImpl *docimpl = static_cast<DOM::DocumentImpl *>(m_regTest->m_part->document().handle());
+        if (docimpl && docimpl->view() && docimpl->renderer()) {
+            docimpl->updateRendering();
+        }
+        QString filename = args[0]->toString(exec).qstring();
+        filename = RegressionTest::curr->m_currentCategory + "/" + filename; //krazy:exclude=duoblequote_chars DOM demands chars
+        int failures = RegressionTest::NoFailure;
+        if (m_regTest->m_genOutput) {
+            if (!m_regTest->reportResult(m_regTest->checkOutput(filename + "-dom"),
+                                         "Script-generated " + filename + "-dom")) {
+                failures |= RegressionTest::DomFailure;
+            }
+            if (!m_regTest->reportResult(m_regTest->checkOutput(filename + "-render"),
+                                         "Script-generated " + filename + "-render")) {
+                failures |= RegressionTest::RenderFailure;
+            }
+        } else {
+            // compare with output file
+            if (!m_regTest->reportResult(m_regTest->checkOutput(filename + "-dom"), "DOM")) {
+                failures |= RegressionTest::DomFailure;
+            }
+            if (!m_regTest->reportResult(m_regTest->checkOutput(filename + "-render"), "RENDER")) {
+                failures |= RegressionTest::RenderFailure;
+            }
+        }
+        RegressionTest::curr->doFailureReport(filename, failures);
+        break;
+    }
+    case Quit:
+        m_regTest->reportResult(true,
+                                "Called quit");
+        if (!m_regTest->saw_failure) {
+            m_regTest->ignore_errors = true;
+        }
+        break;
     }
 
     return result;
@@ -448,35 +451,33 @@ JSValue* RegTestFunction::callAsFunction(ExecState *exec, JSObject* /*thisObj*/,
 KHTMLPartObject::KHTMLPartObject(ExecState *exec, KHTMLPart *_part)
 {
     m_part = _part;
-    putDirect("openPage", new KHTMLPartFunction(exec,m_part,KHTMLPartFunction::OpenPage,1), DontEnum);
-    putDirect("openPageAsUrl", new KHTMLPartFunction(exec,m_part,KHTMLPartFunction::OpenPageAsUrl,1), DontEnum);
-    putDirect("begin",     new KHTMLPartFunction(exec,m_part,KHTMLPartFunction::Begin,1), DontEnum);
-    putDirect("write",    new KHTMLPartFunction(exec,m_part,KHTMLPartFunction::Write,1), DontEnum);
-    putDirect("end",    new KHTMLPartFunction(exec,m_part,KHTMLPartFunction::End,0), DontEnum);
-    putDirect("executeScript", new KHTMLPartFunction(exec,m_part,KHTMLPartFunction::ExecuteScript,0), DontEnum);
-    putDirect("processEvents", new KHTMLPartFunction(exec,m_part,KHTMLPartFunction::ProcessEvents,0), DontEnum);
+    putDirect("openPage", new KHTMLPartFunction(exec, m_part, KHTMLPartFunction::OpenPage, 1), DontEnum);
+    putDirect("openPageAsUrl", new KHTMLPartFunction(exec, m_part, KHTMLPartFunction::OpenPageAsUrl, 1), DontEnum);
+    putDirect("begin",     new KHTMLPartFunction(exec, m_part, KHTMLPartFunction::Begin, 1), DontEnum);
+    putDirect("write",    new KHTMLPartFunction(exec, m_part, KHTMLPartFunction::Write, 1), DontEnum);
+    putDirect("end",    new KHTMLPartFunction(exec, m_part, KHTMLPartFunction::End, 0), DontEnum);
+    putDirect("executeScript", new KHTMLPartFunction(exec, m_part, KHTMLPartFunction::ExecuteScript, 0), DontEnum);
+    putDirect("processEvents", new KHTMLPartFunction(exec, m_part, KHTMLPartFunction::ProcessEvents, 0), DontEnum);
 }
 
-KJS::JSValue *KHTMLPartObject::winGetter(KJS::ExecState *, KJS::JSObject*, const KJS::Identifier&, const KJS::PropertySlot& slot)
+KJS::JSValue *KHTMLPartObject::winGetter(KJS::ExecState *, KJS::JSObject *, const KJS::Identifier &, const KJS::PropertySlot &slot)
 {
-    KHTMLPartObject* thisObj = static_cast<KHTMLPartObject*>(slot.slotBase());
+    KHTMLPartObject *thisObj = static_cast<KHTMLPartObject *>(slot.slotBase());
     return KJS::Window::retrieveWindow(thisObj->m_part);
 }
 
-KJS::JSValue *KHTMLPartObject::docGetter(KJS::ExecState *exec, KJS::JSObject*, const KJS::Identifier&, const KJS::PropertySlot& slot)
+KJS::JSValue *KHTMLPartObject::docGetter(KJS::ExecState *exec, KJS::JSObject *, const KJS::Identifier &, const KJS::PropertySlot &slot)
 {
-    KHTMLPartObject* thisObj = static_cast<KHTMLPartObject*>(slot.slotBase());
+    KHTMLPartObject *thisObj = static_cast<KHTMLPartObject *>(slot.slotBase());
     return getDOMNode(exec, thisObj->m_part->document().handle());
 }
 
-
-bool KHTMLPartObject::getOwnPropertySlot(KJS::ExecState *exec, const KJS::Identifier& propertyName, KJS::PropertySlot& slot)
+bool KHTMLPartObject::getOwnPropertySlot(KJS::ExecState *exec, const KJS::Identifier &propertyName, KJS::PropertySlot &slot)
 {
     if (propertyName == "document") {
         slot.setCustom(this, docGetter);
         return true;
-    }
-    else if (propertyName == "window") {
+    } else if (propertyName == "window") {
         slot.setCustom(this, winGetter);
         return true;
     }
@@ -487,7 +488,7 @@ KHTMLPartFunction::KHTMLPartFunction(ExecState */*exec*/, KHTMLPart *_part, int 
 {
     m_part = _part;
     id = _id;
-    putDirect("length",length);
+    putDirect("length", length);
 }
 
 bool KHTMLPartFunction::implementsCall() const
@@ -495,92 +496,92 @@ bool KHTMLPartFunction::implementsCall() const
     return true;
 }
 
-JSValue* KHTMLPartFunction::callAsFunction(ExecState *exec, JSObject*/*thisObj*/, const List &args)
+JSValue *KHTMLPartFunction::callAsFunction(ExecState *exec, JSObject */*thisObj*/, const List &args)
 {
-    JSValue* result = jsUndefined();
+    JSValue *result = jsUndefined();
 
     switch (id) {
-        case OpenPage: {
-	    if (args[0]->type() == NullType || args[0]->type() == NullType) {
-		exec->setException(Error::create(exec, GeneralError,"No filename specified"));
-		return jsUndefined();
-	    }
+    case OpenPage: {
+        if (args[0]->type() == NullType || args[0]->type() == NullType) {
+            exec->setException(Error::create(exec, GeneralError, "No filename specified"));
+            return jsUndefined();
+        }
 
-            QString filename = args[0]->toString(exec).qstring();
-            QString fullFilename = QFileInfo(RegressionTest::curr->m_currentBase+"/"+filename).absoluteFilePath();	//krazy:exclude=duoblequote_chars DOM demands chars
-            QUrl url = QUrl::fromLocalFile(fullFilename);
+        QString filename = args[0]->toString(exec).qstring();
+        QString fullFilename = QFileInfo(RegressionTest::curr->m_currentBase + "/" + filename).absoluteFilePath(); //krazy:exclude=duoblequote_chars DOM demands chars
+        QUrl url = QUrl::fromLocalFile(fullFilename);
+        PartMonitor pm(m_part);
+        m_part->openUrl(url);
+        pm.waitForCompletion();
+        qApp->processEvents(QEventLoop::AllEvents);
+        break;
+    }
+    case OpenPageAsUrl: {
+        if (args[0]->type() == NullType || args[0]->type() == UndefinedType) {
+            exec->setException(Error::create(exec, GeneralError, "No filename specified"));
+            return jsUndefined();
+        }
+        if (args[1]->type() == NullType || args[1]->type() == UndefinedType) {
+            exec->setException(Error::create(exec, GeneralError, "No url specified"));
+            return jsUndefined();
+        }
+
+        QString filename = args[0]->toString(exec).qstring();
+        QString url = args[1]->toString(exec).qstring();
+        QFile file(RegressionTest::curr->m_currentBase + "/" + filename); //krazy:exclude=duoblequote_chars DOM demands chars
+        if (!file.open(QIODevice::ReadOnly)) {
+            exec->setException(Error::create(exec, GeneralError,
+                                             qPrintable(QString("Error reading " + filename))));
+        } else {
+            QByteArray fileData;
+            QDataStream stream(&fileData, QIODevice::WriteOnly);
+            char buf[1024];
+            int bytesread;
+            while (!file.atEnd()) {
+                bytesread = file.read(buf, 1024);
+                stream.writeRawData(buf, bytesread);
+            }
+            file.close();
+            QString contents(fileData);
             PartMonitor pm(m_part);
-            m_part->openUrl(url);
-            pm.waitForCompletion();
-	    qApp->processEvents(QEventLoop::AllEvents);
-            break;
-        }
-	case OpenPageAsUrl: {
-	    if (args[0]->type() == NullType || args[0]->type() == UndefinedType) {
-		exec->setException(Error::create(exec, GeneralError,"No filename specified"));
-		return jsUndefined();
-	    }
-	    if (args[1]->type() == NullType || args[1]->type() == UndefinedType) {
-		exec->setException(Error::create(exec, GeneralError,"No url specified"));
-		return jsUndefined();
-	    }
-
-            QString filename = args[0]->toString(exec).qstring();
-            QString url = args[1]->toString(exec).qstring();
-            QFile file(RegressionTest::curr->m_currentBase+"/"+filename);	//krazy:exclude=duoblequote_chars DOM demands chars
-	    if (!file.open(QIODevice::ReadOnly)) {
-		exec->setException(Error::create(exec, GeneralError,
-						 qPrintable(QString("Error reading " + filename))));
-	    }
-	    else {
-		QByteArray fileData;
-		QDataStream stream(&fileData,QIODevice::WriteOnly);
-		char buf[1024];
-		int bytesread;
-		while (!file.atEnd()) {
-		    bytesread = file.read(buf,1024);
-		    stream.writeRawData(buf,bytesread);
-		}
-		file.close();
-		QString contents(fileData);
-		PartMonitor pm(m_part);
-		m_part->begin(QUrl( url ));
-		m_part->write(contents);
-		m_part->end();
-		pm.waitForCompletion();
-	    }
-	    qApp->processEvents(QEventLoop::AllEvents);
-	    break;
-	}
-	case Begin: {
-            QString url = args[0]->toString(exec).qstring();
-            m_part->begin(QUrl( url ));
-            break;
-        }
-        case Write: {
-            QString str = args[0]->toString(exec).qstring();
-            m_part->write(str);
-            break;
-        }
-        case End: {
+            m_part->begin(QUrl(url));
+            m_part->write(contents);
             m_part->end();
-	    qApp->processEvents(QEventLoop::AllEvents);
-            break;
+            pm.waitForCompletion();
         }
-	case ExecuteScript: {
-	    QString code = args[0]->toString(exec).qstring();
-	    Completion comp;
-	    KJSProxy *proxy = m_part->jScript();
-	    proxy->evaluate("",0,code,0,&comp);
-	    if (comp.complType() == Throw)
-		exec->setException(comp.value());
-	    qApp->processEvents(QEventLoop::AllEvents);
-	    break;
-	}
-	case ProcessEvents: {
-	    qApp->processEvents(QEventLoop::AllEvents);
-	    break;
-	}
+        qApp->processEvents(QEventLoop::AllEvents);
+        break;
+    }
+    case Begin: {
+        QString url = args[0]->toString(exec).qstring();
+        m_part->begin(QUrl(url));
+        break;
+    }
+    case Write: {
+        QString str = args[0]->toString(exec).qstring();
+        m_part->write(str);
+        break;
+    }
+    case End: {
+        m_part->end();
+        qApp->processEvents(QEventLoop::AllEvents);
+        break;
+    }
+    case ExecuteScript: {
+        QString code = args[0]->toString(exec).qstring();
+        Completion comp;
+        KJSProxy *proxy = m_part->jScript();
+        proxy->evaluate("", 0, code, 0, &comp);
+        if (comp.complType() == Throw) {
+            exec->setException(comp.value());
+        }
+        qApp->processEvents(QEventLoop::AllEvents);
+        break;
+    }
+    case ProcessEvents: {
+        qApp->processEvents(QEventLoop::AllEvents);
+        break;
+    }
     }
 
     return result;
@@ -591,29 +592,29 @@ JSValue* KHTMLPartFunction::callAsFunction(ExecState *exec, JSObject*/*thisObj*/
 int main(int argc, char *argv[])
 {
     // forget about any settings
-    passwd* pw = getpwuid( getuid() );
+    passwd *pw = getpwuid(getuid());
     if (!pw) {
         fprintf(stderr, "dang, I don't even know who I am.\n");
         exit(1);
     }
 
     QString kh("/var/tmp/%1_non_existant");
-    kh = kh.arg( pw->pw_name );
-    qputenv( "XDG_CONFIG_HOME", kh.toLatin1());
-    qputenv( "XDG_DATA_HOME", kh.toLatin1());
-    qputenv( "LC_ALL", "C");
-    qputenv( "LANG", "C");
+    kh = kh.arg(pw->pw_name);
+    qputenv("XDG_CONFIG_HOME", kh.toLatin1());
+    qputenv("XDG_DATA_HOME", kh.toLatin1());
+    qputenv("LC_ALL", "C");
+    qputenv("LANG", "C");
 
     // We want KIO to be in the slave-forking mode since
     // then it'll ask KProtocolInfo::exec for the binary to run,
     // and we intercept that, limiting the I/O to file://
     // and the magic data://. See Slave::createSlave in KIO's slave.cpp
-    qputenv( "KDE_FORK_SLAVES", "true");
-    signal( SIGALRM, signal_handler );
+    qputenv("KDE_FORK_SLAVES", "true");
+    signal(SIGALRM, signal_handler);
 
     QApplication a(argc, argv);
     // workaround various Qt crashes by always enforcing a TrueColor visual
-    QApplication::setColorSpec( QApplication::ManyColor );
+    QApplication::setColorSpec(QApplication::ManyColor);
 
     QCommandLineParser parser;
     parser.addHelpOption(QCoreApplication::translate("main", "Regression tester for khtml"));
@@ -631,89 +632,91 @@ int main(int argc, char *argv[])
     parser.addOption(QCommandLineOption(QStringList() << "+[testcases]", QCoreApplication::translate("main", "Relative path to testcase, or directory of testcases to be run (equivalent to -t).")));
     parser.process(a);
 
-
     QString baseDir = parser.value("base");
 
-    if ( parser.remainingArguments().count() < 1 && baseDir.isEmpty() ) {
+    if (parser.remainingArguments().count() < 1 && baseDir.isEmpty()) {
         parser.showHelp();
-        ::exit( 1 );
+        ::exit(1);
     }
 
     int testcase_index = 0;
-    if (baseDir.isEmpty())
+    if (baseDir.isEmpty()) {
         baseDir = parser.remainingArguments().at(testcase_index++);
+    }
 
     QFileInfo bdInfo(baseDir);
     // font pathes passed to Xvfb must be absolute
-    if (bdInfo.isRelative())
+    if (bdInfo.isRelative()) {
         baseDir = bdInfo.dir().absolutePath();
+    }
 
     const char *subdirs[] = {"tests", "baseline", "output", "resources"};
-    for ( int i = 0; i < 3; i++ ) {
+    for (int i = 0; i < 3; i++) {
         QFileInfo sourceDir(baseDir + QLatin1Char('/') + QLatin1String(subdirs[i]));
-        if ( !sourceDir.exists() || !sourceDir.isDir() ) {
-            fprintf(stderr,"ERROR: Source directory \"%s\": no such directory.\n", sourceDir.filePath().toLocal8Bit().data());
+        if (!sourceDir.exists() || !sourceDir.isDir()) {
+            fprintf(stderr, "ERROR: Source directory \"%s\": no such directory.\n", sourceDir.filePath().toLocal8Bit().data());
             exit(1);
         }
     }
 
-    if (parser.isSet("xvfb"))
-    {
+    if (parser.isSet("xvfb")) {
         QString xvfbPath = QStandardPaths::findExecutable("Xvfb");
-        if ( xvfbPath.isEmpty() ) {
-            fprintf( stderr, "ERROR: We need Xvfb to be installed for reliable results\n" );
-            exit( 1 );
+        if (xvfbPath.isEmpty()) {
+            fprintf(stderr, "ERROR: We need Xvfb to be installed for reliable results\n");
+            exit(1);
         }
 
         QByteArray xvfbPath8 = QFile::encodeName(xvfbPath);
         QStringList fpaths;
-        fpaths.append(baseDir+"/resources");
+        fpaths.append(baseDir + "/resources");
 
-        const char* const fontdirs[] = { "75dpi", "misc", "Type1" };
-        const char* const fontpaths[] =  {"/usr/share/fonts/", "/usr/X11/lib/X11/fonts/",
-            "/usr/lib/X11/fonts/", "/usr/share/fonts/X11/" };
+        const char *const fontdirs[] = { "75dpi", "misc", "Type1" };
+        const char *const fontpaths[] =  {"/usr/share/fonts/", "/usr/X11/lib/X11/fonts/",
+                                          "/usr/lib/X11/fonts/", "/usr/share/fonts/X11/"
+                                         };
 
-        for (size_t fp=0; fp < sizeof(fontpaths)/sizeof(*fontpaths); ++fp)
-            for (size_t fd=0; fd < sizeof(fontdirs)/sizeof(*fontdirs); ++fd)
-                if (QFile::exists(QLatin1String(fontpaths[fp])+QLatin1String(fontdirs[fd]))) {
-                    if (strcmp(fontdirs[fd] , "Type1"))
-                        fpaths.append(QLatin1String(fontpaths[fp])+QLatin1String(fontdirs[fd])+":unscaled");
-                    else
-                        fpaths.append(QLatin1String(fontpaths[fp])+QLatin1String(fontdirs[fd]));
-		}
+        for (size_t fp = 0; fp < sizeof(fontpaths) / sizeof(*fontpaths); ++fp)
+            for (size_t fd = 0; fd < sizeof(fontdirs) / sizeof(*fontdirs); ++fd)
+                if (QFile::exists(QLatin1String(fontpaths[fp]) + QLatin1String(fontdirs[fd]))) {
+                    if (strcmp(fontdirs[fd], "Type1")) {
+                        fpaths.append(QLatin1String(fontpaths[fp]) + QLatin1String(fontdirs[fd]) + ":unscaled");
+                    } else {
+                        fpaths.append(QLatin1String(fontpaths[fp]) + QLatin1String(fontdirs[fd]));
+                    }
+                }
 
         xvfb = fork();
-        if ( !xvfb ) {
+        if (!xvfb) {
             QByteArray buffer = fpaths.join(",").toLatin1();
-            execl( xvfbPath8.data(), xvfbPath8.data(), "-once", "-dpi", "100", "-screen", "0",
-                    "1024x768x16", "-ac", "-fp", buffer.data(), ":47", (char*)NULL );
+            execl(xvfbPath8.data(), xvfbPath8.data(), "-once", "-dpi", "100", "-screen", "0",
+                  "1024x768x16", "-ac", "-fp", buffer.data(), ":47", (char *)NULL);
         }
 
-        qputenv( "DISPLAY", ":47");
+        qputenv("DISPLAY", ":47");
     }
 
-    a.setStyle( new TestStyle );
-    KConfig sc1( "cryptodefaults", KConfig::SimpleConfig );
+    a.setStyle(new TestStyle);
+    KConfig sc1("cryptodefaults", KConfig::SimpleConfig);
     KConfigGroup grp = sc1.group("Warnings");
-    grp.writeEntry( "OnUnencrypted",  false );
+    grp.writeEntry("OnUnencrypted",  false);
     KSharedConfigPtr config = KSharedConfig::openConfig();
-    grp = config->group("Notification Messages" );
-    grp.writeEntry( "kjscupguard_alarmhandler", true );
+    grp = config->group("Notification Messages");
+    grp.writeEntry("kjscupguard_alarmhandler", true);
     grp.writeEntry("ReportJSErrors", false);
-    KConfig cfg( "khtmlrc" );
+    KConfig cfg("khtmlrc");
     grp = cfg.group("HTML Settings");
-    grp.writeEntry( "StandardFont", HTML_DEFAULT_VIEW_SANSSERIF_FONT );
-    grp.writeEntry( "FixedFont", HTML_DEFAULT_VIEW_FIXED_FONT );
-    grp.writeEntry( "SerifFont", HTML_DEFAULT_VIEW_SERIF_FONT );
-    grp.writeEntry( "SansSerifFont", HTML_DEFAULT_VIEW_SANSSERIF_FONT );
-    grp.writeEntry( "CursiveFont", HTML_DEFAULT_VIEW_CURSIVE_FONT );
-    grp.writeEntry( "FantasyFont", HTML_DEFAULT_VIEW_FANTASY_FONT );
-    grp.writeEntry( "MinimumFontSize", HTML_DEFAULT_MIN_FONT_SIZE );
-    grp.writeEntry( "MediumFontSize", 10 );
-    grp.writeEntry( "Fonts", QStringList() );
-    grp.writeEntry( "DefaultEncoding", "" );
+    grp.writeEntry("StandardFont", HTML_DEFAULT_VIEW_SANSSERIF_FONT);
+    grp.writeEntry("FixedFont", HTML_DEFAULT_VIEW_FIXED_FONT);
+    grp.writeEntry("SerifFont", HTML_DEFAULT_VIEW_SERIF_FONT);
+    grp.writeEntry("SansSerifFont", HTML_DEFAULT_VIEW_SANSSERIF_FONT);
+    grp.writeEntry("CursiveFont", HTML_DEFAULT_VIEW_CURSIVE_FONT);
+    grp.writeEntry("FantasyFont", HTML_DEFAULT_VIEW_FANTASY_FONT);
+    grp.writeEntry("MinimumFontSize", HTML_DEFAULT_MIN_FONT_SIZE);
+    grp.writeEntry("MediumFontSize", 10);
+    grp.writeEntry("Fonts", QStringList());
+    grp.writeEntry("DefaultEncoding", "");
     grp = cfg.group("Java/JavaScript Settings");
-    grp.writeEntry( "WindowOpenPolicy", (int)KHTMLSettings::KJSWindowOpenAllow);
+    grp.writeEntry("WindowOpenPolicy", (int)KHTMLSettings::KJSWindowOpenAllow);
 
     cfg.sync();
     grp.sync();
@@ -721,8 +724,7 @@ int main(int argc, char *argv[])
     KJS::ScriptInterpreter::turnOffCPUGuard();
 
     QPalette pal = a.palette();
-    for (int c = 0; palInfo[c].color; ++c)
-    {
+    for (int c = 0; palInfo[c].color; ++c) {
         pal.setColor(QPalette::Active,   palInfo[c].role, QColor(palInfo[c].color));
         pal.setColor(QPalette::Inactive, palInfo[c].role, QColor(palInfo[c].color));
         pal.setColor(QPalette::Disabled, palInfo[c].role, QColor(disPalInfo[c].color));
@@ -731,17 +733,18 @@ int main(int argc, char *argv[])
 
     int rv = 1;
 
-    bool outputDebug = parser.isSet( "debug" );
+    bool outputDebug = parser.isSet("debug");
 
-    KConfig dc( "kdebugrc", KConfig::SimpleConfig );
+    KConfig dc("kdebugrc", KConfig::SimpleConfig);
     static int areas[] = { 1000, 6000, 6005, 6010, 6020, 6030,
-                            6031, 6035, 6036, 6040, 6041, 6045,
-                            6050, 6060, 6061, 7000, 7006, 170,
-                            171, 7101, 7002, 7019, 7027, 7014,
-                            7011, 6070, 6080, 6090, 0};
-    for ( int i = 0; areas[i]; ++i ) {
-        grp = dc.group( QString::number( areas[i] ) );
-        grp.writeEntry( "InfoOutput", outputDebug ? 2 : 4 );
+                           6031, 6035, 6036, 6040, 6041, 6045,
+                           6050, 6060, 6061, 7000, 7006, 170,
+                           171, 7101, 7002, 7019, 7027, 7014,
+                           7011, 6070, 6080, 6090, 0
+                         };
+    for (int i = 0; areas[i]; ++i) {
+        grp = dc.group(QString::number(areas[i]));
+        grp.writeEntry("InfoOutput", outputDebug ? 2 : 4);
         grp.sync();
     }
     dc.sync();
@@ -756,99 +759,108 @@ int main(int argc, char *argv[])
 
     // create widgets
     KMainWindow *toplevel = new KMainWindow();
-    KHTMLPart *part = new KHTMLPart( toplevel, 0, KHTMLPart::BrowserViewGUI );
+    KHTMLPart *part = new KHTMLPart(toplevel, 0, KHTMLPart::BrowserViewGUI);
 
-    toplevel->setCentralWidget( part->widget() );
-    KAcceleratorManager::setNoAccel ( part->widget() );
+    toplevel->setCentralWidget(part->widget());
+    KAcceleratorManager::setNoAccel(part->widget());
     part->setJScriptEnabled(true);
 
     part->executeScript(DOM::Node(), ""); // force the part to create an interpreter
     part->setJavaEnabled(false);
     part->setPluginsEnabled(false);
 
-    if (parser.isSet("show"))
-	visual = true;
+    if (parser.isSet("show")) {
+        visual = true;
+    }
 
     //a.setTopWidget(part->widget());
-    if ( visual )
+    if (visual) {
         toplevel->show();
+    }
 
     // we're not interested
     toplevel->statusBar()->hide();
 
     if (!getenv("KDE_DEBUG")) {
         // set ulimits
-        rlimit vmem_limit = { 512*1024*1024, RLIM_INFINITY };	// 512Mb Memory should suffice
+        rlimit vmem_limit = { 512 * 1024 * 1024, RLIM_INFINITY }; // 512Mb Memory should suffice
         setrlimit(RLIMIT_AS, &vmem_limit);
-        rlimit stack_limit = { 8*1024*1024, RLIM_INFINITY };	// 8Mb Memory should suffice
+        rlimit stack_limit = { 8 * 1024 * 1024, RLIM_INFINITY }; // 8Mb Memory should suffice
         setrlimit(RLIMIT_STACK, &stack_limit);
     }
 
     // run the tests
     RegressionTest *regressionTest = new RegressionTest(part,
-                                                        baseDir,
-                                                        parser.argument("output"),
-                                                        parser.argument("reference"),
-                                                        parser.isSet("genoutput"),
-                                                        !parser.isSet( "html" ),
-                                                        !parser.isSet( "js" ));
+            baseDir,
+            parser.argument("output"),
+            parser.argument("reference"),
+            parser.isSet("genoutput"),
+            !parser.isSet("html"),
+            !parser.isSet("js"));
     QObject::connect(part->browserExtension(), SIGNAL(openUrlRequest(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)),
-		     regressionTest, SLOT(slotOpenURL(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)));
+                     regressionTest, SLOT(slotOpenURL(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)));
     QObject::connect(part->browserExtension(), SIGNAL(resizeTopLevelWidget(int,int)),
-		     regressionTest, SLOT(resizeTopLevelWidget(int,int)));
+                     regressionTest, SLOT(resizeTopLevelWidget(int,int)));
 
     bool result = false;
     QStringList tests = parser.arguments("test");
     // merge testcases specified on command line
-    for (; testcase_index < parser.remainingArguments().count(); testcase_index++)
+    for (; testcase_index < parser.remainingArguments().count(); testcase_index++) {
         tests << parser.remainingArguments().at(testcase_index);
+    }
     if (tests.count() > 0)
         foreach (QString test, tests) {
-	    result = regressionTest->runTests(test,true);
-            if (!result) break;
+            result = regressionTest->runTests(test, true);
+            if (!result) {
+                break;
+            }
         }
-    else
-	result = regressionTest->runTests();
+    else {
+        result = regressionTest->runTests();
+    }
 
     if (result) {
-	if (parser.isSet("genoutput")) {
-	    printf("\nOutput generation completed.\n");
-	}
-	else {
-	    printf("\nTests completed.\n");
+        if (parser.isSet("genoutput")) {
+            printf("\nOutput generation completed.\n");
+        } else {
+            printf("\nTests completed.\n");
             printf("Total:    %d\n",
-                   regressionTest->m_passes_work+
-                   regressionTest->m_passes_fail+
-                   regressionTest->m_failures_work+
-                   regressionTest->m_failures_fail+
+                   regressionTest->m_passes_work +
+                   regressionTest->m_passes_fail +
+                   regressionTest->m_failures_work +
+                   regressionTest->m_failures_fail +
                    regressionTest->m_errors);
-	    printf("Passes:   %d",regressionTest->m_passes_work);
-            if ( regressionTest->m_passes_fail )
-                printf( " (%d unexpected passes)\n", regressionTest->m_passes_fail );
-            else
-                printf( "\n" );
-	    printf("Failures: %d",regressionTest->m_failures_work);
-            if ( regressionTest->m_failures_fail )
-                printf( " (%d expected failures)\n", regressionTest->m_failures_fail );
-            else
-                printf( "\n" );
-            if ( regressionTest->m_errors )
-                printf("Errors:   %d\n",regressionTest->m_errors);
+            printf("Passes:   %d", regressionTest->m_passes_work);
+            if (regressionTest->m_passes_fail) {
+                printf(" (%d unexpected passes)\n", regressionTest->m_passes_fail);
+            } else {
+                printf("\n");
+            }
+            printf("Failures: %d", regressionTest->m_failures_work);
+            if (regressionTest->m_failures_fail) {
+                printf(" (%d expected failures)\n", regressionTest->m_failures_fail);
+            } else {
+                printf("\n");
+            }
+            if (regressionTest->m_errors) {
+                printf("Errors:   %d\n", regressionTest->m_errors);
+            }
 
-            QFile list( regressionTest->m_outputDir + "/links.html" );
-            list.open( QIODevice::WriteOnly|QIODevice::Append );
+            QFile list(regressionTest->m_outputDir + "/links.html");
+            list.open(QIODevice::WriteOnly | QIODevice::Append);
             QString link, cl;
-            link = QString( "<hr>%1 failures. (%2 expected failures)" )
-                   .arg(regressionTest->m_failures_work )
-                   .arg( regressionTest->m_failures_fail );
-            list.write( link.toLatin1(), link.length() );
+            link = QString("<hr>%1 failures. (%2 expected failures)")
+                   .arg(regressionTest->m_failures_work)
+                   .arg(regressionTest->m_failures_fail);
+            list.write(link.toLatin1(), link.length());
             list.close();
-	}
+        }
     }
 
     // Only return a 0 exit code if all tests were successful
-    if (regressionTest->m_failures_work == 0 && regressionTest->m_errors == 0)
-	rv = 0;
+    if (regressionTest->m_failures_work == 0 && regressionTest->m_errors == 0) {
+        rv = 0;
+    }
 
     // cleanup
     delete regressionTest;
@@ -859,7 +871,7 @@ int main(int argc, char *argv[])
     khtml::CSSStyleSelector::clear();
     khtml::RenderStyle::cleanup();
 
-    kill( xvfb, SIGINT );
+    kill(xvfb, SIGINT);
 
     return rv;
 }
@@ -869,28 +881,30 @@ int main(int argc, char *argv[])
 RegressionTest *RegressionTest::curr = 0;
 
 RegressionTest::RegressionTest(KHTMLPart *part, const QString &baseDir, const QString &outputDir, const QString &baselineDir,
-			       bool _genOutput, bool runJS, bool runHTML)
-  : QObject(part)
+                               bool _genOutput, bool runJS, bool runHTML)
+    : QObject(part)
 {
     m_part = part;
 
     m_baseDir = baseDir;
-    m_baseDir = m_baseDir.replace( "//", "/" );
-    if ( m_baseDir.endsWith( "/" ) )	//krazy:exclude=duoblequote_chars DOM demands chars
-        m_baseDir = m_baseDir.left( m_baseDir.length() - 1 );
-    if (outputDir.isEmpty())
+    m_baseDir = m_baseDir.replace("//", "/");
+    if (m_baseDir.endsWith("/")) {    //krazy:exclude=duoblequote_chars DOM demands chars
+        m_baseDir = m_baseDir.left(m_baseDir.length() - 1);
+    }
+    if (outputDir.isEmpty()) {
         m_outputDir = m_baseDir + "/output";
-    else {
-        createMissingDirs(outputDir + "/");	//krazy:exclude=duoblequote_chars DOM demands chars
+    } else {
+        createMissingDirs(outputDir + "/"); //krazy:exclude=duoblequote_chars DOM demands chars
         m_outputDir = outputDir;
     }
     m_baselineDir = baselineDir;
-    m_baselineDir = m_baselineDir.replace( "//", "/" );
-    if (m_baselineDir.endsWith( "/" ) )
-        m_baselineDir = m_baselineDir.left( m_baselineDir.length() - 1 );
-    if (m_baselineDir.isEmpty())
+    m_baselineDir = m_baselineDir.replace("//", "/");
+    if (m_baselineDir.endsWith("/")) {
+        m_baselineDir = m_baselineDir.left(m_baselineDir.length() - 1);
+    }
+    if (m_baselineDir.isEmpty()) {
         m_baselineDir = m_baseDir + "/baseline";
-    else {
+    } else {
         createMissingDirs(m_baselineDir + "/");
     }
     m_genOutput = _genOutput;
@@ -900,29 +914,29 @@ RegressionTest::RegressionTest(KHTMLPart *part, const QString &baseDir, const QS
     m_failures_work = m_failures_fail = 0;
     m_errors = 0;
 
-    if (!m_genOutput)
-        ::unlink( QFile::encodeName( m_outputDir + "/links.html" ) );
-    QFile f( m_outputDir + "/empty.html" );
+    if (!m_genOutput) {
+        ::unlink(QFile::encodeName(m_outputDir + "/links.html"));
+    }
+    QFile f(m_outputDir + "/empty.html");
     QString s;
-    f.open( QIODevice::WriteOnly | QIODevice::Truncate );
+    f.open(QIODevice::WriteOnly | QIODevice::Truncate);
     s = "<html><body>Follow the white rabbit";
-    f.write( s.toLatin1(), s.length() );
+    f.write(s.toLatin1(), s.length());
     f.close();
-    f.setFileName( m_outputDir + "/index.html" );
-    f.open( QIODevice::WriteOnly | QIODevice::Truncate );
+    f.setFileName(m_outputDir + "/index.html");
+    f.open(QIODevice::WriteOnly | QIODevice::Truncate);
     s = "<html><frameset cols=150,*><frame src=links.html><frame name=content src=empty.html>";
-    f.write( s.toLatin1(), s.length() );
+    f.write(s.toLatin1(), s.length());
     f.close();
 
     m_paintBuffer = 0;
 
     curr = this;
     m_part->view()->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
-    resizeTopLevelWidget(800, 598 );
+    resizeTopLevelWidget(800, 598);
 }
 
-
-static QStringList readListFile( const QString &filename )
+static QStringList readListFile(const QString &filename)
 {
     // Read ignore file for this directory
     QString ignoreFilename = filename;
@@ -931,13 +945,14 @@ static QStringList readListFile( const QString &filename )
     if (ignoreInfo.exists()) {
         QFile ignoreFile(ignoreFilename);
         if (!ignoreFile.open(QIODevice::ReadOnly)) {
-            fprintf(stderr,"Can't open %s\n",qPrintable(ignoreFilename));
+            fprintf(stderr, "Can't open %s\n", qPrintable(ignoreFilename));
             exit(1);
         }
         QTextStream ignoreStream(&ignoreFile);
         QString line;
-        while (!(line = ignoreStream.readLine()).isNull())
+        while (!(line = ignoreStream.readLine()).isNull()) {
             ignoreFiles.append(line);
+        }
         ignoreFile.close();
     }
     return ignoreFiles;
@@ -955,221 +970,231 @@ bool RegressionTest::runTests(QString relPath, bool mustExist, QStringList failu
     QString fullPath = m_baseDir + "/tests/" + relPath;
 
     if (!QFile(fullPath).exists()) {
-	fprintf(stderr,"%s: No such file or directory\n",qPrintable(relPath));
-	return false;
+        fprintf(stderr, "%s: No such file or directory\n", qPrintable(relPath));
+        return false;
     }
 
     QFileInfo info(fullPath);
 
     if (!info.exists() && mustExist) {
-	fprintf(stderr,"%s: No such file or directory\n",qPrintable(relPath));
-	return false;
+        fprintf(stderr, "%s: No such file or directory\n", qPrintable(relPath));
+        return false;
     }
 
     if (!info.isReadable() && mustExist) {
-	fprintf(stderr,"%s: Access denied\n",qPrintable(relPath));
-	return false;
+        fprintf(stderr, "%s: Access denied\n", qPrintable(relPath));
+        return false;
     }
 
     if (info.isDir()) {
-        QStringList ignoreFiles = readListFile( fullPath + "/ignore" );
-        QStringList failureFiles = readListFile( fullPath + "/KNOWN_FAILURES" );
+        QStringList ignoreFiles = readListFile(fullPath + "/ignore");
+        QStringList failureFiles = readListFile(fullPath + "/KNOWN_FAILURES");
 
-	// Run each test in this directory, recusively
-	QDir sourceDir(m_baseDir + "/tests/"+relPath);
-	for (uint fileno = 0; fileno < sourceDir.count(); fileno++) {
-	    QString filename = sourceDir[fileno];
-	    QString relFilename = relPath.isEmpty() ? filename : relPath+"/"+filename;	//krazy:exclude=duoblequote_chars DOM demands chars
+        // Run each test in this directory, recusively
+        QDir sourceDir(m_baseDir + "/tests/" + relPath);
+        for (uint fileno = 0; fileno < sourceDir.count(); fileno++) {
+            QString filename = sourceDir[fileno];
+            QString relFilename = relPath.isEmpty() ? filename : relPath + "/" + filename; //krazy:exclude=duoblequote_chars DOM demands chars
 
-	    if (filename == "." || filename == ".." ||  ignoreFiles.contains(filename) )
+            if (filename == "." || filename == ".." ||  ignoreFiles.contains(filename)) {
                 continue;
+            }
 
             runTests(relFilename, false, failureFiles);
-	}
-    }
-    else if (info.isFile()) {
+        }
+    } else if (info.isFile()) {
 
-        alarm( 12 );
+        alarm(12);
 
         khtml::Cache::init();
 
-	QString relativeDir = QFileInfo(relPath).path();
-	QString filename = info.fileName();
-	m_currentBase = m_baseDir + "/tests/"+relativeDir;
-	m_currentCategory = relativeDir;
-	m_currentTest = filename;
+        QString relativeDir = QFileInfo(relPath).path();
+        QString filename = info.fileName();
+        m_currentBase = m_baseDir + "/tests/" + relativeDir;
+        m_currentCategory = relativeDir;
+        m_currentTest = filename;
 
-    if (failureFileList.isEmpty() && QFile(info.path() + "/KNOWN_FAILURES").exists()) {
-        failureFileList = readListFile( info.path() + "/KNOWN_FAILURES" );
-    }
+        if (failureFileList.isEmpty() && QFile(info.path() + "/KNOWN_FAILURES").exists()) {
+            failureFileList = readListFile(info.path() + "/KNOWN_FAILURES");
+        }
 
-    int known_failure = NoFailure;
-    if ( failureFileList.contains( filename ) )
-        known_failure |= AllFailure;
-    if ( failureFileList.contains ( filename + "-render" ) )
-        known_failure |= RenderFailure;
-    if ( failureFileList.contains ( filename + "-dump.png" ) )
-        known_failure |= PaintFailure;
-    if ( failureFileList.contains ( filename + "-dom" ) )
-        known_failure |= DomFailure;
+        int known_failure = NoFailure;
+        if (failureFileList.contains(filename)) {
+            known_failure |= AllFailure;
+        }
+        if (failureFileList.contains(filename + "-render")) {
+            known_failure |= RenderFailure;
+        }
+        if (failureFileList.contains(filename + "-dump.png")) {
+            known_failure |= PaintFailure;
+        }
+        if (failureFileList.contains(filename + "-dom")) {
+            known_failure |= DomFailure;
+        }
 
         m_known_failures = known_failure;
-	if ( filename.endsWith(".html") || filename.endsWith( ".htm" ) || filename.endsWith( ".xhtml" ) || filename.endsWith( ".xml" ) ) {
-            if ( relPath.startsWith( "domts/" ) && !m_runJS )
+        if (filename.endsWith(".html") || filename.endsWith(".htm") || filename.endsWith(".xhtml") || filename.endsWith(".xml")) {
+            if (relPath.startsWith("domts/") && !m_runJS) {
                 return true;
-	    if ( relPath.startsWith( "ecma/" ) && !m_runJS )
-	        return true;
-            if ( m_runHTML )
+            }
+            if (relPath.startsWith("ecma/") && !m_runJS) {
+                return true;
+            }
+            if (m_runHTML) {
                 testStaticFile(relPath);
-	}
-	else if (filename.endsWith(".js")) {
-            if ( m_runJS ) {
-                alarm( 120 );
+            }
+        } else if (filename.endsWith(".js")) {
+            if (m_runJS) {
+                alarm(120);
                 testJSFile(relPath);
             }
-	}
-	else if (mustExist) {
-	    fprintf(stderr,"%s: Not a valid test file (must be .htm(l) or .js)\n",qPrintable(relPath));
-	    return false;
-	}
+        } else if (mustExist) {
+            fprintf(stderr, "%s: Not a valid test file (must be .htm(l) or .js)\n", qPrintable(relPath));
+            return false;
+        }
     } else if (mustExist) {
-        fprintf(stderr,"%s: Not a regular file\n",qPrintable(relPath));
+        fprintf(stderr, "%s: Not a regular file\n", qPrintable(relPath));
         return false;
     }
 
     return true;
 }
 
-void RegressionTest::getPartDOMOutput( QTextStream &outputStream, KHTMLPart* part, uint indent )
+void RegressionTest::getPartDOMOutput(QTextStream &outputStream, KHTMLPart *part, uint indent)
 {
     DOM::Node node = part->document();
     while (!node.isNull()) {
-	// process
+        // process
 
-	for (uint i = 0; i < indent; i++)
-	    outputStream << "  ";
+        for (uint i = 0; i < indent; i++) {
+            outputStream << "  ";
+        }
 
-	// Make doctype's visually different from elements
-	if (node.nodeType() == DOM::Node::DOCUMENT_TYPE_NODE)
-		outputStream << "!doctype ";
+        // Make doctype's visually different from elements
+        if (node.nodeType() == DOM::Node::DOCUMENT_TYPE_NODE) {
+            outputStream << "!doctype ";
+        }
 
-	outputStream << node.nodeName().string();
+        outputStream << node.nodeName().string();
 
-	switch (node.nodeType()) {
-	    case DOM::Node::ELEMENT_NODE: {
-		// Sort strings to ensure consistent output
-		QStringList attrNames;
-		NamedNodeMap attrs = node.attributes();
-		for (uint a = 0; a < attrs.length(); a++)
-		    attrNames.append(attrs.item(a).nodeName().string());
-		attrNames.sort();
+        switch (node.nodeType()) {
+        case DOM::Node::ELEMENT_NODE: {
+            // Sort strings to ensure consistent output
+            QStringList attrNames;
+            NamedNodeMap attrs = node.attributes();
+            for (uint a = 0; a < attrs.length(); a++) {
+                attrNames.append(attrs.item(a).nodeName().string());
+            }
+            attrNames.sort();
 
-		QStringList::iterator it;
-		Element elem(node);
-		for (it = attrNames.begin(); it != attrNames.end(); ++it) {
-		    QString name = *it;
-		    QString value = elem.getAttribute(*it).string();
-		    outputStream << " " << name << "=\"" << value << "\"";
-		}
-		if ( node.handle()->id() == ID_FRAME ) {
-			outputStream << endl;
-			QString frameName = static_cast<DOM::HTMLFrameElementImpl *>( node.handle() )->name.string();
-			KHTMLPart* frame = part->findFrame( frameName );
-			if ( frame )
-			    getPartDOMOutput( outputStream, frame, indent );
-			else
-			    outputStream << "(FRAME NOT FOUND)";
-		}
-		break;
-	    }
-	    case DOM::Node::ATTRIBUTE_NODE:
-		// Should not be present in tree
-		assert(false);
-		break;
-            case DOM::Node::TEXT_NODE:
-		outputStream << " \"" << Text(node).data().string() << "\"";
-		break;
-            case DOM::Node::CDATA_SECTION_NODE:
-		outputStream << " \"" << CDATASection(node).data().string() << "\"";
-		break;
-            case DOM::Node::ENTITY_REFERENCE_NODE:
-		break;
-            case DOM::Node::ENTITY_NODE:
-		break;
-            case DOM::Node::PROCESSING_INSTRUCTION_NODE:
-		break;
-            case DOM::Node::COMMENT_NODE:
-		outputStream << " \"" << Comment(node).data().string() << "\"";
-		break;
-            case DOM::Node::DOCUMENT_NODE:
-		break;
-            case DOM::Node::DOCUMENT_TYPE_NODE:
-		break;
-            case DOM::Node::DOCUMENT_FRAGMENT_NODE:
-		// Should not be present in tree
-		assert(false);
-		break;
-            case DOM::Node::NOTATION_NODE:
-		break;
-            default:
-		assert(false);
-		break;
-	}
+            QStringList::iterator it;
+            Element elem(node);
+            for (it = attrNames.begin(); it != attrNames.end(); ++it) {
+                QString name = *it;
+                QString value = elem.getAttribute(*it).string();
+                outputStream << " " << name << "=\"" << value << "\"";
+            }
+            if (node.handle()->id() == ID_FRAME) {
+                outputStream << endl;
+                QString frameName = static_cast<DOM::HTMLFrameElementImpl *>(node.handle())->name.string();
+                KHTMLPart *frame = part->findFrame(frameName);
+                if (frame) {
+                    getPartDOMOutput(outputStream, frame, indent);
+                } else {
+                    outputStream << "(FRAME NOT FOUND)";
+                }
+            }
+            break;
+        }
+        case DOM::Node::ATTRIBUTE_NODE:
+            // Should not be present in tree
+            assert(false);
+            break;
+        case DOM::Node::TEXT_NODE:
+            outputStream << " \"" << Text(node).data().string() << "\"";
+            break;
+        case DOM::Node::CDATA_SECTION_NODE:
+            outputStream << " \"" << CDATASection(node).data().string() << "\"";
+            break;
+        case DOM::Node::ENTITY_REFERENCE_NODE:
+            break;
+        case DOM::Node::ENTITY_NODE:
+            break;
+        case DOM::Node::PROCESSING_INSTRUCTION_NODE:
+            break;
+        case DOM::Node::COMMENT_NODE:
+            outputStream << " \"" << Comment(node).data().string() << "\"";
+            break;
+        case DOM::Node::DOCUMENT_NODE:
+            break;
+        case DOM::Node::DOCUMENT_TYPE_NODE:
+            break;
+        case DOM::Node::DOCUMENT_FRAGMENT_NODE:
+            // Should not be present in tree
+            assert(false);
+            break;
+        case DOM::Node::NOTATION_NODE:
+            break;
+        default:
+            assert(false);
+            break;
+        }
 
-	outputStream << endl;
+        outputStream << endl;
 
-	if (!node.firstChild().isNull()) {
-	    node = node.firstChild();
-	    indent++;
-	}
-	else if (!node.nextSibling().isNull()) {
-	    node = node.nextSibling();
-	}
-	else {
-	    while (!node.isNull() && node.nextSibling().isNull()) {
-		node = node.parentNode();
-		indent--;
-	    }
-	    if (!node.isNull())
-		node = node.nextSibling();
-	}
+        if (!node.firstChild().isNull()) {
+            node = node.firstChild();
+            indent++;
+        } else if (!node.nextSibling().isNull()) {
+            node = node.nextSibling();
+        } else {
+            while (!node.isNull() && node.nextSibling().isNull()) {
+                node = node.parentNode();
+                indent--;
+            }
+            if (!node.isNull()) {
+                node = node.nextSibling();
+            }
+        }
     }
 }
 
-void RegressionTest::dumpRenderTree( QTextStream &outputStream, KHTMLPart* part )
+void RegressionTest::dumpRenderTree(QTextStream &outputStream, KHTMLPart *part)
 {
-    DOM::DocumentImpl* doc = static_cast<DocumentImpl*>( part->document().handle() );
-    if ( !doc || !doc->renderer() )
+    DOM::DocumentImpl *doc = static_cast<DocumentImpl *>(part->document().handle());
+    if (!doc || !doc->renderer()) {
         return;
-    doc->renderer()->layer()->dump( outputStream );
+    }
+    doc->renderer()->layer()->dump(outputStream);
 
     // Dump frames if any
     // Get list of names instead of frames() to sort the list alphabetically
     QStringList names = part->frameNames();
     names.sort();
-    for ( QStringList::iterator it = names.begin(); it != names.end(); ++it ) {
+    for (QStringList::iterator it = names.begin(); it != names.end(); ++it) {
         outputStream << "FRAME: " << (*it) << "\n";
-	KHTMLPart* frame = part->findFrame( (*it) );
-//	Q_ASSERT( frame );
-	if ( frame )
-            dumpRenderTree( outputStream, frame );
+        KHTMLPart *frame = part->findFrame((*it));
+//  Q_ASSERT( frame );
+        if (frame) {
+            dumpRenderTree(outputStream, frame);
+        }
     }
 }
 
-QString RegressionTest::getPartOutput( OutputType type)
+QString RegressionTest::getPartOutput(OutputType type)
 {
     // dump out the contents of the rendering & DOM trees
     QString dump;
     QTextStream outputStream(&dump, QIODevice::WriteOnly);
 
-    if ( type == RenderTree ) {
-        dumpRenderTree( outputStream, m_part );
+    if (type == RenderTree) {
+        dumpRenderTree(outputStream, m_part);
     } else {
-        assert( type == DOMTree );
-        getPartDOMOutput( outputStream, m_part, 0 );
+        assert(type == DOMTree);
+        getPartDOMOutput(outputStream, m_part, 0);
     }
 
-    dump.replace( m_baseDir + "/tests", QLatin1String( "REGRESSION_SRCDIR" ) );
+    dump.replace(m_baseDir + "/tests", QLatin1String("REGRESSION_SRCDIR"));
     return dump;
 }
 
@@ -1178,39 +1203,42 @@ QImage RegressionTest::renderToImage()
     int ew = m_part->view()->contentsWidth();
     int eh = m_part->view()->contentsHeight();
 
-    if (ew * eh > 4000 * 4000) // don't DoS us
+    if (ew * eh > 4000 * 4000) { // don't DoS us
         return QImage();
+    }
 
-    QImage img( ew, eh, QImage::Format_ARGB32 );
-    img.fill( 0xff0000 );
-    if (!m_paintBuffer )
-        m_paintBuffer = new QPixmap( 512, 128 );
+    QImage img(ew, eh, QImage::Format_ARGB32);
+    img.fill(0xff0000);
+    if (!m_paintBuffer) {
+        m_paintBuffer = new QPixmap(512, 128);
+    }
 
-    for ( int py = 0; py < eh; py += 128 ) {
-        for ( int px = 0; px < ew; px += 512 ) {
-            QPainter* tp = new QPainter;
-            tp->begin( m_paintBuffer );
-            tp->translate( -px, -py );
+    for (int py = 0; py < eh; py += 128) {
+        for (int px = 0; px < ew; px += 512) {
+            QPainter *tp = new QPainter;
+            tp->begin(m_paintBuffer);
+            tp->translate(-px, -py);
             tp->fillRect(px, py, 512, 128, Qt::magenta);
-            m_part->document().handle()->renderer()->layer()->paint( tp, QRect( px, py, 512, 128 ) );
+            m_part->document().handle()->renderer()->layer()->paint(tp, QRect(px, py, 512, 128));
             tp->end();
             delete tp;
 
             // now fill the chunk into our image
             QImage chunk = m_paintBuffer->toImage();
-            assert( chunk.depth() == 32 );
-            for ( int y = 0; y < 128 && py + y < eh; ++y )
-                memcpy( img.scanLine( py+y ) + px*4, chunk.scanLine( y ), qMin( 512, ew-px )*4 );
+            assert(chunk.depth() == 32);
+            for (int y = 0; y < 128 && py + y < eh; ++y) {
+                memcpy(img.scanLine(py + y) + px * 4, chunk.scanLine(y), qMin(512, ew - px) * 4);
+            }
         }
     }
 
-    assert( img.depth() == 32 );
+    assert(img.depth() == 32);
     return img;
 }
 
-bool RegressionTest::imageEqual( const QImage &lhsi, const QImage &rhsi )
+bool RegressionTest::imageEqual(const QImage &lhsi, const QImage &rhsi)
 {
-    if ( lhsi.width() != rhsi.width() || lhsi.height() != rhsi.height() ) {
+    if (lhsi.width() != rhsi.width() || lhsi.height() != rhsi.height()) {
         // qDebug() << "dimensions different " << lhsi.size() << " " << rhsi.size();
         return false;
     }
@@ -1218,22 +1246,22 @@ bool RegressionTest::imageEqual( const QImage &lhsi, const QImage &rhsi )
     int h = lhsi.height();
     int bytes = lhsi.bytesPerLine();
 
-    const unsigned char* origLs = lhsi.bits();
-    const unsigned char* origRs = rhsi.bits();
+    const unsigned char *origLs = lhsi.bits();
+    const unsigned char *origRs = rhsi.bits();
 
-    for ( int y = 0; y < h; ++y )
-    {
-        const QRgb* ls = (const QRgb*)(origLs + y * bytes);
-        const QRgb* rs = (const QRgb*)(origRs + y * bytes);
-        if ( memcmp( ls, rs, bytes ) ) {
-            for ( int x = 0; x < w; ++x ) {
+    for (int y = 0; y < h; ++y) {
+        const QRgb *ls = (const QRgb *)(origLs + y * bytes);
+        const QRgb *rs = (const QRgb *)(origRs + y * bytes);
+        if (memcmp(ls, rs, bytes)) {
+            for (int x = 0; x < w; ++x) {
                 QRgb l = ls[x];
                 QRgb r = rs[x];
-                if ( ( abs( qRed( l ) - qRed(r ) ) < 20 ) &&
-                     ( abs( qGreen( l ) - qGreen(r ) ) < 20 ) &&
-                     ( abs( qBlue( l ) - qBlue(r ) ) < 20 ) )
+                if ((abs(qRed(l) - qRed(r)) < 20) &&
+                        (abs(qGreen(l) - qGreen(r)) < 20) &&
+                        (abs(qBlue(l) - qBlue(r)) < 20)) {
                     continue;
-                 // qDebug() << "pixel (" << x << ", " << y << ") is different " << QColor(  lhsi.pixel (  x, y ) ) << " " << QColor(  rhsi.pixel (  x, y ) );
+                }
+                // qDebug() << "pixel (" << x << ", " << y << ") is different " << QColor(  lhsi.pixel (  x, y ) ) << " " << QColor(  rhsi.pixel (  x, y ) );
                 return false;
             }
         }
@@ -1242,50 +1270,55 @@ bool RegressionTest::imageEqual( const QImage &lhsi, const QImage &rhsi )
     return true;
 }
 
-void RegressionTest::createLink( const QString& test, int failures )
+void RegressionTest::createLink(const QString &test, int failures)
 {
-    createMissingDirs( m_outputDir + "/" + test + "-compare.html" );	//krazy:exclude=duoblequote_chars DOM demands chars
+    createMissingDirs(m_outputDir + "/" + test + "-compare.html");   //krazy:exclude=duoblequote_chars DOM demands chars
 
-    QFile list( m_outputDir + "/links.html" );
-    list.open( QIODevice::WriteOnly|QIODevice::Append );
+    QFile list(m_outputDir + "/links.html");
+    list.open(QIODevice::WriteOnly | QIODevice::Append);
     QString link;
-    link = QString( "<a href=\"%1\" target=\"content\" title=\"%2\">" )
-           .arg( test + "-compare.html" )
-           .arg( test );
+    link = QString("<a href=\"%1\" target=\"content\" title=\"%2\">")
+           .arg(test + "-compare.html")
+           .arg(test);
     link += m_currentTest;
     link += "</a> [";
-    if ( failures & DomFailure )
-        link += "D";	//krazy:exclude=duoblequote_chars DOM demands chars
-    if ( failures & RenderFailure )
-        link += "R";	//krazy:exclude=duoblequote_chars DOM demands chars
-    if ( failures & PaintFailure )
-        link += "P";	//krazy:exclude=duoblequote_chars DOM demands chars
+    if (failures & DomFailure) {
+        link += "D";    //krazy:exclude=duoblequote_chars DOM demands chars
+    }
+    if (failures & RenderFailure) {
+        link += "R";    //krazy:exclude=duoblequote_chars DOM demands chars
+    }
+    if (failures & PaintFailure) {
+        link += "P";    //krazy:exclude=duoblequote_chars DOM demands chars
+    }
     link += "]<br>\n";
-    list.write( link.toLatin1(), link.length() );
+    list.write(link.toLatin1(), link.length());
     list.close();
 }
 
-void RegressionTest::doJavascriptReport( const QString &test )
+void RegressionTest::doJavascriptReport(const QString &test)
 {
-    QFile compare( m_outputDir + "/" + test + "-compare.html" );	//krazy:exclude=duoblequote_chars DOM demands chars
-    if ( !compare.open( QIODevice::WriteOnly|QIODevice::Truncate ) )
-        qDebug() << "failed to open " << m_outputDir + "/" + test + "-compare.html";	//krazy:exclude=duoblequote_chars DOM demands chars
+    QFile compare(m_outputDir + "/" + test + "-compare.html");   //krazy:exclude=duoblequote_chars DOM demands chars
+    if (!compare.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+        qDebug() << "failed to open " << m_outputDir + "/" + test + "-compare.html";    //krazy:exclude=duoblequote_chars DOM demands chars
+    }
     QString cl;
-    cl = QString( "<html><head><title>%1</title>" ).arg( test );
+    cl = QString("<html><head><title>%1</title>").arg(test);
     cl += "<body><tt>";
-    QString text = "\n" + m_currentOutput;	//krazy:exclude=duoblequote_chars DOM demands chars
-    text.replace( '<', "&lt;" );
-    text.replace( '>', "&gt;" );
-    text.replace( QRegExp( "\nFAILED" ), "\n<span style='color: red'>FAILED</span>" );
-    text.replace( QRegExp( "\nFAIL" ), "\n<span style='color: red'>FAIL</span>" );
-    text.replace( QRegExp( "\nPASSED" ), "\n<span style='color: green'>PASSED</span>" );
-    text.replace( QRegExp( "\nPASS" ), "\n<span style='color: green'>PASS</span>" );
-    if ( text.at( 0 ) == '\n' )
-        text = text.mid( 1, text.length() );
-    text.replace( '\n', "<br>\n" );
+    QString text = "\n" + m_currentOutput;  //krazy:exclude=duoblequote_chars DOM demands chars
+    text.replace('<', "&lt;");
+    text.replace('>', "&gt;");
+    text.replace(QRegExp("\nFAILED"), "\n<span style='color: red'>FAILED</span>");
+    text.replace(QRegExp("\nFAIL"), "\n<span style='color: red'>FAIL</span>");
+    text.replace(QRegExp("\nPASSED"), "\n<span style='color: green'>PASSED</span>");
+    text.replace(QRegExp("\nPASS"), "\n<span style='color: green'>PASS</span>");
+    if (text.at(0) == '\n') {
+        text = text.mid(1, text.length());
+    }
+    text.replace('\n', "<br>\n");
     cl += text;
     cl += "</tt></body></html>";
-    compare.write( cl.toLatin1(), cl.length() );
+    compare.write(cl.toLatin1(), cl.length());
     compare.close();
 }
 
@@ -1293,7 +1326,7 @@ void RegressionTest::doJavascriptReport( const QString &test )
  * @param base base directory (must not include trailing slash)
  * @param path directory/file to be relatively reached by base
  * @return path with all elements replaced by .. and concerning path elements
- *	to be relatively reachable from base.
+ *  to be relatively reachable from base.
  */
 static QString makeRelativePath(const QString &base, const QString &path)
 {
@@ -1307,13 +1340,18 @@ static QString makeRelativePath(const QString &base, const QString &path)
     do {
         pos++;
         int newpos = absBase.indexOf('/', pos);
-        if (newpos == -1) newpos = absBase.length();
+        if (newpos == -1) {
+            newpos = absBase.length();
+        }
         QString cmpPathComp(absPath.unicode() + pos, newpos - pos);
         QString cmpBaseComp(absBase.unicode() + pos, newpos - pos);
 //         qDebug() << "cmpPathComp: \"" << cmpPathComp.string() << "\"";
 //         qDebug() << "cmpBaseComp: \"" << cmpBaseComp.string() << "\"";
 //         qDebug() << "pos: " << pos << " newpos: " << newpos;
-        if (cmpPathComp != cmpBaseComp) { pos--; break; }
+        if (cmpPathComp != cmpBaseComp) {
+            pos--;
+            break;
+        }
         pos = newpos;
     } while (pos < (int)absBase.length() && pos < (int)absPath.length());
     int basepos = pos < (int)absBase.length() ? pos + 1 : pos;
@@ -1327,10 +1365,13 @@ static QString makeRelativePath(const QString &base, const QString &path)
         QString relPath(absPath.unicode() + pathpos, absPath.length() - pathpos);
         // generate as many .. as there are path elements in relBase
         if (relBase.length() > 0) {
-            for (int i = relBase.count('/'); i > 0; --i)
+            for (int i = relBase.count('/'); i > 0; --i) {
                 rel += "../";
+            }
             rel += "..";
-            if (relPath.length() > 0) rel += "/";	//krazy:exclude=duoblequote_chars DOM demands chars
+            if (relPath.length() > 0) {
+                rel += "/";    //krazy:exclude=duoblequote_chars DOM demands chars
+            }
         }
         rel += relPath;
     }
@@ -1343,26 +1384,26 @@ static QString getDiff(QString cmdLine)
     p.start(cmdLine, QIODevice::ReadOnly);
     p.waitForFinished();
     QString text = QString::fromLocal8Bit(p.readAllStandardOutput());
-    text = text.replace( '<', "&lt;" );
-    text = text.replace( '>', "&gt;" );
+    text = text.replace('<', "&lt;");
+    text = text.replace('>', "&gt;");
     return text;
 }
 
-void RegressionTest::doFailureReport( const QString& test, int failures )
+void RegressionTest::doFailureReport(const QString &test, int failures)
 {
-    if ( failures == NoFailure ) {
-        ::unlink( QFile::encodeName( m_outputDir + "/" + test + "-compare.html" ) );	//krazy:exclude=duoblequote_chars DOM demands chars
+    if (failures == NoFailure) {
+        ::unlink(QFile::encodeName(m_outputDir + "/" + test + "-compare.html"));      //krazy:exclude=duoblequote_chars DOM demands chars
         return;
     }
 
-    createLink( test, failures );
+    createLink(test, failures);
 
-    if ( failures & JSFailure ) {
-        doJavascriptReport( test );
+    if (failures & JSFailure) {
+        doJavascriptReport(test);
         return; // no support for both kind
     }
 
-    QFile compare( m_outputDir + "/" + test + "-compare.html" );	//krazy:exclude=duoblequote_chars DOM demands chars
+    QFile compare(m_outputDir + "/" + test + "-compare.html");   //krazy:exclude=duoblequote_chars DOM demands chars
 
     QString testFile = QFileInfo(test).fileName();
 
@@ -1374,32 +1415,32 @@ void RegressionTest::doFailureReport( const QString& test, int failures )
 
     // are blocking reads possible with K3Process?
     QString pwd = QDir::currentPath();
-    chdir( QFile::encodeName( m_baseDir ) );
+    chdir(QFile::encodeName(m_baseDir));
 
-    if ( failures & RenderFailure ) {
+    if (failures & RenderFailure) {
         renderDiff += "<pre>";
-        renderDiff += getDiff( QString::fromLatin1( "diff -u %4/%1-render %3/%2-render" )
-                            .arg ( test, test, relOutputDir, relBaselineDir ) );
+        renderDiff += getDiff(QString::fromLatin1("diff -u %4/%1-render %3/%2-render")
+                              .arg(test, test, relOutputDir, relBaselineDir));
         renderDiff += "</pre>";
     }
 
-    if ( failures & DomFailure ) {
+    if (failures & DomFailure) {
         domDiff += "<pre>";
-        domDiff += getDiff( QString::fromLatin1( "diff -u %4/%1-dom %3/%2-dom" )
-                            .arg ( test, test, relOutputDir, relBaselineDir ) );
+        domDiff += getDiff(QString::fromLatin1("diff -u %4/%1-dom %3/%2-dom")
+                           .arg(test, test, relOutputDir, relBaselineDir));
         domDiff += "</pre>";
     }
 
-    chdir( QFile::encodeName( pwd ) );
+    chdir(QFile::encodeName(pwd));
 
     // create a relative path so that it works via web as well. ugly
-    QString relpath = makeRelativePath(m_outputDir + "/"	//krazy:exclude=duoblequote_chars DOM demands chars
-        + QFileInfo(test).path(), m_baseDir);
+    QString relpath = makeRelativePath(m_outputDir + "/"    //krazy:exclude=duoblequote_chars DOM demands chars
+                                       + QFileInfo(test).path(), m_baseDir);
 
-    compare.open( QIODevice::WriteOnly|QIODevice::Truncate );
+    compare.open(QIODevice::WriteOnly | QIODevice::Truncate);
     QString cl;
-    cl = QString( "<html><head><title>%1</title>" ).arg( test );
-    cl += QString( "<script>\n"
+    cl = QString("<html><head><title>%1</title>").arg(test);
+    cl += QString("<script>\n"
                   "var pics = new Array();\n"
                   "pics[0]=new Image();\n"
                   "pics[0].src = '%1';\n"
@@ -1407,10 +1448,10 @@ void RegressionTest::doFailureReport( const QString& test, int failures )
                   "pics[1].src = '%2';\n"
                   "var doflicker = 1;\n"
                   "var t = 1;\n"
-                  "var lastb=0;\n" )
-          .arg( relpath+"/"+relBaselineDir+"/"+test+"-dump.png" )
-          .arg( testFile+"-dump.png" );
-    cl += QString( "function toggleVisible(visible) {\n"
+                  "var lastb=0;\n")
+          .arg(relpath + "/" + relBaselineDir + "/" + test + "-dump.png")
+          .arg(testFile + "-dump.png");
+    cl += QString("function toggleVisible(visible) {\n"
                   "     document.getElementById('render').style.visibility= visible == 'render' ? 'visible' : 'hidden';\n"
                   "     document.getElementById('image').style.visibility= visible == 'image' ? 'visible' : 'hidden';\n"
                   "     document.getElementById('dom').style.visibility= visible == 'dom' ? 'visible' : 'hidden';\n"
@@ -1418,8 +1459,8 @@ void RegressionTest::doFailureReport( const QString& test, int failures )
                   "function show() { document.getElementById('image').src = pics[t].src; "
                   "document.getElementById('image').style.borderColor = t && !doflicker ? 'red' : 'gray';\n"
                   "toggleVisible('image');\n"
-                   "}" );
-    cl += QString ( "function runSlideShow(){\n"
+                  "}");
+    cl += QString("function runSlideShow(){\n"
                   "   document.getElementById('image').src = pics[t].src;\n"
                   "   if (doflicker)\n"
                   "       t = 1 - t;\n"
@@ -1434,65 +1475,72 @@ void RegressionTest::doFailureReport( const QString& test, int failures )
                   "}\n"
                   "function showDom() { doflicker=0;toggleVisible('dom')\n"
                   "}\n"
-                   "</script>\n");
+                  "</script>\n");
 
-    cl += QString ("<style>\n"
-                   ".buttondown { cursor: pointer; padding: 0px 20px; color: white; background-color: blue; border: inset blue 2px;}\n"
-                   ".button { cursor: pointer; padding: 0px 20px; color: black; background-color: white; border: outset blue 2px;}\n"
-                   ".diff { position: absolute; left: 10px; top: 100px; visibility: hidden; border: 1px black solid; background-color: white; color: black; /* width: 800; height: 600; overflow: scroll; */ }\n"
-                   "</style>\n" );
+    cl += QString("<style>\n"
+                  ".buttondown { cursor: pointer; padding: 0px 20px; color: white; background-color: blue; border: inset blue 2px;}\n"
+                  ".button { cursor: pointer; padding: 0px 20px; color: black; background-color: white; border: outset blue 2px;}\n"
+                  ".diff { position: absolute; left: 10px; top: 100px; visibility: hidden; border: 1px black solid; background-color: white; color: black; /* width: 800; height: 600; overflow: scroll; */ }\n"
+                  "</style>\n");
 
-    if ( failures & PaintFailure )
-        cl += QString( "<body onload=\"m(1); show(); runSlideShow();\"" );
-    else if ( failures & RenderFailure )
-        cl += QString( "<body onload=\"m(4); toggleVisible('render');\"" );
-    else
-        cl += QString( "<body onload=\"m(5); toggleVisible('dom');\"" );
-    cl += QString(" text=black bgcolor=gray>\n<h1>%3</h1>\n" ).arg( test );
-    if ( failures & PaintFailure )
-        cl += QString ( "<span id='b1' class='buttondown' onclick=\"doflicker=1;show();m(1)\">FLICKER</span>&nbsp;\n"
-                        "<span id='b2' class='button' onclick=\"doflicker=0;t=0;show();m(2)\">BASE</span>&nbsp;\n"
-                        "<span id='b3' class='button' onclick=\"doflicker=0;t=1;show();m(3)\">OUT</span>&nbsp;\n" );
-    if ( renderDiff.length() )
+    if (failures & PaintFailure) {
+        cl += QString("<body onload=\"m(1); show(); runSlideShow();\"");
+    } else if (failures & RenderFailure) {
+        cl += QString("<body onload=\"m(4); toggleVisible('render');\"");
+    } else {
+        cl += QString("<body onload=\"m(5); toggleVisible('dom');\"");
+    }
+    cl += QString(" text=black bgcolor=gray>\n<h1>%3</h1>\n").arg(test);
+    if (failures & PaintFailure)
+        cl += QString("<span id='b1' class='buttondown' onclick=\"doflicker=1;show();m(1)\">FLICKER</span>&nbsp;\n"
+                      "<span id='b2' class='button' onclick=\"doflicker=0;t=0;show();m(2)\">BASE</span>&nbsp;\n"
+                      "<span id='b3' class='button' onclick=\"doflicker=0;t=1;show();m(3)\">OUT</span>&nbsp;\n");
+    if (renderDiff.length()) {
         cl += "<span id='b4' class='button' onclick='showRender();m(4)'>R-DIFF</span>&nbsp;\n";
-    if ( domDiff.length() )
+    }
+    if (domDiff.length()) {
         cl += "<span id='b5' class='button' onclick='showDom();m(5);'>D-DIFF</span>&nbsp;\n";
+    }
     // The test file always exists - except for checkOutput called from *.js files
-    if ( QFile::exists( m_baseDir + "/tests/"+ test ) )
-        cl += QString( "<a class=button href=\"%1\">HTML</a>&nbsp;" )
-              .arg( relpath+"/tests/"+test );
+    if (QFile::exists(m_baseDir + "/tests/" + test))
+        cl += QString("<a class=button href=\"%1\">HTML</a>&nbsp;")
+              .arg(relpath + "/tests/" + test);
 
-    cl += QString( "<hr>"
-                   "<img style='border: solid 5px gray' src=\"%1\" id='image'>" )
-          .arg( relpath+"/"+relBaselineDir+"/"+test+"-dump.png" );
+    cl += QString("<hr>"
+                  "<img style='border: solid 5px gray' src=\"%1\" id='image'>")
+          .arg(relpath + "/" + relBaselineDir + "/" + test + "-dump.png");
 
     cl += "<div id='render' class='diff'>" + renderDiff + "</div>";
     cl += "<div id='dom' class='diff'>" + domDiff + "</div>";
 
     cl += "</body></html>";
-    compare.write( cl.toLatin1(), cl.length() );
+    compare.write(cl.toLatin1(), cl.length());
     compare.close();
 }
 
-void RegressionTest::testStaticFile(const QString & filename)
+void RegressionTest::testStaticFile(const QString &filename)
 {
     qDebug("TESTING:%s", filename.toLatin1().data());
-    resizeTopLevelWidget( 800, 598 ); // restore size
+    resizeTopLevelWidget(800, 598);   // restore size
 
     // Set arguments
     KParts::OpenUrlArguments args;
-    if (filename.endsWith(".html") || filename.endsWith(".htm")) args.setMimeType("text/html");
-    else if (filename.endsWith(".xhtml")) args.setMimeType("application/xhtml+xml");
-    else if (filename.endsWith(".xml")) args.setMimeType("text/xml");
+    if (filename.endsWith(".html") || filename.endsWith(".htm")) {
+        args.setMimeType("text/html");
+    } else if (filename.endsWith(".xhtml")) {
+        args.setMimeType("application/xhtml+xml");
+    } else if (filename.endsWith(".xml")) {
+        args.setMimeType("text/xml");
+    }
     m_part->setArguments(args);
     // load page
-    QUrl url = QUrl::fromLocalFile(QFileInfo(m_baseDir + "/tests/"+filename).absoluteFilePath());
+    QUrl url = QUrl::fromLocalFile(QFileInfo(m_baseDir + "/tests/" + filename).absoluteFilePath());
     PartMonitor pm(m_part);
     m_part->openUrl(url);
     pm.waitForCompletion();
     m_part->closeUrl();
 
-    if ( filename.startsWith( "domts/" ) ) {
+    if (filename.startsWith("domts/")) {
         QString functionname;
 
         KJS::Completion comp = m_part->jScriptInterpreter()->evaluate(filename, 0, "exposeTestFunctionNames();");
@@ -1500,135 +1548,151 @@ void RegressionTest::testStaticFile(const QString & filename)
          *  Error handling
          */
         KJS::ExecState *exec = m_part->jScriptInterpreter()->globalExec();
-        if ( comp.complType() == ReturnValue || comp.complType() == Normal )
-        {
+        if (comp.complType() == ReturnValue || comp.complType() == Normal) {
             if (comp.value() && comp.value()->type() == ObjectType &&
-               comp.value()->toObject(exec)->className() == "Array" )
-            {
-                JSObject* argArrayObj = comp.value()->toObject(exec);
+                    comp.value()->toObject(exec)->className() == "Array") {
+                JSObject *argArrayObj = comp.value()->toObject(exec);
                 unsigned int length = argArrayObj->
                                       get(exec, "length")->
                                       toUInt32(exec);
-                if ( length == 1 )
+                if (length == 1) {
                     functionname = argArrayObj->get(exec, 0)->toString(exec).qstring();
+                }
             }
         }
-        if ( functionname.isNull() ) {
+        if (functionname.isNull()) {
             // qDebug() << "DOM " << filename << " doesn't expose 1 function name - ignoring";
             return;
         }
 
-        KJS::Completion comp2 = m_part->jScriptInterpreter()->evaluate(filename, 0, QString("setUpPage(); " + functionname + "();") );
-        bool success = ( comp2.complType() == ReturnValue || comp2.complType() == Normal );
+        KJS::Completion comp2 = m_part->jScriptInterpreter()->evaluate(filename, 0, QString("setUpPage(); " + functionname + "();"));
+        bool success = (comp2.complType() == ReturnValue || comp2.complType() == Normal);
         QString description = "DOMTS";
-        if ( comp2.complType() == Throw ) {
-            KJS::JSValue*  val = comp2.value();
-            KJS::JSObject* obj = val->toObject(exec);
-            if ( obj && obj->hasProperty( exec, "jsUnitMessage" ) )
-                description = obj->get( exec, "jsUnitMessage" )->toString( exec ).qstring();
-            else
-                description = comp2.value()->toString( exec ).qstring();
+        if (comp2.complType() == Throw) {
+            KJS::JSValue  *val = comp2.value();
+            KJS::JSObject *obj = val->toObject(exec);
+            if (obj && obj->hasProperty(exec, "jsUnitMessage")) {
+                description = obj->get(exec, "jsUnitMessage")->toString(exec).qstring();
+            } else {
+                description = comp2.value()->toString(exec).qstring();
+            }
         }
-        reportResult( success,  description );
+        reportResult(success,  description);
 
-        if (!success && !m_known_failures)
-            doFailureReport( filename, JSFailure );
+        if (!success && !m_known_failures) {
+            doFailureReport(filename, JSFailure);
+        }
         return;
     }
 
     int back_known_failures = m_known_failures;
 
-    if ( m_genOutput ) {
-        if ( m_known_failures & DomFailure)
+    if (m_genOutput) {
+        if (m_known_failures & DomFailure) {
             m_known_failures = AllFailure;
-        reportResult( checkOutput(filename+"-dom"), "DOM" );
-        if ( m_known_failures & RenderFailure )
+        }
+        reportResult(checkOutput(filename + "-dom"), "DOM");
+        if (m_known_failures & RenderFailure) {
             m_known_failures = AllFailure;
-        reportResult( checkOutput(filename+"-render"), "RENDER" );
-        if ( m_known_failures & PaintFailure )
+        }
+        reportResult(checkOutput(filename + "-render"), "RENDER");
+        if (m_known_failures & PaintFailure) {
             m_known_failures = AllFailure;
-        renderToImage().save(m_baselineDir + "/" + filename + "-dump.png","PNG", 60);
-        printf("Generated %s\n", qPrintable(QString( m_baselineDir + "/" + filename + "-dump.png" )) );
-        reportResult( true, "PAINT" );
+        }
+        renderToImage().save(m_baselineDir + "/" + filename + "-dump.png", "PNG", 60);
+        printf("Generated %s\n", qPrintable(QString(m_baselineDir + "/" + filename + "-dump.png")));
+        reportResult(true, "PAINT");
     } else {
         int failures = NoFailure;
 
         // compare with output file
-        if ( m_known_failures & DomFailure)
+        if (m_known_failures & DomFailure) {
             m_known_failures = AllFailure;
-        if ( !reportResult( checkOutput(filename+"-dom"), "DOM" ) )
+        }
+        if (!reportResult(checkOutput(filename + "-dom"), "DOM")) {
             failures |= DomFailure;
+        }
 
-        if ( m_known_failures & RenderFailure )
+        if (m_known_failures & RenderFailure) {
             m_known_failures = AllFailure;
-        if ( !reportResult( checkOutput(filename+"-render"), "RENDER" ) )
+        }
+        if (!reportResult(checkOutput(filename + "-render"), "RENDER")) {
             failures |= RenderFailure;
+        }
 
-        if ( m_known_failures & PaintFailure )
+        if (m_known_failures & PaintFailure) {
             m_known_failures = AllFailure;
-        if (!reportResult( checkPaintdump(filename), "PAINT") )
+        }
+        if (!reportResult(checkPaintdump(filename), "PAINT")) {
             failures |= PaintFailure;
+        }
 
-        doFailureReport(filename, failures );
+        doFailureReport(filename, failures);
     }
 
     m_known_failures = back_known_failures;
 }
 
-void RegressionTest::evalJS( ScriptInterpreter &interp, const QString &filename, bool report_result )
+void RegressionTest::evalJS(ScriptInterpreter &interp, const QString &filename, bool report_result)
 {
     QString fullSourceName = filename;
     QFile sourceFile(fullSourceName);
 
     if (!sourceFile.open(QIODevice::ReadOnly)) {
-        fprintf(stderr,"Error reading file %s\n",qPrintable(fullSourceName));
+        fprintf(stderr, "Error reading file %s\n", qPrintable(fullSourceName));
         exit(1);
     }
 
-    QTextStream stream ( &sourceFile );
-	stream.setCodec( "UTF-8" );
+    QTextStream stream(&sourceFile);
+    stream.setCodec("UTF-8");
     QString code = stream.readAll();
     sourceFile.close();
 
     saw_failure = false;
     ignore_errors = false;
-    Completion c = interp.evaluate(filename, 0, UString( code ) );
+    Completion c = interp.evaluate(filename, 0, UString(code));
 
-    if ( report_result && !ignore_errors) {
-        bool expected_failure = filename.endsWith( "-n.js" );
+    if (report_result && !ignore_errors) {
+        bool expected_failure = filename.endsWith("-n.js");
         if (c.complType() == Throw) {
-            ExecState* exec = interp.globalExec();
+            ExecState *exec = interp.globalExec();
             QString errmsg = c.value()->toString(exec).qstring();
-            if ( !expected_failure ) {
+            if (!expected_failure) {
                 int line = -1;
-                JSObject* obj = c.value()->toObject(exec);
-                if (obj)
+                JSObject *obj = c.value()->toObject(exec);
+                if (obj) {
                     line = obj->get(exec, "line")->toUInt32(exec);
-                printf( "ERROR: %s (%s) at line:%d\n",qPrintable(filename), qPrintable(errmsg), line);
-                doFailureReport( m_currentCategory + "/" + m_currentTest, JSFailure );	//krazy:exclude=duoblequote_chars DOM demands chars
+                }
+                printf("ERROR: %s (%s) at line:%d\n", qPrintable(filename), qPrintable(errmsg), line);
+                doFailureReport(m_currentCategory + "/" + m_currentTest, JSFailure);     //krazy:exclude=duoblequote_chars DOM demands chars
                 m_errors++;
             } else {
-                reportResult( true, QString( "Expected Failure: %1" ).arg( errmsg ) );
+                reportResult(true, QString("Expected Failure: %1").arg(errmsg));
             }
-        } else if ( saw_failure ) {
-            if ( !expected_failure )
-                doFailureReport( m_currentCategory + "/" + m_currentTest, JSFailure );	//krazy:exclude=duoblequote_chars DOM demands chars
-            reportResult( expected_failure, "saw 'failed!'" );
+        } else if (saw_failure) {
+            if (!expected_failure) {
+                doFailureReport(m_currentCategory + "/" + m_currentTest, JSFailure);    //krazy:exclude=duoblequote_chars DOM demands chars
+            }
+            reportResult(expected_failure, "saw 'failed!'");
         } else {
-            reportResult( !expected_failure, "passed" );
+            reportResult(!expected_failure, "passed");
         }
     }
 }
 
-class GlobalImp : public JSGlobalObject {
+class GlobalImp : public JSGlobalObject
+{
 public:
-  virtual UString className() const { return "global"; }
+    virtual UString className() const
+    {
+        return "global";
+    }
 };
 
-void RegressionTest::testJSFile(const QString & filename )
+void RegressionTest::testJSFile(const QString &filename)
 {
     qDebug("TEST JS:%s", filename.toLatin1().data());
-    resizeTopLevelWidget( 800, 598 ); // restore size
+    resizeTopLevelWidget(800, 598);   // restore size
 
     // create interpreter
     // note: this is different from the interpreter used by the part,
@@ -1636,55 +1700,57 @@ void RegressionTest::testJSFile(const QString & filename )
     ProtectedPtr<JSGlobalObject> global(new GlobalImp());
     khtml::ChildFrame frame;
     frame.m_part = m_part;
-    ScriptInterpreter interp(global,&frame);
+    ScriptInterpreter interp(global, &frame);
     ExecState *exec = interp.globalExec();
 
-    global->put(exec, "part", new KHTMLPartObject(exec,m_part));
-    global->put(exec, "regtest", new RegTestObject(exec,this));
-    global->put(exec, "debug", new RegTestFunction(exec,this,RegTestFunction::Print,1) );
-    global->put(exec, "print", new RegTestFunction(exec,this,RegTestFunction::Print,1) );
+    global->put(exec, "part", new KHTMLPartObject(exec, m_part));
+    global->put(exec, "regtest", new RegTestObject(exec, this));
+    global->put(exec, "debug", new RegTestFunction(exec, this, RegTestFunction::Print, 1));
+    global->put(exec, "print", new RegTestFunction(exec, this, RegTestFunction::Print, 1));
 
-    QStringList dirs = filename.split( '/' );
+    QStringList dirs = filename.split('/');
     // NOTE: the basename is of little interest here, but the last basedir change
     // isn't taken in account
     QString basedir =  m_baseDir + "/tests/";
-    foreach(const QString &it, dirs) {
-        if ( ! ::access( QFile::encodeName( basedir + "shell.js" ), R_OK ) )
-            evalJS( interp, basedir + "shell.js", false );
-        basedir += it + "/";	//krazy:exclude=duoblequote_chars DOM demands chars
+    foreach (const QString &it, dirs) {
+        if (! ::access(QFile::encodeName(basedir + "shell.js"), R_OK)) {
+            evalJS(interp, basedir + "shell.js", false);
+        }
+        basedir += it + "/";    //krazy:exclude=duoblequote_chars DOM demands chars
     }
-    evalJS( interp, m_baseDir + "/tests/"+ filename, true );
+    evalJS(interp, m_baseDir + "/tests/" + filename, true);
 }
 
 RegressionTest::CheckResult RegressionTest::checkPaintdump(const QString &filename)
 {
-    QString againstFilename( filename + "-dump.png" );
+    QString againstFilename(filename + "-dump.png");
     QString absFilename = QFileInfo(m_baselineDir + "/" + againstFilename).absoluteFilePath();
-    if ( svnIgnored( absFilename ) ) {
+    if (svnIgnored(absFilename)) {
         m_known_failures = NoFailure;
         return Ignored;
     }
     CheckResult result = Failure;
 
     QImage baseline;
-    baseline.load( absFilename, "PNG");
+    baseline.load(absFilename, "PNG");
     QImage output = renderToImage();
-    if ( !imageEqual( baseline, output ) ) {	//krazy:exclude=duoblequote_chars DOM demands chars
+    if (!imageEqual(baseline, output)) {      //krazy:exclude=duoblequote_chars DOM demands chars
         QString outputFilename = m_outputDir + "/" + againstFilename;
-        createMissingDirs(outputFilename );
+        createMissingDirs(outputFilename);
 
         bool kf = false;
-        if ( m_known_failures & AllFailure )
+        if (m_known_failures & AllFailure) {
             kf = true;
-        else if ( m_known_failures & PaintFailure )
+        } else if (m_known_failures & PaintFailure) {
             kf = true;
-        if ( kf )
+        }
+        if (kf) {
             outputFilename += "-KF";
+        }
 
         output.save(outputFilename, "PNG", 60);
-    }
-    else {
-        ::unlink( QFile::encodeName( m_outputDir + "/" + againstFilename ) );	//krazy:exclude=duoblequote_chars DOM demands chars
+    } else {
+        ::unlink(QFile::encodeName(m_outputDir + "/" + againstFilename));     //krazy:exclude=duoblequote_chars DOM demands chars
         result = Success;
     }
     return result;
@@ -1693,89 +1759,94 @@ RegressionTest::CheckResult RegressionTest::checkPaintdump(const QString &filena
 RegressionTest::CheckResult RegressionTest::checkOutput(const QString &againstFilename)
 {
     QString absFilename = QFileInfo(m_baselineDir + "/" + againstFilename).absoluteFilePath();
-    if ( svnIgnored( absFilename ) ) {
+    if (svnIgnored(absFilename)) {
         m_known_failures = NoFailure;
         return Ignored;
     }
 
-    bool domOut = againstFilename.endsWith( "-dom" );
-    QString data = getPartOutput( domOut ? DOMTree : RenderTree );
-    data.remove( char( 13 ) );
+    bool domOut = againstFilename.endsWith("-dom");
+    QString data = getPartOutput(domOut ? DOMTree : RenderTree);
+    data.remove(char(13));
 
     CheckResult result = Success;
 
     // compare result to existing file
-    QString outputFilename = QFileInfo(m_outputDir + "/" + againstFilename).absoluteFilePath();	//krazy:exclude=duoblequote_chars DOM demands chars
+    QString outputFilename = QFileInfo(m_outputDir + "/" + againstFilename).absoluteFilePath(); //krazy:exclude=duoblequote_chars DOM demands chars
     bool kf = false;
-    if ( m_known_failures & AllFailure )
+    if (m_known_failures & AllFailure) {
         kf = true;
-    else if ( domOut && ( m_known_failures & DomFailure ) )
+    } else if (domOut && (m_known_failures & DomFailure)) {
         kf = true;
-    else if ( !domOut && ( m_known_failures & RenderFailure ) )
+    } else if (!domOut && (m_known_failures & RenderFailure)) {
         kf = true;
-    if ( kf )
+    }
+    if (kf) {
         outputFilename += "-KF";
+    }
 
-    if ( m_genOutput )
+    if (m_genOutput) {
         outputFilename = absFilename;
+    }
 
     QFile file(absFilename);
     if (file.open(QIODevice::ReadOnly)) {
-        QTextStream stream ( &file );
-		stream.setCodec( "UTF-8" );
+        QTextStream stream(&file);
+        stream.setCodec("UTF-8");
 
         QString fileData = stream.readAll();
 
-        result = ( fileData == data ) ? Success : Failure;
-        if ( !m_genOutput && result == Success ) {
-            ::unlink( QFile::encodeName( outputFilename ) );
+        result = (fileData == data) ? Success : Failure;
+        if (!m_genOutput && result == Success) {
+            ::unlink(QFile::encodeName(outputFilename));
             return Success;
         }
     }
 
     // generate result file
-    createMissingDirs( outputFilename );
+    createMissingDirs(outputFilename);
     QFile file2(outputFilename);
     if (!file2.open(QIODevice::WriteOnly)) {
-        fprintf(stderr,"Error writing to file %s\n",qPrintable(outputFilename));
+        fprintf(stderr, "Error writing to file %s\n", qPrintable(outputFilename));
         exit(1);
     }
 
     QTextStream stream2(&file2);
-	stream2.setCodec( "UTF-8" );
+    stream2.setCodec("UTF-8");
     stream2 << data;
-    if ( m_genOutput )
+    if (m_genOutput) {
         printf("Generated %s\n", qPrintable(outputFilename));
+    }
 
     return result;
 }
 
-bool RegressionTest::reportResult(CheckResult result, const QString & description)
+bool RegressionTest::reportResult(CheckResult result, const QString &description)
 {
-    if ( result == Ignored ) {
+    if (result == Ignored) {
         //printf("IGNORED: ");
         //printDescription( description );
         return true; // no error
-    } else
-        return reportResult( result == Success, description );
+    } else {
+        return reportResult(result == Success, description);
+    }
 }
 
-bool RegressionTest::reportResult(bool passed, const QString & description)
+bool RegressionTest::reportResult(bool passed, const QString &description)
 {
-    if (m_genOutput)
-	return true;
+    if (m_genOutput) {
+        return true;
+    }
 
-   if (passed) {
-        if ( m_known_failures & AllFailure ) {
+    if (passed) {
+        if (m_known_failures & AllFailure) {
             printf("PASS (unexpected!): ");
             m_passes_fail++;
         } else {
             printf("PASS: ");
             m_passes_work++;
         }
-    }
-    else {
-        if ( m_known_failures & AllFailure ) {
+    } else {
+        if (m_known_failures & AllFailure) {
             printf("FAIL (known): ");
             m_failures_fail++;
             passed = true; // we knew about it
@@ -1785,56 +1856,59 @@ bool RegressionTest::reportResult(bool passed, const QString & description)
         }
     }
 
-    printDescription( description );
+    printDescription(description);
     return passed;
 }
 
-void RegressionTest::printDescription(const QString& description)
+void RegressionTest::printDescription(const QString &description)
 {
-    if (!m_currentCategory.isEmpty())
-	printf("%s/", qPrintable(m_currentCategory));
+    if (!m_currentCategory.isEmpty()) {
+        printf("%s/", qPrintable(m_currentCategory));
+    }
 
     printf("%s", qPrintable(m_currentTest));
 
     if (!description.isEmpty()) {
         QString desc = description;
-        desc.replace( '\n', ' ' );
-	printf(" [%s]", qPrintable(desc));
+        desc.replace('\n', ' ');
+        printf(" [%s]", qPrintable(desc));
     }
 
     printf("\n");
     fflush(stdout);
 }
 
-void RegressionTest::createMissingDirs(const QString & filename)
+void RegressionTest::createMissingDirs(const QString &filename)
 {
     QFileInfo dif(filename);
-    QFileInfo dirInfo( dif.path() );
-    if (dirInfo.exists())
-	return;
+    QFileInfo dirInfo(dif.path());
+    if (dirInfo.exists()) {
+        return;
+    }
 
     QStringList pathComponents;
     QFileInfo parentDir = dirInfo;
     pathComponents.prepend(parentDir.absoluteFilePath());
     while (!parentDir.exists()) {
-	QString parentPath = parentDir.absoluteFilePath();
-	int slashPos = parentPath.lastIndexOf('/');
-	if (slashPos < 0)
-	    break;
-	parentPath = parentPath.left(slashPos);
-	pathComponents.prepend(parentPath);
-	parentDir = QFileInfo(parentPath);
+        QString parentPath = parentDir.absoluteFilePath();
+        int slashPos = parentPath.lastIndexOf('/');
+        if (slashPos < 0) {
+            break;
+        }
+        parentPath = parentPath.left(slashPos);
+        pathComponents.prepend(parentPath);
+        parentDir = QFileInfo(parentPath);
     }
     for (int pathno = 1; pathno < pathComponents.count(); pathno++) {
-	if (!QFileInfo(pathComponents[pathno]).exists() &&
-	    !QDir(pathComponents[pathno-1]).mkdir(pathComponents[pathno])) {
-	    fprintf(stderr,"Error creating directory %s\n",qPrintable(pathComponents[pathno]));
-	    exit(1);
-	}
+        if (!QFileInfo(pathComponents[pathno]).exists() &&
+                !QDir(pathComponents[pathno - 1]).mkdir(pathComponents[pathno])) {
+            fprintf(stderr, "Error creating directory %s\n", qPrintable(pathComponents[pathno]));
+            exit(1);
+        }
     }
 }
 
-void RegressionTest::slotOpenURL(const QUrl &url, const KParts::OpenUrlArguments& args, const KParts::BrowserArguments& browserArgs)
+void RegressionTest::slotOpenURL(const QUrl &url, const KParts::OpenUrlArguments &args, const KParts::BrowserArguments &browserArgs)
 {
     m_part->setArguments(args);
     m_part->browserExtension()->setBrowserArguments(browserArgs);
@@ -1844,29 +1918,31 @@ void RegressionTest::slotOpenURL(const QUrl &url, const KParts::OpenUrlArguments
     pm.waitForCompletion();
 }
 
-bool RegressionTest::svnIgnored( const QString &filename )
+bool RegressionTest::svnIgnored(const QString &filename)
 {
-    QFileInfo fi( filename );
+    QFileInfo fi(filename);
     QString ignoreFilename = fi.path() + "/svnignore";
     QFile ignoreFile(ignoreFilename);
-    if (!ignoreFile.open(QIODevice::ReadOnly))
+    if (!ignoreFile.open(QIODevice::ReadOnly)) {
         return false;
+    }
 
     QTextStream ignoreStream(&ignoreFile);
     QString line;
     while (!(line = ignoreStream.readLine()).isNull()) {
-        if ( line == fi.fileName() )
+        if (line == fi.fileName()) {
             return true;
+        }
     }
     ignoreFile.close();
     return false;
 }
 
-void RegressionTest::resizeTopLevelWidget( int w, int h )
+void RegressionTest::resizeTopLevelWidget(int w, int h)
 {
-    m_part->widget()->parentWidget()->resize( w, h );
-    m_part->widget()->resize( w, h );
+    m_part->widget()->parentWidget()->resize(w, h);
+    m_part->widget()->resize(w, h);
     // Since we're not visible, this doesn't have an immediate effect, QWidget posts the event
-    QApplication::sendPostedEvents( 0, QEvent::Resize );
+    QApplication::sendPostedEvents(0, QEvent::Resize);
 }
 

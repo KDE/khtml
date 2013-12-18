@@ -32,8 +32,8 @@
 #include <dom/dom_misc.h>
 #include <dom/dom_string.h>
 
-namespace DOM {
-
+namespace DOM
+{
 
 /**
  * DOM operations only raise exceptions in &quot;exceptional&quot;
@@ -58,11 +58,20 @@ namespace DOM {
 class KHTML_EXPORT DOMException
 {
 public:
-    DOMException(unsigned short _code) { code = _code; }
-    DOMException(const DOMException &other) { code = other.code; }
+    DOMException(unsigned short _code)
+    {
+        code = _code;
+    }
+    DOMException(const DOMException &other)
+    {
+        code = other.code;
+    }
 
-    DOMException & operator = (const DOMException &other)
-	{ code = other.code; return *this; }
+    DOMException &operator = (const DOMException &other)
+    {
+        code = other.code;
+        return *this;
+    }
 
     virtual ~DOMException() {}
     /**
@@ -107,7 +116,7 @@ public:
 
     /** @internal - checks to see whether internal code is a DOMException one */
     static bool isDOMExceptionCode(int exceptioncode);
-    
+
 };
 
 } //namespace

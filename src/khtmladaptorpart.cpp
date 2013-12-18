@@ -22,8 +22,8 @@
 #include <kjs/object.h>
 #include <QLabel>
 #include <klocalizedstring.h>
-AdaptorView::AdaptorView(QWidget* wparent, QObject* parent,
-                         const QStringList& /*args*/)
+AdaptorView::AdaptorView(QWidget *wparent, QObject *parent,
+                         const QStringList & /*args*/)
     : KParts::ReadOnlyPart(parent)
 {
     QLabel *placeHolder = new QLabel(i18n("Inactive"), wparent);
@@ -42,7 +42,7 @@ void AdaptorView::initScripting(KJS::ExecState * /*exec*/)
 {
 }
 
-KJS::JSObject* AdaptorView::scriptObject()
+KJS::JSObject *AdaptorView::scriptObject()
 {
     return new KJS::JSObject();
 }
@@ -53,17 +53,16 @@ KHTMLAdaptorPartFactory::KHTMLAdaptorPartFactory()
 {
 }
 
-
 QString variant2StringHelper(const QVariant &variant)
 {
     return variant.toString();
 }
 
-QObject* KHTMLAdaptorPartFactory::create(const char* /*iface*/,
-                                         QWidget* wparent,
-                                         QObject *parent,
-                                         const QVariantList &/*args*/,
-                                         const QString& /*keyword*/)
+QObject *KHTMLAdaptorPartFactory::create(const char * /*iface*/,
+        QWidget *wparent,
+        QObject *parent,
+        const QVariantList &/*args*/,
+        const QString & /*keyword*/)
 {
     return new AdaptorView(wparent, parent, QStringList());
 }

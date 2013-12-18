@@ -30,12 +30,11 @@ int main(int argc, char *argv[])
 {
     QApplication::setApplicationName("testregressiongui");
 
-	QApplication app(argc, argv);
+    QApplication app(argc, argv);
 
-	TestRegressionWindow mainWindow;
-	mainWindow.show();
+    TestRegressionWindow mainWindow;
+    mainWindow.show();
 
-	return app.exec();
+    return app.exec();
 }
 
-// vim:ts=4:tw=4:noet

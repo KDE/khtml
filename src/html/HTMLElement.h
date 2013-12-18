@@ -28,9 +28,9 @@
 
 namespace khtml
 {
-    typedef DOM::DOMString String;
-    typedef DOM::HTMLElementImpl HTMLElement;
-    typedef DOM::DocumentImpl Document;
+typedef DOM::DOMString String;
+typedef DOM::HTMLElementImpl HTMLElement;
+typedef DOM::DocumentImpl Document;
 }
 
 #endif

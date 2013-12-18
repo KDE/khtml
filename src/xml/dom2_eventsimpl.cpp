@@ -43,8 +43,9 @@ using namespace khtml;
 
 void EventTargetImpl::handleLocalEvents(EventImpl *evt, bool useCapture)
 {
-    if (!m_regdListeners.listeners)
+    if (!m_regdListeners.listeners) {
         return;
+    }
 
     Event ev = evt;
     // removeEventListener (e.g. called from a JS event listener) might
@@ -54,43 +55,47 @@ void EventTargetImpl::handleLocalEvents(EventImpl *evt, bool useCapture)
     QList<RegisteredEventListener>::iterator it;
     for (it = listeners.begin(); it != listeners.end(); ++it) {
         //Check whether this got removed...KDE4: use Java-style iterators
-        if (!m_regdListeners.stillContainsListener(*it))
+        if (!m_regdListeners.stillContainsListener(*it)) {
             continue;
+        }
 
-        RegisteredEventListener& current = (*it);
-        if (current.eventName == evt->name() && current.useCapture == useCapture)
+        RegisteredEventListener &current = (*it);
+        if (current.eventName == evt->name() && current.useCapture == useCapture) {
             current.listener->handleEvent(ev);
+        }
 
         // ECMA legacy hack
         if (current.useCapture == useCapture && evt->id() == EventImpl::CLICK_EVENT) {
-            MouseEventImpl* me = static_cast<MouseEventImpl*>(evt);
+            MouseEventImpl *me = static_cast<MouseEventImpl *>(evt);
             if (me->button() == 0) {
                 // To find whether to call onclick or ondblclick, we can't
                 // * use me->detail(), it's 2 when clicking twice w/o moving, even very slowly
                 // * use me->qEvent(), it's not available when using initMouseEvent/dispatchEvent
                 // So we currently store a bool in MouseEventImpl. If anyone needs to trigger
                 // dblclicks from the DOM API, we'll need a timer here (well in the doc).
-                if ( ( !me->isDoubleClick() && current.eventName.id() == EventImpl::KHTML_ECMA_CLICK_EVENT) ||
-                  ( me->isDoubleClick() && current.eventName.id() == EventImpl::KHTML_ECMA_DBLCLICK_EVENT) )
+                if ((!me->isDoubleClick() && current.eventName.id() == EventImpl::KHTML_ECMA_CLICK_EVENT) ||
+                        (me->isDoubleClick() && current.eventName.id() == EventImpl::KHTML_ECMA_DBLCLICK_EVENT)) {
                     current.listener->handleEvent(ev);
+                }
             }
         }
     }
 }
 
-void EventTargetImpl::defaultEventHandler(EventImpl*)
+void EventTargetImpl::defaultEventHandler(EventImpl *)
 {}
 
-DocumentImpl* EventTargetImpl::eventTargetDocument()
+DocumentImpl *EventTargetImpl::eventTargetDocument()
 {
     return 0;
 }
 
 void EventTargetImpl::setDocListenerFlag(unsigned flag)
 {
-    DocumentImpl* doc = eventTargetDocument();
-    if (doc)
+    DocumentImpl *doc = eventTargetDocument();
+    if (doc) {
         doc->addListenerType(DocumentImpl::ListenerType(flag));
+    }
 }
 
 void EventTargetImpl::addEventListener(EventName id, EventListener *listener, const bool useCapture)
@@ -139,12 +144,12 @@ void EventTargetImpl::setHTMLEventListener(unsigned id, EventListener *listener)
     m_regdListeners.setHTMLEventListener(EventName::fromId(id), listener);
 }
 
-EventListener* EventTargetImpl::getHTMLEventListener(EventName id)
+EventListener *EventTargetImpl::getHTMLEventListener(EventName id)
 {
     return m_regdListeners.getHTMLEventListener(id);
 }
 
-EventListener* EventTargetImpl::getHTMLEventListener(unsigned id)
+EventListener *EventTargetImpl::getHTMLEventListener(unsigned id)
 {
     return m_regdListeners.getHTMLEventListener(EventName::fromId(id));
 }
@@ -152,29 +157,33 @@ EventListener* EventTargetImpl::getHTMLEventListener(unsigned id)
 
 void RegisteredListenerList::addEventListener(EventName id, EventListener *listener, const bool useCapture)
 {
-    if (!listener)
-    return;
-    RegisteredEventListener rl(id,listener,useCapture);
-    if (!listeners)
+    if (!listener) {
+        return;
+    }
+    RegisteredEventListener rl(id, listener, useCapture);
+    if (!listeners) {
         listeners = new QList<RegisteredEventListener>;
+    }
 
     // if this id/listener/useCapture combination is already registered, do nothing.
     // the DOM2 spec says that "duplicate instances are discarded", and this keeps
     // the listener order intact.
     QList<RegisteredEventListener>::iterator it;
     for (it = listeners->begin(); it != listeners->end(); ++it)
-        if (*it == rl)
+        if (*it == rl) {
             return;
+        }
 
     listeners->append(rl);
 }
 
 void RegisteredListenerList::removeEventListener(EventName id, EventListener *listener, bool useCapture)
 {
-    if (!listeners) // nothing to remove
+    if (!listeners) { // nothing to remove
         return;
+    }
 
-    RegisteredEventListener rl(id,listener,useCapture);
+    RegisteredEventListener rl(id, listener, useCapture);
 
     QList<RegisteredEventListener>::iterator it;
     for (it = listeners->begin(); it != listeners->end(); ++it)
@@ -184,15 +193,16 @@ void RegisteredListenerList::removeEventListener(EventName id, EventListener *li
         }
 }
 
-bool RegisteredListenerList::isHTMLEventListener(EventListener* listener)
+bool RegisteredListenerList::isHTMLEventListener(EventListener *listener)
 {
     return (listener->eventListenerType() == "_khtml_HTMLEventListener");
 }
 
 void RegisteredListenerList::setHTMLEventListener(EventName name, EventListener *listener)
 {
-    if (!listeners)
+    if (!listeners) {
         listeners = new QList<RegisteredEventListener>;
+    }
 
     QList<RegisteredEventListener>::iterator it;
     if (!listener) {
@@ -207,10 +217,10 @@ void RegisteredListenerList::setHTMLEventListener(EventName name, EventListener 
 
     // if this event already has a registered handler, insert the new one in
     // place of the old one, to preserve the order.
-    RegisteredEventListener rl(name,listener,false);
+    RegisteredEventListener rl(name, listener, false);
 
     for (int i = 0; i < listeners->size(); ++i) {
-        const RegisteredEventListener& listener = listeners->at(i);
+        const RegisteredEventListener &listener = listeners->at(i);
         if (listener.eventName == name && isHTMLEventListener(listener.listener)) {
             listeners->replace(i, rl);
             return;
@@ -222,8 +232,9 @@ void RegisteredListenerList::setHTMLEventListener(EventName name, EventListener 
 
 EventListener *RegisteredListenerList::getHTMLEventListener(EventName name)
 {
-    if (!listeners)
+    if (!listeners) {
         return 0;
+    }
 
     QList<RegisteredEventListener>::iterator it;
     for (it = listeners->begin(); it != listeners->end(); ++it)
@@ -235,13 +246,15 @@ EventListener *RegisteredListenerList::getHTMLEventListener(EventName name)
 
 bool RegisteredListenerList::hasEventListener(EventName name)
 {
-    if (!listeners)
+    if (!listeners) {
         return false;
+    }
 
     QList<RegisteredEventListener>::iterator it;
     for (it = listeners->begin(); it != listeners->end(); ++it)
-        if ((*it).eventName == name)
+        if ((*it).eventName == name) {
             return true;
+        }
 
     return false;
 }
@@ -252,14 +265,16 @@ void RegisteredListenerList::clear()
     listeners = 0;
 }
 
-bool RegisteredListenerList::stillContainsListener(const RegisteredEventListener& listener)
+bool RegisteredListenerList::stillContainsListener(const RegisteredEventListener &listener)
 {
-    if (!listeners)
+    if (!listeners) {
         return false;
+    }
     return listeners->contains(listener);
 }
 
-RegisteredListenerList::~RegisteredListenerList() {
+RegisteredListenerList::~RegisteredListenerList()
+{
     delete listeners; listeners = 0;
 }
 
@@ -296,24 +311,27 @@ EventImpl::EventImpl(EventId _id, bool canBubbleArg, bool cancelableArg)
 
 EventImpl::~EventImpl()
 {
-    if (m_target)
+    if (m_target) {
         m_target->deref();
+    }
 }
 
 void EventImpl::setTarget(EventTargetImpl *_target)
 {
-    if (m_target)
+    if (m_target) {
         m_target->deref();
+    }
     m_target = _target;
-    if (m_target)
+    if (m_target) {
         m_target->ref();
+    }
 }
 
 DOMTimeStamp EventImpl::timeStamp()
 {
-    QDateTime epoch(QDate(1970,1,1),QTime(0,0));
+    QDateTime epoch(QDate(1970, 1, 1), QTime(0, 0));
     // ### kjs does not yet support long long (?) so the value wraps around
-    return epoch.secsTo(m_createTime)*1000+m_createTime.time().msec();
+    return epoch.secsTo(m_createTime) * 1000 + m_createTime.time().msec();
 }
 
 void EventImpl::initEvent(const DOMString &eventTypeArg, bool canBubbleArg, bool cancelableArg)
@@ -326,9 +344,9 @@ void EventImpl::initEvent(const DOMString &eventTypeArg, bool canBubbleArg, bool
     m_cancelable = cancelableArg;
 }
 
-khtml::IDTable<EventImpl>* EventImpl::s_idTable;
+khtml::IDTable<EventImpl> *EventImpl::s_idTable;
 
-khtml::IDTable<EventImpl>* EventImpl::initIdTable()
+khtml::IDTable<EventImpl> *EventImpl::initIdTable()
 {
     s_idTable = new khtml::IDTable<EventImpl>();
     s_idTable->addStaticMapping(DOMFOCUSIN_EVENT, "DOMFocusIn");
@@ -344,7 +362,7 @@ khtml::IDTable<EventImpl>* EventImpl::initIdTable()
     s_idTable->addStaticMapping(DOMNODEINSERTED_EVENT, "DOMNodeInserted");
     s_idTable->addStaticMapping(DOMNODEREMOVED_EVENT, "DOMNodeRemoved");
     s_idTable->addStaticMapping(DOMNODEREMOVEDFROMDOCUMENT_EVENT, "DOMNodeRemovedFromDocument");
-    s_idTable->addStaticMapping(DOMNODEINSERTEDINTODOCUMENT_EVENT,"DOMNodeInsertedIntoDocument");
+    s_idTable->addStaticMapping(DOMNODEINSERTEDINTODOCUMENT_EVENT, "DOMNodeInsertedIntoDocument");
     s_idTable->addStaticMapping(DOMATTRMODIFIED_EVENT, "DOMAttrModified");
     s_idTable->addStaticMapping(DOMCHARACTERDATAMODIFIED_EVENT, "DOMCharacterDataModified");
     s_idTable->addStaticMapping(LOAD_EVENT, "load");
@@ -362,7 +380,7 @@ khtml::IDTable<EventImpl>* EventImpl::initIdTable()
     s_idTable->addStaticMapping(KEYDOWN_EVENT, "keydown");
     s_idTable->addStaticMapping(KEYUP_EVENT, "keyup");
     s_idTable->addStaticMapping(KEYPRESS_EVENT, "keypress");
-        //DOM3 ev. suggests textInput, but it's better for compat this way
+    //DOM3 ev. suggests textInput, but it's better for compat this way
     s_idTable->addStaticMapping(HASHCHANGE_EVENT, "hashchange");
 
     //khtml extensions
@@ -371,9 +389,9 @@ khtml::IDTable<EventImpl>* EventImpl::initIdTable()
     s_idTable->addStaticMapping(KHTML_DRAGDROP_EVENT, "khtml_dragdrop");
     s_idTable->addStaticMapping(KHTML_MOVE_EVENT, "khtml_move");
     s_idTable->addStaticMapping(KHTML_MOUSEWHEEL_EVENT, "DOMMouseScroll");
-        // adopt the mozilla name for compatibility
+    // adopt the mozilla name for compatibility
     s_idTable->addStaticMapping(KHTML_CONTENTLOADED_EVENT, "DOMContentLoaded");
-        // idem
+    // idem
     s_idTable->addStaticMapping(KHTML_READYSTATECHANGE_EVENT, "readystatechange");
 
     s_idTable->addStaticMapping(MESSAGE_EVENT, "message");
@@ -419,34 +437,38 @@ bool EventImpl::isHashChangeEvent() const
 // -----------------------------------------------------------------------------
 
 UIEventImpl::UIEventImpl(EventId _id, bool canBubbleArg, bool cancelableArg,
-		AbstractViewImpl *viewArg, long detailArg)
-		: EventImpl(_id,canBubbleArg,cancelableArg)
+                         AbstractViewImpl *viewArg, long detailArg)
+    : EventImpl(_id, canBubbleArg, cancelableArg)
 {
     m_view = viewArg;
-    if (m_view)
+    if (m_view) {
         m_view->ref();
+    }
     m_detail = detailArg;
 }
 
 UIEventImpl::~UIEventImpl()
 {
-    if (m_view)
+    if (m_view) {
         m_view->deref();
+    }
 }
 
 void UIEventImpl::initUIEvent(const DOMString &typeArg,
-			      bool canBubbleArg,
-			      bool cancelableArg,
-			      AbstractViewImpl* viewArg,
-			      long detailArg)
+                              bool canBubbleArg,
+                              bool cancelableArg,
+                              AbstractViewImpl *viewArg,
+                              long detailArg)
 {
-    EventImpl::initEvent(typeArg,canBubbleArg,cancelableArg);
+    EventImpl::initEvent(typeArg, canBubbleArg, cancelableArg);
 
-    if (viewArg)
-      viewArg->ref();
+    if (viewArg) {
+        viewArg->ref();
+    }
 
-    if (m_view)
-      m_view->deref();
+    if (m_view) {
+        m_view->deref();
+    }
 
     m_view = viewArg;
 
@@ -479,26 +501,26 @@ MouseEventImpl::MouseEventImpl()
 }
 
 MouseEventImpl::MouseEventImpl(EventId _id,
-			       bool canBubbleArg,
-			       bool cancelableArg,
-			       AbstractViewImpl *viewArg,
-			       long detailArg,
-			       long screenXArg,
-			       long screenYArg,
-			       long clientXArg,
-			       long clientYArg,
+                               bool canBubbleArg,
+                               bool cancelableArg,
+                               AbstractViewImpl *viewArg,
+                               long detailArg,
+                               long screenXArg,
+                               long screenYArg,
+                               long clientXArg,
+                               long clientYArg,
                                long pageXArg,
                                long pageYArg,
-			       bool ctrlKeyArg,
-			       bool altKeyArg,
-			       bool shiftKeyArg,
-			       bool metaKeyArg,
-			       unsigned short buttonArg,
-			       NodeImpl *relatedTargetArg,
-			       QMouseEvent *qe,
+                               bool ctrlKeyArg,
+                               bool altKeyArg,
+                               bool shiftKeyArg,
+                               bool metaKeyArg,
+                               unsigned short buttonArg,
+                               NodeImpl *relatedTargetArg,
+                               QMouseEvent *qe,
                                bool isDoubleClick,
                                Orientation orient)
-		   : UIEventImpl(_id,canBubbleArg,cancelableArg,viewArg,detailArg)
+    : UIEventImpl(_id, canBubbleArg, cancelableArg, viewArg, detailArg)
 {
     m_screenX = screenXArg;
     m_screenY = screenYArg;
@@ -512,8 +534,9 @@ MouseEventImpl::MouseEventImpl(EventId _id,
     m_metaKey = metaKeyArg;
     m_button = buttonArg;
     m_relatedTarget = relatedTargetArg;
-    if (m_relatedTarget)
-	m_relatedTarget->ref();
+    if (m_relatedTarget) {
+        m_relatedTarget->ref();
+    }
     computeLayerPos();
     m_qevent = qe;
     m_isDoubleClick = isDoubleClick;
@@ -522,8 +545,9 @@ MouseEventImpl::MouseEventImpl(EventId _id,
 
 MouseEventImpl::~MouseEventImpl()
 {
-    if (m_relatedTarget)
-	m_relatedTarget->deref();
+    if (m_relatedTarget) {
+        m_relatedTarget->deref();
+    }
 }
 
 void MouseEventImpl::computeLayerPos()
@@ -531,7 +555,7 @@ void MouseEventImpl::computeLayerPos()
     m_layerX = m_pageX;
     m_layerY = m_pageY;
 
-    DocumentImpl* doc = view() ? view()->document() : 0;
+    DocumentImpl *doc = view() ? view()->document() : 0;
     if (doc && doc->renderer()) {
         khtml::RenderObject::NodeInfo renderInfo(true, false);
         doc->renderer()->layer()->nodeAtPoint(renderInfo, m_pageX, m_pageY);
@@ -542,7 +566,7 @@ void MouseEventImpl::computeLayerPos()
         }
 
         if (node) {
-            RenderLayer* layer = node->renderer()->enclosingLayer();
+            RenderLayer *layer = node->renderer()->enclosingLayer();
             if (layer) {
                 layer->updateLayerPosition();
             }
@@ -559,7 +583,7 @@ void MouseEventImpl::computeLayerPos()
 void MouseEventImpl::initMouseEvent(const DOMString &typeArg,
                                     bool canBubbleArg,
                                     bool cancelableArg,
-                                    AbstractViewImpl* viewArg,
+                                    AbstractViewImpl *viewArg,
                                     long detailArg,
                                     long screenXArg,
                                     long screenYArg,
@@ -573,10 +597,11 @@ void MouseEventImpl::initMouseEvent(const DOMString &typeArg,
                                     const Node &relatedTargetArg,
                                     Orientation orient)
 {
-    UIEventImpl::initUIEvent(typeArg,canBubbleArg,cancelableArg,viewArg,detailArg);
+    UIEventImpl::initUIEvent(typeArg, canBubbleArg, cancelableArg, viewArg, detailArg);
 
-    if (m_relatedTarget)
-	m_relatedTarget->deref();
+    if (m_relatedTarget) {
+        m_relatedTarget->deref();
+    }
 
     m_screenX = screenXArg;
     m_screenY = screenYArg;
@@ -584,8 +609,8 @@ void MouseEventImpl::initMouseEvent(const DOMString &typeArg,
     m_clientY = clientYArg;
     m_pageX   = clientXArg;
     m_pageY   = clientYArg;
-    KHTMLView* v;
-    if ( view() && view()->document() && ( v = view()->document()->view() ) ) {
+    KHTMLView *v;
+    if (view() && view()->document() && (v = view()->document()->view())) {
         m_pageX += v->contentsX();
         m_pageY += v->contentsY();
     }
@@ -595,10 +620,10 @@ void MouseEventImpl::initMouseEvent(const DOMString &typeArg,
     m_metaKey = metaKeyArg;
     m_button = buttonArg;
     m_relatedTarget = relatedTargetArg.handle();
-    if (m_relatedTarget)
-	m_relatedTarget->ref();
+    if (m_relatedTarget) {
+        m_relatedTarget->ref();
+    }
     m_orientation = orient;
-
 
     // ### make this on-demand. it is soo sloooow
     computeLayerPos();
@@ -613,8 +638,7 @@ bool MouseEventImpl::isMouseEvent() const
 //---------------------------------------------------------------------------------------------
 
 /* Mapping between special Qt keycodes and virtual DOM codes */
-IDTranslator<unsigned, unsigned, unsigned>::Info virtKeyToQtKeyTable[] =
-{
+IDTranslator<unsigned, unsigned, unsigned>::Info virtKeyToQtKeyTable[] = {
     {KeyEventBaseImpl::DOM_VK_BACK_SPACE, Qt::Key_Backspace},
     {KeyEventBaseImpl::DOM_VK_ENTER, Qt::Key_Enter},
     {KeyEventBaseImpl::DOM_VK_ENTER, Qt::Key_Return},
@@ -625,7 +649,7 @@ IDTranslator<unsigned, unsigned, unsigned>::Info virtKeyToQtKeyTable[] =
     {KeyEventBaseImpl::DOM_VK_META,         Qt::Key_Meta},
     {KeyEventBaseImpl::DOM_VK_CAPS_LOCK,    Qt::Key_CapsLock},
     {KeyEventBaseImpl::DOM_VK_DELETE,       Qt::Key_Delete},
-    {KeyEventBaseImpl::DOM_VK_INSERT,       Qt::Key_Insert},    
+    {KeyEventBaseImpl::DOM_VK_INSERT,       Qt::Key_Insert},
     {KeyEventBaseImpl::DOM_VK_END,          Qt::Key_End},
     {KeyEventBaseImpl::DOM_VK_ESCAPE,       Qt::Key_Escape},
     {KeyEventBaseImpl::DOM_VK_HOME,         Qt::Key_Home},
@@ -668,12 +692,12 @@ IDTranslator<unsigned, unsigned, unsigned>::Info virtKeyToQtKeyTable[] =
 MAKE_TRANSLATOR(virtKeyToQtKey, unsigned, unsigned, unsigned, virtKeyToQtKeyTable)
 
 KeyEventBaseImpl::KeyEventBaseImpl(EventId id, bool canBubbleArg, bool cancelableArg, AbstractViewImpl *viewArg,
-                                        QKeyEvent *key) :
-     UIEventImpl(id, canBubbleArg, cancelableArg, viewArg, 0)
+                                   QKeyEvent *key) :
+    UIEventImpl(id, canBubbleArg, cancelableArg, viewArg, 0)
 {
     m_synthetic = false;
 
-    m_keyEvent = new QKeyEvent(key->type(), key->key(), key->modifiers(), key->text(), key->isAutoRepeat(), key->count() );
+    m_keyEvent = new QKeyEvent(key->type(), key->key(), key->modifiers(), key->text(), key->isAutoRepeat(), key->count());
 
     //Here, we need to map Qt's internal info to browser-style info.
     m_detail = key->count();
@@ -686,10 +710,11 @@ KeyEventBaseImpl::KeyEventBaseImpl(EventId id, bool canBubbleArg, bool cancelabl
         // ... unfortunately, this value is useless if ctrl+ or alt+ are used.
         if (key->modifiers() & (Qt::ControlModifier | Qt::AltModifier | Qt::MetaModifier)) {
             // Try to recover the case... Not quite right with caps lock involved, hence proving again its evilness
-            if (key->modifiers() & (Qt::ShiftModifier))
-                m_keyVal = key->key(); // The original is upper case anyway
-            else
+            if (key->modifiers() & (Qt::ShiftModifier)) {
+                m_keyVal = key->key();    // The original is upper case anyway
+            } else {
                 m_keyVal = QChar(key->key()).toLower().unicode();
+            }
         } else {
             m_keyVal = key->text().unicode()[0].unicode();
         }
@@ -707,7 +732,7 @@ KeyEventBaseImpl::~KeyEventBaseImpl()
 void KeyEventBaseImpl::initKeyBaseEvent(const DOMString &typeArg,
                                         bool canBubbleArg,
                                         bool cancelableArg,
-                                        AbstractViewImpl* viewArg,
+                                        AbstractViewImpl *viewArg,
                                         unsigned long keyValArg,
                                         unsigned long virtKeyValArg,
                                         unsigned long modifiersArg)
@@ -723,7 +748,7 @@ void KeyEventBaseImpl::initKeyBaseEvent(const DOMString &typeArg,
 
 bool KeyEventBaseImpl::checkModifier(unsigned long modifierArg)
 {
-  return ((m_modifier & modifierArg) == modifierArg);
+    return ((m_modifier & modifierArg) == modifierArg);
 }
 
 void KeyEventBaseImpl::buildQKeyEvent() const
@@ -736,30 +761,32 @@ void KeyEventBaseImpl::buildQKeyEvent() const
     //like Ctrl-V or Shift-Insert and stealing contents of the user's clipboard.
     Qt::KeyboardModifiers modifiers = 0;
 
-    if (m_modifier & Qt::KeypadModifier)
+    if (m_modifier & Qt::KeypadModifier) {
         modifiers |= Qt::KeypadModifier;
+    }
 
     int key   = 0;
     QString text;
-    if (m_virtKeyVal)
+    if (m_virtKeyVal) {
         key = virtKeyToQtKey()->toRight(m_virtKeyVal);
+    }
     if (!key) {
         key   = m_keyVal;
         text  = QChar(key);
     }
 
     //Neuter F keys as well.
-    if (key >= Qt::Key_F1 && key <= Qt::Key_F35)
+    if (key >= Qt::Key_F1 && key <= Qt::Key_F35) {
         key = Qt::Key_ScrollLock;
+    }
 
     m_keyEvent = new QKeyEvent(id() == KEYUP_EVENT ? QEvent::KeyRelease : QEvent::KeyPress,
-                        key, modifiers, text);
+                               key, modifiers, text);
 }
 
 //------------------------------------------------------------------------------
 
-
-static const IDTranslator<QByteArray, unsigned, const char*>::Info keyIdentifiersToVirtKeysTable[] = {
+static const IDTranslator<QByteArray, unsigned, const char *>::Info keyIdentifiersToVirtKeysTable[] = {
     {"Alt",         KeyEventBaseImpl::DOM_VK_LEFT_ALT},
     {"Control",     KeyEventBaseImpl::DOM_VK_LEFT_CONTROL},
     {"Shift",       KeyEventBaseImpl::DOM_VK_LEFT_SHIFT},
@@ -811,10 +838,10 @@ static const IDTranslator<QByteArray, unsigned, const char*>::Info keyIdentifier
     {0, 0}
 };
 
-MAKE_TRANSLATOR(keyIdentifiersToVirtKeys, QByteArray, unsigned, const char*, keyIdentifiersToVirtKeysTable)
+MAKE_TRANSLATOR(keyIdentifiersToVirtKeys, QByteArray, unsigned, const char *, keyIdentifiersToVirtKeysTable)
 
 /** These are the modifiers we currently support */
-static const IDTranslator<QByteArray, unsigned, const char*>::Info keyModifiersToCodeTable[] = {
+static const IDTranslator<QByteArray, unsigned, const char *>::Info keyModifiersToCodeTable[] = {
     {"Alt",         Qt::AltModifier},
     {"Control",     Qt::ControlModifier},
     {"Shift",       Qt::ShiftModifier},
@@ -822,7 +849,7 @@ static const IDTranslator<QByteArray, unsigned, const char*>::Info keyModifiersT
     {0,             0}
 };
 
-MAKE_TRANSLATOR(keyModifiersToCode, QByteArray, unsigned, const char*, keyModifiersToCodeTable)
+MAKE_TRANSLATOR(keyModifiersToCode, QByteArray, unsigned, const char *, keyModifiersToCodeTable)
 
 KeyboardEventImpl::KeyboardEventImpl() : m_keyLocation(KeyboardEvent::DOM_KEY_LOCATION_STANDARD)
 {}
@@ -830,16 +857,18 @@ KeyboardEventImpl::KeyboardEventImpl() : m_keyLocation(KeyboardEvent::DOM_KEY_LO
 DOMString KeyboardEventImpl::keyIdentifier() const
 {
     if (unsigned special = virtKeyVal())
-        if (const char* id = keyIdentifiersToVirtKeys()->toLeft(special))
+        if (const char *id = keyIdentifiersToVirtKeys()->toLeft(special)) {
             return QString::fromLatin1(id);
+        }
 
-    if (unsigned unicode = keyVal())
+    if (unsigned unicode = keyVal()) {
         return QString(QChar(unicode));
+    }
 
     return "Unidentified";
 }
 
-bool KeyboardEventImpl::getModifierState (const DOMString& keyIdentifierArg) const
+bool KeyboardEventImpl::getModifierState(const DOMString &keyIdentifierArg) const
 {
     unsigned mask = keyModifiersToCode()->toRight(keyIdentifierArg.string().toLatin1());
     return m_modifier & mask;
@@ -851,12 +880,12 @@ bool KeyboardEventImpl::isKeyboardEvent() const
 }
 
 void KeyboardEventImpl::initKeyboardEvent(const DOMString &typeArg,
-                                          bool canBubbleArg,
-                                          bool cancelableArg,
-                                          AbstractViewImpl* viewArg,
-                                          const DOMString &keyIdentifierArg,
-                                          unsigned long keyLocationArg,
-                                          const DOMString& modifiersList)
+        bool canBubbleArg,
+        bool cancelableArg,
+        AbstractViewImpl *viewArg,
+        const DOMString &keyIdentifierArg,
+        unsigned long keyLocationArg,
+        const DOMString &modifiersList)
 {
     unsigned keyVal     = 0;
     unsigned virtKeyVal = 0;
@@ -868,40 +897,43 @@ void KeyboardEventImpl::initKeyboardEvent(const DOMString &typeArg,
         //Likely to be normal unicode id, unless it's one of the few
         //special values.
         unsigned short code = keyIdentifierArg.unicode()[0].unicode();
-        if (code > 0x20 && code != 0x7F)
+        if (code > 0x20 && code != 0x7F) {
             keyVal = code;
+        }
     }
 
-    if (!keyVal) //One of special keys, likely.
+    if (!keyVal) { //One of special keys, likely.
         virtKeyVal = keyIdentifiersToVirtKeys()->toRight(keyIdentifierArg.string().toLatin1());
+    }
 
     //Process modifier list.
-    const QStringList mods = modifiersList.string().trimmed().simplified().split( ' ' );
+    const QStringList mods = modifiersList.string().trimmed().simplified().split(' ');
 
     unsigned modifiers = 0;
     for (QStringList::ConstIterator i = mods.begin(); i != mods.end(); ++i)
-        if (unsigned mask = keyModifiersToCode()->toRight((*i).toLatin1()))
+        if (unsigned mask = keyModifiersToCode()->toRight((*i).toLatin1())) {
             modifiers |= mask;
+        }
 
     initKeyBaseEvent(typeArg, canBubbleArg, cancelableArg, viewArg,
-            keyVal, virtKeyVal, modifiers);
+                     keyVal, virtKeyVal, modifiers);
 }
 
-KeyboardEventImpl::KeyboardEventImpl(QKeyEvent* key, DOM::AbstractViewImpl* view) :
+KeyboardEventImpl::KeyboardEventImpl(QKeyEvent *key, DOM::AbstractViewImpl *view) :
     KeyEventBaseImpl(key->type() == QEvent::KeyRelease ? KEYUP_EVENT : KEYDOWN_EVENT, true, true, view, key)
 {
-    if (key->modifiers() & Qt::KeypadModifier)
+    if (key->modifiers() & Qt::KeypadModifier) {
         m_keyLocation = KeyboardEvent::DOM_KEY_LOCATION_NUMPAD;
-    else {
+    } else {
         //It's generally standard, but for the modifiers,
         //it should be left/right, so guess left.
         m_keyLocation = KeyboardEvent::DOM_KEY_LOCATION_STANDARD;
         switch (m_virtKeyVal) {
-            case DOM_VK_LEFT_ALT:
-            case DOM_VK_LEFT_SHIFT:
-            case DOM_VK_LEFT_CONTROL:
-            case DOM_VK_META:
-                m_keyLocation = KeyboardEvent::DOM_KEY_LOCATION_LEFT;
+        case DOM_VK_LEFT_ALT:
+        case DOM_VK_LEFT_SHIFT:
+        case DOM_VK_LEFT_CONTROL:
+        case DOM_VK_META:
+            m_keyLocation = KeyboardEvent::DOM_KEY_LOCATION_LEFT;
         }
     }
 }
@@ -919,19 +951,19 @@ int KeyboardEventImpl::keyCode() const
         // layout.
         if (virtKeyToQtKey()->hasLeft(code)) {
             switch (code) {
-                case '!': return '1';
-                case '@': return '2';
-                case '#': return '3';
-                case '$': return '4';
-                case '%': return '5';
-                case '^': return '6';
-                case '&': return '7';
-                case '*': return '8';
-                case '(': return '9';
-                case ')': return '0';
-                default:
-                    qWarning() << "Don't know how resolve conflict of code:" << code
-                                   << " with a virtKey";
+            case '!': return '1';
+            case '@': return '2';
+            case '#': return '3';
+            case '$': return '4';
+            case '%': return '5';
+            case '^': return '6';
+            case '&': return '7';
+            case '*': return '8';
+            case '(': return '9';
+            case ')': return '0';
+            default:
+                qWarning() << "Don't know how resolve conflict of code:" << code
+                           << " with a virtKey";
             }
         }
         return code;
@@ -945,7 +977,6 @@ int KeyboardEventImpl::charCode() const
     return 0;
 }
 
-
 // -----------------------------------------------------------------------------
 TextEventImpl::TextEventImpl()
 {}
@@ -955,34 +986,36 @@ bool TextEventImpl::isTextInputEvent() const
     return true;
 }
 
-TextEventImpl::TextEventImpl(QKeyEvent* key, DOM::AbstractViewImpl* view) :
+TextEventImpl::TextEventImpl(QKeyEvent *key, DOM::AbstractViewImpl *view) :
     KeyEventBaseImpl(KEYPRESS_EVENT, true, true, view, key)
 {
     m_outputString = key->text();
 }
 
 void TextEventImpl::initTextEvent(const DOMString &typeArg,
-                       bool canBubbleArg,
-                       bool cancelableArg,
-                       AbstractViewImpl* viewArg,
-                       const DOMString& text)
+                                  bool canBubbleArg,
+                                  bool cancelableArg,
+                                  AbstractViewImpl *viewArg,
+                                  const DOMString &text)
 {
     m_outputString = text;
 
     //See whether we can get a key out of this.
     unsigned keyCode = 0;
-    if (text.length() == 1)
+    if (text.length() == 1) {
         keyCode = text.unicode()[0].unicode();
+    }
     initKeyBaseEvent(typeArg, canBubbleArg, cancelableArg, viewArg,
-        keyCode, 0, 0);
+                     keyCode, 0, 0);
 }
 
 int TextEventImpl::keyCode() const
 {
     //Mozilla returns 0 here unless this is a non-unicode key.
     //IE stuffs everything here, and so we try to match it..
-    if (m_keyVal)
+    if (m_keyVal) {
         return m_keyVal;
+    }
     return m_virtKeyVal;
 }
 
@@ -990,11 +1023,11 @@ int TextEventImpl::charCode() const
 {
     //On text events, in Mozilla charCode is 0 for non-unicode keys,
     //and the unicode key otherwise... IE doesn't support this.
-    if (m_virtKeyVal)
+    if (m_virtKeyVal) {
         return 0;
+    }
     return m_keyVal;
 }
-
 
 // -----------------------------------------------------------------------------
 MutationEventImpl::MutationEventImpl()
@@ -1007,74 +1040,90 @@ MutationEventImpl::MutationEventImpl()
 }
 
 MutationEventImpl::MutationEventImpl(EventId _id,
-				     bool canBubbleArg,
-				     bool cancelableArg,
-				     const Node &relatedNodeArg,
-				     const DOMString &prevValueArg,
-				     const DOMString &newValueArg,
-				     const DOMString &attrNameArg,
-				     unsigned short attrChangeArg)
-		      : EventImpl(_id,canBubbleArg,cancelableArg)
+                                     bool canBubbleArg,
+                                     bool cancelableArg,
+                                     const Node &relatedNodeArg,
+                                     const DOMString &prevValueArg,
+                                     const DOMString &newValueArg,
+                                     const DOMString &attrNameArg,
+                                     unsigned short attrChangeArg)
+    : EventImpl(_id, canBubbleArg, cancelableArg)
 {
     m_relatedNode = relatedNodeArg.handle();
-    if (m_relatedNode)
-	m_relatedNode->ref();
+    if (m_relatedNode) {
+        m_relatedNode->ref();
+    }
     m_prevValue = prevValueArg.implementation();
-    if (m_prevValue)
-	m_prevValue->ref();
+    if (m_prevValue) {
+        m_prevValue->ref();
+    }
     m_newValue = newValueArg.implementation();
-    if (m_newValue)
-	m_newValue->ref();
+    if (m_newValue) {
+        m_newValue->ref();
+    }
     m_attrName = attrNameArg.implementation();
-    if (m_attrName)
-	m_attrName->ref();
+    if (m_attrName) {
+        m_attrName->ref();
+    }
     m_attrChange = attrChangeArg;
 }
 
 MutationEventImpl::~MutationEventImpl()
 {
-    if (m_relatedNode)
-	m_relatedNode->deref();
-    if (m_prevValue)
-	m_prevValue->deref();
-    if (m_newValue)
-	m_newValue->deref();
-    if (m_attrName)
-	m_attrName->deref();
+    if (m_relatedNode) {
+        m_relatedNode->deref();
+    }
+    if (m_prevValue) {
+        m_prevValue->deref();
+    }
+    if (m_newValue) {
+        m_newValue->deref();
+    }
+    if (m_attrName) {
+        m_attrName->deref();
+    }
 }
 
 void MutationEventImpl::initMutationEvent(const DOMString &typeArg,
-					  bool canBubbleArg,
-					  bool cancelableArg,
-					  const Node &relatedNodeArg,
-					  const DOMString &prevValueArg,
-					  const DOMString &newValueArg,
-					  const DOMString &attrNameArg,
-					  unsigned short attrChangeArg)
+        bool canBubbleArg,
+        bool cancelableArg,
+        const Node &relatedNodeArg,
+        const DOMString &prevValueArg,
+        const DOMString &newValueArg,
+        const DOMString &attrNameArg,
+        unsigned short attrChangeArg)
 {
-    EventImpl::initEvent(typeArg,canBubbleArg,cancelableArg);
+    EventImpl::initEvent(typeArg, canBubbleArg, cancelableArg);
 
-    if (m_relatedNode)
-	m_relatedNode->deref();
-    if (m_prevValue)
-	m_prevValue->deref();
-    if (m_newValue)
-	m_newValue->deref();
-    if (m_attrName)
-	m_attrName->deref();
+    if (m_relatedNode) {
+        m_relatedNode->deref();
+    }
+    if (m_prevValue) {
+        m_prevValue->deref();
+    }
+    if (m_newValue) {
+        m_newValue->deref();
+    }
+    if (m_attrName) {
+        m_attrName->deref();
+    }
 
     m_relatedNode = relatedNodeArg.handle();
-    if (m_relatedNode)
-	m_relatedNode->ref();
+    if (m_relatedNode) {
+        m_relatedNode->ref();
+    }
     m_prevValue = prevValueArg.implementation();
-    if (m_prevValue)
-	m_prevValue->ref();
+    if (m_prevValue) {
+        m_prevValue->ref();
+    }
     m_newValue = newValueArg.implementation();
-    if (m_newValue)
-	m_newValue->ref();
+    if (m_newValue) {
+        m_newValue->ref();
+    }
     m_attrName = attrNameArg.implementation();
-    if (m_newValue)
-	m_newValue->ref();
+    if (m_newValue) {
+        m_newValue->ref();
+    }
     m_attrChange = attrChangeArg;
 }
 
@@ -1088,19 +1137,18 @@ bool MutationEventImpl::isMutationEvent() const
 MessageEventImpl::MessageEventImpl()
 {}
 
-
 bool MessageEventImpl::isMessageEvent() const
 {
     return true;
 }
 
-void MessageEventImpl::initMessageEvent(const DOMString& typeArg,
+void MessageEventImpl::initMessageEvent(const DOMString &typeArg,
                                         bool  canBubbleArg,
                                         bool  cancelableArg,
-                                        const RefPtr<Data>& dataArg,
-                                        const DOMString& originArg,
-                                        const DOMString& lastEventIdArg,
-                                        KHTMLPart* sourceArg)
+                                        const RefPtr<Data> &dataArg,
+                                        const DOMString &originArg,
+                                        const DOMString &lastEventIdArg,
+                                        KHTMLPart *sourceArg)
 {
     EventImpl::initEvent(typeArg, canBubbleArg, cancelableArg);
     m_data   = dataArg;
@@ -1117,10 +1165,10 @@ HashChangeEventImpl::HashChangeEventImpl()
 
 bool HashChangeEventImpl::isHashChangeEvent() const
 {
-  return true;
+    return true;
 }
 
-void HashChangeEventImpl::initHashChangeEvent(const DOMString& eventTypeArg, bool canBubbleArg, bool cancelableArg, const DOMString& oldUrl, const DOMString& newUrl)
+void HashChangeEventImpl::initHashChangeEvent(const DOMString &eventTypeArg, bool canBubbleArg, bool cancelableArg, const DOMString &oldUrl, const DOMString &newUrl)
 {
     EventImpl::initEvent(eventTypeArg, canBubbleArg, cancelableArg);
     m_oldUrl = oldUrl;

@@ -28,43 +28,63 @@
 #include "RenderPath.h"
 #include "SVGPreserveAspectRatio.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 class SVGElement;
 
-class RenderSVGContainer : public RenderObject {
+class RenderSVGContainer : public RenderObject
+{
 public:
-    RenderSVGContainer(SVGStyledElement*);
+    RenderSVGContainer(SVGStyledElement *);
     ~RenderSVGContainer();
 
-    virtual RenderObject* firstChild() const { return m_firstChild; }
-    virtual RenderObject* lastChild() const { return m_lastChild; }
+    virtual RenderObject *firstChild() const
+    {
+        return m_firstChild;
+    }
+    virtual RenderObject *lastChild() const
+    {
+        return m_lastChild;
+    }
 
-    virtual short/*khtml*/ int width() const { return m_width; }
-    virtual int height() const { return m_height; }
+    virtual short/*khtml*/ int width() const
+    {
+        return m_width;
+    }
+    virtual int height() const
+    {
+        return m_height;
+    }
 
     virtual bool canHaveChildren() const;
-    virtual void addChild(RenderObject* newChild, RenderObject* beforeChild = 0);
-    virtual void removeChild(RenderObject*);
+    virtual void addChild(RenderObject *newChild, RenderObject *beforeChild = 0);
+    virtual void removeChild(RenderObject *);
 
     virtual void destroy();
     void destroyLeftoverChildren();
 
     // uncomment if you know how line 64' ambiguoty should be solved in that case.
     // using khtml::RenderObject::removeChildNode;
-    virtual RenderObject* removeChildNode(RenderObject*);
+    virtual RenderObject *removeChildNode(RenderObject *);
     // uncomment if you know how line 64' ambiguoty should be solved in that case.
     // using khtml::RenderObject::appendChildNode;
-    virtual void appendChildNode(RenderObject*);
+    virtual void appendChildNode(RenderObject *);
     // uncomment if you know how line 62' of the implementation ambiguoty should be solved in that case.
     // using khtml::RenderObject::insertChildNode;
-    virtual void insertChildNode(RenderObject* child, RenderObject* before);
+    virtual void insertChildNode(RenderObject *child, RenderObject *before);
 
     // Designed for speed.  Don't waste time doing a bunch of work like layer updating and repainting when we know that our
     // change in parentage is not going to affect anything.
-    virtual void moveChildNode(RenderObject* child) { appendChildNode(child->parent()->removeChildNode(child)); }
+    virtual void moveChildNode(RenderObject *child)
+    {
+        appendChildNode(child->parent()->removeChildNode(child));
+    }
 
-    virtual void calcMinMaxWidth() { setMinMaxKnown(); }
+    virtual void calcMinMaxWidth()
+    {
+        setMinMaxKnown();
+    }
 
     // Some containers do not want it's children
     // to be drawn, because they may be 'referenced'
@@ -72,18 +92,24 @@ public:
     void setDrawsContents(bool);
     bool drawsContents() const;
 
-    virtual bool isSVGContainer() const { return true; }
-    virtual const char* renderName() const { return "RenderSVGContainer"; }
+    virtual bool isSVGContainer() const
+    {
+        return true;
+    }
+    virtual const char *renderName() const
+    {
+        return "RenderSVGContainer";
+    }
 
     virtual bool requiresLayer() const;
     virtual short lineHeight(bool b) const;
     virtual short baselinePosition(bool b) const;
 
     virtual void layout();
-    virtual void paint(PaintInfo&, int parentX, int parentY);
+    virtual void paint(PaintInfo &, int parentX, int parentY);
 
     virtual IntRect absoluteClippedOverflowRect();
-    virtual void absoluteRects(Vector<IntRect>& rects, int tx, int ty, bool topLevel = true);
+    virtual void absoluteRects(Vector<IntRect> &rects, int tx, int ty, bool topLevel = true);
 
     FloatRect relativeBBox(bool includeStroke = true) const;
 
@@ -93,11 +119,14 @@ public:
 
     /*virtual bool nodeAtPoint(const HitTestRequest&, HitTestResult&, int x, int y, int tx, int ty, HitTestAction);*/
 
-    virtual bool childAllowed() const { return true; }
+    virtual bool childAllowed() const
+    {
+        return true;
+    }
 
 protected:
-    virtual void applyContentTransforms(PaintInfo&);
-    virtual void applyAdditionalTransforms(PaintInfo&);
+    virtual void applyContentTransforms(PaintInfo &);
+    virtual void applyAdditionalTransforms(PaintInfo &);
 
     void calcBounds();
 
@@ -105,24 +134,23 @@ private:
     int calcReplacedWidth() const;
     int calcReplacedHeight() const;
 
-    RenderObject* m_firstChild;
-    RenderObject* m_lastChild;
+    RenderObject *m_firstChild;
+    RenderObject *m_lastChild;
 
     int m_width;
     int m_height;
-    
+
     bool selfWillPaint() const;
 
     bool m_drawsContents : 1;
-    
-protected:    
+
+protected:
     IntRect m_absoluteBounds;
     AffineTransform m_localTransform;
 };
-  
+
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif // RenderSVGContainer_h
 
-// vim:ts=4:noet

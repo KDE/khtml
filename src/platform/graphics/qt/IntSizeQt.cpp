@@ -29,9 +29,10 @@
 
 #include "IntSize.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-IntSize::IntSize(const QSize& r)
+IntSize::IntSize(const QSize &r)
     : m_width(r.width())
     , m_height(r.height())
 {
@@ -44,4 +45,3 @@ IntSize::operator QSize() const
 
 }
 
-// vim: ts=4 sw=4 et

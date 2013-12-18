@@ -28,14 +28,15 @@
 
 #include <QPainter>
 
-namespace WebCore {
+namespace WebCore
+{
 
-bool SVGPaintServerSolid::setup(QPainter* painter, QPainterPath* painterPath, const RenderObject* object, SVGPaintTargetType type, bool isPaintingText) const
+bool SVGPaintServerSolid::setup(QPainter *painter, QPainterPath *painterPath, const RenderObject *object, SVGPaintTargetType type, bool isPaintingText) const
 {
     /*QPainter* painter(context ? context->platformContext() : 0);
     Q_ASSERT(painter);*/
 
-    RenderStyle* renderStyle = object->style();
+    RenderStyle *renderStyle = object->style();
     // TODO? painter->setOpacity(renderStyle->opacity());
 
     QColor c = color();
@@ -45,12 +46,14 @@ bool SVGPaintServerSolid::setup(QPainter* painter, QPainterPath* painterPath, co
 
         QBrush brush(c);
         painter->setBrush(brush);
-        if (painterPath)
+        if (painterPath) {
             painterPath->setFillRule(renderStyle->svgStyle()->fillRule() == RULE_EVENODD ? Qt::OddEvenFill : Qt::WindingFill);
+        }
         /*context->setFillRule(renderStyle->svgStyle()->fillRule());*/
 
-        if (isPaintingText && !(type & ApplyToStrokeTargetType))
+        if (isPaintingText && !(type & ApplyToStrokeTargetType)) {
             painter->setPen(c);
+        }
     }
 
     if ((type & ApplyToStrokeTargetType) && renderStyle->svgStyle()->hasStroke()) {
@@ -70,4 +73,3 @@ bool SVGPaintServerSolid::setup(QPainter* painter, QPainterPath* painterPath, co
 
 #endif
 
-// vim:ts=4

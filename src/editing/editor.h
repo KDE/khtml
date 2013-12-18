@@ -35,12 +35,14 @@ class KHTMLPart;
 class KHTMLView;
 class KHTMLEditorPart;
 
-namespace khtml {
-  class EditCommandImpl;
-  struct EditorContext;
+namespace khtml
+{
+class EditCommandImpl;
+struct EditorContext;
 }
 
-namespace DOM {
+namespace DOM
+{
 
 class Range;
 class NodeImpl;
@@ -58,149 +60,149 @@ class EditorPrivate;
  * @short API to Wysiwyg Markup-Editor.
  * @author Leo Savernik
  */
-class KHTML_EXPORT Editor : public QObject {
-  Q_OBJECT
+class KHTML_EXPORT Editor : public QObject
+{
+    Q_OBJECT
 
-  Editor(KHTMLPart *);
-  virtual ~Editor();
+    Editor(KHTMLPart *);
+    virtual ~Editor();
 public:
 
-  /**
-   * Tri-state boolean.
-   */
-  enum TriState { FalseTriState, TrueTriState, MixedTriState };
+    /**
+     * Tri-state boolean.
+     */
+    enum TriState { FalseTriState, TrueTriState, MixedTriState };
 
-  // == interface to editor commands
+    // == interface to editor commands
 
-  /**
-   * Executes the given editor command.
-   * @param command name of command
-   * @param userInterface whether a user interface should be used to input data. This is command dependent.
-   * @param value value for command. Its semantic depends on the command.
-   */
-  bool execCommand(const DOMString &command, bool userInterface, const DOMString &value);
-  /** Checks whether the given command is enabled. */
-  bool queryCommandEnabled(const DOMString &command);
-  /** Checks whether the given command's style is indeterminate */
-  bool queryCommandIndeterm(const DOMString &command);
-  /** Checks whether the given command's style is state */
-  bool queryCommandState(const DOMString &command);
-  /** Checks whether the given command is supported in the current context */
-  bool queryCommandSupported(const DOMString &command);
-  /** Returns the given command's value */
-  DOMString queryCommandValue(const DOMString &command);
+    /**
+     * Executes the given editor command.
+     * @param command name of command
+     * @param userInterface whether a user interface should be used to input data. This is command dependent.
+     * @param value value for command. Its semantic depends on the command.
+     */
+    bool execCommand(const DOMString &command, bool userInterface, const DOMString &value);
+    /** Checks whether the given command is enabled. */
+    bool queryCommandEnabled(const DOMString &command);
+    /** Checks whether the given command's style is indeterminate */
+    bool queryCommandIndeterm(const DOMString &command);
+    /** Checks whether the given command's style is state */
+    bool queryCommandState(const DOMString &command);
+    /** Checks whether the given command is supported in the current context */
+    bool queryCommandSupported(const DOMString &command);
+    /** Returns the given command's value */
+    DOMString queryCommandValue(const DOMString &command);
 
-  /**
-   * Executes the given built-in editor command.
-   * @param EditorCommand index of command
-   * @param userInterface whether a user interface should be used to input data. This is command dependent.
-   * @param value value for command. Its semantic depends on the command.
-   */
-  bool execCommand(EditorCommand, bool userInterface, const DOMString &value);
-  /** Checks whether the given command is enabled. */
-  bool queryCommandEnabled(EditorCommand);
-  /** Checks whether the given command's style is indeterminate */
-  bool queryCommandIndeterm(EditorCommand);
-  /** Checks whether the given command's style is state */
-  bool queryCommandState(EditorCommand);
-  /** Checks whether the given command is supported in the current context */
-  bool queryCommandSupported(EditorCommand);
-  /** Returns the given command's value */
-  DOMString queryCommandValue(EditorCommand);
+    /**
+     * Executes the given built-in editor command.
+     * @param EditorCommand index of command
+     * @param userInterface whether a user interface should be used to input data. This is command dependent.
+     * @param value value for command. Its semantic depends on the command.
+     */
+    bool execCommand(EditorCommand, bool userInterface, const DOMString &value);
+    /** Checks whether the given command is enabled. */
+    bool queryCommandEnabled(EditorCommand);
+    /** Checks whether the given command's style is indeterminate */
+    bool queryCommandIndeterm(EditorCommand);
+    /** Checks whether the given command's style is state */
+    bool queryCommandState(EditorCommand);
+    /** Checks whether the given command is supported in the current context */
+    bool queryCommandSupported(EditorCommand);
+    /** Returns the given command's value */
+    DOMString queryCommandValue(EditorCommand);
 
-  // == direct interface to some built-in commands
+    // == direct interface to some built-in commands
 
-  /** copy selection to clipboard */
-  void copy();
-  /** cut selection and insert into clipboard */
-  void cut();
-  /** paste into current selection from clipboard */
-  void paste();
-  /** returns whether clipboard contains data to be pasted */
-  bool canPaste() const;
-  /** redo last undone action */
-  void redo();
-  /** undo last action */
-  void undo();
-  /** returns whether any actions can be redone */
-  bool canRedo() const;
-  /** returns whether any actions can be undone */
-  bool canUndo() const;
-  /** applies the given style to the current selection */
-  void applyStyle(DOM::CSSStyleDeclarationImpl *);
-  /** returns whether the selection has got applied the given style */
-  TriState selectionHasStyle(DOM::CSSStyleDeclarationImpl *) const;
-  /** returns whether the selection has got applied the given style */
-  bool selectionStartHasStyle(DOM::CSSStyleDeclarationImpl *) const;
-  /** ? */
-  DOM::DOMString selectionStartStylePropertyValue(int stylePropertyID) const;
-  /** prints the current document */
-  void print();
-  /** computed style of current selection */
-  DOM::CSSStyleDeclarationImpl *selectionComputedStyle(DOM::NodeImpl *&nodeToRemove) const;
+    /** copy selection to clipboard */
+    void copy();
+    /** cut selection and insert into clipboard */
+    void cut();
+    /** paste into current selection from clipboard */
+    void paste();
+    /** returns whether clipboard contains data to be pasted */
+    bool canPaste() const;
+    /** redo last undone action */
+    void redo();
+    /** undo last action */
+    void undo();
+    /** returns whether any actions can be redone */
+    bool canRedo() const;
+    /** returns whether any actions can be undone */
+    bool canUndo() const;
+    /** applies the given style to the current selection */
+    void applyStyle(DOM::CSSStyleDeclarationImpl *);
+    /** returns whether the selection has got applied the given style */
+    TriState selectionHasStyle(DOM::CSSStyleDeclarationImpl *) const;
+    /** returns whether the selection has got applied the given style */
+    bool selectionStartHasStyle(DOM::CSSStyleDeclarationImpl *) const;
+    /** ? */
+    DOM::DOMString selectionStartStylePropertyValue(int stylePropertyID) const;
+    /** prints the current document */
+    void print();
+    /** computed style of current selection */
+    DOM::CSSStyleDeclarationImpl *selectionComputedStyle(DOM::NodeImpl *&nodeToRemove) const;
 
+    // == ### more stuff I'm not sure about whether it should be public
 
-  // == ### more stuff I'm not sure about whether it should be public
+    /**
+     * Returns the most recent edit command applied.
+     */
+    WTF::PassRefPtr<khtml::EditCommandImpl> lastEditCommand() const;
 
-  /**
-   * Returns the most recent edit command applied.
-   */
-  WTF::PassRefPtr<khtml::EditCommandImpl> lastEditCommand() const;
+    /**
+     * Called when editing has been applied.
+     */
+    void appliedEditing(khtml::EditCommandImpl *);
 
-  /**
-   * Called when editing has been applied.
-   */
-  void appliedEditing(khtml::EditCommandImpl *);
+    /**
+     * Called when editing has been unapplied.
+     */
+    void unappliedEditing(khtml::EditCommandImpl *);
 
-  /**
-   * Called when editing has been unapplied.
-   */
-  void unappliedEditing(khtml::EditCommandImpl *);
+    /**
+     * Called when editing has been reapplied.
+     */
+    void reappliedEditing(khtml::EditCommandImpl *);
 
-  /**
-   * Called when editing has been reapplied.
-   */
-  void reappliedEditing(khtml::EditCommandImpl *);
+    /**
+     * Returns the typing style for the document.
+     */
+    DOM::CSSStyleDeclarationImpl *typingStyle() const;
 
-  /**
-   * Returns the typing style for the document.
-   */
-  DOM::CSSStyleDeclarationImpl *typingStyle() const;
+    /**
+     * Sets the typing style for the document.
+     */
+    void setTypingStyle(DOM::CSSStyleDeclarationImpl *);
 
-  /**
-   * Sets the typing style for the document.
-   */
-  void setTypingStyle(DOM::CSSStyleDeclarationImpl *);
+    /**
+     * Clears the typing style for the document.
+     */
+    void clearTypingStyle();
 
-  /**
-   * Clears the typing style for the document.
-   */
-  void clearTypingStyle();
+    void closeTyping();
 
-  void closeTyping();
-
-  /**
-   * indent/outdent current selection
-   */
-  void indent();
-  void outdent();
-
-private:
-  /** Handles key events. Returns true if event has been handled. */
-  bool handleKeyEvent(QKeyEvent *);
+    /**
+     * indent/outdent current selection
+     */
+    void indent();
+    void outdent();
 
 private:
-  EditorPrivate *const d;
+    /** Handles key events. Returns true if event has been handled. */
+    bool handleKeyEvent(QKeyEvent *);
 
-  DOM::CSSStyleDeclarationImpl *m_typingStyle;
+private:
+    EditorPrivate *const d;
 
-  KHTMLPart *m_part;
+    DOM::CSSStyleDeclarationImpl *m_typingStyle;
 
-  friend class ::KHTMLPart;
-  friend class ::KHTMLView;
-  friend class ::KHTMLEditorPart;
-  friend struct khtml::EditorContext;
-  friend class DOM::ElementImpl;
+    KHTMLPart *m_part;
+
+    friend class ::KHTMLPart;
+    friend class ::KHTMLView;
+    friend class ::KHTMLEditorPart;
+    friend struct khtml::EditorContext;
+    friend class DOM::ElementImpl;
 };
 
 }/*namespace DOM*/

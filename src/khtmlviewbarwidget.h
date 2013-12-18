@@ -26,13 +26,16 @@ class KHTMLViewBarWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit KHTMLViewBarWidget(bool addCloseButton, QWidget* parent = 0);
+    explicit KHTMLViewBarWidget(bool addCloseButton, QWidget *parent = 0);
 
 protected:
     /**
      * @return widget that should be used to add controls to bar widget
      */
-    QWidget *centralWidget() { return m_centralWidget; }
+    QWidget *centralWidget()
+    {
+        return m_centralWidget;
+    }
 
     void resizeEvent(QResizeEvent *event);
 

@@ -23,9 +23,10 @@
 #include "SVGFEBlend.h"
 #include "TextStream.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFEBlend::SVGFEBlend(SVGResourceFilter* filter)
+SVGFEBlend::SVGFEBlend(SVGResourceFilter *filter)
     : SVGFilterEffect(filter)
     , m_mode(SVG_FEBLEND_MODE_UNKNOWN)
 {
@@ -36,7 +37,7 @@ String SVGFEBlend::in2() const
     return m_in2;
 }
 
-void SVGFEBlend::setIn2(const String& in2)
+void SVGFEBlend::setIn2(const String &in2)
 {
     m_in2 = in2;
 }
@@ -51,32 +52,32 @@ void SVGFEBlend::setBlendMode(SVGBlendModeType mode)
     m_mode = mode;
 }
 
-static TextStream& operator<<(TextStream& ts, SVGBlendModeType t)
+static TextStream &operator<<(TextStream &ts, SVGBlendModeType t)
 {
-    switch (t)
-    {
-        case SVG_FEBLEND_MODE_UNKNOWN:
-            ts << "UNKNOWN"; break;
-        case SVG_FEBLEND_MODE_NORMAL:
-            ts << "NORMAL"; break;
-        case SVG_FEBLEND_MODE_MULTIPLY:
-            ts << "MULTIPLY"; break;
-        case SVG_FEBLEND_MODE_SCREEN:
-            ts << "SCREEN"; break;
-        case SVG_FEBLEND_MODE_DARKEN:
-            ts << "DARKEN"; break;
-        case SVG_FEBLEND_MODE_LIGHTEN:
-            ts << "LIGHTEN"; break;
+    switch (t) {
+    case SVG_FEBLEND_MODE_UNKNOWN:
+        ts << "UNKNOWN"; break;
+    case SVG_FEBLEND_MODE_NORMAL:
+        ts << "NORMAL"; break;
+    case SVG_FEBLEND_MODE_MULTIPLY:
+        ts << "MULTIPLY"; break;
+    case SVG_FEBLEND_MODE_SCREEN:
+        ts << "SCREEN"; break;
+    case SVG_FEBLEND_MODE_DARKEN:
+        ts << "DARKEN"; break;
+    case SVG_FEBLEND_MODE_LIGHTEN:
+        ts << "LIGHTEN"; break;
     }
     return ts;
 }
 
-TextStream& SVGFEBlend::externalRepresentation(TextStream& ts) const
+TextStream &SVGFEBlend::externalRepresentation(TextStream &ts) const
 {
     ts << "[type=BLEND] ";
     SVGFilterEffect::externalRepresentation(ts);
-    if (!m_in2.isEmpty())
+    if (!m_in2.isEmpty()) {
         ts << " [in2=\"" << m_in2 << "\"]";
+    }
     ts << " [blend mode=" << m_mode << "]";
     return ts;
 }

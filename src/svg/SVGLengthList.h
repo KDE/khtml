@@ -27,18 +27,23 @@
 #include "SVGLength.h"
 #include "SVGList.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGLengthList : public SVGPODList<SVGLength> {
-    public:
-        static PassRefPtr<SVGLengthList> create(const QualifiedName& attributeName) { return adoptRef(new SVGLengthList(attributeName)); }
-        virtual ~SVGLengthList();
+class SVGLengthList : public SVGPODList<SVGLength>
+{
+public:
+    static PassRefPtr<SVGLengthList> create(const QualifiedName &attributeName)
+    {
+        return adoptRef(new SVGLengthList(attributeName));
+    }
+    virtual ~SVGLengthList();
 
-        void parse(const String& value, const SVGStyledElement* context, SVGLengthMode mode);
-        
-    private:
-        SVGLengthList(const QualifiedName&);
-    };
+    void parse(const String &value, const SVGStyledElement *context, SVGLengthMode mode);
+
+private:
+    SVGLengthList(const QualifiedName &);
+};
 
 } // namespace WebCore
 

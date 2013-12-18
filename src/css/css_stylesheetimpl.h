@@ -29,13 +29,15 @@
 #include "xml/dom_docimpl.h"
 #include <QPointer>
 
-namespace khtml {
-    class CachedCSSStyleSheet;
-    class DocLoader;
-    class MediaQuery;
+namespace khtml
+{
+class CachedCSSStyleSheet;
+class DocLoader;
+class MediaQuery;
 }
 
-namespace DOM {
+namespace DOM
+{
 
 class StyleSheet;
 class CSSStyleSheet;
@@ -56,20 +58,47 @@ public:
     StyleSheetImpl(khtml::CachedCSSStyleSheet *cached, DOM::DOMString href  = DOMString());
     virtual ~StyleSheetImpl();
 
-    virtual bool isStyleSheet() const { return true; }
+    virtual bool isStyleSheet() const
+    {
+        return true;
+    }
 
-    virtual DOM::DOMString type() const { return DOMString(); }
+    virtual DOM::DOMString type() const
+    {
+        return DOMString();
+    }
 
-    bool disabled() const { return m_disabled; }
-    void setDisabled( bool disabled );
-    DOM::NodeImpl *ownerNode() const { return m_parentNode; }
+    bool disabled() const
+    {
+        return m_disabled;
+    }
+    void setDisabled(bool disabled);
+    DOM::NodeImpl *ownerNode() const
+    {
+        return m_parentNode;
+    }
     StyleSheetImpl *parentStyleSheet() const;
-    DOM::DOMString href() const { return m_strHref; }
-    void setHref(const DOM::DOMString& href) { m_strHref = href; }
-    DOM::DOMString title() const { return m_strTitle; }
-    MediaListImpl *media() const { return m_media; }
-    void setMedia( MediaListImpl *media );
-    void setTitle( const DOM::DOMString& title ) { m_strTitle = title; }
+    DOM::DOMString href() const
+    {
+        return m_strHref;
+    }
+    void setHref(const DOM::DOMString &href)
+    {
+        m_strHref = href;
+    }
+    DOM::DOMString title() const
+    {
+        return m_strTitle;
+    }
+    MediaListImpl *media() const
+    {
+        return m_media;
+    }
+    void setMedia(MediaListImpl *media);
+    void setTitle(const DOM::DOMString &title)
+    {
+        m_strTitle = title;
+    }
 
 protected:
     DOM::NodeImpl *m_parentNode;
@@ -89,49 +118,82 @@ public:
     CSSStyleSheetImpl(DOM::NodeImpl *parentNode, CSSStyleSheetImpl *orig);
     CSSStyleSheetImpl(CSSRuleImpl *ownerRule, CSSStyleSheetImpl *orig);
 
-    ~CSSStyleSheetImpl() { delete m_namespaces; }
+    ~CSSStyleSheetImpl()
+    {
+        delete m_namespaces;
+    }
 
-    virtual bool isCSSStyleSheet() const { return true; }
+    virtual bool isCSSStyleSheet() const
+    {
+        return true;
+    }
 
-    virtual DOM::DOMString type() const { return "text/css"; }
+    virtual DOM::DOMString type() const
+    {
+        return "text/css";
+    }
 
     CSSRuleImpl *ownerRule() const;
     CSSRuleListImpl *cssRules(bool omitCharsetRule = false);
-    unsigned long insertRule ( const DOM::DOMString &rule, unsigned long index, int &exceptioncode );
-    void deleteRule ( unsigned long index, int &exceptioncode );
+    unsigned long insertRule(const DOM::DOMString &rule, unsigned long index, int &exceptioncode);
+    void deleteRule(unsigned long index, int &exceptioncode);
 
-    void determineNamespace(NamespaceName& namespacename, const DOM::DOMString& prefix);
-    quint32 defaultNamespace() { return m_defaultNamespace.id(); }
-    void appendNamespaceRule(CSSNamespaceRuleImpl* ns);
+    void determineNamespace(NamespaceName &namespacename, const DOM::DOMString &prefix);
+    quint32 defaultNamespace()
+    {
+        return m_defaultNamespace.id();
+    }
+    void appendNamespaceRule(CSSNamespaceRuleImpl *ns);
 
-    void setCharset(const DOMString &charset) { m_charset = charset; }
-    const DOMString& charset() const { return m_charset; }
+    void setCharset(const DOMString &charset)
+    {
+        m_charset = charset;
+    }
+    const DOMString &charset() const
+    {
+        return m_charset;
+    }
 
-    virtual bool parseString( const DOMString &string, bool strict = true );
+    virtual bool parseString(const DOMString &string, bool strict = true);
 
     bool isLoading() const;
 
     virtual void checkLoaded() const;
     virtual void checkPending() const;
-    bool loadedHint() const { return m_loadedHint; }
+    bool loadedHint() const
+    {
+        return m_loadedHint;
+    }
 
     // ### remove? (clients should use sheet->doc()->docLoader())
     khtml::DocLoader *docLoader() const
-    { return m_doc ? m_doc->docLoader() : 0; }
+    {
+        return m_doc ? m_doc->docLoader() : 0;
+    }
 
-    DocumentImpl *doc() const { return m_doc; }
-    bool implicit() const { return m_implicit; }
+    DocumentImpl *doc() const
+    {
+        return m_doc;
+    }
+    bool implicit() const
+    {
+        return m_implicit;
+    }
 protected:
     void recomputeNamespaceInfo(); // updates m_defaultNamespace and m_namespaces
-                                   // we update m_namespaces lazily, but 
-                                   // m_defaulNamespace eagerly.
-    void dirtyNamespaceInfo() { delete m_namespaces; m_namespaces = 0; }
+    // we update m_namespaces lazily, but
+    // m_defaulNamespace eagerly.
+    void dirtyNamespaceInfo()
+    {
+        delete m_namespaces;
+        m_namespaces = 0;
+    }
 
     DocumentImpl *m_doc;
     bool m_implicit;
     mutable bool m_loadedHint;
     NamespaceName m_defaultNamespace;
-    QList<CSSNamespaceRuleImpl*>* m_namespaces;
+    QList<CSSNamespaceRuleImpl *> *m_namespaces;
     DOMString m_charset;
 };
 
@@ -140,22 +202,22 @@ protected:
 class StyleSheetListImpl : public khtml::Shared<StyleSheetListImpl>
 {
 public:
-    // the manager argument should be passed only when this is 
+    // the manager argument should be passed only when this is
     // document.styleSheets.
-    StyleSheetListImpl(DocumentImpl* manager = 0): managerDocument(manager) {}
+    StyleSheetListImpl(DocumentImpl *manager = 0): managerDocument(manager) {}
     ~StyleSheetListImpl();
 
     // the following two ignore implicit stylesheets
     unsigned long length() const;
-    StyleSheetImpl *item ( unsigned long index );
+    StyleSheetImpl *item(unsigned long index);
 
-    void add(StyleSheetImpl* s);
-    void remove(StyleSheetImpl* s);
+    void add(StyleSheetImpl *s);
+    void remove(StyleSheetImpl *s);
 
-    QList<StyleSheetImpl*> styleSheets;
-    
+    QList<StyleSheetImpl *> styleSheets;
+
     // we need the document pointer to make it update the stylesheet list
-    // if needed for the global list. Luckily, we don't care about that if the 
+    // if needed for the global list. Luckily, we don't care about that if the
     // document dies, so we use QPointer to break the cycle
     QPointer<DocumentImpl> managerDocument;
 };
@@ -166,34 +228,42 @@ class MediaListImpl : public StyleBaseImpl
 {
 public:
     MediaListImpl(bool fallbackToDescription = false)
-	: StyleBaseImpl( 0 ), m_fallback(fallbackToDescription) {}
-    MediaListImpl( CSSStyleSheetImpl *parentSheet, bool fallbackToDescription = false)
+        : StyleBaseImpl(0), m_fallback(fallbackToDescription) {}
+    MediaListImpl(CSSStyleSheetImpl *parentSheet, bool fallbackToDescription = false)
         : StyleBaseImpl(parentSheet), m_fallback(fallbackToDescription) {}
-    MediaListImpl( CSSStyleSheetImpl *parentSheet,
-                   const DOM::DOMString &media, bool fallbackToDescription = false);
-    MediaListImpl( CSSRuleImpl *parentRule, const DOM::DOMString &media, bool fallbackToDescription = false);
+    MediaListImpl(CSSStyleSheetImpl *parentSheet,
+                  const DOM::DOMString &media, bool fallbackToDescription = false);
+    MediaListImpl(CSSRuleImpl *parentRule, const DOM::DOMString &media, bool fallbackToDescription = false);
     ~MediaListImpl();
 
-    virtual bool isMediaList() const { return true; }
+    virtual bool isMediaList() const
+    {
+        return true;
+    }
 
     CSSStyleSheetImpl *parentStyleSheet() const;
     CSSRuleImpl *parentRule() const;
-    unsigned long length() const { return  m_queries.size(); }
-    DOM::DOMString item ( unsigned long index ) const;
-    void deleteMedium ( const DOM::DOMString &oldMedium, int& ec);
-    void appendMedium ( const DOM::DOMString &newMedium, int& ec);
+    unsigned long length() const
+    {
+        return  m_queries.size();
+    }
+    DOM::DOMString item(unsigned long index) const;
+    void deleteMedium(const DOM::DOMString &oldMedium, int &ec);
+    void appendMedium(const DOM::DOMString &newMedium, int &ec);
 
     DOM::DOMString mediaText() const;
-    void setMediaText(const DOM::DOMString &value, int& ec);
+    void setMediaText(const DOM::DOMString &value, int &ec);
 
-    void appendMediaQuery(khtml::MediaQuery* mediaQuery);
-    const QList<khtml::MediaQuery*>* mediaQueries() const { return &m_queries; }
+    void appendMediaQuery(khtml::MediaQuery *mediaQuery);
+    const QList<khtml::MediaQuery *> *mediaQueries() const
+    {
+        return &m_queries;
+    }
 
 protected:
-    QList<khtml::MediaQuery*> m_queries;
+    QList<khtml::MediaQuery *> m_queries;
     bool m_fallback; // true if failed media query parsing should fallback to media description parsing
 };
-
 
 } // namespace
 

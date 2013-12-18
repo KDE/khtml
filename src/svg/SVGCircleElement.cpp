@@ -29,9 +29,10 @@
 #include "RenderPath.h"
 #include "SVGNames.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGCircleElement::SVGCircleElement(const QualifiedName& tagName, Document* doc)
+SVGCircleElement::SVGCircleElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledTransformableElement(tagName, doc)
     , SVGTests()
     , SVGLangSpace()
@@ -50,41 +51,47 @@ ANIMATED_PROPERTY_DEFINITIONS(SVGCircleElement, SVGLength, Length, length, Cx, c
 ANIMATED_PROPERTY_DEFINITIONS(SVGCircleElement, SVGLength, Length, length, Cy, cy, SVGNames::cyAttr, m_cy)
 ANIMATED_PROPERTY_DEFINITIONS(SVGCircleElement, SVGLength, Length, length, R, r, SVGNames::rAttr, m_r)
 
-void SVGCircleElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGCircleElement::parseMappedAttribute(MappedAttribute *attr)
 {
-    if (attr->name() == SVGNames::cxAttr)
-        setCxBaseValue(SVGLength(this, LengthModeWidth, attr->value()));       
-    else if (attr->name() == SVGNames::cyAttr)
+    if (attr->name() == SVGNames::cxAttr) {
+        setCxBaseValue(SVGLength(this, LengthModeWidth, attr->value()));
+    } else if (attr->name() == SVGNames::cyAttr) {
         setCyBaseValue(SVGLength(this, LengthModeHeight, attr->value()));
-    else if (attr->name() == SVGNames::rAttr) {
+    } else if (attr->name() == SVGNames::rAttr) {
         setRBaseValue(SVGLength(this, LengthModeOther, attr->value()));
-        if (r().value() < 0.0)
+        if (r().value() < 0.0) {
             document()->accessSVGExtensions()->reportError("A negative value for circle <r> is not allowed");
+        }
     } else {
-        if (SVGTests::parseMappedAttribute(attr))
+        if (SVGTests::parseMappedAttribute(attr)) {
             return;
-        if (SVGLangSpace::parseMappedAttribute(attr))
+        }
+        if (SVGLangSpace::parseMappedAttribute(attr)) {
             return;
-        if (SVGExternalResourcesRequired::parseMappedAttribute(attr))
+        }
+        if (SVGExternalResourcesRequired::parseMappedAttribute(attr)) {
             return;
+        }
         SVGStyledTransformableElement::parseMappedAttribute(attr);
     }
 }
 
-void SVGCircleElement::svgAttributeChanged(const QualifiedName& attrName)
+void SVGCircleElement::svgAttributeChanged(const QualifiedName &attrName)
 {
     SVGStyledTransformableElement::svgAttributeChanged(attrName);
 
-    if (!renderer())
+    if (!renderer()) {
         return;
+    }
 
     if (attrName == SVGNames::cxAttr || attrName == SVGNames::cyAttr ||
-        attrName == SVGNames::rAttr ||
-        SVGTests::isKnownAttribute(attrName) ||
-        SVGLangSpace::isKnownAttribute(attrName) ||
-        SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
-        SVGStyledTransformableElement::isKnownAttribute(attrName))
+            attrName == SVGNames::rAttr ||
+            SVGTests::isKnownAttribute(attrName) ||
+            SVGLangSpace::isKnownAttribute(attrName) ||
+            SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
+            SVGStyledTransformableElement::isKnownAttribute(attrName)) {
         renderer()->setNeedsLayout(true);
+    }
 }
 
 Path SVGCircleElement::toPathData() const

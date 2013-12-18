@@ -31,45 +31,56 @@
 #include "SVGTests.h"
 #include "SVGURIReference.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGAElement : public SVGStyledTransformableElement,
-                        public SVGURIReference,
-                        public SVGTests,
-                        public SVGLangSpace,
-                        public SVGExternalResourcesRequired {
-    public:
-        SVGAElement(const QualifiedName&, Document*);
-        virtual ~SVGAElement();
+class SVGAElement : public SVGStyledTransformableElement,
+    public SVGURIReference,
+    public SVGTests,
+    public SVGLangSpace,
+    public SVGExternalResourcesRequired
+{
+public:
+    SVGAElement(const QualifiedName &, Document *);
+    virtual ~SVGAElement();
 
-        virtual bool isValid() const { return SVGTests::isValid(); }
-        
-        virtual String title() const;
+    virtual bool isValid() const
+    {
+        return SVGTests::isValid();
+    }
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual void svgAttributeChanged(const QualifiedName&);
+    virtual String title() const;
 
-        virtual RenderObject* createRenderer(RenderArena*, RenderStyle*);
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual void svgAttributeChanged(const QualifiedName &);
 
-        virtual void defaultEventHandler(Event*);
-        
-        virtual bool supportsFocus() const;
-        virtual bool isFocusableImpl(FocusType ft) const;
+    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
 
-        virtual bool childShouldCreateRenderer(Node*) const;
+    virtual void defaultEventHandler(Event *);
 
-        // KHTML ElementImpl pure virtual method
-        virtual quint32 id() const { return SVGNames::aTag.id(); }
+    virtual bool supportsFocus() const;
+    virtual bool isFocusableImpl(FocusType ft) const;
 
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
+    virtual bool childShouldCreateRenderer(Node *) const;
 
-    private:
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
+    // KHTML ElementImpl pure virtual method
+    virtual quint32 id() const
+    {
+        return SVGNames::aTag.id();
+    }
 
-        ANIMATED_PROPERTY_DECLARATIONS(SVGAElement, String, String, Target, target)
-    };
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
+
+private:
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
+
+    ANIMATED_PROPERTY_DECLARATIONS(SVGAElement, String, String, Target, target)
+};
 
 } // namespace WebCore
 

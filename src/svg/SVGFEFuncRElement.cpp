@@ -23,9 +23,10 @@
 #if ENABLE(SVG) && ENABLE(SVG_FILTERS)
 #include "SVGFEFuncRElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFEFuncRElement::SVGFEFuncRElement(const QualifiedName& tagName, Document* doc)
+SVGFEFuncRElement::SVGFEFuncRElement(const QualifiedName &tagName, Document *doc)
     : SVGComponentTransferFunctionElement(tagName, doc)
 {
 }
@@ -38,4 +39,3 @@ SVGFEFuncRElement::~SVGFEFuncRElement()
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

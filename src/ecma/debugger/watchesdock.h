@@ -22,7 +22,8 @@
 
 #include <QDockWidget>
 
-namespace KJSDebugger {
+namespace KJSDebugger
+{
 
 class WatchesDock : public QDockWidget
 {

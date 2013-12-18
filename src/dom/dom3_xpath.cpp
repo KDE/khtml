@@ -26,29 +26,29 @@
 
 using namespace DOM;
 
-DOMString XPathException::codeAsString(int code) {
-	switch ( code ) {
-		case INVALID_EXPRESSION_ERR:
-			return DOMString( "INVALID_EXPRESSION_ERR" );
-		case TYPE_ERR:
-			return DOMString( "TYPE_ERR" );
-	}
-	return DOMString( "(unknown exception code)" );
+DOMString XPathException::codeAsString(int code)
+{
+    switch (code) {
+    case INVALID_EXPRESSION_ERR:
+        return DOMString("INVALID_EXPRESSION_ERR");
+    case TYPE_ERR:
+        return DOMString("TYPE_ERR");
+    }
+    return DOMString("(unknown exception code)");
 }
 
 DOMString XPathException::codeAsString() const
 {
-	return codeAsString(code);
+    return codeAsString(code);
 }
 
-int XPathException::toCode( int xpathCode )
+int XPathException::toCode(int xpathCode)
 {
-	return xpathCode + _EXCEPTION_OFFSET;
+    return xpathCode + _EXCEPTION_OFFSET;
 }
 
 bool XPathException::isXPathExceptionCode(int exceptioncode)
 {
-	return exceptioncode >= _EXCEPTION_OFFSET && exceptioncode < _EXCEPTION_MAX;
+    return exceptioncode >= _EXCEPTION_OFFSET && exceptioncode < _EXCEPTION_MAX;
 }
 
-// kate: indent-width 4; replace-tabs off; tab-width 4; space-indent off;

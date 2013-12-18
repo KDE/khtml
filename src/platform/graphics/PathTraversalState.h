@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef PathTraversalState_h
@@ -29,47 +29,50 @@
 #include "FloatPoint.h"
 #include <wtf/Vector.h>
 
-namespace khtml {
-    class Path;
+namespace khtml
+{
+class Path;
 }
 
-namespace WebCore {
-    typedef khtml::Path Path;
-    
-    class PathTraversalState {
-    public:
-        enum PathTraversalAction {
-            TraversalTotalLength,
-            TraversalPointAtLength,
-            TraversalSegmentAtLength,
-            TraversalNormalAngleAtLength
-        };
-        
-        PathTraversalState(PathTraversalAction);
-        
-        float closeSubpath();
-        float moveTo(const FloatPoint&);
-        float lineTo(const FloatPoint&);
-        float quadraticBezierTo(const FloatPoint& newControl, const FloatPoint& newEnd);
-        float cubicBezierTo(const FloatPoint& newControl1, const FloatPoint& newControl2, const FloatPoint& newEnd);
-        
-    public:
-        PathTraversalAction m_action;
-        bool m_success;
-        
-        FloatPoint m_current;
-        FloatPoint m_start;
-        FloatPoint m_control1;
-        FloatPoint m_control2;
-        
-        float m_totalLength;
-        unsigned m_segmentIndex;
-        float m_desiredLength;
-        
-        // For normal calculations
-        FloatPoint m_previous;
-        float m_normalAngle; // degrees
-    };    
+namespace WebCore
+{
+typedef khtml::Path Path;
+
+class PathTraversalState
+{
+public:
+    enum PathTraversalAction {
+        TraversalTotalLength,
+        TraversalPointAtLength,
+        TraversalSegmentAtLength,
+        TraversalNormalAngleAtLength
+    };
+
+    PathTraversalState(PathTraversalAction);
+
+    float closeSubpath();
+    float moveTo(const FloatPoint &);
+    float lineTo(const FloatPoint &);
+    float quadraticBezierTo(const FloatPoint &newControl, const FloatPoint &newEnd);
+    float cubicBezierTo(const FloatPoint &newControl1, const FloatPoint &newControl2, const FloatPoint &newEnd);
+
+public:
+    PathTraversalAction m_action;
+    bool m_success;
+
+    FloatPoint m_current;
+    FloatPoint m_start;
+    FloatPoint m_control1;
+    FloatPoint m_control2;
+
+    float m_totalLength;
+    unsigned m_segmentIndex;
+    float m_desiredLength;
+
+    // For normal calculations
+    FloatPoint m_previous;
+    float m_normalAngle; // degrees
+};
 }
 
 #endif

@@ -28,12 +28,12 @@
 
 namespace WebCore
 {
-    class SVGFEFuncBElement : public SVGComponentTransferFunctionElement
-    {
-    public:
-        SVGFEFuncBElement(const QualifiedName&, Document*);
-        virtual ~SVGFEFuncBElement();
-    };
+class SVGFEFuncBElement : public SVGComponentTransferFunctionElement
+{
+public:
+    SVGFEFuncBElement(const QualifiedName &, Document *);
+    virtual ~SVGFEFuncBElement();
+};
 
 } // namespace WebCore
 

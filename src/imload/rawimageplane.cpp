@@ -23,25 +23,25 @@
 */
 #include "rawimageplane.h"
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 bool RawImagePlane::isUpToDate(unsigned int tileX, unsigned int tileY,
-                            PixmapTile* tile)
+                               PixmapTile *tile)
 {
     Q_UNUSED(tileX);
     return checkUpToDate(versions + tileY * Tile::TileSize, tile);
 }
 
 void RawImagePlane::ensureUpToDate(unsigned int tileX, unsigned int tileY,
-                            PixmapTile* tile)
+                                   PixmapTile *tile)
 {
     //Just image -> pixmap update
     updatePixmap(tile, image,
-              tileX, tileY, 
-              tileX * Tile::TileSize, tileY * Tile::TileSize,
-              versions + tileY * Tile::TileSize);
+                 tileX, tileY,
+                 tileX * Tile::TileSize, tileY * Tile::TileSize,
+                 versions + tileY * Tile::TileSize);
 }
 
 }
 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

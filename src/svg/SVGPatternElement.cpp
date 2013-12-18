@@ -46,9 +46,10 @@
 
 using namespace std;
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGPatternElement::SVGPatternElement(const QualifiedName& tagName, Document* doc)
+SVGPatternElement::SVGPatternElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledElement(tagName, doc)
     , SVGURIReference()
     , SVGTests()
@@ -75,92 +76,105 @@ ANIMATED_PROPERTY_DEFINITIONS(SVGPatternElement, SVGLength, Length, length, X, x
 ANIMATED_PROPERTY_DEFINITIONS(SVGPatternElement, SVGLength, Length, length, Y, y, SVGNames::yAttr, m_y)
 ANIMATED_PROPERTY_DEFINITIONS(SVGPatternElement, SVGLength, Length, length, Width, width, SVGNames::widthAttr, m_width)
 ANIMATED_PROPERTY_DEFINITIONS(SVGPatternElement, SVGLength, Length, length, Height, height, SVGNames::heightAttr, m_height)
-ANIMATED_PROPERTY_DEFINITIONS(SVGPatternElement, SVGTransformList*, TransformList, transformList, PatternTransform, patternTransform, SVGNames::patternTransformAttr, m_patternTransform.get())
+ANIMATED_PROPERTY_DEFINITIONS(SVGPatternElement, SVGTransformList *, TransformList, transformList, PatternTransform, patternTransform, SVGNames::patternTransformAttr, m_patternTransform.get())
 
-void SVGPatternElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGPatternElement::parseMappedAttribute(MappedAttribute *attr)
 {
     if (attr->name() == SVGNames::patternUnitsAttr) {
-        if (attr->value() == "userSpaceOnUse")
+        if (attr->value() == "userSpaceOnUse") {
             setPatternUnitsBaseValue(SVGUnitTypes::SVG_UNIT_TYPE_USERSPACEONUSE);
-        else if (attr->value() == "objectBoundingBox")
+        } else if (attr->value() == "objectBoundingBox") {
             setPatternUnitsBaseValue(SVGUnitTypes::SVG_UNIT_TYPE_OBJECTBOUNDINGBOX);
+        }
     } else if (attr->name() == SVGNames::patternContentUnitsAttr) {
-        if (attr->value() == "userSpaceOnUse")
+        if (attr->value() == "userSpaceOnUse") {
             setPatternContentUnitsBaseValue(SVGUnitTypes::SVG_UNIT_TYPE_USERSPACEONUSE);
-        else if (attr->value() == "objectBoundingBox")
+        } else if (attr->value() == "objectBoundingBox") {
             setPatternContentUnitsBaseValue(SVGUnitTypes::SVG_UNIT_TYPE_OBJECTBOUNDINGBOX);
+        }
     } else if (attr->name() == SVGNames::patternTransformAttr) {
-        SVGTransformList* patternTransforms = patternTransformBaseValue();
+        SVGTransformList *patternTransforms = patternTransformBaseValue();
         if (!SVGTransformable::parseTransformAttribute(patternTransforms, attr->value())) {
             ExceptionCode ec = 0;
             patternTransforms->clear(ec);
         }
-    } else if (attr->name() == SVGNames::xAttr)
+    } else if (attr->name() == SVGNames::xAttr) {
         setXBaseValue(SVGLength(this, LengthModeWidth, attr->value()));
-    else if (attr->name() == SVGNames::yAttr)
+    } else if (attr->name() == SVGNames::yAttr) {
         setYBaseValue(SVGLength(this, LengthModeHeight, attr->value()));
-    else if (attr->name() == SVGNames::widthAttr) {
+    } else if (attr->name() == SVGNames::widthAttr) {
         setWidthBaseValue(SVGLength(this, LengthModeWidth, attr->value()));
-        if (width().value() < 0.0)
+        if (width().value() < 0.0) {
             document()->accessSVGExtensions()->reportError("A negative value for pattern attribute <width> is not allowed");
+        }
     } else if (attr->name() == SVGNames::heightAttr) {
         setHeightBaseValue(SVGLength(this, LengthModeHeight, attr->value()));
-        if (width().value() < 0.0)
+        if (width().value() < 0.0) {
             document()->accessSVGExtensions()->reportError("A negative value for pattern attribute <height> is not allowed");
+        }
     } else {
-        if (SVGURIReference::parseMappedAttribute(attr))
+        if (SVGURIReference::parseMappedAttribute(attr)) {
             return;
-        if (SVGTests::parseMappedAttribute(attr))
+        }
+        if (SVGTests::parseMappedAttribute(attr)) {
             return;
-        if (SVGLangSpace::parseMappedAttribute(attr))
+        }
+        if (SVGLangSpace::parseMappedAttribute(attr)) {
             return;
-        if (SVGExternalResourcesRequired::parseMappedAttribute(attr))
+        }
+        if (SVGExternalResourcesRequired::parseMappedAttribute(attr)) {
             return;
-        if (SVGFitToViewBox::parseMappedAttribute(attr))
+        }
+        if (SVGFitToViewBox::parseMappedAttribute(attr)) {
             return;
+        }
 
         SVGStyledElement::parseMappedAttribute(attr);
     }
 }
 
-void SVGPatternElement::svgAttributeChanged(const QualifiedName& attrName)
+void SVGPatternElement::svgAttributeChanged(const QualifiedName &attrName)
 {
     SVGStyledElement::svgAttributeChanged(attrName);
 
-    if (!m_resource)
+    if (!m_resource) {
         return;
+    }
 
     if (attrName == SVGNames::patternUnitsAttr || attrName == SVGNames::patternContentUnitsAttr ||
-        attrName == SVGNames::patternTransformAttr || attrName == SVGNames::xAttr || attrName == SVGNames::yAttr ||
-        attrName == SVGNames::widthAttr || attrName == SVGNames::heightAttr ||
-        SVGURIReference::isKnownAttribute(attrName) ||
-        SVGTests::isKnownAttribute(attrName) || 
-        SVGLangSpace::isKnownAttribute(attrName) ||
-        SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
-        SVGFitToViewBox::isKnownAttribute(attrName) ||
-        SVGStyledElement::isKnownAttribute(attrName))
+            attrName == SVGNames::patternTransformAttr || attrName == SVGNames::xAttr || attrName == SVGNames::yAttr ||
+            attrName == SVGNames::widthAttr || attrName == SVGNames::heightAttr ||
+            SVGURIReference::isKnownAttribute(attrName) ||
+            SVGTests::isKnownAttribute(attrName) ||
+            SVGLangSpace::isKnownAttribute(attrName) ||
+            SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
+            SVGFitToViewBox::isKnownAttribute(attrName) ||
+            SVGStyledElement::isKnownAttribute(attrName)) {
         m_resource->invalidate();
+    }
 }
 
-void SVGPatternElement::childrenChanged(bool changedByParser, Node* beforeChange, Node* afterChange, int childCountDelta)
+void SVGPatternElement::childrenChanged(bool changedByParser, Node *beforeChange, Node *afterChange, int childCountDelta)
 {
     SVGStyledElement::childrenChanged(changedByParser, beforeChange, afterChange, childCountDelta);
 
-    if (!m_resource)
+    if (!m_resource) {
         return;
+    }
 
     m_resource->invalidate();
 }
 
-void SVGPatternElement::buildPattern(const FloatRect& targetRect) const
+void SVGPatternElement::buildPattern(const FloatRect &targetRect) const
 {
     PatternAttributes attributes = collectPatternProperties();
 
     // If we didn't find any pattern content, ignore the request.
-    if (!attributes.patternContentElement() || !renderer() || !renderer()->style())
+    if (!attributes.patternContentElement() || !renderer() || !renderer()->style()) {
         return;
+    }
 
-    FloatRect patternBoundaries; 
+    FloatRect patternBoundaries;
     FloatRect patternContentBoundaries;
 
     // Determine specified pattern size
@@ -176,39 +190,44 @@ void SVGPatternElement::buildPattern(const FloatRect& targetRect) const
                                       attributes.height().value());
 
     // Clip pattern boundaries to target boundaries
-    if (patternBoundaries.width() > targetRect.width())
+    if (patternBoundaries.width() > targetRect.width()) {
         patternBoundaries.setWidth(targetRect.width());
+    }
 
-    if (patternBoundaries.height() > targetRect.height())
+    if (patternBoundaries.height() > targetRect.height()) {
         patternBoundaries.setHeight(targetRect.height());
+    }
 
     IntSize patternSize(patternBoundaries.width(), patternBoundaries.height());
     clampImageBufferSizeToViewport(document()->renderer(), patternSize);
 
-    if (patternSize.width() < static_cast<int>(patternBoundaries.width()))
+    if (patternSize.width() < static_cast<int>(patternBoundaries.width())) {
         patternBoundaries.setWidth(patternSize.width());
+    }
 
-    if (patternSize.height() < static_cast<int>(patternBoundaries.height()))
+    if (patternSize.height() < static_cast<int>(patternBoundaries.height())) {
         patternBoundaries.setHeight(patternSize.height());
+    }
 
     // Eventually calculate the pattern content boundaries (only needed with overflow="visible").
-    RenderStyle* style = renderer()->style();
+    RenderStyle *style = renderer()->style();
     if (style->overflowX() == OVISIBLE && style->overflowY() == OVISIBLE) {
-        for (Node* n = attributes.patternContentElement()->firstChild(); n; n = n->nextSibling()) {
-            if (!n->isSVGElement() || !static_cast<SVGElement*>(n)->isStyledTransformable() || !n->renderer())
+        for (Node *n = attributes.patternContentElement()->firstChild(); n; n = n->nextSibling()) {
+            if (!n->isSVGElement() || !static_cast<SVGElement *>(n)->isStyledTransformable() || !n->renderer()) {
                 continue;
+            }
             patternContentBoundaries.unite(n->renderer()->relativeBBox(true));
         }
     }
 
-    AffineTransform viewBoxCTM = viewBoxToViewTransform(patternBoundaries.width(), patternBoundaries.height()); 
+    AffineTransform viewBoxCTM = viewBoxToViewTransform(patternBoundaries.width(), patternBoundaries.height());
     FloatRect patternBoundariesIncludingOverflow = patternBoundaries;
 
     // Apply objectBoundingBoxMode fixup for patternContentUnits, if viewBox is not set.
     if (!patternContentBoundaries.isEmpty()) {
-        if (!viewBoxCTM.isIdentity())
+        if (!viewBoxCTM.isIdentity()) {
             patternContentBoundaries = viewBoxCTM.mapRect(patternContentBoundaries);
-        else if (attributes.boundingBoxModeContent())
+        } else if (attributes.boundingBoxModeContent())
             patternContentBoundaries = FloatRect(patternContentBoundaries.x() * targetRect.width(),
                                                  patternContentBoundaries.y() * targetRect.height(),
                                                  patternContentBoundaries.width() * targetRect.width(),
@@ -222,10 +241,11 @@ void SVGPatternElement::buildPattern(const FloatRect& targetRect) const
 
     auto_ptr<ImageBuffer> patternImage = ImageBuffer::create(imageSize, false);
 
-    if (!patternImage.get())
+    if (!patternImage.get()) {
         return;
+    }
 
-    GraphicsContext* context = patternImage->context();
+    GraphicsContext *context = patternImage->context();
     ASSERT(context);
 
     context->save();
@@ -239,38 +259,40 @@ void SVGPatternElement::buildPattern(const FloatRect& targetRect) const
     }
 
     // Process viewBox or boundingBoxModeContent correction
-    if (!viewBoxCTM.isIdentity())
+    if (!viewBoxCTM.isIdentity()) {
         context->concatCTM(viewBoxCTM);
-    else if (attributes.boundingBoxModeContent()) {
+    } else if (attributes.boundingBoxModeContent()) {
         context->translate(targetRect.x(), targetRect.y());
         context->scale(FloatSize(targetRect.width(), targetRect.height()));
     }
 
     // Render subtree into ImageBuffer
-    for (Node* n = attributes.patternContentElement()->firstChild(); n; n = n->nextSibling()) {
-        if (!n->isSVGElement() || !static_cast<SVGElement*>(n)->isStyled() || !n->renderer())
+    for (Node *n = attributes.patternContentElement()->firstChild(); n; n = n->nextSibling()) {
+        if (!n->isSVGElement() || !static_cast<SVGElement *>(n)->isStyled() || !n->renderer()) {
             continue;
+        }
         renderSubtreeToImage(patternImage.get(), n->renderer());
     }
 
     context->restore();
 
     m_resource->setPatternTransform(attributes.patternTransform());
-    m_resource->setPatternBoundaries(patternBoundaries); 
+    m_resource->setPatternBoundaries(patternBoundaries);
     m_resource->setTile(patternImage);
 }
 
-RenderObject* SVGPatternElement::createRenderer(RenderArena* arena, RenderStyle*)
+RenderObject *SVGPatternElement::createRenderer(RenderArena *arena, RenderStyle *)
 {
-    RenderSVGContainer* patternContainer = new (arena) RenderSVGContainer(this);
+    RenderSVGContainer *patternContainer = new(arena) RenderSVGContainer(this);
     patternContainer->setDrawsContents(false);
     return patternContainer;
 }
 
-SVGResource* SVGPatternElement::canvasResource()
+SVGResource *SVGPatternElement::canvasResource()
 {
-    if (!m_resource)
+    if (!m_resource) {
         m_resource = SVGPaintServerPattern::create(this);
+    }
 
     return m_resource.get();
 }
@@ -278,46 +300,56 @@ SVGResource* SVGPatternElement::canvasResource()
 PatternAttributes SVGPatternElement::collectPatternProperties() const
 {
     PatternAttributes attributes;
-    HashSet<const SVGPatternElement*> processedPatterns;
+    HashSet<const SVGPatternElement *> processedPatterns;
 
-    const SVGPatternElement* current = this;
+    const SVGPatternElement *current = this;
     while (current) {
-        if (!attributes.hasX() && current->hasAttribute(SVGNames::xAttr))
+        if (!attributes.hasX() && current->hasAttribute(SVGNames::xAttr)) {
             attributes.setX(current->x());
+        }
 
-        if (!attributes.hasY() && current->hasAttribute(SVGNames::yAttr))
+        if (!attributes.hasY() && current->hasAttribute(SVGNames::yAttr)) {
             attributes.setY(current->y());
+        }
 
-        if (!attributes.hasWidth() && current->hasAttribute(SVGNames::widthAttr))
+        if (!attributes.hasWidth() && current->hasAttribute(SVGNames::widthAttr)) {
             attributes.setWidth(current->width());
+        }
 
-        if (!attributes.hasHeight() && current->hasAttribute(SVGNames::heightAttr))
+        if (!attributes.hasHeight() && current->hasAttribute(SVGNames::heightAttr)) {
             attributes.setHeight(current->height());
+        }
 
-        if (!attributes.hasBoundingBoxMode() && current->hasAttribute(SVGNames::patternUnitsAttr))
+        if (!attributes.hasBoundingBoxMode() && current->hasAttribute(SVGNames::patternUnitsAttr)) {
             attributes.setBoundingBoxMode(current->getAttribute(SVGNames::patternUnitsAttr) == "objectBoundingBox");
+        }
 
-        if (!attributes.hasBoundingBoxModeContent() && current->hasAttribute(SVGNames::patternContentUnitsAttr))
+        if (!attributes.hasBoundingBoxModeContent() && current->hasAttribute(SVGNames::patternContentUnitsAttr)) {
             attributes.setBoundingBoxModeContent(current->getAttribute(SVGNames::patternContentUnitsAttr) == "objectBoundingBox");
+        }
 
-        if (!attributes.hasPatternTransform() && current->hasAttribute(SVGNames::patternTransformAttr))
+        if (!attributes.hasPatternTransform() && current->hasAttribute(SVGNames::patternTransformAttr)) {
             attributes.setPatternTransform(current->patternTransform()->consolidate().matrix());
+        }
 
-        if (!attributes.hasPatternContentElement() && current->hasChildNodes())
+        if (!attributes.hasPatternContentElement() && current->hasChildNodes()) {
             attributes.setPatternContentElement(current);
+        }
 
         processedPatterns.add(current);
 
         // Respect xlink:href, take attributes from referenced element
-        Node* refNode = ownerDocument()->getElementById(SVGURIReference::getTarget(current->href()));
+        Node *refNode = ownerDocument()->getElementById(SVGURIReference::getTarget(current->href()));
         if (refNode && refNode->hasTagName(SVGNames::patternTag)) {
-            current = static_cast<const SVGPatternElement*>(const_cast<const Node*>(refNode));
+            current = static_cast<const SVGPatternElement *>(const_cast<const Node *>(refNode));
 
             // Cycle detection
-            if (processedPatterns.contains(current))
+            if (processedPatterns.contains(current)) {
                 return PatternAttributes();
-        } else
+            }
+        } else {
             current = 0;
+        }
     }
 
     return attributes;

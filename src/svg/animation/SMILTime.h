@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef SMILTime_h
@@ -30,44 +30,92 @@
 
 #include <algorithm>
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SMILTime {
-    public:
-        SMILTime() : m_time(0) { }
-        SMILTime(double time) : m_time(time) { }
-        SMILTime(const SMILTime& o) : m_time(o.m_time) { }
-        
-        static SMILTime unresolved() { return unresolvedValue; }
-        static SMILTime indefinite() { return indefiniteValue; }
-        
-        SMILTime& operator=(const SMILTime& o) { m_time = o.m_time; return *this; }
-        double value() const { return m_time; }
-        
-        bool isFinite() const { return m_time < indefiniteValue; }
-        bool isIndefinite() const { return m_time == indefiniteValue; }
-        bool isUnresolved() const { return m_time == unresolvedValue; }
-        
-    private:
-        static const double unresolvedValue;
-        static const double indefiniteValue;
+class SMILTime
+{
+public:
+    SMILTime() : m_time(0) { }
+    SMILTime(double time) : m_time(time) { }
+    SMILTime(const SMILTime &o) : m_time(o.m_time) { }
 
-        double m_time;
-    };
+    static SMILTime unresolved()
+    {
+        return unresolvedValue;
+    }
+    static SMILTime indefinite()
+    {
+        return indefiniteValue;
+    }
 
-    inline bool operator==(const SMILTime& a, const SMILTime& b) { return a.isFinite() && a.value() == b.value(); }
-    inline bool operator!=(const SMILTime& a, const SMILTime& b) { return !operator==(a, b); }
-    inline bool operator>(const SMILTime& a, const SMILTime& b) { return a.value() > b.value(); }
-    inline bool operator<(const SMILTime& a, const SMILTime& b) { return a.value() < b.value(); }
-    inline bool operator>=(const SMILTime& a, const SMILTime& b) { return a.value() > b.value() || operator==(a, b); }
-    inline bool operator<=(const SMILTime& a, const SMILTime& b) { return a.value() < b.value() || operator==(a, b); }
+    SMILTime &operator=(const SMILTime &o)
+    {
+        m_time = o.m_time;
+        return *this;
+    }
+    double value() const
+    {
+        return m_time;
+    }
 
-    inline SMILTime max(const SMILTime& a, const SMILTime& b) { return std::max(a.value(), b.value()); }
-    inline SMILTime min(const SMILTime& a, const SMILTime& b) { return std::min(a.value(), b.value()); }
-    SMILTime operator+(const SMILTime&, const SMILTime&);
-    SMILTime operator-(const SMILTime&, const SMILTime&);
-    // So multiplying times does not make too much sense but SMIL defines it for duration * repeatCount
-    SMILTime operator*(const SMILTime&, const SMILTime&);
+    bool isFinite() const
+    {
+        return m_time < indefiniteValue;
+    }
+    bool isIndefinite() const
+    {
+        return m_time == indefiniteValue;
+    }
+    bool isUnresolved() const
+    {
+        return m_time == unresolvedValue;
+    }
+
+private:
+    static const double unresolvedValue;
+    static const double indefiniteValue;
+
+    double m_time;
+};
+
+inline bool operator==(const SMILTime &a, const SMILTime &b)
+{
+    return a.isFinite() && a.value() == b.value();
+}
+inline bool operator!=(const SMILTime &a, const SMILTime &b)
+{
+    return !operator==(a, b);
+}
+inline bool operator>(const SMILTime &a, const SMILTime &b)
+{
+    return a.value() > b.value();
+}
+inline bool operator<(const SMILTime &a, const SMILTime &b)
+{
+    return a.value() < b.value();
+}
+inline bool operator>=(const SMILTime &a, const SMILTime &b)
+{
+    return a.value() > b.value() || operator==(a, b);
+}
+inline bool operator<=(const SMILTime &a, const SMILTime &b)
+{
+    return a.value() < b.value() || operator==(a, b);
+}
+
+inline SMILTime max(const SMILTime &a, const SMILTime &b)
+{
+    return std::max(a.value(), b.value());
+}
+inline SMILTime min(const SMILTime &a, const SMILTime &b)
+{
+    return std::min(a.value(), b.value());
+}
+SMILTime operator+(const SMILTime &, const SMILTime &);
+SMILTime operator-(const SMILTime &, const SMILTime &);
+// So multiplying times does not make too much sense but SMIL defines it for duration * repeatCount
+SMILTime operator*(const SMILTime &, const SMILTime &);
 }
 
 #endif

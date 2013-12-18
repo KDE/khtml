@@ -29,9 +29,10 @@
 #include "Text.h"
 #include "XLinkNames.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGTRefElement::SVGTRefElement(const QualifiedName& tagName, Document* doc)
+SVGTRefElement::SVGTRefElement(const QualifiedName &tagName, Document *doc)
     : SVGTextPositioningElement(tagName, doc)
     , SVGURIReference()
 {
@@ -43,15 +44,16 @@ SVGTRefElement::~SVGTRefElement()
 
 void SVGTRefElement::updateReferencedText()
 {
-    Element* target = document()->getElementById(SVGURIReference::getTarget(href()));
+    Element *target = document()->getElementById(SVGURIReference::getTarget(href()));
     String textContent;
-    if (target && target->isSVGElement())
-        textContent = static_cast<SVGElement*>(target)->textContent();
+    if (target && target->isSVGElement()) {
+        textContent = static_cast<SVGElement *>(target)->textContent();
+    }
     ExceptionCode ignore = 0;
     setTextContent(textContent, ignore);
 }
 
-void SVGTRefElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGTRefElement::parseMappedAttribute(MappedAttribute *attr)
 {
     if (SVGURIReference::parseMappedAttribute(attr)) {
         updateReferencedText();
@@ -61,21 +63,21 @@ void SVGTRefElement::parseMappedAttribute(MappedAttribute* attr)
     SVGTextPositioningElement::parseMappedAttribute(attr);
 }
 
-bool SVGTRefElement::childShouldCreateRenderer(Node* child) const
+bool SVGTRefElement::childShouldCreateRenderer(Node *child) const
 {
     if (child->isTextNode() || child->hasTagName(SVGNames::tspanTag) ||
-        child->hasTagName(SVGNames::trefTag))
+            child->hasTagName(SVGNames::trefTag)) {
         return true;
+    }
     return false;
 }
 
-RenderObject* SVGTRefElement::createRenderer(RenderArena* arena, RenderStyle*)
+RenderObject *SVGTRefElement::createRenderer(RenderArena *arena, RenderStyle *)
 {
-    return new (arena) RenderSVGInline(this);
+    return new(arena) RenderSVGInline(this);
 }
 
 }
 
-// vim:ts=4:noet
 #endif // ENABLE(SVG)
 

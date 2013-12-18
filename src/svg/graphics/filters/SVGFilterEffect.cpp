@@ -25,9 +25,10 @@
 #include "SVGRenderTreeAsText.h"
 #include "SVGResourceFilter.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFilterEffect::SVGFilterEffect(SVGResourceFilter* filter)
+SVGFilterEffect::SVGFilterEffect(SVGResourceFilter *filter)
     : m_filter(filter)
     , m_xBBoxMode(false)
     , m_yBBoxMode(false)
@@ -36,35 +37,41 @@ SVGFilterEffect::SVGFilterEffect(SVGResourceFilter* filter)
 {
 }
 
-FloatRect SVGFilterEffect::primitiveBBoxForFilterBBox(const FloatRect& filterBBox, const FloatRect& itemBBox) const
+FloatRect SVGFilterEffect::primitiveBBoxForFilterBBox(const FloatRect &filterBBox, const FloatRect &itemBBox) const
 {
     FloatRect subRegionBBox = subRegion();
     FloatRect useBBox = filterBBox;
 
     ASSERT(m_filter);
-    if (!m_filter)
+    if (!m_filter) {
         return FloatRect();
+    }
 
     if (m_filter->effectBoundingBoxMode()) {
-        if (!m_filter->filterBoundingBoxMode())
+        if (!m_filter->filterBoundingBoxMode()) {
             useBBox = itemBBox;
+        }
 
         subRegionBBox = FloatRect(useBBox.x() + subRegionBBox.x() * useBBox.width(),
                                   useBBox.y() + subRegionBBox.y() * useBBox.height(),
                                   subRegionBBox.width() * useBBox.width(),
                                   subRegionBBox.height() * useBBox.height());
     } else {
-        if (xBoundingBoxMode())
+        if (xBoundingBoxMode()) {
             subRegionBBox.setX(useBBox.x() + subRegionBBox.x() * useBBox.width());
+        }
 
-        if (yBoundingBoxMode())
+        if (yBoundingBoxMode()) {
             subRegionBBox.setY(useBBox.y() + subRegionBBox.y() * useBBox.height());
+        }
 
-        if (widthBoundingBoxMode())
+        if (widthBoundingBoxMode()) {
             subRegionBBox.setWidth(subRegionBBox.width() * useBBox.width());
+        }
 
-        if (heightBoundingBoxMode())
+        if (heightBoundingBoxMode()) {
             subRegionBBox.setHeight(subRegionBBox.height() * useBBox.height());
+        }
     }
 
     return subRegionBBox;
@@ -75,7 +82,7 @@ FloatRect SVGFilterEffect::subRegion() const
     return m_subRegion;
 }
 
-void SVGFilterEffect::setSubRegion(const FloatRect& subRegion)
+void SVGFilterEffect::setSubRegion(const FloatRect &subRegion)
 {
     m_subRegion = subRegion;
 }
@@ -85,7 +92,7 @@ String SVGFilterEffect::in() const
     return m_in;
 }
 
-void SVGFilterEffect::setIn(const String& in)
+void SVGFilterEffect::setIn(const String &in)
 {
     m_in = in;
 }
@@ -95,33 +102,36 @@ String SVGFilterEffect::result() const
     return m_result;
 }
 
-void SVGFilterEffect::setResult(const String& result)
+void SVGFilterEffect::setResult(const String &result)
 {
     m_result = result;
 }
 
-SVGResourceFilter* SVGFilterEffect::filter() const
+SVGResourceFilter *SVGFilterEffect::filter() const
 {
     return m_filter;
 }
 
-void SVGFilterEffect::setFilter(SVGResourceFilter* filter)
+void SVGFilterEffect::setFilter(SVGResourceFilter *filter)
 {
     m_filter = filter;
 }
 
-TextStream& SVGFilterEffect::externalRepresentation(TextStream& ts) const
+TextStream &SVGFilterEffect::externalRepresentation(TextStream &ts) const
 {
-    if (!in().isEmpty())
+    if (!in().isEmpty()) {
         ts << "[in=\"" << in() << "\"]";
-    if (!result().isEmpty())
+    }
+    if (!result().isEmpty()) {
         ts << " [result=\"" << result() << "\"]";
-    if (!subRegion().isEmpty())
+    }
+    if (!subRegion().isEmpty()) {
         ts << " [subregion=\"" << subRegion() << "\"]";
+    }
     return ts;
 }
 
-TextStream& operator<<(TextStream& ts, const SVGFilterEffect& e)
+TextStream &operator<<(TextStream &ts, const SVGFilterEffect &e)
 {
     return e.externalRepresentation(ts);
 }

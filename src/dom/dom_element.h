@@ -33,7 +33,8 @@
 #include <dom/dom_node.h>
 #include <dom/css_value.h>
 
-namespace DOM {
+namespace DOM
+{
 
 class DOMString;
 class AttrImpl;
@@ -98,11 +99,13 @@ class KHTML_EXPORT Attr : public Node
 public:
     Attr();
     Attr(const Node &other) : Node()
-        {(*this)=other;}
+    {
+        (*this) = other;
+    }
     Attr(const Attr &other);
 
-    Attr & operator = (const Node &other);
-    Attr & operator = (const Attr &other);
+    Attr &operator = (const Node &other);
+    Attr &operator = (const Attr &other);
 
     ~Attr();
 
@@ -125,7 +128,7 @@ public:
      * attribute available with \c specified set to
      * \c false and the default value (if one exists).
      *
-     *  In summary: 
+     *  In summary:
      *  \li If the attribute has an assigned
      * value in the document then \c specified is
      * \c true , and the value is the assigned value.
@@ -159,7 +162,7 @@ public:
     /**
      * see value
      */
-    void setValue( const DOMString & );
+    void setValue(const DOMString &);
 
     /**
      * Introduced in DOM Level 2
@@ -171,7 +174,7 @@ public:
 
 protected:
 
-    Attr( AttrImpl *_impl );
+    Attr(AttrImpl *_impl);
 };
 
 class NodeList;
@@ -217,11 +220,13 @@ class KHTML_EXPORT Element : public Node
 public:
     Element();
     Element(const Node &other) : Node()
-        {(*this)=other;}
+    {
+        (*this) = other;
+    }
     Element(const Element &other);
 
-    Element & operator = (const Node &other);
-    Element & operator = (const Element &other);
+    Element &operator = (const Node &other);
+    Element &operator = (const Element &other);
 
     ~Element();
 
@@ -247,7 +252,7 @@ public:
      * value.
      *
      */
-    DOMString getAttribute ( const DOMString &name );
+    DOMString getAttribute(const DOMString &name);
 
     /**
      * Adds a new attribute. If an attribute with that name is already
@@ -276,7 +281,7 @@ public:
      *  NO_MODIFICATION_ALLOWED_ERR: Raised if this node is readonly.
      *
      */
-    void setAttribute ( const DOMString &name, const DOMString &value );
+    void setAttribute(const DOMString &name, const DOMString &value);
 
     /**
      * Removes an attribute by name. If the removed attribute has a
@@ -290,7 +295,7 @@ public:
      * NO_MODIFICATION_ALLOWED_ERR: Raised if this node is readonly.
      *
      */
-    void removeAttribute ( const DOMString &name );
+    void removeAttribute(const DOMString &name);
 
     /**
      * Retrieves an \c Attr node by name.
@@ -302,7 +307,7 @@ public:
      * attribute.
      *
      */
-    Attr getAttributeNode ( const DOMString &name );
+    Attr getAttributeNode(const DOMString &name);
 
     /**
      * Adds a new attribute. If an attribute with that name is already
@@ -329,7 +334,7 @@ public:
      * re-use them in other elements.
      *
      */
-    Attr setAttributeNode ( const Attr &newAttr );
+    Attr setAttributeNode(const Attr &newAttr);
 
     /**
      * Removes the specified attribute.
@@ -347,7 +352,7 @@ public:
      * attribute of the element.
      *
      */
-    Attr removeAttributeNode ( const Attr &oldAttr );
+    Attr removeAttributeNode(const Attr &oldAttr);
 
     /**
      * Returns a \c NodeList of all descendant elements
@@ -361,7 +366,7 @@ public:
      * @return A list of matching \c Element nodes.
      *
      */
-    NodeList getElementsByTagName ( const DOMString &name );
+    NodeList getElementsByTagName(const DOMString &name);
 
     /**
      * Introduced in DOM Level 2
@@ -377,8 +382,8 @@ public:
      *
      * @return A new NodeList object containing all the matched Elements.
      */
-    NodeList getElementsByTagNameNS ( const DOMString &namespaceURI,
-                                      const DOMString &localName );
+    NodeList getElementsByTagNameNS(const DOMString &namespaceURI,
+                                    const DOMString &localName);
 
     /**
      * Introduced in HTML 5.
@@ -397,7 +402,7 @@ public:
      *
      * @since 4.1
      */
-    NodeList getElementsByClassName ( const DOMString &className );
+    NodeList getElementsByClassName(const DOMString &className);
 
     /**
      * Introduced in DOM Level 2.
@@ -414,8 +419,8 @@ public:
      * @return The Attr value as a string, or the empty string if that
      * attribute does not have a specified or default value.
      */
-    DOMString getAttributeNS ( const DOMString &namespaceURI,
-                               const DOMString &localName );
+    DOMString getAttributeNS(const DOMString &namespaceURI,
+                             const DOMString &localName);
 
     /**
      * Introduced in DOM Level 2
@@ -455,9 +460,9 @@ public:
      * qualifiedName is "xmlns" and the namespaceURI is different from
      * "http://www.w3.org/2000/xmlns/".
      */
-    void setAttributeNS ( const DOMString &namespaceURI,
-                          const DOMString &qualifiedName,
-                          const DOMString &value );
+    void setAttributeNS(const DOMString &namespaceURI,
+                        const DOMString &qualifiedName,
+                        const DOMString &value);
 
     /**
      * Introduced in DOM Level 2
@@ -476,8 +481,8 @@ public:
      * @exception DOMException
      * NO_MODIFICATION_ALLOWED_ERR: Raised if this node is readonly.
      */
-    void removeAttributeNS ( const DOMString &namespaceURI,
-                             const DOMString &localName );
+    void removeAttributeNS(const DOMString &namespaceURI,
+                           const DOMString &localName);
 
     /**
      * Introduced in DOM Level 2
@@ -492,8 +497,8 @@ public:
      * @return The Attr node with the specified attribute local name and
      * namespace URI or null if there is no such attribute.
      */
-    Attr getAttributeNodeNS ( const DOMString &namespaceURI,
-                              const DOMString &localName );
+    Attr getAttributeNodeNS(const DOMString &namespaceURI,
+                            const DOMString &localName);
 
     /**
      * Introduced in DOM Level 2
@@ -520,7 +525,7 @@ public:
      * another Element object. The DOM user must explicitly clone Attr nodes to
      * re-use them in other elements.
      */
-    Attr setAttributeNodeNS ( const Attr &newAttr );
+    Attr setAttributeNodeNS(const Attr &newAttr);
 
     /**
      * Returns true when an attribute with a given name is specified on this
@@ -532,7 +537,7 @@ public:
      * @return true if an attribute with the given name is specified on this
      * element or has a default value, false otherwise.
      */
-    bool hasAttribute( const DOMString& name );
+    bool hasAttribute(const DOMString &name);
 
     /**
      * Introduced in DOM Level 2
@@ -548,8 +553,8 @@ public:
      * @return true if an attribute with the given local name and namespace URI
      * is specified or has a default value on this element, false otherwise.
      */
-    bool hasAttributeNS ( const DOMString &namespaceURI,
-                          const DOMString &localName );
+    bool hasAttributeNS(const DOMString &namespaceURI,
+                        const DOMString &localName);
 
     /**
      * Introduced in DOM Level 2
@@ -557,7 +562,7 @@ public:
      *
      * The style attribute
      */
-    CSSStyleDeclaration style (  );
+    CSSStyleDeclaration style();
 
     /**
      * Introduced in  DOM level 3
@@ -566,7 +571,7 @@ public:
      *  The first child node which is of nodeType ELEMENT_NODE.
      *
      */
-    Element firstElementChild ( ) const;
+    Element firstElementChild() const;
 
     /**
      * Introduced in  DOM level 3
@@ -575,7 +580,7 @@ public:
      *  @return The last child node of that element which is of nodeType ELEMENT_NODE.
      *
      */
-    Element lastElementChild ( ) const;
+    Element lastElementChild() const;
 
     /**
      * Introduced in  DOM level 3
@@ -585,7 +590,7 @@ public:
      *           and which is of nodeType ELEMENT_NODE
      *
      */
-    Element previousElementSibling ( ) const;
+    Element previousElementSibling() const;
 
     /**
      * Introduced in  DOM level 3
@@ -595,7 +600,7 @@ public:
      *           and which is of nodeType ELEMENT_NODE
      *
      */
-    Element nextElementSibling ( ) const;
+    Element nextElementSibling() const;
 
     /**
      * Introduced in  DOM level 3
@@ -604,7 +609,7 @@ public:
      *  @return The current number of child nodes of that element which are of nodeType ELEMENT_NODE
      *
      */
-    unsigned long childElementCount ( ) const;
+    unsigned long childElementCount() const;
 
     /**
      * Introduced in Selectors Level 1.
@@ -614,7 +619,7 @@ public:
      *
      * @since 4.5
      */
-    Element querySelector(const DOMString& query) const;
+    Element querySelector(const DOMString &query) const;
 
     /**
      * Introduced in Selectors Level 1.
@@ -626,8 +631,8 @@ public:
      *
      * @since 4.5
      */
-    NodeList querySelectorAll(const DOMString& query) const;
-    
+    NodeList querySelectorAll(const DOMString &query) const;
+
     /**
      * not part of the official DOM
      *

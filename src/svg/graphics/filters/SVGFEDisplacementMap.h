@@ -25,7 +25,8 @@
 #if ENABLE(SVG) && ENABLE(SVG_FILTERS)
 #include "SVGFilterEffect.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 enum SVGChannelSelectorType {
     SVG_CHANNEL_UNKNOWN = 0,
@@ -35,12 +36,13 @@ enum SVGChannelSelectorType {
     SVG_CHANNEL_A       = 4
 };
 
-class SVGFEDisplacementMap : public SVGFilterEffect {
+class SVGFEDisplacementMap : public SVGFilterEffect
+{
 public:
-    SVGFEDisplacementMap(SVGResourceFilter*);
+    SVGFEDisplacementMap(SVGResourceFilter *);
 
     String in2() const;
-    void setIn2(const String&);
+    void setIn2(const String &);
 
     SVGChannelSelectorType xChannelSelector() const;
     void setXChannelSelector(const SVGChannelSelectorType);
@@ -51,10 +53,10 @@ public:
     float scale() const;
     void setScale(float scale);
 
-    virtual TextStream& externalRepresentation(TextStream&) const;
+    virtual TextStream &externalRepresentation(TextStream &) const;
 
 #if PLATFORM(CI)
-    virtual CIFilter* getCIFilter(const FloatRect& bbox) const;
+    virtual CIFilter *getCIFilter(const FloatRect &bbox) const;
 #endif
 
 private:

@@ -29,53 +29,55 @@
 #include "SVGStyledElement.h"
 #include "SVGURIReference.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGGradientElement;
-    class SVGTransformList;
+class SVGGradientElement;
+class SVGTransformList;
 
-    class SVGGradientElement : public SVGStyledElement,
-                               public SVGURIReference,
-                               public SVGExternalResourcesRequired {
-    public:
-        enum SVGGradientType {
-            SVG_SPREADMETHOD_UNKNOWN = 0,
-            SVG_SPREADMETHOD_PAD     = 1,
-            SVG_SPREADMETHOD_REFLECT = 2,
-            SVG_SPREADMETHOD_REPEAT  = 3
-        };
-
-        SVGGradientElement(const QualifiedName&, Document*);
-        virtual ~SVGGradientElement();
-
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual void svgAttributeChanged(const QualifiedName&);
-
-        using DOM::NodeImpl::childrenChanged;
-        virtual void childrenChanged(bool changedByParser = false, Node* beforeChange = 0, Node* afterChange = 0, int childCountDelta = 0);
-        virtual RenderObject* createRenderer(RenderArena*, RenderStyle*);
-
-        virtual SVGResource* canvasResource();
-
-    protected:
-        friend class SVGPaintServerGradient;
-        friend class SVGLinearGradientElement;
-        friend class SVGRadialGradientElement;
-
-        virtual void buildGradient() const = 0;
-        virtual SVGPaintServerType gradientType() const = 0;
-
-        Vector<SVGGradientStop> buildStops() const;
-        mutable RefPtr<SVGPaintServerGradient> m_resource;
- 
-    protected:
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
- 
-        ANIMATED_PROPERTY_DECLARATIONS(SVGGradientElement, int, int, SpreadMethod, spreadMethod)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGGradientElement, int, int, GradientUnits, gradientUnits)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGGradientElement, SVGTransformList*, RefPtr<SVGTransformList>, GradientTransform, gradientTransform)
+class SVGGradientElement : public SVGStyledElement,
+    public SVGURIReference,
+    public SVGExternalResourcesRequired
+{
+public:
+    enum SVGGradientType {
+        SVG_SPREADMETHOD_UNKNOWN = 0,
+        SVG_SPREADMETHOD_PAD     = 1,
+        SVG_SPREADMETHOD_REFLECT = 2,
+        SVG_SPREADMETHOD_REPEAT  = 3
     };
+
+    SVGGradientElement(const QualifiedName &, Document *);
+    virtual ~SVGGradientElement();
+
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual void svgAttributeChanged(const QualifiedName &);
+
+    using DOM::NodeImpl::childrenChanged;
+    virtual void childrenChanged(bool changedByParser = false, Node *beforeChange = 0, Node *afterChange = 0, int childCountDelta = 0);
+    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
+
+    virtual SVGResource *canvasResource();
+
+protected:
+    friend class SVGPaintServerGradient;
+    friend class SVGLinearGradientElement;
+    friend class SVGRadialGradientElement;
+
+    virtual void buildGradient() const = 0;
+    virtual SVGPaintServerType gradientType() const = 0;
+
+    Vector<SVGGradientStop> buildStops() const;
+    mutable RefPtr<SVGPaintServerGradient> m_resource;
+
+protected:
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
+
+    ANIMATED_PROPERTY_DECLARATIONS(SVGGradientElement, int, int, SpreadMethod, spreadMethod)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGGradientElement, int, int, GradientUnits, gradientUnits)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGGradientElement, SVGTransformList *, RefPtr<SVGTransformList>, GradientTransform, gradientTransform)
+};
 
 } // namespace WebCore
 

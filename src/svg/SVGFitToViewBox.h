@@ -26,30 +26,32 @@
 #if ENABLE(SVG)
 #include "SVGElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class AffineTransform;
-    class SVGPreserveAspectRatio;
+class AffineTransform;
+class SVGPreserveAspectRatio;
 
-    class SVGFitToViewBox {
-    public:
-        SVGFitToViewBox();
-        virtual ~SVGFitToViewBox();
+class SVGFitToViewBox
+{
+public:
+    SVGFitToViewBox();
+    virtual ~SVGFitToViewBox();
 
-        // 'SVGFitToViewBox' functions
-        bool parseViewBox(const UChar*& start, const UChar* end, float& x, float& y, float& w, float& h, bool validate = true);
-        virtual AffineTransform viewBoxToViewTransform(float viewWidth, float viewHeight) const;
+    // 'SVGFitToViewBox' functions
+    bool parseViewBox(const UChar *&start, const UChar *end, float &x, float &y, float &w, float &h, bool validate = true);
+    virtual AffineTransform viewBoxToViewTransform(float viewWidth, float viewHeight) const;
 
-        bool parseMappedAttribute(MappedAttribute*);
-        bool isKnownAttribute(const QualifiedName&);
+    bool parseMappedAttribute(MappedAttribute *);
+    bool isKnownAttribute(const QualifiedName &);
 
-    protected:
-        virtual const SVGElement* contextElement() const = 0;
+protected:
+    virtual const SVGElement *contextElement() const = 0;
 
-    private:
-        ANIMATED_PROPERTY_DECLARATIONS_WITH_CONTEXT(SVGFitToViewBox, FloatRect, FloatRect, ViewBox, viewBox)
-        ANIMATED_PROPERTY_DECLARATIONS_WITH_CONTEXT(SVGFitToViewBox, SVGPreserveAspectRatio*, RefPtr<SVGPreserveAspectRatio>, PreserveAspectRatio, preserveAspectRatio)
-    };
+private:
+    ANIMATED_PROPERTY_DECLARATIONS_WITH_CONTEXT(SVGFitToViewBox, FloatRect, FloatRect, ViewBox, viewBox)
+    ANIMATED_PROPERTY_DECLARATIONS_WITH_CONTEXT(SVGFitToViewBox, SVGPreserveAspectRatio *, RefPtr<SVGPreserveAspectRatio>, PreserveAspectRatio, preserveAspectRatio)
+};
 
 } // namespace WebCore
 

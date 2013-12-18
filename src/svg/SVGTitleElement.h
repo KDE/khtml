@@ -29,26 +29,31 @@
 
 namespace WebCore
 {
-    class SVGTitleElement : public SVGStyledElement,
-                            public SVGLangSpace
+class SVGTitleElement : public SVGStyledElement,
+    public SVGLangSpace
+{
+public:
+    SVGTitleElement(const QualifiedName &, Document *);
+
+    virtual void insertedIntoDocument();
+    virtual void removedFromDocument();
+    using DOM::NodeImpl::childrenChanged;
+    virtual void childrenChanged(bool changedByParser = false, Node *beforeChange = 0, Node *afterChange = 0, int childCountDelta = 0);
+
+    virtual bool rendererIsNeeded(RenderStyle *)
     {
-    public:
-        SVGTitleElement(const QualifiedName&, Document*);
+        return false;
+    }
 
-        virtual void insertedIntoDocument();
-        virtual void removedFromDocument();
-        using DOM::NodeImpl::childrenChanged;
-        virtual void childrenChanged(bool changedByParser = false, Node* beforeChange = 0, Node* afterChange = 0, int childCountDelta = 0);
-
-        virtual bool rendererIsNeeded(RenderStyle*) { return false; }
-
-        // KHTML ElementImpl pure virtual method
-        virtual quint32 id() const { return SVGNames::titleTag.id(); }
-    };
+    // KHTML ElementImpl pure virtual method
+    virtual quint32 id() const
+    {
+        return SVGNames::titleTag.id();
+    }
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

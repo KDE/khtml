@@ -30,7 +30,8 @@
 #include <css_value.h>
 #include <dom/dom_string.h>
 
-namespace DOM {
+namespace DOM
+{
 
 /**
  * The \c CSS2Azimuth interface represents the <a
@@ -46,7 +47,7 @@ public:
     CSS2Azimuth(CSS2AzimuthImpl *impl);
 public:
 
-    CSS2Azimuth & operator = (const CSS2Azimuth &other);
+    CSS2Azimuth &operator = (const CSS2Azimuth &other);
 
     ~CSS2Azimuth();
 
@@ -93,7 +94,7 @@ public:
      * readonly.
      *
      */
-    void setAngleValue ( const unsigned short unitType, const float floatValue );
+    void setAngleValue(const unsigned short unitType, const float floatValue);
 
     /**
      * Used to retrieved the float value of the azimuth property.
@@ -108,7 +109,7 @@ public:
      * INVALID_ACCESS_ERR: Raised if the unit type is invalid.
      *
      */
-    float getAngleValue ( const unsigned short unitType );
+    float getAngleValue(const unsigned short unitType);
 
     /**
      * Setting the identifier for the azimuth property will unset any
@@ -129,9 +130,8 @@ public:
      * readonly.
      *
      */
-    void setIdentifier ( const DOM::DOMString &identifier, const bool behind );
+    void setIdentifier(const DOM::DOMString &identifier, const bool behind);
 };
-
 
 class CSS2BackgroundPositionImpl;
 
@@ -150,7 +150,7 @@ public:
     CSS2BackgroundPosition(CSS2BackgroundPositionImpl *impl);
 public:
 
-    CSS2BackgroundPosition & operator = (const CSS2BackgroundPosition &other);
+    CSS2BackgroundPosition &operator = (const CSS2BackgroundPosition &other);
 
     ~CSS2BackgroundPosition();
 
@@ -219,7 +219,7 @@ public:
      * float or the value can't be converted.
      *
      */
-    float getHorizontalPosition ( const float horizontalType );
+    float getHorizontalPosition(const float horizontalType);
 
     /**
      * This method is used to get the float value in a specified unit
@@ -238,7 +238,7 @@ public:
      * float or the value can't be converted.
      *
      */
-    float getVerticalPosition ( const float verticalType );
+    float getVerticalPosition(const float verticalType);
 
     /**
      * This method is used to set the horizontal position with a
@@ -259,7 +259,7 @@ public:
      * readonly.
      *
      */
-    void setHorizontalPosition ( const unsigned short horizontalType, const float value );
+    void setHorizontalPosition(const unsigned short horizontalType, const float value);
 
     /**
      * This method is used to set the vertical position with a
@@ -280,7 +280,7 @@ public:
      * readonly.
      *
      */
-    void setVerticalPosition ( const unsigned short verticalType, const float value );
+    void setVerticalPosition(const unsigned short verticalType, const float value);
 
     /**
      * Sets the identifiers. If the second identifier is the empty
@@ -302,9 +302,8 @@ public:
      * readonly.
      *
      */
-    void setPositionIdentifier ( const DOM::DOMString &horizontalIdentifier, const DOM::DOMString &verticalIdentifier );
+    void setPositionIdentifier(const DOM::DOMString &horizontalIdentifier, const DOM::DOMString &verticalIdentifier);
 };
-
 
 class CSS2BorderSpacingImpl;
 
@@ -322,7 +321,7 @@ public:
     CSS2BorderSpacing(CSS2BorderSpacingImpl *impl);
 public:
 
-    CSS2BorderSpacing & operator = (const CSS2BorderSpacing &other);
+    CSS2BorderSpacing &operator = (const CSS2BorderSpacing &other);
 
     ~CSS2BorderSpacing();
 
@@ -364,7 +363,7 @@ public:
      * float or the value can't be converted.
      *
      */
-    float getHorizontalSpacing ( const float horizontalType );
+    float getHorizontalSpacing(const float horizontalType);
 
     /**
      * This method is used to get the float value in a specified unit
@@ -383,7 +382,7 @@ public:
      * float or the value can't be converted.
      *
      */
-    float getVerticalSpacing ( const float verticalType );
+    float getVerticalSpacing(const float verticalType);
 
     /**
      * This method is used to set the horizontal spacing with a
@@ -403,7 +402,7 @@ public:
      * readonly.
      *
      */
-    void setHorizontalSpacing ( const unsigned short horizontalType, const float value );
+    void setHorizontalSpacing(const unsigned short horizontalType, const float value);
 
     /**
      * This method is used to set the vertical spacing with a
@@ -423,7 +422,7 @@ public:
      * readonly.
      *
      */
-    void setVerticalSpacing ( const unsigned short verticalType, const float value );
+    void setVerticalSpacing(const unsigned short verticalType, const float value);
 
     /**
      * Set this property as inherit. \c horizontalType and
@@ -433,7 +432,6 @@ public:
      */
     void setInherit();
 };
-
 
 class CSS2CounterIncrementImpl;
 
@@ -452,7 +450,7 @@ public:
     CSS2CounterIncrement(CSS2CounterIncrementImpl *impl);
 public:
 
-    CSS2CounterIncrement & operator = (const CSS2CounterIncrement &other);
+    CSS2CounterIncrement &operator = (const CSS2CounterIncrement &other);
 
     ~CSS2CounterIncrement();
 
@@ -472,7 +470,7 @@ public:
      * readonly.
      *
      */
-    void setIdentifier( const DOM::DOMString & );
+    void setIdentifier(const DOM::DOMString &);
 
     /**
      * The increment (default value is 1).
@@ -487,9 +485,8 @@ public:
      * readonly.
      *
      */
-    void setIncrement( const short  );
+    void setIncrement(const short);
 };
-
 
 class CSS2CounterResetImpl;
 
@@ -508,7 +505,7 @@ public:
     CSS2CounterReset(CSS2CounterResetImpl *impl);
 public:
 
-    CSS2CounterReset & operator = (const CSS2CounterReset &other);
+    CSS2CounterReset &operator = (const CSS2CounterReset &other);
 
     ~CSS2CounterReset();
 
@@ -528,7 +525,7 @@ public:
      * readonly.
      *
      */
-    void setIdentifier( const DOM::DOMString & );
+    void setIdentifier(const DOM::DOMString &);
 
     /**
      * The reset (default value is 0).
@@ -543,9 +540,8 @@ public:
      * readonly.
      *
      */
-    void setReset( const short  );
+    void setReset(const short);
 };
-
 
 class CSS2CursorImpl;
 class CSSValueList;
@@ -564,7 +560,7 @@ public:
     CSS2Cursor(CSS2CursorImpl *impl);
 public:
 
-    CSS2Cursor & operator = (const CSS2Cursor &other);
+    CSS2Cursor &operator = (const CSS2Cursor &other);
 
     ~CSS2Cursor();
 
@@ -583,7 +579,7 @@ public:
     /**
      * see cursorType
      */
-    void setCursorType( const unsigned short  );
+    void setCursorType(const unsigned short);
 
     /**
      * \c uris represents the list of URIs (
@@ -610,9 +606,8 @@ public:
      * readonly.
      *
      */
-    void setPredefinedCursor( const DOM::DOMString & );
+    void setPredefinedCursor(const DOM::DOMString &);
 };
-
 
 class CSS2FontFaceSrcImpl;
 class CSSValueList;
@@ -631,7 +626,7 @@ public:
     CSS2FontFaceSrc(CSS2FontFaceSrcImpl *impl);
 public:
 
-    CSS2FontFaceSrc & operator = (const CSS2FontFaceSrc &other);
+    CSS2FontFaceSrc &operator = (const CSS2FontFaceSrc &other);
 
     ~CSS2FontFaceSrc();
 
@@ -651,7 +646,7 @@ public:
      * readonly.
      *
      */
-    void setUri( const DOM::DOMString & );
+    void setUri(const DOM::DOMString &);
 
     /**
      * This attribute contains a list of strings for the format CSS
@@ -676,9 +671,8 @@ public:
      * readonly.
      *
      */
-    void setFontFaceName( const DOM::DOMString & );
+    void setFontFaceName(const DOM::DOMString &);
 };
-
 
 class CSS2FontFaceWidthsImpl;
 class CSSValueList;
@@ -698,7 +692,7 @@ public:
     CSS2FontFaceWidths(CSS2FontFaceWidthsImpl *impl);
 public:
 
-    CSS2FontFaceWidths & operator = (const CSS2FontFaceWidths &other);
+    CSS2FontFaceWidths &operator = (const CSS2FontFaceWidths &other);
 
     ~CSS2FontFaceWidths();
 
@@ -718,7 +712,7 @@ public:
      * readonly.
      *
      */
-    void setUrange( const DOM::DOMString & );
+    void setUrange(const DOM::DOMString &);
 
     /**
      * A list of numbers representing the glyph widths.
@@ -726,7 +720,6 @@ public:
      */
     CSSValueList numbers() const;
 };
-
 
 class CSS2PageSizeImpl;
 
@@ -744,7 +737,7 @@ public:
     CSS2PageSize(CSS2PageSizeImpl *impl);
 public:
 
-    CSS2PageSize & operator = (const CSS2PageSize &other);
+    CSS2PageSize &operator = (const CSS2PageSize &other);
 
     ~CSS2PageSize();
 
@@ -798,7 +791,7 @@ public:
      * float or the value can't be converted.
      *
      */
-    float getWidth ( const float widthType );
+    float getWidth(const float widthType);
 
     /**
      * This method is used to get the float value in a specified unit
@@ -817,7 +810,7 @@ public:
      * float or the value can't be converted.
      *
      */
-    float getHeightSize ( const float heightType );
+    float getHeightSize(const float heightType);
 
     /**
      * This method is used to set the width position with a specified
@@ -837,7 +830,7 @@ public:
      * readonly.
      *
      */
-    void setWidthSize ( const unsigned short widthType, const float value );
+    void setWidthSize(const unsigned short widthType, const float value);
 
     /**
      * This method is used to set the height position with a specified
@@ -857,7 +850,7 @@ public:
      * readonly.
      *
      */
-    void setHeightSize ( const unsigned short heightType, const float value );
+    void setHeightSize(const unsigned short heightType, const float value);
 
     /**
      * Sets the identifier.
@@ -873,9 +866,8 @@ public:
      * readonly.
      *
      */
-    void setIdentifier ( const DOM::DOMString &identifier );
+    void setIdentifier(const DOM::DOMString &identifier);
 };
-
 
 class CSS2PlayDuringImpl;
 
@@ -893,7 +885,7 @@ public:
     CSS2PlayDuring(CSS2PlayDuringImpl *impl);
 public:
 
-    CSS2PlayDuring & operator = (const CSS2PlayDuring &other);
+    CSS2PlayDuring &operator = (const CSS2PlayDuring &other);
 
     ~CSS2PlayDuring();
 
@@ -926,7 +918,7 @@ public:
      * readonly.
      *
      */
-    void setPlayDuringIdentifier( const DOM::DOMString & );
+    void setPlayDuringIdentifier(const DOM::DOMString &);
 
     /**
      * The sound specified by the \c uri . It will set the
@@ -945,7 +937,7 @@ public:
      * readonly.
      *
      */
-    void setUri( const DOM::DOMString & );
+    void setUri(const DOM::DOMString &);
 
     /**
      * \c true if the sound should be mixed. It will be
@@ -961,7 +953,7 @@ public:
      * readonly.
      *
      */
-    void setMix( const bool  );
+    void setMix(const bool);
 
     /**
      * \c true if the sound should be repeated. It will be
@@ -977,9 +969,8 @@ public:
      * readonly.
      *
      */
-    void setRepeat( const bool );
+    void setRepeat(const bool);
 };
-
 
 class CSS2PropertiesImpl;
 
@@ -1053,7 +1044,7 @@ public:
     CSS2Properties(CSS2PropertiesImpl *impl);
 public:
 
-    CSS2Properties & operator = (const CSS2Properties &other);
+    CSS2Properties &operator = (const CSS2Properties &other);
 
     ~CSS2Properties();
 
@@ -1068,7 +1059,7 @@ public:
     /**
      * see azimuth
      */
-    void setAzimuth( const DOM::DOMString & );
+    void setAzimuth(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1081,7 +1072,7 @@ public:
     /**
      * see background
      */
-    void setBackground( const DOM::DOMString & );
+    void setBackground(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1094,7 +1085,7 @@ public:
     /**
      * see backgroundAttachment
      */
-    void setBackgroundAttachment( const DOM::DOMString & );
+    void setBackgroundAttachment(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1107,7 +1098,7 @@ public:
     /**
      * see backgroundColor
      */
-    void setBackgroundColor( const DOM::DOMString & );
+    void setBackgroundColor(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1120,7 +1111,7 @@ public:
     /**
      * see backgroundImage
      */
-    void setBackgroundImage( const DOM::DOMString & );
+    void setBackgroundImage(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1133,7 +1124,7 @@ public:
     /**
      * see backgroundPosition
      */
-    void setBackgroundPosition( const DOM::DOMString & );
+    void setBackgroundPosition(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1146,7 +1137,7 @@ public:
     /**
      * see backgroundRepeat
      */
-    void setBackgroundRepeat( const DOM::DOMString & );
+    void setBackgroundRepeat(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1159,7 +1150,7 @@ public:
     /**
      * see border
      */
-    void setBorder( const DOM::DOMString & );
+    void setBorder(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1172,7 +1163,7 @@ public:
     /**
      * see borderCollapse
      */
-    void setBorderCollapse( const DOM::DOMString & );
+    void setBorderCollapse(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1185,7 +1176,7 @@ public:
     /**
      * see borderColor
      */
-    void setBorderColor( const DOM::DOMString & );
+    void setBorderColor(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1198,7 +1189,7 @@ public:
     /**
      * see borderSpacing
      */
-    void setBorderSpacing( const DOM::DOMString & );
+    void setBorderSpacing(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1211,7 +1202,7 @@ public:
     /**
      * see borderStyle
      */
-    void setBorderStyle( const DOM::DOMString & );
+    void setBorderStyle(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1224,7 +1215,7 @@ public:
     /**
      * see borderTop
      */
-    void setBorderTop( const DOM::DOMString & );
+    void setBorderTop(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1237,7 +1228,7 @@ public:
     /**
      * see borderRight
      */
-    void setBorderRight( const DOM::DOMString & );
+    void setBorderRight(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1250,7 +1241,7 @@ public:
     /**
      * see borderBottom
      */
-    void setBorderBottom( const DOM::DOMString & );
+    void setBorderBottom(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1263,7 +1254,7 @@ public:
     /**
      * see borderLeft
      */
-    void setBorderLeft( const DOM::DOMString & );
+    void setBorderLeft(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1276,7 +1267,7 @@ public:
     /**
      * see borderTopColor
      */
-    void setBorderTopColor( const DOM::DOMString & );
+    void setBorderTopColor(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1289,7 +1280,7 @@ public:
     /**
      * see borderRightColor
      */
-    void setBorderRightColor( const DOM::DOMString & );
+    void setBorderRightColor(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1302,7 +1293,7 @@ public:
     /**
      * see borderBottomColor
      */
-    void setBorderBottomColor( const DOM::DOMString & );
+    void setBorderBottomColor(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1315,7 +1306,7 @@ public:
     /**
      * see borderLeftColor
      */
-    void setBorderLeftColor( const DOM::DOMString & );
+    void setBorderLeftColor(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1328,7 +1319,7 @@ public:
     /**
      * see borderTopStyle
      */
-    void setBorderTopStyle( const DOM::DOMString & );
+    void setBorderTopStyle(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1341,7 +1332,7 @@ public:
     /**
      * see borderRightStyle
      */
-    void setBorderRightStyle( const DOM::DOMString & );
+    void setBorderRightStyle(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1354,7 +1345,7 @@ public:
     /**
      * see borderBottomStyle
      */
-    void setBorderBottomStyle( const DOM::DOMString & );
+    void setBorderBottomStyle(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1367,7 +1358,7 @@ public:
     /**
      * see borderLeftStyle
      */
-    void setBorderLeftStyle( const DOM::DOMString & );
+    void setBorderLeftStyle(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1380,7 +1371,7 @@ public:
     /**
      * see borderTopWidth
      */
-    void setBorderTopWidth( const DOM::DOMString & );
+    void setBorderTopWidth(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1393,7 +1384,7 @@ public:
     /**
      * see borderRightWidth
      */
-    void setBorderRightWidth( const DOM::DOMString & );
+    void setBorderRightWidth(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1406,7 +1397,7 @@ public:
     /**
      * see borderBottomWidth
      */
-    void setBorderBottomWidth( const DOM::DOMString & );
+    void setBorderBottomWidth(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1419,7 +1410,7 @@ public:
     /**
      * see borderLeftWidth
      */
-    void setBorderLeftWidth( const DOM::DOMString & );
+    void setBorderLeftWidth(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1432,7 +1423,7 @@ public:
     /**
      * see borderWidth
      */
-    void setBorderWidth( const DOM::DOMString & );
+    void setBorderWidth(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1445,7 +1436,7 @@ public:
     /**
      * see bottom
      */
-    void setBottom( const DOM::DOMString & );
+    void setBottom(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1458,7 +1449,7 @@ public:
     /**
      * see captionSide
      */
-    void setCaptionSide( const DOM::DOMString & );
+    void setCaptionSide(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1471,7 +1462,7 @@ public:
     /**
      * see clear
      */
-    void setClear( const DOM::DOMString & );
+    void setClear(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1484,7 +1475,7 @@ public:
     /**
      * see clip
      */
-    void setClip( const DOM::DOMString & );
+    void setClip(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1497,7 +1488,7 @@ public:
     /**
      * see color
      */
-    void setColor( const DOM::DOMString & );
+    void setColor(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1510,7 +1501,7 @@ public:
     /**
      * see content
      */
-    void setContent( const DOM::DOMString & );
+    void setContent(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1523,7 +1514,7 @@ public:
     /**
      * see counterIncrement
      */
-    void setCounterIncrement( const DOM::DOMString & );
+    void setCounterIncrement(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1536,7 +1527,7 @@ public:
     /**
      * see counterReset
      */
-    void setCounterReset( const DOM::DOMString & );
+    void setCounterReset(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1549,7 +1540,7 @@ public:
     /**
      * see cue
      */
-    void setCue( const DOM::DOMString & );
+    void setCue(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1562,7 +1553,7 @@ public:
     /**
      * see cueAfter
      */
-    void setCueAfter( const DOM::DOMString & );
+    void setCueAfter(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1575,7 +1566,7 @@ public:
     /**
      * see cueBefore
      */
-    void setCueBefore( const DOM::DOMString & );
+    void setCueBefore(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1588,7 +1579,7 @@ public:
     /**
      * see cursor
      */
-    void setCursor( const DOM::DOMString & );
+    void setCursor(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1601,7 +1592,7 @@ public:
     /**
      * see direction
      */
-    void setDirection( const DOM::DOMString & );
+    void setDirection(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1614,7 +1605,7 @@ public:
     /**
      * see display
      */
-    void setDisplay( const DOM::DOMString & );
+    void setDisplay(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1627,7 +1618,7 @@ public:
     /**
      * see elevation
      */
-    void setElevation( const DOM::DOMString & );
+    void setElevation(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1640,7 +1631,7 @@ public:
     /**
      * see emptyCells
      */
-    void setEmptyCells( const DOM::DOMString & );
+    void setEmptyCells(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1653,7 +1644,7 @@ public:
     /**
      * see cssFloat
      */
-    void setCssFloat( const DOM::DOMString & );
+    void setCssFloat(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1666,7 +1657,7 @@ public:
     /**
      * see font
      */
-    void setFont( const DOM::DOMString & );
+    void setFont(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1679,7 +1670,7 @@ public:
     /**
      * see fontFamily
      */
-    void setFontFamily( const DOM::DOMString & );
+    void setFontFamily(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1692,7 +1683,7 @@ public:
     /**
      * see fontSize
      */
-    void setFontSize( const DOM::DOMString & );
+    void setFontSize(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1705,7 +1696,7 @@ public:
     /**
      * see fontSizeAdjust
      */
-    void setFontSizeAdjust( const DOM::DOMString & );
+    void setFontSizeAdjust(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1718,7 +1709,7 @@ public:
     /**
      * see fontStretch
      */
-    void setFontStretch( const DOM::DOMString & );
+    void setFontStretch(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1731,7 +1722,7 @@ public:
     /**
      * see fontStyle
      */
-    void setFontStyle( const DOM::DOMString & );
+    void setFontStyle(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1744,7 +1735,7 @@ public:
     /**
      * see fontVariant
      */
-    void setFontVariant( const DOM::DOMString & );
+    void setFontVariant(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1757,7 +1748,7 @@ public:
     /**
      * see fontWeight
      */
-    void setFontWeight( const DOM::DOMString & );
+    void setFontWeight(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1770,7 +1761,7 @@ public:
     /**
      * see height
      */
-    void setHeight( const DOM::DOMString & );
+    void setHeight(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1783,7 +1774,7 @@ public:
     /**
      * see left
      */
-    void setLeft( const DOM::DOMString & );
+    void setLeft(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1796,7 +1787,7 @@ public:
     /**
      * see letterSpacing
      */
-    void setLetterSpacing( const DOM::DOMString & );
+    void setLetterSpacing(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1809,7 +1800,7 @@ public:
     /**
      * see lineHeight
      */
-    void setLineHeight( const DOM::DOMString & );
+    void setLineHeight(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1822,7 +1813,7 @@ public:
     /**
      * see listStyle
      */
-    void setListStyle( const DOM::DOMString & );
+    void setListStyle(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1835,7 +1826,7 @@ public:
     /**
      * see listStyleImage
      */
-    void setListStyleImage( const DOM::DOMString & );
+    void setListStyleImage(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1848,7 +1839,7 @@ public:
     /**
      * see listStylePosition
      */
-    void setListStylePosition( const DOM::DOMString & );
+    void setListStylePosition(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1861,7 +1852,7 @@ public:
     /**
      * see listStyleType
      */
-    void setListStyleType( const DOM::DOMString & );
+    void setListStyleType(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1874,7 +1865,7 @@ public:
     /**
      * see margin
      */
-    void setMargin( const DOM::DOMString & );
+    void setMargin(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1887,7 +1878,7 @@ public:
     /**
      * see marginTop
      */
-    void setMarginTop( const DOM::DOMString & );
+    void setMarginTop(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1900,7 +1891,7 @@ public:
     /**
      * see marginRight
      */
-    void setMarginRight( const DOM::DOMString & );
+    void setMarginRight(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1913,7 +1904,7 @@ public:
     /**
      * see marginBottom
      */
-    void setMarginBottom( const DOM::DOMString & );
+    void setMarginBottom(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1926,7 +1917,7 @@ public:
     /**
      * see marginLeft
      */
-    void setMarginLeft( const DOM::DOMString & );
+    void setMarginLeft(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1939,7 +1930,7 @@ public:
     /**
      * see markerOffset
      */
-    void setMarkerOffset( const DOM::DOMString & );
+    void setMarkerOffset(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1952,7 +1943,7 @@ public:
     /**
      * see marks
      */
-    void setMarks( const DOM::DOMString & );
+    void setMarks(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1965,7 +1956,7 @@ public:
     /**
      * see maxHeight
      */
-    void setMaxHeight( const DOM::DOMString & );
+    void setMaxHeight(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1978,7 +1969,7 @@ public:
     /**
      * see maxWidth
      */
-    void setMaxWidth( const DOM::DOMString & );
+    void setMaxWidth(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -1991,7 +1982,7 @@ public:
     /**
      * see minHeight
      */
-    void setMinHeight( const DOM::DOMString & );
+    void setMinHeight(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2004,7 +1995,7 @@ public:
     /**
      * see minWidth
      */
-    void setMinWidth( const DOM::DOMString & );
+    void setMinWidth(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2017,7 +2008,7 @@ public:
     /**
      * see orphans
      */
-    void setOrphans( const DOM::DOMString & );
+    void setOrphans(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2030,7 +2021,7 @@ public:
     /**
      * see outline
      */
-    void setOutline( const DOM::DOMString & );
+    void setOutline(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2043,7 +2034,7 @@ public:
     /**
      * see outlineColor
      */
-    void setOutlineColor( const DOM::DOMString & );
+    void setOutlineColor(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2056,7 +2047,7 @@ public:
     /**
      * see outlineStyle
      */
-    void setOutlineStyle( const DOM::DOMString & );
+    void setOutlineStyle(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2069,7 +2060,7 @@ public:
     /**
      * see outlineWidth
      */
-    void setOutlineWidth( const DOM::DOMString & );
+    void setOutlineWidth(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2082,7 +2073,7 @@ public:
     /**
      * see overflow
      */
-    void setOverflow( const DOM::DOMString & );
+    void setOverflow(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2095,7 +2086,7 @@ public:
     /**
      * see padding
      */
-    void setPadding( const DOM::DOMString & );
+    void setPadding(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2108,7 +2099,7 @@ public:
     /**
      * see paddingTop
      */
-    void setPaddingTop( const DOM::DOMString & );
+    void setPaddingTop(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2121,7 +2112,7 @@ public:
     /**
      * see paddingRight
      */
-    void setPaddingRight( const DOM::DOMString & );
+    void setPaddingRight(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2134,7 +2125,7 @@ public:
     /**
      * see paddingBottom
      */
-    void setPaddingBottom( const DOM::DOMString & );
+    void setPaddingBottom(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2147,7 +2138,7 @@ public:
     /**
      * see paddingLeft
      */
-    void setPaddingLeft( const DOM::DOMString & );
+    void setPaddingLeft(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2160,7 +2151,7 @@ public:
     /**
      * see page
      */
-    void setPage( const DOM::DOMString & );
+    void setPage(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2173,7 +2164,7 @@ public:
     /**
      * see pageBreakAfter
      */
-    void setPageBreakAfter( const DOM::DOMString & );
+    void setPageBreakAfter(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2186,7 +2177,7 @@ public:
     /**
      * see pageBreakBefore
      */
-    void setPageBreakBefore( const DOM::DOMString & );
+    void setPageBreakBefore(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2199,7 +2190,7 @@ public:
     /**
      * see pageBreakInside
      */
-    void setPageBreakInside( const DOM::DOMString & );
+    void setPageBreakInside(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2212,7 +2203,7 @@ public:
     /**
      * see pause
      */
-    void setPause( const DOM::DOMString & );
+    void setPause(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2225,7 +2216,7 @@ public:
     /**
      * see pauseAfter
      */
-    void setPauseAfter( const DOM::DOMString & );
+    void setPauseAfter(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2238,7 +2229,7 @@ public:
     /**
      * see pauseBefore
      */
-    void setPauseBefore( const DOM::DOMString & );
+    void setPauseBefore(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2251,7 +2242,7 @@ public:
     /**
      * see pitch
      */
-    void setPitch( const DOM::DOMString & );
+    void setPitch(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2264,7 +2255,7 @@ public:
     /**
      * see pitchRange
      */
-    void setPitchRange( const DOM::DOMString & );
+    void setPitchRange(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2277,7 +2268,7 @@ public:
     /**
      * see playDuring
      */
-    void setPlayDuring( const DOM::DOMString & );
+    void setPlayDuring(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2290,7 +2281,7 @@ public:
     /**
      * see position
      */
-    void setPosition( const DOM::DOMString & );
+    void setPosition(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2303,7 +2294,7 @@ public:
     /**
      * see quotes
      */
-    void setQuotes( const DOM::DOMString & );
+    void setQuotes(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2316,7 +2307,7 @@ public:
     /**
      * see richness
      */
-    void setRichness( const DOM::DOMString & );
+    void setRichness(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2329,7 +2320,7 @@ public:
     /**
      * see right
      */
-    void setRight( const DOM::DOMString & );
+    void setRight(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2342,7 +2333,7 @@ public:
     /**
      * see size
      */
-    void setSize( const DOM::DOMString & );
+    void setSize(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2355,7 +2346,7 @@ public:
     /**
      * see speak
      */
-    void setSpeak( const DOM::DOMString & );
+    void setSpeak(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2368,7 +2359,7 @@ public:
     /**
      * see speakHeader
      */
-    void setSpeakHeader( const DOM::DOMString & );
+    void setSpeakHeader(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2381,7 +2372,7 @@ public:
     /**
      * see speakNumeral
      */
-    void setSpeakNumeral( const DOM::DOMString & );
+    void setSpeakNumeral(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2394,7 +2385,7 @@ public:
     /**
      * see speakPunctuation
      */
-    void setSpeakPunctuation( const DOM::DOMString & );
+    void setSpeakPunctuation(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2407,7 +2398,7 @@ public:
     /**
      * see speechRate
      */
-    void setSpeechRate( const DOM::DOMString & );
+    void setSpeechRate(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2420,7 +2411,7 @@ public:
     /**
      * see stress
      */
-    void setStress( const DOM::DOMString & );
+    void setStress(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2433,7 +2424,7 @@ public:
     /**
      * see tableLayout
      */
-    void setTableLayout( const DOM::DOMString & );
+    void setTableLayout(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2446,7 +2437,7 @@ public:
     /**
      * see textAlign
      */
-    void setTextAlign( const DOM::DOMString & );
+    void setTextAlign(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2459,7 +2450,7 @@ public:
     /**
      * see textDecoration
      */
-    void setTextDecoration( const DOM::DOMString & );
+    void setTextDecoration(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2472,7 +2463,7 @@ public:
     /**
      * see textIndent
      */
-    void setTextIndent( const DOM::DOMString & );
+    void setTextIndent(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2485,7 +2476,7 @@ public:
     /**
      * see textShadow
      */
-    void setTextShadow( const DOM::DOMString & );
+    void setTextShadow(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2498,7 +2489,7 @@ public:
     /**
      * see textTransform
      */
-    void setTextTransform( const DOM::DOMString & );
+    void setTextTransform(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2511,7 +2502,7 @@ public:
     /**
      * see top
      */
-    void setTop( const DOM::DOMString & );
+    void setTop(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2524,7 +2515,7 @@ public:
     /**
      * see unicodeBidi
      */
-    void setUnicodeBidi( const DOM::DOMString & );
+    void setUnicodeBidi(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2537,7 +2528,7 @@ public:
     /**
      * see verticalAlign
      */
-    void setVerticalAlign( const DOM::DOMString & );
+    void setVerticalAlign(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2550,7 +2541,7 @@ public:
     /**
      * see visibility
      */
-    void setVisibility( const DOM::DOMString & );
+    void setVisibility(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2563,7 +2554,7 @@ public:
     /**
      * see voiceFamily
      */
-    void setVoiceFamily( const DOM::DOMString & );
+    void setVoiceFamily(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2576,7 +2567,7 @@ public:
     /**
      * see volume
      */
-    void setVolume( const DOM::DOMString & );
+    void setVolume(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2589,7 +2580,7 @@ public:
     /**
      * see whiteSpace
      */
-    void setWhiteSpace( const DOM::DOMString & );
+    void setWhiteSpace(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2602,7 +2593,7 @@ public:
     /**
      * see widows
      */
-    void setWidows( const DOM::DOMString & );
+    void setWidows(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2615,7 +2606,7 @@ public:
     /**
      * see width
      */
-    void setWidth( const DOM::DOMString & );
+    void setWidth(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2628,7 +2619,7 @@ public:
     /**
      * see wordSpacing
      */
-    void setWordSpacing( const DOM::DOMString & );
+    void setWordSpacing(const DOM::DOMString &);
 
     /**
      * See the <a
@@ -2641,9 +2632,8 @@ public:
     /**
      * see zIndex
      */
-    void setZIndex( const DOM::DOMString & );
+    void setZIndex(const DOM::DOMString &);
 };
-
 
 class CSS2TextShadowImpl;
 class CSSValue;
@@ -2663,7 +2653,7 @@ public:
     CSS2TextShadow(CSS2TextShadowImpl *impl);
 public:
 
-    CSS2TextShadow & operator = (const CSS2TextShadow &other);
+    CSS2TextShadow &operator = (const CSS2TextShadow &other);
 
     ~CSS2TextShadow();
 
@@ -2695,7 +2685,6 @@ public:
      */
     CSSValue blur() const;
 };
-
 
 }; // namespace
 

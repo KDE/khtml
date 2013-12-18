@@ -32,7 +32,7 @@ public:
     KHTMLFactory();
     virtual ~KHTMLFactory();
 
-    virtual QObject *create(const char* iface,
+    virtual QObject *create(const char *iface,
                             QWidget *parentWidget,
                             QObject *parent,
                             const QVariantList &args,

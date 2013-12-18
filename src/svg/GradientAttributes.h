@@ -26,49 +26,88 @@
 
 namespace WebCore
 {
-    struct GradientAttributes {
-        GradientAttributes()
-            : m_spreadMethod(SPREADMETHOD_PAD)
-            , m_boundingBoxMode(true)
-            , m_spreadMethodSet(false)
-            , m_boundingBoxModeSet(false)
-            , m_gradientTransformSet(false)
-            , m_stopsSet(false)
-        {
-        }
+struct GradientAttributes {
+    GradientAttributes()
+        : m_spreadMethod(SPREADMETHOD_PAD)
+        , m_boundingBoxMode(true)
+        , m_spreadMethodSet(false)
+        , m_boundingBoxModeSet(false)
+        , m_gradientTransformSet(false)
+        , m_stopsSet(false)
+    {
+    }
 
-        SVGGradientSpreadMethod spreadMethod() const { return m_spreadMethod; }
-        bool boundingBoxMode() const { return m_boundingBoxMode; }
-        AffineTransform gradientTransform() const { return m_gradientTransform; }
-        const Vector<SVGGradientStop>& stops() const { return m_stops; }
+    SVGGradientSpreadMethod spreadMethod() const
+    {
+        return m_spreadMethod;
+    }
+    bool boundingBoxMode() const
+    {
+        return m_boundingBoxMode;
+    }
+    AffineTransform gradientTransform() const
+    {
+        return m_gradientTransform;
+    }
+    const Vector<SVGGradientStop> &stops() const
+    {
+        return m_stops;
+    }
 
-        void setSpreadMethod(SVGGradientSpreadMethod value) { m_spreadMethod = value; m_spreadMethodSet = true; }
-        void setBoundingBoxMode(bool value) { m_boundingBoxMode = value; m_boundingBoxModeSet = true; }
-        void setGradientTransform(const AffineTransform& value) { m_gradientTransform = value; m_gradientTransformSet = true; }
-        void setStops(const Vector<SVGGradientStop>& value) { m_stops = value; m_stopsSet = true; } 
+    void setSpreadMethod(SVGGradientSpreadMethod value)
+    {
+        m_spreadMethod = value;
+        m_spreadMethodSet = true;
+    }
+    void setBoundingBoxMode(bool value)
+    {
+        m_boundingBoxMode = value;
+        m_boundingBoxModeSet = true;
+    }
+    void setGradientTransform(const AffineTransform &value)
+    {
+        m_gradientTransform = value;
+        m_gradientTransformSet = true;
+    }
+    void setStops(const Vector<SVGGradientStop> &value)
+    {
+        m_stops = value;
+        m_stopsSet = true;
+    }
 
-        bool hasSpreadMethod() const { return m_spreadMethodSet; }
-        bool hasBoundingBoxMode() const { return m_boundingBoxModeSet; }
-        bool hasGradientTransform() const { return m_gradientTransformSet; }
-        bool hasStops() const { return m_stopsSet; }
+    bool hasSpreadMethod() const
+    {
+        return m_spreadMethodSet;
+    }
+    bool hasBoundingBoxMode() const
+    {
+        return m_boundingBoxModeSet;
+    }
+    bool hasGradientTransform() const
+    {
+        return m_gradientTransformSet;
+    }
+    bool hasStops() const
+    {
+        return m_stopsSet;
+    }
 
-    private:
-        // Properties
-        SVGGradientSpreadMethod m_spreadMethod;
-        bool m_boundingBoxMode;
-        AffineTransform m_gradientTransform;
-        Vector<SVGGradientStop> m_stops;
+private:
+    // Properties
+    SVGGradientSpreadMethod m_spreadMethod;
+    bool m_boundingBoxMode;
+    AffineTransform m_gradientTransform;
+    Vector<SVGGradientStop> m_stops;
 
-        // Property states
-        bool m_spreadMethodSet : 1;
-        bool m_boundingBoxModeSet : 1;
-        bool m_gradientTransformSet : 1;
-        bool m_stopsSet : 1;
-    };
+    // Property states
+    bool m_spreadMethodSet : 1;
+    bool m_boundingBoxModeSet : 1;
+    bool m_gradientTransformSet : 1;
+    bool m_stopsSet : 1;
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

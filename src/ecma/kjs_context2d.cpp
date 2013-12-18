@@ -1,4 +1,3 @@
-// -*- c-basic-offset: 4 -*-
 /*
  *  This file is part of the KDE libraries
  *  Copyright (C) 2004 Apple Computer, Inc.
@@ -61,12 +60,12 @@
 #include <css/css_stylesheetimpl.h>
 #include <css/css_ruleimpl.h>
 
-
 using namespace DOM;
 
 #include "kjs_context2d.lut.h"
 
-namespace KJS {
+namespace KJS
+{
 
 ////////////////////// Context2D Object ////////////////////////
 
@@ -125,12 +124,12 @@ KJS_IMPLEMENT_PROTOTYPE("CanvasRenderingContext2DProto", Context2DProto, Context
 
 IMPLEMENT_PSEUDO_CONSTRUCTOR(Context2DPseudoCtor, "CanvasRenderingContext2D", Context2DProto)
 
-Context2D::Context2D(ExecState* exec, DOM::CanvasContext2DImpl *ctx):
+Context2D::Context2D(ExecState *exec, DOM::CanvasContext2DImpl *ctx):
     WrapperBase(Context2DProto::self(exec), ctx)
 {}
 
 // Checks count and sets an exception if needed
-static bool enoughArguments(ExecState* exec, const List& args, int limit)
+static bool enoughArguments(ExecState *exec, const List &args, int limit)
 {
     if (args.size() < limit) {
         setDOMException(exec, DOMException::NOT_SUPPORTED_ERR);
@@ -140,7 +139,7 @@ static bool enoughArguments(ExecState* exec, const List& args, int limit)
 }
 
 // Verifies that a float value is not NaN or a plus/minus infinity (unless infOK)
-static bool valFloatOK(ExecState* exec, const JSValue* v, bool infOK)
+static bool valFloatOK(ExecState *exec, const JSValue *v, bool infOK)
 {
     float val = v->toFloat(exec);
     if (KJS::isNaN(val) || (!infOK && KJS::isInf(val))) {
@@ -151,31 +150,33 @@ static bool valFloatOK(ExecState* exec, const JSValue* v, bool infOK)
 }
 
 // Verifies that float arguments are not NaN or a plus/minus infinity (unless infOK)
-static bool argFloatsOK(ExecState* exec, const List& args, int minArg, int maxArg, bool infOK)
+static bool argFloatsOK(ExecState *exec, const List &args, int minArg, int maxArg, bool infOK)
 {
     for (int c = minArg; c <= maxArg; ++c) {
-        if (!valFloatOK(exec, args[c], infOK))
+        if (!valFloatOK(exec, args[c], infOK)) {
             return false;
+        }
     }
     return true;
 }
 
 // Checks if the JSValue is Inf or NaN
-static bool argFloatIsInforNaN(ExecState* exec, const JSValue* v)
+static bool argFloatIsInforNaN(ExecState *exec, const JSValue *v)
 {
     float val = v->toFloat(exec);
-    if (KJS::isNaN(val) || KJS::isInf(val))
+    if (KJS::isNaN(val) || KJS::isInf(val)) {
         return true;
+    }
     return false;
 }
 
-
 // Checks if one the arguments if Inf or NaN
-static bool argumentsContainInforNaN(ExecState* exec, const List& args, int minArg, int maxArg)
+static bool argumentsContainInforNaN(ExecState *exec, const List &args, int minArg, int maxArg)
 {
     for (int c = minArg; c <= maxArg; ++c) {
-        if (argFloatIsInforNaN(exec, args[c]))
+        if (argFloatIsInforNaN(exec, args[c])) {
             return true;
+        }
     }
     return false;
 }
@@ -187,10 +188,9 @@ static bool argumentsContainInforNaN(ExecState* exec, const List& args, int minA
 #define KJS_CHECK_FLOAT_VAL(v) if (!valFloatOK(exec, v, false)) return;
 
 // Unlike the above checks, ignore the invalid(Inf/NaN) values,
-// without throwing an exception 
+// without throwing an exception
 #define KJS_CHECK_FLOAT_IGNORE_INVALID(v) do { if (argFloatIsInforNaN(exec, v)) return; } while(0)
 #define KJS_CHECK_FLOAT_ARGUMENTS_IGNORE_INVALID(min,max) do { if (argumentsContainInforNaN(exec, args, min, max)) return jsUndefined(); } while(0)
-
 
 JSValue *KJS::Context2DFunction::callAsFunction(ExecState *exec, JSObject *thisObj, const List &args)
 {
@@ -201,7 +201,7 @@ JSValue *KJS::Context2DFunction::callAsFunction(ExecState *exec, JSObject *thisO
 #endif
 
     Context2D *jsContextObject = static_cast<KJS::Context2D *>(thisObj);
-    CanvasContext2DImpl* ctx   = jsContextObject->impl();
+    CanvasContext2DImpl *ctx   = jsContextObject->impl();
     DOMExceptionTranslator exception(exec);
 
     switch (id) {
@@ -230,7 +230,6 @@ JSValue *KJS::Context2DFunction::callAsFunction(ExecState *exec, JSObject *thisO
         KJS_REQUIRE_ARGS(1);
         // Rotate actually rejects NaN/infinity as well
         KJS_CHECK_FLOAT_ARGUMENTS_IGNORE_INVALID(0, 0);
-
 
         ctx->rotate(args[0]->toFloat(exec));
         break;
@@ -272,9 +271,9 @@ JSValue *KJS::Context2DFunction::callAsFunction(ExecState *exec, JSObject *thisO
         KJS_REQUIRE_ARGS(4);
         KJS_CHECK_FLOAT_ARGS(0, 3);
 
-        CanvasGradientImpl* grad = ctx->createLinearGradient(
-              args[0]->toFloat(exec), args[1]->toFloat(exec),
-              args[2]->toFloat(exec), args[3]->toFloat(exec));
+        CanvasGradientImpl *grad = ctx->createLinearGradient(
+                                       args[0]->toFloat(exec), args[1]->toFloat(exec),
+                                       args[2]->toFloat(exec), args[3]->toFloat(exec));
         return getWrapper<CanvasGradient>(exec, grad);
     }
 
@@ -282,11 +281,11 @@ JSValue *KJS::Context2DFunction::callAsFunction(ExecState *exec, JSObject *thisO
         KJS_REQUIRE_ARGS(6);
         KJS_CHECK_FLOAT_ARGS(0, 5);
 
-        CanvasGradientImpl* grad = ctx->createRadialGradient(
-              args[0]->toFloat(exec), args[1]->toFloat(exec),
-              args[2]->toFloat(exec), args[3]->toFloat(exec),
-              args[4]->toFloat(exec), args[5]->toFloat(exec),
-              exception);
+        CanvasGradientImpl *grad = ctx->createRadialGradient(
+                                       args[0]->toFloat(exec), args[1]->toFloat(exec),
+                                       args[2]->toFloat(exec), args[3]->toFloat(exec),
+                                       args[4]->toFloat(exec), args[5]->toFloat(exec),
+                                       exception);
 
         return getWrapper<CanvasGradient>(exec, grad);
     }
@@ -294,14 +293,14 @@ JSValue *KJS::Context2DFunction::callAsFunction(ExecState *exec, JSObject *thisO
     case Context2D::CreatePattern: {
         KJS_REQUIRE_ARGS(2);
 
-        ElementImpl* el = toElement(args[0]);
+        ElementImpl *el = toElement(args[0]);
         if (!el) {
-          setDOMException(exec, DOMException::TYPE_MISMATCH_ERR);
-          return jsUndefined();
+            setDOMException(exec, DOMException::TYPE_MISMATCH_ERR);
+            return jsUndefined();
         }
 
-        CanvasPatternImpl* pat = ctx->createPattern(el, valueToStringWithNullCheck(exec, args[1]),
-                                                    exception);
+        CanvasPatternImpl *pat = ctx->createPattern(el, valueToStringWithNullCheck(exec, args[1]),
+                                 exception);
 
         return getWrapper<CanvasPattern>(exec, pat);
     }
@@ -444,7 +443,7 @@ JSValue *KJS::Context2DFunction::callAsFunction(ExecState *exec, JSObject *thisO
     }
 
     case Context2D::DrawImage: {
-        ElementImpl* el = toElement(args[0]);
+        ElementImpl *el = toElement(args[0]);
         if (!el) {
             setDOMException(exec, DOMException::TYPE_MISMATCH_ERR);
             break;
@@ -487,9 +486,9 @@ JSValue *KJS::Context2DFunction::callAsFunction(ExecState *exec, JSObject *thisO
     case Context2D::GetImageData: {
         KJS_REQUIRE_ARGS(4);
         KJS_CHECK_FLOAT_ARGS(0, 3);
-        CanvasImageDataImpl* id = ctx->getImageData(args[0]->toFloat(exec), args[1]->toFloat(exec),
-                                                    args[2]->toFloat(exec), args[3]->toFloat(exec),
-                                                    exception);
+        CanvasImageDataImpl *id = ctx->getImageData(args[0]->toFloat(exec), args[1]->toFloat(exec),
+                                  args[2]->toFloat(exec), args[3]->toFloat(exec),
+                                  exception);
         return getWrapper<CanvasImageData>(exec, id);
         break;
     }
@@ -503,9 +502,9 @@ JSValue *KJS::Context2DFunction::callAsFunction(ExecState *exec, JSObject *thisO
     case Context2D::CreateImageData: {
         KJS_REQUIRE_ARGS(2);
         KJS_CHECK_FLOAT_ARGS(0, 1);
-        CanvasImageDataImpl* id = ctx->createImageData(args[0]->toFloat(exec),
-                                                       args[1]->toFloat(exec),
-                                                       exception);
+        CanvasImageDataImpl *id = ctx->createImageData(args[0]->toFloat(exec),
+                                  args[1]->toFloat(exec),
+                                  exception);
         return getWrapper<CanvasImageData>(exec, id);
     }
 
@@ -541,41 +540,41 @@ const ClassInfo Context2D::info = { "CanvasRenderingContext2D", 0, &Context2DTab
    @end
 */
 
-bool Context2D::getOwnPropertySlot(ExecState* exec, const Identifier& propertyName, PropertySlot& slot)
+bool Context2D::getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot)
 {
     return getStaticValueSlot<Context2D, DOMObject>(exec, &Context2DTable, this, propertyName, slot);
 }
 
-static JSValue* encodeStyle(ExecState* exec, CanvasStyleBaseImpl* style)
+static JSValue *encodeStyle(ExecState *exec, CanvasStyleBaseImpl *style)
 {
     switch (style->type()) {
     case CanvasStyleBaseImpl::Color:
-        return jsString(UString(static_cast<CanvasColorImpl*>(style)->toString()));
+        return jsString(UString(static_cast<CanvasColorImpl *>(style)->toString()));
     case CanvasStyleBaseImpl::Gradient:
-        return getWrapper<CanvasGradient>(exec, static_cast<CanvasGradientImpl*>(style));
+        return getWrapper<CanvasGradient>(exec, static_cast<CanvasGradientImpl *>(style));
     case CanvasStyleBaseImpl::Pattern:
-        return getWrapper<CanvasPattern>(exec, static_cast<CanvasPatternImpl*>(style));
+        return getWrapper<CanvasPattern>(exec, static_cast<CanvasPatternImpl *>(style));
     }
 
     return jsNull();
 }
 
-
 // ### TODO: test how non-string things are handled in other browsers.
-static CanvasStyleBaseImpl* decodeStyle(ExecState* exec, JSValue* v)
+static CanvasStyleBaseImpl *decodeStyle(ExecState *exec, JSValue *v)
 {
-    if (v->isObject() && static_cast<JSObject*>(v)->inherits(&CanvasGradient::info))
-        return static_cast<CanvasGradient*>(v)->impl();
-    else if (v->isObject() && static_cast<JSObject*>(v)->inherits(&CanvasPattern::info))
-        return static_cast<CanvasPattern*>(v)->impl();
-    else
+    if (v->isObject() && static_cast<JSObject *>(v)->inherits(&CanvasGradient::info)) {
+        return static_cast<CanvasGradient *>(v)->impl();
+    } else if (v->isObject() && static_cast<JSObject *>(v)->inherits(&CanvasPattern::info)) {
+        return static_cast<CanvasPattern *>(v)->impl();
+    } else {
         return CanvasColorImpl::fromString(v->toString(exec).domString());
+    }
 }
 
-JSValue* Context2D::getValueProperty(ExecState* exec, int token) const
+JSValue *Context2D::getValueProperty(ExecState *exec, int token) const
 {
-    const CanvasContext2DImpl* ctx = impl();
-    switch(token) {
+    const CanvasContext2DImpl *ctx = impl();
+    switch (token) {
     case Canvas:
         return getDOMNode(exec, ctx->canvas());
 
@@ -623,13 +622,13 @@ JSValue* Context2D::getValueProperty(ExecState* exec, int token) const
 
 void Context2D::put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr)
 {
-    lookupPut<Context2D,DOMObject>(exec, propertyName, value, attr, &Context2DTable, this );
+    lookupPut<Context2D, DOMObject>(exec, propertyName, value, attr, &Context2DTable, this);
 }
 
 void Context2D::putValueProperty(ExecState *exec, int token, JSValue *value, int /*attr*/)
 {
-    CanvasContext2DImpl* ctx = impl();
-    switch(token) {
+    CanvasContext2DImpl *ctx = impl();
+    switch (token) {
     case GlobalAlpha:
         KJS_CHECK_FLOAT_IGNORE_INVALID(value);
         ctx->setGlobalAlpha(value->toFloat(exec));
@@ -672,12 +671,10 @@ void Context2D::putValueProperty(ExecState *exec, int token, JSValue *value, int
     case ShadowColor:
         ctx->setShadowColor(value->toString(exec).domString());
         break;
-    default:
-        {} // huh?
+    default: {
+    } // huh?
     }
 }
-
-
 
 ////////////////////// CanvasGradient Object ////////////////////////
 const ClassInfo KJS::CanvasGradient::info = { "CanvasGradient", 0, 0, 0 };
@@ -696,7 +693,7 @@ JSValue *CanvasGradientFunction::callAsFunction(ExecState *exec, JSObject *thisO
 {
     KJS_CHECK_THIS(CanvasGradient, thisObj);
 
-    CanvasGradientImpl* impl = static_cast<KJS::CanvasGradient*>(thisObj)->impl();
+    CanvasGradientImpl *impl = static_cast<KJS::CanvasGradient *>(thisObj)->impl();
 
     DOMExceptionTranslator exception(exec);
     switch (id) {
@@ -711,7 +708,7 @@ JSValue *CanvasGradientFunction::callAsFunction(ExecState *exec, JSObject *thisO
     return jsUndefined();
 }
 
-CanvasGradient::CanvasGradient(ExecState* exec, DOM::CanvasGradientImpl* impl) :
+CanvasGradient::CanvasGradient(ExecState *exec, DOM::CanvasGradientImpl *impl) :
     WrapperBase(CanvasGradientProto::self(exec), impl)
 {}
 
@@ -738,7 +735,7 @@ JSValue *CanvasPatternFunction::callAsFunction(ExecState *exec, JSObject *thisOb
     return NULL;
 }
 
-CanvasPattern::CanvasPattern(ExecState* exec, DOM::CanvasPatternImpl* impl) :
+CanvasPattern::CanvasPattern(ExecState *exec, DOM::CanvasPatternImpl *impl) :
     WrapperBase(CanvasPatternProto::self(exec), impl)
 {}
 
@@ -746,7 +743,7 @@ CanvasPattern::CanvasPattern(ExecState* exec, DOM::CanvasPatternImpl* impl) :
 
 const ClassInfo CanvasImageData::info = { "ImageData", 0, 0, 0 };
 
-CanvasImageData::CanvasImageData(ExecState* exec, DOM::CanvasImageDataImpl* impl) :
+CanvasImageData::CanvasImageData(ExecState *exec, DOM::CanvasImageDataImpl *impl) :
     WrapperBase(exec->lexicalInterpreter()->builtinObjectPrototype(), impl)
 {
     data = new CanvasImageDataArray(exec, this);
@@ -759,19 +756,20 @@ CanvasImageData::CanvasImageData(ExecState* exec, DOM::CanvasImageDataImpl* impl
 void CanvasImageData::mark()
 {
     JSObject::mark();
-    if (!data->marked())
+    if (!data->marked()) {
         data->mark();
+    }
 }
 
-JSObject* CanvasImageData::valueClone(Interpreter* targetCtx) const
+JSObject *CanvasImageData::valueClone(Interpreter *targetCtx) const
 {
-    return static_cast<JSObject*>(getWrapper<CanvasImageData>(targetCtx->globalExec(), impl()->clone()));
+    return static_cast<JSObject *>(getWrapper<CanvasImageData>(targetCtx->globalExec(), impl()->clone()));
 }
 
 const ClassInfo CanvasImageDataArray::info = { "ImageDataArray", 0, 0, 0 };
 
-CanvasImageDataArray::CanvasImageDataArray(ExecState* exec, CanvasImageData* p) :
-        JSObject(exec->lexicalInterpreter()->builtinArrayPrototype()), parent(p)
+CanvasImageDataArray::CanvasImageDataArray(ExecState *exec, CanvasImageData *p) :
+    JSObject(exec->lexicalInterpreter()->builtinArrayPrototype()), parent(p)
 {
     size = p->impl()->width() * p->impl()->height() * 4;
     putDirect(exec->propertyNames().length, jsNumber(size), DontDelete | ReadOnly);
@@ -780,15 +778,17 @@ CanvasImageDataArray::CanvasImageDataArray(ExecState* exec, CanvasImageData* p) 
 void CanvasImageDataArray::mark()
 {
     JSObject::mark();
-    if (!parent->marked())
+    if (!parent->marked()) {
         parent->mark();
+    }
 }
 
-JSValue* CanvasImageDataArray::indexGetter(ExecState* exec, unsigned index)
+JSValue *CanvasImageDataArray::indexGetter(ExecState *exec, unsigned index)
 {
     Q_UNUSED(exec);
-    if (index >= size) // paranoia..
+    if (index >= size) { // paranoia..
         return jsNull();
+    }
 
     unsigned pixel = index / 4;
     unsigned comp  = index % 4;
@@ -799,11 +799,11 @@ JSValue* CanvasImageDataArray::indexGetter(ExecState* exec, unsigned index)
     case 1: return jsNumber(color.green());
     case 2: return jsNumber(color.blue());
     default:     // aka case 3, for quietness purposes
-            return jsNumber(color.alpha());
+        return jsNumber(color.alpha());
     }
 }
 
-bool CanvasImageDataArray::getOwnPropertySlot(ExecState* exec, const Identifier& propertyName, PropertySlot& slot)
+bool CanvasImageDataArray::getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot)
 {
     // ### this doesn't behave exactly like array does --- should we care?
     bool ok;
@@ -816,7 +816,7 @@ bool CanvasImageDataArray::getOwnPropertySlot(ExecState* exec, const Identifier&
     return JSObject::getOwnPropertySlot(exec, propertyName, slot);
 }
 
-bool CanvasImageDataArray::getOwnPropertySlot(ExecState* exec, unsigned index, PropertySlot& slot)
+bool CanvasImageDataArray::getOwnPropertySlot(ExecState *exec, unsigned index, PropertySlot &slot)
 {
     if (index < size) {
         slot.setCustomIndex(this, index, indexGetterAdapter<CanvasImageDataArray>);
@@ -826,34 +826,35 @@ bool CanvasImageDataArray::getOwnPropertySlot(ExecState* exec, unsigned index, P
     return JSObject::getOwnPropertySlot(exec, index, slot);
 }
 
-void CanvasImageDataArray::put(ExecState* exec, const Identifier& propertyName, JSValue* value, int attr)
+void CanvasImageDataArray::put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr)
 {
-  bool ok;
-  unsigned index = propertyName.toArrayIndex(&ok);
-  if (ok) {
-    put(exec, index, value, attr);
-    return;
-  }
+    bool ok;
+    unsigned index = propertyName.toArrayIndex(&ok);
+    if (ok) {
+        put(exec, index, value, attr);
+        return;
+    }
 
-  JSObject::put(exec, propertyName, value, attr);
+    JSObject::put(exec, propertyName, value, attr);
 }
 
-unsigned char CanvasImageDataArray::decodeComponent(ExecState* exec, JSValue* jsVal)
+unsigned char CanvasImageDataArray::decodeComponent(ExecState *exec, JSValue *jsVal)
 {
     double val = jsVal->toNumber(exec);
 
-    if (jsVal->isUndefined())
+    if (jsVal->isUndefined()) {
         val = 0.0;
-    else if (val < 0.0)
+    } else if (val < 0.0) {
         val = 0.0;
-    else if (val > 255.0)
+    } else if (val > 255.0) {
         val = 255.0;
+    }
 
     // ### fixme: round to even
     return (unsigned char)qRound(val);
 }
 
-void CanvasImageDataArray::put(ExecState* exec, unsigned index, JSValue* value, int attr)
+void CanvasImageDataArray::put(ExecState *exec, unsigned index, JSValue *value, int attr)
 {
     if (index < size) {
         unsigned char componentValue = decodeComponent(exec, value);
@@ -868,45 +869,54 @@ void CanvasImageDataArray::put(ExecState* exec, unsigned index, JSValue* value, 
     JSObject::put(exec, Identifier::from(index), value, attr);
 }
 
-DOM::CanvasImageDataImpl* toCanvasImageData(ExecState* exec, JSValue* val)
+DOM::CanvasImageDataImpl *toCanvasImageData(ExecState *exec, JSValue *val)
 {
-    JSObject* obj = val->getObject();
-    if (!obj) return 0;
+    JSObject *obj = val->getObject();
+    if (!obj) {
+        return 0;
+    }
 
-    if (obj->inherits(&CanvasImageData::info))
-        return static_cast<CanvasImageData*>(val)->impl();
+    if (obj->inherits(&CanvasImageData::info)) {
+        return static_cast<CanvasImageData *>(val)->impl();
+    }
 
     // Uff. May be a fake one.
     bool ok = true;
     uint32_t width  = obj->get(exec, "width")->toUInt32(exec, ok);
-    if (!ok || !width || exec->hadException())
+    if (!ok || !width || exec->hadException()) {
         return 0;
+    }
     uint32_t height = obj->get(exec, "height")->toUInt32(exec, ok);
-    if (!ok || !height || exec->hadException())
+    if (!ok || !height || exec->hadException()) {
         return 0;
+    }
 
     // Perform safety check on the size.
-    if (!khtmlImLoad::ImageManager::isAcceptableSize(width, height))
+    if (!khtmlImLoad::ImageManager::isAcceptableSize(width, height)) {
         return 0;
+    }
 
-    JSObject* data = obj->get(exec, "data")->getObject();
-    if (!data)
+    JSObject *data = obj->get(exec, "data")->getObject();
+    if (!data) {
         return 0;
+    }
 
     uint32_t length = data->get(exec, "length")->toUInt32(exec, ok);
-    if (!ok || !length || exec->hadException())
+    if (!ok || !length || exec->hadException()) {
         return 0;
+    }
 
-    if (length != 4 * width * height)
+    if (length != 4 * width * height) {
         return 0;
+    }
 
     // Uff. Well, it sounds sane enough for us to decode..
-    CanvasImageDataImpl* id = new CanvasImageDataImpl(width, height);
+    CanvasImageDataImpl *id = new CanvasImageDataImpl(width, height);
     for (unsigned pixel = 0; pixel < width * height; ++pixel) {
-        unsigned char r = CanvasImageDataArray::decodeComponent(exec, data->get(exec, pixel*4));
-        unsigned char g = CanvasImageDataArray::decodeComponent(exec, data->get(exec, pixel*4 + 1));
-        unsigned char b = CanvasImageDataArray::decodeComponent(exec, data->get(exec, pixel*4 + 2));
-        unsigned char a = CanvasImageDataArray::decodeComponent(exec, data->get(exec, pixel*4 + 3));
+        unsigned char r = CanvasImageDataArray::decodeComponent(exec, data->get(exec, pixel * 4));
+        unsigned char g = CanvasImageDataArray::decodeComponent(exec, data->get(exec, pixel * 4 + 1));
+        unsigned char b = CanvasImageDataArray::decodeComponent(exec, data->get(exec, pixel * 4 + 2));
+        unsigned char a = CanvasImageDataArray::decodeComponent(exec, data->get(exec, pixel * 4 + 3));
         id->setPixel(pixel, QColor(r, g, b, a));
     }
     return id;
@@ -915,7 +925,5 @@ DOM::CanvasImageDataImpl* toCanvasImageData(ExecState* exec, JSValue* val)
 // This is completely fake!
 IMPLEMENT_PSEUDO_CONSTRUCTOR(SVGAnglePseudoCtor, "SVGAngle", Context2DProto)
 
-
 } // namespace
 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

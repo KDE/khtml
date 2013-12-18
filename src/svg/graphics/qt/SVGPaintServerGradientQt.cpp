@@ -34,11 +34,12 @@
 #include <QColor>
 #include <QGradient>
 
-namespace WebCore {
+namespace WebCore
+{
 
 // Helper function used by linear & radial gradient
-void SVGPaintServerGradient::fillColorArray(QGradient& gradient, const Vector<SVGGradientStop>& stops,
-                                            float opacity) const
+void SVGPaintServerGradient::fillColorArray(QGradient &gradient, const Vector<SVGGradientStop> &stops,
+        float opacity) const
 {
     // qDebug() << stops.size() << endl;
     for (unsigned i = 0; i < stops.size(); ++i) {
@@ -53,7 +54,7 @@ void SVGPaintServerGradient::fillColorArray(QGradient& gradient, const Vector<SV
     }
 }
 
-bool SVGPaintServerGradient::setup(QPainter* painter, QPainterPath* painterPath, const RenderObject* object,
+bool SVGPaintServerGradient::setup(QPainter *painter, QPainterPath *painterPath, const RenderObject *object,
                                    SVGPaintTargetType type, bool isPaintingText) const
 {
     Q_UNUSED(isPaintingText);
@@ -66,19 +67,20 @@ bool SVGPaintServerGradient::setup(QPainter* painter, QPainterPath* painterPath,
     /*QPainterPath* path(context ? context->currentPath() : 0);
     Q_ASSERT(path);*/
 
-    RenderStyle* renderStyle = object->style();
+    RenderStyle *renderStyle = object->style();
 
     QGradient gradient = setupGradient(painter, painterPath, object);
 
     painter->setPen(Qt::NoPen);
     painter->setBrush(Qt::NoBrush);
 
-    if (spreadMethod() == SPREADMETHOD_REPEAT)
+    if (spreadMethod() == SPREADMETHOD_REPEAT) {
         gradient.setSpread(QGradient::RepeatSpread);
-    else if (spreadMethod() == SPREADMETHOD_REFLECT)
+    } else if (spreadMethod() == SPREADMETHOD_REFLECT) {
         gradient.setSpread(QGradient::ReflectSpread);
-    else
-        gradient.setSpread(QGradient::PadSpread);    
+    } else {
+        gradient.setSpread(QGradient::PadSpread);
+    }
     double opacity = 1.0;
 
     // qDebug() << "type: " << type << (type & ApplyToFillTargetType) << endl;
@@ -112,4 +114,3 @@ bool SVGPaintServerGradient::setup(QPainter* painter, QPainterPath* painterPath,
 
 #endif
 
-// vim:ts=4

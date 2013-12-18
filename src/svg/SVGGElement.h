@@ -29,37 +29,48 @@
 #include "SVGStyledTransformableElement.h"
 #include "SVGTests.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGGElement : public SVGStyledTransformableElement,
-                        public SVGTests,
-                        public SVGLangSpace,
-                        public SVGExternalResourcesRequired {
-    public:
-        SVGGElement(const QualifiedName&, Document*);
-        virtual ~SVGGElement();
+class SVGGElement : public SVGStyledTransformableElement,
+    public SVGTests,
+    public SVGLangSpace,
+    public SVGExternalResourcesRequired
+{
+public:
+    SVGGElement(const QualifiedName &, Document *);
+    virtual ~SVGGElement();
 
-        virtual bool isValid() const { return SVGTests::isValid(); }
+    virtual bool isValid() const
+    {
+        return SVGTests::isValid();
+    }
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual void svgAttributeChanged(const QualifiedName&);
-        using DOM::NodeImpl::childrenChanged;
-        virtual void childrenChanged(bool changedByParser = false, Node* beforeChange = 0, Node* afterChange = 0, int childCountDelta = 0);
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual void svgAttributeChanged(const QualifiedName &);
+    using DOM::NodeImpl::childrenChanged;
+    virtual void childrenChanged(bool changedByParser = false, Node *beforeChange = 0, Node *afterChange = 0, int childCountDelta = 0);
 
-        virtual RenderObject* createRenderer(RenderArena*, RenderStyle*);
+    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
 
-        // KHTML ElementImpl pure virtual method
-        virtual quint32 id() const { return SVGNames::gTag.id(); }
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
+    // KHTML ElementImpl pure virtual method
+    virtual quint32 id() const
+    {
+        return SVGNames::gTag.id();
+    }
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
 
-    private:
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired) 
+private:
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
 
-    private:
-        friend class SVGUseElement;
-        AffineTransform localMatrix() const;
-    };
+private:
+    friend class SVGUseElement;
+    AffineTransform localMatrix() const;
+};
 
 } // namespace WebCore
 

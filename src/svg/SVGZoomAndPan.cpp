@@ -29,7 +29,8 @@
 #include "SVGNames.h"
 #include "SVGParserUtilities.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 SVGZoomAndPan::SVGZoomAndPan()
     : m_zoomAndPan(SVG_ZOOMANDPAN_MAGNIFY)
@@ -50,11 +51,11 @@ void SVGZoomAndPan::setZoomAndPan(unsigned short zoomAndPan)
     m_zoomAndPan = zoomAndPan;
 }
 
-bool SVGZoomAndPan::parseMappedAttribute(MappedAttribute* attr)
+bool SVGZoomAndPan::parseMappedAttribute(MappedAttribute *attr)
 {
     if (attr->name() == SVGNames::zoomAndPanAttr) {
-        const UChar* start = attr->value().characters();
-        const UChar* end = start + attr->value().length();
+        const UChar *start = attr->value().characters();
+        const UChar *end = start + attr->value().length();
         parseZoomAndPan(start, end);
         return true;
     }
@@ -62,7 +63,7 @@ bool SVGZoomAndPan::parseMappedAttribute(MappedAttribute* attr)
     return false;
 }
 
-bool SVGZoomAndPan::isKnownAttribute(const QualifiedName& attrName)
+bool SVGZoomAndPan::isKnownAttribute(const QualifiedName &attrName)
 {
     return attrName == SVGNames::zoomAndPanAttr;
 }
@@ -70,14 +71,15 @@ bool SVGZoomAndPan::isKnownAttribute(const QualifiedName& attrName)
 static const UChar disable[] =  {'d', 'i', 's', 'a', 'b', 'l', 'e'};
 static const UChar magnify[] =  {'m', 'a', 'g', 'n', 'i', 'f', 'y'};
 
-bool SVGZoomAndPan::parseZoomAndPan(const UChar*& start, const UChar* end)
+bool SVGZoomAndPan::parseZoomAndPan(const UChar *&start, const UChar *end)
 {
-    if (skipString(start, end, disable, sizeof(disable) / sizeof(UChar)))
+    if (skipString(start, end, disable, sizeof(disable) / sizeof(UChar))) {
         setZoomAndPan(SVG_ZOOMANDPAN_DISABLE);
-    else if (skipString(start, end, magnify, sizeof(magnify) / sizeof(UChar)))
+    } else if (skipString(start, end, magnify, sizeof(magnify) / sizeof(UChar))) {
         setZoomAndPan(SVG_ZOOMANDPAN_MAGNIFY);
-    else
+    } else {
         return false;
+    }
 
     return true;
 }

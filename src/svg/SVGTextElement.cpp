@@ -33,9 +33,10 @@
 #include "SVGTSpanElement.h"
 #include "SVGTransformList.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGTextElement::SVGTextElement(const QualifiedName& tagName, Document* doc)
+SVGTextElement::SVGTextElement(const QualifiedName &tagName, Document *doc)
     : SVGTextPositioningElement(tagName, doc)
     , SVGTransformable()
     , m_transform(SVGTransformList::create(SVGNames::transformAttr))
@@ -46,33 +47,35 @@ SVGTextElement::~SVGTextElement()
 {
 }
 
-ANIMATED_PROPERTY_DEFINITIONS(SVGTextElement, SVGTransformList*, TransformList, transformList, Transform, transform, SVGNames::transformAttr, m_transform.get())
+ANIMATED_PROPERTY_DEFINITIONS(SVGTextElement, SVGTransformList *, TransformList, transformList, Transform, transform, SVGNames::transformAttr, m_transform.get())
 
-void SVGTextElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGTextElement::parseMappedAttribute(MappedAttribute *attr)
 {
     if (attr->name() == SVGNames::transformAttr) {
-        SVGTransformList* localTransforms = transformBaseValue();
+        SVGTransformList *localTransforms = transformBaseValue();
 
         ExceptionCode ec = 0;
         localTransforms->clear(ec);
 
-        if (!SVGTransformable::parseTransformAttribute(localTransforms, attr->value()))
+        if (!SVGTransformable::parseTransformAttribute(localTransforms, attr->value())) {
             localTransforms->clear(ec);
-        else {
+        } else {
             setTransformBaseValue(localTransforms);
-            if (renderer())
-                renderer()->setNeedsLayout(true); // should be in setTransformBaseValue
+            if (renderer()) {
+                renderer()->setNeedsLayout(true);    // should be in setTransformBaseValue
+            }
         }
-    } else
+    } else {
         SVGTextPositioningElement::parseMappedAttribute(attr);
+    }
 }
 
-SVGElement* SVGTextElement::nearestViewportElement() const
+SVGElement *SVGTextElement::nearestViewportElement() const
 {
     return SVGTransformable::nearestViewportElement(this);
 }
 
-SVGElement* SVGTextElement::farthestViewportElement() const
+SVGElement *SVGTextElement::farthestViewportElement() const
 {
     return SVGTransformable::farthestViewportElement(this);
 }
@@ -94,43 +97,47 @@ AffineTransform SVGTextElement::getCTM() const
 
 AffineTransform SVGTextElement::animatedLocalTransform() const
 {
-    return m_supplementalTransform ? transform()->concatenate().matrix() * *m_supplementalTransform : transform()->concatenate().matrix();
+    return m_supplementalTransform ? transform()->concatenate().matrix() **m_supplementalTransform : transform()->concatenate().matrix();
 }
 
-AffineTransform* SVGTextElement::supplementalTransform()
+AffineTransform *SVGTextElement::supplementalTransform()
 {
-    if (!m_supplementalTransform)
+    if (!m_supplementalTransform) {
         m_supplementalTransform.set(new AffineTransform());
+    }
     return m_supplementalTransform.get();
 }
 
-RenderObject* SVGTextElement::createRenderer(RenderArena* arena, RenderStyle* style)
+RenderObject *SVGTextElement::createRenderer(RenderArena *arena, RenderStyle *style)
 {
     Q_UNUSED(style);
     // qDebug() << "create renderer for <text>" << endl;
-    return new (arena) RenderSVGText(this);
+    return new(arena) RenderSVGText(this);
 }
 
-bool SVGTextElement::childShouldCreateRenderer(Node* child) const
+bool SVGTextElement::childShouldCreateRenderer(Node *child) const
 {
     if (child->isTextNode()
 #if ENABLE(SVG_FONTS)
-        || child->hasTagName(SVGNames::altGlyphTag)
+            || child->hasTagName(SVGNames::altGlyphTag)
 #endif
-        || child->hasTagName(SVGNames::tspanTag) || child->hasTagName(SVGNames::trefTag) || child->hasTagName(SVGNames::aTag) || child->hasTagName(SVGNames::textPathTag))
+            || child->hasTagName(SVGNames::tspanTag) || child->hasTagName(SVGNames::trefTag) || child->hasTagName(SVGNames::aTag) || child->hasTagName(SVGNames::textPathTag)) {
         return true;
+    }
     return false;
 }
 
-void SVGTextElement::svgAttributeChanged(const QualifiedName& attrName)
+void SVGTextElement::svgAttributeChanged(const QualifiedName &attrName)
 {
     SVGTextPositioningElement::svgAttributeChanged(attrName);
 
-    if (!renderer())
+    if (!renderer()) {
         return;
+    }
 
-    if (SVGTextPositioningElement::isKnownAttribute(attrName))
+    if (SVGTextPositioningElement::isKnownAttribute(attrName)) {
         renderer()->setNeedsLayout(true);
+    }
 }
 
 }

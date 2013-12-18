@@ -32,57 +32,64 @@
 #include "SVGTests.h"
 #include "SVGURIReference.h"
 
+namespace WebCore
+{
 
-namespace WebCore {
+struct PatternAttributes;
 
-    struct PatternAttributes;
- 
-    class SVGLength;
-    class SVGTransformList;
+class SVGLength;
+class SVGTransformList;
 
-    class SVGPatternElement : public SVGStyledElement,
-                              public SVGURIReference,
-                              public SVGTests,
-                              public SVGLangSpace,
-                              public SVGExternalResourcesRequired,
-                              public SVGFitToViewBox {
-    public:
-        SVGPatternElement(const QualifiedName&, Document*);
-        virtual ~SVGPatternElement();
-        
-        virtual bool isValid() const { return SVGTests::isValid(); }
+class SVGPatternElement : public SVGStyledElement,
+    public SVGURIReference,
+    public SVGTests,
+    public SVGLangSpace,
+    public SVGExternalResourcesRequired,
+    public SVGFitToViewBox
+{
+public:
+    SVGPatternElement(const QualifiedName &, Document *);
+    virtual ~SVGPatternElement();
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual void svgAttributeChanged(const QualifiedName&);
-        virtual void childrenChanged(bool changedByParser = false, Node* beforeChange = 0, Node* afterChange = 0, int childCountDelta = 0);
+    virtual bool isValid() const
+    {
+        return SVGTests::isValid();
+    }
 
-        virtual RenderObject* createRenderer(RenderArena*, RenderStyle*);
-        virtual SVGResource* canvasResource();
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual void svgAttributeChanged(const QualifiedName &);
+    virtual void childrenChanged(bool changedByParser = false, Node *beforeChange = 0, Node *afterChange = 0, int childCountDelta = 0);
 
-    protected:
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGFitToViewBox, FloatRect, ViewBox, viewBox)
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGFitToViewBox, SVGPreserveAspectRatio*, PreserveAspectRatio, preserveAspectRatio)
+    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
+    virtual SVGResource *canvasResource();
 
-        ANIMATED_PROPERTY_DECLARATIONS(SVGPatternElement, SVGLength, SVGLength, X, x)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGPatternElement, SVGLength, SVGLength, Y, y)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGPatternElement, SVGLength, SVGLength, Width, width)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGPatternElement, SVGLength, SVGLength, Height, height)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGPatternElement, int, int, PatternUnits, patternUnits)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGPatternElement, int, int, PatternContentUnits, patternContentUnits)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGPatternElement, SVGTransformList*, RefPtr<SVGTransformList>, PatternTransform, patternTransform)
+protected:
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGFitToViewBox, FloatRect, ViewBox, viewBox)
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGFitToViewBox, SVGPreserveAspectRatio *, PreserveAspectRatio, preserveAspectRatio)
 
-        mutable RefPtr<SVGPaintServerPattern> m_resource;
+    ANIMATED_PROPERTY_DECLARATIONS(SVGPatternElement, SVGLength, SVGLength, X, x)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGPatternElement, SVGLength, SVGLength, Y, y)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGPatternElement, SVGLength, SVGLength, Width, width)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGPatternElement, SVGLength, SVGLength, Height, height)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGPatternElement, int, int, PatternUnits, patternUnits)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGPatternElement, int, int, PatternContentUnits, patternContentUnits)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGPatternElement, SVGTransformList *, RefPtr<SVGTransformList>, PatternTransform, patternTransform)
 
-        virtual const SVGElement* contextElement() const { return this; }
+    mutable RefPtr<SVGPaintServerPattern> m_resource;
 
-    private:
-        friend class SVGPaintServerPattern;
-        void buildPattern(const FloatRect& targetRect) const;
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
 
-        PatternAttributes collectPatternProperties() const;
-    };
+private:
+    friend class SVGPaintServerPattern;
+    void buildPattern(const FloatRect &targetRect) const;
+
+    PatternAttributes collectPatternProperties() const;
+};
 
 } // namespace WebCore
 

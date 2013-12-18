@@ -27,7 +27,8 @@
 
 #include "SVGStyledElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 SVGPathSegArcAbs::SVGPathSegArcAbs(float x, float y, float r1, float r2, float angle, bool largeArcFlag, bool sweepFlag)
     : SVGPathSeg()
@@ -114,8 +115,6 @@ bool SVGPathSegArcAbs::sweepFlag() const
 {
     return m_sweepFlag;
 }
-
-
 
 SVGPathSegArcRel::SVGPathSegArcRel(float x, float y, float r1, float r2, float angle, bool largeArcFlag, bool sweepFlag)
     : SVGPathSeg()
@@ -207,4 +206,3 @@ bool SVGPathSegArcRel::sweepFlag() const
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

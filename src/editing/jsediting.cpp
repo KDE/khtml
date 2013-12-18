@@ -46,60 +46,69 @@ using khtml::InsertListCommandImpl;
 
 #define DEBUG_COMMANDS
 
-namespace DOM {
+namespace DOM
+{
 
 class DocumentImpl;
 
 struct CommandImp {
     bool (*execFn)(KHTMLPart *part, bool userInterface, const DOMString &value);
     bool (*enabledFn)(KHTMLPart *part);
-    Editor::TriState (*stateFn)(KHTMLPart *part);
-    DOMString (*valueFn)(KHTMLPart *part);
+    Editor::TriState(*stateFn)(KHTMLPart *part);
+    DOMString(*valueFn)(KHTMLPart *part);
 };
 
-typedef QHash<QString,const CommandImp*> CommandDict;
+typedef QHash<QString, const CommandImp *> CommandDict;
 static CommandDict createCommandDictionary();
 
 bool JSEditor::execCommand(const CommandImp *cmd, bool userInterface, const DOMString &value)
 {
-    if (!cmd || !cmd->enabledFn)
+    if (!cmd || !cmd->enabledFn) {
         return false;
+    }
     KHTMLPart *part = m_doc->part();
-    if (!part)
+    if (!part) {
         return false;
+    }
     m_doc->updateLayout();
     return cmd->enabledFn(part) && cmd->execFn(part, userInterface, value);
 }
 
 bool JSEditor::queryCommandEnabled(const CommandImp *cmd)
 {
-    if (!cmd || !cmd->enabledFn)
+    if (!cmd || !cmd->enabledFn) {
         return false;
+    }
     KHTMLPart *part = m_doc->part();
-    if (!part)
+    if (!part) {
         return false;
+    }
     m_doc->updateLayout();
     return cmd->enabledFn(part);
 }
 
 bool JSEditor::queryCommandIndeterm(const CommandImp *cmd)
 {
-    if (!cmd || !cmd->enabledFn)
+    if (!cmd || !cmd->enabledFn) {
         return false;
+    }
     KHTMLPart *part = m_doc->part();
-    if (!part)
+    if (!part) {
         return false;
+    }
     m_doc->updateLayout();
     return cmd->stateFn(part) == Editor::MixedTriState;
 }
 
 bool JSEditor::queryCommandState(const CommandImp *cmd)
 {
-    if (!cmd || !cmd->enabledFn)
+    if (!cmd || !cmd->enabledFn) {
         return false;
+    }
     KHTMLPart *part = m_doc->part();
-    if (!part)
+    if (!part) {
         return false;
+    }
     m_doc->updateLayout();
     return cmd->stateFn(part) != Editor::FalseTriState;
 }
@@ -111,11 +120,13 @@ bool JSEditor::queryCommandSupported(const CommandImp *cmd)
 
 DOMString JSEditor::queryCommandValue(const CommandImp *cmd)
 {
-    if (!cmd || !cmd->enabledFn)
+    if (!cmd || !cmd->enabledFn) {
         return DOMString();
+    }
     KHTMLPart *part = m_doc->part();
-    if (!part)
+    if (!part) {
         return DOMString();
+    }
     m_doc->updateLayout();
     return cmd->valueFn(part);
 }
@@ -231,7 +242,7 @@ static bool execFontSize(KHTMLPart *part, bool /*userInterface*/, const DOMStrin
         }
         return execStyleChange(part, CSS_PROP_FONT_SIZE, size);
     }
-    
+
     return execStyleChange(part, CSS_PROP_FONT_SIZE, value);
 }
 
@@ -498,7 +509,10 @@ static DOMString valueForeColor(KHTMLPart *part)
 
 // =============================================================================================
 
-struct EditorCommandInfo { const char *name; CommandImp imp; };
+struct EditorCommandInfo {
+    const char *name;
+    CommandImp imp;
+};
 
 // NOTE: strictly keep in sync with EditorCommand in editor_command.h
 static const EditorCommandInfo commands[] = {
@@ -604,8 +618,9 @@ static CommandDict createCommandDictionary()
     const int numCommands = sizeof(commands) / sizeof(commands[0]);
     CommandDict commandDictionary; // case-insensitive dictionary
     for (int i = 0; i < numCommands; ++i) {
-        if (commands[i].name)
+        if (commands[i].name) {
             commandDictionary.insert(QString(commands[i].name).toLower(), &commands[i].imp);
+        }
     }
     return commandDictionary;
 }
@@ -613,22 +628,22 @@ static CommandDict createCommandDictionary()
 const CommandImp *JSEditor::commandImp(const DOMString &command)
 {
     static CommandDict commandDictionary = createCommandDictionary();
-    const CommandImp *result = commandDictionary.value( command.string().toLower() );
+    const CommandImp *result = commandDictionary.value(command.string().toLower());
 #ifdef DEBUG_COMMANDS
-    if (!result)
+    if (!result) {
         qDebug() << "[Command is not supported yet]" << command << endl;
+    }
 #endif
     return result;
 }
 
 const CommandImp *JSEditor::commandImp(int command)
 {
-    if (command < 0 || command >= int(sizeof commands / sizeof commands[0]) )
+    if (command < 0 || command >= int(sizeof commands / sizeof commands[0])) {
         return 0;
+    }
     return &commands[command].imp;
 }
-
-
 
 } // namespace DOM
 

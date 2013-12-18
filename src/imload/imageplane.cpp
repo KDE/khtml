@@ -27,13 +27,15 @@
 
 #include <QPainter>
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
-bool ImagePlane::checkUpToDate(const unsigned char* versions, PixmapTile* tile)
+bool ImagePlane::checkUpToDate(const unsigned char *versions, PixmapTile *tile)
 {
     //If the tile is discarded, it's clearly not up-to-date ;-)
-    if (!tile->pixmap)
+    if (!tile->pixmap) {
         return false;
+    }
 
     //Now, just check the version array. It's enough to memcmp,
     //since we init all to zero, and assume the pixmap plains don't
@@ -41,38 +43,34 @@ bool ImagePlane::checkUpToDate(const unsigned char* versions, PixmapTile* tile)
     return std::memcmp(versions, tile->versions, Tile::TileSize) == 0;
 }
 
-void ImagePlane::setupTile(unsigned int tileX, unsigned int tileY, PixmapTile* tile)
+void ImagePlane::setupTile(unsigned int tileX, unsigned int tileY, PixmapTile *tile)
 {
-    tile->pixmap = new QPixmap(tileWidth (tileX), tileHeight(tileY));
+    tile->pixmap = new QPixmap(tileWidth(tileX), tileHeight(tileY));
     ImageManager::pixmapCache()->addEntry(tile);
 }
 
-void ImagePlane::updatePixmap(PixmapTile* tile, const QImage& image,
-                   unsigned int tileX, unsigned int tileY,
-                   unsigned int offX,  unsigned int offY,
-                   unsigned char* versions)
+void ImagePlane::updatePixmap(PixmapTile *tile, const QImage &image,
+                              unsigned int tileX, unsigned int tileY,
+                              unsigned int offX,  unsigned int offY,
+                              unsigned char *versions)
 {
     //Determine the range which needs pushing.
     int first = 0xFFFF, last = 0;
-    if (!tile->pixmap)
-    {
+    if (!tile->pixmap) {
         //### this can be wasteful if we do conversion
         setupTile(tileX, tileY, tile);
         first = 0;
         last  = tileHeight(tileY) - 1;
-    }
-    else
-    {
+    } else {
         ImageManager::pixmapCache()->touchEntry(tile);
 
         // figure out the dirty range
-        for (unsigned int line = 0; line < tileHeight(tileY); ++line)
-        {
-            if (versions[line] > tile->versions[line])
-            {
+        for (unsigned int line = 0; line < tileHeight(tileY); ++line) {
+            if (versions[line] > tile->versions[line]) {
                 last = line;
-                if (first == 0xFFFF)
+                if (first == 0xFFFF) {
                     first = line;
+                }
             }
         }
     }
@@ -80,35 +78,29 @@ void ImagePlane::updatePixmap(PixmapTile* tile, const QImage& image,
     // Now tile will be up-to-date, so sync up w/our versions array
     std::memcpy(tile->versions, versions, Tile::TileSize);
 
-    assert( tile->pixmap );
+    assert(tile->pixmap);
 
     //Special case, hopefully-fast path: if we just wants to push
     //the whole image to the whole tile, do convertFromImage directly.
     if (offX == 0 && offY == 0 && first == 0  && last == image.height() - 1 &&
-        tile->pixmap->width()  == image.width() &&
-        tile->pixmap->height() == image.height())
-    {
-       tile->discard();
-       tile->pixmap = new QPixmap(QPixmap::fromImage(image));
-    }
-    else
-    {
-        if (image.hasAlphaChannel())
-        {
+            tile->pixmap->width()  == image.width() &&
+            tile->pixmap->height() == image.height()) {
+        tile->discard();
+        tile->pixmap = new QPixmap(QPixmap::fromImage(image));
+    } else {
+        if (image.hasAlphaChannel()) {
             //### When supported, use the src op.
             QRect imagePortion(offX, offY,
                                tile->pixmap->width(),
                                tile->pixmap->height());
 
             //Note: we're copying the entire tile-size here,
-            //and not just the dirty portion. 
+            //and not just the dirty portion.
             QImage portion = image.copy(imagePortion);
             tile->pixmap->fill(Qt::transparent);
             QPainter p(tile->pixmap);
             p.drawImage(0, 0, portion);
-        }
-        else
-        {
+        } else {
             QRect imagePortion(offX, offY + first,
                                tile->pixmap->width(), last - first + 1);
 
@@ -124,4 +116,3 @@ ImagePlane::~ImagePlane()
 {}
 
 }
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

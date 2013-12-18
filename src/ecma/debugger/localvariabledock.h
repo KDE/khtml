@@ -25,12 +25,14 @@
 class QTreeWidget;
 class QTreeWidgetItem;
 
-namespace KJS {
-    class ExecState;
-    class JSValue;
+namespace KJS
+{
+class ExecState;
+class JSValue;
 }
 
-namespace KJSDebugger {
+namespace KJSDebugger
+{
 
 class LocalVariablesDock : public QDockWidget
 {
@@ -40,19 +42,21 @@ public:
     ~LocalVariablesDock();
 
     void updateDisplay(KJS::ExecState *exec);
-    KJS::ExecState* currentlyDisplaying() { return m_execState; }
+    KJS::ExecState *currentlyDisplaying()
+    {
+        return m_execState;
+    }
 
 private Q_SLOTS:
-    void slotItemExpanded(QTreeWidgetItem* item);
+    void slotItemExpanded(QTreeWidgetItem *item);
 
 private:
-    void updateObjectProperties(KJS::ExecState* exec, KJS::JSValue* val, QTreeWidgetItem* item, 
+    void updateObjectProperties(KJS::ExecState *exec, KJS::JSValue *val, QTreeWidgetItem *item,
                                 bool globalObject = false);
-    void updateValue(KJS::ExecState* exec, KJS::JSValue* val, QTreeWidgetItem* item, bool recurse);
+    void updateValue(KJS::ExecState *exec, KJS::JSValue *val, QTreeWidgetItem *item, bool recurse);
 
-
-    QTreeWidget*     m_view;
-    KJS::ExecState*  m_execState;
+    QTreeWidget     *m_view;
+    KJS::ExecState  *m_execState;
 
 };
 

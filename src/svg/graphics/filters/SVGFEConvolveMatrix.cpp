@@ -23,9 +23,10 @@
 #include "SVGRenderTreeAsText.h"
 #include "SVGFEConvolveMatrix.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFEConvolveMatrix::SVGFEConvolveMatrix(SVGResourceFilter* filter)
+SVGFEConvolveMatrix::SVGFEConvolveMatrix(SVGResourceFilter *filter)
     : SVGFilterEffect(filter)
     , m_kernelSize()
     , m_divisor(0.0f)
@@ -44,107 +45,106 @@ FloatSize SVGFEConvolveMatrix::kernelSize() const
 
 void SVGFEConvolveMatrix::setKernelSize(FloatSize kernelSize)
 {
-    m_kernelSize = kernelSize; 
+    m_kernelSize = kernelSize;
 }
 
-const Vector<float>& SVGFEConvolveMatrix::kernel() const
+const Vector<float> &SVGFEConvolveMatrix::kernel() const
 {
-    return m_kernelMatrix; 
+    return m_kernelMatrix;
 }
 
-void SVGFEConvolveMatrix::setKernel(const Vector<float>& kernel)
+void SVGFEConvolveMatrix::setKernel(const Vector<float> &kernel)
 {
-    m_kernelMatrix = kernel; 
+    m_kernelMatrix = kernel;
 }
 
 float SVGFEConvolveMatrix::divisor() const
 {
-    return m_divisor; 
+    return m_divisor;
 }
 
 void SVGFEConvolveMatrix::setDivisor(float divisor)
 {
-    m_divisor = divisor; 
+    m_divisor = divisor;
 }
 
 float SVGFEConvolveMatrix::bias() const
 {
-    return m_bias; 
+    return m_bias;
 }
 
 void SVGFEConvolveMatrix::setBias(float bias)
 {
-    m_bias = bias; 
+    m_bias = bias;
 }
 
 FloatSize SVGFEConvolveMatrix::targetOffset() const
 {
-    return m_targetOffset; 
+    return m_targetOffset;
 }
 
 void SVGFEConvolveMatrix::setTargetOffset(FloatSize targetOffset)
 {
-    m_targetOffset = targetOffset; 
+    m_targetOffset = targetOffset;
 }
 
 SVGEdgeModeType SVGFEConvolveMatrix::edgeMode() const
 {
-    return m_edgeMode; 
+    return m_edgeMode;
 }
 
 void SVGFEConvolveMatrix::setEdgeMode(SVGEdgeModeType edgeMode)
 {
-    m_edgeMode = edgeMode; 
+    m_edgeMode = edgeMode;
 }
 
 FloatPoint SVGFEConvolveMatrix::kernelUnitLength() const
 {
-    return m_kernelUnitLength; 
+    return m_kernelUnitLength;
 }
 
 void SVGFEConvolveMatrix::setKernelUnitLength(FloatPoint kernelUnitLength)
 {
-    m_kernelUnitLength = kernelUnitLength; 
+    m_kernelUnitLength = kernelUnitLength;
 }
 
 bool SVGFEConvolveMatrix::preserveAlpha() const
 {
-    return m_preserveAlpha; 
+    return m_preserveAlpha;
 }
 
 void SVGFEConvolveMatrix::setPreserveAlpha(bool preserveAlpha)
 {
-    m_preserveAlpha = preserveAlpha; 
+    m_preserveAlpha = preserveAlpha;
 }
 
-static TextStream& operator<<(TextStream& ts, SVGEdgeModeType t)
+static TextStream &operator<<(TextStream &ts, SVGEdgeModeType t)
 {
-    switch (t)
-    {
-        case SVG_EDGEMODE_UNKNOWN:
-            ts << "UNKNOWN";break;
-        case SVG_EDGEMODE_DUPLICATE:
-            ts << "DUPLICATE";break;
-        case SVG_EDGEMODE_WRAP:
-            ts << "WRAP"; break;
-        case SVG_EDGEMODE_NONE:
-            ts << "NONE"; break;
+    switch (t) {
+    case SVG_EDGEMODE_UNKNOWN:
+        ts << "UNKNOWN"; break;
+    case SVG_EDGEMODE_DUPLICATE:
+        ts << "DUPLICATE"; break;
+    case SVG_EDGEMODE_WRAP:
+        ts << "WRAP"; break;
+    case SVG_EDGEMODE_NONE:
+        ts << "NONE"; break;
     }
     return ts;
 }
 
-TextStream& SVGFEConvolveMatrix::externalRepresentation(TextStream& ts) const
+TextStream &SVGFEConvolveMatrix::externalRepresentation(TextStream &ts) const
 {
     ts << "[type=CONVOLVE-MATRIX] ";
     SVGFilterEffect::externalRepresentation(ts);
     ts << " [order " << m_kernelSize << "]"
-        << " [kernel matrix=" << m_kernelMatrix  << "]"
-        << " [divisor=" << m_divisor << "]"
-        << " [bias=" << m_bias << "]"
-        << " [target " << m_targetOffset << "]"
-        << " [edge mode=" << m_edgeMode << "]"
-        << " [kernel unit length " << m_kernelUnitLength << "]"
-        << " [preserve alpha=" << m_preserveAlpha << "]";
+       << " [kernel matrix=" << m_kernelMatrix  << "]"
+       << " [divisor=" << m_divisor << "]"
+       << " [bias=" << m_bias << "]"
+       << " [target " << m_targetOffset << "]"
+       << " [edge mode=" << m_edgeMode << "]"
+       << " [kernel unit length " << m_kernelUnitLength << "]"
+       << " [preserve alpha=" << m_preserveAlpha << "]";
     return ts;
 }
 

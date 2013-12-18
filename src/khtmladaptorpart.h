@@ -27,8 +27,8 @@
 
 namespace KJS
 {
-    class ExecState;
-    class JSObject;
+class ExecState;
+class JSObject;
 }
 
 class ScriptingInterface
@@ -39,15 +39,16 @@ public:
     virtual void initScripting(KJS::ExecState *exec) = 0;
     virtual void stopScripting() = 0;
 
-    virtual KJS::JSObject* scriptObject() = 0;
+    virtual KJS::JSObject *scriptObject() = 0;
 };
 
 Q_DECLARE_INTERFACE(ScriptingInterface, "org.kde.khtml.ScriptingInterface")
 
-class KHTMLAdaptorPartFactory : public KPluginFactory {
+class KHTMLAdaptorPartFactory : public KPluginFactory
+{
     Q_OBJECT
 public:
-    KHTMLAdaptorPartFactory ();
+    KHTMLAdaptorPartFactory();
     virtual QObject *create(const char *iface,
                             QWidget *wparent,
                             QObject *parent,
@@ -56,15 +57,16 @@ public:
 };
 
 class AdaptorView : public KParts::ReadOnlyPart,
-                    public ScriptingInterface {
+    public ScriptingInterface
+{
     Q_OBJECT
     Q_INTERFACES(ScriptingInterface)
 public:
-    AdaptorView(QWidget* wparent, QObject* parent, const QStringList& args);
+    AdaptorView(QWidget *wparent, QObject *parent, const QStringList &args);
 
     void initScripting(KJS::ExecState *exec);
     void stopScripting() { }
-    KJS::JSObject* scriptObject();
+    KJS::JSObject *scriptObject();
 
 protected:
     bool openFile();

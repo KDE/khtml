@@ -30,7 +30,8 @@
 #include "rawimageplane.h"
 #include "imagetile.h"
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 /**
  A scaled image plane pulls data from a RawImagePlane and resizes it
@@ -42,16 +43,15 @@ public:
 
     virtual void flushCache();
 
-    ScaledImagePlane(unsigned int _width, unsigned int _height, RawImagePlane* _parent);
-
+    ScaledImagePlane(unsigned int _width, unsigned int _height, RawImagePlane *_parent);
 
     virtual bool isUpToDate(unsigned int tileX, unsigned int tileY,
-                            PixmapTile* tile);
+                            PixmapTile *tile);
 
     virtual void ensureUpToDate(unsigned int tileX, unsigned int tileY,
-                            PixmapTile* tile);
+                                PixmapTile *tile);
 private:
-    RawImagePlane*     parent;
+    RawImagePlane     *parent;
     Array2D<ImageTile> tiles;
     int m_width, m_height;
 };
@@ -59,4 +59,3 @@ private:
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

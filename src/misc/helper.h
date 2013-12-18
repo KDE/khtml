@@ -27,32 +27,31 @@ class QPainter;
 #include <QFontMetrics>
 #include <QFont>
 
-
-
 namespace khtml
 {
-    class RenderObject;
-     const QRgb transparentColor = 0x00000000;
-     const QRgb invertedColor    = 0x00000002;
+class RenderObject;
+const QRgb transparentColor = 0x00000000;
+const QRgb invertedColor    = 0x00000002;
 
-    extern QPainter *printpainter;
-    void setPrintPainter( QPainter *printer );
-    
-    bool hasSufficientContrast(const QColor &c1, const QColor &c2);
-    QColor retrieveBackgroundColor(const RenderObject *obj);
-    QRgb qRgbaFromHsla(double h, double s, double l, double a);
-    QColor colorForCSSValue( int css_value );
+extern QPainter *printpainter;
+void setPrintPainter(QPainter *printer);
 
-    void findWordBoundary(QChar *chars, int len, int position, int *start, int *end);
+bool hasSufficientContrast(const QColor &c1, const QColor &c2);
+QColor retrieveBackgroundColor(const RenderObject *obj);
+QRgb qRgbaFromHsla(double h, double s, double l, double a);
+QColor colorForCSSValue(int css_value);
 
-    //enumerator for findSelectionNode
-    enum FindSelectionResult { SelectionPointBefore,
-			       SelectionPointAfter,
-			       SelectionPointInside,
-			       // the next two are only used inside one line in RenderText
-			       // to get BiDi contexts right.
-			       SelectionPointBeforeInLine,
-			       SelectionPointAfterInLine };
+void findWordBoundary(QChar *chars, int len, int position, int *start, int *end);
+
+//enumerator for findSelectionNode
+enum FindSelectionResult { SelectionPointBefore,
+                           SelectionPointAfter,
+                           SelectionPointInside,
+                           // the next two are only used inside one line in RenderText
+                           // to get BiDi contexts right.
+                           SelectionPointBeforeInLine,
+                           SelectionPointAfterInLine
+                         };
 }
 
 #endif

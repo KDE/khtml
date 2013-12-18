@@ -25,19 +25,21 @@
 
 #define khtml_MaxSeed 47963
 
-namespace khtml {
-
-static const int primes_t[] =
+namespace khtml
 {
+
+static const int primes_t[] = {
     31,    61,   107,   233,   353,   541,
-   821,  1237,  1861,  2797,  4201,  6311,
-  9467, 14207, 21313, 31973, 47963,  0
+    821,  1237,  1861,  2797,  4201,  6311,
+    9467, 14207, 21313, 31973, 47963,  0
 };
 
-static inline int nextSeed(int curSize) {
-    for (int i = 0 ; primes_t[i] ; i++)
-        if (primes_t[i] > curSize)
+static inline int nextSeed(int curSize)
+{
+    for (int i = 0; primes_t[i]; i++)
+        if (primes_t[i] > curSize) {
             return primes_t[i];
+        }
     return curSize;
 }
 

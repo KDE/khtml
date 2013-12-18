@@ -50,9 +50,9 @@ TestKHTML::TestKHTML()
     m_indicator->setFixedSize(QSize(24, 24));
     m_indicator->setMovie(m_movie);
 
-    m_part = new KHTMLPart( this, this, KHTMLPart::BrowserViewGUI );
-    connect( m_part->browserExtension(), SIGNAL(openUrlRequest(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)),
-             this, SLOT(openUrl(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)));
+    m_part = new KHTMLPart(this, this, KHTMLPart::BrowserViewGUI);
+    connect(m_part->browserExtension(), SIGNAL(openUrlRequest(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)),
+            this, SLOT(openUrl(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)));
 
     m_combo = new QComboBox;
     m_combo->setEditable(true);
@@ -114,14 +114,14 @@ TestKHTML::~TestKHTML()
 void TestKHTML::setupActions()
 {
     QDomDocument document = m_part->domDocument();
-    QDomElement fileMenu = document.documentElement().firstChild().childNodes().item( 0 ).toElement();
+    QDomElement fileMenu = document.documentElement().firstChild().childNodes().item(0).toElement();
 
     QDomElement quitElement = document.createElement("action");
     quitElement.setAttribute("name",
                              KStandardAction::name(KStandardAction::Quit));
     fileMenu.appendChild(quitElement);
 
-    QDomElement viewMenu = document.documentElement().firstChild().childNodes().item( 2 ).toElement();
+    QDomElement viewMenu = document.documentElement().firstChild().childNodes().item(2).toElement();
 
     QDomElement element = document.createElement("action");
     element.setAttribute("name", "debugRenderTree");
@@ -148,46 +148,47 @@ void TestKHTML::setupActions()
     element.setAttribute("name", "print");
     toolBar.insertBefore(element, toolBar.firstChild());
 
-    QAction *action = new QAction(QIcon::fromTheme("view-refresh"), "Reload", this );
-    m_part->actionCollection()->addAction( "reload", action );
+    QAction *action = new QAction(QIcon::fromTheme("view-refresh"), "Reload", this);
+    m_part->actionCollection()->addAction("reload", action);
     connect(action, SIGNAL(triggered(bool)), this, SLOT(reload()));
     action->setShortcut(Qt::Key_F5);
 
-    QAction *kprint = new QAction(QIcon::fromTheme("document-print"), "Print", this );
-    m_part->actionCollection()->addAction( "print", kprint );
+    QAction *kprint = new QAction(QIcon::fromTheme("document-print"), "Print", this);
+    m_part->actionCollection()->addAction("print", kprint);
     connect(kprint, SIGNAL(triggered(bool)), m_part->browserExtension(), SLOT(print()));
     kprint->setEnabled(true);
 
-    KToggleAction *ta = new KToggleAction( QIcon::fromTheme("edit-rename"), "Navigable", this );
-    actionCollection()->addAction( "navigable", ta );
-    ta->setShortcuts( QList<QKeySequence>() );
+    KToggleAction *ta = new KToggleAction(QIcon::fromTheme("edit-rename"), "Navigable", this);
+    actionCollection()->addAction("navigable", ta);
+    ta->setShortcuts(QList<QKeySequence>());
     ta->setChecked(m_part->isCaretMode());
     connect(ta, SIGNAL(toggled(bool)), this, SLOT(toggleNavigable(bool)));
 
-    ta = new KToggleAction( QIcon::fromTheme("document-properties"), "Editable", this );
-    actionCollection()->addAction( "editable", ta );
-    ta->setShortcuts( QList<QKeySequence>() );
+    ta = new KToggleAction(QIcon::fromTheme("document-properties"), "Editable", this);
+    actionCollection()->addAction("editable", ta);
+    ta->setShortcuts(QList<QKeySequence>());
     ta->setChecked(m_part->isEditable());
     connect(ta, SIGNAL(toggled(bool)), this, SLOT(toggleEditable(bool)));
 
-    KStandardAction::quit( qApp, SLOT(quit()), m_part->actionCollection() );
+    KStandardAction::quit(qApp, SLOT(quit()), m_part->actionCollection());
 
     guiFactory()->addClient(m_part);
 }
 
 KHTMLPart *TestKHTML::doc() const
 {
-    if (m_part)
+    if (m_part) {
         return m_part;
+    }
 
     return 0;
 }
 
-void TestKHTML::openUrl( const QUrl &url, const KParts::OpenUrlArguments& args, const KParts::BrowserArguments &browserArgs )
+void TestKHTML::openUrl(const QUrl &url, const KParts::OpenUrlArguments &args, const KParts::BrowserArguments &browserArgs)
 {
     m_part->setArguments(args);
     m_part->browserExtension()->setBrowserArguments(browserArgs);
-    m_part->openUrl( url );
+    m_part->openUrl(url);
 }
 
 void TestKHTML::openUrl(const QUrl &url)
@@ -205,8 +206,9 @@ void TestKHTML::openUrl(const QString &url)
 void TestKHTML::openUrl()
 {
     QLineEdit *edit = m_combo->lineEdit();
-    if (!edit)
+    if (!edit) {
         return;
+    }
 
     QString url = edit->text();
     QUrl parsedUrl(url);
@@ -216,9 +218,9 @@ void TestKHTML::openUrl()
 void TestKHTML::reload()
 {
     KParts::OpenUrlArguments args;
-    args.setReload( true );
-    m_part->setArguments( args );
-    m_part->openUrl( m_part->url() );
+    args.setReload(true);
+    m_part->setArguments(args);
+    m_part->openUrl(m_part->url());
 }
 
 void TestKHTML::toggleNavigable(bool s)
@@ -244,8 +246,7 @@ int main(int argc, char *argv[])
 
     TestKHTML *test = new TestKHTML;
     QUrl url = QUrl::fromUserInput(app.arguments().at(0)); // TODO support for relative paths
-    if (url.path().right(4).toLower() == ".xml")
-    {
+    if (url.path().right(4).toLower() == ".xml") {
         KParts::OpenUrlArguments args(test->doc()->arguments());
         args.setMimeType("text/xml");
         test->doc()->setArguments(args);
@@ -256,14 +257,4 @@ int main(int argc, char *argv[])
 
     return app.exec();
 }
-
-
-
-
-
-
-
-
-
-
 

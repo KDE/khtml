@@ -29,39 +29,47 @@
 #include "SVGStyledTransformableElement.h"
 #include "SVGTests.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGRectElement : public SVGStyledTransformableElement,
-                           public SVGTests,
-                           public SVGLangSpace,
-                           public SVGExternalResourcesRequired {
-    public:
-        SVGRectElement(const QualifiedName&, Document*);
-        virtual ~SVGRectElement();
-        
-        virtual bool isValid() const { return SVGTests::isValid(); }
+class SVGRectElement : public SVGStyledTransformableElement,
+    public SVGTests,
+    public SVGLangSpace,
+    public SVGExternalResourcesRequired
+{
+public:
+    SVGRectElement(const QualifiedName &, Document *);
+    virtual ~SVGRectElement();
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual void svgAttributeChanged(const QualifiedName&);
+    virtual bool isValid() const
+    {
+        return SVGTests::isValid();
+    }
 
-        virtual Path toPathData() const;
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual void svgAttributeChanged(const QualifiedName &);
 
-        // KHTML ElementImpl pure virtual method
-        virtual quint32 id() const;
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
-        virtual bool hasRelativeValues() const;
+    virtual Path toPathData() const;
 
-    private:
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
+    // KHTML ElementImpl pure virtual method
+    virtual quint32 id() const;
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
+    virtual bool hasRelativeValues() const;
 
-        ANIMATED_PROPERTY_DECLARATIONS(SVGRectElement, SVGLength, SVGLength, X, x)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGRectElement, SVGLength, SVGLength, Y, y)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGRectElement, SVGLength, SVGLength, Width, width)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGRectElement, SVGLength, SVGLength, Height, height)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGRectElement, SVGLength, SVGLength, Rx, rx)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGRectElement, SVGLength, SVGLength, Ry, ry)
-    };
+private:
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
+
+    ANIMATED_PROPERTY_DECLARATIONS(SVGRectElement, SVGLength, SVGLength, X, x)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGRectElement, SVGLength, SVGLength, Y, y)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGRectElement, SVGLength, SVGLength, Width, width)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGRectElement, SVGLength, SVGLength, Height, height)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGRectElement, SVGLength, SVGLength, Rx, rx)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGRectElement, SVGLength, SVGLength, Ry, ry)
+};
 
 } // namespace WebCore
 

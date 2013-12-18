@@ -20,7 +20,6 @@
     Boston, MA 02110-1301, USA.
 */
 
-
 #if ENABLE(SVG) && ENABLE(SVG_FOREIGN_OBJECT)
 #include "SVGForeignObjectElement.h"
 
@@ -31,9 +30,10 @@
 
 #include <wtf/Assertions.h>
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGForeignObjectElement::SVGForeignObjectElement(const QualifiedName& tagName, Document *doc)
+SVGForeignObjectElement::SVGForeignObjectElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledTransformableElement(tagName, doc)
     , SVGTests()
     , SVGLangSpace()
@@ -54,24 +54,27 @@ ANIMATED_PROPERTY_DEFINITIONS(SVGForeignObjectElement, SVGLength, Length, length
 ANIMATED_PROPERTY_DEFINITIONS(SVGForeignObjectElement, SVGLength, Length, length, Width, width, SVGNames::widthAttr, m_width)
 ANIMATED_PROPERTY_DEFINITIONS(SVGForeignObjectElement, SVGLength, Length, length, Height, height, SVGNames::heightAttr, m_height)
 
-void SVGForeignObjectElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGForeignObjectElement::parseMappedAttribute(MappedAttribute *attr)
 {
-    const AtomicString& value = attr->value();
-    if (attr->name() == SVGNames::xAttr)
+    const AtomicString &value = attr->value();
+    if (attr->name() == SVGNames::xAttr) {
         setXBaseValue(SVGLength(this, LengthModeWidth, value));
-    else if (attr->name() == SVGNames::yAttr)
+    } else if (attr->name() == SVGNames::yAttr) {
         setYBaseValue(SVGLength(this, LengthModeHeight, value));
-    else if (attr->name() == SVGNames::widthAttr)
+    } else if (attr->name() == SVGNames::widthAttr) {
         setWidthBaseValue(SVGLength(this, LengthModeWidth, value));
-    else if (attr->name() == SVGNames::heightAttr)
+    } else if (attr->name() == SVGNames::heightAttr) {
         setHeightBaseValue(SVGLength(this, LengthModeHeight, value));
-    else {
-        if (SVGTests::parseMappedAttribute(attr))
+    } else {
+        if (SVGTests::parseMappedAttribute(attr)) {
             return;
-        if (SVGLangSpace::parseMappedAttribute(attr))
+        }
+        if (SVGLangSpace::parseMappedAttribute(attr)) {
             return;
-        if (SVGExternalResourcesRequired::parseMappedAttribute(attr))
+        }
+        if (SVGExternalResourcesRequired::parseMappedAttribute(attr)) {
             return;
+        }
         SVGStyledTransformableElement::parseMappedAttribute(attr);
     }
 }
@@ -83,22 +86,25 @@ void SVGForeignObjectElement::parseMappedAttribute(MappedAttribute* attr)
 // function - though in SVG code we need to move this logic into svgAttributeChanged, in
 // order to support SVG DOM changes (which don't use the parseMappedAttribute/attributeChanged).
 // If we'd ignore SVG DOM, we could use _exactly_ the same logic as HTML.
-static inline void addCSSPropertyAndNotifyAttributeMap(StyledElement* element, const QualifiedName& name, int cssProperty, const String& value)
+static inline void addCSSPropertyAndNotifyAttributeMap(StyledElement *element, const QualifiedName &name, int cssProperty, const String &value)
 {
     ASSERT(element);
 
-    if (!element)
+    if (!element) {
         return;
+    }
 
-    NamedMappedAttrMap* attrs = element->mappedAttributes();
+    NamedMappedAttrMap *attrs = element->mappedAttributes();
     ASSERT(attrs);
 
-    if (!attrs)
+    if (!attrs) {
         return;
+    }
 
-    MappedAttribute* mappedAttr = attrs->getAttributeItem(name);
-    if (!mappedAttr)
+    MappedAttribute *mappedAttr = attrs->getAttributeItem(name);
+    if (!mappedAttr) {
         return;
+    }
 
     // This logic is only meant to be used for entries that have to be parsed and are mapped to eNone. Assert that.
     MappedAttributeEntry entry;
@@ -107,8 +113,9 @@ static inline void addCSSPropertyAndNotifyAttributeMap(StyledElement* element, c
     ASSERT(needToParse);
     ASSERT(entry == eNone);
 
-    if (!needToParse || entry != eNone) 
+    if (!needToParse || entry != eNone) {
         return;
+    }
 
     if (mappedAttr->decl()) {
         mappedAttr->setDecl(0);
@@ -118,7 +125,7 @@ static inline void addCSSPropertyAndNotifyAttributeMap(StyledElement* element, c
     element->setChanged();
     element->addCSSProperty(mappedAttr, cssProperty, value);
 
-    if (CSSMappedAttributeDeclaration* decl = mappedAttr->decl()) {
+    if (CSSMappedAttributeDeclaration *decl = mappedAttr->decl()) {
         // Add the decl to the table in the appropriate spot.
         element->setMappedAttributeDecl(entry, mappedAttr, decl);
 
@@ -130,7 +137,7 @@ static inline void addCSSPropertyAndNotifyAttributeMap(StyledElement* element, c
     }
 }
 
-void SVGForeignObjectElement::svgAttributeChanged(const QualifiedName& attrName)
+void SVGForeignObjectElement::svgAttributeChanged(const QualifiedName &attrName)
 {
     SVGStyledTransformableElement::svgAttributeChanged(attrName);
 
@@ -142,23 +149,25 @@ void SVGForeignObjectElement::svgAttributeChanged(const QualifiedName& attrName)
         return;
     }
 
-    if (!renderer())
+    if (!renderer()) {
         return;
+    }
 
     if (attrName == SVGNames::xAttr || attrName == SVGNames::yAttr ||
-        SVGTests::isKnownAttribute(attrName) ||
-        SVGLangSpace::isKnownAttribute(attrName) ||
-        SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
-        SVGStyledTransformableElement::isKnownAttribute(attrName))
+            SVGTests::isKnownAttribute(attrName) ||
+            SVGLangSpace::isKnownAttribute(attrName) ||
+            SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
+            SVGStyledTransformableElement::isKnownAttribute(attrName)) {
         renderer()->setNeedsLayout(true);
+    }
 }
 
-RenderObject* SVGForeignObjectElement::createRenderer(RenderArena* arena, RenderStyle* style)
+RenderObject *SVGForeignObjectElement::createRenderer(RenderArena *arena, RenderStyle *style)
 {
-    return new (arena) RenderForeignObject(this);
+    return new(arena) RenderForeignObject(this);
 }
 
-bool SVGForeignObjectElement::childShouldCreateRenderer(Node* child) const
+bool SVGForeignObjectElement::childShouldCreateRenderer(Node *child) const
 {
     // Skip over SVG rules which disallow non-SVG kids
     return StyledElement::childShouldCreateRenderer(child);

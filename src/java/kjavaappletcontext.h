@@ -37,14 +37,13 @@
  * @author Wynn Wilkes, wynnw@caldera.com
  */
 
-
 class KJavaAppletServer;
 class KJavaApplet;
 class KJavaAppletContextPrivate;
 
 class KJavaAppletContext : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
     KJavaAppletContext();
@@ -58,63 +57,66 @@ public:
     /**
      * Sets the ID of this context.
      */
-    void setContextId( int id );
+    void setContextId(int id);
 
     /**
      * registers applet
      **/
-    void registerApplet( KJavaApplet* );
+    void registerApplet(KJavaApplet *);
 
     /**
      * Sends a message to create the applet.
      */
-    bool create( KJavaApplet* );
+    bool create(KJavaApplet *);
 
     /**
      * Sends a message to destroy the applet.
      */
-    void destroy( KJavaApplet* );
+    void destroy(KJavaApplet *);
 
     /**
      * Sends a message to initialize the applet.
      */
-    void init( KJavaApplet* );
+    void init(KJavaApplet *);
 
     /**
      * Sends a message to start the applet.
      */
-    void start( KJavaApplet* );
+    void start(KJavaApplet *);
 
     /**
      * Sends a message to stop the applet.
      */
-    void stop( KJavaApplet* );
+    void stop(KJavaApplet *);
 
     /**
      * use this for applet call backs, the AppletServer
      * calls this directly.
      */
-    void processCmd( QString cmd, QStringList args );
+    void processCmd(QString cmd, QStringList args);
 
     /**
      * LiveConnect functions
      */
-    bool getMember(QStringList & args, QStringList & ret_args);
-    bool putMember(QStringList & args);
-    bool callMember(QStringList & args, QStringList & ret_args);
-    void derefObject(QStringList & args);
+    bool getMember(QStringList &args, QStringList &ret_args);
+    bool putMember(QStringList &args);
+    bool callMember(QStringList &args, QStringList &ret_args);
+    void derefObject(QStringList &args);
 
-    KJavaAppletServer* getServer() const { return server; }
+    KJavaAppletServer *getServer() const
+    {
+        return server;
+    }
 Q_SIGNALS:
     /**
      * Signals the KHMTL Part to show this as the status message.
      */
-    void showStatus  ( const QString& txt );
+    void showStatus(const QString &txt);
 
     /**
      * Signals the KHTML Part to show a url in a given target
      */
-    void showDocument( const QString& url, const QString& target );
+    void showDocument(const QString &url, const QString &target);
 
     /**
      * Signals the KHTML Part an applet is loaded
@@ -126,15 +128,15 @@ protected:
     static int contextCount;
 
     // The applet server this context is attached to.
-    KJavaAppletServer* server;
+    KJavaAppletServer *server;
 
 protected Q_SLOTS:
-    void received( const QString& cmd, const QStringList& arg );
+    void received(const QString &cmd, const QStringList &arg);
     void javaProcessExited(int);
 
 private:
     int id;
-    KJavaAppletContextPrivate* const d;
+    KJavaAppletContextPrivate *const d;
 
 };
 

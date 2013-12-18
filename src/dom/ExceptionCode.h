@@ -34,7 +34,7 @@
 
 namespace khtml
 {
-    typedef unsigned short ExceptionCode;
+typedef unsigned short ExceptionCode;
 }
 
 #endif

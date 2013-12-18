@@ -42,9 +42,10 @@
 
 using namespace std;
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGAnimateTransformElement::SVGAnimateTransformElement(const QualifiedName& tagName, Document* doc)
+SVGAnimateTransformElement::SVGAnimateTransformElement(const QualifiedName &tagName, Document *doc)
     : SVGAnimationElement(tagName, doc)
     , m_type(SVGTransform::SVG_TRANSFORM_UNKNOWN)
     , m_baseIndexInTransformList(0)
@@ -57,61 +58,68 @@ SVGAnimateTransformElement::~SVGAnimateTransformElement()
 
 bool SVGAnimateTransformElement::hasValidTarget() const
 {
-    SVGElement* targetElement = this->targetElement();
+    SVGElement *targetElement = this->targetElement();
     return SVGAnimationElement::hasValidTarget() && (targetElement->isStyledTransformable() || targetElement->hasTagName(SVGNames::textTag));
 }
 
-void SVGAnimateTransformElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGAnimateTransformElement::parseMappedAttribute(MappedAttribute *attr)
 {
     if (attr->name() == SVGNames::typeAttr) {
-        if (attr->value() == "translate")
+        if (attr->value() == "translate") {
             m_type = SVGTransform::SVG_TRANSFORM_TRANSLATE;
-        else if (attr->value() == "scale")
+        } else if (attr->value() == "scale") {
             m_type = SVGTransform::SVG_TRANSFORM_SCALE;
-        else if (attr->value() == "rotate")
+        } else if (attr->value() == "rotate") {
             m_type = SVGTransform::SVG_TRANSFORM_ROTATE;
-        else if (attr->value() == "skewX")
+        } else if (attr->value() == "skewX") {
             m_type = SVGTransform::SVG_TRANSFORM_SKEWX;
-        else if (attr->value() == "skewY")
+        } else if (attr->value() == "skewY") {
             m_type = SVGTransform::SVG_TRANSFORM_SKEWY;
-    } else
+        }
+    } else {
         SVGAnimationElement::parseMappedAttribute(attr);
+    }
 }
 
-    
-static PassRefPtr<SVGTransformList> transformListFor(SVGElement* element)
+static PassRefPtr<SVGTransformList> transformListFor(SVGElement *element)
 {
     ASSERT(element);
-    if (element->isStyledTransformable())
-        return static_cast<SVGStyledTransformableElement*>(element)->transform();
-    if (element->hasTagName(SVGNames::textTag))
-        return static_cast<SVGTextElement*>(element)->transform();
+    if (element->isStyledTransformable()) {
+        return static_cast<SVGStyledTransformableElement *>(element)->transform();
+    }
+    if (element->hasTagName(SVGNames::textTag)) {
+        return static_cast<SVGTextElement *>(element)->transform();
+    }
     return 0;
 }
-    
-void SVGAnimateTransformElement::resetToBaseValue(const String& baseValue)
+
+void SVGAnimateTransformElement::resetToBaseValue(const String &baseValue)
 {
-    if (!hasValidTarget())
+    if (!hasValidTarget()) {
         return;
+    }
     if (baseValue.isEmpty()) {
         ExceptionCode ec;
         RefPtr<SVGTransformList> list = transformListFor(targetElement());
         list->clear(ec);
-    } else
+    } else {
         targetElement()->setAttribute(SVGNames::transformAttr, baseValue);
+    }
 }
 
-void SVGAnimateTransformElement::calculateAnimatedValue(float percentage, unsigned repeat, SVGSMILElement* resultElement)
+void SVGAnimateTransformElement::calculateAnimatedValue(float percentage, unsigned repeat, SVGSMILElement *resultElement)
 {
-    if (!hasValidTarget())
+    if (!hasValidTarget()) {
         return;
-    SVGElement* targetElement = resultElement->targetElement();
+    }
+    SVGElement *targetElement = resultElement->targetElement();
     RefPtr<SVGTransformList> transformList = transformListFor(targetElement);
     ASSERT(transformList);
 
     ExceptionCode ec;
-    if (!isAdditive())
+    if (!isAdditive()) {
         transformList->clear(ec);
+    }
     if (isAccumulated() && repeat) {
         SVGTransform accumulatedTransform = SVGTransformDistance(m_fromTransform, m_toTransform).scaledDistance(repeat).addToSVGTransform(SVGTransform());
         transformList->appendItem(accumulatedTransform, ec);
@@ -119,81 +127,92 @@ void SVGAnimateTransformElement::calculateAnimatedValue(float percentage, unsign
     SVGTransform transform = SVGTransformDistance(m_fromTransform, m_toTransform).scaledDistance(percentage).addToSVGTransform(m_fromTransform);
     transformList->appendItem(transform, ec);
 }
-    
-bool SVGAnimateTransformElement::calculateFromAndToValues(const String& fromString, const String& toString)
+
+bool SVGAnimateTransformElement::calculateFromAndToValues(const String &fromString, const String &toString)
 {
     m_fromTransform = parseTransformValue(fromString);
-    if (!m_fromTransform.isValid())
+    if (!m_fromTransform.isValid()) {
         return false;
+    }
     m_toTransform = parseTransformValue(toString);
     return m_toTransform.isValid();
 }
 
-bool SVGAnimateTransformElement::calculateFromAndByValues(const String& fromString, const String& byString)
+bool SVGAnimateTransformElement::calculateFromAndByValues(const String &fromString, const String &byString)
 {
 
     m_fromTransform = parseTransformValue(fromString);
-    if (!m_fromTransform.isValid())
+    if (!m_fromTransform.isValid()) {
         return false;
+    }
     m_toTransform = SVGTransformDistance::addSVGTransforms(m_fromTransform, parseTransformValue(byString));
     return m_toTransform.isValid();
 }
 
-SVGTransform SVGAnimateTransformElement::parseTransformValue(const String& value) const
+SVGTransform SVGAnimateTransformElement::parseTransformValue(const String &value) const
 {
-    if (value.isEmpty())
+    if (value.isEmpty()) {
         return SVGTransform(m_type);
+    }
     SVGTransform result;
     // FIXME: This is pretty dumb but parseTransformValue() wants those parenthesis.
     String parseString("(" + value + ")");
-    const UChar* ptr = parseString.characters();
+    const UChar *ptr = parseString.characters();
     SVGTransformable::parseTransformValue(m_type, ptr, ptr + parseString.length(), result); // ignoring return value
     return result;
 }
-    
+
 void SVGAnimateTransformElement::applyResultsToTarget()
 {
-    if (!hasValidTarget())
+    if (!hasValidTarget()) {
         return;
+    }
     // We accumulate to the target element transform list so there is not much to do here.
-    SVGElement* targetElement = this->targetElement();
-    if (targetElement->renderer())
+    SVGElement *targetElement = this->targetElement();
+    if (targetElement->renderer()) {
         targetElement->renderer()->setNeedsLayout(true);
-    
+    }
+
     // ...except in case where we have additional instances in <use> trees.
-    HashSet<SVGElementInstance*>* instances = document()->accessSVGExtensions()->instancesForElement(targetElement);
-    if (!instances)
+    HashSet<SVGElementInstance *> *instances = document()->accessSVGExtensions()->instancesForElement(targetElement);
+    if (!instances) {
         return;
+    }
     RefPtr<SVGTransformList> transformList = transformListFor(targetElement);
-    HashSet<SVGElementInstance*>::iterator end = instances->end();
-    for (HashSet<SVGElementInstance*>::iterator it = instances->begin(); it != end; ++it) {
-        SVGElement* shadowTreeElement = (*it)->shadowTreeElement();
+    HashSet<SVGElementInstance *>::iterator end = instances->end();
+    for (HashSet<SVGElementInstance *>::iterator it = instances->begin(); it != end; ++it) {
+        SVGElement *shadowTreeElement = (*it)->shadowTreeElement();
         ASSERT(shadowTreeElement);
-        if (shadowTreeElement->isStyledTransformable())
-            static_cast<SVGStyledTransformableElement*>(shadowTreeElement)->setTransform(transformList.get());
-        else if (shadowTreeElement->hasTagName(SVGNames::textTag))
-            static_cast<SVGTextElement*>(shadowTreeElement)->setTransform(transformList.get());
-        if (shadowTreeElement->renderer())
+        if (shadowTreeElement->isStyledTransformable()) {
+            static_cast<SVGStyledTransformableElement *>(shadowTreeElement)->setTransform(transformList.get());
+        } else if (shadowTreeElement->hasTagName(SVGNames::textTag)) {
+            static_cast<SVGTextElement *>(shadowTreeElement)->setTransform(transformList.get());
+        }
+        if (shadowTreeElement->renderer()) {
             shadowTreeElement->renderer()->setNeedsLayout(true);
+        }
     }
 }
-    
-float SVGAnimateTransformElement::calculateDistance(const String& fromString, const String& toString)
+
+float SVGAnimateTransformElement::calculateDistance(const String &fromString, const String &toString)
 {
-    // FIXME: This is not correct in all cases. The spec demands that each component (translate x and y for example) 
+    // FIXME: This is not correct in all cases. The spec demands that each component (translate x and y for example)
     // is paced separately. To implement this we need to treat each component as individual animation everywhere.
     SVGTransform from = parseTransformValue(fromString);
-    if (!from.isValid())
+    if (!from.isValid()) {
         return -1.f;
+    }
     SVGTransform to = parseTransformValue(toString);
-    if (!to.isValid() || from.type() != to.type())
+    if (!to.isValid() || from.type() != to.type()) {
         return -1.f;
+    }
     if (to.type() == SVGTransform::SVG_TRANSFORM_TRANSLATE) {
         FloatSize diff = to.translate() - from.translate();
         return sqrtf(diff.width() * diff.width() + diff.height() * diff.height());
     }
-    if (to.type() == SVGTransform::SVG_TRANSFORM_ROTATE)
+    if (to.type() == SVGTransform::SVG_TRANSFORM_ROTATE) {
         return fabsf(to.angle() - from.angle());
+    }
     if (to.type() == SVGTransform::SVG_TRANSFORM_SCALE) {
         FloatSize diff = to.scale() - from.scale();
         return sqrtf(diff.width() * diff.width() + diff.height() * diff.height());
@@ -203,6 +222,5 @@ float SVGAnimateTransformElement::calculateDistance(const String& fromString, co
 
 }
 
-// vim:ts=4:noet
 #endif // ENABLE(SVG)
 

@@ -34,11 +34,13 @@
 
 class QRect;
 
-namespace KJS {
-    class HTMLDocument;
-    class Window;
+namespace KJS
+{
+class HTMLDocument;
+class Window;
 }
-namespace DOM {
+namespace DOM
+{
 
 class Node;
 class DOMString;
@@ -65,7 +67,7 @@ public:
     NamedNodeMap();
     NamedNodeMap(const NamedNodeMap &other);
 
-    NamedNodeMap & operator = (const NamedNodeMap &other);
+    NamedNodeMap &operator = (const NamedNodeMap &other);
 
     ~NamedNodeMap();
 
@@ -86,7 +88,7 @@ public:
      * identify any node in the map.
      *
      */
-    Node getNamedItem ( const DOMString &name ) const;
+    Node getNamedItem(const DOMString &name) const;
 
     /**
      * Adds a node using its \c nodeName attribute.
@@ -120,7 +122,7 @@ public:
      * \c Attr nodes to re-use them in other elements.
      *
      */
-    Node setNamedItem ( const Node &arg );
+    Node setNamedItem(const Node &arg);
 
     /**
      * Removes a node specified by name. If the removed node is an
@@ -137,7 +139,7 @@ public:
      * in the map.
      *
      */
-    Node removeNamedItem ( const DOMString &name );
+    Node removeNamedItem(const DOMString &name);
 
     /**
      * Returns the \c index th item in the map. If
@@ -151,7 +153,7 @@ public:
      * not a valid index.
      *
      */
-    Node item ( unsigned long index ) const;
+    Node item(unsigned long index) const;
 
     /**
      * Introduced in DOM Level 2
@@ -166,8 +168,8 @@ public:
      * @return A Node (of any type) with the specified local name and namespace
      * URI, or null if they do not identify any node in this map.
      */
-    Node getNamedItemNS( const DOMString &namespaceURI,
-                         const DOMString &localName ) const;
+    Node getNamedItemNS(const DOMString &namespaceURI,
+                        const DOMString &localName) const;
 
     /**
      * Introduced in DOM Level 2
@@ -193,7 +195,7 @@ public:
      * attribute of another Element object. The DOM user must explicitly clone
      * Attr nodes to re-use them in other elements.
      */
-    Node setNamedItemNS( const Node &arg );
+    Node setNamedItemNS(const Node &arg);
 
     /**
      * Introduced in DOM Level 2
@@ -219,18 +221,24 @@ public:
      *
      * NO_MODIFICATION_ALLOWED_ERR: Raised if this map is readonly.
      */
-    Node removeNamedItemNS( const DOMString &namespaceURI,
-                            const DOMString &localName );
+    Node removeNamedItemNS(const DOMString &namespaceURI,
+                           const DOMString &localName);
 
     /**
      * @internal
      * not part of the DOM
      */
-    NamedNodeMapImpl *handle() const { return impl; }
-    bool isNull() const { return !impl; }
+    NamedNodeMapImpl *handle() const
+    {
+        return impl;
+    }
+    bool isNull() const
+    {
+        return !impl;
+    }
 
 protected:
-    NamedNodeMap( NamedNodeMapImpl *i);
+    NamedNodeMap(NamedNodeMapImpl *i);
     NamedNodeMapImpl *impl;
 
     friend class Node;
@@ -281,9 +289,9 @@ public:
     /**
      * @internal
      */
-    Node( NodeImpl *_impl);
+    Node(NodeImpl *_impl);
 
-    Node & operator = (const Node &other);
+    Node &operator = (const Node &other);
 
     bool operator == (const Node &other) const;
 
@@ -419,7 +427,7 @@ public:
      * NO_MODIFICATION_ALLOWED_ERR: Raised when the node is readonly.
      *
      */
-    void setNodeValue( const DOMString & );
+    void setNodeValue(const DOMString &);
 
     /**
      * A code representing the type of the underlying object, as
@@ -532,7 +540,7 @@ public:
      * child of this node.
      *
      */
-    Node insertBefore ( const Node &newChild, const Node &refChild );
+    Node insertBefore(const Node &newChild, const Node &refChild);
 
     /**
      * Replaces the child node \c oldChild with
@@ -562,7 +570,7 @@ public:
      * child of this node.
      *
      */
-    Node replaceChild ( const Node &newChild, const Node &oldChild );
+    Node replaceChild(const Node &newChild, const Node &oldChild);
 
     /**
      * Removes the child node indicated by \c oldChild
@@ -579,7 +587,7 @@ public:
      * child of this node.
      *
      */
-    Node removeChild ( const Node &oldChild );
+    Node removeChild(const Node &oldChild);
 
     /**
      * Adds the node \c newChild to the end of the list of
@@ -607,7 +615,7 @@ public:
      *  NO_MODIFICATION_ALLOWED_ERR: Raised if this node is readonly.
      *
      */
-    Node appendChild ( const Node &newChild );
+    Node appendChild(const Node &newChild);
 
     /**
      * This is a convenience method to allow easy determination of
@@ -617,7 +625,7 @@ public:
      * \c false if the node has no children.
      *
      */
-    bool hasChildNodes (  );
+    bool hasChildNodes();
 
     /**
      * Returns a duplicate of this node, i.e., serves as a generic
@@ -639,7 +647,7 @@ public:
      * @return The duplicate node.
      *
      */
-    Node cloneNode ( bool deep );
+    Node cloneNode(bool deep);
 
     /**
      * Modified in DOM Level 2
@@ -658,7 +666,7 @@ public:
      * operation alone may not be sufficient, since XPointers do not
      * differentiate between Text nodes and CDATASection nodes.
      */
-    void normalize (  );
+    void normalize();
 
     /**
      * Introduced in DOM Level 2
@@ -677,8 +685,8 @@ public:
      * @return Returns true if the specified feature is supported on this node,
      * false otherwise.
      */
-    bool isSupported( const DOMString &feature,
-                      const DOMString &version ) const;
+    bool isSupported(const DOMString &feature,
+                     const DOMString &version) const;
 
     /**
      * Introduced in DOM Level 2
@@ -696,7 +704,7 @@ public:
      * attribute is not explicitly given a namespace, it simply has no
      * namespace.
      */
-    DOMString namespaceURI(  ) const;
+    DOMString namespaceURI() const;
 
     /**
      * Introduced in DOM Level 2
@@ -713,7 +721,7 @@ public:
      * nodes created with a DOM Level 1 method, such as createElement from the
      * Document interface, this is always null.
      */
-    DOMString prefix(  ) const;
+    DOMString prefix() const;
 
     /**
      * see prefix
@@ -732,7 +740,7 @@ public:
      * different from "http://www.w3.org/2000/xmlns/", or if this node is an
      * attribute and the qualifiedName of this node is "xmlns" [Namespaces].
      */
-    void setPrefix(const DOMString &prefix );
+    void setPrefix(const DOMString &prefix);
 
     /**
      * Introduced in DOM Level 2
@@ -742,14 +750,14 @@ public:
      * nodes created with a DOM Level 1 method, such as createElement from the
      * Document interface, this is always null.
      */
-    DOMString localName(  ) const;
+    DOMString localName() const;
 
     /**
      * Returns whether this node (if it is an element) has any attributes.
      * @return a boolean. True if this node has any attributes, false otherwise.
      *  Introduced in DOM Level 2
      */
-    bool hasAttributes (  );
+    bool hasAttributes();
 
     /**
      * Introduced in DOM Level 2
@@ -780,8 +788,8 @@ public:
      * designated to use capture.
      */
     void addEventListener(const DOMString &type,
-			  EventListener *listener,
-			  const bool useCapture);
+                          EventListener *listener,
+                          const bool useCapture);
 
     /**
      * Introduced in DOM Level 2
@@ -809,8 +817,8 @@ public:
      */
 
     void removeEventListener(const DOMString &type,
-			     EventListener *listener,
-			     bool useCapture);
+                             EventListener *listener,
+                             bool useCapture);
 
     /**
      * Introduced in DOM Level 2
@@ -862,7 +870,7 @@ public:
      * @exception DOMException
      * NO_MODIFICATION_ALLOWED_ERR: Raised when the node is readonly.
      */
-    void setTextContent(const DOMString& text);
+    void setTextContent(const DOMString &text);
 
     /**
      * Introduced in DOM Level 3.
@@ -873,12 +881,12 @@ public:
      * @since 4.2.4
      */
     enum DocumentPosition {
-	DOCUMENT_POSITION_DISCONNECTED = 0x01,
-	DOCUMENT_POSITION_PRECEDING    = 0x02,
-	DOCUMENT_POSITION_FOLLOWING    = 0x04,
-	DOCUMENT_POSITION_CONTAINS     = 0x08,
-	DOCUMENT_POSITION_CONTAINED_BY = 0x10,
-	DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC = 0x20
+        DOCUMENT_POSITION_DISCONNECTED = 0x01,
+        DOCUMENT_POSITION_PRECEDING    = 0x02,
+        DOCUMENT_POSITION_FOLLOWING    = 0x04,
+        DOCUMENT_POSITION_CONTAINS     = 0x08,
+        DOCUMENT_POSITION_CONTAINED_BY = 0x10,
+        DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC = 0x20
     };
 
     /**
@@ -896,7 +904,7 @@ public:
      *
      * @since 4.2.4
      */
-    unsigned compareDocumentPosition(const DOM::Node& other);
+    unsigned compareDocumentPosition(const DOM::Node &other);
 
     /**
      * @internal
@@ -917,12 +925,18 @@ public:
      *   kDebug() << "node isn't an element node";
      * \endcode
      */
-    bool isNull() const { return !impl; }
+    bool isNull() const
+    {
+        return !impl;
+    }
 
     /**
      * @internal handle to the implementation object
      */
-    NodeImpl *handle() const { return impl; }
+    NodeImpl *handle() const
+    {
+        return impl;
+    }
 
     /**
      * @internal returns the index of a node
@@ -947,7 +961,6 @@ public:
 protected:
     NodeImpl *impl;
 };
-
 
 class NodeListImpl;
 
@@ -974,7 +987,7 @@ public:
     NodeList();
     NodeList(const NodeList &other);
 
-    NodeList & operator = (const NodeList &other);
+    NodeList &operator = (const NodeList &other);
 
     ~NodeList();
 
@@ -997,28 +1010,31 @@ public:
      * a valid index.
      *
      */
-    Node item ( unsigned long index ) const;
+    Node item(unsigned long index) const;
 
     /**
      * @internal
      * not part of the DOM
      */
-    NodeListImpl *handle() const { return impl; }
-    bool isNull() const { return !impl; }
+    NodeListImpl *handle() const
+    {
+        return impl;
+    }
+    bool isNull() const
+    {
+        return !impl;
+    }
 
 protected:
     NodeList(const NodeListImpl *i);
     NodeListImpl *impl;
 };
 
-
-
 /**
  * A DOMTimeStamp represents a number of milliseconds.
  *
  */
 typedef unsigned long long DOMTimeStamp;
-
 
 } //namespace
 #endif

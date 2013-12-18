@@ -21,7 +21,8 @@
 
 #include <QDockWidget>
 
-namespace KJSDebugger {
+namespace KJSDebugger
+{
 
 class BreakpointsDock : public QDockWidget
 {

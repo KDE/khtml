@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include "wtf/Platform.h"
@@ -31,68 +31,69 @@
 
 #include <wtf/MathExtras.h>
 
-namespace WebCore {
+namespace WebCore
+{
 
 bool AffineTransform::isInvertible() const
 {
     return det() != 0.0;
 }
 
-AffineTransform& AffineTransform::multiply(const AffineTransform& other)
+AffineTransform &AffineTransform::multiply(const AffineTransform &other)
 {
     return (*this) *= other;
 }
 
-AffineTransform& AffineTransform::scale(double s)
+AffineTransform &AffineTransform::scale(double s)
 {
     return scale(s, s);
 }
 
-AffineTransform& AffineTransform::scaleNonUniform(double sx, double sy)
+AffineTransform &AffineTransform::scaleNonUniform(double sx, double sy)
 {
     return scale(sx, sy);
 }
 
-AffineTransform& AffineTransform::rotateFromVector(double x, double y)
+AffineTransform &AffineTransform::rotateFromVector(double x, double y)
 {
     return rotate(rad2deg(atan2(y, x)));
 }
 
-AffineTransform& AffineTransform::flipX()
+AffineTransform &AffineTransform::flipX()
 {
     return scale(-1.0f, 1.0f);
 }
 
-AffineTransform& AffineTransform::flipY()
+AffineTransform &AffineTransform::flipY()
 {
     return scale(1.0f, -1.0f);
 }
 
-AffineTransform& AffineTransform::skew(double angleX, double angleY)
+AffineTransform &AffineTransform::skew(double angleX, double angleY)
 {
     return shear(tan(deg2rad(angleX)), tan(deg2rad(angleY)));
 }
 
-AffineTransform& AffineTransform::skewX(double angle)
+AffineTransform &AffineTransform::skewX(double angle)
 {
     return shear(tan(deg2rad(angle)), 0.0f);
 }
 
-AffineTransform& AffineTransform::skewY(double angle)
+AffineTransform &AffineTransform::skewY(double angle)
 {
     return shear(0.0f, tan(deg2rad(angle)));
 }
 
-IntPoint AffineTransform::mapPoint(const IntPoint& point) const
+IntPoint AffineTransform::mapPoint(const IntPoint &point) const
 {
     double x2, y2;
     map(point.x(), point.y(), &x2, &y2);
-    
+
     // Round the point.
     return IntPoint(lround(x2), lround(y2));
 }
 
-FloatPoint AffineTransform::mapPoint(const FloatPoint& point) const
+FloatPoint AffineTransform::mapPoint(const FloatPoint &point) const
 {
     double x2, y2;
     map(point.x(), point.y(), &x2, &y2);

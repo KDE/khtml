@@ -82,11 +82,11 @@ public Q_SLOTS:
     void hideCurrentBarWidget();
 
 protected:
-    virtual void keyPressEvent(QKeyEvent* event);
-    virtual void hideEvent(QHideEvent* event);
+    virtual void keyPressEvent(QKeyEvent *event);
+    virtual void hideEvent(QHideEvent *event);
 
 private:
-    bool hasWidget(KHTMLViewBarWidget*) const;
+    bool hasWidget(KHTMLViewBarWidget *) const;
 
     /**
      * Shows or hides whole viewbar

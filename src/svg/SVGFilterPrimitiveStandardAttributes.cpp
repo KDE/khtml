@@ -30,9 +30,10 @@
 #include "SVGStyledElement.h"
 #include "SVGUnitTypes.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFilterPrimitiveStandardAttributes::SVGFilterPrimitiveStandardAttributes(const QualifiedName& tagName, Document* doc)
+SVGFilterPrimitiveStandardAttributes::SVGFilterPrimitiveStandardAttributes(const QualifiedName &tagName, Document *doc)
     : SVGStyledElement(tagName, doc)
     , m_x(this, LengthModeWidth)
     , m_y(this, LengthModeHeight)
@@ -58,28 +59,30 @@ ANIMATED_PROPERTY_DEFINITIONS(SVGFilterPrimitiveStandardAttributes, SVGLength, L
 ANIMATED_PROPERTY_DEFINITIONS(SVGFilterPrimitiveStandardAttributes, SVGLength, Length, length, Height, height, SVGNames::heightAttr, m_height)
 ANIMATED_PROPERTY_DEFINITIONS(SVGFilterPrimitiveStandardAttributes, String, String, string, Result, result, SVGNames::resultAttr, m_result)
 
-void SVGFilterPrimitiveStandardAttributes::parseMappedAttribute(MappedAttribute* attr)
+void SVGFilterPrimitiveStandardAttributes::parseMappedAttribute(MappedAttribute *attr)
 {
-    const AtomicString& value = attr->value();
-    if (attr->name() == SVGNames::xAttr)
+    const AtomicString &value = attr->value();
+    if (attr->name() == SVGNames::xAttr) {
         setXBaseValue(SVGLength(this, LengthModeWidth, value));
-    else if (attr->name() == SVGNames::yAttr)
+    } else if (attr->name() == SVGNames::yAttr) {
         setYBaseValue(SVGLength(this, LengthModeHeight, value));
-    else if (attr->name() == SVGNames::widthAttr)
+    } else if (attr->name() == SVGNames::widthAttr) {
         setWidthBaseValue(SVGLength(this, LengthModeWidth, value));
-    else if (attr->name() == SVGNames::heightAttr)
+    } else if (attr->name() == SVGNames::heightAttr) {
         setHeightBaseValue(SVGLength(this, LengthModeHeight, value));
-    else if (attr->name() == SVGNames::resultAttr)
+    } else if (attr->name() == SVGNames::resultAttr) {
         setResultBaseValue(value);
-    else
+    } else {
         return SVGStyledElement::parseMappedAttribute(attr);
+    }
 }
 
-void SVGFilterPrimitiveStandardAttributes::setStandardAttributes(SVGFilterEffect* filterEffect) const
+void SVGFilterPrimitiveStandardAttributes::setStandardAttributes(SVGFilterEffect *filterEffect) const
 {
     ASSERT(filterEffect);
-    if (!filterEffect)
+    if (!filterEffect) {
         return;
+    }
 
     ASSERT(filterEffect->filter());
 
@@ -133,4 +136,3 @@ void SVGFilterPrimitiveStandardAttributes::setStandardAttributes(SVGFilterEffect
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

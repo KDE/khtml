@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef IntRect_h
@@ -58,62 +58,132 @@ class TRect;
 class wxRect;
 #endif
 
-namespace WebCore {
+namespace WebCore
+{
 
 class FloatRect;
 
-class IntRect {
+class IntRect
+{
 public:
     IntRect() { }
-    IntRect(const IntPoint& location, const IntSize& size)
+    IntRect(const IntPoint &location, const IntSize &size)
         : m_location(location), m_size(size) { }
     IntRect(int x, int y, int width, int height)
         : m_location(IntPoint(x, y)), m_size(IntSize(width, height)) { }
 
-    explicit IntRect(const FloatRect& rect); // don't do this implicitly since it's lossy
-        
-    IntPoint location() const { return m_location; }
-    IntSize size() const { return m_size; }
+    explicit IntRect(const FloatRect &rect); // don't do this implicitly since it's lossy
 
-    void setLocation(const IntPoint& location) { m_location = location; }
-    void setSize(const IntSize& size) { m_size = size; }
+    IntPoint location() const
+    {
+        return m_location;
+    }
+    IntSize size() const
+    {
+        return m_size;
+    }
 
-    int x() const { return m_location.x(); }
-    int y() const { return m_location.y(); }
-    int width() const { return m_size.width(); }
-    int height() const { return m_size.height(); }
+    void setLocation(const IntPoint &location)
+    {
+        m_location = location;
+    }
+    void setSize(const IntSize &size)
+    {
+        m_size = size;
+    }
 
-    void setX(int x) { m_location.setX(x); }
-    void setY(int y) { m_location.setY(y); }
-    void setWidth(int width) { m_size.setWidth(width); }
-    void setHeight(int height) { m_size.setHeight(height); }
+    int x() const
+    {
+        return m_location.x();
+    }
+    int y() const
+    {
+        return m_location.y();
+    }
+    int width() const
+    {
+        return m_size.width();
+    }
+    int height() const
+    {
+        return m_size.height();
+    }
+
+    void setX(int x)
+    {
+        m_location.setX(x);
+    }
+    void setY(int y)
+    {
+        m_location.setY(y);
+    }
+    void setWidth(int width)
+    {
+        m_size.setWidth(width);
+    }
+    void setHeight(int height)
+    {
+        m_size.setHeight(height);
+    }
 
     // Be careful with these functions.  The point is considered to be to the right and below.  These are not
     // substitutes for right() and bottom().
-    IntPoint topLeft() const { return m_location; }
-    IntPoint topRight() const { return IntPoint(right() - 1, y()); }
-    IntPoint bottomLeft() const { return IntPoint(x(), bottom() - 1); }
-    IntPoint bottomRight() const { return IntPoint(right() - 1, bottom() - 1); }
+    IntPoint topLeft() const
+    {
+        return m_location;
+    }
+    IntPoint topRight() const
+    {
+        return IntPoint(right() - 1, y());
+    }
+    IntPoint bottomLeft() const
+    {
+        return IntPoint(x(), bottom() - 1);
+    }
+    IntPoint bottomRight() const
+    {
+        return IntPoint(right() - 1, bottom() - 1);
+    }
 
-    bool isEmpty() const { return m_size.isEmpty(); }
+    bool isEmpty() const
+    {
+        return m_size.isEmpty();
+    }
 
-    int right() const { return x() + width(); }
-    int bottom() const { return y() + height(); }
+    int right() const
+    {
+        return x() + width();
+    }
+    int bottom() const
+    {
+        return y() + height();
+    }
 
-    void move(const IntSize& s) { m_location += s; } 
-    void move(int dx, int dy) { m_location.move(dx, dy); } 
+    void move(const IntSize &s)
+    {
+        m_location += s;
+    }
+    void move(int dx, int dy)
+    {
+        m_location.move(dx, dy);
+    }
 
-    bool intersects(const IntRect&) const;
-    bool contains(const IntRect&) const;
+    bool intersects(const IntRect &) const;
+    bool contains(const IntRect &) const;
 
     // This checks to see if the rect contains x,y in the traditional sense.
     // Equivalent to checking if the rect contains a 1x1 rect below and to the right of (px,py).
     bool contains(int px, int py) const
-        { return px >= x() && px < right() && py >= y() && py < bottom(); }
-    bool contains(const IntPoint& point) const { return contains(point.x(), point.y()); }
+    {
+        return px >= x() && px < right() && py >= y() && py < bottom();
+    }
+    bool contains(const IntPoint &point) const
+    {
+        return contains(point.x(), point.y());
+    }
 
-    void intersect(const IntRect&);
-    void unite(const IntRect&);
+    void intersect(const IntRect &);
+    void unite(const IntRect &);
 
     void inflateX(int dx)
     {
@@ -125,26 +195,30 @@ public:
         m_location.setY(m_location.y() - dy);
         m_size.setHeight(m_size.height() + dy + dy);
     }
-    void inflate(int d) { inflateX(d); inflateY(d); }
+    void inflate(int d)
+    {
+        inflateX(d);
+        inflateY(d);
+    }
     void scale(float s);
 
 #if PLATFORM(WX)
-    IntRect(const wxRect&);
+    IntRect(const wxRect &);
     operator wxRect() const;
 #endif
 
 #if PLATFORM(WIN)
-    IntRect(const RECT&);
+    IntRect(const RECT &);
     operator RECT() const;
 #elif PLATFORM(QT)
-    IntRect(const QRect&);
+    IntRect(const QRect &);
     operator QRect() const;
 #elif PLATFORM(GTK)
-    IntRect(const GdkRectangle&);
+    IntRect(const GdkRectangle &);
     operator GdkRectangle() const;
 #endif
 #if PLATFORM(SYMBIAN)
-    IntRect(const TRect&);
+    IntRect(const TRect &);
     operator TRect() const;
     TRect Rect() const;
 #endif
@@ -162,36 +236,36 @@ private:
     IntSize m_size;
 };
 
-inline IntRect intersection(const IntRect& a, const IntRect& b)
+inline IntRect intersection(const IntRect &a, const IntRect &b)
 {
     IntRect c = a;
     c.intersect(b);
     return c;
 }
 
-inline IntRect unionRect(const IntRect& a, const IntRect& b)
+inline IntRect unionRect(const IntRect &a, const IntRect &b)
 {
     IntRect c = a;
     c.unite(b);
     return c;
 }
 
-inline bool operator==(const IntRect& a, const IntRect& b)
+inline bool operator==(const IntRect &a, const IntRect &b)
 {
     return a.location() == b.location() && a.size() == b.size();
 }
 
-inline bool operator!=(const IntRect& a, const IntRect& b)
+inline bool operator!=(const IntRect &a, const IntRect &b)
 {
     return a.location() != b.location() || a.size() != b.size();
 }
 
 #if PLATFORM(CG)
-IntRect enclosingIntRect(const CGRect&);
+IntRect enclosingIntRect(const CGRect &);
 #endif
 
 #if PLATFORM(MAC) && !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
-IntRect enclosingIntRect(const NSRect&);
+IntRect enclosingIntRect(const NSRect &);
 #endif
 
 } // namespace WebCore

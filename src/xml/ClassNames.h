@@ -27,46 +27,63 @@
 
 using khtml::AtomicString;
 
-namespace DOM {
+namespace DOM
+{
 
-    class ClassNames {
-        typedef Vector<khtml::AtomicString, 8> ClassNameVector;
-    public:
-        ClassNames()
-        {
-        }
-
-        bool contains(const khtml::AtomicString& str) const
-        {
-            if (!m_nameVector)
-                return false;
-
-            size_t size = m_nameVector->size();
-            for (size_t i = 0; i < size; ++i) {
-                if (m_nameVector->at(i) == str)
-                    return true;
-            }
-
-            return false;
-        }
-
-        void parseClassAttribute(const DOMString&, bool inCompatMode);
-
-        size_t size() const { return m_nameVector ? m_nameVector->size() : 0; }
-        void clear() { if (m_nameVector) m_nameVector->clear(); }
-        const khtml::AtomicString& operator[](size_t i) const { ASSERT(m_nameVector); return m_nameVector->at(i); }
-
-    private:
-        OwnPtr<ClassNameVector> m_nameVector;
-    };
-
-    inline static bool isClassWhitespace(const QChar& c)
+class ClassNames
+{
+    typedef Vector<khtml::AtomicString, 8> ClassNameVector;
+public:
+    ClassNames()
     {
-        unsigned short u = c.unicode();
-        if (u > 0x20)
-            return false;
-        return u == ' ' || u == '\r' || u == '\n' || u == '\t' || u == '\f';
     }
+
+    bool contains(const khtml::AtomicString &str) const
+    {
+        if (!m_nameVector) {
+            return false;
+        }
+
+        size_t size = m_nameVector->size();
+        for (size_t i = 0; i < size; ++i) {
+            if (m_nameVector->at(i) == str) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    void parseClassAttribute(const DOMString &, bool inCompatMode);
+
+    size_t size() const
+    {
+        return m_nameVector ? m_nameVector->size() : 0;
+    }
+    void clear()
+    {
+        if (m_nameVector) {
+            m_nameVector->clear();
+        }
+    }
+    const khtml::AtomicString &operator[](size_t i) const
+    {
+        ASSERT(m_nameVector);
+        return m_nameVector->at(i);
+    }
+
+private:
+    OwnPtr<ClassNameVector> m_nameVector;
+};
+
+inline static bool isClassWhitespace(const QChar &c)
+{
+    unsigned short u = c.unicode();
+    if (u > 0x20) {
+        return false;
+    }
+    return u == ' ' || u == '\r' || u == '\n' || u == '\t' || u == '\f';
+}
 
 } // namespace DOM
 

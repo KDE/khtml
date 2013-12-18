@@ -24,7 +24,8 @@
 
 #if ENABLE(SVG) && ENABLE(SVG_FILTERS)
 
-namespace WebCore {
+namespace WebCore
+{
 
 enum SVGLightType {
     LS_DISTANT,
@@ -34,7 +35,8 @@ enum SVGLightType {
 
 class TextStream;
 
-class SVGLightSource {
+class SVGLightSource
+{
 public:
     SVGLightSource(SVGLightType type)
         : m_type(type)
@@ -42,13 +44,15 @@ public:
 
     virtual ~SVGLightSource() { }
 
-    SVGLightType type() const { return m_type; }
-    virtual TextStream& externalRepresentation(TextStream&) const = 0;
+    SVGLightType type() const
+    {
+        return m_type;
+    }
+    virtual TextStream &externalRepresentation(TextStream &) const = 0;
 
 private:
     SVGLightType m_type;
 };
-
 
 } // namespace WebCore
 

@@ -23,7 +23,8 @@
 
 #include "khtml_part.h"
 
-namespace khtml {
+namespace khtml
+{
 
 /**
  * This class is merely a namespace for static accessor methods to private
@@ -36,19 +37,31 @@ namespace khtml {
  * @author Leo Savernik
  * @internal
  */
-class KHTMLPartAccessor {
-  KHTMLPartAccessor();
-  ~KHTMLPartAccessor();
+class KHTMLPartAccessor
+{
+    KHTMLPartAccessor();
+    ~KHTMLPartAccessor();
 public:
 
-  inline static DOM::DocumentImpl *xmlDocImpl(const KHTMLPart *part) { return part->xmlDocImpl(); }
-  inline static const DOM::Selection &caret(const KHTMLPart *part) { return part->caret(); }
-  inline static void clearSelection(KHTMLPart *part) { part->clearSelection(); }
+    inline static DOM::DocumentImpl *xmlDocImpl(const KHTMLPart *part)
+    {
+        return part->xmlDocImpl();
+    }
+    inline static const DOM::Selection &caret(const KHTMLPart *part)
+    {
+        return part->caret();
+    }
+    inline static void clearSelection(KHTMLPart *part)
+    {
+        part->clearSelection();
+    }
 
-  inline static KHTMLPartPrivate *d(const KHTMLPart *part) { return part->d; }
+    inline static KHTMLPartPrivate *d(const KHTMLPart *part)
+    {
+        return part->d;
+    }
 };
 
 }/*namespace khtml*/
-
 
 #endif // KHTML_PARTACCESSOR_H

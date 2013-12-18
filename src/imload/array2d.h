@@ -24,8 +24,8 @@
 #ifndef ARRAY2D_H
 #define ARRAY2D_H
 
-
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 /**
  A little helper template for nicer 2D arrays. This is in no way
@@ -35,12 +35,12 @@ template <typename T>
 class Array2D
 {
 private:
-    T* data;
+    T *data;
     unsigned int cols;
     unsigned int rows;
 public:
     Array2D(unsigned int _cols, unsigned int _rows):
-        data(new T[_cols*_rows]), cols(_cols), rows(_rows)
+        data(new T[_cols *_rows]), cols(_cols), rows(_rows)
     {}
 
     Array2D()
@@ -56,7 +56,7 @@ public:
     }
 
     //Note: this is meant to be used only on empty objects
-    Array2D& operator=(const Array2D& other)
+    Array2D &operator=(const Array2D &other)
     {
         assert(data == 0);
         data = other.data;
@@ -65,20 +65,19 @@ public:
         return *this;
     }
 
-    T& at(unsigned int col, unsigned int row)
+    T &at(unsigned int col, unsigned int row)
     {
         return data[row * cols + col];
     }
 
-    const T& at(unsigned int col, unsigned int row) const
+    const T &at(unsigned int col, unsigned int row) const
     {
         return data[row * cols + col];
     }
 private:
-    Array2D(const Array2D& other);
+    Array2D(const Array2D &other);
 };
 
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

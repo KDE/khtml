@@ -29,28 +29,33 @@
 #include "SVGStyledTransformableElement.h"
 #include "SVGTests.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGDefsElement : public SVGStyledTransformableElement,
-                           public SVGTests,
-                           public SVGLangSpace,
-                           public SVGExternalResourcesRequired {
-    public:
-        SVGDefsElement(const QualifiedName&, Document*);
-        virtual ~SVGDefsElement();
+class SVGDefsElement : public SVGStyledTransformableElement,
+    public SVGTests,
+    public SVGLangSpace,
+    public SVGExternalResourcesRequired
+{
+public:
+    SVGDefsElement(const QualifiedName &, Document *);
+    virtual ~SVGDefsElement();
 
-        virtual bool isValid() const;
+    virtual bool isValid() const;
 
-        virtual RenderObject* createRenderer(RenderArena*, RenderStyle*);
+    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
 
-        // KHTML ElementImpl pure virtual method
-        virtual quint32 id() const;
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
+    // KHTML ElementImpl pure virtual method
+    virtual quint32 id() const;
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
 
-    private:
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
-    };
+private:
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
+};
 
 } // namespace WebCore
 

@@ -31,51 +31,59 @@
 #include "SVGTests.h"
 #include "SVGURIReference.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGPreserveAspectRatio;
-    class SVGLength;
+class SVGPreserveAspectRatio;
+class SVGLength;
 
-    class SVGImageElement : public SVGStyledTransformableElement,
-                            public SVGTests,
-                            public SVGLangSpace,
-                            public SVGExternalResourcesRequired,
-                            public SVGURIReference {
-    public:
-        SVGImageElement(const QualifiedName&, Document*);
-        virtual ~SVGImageElement();
-        
-        virtual bool isValid() const { return SVGTests::isValid(); }
+class SVGImageElement : public SVGStyledTransformableElement,
+    public SVGTests,
+    public SVGLangSpace,
+    public SVGExternalResourcesRequired,
+    public SVGURIReference
+{
+public:
+    SVGImageElement(const QualifiedName &, Document *);
+    virtual ~SVGImageElement();
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual void svgAttributeChanged(const QualifiedName&);
+    virtual bool isValid() const
+    {
+        return SVGTests::isValid();
+    }
 
-        virtual void attach();
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual void svgAttributeChanged(const QualifiedName &);
 
-        virtual RenderObject* createRenderer(RenderArena*, RenderStyle*);
-        
-        virtual void getSubresourceAttributeStrings(Vector<String>&) const;
+    virtual void attach();
 
-    protected:
-        virtual bool haveLoadedRequiredResources();
-        
-        virtual bool hasRelativeValues() const;
+    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
 
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
+    virtual void getSubresourceAttributeStrings(Vector<String> &) const;
 
-    private:
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired) 
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)
+protected:
+    virtual bool haveLoadedRequiredResources();
 
-        ANIMATED_PROPERTY_DECLARATIONS(SVGImageElement, SVGLength, SVGLength, X, x)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGImageElement, SVGLength, SVGLength, Y, y)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGImageElement, SVGLength, SVGLength, Width, width)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGImageElement, SVGLength, SVGLength, Height, height)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGImageElement, SVGPreserveAspectRatio*, RefPtr<SVGPreserveAspectRatio>, PreserveAspectRatio, preserveAspectRatio)
+    virtual bool hasRelativeValues() const;
 
-        SVGImageLoader m_imageLoader;
-    };
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
+
+private:
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)
+
+    ANIMATED_PROPERTY_DECLARATIONS(SVGImageElement, SVGLength, SVGLength, X, x)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGImageElement, SVGLength, SVGLength, Y, y)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGImageElement, SVGLength, SVGLength, Width, width)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGImageElement, SVGLength, SVGLength, Height, height)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGImageElement, SVGPreserveAspectRatio *, RefPtr<SVGPreserveAspectRatio>, PreserveAspectRatio, preserveAspectRatio)
+
+    SVGImageLoader m_imageLoader;
+};
 
 } // namespace WebCore
 

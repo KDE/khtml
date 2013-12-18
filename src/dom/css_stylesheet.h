@@ -33,7 +33,8 @@
 #include <dom/dom_node.h>
 #include <dom/dom_misc.h>
 
-namespace DOM {
+namespace DOM
+{
 
 class StyleSheetImpl;
 class MediaList;
@@ -63,7 +64,7 @@ public:
     StyleSheet(StyleSheetImpl *impl);
 public:
 
-    StyleSheet & operator = (const StyleSheet &other);
+    StyleSheet &operator = (const StyleSheet &other);
 
     ~StyleSheet();
 
@@ -96,7 +97,7 @@ public:
     /**
      * see disabled
      */
-    void setDisabled( bool );
+    void setDisabled(bool);
 
     /**
      * The node that associates this style sheet with the document.
@@ -160,12 +161,17 @@ public:
      */
     QUrl baseUrl();
     bool isCSSStyleSheet() const;
-    StyleSheetImpl *handle() const { return impl; }
-    bool isNull() const { return !impl; }
+    StyleSheetImpl *handle() const
+    {
+        return impl;
+    }
+    bool isNull() const
+    {
+        return !impl;
+    }
 protected:
     StyleSheetImpl *impl;
 };
-
 
 /**
  * This exception is raised when a specific CSS operation is impossible
@@ -174,11 +180,20 @@ protected:
 class KHTML_EXPORT CSSException
 {
 public:
-    CSSException(unsigned short _code) { code = _code; }
-    CSSException(const CSSException &other) { code = other.code; }
+    CSSException(unsigned short _code)
+    {
+        code = _code;
+    }
+    CSSException(const CSSException &other)
+    {
+        code = other.code;
+    }
 
-    CSSException & operator = (const CSSException &other)
-        { code = other.code; return *this; }
+    CSSException &operator = (const CSSException &other)
+    {
+        code = other.code;
+        return *this;
+    }
 
     virtual ~CSSException() {}
     /**
@@ -187,8 +202,7 @@ public:
      */
     unsigned short   code;
 
-    enum ExceptionCode
-    {
+    enum ExceptionCode {
         SYNTAX_ERR                     = 0,
         INVALID_MODIFICATION_ERR       = 1,
         _EXCEPTION_OFFSET              = 1000,
@@ -224,8 +238,8 @@ public:
     CSSStyleSheet(CSSStyleSheetImpl *impl);
 public:
 
-    CSSStyleSheet & operator = (const CSSStyleSheet &other);
-    CSSStyleSheet & operator = (const StyleSheet &other);
+    CSSStyleSheet &operator = (const CSSStyleSheet &other);
+    CSSStyleSheet &operator = (const StyleSheet &other);
 
     ~CSSStyleSheet();
 
@@ -287,7 +301,7 @@ public:
      * and is unparsable.
      *
      */
-    unsigned long insertRule ( const DOM::DOMString &rule, unsigned long index );
+    unsigned long insertRule(const DOM::DOMString &rule, unsigned long index);
 
     /**
      * Used to delete a rule from the style sheet.
@@ -305,12 +319,11 @@ public:
      * readonly.
      *
      */
-    void deleteRule ( unsigned long index );
+    void deleteRule(unsigned long index);
 
     /** @internal */
     DOM::DOMString charset() const;
 };
-
 
 class StyleSheetListImpl;
 class StyleSheet;
@@ -328,7 +341,7 @@ public:
     StyleSheetList(StyleSheetListImpl *impl);
 public:
 
-    StyleSheetList & operator = (const StyleSheetList &other);
+    StyleSheetList &operator = (const StyleSheetList &other);
 
     ~StyleSheetList();
 
@@ -350,7 +363,7 @@ public:
      * that is not a valid index.
      *
      */
-    StyleSheet item ( unsigned long index );
+    StyleSheet item(unsigned long index);
 
     /**
      * @internal
@@ -361,7 +374,6 @@ public:
 protected:
     StyleSheetListImpl *impl;
 };
-
 
 class MediaListImpl;
 class CSSRule;
@@ -382,7 +394,7 @@ public:
     MediaList(MediaListImpl *impl);
 public:
 
-    MediaList & operator = (const MediaList &other);
+    MediaList &operator = (const MediaList &other);
 
     ~MediaList();
 
@@ -407,7 +419,6 @@ public:
      * The number of media in the list. The range of valid media is 0 to length-1 inclusive.
      */
     unsigned long length() const;
-
 
     /**
      * Returns the indexth in the list. If index is greater than or equal to
@@ -464,8 +475,8 @@ public:
     LinkStyle();
     LinkStyle(const LinkStyle &other);
 
-    LinkStyle & operator = (const LinkStyle &other);
-    LinkStyle & operator = (const Node &other);
+    LinkStyle &operator = (const LinkStyle &other);
+    LinkStyle &operator = (const Node &other);
 
     ~LinkStyle();
 
@@ -486,18 +497,21 @@ public:
     DocumentStyle();
     DocumentStyle(const DocumentStyle &other);
 
-    DocumentStyle & operator = (const DocumentStyle &other);
-    DocumentStyle & operator = (const Document &other);
+    DocumentStyle &operator = (const DocumentStyle &other);
+    DocumentStyle &operator = (const Document &other);
 
     ~DocumentStyle();
 
-    StyleSheetList styleSheets() const ;
+    StyleSheetList styleSheets() const;
 
     DOMString preferredStylesheetSet() const;
     DOMString selectedStylesheetSet() const;
-    void setSelectedStylesheetSet( const DOMString& aString );
+    void setSelectedStylesheetSet(const DOMString &aString);
 
-    bool isNull() const { return !impl; }
+    bool isNull() const
+    {
+        return !impl;
+    }
 
 protected:
     DOM::DocumentImpl *doc;

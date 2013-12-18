@@ -27,19 +27,21 @@
 #include <QRect>
 #include <QList>
 
-namespace KJS {
+namespace KJS
+{
 
-class ClientRect : public JSObject {
+class ClientRect : public JSObject
+{
 public:
     ClientRect(ExecState *exec, float left, float top, float width, float height);
-    ClientRect(ExecState *exec, const QRectF& rect);
+    ClientRect(ExecState *exec, const QRectF &rect);
     enum {
         Top, Right, Bottom, Left, Width, Height
     };
-    JSValue* getValueProperty(ExecState *exec, int token) const;
+    JSValue *getValueProperty(ExecState *exec, int token) const;
 
     using KJS::JSObject::getOwnPropertySlot;
-    bool getOwnPropertySlot(ExecState *exec, const Identifier& propertyName, PropertySlot& slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
 
     float top() const;
     float left() const;
@@ -54,31 +56,37 @@ public:
     void setHeight(float height);
 
 private:
-    virtual const ClassInfo* classInfo() const { return &info; }
+    virtual const ClassInfo *classInfo() const
+    {
+        return &info;
+    }
     static const ClassInfo info;
 
     QRectF m_rect;
 };
 
-
-class ClientRectList : public JSObject {
+class ClientRectList : public JSObject
+{
 public:
-    ClientRectList(ExecState* exec);
-    ClientRectList(ExecState* exec, const QList<QRectF>& list);
+    ClientRectList(ExecState *exec);
+    ClientRectList(ExecState *exec, const QList<QRectF> &list);
     enum {
         Length
     };
 
-    JSValue* getValueProperty(ExecState *exec, int token) const;
-    bool getOwnPropertySlot(ExecState *exec, unsigned int index, PropertySlot& slot);
-    bool getOwnPropertySlot(ExecState *exec, const Identifier& propertyName, PropertySlot& slot);
+    JSValue *getValueProperty(ExecState *exec, int token) const;
+    bool getOwnPropertySlot(ExecState *exec, unsigned int index, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
 
     unsigned length() const;
-    ClientRect* item(unsigned index);
-    void append(ClientRect* item);
+    ClientRect *item(unsigned index);
+    void append(ClientRect *item);
 
 private:
-    virtual const ClassInfo* classInfo() const { return &info; }
+    virtual const ClassInfo *classInfo() const
+    {
+        return &info;
+    }
     static const ClassInfo info;
 
     WTF::Vector< ProtectedPtr<ClientRect> > m_list;

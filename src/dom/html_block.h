@@ -35,7 +35,8 @@
 #include <khtml_export.h>
 #include <dom/html_element.h>
 
-namespace DOM {
+namespace DOM
+{
 
 class HTMLElementImpl;
 class DOMString;
@@ -52,13 +53,15 @@ public:
     HTMLBlockquoteElement();
     HTMLBlockquoteElement(const HTMLBlockquoteElement &other);
     HTMLBlockquoteElement(const Node &other) : HTMLElement()
-        {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLBlockquoteElement(HTMLElementImpl *impl);
 public:
 
-    HTMLBlockquoteElement & operator = (const HTMLBlockquoteElement &other);
-    HTMLBlockquoteElement & operator = (const Node &other);
+    HTMLBlockquoteElement &operator = (const HTMLBlockquoteElement &other);
+    HTMLBlockquoteElement &operator = (const Node &other);
 
     ~HTMLBlockquoteElement();
 
@@ -73,7 +76,7 @@ public:
     /**
      * see cite
      */
-    void setCite( const DOMString & );
+    void setCite(const DOMString &);
 };
 
 // --------------------------------------------------------------------------
@@ -93,13 +96,15 @@ public:
     HTMLDivElement();
     HTMLDivElement(const HTMLDivElement &other);
     HTMLDivElement(const Node &other) : HTMLElement()
-        {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLDivElement(HTMLDivElementImpl *impl);
 public:
 
-    HTMLDivElement & operator = (const HTMLDivElement &other);
-    HTMLDivElement & operator = (const Node &other);
+    HTMLDivElement &operator = (const HTMLDivElement &other);
+    HTMLDivElement &operator = (const Node &other);
 
     ~HTMLDivElement();
 
@@ -115,7 +120,7 @@ public:
     /**
      * see align
      */
-    void setAlign( const DOMString & );
+    void setAlign(const DOMString &);
 };
 
 // --------------------------------------------------------------------------
@@ -135,13 +140,15 @@ public:
     HTMLHRElement();
     HTMLHRElement(const HTMLHRElement &other);
     HTMLHRElement(const Node &other) : HTMLElement()
-        {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLHRElement(HTMLHRElementImpl *impl);
 public:
 
-    HTMLHRElement & operator = (const HTMLHRElement &other);
-    HTMLHRElement & operator = (const Node &other);
+    HTMLHRElement &operator = (const HTMLHRElement &other);
+    HTMLHRElement &operator = (const Node &other);
 
     ~HTMLHRElement();
 
@@ -157,7 +164,7 @@ public:
     /**
      * see align
      */
-    void setAlign( const DOMString & );
+    void setAlign(const DOMString &);
 
     /**
      * Indicates to the user agent that there should be no shading in
@@ -172,7 +179,7 @@ public:
     /**
      * see noShade
      */
-    void setNoShade( bool );
+    void setNoShade(bool);
 
     /**
      * The height of the rule. See the <a
@@ -186,7 +193,7 @@ public:
     /**
      * see size
      */
-    void setSize( const DOMString & );
+    void setSize(const DOMString &);
 
     /**
      * The width of the rule. See the <a
@@ -200,7 +207,7 @@ public:
     /**
      * see width
      */
-    void setWidth( const DOMString & );
+    void setWidth(const DOMString &);
 };
 
 // --------------------------------------------------------------------------
@@ -219,13 +226,15 @@ public:
     HTMLHeadingElement();
     HTMLHeadingElement(const HTMLHeadingElement &other);
     HTMLHeadingElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLHeadingElement(HTMLElementImpl *impl);
 public:
 
-    HTMLHeadingElement & operator = (const HTMLHeadingElement &other);
-    HTMLHeadingElement & operator = (const Node &other);
+    HTMLHeadingElement &operator = (const HTMLHeadingElement &other);
+    HTMLHeadingElement &operator = (const Node &other);
 
     ~HTMLHeadingElement();
 
@@ -241,7 +250,7 @@ public:
     /**
      * see align
      */
-    void setAlign( const DOMString & );
+    void setAlign(const DOMString &);
 };
 
 // --------------------------------------------------------------------------
@@ -260,13 +269,15 @@ public:
     HTMLParagraphElement();
     HTMLParagraphElement(const HTMLParagraphElement &other);
     HTMLParagraphElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLParagraphElement(HTMLElementImpl *impl);
 public:
 
-    HTMLParagraphElement & operator = (const HTMLParagraphElement &other);
-    HTMLParagraphElement & operator = (const Node &other);
+    HTMLParagraphElement &operator = (const HTMLParagraphElement &other);
+    HTMLParagraphElement &operator = (const Node &other);
 
     ~HTMLParagraphElement();
 
@@ -282,7 +293,7 @@ public:
     /**
      * see align
      */
-    void setAlign( const DOMString & );
+    void setAlign(const DOMString &);
 };
 
 // --------------------------------------------------------------------------
@@ -301,13 +312,15 @@ public:
     HTMLPreElement();
     HTMLPreElement(const HTMLPreElement &other);
     HTMLPreElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLPreElement(HTMLPreElementImpl *impl);
 public:
 
-    HTMLPreElement & operator = (const HTMLPreElement &other);
-    HTMLPreElement & operator = (const Node &other);
+    HTMLPreElement &operator = (const HTMLPreElement &other);
+    HTMLPreElement &operator = (const Node &other);
 
     ~HTMLPreElement();
 
@@ -323,7 +336,7 @@ public:
     /**
      * see width
      */
-    void setWidth( long );
+    void setWidth(long);
 };
 
 class HTMLLayerElementImpl;
@@ -339,13 +352,15 @@ public:
     HTMLLayerElement();
     HTMLLayerElement(const HTMLLayerElement &other);
     HTMLLayerElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLLayerElement(HTMLLayerElementImpl *impl);
 public:
 
-    HTMLLayerElement & operator = (const HTMLLayerElement &other);
-    HTMLLayerElement & operator = (const Node &other);
+    HTMLLayerElement &operator = (const HTMLLayerElement &other);
+    HTMLLayerElement &operator = (const Node &other);
 
     ~HTMLLayerElement();
 
@@ -358,7 +373,7 @@ public:
     /**
      * see top
      */
-    void setTop( long );
+    void setTop(long);
 
     /**
      * The absolute position of the layer from the left.
@@ -369,7 +384,7 @@ public:
     /**
      * see left
      */
-    void setLeft( long );
+    void setLeft(long);
 
     /**
      * The visibility of layers is either "show" or "hide"
@@ -380,7 +395,7 @@ public:
     /**
      * see visibility
      */
-    void setVisibility( const DOMString & );
+    void setVisibility(const DOMString &);
 
     /**
      * The background color of the layer.
@@ -391,7 +406,7 @@ public:
     /**
      * see bgColor
      */
-    void setBgColor( const DOMString & );
+    void setBgColor(const DOMString &);
 
     /**
      * The collection of sub-layers

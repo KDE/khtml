@@ -30,12 +30,13 @@
 
 class QTimer;
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 class Image;
 
 /**
- The updater class helps manage timers, to permit update messages to be coalesced (so we don't 
+ The updater class helps manage timers, to permit update messages to be coalesced (so we don't
  bug KHTML, or whatever use every 5 pico-seconds.
 */
 class Updater: public QObject
@@ -45,28 +46,27 @@ public:
     Updater();
 
     /**
-     The frames should call this function as they start having data to emit. 
+     The frames should call this function as they start having data to emit.
      The updater will call back their notifyPerformUpdate() function when a sufficient
      amount of time has passed.
      */
-    void haveUpdates(Image* frame);
+    void haveUpdates(Image *frame);
 
     /**
-     Called by image when it's destroyed, and hence should be purged 
+     Called by image when it's destroyed, and hence should be purged
      from the updates list
     */
-    void destroyed(Image* frame);
+    void destroyed(Image *frame);
 
 private Q_SLOTS:
     void pushUpdates();
 private:
-    QTimer* updatePusher;
+    QTimer *updatePusher;
     bool updatesPending();
-    QVector<Image*> frames[10];
+    QVector<Image *> frames[10];
     int             timePortion;
 };
 
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

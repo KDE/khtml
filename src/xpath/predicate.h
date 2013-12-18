@@ -27,147 +27,147 @@
 
 #include "expression.h"
 
-namespace khtml {
-namespace XPath {
+namespace khtml
+{
+namespace XPath
+{
 
 class Number : public Expression
 {
-	public:
-		Number( double value );
+public:
+    Number(double value);
 
-		bool isConstant() const;
-		virtual QString dump() const;
+    bool isConstant() const;
+    virtual QString dump() const;
 
-	private:
-		virtual Value doEvaluate() const;
+private:
+    virtual Value doEvaluate() const;
 
-		double m_value;
+    double m_value;
 };
 
 class String : public Expression
 {
-	public:
-		String( const DOM::DOMString &value );
+public:
+    String(const DOM::DOMString &value);
 
-		bool isConstant() const;
-		virtual QString dump() const;
+    bool isConstant() const;
+    virtual QString dump() const;
 
-	private:
-		virtual Value doEvaluate() const;
+private:
+    virtual Value doEvaluate() const;
 
-		DOM::DOMString m_value;
+    DOM::DOMString m_value;
 };
 
 class Negative : public Expression
 {
-	public:
-		virtual QString dump() const;
+public:
+    virtual QString dump() const;
 
-	private:
-		virtual Value doEvaluate() const;
+private:
+    virtual Value doEvaluate() const;
 };
 
 class BinaryExprBase : public Expression
 {
-	public:
-		virtual QString dump() const;
+public:
+    virtual QString dump() const;
 
-	protected:
-		virtual QString opName() const = 0;
+protected:
+    virtual QString opName() const = 0;
 };
 
 class NumericOp : public BinaryExprBase
 {
-	public:
-		enum {
-			OP_Add = 1,
-			OP_Sub,
-			OP_Mul,
-			OP_Div,
-			OP_Mod
-		};
+public:
+    enum {
+        OP_Add = 1,
+        OP_Sub,
+        OP_Mul,
+        OP_Div,
+        OP_Mod
+    };
 
-		NumericOp( int opCode, Expression* lhs, Expression* rhs );
+    NumericOp(int opCode, Expression *lhs, Expression *rhs);
 
-	private:
-		virtual QString opName() const;
-		virtual Value doEvaluate() const;
-		int opCode;
+private:
+    virtual QString opName() const;
+    virtual Value doEvaluate() const;
+    int opCode;
 };
 
 class RelationOp : public BinaryExprBase
 {
-	public:
-		enum {
-			OP_GT = 1,
-			OP_LT,
-			OP_GE,
-			OP_LE,
-			OP_EQ,
-			OP_NE			
-		};
+public:
+    enum {
+        OP_GT = 1,
+        OP_LT,
+        OP_GE,
+        OP_LE,
+        OP_EQ,
+        OP_NE
+    };
 
-		RelationOp( int opCode, Expression* lhs, Expression* rhs );
+    RelationOp(int opCode, Expression *lhs, Expression *rhs);
 
-	private:
-		virtual QString opName() const;
-		virtual Value doEvaluate() const;
-		int opCode;
+private:
+    virtual QString opName() const;
+    virtual Value doEvaluate() const;
+    int opCode;
 
-		// compares strings based on the op-code
-		bool compareStrings(const DOM::DOMString& l, const DOM::DOMString& r) const;
-		bool compareNumbers(double l, double r) const;
+    // compares strings based on the op-code
+    bool compareStrings(const DOM::DOMString &l, const DOM::DOMString &r) const;
+    bool compareNumbers(double l, double r) const;
 };
 
 class LogicalOp : public BinaryExprBase
 {
-	public:
-		enum {
-			OP_And = 1,
-			OP_Or
-		};
+public:
+    enum {
+        OP_And = 1,
+        OP_Or
+    };
 
-		LogicalOp( int opCode, Expression* lhs, Expression* rhs );
+    LogicalOp(int opCode, Expression *lhs, Expression *rhs);
 
-		virtual bool isConstant() const;
+    virtual bool isConstant() const;
 
-	private:
-		bool    shortCircuitOn() const;
-		virtual QString opName() const;
-		virtual Value doEvaluate() const;
-		int opCode;
+private:
+    bool    shortCircuitOn() const;
+    virtual QString opName() const;
+    virtual Value doEvaluate() const;
+    int opCode;
 };
 
 class Union : public BinaryExprBase
 {
-	private:
-		virtual QString opName() const;
-		virtual Value doEvaluate() const;
+private:
+    virtual QString opName() const;
+    virtual Value doEvaluate() const;
 };
 
 class Predicate
 {
-	public:
-		Predicate( Expression *expr );
-		~Predicate();
+public:
+    Predicate(Expression *expr);
+    ~Predicate();
 
-		bool evaluate() const;
+    bool evaluate() const;
 
-		void optimize();
-		QString dump() const;
+    void optimize();
+    QString dump() const;
 
-	private:
-		Predicate( const Predicate &rhs );
-		Predicate &operator=( const Predicate &rhs );
+private:
+    Predicate(const Predicate &rhs);
+    Predicate &operator=(const Predicate &rhs);
 
-		Expression *m_expr;
+    Expression *m_expr;
 };
 
 } // namespace XPath
 
 } // namespace khtml
 
-
 #endif // PREDICATE_H
 
-// kate: indent-width 4; replace-tabs off; tab-width 4; space-indent off;

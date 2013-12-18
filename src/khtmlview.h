@@ -36,51 +36,55 @@ class QRect;
 template< typename T > class QVector;
 template <class T> class QStack;
 
-namespace DOM {
-    class HTMLDocumentImpl;
-    class DocumentImpl;
-    class ElementImpl;
-    class HTMLTitleElementImpl;
-    class HTMLGenericFormElementImpl;
-    class HTMLFormElementImpl;
-    class HTMLAnchorElementImpl;
-    class HTMLInputElementImpl;
-    class NodeImpl;
-    class CSSProperty;
+namespace DOM
+{
+class HTMLDocumentImpl;
+class DocumentImpl;
+class ElementImpl;
+class HTMLTitleElementImpl;
+class HTMLGenericFormElementImpl;
+class HTMLFormElementImpl;
+class HTMLAnchorElementImpl;
+class HTMLInputElementImpl;
+class NodeImpl;
+class CSSProperty;
 }
 
-namespace KJS {
-    class WindowFunc;
-    class ExternalFunc;
+namespace KJS
+{
+class WindowFunc;
+class ExternalFunc;
 }
 
-namespace khtml {
-    class RenderObject;
-    class RenderCanvas;
-        class RenderLineEdit;
-    class RenderPartObject;
-    class RenderWidget;
-    class RenderLayer;
-    class RenderBox;
-    class CSSStyleSelector;
-    class LineEditWidget;
-    class CaretBox;
-    class HTMLTokenizer;
-    class KHTMLWidgetPrivate;
-    class KHTMLWidget
-    {
-    public:
-        KHTMLWidget();
-        ~KHTMLWidget();
-        KHTMLWidgetPrivate* m_kwp;
-    };
-    void applyRule(DOM::CSSProperty *prop);
+namespace khtml
+{
+class RenderObject;
+class RenderCanvas;
+class RenderLineEdit;
+class RenderPartObject;
+class RenderWidget;
+class RenderLayer;
+class RenderBox;
+class CSSStyleSelector;
+class LineEditWidget;
+class CaretBox;
+class HTMLTokenizer;
+class KHTMLWidgetPrivate;
+class KHTMLWidget
+{
+public:
+    KHTMLWidget();
+    ~KHTMLWidget();
+    KHTMLWidgetPrivate *m_kwp;
+};
+void applyRule(DOM::CSSProperty *prop);
 }
 
 class KHTMLPart;
 class KHTMLViewPrivate;
 
-namespace khtml {
+namespace khtml
+{
 
 }
 
@@ -120,21 +124,26 @@ class KHTML_EXPORT KHTMLView : public QScrollArea, public khtml::KHTMLWidget
     friend class KJS::ExternalFunc;
     friend void khtml::applyRule(DOM::CSSProperty *prop);
 
-
 public:
     /**
      * Constructs a KHTMLView.
      */
-    KHTMLView( KHTMLPart *part, QWidget *parent );
+    KHTMLView(KHTMLPart *part, QWidget *parent);
     virtual ~KHTMLView();
 
     /**
      * Returns a pointer to the KHTMLPart that is
      * rendering the page.
      **/
-    KHTMLPart *part() const { return m_part; }
+    KHTMLPart *part() const
+    {
+        return m_part;
+    }
 
-    int frameWidth() const { return _width; }
+    int frameWidth() const
+    {
+        return _width;
+    }
 
     /**
      * Sets a margin in x direction.
@@ -146,7 +155,10 @@ public:
      *
      * A return value of -1 means the default value will be used.
      */
-    int marginWidth() const { return _marginWidth; }
+    int marginWidth() const
+    {
+        return _marginWidth;
+    }
 
     /*
      * Sets a margin in y direction.
@@ -158,7 +170,10 @@ public:
      *
      * A return value of -1 means the default value will be used.
      */
-    int marginHeight() { return _marginHeight; }
+    int marginHeight()
+    {
+        return _marginHeight;
+    }
 
     /**
      * Sets vertical scrollbar mode.
@@ -167,7 +182,7 @@ public:
      *          specifically want QAbstractScrollArea's variant (not recommended).
      *          QAbstractScrollArea::setVerticalScrollBarPolicy is *not* virtual.
      */
-    virtual void setVerticalScrollBarPolicy( Qt::ScrollBarPolicy policy );
+    virtual void setVerticalScrollBarPolicy(Qt::ScrollBarPolicy policy);
 
     /**
      * Sets horizontal scrollbar mode.
@@ -176,13 +191,13 @@ public:
      *          specifically want QAbstractScrollArea's variant (not recommended).
      *          QAbstractScrollArea::setHorizontalScrollBarPolicy is *not* virtual.
      */
-    virtual void setHorizontalScrollBarPolicy( Qt::ScrollBarPolicy policy );
+    virtual void setHorizontalScrollBarPolicy(Qt::ScrollBarPolicy policy);
 
     /**
      * Prints the HTML document.
      * @param quick if true, fully automated printing, without print dialog
      */
-    void print( bool quick = false );
+    void print(bool quick = false);
 
     /**
      * Display all accesskeys in small tooltips
@@ -232,14 +247,14 @@ public:
      * @param p the contents area point to translate
      *
      */
-    QPoint contentsToViewport(const QPoint& p) const;
+    QPoint contentsToViewport(const QPoint &p) const;
 
     /**
      * Returns a point translated to contents area coordinates
      * @param p the viewport point to translate
      *
      */
-    QPoint viewportToContents(const QPoint& p) const;
+    QPoint viewportToContents(const QPoint &p) const;
 
     /**
      * Returns a point translated to contents area coordinates
@@ -249,7 +264,7 @@ public:
      * @param cy resulting y coordinate
      *
      */
-    void viewportToContents(int x, int y, int& cx, int& cy) const;
+    void viewportToContents(int x, int y, int &cx, int &cy) const;
 
     /**
      * Returns a point translated to viewport coordinates
@@ -259,7 +274,7 @@ public:
      * @param cy resulting y coordinate
      *
      */
-    void contentsToViewport(int x, int y, int& cx, int& cy) const;
+    void contentsToViewport(int x, int y, int &cx, int &cy) const;
 
     /**
      * Scrolls the content area by a given amount
@@ -272,7 +287,7 @@ public:
      * Requests an update of the content area
      * @param r the content area rectangle to update
      */
-    void updateContents( const QRect& r );
+    void updateContents(const QRect &r);
     void updateContents(int x, int y, int w, int h);
 
     void addChild(QWidget *child, int dx, int dy);
@@ -281,14 +296,14 @@ public:
      * Requests an immediate repaint of the content area
      * @param r the content area rectangle to repaint
      */
-    void repaintContents( const QRect& r );
+    void repaintContents(const QRect &r);
     void repaintContents(int x, int y, int w, int h);
 
     /**
      * Apply a zoom level to the content area
      * @param percent a zoom level expressed as a percentage
      */
-    void setZoomLevel( int percent );
+    void setZoomLevel(int percent);
 
     /**
      * Retrieve the current zoom level
@@ -312,7 +327,7 @@ public:
      *
      * @since 4.1
      */
-    void setSmoothScrollingMode( SmoothScrollingMode m );
+    void setSmoothScrollingMode(SmoothScrollingMode m);
 
     /**
      * Retrieve the current smooth scrolling mode
@@ -334,7 +349,6 @@ public Q_SLOTS:
      */
     void layout();
 
-
 Q_SIGNALS:
     /**
      * This signal is used for internal layouting. Don't use it to check if rendering finished.
@@ -342,43 +356,43 @@ Q_SIGNALS:
      */
     void finishedLayout();
     void cleared();
-    void zoomView( int );
+    void zoomView(int);
     void hideAccessKeys();
     void repaintAccessKeys();
-    void findAheadActive( bool );
+    void findAheadActive(bool);
 
 protected:
     void clear();
 
-    virtual bool event ( QEvent * event );
-    virtual void paintEvent( QPaintEvent * );
-    virtual void resizeEvent ( QResizeEvent * event );
-    virtual void showEvent ( QShowEvent * );
-    virtual void hideEvent ( QHideEvent *);
-    virtual bool focusNextPrevChild( bool next );
-    virtual void mousePressEvent( QMouseEvent * );
-    virtual void focusInEvent( QFocusEvent * );
-    virtual void focusOutEvent( QFocusEvent * );
-    virtual void mouseDoubleClickEvent( QMouseEvent * );
+    virtual bool event(QEvent *event);
+    virtual void paintEvent(QPaintEvent *);
+    virtual void resizeEvent(QResizeEvent *event);
+    virtual void showEvent(QShowEvent *);
+    virtual void hideEvent(QHideEvent *);
+    virtual bool focusNextPrevChild(bool next);
+    virtual void mousePressEvent(QMouseEvent *);
+    virtual void focusInEvent(QFocusEvent *);
+    virtual void focusOutEvent(QFocusEvent *);
+    virtual void mouseDoubleClickEvent(QMouseEvent *);
     virtual void mouseMoveEvent(QMouseEvent *);
     virtual void mouseReleaseEvent(QMouseEvent *);
 #ifndef QT_NO_WHEELEVENT
-    virtual void wheelEvent(QWheelEvent*);
+    virtual void wheelEvent(QWheelEvent *);
 #endif
-    virtual void dragEnterEvent( QDragEnterEvent* );
-    virtual void dropEvent( QDropEvent* );
-    virtual void closeEvent ( QCloseEvent * );
-    virtual bool widgetEvent( QEvent * );
-    virtual bool viewportEvent( QEvent * e );
+    virtual void dragEnterEvent(QDragEnterEvent *);
+    virtual void dropEvent(QDropEvent *);
+    virtual void closeEvent(QCloseEvent *);
+    virtual bool widgetEvent(QEvent *);
+    virtual bool viewportEvent(QEvent *e);
     virtual bool eventFilter(QObject *, QEvent *);
-    virtual void scrollContentsBy( int dx, int dy );
+    virtual void scrollContentsBy(int dx, int dy);
 
-    void keyPressEvent( QKeyEvent *_ke );
-    void keyReleaseEvent ( QKeyEvent *_ke );
+    void keyPressEvent(QKeyEvent *_ke);
+    void keyReleaseEvent(QKeyEvent *_ke);
     void doAutoScroll();
-    void timerEvent ( QTimerEvent * );
+    void timerEvent(QTimerEvent *);
 
-    void setSmoothScrollingModeDefault( SmoothScrollingMode m );
+    void setSmoothScrollingModeDefault(SmoothScrollingMode m);
 
 protected Q_SLOTS:
     void slotPaletteChanged();
@@ -397,12 +411,12 @@ private Q_SLOTS:
 private:
     void resizeContentsToViewport();
 
-    void scheduleRelayout(khtml::RenderObject* clippedObj=0);
+    void scheduleRelayout(khtml::RenderObject *clippedObj = 0);
     void unscheduleRelayout();
 
     bool hasLayoutPending();
 
-    void scheduleRepaint(int x, int y, int w, int h, bool asap=false);
+    void scheduleRepaint(int x, int y, int w, int h, bool asap = false);
     void unscheduleRepaint();
 
     bool needsFullRepaint() const;
@@ -410,11 +424,11 @@ private:
     void closeChildDialogs();
     bool dialogsAllowed();
 
-    void setMouseEventsTarget( QWidget* w );
-    QWidget* mouseEventsTarget() const;
+    void setMouseEventsTarget(QWidget *w);
+    QWidget *mouseEventsTarget() const;
 
-    QStack<QRegion>* clipHolder() const;
-    void setClipHolder( QStack<QRegion>* ch );
+    QStack<QRegion> *clipHolder() const;
+    void setClipHolder(QStack<QRegion> *ch);
 
     void setPart(KHTMLPart *part);
 
@@ -428,7 +442,7 @@ private:
      **/
     void paint(QPainter *p, const QRect &rc, int yOff = 0, bool *more = 0);
 
-    void render(QPainter *p, const QRect& r, const QPoint& off);
+    void render(QPainter *p, const QRect &r, const QPoint &off);
 
     /**
      * Get/set the CSS Media Type.
@@ -440,7 +454,7 @@ private:
      * you only need to enable the media type in the view and if necessary
      * add the media type dependent changes to the renderer.
      */
-    void setMediaType( const QString &medium );
+    void setMediaType(const QString &medium);
     QString mediaType() const;
 
     bool pagedMode() const;
@@ -448,18 +462,18 @@ private:
     bool scrollTo(const QRect &);
 
     bool focusNextPrevNode(bool next);
-    bool handleAccessKey(const QKeyEvent* ev);
-    bool focusNodeWithAccessKey(QChar c, KHTMLView* caller = NULL);
-    QMap< DOM::ElementImpl*, QChar > buildFallbackAccessKeys() const;
-    void displayAccessKeys( KHTMLView* caller, KHTMLView* origview, QVector< QChar >& taken, bool use_fallbacks );
+    bool handleAccessKey(const QKeyEvent *ev);
+    bool focusNodeWithAccessKey(QChar c, KHTMLView *caller = NULL);
+    QMap< DOM::ElementImpl *, QChar > buildFallbackAccessKeys() const;
+    void displayAccessKeys(KHTMLView *caller, KHTMLView *origview, QVector< QChar > &taken, bool use_fallbacks);
     bool isScrollingFromMouseWheel() const;
-    void setHasStaticBackground(bool partial=false);
+    void setHasStaticBackground(bool partial = false);
     void setHasNormalBackground();
     void addStaticObject(bool fixed);
     void removeStaticObject(bool fixed);
-    void applyTransforms( int& x, int& y, int& w, int& h) const;
-    void revertTransforms( int& x, int& y, int& w, int& h) const;
-    void revertTransforms( int& x, int& y ) const;
+    void applyTransforms(int &x, int &y, int &w, int &h) const;
+    void revertTransforms(int &x, int &y, int &w, int &h) const;
+    void revertTransforms(int &x, int &y) const;
     void checkExternalWidgetsPosition();
 
     void setIgnoreWheelEvents(bool e);
@@ -472,21 +486,21 @@ private:
     void restoreScrollBar();
 
     QStringList formCompletionItems(const QString &name) const;
-    void clearCompletionHistory(const QString& name);
+    void clearCompletionHistory(const QString &name);
     void addFormCompletionItem(const QString &name, const QString &value);
 
-    void addNonPasswordStorableSite( const QString& host );
-    void delNonPasswordStorableSite( const QString& host );
-    bool nonPasswordStorableSite( const QString& host ) const;
+    void addNonPasswordStorableSite(const QString &host);
+    void delNonPasswordStorableSite(const QString &host);
+    bool nonPasswordStorableSite(const QString &host) const;
 
     bool dispatchMouseEvent(int eventId, DOM::NodeImpl *targetNode,
-			    DOM::NodeImpl *targetNodeNonShared, bool cancelable,
-			    int detail,QMouseEvent *_mouse, bool setUnder,
-			    int mouseEventType, int orientation=0);
-    bool dispatchKeyEvent( QKeyEvent *_ke );
-    bool dispatchKeyEventHelper( QKeyEvent *_ke, bool generate_keypress );
+                            DOM::NodeImpl *targetNodeNonShared, bool cancelable,
+                            int detail, QMouseEvent *_mouse, bool setUnder,
+                            int mouseEventType, int orientation = 0);
+    bool dispatchKeyEvent(QKeyEvent *_ke);
+    bool dispatchKeyEventHelper(QKeyEvent *_ke, bool generate_keypress);
 
-    void complete( bool pendingAction );
+    void complete(bool pendingAction);
 
     void updateScrollBars();
     void setupSmoothScrolling(int dx, int dy);
@@ -500,7 +514,7 @@ private:
     /**
      * Sets the caret display policy when the view is not focused.
      * @param policy new display policy as
-     *		defined by KHTMLPart::CaretDisplayPolicy
+     *      defined by KHTMLPart::CaretDisplayPolicy
      */
     void setCaretDisplayPolicyNonFocused(int policy);
 
@@ -513,12 +527,11 @@ private:
     bool caretKeyPressEvent(QKeyEvent *);
 
     // ------------------------------------- member variables ------------------------------------
- private:
+private:
     friend class KHTMLViewPrivate;
     enum LinkCursor { LINK_NORMAL, LINK_MAILTO, LINK_NEWWINDOW };
 
-    void setWidgetVisible(::khtml::RenderWidget*, bool visible);
-
+    void setWidgetVisible(::khtml::RenderWidget *, bool visible);
 
     int _width;
     int _height;
@@ -527,7 +540,7 @@ private:
     int _marginHeight;
 
     KHTMLPart *m_part;
-    KHTMLViewPrivate* const d;
+    KHTMLViewPrivate *const d;
 
     QString m_medium;   // media type
 };

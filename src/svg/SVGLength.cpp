@@ -38,7 +38,8 @@
 #include <math.h>
 #include <wtf/Assertions.h>
 
-namespace WebCore {
+namespace WebCore
+{
 
 // Helper functions
 static inline unsigned int storeUnit(SVGLengthMode mode, SVGLengthType type)
@@ -48,7 +49,7 @@ static inline unsigned int storeUnit(SVGLengthMode mode, SVGLengthType type)
 
 static inline SVGLengthMode extractMode(unsigned int unit)
 {
-    unsigned int mode = unit >> 4;    
+    unsigned int mode = unit >> 4;
     return static_cast<SVGLengthMode>(mode);
 }
 
@@ -64,7 +65,7 @@ static inline String lengthTypeToString(SVGLengthType type)
     switch (type) {
     case LengthTypeUnknown:
     case LengthTypeNumber:
-        return "";    
+        return "";
     case LengthTypePercentage:
         return "%";
     case LengthTypeEMS:
@@ -88,33 +89,34 @@ static inline String lengthTypeToString(SVGLengthType type)
     return String();
 }
 
-inline SVGLengthType stringToLengthType(const String& string)
+inline SVGLengthType stringToLengthType(const String &string)
 {
-    if (string.endsWith("%"))
+    if (string.endsWith("%")) {
         return LengthTypePercentage;
-    else if (string.endsWith("em"))
+    } else if (string.endsWith("em")) {
         return LengthTypeEMS;
-    else if (string.endsWith("ex"))
+    } else if (string.endsWith("ex")) {
         return LengthTypeEXS;
-    else if (string.endsWith("px"))
+    } else if (string.endsWith("px")) {
         return LengthTypePX;
-    else if (string.endsWith("cm"))
+    } else if (string.endsWith("cm")) {
         return LengthTypeCM;
-    else if (string.endsWith("mm"))
+    } else if (string.endsWith("mm")) {
         return LengthTypeMM;
-    else if (string.endsWith("in"))
+    } else if (string.endsWith("in")) {
         return LengthTypeIN;
-    else if (string.endsWith("pt"))
+    } else if (string.endsWith("pt")) {
         return LengthTypePT;
-    else if (string.endsWith("pc"))
+    } else if (string.endsWith("pc")) {
         return LengthTypePC;
-    else if (!string.isEmpty())
+    } else if (!string.isEmpty()) {
         return LengthTypeNumber;
+    }
 
     return LengthTypeUnknown;
 }
 
-SVGLength::SVGLength(const SVGStyledElement* context, SVGLengthMode mode, const String& valueAsString)
+SVGLength::SVGLength(const SVGStyledElement *context, SVGLengthMode mode, const String &valueAsString)
     : m_valueInSpecifiedUnits(0.0f)
     , m_unit(storeUnit(mode, LengthTypeNumber))
     , m_context(context)
@@ -130,8 +132,9 @@ SVGLengthType SVGLength::unitType() const
 float SVGLength::value() const
 {
     SVGLengthType type = extractType(m_unit);
-    if (type == LengthTypeUnknown)
+    if (type == LengthTypeUnknown) {
         return 0.0f;
+    }
 
     switch (type) {
     case LengthTypeNumber:
@@ -139,8 +142,7 @@ float SVGLength::value() const
     case LengthTypePercentage:
         return SVGLength::PercentageOfViewport(m_valueInSpecifiedUnits / 100.0f, m_context, extractMode(m_unit));
     case LengthTypeEMS:
-    case LengthTypeEXS:
-    {
+    case LengthTypeEXS: {
         /*RenderStyle* style = 0;
         if (m_context && m_context->renderer())
             style = m_context->renderer()->style();
@@ -228,27 +230,31 @@ float SVGLength::valueInSpecifiedUnits() const
 float SVGLength::valueAsPercentage() const
 {
     // 100% = 100.0 instead of 1.0 for historical reasons, this could eventually be changed
-    if (extractType(m_unit) == LengthTypePercentage)
+    if (extractType(m_unit) == LengthTypePercentage) {
         return valueInSpecifiedUnits() / 100.0f;
+    }
 
     return valueInSpecifiedUnits();
 }
 
-bool SVGLength::setValueAsString(const String& s)
+bool SVGLength::setValueAsString(const String &s)
 {
-    if (s.isEmpty())
+    if (s.isEmpty()) {
         return false;
+    }
 
     float convertedNumber = 0.0f;
-    const UChar* ptr = s.characters();
-    const UChar* end = ptr + s.length();
+    const UChar *ptr = s.characters();
+    const UChar *end = ptr + s.length();
 
-    if (!parseNumber(ptr, end, convertedNumber, false))
+    if (!parseNumber(ptr, end, convertedNumber, false)) {
         return false;
+    }
 
     SVGLengthType type = stringToLengthType(s);
-    if (ptr != end && type == LengthTypeNumber)
+    if (ptr != end && type == LengthTypeNumber) {
         return false;
+    }
 
     // qDebug() << convertedNumber << type;
 
@@ -260,8 +266,8 @@ bool SVGLength::setValueAsString(const String& s)
 String SVGLength::valueAsString() const
 {
     //return String::number(m_valueInSpecifiedUnits) + lengthTypeToString(extractType(m_unit));
-	ASSERT(false);
-	return "";
+    ASSERT(false);
+    return "";
 }
 
 void SVGLength::newValueSpecifiedUnits(unsigned short type, float value)
@@ -281,23 +287,23 @@ void SVGLength::convertToSpecifiedUnits(unsigned short type)
     setValue(valueInUserUnits);
 }
 
-float SVGLength::PercentageOfViewport(float value, const SVGStyledElement* context, SVGLengthMode mode)
+float SVGLength::PercentageOfViewport(float value, const SVGStyledElement *context, SVGLengthMode mode)
 {
     ASSERT(context);
 
     float width = 0.0f, height = 0.0f;
-    SVGElement* viewportElement = context->viewportElement();
+    SVGElement *viewportElement = context->viewportElement();
 
-    Document* doc = context->document();
+    Document *doc = context->document();
     if (doc->documentElement() == context) {
         // We have to ask the canvas for the full "canvas size"...
-        RenderView* view = static_cast<RenderView*>(doc->renderer());
+        RenderView *view = static_cast<RenderView *>(doc->renderer());
         if (view && view->view()) {
             width = view->view()->visibleWidth(); // TODO: recheck!
             height = view->view()->visibleHeight(); // TODO: recheck!
-         }
+        }
     } else if (viewportElement && viewportElement->isSVG()) {
-        const SVGSVGElement* svg = static_cast<const SVGSVGElement*>(viewportElement);
+        const SVGSVGElement *svg = static_cast<const SVGSVGElement *>(viewportElement);
         if (svg->hasAttribute(SVGNames::viewBoxAttr)) {
             width = svg->viewBox().width();
             height = svg->viewBox().height();
@@ -306,18 +312,19 @@ float SVGLength::PercentageOfViewport(float value, const SVGStyledElement* conte
             height = svg->height().value();
         }
     } else if (context->parent() && !context->parent()->isSVGElement()) {
-        if (RenderObject* renderer = context->renderer()) {
+        if (RenderObject *renderer = context->renderer()) {
             width = renderer->width();
             height = renderer->height();
         }
     }
 
-    if (mode == LengthModeWidth)
+    if (mode == LengthModeWidth) {
         return value * width;
-    else if (mode == LengthModeHeight)
+    } else if (mode == LengthModeHeight) {
         return value * height;
-    else if (mode == LengthModeOther)
+    } else if (mode == LengthModeOther) {
         return value * sqrtf(powf(width, 2) + powf(height, 2)) / sqrtf(2.0f);
+    }
 
     return 0.0f;
 }
@@ -326,4 +333,3 @@ float SVGLength::PercentageOfViewport(float value, const SVGStyledElement* conte
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

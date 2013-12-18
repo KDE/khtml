@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include "IntRect.h"
@@ -31,29 +31,30 @@
 using std::max;
 using std::min;
 
-namespace WebCore {
+namespace WebCore
+{
 
-IntRect::IntRect(const FloatRect& r)
+IntRect::IntRect(const FloatRect &r)
     : m_location(IntPoint(static_cast<int>(r.x()), static_cast<int>(r.y())))
     , m_size(IntSize(static_cast<int>(r.width()), static_cast<int>(r.height())))
 {
 }
 
-bool IntRect::intersects(const IntRect& other) const
+bool IntRect::intersects(const IntRect &other) const
 {
     // Checking emptiness handles negative widths as well as zero.
     return !isEmpty() && !other.isEmpty()
-        && x() < other.right() && other.x() < right()
-        && y() < other.bottom() && other.y() < bottom();
+           && x() < other.right() && other.x() < right()
+           && y() < other.bottom() && other.y() < bottom();
 }
 
-bool IntRect::contains(const IntRect& other) const
+bool IntRect::contains(const IntRect &other) const
 {
     return x() <= other.x() && right() >= other.right()
-        && y() <= other.y() && bottom() >= other.bottom();
+           && y() <= other.y() && bottom() >= other.bottom();
 }
 
-void IntRect::intersect(const IntRect& other)
+void IntRect::intersect(const IntRect &other)
 {
     int l = max(x(), other.x());
     int t = max(y(), other.y());
@@ -74,11 +75,12 @@ void IntRect::intersect(const IntRect& other)
     m_size.setHeight(b - t);
 }
 
-void IntRect::unite(const IntRect& other)
+void IntRect::unite(const IntRect &other)
 {
     // Handle empty special cases first.
-    if (other.isEmpty())
+    if (other.isEmpty()) {
         return;
+    }
     if (isEmpty()) {
         *this = other;
         return;

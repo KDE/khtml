@@ -27,36 +27,41 @@
 #include "pixmapplane.h"
 #include "imagemanager.h"
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
-ImagePainter::ImagePainter(Image* _image):image(_image), sizeRefd(false)
-{ //No need to ref, default size.
+ImagePainter::ImagePainter(Image *_image): image(_image), sizeRefd(false)
+{
+    //No need to ref, default size.
     size = image->size();
 }
 
-ImagePainter::ImagePainter(Image* _image, QSize _size):image(_image), size(_size), sizeRefd(false)
+ImagePainter::ImagePainter(Image *_image, QSize _size): image(_image), size(_size), sizeRefd(false)
 {
-    if (!ImageManager::isAcceptableScaleSize(_size.width(), _size.height()))
+    if (!ImageManager::isAcceptableScaleSize(_size.width(), _size.height())) {
         setDefaultSize();
+    }
 }
 
 ImagePainter::~ImagePainter()
 {
-    if (sizeRefd)
+    if (sizeRefd) {
         image->derefSize(size);
+    }
 }
 
-ImagePainter::ImagePainter(const ImagePainter& src)
+ImagePainter::ImagePainter(const ImagePainter &src)
 {
     image = src.image;
     size  = src.size;
     sizeRefd = false;
 }
 
-ImagePainter& ImagePainter::operator=(const ImagePainter& src)
+ImagePainter &ImagePainter::operator=(const ImagePainter &src)
 {
-    if (sizeRefd)
+    if (sizeRefd) {
         image->derefSize(size);
+    }
     image = src.image;
     size  = src.size;
     sizeRefd = false;
@@ -69,55 +74,60 @@ void ImagePainter::setSize(QSize _size)
         setDefaultSize();
         return;
     }
-    
-    // Don't do anything if size didn't change, 
-    // to avoid dropping the image..
-    if (size == _size)
-        return;
 
-    if (sizeRefd)
+    // Don't do anything if size didn't change,
+    // to avoid dropping the image..
+    if (size == _size) {
+        return;
+    }
+
+    if (sizeRefd) {
         image->derefSize(size);
+    }
     size = _size;
     sizeRefd = false;
 }
 
 void ImagePainter::setDefaultSize()
 {
-    if (sizeRefd)
+    if (sizeRefd) {
         image->derefSize(size);
+    }
     size = image->size();
     sizeRefd = false;
 }
 
-void ImagePainter::paint(int dx, int dy, QPainter* p, int sx, int sy,
+void ImagePainter::paint(int dx, int dy, QPainter *p, int sx, int sy,
                          int width, int height)
 {
     if (!image->mayPaint())
         // ### fallback painting in case bg?
+    {
         return;
+    }
 
     // Do our lazy ref if needed. Safe due to above
-    if (!sizeRefd && size != image->size())
-    {
+    if (!sizeRefd && size != image->size()) {
         image->refSize(size);
         sizeRefd = true;
     }
 
-    PixmapPlane* plane = image->getSize(size);
+    PixmapPlane *plane = image->getSize(size);
 
-    if (plane->animProvider)
-    {
+    if (plane->animProvider) {
         // Clip the request ourselves when animating..
-        
-        if (width == -1)
+
+        if (width == -1) {
             width  = size.width();
-        if (height == -1)
+        }
+        if (height == -1) {
             height = size.height();
+        }
 
         QRect clippedRect = QRect(0, 0, size.width(), size.height())
                             & QRect(sx, sy, width, height);
         plane->animProvider->paint(dx, dy, p, clippedRect.x(), clippedRect.y(),
-                                          clippedRect.width(), clippedRect.height());
+                                   clippedRect.width(), clippedRect.height());
         return;
     }
 
@@ -127,4 +137,3 @@ void ImagePainter::paint(int dx, int dy, QPainter* p, int sx, int sy,
 
 }
 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

@@ -27,7 +27,8 @@
 
 #include "SVGStyledElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 SVGPathSegLinetoHorizontalAbs::SVGPathSegLinetoHorizontalAbs(float x)
     : SVGPathSeg()
@@ -48,8 +49,6 @@ float SVGPathSegLinetoHorizontalAbs::x() const
 {
     return m_x;
 }
-
-
 
 SVGPathSegLinetoHorizontalRel::SVGPathSegLinetoHorizontalRel(float x)
     : SVGPathSeg()
@@ -75,4 +74,3 @@ float SVGPathSegLinetoHorizontalRel::x() const
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

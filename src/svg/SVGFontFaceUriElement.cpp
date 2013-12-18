@@ -25,11 +25,12 @@
 #include "SVGNames.h"
 #include "XLinkNames.h"
 
-namespace WebCore {
-    
+namespace WebCore
+{
+
 using namespace SVGNames;
-    
-SVGFontFaceUriElement::SVGFontFaceUriElement(const QualifiedName& tagName, Document* doc)
+
+SVGFontFaceUriElement::SVGFontFaceUriElement(const QualifiedName &tagName, Document *doc)
     : SVGElement(tagName, doc)
 {
 }
@@ -42,16 +43,18 @@ PassRefPtr<CSSFontFaceSrcValue> SVGFontFaceUriElement::srcValue() const
     return src.release();
 }
 
-void SVGFontFaceUriElement::childrenChanged(bool changedByParser, Node* beforeChange, Node* afterChange, int childCountDelta)
+void SVGFontFaceUriElement::childrenChanged(bool changedByParser, Node *beforeChange, Node *afterChange, int childCountDelta)
 {
     SVGElement::childrenChanged(changedByParser, beforeChange, afterChange, childCountDelta);
 
-    if (!parentNode() || !parentNode()->hasTagName(font_face_srcTag))
+    if (!parentNode() || !parentNode()->hasTagName(font_face_srcTag)) {
         return;
-    
-    Node* grandParent = parentNode()->parentNode();
-    if (grandParent && grandParent->hasTagName(font_faceTag))
-        static_cast<SVGFontFaceElement*>(grandParent)->rebuildFontFace();
+    }
+
+    Node *grandParent = parentNode()->parentNode();
+    if (grandParent && grandParent->hasTagName(font_faceTag)) {
+        static_cast<SVGFontFaceElement *>(grandParent)->rebuildFontFace();
+    }
 }
 
 }

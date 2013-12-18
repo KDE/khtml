@@ -23,7 +23,8 @@
 #include <QListWidget>
 #include <klocalizedstring.h>
 
-namespace KJSDebugger {
+namespace KJSDebugger
+{
 
 BreakpointsDock::BreakpointsDock(QWidget *parent)
     : QDockWidget("", parent) //### KDE4.1: restore title

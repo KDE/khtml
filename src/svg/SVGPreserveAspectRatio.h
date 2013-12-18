@@ -33,60 +33,68 @@
 //khtml
 #include <wtf/PassRefPtr.h>
 
-namespace WebCore {
+namespace WebCore
+{
 
-    //class String;
-    class AffineTransform;
-    class SVGStyledElement;
+//class String;
+class AffineTransform;
+class SVGStyledElement;
 
-    class SVGPreserveAspectRatio : public RefCounted<SVGPreserveAspectRatio> { 
-    public:
-        static PassRefPtr<SVGPreserveAspectRatio> create() { return adoptRef(new SVGPreserveAspectRatio); }
+class SVGPreserveAspectRatio : public RefCounted<SVGPreserveAspectRatio>
+{
+public:
+    static PassRefPtr<SVGPreserveAspectRatio> create()
+    {
+        return adoptRef(new SVGPreserveAspectRatio);
+    }
 
-        enum SVGPreserveAspectRatioType {
-            SVG_PRESERVEASPECTRATIO_UNKNOWN     = 0,
-            SVG_PRESERVEASPECTRATIO_NONE        = 1,
-            SVG_PRESERVEASPECTRATIO_XMINYMIN    = 2,
-            SVG_PRESERVEASPECTRATIO_XMIDYMIN    = 3,
-            SVG_PRESERVEASPECTRATIO_XMAXYMIN    = 4,
-            SVG_PRESERVEASPECTRATIO_XMINYMID    = 5,
-            SVG_PRESERVEASPECTRATIO_XMIDYMID    = 6,
-            SVG_PRESERVEASPECTRATIO_XMAXYMID    = 7,
-            SVG_PRESERVEASPECTRATIO_XMINYMAX    = 8,
-            SVG_PRESERVEASPECTRATIO_XMIDYMAX    = 9,
-            SVG_PRESERVEASPECTRATIO_XMAXYMAX    = 10
-        };
-
-        enum SVGMeetOrSliceType {
-            SVG_MEETORSLICE_UNKNOWN    = 0,
-            SVG_MEETORSLICE_MEET       = 1,
-            SVG_MEETORSLICE_SLICE      = 2
-        };
-
-        virtual ~SVGPreserveAspectRatio();
-
-        void setAlign(unsigned short);
-        unsigned short align() const;
-
-        void setMeetOrSlice(unsigned short);
-        unsigned short meetOrSlice() const;
-        
-        AffineTransform getCTM(double logicX, double logicY,
-                               double logicWidth, double logicHeight,
-                               double physX, double physY,
-                               double physWidth, double physHeight);
-
-        // Helper
-        bool parsePreserveAspectRatio(const UChar*& currParam, const UChar* end, bool validate = true);
-
-        const QualifiedName& associatedAttributeName() const { return SVGNames::preserveAspectRatioAttr; }
-
-    private:
-        SVGPreserveAspectRatio();
-        
-        unsigned short m_align;
-        unsigned short m_meetOrSlice;
+    enum SVGPreserveAspectRatioType {
+        SVG_PRESERVEASPECTRATIO_UNKNOWN     = 0,
+        SVG_PRESERVEASPECTRATIO_NONE        = 1,
+        SVG_PRESERVEASPECTRATIO_XMINYMIN    = 2,
+        SVG_PRESERVEASPECTRATIO_XMIDYMIN    = 3,
+        SVG_PRESERVEASPECTRATIO_XMAXYMIN    = 4,
+        SVG_PRESERVEASPECTRATIO_XMINYMID    = 5,
+        SVG_PRESERVEASPECTRATIO_XMIDYMID    = 6,
+        SVG_PRESERVEASPECTRATIO_XMAXYMID    = 7,
+        SVG_PRESERVEASPECTRATIO_XMINYMAX    = 8,
+        SVG_PRESERVEASPECTRATIO_XMIDYMAX    = 9,
+        SVG_PRESERVEASPECTRATIO_XMAXYMAX    = 10
     };
+
+    enum SVGMeetOrSliceType {
+        SVG_MEETORSLICE_UNKNOWN    = 0,
+        SVG_MEETORSLICE_MEET       = 1,
+        SVG_MEETORSLICE_SLICE      = 2
+    };
+
+    virtual ~SVGPreserveAspectRatio();
+
+    void setAlign(unsigned short);
+    unsigned short align() const;
+
+    void setMeetOrSlice(unsigned short);
+    unsigned short meetOrSlice() const;
+
+    AffineTransform getCTM(double logicX, double logicY,
+                           double logicWidth, double logicHeight,
+                           double physX, double physY,
+                           double physWidth, double physHeight);
+
+    // Helper
+    bool parsePreserveAspectRatio(const UChar *&currParam, const UChar *end, bool validate = true);
+
+    const QualifiedName &associatedAttributeName() const
+    {
+        return SVGNames::preserveAspectRatioAttr;
+    }
+
+private:
+    SVGPreserveAspectRatio();
+
+    unsigned short m_align;
+    unsigned short m_meetOrSlice;
+};
 
 } // namespace WebCore
 

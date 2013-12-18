@@ -21,7 +21,8 @@
 #ifndef EDITOR_COMMAND_H
 #define EDITOR_COMMAND_H
 
-namespace DOM {
+namespace DOM
+{
 
 /**
  * List of all supported built-in editor commands.
@@ -54,7 +55,7 @@ enum EditorCommand {
     SuperscriptCommand,
     UndoCommand,
     UnselectCommand
-  
+
     //
     // The "unsupported" commands are listed here since they appear in the Microsoft
     // documentation used as the basis for the list.
@@ -116,6 +117,5 @@ enum EditorCommand {
 };
 
 }/*namespace DOM*/
-
 
 #endif

@@ -31,9 +31,10 @@
 #include "SVGTransformList.h"
 #include "SVGUnitTypes.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGClipPathElement::SVGClipPathElement(const QualifiedName& tagName, Document* doc)
+SVGClipPathElement::SVGClipPathElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledTransformableElement(tagName, doc)
     , SVGTests()
     , SVGLangSpace()
@@ -48,69 +49,78 @@ SVGClipPathElement::~SVGClipPathElement()
 
 ANIMATED_PROPERTY_DEFINITIONS(SVGClipPathElement, int, Enumeration, enumeration, ClipPathUnits, clipPathUnits, SVGNames::clipPathUnitsAttr, m_clipPathUnits)
 
-void SVGClipPathElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGClipPathElement::parseMappedAttribute(MappedAttribute *attr)
 {
     if (attr->name() == SVGNames::clipPathUnitsAttr) {
-        if (attr->value() == "userSpaceOnUse")
+        if (attr->value() == "userSpaceOnUse") {
             setClipPathUnitsBaseValue(SVGUnitTypes::SVG_UNIT_TYPE_USERSPACEONUSE);
-        else if (attr->value() == "objectBoundingBox")
+        } else if (attr->value() == "objectBoundingBox") {
             setClipPathUnitsBaseValue(SVGUnitTypes::SVG_UNIT_TYPE_OBJECTBOUNDINGBOX);
+        }
     } else {
-        if (SVGTests::parseMappedAttribute(attr))
+        if (SVGTests::parseMappedAttribute(attr)) {
             return;
-        if (SVGLangSpace::parseMappedAttribute(attr))
+        }
+        if (SVGLangSpace::parseMappedAttribute(attr)) {
             return;
-        if (SVGExternalResourcesRequired::parseMappedAttribute(attr))
+        }
+        if (SVGExternalResourcesRequired::parseMappedAttribute(attr)) {
             return;
+        }
         SVGStyledTransformableElement::parseMappedAttribute(attr);
     }
 }
 
-void SVGClipPathElement::svgAttributeChanged(const QualifiedName& attrName)
+void SVGClipPathElement::svgAttributeChanged(const QualifiedName &attrName)
 {
     SVGStyledTransformableElement::svgAttributeChanged(attrName);
 
-    if (!m_clipper)
+    if (!m_clipper) {
         return;
+    }
 
     if (attrName == SVGNames::clipPathUnitsAttr ||
-        SVGTests::isKnownAttribute(attrName) || 
-        SVGLangSpace::isKnownAttribute(attrName) ||
-        SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
-        SVGStyledTransformableElement::isKnownAttribute(attrName))
+            SVGTests::isKnownAttribute(attrName) ||
+            SVGLangSpace::isKnownAttribute(attrName) ||
+            SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
+            SVGStyledTransformableElement::isKnownAttribute(attrName)) {
         m_clipper->invalidate();
+    }
 }
 
-void SVGClipPathElement::childrenChanged(bool changedByParser, Node* beforeChange, Node* afterChange, int childCountDelta)
+void SVGClipPathElement::childrenChanged(bool changedByParser, Node *beforeChange, Node *afterChange, int childCountDelta)
 {
     SVGStyledTransformableElement::childrenChanged(changedByParser, beforeChange, afterChange, childCountDelta);
 
-    if (!m_clipper)
+    if (!m_clipper) {
         return;
+    }
 
     m_clipper->invalidate();
 }
 
-SVGResource* SVGClipPathElement::canvasResource()
+SVGResource *SVGClipPathElement::canvasResource()
 {
-    if (!m_clipper)
+    if (!m_clipper) {
         m_clipper = SVGResourceClipper::create();
-    else
+    } else {
         m_clipper->resetClipData();
+    }
 
     bool bbox = clipPathUnits() == SVGUnitTypes::SVG_UNIT_TYPE_OBJECTBOUNDINGBOX;
 
     //RenderStyle* clipPathStyle = styleForRenderer(parent()->renderer()); // FIXME: Manual style resolution is a hack
-    for (Node* n = firstChild(); n; n = n->nextSibling()) {
-        if (n->isSVGElement() && static_cast<SVGElement*>(n)->isStyledTransformable()) {
-            SVGStyledTransformableElement* styled = static_cast<SVGStyledTransformableElement*>(n);
-            RenderStyle* pathStyle = document()->styleSelector()->styleForElement(styled/*khtml, clipPathStyle*/);
+    for (Node *n = firstChild(); n; n = n->nextSibling()) {
+        if (n->isSVGElement() && static_cast<SVGElement *>(n)->isStyledTransformable()) {
+            SVGStyledTransformableElement *styled = static_cast<SVGStyledTransformableElement *>(n);
+            RenderStyle *pathStyle = document()->styleSelector()->styleForElement(styled/*khtml, clipPathStyle*/);
             if (pathStyle->display() != NONE) {
                 Path pathData = styled->toClipPath();
                 // FIXME: How do we know the element has done a layout?
                 pathData.transform(styled->animatedLocalTransform());
-                if (!pathData.isEmpty())
+                if (!pathData.isEmpty()) {
                     m_clipper->addClipData(pathData, pathStyle->svgStyle()->clipRule(), bbox);
+                }
             }
             //khtml pathStyle->deref(document()->renderArena());
         }

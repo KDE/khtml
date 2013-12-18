@@ -28,8 +28,8 @@
 #include "pixmaptile.h"
 #include "imageformat.h"
 
-
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 /**
  Image planes represent client-side image data, and are primarily an
@@ -40,9 +40,9 @@ class ImagePlane: public Plane
 public:
     ImageFormat format;
 
-    ImagePlane(unsigned int _width, unsigned int _height):Plane(_width, _height)
+    ImagePlane(unsigned int _width, unsigned int _height): Plane(_width, _height)
     {}
-    
+
     virtual void flushCache() = 0;
 
     /**
@@ -52,13 +52,13 @@ public:
      with the state of the image proper. (Which might not even be in memory)
     */
     virtual bool isUpToDate(unsigned int tileX, unsigned int tileY,
-                            PixmapTile* tile) = 0;
+                            PixmapTile *tile) = 0;
 
     /**
      Ensures that the given pixmap tile is up-to-date.
     */
     virtual void ensureUpToDate(unsigned int tileX, unsigned int tileY,
-                            PixmapTile* tile) = 0;
+                                PixmapTile *tile) = 0;
 
     virtual ~ImagePlane();
 protected:
@@ -67,25 +67,24 @@ protected:
     /**
      Checks whether the tile is up-to-date for a given version array
     */
-    bool checkUpToDate(const unsigned char* versions, PixmapTile* tile);
+    bool checkUpToDate(const unsigned char *versions, PixmapTile *tile);
 
     /**
      Creates the pixmap in the tile
     */
-    void setupTile(unsigned int tileX, unsigned int tileY, PixmapTile* tile);
+    void setupTile(unsigned int tileX, unsigned int tileY, PixmapTile *tile);
 
     /**
       Update the pixmap using the appropriate image, starting from
       offset (offX, offY), and the matching version array
     */
-    void updatePixmap(PixmapTile* tile,const QImage& image,
-                   unsigned int tileX, unsigned int tileY,
-                   unsigned int offX,  unsigned int offY,
-                   unsigned char* versions);
+    void updatePixmap(PixmapTile *tile, const QImage &image,
+                      unsigned int tileX, unsigned int tileY,
+                      unsigned int offX,  unsigned int offY,
+                      unsigned char *versions);
 
 };
 
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

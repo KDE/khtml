@@ -29,11 +29,12 @@
 #include "SVGNames.h"
 #include "SVGStopElement.h"
 
-namespace WebCore {
-    
+namespace WebCore
+{
+
 using namespace SVGNames;
 
-RenderSVGGradientStop::RenderSVGGradientStop(SVGStopElement* element)
+RenderSVGGradientStop::RenderSVGGradientStop(SVGStopElement *element)
     : RenderObject(element)
 {
 }
@@ -42,15 +43,16 @@ RenderSVGGradientStop::~RenderSVGGradientStop()
 {
 }
 
-void RenderSVGGradientStop::setStyle(RenderStyle* style)
+void RenderSVGGradientStop::setStyle(RenderStyle *style)
 {
     RenderObject::setStyle(style);
 
     // <stop> elements should only be allowed to make renderers under gradient elements
     // but I can imagine a few cases we might not be catching, so let's not crash if our parent isn't a gradient.
-    if (SVGGradientElement* gradient = gradientElement()) {
-        if (SVGResource* resource = gradient->canvasResource())
+    if (SVGGradientElement *gradient = gradientElement()) {
+        if (SVGResource *resource = gradient->canvasResource()) {
             resource->invalidate();
+        }
     }
 }
 
@@ -59,11 +61,12 @@ void RenderSVGGradientStop::layout()
     setNeedsLayout(false);
 }
 
-SVGGradientElement* RenderSVGGradientStop::gradientElement() const
+SVGGradientElement *RenderSVGGradientStop::gradientElement() const
 {
-    Node* parentNode = element()->parent();
-    if (parentNode->hasTagName(linearGradientTag) || parentNode->hasTagName(radialGradientTag))
-        return static_cast<SVGGradientElement*>(parentNode);
+    Node *parentNode = element()->parent();
+    if (parentNode->hasTagName(linearGradientTag) || parentNode->hasTagName(radialGradientTag)) {
+        return static_cast<SVGGradientElement *>(parentNode);
+    }
     return 0;
 }
 

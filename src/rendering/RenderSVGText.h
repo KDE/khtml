@@ -30,32 +30,43 @@
 #include "RenderSVGBlock.h"
 #include "IntRect.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 class SVGTextElement;
 
-class RenderSVGText : public RenderSVGBlock {
+class RenderSVGText : public RenderSVGBlock
+{
 public:
-    RenderSVGText(SVGTextElement* node);
+    RenderSVGText(SVGTextElement *node);
 
-    virtual const char* renderName() const { return "RenderSVGText"; }
-    
-    virtual bool isSVGText() const { return true; }
-    
+    virtual const char *renderName() const
+    {
+        return "RenderSVGText";
+    }
+
+    virtual bool isSVGText() const
+    {
+        return true;
+    }
+
     bool calculateLocalTransform();
-    virtual AffineTransform localTransform() const { return m_localTransform; }
-    
-    virtual void paint(PaintInfo&, int tx, int ty);
+    virtual AffineTransform localTransform() const
+    {
+        return m_localTransform;
+    }
+
+    virtual void paint(PaintInfo &, int tx, int ty);
     /*virtual bool nodeAtPoint(const HitTestRequest&, HitTestResult&, int x, int y, int tx, int ty, HitTestAction);*/
-    
+
     virtual bool requiresLayer() const;
     virtual void layout();
-    
-    virtual void absoluteRects(Vector<IntRect>&, int tx, int ty, bool topLevel = true);
+
+    virtual void absoluteRects(Vector<IntRect> &, int tx, int ty, bool topLevel = true);
     virtual IntRect absoluteClippedOverflowRect();
     virtual FloatRect relativeBBox(bool includeStroke = true) const;
-    
-    virtual InlineBox* createInlineBox(bool makePlaceHolderBox, bool isRootLineBox/*, bool isOnlyRun = false*/);
+
+    virtual InlineBox *createInlineBox(bool makePlaceHolderBox, bool isRootLineBox/*, bool isOnlyRun = false*/);
 
 private:
     AffineTransform m_localTransform;
@@ -67,4 +78,3 @@ private:
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

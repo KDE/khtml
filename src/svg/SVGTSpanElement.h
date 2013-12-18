@@ -28,24 +28,29 @@
 
 namespace WebCore
 {
-    class SVGTSpanElement : public SVGTextPositioningElement
-    {
-    public:
-        SVGTSpanElement(const QualifiedName&, Document*);
-        virtual ~SVGTSpanElement();
-                
-        virtual RenderObject* createRenderer(RenderArena*, RenderStyle*);
-        bool childShouldCreateRenderer(Node*) const;
+class SVGTSpanElement : public SVGTextPositioningElement
+{
+public:
+    SVGTSpanElement(const QualifiedName &, Document *);
+    virtual ~SVGTSpanElement();
 
-        // KHTML ElementImpl pure virtual method
-        virtual quint32 id() const { return SVGNames::tspanTag.id(); }
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
-    };
+    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
+    bool childShouldCreateRenderer(Node *) const;
+
+    // KHTML ElementImpl pure virtual method
+    virtual quint32 id() const
+    {
+        return SVGNames::tspanTag.id();
+    }
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

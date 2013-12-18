@@ -25,7 +25,8 @@
 #include "css_valueimpl.h"
 #include "dom_string.h"
 
-namespace DOM {
+namespace DOM
+{
 
 class CSS2AzimuthImpl : public CSSValueImpl
 {
@@ -37,11 +38,10 @@ public:
     unsigned short azimuthType() const;
     DOM::DOMString identifier() const;
     bool behind() const;
-    void setAngleValue ( const unsigned short &unitType, const float &floatValue );
-    float getAngleValue ( const unsigned short &unitType );
-    void setIdentifier ( const DOM::DOMString &identifier, const bool &behind );
+    void setAngleValue(const unsigned short &unitType, const float &floatValue);
+    float getAngleValue(const unsigned short &unitType);
+    void setIdentifier(const DOM::DOMString &identifier, const bool &behind);
 };
-
 
 class DOM::DOMString;
 
@@ -56,14 +56,12 @@ public:
     unsigned short verticalType() const;
     DOM::DOMString horizontalIdentifier() const;
     DOM::DOMString verticalIdentifier() const;
-    float getHorizontalPosition ( const float &horizontalType );
-    float getVerticalPosition ( const float &verticalType );
-    void setHorizontalPosition ( const unsigned short &horizontalType, const float &value );
-    void setVerticalPosition ( const unsigned short &verticalType, const float &value );
-    void setPositionIdentifier ( const DOM::DOMString &horizontalIdentifier, const DOM::DOMString &verticalIdentifier );
+    float getHorizontalPosition(const float &horizontalType);
+    float getVerticalPosition(const float &verticalType);
+    void setHorizontalPosition(const unsigned short &horizontalType, const float &value);
+    void setVerticalPosition(const unsigned short &verticalType, const float &value);
+    void setPositionIdentifier(const DOM::DOMString &horizontalIdentifier, const DOM::DOMString &verticalIdentifier);
 };
-
-
 
 class CSS2BorderSpacingImpl : public CSSValueImpl
 {
@@ -74,13 +72,12 @@ public:
 
     unsigned short horizontalType() const;
     unsigned short verticalType() const;
-    float getHorizontalSpacing ( const float &horizontalType );
-    float getVerticalSpacing ( const float &verticalType );
-    void setHorizontalSpacing ( const unsigned short &horizontalType, const float &value );
-    void setVerticalSpacing ( const unsigned short &verticalType, const float &value );
+    float getHorizontalSpacing(const float &horizontalType);
+    float getVerticalSpacing(const float &verticalType);
+    void setHorizontalSpacing(const unsigned short &horizontalType, const float &value);
+    void setVerticalSpacing(const unsigned short &verticalType, const float &value);
     void setInherit();
 };
-
 
 class CSS2CounterIncrementImpl
 {
@@ -90,9 +87,8 @@ public:
     ~CSS2CounterIncrementImpl();
 
     short increment() const;
-    void setIncrement( const short & );
+    void setIncrement(const short &);
 };
-
 
 class CSS2CounterResetImpl
 {
@@ -102,9 +98,8 @@ public:
     ~CSS2CounterResetImpl();
 
     short reset() const;
-    void setReset( const short & );
+    void setReset(const short &);
 };
-
 
 class CSS2CursorImpl : public CSSValueImpl
 {
@@ -114,11 +109,10 @@ public:
     ~CSS2CursorImpl();
 
     unsigned short cursorType() const;
-    void setCursorType( const unsigned short & );
+    void setCursorType(const unsigned short &);
 
     CSSValueList uris() const;
 };
-
 
 class CSS2FontFaceSrcImpl
 {
@@ -130,7 +124,6 @@ public:
     CSSValueList format() const;
 };
 
-
 class CSS2FontFaceWidthsImpl
 {
 public:
@@ -140,7 +133,6 @@ public:
 
     CSSValueList numbers() const;
 };
-
 
 class CSS2PageSizeImpl : public CSSValueImpl
 {
@@ -152,13 +144,12 @@ public:
     unsigned short widthType() const;
     unsigned short heightType() const;
     DOM::DOMString identifier() const;
-    float getWidth ( const float &widthType );
-    float getHeightSize ( const float &heightType );
-    void setWidthSize ( const unsigned short &widthType, const float &value );
-    void setHeightSize ( const unsigned short &heightType, const float &value );
-    void setIdentifier ( const DOM::DOMString &identifier );
+    float getWidth(const float &widthType);
+    float getHeightSize(const float &heightType);
+    void setWidthSize(const unsigned short &widthType, const float &value);
+    void setHeightSize(const unsigned short &heightType, const float &value);
+    void setIdentifier(const DOM::DOMString &identifier);
 };
-
 
 class CSS2PlayDuringImpl : public CSSValueImpl
 {
@@ -170,12 +161,11 @@ public:
     unsigned short playDuringType() const;
     bool mix() const;
 
-    void setMix( const bool & );
+    void setMix(const bool &);
     bool repeat() const;
 
-    void setRepeat( const bool & );
+    void setRepeat(const bool &);
 };
-
 
 class CSS2PropertiesImpl
 {
@@ -184,7 +174,6 @@ public:
 
     ~CSS2PropertiesImpl();
 };
-
 
 class CSS2TextShadowImpl
 {
@@ -198,7 +187,6 @@ public:
     CSSValue vertical() const;
     CSSValue blur() const;
 };
-
 
 }; // namespace
 

@@ -36,9 +36,10 @@
 #include "SVGTransformable.h"
 #include "SVGUnitTypes.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGGradientElement::SVGGradientElement(const QualifiedName& tagName, Document* doc)
+SVGGradientElement::SVGGradientElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledElement(tagName, doc)
     , SVGURIReference()
     , SVGExternalResourcesRequired()
@@ -53,76 +54,84 @@ SVGGradientElement::~SVGGradientElement()
 }
 
 ANIMATED_PROPERTY_DEFINITIONS(SVGGradientElement, int, Enumeration, enumeration, GradientUnits, gradientUnits, SVGNames::gradientUnitsAttr, m_gradientUnits)
-ANIMATED_PROPERTY_DEFINITIONS(SVGGradientElement, SVGTransformList*, TransformList, transformList, GradientTransform, gradientTransform, SVGNames::gradientTransformAttr, m_gradientTransform.get())
+ANIMATED_PROPERTY_DEFINITIONS(SVGGradientElement, SVGTransformList *, TransformList, transformList, GradientTransform, gradientTransform, SVGNames::gradientTransformAttr, m_gradientTransform.get())
 ANIMATED_PROPERTY_DEFINITIONS(SVGGradientElement, int, Enumeration, enumeration, SpreadMethod, spreadMethod, SVGNames::spreadMethodAttr, m_spreadMethod)
 
-void SVGGradientElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGGradientElement::parseMappedAttribute(MappedAttribute *attr)
 {
     if (attr->name() == SVGNames::gradientUnitsAttr) {
-        if (attr->value() == "userSpaceOnUse")
+        if (attr->value() == "userSpaceOnUse") {
             setGradientUnitsBaseValue(SVGUnitTypes::SVG_UNIT_TYPE_USERSPACEONUSE);
-        else if (attr->value() == "objectBoundingBox")
+        } else if (attr->value() == "objectBoundingBox") {
             setGradientUnitsBaseValue(SVGUnitTypes::SVG_UNIT_TYPE_OBJECTBOUNDINGBOX);
+        }
     } else if (attr->name() == SVGNames::gradientTransformAttr) {
-        SVGTransformList* gradientTransforms = gradientTransformBaseValue();
+        SVGTransformList *gradientTransforms = gradientTransformBaseValue();
         if (!SVGTransformable::parseTransformAttribute(gradientTransforms, attr->value())) {
             ExceptionCode ec = 0;
             gradientTransforms->clear(ec);
         }
     } else if (attr->name() == SVGNames::spreadMethodAttr) {
-        if (attr->value() == "reflect")
+        if (attr->value() == "reflect") {
             setSpreadMethodBaseValue(SVG_SPREADMETHOD_REFLECT);
-        else if (attr->value() == "repeat")
+        } else if (attr->value() == "repeat") {
             setSpreadMethodBaseValue(SVG_SPREADMETHOD_REPEAT);
-        else if (attr->value() == "pad")
+        } else if (attr->value() == "pad") {
             setSpreadMethodBaseValue(SVG_SPREADMETHOD_PAD);
+        }
     } else {
-        if (SVGURIReference::parseMappedAttribute(attr))
+        if (SVGURIReference::parseMappedAttribute(attr)) {
             return;
-        if (SVGExternalResourcesRequired::parseMappedAttribute(attr))
+        }
+        if (SVGExternalResourcesRequired::parseMappedAttribute(attr)) {
             return;
-        
+        }
+
         SVGStyledElement::parseMappedAttribute(attr);
     }
 }
 
-void SVGGradientElement::svgAttributeChanged(const QualifiedName& attrName)
+void SVGGradientElement::svgAttributeChanged(const QualifiedName &attrName)
 {
     SVGStyledElement::svgAttributeChanged(attrName);
 
-    if (!m_resource)
+    if (!m_resource) {
         return;
+    }
 
     if (attrName == SVGNames::gradientUnitsAttr ||
-        attrName == SVGNames::gradientTransformAttr ||
-        attrName == SVGNames::spreadMethodAttr ||
-        SVGURIReference::isKnownAttribute(attrName) ||
-        SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
-        SVGStyledElement::isKnownAttribute(attrName))
+            attrName == SVGNames::gradientTransformAttr ||
+            attrName == SVGNames::spreadMethodAttr ||
+            SVGURIReference::isKnownAttribute(attrName) ||
+            SVGExternalResourcesRequired::isKnownAttribute(attrName) ||
+            SVGStyledElement::isKnownAttribute(attrName)) {
         m_resource->invalidate();
+    }
 }
 
-void SVGGradientElement::childrenChanged(bool changedByParser, Node* beforeChange, Node* afterChange, int childCountDelta)
+void SVGGradientElement::childrenChanged(bool changedByParser, Node *beforeChange, Node *afterChange, int childCountDelta)
 {
     SVGStyledElement::childrenChanged(changedByParser, beforeChange, afterChange, childCountDelta);
 
-    if (m_resource)
+    if (m_resource) {
         m_resource->invalidate();
+    }
 }
 
-RenderObject* SVGGradientElement::createRenderer(RenderArena* arena, RenderStyle*)
+RenderObject *SVGGradientElement::createRenderer(RenderArena *arena, RenderStyle *)
 {
-    return new (arena) RenderSVGHiddenContainer(this);
+    return new(arena) RenderSVGHiddenContainer(this);
 }
 
-SVGResource* SVGGradientElement::canvasResource()
+SVGResource *SVGGradientElement::canvasResource()
 {
     // qDebug() << "request gradient paint server" << endl;
     if (!m_resource) {
-        if (gradientType() == LinearGradientPaintServer)
+        if (gradientType() == LinearGradientPaintServer) {
             m_resource = SVGPaintServerLinearGradient::create(this);
-        else
+        } else {
             m_resource = SVGPaintServerRadialGradient::create(this);
+        }
     }
 
     return m_resource.get();
@@ -132,14 +141,14 @@ Vector<SVGGradientStop> SVGGradientElement::buildStops() const
 {
     Vector<SVGGradientStop> stops;
 
-    for (Node* n = firstChild(); n; n = n->nextSibling()) {
-        SVGElement* element = n->isSVGElement() ? static_cast<SVGElement*>(n) : 0;
+    for (Node *n = firstChild(); n; n = n->nextSibling()) {
+        SVGElement *element = n->isSVGElement() ? static_cast<SVGElement *>(n) : 0;
 
         if (element && element->isGradientStop()) {
-            SVGStopElement* stop = static_cast<SVGStopElement*>(element);
+            SVGStopElement *stop = static_cast<SVGStopElement *>(element);
             float stopOffset = stop->offset();
 
-            RenderStyle* stopStyle = stop->computedStyle();
+            RenderStyle *stopStyle = stop->computedStyle();
             QColor color   = stopStyle->svgStyle()->stopColor();
             float  opacity = stopStyle->svgStyle()->stopOpacity();
 

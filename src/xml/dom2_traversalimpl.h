@@ -30,8 +30,8 @@
 #include "misc/shared.h"
 #include "dom/dom2_traversal.h"
 
-
-namespace DOM {
+namespace DOM
+{
 
 class NodeImpl;
 class DocumentImpl;
@@ -39,17 +39,16 @@ class DocumentImpl;
 class NodeIteratorImpl : public khtml::Shared<NodeIteratorImpl>
 {
 public:
-    NodeIteratorImpl(NodeImpl *_root, unsigned long _whatToShow, NodeFilterImpl* _filter, bool _entityReferenceExpansion);
+    NodeIteratorImpl(NodeImpl *_root, unsigned long _whatToShow, NodeFilterImpl *_filter, bool _entityReferenceExpansion);
     ~NodeIteratorImpl();
-
 
     NodeImpl *root();
     unsigned long whatToShow();
-    NodeFilterImpl* filter();
+    NodeFilterImpl *filter();
     bool expandEntityReferences();
 
-    SharedPtr<NodeImpl> nextNode(int &exceptioncode, void* &propagatedExceptionObject);
-    SharedPtr<NodeImpl> previousNode(int &exceptioncode, void* &propagatedExceptionObject);
+    SharedPtr<NodeImpl> nextNode(int &exceptioncode, void *&propagatedExceptionObject);
+    SharedPtr<NodeImpl> previousNode(int &exceptioncode, void *&propagatedExceptionObject);
     void detach(int &exceptioncode);
 
     // pre-order traversal wrt to a node, captured w/in root
@@ -64,7 +63,7 @@ public:
      */
     void notifyBeforeNodeRemoval(NodeImpl *removed);
 
-    short isAccepted(NodeImpl *n, void* &propagatedExceptionObject);
+    short isAccepted(NodeImpl *n, void *&propagatedExceptionObject);
 protected:
     SharedPtr<NodeImpl> m_root; // must be kept alive for root() to be safe.
     long m_whatToShow;
@@ -85,7 +84,7 @@ public:
     virtual ~NodeFilterImpl();
 
     virtual bool  isJSFilter() const;
-    virtual short acceptNode(const Node &n, void*& bindingsException);
+    virtual short acceptNode(const Node &n, void *&bindingsException);
 
     void setCustomNodeFilter(CustomNodeFilter *custom);
     CustomNodeFilter *customNodeFilter();
@@ -102,8 +101,7 @@ public:
     TreeWalkerImpl(NodeImpl *n, NodeFilter f);
     TreeWalkerImpl(NodeImpl *n, long _whatToShow, NodeFilterImpl *f,
                    bool entityReferenceExpansion);
-    TreeWalkerImpl & operator = (const TreeWalkerImpl &other);
-
+    TreeWalkerImpl &operator = (const TreeWalkerImpl &other);
 
     ~TreeWalkerImpl();
 
@@ -117,22 +115,21 @@ public:
 
     NodeImpl *getCurrentNode() const;
 
-    void setCurrentNode( NodeImpl *_currentNode, int& exceptionCode );
+    void setCurrentNode(NodeImpl *_currentNode, int &exceptionCode);
 
-    NodeImpl *parentNode( void*& filterException );
+    NodeImpl *parentNode(void *&filterException);
 
-    NodeImpl *firstChild( void*& filterException );
+    NodeImpl *firstChild(void *&filterException);
 
-    NodeImpl *lastChild ( void*& filterException );
+    NodeImpl *lastChild(void *&filterException);
 
-    NodeImpl *previousSibling ( void*& filterException );
+    NodeImpl *previousSibling(void *&filterException);
 
-    NodeImpl *nextSibling( void*& filterException );
+    NodeImpl *nextSibling(void *&filterException);
 
-    NodeImpl *previousNode( void*& filterException );
+    NodeImpl *previousNode(void *&filterException);
 
-    NodeImpl *nextNode( void*& filterException );
-
+    NodeImpl *nextNode(void *&filterException);
 
     /**
      * Sets which node types are to be presented via the TreeWalker
@@ -145,16 +142,16 @@ public:
 
     // These methods attempt to find the next node in given direction from
     // the given reference point, w/o affecting the current node.
-    NodePtr getParentNode(NodePtr n, void*& filterException);
-    NodePtr getFirstChild(NodePtr n, void*& filterException);
-    NodePtr getLastChild(NodePtr n, void*& filterException);
-    NodePtr getPreviousSibling(NodePtr n, void*& filterException);
-    NodePtr getNextSibling(NodePtr n, void*& filterException);
+    NodePtr getParentNode(NodePtr n, void *&filterException);
+    NodePtr getFirstChild(NodePtr n, void *&filterException);
+    NodePtr getLastChild(NodePtr n, void *&filterException);
+    NodePtr getPreviousSibling(NodePtr n, void *&filterException);
+    NodePtr getNextSibling(NodePtr n, void *&filterException);
 
-    NodePtr getNextNode(void*& filterException);
-    NodePtr getPreviousNode(void*& filterException);
+    NodePtr getNextNode(void *&filterException);
+    NodePtr getPreviousNode(void *&filterException);
 
-    short isAccepted(NodePtr n, void*& filterException);
+    short isAccepted(NodePtr n, void *&filterException);
 
 protected:
     /**
@@ -199,7 +196,6 @@ protected:
     SharedPtr<NodeImpl> m_rootNode;
     DocumentImpl *m_doc; // always alive as long as the root is...
 };
-
 
 } // namespace
 

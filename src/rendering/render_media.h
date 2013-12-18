@@ -21,7 +21,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef render_media_h
@@ -31,40 +31,61 @@
 #include <rendering/render_replaced.h>
 #include <html/HTMLMediaElement.h>
 
-namespace khtml {
+namespace khtml
+{
 
-class MediaPlayer : public Phonon::VideoPlayer {
-Q_OBJECT
+class MediaPlayer : public Phonon::VideoPlayer
+{
+    Q_OBJECT
 public:
     inline MediaPlayer(Phonon::Category category, QWidget *parent = 0) : Phonon::VideoPlayer(category, parent)
     {
     }
-    inline explicit MediaPlayer(QWidget* parent = 0) : Phonon::VideoPlayer(parent) {};
+    inline explicit MediaPlayer(QWidget *parent = 0) : Phonon::VideoPlayer(parent) {};
 };
 
-class RenderMedia : public RenderWidget {
-Q_OBJECT
+class RenderMedia : public RenderWidget
+{
+    Q_OBJECT
 public:
-    virtual const char *renderName() const { return "RenderMedia"; }
-    virtual bool isMedia() const { return true; }
+    virtual const char *renderName() const
+    {
+        return "RenderMedia";
+    }
+    virtual bool isMedia() const
+    {
+        return true;
+    }
 
-    void setPlayer(MediaPlayer* player);
-    MediaPlayer* player() { return m_player; }
-    const MediaPlayer* player() const { return m_player; }
-    HTMLMediaElement* mediaElement() { return static_cast<HTMLMediaElement*>(RenderWidget::element()); }
-    const HTMLMediaElement* mediaElement() const { return static_cast<const HTMLMediaElement*>(RenderWidget::element()); }
+    void setPlayer(MediaPlayer *player);
+    MediaPlayer *player()
+    {
+        return m_player;
+    }
+    const MediaPlayer *player() const
+    {
+        return m_player;
+    }
+    HTMLMediaElement *mediaElement()
+    {
+        return static_cast<HTMLMediaElement *>(RenderWidget::element());
+    }
+    const HTMLMediaElement *mediaElement() const
+    {
+        return static_cast<const HTMLMediaElement *>(RenderWidget::element());
+    }
 
 protected:
-    bool eventFilter(QObject*, QEvent*);
+    bool eventFilter(QObject *, QEvent *);
 
 private Q_SLOTS:
     void slotMetaDataChanged();
 
 private:
-    RenderMedia(HTMLMediaElement* element);
+    RenderMedia(HTMLMediaElement *element);
     void layout();
     void updateFromElement();
-    MediaPlayer* m_player;
+    MediaPlayer *m_player;
     friend class HTMLMediaElement;
 };
 

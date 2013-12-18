@@ -31,9 +31,10 @@
 
 #include <wtf/Assertions.h>
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGElementInstance::SVGElementInstance(SVGUseElement* useElement, PassRefPtr<SVGElement> originalElement)
+SVGElementInstance::SVGElementInstance(SVGUseElement *useElement, PassRefPtr<SVGElement> originalElement)
     : m_refCount(0)
     , m_parent(0)
     , m_useElement(useElement)
@@ -53,24 +54,25 @@ SVGElementInstance::SVGElementInstance(SVGUseElement* useElement, PassRefPtr<SVG
 
 SVGElementInstance::~SVGElementInstance()
 {
-    for (RefPtr<SVGElementInstance> child = m_firstChild; child; child = child->m_nextSibling)
+    for (RefPtr<SVGElementInstance> child = m_firstChild; child; child = child->m_nextSibling) {
         child->setParent(0);
+    }
 
     // Deregister as instance for passed element.
     m_element->document()->accessSVGExtensions()->removeInstanceMapping(this, m_element.get());
 }
 
-SVGElement* SVGElementInstance::correspondingElement() const
+SVGElement *SVGElementInstance::correspondingElement() const
 {
     return m_element.get();
 }
 
-SVGUseElement* SVGElementInstance::correspondingUseElement() const
+SVGUseElement *SVGElementInstance::correspondingUseElement() const
 {
     return m_useElement;
 }
 
-SVGElementInstance* SVGElementInstance::parentNode() const
+SVGElementInstance *SVGElementInstance::parentNode() const
 {
     return parent();
 }
@@ -80,32 +82,32 @@ PassRefPtr<SVGElementInstanceList> SVGElementInstance::childNodes()
     return SVGElementInstanceList::create(this);
 }
 
-SVGElementInstance* SVGElementInstance::previousSibling() const
+SVGElementInstance *SVGElementInstance::previousSibling() const
 {
     return m_previousSibling;
 }
 
-SVGElementInstance* SVGElementInstance::nextSibling() const
+SVGElementInstance *SVGElementInstance::nextSibling() const
 {
     return m_nextSibling;
 }
 
-SVGElementInstance* SVGElementInstance::firstChild() const
+SVGElementInstance *SVGElementInstance::firstChild() const
 {
     return m_firstChild;
 }
 
-SVGElementInstance* SVGElementInstance::lastChild() const
+SVGElementInstance *SVGElementInstance::lastChild() const
 {
     return m_lastChild;
 }
 
-SVGElement* SVGElementInstance::shadowTreeElement() const
+SVGElement *SVGElementInstance::shadowTreeElement() const
 {
     return m_shadowTreeElement;
 }
 
-void SVGElementInstance::setShadowTreeElement(SVGElement* element)
+void SVGElementInstance::setShadowTreeElement(SVGElement *element)
 {
     ASSERT(element);
     m_shadowTreeElement = element;
@@ -118,27 +120,30 @@ void SVGElementInstance::appendChild(PassRefPtr<SVGElementInstance> child)
     if (m_lastChild) {
         child->m_previousSibling = m_lastChild;
         m_lastChild->m_nextSibling = child.get();
-    } else
+    } else {
         m_firstChild = child.get();
+    }
 
     m_lastChild = child.get();
 }
 
 // Helper function for updateInstance
-static bool containsUseChildNode(Node* start)
+static bool containsUseChildNode(Node *start)
 {
-    if (start->hasTagName(SVGNames::useTag))
+    if (start->hasTagName(SVGNames::useTag)) {
         return true;
+    }
 
-    for (Node* current = start->firstChild(); current; current = current->nextSibling()) {
-        if (containsUseChildNode(current))
+    for (Node *current = start->firstChild(); current; current = current->nextSibling()) {
+        if (containsUseChildNode(current)) {
             return true;
+        }
     }
 
     return false;
 }
 
-void SVGElementInstance::updateInstance(SVGElement* element)
+void SVGElementInstance::updateInstance(SVGElement *element)
 {
     ASSERT(element == m_element);
     ASSERT(m_shadowTreeElement);
@@ -155,8 +160,8 @@ void SVGElementInstance::updateInstance(SVGElement* element)
     // <use>: Too hard to get it right in a fast way. Recloning seems the only option.
 
     if (m_element->hasTagName(SVGNames::symbolTag) ||
-        m_element->hasTagName(SVGNames::svgTag) ||
-        containsUseChildNode(m_element.get())) {
+            m_element->hasTagName(SVGNames::svgTag) ||
+            containsUseChildNode(m_element.get())) {
         m_useElement->buildPendingResource();
         return;
     }
@@ -164,9 +169,10 @@ void SVGElementInstance::updateInstance(SVGElement* element)
     // For all other nodes this logic is sufficient.
     WTF::PassRefPtr<Node> clone = m_element->cloneNode(true);
     SVGUseElement::removeDisallowedElementsFromSubtree(clone.get());
-    SVGElement* svgClone = 0;
-    if (clone && clone->isSVGElement())
-        svgClone = static_cast<SVGElement*>(clone.get());
+    SVGElement *svgClone = 0;
+    if (clone && clone->isSVGElement()) {
+        svgClone = static_cast<SVGElement *>(clone.get());
+    }
     ASSERT(svgClone);
 
     // Replace node in the <use> shadow tree
@@ -177,17 +183,17 @@ void SVGElementInstance::updateInstance(SVGElement* element)
     m_shadowTreeElement = svgClone;
 }
 
-SVGElementInstance* SVGElementInstance::toSVGElementInstance()
+SVGElementInstance *SVGElementInstance::toSVGElementInstance()
 {
     return this;
 }
 
-EventTargetNode* SVGElementInstance::toNode()
+EventTargetNode *SVGElementInstance::toNode()
 {
     return m_element.get();
 }
 
-void SVGElementInstance::addEventListener(const AtomicString& eventType, PassRefPtr<EventListener> eventListener, bool useCapture)
+void SVGElementInstance::addEventListener(const AtomicString &eventType, PassRefPtr<EventListener> eventListener, bool useCapture)
 {
     Q_UNUSED(eventType);
     Q_UNUSED(eventListener);
@@ -195,7 +201,7 @@ void SVGElementInstance::addEventListener(const AtomicString& eventType, PassRef
     // FIXME!
 }
 
-void SVGElementInstance::removeEventListener(const AtomicString& eventType, EventListener* eventListener, bool useCapture)
+void SVGElementInstance::removeEventListener(const AtomicString &eventType, EventListener *eventListener, bool useCapture)
 {
     Q_UNUSED(eventType);
     Q_UNUSED(eventListener);
@@ -203,16 +209,15 @@ void SVGElementInstance::removeEventListener(const AtomicString& eventType, Even
     // FIXME!
 }
 
-bool SVGElementInstance::dispatchEvent(PassRefPtr<Event>, ExceptionCode& ec, bool tempEvent)
+bool SVGElementInstance::dispatchEvent(PassRefPtr<Event>, ExceptionCode &ec, bool tempEvent)
 {
     Q_UNUSED(ec);
     Q_UNUSED(tempEvent);
     // FIXME!
     return false;
 }
- 
+
 }
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

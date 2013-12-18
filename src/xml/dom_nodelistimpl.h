@@ -57,7 +57,8 @@
 #include "misc/htmlnames.h"
 #include "ClassNames.h"
 
-namespace DOM {
+namespace DOM
+{
 
 class NodeImpl;
 class DocumentImpl;
@@ -67,8 +68,8 @@ class NodeListImpl : public khtml::Shared<NodeListImpl>
 public:
     // DOM methods & attributes for NodeList
     virtual unsigned long length() const = 0;
-    virtual NodeImpl *item ( unsigned long index ) const = 0;
-    
+    virtual NodeImpl *item(unsigned long index) const = 0;
+
     virtual ~NodeListImpl() {}
 };
 
@@ -82,35 +83,33 @@ public:
         LAST_NODE_LIST = CHILD_NODES
     };
 
-    struct CacheKey
-    {
-        NodeImpl* baseNode;
+    struct CacheKey {
+        NodeImpl *baseNode;
         int       type;
 
         CacheKey(): type(UNCACHEABLE) {}
 
-        CacheKey(NodeImpl* _baseNode, int _type):
+        CacheKey(NodeImpl *_baseNode, int _type):
             baseNode(_baseNode), type(_type)
         {}
 
         int hash() const
         {
             return int(reinterpret_cast<quintptr>(baseNode) >> 2) ^
-                       (unsigned(type) << 26);
+                   (unsigned(type) << 26);
         }
 
-        bool operator==(const CacheKey& other) const
+        bool operator==(const CacheKey &other) const
         {
             return baseNode == other.baseNode &&
                    type     == other.type;
         }
     };
 
-    struct Cache: public khtml::Shared<Cache>
-    {
-        static Cache* makeStructuralOnly();
-        static Cache* makeNameOrID();
-        static Cache* makeClassName();
+    struct Cache: public khtml::Shared<Cache> {
+        static Cache *makeStructuralOnly();
+        static Cache *makeNameOrID();
+        static Cache *makeClassName();
 
         Cache(unsigned short relSecondaryVer);
 
@@ -118,9 +117,8 @@ public:
 
         unsigned int version; // structural version.
         unsigned int secondaryVersion;
-        union
-        {
-            NodeImpl*    node;
+        union {
+            NodeImpl    *node;
             unsigned int index;
         } current;
         unsigned int position;
@@ -128,20 +126,20 @@ public:
         bool         hasLength;
         unsigned short relevantSecondaryVer;
 
-        void updateNodeListInfo(DocumentImpl* doc);
+        void updateNodeListInfo(DocumentImpl *doc);
 
-        virtual void clear(DocumentImpl* doc);
+        virtual void clear(DocumentImpl *doc);
         virtual ~Cache();
     };
 
-    typedef Cache* CacheFactory();
+    typedef Cache *CacheFactory();
 
-    DynamicNodeListImpl(NodeImpl* node, int type, CacheFactory* factory);
+    DynamicNodeListImpl(NodeImpl *node, int type, CacheFactory *factory);
     virtual ~DynamicNodeListImpl();
 
     // DOM methods & attributes for NodeList
     virtual unsigned long length() const;
-    virtual NodeImpl *item ( unsigned long index ) const;
+    virtual NodeImpl *item(unsigned long index) const;
 
     // Other methods (not part of DOM)
 
@@ -149,27 +147,26 @@ protected:
     virtual unsigned long calcLength(NodeImpl *start) const;
     // helper functions for searching all ElementImpls in a tree
 
-    NodeImpl *recursiveItem    ( NodeImpl* absStart, NodeImpl *start, unsigned long &offset ) const;
-    NodeImpl *recursiveItemBack( NodeImpl* absStart, NodeImpl *start, unsigned long &offset ) const;
+    NodeImpl *recursiveItem(NodeImpl *absStart, NodeImpl *start, unsigned long &offset) const;
+    NodeImpl *recursiveItemBack(NodeImpl *absStart, NodeImpl *start, unsigned long &offset) const;
 
     // Override this to determine what nodes to return. Set doRecurse to
     // false if the children of this node do not need to be entered.
-    virtual bool nodeMatches( NodeImpl *testNode, bool& doRecurse ) const = 0;
+    virtual bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const = 0;
 
-    NodeImpl*      m_refNode;
-    mutable Cache* m_cache;
+    NodeImpl      *m_refNode;
+    mutable Cache *m_cache;
 };
 
 class ChildNodeListImpl : public DynamicNodeListImpl
 {
 public:
 
-    ChildNodeListImpl( NodeImpl *n );
+    ChildNodeListImpl(NodeImpl *n);
 
 protected:
-    virtual bool nodeMatches( NodeImpl *testNode, bool& doRecurse ) const;
+    virtual bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const;
 };
-
 
 /**
  * NodeList which lists all Nodes in a document with a given tag name
@@ -183,7 +180,7 @@ public:
     // Other methods (not part of DOM)
 
 protected:
-    virtual bool nodeMatches(NodeImpl *testNode, bool& doRecurse) const;
+    virtual bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const;
     NamespaceName m_namespace;
     LocalName m_localName;
     PrefixName m_prefix;
@@ -191,34 +188,33 @@ protected:
     bool m_namespaceAware;
 };
 
-
 /**
  * NodeList which lists all Nodes in a Element with a given "name=" tag
  */
 class NameNodeListImpl : public DynamicNodeListImpl
 {
 public:
-    NameNodeListImpl( NodeImpl *doc, const DOMString &t );
+    NameNodeListImpl(NodeImpl *doc, const DOMString &t);
 
     // Other methods (not part of DOM)
 
 protected:
-    virtual bool nodeMatches( NodeImpl *testNode, bool& doRecurse ) const;
+    virtual bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const;
 
     DOMString nodeName;
 };
 
 /** For getElementsByClassName */
-class ClassNodeListImpl : public DynamicNodeListImpl {
+class ClassNodeListImpl : public DynamicNodeListImpl
+{
 public:
-    ClassNodeListImpl(NodeImpl* rootNode, const DOMString& classNames);
+    ClassNodeListImpl(NodeImpl *rootNode, const DOMString &classNames);
 
 private:
-    virtual bool nodeMatches(NodeImpl *testNode, bool& doRecurse) const;
+    virtual bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const;
 
     ClassNames m_classNames;
 };
-
 
 class StaticNodeListImpl : public NodeListImpl
 {
@@ -228,21 +224,26 @@ public:
 
     // Implementation of the NodeList API
     virtual unsigned long length() const;
-    virtual NodeImpl *item ( unsigned long index ) const;
-    
+    virtual NodeImpl *item(unsigned long index) const;
 
     // Methods specific to StaticNodeList
-    void append(NodeImpl* n);
-    NodeImpl* first() { return item(0); }
-    bool      isEmpty() const { return length() == 0; }
+    void append(NodeImpl *n);
+    NodeImpl *first()
+    {
+        return item(0);
+    }
+    bool      isEmpty() const
+    {
+        return length() == 0;
+    }
 
     // For XPath, we may have collection nodes that are either ordered
     // by the axis, are in random order, or strongly normalized. We represent
     // this knowledge by this enum
     enum NormalizationKind {
-       Unnormalized,
-       AxisOrder,
-       DocumentOrder
+        Unnormalized,
+        AxisOrder,
+        DocumentOrder
     };
 
     // If the list isn't up to the given level of normalization, put it into
@@ -261,4 +262,3 @@ private:
 
 } //namespace
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

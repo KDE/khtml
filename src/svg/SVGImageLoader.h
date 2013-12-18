@@ -25,22 +25,23 @@
 
 #include "HTMLImageLoader.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGImageElement;
+class SVGImageElement;
 
-    class SVGImageLoader : public HTMLImageLoader {
-    public:
-        SVGImageLoader(SVGImageElement*);
-        virtual ~SVGImageLoader();
-        
-        virtual void updateFromElement();
-        virtual void dispatchLoadEvent();
-    };
+class SVGImageLoader : public HTMLImageLoader
+{
+public:
+    SVGImageLoader(SVGImageElement *);
+    virtual ~SVGImageLoader();
+
+    virtual void updateFromElement();
+    virtual void dispatchLoadEvent();
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif // SVGImageLoader_h
 
-// vim:ts=4:noet

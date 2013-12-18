@@ -27,54 +27,80 @@
 
 #include "SVGPathSeg.h"
 
-namespace WebCore {
-    class SVGPathSegLinetoAbs : public SVGPathSeg { 
-    public:
-        static PassRefPtr<SVGPathSegLinetoAbs> create(float x, float y) { return adoptRef(new SVGPathSegLinetoAbs(x, y)); }
-        virtual ~SVGPathSegLinetoAbs();
+namespace WebCore
+{
+class SVGPathSegLinetoAbs : public SVGPathSeg
+{
+public:
+    static PassRefPtr<SVGPathSegLinetoAbs> create(float x, float y)
+    {
+        return adoptRef(new SVGPathSegLinetoAbs(x, y));
+    }
+    virtual ~SVGPathSegLinetoAbs();
 
-        virtual unsigned short pathSegType() const { return PATHSEG_LINETO_ABS; }
-        virtual String pathSegTypeAsLetter() const { return "L"; }
-        virtual String toString() const { return String::format("L %.6lg %.6lg", m_x, m_y); }
+    virtual unsigned short pathSegType() const
+    {
+        return PATHSEG_LINETO_ABS;
+    }
+    virtual String pathSegTypeAsLetter() const
+    {
+        return "L";
+    }
+    virtual String toString() const
+    {
+        return String::format("L %.6lg %.6lg", m_x, m_y);
+    }
 
-        void setX(float);
-        float x() const;
+    void setX(float);
+    float x() const;
 
-        void setY(float);
-        float y() const;
+    void setY(float);
+    float y() const;
 
-    private:
-        SVGPathSegLinetoAbs(float x, float y);
-        
-        float m_x;
-        float m_y;
-    };
+private:
+    SVGPathSegLinetoAbs(float x, float y);
 
-    class SVGPathSegLinetoRel : public SVGPathSeg { 
-    public:
-        static PassRefPtr<SVGPathSegLinetoRel> create(float x, float y) { return adoptRef(new SVGPathSegLinetoRel(x, y)); }
-        virtual ~SVGPathSegLinetoRel();
+    float m_x;
+    float m_y;
+};
 
-        virtual unsigned short pathSegType() const { return PATHSEG_LINETO_REL; }
-        virtual String pathSegTypeAsLetter() const { return "l"; }
-        virtual String toString() const { return String::format("l %.6lg %.6lg", m_x, m_y); }
+class SVGPathSegLinetoRel : public SVGPathSeg
+{
+public:
+    static PassRefPtr<SVGPathSegLinetoRel> create(float x, float y)
+    {
+        return adoptRef(new SVGPathSegLinetoRel(x, y));
+    }
+    virtual ~SVGPathSegLinetoRel();
 
-        void setX(float);
-        float x() const;
+    virtual unsigned short pathSegType() const
+    {
+        return PATHSEG_LINETO_REL;
+    }
+    virtual String pathSegTypeAsLetter() const
+    {
+        return "l";
+    }
+    virtual String toString() const
+    {
+        return String::format("l %.6lg %.6lg", m_x, m_y);
+    }
 
-        void setY(float);
-        float y() const;
+    void setX(float);
+    float x() const;
 
-    private:
-        SVGPathSegLinetoRel(float x, float y);
+    void setY(float);
+    float y() const;
 
-        float m_x;
-        float m_y;
-    };
+private:
+    SVGPathSegLinetoRel(float x, float y);
+
+    float m_x;
+    float m_y;
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

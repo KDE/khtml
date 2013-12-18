@@ -28,32 +28,35 @@
 
 namespace WebCore
 {
-    class SVGColor;
-    
-    class SVGFESpecularLightingElement : public SVGFilterPrimitiveStandardAttributes
+class SVGColor;
+
+class SVGFESpecularLightingElement : public SVGFilterPrimitiveStandardAttributes
+{
+public:
+    SVGFESpecularLightingElement(const QualifiedName &, Document *);
+    virtual ~SVGFESpecularLightingElement();
+
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual SVGFESpecularLighting *filterEffect(SVGResourceFilter *) const;
+
+protected:
+    virtual const SVGElement *contextElement() const
     {
-    public:
-        SVGFESpecularLightingElement(const QualifiedName&, Document*);
-        virtual ~SVGFESpecularLightingElement();
-        
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual SVGFESpecularLighting* filterEffect(SVGResourceFilter*) const;
+        return this;
+    }
 
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
+private:
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFESpecularLightingElement, String, String, In1, in1)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFESpecularLightingElement, float, float, SpecularConstant, specularConstant)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFESpecularLightingElement, float, float, SpecularExponent, specularExponent)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFESpecularLightingElement, float, float, SurfaceScale, surfaceScale)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFESpecularLightingElement, float, float, KernelUnitLengthX, kernelUnitLengthX)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFESpecularLightingElement, float, float, KernelUnitLengthY, kernelUnitLengthY)
 
-    private:
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFESpecularLightingElement, String, String, In1, in1)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFESpecularLightingElement, float, float, SpecularConstant, specularConstant)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFESpecularLightingElement, float, float, SpecularExponent, specularExponent)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFESpecularLightingElement, float, float, SurfaceScale, surfaceScale)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFESpecularLightingElement, float, float, KernelUnitLengthX, kernelUnitLengthX)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFESpecularLightingElement, float, float, KernelUnitLengthY, kernelUnitLengthY)
+    mutable SVGFESpecularLighting *m_filterEffect;
 
-        mutable SVGFESpecularLighting* m_filterEffect;
-        
-        void updateLights() const;
-    };
+    void updateLights() const;
+};
 
 } // namespace WebCore
 

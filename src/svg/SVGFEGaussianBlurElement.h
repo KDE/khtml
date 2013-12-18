@@ -30,31 +30,33 @@
 namespace WebCore
 {
 
-    class SVGFEGaussianBlurElement : public SVGFilterPrimitiveStandardAttributes
+class SVGFEGaussianBlurElement : public SVGFilterPrimitiveStandardAttributes
+{
+public:
+    SVGFEGaussianBlurElement(const QualifiedName &, Document *);
+    virtual ~SVGFEGaussianBlurElement();
+
+    void setStdDeviation(float stdDeviationX, float stdDeviationY);
+
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual SVGFEGaussianBlur *filterEffect(SVGResourceFilter *) const;
+
+protected:
+    virtual const SVGElement *contextElement() const
     {
-    public:
-        SVGFEGaussianBlurElement(const QualifiedName&, Document*);
-        virtual ~SVGFEGaussianBlurElement();
+        return this;
+    }
 
-        void setStdDeviation(float stdDeviationX, float stdDeviationY);
+private:
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFEGaussianBlurElement, String, String, In1, in1)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFEGaussianBlurElement, float, float, StdDeviationX, stdDeviationX)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFEGaussianBlurElement, float, float, StdDeviationY, stdDeviationY)
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual SVGFEGaussianBlur* filterEffect(SVGResourceFilter*) const;
-
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
-
-    private:
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFEGaussianBlurElement, String, String, In1, in1)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFEGaussianBlurElement, float, float, StdDeviationX, stdDeviationX)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFEGaussianBlurElement, float, float, StdDeviationY, stdDeviationY)
-
-        mutable SVGFEGaussianBlur* m_filterEffect;
-    };
+    mutable SVGFEGaussianBlur *m_filterEffect;
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

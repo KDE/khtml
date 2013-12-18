@@ -41,7 +41,7 @@ public Q_SLOTS:
 private:
     bool m_firstData;
     bool m_finished;
-    KFilterBase* m_gzipFilter;
+    KFilterBase *m_gzipFilter;
 };
 
 #endif

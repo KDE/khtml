@@ -18,7 +18,6 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-
 #ifndef ERROR_DLG_H
 #define ERROR_DLG_H
 
@@ -27,25 +26,32 @@
 #include <QWidget>
 #include <kdialog.h>
 
-namespace KJSDebugger {
-  class KJSErrorDialog : public KDialog {
+namespace KJSDebugger
+{
+class KJSErrorDialog : public KDialog
+{
     Q_OBJECT
-  public:
-    KJSErrorDialog(QWidget *parent, const QString& errorMessage, bool showDebug);
+public:
+    KJSErrorDialog(QWidget *parent, const QString &errorMessage, bool showDebug);
     virtual ~KJSErrorDialog();
 
-    bool debugSelected() const { return m_debugSelected; }
-    bool dontShowAgain() const { return m_dontShowAgainCb->isChecked(); }
+    bool debugSelected() const
+    {
+        return m_debugSelected;
+    }
+    bool dontShowAgain() const
+    {
+        return m_dontShowAgainCb->isChecked();
+    }
 
-  protected Q_SLOTS:
+protected Q_SLOTS:
     virtual void slotUser1();
 
-  private:
+private:
     QCheckBox *m_dontShowAgainCb;
     bool m_debugSelected;
-  };
+};
 }
 
 #endif
 
-// kate: indent-width 2; replace-tabs on; tab-width 2; space-indent on;

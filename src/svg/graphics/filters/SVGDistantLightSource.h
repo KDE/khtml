@@ -25,9 +25,11 @@
 #if ENABLE(SVG) && ENABLE(SVG_FILTERS)
 #include "SVGLightSource.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-class SVGDistantLightSource : public SVGLightSource {
+class SVGDistantLightSource : public SVGLightSource
+{
 public:
     SVGDistantLightSource(float azimuth, float elevation)
         : SVGLightSource(LS_DISTANT)
@@ -35,10 +37,16 @@ public:
         , m_elevation(elevation)
     { }
 
-    float azimuth() const { return m_azimuth; }
-    float elevation() const { return m_elevation; }
+    float azimuth() const
+    {
+        return m_azimuth;
+    }
+    float elevation() const
+    {
+        return m_elevation;
+    }
 
-    virtual TextStream& externalRepresentation(TextStream&) const;
+    virtual TextStream &externalRepresentation(TextStream &) const;
 
 private:
     float m_azimuth;

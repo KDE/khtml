@@ -26,29 +26,36 @@
 
 namespace DOM
 {
-    class HTMLBodyElementImpl;
+class HTMLBodyElementImpl;
 }
 
-namespace khtml {
+namespace khtml
+{
 
 class RenderBody : public RenderBlock
 {
 public:
-    RenderBody(DOM::HTMLBodyElementImpl* node);
+    RenderBody(DOM::HTMLBodyElementImpl *node);
     virtual ~RenderBody();
 
-    virtual bool isBody() const { return true; }
+    virtual bool isBody() const
+    {
+        return true;
+    }
 
-    virtual const char *renderName() const { return "RenderBody"; }
-    virtual void repaint(Priority p=NormalPriority);
+    virtual const char *renderName() const
+    {
+        return "RenderBody";
+    }
+    virtual void repaint(Priority p = NormalPriority);
 
     virtual void layout();
-    virtual void setStyle(RenderStyle* style);
+    virtual void setStyle(RenderStyle *style);
 
     virtual int availableHeight() const;
 
 protected:
-    virtual void paintBoxDecorations(PaintInfo&, int _tx, int _ty);
+    virtual void paintBoxDecorations(PaintInfo &, int _tx, int _ty);
     bool scrollbarsStyled;
 };
 

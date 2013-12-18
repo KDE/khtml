@@ -27,44 +27,57 @@
 /*#include "ExceptionBase.h"*/
 #include "wtf/RefCounted.h"
 
-namespace DOM {
+namespace DOM
+{
 
-    class SVGException : public RefCounted<SVGException> /*: public ExceptionBase*/ {
-    public:
-        /*SVGException(const ExceptionCodeDescription& description)
-            : ExceptionBase(description)
-        {
-        }*/
+class SVGException : public RefCounted<SVGException> /*: public ExceptionBase*/
+{
+public:
+    /*SVGException(const ExceptionCodeDescription& description)
+        : ExceptionBase(description)
+    {
+    }*/
 
-        static const int SVGExceptionOffset = 300;
-        static const int SVGExceptionMax = 399;
+    static const int SVGExceptionOffset = 300;
+    static const int SVGExceptionMax = 399;
 
-        enum SVGExceptionCode {
-            SVG_WRONG_TYPE_ERR          = SVGExceptionOffset,
-            SVG_INVALID_VALUE_ERR       = SVGExceptionOffset + 1,
-            SVG_MATRIX_NOT_INVERTABLE   = SVGExceptionOffset + 2
-        };
-
-        // KHTML compatibility code
-    public:
-        unsigned short code() const { return m_code; }
-        DOM::DOMString name() const { return m_name; }
-        DOM::DOMString message() const { return m_message; }
-
-        DOM::DOMString toString() const {
-            // FIXME not implemented
-            return DOMString();
-        }
-
-    private:
-        unsigned short m_code;
-        DOM::DOMString m_name;
-        DOM::DOMString m_message;
+    enum SVGExceptionCode {
+        SVG_WRONG_TYPE_ERR          = SVGExceptionOffset,
+        SVG_INVALID_VALUE_ERR       = SVGExceptionOffset + 1,
+        SVG_MATRIX_NOT_INVERTABLE   = SVGExceptionOffset + 2
     };
+
+    // KHTML compatibility code
+public:
+    unsigned short code() const
+    {
+        return m_code;
+    }
+    DOM::DOMString name() const
+    {
+        return m_name;
+    }
+    DOM::DOMString message() const
+    {
+        return m_message;
+    }
+
+    DOM::DOMString toString() const
+    {
+        // FIXME not implemented
+        return DOMString();
+    }
+
+private:
+    unsigned short m_code;
+    DOM::DOMString m_name;
+    DOM::DOMString m_message;
+};
 }
 
-namespace WebCore {
-    typedef DOM::SVGException SVGException;
+namespace WebCore
+{
+typedef DOM::SVGException SVGException;
 } // namespace WebCore
 
 #endif // ENABLE(SVG)

@@ -31,7 +31,8 @@
 #include <dom/css_stylesheet.h>
 #include <dom/css_value.h>
 
-namespace DOM {
+namespace DOM
+{
 
 class CSSRuleImpl;
 
@@ -57,7 +58,7 @@ public:
     CSSRule(CSSRuleImpl *impl);
 public:
 
-    CSSRule & operator = (const CSSRule &other);
+    CSSRule &operator = (const CSSRule &other);
 
     ~CSSRule();
     /**
@@ -73,7 +74,7 @@ public:
         FONT_FACE_RULE = 5,
         PAGE_RULE = 6,
         NAMESPACE_RULE = 10, ///< CSSOM, @since 4.6.0
-	QUIRKS_RULE = 100 // KHTML CSS Extension
+        QUIRKS_RULE = 100 // KHTML CSS Extension
     };
 
     /**
@@ -109,7 +110,7 @@ public:
      * INVALID_MODIFICATION_ERR: Raised if the specified CSS string value
      * represents a different type of rule than the current one.
      */
-    void setCssText( const DOM::DOMString & );
+    void setCssText(const DOM::DOMString &);
 
     /**
      * The style sheet that contains this rule.
@@ -136,7 +137,7 @@ public:
 protected:
     CSSRuleImpl *impl;
 
-    void assignOther( const CSSRule &other, RuleType thisType );
+    void assignOther(const CSSRule &other, RuleType thisType);
 };
 
 class CSSCharsetRuleImpl;
@@ -156,8 +157,8 @@ public:
     CSSCharsetRule(CSSCharsetRuleImpl *impl);
 public:
 
-    CSSCharsetRule & operator = (const CSSCharsetRule &other);
-    CSSCharsetRule & operator = (const CSSRule &other);
+    CSSCharsetRule &operator = (const CSSCharsetRule &other);
+    CSSCharsetRule &operator = (const CSSRule &other);
 
     ~CSSCharsetRule();
 
@@ -179,9 +180,8 @@ public:
      * readonly.
      *
      */
-    void setEncoding( const DOM::DOMString & );
+    void setEncoding(const DOM::DOMString &);
 };
-
 
 class CSSFontFaceRuleImpl;
 /**
@@ -200,8 +200,8 @@ public:
     CSSFontFaceRule(CSSFontFaceRuleImpl *impl);
 public:
 
-    CSSFontFaceRule & operator = (const CSSFontFaceRule &other);
-    CSSFontFaceRule & operator = (const CSSRule &other);
+    CSSFontFaceRule &operator = (const CSSFontFaceRule &other);
+    CSSFontFaceRule &operator = (const CSSRule &other);
 
     ~CSSFontFaceRule();
 
@@ -230,8 +230,8 @@ public:
     CSSImportRule(CSSImportRuleImpl *impl);
 public:
 
-    CSSImportRule & operator = (const CSSImportRule &other);
-    CSSImportRule & operator = (const CSSRule &other);
+    CSSImportRule &operator = (const CSSImportRule &other);
+    CSSImportRule &operator = (const CSSRule &other);
 
     ~CSSImportRule();
 
@@ -277,8 +277,8 @@ public:
     CSSMediaRule(CSSMediaRuleImpl *impl);
 public:
 
-    CSSMediaRule & operator = (const CSSMediaRule &other);
-    CSSMediaRule & operator = (const CSSRule &other);
+    CSSMediaRule &operator = (const CSSMediaRule &other);
+    CSSMediaRule &operator = (const CSSRule &other);
 
     ~CSSMediaRule();
 
@@ -329,7 +329,7 @@ public:
      * and is unparsable.
      *
      */
-    unsigned long insertRule ( const DOM::DOMString &rule, unsigned long index );
+    unsigned long insertRule(const DOM::DOMString &rule, unsigned long index);
 
     /**
      * Used to delete a rule from the media block.
@@ -347,9 +347,8 @@ public:
      * readonly.
      *
      */
-    void deleteRule ( unsigned long index );
+    void deleteRule(unsigned long index);
 };
-
 
 class CSSPageRuleImpl;
 /**
@@ -369,8 +368,8 @@ public:
     CSSPageRule(CSSPageRuleImpl *impl);
 public:
 
-    CSSPageRule & operator = (const CSSPageRule &other);
-    CSSPageRule & operator = (const CSSRule &other);
+    CSSPageRule &operator = (const CSSPageRule &other);
+    CSSPageRule &operator = (const CSSRule &other);
 
     ~CSSPageRule();
 
@@ -392,7 +391,7 @@ public:
      * readonly.
      *
      */
-    void setSelectorText( const DOM::DOMString & );
+    void setSelectorText(const DOM::DOMString &);
 
     /**
      * The <a href="http://www.w3.org/TR/REC-CSS2/syndata.html#q8">
@@ -418,8 +417,8 @@ public:
     CSSStyleRule(CSSStyleRuleImpl *impl);
 public:
 
-    CSSStyleRule & operator = (const CSSStyleRule &other);
-    CSSStyleRule & operator = (const CSSRule &other);
+    CSSStyleRule &operator = (const CSSStyleRule &other);
+    CSSStyleRule &operator = (const CSSRule &other);
 
     ~CSSStyleRule();
 
@@ -443,7 +442,7 @@ public:
      * readonly.
      *
      */
-    void setSelectorText( const DOM::DOMString & );
+    void setSelectorText(const DOM::DOMString &);
 
     /**
      * The <a href="http://www.w3.org/TR/REC-CSS2/syndata.html#q8">
@@ -466,19 +465,16 @@ public:
     CSSNamespaceRule(const CSSNamespaceRule &other);
     CSSNamespaceRule(const CSSRule &other);
     CSSNamespaceRule(CSSNamespaceRuleImpl *impl);
-    
+
     DOMString namespaceURI() const;
     DOMString prefix() const;
 public:
 
-    CSSNamespaceRule & operator = (const CSSNamespaceRule &other);
-    CSSNamespaceRule & operator = (const CSSRule &other);
+    CSSNamespaceRule &operator = (const CSSNamespaceRule &other);
+    CSSNamespaceRule &operator = (const CSSRule &other);
 
     ~CSSNamespaceRule();
 };
-
-
-
 
 class CSSUnknownRuleImpl;
 /**
@@ -495,12 +491,11 @@ public:
     CSSUnknownRule(CSSUnknownRuleImpl *impl);
 public:
 
-    CSSUnknownRule & operator = (const CSSUnknownRule &other);
-    CSSUnknownRule & operator = (const CSSRule &other);
+    CSSUnknownRule &operator = (const CSSUnknownRule &other);
+    CSSUnknownRule &operator = (const CSSRule &other);
 
     ~CSSUnknownRule();
 };
-
 
 class CSSRuleListImpl;
 class StyleListImpl;
@@ -518,7 +513,7 @@ public:
     CSSRuleList(StyleListImpl *i);
 public:
 
-    CSSRuleList & operator = (const CSSRuleList &other);
+    CSSRuleList &operator = (const CSSRuleList &other);
 
     ~CSSRuleList();
 
@@ -542,7 +537,7 @@ public:
      * is not a valid index.
      *
      */
-    CSSRule item ( unsigned long index );
+    CSSRule item(unsigned long index);
 
     /**
      * @internal
@@ -555,7 +550,6 @@ protected:
     // we just need a pointer to an implementation here.
     CSSRuleListImpl *impl;
 };
-
 
 } // namespace
 

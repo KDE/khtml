@@ -24,22 +24,42 @@
 #if ENABLE(SVG_FONTS)
 // FIXME khtml #include "SVGFontFaceElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-class SVGFontData {
+class SVGFontData
+{
 public:
     SVGFontData(/*FIXME khtml SVGFontFaceElement**/);
     virtual ~SVGFontData();
 
     // FIXME khtml SVGFontFaceElement* svgFontFaceElement() const { return m_svgFontFaceElement.get(); }
 
-    float horizontalOriginX() const { return m_horizontalOriginX; }
-    float horizontalOriginY() const { return m_horizontalOriginY; }
-    float horizontalAdvanceX() const { return m_horizontalAdvanceX; }
+    float horizontalOriginX() const
+    {
+        return m_horizontalOriginX;
+    }
+    float horizontalOriginY() const
+    {
+        return m_horizontalOriginY;
+    }
+    float horizontalAdvanceX() const
+    {
+        return m_horizontalAdvanceX;
+    }
 
-    float verticalOriginX() const { return m_verticalOriginX; }
-    float verticalOriginY() const { return m_verticalOriginY; }
-    float verticalAdvanceY() const { return m_verticalAdvanceY; }
+    float verticalOriginX() const
+    {
+        return m_verticalOriginX;
+    }
+    float verticalOriginY() const
+    {
+        return m_verticalOriginY;
+    }
+    float verticalAdvanceY() const
+    {
+        return m_verticalAdvanceY;
+    }
 
 private:
     //FIXME khtml RefPtr<SVGFontFaceElement> m_svgFontFaceElement;

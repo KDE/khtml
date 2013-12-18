@@ -3,7 +3,7 @@
 
     The Original Code is WOFF font packaging code.
     Copyright (C) 2009 Mozilla Corporation
- 
+
     Contributor(s):
       Jonathan Kew <jfkthame@gmail.com>
       Germain Garand <germain@ebooksfrance.org>
@@ -62,70 +62,70 @@
 #endif
 
 typedef struct {
-  quint32 version;
-  quint16 numTables;
-  quint16 searchRange;
-  quint16 entrySelector;
-  quint16 rangeShift;
+    quint32 version;
+    quint16 numTables;
+    quint16 searchRange;
+    quint16 entrySelector;
+    quint16 rangeShift;
 } sfntHeader;
 
 typedef struct {
-  quint32 tag;
-  quint32 checksum;
-  quint32 offset;
-  quint32 length;
+    quint32 tag;
+    quint32 checksum;
+    quint32 offset;
+    quint32 length;
 } sfntDirEntry;
 
 typedef struct {
-  quint32 signature;
-  quint32 flavor;
-  quint32 length;
-  quint16 numTables;
-  quint16 reserved;
-  quint32 totalSfntSize;
-  quint16 majorVersion;
-  quint16 minorVersion;
-  quint32 metaOffset;
-  quint32 metaCompLen;
-  quint32 metaOrigLen;
-  quint32 privOffset;
-  quint32 privLen;
+    quint32 signature;
+    quint32 flavor;
+    quint32 length;
+    quint16 numTables;
+    quint16 reserved;
+    quint32 totalSfntSize;
+    quint16 majorVersion;
+    quint16 minorVersion;
+    quint32 metaOffset;
+    quint32 metaCompLen;
+    quint32 metaOrigLen;
+    quint32 privOffset;
+    quint32 privLen;
 } woffHeader;
 
 typedef struct {
-  quint32 tag;
-  quint32 offset;
-  quint32 compLen;
-  quint32 origLen;
-  quint32 checksum;
+    quint32 tag;
+    quint32 offset;
+    quint32 compLen;
+    quint32 origLen;
+    quint32 checksum;
 } woffDirEntry;
 
 typedef struct {
-  quint32 version;
-  quint32 fontRevision;
-  quint32 checkSumAdjustment;
-  quint32 magicNumber;
-  quint16 flags;
-  quint16 unitsPerEm;
-  quint32 created[2];
-  quint32 modified[2];
-  qint16 xMin;
-  qint16 yMin;
-  qint16 xMax;
-  qint16 yMax;
-  quint16 macStyle;
-  quint16 lowestRecPpem;
-  qint16 fontDirectionHint;
-  qint16 indexToLocFormat;
-  qint16 glyphDataFormat;
+    quint32 version;
+    quint32 fontRevision;
+    quint32 checkSumAdjustment;
+    quint32 magicNumber;
+    quint16 flags;
+    quint16 unitsPerEm;
+    quint32 created[2];
+    quint32 modified[2];
+    qint16 xMin;
+    qint16 yMin;
+    qint16 xMax;
+    qint16 yMax;
+    quint16 macStyle;
+    quint16 lowestRecPpem;
+    qint16 fontDirectionHint;
+    qint16 indexToLocFormat;
+    qint16 glyphDataFormat;
 } sfntHeadTable;
 
 #define HEAD_TABLE_SIZE 54 /* sizeof(sfntHeadTable) may report 56 because of alignment */
 
 typedef struct {
-  quint32 offset;
-  quint16 oldIndex;
-  quint16 newIndex;
+    quint32 offset;
+    quint16 oldIndex;
+    quint16 newIndex;
 } tableOrderRec;
 
 #if defined(__SUNPRO_CC)

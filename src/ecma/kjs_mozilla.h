@@ -1,4 +1,3 @@
-// -*- c-basic-offset: 2 -*-
 /*
  *  This file is part of the KDE libraries
  *  Copyright (C) 2003 George Staikos (staikos@kde.org)
@@ -26,22 +25,30 @@
 
 class KHTMLPart;
 
-namespace KJS {
+namespace KJS
+{
 
-  class MozillaSidebarExtension : public JSObject {
-  public:
+class MozillaSidebarExtension : public JSObject
+{
+public:
     MozillaSidebarExtension(ExecState *exec, KHTMLPart *p);
 
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier& propertyName, PropertySlot& slot);
-    JSValue* getValueProperty(ExecState *exec, int token) const;
-    virtual const ClassInfo* classInfo() const { return &info; }
+    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    JSValue *getValueProperty(ExecState *exec, int token) const;
+    virtual const ClassInfo *classInfo() const
+    {
+        return &info;
+    }
     static const ClassInfo info;
     enum { addPanel };
-    KHTMLPart *part() const { return m_part; }
-  private:
+    KHTMLPart *part() const
+    {
+        return m_part;
+    }
+private:
     KHTMLPart *m_part;
-  };
+};
 } // namespace
 
 #endif

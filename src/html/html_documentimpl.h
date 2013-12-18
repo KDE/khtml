@@ -32,13 +32,14 @@
 class KHTMLView;
 class QString;
 
-namespace DOM {
+namespace DOM
+{
 
-    class Element;
-    class HTMLElement;
-    class HTMLElementImpl;
-    class DOMString;
-    class HTMLMapElementImpl;
+class Element;
+class HTMLElement;
+class HTMLElementImpl;
+class DOMString;
+class HTMLMapElementImpl;
 
 class HTMLDocumentImpl : public DOM::DocumentImpl
 {
@@ -47,45 +48,54 @@ public:
     HTMLDocumentImpl(KHTMLView *v = 0);
     ~HTMLDocumentImpl();
 
-    virtual bool isHTMLDocument() const { return true; }
+    virtual bool isHTMLDocument() const
+    {
+        return true;
+    }
 
     DOMString referrer() const;
     DOMString lastModified() const;
     DOMString cookie() const;
-    void setCookie( const DOMString &);
-    NodeListImpl* getElementsByName( const DOMString &elementName );
+    void setCookie(const DOMString &);
+    NodeListImpl *getElementsByName(const DOMString &elementName);
 
-    HTMLCollectionImpl* images();
-    HTMLCollectionImpl* applets();
-    HTMLCollectionImpl* links();
-    HTMLCollectionImpl* forms();
-    HTMLCollectionImpl* layers();
-    HTMLCollectionImpl* anchors();
-    HTMLCollectionImpl* all();
-    HTMLCollectionImpl* scripts();
+    HTMLCollectionImpl *images();
+    HTMLCollectionImpl *applets();
+    HTMLCollectionImpl *links();
+    HTMLCollectionImpl *forms();
+    HTMLCollectionImpl *layers();
+    HTMLCollectionImpl *anchors();
+    HTMLCollectionImpl *all();
+    HTMLCollectionImpl *scripts();
 
-    void setBody(HTMLElementImpl *_body, int& exceptioncode);
+    void setBody(HTMLElementImpl *_body, int &exceptioncode);
 
     virtual khtml::Tokenizer *createTokenizer();
 
-    virtual bool childAllowed( NodeImpl *newChild );
+    virtual bool childAllowed(NodeImpl *newChild);
 
-    virtual ElementImpl *createElement ( const DOMString &tagName, int* pExceptioncode );
-    
+    virtual ElementImpl *createElement(const DOMString &tagName, int *pExceptioncode);
+
     // HTML5
-    ElementImpl* activeElement() const;
+    ElementImpl *activeElement() const;
 
-    HTMLMapElementImpl* getMap(const DOMString& url_);
+    HTMLMapElementImpl *getMap(const DOMString &url_);
 
     virtual void determineParseMode();
     virtual void close();
     virtual void contentLoaded();
 
-    void setAutoFill() { m_doAutoFill = true; }
+    void setAutoFill()
+    {
+        m_doAutoFill = true;
+    }
 
     // If true, HTML was requested by mimetype (e.g. HTTP Content-Type). Otherwise XHTML was requested.
     // This is independent of the actual doctype, of course. (#86446)
-    void setHTMLRequested( bool html ) { m_htmlRequested = html; }
+    void setHTMLRequested(bool html)
+    {
+        m_htmlRequested = html;
+    }
 
     // Change parse and html modes
     void changeModes(ParseMode newPMode, HTMLMode newHMode);
@@ -94,7 +104,7 @@ protected:
     HTMLElementImpl *htmlElement;
     friend class HTMLMapElementImpl;
     friend class HTMLImageElementImpl;
-    QMap<QString,HTMLMapElementImpl*> mapMap;
+    QMap<QString, HTMLMapElementImpl *> mapMap;
     bool m_doAutoFill;
     bool m_htmlRequested;
     bool m_determineParseMode;

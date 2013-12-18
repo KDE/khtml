@@ -29,7 +29,8 @@
 #include "html_elementimpl.h"
 #include "dtd.h"
 
-namespace DOM {
+namespace DOM
+{
 
 // -------------------------------------------------------------------------
 
@@ -64,7 +65,7 @@ public:
         : HTMLGenericElementImpl(doc, _tagid) {}
 
     long width() const;
-    void setWidth( long w );
+    void setWidth(long w);
 };
 
 // -------------------------------------------------------------------------
@@ -77,7 +78,10 @@ public:
     virtual NodeImpl::Id id() const;
     virtual void parseAttribute(AttributeImpl *token);
 
-    int minimumDelay() const { return m_minimumDelay; }
+    int minimumDelay() const
+    {
+        return m_minimumDelay;
+    }
 
 private:
     int m_minimumDelay;
@@ -88,15 +92,15 @@ private:
 class HTMLLayerElementImpl : public HTMLDivElementImpl
 {
 public:
-    HTMLLayerElementImpl( DocumentImpl *doc, ushort _tagid );
+    HTMLLayerElementImpl(DocumentImpl *doc, ushort _tagid);
 
     virtual void parseAttribute(AttributeImpl *);
     virtual NodeImpl *addChild(NodeImpl *child);
 
     virtual void removedFromDocument();
     virtual void insertedIntoDocument();
-    virtual void addId(const DOMString& id);
-    virtual void removeId(const DOMString& id);
+    virtual void addId(const DOMString &id);
+    virtual void removeId(const DOMString &id);
 private:
     DOMString m_name;
     bool fixed;

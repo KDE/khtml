@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef TimeRanges_h
@@ -30,32 +30,38 @@
 #include <wtf/RefCounted.h>
 #include <wtf/Vector.h>
 
-namespace khtml {
+namespace khtml
+{
 
-class TimeRanges : public RefCounted<TimeRanges> {
+class TimeRanges : public RefCounted<TimeRanges>
+{
 public:
     TimeRanges() : RefCounted<TimeRanges>(0) { }
     TimeRanges(float start, float end);
-    
-    unsigned length() const { return m_ranges.size(); }
-    float start(unsigned index, ExceptionCode&) const;
-    float end(unsigned index, ExceptionCode&) const;
-    
+
+    unsigned length() const
+    {
+        return m_ranges.size();
+    }
+    float start(unsigned index, ExceptionCode &) const;
+    float end(unsigned index, ExceptionCode &) const;
+
     void add(float start, float end);
-    
+
     bool contain(float time) const;
 
 private:
     struct Range {
         Range() { }
-        Range(float start, float end) {
+        Range(float start, float end)
+        {
             m_start = start;
             m_end = end;
         }
         float m_start;
         float m_end;
     };
-    
+
     Vector<Range> m_ranges;
 };
 

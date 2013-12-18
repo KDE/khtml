@@ -53,86 +53,103 @@ QT_END_NAMESPACE
 class TPoint;
 #endif
 
-namespace WebCore {
+namespace WebCore
+{
 
 class AffineTransform;
 class IntPoint;
 
-class FloatPoint {
+class FloatPoint
+{
 public:
     FloatPoint() : m_x(0), m_y(0) { }
     FloatPoint(float x, float y) : m_x(x), m_y(y) { }
-    FloatPoint(const IntPoint&);
+    FloatPoint(const IntPoint &);
 
     static FloatPoint narrowPrecision(double x, double y);
 
-    float x() const { return m_x; }
-    float y() const { return m_y; }
+    float x() const
+    {
+        return m_x;
+    }
+    float y() const
+    {
+        return m_y;
+    }
 
-    void setX(float x) { m_x = x; }
-    void setY(float y) { m_y = y; }
-    void move(float dx, float dy) { m_x += dx; m_y += dy; }
+    void setX(float x)
+    {
+        m_x = x;
+    }
+    void setY(float y)
+    {
+        m_y = y;
+    }
+    void move(float dx, float dy)
+    {
+        m_x += dx;
+        m_y += dy;
+    }
 
 #if PLATFORM(CG)
-    FloatPoint(const CGPoint&);
+    FloatPoint(const CGPoint &);
     operator CGPoint() const;
 #endif
 
 #if PLATFORM(MAC) && !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
-    FloatPoint(const NSPoint&);
+    FloatPoint(const NSPoint &);
     operator NSPoint() const;
 #endif
 
 #if PLATFORM(QT)
-    FloatPoint(const QPointF&);
+    FloatPoint(const QPointF &);
     operator QPointF() const;
 #endif
 
 #if PLATFORM(SYMBIAN)
     operator TPoint() const;
-    FloatPoint(const TPoint& );
+    FloatPoint(const TPoint &);
 #endif
 
-    FloatPoint matrixTransform(const AffineTransform&) const;
+    FloatPoint matrixTransform(const AffineTransform &) const;
 
 private:
     float m_x, m_y;
 };
 
-
-inline FloatPoint& operator+=(FloatPoint& a, const FloatSize& b)
+inline FloatPoint &operator+=(FloatPoint &a, const FloatSize &b)
 {
     a.move(b.width(), b.height());
     return a;
 }
 
-inline FloatPoint& operator-=(FloatPoint& a, const FloatSize& b)
+inline FloatPoint &operator-=(FloatPoint &a, const FloatSize &b)
 {
     a.move(-b.width(), -b.height());
     return a;
 }
 
-inline FloatPoint operator+(const FloatPoint& a, const FloatSize& b)
+inline FloatPoint operator+(const FloatPoint &a, const FloatSize &b)
 {
     return FloatPoint(a.x() + b.width(), a.y() + b.height());
 }
 
-inline FloatSize operator-(const FloatPoint& a, const FloatPoint& b)
+inline FloatSize operator-(const FloatPoint &a, const FloatPoint &b)
 {
     return FloatSize(a.x() - b.x(), a.y() - b.y());
 }
 
-inline FloatPoint operator-(const FloatPoint& a, const FloatSize& b)
+inline FloatPoint operator-(const FloatPoint &a, const FloatSize &b)
 {
     return FloatPoint(a.x() - b.width(), a.y() - b.height());
 }
 
-inline bool operator==(const FloatPoint& a, const FloatPoint& b)
+inline bool operator==(const FloatPoint &a, const FloatPoint &b)
 {
     return a.x() == b.x() && a.y() == b.y();
 }
 
-inline bool operator!=(const FloatPoint& a, const FloatPoint& b)
+inline bool operator!=(const FloatPoint &a, const FloatPoint &b)
 {
     return a.x() != b.x() || a.y() != b.y();
 }

@@ -30,23 +30,26 @@
 namespace WebCore
 {
 
-    class SVGFETileElement : public SVGFilterPrimitiveStandardAttributes
+class SVGFETileElement : public SVGFilterPrimitiveStandardAttributes
+{
+public:
+    SVGFETileElement(const QualifiedName &, Document *);
+    virtual ~SVGFETileElement();
+
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual SVGFETile *filterEffect(SVGResourceFilter *) const;
+
+protected:
+    virtual const SVGElement *contextElement() const
     {
-    public:
-        SVGFETileElement(const QualifiedName&, Document*);
-        virtual ~SVGFETileElement();
+        return this;
+    }
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual SVGFETile* filterEffect(SVGResourceFilter*) const;
+private:
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFETileElement, String, String, In1, in1)
 
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
-
-    private:
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFETileElement, String, String, In1, in1)
-
-        mutable SVGFETile* m_filterEffect;
-    };
+    mutable SVGFETile *m_filterEffect;
+};
 
 } // namespace WebCore
 

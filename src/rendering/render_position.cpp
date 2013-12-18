@@ -27,45 +27,51 @@
 using namespace DOM;
 using namespace khtml;
 
-RenderPosition::RenderPosition(NodeImpl* node, int offset) {
-    if (node && node->renderer() && node->renderer()->isText())
-        offset = static_cast<RenderText*>(node->renderer())->convertToDOMPosition(offset);
+RenderPosition::RenderPosition(NodeImpl *node, int offset)
+{
+    if (node && node->renderer() && node->renderer()->isText()) {
+        offset = static_cast<RenderText *>(node->renderer())->convertToDOMPosition(offset);
+    }
     m_position = Position(node, offset);
 }
 
-
-RenderPosition RenderPosition::fromDOMPosition(const Position& position)
+RenderPosition RenderPosition::fromDOMPosition(const Position &position)
 {
-    if (position.isEmpty())
+    if (position.isEmpty()) {
         return RenderPosition();
+    }
 
     NodeImpl *node = position.node();
     RenderObject *renderObject = node->renderer();
     // if no renderer -> no position in the rendering is possible
-    if (!renderObject)
+    if (!renderObject) {
         return RenderPosition();
+    }
 
-    if (!renderObject->isText())
+    if (!renderObject->isText()) {
         return RenderPosition(position);
+    }
 
-    if (renderObject->isBR())
+    if (renderObject->isBR()) {
         return (!position.offset() && renderObject->inlineBox(0)) ? RenderPosition(Position(node, 0)) : RenderPosition();
-        // return renderObject->inlineBox(0) ? RenderPosition(position) : RenderPosition();
+    }
+    // return renderObject->inlineBox(0) ? RenderPosition(position) : RenderPosition();
 
     // qDebug() << "[text position]" << position << endl;
-    const RenderText *renderText = static_cast<const RenderText*>(renderObject);
+    const RenderText *renderText = static_cast<const RenderText *>(renderObject);
     int domOffset = position.offset();
     int renderOffset = renderText->convertToRenderedPosition(domOffset);
     domOffset = renderText->convertToDOMPosition(renderOffset);
     // now we need to modify original position
     // qDebug() << "[equivalent offset]" << domOffset << endl;
     RenderPosition result(Position(node, domOffset));
-    if (!result.getInlineBoxAndOffset(renderOffset))
+    if (!result.getInlineBoxAndOffset(renderOffset)) {
         return RenderPosition();
+    }
     return result;
 }
 
-InlineBox* RenderPosition::getInlineBoxAndOffset(int& offset) const
+InlineBox *RenderPosition::getInlineBoxAndOffset(int &offset) const
 {
     // default value
     offset = 0;
@@ -75,8 +81,8 @@ InlineBox* RenderPosition::getInlineBoxAndOffset(int& offset) const
     }
     // qDebug() << "[find inline box]" << m_position << endl;
 
-    const NodeImpl* node = m_position.node();
-    /*const*/ RenderObject* renderObject = node->renderer();
+    const NodeImpl *node = m_position.node();
+    /*const*/ RenderObject *renderObject = node->renderer();
     if (!renderObject->isText()) {
         offset = m_position.offset();
         return renderObject->inlineBox(offset);
@@ -87,9 +93,9 @@ InlineBox* RenderPosition::getInlineBoxAndOffset(int& offset) const
     }
     int domOffset = m_position.offset();
 
-    /*const*/ RenderText* renderText = static_cast<RenderText*>(renderObject);
+    /*const*/ RenderText *renderText = static_cast<RenderText *>(renderObject);
     int renderOffset = renderText->convertToRenderedPosition(domOffset);
-    InlineTextBox* textBox;
+    InlineTextBox *textBox;
     for (textBox = renderText->firstTextBox(); textBox; textBox = textBox->nextTextBox()) {
         if (renderOffset >= textBox->start() && renderOffset <= textBox->end()) {
             offset = renderOffset; // - textBox->start();
@@ -110,24 +116,34 @@ InlineBox* RenderPosition::getInlineBoxAndOffset(int& offset) const
     return 0;
 }
 
-bool RenderPosition::rendersInDifferentPosition(const RenderPosition& self, const RenderPosition& other)
+bool RenderPosition::rendersInDifferentPosition(const RenderPosition &self, const RenderPosition &other)
 {
     // qDebug() << "[compare]" << self.position() << other.position() << endl;
-    if (self == other) return false;
-    if (self.isEmpty() || other.isEmpty()) return false;
+    if (self == other) {
+        return false;
+    }
+    if (self.isEmpty() || other.isEmpty()) {
+        return false;
+    }
     // if (self.renderer() != other.renderer()) return true;
-    if (!self.renderer() || !other.renderer()) return false;
+    if (!self.renderer() || !other.renderer()) {
+        return false;
+    }
     int selfOffset;
-    const InlineBox* selfBox = self.getInlineBoxAndOffset(selfOffset);
+    const InlineBox *selfBox = self.getInlineBoxAndOffset(selfOffset);
     int otherOffset;
-    const InlineBox* otherBox = other.getInlineBoxAndOffset(otherOffset);
-    if (selfBox == otherBox && selfOffset == otherOffset) return false;
+    const InlineBox *otherBox = other.getInlineBoxAndOffset(otherOffset);
+    if (selfBox == otherBox && selfOffset == otherOffset) {
+        return false;
+    }
 
     // FIXME remove caret rects comparing - it's slow, or leave as rare fall back
     int x1, y1, x2, y2, w1, h1, w2, h2;
-    self.renderer()->caretPos(const_cast<RenderPosition&>(self).renderedOffset(), 0, x1, y1, w1, h1);
-    other.renderer()->caretPos(const_cast<RenderPosition&>(other).renderedOffset(), 0, x2, y2, w2, h2);
-    if (x1 == x2 && y1 == y2 && w1 == w2 && h1 == h2) return false;
+    self.renderer()->caretPos(const_cast<RenderPosition &>(self).renderedOffset(), 0, x1, y1, w1, h1);
+    other.renderer()->caretPos(const_cast<RenderPosition &>(other).renderedOffset(), 0, x2, y2, w2, h2);
+    if (x1 == x2 && y1 == y2 && w1 == w2 && h1 == h2) {
+        return false;
+    }
 
     // compare containing blocks
     // flow block elements (DOM)
@@ -135,31 +151,40 @@ bool RenderPosition::rendersInDifferentPosition(const RenderPosition& self, cons
     return true;
 }
 
-bool RenderPosition::rendersOnSameLine(const RenderPosition& self, const RenderPosition& other)
+bool RenderPosition::rendersOnSameLine(const RenderPosition &self, const RenderPosition &other)
 {
-    if (self == other) return true;
-    if (self.isEmpty() || other.isEmpty()) return false;
-    if (self.renderer() != other.renderer()) return false;
+    if (self == other) {
+        return true;
+    }
+    if (self.isEmpty() || other.isEmpty()) {
+        return false;
+    }
+    if (self.renderer() != other.renderer()) {
+        return false;
+    }
     int tempOffset;
-    /*const */InlineBox* selfBox  = self.getInlineBoxAndOffset(tempOffset);
-    /*const */InlineBox* otherBox = other.getInlineBoxAndOffset(tempOffset);
+    /*const */InlineBox *selfBox  = self.getInlineBoxAndOffset(tempOffset);
+    /*const */InlineBox *otherBox = other.getInlineBoxAndOffset(tempOffset);
     return selfBox == otherBox || (selfBox && otherBox && selfBox->root() == otherBox->root());
 }
 
 RenderPosition RenderPosition::previousLinePosition(int x)
 {
     // qDebug() << "[Previous line at x]" << x << endl;
-    if (!renderer()) return *this;
+    if (!renderer()) {
+        return *this;
+    }
 
     int rOffset;
-    NodeImpl* node = m_position.node();
+    NodeImpl *node = m_position.node();
     InlineBox *box = getInlineBoxAndOffset(rOffset);
     // qDebug() << "[box;offset]" << box << rOffset << endl;
 
     RenderBlock *containingBlock = 0;
     RootInlineBox *root = 0;
-    if (box)
+    if (box) {
         root = box->root()->prevRootBox();
+    }
     // qDebug() << "[root]" << root << endl;
     if (root) {
         containingBlock = node->renderer()->containingBlock();
@@ -170,8 +195,9 @@ RenderPosition RenderPosition::previousLinePosition(int x)
         NodeImpl *startBlock = node->enclosingBlockFlowElement();
         NodeImpl *n = node->previousEditable();
         // qDebug() << "[StartBlock]" << startBlock << (startBlock ? startBlock->renderer() : 0) << endl;
-        while (n && startBlock == n->enclosingBlockFlowElement())
+        while (n && startBlock == n->enclosingBlockFlowElement()) {
             n = n->previousEditable();
+        }
         // qDebug() << "[n]" << n << (n ? n->renderer() : 0) << (n ? n->nodeName() : "") << endl;
         printEnclosingBlockTree(n);
         if (n) {
@@ -212,17 +238,20 @@ RenderPosition RenderPosition::previousLinePosition(int x)
 RenderPosition RenderPosition::nextLinePosition(int x)
 {
     // qDebug() << "[Next line at x]" << x << endl;
-    if (!renderer()) return *this;
+    if (!renderer()) {
+        return *this;
+    }
 
     int rOffset;
-    NodeImpl* node = m_position.node();
+    NodeImpl *node = m_position.node();
     InlineBox *box = getInlineBoxAndOffset(rOffset);
     // qDebug() << "[box;offset]" << box << rOffset << endl;
 
     RenderBlock *containingBlock = 0;
     RootInlineBox *root = 0;
-    if (box)
+    if (box) {
         root = box->root()->nextRootBox();
+    }
     if (root) {
         containingBlock = node->renderer()->containingBlock();
     } else {
@@ -231,11 +260,13 @@ RenderPosition RenderPosition::nextLinePosition(int x)
         // block and find the first root line box in that block.
         NodeImpl *startBlock = node->enclosingBlockFlowElement();
         NodeImpl *n = node->nextEditable();
-        while (n && startBlock == n->enclosingBlockFlowElement())
+        while (n && startBlock == n->enclosingBlockFlowElement()) {
             n = n->nextEditable();
+        }
         if (n) {
-            while (n && !Position(n, n->caretMinOffset()).inRenderedContent())
+            while (n && !Position(n, n->caretMinOffset()).inRenderedContent()) {
                 n = n->nextEditable();
+            }
             if (n && inSameRootNavigableElement(n, node)) {
                 assert(n->renderer());
                 box = n->renderer()->inlineBox(n->caretMinOffset());

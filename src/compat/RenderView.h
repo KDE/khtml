@@ -5,8 +5,8 @@
 
 namespace WebCore
 {
-    using namespace khtml;
-    typedef RenderCanvas RenderView;
+using namespace khtml;
+typedef RenderCanvas RenderView;
 } // namespace WebCore
 
 #endif

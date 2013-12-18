@@ -45,7 +45,7 @@ class KHTMLPartIface : public QDBusAbstractAdaptor
 
 public:
 
-    KHTMLPartIface( KHTMLPart * );
+    KHTMLPartIface(KHTMLPart *);
     virtual ~KHTMLPartIface();
 
 public Q_SLOTS:
@@ -62,7 +62,7 @@ public Q_SLOTS:
      * If you want to have the default UserSettings, don't call this
      * method.
      */
-    void setJScriptEnabled( bool enable );
+    void setJScriptEnabled(bool enable);
 
     /**
      * Returns @p true if Javascript support is enabled or @p false
@@ -73,7 +73,7 @@ public Q_SLOTS:
     /**
      * Enable/disable the automatic forwarding by <meta http-equiv="refresh" ....>
      */
-    void setMetaRefreshEnabled( bool enable );
+    void setMetaRefreshEnabled(bool enable);
 
     /**
      * Returns @p true if automtaic forwarding is enabled.
@@ -84,7 +84,7 @@ public Q_SLOTS:
      * Enables or disables Drag'n'Drop support. A drag operation is started if
      * the users drags a link.
      */
-    void setDndEnabled( bool b );
+    void setDndEnabled(bool b);
 
     /**
      * Returns whether Dragn'n'Drop support is enabled or not.
@@ -97,18 +97,17 @@ public Q_SLOTS:
      * Not calling this function is the only way to let the default settings
      * apply.
      */
-    void setJavaEnabled( bool enable );
+    void setJavaEnabled(bool enable);
 
     /**
      * Return if Java applet support is enabled/disabled.
      */
     bool javaEnabled() const;
 
-
     /**
      * Enables or disables plugins via, default is enabled
      */
-    void setPluginsEnabled( bool enable );
+    void setPluginsEnabled(bool enable);
 
     /**
      * Returns trie if plugins are enabled/disabled.
@@ -121,7 +120,7 @@ public Q_SLOTS:
      *
      * @note Request will be ignored if called before begin().
      */
-    void setAutoloadImages( bool enable );
+    void setAutoloadImages(bool enable);
 
     /**
      * Returns whether images contained in the document are loaded automatically
@@ -151,7 +150,7 @@ public Q_SLOTS:
      * This can be different from the charset. The widget will try to reload
      * the current page in the new encoding, if url() is not empty.
      */
-    bool setEncoding( const QString &name );
+    bool setEncoding(const QString &name);
 
     /**
      * Returns the encoding the page currently uses.
@@ -175,7 +174,7 @@ public Q_SLOTS:
      * @param name The font name to use for fixed text, e.g.
      * the <tt>&lt;pre&gt;</tt> tag.
      */
-    void setFixedFont( const QString &name );
+    void setFixedFont(const QString &name);
 
     /**
      * Finds the anchor named @p name.
@@ -184,7 +183,7 @@ public Q_SLOTS:
      * scrolls to the closest position. Returns @p true if the anchor has
      * been found.
      */
-    bool gotoAnchor( const QString &name );
+    bool gotoAnchor(const QString &name);
 
     /**
      * Go to next Anchor.
@@ -223,7 +222,7 @@ public Q_SLOTS:
      * Print the contents of the current html view.
      * @param quick if true, fully automated printing, without the print dialog.
      */
-    Q_NOREPLY void print( bool quick );
+    Q_NOREPLY void print(bool quick);
 
     void debugRenderTree();
     void debugDOMTree();

@@ -47,7 +47,7 @@ SVGTransform::SVGTransform(SVGTransformType type)
 {
 }
 
-SVGTransform::SVGTransform(const AffineTransform& matrix)
+SVGTransform::SVGTransform(const AffineTransform &matrix)
     : m_type(SVG_TRANSFORM_MATRIX)
     , m_angle(0)
     , m_matrix(matrix)
@@ -83,7 +83,7 @@ FloatPoint SVGTransform::rotationCenter() const
     return m_center;
 }
 
-void SVGTransform::setMatrix(const AffineTransform& matrix)
+void SVGTransform::setMatrix(const AffineTransform &matrix)
 {
     m_type = SVG_TRANSFORM_MATRIX;
     m_angle = 0;
@@ -151,6 +151,5 @@ void SVGTransform::setSkewY(float angle)
     m_matrix.skewY(angle);
 }
 
-// vim:ts=4:noet
 #endif // ENABLE(SVG)
 

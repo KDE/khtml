@@ -24,7 +24,8 @@
 #if ENABLE(SVG)
 #include "SVGElementInstanceList.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 SVGElementInstanceList::SVGElementInstanceList(PassRefPtr<SVGElementInstance> rootInstance)
     : m_rootInstance(rootInstance)
@@ -39,9 +40,10 @@ unsigned int SVGElementInstanceList::length() const
 {
     // NOTE: We could use the same caching facilities, "ChildNodeList" uses.
     unsigned length = 0;
-    SVGElementInstance* instance;
-    for (instance = m_rootInstance->firstChild(); instance; instance = instance->nextSibling())
+    SVGElementInstance *instance;
+    for (instance = m_rootInstance->firstChild(); instance; instance = instance->nextSibling()) {
         length++;
+    }
 
     return length;
 }
@@ -49,7 +51,7 @@ unsigned int SVGElementInstanceList::length() const
 RefPtr<SVGElementInstance> SVGElementInstanceList::item(unsigned int index)
 {
     unsigned int pos = 0;
-    SVGElementInstance* instance = m_rootInstance->firstChild();
+    SVGElementInstance *instance = m_rootInstance->firstChild();
 
     while (instance && pos < index) {
         instance = instance->nextSibling();
@@ -63,4 +65,3 @@ RefPtr<SVGElementInstance> SVGElementInstanceList::item(unsigned int index)
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

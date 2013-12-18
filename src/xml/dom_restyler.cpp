@@ -23,13 +23,14 @@
 
 #include "dom_restyler.h"
 
-namespace khtml {
+namespace khtml
+{
 
 DynamicDomRestyler::DynamicDomRestyler()
 {
 }
 
-void DynamicDomRestyler::addDependency(ElementImpl* subject, ElementImpl* dependency, StructuralDependencyType type)
+void DynamicDomRestyler::addDependency(ElementImpl *subject, ElementImpl *dependency, StructuralDependencyType type)
 {
     assert(type < LastStructuralDependency);
     if (subject == dependency && type == HoverDependency) {
@@ -38,43 +39,47 @@ void DynamicDomRestyler::addDependency(ElementImpl* subject, ElementImpl* depend
     }
 
     dependency_map[type].add(dependency, subject);
-    reverse_map.add(subject,dependency);
+    reverse_map.add(subject, dependency);
 }
 
-void DynamicDomRestyler::resetDependencies(ElementImpl* subject)
+void DynamicDomRestyler::resetDependencies(ElementImpl *subject)
 {
     subject->setHasHoverDependency(false);
 
     ElementMap::ElementsList list;
     reverse_map.getElements(subject, list);
-    if (list.isEmpty())
+    if (list.isEmpty()) {
         return;
+    }
     for (int i = 0; i < list.size(); ++i)
-        for (int type = 0; type < LastStructuralDependency; ++type)
+        for (int type = 0; type < LastStructuralDependency; ++type) {
             dependency_map[type].remove(list[i], subject);
+        }
     reverse_map.remove(subject);
 }
 
-void DynamicDomRestyler::restyleDependent(ElementImpl* dependency, StructuralDependencyType type)
+void DynamicDomRestyler::restyleDependent(ElementImpl *dependency, StructuralDependencyType type)
 {
     assert(type < LastStructuralDependency);
-    if (type == HoverDependency && dependency->hasHoverDependency())
+    if (type == HoverDependency && dependency->hasHoverDependency()) {
         dependency->setChanged(true);
+    }
 
     ElementMap::ElementsList list;
     dependency_map[type].getElements(dependency, list);
-    for (int i = 0; i < list.size(); ++i)
+    for (int i = 0; i < list.size(); ++i) {
         list[i]->setChanged(true);
+    }
 }
 
 void DynamicDomRestyler::dumpStats() const
 {
-/*
-    // qDebug() << "Keys in structural dependencies: " << dependency_map[StructuralDependency].size();
-    // qDebug() << "Keys in attribute dependencies: " << dependency_map[AttributeDependency].size();
+    /*
+        // qDebug() << "Keys in structural dependencies: " << dependency_map[StructuralDependency].size();
+        // qDebug() << "Keys in attribute dependencies: " << dependency_map[AttributeDependency].size();
 
-    // qDebug() << "Keys in reverse map: " << reverse_map.size();
-    */
+        // qDebug() << "Keys in reverse map: " << reverse_map.size();
+        */
 }
 
 void DynamicDomRestyler::addDependency(uint attrID, AttributeDependencyType type)

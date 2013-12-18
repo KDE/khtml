@@ -31,14 +31,15 @@
 #include "tile.h"
 #include "imagemanager.h"
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 class ImageTile: public Tile
 {
 public:
     //### consider making this a pointer, seems quite heavy
     QImage        image;
-    
+
     virtual void discard()
     {
         //Set the image to be null
@@ -50,12 +51,12 @@ public:
 
     ~ImageTile()
     {
-        if (cacheNode)
+        if (cacheNode) {
             ImageManager::imageCache()->removeEntry(this);
+        }
     }
 };
 
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

@@ -26,24 +26,29 @@
 #if ENABLE(SVG)
 #include "SVGStyledElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGStopElement : public SVGStyledElement {
-    public:
-        SVGStopElement(const QualifiedName&, Document*);
-        virtual ~SVGStopElement();
+class SVGStopElement : public SVGStyledElement
+{
+public:
+    SVGStopElement(const QualifiedName &, Document *);
+    virtual ~SVGStopElement();
 
-        virtual bool isGradientStop() const { return true; }
+    virtual bool isGradientStop() const
+    {
+        return true;
+    }
 
-        virtual void parseMappedAttribute(MappedAttribute*);
+    virtual void parseMappedAttribute(MappedAttribute *);
 
-        virtual RenderObject* createRenderer(RenderArena*, RenderStyle*);
+    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
 
-        // KHTML ElementImpl pure virtual method
-        virtual quint32 id() const;
-    private:
-        ANIMATED_PROPERTY_DECLARATIONS(SVGStopElement, float, float, Offset, offset)
-    };
+    // KHTML ElementImpl pure virtual method
+    virtual quint32 id() const;
+private:
+    ANIMATED_PROPERTY_DECLARATIONS(SVGStopElement, float, float, Offset, offset)
+};
 
 } // namespace WebCore
 

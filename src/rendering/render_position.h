@@ -29,7 +29,7 @@ using DOM::Position;
 
 namespace DOM
 {
-    class NodeImpl;
+class NodeImpl;
 }
 
 using DOM::NodeImpl;
@@ -43,35 +43,60 @@ class RenderPosition
 public:
     // constructs empty position
     RenderPosition() {}
-    RenderPosition(const Position& position) : m_position(position) {}
-    RenderPosition(NodeImpl* node, int offset);
+    RenderPosition(const Position &position) : m_position(position) {}
+    RenderPosition(NodeImpl *node, int offset);
 
-    static RenderPosition fromDOMPosition(const Position& position);
+    static RenderPosition fromDOMPosition(const Position &position);
 
-    Position position() const { return m_position; }
-    const RenderObject* renderer() const { return m_position.isEmpty() ? 0 : m_position.node()->renderer(); }
-    NodeImpl* node() const { return m_position.node(); }
-    int domOffset() const { return m_position.offset(); }
+    Position position() const
+    {
+        return m_position;
+    }
+    const RenderObject *renderer() const
+    {
+        return m_position.isEmpty() ? 0 : m_position.node()->renderer();
+    }
+    NodeImpl *node() const
+    {
+        return m_position.node();
+    }
+    int domOffset() const
+    {
+        return m_position.offset();
+    }
 
-    inline bool isEmpty() const { return m_position.isEmpty(); }
-    inline bool notEmpty() const { return m_position.notEmpty(); }
+    inline bool isEmpty() const
+    {
+        return m_position.isEmpty();
+    }
+    inline bool notEmpty() const
+    {
+        return m_position.notEmpty();
+    }
 
     // QRect caretRegion() const;
 
     // int renderedOffset() const; // convert to rendered offset, though we need to eliminate other code using it
-    int renderedOffset() {
+    int renderedOffset()
+    {
         int result;
         getInlineBoxAndOffset(result);
         return result;
     }
 
-    bool inRenderedContent() { return renderer(); }
-    static bool inRenderedContent(const Position& position) { return fromDOMPosition(position).inRenderedContent(); }
+    bool inRenderedContent()
+    {
+        return renderer();
+    }
+    static bool inRenderedContent(const Position &position)
+    {
+        return fromDOMPosition(position).inRenderedContent();
+    }
 
     // implementation: same RootInlineBox
-    static bool rendersOnSameLine(const RenderPosition& self, const RenderPosition& other);
+    static bool rendersOnSameLine(const RenderPosition &self, const RenderPosition &other);
     // implementation: either renderers are different, or inline boxes or offsets inside
-    static bool rendersInDifferentPosition(const RenderPosition& self, const RenderPosition& other);
+    static bool rendersInDifferentPosition(const RenderPosition &self, const RenderPosition &other);
 
     // static bool rendersOnDifferentLine(); // compare inline boxes and its roots
 
@@ -83,24 +108,24 @@ public:
 
 protected:
     // returns rendered offset
-    InlineBox* getInlineBoxAndOffset(int& offset) const;
+    InlineBox *getInlineBoxAndOffset(int &offset) const;
 
 private:
     Position m_position;
     // affinity thing, so we'll have where to put caret at the end of inline box or at the start of next one
 };
 
-inline bool operator==(const RenderPosition& a, const RenderPosition& b)
+inline bool operator==(const RenderPosition &a, const RenderPosition &b)
 {
     return a.position() == b.position();
 }
 
-inline bool operator!=(const RenderPosition& a, const RenderPosition& b)
+inline bool operator!=(const RenderPosition &a, const RenderPosition &b)
 {
     return !(a == b);
 }
 
-QDebug operator<<(QDebug stream, const RenderPosition& renderPosition);
+QDebug operator<<(QDebug stream, const RenderPosition &renderPosition);
 
 } // namespace
 

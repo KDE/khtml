@@ -31,42 +31,52 @@
 #include <QtCore/QMap>
 #include <QPixmap>
 
-namespace khtmlImLoad {
-    class ImagePainter;
+namespace khtmlImLoad
+{
+class ImagePainter;
 }
 
-namespace khtml {
+namespace khtml
+{
 
 class CachedObject;
 
 class RenderImage : public RenderReplaced
 {
 public:
-    RenderImage(DOM::NodeImpl* _element);
+    RenderImage(DOM::NodeImpl *_element);
     virtual ~RenderImage();
 
-    virtual const char *renderName() const { return "RenderImage"; }
-    virtual void paint( PaintInfo& i, int tx, int ty );
+    virtual const char *renderName() const
+    {
+        return "RenderImage";
+    }
+    virtual void paint(PaintInfo &i, int tx, int ty);
 
     virtual void layout();
 
-    virtual void updatePixmap( const QRect&, CachedImage *);
+    virtual void updatePixmap(const QRect &, CachedImage *);
 
     // don't even think about making these methods virtual!
     //QPixmap pixmap() const;
-    DOM::HTMLElementImpl* element() const
-    { return static_cast<DOM::HTMLElementImpl*>(RenderObject::element()); }
+    DOM::HTMLElementImpl *element() const
+    {
+        return static_cast<DOM::HTMLElementImpl *>(RenderObject::element());
+    }
 
     bool complete() const;
 
-    CachedObject *contentObject() { return m_cachedImage; }
-    void setContentObject( CachedObject* );
+    CachedObject *contentObject()
+    {
+        return m_cachedImage;
+    }
+    void setContentObject(CachedObject *);
 
     // hook to keep RendeObject::m_inline() up to date
     virtual void setStyle(RenderStyle *style);
     virtual void updateFromElement();
 
-    virtual bool nodeAtPoint(NodeInfo& info, int x, int y, int tx, int ty, HitTestAction hitTestAction, bool inside);
+    virtual bool nodeAtPoint(NodeInfo &info, int x, int y, int tx, int ty, HitTestAction hitTestAction, bool inside);
 
     bool isWidthSpecified() const;
     bool isHeightSpecified() const;
@@ -77,14 +87,20 @@ public:
     virtual short calcReplacedWidth() const;
     virtual int   calcReplacedHeight() const;
 
-    virtual SelectionState selectionState() const {return KDE_CAST_BF_ENUM(SelectionState, m_selectionState);}
-    virtual void setSelectionState(SelectionState s) {m_selectionState = s; }
+    virtual SelectionState selectionState() const
+    {
+        return KDE_CAST_BF_ENUM(SelectionState, m_selectionState);
+    }
+    virtual void setSelectionState(SelectionState s)
+    {
+        m_selectionState = s;
+    }
 #if 0
     virtual void caretPos(int offset, int flags, int &_x, int &_y, int &width, int &height) const;
 #endif
 
 private:
-    void updateImage(CachedImage* new_image);
+    void updateImage(CachedImage *new_image);
     /*
      * Cache for images that need resizing
      */
@@ -97,10 +113,9 @@ private:
     khtmlImLoad::ImagePainter *m_imagePainter;
 
     bool berrorPic : 1;
-    bool bUnfinishedImageFrame :1;
+    bool bUnfinishedImageFrame : 1;
     KDE_BF_ENUM(SelectionState) m_selectionState : 3; // FIXME: don't forget to enlarge this as the enum grows
 };
-
 
 } //namespace
 

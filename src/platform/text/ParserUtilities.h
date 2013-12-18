@@ -24,30 +24,35 @@
 
 #include "dom/dom_string.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    inline bool skipString(const QChar*& ptr, const QChar* end, const QChar* name, int length)
-    {
-        if (end - ptr < length)
-            return false;
-        if (memcmp(name, ptr, sizeof(QChar) * length))
-            return false;
-        ptr += length;
-        return true;
+inline bool skipString(const QChar *&ptr, const QChar *end, const QChar *name, int length)
+{
+    if (end - ptr < length) {
+        return false;
     }
+    if (memcmp(name, ptr, sizeof(QChar) * length)) {
+        return false;
+    }
+    ptr += length;
+    return true;
+}
 
-    inline bool skipString(const QChar*& ptr, const QChar* end, const char* str)
-    {
-        int length = strlen(str);
-        if (end - ptr < length)
+inline bool skipString(const QChar *&ptr, const QChar *end, const char *str)
+{
+    int length = strlen(str);
+    if (end - ptr < length) {
+        return false;
+    }
+    for (int i = 0; i < length; ++i) {
+        if (ptr[i] != str[i]) {
             return false;
-        for (int i = 0; i < length; ++i) {
-            if (ptr[i] != str[i])
-                return false;
         }
-        ptr += length;
-        return true;
     }
+    ptr += length;
+    return true;
+}
 
 } // namspace WebCore
 

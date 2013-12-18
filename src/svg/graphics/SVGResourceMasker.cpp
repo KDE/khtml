@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include "wtf/Platform.h"
@@ -33,9 +33,10 @@
 
 using namespace std;
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGResourceMasker::SVGResourceMasker(const SVGMaskElement* ownerElement)
+SVGResourceMasker::SVGResourceMasker(const SVGMaskElement *ownerElement)
     : SVGResource()
     , m_ownerElement(ownerElement)
 {
@@ -57,11 +58,12 @@ void SVGResourceMasker::invalidate()
     return ts;
 }*/
 
-SVGResourceMasker* getMaskerById(Document* document, const AtomicString& id)
+SVGResourceMasker *getMaskerById(Document *document, const AtomicString &id)
 {
-    SVGResource* resource = getResourceById(document, id);
-    if (resource && resource->isMasker())
-        return static_cast<SVGResourceMasker*>(resource);
+    SVGResource *resource = getResourceById(document, id);
+    if (resource && resource->isMasker()) {
+        return static_cast<SVGResourceMasker *>(resource);
+    }
 
     return 0;
 }

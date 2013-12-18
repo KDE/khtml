@@ -26,38 +26,49 @@
 #include "misc/idstring.h"
 #include "misc/htmlnames.h"
 
-namespace DOM {
+namespace DOM
+{
 
 /*class DOMString;
 class PrefixName;
 class LocalName;
 class NamespaceName;*/
 
-class QualifiedName {
+class QualifiedName
+{
 public:
     QualifiedName() {}
     QualifiedName(PrefixName prefix, LocalName localName, NamespaceName namespaceURI) : m_namespace(namespaceURI), m_prefix(prefix), m_localName(localName) {}
-    QualifiedName(const DOMString& prefix, const DOMString& localName, const DOMString& namespaceURI);
+    QualifiedName(const DOMString &prefix, const DOMString &localName, const DOMString &namespaceURI);
     QualifiedName(int prefix, int localName, int namespaceName);
     //QualifiedName(DOMString namespaceURI, DOMString prefix, DOMString localName);
     QualifiedName(quint32 id, PrefixName prefix);
     ~QualifiedName() {}
 
-    QualifiedName(const QualifiedName& name);
-    const QualifiedName& operator=(const QualifiedName& name);
+    QualifiedName(const QualifiedName &name);
+    const QualifiedName &operator=(const QualifiedName &name);
 
-    bool operator==(const QualifiedName& other) const;
+    bool operator==(const QualifiedName &other) const;
     //inline bool operator!=(const QualifiedName& other) const { return (m_prefix != other.prefixId() || m_localName != other.localNameId() || m_namespace != other.namespaceNameId()); }
 
-    bool matches(const QualifiedName& other) const;
+    bool matches(const QualifiedName &other) const;
 
     inline bool hasPrefix() const;
-    void setPrefix(const PrefixName& prefix);
-    void setPrefix(const DOMString& prefix);
+    void setPrefix(const PrefixName &prefix);
+    void setPrefix(const DOMString &prefix);
 
-    inline PrefixName prefixId() const { return m_prefix; }
-    inline LocalName localNameId() const { return m_localName; }
-    inline NamespaceName namespaceNameId() const { return m_namespace; }
+    inline PrefixName prefixId() const
+    {
+        return m_prefix;
+    }
+    inline LocalName localNameId() const
+    {
+        return m_localName;
+    }
+    inline NamespaceName namespaceNameId() const
+    {
+        return m_namespace;
+    }
     unsigned id() const;
 
     DOMString tagName() const;
@@ -77,4 +88,3 @@ private:
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

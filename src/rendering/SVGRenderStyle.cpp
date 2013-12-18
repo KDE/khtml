@@ -34,11 +34,12 @@
 #include "RenderStyle.h"
 #include "SVGStyledElement.h"
 
-namespace khtml {
+namespace khtml
+{
 
 SVGRenderStyle::SVGRenderStyle()
 {
-    static SVGRenderStyle* defaultStyle = new SVGRenderStyle(CreateDefault);
+    static SVGRenderStyle *defaultStyle = new SVGRenderStyle(CreateDefault);
 
     fill = defaultStyle->fill;
     stroke = defaultStyle->stroke;
@@ -66,7 +67,7 @@ SVGRenderStyle::SVGRenderStyle(CreateDefaultType)
     markers.init();
 }
 
-SVGRenderStyle::SVGRenderStyle(const SVGRenderStyle& other)
+SVGRenderStyle::SVGRenderStyle(const SVGRenderStyle &other)
     : RefCounted<SVGRenderStyle>()
 {
     fill = other.fill;
@@ -86,16 +87,16 @@ SVGRenderStyle::~SVGRenderStyle()
 {
 }
 
-bool SVGRenderStyle::operator==(const SVGRenderStyle& o) const
+bool SVGRenderStyle::operator==(const SVGRenderStyle &o) const
 {
     return (fill == o.fill && stroke == o.stroke && text == o.text &&
-        stops == o.stops && clip == o.clip && mask == o.mask &&
-        misc == o.misc && markers == o.markers &&
-        svg_inherited_flags == o.svg_inherited_flags &&
-        svg_noninherited_flags == o.svg_noninherited_flags);
+            stops == o.stops && clip == o.clip && mask == o.mask &&
+            misc == o.misc && markers == o.markers &&
+            svg_inherited_flags == o.svg_inherited_flags &&
+            svg_noninherited_flags == o.svg_noninherited_flags);
 }
 
-bool SVGRenderStyle::inheritedNotEqual(const SVGRenderStyle* other) const
+bool SVGRenderStyle::inheritedNotEqual(const SVGRenderStyle *other) const
 {
     return (fill != other->fill
             || stroke != other->stroke
@@ -104,10 +105,11 @@ bool SVGRenderStyle::inheritedNotEqual(const SVGRenderStyle* other) const
             || svg_inherited_flags != other->svg_inherited_flags);
 }
 
-void SVGRenderStyle::inheritFrom(const SVGRenderStyle* svgInheritParent)
+void SVGRenderStyle::inheritFrom(const SVGRenderStyle *svgInheritParent)
 {
-    if (!svgInheritParent)
+    if (!svgInheritParent) {
         return;
+    }
 
     fill = svgInheritParent->fill;
     stroke = svgInheritParent->stroke;
@@ -117,11 +119,13 @@ void SVGRenderStyle::inheritFrom(const SVGRenderStyle* svgInheritParent)
     svg_inherited_flags = svgInheritParent->svg_inherited_flags;
 }
 
-float SVGRenderStyle::cssPrimitiveToLength(const RenderObject* item, DOM::CSSValueImpl* value, float defaultValue)
+float SVGRenderStyle::cssPrimitiveToLength(const RenderObject *item, DOM::CSSValueImpl *value, float defaultValue)
 {
     Q_UNUSED(item);
-    DOM::CSSPrimitiveValueImpl* primitive = static_cast<DOM::CSSPrimitiveValueImpl*>(value);
-    if (!primitive) return defaultValue;
+    DOM::CSSPrimitiveValueImpl *primitive = static_cast<DOM::CSSPrimitiveValueImpl *>(value);
+    if (!primitive) {
+        return defaultValue;
+    }
 
     /*unsigned short cssType = (primitive ? primitive->primitiveType() : (unsigned short) DOM::CSSPrimitiveValue::CSS_UNKNOWN);
     if (!(cssType > DOM::CSSPrimitiveValue::CSS_UNKNOWN && cssType <= DOM::CSSPrimitiveValue::CSS_PC))
@@ -144,4 +148,3 @@ float SVGRenderStyle::cssPrimitiveToLength(const RenderObject* item, DOM::CSSVal
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4

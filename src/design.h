@@ -21,14 +21,13 @@
    Boston, MA 02110-1301, USA.
 */
 
-
 /**
  * This library provides a full-featured HTML parser and widget. It is
  * used for rendering in all KDE applications which allow HTML viewing,
  * including the Konqueror browser/file manager, KMail, and the KDE Help
  * system.
  *
- * This library provides support for HTML4/XHTML, embedded Java applets, 
+ * This library provides support for HTML4/XHTML, embedded Java applets,
  * cascading style sheets (CSS2), and JavaScript.
  *
  * If you want to add to your application a widget that only needs simple text

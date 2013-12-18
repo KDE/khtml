@@ -31,7 +31,7 @@
 
 using namespace WebCore;
 
-SVGTransformList::SVGTransformList(const QualifiedName& attributeName)
+SVGTransformList::SVGTransformList(const QualifiedName &attributeName)
     : SVGPODList<SVGTransform>(attributeName)
 {
 }
@@ -40,7 +40,7 @@ SVGTransformList::~SVGTransformList()
 {
 }
 
-SVGTransform SVGTransformList::createSVGTransformFromMatrix(const AffineTransform& matrix) const
+SVGTransform SVGTransformList::createSVGTransformFromMatrix(const AffineTransform &matrix) const
 {
     return SVGSVGElement::createSVGTransformFromMatrix(matrix);
 }
@@ -54,13 +54,15 @@ SVGTransform SVGTransformList::consolidate()
 SVGTransform SVGTransformList::concatenate() const
 {
     unsigned int length = numberOfItems();
-    if (!length)
+    if (!length) {
         return SVGTransform();
-        
+    }
+
     AffineTransform matrix;
     ExceptionCode ec = 0;
-    for (unsigned int i = 0; i < length; i++)
+    for (unsigned int i = 0; i < length; i++) {
         matrix = getItem(i, ec).matrix() * matrix;
+    }
 
     return SVGTransform(matrix);
 }
@@ -68,17 +70,19 @@ SVGTransform SVGTransformList::concatenate() const
 SVGTransform SVGTransformList::concatenateForType(SVGTransform::SVGTransformType type) const
 {
     unsigned int length = numberOfItems();
-    if (!length)
+    if (!length) {
         return SVGTransform();
-    
+    }
+
     ExceptionCode ec = 0;
     SVGTransformDistance totalTransform;
     for (unsigned int i = 0; i < length; i++) {
-        const SVGTransform& transform = getItem(i, ec);
-        if (transform.type() == type)
+        const SVGTransform &transform = getItem(i, ec);
+        if (transform.type() == type) {
             totalTransform.addSVGTransform(transform);
+        }
     }
-    
+
     return totalTransform.addToSVGTransform(SVGTransform());
 }
 

@@ -32,9 +32,10 @@
 
 #include "RenderImage.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGImageLoader::SVGImageLoader(SVGImageElement* node)
+SVGImageLoader::SVGImageLoader(SVGImageElement *node)
     : HTMLImageLoader(node)
 {
 }
@@ -47,29 +48,33 @@ SVGImageLoader::~SVGImageLoader()
 void SVGImageLoader::updateFromElement()
 {
     SVGImageElement *imageElement = static_cast<SVGImageElement *>(element());
-    WebCore::Document* doc = imageElement->ownerDocument();
-    
+    WebCore::Document *doc = imageElement->ownerDocument();
+
     CachedImage *newImage = 0;
     if (!imageElement->href().isEmpty()) {
         KURL uri = imageElement->baseURI();
-        if (!uri.isEmpty())
+        if (!uri.isEmpty()) {
             uri = KURL(uri, imageElement->href());
-        else
+        } else {
             uri = KURL(imageElement->href());
+        }
         newImage = doc->docLoader()->requestImage(uri.string());
     }
 
-    CachedImage* oldImage = image();
+    CachedImage *oldImage = image();
     if (newImage != oldImage) {
         setLoadingImage(newImage);
-        if (newImage)
+        if (newImage) {
             newImage->addClient(this);
-        if (oldImage)
+        }
+        if (oldImage) {
             oldImage->removeClient(this);
+        }
     }
 
-    if (RenderImage* renderer = static_cast<RenderImage*>(imageElement->renderer()))
+    if (RenderImage *renderer = static_cast<RenderImage *>(imageElement->renderer())) {
         renderer->resetAnimation();
+    }
 }
 
 void SVGImageLoader::dispatchLoadEvent()
@@ -78,8 +83,9 @@ void SVGImageLoader::dispatchLoadEvent()
         setHaveFiredLoadEvent(true);
         if (image()->errorOccurred()) {
             // FIXME: We're supposed to put the document in an "error state" per the spec.
-        } else if (static_cast<SVGImageElement*>(element())->externalResourcesRequiredBaseValue())
-            static_cast<SVGElement*>(element())->sendSVGLoadEventIfPossible(true);
+        } else if (static_cast<SVGImageElement *>(element())->externalResourcesRequiredBaseValue()) {
+            static_cast<SVGElement *>(element())->sendSVGLoadEventIfPossible(true);
+        }
     }
 }
 

@@ -28,24 +28,26 @@
 
 namespace WebCore
 {
-    class SVGFEMergeNodeElement : public SVGElement
+class SVGFEMergeNodeElement : public SVGElement
+{
+public:
+    SVGFEMergeNodeElement(const QualifiedName &, Document *);
+    virtual ~SVGFEMergeNodeElement();
+
+    virtual void parseMappedAttribute(MappedAttribute *);
+
+protected:
+    virtual const SVGElement *contextElement() const
     {
-    public:
-        SVGFEMergeNodeElement(const QualifiedName&, Document*);
-        virtual ~SVGFEMergeNodeElement();
+        return this;
+    }
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
-
-    private:
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFEMergeNodeElement, String, String, In1, in1)
-    };
+private:
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFEMergeNodeElement, String, String, In1, in1)
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

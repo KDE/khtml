@@ -52,66 +52,69 @@ class KHTMLView;
 class QEventLoop;
 class KEncodingDetector;
 
-namespace khtml {
-    class Tokenizer;
-    class CSSStyleSelector;
-    class DocLoader;
-    class RenderArena;
-    class EditCommand;
-    class RenderObject;
-    class CounterNode;
-    class CachedObject;
-    class CachedCSSStyleSheet;
-    class DynamicDomRestyler;
+namespace khtml
+{
+class Tokenizer;
+class CSSStyleSelector;
+class DocLoader;
+class RenderArena;
+class EditCommand;
+class RenderObject;
+class CounterNode;
+class CachedObject;
+class CachedCSSStyleSheet;
+class DynamicDomRestyler;
 
-    class XPathResultImpl;
-    class XPathExpressionImpl;
-    class XPathNSResolverImpl;
+class XPathResultImpl;
+class XPathExpressionImpl;
+class XPathNSResolverImpl;
 }
 
-namespace KJS {
-    class Window;
+namespace KJS
+{
+class Window;
 }
 
 namespace WebCore
 {
-    class SVGDocumentExtensions;
-    class SVGDocument;
+class SVGDocumentExtensions;
+class SVGDocument;
 } // namespace WebCore
 
-namespace DOM {
+namespace DOM
+{
 
-    class AbstractViewImpl;
-    class AttrImpl;
-    class CDATASectionImpl;
-    class CSSStyleSheetImpl;
-    class CommentImpl;
-    class DocumentFragmentImpl;
-    class DocumentImpl;
-    class XMLDocumentImpl;
-    class DocumentType;
-    class DocumentTypeImpl;
-    class EditingTextImpl;
-    class ElementImpl;
-    class EntityReferenceImpl;
-    class EventImpl;
-    class EventListener;
-    class HTMLDocumentImpl;
-    class HTMLElementImpl;
-    class HTMLPartContainerElementImpl;
-    class HTMLImageElementImpl;
-    class JSEditor;
-    class NodeFilter;
-    class NodeFilterImpl;
-    class NodeIteratorImpl;
-    class NodeListImpl;
-    class ProcessingInstructionImpl;
-    class RangeImpl;
-    class StyleSheetImpl;
-    class StyleSheetListImpl;
-    class TextImpl;
-    class TreeWalkerImpl;
-    class WindowEventTargetImpl;    
+class AbstractViewImpl;
+class AttrImpl;
+class CDATASectionImpl;
+class CSSStyleSheetImpl;
+class CommentImpl;
+class DocumentFragmentImpl;
+class DocumentImpl;
+class XMLDocumentImpl;
+class DocumentType;
+class DocumentTypeImpl;
+class EditingTextImpl;
+class ElementImpl;
+class EntityReferenceImpl;
+class EventImpl;
+class EventListener;
+class HTMLDocumentImpl;
+class HTMLElementImpl;
+class HTMLPartContainerElementImpl;
+class HTMLImageElementImpl;
+class JSEditor;
+class NodeFilter;
+class NodeFilterImpl;
+class NodeIteratorImpl;
+class NodeListImpl;
+class ProcessingInstructionImpl;
+class RangeImpl;
+class StyleSheetImpl;
+class StyleSheetListImpl;
+class TextImpl;
+class TreeWalkerImpl;
+class WindowEventTargetImpl;
 
 class DOMImplementationImpl : public khtml::Shared<DOMImplementationImpl>
 {
@@ -120,24 +123,24 @@ public:
     ~DOMImplementationImpl();
 
     // DOM methods & attributes for DOMImplementation.
-    static bool hasFeature ( const DOMString &feature, const DOMString &version );
-    DocumentTypeImpl *createDocumentType( const DOMString &qualifiedName, const DOMString &publicId,
-                                          const DOMString &systemId, int &exceptioncode );
-    static DocumentImpl *createDocument( const DOMString &namespaceURI, const DOMString &qualifiedName,
-                                  DocumentTypeImpl* dtype,
-                                  KHTMLView* v, int &exceptioncode );
+    static bool hasFeature(const DOMString &feature, const DOMString &version);
+    DocumentTypeImpl *createDocumentType(const DOMString &qualifiedName, const DOMString &publicId,
+                                         const DOMString &systemId, int &exceptioncode);
+    static DocumentImpl *createDocument(const DOMString &namespaceURI, const DOMString &qualifiedName,
+                                        DocumentTypeImpl *dtype,
+                                        KHTMLView *v, int &exceptioncode);
 
     // From the DOMImplementationCSS interface
     static CSSStyleSheetImpl *createCSSStyleSheet(DOMStringImpl *title, DOMStringImpl *media, int &exceptioncode);
 
     // From the HTMLDOMImplementation interface
-    static HTMLDocumentImpl* createHTMLDocument( const DOMString& title);
+    static HTMLDocumentImpl *createHTMLDocument(const DOMString &title);
 
     // Other methods (not part of DOM)
-    static DocumentImpl *createDocument( KHTMLView *v = 0 );
-    static XMLDocumentImpl *createXMLDocument( KHTMLView *v = 0 );
-    static HTMLDocumentImpl *createHTMLDocument( KHTMLView *v = 0 );
-    static WebCore::SVGDocument *createSVGDocument( KHTMLView *v = 0 );
+    static DocumentImpl *createDocument(KHTMLView *v = 0);
+    static XMLDocumentImpl *createXMLDocument(KHTMLView *v = 0);
+    static HTMLDocumentImpl *createHTMLDocument(KHTMLView *v = 0);
+    static WebCore::SVGDocument *createSVGDocument(KHTMLView *v = 0);
 };
 
 /**
@@ -154,10 +157,9 @@ public:
      If the pointer is non-null, it points to the appropriate
      mapping
     */
-    struct ItemInfo
-    {
+    struct ItemInfo {
         int       ref;
-        ElementImpl* nd;
+        ElementImpl *nd;
     };
 
     ElementMappingCache();
@@ -166,29 +168,29 @@ public:
     /**
      Add a pointer as just one of candidates, not neccesserily the proper one
     */
-    void add(const DOMString& id, ElementImpl* nd);
+    void add(const DOMString &id, ElementImpl *nd);
 
     /**
      Set the pointer as the definite mapping; it must have already been added
     */
-    void set(const DOMString& id, ElementImpl* nd);
+    void set(const DOMString &id, ElementImpl *nd);
 
     /**
      Remove the item; it must have already been added.
     */
-    void remove(const DOMString& id, ElementImpl* nd);
+    void remove(const DOMString &id, ElementImpl *nd);
 
     /**
      Returns true if the item exists
     */
-    bool contains(const DOMString& id);
+    bool contains(const DOMString &id);
 
     /**
      Returns the information for the given ID
     */
-    ItemInfo* get(const DOMString& id);
+    ItemInfo *get(const DOMString &id);
 private:
-    QHash<DOMString,ItemInfo*> m_dict;
+    QHash<DOMString, ItemInfo *> m_dict;
 };
 
 /**
@@ -208,40 +210,54 @@ public:
     DOMImplementationImpl *implementation() const;
     ElementImpl *documentElement() const;
     virtual void childrenChanged();
-    virtual ElementImpl *createElement ( const DOMString &tagName, int* pExceptioncode = 0 );
-    virtual AttrImpl *createAttribute( const DOMString &tagName, int* pExceptioncode = 0 );
-    DocumentFragmentImpl *createDocumentFragment ();
-    TextImpl *createTextNode ( DOMStringImpl* data ) { return new TextImpl( docPtr(), data); }
-    TextImpl *createTextNode ( const QString& data )
-        { return createTextNode(new DOMStringImpl(data.unicode(), data.length())); }
-    TextImpl *createTextNode ( const DOMString &data ) { return createTextNode(data.implementation()); }
-    TextImpl *createTextNode ( const char *latin1 ) { return createTextNode(DOMString(latin1)); }
-    CommentImpl *createComment ( DOMStringImpl* data );
-    CDATASectionImpl *createCDATASection ( DOMStringImpl* data );
-    ProcessingInstructionImpl *createProcessingInstruction ( const DOMString &target, DOMStringImpl* data );
-    EntityReferenceImpl *createEntityReference ( const DOMString &name );
-    NodeImpl *importNode( NodeImpl *importedNode, bool deep, int &exceptioncode );
-    virtual ElementImpl *createElementNS ( const DOMString &_namespaceURI, const DOMString &_qualifiedName,
-                                           int* pExceptioncode = 0 );
-    virtual AttrImpl *createAttributeNS( const DOMString &_namespaceURI, const DOMString &_qualifiedName,
-                                           int* pExceptioncode = 0 );
-    ElementImpl *getElementById ( const DOMString &elementId ) const;
+    virtual ElementImpl *createElement(const DOMString &tagName, int *pExceptioncode = 0);
+    virtual AttrImpl *createAttribute(const DOMString &tagName, int *pExceptioncode = 0);
+    DocumentFragmentImpl *createDocumentFragment();
+    TextImpl *createTextNode(DOMStringImpl *data)
+    {
+        return new TextImpl(docPtr(), data);
+    }
+    TextImpl *createTextNode(const QString &data)
+    {
+        return createTextNode(new DOMStringImpl(data.unicode(), data.length()));
+    }
+    TextImpl *createTextNode(const DOMString &data)
+    {
+        return createTextNode(data.implementation());
+    }
+    TextImpl *createTextNode(const char *latin1)
+    {
+        return createTextNode(DOMString(latin1));
+    }
+    CommentImpl *createComment(DOMStringImpl *data);
+    CDATASectionImpl *createCDATASection(DOMStringImpl *data);
+    ProcessingInstructionImpl *createProcessingInstruction(const DOMString &target, DOMStringImpl *data);
+    EntityReferenceImpl *createEntityReference(const DOMString &name);
+    NodeImpl *importNode(NodeImpl *importedNode, bool deep, int &exceptioncode);
+    virtual ElementImpl *createElementNS(const DOMString &_namespaceURI, const DOMString &_qualifiedName,
+                                         int *pExceptioncode = 0);
+    virtual AttrImpl *createAttributeNS(const DOMString &_namespaceURI, const DOMString &_qualifiedName,
+                                        int *pExceptioncode = 0);
+    ElementImpl *getElementById(const DOMString &elementId) const;
 
     // DOM3 XPath, from XPathEvaluator interface
-    khtml::XPathExpressionImpl *createExpression( DOM::DOMString& expression,
-                                                  khtml::XPathNSResolverImpl *resolver,
-                                                  int &exceptioncode );
-    khtml::XPathNSResolverImpl *createNSResolver( NodeImpl *nodeResolver );
-    khtml::XPathResultImpl *evaluate( DOM::DOMString& expression,
-                                      NodeImpl *contextNode,
-                                      khtml::XPathNSResolverImpl *resolver,
-                                      unsigned short type,
-                                      khtml::XPathResultImpl *result,
-                                      int &exceptioncode );
+    khtml::XPathExpressionImpl *createExpression(DOM::DOMString &expression,
+            khtml::XPathNSResolverImpl *resolver,
+            int &exceptioncode);
+    khtml::XPathNSResolverImpl *createNSResolver(NodeImpl *nodeResolver);
+    khtml::XPathResultImpl *evaluate(DOM::DOMString &expression,
+                                     NodeImpl *contextNode,
+                                     khtml::XPathNSResolverImpl *resolver,
+                                     unsigned short type,
+                                     khtml::XPathResultImpl *result,
+                                     int &exceptioncode);
 
     // Actually part of HTMLDocument, but used for giving XML documents a window title as well
-    DOMString title() const { return m_title; }
-    void setTitle(const DOMString& _title);
+    DOMString title() const
+    {
+        return m_title;
+    }
+    void setTitle(const DOMString &_title);
 
     // DOM methods overridden from  parent classes
 
@@ -249,26 +265,38 @@ public:
     virtual unsigned short nodeType() const;
 
     // Other methods (not part of DOM)
-    virtual bool isDocumentNode() const { return true; }
-    virtual bool isHTMLDocument() const { return false; }
+    virtual bool isDocumentNode() const
+    {
+        return true;
+    }
+    virtual bool isHTMLDocument() const
+    {
+        return false;
+    }
     virtual bool isSVGDocument() const;
 
-    virtual ElementImpl *createHTMLElement ( const DOMString &tagName, bool caseInsensitive = true );
+    virtual ElementImpl *createHTMLElement(const DOMString &tagName, bool caseInsensitive = true);
     // SVG
-    virtual ElementImpl *createSVGElement(const QualifiedName& name);
+    virtual ElementImpl *createSVGElement(const QualifiedName &name);
 
-    khtml::CSSStyleSelector *styleSelector() { return m_styleSelector; }
+    khtml::CSSStyleSelector *styleSelector()
+    {
+        return m_styleSelector;
+    }
 
-     /**
-     * Updates the pending sheet count and then calls updateStyleSelector.
-     */
+    /**
+    * Updates the pending sheet count and then calls updateStyleSelector.
+    */
     void styleSheetLoaded();
 
     /**
      * This method returns true if all top-level stylesheets have loaded (including
      * any \@imports that they may be loading).
      */
-    bool haveStylesheetsLoaded() const { return m_pendingStylesheets <= 0 || m_ignorePendingStylesheets; }
+    bool haveStylesheetsLoaded() const
+    {
+        return m_pendingStylesheets <= 0 || m_ignorePendingStylesheets;
+    }
 
     /**
      * Increments the number of pending sheets.  The \<link\> elements
@@ -280,7 +308,10 @@ public:
      * Returns true if the document has pending stylesheets
      * loading.
      */
-    bool hasPendingSheets() const { return m_pendingStylesheets; }
+    bool hasPendingSheets() const
+    {
+        return m_pendingStylesheets;
+    }
 
     /**
      * Called when one or more stylesheets in the document may have been added, removed or changed.
@@ -294,56 +325,79 @@ public:
      * @param shallow If the stylesheet list for the document is unchanged, with only added or removed rules
      * in existing sheets, then set this argument to true for efficiency.
      */
-    void updateStyleSelector(bool shallow=false);
-    
-    void ensureStyleSheetListUpToDate() { if (m_styleSheetListDirty) rebuildStyleSheetList(true); }
+    void updateStyleSelector(bool shallow = false);
+
+    void ensureStyleSheetListUpToDate()
+    {
+        if (m_styleSheetListDirty) {
+            rebuildStyleSheetList(true);
+        }
+    }
 
     bool readyForLayout() const;
 
     // DOM representation of the JS Window object, for event handling
-    WindowEventTargetImpl* windowEventTarget() const { return m_windowEventTarget; }
-private:    
+    WindowEventTargetImpl *windowEventTarget() const
+    {
+        return m_windowEventTarget;
+    }
+private:
     void rebuildStyleSheetList(bool force = false);
-    void rebuildStyleSelector ();
+    void rebuildStyleSelector();
     bool m_styleSheetListDirty;
 public:
 
     // Tries to restore the elements value from the doc state,
     // if it seems like the same thing
-    void attemptRestoreState(NodeImpl* e);
+    void attemptRestoreState(NodeImpl *e);
 
     // Query all registered elements for their state
     QStringList docState();
     bool unsubmittedFormChanges();
-    void registerMaintainsState(NodeImpl* e) { m_maintainsState.append(e); }
-    void deregisterMaintainsState(NodeImpl* e) { int i; if ((i = m_maintainsState.indexOf(e)) != -1) m_maintainsState.removeAt(i); }
+    void registerMaintainsState(NodeImpl *e)
+    {
+        m_maintainsState.append(e);
+    }
+    void deregisterMaintainsState(NodeImpl *e)
+    {
+        int i;
+        if ((i = m_maintainsState.indexOf(e)) != -1) {
+            m_maintainsState.removeAt(i);
+        }
+    }
 
     // Set the state the document should restore to
-    void setRestoreState( const QStringList &s);
+    void setRestoreState(const QStringList &s);
 
     KHTMLView *view() const;
-    KHTMLPart* part() const;
+    KHTMLPart *part() const;
 
     RangeImpl *createRange();
 
     NodeIteratorImpl *createNodeIterator(NodeImpl *root, unsigned long whatToShow,
-                                    NodeFilterImpl* filter, bool entityReferenceExpansion, int &exceptioncode);
+                                         NodeFilterImpl *filter, bool entityReferenceExpansion, int &exceptioncode);
 
     TreeWalkerImpl *createTreeWalker(NodeImpl *root, unsigned long whatToShow, NodeFilterImpl *filter,
-                            bool entityReferenceExpansion, int &exceptioncode);
+                                     bool entityReferenceExpansion, int &exceptioncode);
 
     EditingTextImpl *createEditingTextNode(const DOMString &text);
 
-    virtual void recalcStyle( StyleChange = NoChange );
+    virtual void recalcStyle(StyleChange = NoChange);
     virtual void updateRendering();
     void updateLayout();
     static void updateDocumentsRendering();
-    khtml::DocLoader *docLoader() { return m_docLoader; }
+    khtml::DocLoader *docLoader()
+    {
+        return m_docLoader;
+    }
 
     virtual void attach();
     virtual void detach();
 
-    khtml::RenderArena* renderArena() { return m_renderArena.get(); }
+    khtml::RenderArena *renderArena()
+    {
+        return m_renderArena.get();
+    }
 
     // to get visually ordered hebrew and arabic pages right
     void setVisuallyOrdered();
@@ -351,43 +405,85 @@ public:
     //void setDecoderCodec(const QTextCodec *codec);
 
     // ### elide the two after designMode merge
-    void setSelection(NodeImpl* s, int sp, NodeImpl* e, int ep);
+    void setSelection(NodeImpl *s, int sp, NodeImpl *e, int ep);
     void clearSelection();
     void updateSelection();
 
-    void open ( bool clearEventListeners = true );
-    virtual void close (  );
+    void open(bool clearEventListeners = true);
+    virtual void close();
     virtual void contentLoaded() {}
-    void write ( const DOMString &text );
-    void write ( const QString &text );
-    void writeln ( const DOMString &text );
-    void finishParsing (  );
+    void write(const DOMString &text);
+    void write(const QString &text);
+    void writeln(const DOMString &text);
+    void finishParsing();
 
-    QUrl URL() const { return m_url; }
-    void setURL(const QString& url) { m_url = QUrl(url); }
+    QUrl URL() const
+    {
+        return m_url;
+    }
+    void setURL(const QString &url)
+    {
+        m_url = QUrl(url);
+    }
 
-    QUrl baseURL() const { return m_baseURL.isEmpty() ? m_url : m_baseURL; }
-    void setBaseURL(const QUrl& baseURL);
+    QUrl baseURL() const
+    {
+        return m_baseURL.isEmpty() ? m_url : m_baseURL;
+    }
+    void setBaseURL(const QUrl &baseURL);
 
-    QString baseTarget() const { return m_baseTarget; }
-    void setBaseTarget(const QString& baseTarget) { m_baseTarget = baseTarget; }
+    QString baseTarget() const
+    {
+        return m_baseTarget;
+    }
+    void setBaseTarget(const QString &baseTarget)
+    {
+        m_baseTarget = baseTarget;
+    }
 
-    QString completeURL(const QString& url) const;
-    DOMString canonURL(const DOMString& url) const { return url.isEmpty() ? url : completeURL(url.string()); }
+    QString completeURL(const QString &url) const;
+    DOMString canonURL(const DOMString &url) const
+    {
+        return url.isEmpty() ? url : completeURL(url.string());
+    }
 
-    void setUserStyleSheet(const QString& sheet);
-    QString userStyleSheet() const { return m_usersheet; }
-    void setPrintStyleSheet(const QString& sheet) { m_printSheet = sheet; }
-    QString printStyleSheet() const { return m_printSheet; }
+    void setUserStyleSheet(const QString &sheet);
+    QString userStyleSheet() const
+    {
+        return m_usersheet;
+    }
+    void setPrintStyleSheet(const QString &sheet)
+    {
+        m_printSheet = sheet;
+    }
+    QString printStyleSheet() const
+    {
+        return m_printSheet;
+    }
 
-    CSSStyleSheetImpl* elementSheet();
+    CSSStyleSheetImpl *elementSheet();
     virtual khtml::Tokenizer *createTokenizer();
-    khtml::Tokenizer *tokenizer() { return m_tokenizer; }
-    KEncodingDetector* decoder() { return m_decoder; }
-    void setDecoder(KEncodingDetector* enc) { m_decoder = enc; }
+    khtml::Tokenizer *tokenizer()
+    {
+        return m_tokenizer;
+    }
+    KEncodingDetector *decoder()
+    {
+        return m_decoder;
+    }
+    void setDecoder(KEncodingDetector *enc)
+    {
+        m_decoder = enc;
+    }
 
-    void setPaintDevice(QPaintDevice *dev){m_paintDevice = dev;}
-    QPaintDevice *paintDevice() const {return m_paintDevice;}
+    void setPaintDevice(QPaintDevice *dev)
+    {
+        m_paintDevice = dev;
+    }
+    QPaintDevice *paintDevice() const
+    {
+        return m_paintDevice;
+    }
     int logicalDpiY();
 
     enum HTMLMode {
@@ -403,64 +499,130 @@ public:
         Strict
     };
     virtual void determineParseMode();
-    void setParseMode( ParseMode m ) { pMode = m; }
-    ParseMode parseMode() const { return pMode; }
+    void setParseMode(ParseMode m)
+    {
+        pMode = m;
+    }
+    ParseMode parseMode() const
+    {
+        return pMode;
+    }
 
-    bool inCompatMode() const { return pMode == Compat; }
-    bool inTransitionalMode() const { return pMode == Transitional; }
-    bool inStrictMode() const { return pMode == Strict; }
+    bool inCompatMode() const
+    {
+        return pMode == Compat;
+    }
+    bool inTransitionalMode() const
+    {
+        return pMode == Transitional;
+    }
+    bool inStrictMode() const
+    {
+        return pMode == Strict;
+    }
 
     //void setHTMLMode( HTMLMode m ) { hMode = m; }
-    HTMLMode htmlMode() const { return hMode; }
+    HTMLMode htmlMode() const
+    {
+        return hMode;
+    }
 
-    void setParsing(bool b) { m_bParsing = b; }
-    bool parsing() const { return m_bParsing; }
+    void setParsing(bool b)
+    {
+        m_bParsing = b;
+    }
+    bool parsing() const
+    {
+        return m_bParsing;
+    }
 
-    void setHasVariableLength(bool b=true) { m_bVariableLength = b; }
-    bool hasVariableLength() const { return m_bVariableLength; }
+    void setHasVariableLength(bool b = true)
+    {
+        m_bVariableLength = b;
+    }
+    bool hasVariableLength() const
+    {
+        return m_bVariableLength;
+    }
 
-    void setTextColor( QColor color ) { m_textColor = color; }
-    QColor textColor() const { return m_textColor; }
+    void setTextColor(QColor color)
+    {
+        m_textColor = color;
+    }
+    QColor textColor() const
+    {
+        return m_textColor;
+    }
 
     void setDesignMode(bool b);
     bool designMode() const;
 
     // internal
-    bool prepareMouseEvent( bool readonly, int x, int y, MouseEvent *ev );
+    bool prepareMouseEvent(bool readonly, int x, int y, MouseEvent *ev);
 
-    virtual bool childTypeAllowed( unsigned short nodeType );
-    virtual WTF::PassRefPtr<NodeImpl> cloneNode ( bool deep );
+    virtual bool childTypeAllowed(unsigned short nodeType);
+    virtual WTF::PassRefPtr<NodeImpl> cloneNode(bool deep);
 
-    StyleSheetListImpl* styleSheets() { return m_styleSheets; }
+    StyleSheetListImpl *styleSheets()
+    {
+        return m_styleSheets;
+    }
 
-    DOMString preferredStylesheetSet() const { return m_preferredStylesheetSet; }
+    DOMString preferredStylesheetSet() const
+    {
+        return m_preferredStylesheetSet;
+    }
     DOMString selectedStylesheetSet() const;
-    void setSelectedStylesheetSet(const DOMString&);
-    void setPreferredStylesheetSet(const DOMString& s) { m_preferredStylesheetSet = s; }
+    void setSelectedStylesheetSet(const DOMString &);
+    void setPreferredStylesheetSet(const DOMString &s)
+    {
+        m_preferredStylesheetSet = s;
+    }
 
     void addStyleSheet(StyleSheetImpl *, int *exceptioncode = 0);
     void removeStyleSheet(StyleSheetImpl *, int *exceptioncode = 0);
 
-    QStringList availableStyleSheets() const { return m_availableSheets; }
+    QStringList availableStyleSheets() const
+    {
+        return m_availableSheets;
+    }
 
-    NodeImpl* hoverNode() const { return m_hoverNode; }
+    NodeImpl *hoverNode() const
+    {
+        return m_hoverNode;
+    }
     void setHoverNode(NodeImpl *newHoverNode);
-    NodeImpl *focusNode() const { return m_focusNode; }
+    NodeImpl *focusNode() const
+    {
+        return m_focusNode;
+    }
     void quietResetFocus(); // Removes focus from active node without attempting to emit any events
     void setFocusNode(NodeImpl *newFocusNode);
-    NodeImpl* activeNode() const { return m_activeNode; }
+    NodeImpl *activeNode() const
+    {
+        return m_activeNode;
+    }
     void setActiveNode(NodeImpl *newActiveNode);
 
     // Updates for :target (CSS3 selector).
-    void setCSSTarget(NodeImpl* n);
-    NodeImpl* getCSSTarget() { return m_cssTarget; }
+    void setCSSTarget(NodeImpl *n);
+    NodeImpl *getCSSTarget()
+    {
+        return m_cssTarget;
+    }
 
-    bool isDocumentChanged()	{ return m_docChanged; }
+    bool isDocumentChanged()
+    {
+        return m_docChanged;
+    }
     virtual void setDocumentChanged(bool = true);
     void attachNodeIterator(NodeIteratorImpl *ni);
     void detachNodeIterator(NodeIteratorImpl *ni);
     void notifyBeforeNodeRemoval(NodeImpl *n);
-    AbstractViewImpl *defaultView() const { return m_defaultView; }
+    AbstractViewImpl *defaultView() const
+    {
+        return m_defaultView;
+    }
     EventImpl *createEvent(const DOMString &eventType, int &exceptioncode);
 
     // keep track of what types of event listeners are registered, so we don't
@@ -475,13 +637,25 @@ public:
         DOMCHARACTERDATAMODIFIED_LISTENER    = 0x40
     };
 
-    bool hasListenerType(ListenerType listenerType) const { return (m_listenerTypes & listenerType); }
-    void addListenerType(ListenerType listenerType) { m_listenerTypes = m_listenerTypes | listenerType; }
+    bool hasListenerType(ListenerType listenerType) const
+    {
+        return (m_listenerTypes & listenerType);
+    }
+    void addListenerType(ListenerType listenerType)
+    {
+        m_listenerTypes = m_listenerTypes | listenerType;
+    }
 
     CSSStyleDeclarationImpl *getOverrideStyle(ElementImpl *elt, DOMStringImpl *pseudoElt);
 
-    bool async() const { return m_async; }
-    void setAsync(bool b) { m_async = b; }
+    bool async() const
+    {
+        return m_async;
+    }
+    void setAsync(bool b)
+    {
+        m_async = b;
+    }
     void abort();
     void load(const DOMString &uri);
     void loadXML(const DOMString &source);
@@ -489,8 +663,11 @@ public:
     void setStyleSheet(const DOM::DOMString &url, const DOM::DOMString &sheet, const DOM::DOMString &charset, const DOM::DOMString &mimetype);
     void error(int err, const QString &text);
 
-    typedef QMap<QString, ProcessingInstructionImpl*> LocalStyleRefs;
-    LocalStyleRefs* localStyleRefs() { return &m_localStyleRefs; }
+    typedef QMap<QString, ProcessingInstructionImpl *> LocalStyleRefs;
+    LocalStyleRefs *localStyleRefs()
+    {
+        return &m_localStyleRefs;
+    }
 
     virtual void defaultEventHandler(EventImpl *evt);
 
@@ -500,7 +677,7 @@ public:
     EventListener *getHTMLWindowEventListener(EventName id);
     EventListener *getHTMLWindowEventListener(unsigned id);
 
-    EventListener *createHTMLEventListener(const QString& code, const QString& name, NodeImpl* node);
+    EventListener *createHTMLEventListener(const QString &code, const QString &name, NodeImpl *node);
 
     void addWindowEventListener(EventName id, EventListener *listener, const bool useCapture);
     void removeWindowEventListener(EventName id, EventListener *listener, bool useCapture);
@@ -534,7 +711,7 @@ public:
      */
     NodeImpl *previousFocusNode(NodeImpl *fromNode);
 
-    ElementImpl* findAccessKeyElement(QChar c);
+    ElementImpl *findAccessKeyElement(QChar c);
 
     int nodeAbsIndex(NodeImpl *node);
     NodeImpl *nodeWithAbsIndex(int absIndex);
@@ -559,30 +736,29 @@ public:
     // Returns 0 if this is the top level document.
     HTMLPartContainerElementImpl *ownerElement() const;
 
-    khtml::SecurityOrigin* origin() const;
-    void setOrigin(khtml::SecurityOrigin*);
-    
+    khtml::SecurityOrigin *origin() const;
+    void setOrigin(khtml::SecurityOrigin *);
+
     // These represent JS operations on domain strings, rather than full-blown origins.
     // (so no port, protocol, etc.)
-    void setDomain( const DOMString &newDomain ); 
+    void setDomain(const DOMString &newDomain);
     DOMString domain() const;
 
-    bool isURLAllowed(const QString& url) const;
+    bool isURLAllowed(const QString &url) const;
 
-    HTMLElementImpl* body() const;
+    HTMLElementImpl *body() const;
 
     DOMString toString() const;
- 
+
     bool execCommand(const DOMString &command, bool userInterface, const DOMString &value);
     bool queryCommandEnabled(const DOMString &command);
     bool queryCommandIndeterm(const DOMString &command);
     bool queryCommandState(const DOMString &command);
     bool queryCommandSupported(const DOMString &command);
     DOMString queryCommandValue(const DOMString &command);
-    
-    
-    // We version the tree to help determine which collection caches are 
-    // valid. All collections depend on the structural changes; and may depend 
+
+    // We version the tree to help determine which collection caches are
+    // valid. All collections depend on the structural changes; and may depend
     // on some set of attributes.
     enum TreeVersion {
         TV_Structural,
@@ -590,40 +766,69 @@ public:
         TV_Class,
         NumTreeVersions
     };
-    
-    void incDOMTreeVersion(unsigned ver) { ++m_domTreeVersions[ver]; }
-    unsigned int domTreeVersion(unsigned ver) const { return m_domTreeVersions[ver]; }
 
-    // Since applications often re-creat nodelists all over the place, we cache 
-    // their caches in the documents. For now, we only do it for things that can be 
+    void incDOMTreeVersion(unsigned ver)
+    {
+        ++m_domTreeVersions[ver];
+    }
+    unsigned int domTreeVersion(unsigned ver) const
+    {
+        return m_domTreeVersions[ver];
+    }
+
+    // Since applications often re-creat nodelists all over the place, we cache
+    // their caches in the documents. For now, we only do it for things that can be
     // parametrices by type + base node.
-    DynamicNodeListImpl::Cache* acquireCachedNodeListInfo(DynamicNodeListImpl::CacheFactory* fact,
-                                                          NodeImpl* base, int type);
-    void releaseCachedNodeListInfo(DynamicNodeListImpl::Cache* cache);
+    DynamicNodeListImpl::Cache *acquireCachedNodeListInfo(DynamicNodeListImpl::CacheFactory *fact,
+            NodeImpl *base, int type);
+    void releaseCachedNodeListInfo(DynamicNodeListImpl::Cache *cache);
 
     JSEditor *jsEditor();
 
-    QHash<DOMString,khtml::CounterNode*>* counters(const khtml::RenderObject* o) { return m_counterDict.value(o); }
-    void setCounters(const khtml::RenderObject* o, QHash<DOMString,khtml::CounterNode*> *dict) { m_counterDict.insert(o, dict);}
-    void removeCounters(const khtml::RenderObject* o) { delete m_counterDict.take(o); }
+    QHash<DOMString, khtml::CounterNode *> *counters(const khtml::RenderObject *o)
+    {
+        return m_counterDict.value(o);
+    }
+    void setCounters(const khtml::RenderObject *o, QHash<DOMString, khtml::CounterNode *> *dict)
+    {
+        m_counterDict.insert(o, dict);
+    }
+    void removeCounters(const khtml::RenderObject *o)
+    {
+        delete m_counterDict.take(o);
+    }
 
-    ElementMappingCache& underDocNamedCache() {
+    ElementMappingCache &underDocNamedCache()
+    {
         return m_underDocNamedCache;
     }
-    
-    ElementMappingCache& getElementByIdCache() const {
+
+    ElementMappingCache &getElementByIdCache() const
+    {
         return m_getElementByIdCache;
     }
 
-    DOMString contentLanguage() const { return m_contentLanguage; }
-    void setContentLanguage(const QString& cl) { m_contentLanguage = cl; }
+    DOMString contentLanguage() const
+    {
+        return m_contentLanguage;
+    }
+    void setContentLanguage(const QString &cl)
+    {
+        m_contentLanguage = cl;
+    }
 
-    khtml::DynamicDomRestyler& dynamicDomRestyler() { return *m_dynamicDomRestyler; }
-    const khtml::DynamicDomRestyler& dynamicDomRestyler() const { return *m_dynamicDomRestyler; }
+    khtml::DynamicDomRestyler &dynamicDomRestyler()
+    {
+        return *m_dynamicDomRestyler;
+    }
+    const khtml::DynamicDomRestyler &dynamicDomRestyler() const
+    {
+        return *m_dynamicDomRestyler;
+    }
 
     // WebCore compatibility
-    const WebCore::SVGDocumentExtensions* svgExtensions();
-    WebCore::SVGDocumentExtensions* accessSVGExtensions();
+    const WebCore::SVGDocumentExtensions *svgExtensions();
+    WebCore::SVGDocumentExtensions *accessSVGExtensions();
 
 Q_SIGNALS:
     void finishedParsing();
@@ -672,21 +877,21 @@ protected:
 
     unsigned int m_domTreeVersions[NumTreeVersions];
 
-    WebCore::SVGDocumentExtensions* m_svgExtensions;
+    WebCore::SVGDocumentExtensions *m_svgExtensions;
 
-    QList<NodeIteratorImpl*> m_nodeIterators;
+    QList<NodeIteratorImpl *> m_nodeIterators;
     AbstractViewImpl *m_defaultView;
 
     unsigned short m_listenerTypes;
-    StyleSheetListImpl* m_styleSheets;
+    StyleSheetListImpl *m_styleSheets;
     StyleSheetListImpl *m_addedStyleSheets; // programmatically added style sheets
     LocalStyleRefs m_localStyleRefs; // references to inlined style elements
-    WindowEventTargetImpl* m_windowEventTarget;
+    WindowEventTargetImpl *m_windowEventTarget;
     RegisteredListenerList m_windowEventListeners;
-    QList<NodeImpl*> m_maintainsState;
+    QList<NodeImpl *> m_maintainsState;
 
     // ### evaluate for placement in RenderStyle
-    QHash<const khtml::RenderObject*,QHash<DOMString,khtml::CounterNode*> *> m_counterDict;
+    QHash<const khtml::RenderObject *, QHash<DOMString, khtml::CounterNode *> *> m_counterDict;
 
     khtml::DynamicDomRestyler *m_dynamicDomRestyler;
 
@@ -700,13 +905,13 @@ protected:
     bool m_docLoading;
     bool m_bVariableLength;
 
-    QEventLoop* m_inSyncLoad;
+    QEventLoop *m_inSyncLoad;
 
     DOMString m_title;
     DOMString m_preferredStylesheetSet;
     khtml::CachedCSSStyleSheet *m_loadingXMLDoc;
 
-    mutable ElementImpl* m_documentElement;
+    mutable ElementImpl *m_documentElement;
 
     //int m_decoderMibEnum;
 
@@ -714,10 +919,10 @@ protected:
     ElementMappingCache m_underDocNamedCache;
 
     //Cache for nodelists and collections.
-    QHash<long,DynamicNodeListImpl::Cache*> m_nodeListCache;
+    QHash<long, DynamicNodeListImpl::Cache *> m_nodeListCache;
 
-    QLinkedList<HTMLImageElementImpl*> m_imageLoadEventDispatchSoonList;
-    QLinkedList<HTMLImageElementImpl*> m_imageLoadEventDispatchingList;
+    QLinkedList<HTMLImageElementImpl *> m_imageLoadEventDispatchSoonList;
+    QLinkedList<HTMLImageElementImpl *> m_imageLoadEventDispatchingList;
     int m_imageLoadEventTimer;
 
     //Cache for getElementById
@@ -736,11 +941,16 @@ public:
     // node that outlives its document to still have a valid document
     // pointer without introducing reference cycles
 
-    void selfOnlyRef() { ++m_selfOnlyRefCount; }
-    void selfOnlyDeref() {
+    void selfOnlyRef()
+    {
+        ++m_selfOnlyRefCount;
+    }
+    void selfOnlyDeref()
+    {
         --m_selfOnlyRefCount;
-        if (!m_selfOnlyRefCount && !refCount())
+        if (!m_selfOnlyRefCount && !refCount()) {
             delete this;
+        }
     }
 
     // This is called when our last outside reference dies
@@ -755,13 +965,13 @@ public:
 class WindowEventTargetImpl : public EventTargetImpl
 {
 public:
-    WindowEventTargetImpl(DOM::DocumentImpl* owner);
-    
+    WindowEventTargetImpl(DOM::DocumentImpl *owner);
+
     virtual Type eventTargetType() const;
-    virtual DocumentImpl* eventTargetDocument();    
-    KJS::Window* window();
+    virtual DocumentImpl *eventTargetDocument();
+    KJS::Window *window();
 private:
-    DOM::DocumentImpl* m_owner;
+    DOM::DocumentImpl *m_owner;
 };
 
 class DocumentFragmentImpl : public NodeBaseImpl
@@ -772,14 +982,13 @@ public:
     // DOM methods overridden from  parent classes
     virtual DOMString nodeName() const;
     virtual unsigned short nodeType() const;
-    virtual WTF::PassRefPtr<NodeImpl> cloneNode ( bool deep );
+    virtual WTF::PassRefPtr<NodeImpl> cloneNode(bool deep);
 
     // Other methods (not part of DOM)
-    virtual bool childTypeAllowed( unsigned short type );
+    virtual bool childTypeAllowed(unsigned short type);
 
     virtual DOMString toString() const;
 };
-
 
 class DocumentTypeImpl : public NodeImpl
 {
@@ -793,30 +1002,57 @@ public:
     NamedNodeMapImpl *entities() const;
     NamedNodeMapImpl *notations() const;
 
-    DOMString name() const { return m_qualifiedName; }
-    DOMString publicId() const { return m_publicId; }
-    DOMString systemId() const { return m_systemId; }
-    DOMString internalSubset() const { return m_subset; }
+    DOMString name() const
+    {
+        return m_qualifiedName;
+    }
+    DOMString publicId() const
+    {
+        return m_publicId;
+    }
+    DOMString systemId() const
+    {
+        return m_systemId;
+    }
+    DOMString internalSubset() const
+    {
+        return m_subset;
+    }
 
     // DOM methods overridden from  parent classes
     virtual DOMString nodeName() const;
     virtual unsigned short nodeType() const;
-    virtual bool childTypeAllowed( unsigned short type );
-    virtual WTF::PassRefPtr<NodeImpl> cloneNode ( bool deep );
+    virtual bool childTypeAllowed(unsigned short type);
+    virtual WTF::PassRefPtr<NodeImpl> cloneNode(bool deep);
 
     // Other methods (not part of DOM)
-    void setName(const DOMString& n) { m_qualifiedName = n; }
-    void setPublicId(const DOMString& publicId) { m_publicId = publicId; }
-    void setSystemId(const DOMString& systemId) { m_systemId = systemId; }
-    void setInternalSubset(const DOMString& subset) { m_subset = subset; }
-    DOMImplementationImpl *implementation() const { return m_implementation; }
+    void setName(const DOMString &n)
+    {
+        m_qualifiedName = n;
+    }
+    void setPublicId(const DOMString &publicId)
+    {
+        m_publicId = publicId;
+    }
+    void setSystemId(const DOMString &systemId)
+    {
+        m_systemId = systemId;
+    }
+    void setInternalSubset(const DOMString &subset)
+    {
+        m_subset = subset;
+    }
+    DOMImplementationImpl *implementation() const
+    {
+        return m_implementation;
+    }
 
     virtual DOMString toString() const;
 
 protected:
     DOMImplementationImpl *m_implementation;
-    mutable NamedNodeMapImpl* m_entities;
-    mutable NamedNodeMapImpl* m_notations;
+    mutable NamedNodeMapImpl *m_entities;
+    mutable NamedNodeMapImpl *m_notations;
 
     DOMString m_qualifiedName;
     DOMString m_publicId;
@@ -829,9 +1065,8 @@ class XMLDocumentImpl : public DocumentImpl
 public:
     XMLDocumentImpl(KHTMLView *v) : DocumentImpl(v) { }
 
-    virtual void close (  );
+    virtual void close();
 };
 
 } //namespace
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

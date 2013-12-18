@@ -25,7 +25,8 @@
 #if ENABLE(SVG) && ENABLE(SVG_FILTERS)
 #include "SVGFilterEffect.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 enum SVGEdgeModeType {
     SVG_EDGEMODE_UNKNOWN   = 0,
@@ -34,15 +35,16 @@ enum SVGEdgeModeType {
     SVG_EDGEMODE_NONE      = 3
 };
 
-class SVGFEConvolveMatrix : public SVGFilterEffect {
+class SVGFEConvolveMatrix : public SVGFilterEffect
+{
 public:
-    SVGFEConvolveMatrix(SVGResourceFilter*);
+    SVGFEConvolveMatrix(SVGResourceFilter *);
 
     FloatSize kernelSize() const;
     void setKernelSize(FloatSize);
 
-    const Vector<float>& kernel() const;
-    void setKernel(const Vector<float>&);
+    const Vector<float> &kernel() const;
+    void setKernel(const Vector<float> &);
 
     float divisor() const;
     void setDivisor(float);
@@ -62,7 +64,7 @@ public:
     bool preserveAlpha() const;
     void setPreserveAlpha(bool);
 
-    virtual TextStream& externalRepresentation(TextStream&) const;
+    virtual TextStream &externalRepresentation(TextStream &) const;
 
 private:
     FloatSize m_kernelSize;

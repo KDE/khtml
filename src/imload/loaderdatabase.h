@@ -30,7 +30,8 @@
 #include <QStringList>
 #include <QVector>
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 class ImageLoader;
 
@@ -44,7 +45,8 @@ public:
         return efficientProviders.size() + foreignProviders.size();
     }
 
-    QStringList supportedMimeTypes() {
+    QStringList supportedMimeTypes()
+    {
         //### FIXME/TODO: this should be more dynamic
         QStringList ret;
         ret << QLatin1String("image/jpg") << QLatin1String("image/jpeg")
@@ -53,29 +55,30 @@ public:
         return ret;
     }
 
-    void registerLoaderProvider(ImageLoaderProvider* provider)
+    void registerLoaderProvider(ImageLoaderProvider *provider)
     {
-        if (provider->type() == ImageLoaderProvider::Efficient)
+        if (provider->type() == ImageLoaderProvider::Efficient) {
             efficientProviders.append(provider);
-        else
+        } else {
             foreignProviders.append(provider);
+        }
     }
 
-    ImageLoader* loaderFor(const QByteArray& prefix)
+    ImageLoader *loaderFor(const QByteArray &prefix)
     {
-        ImageLoader* toRet;
-        for (int c = 0; c < efficientProviders.size(); c++)
-        {
+        ImageLoader *toRet;
+        for (int c = 0; c < efficientProviders.size(); c++) {
             toRet = efficientProviders[c]->loaderFor(prefix);
-            if (toRet)
+            if (toRet) {
                 return toRet;
+            }
         }
 
-        for (int c = 0; c < foreignProviders.size(); c++)
-        {
+        for (int c = 0; c < foreignProviders.size(); c++) {
             toRet = foreignProviders[c]->loaderFor(prefix);
-            if (toRet)
+            if (toRet) {
                 return toRet;
+            }
         }
 
         return 0;
@@ -83,18 +86,19 @@ public:
 
     ~LoaderDatabase()
     {
-        for (int c = 0; c < efficientProviders.size(); c++)
+        for (int c = 0; c < efficientProviders.size(); c++) {
             delete efficientProviders[c];
+        }
 
-        for (int c = 0; c < foreignProviders.size(); c++)
+        for (int c = 0; c < foreignProviders.size(); c++) {
             delete foreignProviders[c];
+        }
     }
 private:
-    QVector<ImageLoaderProvider*> efficientProviders;
-    QVector<ImageLoaderProvider*> foreignProviders;
+    QVector<ImageLoaderProvider *> efficientProviders;
+    QVector<ImageLoaderProvider *> foreignProviders;
 };
 
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

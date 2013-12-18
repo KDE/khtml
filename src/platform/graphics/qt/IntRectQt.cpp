@@ -29,9 +29,10 @@
 
 #include <QRect>
 
-namespace WebCore {
+namespace WebCore
+{
 
-IntRect::IntRect(const QRect& r)
+IntRect::IntRect(const QRect &r)
     : m_location(r.topLeft())
     , m_size(r.width(), r.height())
 {
@@ -44,4 +45,3 @@ IntRect::operator QRect() const
 
 }
 
-// vim: ts=4 sw=4 et

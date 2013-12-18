@@ -32,7 +32,7 @@
 using namespace khtml;
 using namespace DOM;
 
-RenderBody::RenderBody(HTMLBodyElementImpl* element)
+RenderBody::RenderBody(HTMLBodyElementImpl *element)
     : RenderBlock(element)
 {
     scrollbarsStyled = false;
@@ -42,24 +42,24 @@ RenderBody::~RenderBody()
 {
 }
 
-void RenderBody::setStyle(RenderStyle* style)
+void RenderBody::setStyle(RenderStyle *style)
 {
     RenderBlock::setStyle(style);
-    document()->setTextColor( style->color() );
+    document()->setTextColor(style->color());
     scrollbarsStyled = false;
 }
 
-void RenderBody::paintBoxDecorations(PaintInfo& paintInfo, int _tx, int _ty)
+void RenderBody::paintBoxDecorations(PaintInfo &paintInfo, int _tx, int _ty)
 {
     //qDebug() << renderName() << "::paintDecorations()";
     QColor bgColor;
     const BackgroundLayer *bgLayer = 0;
 
-    if( parent()->style()->hasBackground() ) {
+    if (parent()->style()->hasBackground()) {
         // the root element already has a non-transparent background of its own
         // so we must fork our own. (CSS2.1 - 14.2 §4)
-	bgColor =  style()->backgroundColor();
-	bgLayer = style()->backgroundLayers();
+        bgColor =  style()->backgroundColor();
+        bgLayer = style()->backgroundLayers();
     }
 
     int w = width();
@@ -69,35 +69,36 @@ void RenderBody::paintBoxDecorations(PaintInfo& paintInfo, int _tx, int _ty)
 
     paintAllBackgrounds(paintInfo.p, bgColor, bgLayer, cr, _tx, _ty, w, h);
 
-    if(style()->hasBorder())
-	paintBorder( paintInfo.p, _tx, _ty, w, h, style() );
+    if (style()->hasBorder()) {
+        paintBorder(paintInfo.p, _tx, _ty, w, h, style());
+    }
 
 }
 
 void RenderBody::repaint(Priority p)
 {
     RenderObject *cb = containingBlock();
-    if(cb)
-	cb->repaint(p);
+    if (cb) {
+        cb->repaint(p);
+    }
 }
 
 void RenderBody::layout()
 {
     // in quirk mode, we'll need to have our margins determined
     // for percentage height calculations
-    if (style()->htmlHacks())
+    if (style()->htmlHacks()) {
         calcHeight();
+    }
     RenderBlock::layout();
 
-    if (!scrollbarsStyled)
-    {
-	RenderCanvas* canvas = this->canvas();
-        if (canvas->view())
-        {
+    if (!scrollbarsStyled) {
+        RenderCanvas *canvas = this->canvas();
+        if (canvas->view()) {
             canvas->view()->horizontalScrollBar()->setPalette(style()->palette());
             canvas->view()->verticalScrollBar()->setPalette(style()->palette());
         }
-        scrollbarsStyled=true;
+        scrollbarsStyled = true;
     }
 }
 
@@ -105,10 +106,12 @@ int RenderBody::availableHeight() const
 {
     int h = RenderBlock::availableHeight();
 
-    if( style()->marginTop().isFixed() )
+    if (style()->marginTop().isFixed()) {
         h  -= style()->marginTop().value();
-    if( style()->marginBottom().isFixed() )
+    }
+    if (style()->marginBottom().isFixed()) {
         h -= style()->marginBottom().value();
+    }
 
     return qMax(0, h);
 }

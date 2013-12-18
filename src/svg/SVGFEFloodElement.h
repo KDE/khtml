@@ -29,21 +29,24 @@
 
 namespace WebCore
 {
-    class SVGFEFloodElement : public SVGFilterPrimitiveStandardAttributes
+class SVGFEFloodElement : public SVGFilterPrimitiveStandardAttributes
+{
+public:
+    SVGFEFloodElement(const QualifiedName &, Document *);
+    virtual ~SVGFEFloodElement();
+
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual SVGFEFlood *filterEffect(SVGResourceFilter *) const;
+
+protected:
+    virtual const SVGElement *contextElement() const
     {
-    public:
-        SVGFEFloodElement(const QualifiedName&, Document*);
-        virtual ~SVGFEFloodElement();
+        return this;
+    }
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual SVGFEFlood* filterEffect(SVGResourceFilter*) const;
-
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
-
-    private:
-        mutable SVGFEFlood *m_filterEffect;
-    };
+private:
+    mutable SVGFEFlood *m_filterEffect;
+};
 
 } // namespace WebCore
 

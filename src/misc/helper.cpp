@@ -37,11 +37,12 @@
 using namespace DOM;
 using namespace khtml;
 
-namespace khtml {
+namespace khtml
+{
 
 QPainter *printpainter;
 
-void setPrintPainter( QPainter *printer )
+void setPrintPainter(QPainter *printer)
 {
     printpainter = printer;
 }
@@ -50,30 +51,36 @@ void findWordBoundary(QChar *chars, int len, int position, int *start, int *end)
 {
     if (chars[position].isSpace()) {
         int pos = position;
-        while (pos >= 0 && chars[pos].isSpace())
+        while (pos >= 0 && chars[pos].isSpace()) {
             pos--;
-        *start = pos+1;
+        }
+        *start = pos + 1;
         pos = position;
-        while (pos < (int)len && chars[pos].isSpace())
+        while (pos < (int)len && chars[pos].isSpace()) {
             pos++;
+        }
         *end = pos;
     } else if (chars[position].isPunct()) {
         int pos = position;
-        while (pos >= 0 && chars[pos].isPunct())
+        while (pos >= 0 && chars[pos].isPunct()) {
             pos--;
-        *start = pos+1;
+        }
+        *start = pos + 1;
         pos = position;
-        while (pos < (int)len && chars[pos].isPunct())
+        while (pos < (int)len && chars[pos].isPunct()) {
             pos++;
+        }
         *end = pos;
     } else {
         int pos = position;
-        while (pos >= 0 && !chars[pos].isSpace() && !chars[pos].isPunct())
+        while (pos >= 0 && !chars[pos].isSpace() && !chars[pos].isPunct()) {
             pos--;
-        *start = pos+1;
+        }
+        *start = pos + 1;
         pos = position;
-        while (pos < (int)len && !chars[pos].isSpace() && !chars[pos].isPunct())
+        while (pos < (int)len && !chars[pos].isSpace() && !chars[pos].isPunct()) {
             pos++;
+        }
         *end = pos;
     }
 }
@@ -139,7 +146,7 @@ static const uiColors uimap[] = {
     { CSS_VAL_MENUTEXT, QPalette::Normal, QPalette::Text },
     // Scroll bar color
     { CSS_VAL_SCROLLBAR, QPalette::Normal, QPalette::Window },
-    // 3D elements 
+    // 3D elements
     { CSS_VAL_THREEDDARKSHADOW, QPalette::Normal, QPalette::Dark },
     { CSS_VAL_THREEDFACE, QPalette::Normal, QPalette::Button },
     { CSS_VAL_THREEDHIGHLIGHT, QPalette::Normal, QPalette::Light },
@@ -155,60 +162,66 @@ static const uiColors uimap[] = {
     { 0, QPalette::NColorGroups, QPalette::NColorRoles }
 };
 
-QColor khtml::colorForCSSValue( int css_value )
+QColor khtml::colorForCSSValue(int css_value)
 {
     // try the regular ones first
     const colorMap *col = cmap;
-    while ( col->css_value && col->css_value != css_value )
-	++col;
-    if ( col->css_value )
-	return QColor::fromRgba(col->color);
-    else if ( css_value == CSS_VAL_INVERT )
+    while (col->css_value && col->css_value != css_value) {
+        ++col;
+    }
+    if (col->css_value) {
+        return QColor::fromRgba(col->color);
+    } else if (css_value == CSS_VAL_INVERT) {
         return QColor();
+    }
 
     const uiColors *uicol = uimap;
-    while ( uicol->css_value && uicol->css_value != css_value )
-	++uicol;
+    while (uicol->css_value && uicol->css_value != css_value) {
+        ++uicol;
+    }
 #ifndef APPLE_CHANGES
-    if ( !uicol->css_value ) {
-        switch ( css_value ) {
-            case CSS_VAL_ACTIVEBORDER:
-                return qApp->palette().color(QPalette::Normal, QPalette::Window);
-            case CSS_VAL_ACTIVECAPTION:
-                return KColorScheme(QPalette::Active, KColorScheme::Window).background(KColorScheme::ActiveBackground).color();
-            case CSS_VAL_CAPTIONTEXT:
-                return KColorScheme(QPalette::Active, KColorScheme::Window).foreground(KColorScheme::ActiveText).color();
-            case CSS_VAL_INACTIVEBORDER:
-                return qApp->palette().color(QPalette::Inactive, QPalette::Window);
-            case CSS_VAL_INACTIVECAPTION:
-                return KColorScheme(QPalette::Inactive, KColorScheme::Window).background().color();
-            case CSS_VAL_INACTIVECAPTIONTEXT:
-                return KColorScheme(QPalette::Inactive, KColorScheme::Window).foreground().color();
-            case CSS_VAL_BACKGROUND: // Desktop background - no way to get this information from Plasma
-                return qApp->palette().color(QPalette::Normal, QPalette::Highlight);
-            default:
-	        return QColor();
+    if (!uicol->css_value) {
+        switch (css_value) {
+        case CSS_VAL_ACTIVEBORDER:
+            return qApp->palette().color(QPalette::Normal, QPalette::Window);
+        case CSS_VAL_ACTIVECAPTION:
+            return KColorScheme(QPalette::Active, KColorScheme::Window).background(KColorScheme::ActiveBackground).color();
+        case CSS_VAL_CAPTIONTEXT:
+            return KColorScheme(QPalette::Active, KColorScheme::Window).foreground(KColorScheme::ActiveText).color();
+        case CSS_VAL_INACTIVEBORDER:
+            return qApp->palette().color(QPalette::Inactive, QPalette::Window);
+        case CSS_VAL_INACTIVECAPTION:
+            return KColorScheme(QPalette::Inactive, KColorScheme::Window).background().color();
+        case CSS_VAL_INACTIVECAPTIONTEXT:
+            return KColorScheme(QPalette::Inactive, KColorScheme::Window).foreground().color();
+        case CSS_VAL_BACKGROUND: // Desktop background - no way to get this information from Plasma
+            return qApp->palette().color(QPalette::Normal, QPalette::Highlight);
+        default:
+            return QColor();
         }
     }
 #endif
 
     const QPalette &pal = qApp->palette();
-    return pal.color( uicol->group, uicol->role );
+    return pal.color(uicol->group, uicol->role);
 }
-
 
 double calcHue(double temp1, double temp2, double hueVal)
 {
-    if (hueVal < 0)
+    if (hueVal < 0) {
         hueVal++;
-    else if (hueVal > 1)
+    } else if (hueVal > 1) {
         hueVal--;
-    if (hueVal * 6 < 1)
+    }
+    if (hueVal * 6 < 1) {
         return temp1 + (temp2 - temp1) * hueVal * 6;
-    if (hueVal * 2 < 1)
+    }
+    if (hueVal * 2 < 1) {
         return temp2;
-    if (hueVal * 3 < 2)
+    }
+    if (hueVal * 3 < 2) {
         return temp1 + (temp2 - temp1) * (2.0 / 3.0 - hueVal) * 6;
+    }
     return temp1;
 }
 
@@ -234,16 +247,18 @@ QRgb khtml::qRgbaFromHsla(double h, double s, double l, double a)
  */
 QColor khtml::retrieveBackgroundColor(const RenderObject *obj)
 {
-  QColor result;
-  while (!obj->isCanvas()) {
-    result = obj->style()->backgroundColor();
-    if (result.isValid()) return result;
+    QColor result;
+    while (!obj->isCanvas()) {
+        result = obj->style()->backgroundColor();
+        if (result.isValid()) {
+            return result;
+        }
 
-    obj = obj->container();
-  }/*wend*/
+        obj = obj->container();
+    }/*wend*/
 
-  // everything transparent? Use base then.
-  return obj->style()->palette().color( QPalette::Active, QPalette::Base );
+    // everything transparent? Use base then.
+    return obj->style()->palette().color(QPalette::Active, QPalette::Base);
 }
 
 /** checks whether the given colors have enough contrast
@@ -257,40 +272,49 @@ bool khtml::hasSufficientContrast(const QColor &c1, const QColor &c2)
 #define HUE_DISTANCE 40
 #define CONTRAST_DISTANCE 10
 
-  int h1, s1, v1, h2, s2, v2;
-  int hdist = -CONTRAST_DISTANCE;
-  c1.getHsv(&h1,&s1,&v1);
-  c2.getHsv(&h2,&s2,&v2);
-  if(h1!=-1 && h2!=-1) { // grey values have no hue
-      hdist = qAbs(h1-h2);
-      if (hdist > 180) hdist = 360-hdist;
-      if (hdist < HUE_DISTANCE) {
-          hdist -= HUE_DISTANCE;
-          // see if they are high key or low key colours
-          bool hk1 = h1>=45 && h1<=225;
-          bool hk2 = h2>=45 && h2<=225;
-          if (hk1 && hk2)
-              hdist = (5*hdist)/3;
-          else if (!hk1 && !hk2)
-              hdist = (7*hdist)/4;
-      }
-      hdist = qMin(hdist, HUE_DISTANCE*2);
-  }
-  return hdist + (qAbs(s1-s2)*128)/(160+qMin(s1,s2)) + qAbs(v1-v2) > CONTRAST_DISTANCE;
+    int h1, s1, v1, h2, s2, v2;
+    int hdist = -CONTRAST_DISTANCE;
+    c1.getHsv(&h1, &s1, &v1);
+    c2.getHsv(&h2, &s2, &v2);
+    if (h1 != -1 && h2 != -1) { // grey values have no hue
+        hdist = qAbs(h1 - h2);
+        if (hdist > 180) {
+            hdist = 360 - hdist;
+        }
+        if (hdist < HUE_DISTANCE) {
+            hdist -= HUE_DISTANCE;
+            // see if they are high key or low key colours
+            bool hk1 = h1 >= 45 && h1 <= 225;
+            bool hk2 = h2 >= 45 && h2 <= 225;
+            if (hk1 && hk2) {
+                hdist = (5 * hdist) / 3;
+            } else if (!hk1 && !hk2) {
+                hdist = (7 * hdist) / 4;
+            }
+        }
+        hdist = qMin(hdist, HUE_DISTANCE * 2);
+    }
+    return hdist + (qAbs(s1 - s2) * 128) / (160 + qMin(s1, s2)) + qAbs(v1 - v2) > CONTRAST_DISTANCE;
 
 #undef CONTRAST_DISTANCE
 #undef HUE_DISTANCE
 
-#else	// orginal fast but primitive version by me (LS)
+#else   // orginal fast but primitive version by me (LS)
 
 // ### arbitrary value, to be adapted if necessary (LS)
 #define CONTRAST_DISTANCE 32
 
-  if (qAbs(c1.Qt::red() - c2.Qt::red()) > CONTRAST_DISTANCE) return true;
-  if (qAbs(c1.Qt::green() - c2.Qt::green()) > CONTRAST_DISTANCE) return true;
-  if (qAbs(c1.Qt::blue() - c2.Qt::blue()) > CONTRAST_DISTANCE) return true;
+    if (qAbs(c1.Qt::red() - c2.Qt::red()) > CONTRAST_DISTANCE) {
+        return true;
+    }
+    if (qAbs(c1.Qt::green() - c2.Qt::green()) > CONTRAST_DISTANCE) {
+        return true;
+    }
+    if (qAbs(c1.Qt::blue() - c2.Qt::blue()) > CONTRAST_DISTANCE) {
+        return true;
+    }
 
-  return false;
+    return false;
 
 #undef CONTRAST_DISTANCE
 

@@ -27,71 +27,97 @@
 
 #include "SVGPathSeg.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGPathSegCurvetoCubicSmoothAbs : public SVGPathSeg {
-    public:
-        static PassRefPtr<SVGPathSegCurvetoCubicSmoothAbs> create(float x, float y, float x2, float y2) { return adoptRef(new SVGPathSegCurvetoCubicSmoothAbs(x, y, x2, y2)); }
-        virtual ~SVGPathSegCurvetoCubicSmoothAbs();
+class SVGPathSegCurvetoCubicSmoothAbs : public SVGPathSeg
+{
+public:
+    static PassRefPtr<SVGPathSegCurvetoCubicSmoothAbs> create(float x, float y, float x2, float y2)
+    {
+        return adoptRef(new SVGPathSegCurvetoCubicSmoothAbs(x, y, x2, y2));
+    }
+    virtual ~SVGPathSegCurvetoCubicSmoothAbs();
 
-        virtual unsigned short pathSegType() const { return PATHSEG_CURVETO_CUBIC_SMOOTH_ABS; }
-        virtual String pathSegTypeAsLetter() const { return "S"; }
-        virtual String toString() const { return String::format("S %.6lg %.6lg %.6lg %.6lg", m_x2, m_y2, m_x, m_y); }
+    virtual unsigned short pathSegType() const
+    {
+        return PATHSEG_CURVETO_CUBIC_SMOOTH_ABS;
+    }
+    virtual String pathSegTypeAsLetter() const
+    {
+        return "S";
+    }
+    virtual String toString() const
+    {
+        return String::format("S %.6lg %.6lg %.6lg %.6lg", m_x2, m_y2, m_x, m_y);
+    }
 
-        void setX(float);
-        float x() const;
+    void setX(float);
+    float x() const;
 
-        void setY(float);
-        float y() const;
+    void setY(float);
+    float y() const;
 
-        void setX2(float);
-        float x2() const;
+    void setX2(float);
+    float x2() const;
 
-        void setY2(float);
-        float y2() const;
+    void setY2(float);
+    float y2() const;
 
-    private:
-        SVGPathSegCurvetoCubicSmoothAbs(float x, float y, float x2, float y2);
-        
-        float m_x;
-        float m_y;
-        float m_x2;
-        float m_y2;
-    };
+private:
+    SVGPathSegCurvetoCubicSmoothAbs(float x, float y, float x2, float y2);
 
-    class SVGPathSegCurvetoCubicSmoothRel : public SVGPathSeg { 
-    public:
-        static PassRefPtr<SVGPathSegCurvetoCubicSmoothRel> create(float x, float y, float x2, float y2) { return adoptRef(new SVGPathSegCurvetoCubicSmoothRel(x, y, x2, y2)); }        
-        virtual ~SVGPathSegCurvetoCubicSmoothRel();
+    float m_x;
+    float m_y;
+    float m_x2;
+    float m_y2;
+};
 
-        virtual unsigned short pathSegType() const { return PATHSEG_CURVETO_CUBIC_SMOOTH_REL; }
-        virtual String pathSegTypeAsLetter() const { return "s"; }
-        virtual String toString() const { return String::format("s %.6lg %.6lg %.6lg %.6lg", m_x2, m_y2, m_x, m_y); }
+class SVGPathSegCurvetoCubicSmoothRel : public SVGPathSeg
+{
+public:
+    static PassRefPtr<SVGPathSegCurvetoCubicSmoothRel> create(float x, float y, float x2, float y2)
+    {
+        return adoptRef(new SVGPathSegCurvetoCubicSmoothRel(x, y, x2, y2));
+    }
+    virtual ~SVGPathSegCurvetoCubicSmoothRel();
 
-        void setX(float);
-        float x() const;
+    virtual unsigned short pathSegType() const
+    {
+        return PATHSEG_CURVETO_CUBIC_SMOOTH_REL;
+    }
+    virtual String pathSegTypeAsLetter() const
+    {
+        return "s";
+    }
+    virtual String toString() const
+    {
+        return String::format("s %.6lg %.6lg %.6lg %.6lg", m_x2, m_y2, m_x, m_y);
+    }
 
-        void setY(float);
-        float y() const;
+    void setX(float);
+    float x() const;
 
-        void setX2(float);
-        float x2() const;
+    void setY(float);
+    float y() const;
 
-        void setY2(float);
-        float y2() const;
+    void setX2(float);
+    float x2() const;
 
-    private:
-        SVGPathSegCurvetoCubicSmoothRel(float x, float y, float x2, float y2);
+    void setY2(float);
+    float y2() const;
 
-        float m_x;
-        float m_y;
-        float m_x2;
-        float m_y2;
-    };
+private:
+    SVGPathSegCurvetoCubicSmoothRel(float x, float y, float x2, float y2);
+
+    float m_x;
+    float m_y;
+    float m_x2;
+    float m_y2;
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef SVGPaintServerSolid_h
@@ -30,29 +30,37 @@
 
 #include "SVGPaintServer.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGPaintServerSolid : public SVGPaintServer {
-    public:
-        static PassRefPtr<SVGPaintServerSolid> create() { return adoptRef(new SVGPaintServerSolid); }
-        virtual ~SVGPaintServerSolid();
+class SVGPaintServerSolid : public SVGPaintServer
+{
+public:
+    static PassRefPtr<SVGPaintServerSolid> create()
+    {
+        return adoptRef(new SVGPaintServerSolid);
+    }
+    virtual ~SVGPaintServerSolid();
 
-        virtual SVGPaintServerType type() const { return SolidPaintServer; }
+    virtual SVGPaintServerType type() const
+    {
+        return SolidPaintServer;
+    }
 
-        QColor color() const;
-        void setColor(const QColor&);
+    QColor color() const;
+    void setColor(const QColor &);
 
-        /*virtual TextStream& externalRepresentation(TextStream&) const;*/
+    /*virtual TextStream& externalRepresentation(TextStream&) const;*/
 
 #if PLATFORM(CG) || PLATFORM(QT) || PLATFORM(CAIRO)
-        virtual bool setup(QPainter* painter, QPainterPath* painterPath, const RenderObject*, SVGPaintTargetType, bool isPaintingText) const;
+    virtual bool setup(QPainter *painter, QPainterPath *painterPath, const RenderObject *, SVGPaintTargetType, bool isPaintingText) const;
 #endif
 
-    private:
-        SVGPaintServerSolid();
+private:
+    SVGPaintServerSolid();
 
-        QColor m_color;
-    };
+    QColor m_color;
+};
 
 } // namespace WebCore
 

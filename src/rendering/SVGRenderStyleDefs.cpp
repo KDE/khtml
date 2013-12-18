@@ -41,7 +41,7 @@ StyleFillData::StyleFillData()
     opacity = SVGRenderStyle::initialFillOpacity();
 }
 
-StyleFillData::StyleFillData(const StyleFillData& other)
+StyleFillData::StyleFillData(const StyleFillData &other)
     : RefCounted<StyleFillData>()
 {
     paint = other.paint;
@@ -50,20 +50,25 @@ StyleFillData::StyleFillData(const StyleFillData& other)
 
 bool StyleFillData::operator==(const StyleFillData &other) const
 {
-    if (opacity != other.opacity)
+    if (opacity != other.opacity) {
         return false;
+    }
 
-    if (!paint || !other.paint)
+    if (!paint || !other.paint) {
         return paint == other.paint;
+    }
 
-    if (paint->paintType() != other.paint->paintType())
+    if (paint->paintType() != other.paint->paintType()) {
         return false;
+    }
 
-    if (paint->paintType() == SVGPaintImpl::SVG_PAINTTYPE_URI)
+    if (paint->paintType() == SVGPaintImpl::SVG_PAINTTYPE_URI) {
         return paint->uri() == other.paint->uri();
+    }
 
-    if (paint->paintType() == SVGPaintImpl::SVG_PAINTTYPE_RGBCOLOR)
+    if (paint->paintType() == SVGPaintImpl::SVG_PAINTTYPE_RGBCOLOR) {
         return paint->color() == other.paint->color();
+    }
 
     return paint == other.paint;
 }
@@ -78,7 +83,7 @@ StyleStrokeData::StyleStrokeData()
     dashArray = SVGRenderStyle::initialStrokeDashArray();
 }
 
-StyleStrokeData::StyleStrokeData(const StyleStrokeData& other)
+StyleStrokeData::StyleStrokeData(const StyleStrokeData &other)
     : RefCounted<StyleStrokeData>()
 {
     width = other.width;
@@ -105,7 +110,7 @@ StyleStopData::StyleStopData()
     opacity = SVGRenderStyle::initialStopOpacity();
 }
 
-StyleStopData::StyleStopData(const StyleStopData& other)
+StyleStopData::StyleStopData(const StyleStopData &other)
     : RefCounted<StyleStopData>()
 {
     color = other.color;
@@ -123,13 +128,13 @@ StyleTextData::StyleTextData()
     kerning = SVGRenderStyle::initialKerning();
 }
 
-StyleTextData::StyleTextData(const StyleTextData& other)
+StyleTextData::StyleTextData(const StyleTextData &other)
     : RefCounted<StyleTextData>()
 {
     kerning = other.kerning;
 }
 
-bool StyleTextData::operator==(const StyleTextData& other) const
+bool StyleTextData::operator==(const StyleTextData &other) const
 {
     return kerning == other.kerning;
 }
@@ -139,7 +144,7 @@ StyleClipData::StyleClipData()
     clipPath = SVGRenderStyle::initialClipPath();
 }
 
-StyleClipData::StyleClipData(const StyleClipData& other)
+StyleClipData::StyleClipData(const StyleClipData &other)
     : RefCounted<StyleClipData>()
 {
     clipPath = other.clipPath;
@@ -155,7 +160,7 @@ StyleMaskData::StyleMaskData()
     maskElement = SVGRenderStyle::initialMaskElement();
 }
 
-StyleMaskData::StyleMaskData(const StyleMaskData& other)
+StyleMaskData::StyleMaskData(const StyleMaskData &other)
     : RefCounted<StyleMaskData>()
 {
     maskElement = other.maskElement;
@@ -173,7 +178,7 @@ StyleMarkerData::StyleMarkerData()
     endMarker = SVGRenderStyle::initialEndMarker();
 }
 
-StyleMarkerData::StyleMarkerData(const StyleMarkerData& other)
+StyleMarkerData::StyleMarkerData(const StyleMarkerData &other)
     : RefCounted<StyleMarkerData>()
 {
     startMarker = other.startMarker;
@@ -194,7 +199,7 @@ StyleMiscData::StyleMiscData()
     baselineShiftValue = SVGRenderStyle::initialBaselineShiftValue();
 }
 
-StyleMiscData::StyleMiscData(const StyleMiscData& other)
+StyleMiscData::StyleMiscData(const StyleMiscData &other)
     : RefCounted<StyleMiscData>()
 {
     filter = other.filter;
@@ -215,4 +220,3 @@ bool StyleMiscData::operator==(const StyleMiscData &other) const
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4

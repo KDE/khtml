@@ -31,12 +31,13 @@
 
 class QTimer;
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 class AnimProvider;
 
 /**
-This class is used to manage animation frame change requests, to avoid creating multiple 
+This class is used to manage animation frame change requests, to avoid creating multiple
 QTimers for this purpose.
 */
 class AnimTimer: public QObject
@@ -49,18 +50,17 @@ public:
      This requests that a new frame notification be called at the given delay on the given AnimProvider.
      Note that only the first request is honored, until the notification is given
      */
-    void nextFrameIn(AnimProvider* provider, int ms);
-    
-    void destroyed(AnimProvider* provider);
+    void nextFrameIn(AnimProvider *provider, int ms);
+
+    void destroyed(AnimProvider *provider);
 private Q_SLOTS:
     void tick();
 private:
-    QTimer* animTicks;
-    QMap<AnimProvider*, int> pending;
+    QTimer *animTicks;
+    QMap<AnimProvider *, int> pending;
     QTime lastTime;
 };
 
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

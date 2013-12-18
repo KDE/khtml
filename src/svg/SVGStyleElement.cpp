@@ -31,14 +31,15 @@
 //#include "HTMLNames.h"
 //#include "XMLNames.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 //using namespace HTMLNames;
 
-SVGStyleElement::SVGStyleElement(const QualifiedName& tagName, Document* doc)
-     : SVGElement(tagName, doc)
-     , m_createdByParser(false)
-     , m_sheet(0)
+SVGStyleElement::SVGStyleElement(const QualifiedName &tagName, Document *doc)
+    : SVGElement(tagName, doc)
+    , m_createdByParser(false)
+    , m_sheet(0)
 {
 }
 
@@ -48,7 +49,7 @@ DOMString SVGStyleElement::xmlspace() const
     return getAttribute(ATTR_XML_SPACE);
 }
 
-void SVGStyleElement::setXmlspace(const DOMString&, ExceptionCode& ec)
+void SVGStyleElement::setXmlspace(const DOMString &, ExceptionCode &ec)
 {
     ec = DOMException::NO_MODIFICATION_ALLOWED_ERR;
 }
@@ -60,7 +61,7 @@ const DOMString SVGStyleElement::type() const
     return n.isNull() ? defaultValue : n;
 }
 
-void SVGStyleElement::setType(const DOMString&, ExceptionCode& ec)
+void SVGStyleElement::setType(const DOMString &, ExceptionCode &ec)
 {
     ec = DOMException::NO_MODIFICATION_ALLOWED_ERR;
 }
@@ -72,7 +73,7 @@ const DOMString SVGStyleElement::media() const
     return n.isNull() ? defaultValue : n;
 }
 
-void SVGStyleElement::setMedia(const DOMString&, ExceptionCode& ec)
+void SVGStyleElement::setMedia(const DOMString &, ExceptionCode &ec)
 {
     ec = DOMException::NO_MODIFICATION_ALLOWED_ERR;
 }
@@ -82,18 +83,19 @@ String SVGStyleElement::title() const
     return getAttribute(ATTR_TITLE);
 }
 
-void SVGStyleElement::setTitle(const DOMString&, ExceptionCode& ec)
+void SVGStyleElement::setTitle(const DOMString &, ExceptionCode &ec)
 {
     ec = DOMException::NO_MODIFICATION_ALLOWED_ERR;
 }
 
-void SVGStyleElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGStyleElement::parseMappedAttribute(MappedAttribute *attr)
 {
     // qDebug() << "parse: " << attr->id() << attr->localName() << attr->value() << endl;
     if (/*attr->name() == titleAttr*/attr->id() == ATTR_TITLE && m_sheet)
         ;//FIXME m_sheet->setTitle(attr->value());
-    else
+    else {
         SVGElement::parseMappedAttribute(attr);
+    }
 }
 
 void SVGStyleElement::finishParsingChildren()
@@ -121,7 +123,7 @@ void SVGStyleElement::removedFromDocument()
     // qDebug() << "not implemented" << endl;
 }
 
-void SVGStyleElement::childrenChanged(bool changedByParser, Node* beforeChange, Node* afterChange, int childCountDelta)
+void SVGStyleElement::childrenChanged(bool changedByParser, Node *beforeChange, Node *afterChange, int childCountDelta)
 {
     Q_UNUSED(changedByParser);
     Q_UNUSED(beforeChange);
@@ -134,7 +136,7 @@ void SVGStyleElement::childrenChanged(bool changedByParser, Node* beforeChange, 
     // qDebug() << "not implemented" << endl;
 }
 
-StyleSheet* SVGStyleElement::sheet()
+StyleSheet *SVGStyleElement::sheet()
 {
     //return StyleElement::sheet(this);
     return m_sheet;
@@ -155,5 +157,4 @@ quint32 SVGStyleElement::id() const
 
 }
 
-// vim:ts=4
 #endif // ENABLE(SVG)

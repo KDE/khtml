@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef _PositionIterator_h_
@@ -28,7 +28,8 @@
 
 #include "dom_position.h"
 
-namespace DOM {
+namespace DOM
+{
 
 class NodeImpl;
 class Position;
@@ -40,17 +41,32 @@ public:
     PositionIterator(NodeImpl *node, long offset) : m_current(node, offset) {}
     PositionIterator(const Position &o) : m_current(o) {}
 
-    Position current() const { return m_current; }
-    Position previous() { return m_current = peekPrevious(); }
-    Position next() { return m_current = peekNext(); }
+    Position current() const
+    {
+        return m_current;
+    }
+    Position previous()
+    {
+        return m_current = peekPrevious();
+    }
+    Position next()
+    {
+        return m_current = peekNext();
+    }
     Position peekPrevious() const;
     Position peekNext() const;
 
-    void setPosition(const Position &pos) { m_current = pos; }
+    void setPosition(const Position &pos)
+    {
+        m_current = pos;
+    }
 
     bool atStart() const;
     bool atEnd() const;
-    bool isEmpty() const { return m_current.isEmpty(); }
+    bool isEmpty() const
+    {
+        return m_current.isEmpty();
+    }
 
 private:
     Position m_current;

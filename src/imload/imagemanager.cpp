@@ -22,21 +22,21 @@
 
 */
 
-
 #include "imagemanager.h"
 #include "decoders/jpegloader.h"
 #include "decoders/pngloader.h"
 #include "decoders/gifloader.h"
 #include "decoders/qimageioloader.h"
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
-TileCache*      ImageManager::imgCache   = 0;
-TileCache*      ImageManager::pixCache   = 0;
-Updater*        ImageManager::theUpdater = 0;
-LoaderDatabase* ImageManager::loaderDB   = 0;
-QPixmap*        ImageManager::emptyPix   = 0;
-AnimTimer*      ImageManager::anmTimer   = 0;
+TileCache      *ImageManager::imgCache   = 0;
+TileCache      *ImageManager::pixCache   = 0;
+Updater        *ImageManager::theUpdater = 0;
+LoaderDatabase *ImageManager::loaderDB   = 0;
+QPixmap        *ImageManager::emptyPix   = 0;
+AnimTimer      *ImageManager::anmTimer   = 0;
 
 //Each tile is 64x64 pixels, so normally
 //64x64x4 = 16K, so 1 megabyte = 64 tiles, roughly.
@@ -46,12 +46,12 @@ AnimTimer*      ImageManager::anmTimer   = 0;
 
 unsigned int ImageManager::imageCacheSize()
 {
-    return 64*32;
+    return 64 * 32;
 }
 
 unsigned int ImageManager::pixmapCacheSize()
 {
-    return 64*64;
+    return 64 * 64;
 }
 
 void ImageManager::initLoaders()
@@ -65,21 +65,24 @@ void ImageManager::initLoaders()
 bool ImageManager::isAcceptableSize(unsigned width, unsigned height)
 {
     // See the comment below if trying to change these!
-    if (width > 16384 || height > 16384)
+    if (width > 16384 || height > 16384) {
         return false;
+    }
 
     unsigned pixels = width * height; //Cannot overflow due to the above -- 16K by 16K is 256K...
 
-    if (pixels > 6000 * 4000)
+    if (pixels > 6000 * 4000) {
         return false;
+    }
 
     return true;
 }
 
 bool ImageManager::isAcceptableScaleSize(unsigned width, unsigned height)
 {
-    if (width > 32768 || height > 32768)
+    if (width > 32768 || height > 32768) {
         return false;
+    }
 
     // At this point, we have at most 512x512 tiles, each 3 pointers bigs,
     // which is 3.1 meg on 32-bit, 6.2 meg on 64-bit.
@@ -90,4 +93,3 @@ bool ImageManager::isAcceptableScaleSize(unsigned width, unsigned height)
 
 }
 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

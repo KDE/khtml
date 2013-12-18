@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include "wtf/Platform.h"
@@ -29,9 +29,10 @@
 #include "SVGPaintServerRadialGradient.h"
 /*#include "SVGRenderTreeAsText.h"*/
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGPaintServerRadialGradient::SVGPaintServerRadialGradient(const SVGGradientElement* owner)
+SVGPaintServerRadialGradient::SVGPaintServerRadialGradient(const SVGGradientElement *owner)
     : SVGPaintServerGradient(owner)
     , m_radius(0.0f)
 {
@@ -41,13 +42,12 @@ SVGPaintServerRadialGradient::~SVGPaintServerRadialGradient()
 {
 }
 
-
 FloatPoint SVGPaintServerRadialGradient::gradientCenter() const
 {
     return m_center;
 }
 
-void SVGPaintServerRadialGradient::setGradientCenter(const FloatPoint& center)
+void SVGPaintServerRadialGradient::setGradientCenter(const FloatPoint &center)
 {
     m_center = center;
 }
@@ -57,7 +57,7 @@ FloatPoint SVGPaintServerRadialGradient::gradientFocal() const
     return m_focal;
 }
 
-void SVGPaintServerRadialGradient::setGradientFocal(const FloatPoint& focal)
+void SVGPaintServerRadialGradient::setGradientFocal(const FloatPoint &focal)
 {
     m_focal = focal;
 }

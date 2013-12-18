@@ -29,7 +29,8 @@
 
 #include "html/html_elementimpl.h"
 
-namespace DOM {
+namespace DOM
+{
 
 class HTMLTableElementImpl;
 class HTMLTableSectionElementImpl;
@@ -52,7 +53,7 @@ class HTMLTablePartElementImpl : public HTMLElementImpl
 public:
     HTMLTablePartElementImpl(DocumentImpl *doc)
         : HTMLElementImpl(doc)
-        { }
+    { }
 
     virtual void parseAttribute(AttributeImpl *attr);
 };
@@ -68,8 +69,8 @@ public:
 
     virtual Id id() const;
 
-    HTMLElementImpl *insertRow ( long index, int& exceptioncode );
-    void deleteRow ( long index, int& exceptioncode );
+    HTMLElementImpl *insertRow(long index, int &exceptioncode);
+    void deleteRow(long index, int &exceptioncode);
 
     int numRows() const;
 
@@ -90,8 +91,8 @@ public:
     long rowIndex() const;
     long sectionRowIndex() const;
 
-    HTMLElementImpl *insertCell ( long index, int &exceptioncode );
-    void deleteCell ( long index, int &exceptioncode );
+    HTMLElementImpl *insertCell(long index, int &exceptioncode);
+    void deleteCell(long index, int &exceptioncode);
 
 protected:
     int ncols;
@@ -107,15 +108,36 @@ public:
 
     long cellIndex() const;
 
-    int col() const { return _col; }
-    void setCol(int col) { _col = col; }
-    int row() const { return _row; }
-    void setRow(int r) { _row = r; }
+    int col() const
+    {
+        return _col;
+    }
+    void setCol(int col)
+    {
+        _col = col;
+    }
+    int row() const
+    {
+        return _row;
+    }
+    void setRow(int r)
+    {
+        _row = r;
+    }
 
-    int colSpan() const { return cSpan; }
-    int rowSpan() const { return rSpan; }
+    int colSpan() const
+    {
+        return cSpan;
+    }
+    int rowSpan() const
+    {
+        return rSpan;
+    }
 
-    virtual Id id() const { return _id; }
+    virtual Id id() const
+    {
+        return _id;
+    }
     virtual void parseAttribute(AttributeImpl *attr);
     virtual void attach();
 
@@ -139,12 +161,18 @@ public:
 
     virtual Id id() const;
 
-    void setTable(HTMLTableElementImpl *t) { table = t; }
+    void setTable(HTMLTableElementImpl *t)
+    {
+        table = t;
+    }
 
     // overrides
     virtual void parseAttribute(AttributeImpl *attr);
 
-    int span() const { return _span; }
+    int span() const
+    {
+        return _span;
+    }
 
 protected:
     // could be ID_COL or ID_COLGROUP ... The DOM is not quite clear on
@@ -182,48 +210,57 @@ other  -- pointer to the child
 template<typename ChildType, int ChildId> class ChildHolder
 {
 public:
-    ChildHolder():ptr(0) {}
+    ChildHolder(): ptr(0) {}
 
-    ChildType* get(const ElementImpl* parent) const {
+    ChildType *get(const ElementImpl *parent) const
+    {
         if (static_cast<const NodeImpl *>(ptr) == parent) {
             //Do lookup.
             ptr = 0;
-            for (NodeImpl* child = parent->firstChild(); child; child = child->nextSibling())
+            for (NodeImpl *child = parent->firstChild(); child; child = child->nextSibling())
                 if (child->id() == ChildId) {
-                    ptr = static_cast<ElementImpl*>(child);
+                    ptr = static_cast<ElementImpl *>(child);
                     break;
                 }
         }
-        return static_cast<ChildType*>(ptr);
+        return static_cast<ChildType *>(ptr);
     }
 
-    void childAdded(ElementImpl* parent, NodeImpl* child) {
-        if (ptr)
-            ptr = parent; //No clue now..
-        else
+    void childAdded(ElementImpl *parent, NodeImpl *child)
+    {
+        if (ptr) {
+            ptr = parent;    //No clue now..
+        } else {
             ptr = child;
+        }
     }
 
-    void childAppended(NodeImpl* child) {
-        if (!ptr)
+    void childAppended(NodeImpl *child)
+    {
+        if (!ptr) {
             ptr = child;
+        }
     }
 
-    void childRemoved(ElementImpl* parent, NodeImpl* child) {
-        if (child == ptr)
-            ptr = parent; //We removed what was pointing - no clue now..
+    void childRemoved(ElementImpl *parent, NodeImpl *child)
+    {
+        if (child == ptr) {
+            ptr = parent;    //We removed what was pointing - no clue now..
+        }
         //else things are unchanged.
     }
 
-    void clear() {
+    void clear()
+    {
         ptr = 0;
     }
 
-    void operator =(ChildType* child) {
+    void operator =(ChildType *child)
+    {
         ptr = child;
     }
 private:
-    mutable NodeImpl* ptr;
+    mutable NodeImpl *ptr;
 };
 
 // -------------------------------------------------------------------------
@@ -255,34 +292,43 @@ public:
 
     virtual Id id() const;
 
-    HTMLTableCaptionElementImpl *caption() const { return tCaption.get(this); }
-    NodeImpl *setCaption( HTMLTableCaptionElementImpl * );
+    HTMLTableCaptionElementImpl *caption() const
+    {
+        return tCaption.get(this);
+    }
+    NodeImpl *setCaption(HTMLTableCaptionElementImpl *);
 
-    HTMLTableSectionElementImpl *tHead() const { return head.get(this); }
-    NodeImpl *setTHead( HTMLTableSectionElementImpl * );
+    HTMLTableSectionElementImpl *tHead() const
+    {
+        return head.get(this);
+    }
+    NodeImpl *setTHead(HTMLTableSectionElementImpl *);
 
-    HTMLTableSectionElementImpl *tFoot() const { return foot.get(this); }
-    NodeImpl *setTFoot( HTMLTableSectionElementImpl * );
+    HTMLTableSectionElementImpl *tFoot() const
+    {
+        return foot.get(this);
+    }
+    NodeImpl *setTFoot(HTMLTableSectionElementImpl *);
 
-    NodeImpl *setTBody( HTMLTableSectionElementImpl * );
+    NodeImpl *setTBody(HTMLTableSectionElementImpl *);
 
-    HTMLElementImpl *createTHead (  );
-    void deleteTHead (  );
-    HTMLElementImpl *createTFoot (  );
-    void deleteTFoot (  );
-    HTMLElementImpl *createCaption (  );
-    void deleteCaption (  );
-    HTMLElementImpl *insertRow ( long index, int &exceptioncode );
-    void deleteRow ( long index, int &exceptioncode );
+    HTMLElementImpl *createTHead();
+    void deleteTHead();
+    HTMLElementImpl *createTFoot();
+    void deleteTFoot();
+    HTMLElementImpl *createCaption();
+    void deleteCaption();
+    HTMLElementImpl *insertRow(long index, int &exceptioncode);
+    void deleteRow(long index, int &exceptioncode);
 
     // overrides
     virtual NodeImpl *addChild(NodeImpl *child);
-    virtual NodeImpl *insertBefore ( NodeImpl *newChild, NodeImpl *refChild, int &exceptioncode );
-    virtual void      replaceChild ( NodeImpl *newChild, NodeImpl *oldChild, int &exceptioncode );
-    virtual void      removeChild ( NodeImpl *oldChild, int &exceptioncode );
+    virtual NodeImpl *insertBefore(NodeImpl *newChild, NodeImpl *refChild, int &exceptioncode);
+    virtual void      replaceChild(NodeImpl *newChild, NodeImpl *oldChild, int &exceptioncode);
+    virtual void      removeChild(NodeImpl *oldChild, int &exceptioncode);
     virtual void      removeChildren();
-    virtual NodeImpl *appendChild ( NodeImpl *newChild, int &exceptioncode );
-    
+    virtual NodeImpl *appendChild(NodeImpl *newChild, int &exceptioncode);
+
     virtual void parseAttribute(AttributeImpl *attr);
     virtual void attach();
     virtual void close();
@@ -298,13 +344,13 @@ public:
        index is the offset the row would have if there was an additional section.
     */
     bool findRowSection(long inIndex,
-                        HTMLTableSectionElementImpl*& outSection,
-                        long&                         outIndex) const;
+                        HTMLTableSectionElementImpl *&outSection,
+                        long                         &outIndex) const;
 protected:
     //Actual implementations of keeping things in place.
-    void handleChildAdd   ( NodeImpl *newChild );
-    void handleChildAppend( NodeImpl *newChild );
-    void handleChildRemove( NodeImpl *oldChild );
+    void handleChildAdd(NodeImpl *newChild);
+    void handleChildAppend(NodeImpl *newChild);
+    void handleChildRemove(NodeImpl *oldChild);
 
     void updateFrame();
 
@@ -313,17 +359,19 @@ protected:
     ChildHolder<HTMLTableSectionElementImpl, ID_TBODY> firstBody;
     ChildHolder<HTMLTableCaptionElementImpl, ID_CAPTION> tCaption;
 
-    HTMLTableSectionElementImpl *tFirstBody() const { return firstBody.get(this); }
+    HTMLTableSectionElementImpl *tFirstBody() const
+    {
+        return firstBody.get(this);
+    }
 
     KDE_BF_ENUM(Frame) frame : 4;
     KDE_BF_ENUM(Rules) rules : 4;
 
     bool m_solid        : 1;
-    uint unused		: 7;
-    ushort padding	: 16;
+    uint unused     : 7;
+    ushort padding  : 16;
     friend class HTMLTableCellElementImpl;
 };
-
 
 } //namespace
 

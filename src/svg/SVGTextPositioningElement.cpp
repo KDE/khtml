@@ -29,9 +29,10 @@
 #include "SVGNames.h"
 #include "SVGNumberList.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGTextPositioningElement::SVGTextPositioningElement(const QualifiedName& tagName, Document* doc)
+SVGTextPositioningElement::SVGTextPositioningElement(const QualifiedName &tagName, Document *doc)
     : SVGTextContentElement(tagName, doc)
     , m_x(SVGLengthList::create(SVGNames::xAttr))
     , m_y(SVGLengthList::create(SVGNames::yAttr))
@@ -45,30 +46,31 @@ SVGTextPositioningElement::~SVGTextPositioningElement()
 {
 }
 
-ANIMATED_PROPERTY_DEFINITIONS(SVGTextPositioningElement, SVGLengthList*, LengthList, lengthList, X, x, SVGNames::xAttr, m_x.get())
-ANIMATED_PROPERTY_DEFINITIONS(SVGTextPositioningElement, SVGLengthList*, LengthList, lengthList, Y, y, SVGNames::yAttr, m_y.get())
-ANIMATED_PROPERTY_DEFINITIONS(SVGTextPositioningElement, SVGLengthList*, LengthList, lengthList, Dx, dx, SVGNames::dxAttr, m_dx.get())
-ANIMATED_PROPERTY_DEFINITIONS(SVGTextPositioningElement, SVGLengthList*, LengthList, lengthList, Dy, dy, SVGNames::dyAttr, m_dy.get())
-ANIMATED_PROPERTY_DEFINITIONS(SVGTextPositioningElement, SVGNumberList*, NumberList, numberList, Rotate, rotate, SVGNames::rotateAttr, m_rotate.get())
+ANIMATED_PROPERTY_DEFINITIONS(SVGTextPositioningElement, SVGLengthList *, LengthList, lengthList, X, x, SVGNames::xAttr, m_x.get())
+ANIMATED_PROPERTY_DEFINITIONS(SVGTextPositioningElement, SVGLengthList *, LengthList, lengthList, Y, y, SVGNames::yAttr, m_y.get())
+ANIMATED_PROPERTY_DEFINITIONS(SVGTextPositioningElement, SVGLengthList *, LengthList, lengthList, Dx, dx, SVGNames::dxAttr, m_dx.get())
+ANIMATED_PROPERTY_DEFINITIONS(SVGTextPositioningElement, SVGLengthList *, LengthList, lengthList, Dy, dy, SVGNames::dyAttr, m_dy.get())
+ANIMATED_PROPERTY_DEFINITIONS(SVGTextPositioningElement, SVGNumberList *, NumberList, numberList, Rotate, rotate, SVGNames::rotateAttr, m_rotate.get())
 
-void SVGTextPositioningElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGTextPositioningElement::parseMappedAttribute(MappedAttribute *attr)
 {
     // qDebug() << "parse:" << attr->localName() << attr->value() << endl;
-    if (attr->name() == SVGNames::xAttr)
+    if (attr->name() == SVGNames::xAttr) {
         xBaseValue()->parse(attr->value(), this, LengthModeWidth);
-    else if (attr->name() == SVGNames::yAttr)
+    } else if (attr->name() == SVGNames::yAttr) {
         yBaseValue()->parse(attr->value(), this, LengthModeHeight);
-    else if (attr->name() == SVGNames::dxAttr)
+    } else if (attr->name() == SVGNames::dxAttr) {
         dxBaseValue()->parse(attr->value(), this, LengthModeWidth);
-    else if (attr->name() == SVGNames::dyAttr)
+    } else if (attr->name() == SVGNames::dyAttr) {
         dyBaseValue()->parse(attr->value(), this, LengthModeHeight);
-    else if (attr->name() == SVGNames::rotateAttr)
+    } else if (attr->name() == SVGNames::rotateAttr) {
         rotateBaseValue()->parse(attr->value());
-    else
+    } else {
         SVGTextContentElement::parseMappedAttribute(attr);
+    }
 }
 
-bool SVGTextPositioningElement::isKnownAttribute(const QualifiedName& attrName)
+bool SVGTextPositioningElement::isKnownAttribute(const QualifiedName &attrName)
 {
     return (attrName.matches(SVGNames::xAttr) ||
             attrName.matches(SVGNames::yAttr) ||

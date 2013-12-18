@@ -25,9 +25,10 @@
 #include "SVGResourceFilter.h"
 #include "TextStream.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFEImage::SVGFEImage(SVGResourceFilter* filter)
+SVGFEImage::SVGFEImage(SVGResourceFilter *filter)
     : SVGFilterEffect(filter)
     , m_cachedImage(0)
 {
@@ -35,30 +36,34 @@ SVGFEImage::SVGFEImage(SVGResourceFilter* filter)
 
 SVGFEImage::~SVGFEImage()
 {
-    if (m_cachedImage)
+    if (m_cachedImage) {
         m_cachedImage->removeClient(this);
+    }
 }
 
-CachedImage* SVGFEImage::cachedImage() const
+CachedImage *SVGFEImage::cachedImage() const
 {
     return m_cachedImage;
 }
 
-void SVGFEImage::setCachedImage(CachedImage* image)
+void SVGFEImage::setCachedImage(CachedImage *image)
 {
-    if (m_cachedImage == image)
+    if (m_cachedImage == image) {
         return;
-    
-    if (m_cachedImage)
+    }
+
+    if (m_cachedImage) {
         m_cachedImage->removeClient(this);
+    }
 
     m_cachedImage = image;
 
-    if (m_cachedImage)
+    if (m_cachedImage) {
         m_cachedImage->addClient(this);
+    }
 }
 
-TextStream& SVGFEImage::externalRepresentation(TextStream& ts) const
+TextStream &SVGFEImage::externalRepresentation(TextStream &ts) const
 {
     ts << "[type=IMAGE] ";
     SVGFilterEffect::externalRepresentation(ts);
@@ -67,10 +72,11 @@ TextStream& SVGFEImage::externalRepresentation(TextStream& ts) const
 
 }
 
-void SVGFEImage::imageChanged(CachedImage*)
+void SVGFEImage::imageChanged(CachedImage *)
 {
-    if (SVGResourceFilter* filterResource = filter())
+    if (SVGResourceFilter *filterResource = filter()) {
         filterResource->invalidate();
+    }
 }
 
 } // namespace WebCore

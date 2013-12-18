@@ -27,48 +27,52 @@
 
 #include "util.h"
 
-namespace DOM {
-	class NodeImpl;
-	class DOMString;
+namespace DOM
+{
+class NodeImpl;
+class DOMString;
 }
 
-namespace khtml {
+namespace khtml
+{
 
 class XPathNSResolverImpl;
 
-namespace XPath {
+namespace XPath
+{
 
 class Expression;
 class Value;
 
 class ParsedStatement
 {
-	public:
-		ParsedStatement( const DOM::DOMString &statement, khtml::XPathNSResolverImpl* res );
-		~ParsedStatement();
-		void optimize();
+public:
+    ParsedStatement(const DOM::DOMString &statement, khtml::XPathNSResolverImpl *res);
+    ~ParsedStatement();
+    void optimize();
 
-		QString dump() const;
+    QString dump() const;
 
-		Value evaluate( DOM::NodeImpl *context,
-		                int& ec) const;
+    Value evaluate(DOM::NodeImpl *context,
+                   int &ec) const;
 
-		// Any exception issued during parsing, or 0
-		int exceptionCode() { return m_ec; }
+    // Any exception issued during parsing, or 0
+    int exceptionCode()
+    {
+        return m_ec;
+    }
 
-	private:
-		void parse( const DOM::DOMString &statement );
+private:
+    void parse(const DOM::DOMString &statement);
 
-		SharedPtr<khtml::XPathNSResolverImpl> m_res;
-		Expression *m_expr;
-		int m_ec;
+    SharedPtr<khtml::XPathNSResolverImpl> m_res;
+    Expression *m_expr;
+    int m_ec;
 };
 
 } // namespace XPath
 
 } // namespace khtml
 
-
 #endif // PARSEDSTATEMENT_H
-// kate: indent-width 4; replace-tabs off; tab-width 4; space-indent off;
 

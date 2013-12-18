@@ -31,47 +31,53 @@
 #include "SVGStyledElement.h"
 #include "SVGURIReference.h"
 
-namespace WebCore {
-    class SVGLength;
+namespace WebCore
+{
+class SVGLength;
 
-    class SVGFilterElement : public SVGStyledElement,
-                             public SVGURIReference,
-                             public SVGLangSpace,
-                             public SVGExternalResourcesRequired
+class SVGFilterElement : public SVGStyledElement,
+    public SVGURIReference,
+    public SVGLangSpace,
+    public SVGExternalResourcesRequired
+{
+public:
+    SVGFilterElement(const QualifiedName &, Document *);
+    virtual ~SVGFilterElement();
+
+    virtual SVGResource *canvasResource();
+
+    void setFilterRes(unsigned long filterResX, unsigned long filterResY) const;
+
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual bool rendererIsNeeded(RenderStyle *)
     {
-    public:
-        SVGFilterElement(const QualifiedName&, Document*);
-        virtual ~SVGFilterElement();
+        return false;
+    }
 
-        virtual SVGResource* canvasResource();
+protected:
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
 
-        void setFilterRes(unsigned long filterResX, unsigned long filterResY) const;
+private:
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)
+    ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual bool rendererIsNeeded(RenderStyle*) { return false; }
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFilterElement, int, int, FilterUnits, filterUnits)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFilterElement, int, int, PrimitiveUnits, primitiveUnits)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFilterElement, SVGLength, SVGLength, X, x)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFilterElement, SVGLength, SVGLength, Y, y)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFilterElement, SVGLength, SVGLength, Width, width)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFilterElement, SVGLength, SVGLength, Height, height)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFilterElement, long, long, FilterResX, filterResX)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFilterElement, long, long, FilterResY, filterResY)
 
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
-
-    private:
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)
-        ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)
- 
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFilterElement, int, int, FilterUnits, filterUnits)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFilterElement, int, int, PrimitiveUnits, primitiveUnits)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFilterElement, SVGLength, SVGLength, X, x)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFilterElement, SVGLength, SVGLength, Y, y)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFilterElement, SVGLength, SVGLength, Width, width)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFilterElement, SVGLength, SVGLength, Height, height)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFilterElement, long, long, FilterResX, filterResX)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFilterElement, long, long, FilterResY, filterResY)
-
-        RefPtr<SVGResourceFilter> m_filter;
-    };
+    RefPtr<SVGResourceFilter> m_filter;
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

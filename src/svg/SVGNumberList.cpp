@@ -27,9 +27,10 @@
 
 #include "SVGParserUtilities.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGNumberList::SVGNumberList(const QualifiedName& attributeName)
+SVGNumberList::SVGNumberList(const QualifiedName &attributeName)
     : SVGList<float>(attributeName)
 {
 }
@@ -38,18 +39,19 @@ SVGNumberList::~SVGNumberList()
 {
 }
 
-void SVGNumberList::parse(const String& value)
+void SVGNumberList::parse(const String &value)
 {
     ExceptionCode ec = 0;
 
     float number = 0.0f;
-   
-    const UChar* ptr = value.characters();
-    const UChar* end = ptr + value.length();
+
+    const UChar *ptr = value.characters();
+    const UChar *end = ptr + value.length();
     // The spec strangely doesn't allow leading whitespace.  We might choose to violate that intentionally. (section 4.1)
     while (ptr < end) {
-        if (!parseNumber(ptr, end, number))
+        if (!parseNumber(ptr, end, number)) {
             return;
+        }
         appendItem(number, ec);
     }
 }

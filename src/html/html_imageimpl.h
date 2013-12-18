@@ -30,7 +30,8 @@
 
 #include <QRegion>
 
-namespace DOM {
+namespace DOM
+{
 
 class DOMString;
 class HTMLFormElementImpl;
@@ -51,9 +52,8 @@ public:
     virtual void attach();
     virtual void removedFromDocument();
     virtual void insertedIntoDocument();
-    virtual void addId(const DOMString& id);
-    virtual void removeId(const DOMString& id);
-
+    virtual void addId(const DOMString &id);
+    virtual void removeId(const DOMString &id);
 
     long width() const;
     long height() const;
@@ -63,7 +63,10 @@ public:
     long x() const;
     long y() const;
 
-    bool isServerMap() const { return ( ismap && !usemap.length() );  }
+    bool isServerMap() const
+    {
+        return (ismap && !usemap.length());
+    }
     /** Return the image for this element.
      *  This has to convert the pixmap into an image first.
      *  This will return undefined results if complete() is not true.
@@ -76,7 +79,10 @@ public:
 
     DOMString altText() const;
 
-    DOMString imageMap() const { return usemap; }
+    DOMString imageMap() const
+    {
+        return usemap;
+    }
     /** See if the image has been completely downloaded.
      * @return True if and only if the image is completely downloaded yet*/
     bool complete() const;
@@ -84,11 +90,17 @@ public:
     virtual void notifyFinished(khtml::CachedObject *finishedObj);
     void dispatchLoadEvent();
 
-    khtml::CachedImage* image() { return m_image; }
+    khtml::CachedImage *image()
+    {
+        return m_image;
+    }
 
     // This returns true if this image has (or ever had!) cross-domain data; which will make
     // it unsafe to getImageData() it in canvas;
-    bool isUnsafe() const { return unsafe; }
+    bool isUnsafe() const
+    {
+        return unsafe;
+    }
 protected:
     DOMString usemap;
     bool ismap;
@@ -98,7 +110,6 @@ protected:
     HTMLFormElementImpl *m_form;
     DOMString            m_name;
 };
-
 
 //------------------------------------------------------------------
 
@@ -115,25 +126,30 @@ public:
 
     virtual void parseAttribute(AttributeImpl *attr);
 
-    bool isDefault() const { return shape==Default; }
+    bool isDefault() const
+    {
+        return shape == Default;
+    }
 
     bool mapMouseEvent(int x_, int y_, int width_, int height_,
-                       khtml::RenderObject::NodeInfo& info);
+                       khtml::RenderObject::NodeInfo &info);
 
     virtual QRect getRect() const;
 
-    QRegion cachedRegion() const { return region; }
+    QRegion cachedRegion() const
+    {
+        return region;
+    }
 
 protected:
     QRegion getRegion(int width_, int height) const;
     QRegion region;
-    khtml::Length* m_coords;
+    khtml::Length *m_coords;
     int m_coordsLen;
     int lastw, lasth;
     KDE_BF_ENUM(Shape) shape  : 3;
     bool nohref  : 1;
 };
-
 
 // -------------------------------------------------------------------------
 
@@ -146,19 +162,21 @@ public:
 
     virtual Id id() const;
 
-    virtual DOMString getName() const { return name; }
+    virtual DOMString getName() const
+    {
+        return name;
+    }
 
     virtual void parseAttribute(AttributeImpl *attr);
 
     bool mapMouseEvent(int x_, int y_, int width_, int height_,
-                       khtml::RenderObject::NodeInfo& info);
+                       khtml::RenderObject::NodeInfo &info);
 
-    HTMLCollectionImpl* areas();
+    HTMLCollectionImpl *areas();
 private:
 
     QString name;
 };
-
 
 } //namespace
 

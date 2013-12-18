@@ -33,44 +33,46 @@
 #include "dom/dom_string.h"
 #include "xml/dom_stringimpl.h"
 
-namespace khtml {
-namespace XPath {
+namespace khtml
+{
+namespace XPath
+{
 
 class Function : public Expression
 {
-	public:
-		void setArguments( const QList<Expression *> &args );
-		void setName( const DOM::DOMString &name );
+public:
+    void setArguments(const QList<Expression *> &args);
+    void setName(const DOM::DOMString &name);
 
-		virtual QString dump() const;
+    virtual QString dump() const;
 
-	protected:
-		Expression *arg( int pos );
-		const Expression *arg( int pos ) const;
-		unsigned int argCount() const;
-		DOM::DOMString name() const;
+protected:
+    Expression *arg(int pos);
+    const Expression *arg(int pos) const;
+    unsigned int argCount() const;
+    DOM::DOMString name() const;
 
-	private:
-		DOM::DOMString m_name;
+private:
+    DOM::DOMString m_name;
 };
 
 class FunctionLibrary
 {
-	friend struct FunctionMapping;
-	public:
-		static FunctionLibrary &self();
+    friend struct FunctionMapping;
+public:
+    static FunctionLibrary &self();
 
-		Function *getFunction( const DOM::DOMString& name,
-		                       const QList<Expression *> &args = QList<Expression *>() ) const;
+    Function *getFunction(const DOM::DOMString &name,
+                          const QList<Expression *> &args = QList<Expression *>()) const;
 
-	private:
-		struct FunctionRec;
+private:
+    struct FunctionRec;
 
-		FunctionLibrary();
-		FunctionLibrary( const FunctionLibrary &rhs );
-		FunctionLibrary &operator=( const FunctionLibrary &rhs );
+    FunctionLibrary();
+    FunctionLibrary(const FunctionLibrary &rhs);
+    FunctionLibrary &operator=(const FunctionLibrary &rhs);
 
-		QHash<DOM::DOMString, FunctionRec> m_functionDict;
+    QHash<DOM::DOMString, FunctionRec> m_functionDict;
 };
 
 } // namespace XPath

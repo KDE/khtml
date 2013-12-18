@@ -36,59 +36,67 @@
 #include <wtf/PassRefPtr.h>
 #include <wtf/RefCounted.h>
 
-namespace WebCore {
-    
-    class SVGElement;
-    class SVGSMILElement;
-    class SVGSVGElement;
+namespace WebCore
+{
 
-    class SMILTimeContainer : public RefCounted<SMILTimeContainer>  {
-    public:
-        static PassRefPtr<SMILTimeContainer> create(SVGSVGElement* owner) { return adoptRef(new SMILTimeContainer(owner)); } 
-    
-        void schedule(SVGSMILElement*);
-        void unschedule(SVGSMILElement*);
-        
-        SMILTime elapsed() const;
+class SVGElement;
+class SVGSMILElement;
+class SVGSVGElement;
 
-        bool isActive() const;
-        bool isPaused() const;
-        
-        void begin();
-        void pause();
-        void resume();
-        
-        void setDocumentOrderIndexesDirty() { m_documentOrderIndexesDirty = true; }
+class SMILTimeContainer : public RefCounted<SMILTimeContainer>
+{
+public:
+    static PassRefPtr<SMILTimeContainer> create(SVGSVGElement *owner)
+    {
+        return adoptRef(new SMILTimeContainer(owner));
+    }
 
-    private:
-        SMILTimeContainer(SVGSVGElement* owner);
-        
-        void timerFired(Timer<SMILTimeContainer>*);
-        void startTimer(SMILTime fireTime, SMILTime minimumDelay = 0);
-        void updateAnimations(SMILTime elapsed);
-        
-        void updateDocumentOrderIndexes();
-        void sortByPriority(Vector<SVGSMILElement*>& smilElements, SMILTime elapsed);
-        
-        typedef pair<SVGElement*, String> ElementAttributePair;
-        String baseValueFor(ElementAttributePair);
-        
-        double m_beginTime;
-        double m_pauseTime;
-        double m_accumulatedPauseTime;
-        
-        bool m_documentOrderIndexesDirty;
-        
-        Timer<SMILTimeContainer> m_timer;
+    void schedule(SVGSMILElement *);
+    void unschedule(SVGSMILElement *);
 
-        typedef HashSet<SVGSMILElement*> TimingElementSet;
-        TimingElementSet m_scheduledAnimations;
-        
-        typedef HashMap<ElementAttributePair, String> BaseValueMap;
-        BaseValueMap m_savedBaseValues;
+    SMILTime elapsed() const;
 
-        SVGSVGElement* m_ownerSVGElement;
-    };
+    bool isActive() const;
+    bool isPaused() const;
+
+    void begin();
+    void pause();
+    void resume();
+
+    void setDocumentOrderIndexesDirty()
+    {
+        m_documentOrderIndexesDirty = true;
+    }
+
+private:
+    SMILTimeContainer(SVGSVGElement *owner);
+
+    void timerFired(Timer<SMILTimeContainer> *);
+    void startTimer(SMILTime fireTime, SMILTime minimumDelay = 0);
+    void updateAnimations(SMILTime elapsed);
+
+    void updateDocumentOrderIndexes();
+    void sortByPriority(Vector<SVGSMILElement *> &smilElements, SMILTime elapsed);
+
+    typedef pair<SVGElement *, String> ElementAttributePair;
+    String baseValueFor(ElementAttributePair);
+
+    double m_beginTime;
+    double m_pauseTime;
+    double m_accumulatedPauseTime;
+
+    bool m_documentOrderIndexesDirty;
+
+    Timer<SMILTimeContainer> m_timer;
+
+    typedef HashSet<SVGSMILElement *> TimingElementSet;
+    TimingElementSet m_scheduledAnimations;
+
+    typedef HashMap<ElementAttributePair, String> BaseValueMap;
+    BaseValueMap m_savedBaseValues;
+
+    SVGSVGElement *m_ownerSVGElement;
+};
 }
 
 #endif

@@ -28,43 +28,54 @@
 #include "SVGTransformable.h"
 #include "wtf/OwnPtr.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class AffineTransform;
-    class SVGTransformList;
+class AffineTransform;
+class SVGTransformList;
 
-    class SVGStyledTransformableElement : public SVGStyledLocatableElement,
-                                          public SVGTransformable {
-    public:
-        SVGStyledTransformableElement(const QualifiedName&, Document*);
-        virtual ~SVGStyledTransformableElement();
-        
-        virtual bool isStyledTransformable() const { return true; }
+class SVGStyledTransformableElement : public SVGStyledLocatableElement,
+    public SVGTransformable
+{
+public:
+    SVGStyledTransformableElement(const QualifiedName &, Document *);
+    virtual ~SVGStyledTransformableElement();
 
-        virtual AffineTransform getCTM() const;
-        virtual AffineTransform getScreenCTM() const;
-        virtual SVGElement* nearestViewportElement() const;
-        virtual SVGElement* farthestViewportElement() const;
-        
-        virtual AffineTransform animatedLocalTransform() const;
-        virtual AffineTransform* supplementalTransform();
+    virtual bool isStyledTransformable() const
+    {
+        return true;
+    }
 
-        virtual FloatRect getBBox() const;
+    virtual AffineTransform getCTM() const;
+    virtual AffineTransform getScreenCTM() const;
+    virtual SVGElement *nearestViewportElement() const;
+    virtual SVGElement *farthestViewportElement() const;
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        bool isKnownAttribute(const QualifiedName&);
+    virtual AffineTransform animatedLocalTransform() const;
+    virtual AffineTransform *supplementalTransform();
 
-        // "base class" methods for all the elements which render as paths
-        virtual Path toPathData() const { return Path(); }
-        virtual Path toClipPath() const { return toPathData(); }
-        virtual RenderObject* createRenderer(RenderArena*, RenderStyle*);
+    virtual FloatRect getBBox() const;
 
-    protected:
-        ANIMATED_PROPERTY_DECLARATIONS(SVGStyledTransformableElement, SVGTransformList*, RefPtr<SVGTransformList>, Transform, transform)
-    private:
-        // Used by <animateMotion>
-        OwnPtr<AffineTransform> m_supplementalTransform;
-    };
+    virtual void parseMappedAttribute(MappedAttribute *);
+    bool isKnownAttribute(const QualifiedName &);
+
+    // "base class" methods for all the elements which render as paths
+    virtual Path toPathData() const
+    {
+        return Path();
+    }
+    virtual Path toClipPath() const
+    {
+        return toPathData();
+    }
+    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
+
+protected:
+    ANIMATED_PROPERTY_DECLARATIONS(SVGStyledTransformableElement, SVGTransformList *, RefPtr<SVGTransformList>, Transform, transform)
+private:
+    // Used by <animateMotion>
+    OwnPtr<AffineTransform> m_supplementalTransform;
+};
 
 } // namespace WebCore
 

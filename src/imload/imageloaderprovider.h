@@ -27,38 +27,36 @@
 
 #include <QByteArray>
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 class ImageLoader;
 /**
-To register new image formats, new copies of ImageLoaderProvider's must be 
-created and registered with ImageManager::loaderDatabase(). 
+To register new image formats, new copies of ImageLoaderProvider's must be
+created and registered with ImageManager::loaderDatabase().
 */
 class ImageLoaderProvider
 {
 public:
-    virtual ~ImageLoaderProvider(){}
-    enum Type
-    {
+    virtual ~ImageLoaderProvider() {}
+    enum Type {
         Efficient,
         Foreign
     };
-    
+
     /**
      Returns the type of the loader. An "efficient" loader does not duplicate any data, and will therefore be preferred;
-     while a "foreign" loader has to duplicate a large amount of image data to fit in w/the original 
+     while a "foreign" loader has to duplicate a large amount of image data to fit in w/the original
      framework, and should therefore only be used when a better loader is not available
     */
     virtual Type type() = 0;
 
-    
     /**
      Creates a loader for an image format that can decode a file starting with given data, or 0 if that's not possible.
     */
-    virtual ImageLoader* loaderFor(const QByteArray& prefix) = 0;
+    virtual ImageLoader *loaderFor(const QByteArray &prefix) = 0;
 };
 
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

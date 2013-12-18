@@ -33,9 +33,10 @@
 #include "SVGStyledElement.h"
 #include "SVGTransformList.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGStyledTransformableElement::SVGStyledTransformableElement(const QualifiedName& tagName, Document* doc)
+SVGStyledTransformableElement::SVGStyledTransformableElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledLocatableElement(tagName, doc)
     , SVGTransformable()
     , m_transform(SVGTransformList::create(SVGNames::transformAttr))
@@ -46,7 +47,7 @@ SVGStyledTransformableElement::~SVGStyledTransformableElement()
 {
 }
 
-ANIMATED_PROPERTY_DEFINITIONS(SVGStyledTransformableElement, SVGTransformList*, TransformList, transformList, Transform, transform, SVGNames::transformAttr, m_transform.get())
+ANIMATED_PROPERTY_DEFINITIONS(SVGStyledTransformableElement, SVGTransformList *, TransformList, transformList, Transform, transform, SVGNames::transformAttr, m_transform.get())
 
 AffineTransform SVGStyledTransformableElement::getCTM() const
 {
@@ -60,44 +61,47 @@ AffineTransform SVGStyledTransformableElement::getScreenCTM() const
 
 AffineTransform SVGStyledTransformableElement::animatedLocalTransform() const
 {
-    return m_supplementalTransform ? transform()->concatenate().matrix() * *m_supplementalTransform : transform()->concatenate().matrix();
+    return m_supplementalTransform ? transform()->concatenate().matrix() **m_supplementalTransform : transform()->concatenate().matrix();
 }
-    
-AffineTransform* SVGStyledTransformableElement::supplementalTransform()
+
+AffineTransform *SVGStyledTransformableElement::supplementalTransform()
 {
-    if (!m_supplementalTransform)
+    if (!m_supplementalTransform) {
         m_supplementalTransform.set(new AffineTransform());
+    }
     return m_supplementalTransform.get();
 }
 
-void SVGStyledTransformableElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGStyledTransformableElement::parseMappedAttribute(MappedAttribute *attr)
 {
     if (attr->name() == SVGNames::transformAttr) {
-        SVGTransformList* localTransforms = transformBaseValue();
+        SVGTransformList *localTransforms = transformBaseValue();
 
         ExceptionCode ec = 0;
         localTransforms->clear(ec);
- 
-        if (!SVGTransformable::parseTransformAttribute(localTransforms, attr->value()))
+
+        if (!SVGTransformable::parseTransformAttribute(localTransforms, attr->value())) {
             localTransforms->clear(ec);
-        else
+        } else {
             setTransformBaseValue(localTransforms);
-    } else
+        }
+    } else {
         SVGStyledLocatableElement::parseMappedAttribute(attr);
+    }
 }
 
-bool SVGStyledTransformableElement::isKnownAttribute(const QualifiedName& attrName)
+bool SVGStyledTransformableElement::isKnownAttribute(const QualifiedName &attrName)
 {
     return SVGTransformable::isKnownAttribute(attrName) ||
            SVGStyledLocatableElement::isKnownAttribute(attrName);
 }
 
-SVGElement* SVGStyledTransformableElement::nearestViewportElement() const
+SVGElement *SVGStyledTransformableElement::nearestViewportElement() const
 {
     return SVGTransformable::nearestViewportElement(this);
 }
 
-SVGElement* SVGStyledTransformableElement::farthestViewportElement() const
+SVGElement *SVGStyledTransformableElement::farthestViewportElement() const
 {
     return SVGTransformable::farthestViewportElement(this);
 }
@@ -107,10 +111,10 @@ FloatRect SVGStyledTransformableElement::getBBox() const
     return SVGTransformable::getBBox(this);
 }
 
-RenderObject* SVGStyledTransformableElement::createRenderer(RenderArena* arena, RenderStyle* style)
+RenderObject *SVGStyledTransformableElement::createRenderer(RenderArena *arena, RenderStyle *style)
 {
     // By default, any subclass is expected to do path-based drawing
-    return new (arena) RenderPath(style, this);
+    return new(arena) RenderPath(style, this);
 }
 
 }

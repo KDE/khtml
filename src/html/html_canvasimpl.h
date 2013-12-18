@@ -56,11 +56,13 @@
 #include <QPixmap>
 #include <QGradient>
 
-namespace khtmlImLoad {
-    class CanvasImage;
+namespace khtmlImLoad
+{
+class CanvasImage;
 }
 
-namespace DOM {
+namespace DOM
+{
 
 class CanvasContext2DImpl;
 
@@ -70,23 +72,29 @@ public:
     HTMLCanvasElementImpl(DocumentImpl *doc);
     ~HTMLCanvasElementImpl();
 
-    virtual void parseAttribute(AttributeImpl*);
+    virtual void parseAttribute(AttributeImpl *);
     virtual Id id() const;
 
     virtual void attach();
 
-    int width () const { return w; }
-    int height() const { return h; }
+    int width() const
+    {
+        return w;
+    }
+    int height() const
+    {
+        return h;
+    }
 
-    CanvasContext2DImpl* getContext2D();
+    CanvasContext2DImpl *getContext2D();
 
     // Note: we use QString here for efficiency reasons. We only need
     // one version since we only do the required image/png
-    QString toDataURL(int& exceptionCode);
+    QString toDataURL(int &exceptionCode);
 
     // Returns the canvas image, but does not guarantee it's
     // up-to-date
-    khtmlImLoad::CanvasImage* getCanvasImage();
+    khtmlImLoad::CanvasImage *getCanvasImage();
 
     bool isUnsafe() const;
     void markUnsafe();
@@ -107,13 +115,15 @@ public:
         Pattern
     };
 
-    virtual bool isUnsafe() const { return false; }
+    virtual bool isUnsafe() const
+    {
+        return false;
+    }
     virtual ~CanvasStyleBaseImpl() {}
 
     virtual Type   type() const = 0;
     virtual QBrush toBrush() const = 0;
 };
-
 
 // Not part of the DOM.
 class CanvasColorImpl : public CanvasStyleBaseImpl
@@ -121,28 +131,34 @@ class CanvasColorImpl : public CanvasStyleBaseImpl
 public:
     QColor color;
 
-    CanvasColorImpl(const QColor& newColor) : color(newColor)
+    CanvasColorImpl(const QColor &newColor) : color(newColor)
     {}
 
-    virtual Type type() const { return Color; }
+    virtual Type type() const
+    {
+        return Color;
+    }
 
-    virtual QBrush toBrush() const {
+    virtual QBrush toBrush() const
+    {
         return QBrush(color);
     }
 
     DOM::DOMString toString() const;
 
     // Note: returns 0 if it can not be parsed.
-    static CanvasColorImpl* fromString(const DOM::DOMString &s);
+    static CanvasColorImpl *fromString(const DOM::DOMString &s);
 };
-
 
 class CanvasPatternImpl : public CanvasStyleBaseImpl
 {
 public:
-    CanvasPatternImpl(const QImage& inImg, bool unsafe, bool rx, bool ry);
+    CanvasPatternImpl(const QImage &inImg, bool unsafe, bool rx, bool ry);
 
-    virtual Type type() const { return Pattern; }
+    virtual Type type() const
+    {
+        return Pattern;
+    }
     virtual QBrush toBrush() const;
 
     // Returns the rect that a pattern fill or stroke should be clipped to, given
@@ -151,7 +167,10 @@ public:
     // in the repeating dimension(s).
     QRectF clipForRepeat(const QPointF &origin, const QRectF &bounds) const;
 
-    virtual bool isUnsafe() const { return unsafe; }
+    virtual bool isUnsafe() const
+    {
+        return unsafe;
+    }
 private:
     QImage img;
     bool   repeatX, repeatY;
@@ -161,17 +180,20 @@ private:
 class CanvasGradientImpl : public CanvasStyleBaseImpl
 {
 public:
-    CanvasGradientImpl(QGradient* newGradient, float innerRadius = 0.0, bool inverse = false);
+    CanvasGradientImpl(QGradient *newGradient, float innerRadius = 0.0, bool inverse = false);
     ~CanvasGradientImpl();
 
     // Our internal interface..
-    virtual Type type() const { return Gradient; }
+    virtual Type type() const
+    {
+        return Gradient;
+    }
     virtual QBrush toBrush() const;
 
     // DOM API
-    void addColorStop(float offset, const DOM::DOMString& color, int& exceptionCode);
+    void addColorStop(float offset, const DOM::DOMString &color, int &exceptionCode);
 private:
-    QGradient* gradient;
+    QGradient *gradient;
     float innerRadius; // In a radial gradient
     bool inverse; // For radial gradients only
 };
@@ -181,23 +203,22 @@ class CanvasImageDataImpl : public khtml::Shared<CanvasImageDataImpl>
 public:
     // Creates an uninitialized image..
     CanvasImageDataImpl(unsigned width, unsigned height);
-    CanvasImageDataImpl* clone() const;
-    
+    CanvasImageDataImpl *clone() const;
 
     unsigned width()  const;
     unsigned height() const;
     QColor pixel(unsigned pixelNum) const;
-    void   setPixel(unsigned pixelNum, const QColor& val);
+    void   setPixel(unsigned pixelNum, const QColor &val);
     void   setComponent(unsigned pixelNum, int component, int value);
     QImage data;
 private:
-    CanvasImageDataImpl(const QImage& _data);
+    CanvasImageDataImpl(const QImage &_data);
 };
 
 class CanvasContext2DImpl : public khtml::Shared<CanvasContext2DImpl>
 {
 public:
-    CanvasContext2DImpl(HTMLCanvasElementImpl* element, int width, int height);
+    CanvasContext2DImpl(HTMLCanvasElementImpl *element, int width, int height);
     ~CanvasContext2DImpl();
 
     // Note: the native API does not attempt to validate
@@ -208,7 +229,7 @@ public:
     void commit();
 
     // Public API, exported via the DOM.
-    HTMLCanvasElementImpl* canvas() const;
+    HTMLCanvasElementImpl *canvas() const;
 
     // State management
     void save();
@@ -225,24 +246,24 @@ public:
     float globalAlpha() const;
     void  setGlobalAlpha(float a);
     DOMString globalCompositeOperation() const;
-    void  setGlobalCompositeOperation(const DOMString& op);
+    void  setGlobalCompositeOperation(const DOMString &op);
 
     // Colors and styles..
-    void setStrokeStyle(CanvasStyleBaseImpl* strokeStyle);
-    CanvasStyleBaseImpl* strokeStyle() const;
-    void setFillStyle(CanvasStyleBaseImpl* fillStyle);
-    CanvasStyleBaseImpl* fillStyle() const;
-    CanvasGradientImpl* createLinearGradient(float x0, float y0, float x1, float y1) const;
-    CanvasGradientImpl* createRadialGradient(float x0, float y0, float r0, float x1, float y1, float r1, int& exceptionCode) const;
-    CanvasPatternImpl*  createPattern(ElementImpl* pat, const DOMString& rpt, int& exceptionCode) const;
+    void setStrokeStyle(CanvasStyleBaseImpl *strokeStyle);
+    CanvasStyleBaseImpl *strokeStyle() const;
+    void setFillStyle(CanvasStyleBaseImpl *fillStyle);
+    CanvasStyleBaseImpl *fillStyle() const;
+    CanvasGradientImpl *createLinearGradient(float x0, float y0, float x1, float y1) const;
+    CanvasGradientImpl *createRadialGradient(float x0, float y0, float r0, float x1, float y1, float r1, int &exceptionCode) const;
+    CanvasPatternImpl  *createPattern(ElementImpl *pat, const DOMString &rpt, int &exceptionCode) const;
 
     // Line attributes
     float lineWidth() const;
     void  setLineWidth(float newLW);
     DOMString lineCap() const;
-    void  setLineCap(const DOMString& newCap);
+    void  setLineCap(const DOMString &newCap);
     DOMString lineJoin() const;
-    void  setLineJoin(const DOMString& newJoin);
+    void  setLineJoin(const DOMString &newJoin);
     float miterLimit() const;
     void  setMiterLimit(float newML);
 
@@ -254,12 +275,12 @@ public:
     float shadowBlur() const;
     void  setShadowBlur(float newBlur);
     DOMString shadowColor() const;
-    void  setShadowColor(const DOMString& newColor);
+    void  setShadowColor(const DOMString &newColor);
 
     // Rectangle operations
-    void clearRect (float x, float y, float w, float h, int& exceptionCode);
-    void fillRect  (float x, float y, float w, float h, int& exceptionCode);
-    void strokeRect(float x, float y, float w, float h, int& exceptionCode);
+    void clearRect(float x, float y, float w, float h, int &exceptionCode);
+    void fillRect(float x, float y, float w, float h, int &exceptionCode);
+    void strokeRect(float x, float y, float w, float h, int &exceptionCode);
 
     // Path-based ops
     void beginPath();
@@ -267,26 +288,26 @@ public:
     void moveTo(float x, float y);
     void lineTo(float x, float y);
     void quadraticCurveTo(float cpx, float cpy, float x, float y);
-    void bezierCurveTo   (float cp1x, float cp1y, float cp2x, float cp2y, float x, float y);
-    void arcTo(float x1, float y1, float x2, float y2, float radius, int& exceptionCode);
-    void rect(float x, float y, float w, float h, int& exceptionCode);
+    void bezierCurveTo(float cp1x, float cp1y, float cp2x, float cp2y, float x, float y);
+    void arcTo(float x1, float y1, float x2, float y2, float radius, int &exceptionCode);
+    void rect(float x, float y, float w, float h, int &exceptionCode);
     void arc(float x, float y, float radius, float startAngle, float endAngle,
-             bool ccw, int& exceptionCode);
+             bool ccw, int &exceptionCode);
     void fill();
     void stroke();
     void clip();
     bool isPointInPath(float x, float y) const;
 
     // Image ops
-    void drawImage(ElementImpl* image, float dx, float dy, int& exceptionCode);
-    void drawImage(ElementImpl* image, float dx, float dy, float dw, float dh, int& exceptionCode);
-    void drawImage(ElementImpl* image, float sx, float sy, float sw, float sh,
-                   float dx, float dy, float dw, float dh, int& exceptionCode);
+    void drawImage(ElementImpl *image, float dx, float dy, int &exceptionCode);
+    void drawImage(ElementImpl *image, float dx, float dy, float dw, float dh, int &exceptionCode);
+    void drawImage(ElementImpl *image, float sx, float sy, float sw, float sh,
+                   float dx, float dy, float dw, float dh, int &exceptionCode);
 
     // Pixel ops
-    CanvasImageDataImpl* getImageData(float sx, float sy, float sw, float sh, int& exceptionCode);
-    void putImageData(CanvasImageDataImpl* data, float dx, float dy, int& exceptionCode);
-    CanvasImageDataImpl* createImageData(float sw, float sh, int& exceptionCode);
+    CanvasImageDataImpl *getImageData(float sx, float sy, float sw, float sh, int &exceptionCode);
+    void putImageData(CanvasImageDataImpl *data, float dx, float dy, int &exceptionCode);
+    CanvasImageDataImpl *createImageData(float sw, float sh, int &exceptionCode);
 
 private:
     friend class HTMLCanvasElementImpl;
@@ -317,21 +338,21 @@ private:
                    const QRectF &srcRect) const;
 
     // Cleared by canvas dtor..
-    HTMLCanvasElementImpl* canvasElement;
+    HTMLCanvasElementImpl *canvasElement;
 
     // Helper for methods that take images via elements; this will extract them,
     // and signal an exception if needed be. It will also return if the
     // image is unsafe
-    QImage extractImage(ElementImpl* el, int& exceptionCode, bool& unsafeOut) const;
+    QImage extractImage(ElementImpl *el, int &exceptionCode, bool &unsafeOut) const;
 
     // This method will prepare a painter for use, making sure it's active,
     // that all the dirty state got sync'd, etc, and will mark the
     // canvas as dirty so the renderer can flush everything, etc.
-    QPainter* acquirePainter();
+    QPainter *acquirePainter();
 
     // We use khtmlImLoad to manage our canvas image, so that
     // the Renderer can scale easily.
-    khtmlImLoad::CanvasImage* canvasImage;
+    khtmlImLoad::CanvasImage *canvasImage;
 
     // The path is global, and never saved/restored
     QPainterPath path;
@@ -346,7 +367,7 @@ private:
         // Viewport state (not readable from outside)
         QTransform    transform;
         bool          infinityTransform; // Marks that the transform has become invalid,
-                                         // and should be treated as identity.
+        // and should be treated as identity.
         QPainterPath  clipPath; // This is in -physical- coordinates
         bool          clipping; // If clipping is enabled
 
@@ -374,18 +395,27 @@ private:
     // The stack of states. The entry on the top is always the current state.
     QStack<PaintState> stateStack;
 
-    const PaintState& activeState() const { return stateStack.top(); }
-    PaintState& activeState() { return stateStack.top(); }
+    const PaintState &activeState() const
+    {
+        return stateStack.top();
+    }
+    PaintState &activeState()
+    {
+        return stateStack.top();
+    }
 
-    QPointF mapToDevice(const QPointF &point) const {
+    QPointF mapToDevice(const QPointF &point) const
+    {
         return point * stateStack.top().transform;
     }
 
-    QPointF mapToDevice(float x, float y) const {
+    QPointF mapToDevice(float x, float y) const
+    {
         return QPointF(x, y) * stateStack.top().transform;
     }
 
-    QPointF mapToUser(const QPointF &point) const {
+    QPointF mapToUser(const QPointF &point) const
+    {
         return point * stateStack.top().transform.inverted();
     }
 
@@ -422,8 +452,6 @@ private:
     bool emptyPath;
 };
 
-
 } //namespace
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

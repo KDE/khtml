@@ -28,34 +28,36 @@
 #include "SVGElement.h"
 #include "Document.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    //class MappedAttribute;
+//class MappedAttribute;
 
-    // FIXME: This is wrong for several reasons:
-    // 1. externalResourcesRequired is not animateable according to SVG 1.1 section 5.9
-    // 2. externalResourcesRequired should just be part of SVGElement, and default to "false" for all elements
-    /*
-     SPEC: Note that the SVG DOM 
-     defines the attribute externalResourcesRequired as being of type SVGAnimatedBoolean, whereas the 
-     SVG language definition says that externalResourcesRequired is not animated. Because the SVG 
-     language definition states that externalResourcesRequired cannot be animated, the animVal will 
-     always be the same as the baseVal.
-     */
-    class SVGExternalResourcesRequired {
-    public:
-        SVGExternalResourcesRequired();
-        virtual ~SVGExternalResourcesRequired();
+// FIXME: This is wrong for several reasons:
+// 1. externalResourcesRequired is not animateable according to SVG 1.1 section 5.9
+// 2. externalResourcesRequired should just be part of SVGElement, and default to "false" for all elements
+/*
+ SPEC: Note that the SVG DOM
+ defines the attribute externalResourcesRequired as being of type SVGAnimatedBoolean, whereas the
+ SVG language definition says that externalResourcesRequired is not animated. Because the SVG
+ language definition states that externalResourcesRequired cannot be animated, the animVal will
+ always be the same as the baseVal.
+ */
+class SVGExternalResourcesRequired
+{
+public:
+    SVGExternalResourcesRequired();
+    virtual ~SVGExternalResourcesRequired();
 
-        bool parseMappedAttribute(MappedAttribute*);
-        bool isKnownAttribute(const QualifiedName&);
+    bool parseMappedAttribute(MappedAttribute *);
+    bool isKnownAttribute(const QualifiedName &);
 
-    protected:
-        virtual const SVGElement* contextElement() const = 0;
+protected:
+    virtual const SVGElement *contextElement() const = 0;
 
-    private:
-        ANIMATED_PROPERTY_DECLARATIONS_WITH_CONTEXT(SVGExternalResourcesRequired, bool, bool, ExternalResourcesRequired, externalResourcesRequired)
-    };
+private:
+    ANIMATED_PROPERTY_DECLARATIONS_WITH_CONTEXT(SVGExternalResourcesRequired, bool, bool, ExternalResourcesRequired, externalResourcesRequired)
+};
 
 } // namespace WebCore
 

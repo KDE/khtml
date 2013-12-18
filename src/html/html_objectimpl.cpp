@@ -37,7 +37,6 @@
 #include <kmessagebox.h>
 #include <qmimedatabase.h>
 
-
 #include "xml/dom_docimpl.h"
 #include "css/cssstyleselector.h"
 #include "css/csshelper.h"
@@ -60,18 +59,20 @@ HTMLPartContainerElementImpl::HTMLPartContainerElementImpl(DocumentImpl *doc)
 HTMLPartContainerElementImpl::~HTMLPartContainerElementImpl()
 {
     // Kill the renderer here, since we are asking for a widget to be deleted
-    if (m_render)
+    if (m_render) {
         detach();
+    }
 
-    if (m_childWidget)
+    if (m_childWidget) {
         m_childWidget->deleteLater();
+    }
 }
 
 void HTMLPartContainerElementImpl::recalcStyle(StyleChange ch)
 {
     computeContentIfNeeded();
 
-    HTMLElementImpl::recalcStyle( ch );
+    HTMLElementImpl::recalcStyle(ch);
 }
 
 void HTMLPartContainerElementImpl::close()
@@ -82,8 +83,9 @@ void HTMLPartContainerElementImpl::close()
 
 void HTMLPartContainerElementImpl::computeContentIfNeeded()
 {
-    if (!m_needToComputeContent)
+    if (!m_needToComputeContent) {
         return;
+    }
 
     m_needToComputeContent = false;
     computeContent();
@@ -92,19 +94,22 @@ void HTMLPartContainerElementImpl::computeContentIfNeeded()
 void HTMLPartContainerElementImpl::setNeedComputeContent()
 {
     m_needToComputeContent = true;
-    if (closed())
-        setChanged(); //React quickly when not in the middle of parsing..
+    if (closed()) {
+        setChanged();    //React quickly when not in the middle of parsing..
+    }
 }
 
-void HTMLPartContainerElementImpl::setWidget(QWidget* widget)
+void HTMLPartContainerElementImpl::setWidget(QWidget *widget)
 {
-    if (widget == m_childWidget)
-        return; // The same part got navigated. Don't do anything
+    if (widget == m_childWidget) {
+        return;    // The same part got navigated. Don't do anything
+    }
 
-    QWidget* oldWidget = m_childWidget;
+    QWidget *oldWidget = m_childWidget;
     m_childWidget = widget;
-    if (m_childWidget)
+    if (m_childWidget) {
         m_childWidget->hide();
+    }
 
     setWidgetNotify(m_childWidget);
     if (oldWidget) {
@@ -123,7 +128,7 @@ void HTMLPartContainerElementImpl::clearChildWidget()
     setWidget(0);
 }
 
-bool HTMLPartContainerElementImpl::mimetypeHandledInternally(const QString&)
+bool HTMLPartContainerElementImpl::mimetypeHandledInternally(const QString &)
 {
     return false;
 }
@@ -135,7 +140,7 @@ void HTMLPartContainerElementImpl::slotEmitLoadEvent()
 
 void HTMLPartContainerElementImpl::postResizeEvent()
 {
-   QApplication::postEvent( this, new QEvent(static_cast<QEvent::Type>(DOMCFResizeEvent)) );
+    QApplication::postEvent(this, new QEvent(static_cast<QEvent::Type>(DOMCFResizeEvent)));
 }
 
 void HTMLPartContainerElementImpl::sendPostedResizeEvents()
@@ -162,56 +167,58 @@ HTMLObjectBaseElementImpl::HTMLObjectBaseElementImpl(DocumentImpl *doc)
     m_rerender             = false;
 }
 
-void HTMLObjectBaseElementImpl::setServiceType(const QString & val) {
+void HTMLObjectBaseElementImpl::setServiceType(const QString &val)
+{
     serviceType = val.toLower();
-    int pos = serviceType.indexOf( ";" );
-    if ( pos!=-1 )
-        serviceType.truncate( pos );
+    int pos = serviceType.indexOf(";");
+    if (pos != -1) {
+        serviceType.truncate(pos);
+    }
 }
 
 void HTMLObjectBaseElementImpl::parseAttribute(AttributeImpl *attr)
 {
-    switch ( attr->id() )
-    {
-        case ATTR_TYPE:
-        case ATTR_CODETYPE:
-            if (attr->val()) {
-                setServiceType(attr->val()->string());
-                setNeedComputeContent();
-            }
-            break;
-        case ATTR_WIDTH:
-            if (!attr->value().isEmpty())
-                addCSSLength(CSS_PROP_WIDTH, attr->value());
-            else
-                removeCSSProperty(CSS_PROP_WIDTH);
-            break;
-        case ATTR_HEIGHT:
-            if (!attr->value().isEmpty())
-                addCSSLength(CSS_PROP_HEIGHT, attr->value());
-            else
-                removeCSSProperty(CSS_PROP_HEIGHT);
-            break;
-        case ATTR_NAME:
-            if (inDocument() && m_name != attr->value()) {
-                document()->underDocNamedCache().remove(m_name,        this);
-                document()->underDocNamedCache().add   (attr->value(), this);
-            }
-            m_name = attr->value();
-            //fallthrough
-        default:
-            HTMLElementImpl::parseAttribute( attr );
+    switch (attr->id()) {
+    case ATTR_TYPE:
+    case ATTR_CODETYPE:
+        if (attr->val()) {
+            setServiceType(attr->val()->string());
+            setNeedComputeContent();
+        }
+        break;
+    case ATTR_WIDTH:
+        if (!attr->value().isEmpty()) {
+            addCSSLength(CSS_PROP_WIDTH, attr->value());
+        } else {
+            removeCSSProperty(CSS_PROP_WIDTH);
+        }
+        break;
+    case ATTR_HEIGHT:
+        if (!attr->value().isEmpty()) {
+            addCSSLength(CSS_PROP_HEIGHT, attr->value());
+        } else {
+            removeCSSProperty(CSS_PROP_HEIGHT);
+        }
+        break;
+    case ATTR_NAME:
+        if (inDocument() && m_name != attr->value()) {
+            document()->underDocNamedCache().remove(m_name,        this);
+            document()->underDocNamedCache().add(attr->value(), this);
+        }
+        m_name = attr->value();
+    //fallthrough
+    default:
+        HTMLElementImpl::parseAttribute(attr);
     }
 }
-
 
 void HTMLObjectBaseElementImpl::defaultEventHandler(EventImpl *e)
 {
     // ### duplicated in HTMLIFrameElementImpl
-     if ( e->target() == this && m_render && m_render->isWidget()
-                                    && static_cast<RenderWidget*>(m_render)->isRedirectedWidget()
-                                    && qobject_cast<KHTMLView*>(static_cast<RenderWidget*>(m_render)->widget())) {
-        switch(e->id())  {
+    if (e->target() == this && m_render && m_render->isWidget()
+            && static_cast<RenderWidget *>(m_render)->isRedirectedWidget()
+            && qobject_cast<KHTMLView *>(static_cast<RenderWidget *>(m_render)->widget())) {
+        switch (e->id())  {
         case EventImpl::MOUSEDOWN_EVENT:
         case EventImpl::MOUSEUP_EVENT:
         case EventImpl::MOUSEMOVE_EVENT:
@@ -223,15 +230,15 @@ void HTMLObjectBaseElementImpl::defaultEventHandler(EventImpl *e)
         case EventImpl::KEYPRESS_EVENT:
         case EventImpl::DOMFOCUSIN_EVENT:
         case EventImpl::DOMFOCUSOUT_EVENT:
-            if (static_cast<RenderWidget*>(m_render)->handleEvent(*e))
+            if (static_cast<RenderWidget *>(m_render)->handleEvent(*e)) {
                 e->setDefaultHandled();
+            }
         default:
             break;
         }
     }
     HTMLElementImpl::defaultEventHandler(e);
 }
-
 
 void HTMLObjectBaseElementImpl::removedFromDocument()
 {
@@ -241,7 +248,7 @@ void HTMLObjectBaseElementImpl::removedFromDocument()
     // We have to do it here and not just call setNeedComputeContent(),
     // since khtml will not try to restyle changed() things not in document.
     clearChildWidget();
-    
+
     HTMLPartContainerElementImpl::removedFromDocument();
 }
 
@@ -252,13 +259,13 @@ void HTMLObjectBaseElementImpl::insertedIntoDocument()
     HTMLPartContainerElementImpl::insertedIntoDocument();
 }
 
-void HTMLObjectBaseElementImpl::removeId(const DOMString& id)
+void HTMLObjectBaseElementImpl::removeId(const DOMString &id)
 {
     document()->underDocNamedCache().remove(id, this);
     HTMLElementImpl::removeId(id);
 }
 
-void HTMLObjectBaseElementImpl::addId   (const DOMString& id)
+void HTMLObjectBaseElementImpl::addId(const DOMString &id)
 {
     document()->underDocNamedCache().add(id, this);
     HTMLElementImpl::addId(id);
@@ -266,19 +273,23 @@ void HTMLObjectBaseElementImpl::addId   (const DOMString& id)
 
 void HTMLObjectBaseElementImpl::requestRerender()
 {
-    if (m_rerender) return;
+    if (m_rerender) {
+        return;
+    }
     m_rerender = true;
-    QTimer::singleShot( 0, this, SLOT(slotRerender()) );
+    QTimer::singleShot(0, this, SLOT(slotRerender()));
 }
 
 void HTMLObjectBaseElementImpl::slotRerender()
 {
     // the singleshot timer might have fired after we're removed
     // from the document, but not yet deleted due to references
-    if ( !inDocument() || !m_rerender ) return;
+    if (!inDocument() || !m_rerender) {
+        return;
+    }
 
     // ### there can be a m_render if this is called from our attach indirectly
-    if ( attached() || m_render) {
+    if (attached() || m_render) {
         detach();
         attach();
     }
@@ -286,7 +297,8 @@ void HTMLObjectBaseElementImpl::slotRerender()
     m_rerender = false;
 }
 
-void HTMLObjectBaseElementImpl::attach() {
+void HTMLObjectBaseElementImpl::attach()
+{
     assert(!attached());
     assert(!m_render);
 
@@ -304,43 +316,44 @@ void HTMLObjectBaseElementImpl::attach() {
         return;
     }
 
-    RenderStyle* _style = document()->styleSelector()->styleForElement(this);
+    RenderStyle *_style = document()->styleSelector()->styleForElement(this);
     _style->ref();
 
     if (parentNode()->renderer() && parentNode()->renderer()->childAllowed() &&
-        _style->display() != NONE)
-    {
+            _style->display() != NONE) {
         if (m_imageLike) {
-            m_render = new (document()->renderArena()) RenderImage(this);
+            m_render = new(document()->renderArena()) RenderImage(this);
         } else {
-            m_render = new (document()->renderArena()) RenderPartObject(this);
+            m_render = new(document()->renderArena()) RenderPartObject(this);
             // If we already have a widget, set it.
-            if (childWidget())
-                static_cast<RenderFrame*>(m_render)->setWidget(childWidget());
+            if (childWidget()) {
+                static_cast<RenderFrame *>(m_render)->setWidget(childWidget());
+            }
         }
 
         m_render->setStyle(_style);
         parentNode()->renderer()->addChild(m_render, nextRenderer());
-        if (m_imageLike)
+        if (m_imageLike) {
             m_render->updateFromElement();
+        }
     }
 
     _style->deref();
     NodeBaseImpl::attach();
 }
 
-HTMLEmbedElementImpl* HTMLObjectBaseElementImpl::relevantEmbed()
+HTMLEmbedElementImpl *HTMLObjectBaseElementImpl::relevantEmbed()
 {
     for (NodeImpl *child = firstChild(); child; child = child->nextSibling()) {
-        if ( child->id() == ID_EMBED ) {
-            return static_cast<HTMLEmbedElementImpl *>( child );
+        if (child->id() == ID_EMBED) {
+            return static_cast<HTMLEmbedElementImpl *>(child);
         }
     }
 
     return 0;
 }
 
-bool HTMLObjectBaseElementImpl::mimetypeHandledInternally(const QString& mime)
+bool HTMLObjectBaseElementImpl::mimetypeHandledInternally(const QString &mime)
 {
     QStringList supportedImageTypes = khtmlImLoad::ImageManager::loaderDatabase()->supportedMimeTypes();
 
@@ -358,7 +371,7 @@ void HTMLObjectBaseElementImpl::computeContent()
 {
     QStringList params;
     QString     effectiveURL = url; // May be overwritten by some of the <params>
-                                    // if the URL isn't there
+    // if the URL isn't there
     QString     effectiveServiceType = serviceType;
 
     // We need to wait until everything has parsed, since we need the <param>s,
@@ -376,9 +389,9 @@ void HTMLObjectBaseElementImpl::computeContent()
 
     // Collect information from <param> children for ...
     // It also sometimes supplements or replaces some of the element's attributes
-    for (NodeImpl* child = firstChild(); child; child = child->nextSibling()) {
+    for (NodeImpl *child = firstChild(); child; child = child->nextSibling()) {
         if (child->id() == ID_PARAM) {
-            HTMLParamElementImpl *p = static_cast<HTMLParamElementImpl *>( child );
+            HTMLParamElementImpl *p = static_cast<HTMLParamElementImpl *>(child);
 
             QString aStr = p->name();
             aStr += QLatin1String("=\"");
@@ -389,10 +402,10 @@ void HTMLObjectBaseElementImpl::computeContent()
                 setServiceType(p->value());
                 effectiveServiceType = serviceType;
             } else if (effectiveURL.isEmpty() &&
-                        (name_lower == QLatin1String("src") ||
+                       (name_lower == QLatin1String("src") ||
                         name_lower == QLatin1String("movie") ||
                         name_lower == QLatin1String("code"))) {
-                    effectiveURL = p->value();
+                effectiveURL = p->value();
             }
             params.append(aStr);
         }
@@ -400,8 +413,8 @@ void HTMLObjectBaseElementImpl::computeContent()
 
     // For <applet>(?) and <embed> we also make each attribute a part parameter
     if (id() != ID_OBJECT) {
-          NamedAttrMapImpl* a = attributes();
-          if (a) {
+        NamedAttrMapImpl *a = attributes();
+        if (a) {
             for (unsigned i = 0; i < a->length(); ++i) {
                 NodeImpl::Id id = a->idAt(i);
                 DOMString value = a->valueAt(i);
@@ -410,33 +423,38 @@ void HTMLObjectBaseElementImpl::computeContent()
         }
     }
 
-    params.append( QLatin1String("__KHTML__PLUGINEMBED=\"YES\"") );
-    params.append( QString::fromLatin1("__KHTML__PLUGINBASEURL=\"%1\"").arg(document()->baseURL().url()));
-    params.append( QString::fromLatin1("__KHTML__PLUGINPAGEURL=\"%1\"").arg(document()->URL().url()));
+    params.append(QLatin1String("__KHTML__PLUGINEMBED=\"YES\""));
+    params.append(QString::fromLatin1("__KHTML__PLUGINBASEURL=\"%1\"").arg(document()->baseURL().url()));
+    params.append(QString::fromLatin1("__KHTML__PLUGINPAGEURL=\"%1\"").arg(document()->URL().url()));
 
     // Non-embed elements parse a bunch of attributes and inherit things off <embed>, if any
-    HTMLEmbedElementImpl* embed = relevantEmbed();
+    HTMLEmbedElementImpl *embed = relevantEmbed();
     if (id() != ID_EMBED) {
-        params.append( QString::fromLatin1("__KHTML__CLASSID=\"%1\"").arg( classId ) );
-        params.append( QString::fromLatin1("__KHTML__CODEBASE=\"%1\"").arg( getAttribute(ATTR_CODEBASE).string() ) );
+        params.append(QString::fromLatin1("__KHTML__CLASSID=\"%1\"").arg(classId));
+        params.append(QString::fromLatin1("__KHTML__CODEBASE=\"%1\"").arg(getAttribute(ATTR_CODEBASE).string()));
 
-        if (embed && !embed->getAttribute(ATTR_WIDTH).isEmpty())
+        if (embed && !embed->getAttribute(ATTR_WIDTH).isEmpty()) {
             setAttribute(ATTR_WIDTH, embed->getAttribute(ATTR_WIDTH));
+        }
 
-        if (embed && !embed->getAttribute(ATTR_HEIGHT).isEmpty())
+        if (embed && !embed->getAttribute(ATTR_HEIGHT).isEmpty()) {
             setAttribute(ATTR_HEIGHT, embed->getAttribute(ATTR_HEIGHT));
+        }
 
-        if (!getAttribute(ATTR_WIDTH).isEmpty())
-            params.append( QString::fromLatin1("WIDTH=\"%1\"").arg( getAttribute(ATTR_WIDTH).string() ) );
+        if (!getAttribute(ATTR_WIDTH).isEmpty()) {
+            params.append(QString::fromLatin1("WIDTH=\"%1\"").arg(getAttribute(ATTR_WIDTH).string()));
+        }
 
-        if (!getAttribute(ATTR_HEIGHT).isEmpty())
-            params.append( QString::fromLatin1("HEIGHT=\"%1\"").arg( getAttribute(ATTR_HEIGHT).string() ) );
+        if (!getAttribute(ATTR_HEIGHT).isEmpty()) {
+            params.append(QString::fromLatin1("HEIGHT=\"%1\"").arg(getAttribute(ATTR_HEIGHT).string()));
+        }
 
         // Fix up the serviceType from embed, or applet info..
         if (embed) {
             effectiveURL = embed->url;
-            if (!embed->serviceType.isEmpty())
+            if (!embed->serviceType.isEmpty()) {
                 effectiveServiceType = embed->serviceType;
+            }
         } else if (effectiveURL.isEmpty() &&
                    classId.startsWith(QLatin1String("java:"))) {
             effectiveServiceType = "application/x-java-applet";
@@ -445,39 +463,43 @@ void HTMLObjectBaseElementImpl::computeContent()
 
         // Translate ActiveX gibberish into mimetypes
         if ((effectiveServiceType.isEmpty() || serviceType == "application/x-oleobject") && !classId.isEmpty()) {
-            if(classId.indexOf(QString::fromLatin1("D27CDB6E-AE6D-11cf-96B8-444553540000")) >= 0)
+            if (classId.indexOf(QString::fromLatin1("D27CDB6E-AE6D-11cf-96B8-444553540000")) >= 0) {
                 effectiveServiceType = "application/x-shockwave-flash";
-            else if(classId.indexOf(QLatin1String("CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA")) >= 0)
+            } else if (classId.indexOf(QLatin1String("CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA")) >= 0) {
                 effectiveServiceType = "audio/x-pn-realaudio-plugin";
-            else if(classId.indexOf(QLatin1String("8AD9C840-044E-11D1-B3E9-00805F499D93")) >= 0 ||
-                    classId.indexOf(QLatin1String("CAFEEFAC-0014-0000-0000-ABCDEFFEDCBA")) >= 0)
+            } else if (classId.indexOf(QLatin1String("8AD9C840-044E-11D1-B3E9-00805F499D93")) >= 0 ||
+                       classId.indexOf(QLatin1String("CAFEEFAC-0014-0000-0000-ABCDEFFEDCBA")) >= 0) {
                 effectiveServiceType = "application/x-java-applet";
+            }
             // http://www.apple.com/quicktime/tools_tips/tutorials/activex.html
-            else if(classId.indexOf(QLatin1String("02BF25D5-8C17-4B23-BC80-D3488ABDDC6B")) >= 0)
+            else if (classId.indexOf(QLatin1String("02BF25D5-8C17-4B23-BC80-D3488ABDDC6B")) >= 0) {
                 effectiveServiceType = "video/quicktime";
+            }
             // http://msdn.microsoft.com/library/en-us/dnwmt/html/adding_windows_media_to_web_pages__etse.asp?frame=true
-            else if(classId.indexOf(QString::fromLatin1("6BF52A52-394A-11d3-B153-00C04F79FAA6")) >= 0 ||
-                    classId.indexOf(QString::fromLatin1("22D6f312-B0F6-11D0-94AB-0080C74C7E95")) >= 0)
+            else if (classId.indexOf(QString::fromLatin1("6BF52A52-394A-11d3-B153-00C04F79FAA6")) >= 0 ||
+                     classId.indexOf(QString::fromLatin1("22D6f312-B0F6-11D0-94AB-0080C74C7E95")) >= 0) {
                 effectiveServiceType = "video/x-msvideo";
-            else {
+            } else {
                 // qDebug() << "ActiveX classId " << classId;
             }
-              // TODO: add more plugins here
+            // TODO: add more plugins here
         }
     }
 
     if (effectiveServiceType.isEmpty() &&
-        effectiveURL.startsWith(QLatin1String("data:"))) {
+            effectiveURL.startsWith(QLatin1String("data:"))) {
         // Extract the MIME type from the data URL.
         int index = effectiveURL.indexOf(';');
-        if (index == -1)
+        if (index == -1) {
             index = effectiveURL.indexOf(',');
+        }
         if (index != -1) {
             int len = index - 5;
-            if (len > 0)
+            if (len > 0) {
                 effectiveServiceType = effectiveURL.mid(5, len);
-            else
-                effectiveServiceType = "text/plain"; // Data URLs with no MIME type are considered text/plain.
+            } else {
+                effectiveServiceType = "text/plain";    // Data URLs with no MIME type are considered text/plain.
+            }
         }
     }
 
@@ -492,42 +514,47 @@ void HTMLObjectBaseElementImpl::computeContent()
         requestRerender();
     }
 
-    if (m_imageLike)
+    if (m_imageLike) {
         return;
+    }
 
     // Now see if we have to render alternate content.
     bool newRenderAlternative = false;
 
     // If we aren't permitted to load this by security policy, render alternative content instead.
-    if (!document()->isURLAllowed(effectiveURL))
+    if (!document()->isURLAllowed(effectiveURL)) {
         newRenderAlternative = true;
+    }
 
     // If Java is off, render alternative as well...
     if (effectiveServiceType == "application/x-java-applet") {
-        KHTMLPart* p = document()->part();
-        if (!p || !p->javaEnabled())
+        KHTMLPart *p = document()->part();
+        if (!p || !p->javaEnabled()) {
             newRenderAlternative = true;
+        }
     }
 
     // If there is no <embed> (here or as a child), and we don't have a type + url to go on,
     // we need to render alternative as well
-    if (!embed && effectiveURL.isEmpty() && effectiveServiceType.isEmpty())
+    if (!embed && effectiveURL.isEmpty() && effectiveServiceType.isEmpty()) {
         newRenderAlternative = true;
+    }
 
     if (newRenderAlternative != m_renderAlternative) {
         m_renderAlternative = newRenderAlternative;
         requestRerender();
     }
 
-    if (m_renderAlternative)
+    if (m_renderAlternative) {
         return;
+    }
 
-    KHTMLPart* part = document()->part();
+    KHTMLPart *part = document()->part();
     clearChildWidget();
 
     // qDebug() << effectiveURL << effectiveServiceType << params;
 
-    if (!part->loadObjectElement( this, effectiveURL, effectiveServiceType, params)) {
+    if (!part->loadObjectElement(this, effectiveURL, effectiveServiceType, params)) {
         // Looks like we are gonna need alternative content after all...
         m_renderAlternative = true;
     }
@@ -540,14 +567,16 @@ void HTMLObjectBaseElementImpl::computeContent()
 void HTMLObjectBaseElementImpl::setWidgetNotify(QWidget *widget)
 {
     // Ick.
-    if(m_render && strcmp( m_render->renderName(),  "RenderPartObject" ) == 0 )
-        static_cast<RenderPartObject*>(m_render)->setWidget(widget);
+    if (m_render && strcmp(m_render->renderName(),  "RenderPartObject") == 0) {
+        static_cast<RenderPartObject *>(m_render)->setWidget(widget);
+    }
 }
 
 void HTMLObjectBaseElementImpl::renderAlternative()
 {
-    if (m_renderAlternative)
+    if (m_renderAlternative) {
         return;
+    }
 
     m_renderAlternative = true;
     requestRerender();
@@ -575,35 +604,35 @@ void HTMLObjectBaseElementImpl::slotPartLoadingErrorNotify()
     HTMLEmbedElementImpl *embed = relevantEmbed();
     QString serviceType; // shadows ours, but we don't care.
 
-    if (!embed)
+    if (!embed) {
         return;
+    }
 
     serviceType = embed->serviceType;
 
-    KHTMLPart* part = document()->part();
+    KHTMLPart *part = document()->part();
     KParts::BrowserExtension *ext = part->browserExtension();
 
-    if(!embed->pluginPage.isEmpty() && ext) {
+    if (!embed->pluginPage.isEmpty() && ext) {
         // Prepare the mimetype to show in the question (comment if available, name as fallback)
         QString mimeName = serviceType;
         QMimeDatabase db;
         QMimeType mime = db.mimeTypeForName(serviceType);
-        if (mime.isValid())
+        if (mime.isValid()) {
             mimeName = mime.comment();
+        }
 
         // Check if we already asked the user, for this page
-        if (!mimeName.isEmpty() && !part->pluginPageQuestionAsked(serviceType))
-        {
+        if (!mimeName.isEmpty() && !part->pluginPageQuestionAsked(serviceType)) {
             part->setPluginPageQuestionAsked(serviceType);
 
             // Prepare the URL to show in the question (host only if http, to make it short)
             QUrl pluginPageURL(embed->pluginPage);
             QString shortURL = pluginPageURL.scheme() == "http" ? pluginPageURL.host() : pluginPageURL.toDisplayString();
-            int res = KMessageBox::questionYesNo( part->view(),
-                                                  i18n("No plugin found for '%1'.\nDo you want to download one from %2?", mimeName, shortURL),
-                                                  i18n("Missing Plugin"), KGuiItem(i18n("Download")), KGuiItem(i18n("Do Not Download")), QString("plugin-")+serviceType);
-            if (res == KMessageBox::Yes)
-            {
+            int res = KMessageBox::questionYesNo(part->view(),
+                                                 i18n("No plugin found for '%1'.\nDo you want to download one from %2?", mimeName, shortURL),
+                                                 i18n("Missing Plugin"), KGuiItem(i18n("Download")), KGuiItem(i18n("Do Not Download")), QString("plugin-") + serviceType);
+            if (res == KMessageBox::Yes) {
                 // Display vendor download page
                 ext->createNewWindow(pluginPageURL);
                 return;
@@ -612,11 +641,10 @@ void HTMLObjectBaseElementImpl::slotPartLoadingErrorNotify()
     }
 }
 
-
 // -------------------------------------------------------------------------
 
 HTMLAppletElementImpl::HTMLAppletElementImpl(DocumentImpl *doc)
-  : HTMLObjectBaseElementImpl(doc)
+    : HTMLObjectBaseElementImpl(doc)
 {
     serviceType = "application/x-java-applet";
 }
@@ -632,8 +660,7 @@ NodeImpl::Id HTMLAppletElementImpl::id() const
 
 void HTMLAppletElementImpl::parseAttribute(AttributeImpl *attr)
 {
-    switch( attr->id() )
-    {
+    switch (attr->id()) {
     case ATTR_CODEBASE:
     case ATTR_ARCHIVE:
     case ATTR_CODE:
@@ -641,8 +668,8 @@ void HTMLAppletElementImpl::parseAttribute(AttributeImpl *attr)
     case ATTR_ALT:
         break;
     case ATTR_ALIGN:
-	addHTMLAlignment( attr->value() );
-	break;
+        addHTMLAlignment(attr->value());
+        break;
     case ATTR_VSPACE:
         addCSSLength(CSS_PROP_MARGIN_TOP, attr->value());
         addCSSLength(CSS_PROP_MARGIN_BOTTOM, attr->value());
@@ -652,7 +679,7 @@ void HTMLAppletElementImpl::parseAttribute(AttributeImpl *attr)
         addCSSLength(CSS_PROP_MARGIN_RIGHT, attr->value());
         break;
     case ATTR_VALIGN:
-        addCSSProperty(CSS_PROP_VERTICAL_ALIGN, attr->value().lower() );
+        addCSSProperty(CSS_PROP_VERTICAL_ALIGN, attr->value().lower());
         break;
     default:
         HTMLObjectBaseElementImpl::parseAttribute(attr);
@@ -661,12 +688,14 @@ void HTMLAppletElementImpl::parseAttribute(AttributeImpl *attr)
 
 void HTMLAppletElementImpl::computeContent()
 {
-    DOMString codeBase = getAttribute( ATTR_CODEBASE );
-    DOMString code = getAttribute( ATTR_CODE );
-    if ( !codeBase.isEmpty() )
+    DOMString codeBase = getAttribute(ATTR_CODEBASE);
+    DOMString code = getAttribute(ATTR_CODE);
+    if (!codeBase.isEmpty()) {
         url = codeBase.string();
-    if ( !code.isEmpty() )
+    }
+    if (!code.isEmpty()) {
         url = code.string();
+    }
     HTMLObjectBaseElementImpl::computeContent();
 }
 
@@ -686,69 +715,71 @@ NodeImpl::Id HTMLEmbedElementImpl::id() const
     return ID_EMBED;
 }
 
-HTMLEmbedElementImpl* HTMLEmbedElementImpl::relevantEmbed()
+HTMLEmbedElementImpl *HTMLEmbedElementImpl::relevantEmbed()
 {
     return this;
 }
 
 void HTMLEmbedElementImpl::parseAttribute(AttributeImpl *attr)
 {
-  switch ( attr->id() )
-  {
-     case ATTR_CODE:
-     case ATTR_SRC:
-         url = khtml::parseURL(attr->val()).string();
-         setNeedComputeContent();
-         break;
-     case ATTR_BORDER:
-        addCSSLength(CSS_PROP_BORDER_WIDTH, attr->value());
-        addCSSProperty( CSS_PROP_BORDER_TOP_STYLE, CSS_VAL_SOLID );
-        addCSSProperty( CSS_PROP_BORDER_RIGHT_STYLE, CSS_VAL_SOLID );
-        addCSSProperty( CSS_PROP_BORDER_BOTTOM_STYLE, CSS_VAL_SOLID );
-        addCSSProperty( CSS_PROP_BORDER_LEFT_STYLE, CSS_VAL_SOLID );
+    switch (attr->id()) {
+    case ATTR_CODE:
+    case ATTR_SRC:
+        url = khtml::parseURL(attr->val()).string();
+        setNeedComputeContent();
         break;
-     case ATTR_VSPACE:
+    case ATTR_BORDER:
+        addCSSLength(CSS_PROP_BORDER_WIDTH, attr->value());
+        addCSSProperty(CSS_PROP_BORDER_TOP_STYLE, CSS_VAL_SOLID);
+        addCSSProperty(CSS_PROP_BORDER_RIGHT_STYLE, CSS_VAL_SOLID);
+        addCSSProperty(CSS_PROP_BORDER_BOTTOM_STYLE, CSS_VAL_SOLID);
+        addCSSProperty(CSS_PROP_BORDER_LEFT_STYLE, CSS_VAL_SOLID);
+        break;
+    case ATTR_VSPACE:
         addCSSLength(CSS_PROP_MARGIN_TOP, attr->value());
         addCSSLength(CSS_PROP_MARGIN_BOTTOM, attr->value());
         break;
-     case ATTR_HSPACE:
+    case ATTR_HSPACE:
         addCSSLength(CSS_PROP_MARGIN_LEFT, attr->value());
         addCSSLength(CSS_PROP_MARGIN_RIGHT, attr->value());
         break;
-     case ATTR_ALIGN:
-	addHTMLAlignment( attr->value() );
-	break;
-     case ATTR_VALIGN:
-        addCSSProperty(CSS_PROP_VERTICAL_ALIGN, attr->value().lower() );
+    case ATTR_ALIGN:
+        addHTMLAlignment(attr->value());
         break;
-     case ATTR_PLUGINPAGE:
-     case ATTR_PLUGINSPAGE: {
+    case ATTR_VALIGN:
+        addCSSProperty(CSS_PROP_VERTICAL_ALIGN, attr->value().lower());
+        break;
+    case ATTR_PLUGINPAGE:
+    case ATTR_PLUGINSPAGE: {
         pluginPage = attr->value().string();
         break;
-      }
-     case ATTR_HIDDEN:
-        if (strcasecmp( attr->value(), "yes" ) == 0 || strcasecmp( attr->value() , "true") == 0 )
-           hidden = true;
-        else
-           hidden = false;
+    }
+    case ATTR_HIDDEN:
+        if (strcasecmp(attr->value(), "yes") == 0 || strcasecmp(attr->value(), "true") == 0) {
+            hidden = true;
+        } else {
+            hidden = false;
+        }
         break;
-     default:
-        HTMLObjectBaseElementImpl::parseAttribute( attr );
-  }
+    default:
+        HTMLObjectBaseElementImpl::parseAttribute(attr);
+    }
 }
 
 void HTMLEmbedElementImpl::attach()
 {
-    if (parentNode()->id() == ID_OBJECT)
+    if (parentNode()->id() == ID_OBJECT) {
         NodeBaseImpl::attach();
-    else
+    } else {
         HTMLObjectBaseElementImpl::attach();
+    }
 }
 
 void HTMLEmbedElementImpl::computeContent()
 {
-    if (parentNode()->id() != ID_OBJECT)
+    if (parentNode()->id() != ID_OBJECT) {
         HTMLObjectBaseElementImpl::computeContent();
+    }
 }
 
 // -------------------------------------------------------------------------
@@ -769,53 +800,53 @@ NodeImpl::Id HTMLObjectElementImpl::id() const
 
 HTMLFormElementImpl *HTMLObjectElementImpl::form() const
 {
-  return 0;
+    return 0;
 }
 
 void HTMLObjectElementImpl::parseAttribute(AttributeImpl *attr)
 {
-  switch ( attr->id() )
-  {
+    switch (attr->id()) {
     case ATTR_DATA:
-      url = khtml::parseURL( attr->val() ).string();
-      setNeedComputeContent();
-      break;
+        url = khtml::parseURL(attr->val()).string();
+        setNeedComputeContent();
+        break;
     case ATTR_CLASSID:
-      classId = attr->value().string();
-      setNeedComputeContent();
-      break;
+        classId = attr->value().string();
+        setNeedComputeContent();
+        break;
     case ATTR_ONLOAD: // ### support load/unload on object elements
         setHTMLEventListener(EventImpl::LOAD_EVENT,
-	    document()->createHTMLEventListener(attr->value().string(), "onload", this));
+                             document()->createHTMLEventListener(attr->value().string(), "onload", this));
         break;
     case ATTR_ONUNLOAD:
         setHTMLEventListener(EventImpl::UNLOAD_EVENT,
-	    document()->createHTMLEventListener(attr->value().string(), "onunload", this));
+                             document()->createHTMLEventListener(attr->value().string(), "onunload", this));
         break;
-     case ATTR_VSPACE:
+    case ATTR_VSPACE:
         addCSSLength(CSS_PROP_MARGIN_TOP, attr->value());
         addCSSLength(CSS_PROP_MARGIN_BOTTOM, attr->value());
         break;
-     case ATTR_HSPACE:
+    case ATTR_HSPACE:
         addCSSLength(CSS_PROP_MARGIN_LEFT, attr->value());
         addCSSLength(CSS_PROP_MARGIN_RIGHT, attr->value());
         break;
-     case ATTR_ALIGN:
-	addHTMLAlignment( attr->value() );
-	break;
-     case ATTR_VALIGN:
-        addCSSProperty(CSS_PROP_VERTICAL_ALIGN, attr->value().lower() );
+    case ATTR_ALIGN:
+        addHTMLAlignment(attr->value());
+        break;
+    case ATTR_VALIGN:
+        addCSSProperty(CSS_PROP_VERTICAL_ALIGN, attr->value().lower());
         break;
     default:
-      HTMLObjectBaseElementImpl::parseAttribute( attr );
-  }
+        HTMLObjectBaseElementImpl::parseAttribute(attr);
+    }
 }
 
-DocumentImpl* HTMLObjectElementImpl::contentDocument() const
+DocumentImpl *HTMLObjectElementImpl::contentDocument() const
 {
-    QWidget* widget = childWidget();
-    if( widget && qobject_cast<KHTMLView*>( widget ) )
-        return static_cast<KHTMLView*>( widget )->part()->xmlDocImpl();
+    QWidget *widget = childWidget();
+    if (widget && qobject_cast<KHTMLView *>(widget)) {
+        return static_cast<KHTMLView *>(widget)->part()->xmlDocImpl();
+    }
     return 0;
 }
 
@@ -833,20 +864,20 @@ NodeImpl::Id HTMLParamElementImpl::id() const
 
 void HTMLParamElementImpl::parseAttribute(AttributeImpl *attr)
 {
-    switch( attr->id() )
-    {
+    switch (attr->id()) {
     case ATTR_VALUE:
         m_value = attr->value().string();
         break;
     case ATTR_ID:
-        if (document()->htmlMode() != DocumentImpl::XHtml) break;
-        // fall through
+        if (document()->htmlMode() != DocumentImpl::XHtml) {
+            break;
+        }
+    // fall through
     case ATTR_NAME:
         m_name = attr->value().string();
-        // fall through
+    // fall through
     default:
         HTMLElementImpl::parseAttribute(attr);
     }
 }
 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

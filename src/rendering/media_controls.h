@@ -21,7 +21,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef media_controls_h
@@ -32,24 +32,26 @@
 #include <QPushButton>
 #include <QToolButton>
 
-namespace khtml {
+namespace khtml
+{
 
 class MediaPlayer;
 
-class MediaControls : public QWidget {
-Q_OBJECT
+class MediaControls : public QWidget
+{
+    Q_OBJECT
 public:
-    MediaControls(MediaPlayer* mediaPlayer, QWidget* parent = 0);
+    MediaControls(MediaPlayer *mediaPlayer, QWidget *parent = 0);
 
 private Q_SLOTS:
     void slotStateChanged(Phonon::State state);
     void slotToggled(bool);
 
 private:
-    QPushButton* m_play;
-    QPushButton* m_pause;
-    QToolButton* m_fullscreen;
-    MediaPlayer* m_mediaPlayer;
+    QPushButton *m_play;
+    QPushButton *m_pause;
+    QToolButton *m_fullscreen;
+    MediaPlayer *m_mediaPlayer;
 };
 
 } //namespace

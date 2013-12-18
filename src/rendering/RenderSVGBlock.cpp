@@ -28,21 +28,22 @@
 
 #include "SVGElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-RenderSVGBlock::RenderSVGBlock(SVGElement* node) 
+RenderSVGBlock::RenderSVGBlock(SVGElement *node)
     : RenderBlock(node)
 {
 }
 
-void RenderSVGBlock::setStyle(RenderStyle* style) 
+void RenderSVGBlock::setStyle(RenderStyle *style)
 {
-    RenderStyle* useStyle = style;
+    RenderStyle *useStyle = style;
 
-    // SVG text layout code expects us to be a block-level style element.   
-    if (useStyle->display() == NONE)
+    // SVG text layout code expects us to be a block-level style element.
+    if (useStyle->display() == NONE) {
         setChildrenInline(false);
-    else if (useStyle->isDisplayInlineType()) {
+    } else if (useStyle->isDisplayInlineType()) {
         useStyle = new /*khtml: don't use it like that!(renderArena())*/ RenderStyle();
         useStyle->inheritFrom(style);
         useStyle->setDisplay(BLOCK);

@@ -27,21 +27,29 @@
 #include "SVGLangSpace.h"
 #include "SVGStyledElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGDescElement : public SVGStyledElement,
-                           public SVGLangSpace {
-    public:
-        SVGDescElement(const QualifiedName&, Document*);
-        virtual ~SVGDescElement();
+class SVGDescElement : public SVGStyledElement,
+    public SVGLangSpace
+{
+public:
+    SVGDescElement(const QualifiedName &, Document *);
+    virtual ~SVGDescElement();
 
-        String description() const;
+    String description() const;
 
-        virtual bool rendererIsNeeded(RenderStyle*) { return false; }
-        
-        // KHTML ElementImpl pure virtual method
-        virtual quint32 id() const { return SVGNames::descTag.id(); }
-    };
+    virtual bool rendererIsNeeded(RenderStyle *)
+    {
+        return false;
+    }
+
+    // KHTML ElementImpl pure virtual method
+    virtual quint32 id() const
+    {
+        return SVGNames::descTag.id();
+    }
+};
 
 } // namespace WebCore
 

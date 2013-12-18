@@ -34,7 +34,7 @@
 
 namespace DOM
 {
-    class DOMString;
+class DOMString;
 }
 
 namespace khtml
@@ -47,7 +47,7 @@ class CachedFontFamily;
 class CachedFontInstance: public Shared<CachedFontInstance>
 {
 public:
-    CachedFontInstance(CachedFontFamily* parent, int size);
+    CachedFontInstance(CachedFontFamily *parent, int size);
 
     QFont        f;
     QFontMetrics fm; // note:stuff below is faster when applicable.
@@ -57,17 +57,21 @@ public:
     // top-level is row for the codepoint, second is column.
     // Some rows may have no information on them.
     // For a cell, value 255 means no known width (or a width >= 255)
-    unsigned cachedCharWidth(unsigned short codePoint) {
+    unsigned cachedCharWidth(unsigned short codePoint)
+    {
         unsigned width = 0xFF;
-        if (RowInfo* row = rows[codePoint >> 8])
+        if (RowInfo *row = rows[codePoint >> 8]) {
             width = row->widths[codePoint & 0xFF];
-        if (width != 0xFF)
+        }
+        if (width != 0xFF) {
             return width;
-        else
+        } else {
             return calcAndCacheWidth(codePoint);
+        }
     }
 
-    unsigned cachedCharWidth(const QChar& c) {
+    unsigned cachedCharWidth(const QChar &c)
+    {
         return cachedCharWidth(c.unicode());
     }
 
@@ -85,18 +89,19 @@ public:
 private:
     unsigned calcAndCacheWidth(unsigned short codePoint);
 
-    struct RowInfo
-    {
+    struct RowInfo {
         unsigned char widths[256];
 
-        RowInfo() {
-            for (int i = 0; i < 256; ++i)
+        RowInfo()
+        {
+            for (int i = 0; i < 256; ++i) {
                 widths[i] = 0xFF;
+            }
         }
     };
 
-    RowInfo* rows[256];
-    CachedFontFamily* parent;
+    RowInfo *rows[256];
+    CachedFontFamily *parent;
     int size; // the size we were created with
 };
 
@@ -104,51 +109,63 @@ class FontDef
 {
 public:
     FontDef()
-        : size( 0 ), italic( false ), smallCaps( false ), weight( 50 ) {}
-    bool operator == ( const FontDef &other ) const {
-        return ( family == other.family &&
-                 size == other.size &&
-                 italic == other.italic &&
-                 smallCaps == other.smallCaps &&
-                 weight == other.weight );
+        : size(0), italic(false), smallCaps(false), weight(50) {}
+    bool operator == (const FontDef &other) const
+    {
+        return (family == other.family &&
+                size == other.size &&
+                italic == other.italic &&
+                smallCaps == other.smallCaps &&
+                weight == other.weight);
     }
 
     QString family;
     short int size;
-    bool italic 		: 1;
-    bool smallCaps 		: 1;
-    unsigned int weight 		: 8;
+    bool italic         : 1;
+    bool smallCaps      : 1;
+    unsigned int weight         : 8;
 };
-
 
 class Font
 {
     friend class RenderStyle;
     friend class CSSStyleSelector;
 
-    static CachedFontInstance* defaultCFI;
+    static CachedFontInstance *defaultCFI;
 public:
     static void initDefault();
 
-    Font() : fontDef(), cfi( defaultCFI ), scFont( 0 ), letterSpacing( 0 ), wordSpacing( 0 ) {}
-    Font( const FontDef &fd )
-        :  fontDef( fd ), cfi( defaultCFI ), scFont( 0 ), letterSpacing( 0 ), wordSpacing( 0 )
-        {}
-    Font(const Font& o)
-        : fontDef(o.fontDef), cfi(o.cfi), scFont(o.scFont), letterSpacing(o.letterSpacing), wordSpacing(o.wordSpacing) { if (o.scFont) scFont = new QFont(*o.scFont); }
-    ~Font() { delete scFont; }
-
-    bool operator == ( const Font &other ) const {
-        return (fontDef == other.fontDef &&
-                letterSpacing == other.letterSpacing &&
-                wordSpacing == other.wordSpacing );
+    Font() : fontDef(), cfi(defaultCFI), scFont(0), letterSpacing(0), wordSpacing(0) {}
+    Font(const FontDef &fd)
+        :  fontDef(fd), cfi(defaultCFI), scFont(0), letterSpacing(0), wordSpacing(0)
+    {}
+    Font(const Font &o)
+        : fontDef(o.fontDef), cfi(o.cfi), scFont(o.scFont), letterSpacing(o.letterSpacing), wordSpacing(o.wordSpacing)
+    {
+        if (o.scFont) {
+            scFont = new QFont(*o.scFont);
+        }
+    }
+    ~Font()
+    {
+        delete scFont;
     }
 
-    const FontDef& getFontDef() const { return fontDef; }
+    bool operator == (const Font &other) const
+    {
+        return (fontDef == other.fontDef &&
+                letterSpacing == other.letterSpacing &&
+                wordSpacing == other.wordSpacing);
+    }
 
-    void update( int logicalDpiY ) const;
+    const FontDef &getFontDef() const
+    {
+        return fontDef;
+    }
 
-    static void invalidateCachedFontFamily( const QString& familyName );
+    void update(int logicalDpiY) const;
+
+    static void invalidateCachedFontFamily(const QString &familyName);
     static void markAllCachedFontsAsValid();
 
     /**
@@ -161,23 +178,23 @@ public:
      * @param pos zero-based offset of beginning of piece
      * @param len length of piece
      * @param width additional pixels to be distributed equally among all
-     *		spaces
+     *      spaces
      * @param d text direction
      * @param from begin with this position relative to @p pos, -1 to start
-     *		at @p pos
+     *      at @p pos
      * @param to stop before this position relative to @p pos, -1 to use full
-     *		length of piece
+     *      length of piece
      * @param bg if valid, fill the background of the drawn piece with this
-     *		color
+     *      color
      * @param uy y-coordinate of top position, used for background and text
-     *		decoration painting
+     *      decoration painting
      * @param h total height of line, only used for background and text
-     *		decoration painting
+     *      decoration painting
      * @param deco combined text decoration (see Decoration)
      */
-    void drawText( QPainter *p, int x, int y, QChar *str, int slen, int pos, int len, int width,
-                   Qt::LayoutDirection d, int from=-1, int to=-1, QColor bg=QColor(),
-		   int uy=-1, int h=-1, int deco=0 ) const;
+    void drawText(QPainter *p, int x, int y, QChar *str, int slen, int pos, int len, int width,
+                  Qt::LayoutDirection d, int from = -1, int to = -1, QColor bg = QColor(),
+                  int uy = -1, int h = -1, int deco = 0) const;
 
     /** returns the width of the given string chunk in pixels.
      *
@@ -195,7 +212,7 @@ public:
      * str. Note that toAdd applies to all spaces within str, but only those
      * within [pos, pos+len) are counted towards the width.
      */
-    int width( const QChar *str, int slen, int pos, int len, bool fast, int start=0, int end=0, int toAdd=0 ) const;
+    int width(const QChar *str, int slen, int pos, int len, bool fast, int start = 0, int end = 0, int toAdd = 0) const;
     /** return the width of the given char in pixels.
      *
      * The method also considers various styles like text-align and font-variant
@@ -203,14 +220,14 @@ public:
      * @param slen total length of string
      * @param pos zero-based position of char in string
      */
-    int charWidth( const QChar *str, int slen, int pos, bool fast ) const;
+    int charWidth(const QChar *str, int slen, int pos, bool fast) const;
 
     /** Text decoration constants.
      *
      * The enumeration constant values match those of ETextDecoration, but only
      * a subset is supported.
      */
-    enum Decoration { UNDERLINE = 0x1, OVERLINE = 0x2, LINE_THROUGH= 0x4 };
+    enum Decoration { UNDERLINE = 0x1, OVERLINE = 0x2, LINE_THROUGH = 0x4 };
     // Keep in sync with ETextDecoration
 
     /** draws text decoration
@@ -221,38 +238,74 @@ public:
      * @param width length of decoration in pixels
      * @param height height of line box
      * @param deco decoration to be drawn (see Decoration). The enumeration
-     *		constants may be combined.
+     *      constants may be combined.
      */
     void drawDecoration(QPainter *p, int x, int y, int baseline, int width, int height, int deco) const;
 
     /** returns letter spacing
      */
-    int getLetterSpacing() const { return letterSpacing; }
+    int getLetterSpacing() const
+    {
+        return letterSpacing;
+    }
     /** returns word spacing
      */
-    int getWordSpacing() const { return wordSpacing; }
+    int getWordSpacing() const
+    {
+        return wordSpacing;
+    }
 
     // for SVG
-    int ascent() const { return cfi->ascent; }
-    int descent() const { return cfi->descent; }
-    int height() const { return cfi->height; }
-    int lineSpacing() const { return cfi->lineSpacing; }
-    float xHeight() const { return cfi->fm.xHeight(); }
+    int ascent() const
+    {
+        return cfi->ascent;
+    }
+    int descent() const
+    {
+        return cfi->descent;
+    }
+    int height() const
+    {
+        return cfi->height;
+    }
+    int lineSpacing() const
+    {
+        return cfi->lineSpacing;
+    }
+    float xHeight() const
+    {
+        return cfi->fm.xHeight();
+    }
     //FIXME: IMPLEMENT ME
-    unsigned unitsPerEm() const { return 0; }
-    int spaceWidth() const { return 0; }
-    int tabWidth() const { return 8 * spaceWidth(); }
-    
-    bool isInvalidated() const { return cfi->invalidated; }
-    void validate() const { cfi->invalidated = false; }
+    unsigned unitsPerEm() const
+    {
+        return 0;
+    }
+    int spaceWidth() const
+    {
+        return 0;
+    }
+    int tabWidth() const
+    {
+        return 8 * spaceWidth();
+    }
+
+    bool isInvalidated() const
+    {
+        return cfi->invalidated;
+    }
+    void validate() const
+    {
+        cfi->invalidated = false;
+    }
 
     // SVG helper function
-    float floatWidth(QChar* str, int pos, int len, int extraCharsAvailable, int& charsConsumed, DOM::DOMString& glyphName) const;
-    
-    float floatWidth(QChar* str, int pos, int len) const;
+    float floatWidth(QChar *str, int pos, int len, int extraCharsAvailable, int &charsConsumed, DOM::DOMString &glyphName) const;
+
+    float floatWidth(QChar *str, int pos, int len) const;
 
 private:
-    static CachedFontFamily* queryFamily(const QString& name, int weight, bool italic);
+    static CachedFontFamily *queryFamily(const QString &name, int weight, bool italic);
 
     mutable FontDef fontDef;
     mutable WTF::SharedPtr<CachedFontInstance> cfi;
@@ -264,4 +317,3 @@ private:
 } // namespace
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on; hl c++;

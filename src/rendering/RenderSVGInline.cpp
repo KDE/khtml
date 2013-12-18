@@ -29,14 +29,15 @@
 #include "SVGInlineFlowBox.h"
 #include "xml/Document.h"
 
-namespace WebCore {
-    
-RenderSVGInline::RenderSVGInline(DOM::NodeImpl* n)
+namespace WebCore
+{
+
+RenderSVGInline::RenderSVGInline(DOM::NodeImpl *n)
     : RenderInline(n)
 {
 }
 
-InlineBox* RenderSVGInline::createInlineBox(bool makePlaceHolderBox, bool isRootLineBox, bool isOnlyRun)
+InlineBox *RenderSVGInline::createInlineBox(bool makePlaceHolderBox, bool isRootLineBox, bool isOnlyRun)
 {
     Q_UNUSED(isOnlyRun);
     ASSERT(!(!isRootLineBox && (isReplaced() || makePlaceHolderBox)));
@@ -44,16 +45,16 @@ InlineBox* RenderSVGInline::createInlineBox(bool makePlaceHolderBox, bool isRoot
     Q_UNUSED(isRootLineBox);
     ASSERT(isInlineFlow());
 
-    InlineFlowBox* flowBox = new (renderArena()) SVGInlineFlowBox(this);
+    InlineFlowBox *flowBox = new(renderArena()) SVGInlineFlowBox(this);
 
-    if (!m_firstLineBox)
+    if (!m_firstLineBox) {
         m_firstLineBox = m_lastLineBox = flowBox;
-    else {
+    } else {
         m_lastLineBox->setNextLineBox(flowBox);
         flowBox->setPreviousLineBox(m_lastLineBox);
         m_lastLineBox = flowBox;
     }
-        
+
     return flowBox;
 }
 

@@ -36,7 +36,8 @@
 #include "khtml_run.h"
 #include "ecma/kjs_proxy.h"
 
-namespace khtml {
+namespace khtml
+{
 class KHTML_EXPORT ChildFrame : public QObject
 {
     Q_OBJECT
@@ -71,16 +72,15 @@ public:
     bool m_bPendingRedirection;
 
     // Debug stuff
-    const char* typeString() const;
+    const char *typeString() const;
     void dump(int indent);
-    static void dumpFrameTree(KHTMLPart* part);
+    static void dumpFrameTree(KHTMLPart *part);
 }; // ChildFrame
 
 } // namespace khtml
 
-struct KHTMLFrameList : public QList<khtml::ChildFrame*>
-{
-    Iterator find( const QString &name ) KHTML_NO_EXPORT;
+struct KHTMLFrameList : public QList<khtml::ChildFrame *> {
+    Iterator find(const QString &name) KHTML_NO_EXPORT;
 };
 
 typedef KHTMLFrameList::ConstIterator ConstFrameIt;

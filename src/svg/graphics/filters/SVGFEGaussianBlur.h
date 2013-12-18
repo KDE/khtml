@@ -25,11 +25,13 @@
 #if ENABLE(SVG) && ENABLE(SVG_FILTERS)
 #include "SVGFilterEffect.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-class SVGFEGaussianBlur : public SVGFilterEffect {
+class SVGFEGaussianBlur : public SVGFilterEffect
+{
 public:
-    SVGFEGaussianBlur(SVGResourceFilter*);
+    SVGFEGaussianBlur(SVGResourceFilter *);
 
     float stdDeviationX() const;
     void setStdDeviationX(float);
@@ -37,10 +39,10 @@ public:
     float stdDeviationY() const;
     void setStdDeviationY(float);
 
-    virtual TextStream& externalRepresentation(TextStream&) const;
+    virtual TextStream &externalRepresentation(TextStream &) const;
 
 #if PLATFORM(CI)
-    virtual CIFilter* getCIFilter(const FloatRect& bbox) const;
+    virtual CIFilter *getCIFilter(const FloatRect &bbox) const;
 #endif
 
 private:

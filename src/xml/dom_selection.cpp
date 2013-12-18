@@ -55,7 +55,8 @@ using khtml::RenderObject;
 using khtml::RenderText;
 using khtml::RenderPosition;
 
-namespace DOM {
+namespace DOM
+{
 
 static bool firstRunAt(RenderObject *renderNode, int y, NodeImpl *&startNode, long &startOffset);
 static bool lastRunAt(RenderObject *renderNode, int y, NodeImpl *&endNode, long &endOffset);
@@ -163,8 +164,9 @@ Selection &Selection::operator=(const Selection &o)
 
 void Selection::setAffinity(EAffinity affinity)
 {
-    if (affinity == m_affinity)
+    if (affinity == m_affinity) {
         return;
+    }
 
     m_affinity = affinity;
     setNeedsLayout();
@@ -202,105 +204,106 @@ bool Selection::modify(EAlter alter, EDirection dir, ETextGranularity granularit
     Position pos;
 
     switch (dir) {
-        // EDIT FIXME: This needs to handle bidi
-        case RIGHT:
-        case FORWARD:
-            if (alter == EXTEND) {
-                if (!m_modifyBiasSet) {
-                    m_modifyBiasSet = true;
-                    assignBaseAndExtent(start(), end());
-                }
-                switch (granularity) {
-                    case CHARACTER:
-                        pos = extent().nextCharacterPosition();
-                        break;
-                    case WORD:
-                        pos = extent().nextWordPosition();
-                        break;
-                    case LINE:
-                        pos = extent().nextLinePosition(xPosForVerticalArrowNavigation(EXTENT));
-                        break;
-                    case PARAGRAPH:
-                        // not implemented
-                        break;
-                }
+    // EDIT FIXME: This needs to handle bidi
+    case RIGHT:
+    case FORWARD:
+        if (alter == EXTEND) {
+            if (!m_modifyBiasSet) {
+                m_modifyBiasSet = true;
+                assignBaseAndExtent(start(), end());
             }
-            else {
-                m_modifyBiasSet = false;
-                switch (granularity) {
-                    case CHARACTER:
-                        pos = (state() == RANGE) ? end() : extent().nextCharacterPosition();
-                        break;
-                    case WORD:
-                        pos = extent().nextWordPosition();
-                        break;
-                    case LINE:
-                        pos = end().nextLinePosition(xPosForVerticalArrowNavigation(END, state() == RANGE));
-                        break;
-                    case PARAGRAPH:
-                        // not implemented
-                        break;
-                }
+            switch (granularity) {
+            case CHARACTER:
+                pos = extent().nextCharacterPosition();
+                break;
+            case WORD:
+                pos = extent().nextWordPosition();
+                break;
+            case LINE:
+                pos = extent().nextLinePosition(xPosForVerticalArrowNavigation(EXTENT));
+                break;
+            case PARAGRAPH:
+                // not implemented
+                break;
             }
-            break;
-        // EDIT FIXME: This needs to handle bidi
-        case LEFT:
-        case BACKWARD:
-            if (alter == EXTEND) {
-                if (!m_modifyBiasSet) {
-                    m_modifyBiasSet = true;
-                    assignBaseAndExtent(end(), start());
-                }
-                switch (granularity) {
-                    case CHARACTER:
-                        pos = extent().previousCharacterPosition();
-                        break;
-                    case WORD:
-                        pos = extent().previousWordPosition();
-                        break;
-                    case LINE:
-                        pos = extent().previousLinePosition(xPosForVerticalArrowNavigation(EXTENT));
-                        break;
-                    case PARAGRAPH:
-                        // not implemented
-                        break;
-                }
+        } else {
+            m_modifyBiasSet = false;
+            switch (granularity) {
+            case CHARACTER:
+                pos = (state() == RANGE) ? end() : extent().nextCharacterPosition();
+                break;
+            case WORD:
+                pos = extent().nextWordPosition();
+                break;
+            case LINE:
+                pos = end().nextLinePosition(xPosForVerticalArrowNavigation(END, state() == RANGE));
+                break;
+            case PARAGRAPH:
+                // not implemented
+                break;
             }
-            else {
-                m_modifyBiasSet = false;
-                switch (granularity) {
-                    case CHARACTER:
-                        pos = (state() == RANGE) ? start() : extent().previousCharacterPosition();
-                        break;
-                    case WORD:
-                        pos = extent().previousWordPosition();
-                        break;
-                    case LINE:
-                        pos = start().previousLinePosition(xPosForVerticalArrowNavigation(START, state() == RANGE));
-                        break;
-                    case PARAGRAPH:
-                        // not implemented
-                        break;
-                }
+        }
+        break;
+    // EDIT FIXME: This needs to handle bidi
+    case LEFT:
+    case BACKWARD:
+        if (alter == EXTEND) {
+            if (!m_modifyBiasSet) {
+                m_modifyBiasSet = true;
+                assignBaseAndExtent(end(), start());
             }
-            break;
+            switch (granularity) {
+            case CHARACTER:
+                pos = extent().previousCharacterPosition();
+                break;
+            case WORD:
+                pos = extent().previousWordPosition();
+                break;
+            case LINE:
+                pos = extent().previousLinePosition(xPosForVerticalArrowNavigation(EXTENT));
+                break;
+            case PARAGRAPH:
+                // not implemented
+                break;
+            }
+        } else {
+            m_modifyBiasSet = false;
+            switch (granularity) {
+            case CHARACTER:
+                pos = (state() == RANGE) ? start() : extent().previousCharacterPosition();
+                break;
+            case WORD:
+                pos = extent().previousWordPosition();
+                break;
+            case LINE:
+                pos = start().previousLinePosition(xPosForVerticalArrowNavigation(START, state() == RANGE));
+                break;
+            case PARAGRAPH:
+                // not implemented
+                break;
+            }
+        }
+        break;
     }
 
-    if (pos.isEmpty())
+    if (pos.isEmpty()) {
         return false;
+    }
 
-    if (alter == MOVE)
+    if (alter == MOVE) {
         moveTo(pos);
-    else // alter == EXTEND
+    } else { // alter == EXTEND
         setExtent(pos);
+    }
 
     return true;
 }
 
 bool Selection::expandUsingGranularity(ETextGranularity granularity)
 {
-    if (state() == NONE)
+    if (state() == NONE) {
         return false;
+    }
 
     validate(granularity);
     return true;
@@ -310,41 +313,42 @@ int Selection::xPosForVerticalArrowNavigation(EPositionType type, bool recalc) c
 {
     int x = 0;
 
-    if (state() == NONE)
+    if (state() == NONE) {
         return x;
+    }
 
     Position pos;
     switch (type) {
-        case START:
-            pos = start();
-            break;
-        case END:
-            pos = end();
-            break;
-        case BASE:
-            pos = base();
-            break;
-        case EXTENT:
-            pos = extent();
-            break;
-        case CARETPOS:
-            pos = caretPos();
-            break;
+    case START:
+        pos = start();
+        break;
+    case END:
+        pos = end();
+        break;
+    case BASE:
+        pos = base();
+        break;
+    case EXTENT:
+        pos = extent();
+        break;
+    case CARETPOS:
+        pos = caretPos();
+        break;
     }
 
     KHTMLPart *part = pos.node()->document()->part();
-    if (!part)
+    if (!part) {
         return x;
+    }
 
     if (recalc || part->d->editor_context.m_xPosForVerticalArrowNavigation == EditorContext::NoXPosForVerticalArrowNavigation
-       )
-    {
+       ) {
         int y, w, h;
-        if (pos.node()->renderer())
+        if (pos.node()->renderer()) {
             pos.node()->renderer()->caretPos(pos.renderedOffset(), 0, x, y, w, h);
+        }
         part->d->editor_context.m_xPosForVerticalArrowNavigation = x;
-    }
-    else {
+    } else {
         x = part->d->editor_context.m_xPosForVerticalArrowNavigation;
     }
 
@@ -423,8 +427,7 @@ void Selection::getRange(NodeImpl *&st, long &so, NodeImpl *&en, long &eo) const
         // on the character before the caret, if any.
         s = start().equivalentUpstreamPosition().equivalentRangeCompliantPosition();
         e = s;
-    }
-    else {
+    } else {
         // If the selection is a range, select the minimum range that encompasses the selection.
         // Again, this is to match the conventions of text editors tested, which make style
         // determinations based on the first character of the selection.
@@ -458,8 +461,9 @@ void Selection::getRange(NodeImpl *&st, long &so, NodeImpl *&en, long &eo) const
 
 Range Selection::toRange() const
 {
-    if (isEmpty())
+    if (isEmpty()) {
         return Range();
+    }
 
     NodeImpl *start, *end;
     long so, eo;
@@ -471,8 +475,7 @@ void Selection::layoutCaret()
 {
     if (isEmpty() || !caretPos().node()->renderer()) {
         m_caretX = m_caretY = m_caretSize = 0;
-    }
-    else {
+    } else {
         // EDIT FIXME: Enhance call to pass along selection
         // upstream/downstream affinity to get the right position.
         int w;
@@ -501,18 +504,22 @@ QRect Selection::getRepaintRect() const
 
 void Selection::needsCaretRepaint()
 {
-    if (isEmpty())
+    if (isEmpty()) {
         return;
+    }
 
-    if (!start().node())
+    if (!start().node()) {
         return;
+    }
 
-    if (!start().node()->document())
+    if (!start().node()->document()) {
         return;
+    }
 
     KHTMLView *v = caretPos().node()->document()->view();
-    if (!v)
+    if (!v) {
         return;
+    }
 
     // qDebug() << "[NeedsCaretLayout]" << m_needsCaretLayout << endl;
     if (m_needsCaretLayout) {
@@ -539,11 +546,13 @@ void Selection::needsCaretRepaint()
 
 void Selection::paintCaret(QPainter *p, const QRect &rect)
 {
-    if (isEmpty())
+    if (isEmpty()) {
         return;
+    }
 
-    if (m_state == NONE)
+    if (m_state == NONE) {
         return;
+    }
 
     if (m_needsCaretLayout) {
         Position pos = caretPos();
@@ -582,8 +591,9 @@ void Selection::validate(ETextGranularity granularity)
 #endif
         Position pos = base().equivalentLeafPosition();
         assignBase(pos);
-        if (baseAndExtentEqual)
+        if (baseAndExtentEqual) {
             assignExtent(pos);
+        }
     }
     if (extent().notEmpty() && !baseAndExtentEqual) {
         assignExtent(extent().equivalentLeafPosition());
@@ -596,23 +606,22 @@ void Selection::validate(ETextGranularity granularity)
     if (base().isEmpty()) {
         assignBaseAndExtent(extent(), extent());
         m_baseIsStart = true;
-    }
-    else if (extent().isEmpty()) {
+    } else if (extent().isEmpty()) {
         assignBaseAndExtent(base(), base());
         m_baseIsStart = true;
-    }
-    else {
+    } else {
         // adjust m_baseIsStart as needed
         if (base().node() == extent().node()) {
-            if (base().offset() > extent().offset())
+            if (base().offset() > extent().offset()) {
                 m_baseIsStart = false;
-            else
+            } else {
                 m_baseIsStart = true;
-        }
-        else if (nodeIsBeforeNode(base().node(), extent().node()))
+            }
+        } else if (nodeIsBeforeNode(base().node(), extent().node())) {
             m_baseIsStart = true;
-        else
+        } else {
             m_baseIsStart = false;
+        }
     }
 
     // calculate the correct start and end positions
@@ -620,12 +629,12 @@ void Selection::validate(ETextGranularity granularity)
 #ifdef DEBUG_CARET
         qDebug() << "[character:baseIsStart]" << m_baseIsStart << base() << extent() << endl;
 #endif
-        if (m_baseIsStart)
+        if (m_baseIsStart) {
             assignStartAndEnd(base(), extent());
-        else
+        } else {
             assignStartAndEnd(extent(), base());
-    }
-    else if (granularity == WORD) {
+        }
+    } else if (granularity == WORD) {
         int baseStartOffset = base().offset();
         int baseEndOffset = base().offset();
         int extentStartOffset = extent().offset();
@@ -663,13 +672,11 @@ void Selection::validate(ETextGranularity granularity)
         if (m_baseIsStart) {
             assignStart(Position(base().node(), baseStartOffset));
             assignEnd(Position(extent().node(), extentEndOffset));
-        }
-        else {
+        } else {
             assignStart(Position(extent().node(), extentStartOffset));
             assignEnd(Position(base().node(), baseEndOffset));
         }
-    }
-    else {  // granularity == LINE
+    } else { // granularity == LINE
         Selection baseSelection = *this;
         Selection extentSelection = *this;
         if (base().notEmpty() && (base().node()->nodeType() == Node::TEXT_NODE || base().node()->nodeType() == Node::CDATA_SECTION_NODE)) {
@@ -687,23 +694,24 @@ void Selection::validate(ETextGranularity granularity)
         if (m_baseIsStart) {
             assignStart(baseSelection.start());
             assignEnd(extentSelection.end());
-        }
-        else {
+        } else {
             assignStart(extentSelection.start());
             assignEnd(baseSelection.end());
         }
     }
 
     // adjust the state
-    if (start().isEmpty() && end().isEmpty())
+    if (start().isEmpty() && end().isEmpty()) {
         m_state = NONE;
-    else if (start() == end())
+    } else if (start() == end()) {
         m_state = CARET;
-    else
+    } else {
         m_state = RANGE;
+    }
 
-     if (start().isEmpty())
-         assert (m_state == NONE);
+    if (start().isEmpty()) {
+        assert(m_state == NONE);
+    }
 
     m_needsCaretLayout = true;
 
@@ -714,15 +722,18 @@ void Selection::validate(ETextGranularity granularity)
 
 bool Selection::moveToRenderedContent()
 {
-    if (isEmpty())
+    if (isEmpty()) {
         return false;
+    }
 
-    if (m_state != CARET)
+    if (m_state != CARET) {
         return false;
+    }
 
     Position pos = start();
-    if (pos.inRenderedContent())
+    if (pos.inRenderedContent()) {
         return true;
+    }
 
     // not currently rendered, try moving to prev
     Position prev = pos.previousCharacterPosition();
@@ -743,11 +754,13 @@ bool Selection::moveToRenderedContent()
 
 bool Selection::nodeIsBeforeNode(NodeImpl *n1, NodeImpl *n2) const
 {
-    if (!n1 || !n2)
+    if (!n1 || !n2) {
         return true;
+    }
 
-    if (n1 == n2)
+    if (n1 == n2) {
         return true;
+    }
 
     bool result = false;
     int n1Depth = 0;
@@ -784,8 +797,7 @@ bool Selection::nodeIsBeforeNode(NodeImpl *n1, NodeImpl *n2) const
         if (n == n1) {
             result = true;
             break;
-        }
-        else if (n == n2) {
+        } else if (n == n2) {
             result = false;
             break;
         }
@@ -860,21 +872,24 @@ static bool startAndEndLineNodesIncludingNode(NodeImpl *node, int offset, Select
         pos = rp.renderedOffset();
         // RenderText *renderer = static_cast<RenderText *>(node->renderer());
         // const InlineTextBox * run = renderer->findInlineTextBox( offset, pos );
-        const InlineTextBox* run = static_cast<InlineTextBox*>(node->renderer()->inlineBox(pos));
+        const InlineTextBox *run = static_cast<InlineTextBox *>(node->renderer()->inlineBox(pos));
         DOMString t = node->nodeValue();
 
-        if (!run)
+        if (!run) {
             return false;
+        }
 
         selectionPointY = run->m_y;
 
         // Go up to first non-inline element.
         khtml::RenderObject *renderNode = node->renderer();
-        while (renderNode && renderNode->isInline())
+        while (renderNode && renderNode->isInline()) {
             renderNode = renderNode->parent();
+        }
 
-        if (renderNode)
+        if (renderNode) {
             renderNode = renderNode->firstChild();
+        }
 
         NodeImpl *startNode = 0;
         NodeImpl *endNode = 0;
@@ -883,13 +898,15 @@ static bool startAndEndLineNodesIncludingNode(NodeImpl *node, int offset, Select
 
         // Look for all the first child in the block that is on the same line
         // as the selection point.
-        if (!firstRunAt (renderNode, selectionPointY, startNode, startOffset))
+        if (!firstRunAt(renderNode, selectionPointY, startNode, startOffset)) {
             return false;
+        }
 
         // Look for all the last child in the block that is on the same line
         // as the selection point.
-        if (!lastRunAt (renderNode, selectionPointY, endNode, endOffset))
+        if (!lastRunAt(renderNode, selectionPointY, endNode, endOffset)) {
             return false;
+        }
 
         selection.moveTo(RenderPosition(startNode, startOffset).position(), RenderPosition(endNode, endOffset).position());
 
@@ -903,8 +920,7 @@ void Selection::debugRenderer(RenderObject *r, bool selected) const
     if (r->node()->isElementNode()) {
         ElementImpl *element = static_cast<ElementImpl *>(r->node());
         fprintf(stderr, "%s%s\n", selected ? "==> " : "    ", element->tagName().string().toLatin1().data());
-    }
-    else if (r->isText()) {
+    } else if (r->isText()) {
         RenderText *textRenderer = static_cast<RenderText *>(r);
         if (textRenderer->stringLength() == 0 || !textRenderer->firstTextBox()) {
             fprintf(stderr, "%s#text (empty)\n", selected ? "==> " : "    ");
@@ -916,10 +932,11 @@ void Selection::debugRenderer(RenderObject *r, bool selected) const
         int textLength = text.length();
         if (selected) {
             int offset = 0;
-            if (r->node() == start().node())
+            if (r->node() == start().node()) {
                 offset = start().offset();
-            else if (r->node() == end().node())
+            } else if (r->node() == end().node()) {
                 offset = end().offset();
+            }
 
             int pos;
             const InlineTextBox *box = textRenderer->findInlineTextBox(offset, pos);
@@ -957,15 +974,16 @@ void Selection::debugRenderer(RenderObject *r, bool selected) const
             show = show.replace("\r", " ");
             fprintf(stderr, "==> #text : \"%s\" at offset %d\n", show.toLatin1().data(), pos);
             fprintf(stderr, "           ");
-            for (int i = 0; i < caret; i++)
+            for (int i = 0; i < caret; i++) {
                 fprintf(stderr, " ");
+            }
             fprintf(stderr, "^\n");
-        }
-        else {
-            if ((int)text.length() > max)
+        } else {
+            if ((int)text.length() > max) {
                 text = text.left(max - 3) + "...";
-            else
+            } else {
                 text = text.left(max);
+            }
             fprintf(stderr, "    #text : \"%s\"\n", text.toLatin1().data());
         }
     }
@@ -973,8 +991,9 @@ void Selection::debugRenderer(RenderObject *r, bool selected) const
 
 void Selection::debugPosition() const
 {
-    if (!start().node())
+    if (!start().node()) {
         return;
+    }
 
     //static int context = 5;
 
@@ -992,8 +1011,7 @@ void Selection::debugPosition() const
             , pos.node(), pos.offset());
         fprintf(stderr, "downstream: %s %p:%ld\n", getTagName(downstream.node()->id())
             , downstream.node(), downstream.offset());*/
-    }
-    else {
+    } else {
         Position pos = start();
         Position upstream = pos.equivalentUpstreamPosition();
         Position downstream = pos.equivalentDownstreamPosition();
@@ -1020,24 +1038,25 @@ void Selection::debugPosition() const
     int back = 0;
     r = start().node()->renderer();
     for (int i = 0; i < context; i++, back++) {
-        if (r->previousRenderer())
+        if (r->previousRenderer()) {
             r = r->previousRenderer();
-        else
+        } else {
             break;
+        }
     }
     for (int i = 0; i < back; i++) {
         debugRenderer(r, false);
         r = r->nextRenderer();
     }
 
-
     fprintf(stderr, "\n");
 
-    if (start().node() == end().node())
+    if (start().node() == end().node()) {
         debugRenderer(start().node()->renderer(), true);
-    else
-        for (r = start().node()->renderer(); r && r != end().node()->renderer(); r = r->nextRenderer())
+    } else
+        for (r = start().node()->renderer(); r && r != end().node()->renderer(); r = r->nextRenderer()) {
             debugRenderer(r, true);
+        }
 
     fprintf(stderr, "\n");
 
@@ -1046,23 +1065,23 @@ void Selection::debugPosition() const
         if (r->nextRenderer()) {
             r = r->nextRenderer();
             debugRenderer(r, false);
-        }
-        else
+        } else {
             break;
+        }
     }
 #endif
 
     fprintf(stderr, "================================\n");
 }
 
-QDebug operator<<(QDebug stream, const Selection& selection)
+QDebug operator<<(QDebug stream, const Selection &selection)
 {
     stream << "Selection["
-        << selection.base()
-        << selection.extent()
-        << selection.start()
-        << selection.end()
-        << selection.affinity() << "]";
+           << selection.base()
+           << selection.extent()
+           << selection.start()
+           << selection.end()
+           << selection.affinity() << "]";
     return stream;
 }
 

@@ -30,9 +30,10 @@
 #include "SVGTransformList.h"
 #include "SVGTransformable.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGViewSpec::SVGViewSpec(const SVGSVGElement* contextElement)
+SVGViewSpec::SVGViewSpec(const SVGSVGElement *contextElement)
     : SVGFitToViewBox()
     , SVGZoomAndPan()
     , m_transform(SVGTransformList::create(SVGNames::transformAttr))
@@ -44,131 +45,156 @@ SVGViewSpec::~SVGViewSpec()
 {
 }
 
-void SVGViewSpec::setTransform(const String& transform)
+void SVGViewSpec::setTransform(const String &transform)
 {
     SVGTransformable::parseTransformAttribute(m_transform.get(), transform);
 }
 
-void SVGViewSpec::setViewBoxString(const String& viewBox)
+void SVGViewSpec::setViewBoxString(const String &viewBox)
 {
     float x, y, w, h;
-    const UChar* c = viewBox.characters();
-    const UChar* end = c + viewBox.length();
-    if (!parseViewBox(c, end, x, y, w, h, false))
+    const UChar *c = viewBox.characters();
+    const UChar *end = c + viewBox.length();
+    if (!parseViewBox(c, end, x, y, w, h, false)) {
         return;
+    }
     setViewBoxBaseValue(FloatRect(x, y, w, h));
 }
 
-void SVGViewSpec::setPreserveAspectRatioString(const String& preserve)
+void SVGViewSpec::setPreserveAspectRatioString(const String &preserve)
 {
-    const UChar* c = preserve.characters();
-    const UChar* end = c + preserve.length();
+    const UChar *c = preserve.characters();
+    const UChar *end = c + preserve.length();
     preserveAspectRatioBaseValue()->parsePreserveAspectRatio(c, end);
 }
 
-void SVGViewSpec::setViewTargetString(const String& viewTargetString)
+void SVGViewSpec::setViewTargetString(const String &viewTargetString)
 {
     m_viewTargetString = viewTargetString;
 }
 
-SVGElement* SVGViewSpec::viewTarget() const
+SVGElement *SVGViewSpec::viewTarget() const
 {
-    return static_cast<SVGElement*>(m_contextElement->ownerDocument()->getElementById(m_viewTargetString));
+    return static_cast<SVGElement *>(m_contextElement->ownerDocument()->getElementById(m_viewTargetString));
 }
 
-const SVGElement* SVGViewSpec::contextElement() const
+const SVGElement *SVGViewSpec::contextElement() const
 {
     return m_contextElement;
 }
 
-static const UChar svgViewSpec[] = {'s','v','g','V', 'i', 'e', 'w'};
+static const UChar svgViewSpec[] = {'s', 'v', 'g', 'V', 'i', 'e', 'w'};
 static const UChar viewBoxSpec[] = {'v', 'i', 'e', 'w', 'B', 'o', 'x'};
 static const UChar preserveAspectRatioSpec[] = {'p', 'r', 'e', 's', 'e', 'r', 'v', 'e', 'A', 's', 'p', 'e', 'c', 't', 'R', 'a', 't', 'i', 'o'};
 static const UChar transformSpec[] = {'t', 'r', 'a', 'n', 's', 'f', 'o', 'r', 'm'};
 static const UChar zoomAndPanSpec[] = {'z', 'o', 'o', 'm', 'A', 'n', 'd', 'P', 'a', 'n'};
 static const UChar viewTargetSpec[] =  {'v', 'i', 'e', 'w', 'T', 'a', 'r', 'g', 'e', 't'};
 
-bool SVGViewSpec::parseViewSpec(const String& viewSpec)
+bool SVGViewSpec::parseViewSpec(const String &viewSpec)
 {
-    const UChar* currViewSpec = viewSpec.characters();
-    const UChar* end = currViewSpec + viewSpec.length();
+    const UChar *currViewSpec = viewSpec.characters();
+    const UChar *end = currViewSpec + viewSpec.length();
 
-    if (currViewSpec >= end)
+    if (currViewSpec >= end) {
         return false;
+    }
 
-    if (!skipString(currViewSpec, end, svgViewSpec, sizeof(svgViewSpec) / sizeof(UChar)))
+    if (!skipString(currViewSpec, end, svgViewSpec, sizeof(svgViewSpec) / sizeof(UChar))) {
         return false;
+    }
 
-    if (currViewSpec >= end || *currViewSpec != '(' )
+    if (currViewSpec >= end || *currViewSpec != '(') {
         return false;
+    }
     currViewSpec++;
 
     while (currViewSpec < end && *currViewSpec != ')') {
         if (*currViewSpec == 'v') {
             if (skipString(currViewSpec, end, viewBoxSpec, sizeof(viewBoxSpec) / sizeof(UChar))) {
-                if (currViewSpec >= end || *currViewSpec != '(')
+                if (currViewSpec >= end || *currViewSpec != '(') {
                     return false;
+                }
                 currViewSpec++;
                 float x, y, w, h;
-                if (!parseViewBox(currViewSpec, end, x, y, w, h, false))
+                if (!parseViewBox(currViewSpec, end, x, y, w, h, false)) {
                     return false;
+                }
                 setViewBoxBaseValue(FloatRect(x, y, w, h));
-                if (currViewSpec >= end || *currViewSpec != ')')
+                if (currViewSpec >= end || *currViewSpec != ')') {
                     return false;
+                }
                 currViewSpec++;
             } else if (skipString(currViewSpec, end, viewTargetSpec, sizeof(viewTargetSpec) / sizeof(UChar))) {
-                if (currViewSpec >= end || *currViewSpec != '(')
+                if (currViewSpec >= end || *currViewSpec != '(') {
                     return false;
-                const UChar* viewTargetStart = ++currViewSpec;
-                while (currViewSpec < end && *currViewSpec != ')')
+                }
+                const UChar *viewTargetStart = ++currViewSpec;
+                while (currViewSpec < end && *currViewSpec != ')') {
                     currViewSpec++;
-                if (currViewSpec >= end)
+                }
+                if (currViewSpec >= end) {
                     return false;
+                }
                 setViewTargetString(String(viewTargetStart, currViewSpec - viewTargetStart));
                 currViewSpec++;
-            } else
+            } else {
                 return false;
+            }
         } else if (*currViewSpec == 'z') {
-            if (!skipString(currViewSpec, end, zoomAndPanSpec, sizeof(zoomAndPanSpec) / sizeof(UChar)))
+            if (!skipString(currViewSpec, end, zoomAndPanSpec, sizeof(zoomAndPanSpec) / sizeof(UChar))) {
                 return false;
-            if (currViewSpec >= end || *currViewSpec != '(')
+            }
+            if (currViewSpec >= end || *currViewSpec != '(') {
                 return false;
+            }
             currViewSpec++;
-            if (!parseZoomAndPan(currViewSpec, end))
+            if (!parseZoomAndPan(currViewSpec, end)) {
                 return false;
-            if (currViewSpec >= end || *currViewSpec != ')')
+            }
+            if (currViewSpec >= end || *currViewSpec != ')') {
                 return false;
+            }
             currViewSpec++;
         } else if (*currViewSpec == 'p') {
-            if (!skipString(currViewSpec, end, preserveAspectRatioSpec, sizeof(preserveAspectRatioSpec) / sizeof(UChar)))
+            if (!skipString(currViewSpec, end, preserveAspectRatioSpec, sizeof(preserveAspectRatioSpec) / sizeof(UChar))) {
                 return false;
-            if (currViewSpec >= end || *currViewSpec != '(')
+            }
+            if (currViewSpec >= end || *currViewSpec != '(') {
                 return false;
+            }
             currViewSpec++;
-            if (!preserveAspectRatioBaseValue()->parsePreserveAspectRatio(currViewSpec, end, false))
+            if (!preserveAspectRatioBaseValue()->parsePreserveAspectRatio(currViewSpec, end, false)) {
                 return false;
-            if (currViewSpec >= end || *currViewSpec != ')')
+            }
+            if (currViewSpec >= end || *currViewSpec != ')') {
                 return false;
+            }
             currViewSpec++;
         } else if (*currViewSpec == 't') {
-            if (!skipString(currViewSpec, end, transformSpec, sizeof(transformSpec) / sizeof(UChar)))
+            if (!skipString(currViewSpec, end, transformSpec, sizeof(transformSpec) / sizeof(UChar))) {
                 return false;
-            if (currViewSpec >= end || *currViewSpec != '(')
+            }
+            if (currViewSpec >= end || *currViewSpec != '(') {
                 return false;
+            }
             currViewSpec++;
             SVGTransformable::parseTransformAttribute(m_transform.get(), currViewSpec, end);
-            if (currViewSpec >= end || *currViewSpec != ')')
+            if (currViewSpec >= end || *currViewSpec != ')') {
                 return false;
+            }
             currViewSpec++;
-        } else
+        } else {
             return false;
+        }
 
-        if (currViewSpec < end && *currViewSpec == ';')
+        if (currViewSpec < end && *currViewSpec == ';') {
             currViewSpec++;
+        }
     }
-    
-    if (currViewSpec >= end || *currViewSpec != ')')
+
+    if (currViewSpec >= end || *currViewSpec != ')') {
         return false;
+    }
 
     return true;
 }

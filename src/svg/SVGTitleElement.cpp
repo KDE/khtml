@@ -26,9 +26,10 @@
 
 #include "Document.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGTitleElement::SVGTitleElement(const QualifiedName& tagName, Document* doc)
+SVGTitleElement::SVGTitleElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledElement(tagName, doc)
 {
 }
@@ -36,8 +37,9 @@ SVGTitleElement::SVGTitleElement(const QualifiedName& tagName, Document* doc)
 void SVGTitleElement::insertedIntoDocument()
 {
     SVGStyledElement::insertedIntoDocument();
-    if (firstChild())
+    if (firstChild()) {
         document()->setTitle(textContent()/*, this*/);
+    }
 }
 
 void SVGTitleElement::removedFromDocument()
@@ -46,18 +48,18 @@ void SVGTitleElement::removedFromDocument()
     //khtml FIXME document()->removeTitle(this);
 }
 
-void SVGTitleElement::childrenChanged(bool changedByParser, Node* beforeChange, Node* afterChange, int childCountDelta)
+void SVGTitleElement::childrenChanged(bool changedByParser, Node *beforeChange, Node *afterChange, int childCountDelta)
 {
     Q_UNUSED(changedByParser);
     Q_UNUSED(beforeChange);
     Q_UNUSED(afterChange);
     Q_UNUSED(childCountDelta);
     SVGElement::childrenChanged(/*changedByParser, beforeChange, afterChange, childCountDelta*/);
-    if (inDocument())
+    if (inDocument()) {
         document()->setTitle(textContent()/*, this*/);
+    }
 }
 
 }
 
-// vim:ts=4:noet
 #endif // ENABLE(SVG)

@@ -27,16 +27,18 @@
 //#include "RenderBlock.h"
 #include "rendering/render_block.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 using namespace khtml;
 
 class SVGElement;
 
-class RenderSVGBlock : public RenderBlock {
+class RenderSVGBlock : public RenderBlock
+{
 public:
-    RenderSVGBlock(SVGElement*);
-    virtual void setStyle(RenderStyle*);
+    RenderSVGBlock(SVGElement *);
+    virtual void setStyle(RenderStyle *);
 };
 
 }

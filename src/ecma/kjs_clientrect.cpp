@@ -21,7 +21,8 @@
 
 #include "kjs_clientrect.lut.h"
 
-namespace KJS {
+namespace KJS
+{
 
 // table for ClientRect object
 /*
@@ -37,39 +38,38 @@ namespace KJS {
 
 const ClassInfo ClientRect::info = { "ClientRect", 0, &ClientRectTable, 0 };
 
-ClientRect::ClientRect(ExecState* /*exec*/, float left, float top, float width, float height)
+ClientRect::ClientRect(ExecState * /*exec*/, float left, float top, float width, float height)
     : JSObject(),
       m_rect(left, top, width, height)
 {
 }
 
-ClientRect::ClientRect(ExecState* /*exec*/, const QRectF& rect)
+ClientRect::ClientRect(ExecState * /*exec*/, const QRectF &rect)
     : JSObject(),
       m_rect(rect)
 {
 }
 
-JSValue* ClientRect::getValueProperty(ExecState* /*exec*/, int token) const
+JSValue *ClientRect::getValueProperty(ExecState * /*exec*/, int token) const
 {
-    switch (token)
-    {
-        case Top:
-            return jsNumber(top());
-        case Right:
-            return jsNumber(right());
-        case Left:
-            return jsNumber(left());
-        case Bottom:
-            return jsNumber(bottom());
-        case Height:
-            return jsNumber(height());
-        case Width:
-            return jsNumber(width());
+    switch (token) {
+    case Top:
+        return jsNumber(top());
+    case Right:
+        return jsNumber(right());
+    case Left:
+        return jsNumber(left());
+    case Bottom:
+        return jsNumber(bottom());
+    case Height:
+        return jsNumber(height());
+    case Width:
+        return jsNumber(width());
     }
     return jsUndefined();
 }
 
-bool ClientRect::getOwnPropertySlot(ExecState* exec, const Identifier& propertyName, PropertySlot& slot)
+bool ClientRect::getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot)
 {
     return getStaticValueSlot<ClientRect, JSObject>(exec, &ClientRectTable, this, propertyName, slot);
 }
@@ -124,7 +124,6 @@ void ClientRect::setWidth(float width)
     m_rect.setWidth(width);
 }
 
-
 // ---------------------- ClientRectList --------------------------
 
 // table for ClientRectList object
@@ -136,16 +135,17 @@ void ClientRect::setWidth(float width)
 
 const ClassInfo ClientRectList::info = { "ClientRectList", 0, &ClientRectListTable, 0 };
 
-ClientRectList::ClientRectList(ExecState* /*exec*/)
+ClientRectList::ClientRectList(ExecState * /*exec*/)
     : JSObject()
 {
 }
 
-ClientRectList::ClientRectList(ExecState* exec, const QList< QRectF >& list)
+ClientRectList::ClientRectList(ExecState *exec, const QList< QRectF > &list)
     : JSObject()
 {
-    foreach(const QRectF& rect, list)
+    foreach (const QRectF &rect, list) {
         m_list.append(new ClientRect(exec, rect));
+    }
 }
 
 unsigned int ClientRectList::length() const
@@ -153,20 +153,18 @@ unsigned int ClientRectList::length() const
     return m_list.size();
 }
 
-JSValue* ClientRectList::getValueProperty(ExecState* /*exec*/, int token) const
+JSValue *ClientRectList::getValueProperty(ExecState * /*exec*/, int token) const
 {
-    switch(token)
-    {
-        case Length:
-            return jsNumber(length());
+    switch (token) {
+    case Length:
+        return jsNumber(length());
     }
     return jsUndefined();
 }
 
-bool ClientRectList::getOwnPropertySlot(ExecState* exec, unsigned int index, PropertySlot& slot)
+bool ClientRectList::getOwnPropertySlot(ExecState *exec, unsigned int index, PropertySlot &slot)
 {
-    if (index >= length())
-    {
+    if (index >= length()) {
         setDOMException(exec, DOM::DOMException::INDEX_SIZE_ERR);
         return false;
     }
@@ -174,33 +172,34 @@ bool ClientRectList::getOwnPropertySlot(ExecState* exec, unsigned int index, Pro
     return true;
 }
 
-bool ClientRectList::getOwnPropertySlot(ExecState* exec, const Identifier& propertyName, PropertySlot& slot)
+bool ClientRectList::getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot)
 {
     bool ok;
     unsigned int index = propertyName.toArrayIndex(&ok);
-    if (ok)
+    if (ok) {
         return ClientRectList::getOwnPropertySlot(exec, index, slot);
+    }
 
     bool ret = getStaticValueSlot<ClientRectList, JSObject>(exec, &ClientRectListTable, this, propertyName, slot);
 
-    if (ret)
+    if (ret) {
         return ret;
+    }
 
     setDOMException(exec, DOM::DOMException::INDEX_SIZE_ERR);
     return false;
 }
 
-ClientRect* ClientRectList::item(unsigned int index)
+ClientRect *ClientRectList::item(unsigned int index)
 {
     ASSERT(index < length());
     return m_list.at(index);
 }
 
-void ClientRectList::append(ClientRect* item)
+void ClientRectList::append(ClientRect *item)
 {
     m_list.append(item);
 }
-
 
 } //namespace KJS
 

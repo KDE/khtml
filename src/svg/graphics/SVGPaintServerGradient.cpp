@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include "wtf/Platform.h"
@@ -31,7 +31,8 @@
 #include "SVGGradientElement.h"
 /*#include "SVGRenderTreeAsText.h"*/
 
-namespace WebCore {
+namespace WebCore
+{
 
 /*TextStream& operator<<(TextStream& ts, SVGGradientSpreadMethod m)
 {
@@ -59,7 +60,7 @@ TextStream& operator<<(TextStream& ts, const Vector<SVGGradientStop>& l)
     return ts;
 }*/
 
-SVGPaintServerGradient::SVGPaintServerGradient(const SVGGradientElement* owner)
+SVGPaintServerGradient::SVGPaintServerGradient(const SVGGradientElement *owner)
     : m_spreadMethod(SPREADMETHOD_PAD)
     , m_boundingBoxMode(true)
     , m_ownerElement(owner)
@@ -81,12 +82,12 @@ SVGPaintServerGradient::~SVGPaintServerGradient()
 #endif
 }
 
-const Vector<SVGGradientStop>& SVGPaintServerGradient::gradientStops() const
+const Vector<SVGGradientStop> &SVGPaintServerGradient::gradientStops() const
 {
     return m_stops;
 }
 
-void SVGPaintServerGradient::setGradientStops(const Vector<SVGGradientStop>& stops)
+void SVGPaintServerGradient::setGradientStops(const Vector<SVGGradientStop> &stops)
 {
     m_stops = stops;
 }
@@ -96,7 +97,7 @@ SVGGradientSpreadMethod SVGPaintServerGradient::spreadMethod() const
     return m_spreadMethod;
 }
 
-void SVGPaintServerGradient::setGradientSpreadMethod(const SVGGradientSpreadMethod& method)
+void SVGPaintServerGradient::setGradientSpreadMethod(const SVGGradientSpreadMethod &method)
 {
     m_spreadMethod = method;
 }
@@ -116,7 +117,7 @@ AffineTransform SVGPaintServerGradient::gradientTransform() const
     return m_gradientTransform;
 }
 
-void SVGPaintServerGradient::setGradientTransform(const AffineTransform& transform)
+void SVGPaintServerGradient::setGradientTransform(const AffineTransform &transform)
 {
     m_gradientTransform = transform;
 }

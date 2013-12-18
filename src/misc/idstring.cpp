@@ -23,19 +23,22 @@
 #include "idstring.h"
 #include <assert.h>
 
-namespace khtml {
+namespace khtml
+{
 
 CaseNormalizeMode IDTableBase::MappingKey::caseNormalizationMode;
 
-bool IDTableBase::MappingKey::operator==(const MappingKey& other) const
+bool IDTableBase::MappingKey::operator==(const MappingKey &other) const
 {
-    if (IDTableBase::MappingKey::caseNormalizationMode == IDS_CaseSensitive)
+    if (IDTableBase::MappingKey::caseNormalizationMode == IDS_CaseSensitive) {
         return !strcmp(str, other.str);
-    else
+    } else {
         return !strcasecmp(str, other.str);
+    }
 }
 
-static inline unsigned int qHash(const IDTableBase::MappingKey& key) {
+static inline unsigned int qHash(const IDTableBase::MappingKey &key)
+{
     if (!key.str) {
         return 82610334; //same as empty
     } else if (key.caseNormalizationMode == IDS_CaseSensitive) {
@@ -56,7 +59,7 @@ void IDTableBase::releaseId(unsigned id)
     m_idFreeList.append(id);
 }
 
-unsigned short IDTableBase::grabId(DOMStringImpl* origName, CaseNormalizeMode cnm)
+unsigned short IDTableBase::grabId(DOMStringImpl *origName, CaseNormalizeMode cnm)
 {
     unsigned short newId;
 
@@ -69,10 +72,10 @@ unsigned short IDTableBase::grabId(DOMStringImpl* origName, CaseNormalizeMode cn
         return newId;
     }
 
-    // Nope. Allocate new ID. If there is normalization going on, we may now have to 
+    // Nope. Allocate new ID. If there is normalization going on, we may now have to
     // update our case so the canonical mapping is of the expected case. We
-    // may also have to deep-copy 
-    DOMStringImpl* name = 0;
+    // may also have to deep-copy
+    DOMStringImpl *name = 0;
     switch (cnm) {
     case IDS_CaseSensitive:
         if (origName->m_shallowCopy) {
@@ -111,7 +114,7 @@ unsigned short IDTableBase::grabId(DOMStringImpl* origName, CaseNormalizeMode cn
             // of what it may go to, as we will have no way of freeing
             // the aliases. In particular, this means we no longer need the name..
             name->deref();
-            
+
             if (m_mappings.size() == 0xFFFE) {
                 // Need a new mapping..
                 name = new DOMStringImpl("_khtml_fallback");
@@ -120,7 +123,7 @@ unsigned short IDTableBase::grabId(DOMStringImpl* origName, CaseNormalizeMode cn
                 name->ref();
             } else {
                 name = m_mappings[0xFFFF].name; // No need to ref the name
-                                                // here as the entry is eternal anyway
+                // here as the entry is eternal anyway
             }
             newId = 0xFFFF;
         }
@@ -132,24 +135,26 @@ unsigned short IDTableBase::grabId(DOMStringImpl* origName, CaseNormalizeMode cn
     return newId;
 }
 
-void IDTableBase::addStaticMapping(unsigned id, const DOMString& name)
+void IDTableBase::addStaticMapping(unsigned id, const DOMString &name)
 {
     addHiddenMapping(id, name);
     IDTableBase::MappingKey::caseNormalizationMode = IDS_CaseSensitive;
     m_mappingLookup[name.implementation()] = id;
 }
 
-void IDTableBase::addHiddenMapping(unsigned id, const DOMString& name)
+void IDTableBase::addHiddenMapping(unsigned id, const DOMString &name)
 {
-    DOMStringImpl* nameImpl = name.implementation();
-    if (nameImpl) nameImpl->ref();
+    DOMStringImpl *nameImpl = name.implementation();
+    if (nameImpl) {
+        nameImpl->ref();
+    }
 
-    if (id >= m_mappings.size())
+    if (id >= m_mappings.size()) {
         m_mappings.resize(id + 1);
+    }
     m_mappings[id] = Mapping(nameImpl);
     m_mappings[id].refCount = 1; // Pin it.
 }
 
 }
 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

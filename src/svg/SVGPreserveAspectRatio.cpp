@@ -28,7 +28,8 @@
 #include "SVGParserUtilities.h"
 #include "SVGSVGElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 SVGPreserveAspectRatio::SVGPreserveAspectRatio()
     : m_align(SVG_PRESERVEASPECTRATIO_XMIDYMID)
@@ -61,14 +62,15 @@ unsigned short SVGPreserveAspectRatio::meetOrSlice() const
     return m_meetOrSlice;
 }
 
-bool SVGPreserveAspectRatio::parsePreserveAspectRatio(const UChar*& currParam, const UChar* end, bool validate)
+bool SVGPreserveAspectRatio::parsePreserveAspectRatio(const UChar *&currParam, const UChar *end, bool validate)
 {
     SVGPreserveAspectRatioType align = SVG_PRESERVEASPECTRATIO_NONE;
     SVGMeetOrSliceType meetOrSlice = SVG_MEETORSLICE_MEET;
     bool ret = false;
 
-    if (!skipOptionalSpaces(currParam, end))
+    if (!skipOptionalSpaces(currParam, end)) {
         goto bail_out;
+    }
 
     if (*currParam == 'd') {
         /*if (!skipString(currParam, end, "defer"))
@@ -83,55 +85,66 @@ bool SVGPreserveAspectRatio::parsePreserveAspectRatio(const UChar*& currParam, c
             goto bail_out;*/
         skipOptionalSpaces(currParam, end);
     } else if (*currParam == 'x') {
-        if ((end - currParam) < 8)
+        if ((end - currParam) < 8) {
             goto bail_out;
-        if (currParam[1] != 'M' || currParam[4] != 'Y' || currParam[5] != 'M')
+        }
+        if (currParam[1] != 'M' || currParam[4] != 'Y' || currParam[5] != 'M') {
             goto bail_out;
+        }
         if (currParam[2] == 'i') {
             if (currParam[3] == 'n') {
                 if (currParam[6] == 'i') {
-                    if (currParam[7] == 'n')
+                    if (currParam[7] == 'n') {
                         align = SVG_PRESERVEASPECTRATIO_XMINYMIN;
-                    else if (currParam[7] == 'd')
+                    } else if (currParam[7] == 'd') {
                         align = SVG_PRESERVEASPECTRATIO_XMINYMID;
-                    else
+                    } else {
                         goto bail_out;
-                } else if (currParam[6] == 'a' && currParam[7] == 'x')
-                     align = SVG_PRESERVEASPECTRATIO_XMINYMAX;
-                else
-                     goto bail_out;
-             } else if (currParam[3] == 'd') {
-                if (currParam[6] == 'i') {
-                    if (currParam[7] == 'n')
-                        align = SVG_PRESERVEASPECTRATIO_XMIDYMIN;
-                    else if (currParam[7] == 'd')
-                        align = SVG_PRESERVEASPECTRATIO_XMIDYMID;
-                    else
-                        goto bail_out;
-                } else if (currParam[6] == 'a' && currParam[7] == 'x')
-                    align = SVG_PRESERVEASPECTRATIO_XMIDYMAX;
-                else
+                    }
+                } else if (currParam[6] == 'a' && currParam[7] == 'x') {
+                    align = SVG_PRESERVEASPECTRATIO_XMINYMAX;
+                } else {
                     goto bail_out;
-            } else
+                }
+            } else if (currParam[3] == 'd') {
+                if (currParam[6] == 'i') {
+                    if (currParam[7] == 'n') {
+                        align = SVG_PRESERVEASPECTRATIO_XMIDYMIN;
+                    } else if (currParam[7] == 'd') {
+                        align = SVG_PRESERVEASPECTRATIO_XMIDYMID;
+                    } else {
+                        goto bail_out;
+                    }
+                } else if (currParam[6] == 'a' && currParam[7] == 'x') {
+                    align = SVG_PRESERVEASPECTRATIO_XMIDYMAX;
+                } else {
+                    goto bail_out;
+                }
+            } else {
                 goto bail_out;
+            }
         } else if (currParam[2] == 'a' && currParam[3] == 'x') {
             if (currParam[6] == 'i') {
-                if (currParam[7] == 'n')
+                if (currParam[7] == 'n') {
                     align = SVG_PRESERVEASPECTRATIO_XMAXYMIN;
-                else if (currParam[7] == 'd')
+                } else if (currParam[7] == 'd') {
                     align = SVG_PRESERVEASPECTRATIO_XMAXYMID;
-                else
+                } else {
                     goto bail_out;
-            } else if (currParam[6] == 'a' && currParam[7] == 'x')
+                }
+            } else if (currParam[6] == 'a' && currParam[7] == 'x') {
                 align = SVG_PRESERVEASPECTRATIO_XMAXYMAX;
-            else
+            } else {
                 goto bail_out;
-        } else
+            }
+        } else {
             goto bail_out;
+        }
         currParam += 8;
         skipOptionalSpaces(currParam, end);
-    } else
+    } else {
         goto bail_out;
+    }
 
     if (currParam < end) {
         if (*currParam == 'm') {
@@ -148,15 +161,17 @@ bool SVGPreserveAspectRatio::parsePreserveAspectRatio(const UChar*& currParam, c
     }
 
     if (end != currParam && validate) {
-bail_out:
+    bail_out:
         // FIXME: Should the two values be set to UNKNOWN instead?
         align = SVG_PRESERVEASPECTRATIO_NONE;
         meetOrSlice = SVG_MEETORSLICE_MEET;
-    } else
+    } else {
         ret = true;
+    }
 
-    if (m_align == align && m_meetOrSlice == meetOrSlice)
+    if (m_align == align && m_meetOrSlice == meetOrSlice) {
         return ret;
+    }
 
     m_align = align;
     m_meetOrSlice = meetOrSlice;
@@ -164,14 +179,15 @@ bail_out:
 }
 
 AffineTransform SVGPreserveAspectRatio::getCTM(double logicX, double logicY,
-                                               double logicWidth, double logicHeight,
-                                               double /*physX*/, double /*physY*/,
-                                               double physWidth, double physHeight)
+        double logicWidth, double logicHeight,
+        double /*physX*/, double /*physY*/,
+        double physWidth, double physHeight)
 {
     AffineTransform temp;
 
-    if (align() == SVG_PRESERVEASPECTRATIO_UNKNOWN)
+    if (align() == SVG_PRESERVEASPECTRATIO_UNKNOWN) {
         return temp;
+    }
 
     double vpar = logicWidth / logicHeight;
     double svgar = physWidth / physHeight;
@@ -182,21 +198,23 @@ AffineTransform SVGPreserveAspectRatio::getCTM(double logicX, double logicY,
     } else if ((vpar < svgar && meetOrSlice() == SVG_MEETORSLICE_MEET) || (vpar >= svgar && meetOrSlice() == SVG_MEETORSLICE_SLICE)) {
         temp.scale(physHeight / logicHeight, physHeight / logicHeight);
 
-        if (align() == SVG_PRESERVEASPECTRATIO_XMINYMIN || align() == SVG_PRESERVEASPECTRATIO_XMINYMID || align() == SVG_PRESERVEASPECTRATIO_XMINYMAX)
+        if (align() == SVG_PRESERVEASPECTRATIO_XMINYMIN || align() == SVG_PRESERVEASPECTRATIO_XMINYMID || align() == SVG_PRESERVEASPECTRATIO_XMINYMAX) {
             temp.translate(-logicX, -logicY);
-        else if (align() == SVG_PRESERVEASPECTRATIO_XMIDYMIN || align() == SVG_PRESERVEASPECTRATIO_XMIDYMID || align() == SVG_PRESERVEASPECTRATIO_XMIDYMAX)
+        } else if (align() == SVG_PRESERVEASPECTRATIO_XMIDYMIN || align() == SVG_PRESERVEASPECTRATIO_XMIDYMID || align() == SVG_PRESERVEASPECTRATIO_XMIDYMAX) {
             temp.translate(-logicX - (logicWidth - physWidth * logicHeight / physHeight) / 2, -logicY);
-        else
+        } else {
             temp.translate(-logicX - (logicWidth - physWidth * logicHeight / physHeight), -logicY);
+        }
     } else {
         temp.scale(physWidth / logicWidth, physWidth / logicWidth);
 
-        if (align() == SVG_PRESERVEASPECTRATIO_XMINYMIN || align() == SVG_PRESERVEASPECTRATIO_XMIDYMIN || align() == SVG_PRESERVEASPECTRATIO_XMAXYMIN)
+        if (align() == SVG_PRESERVEASPECTRATIO_XMINYMIN || align() == SVG_PRESERVEASPECTRATIO_XMIDYMIN || align() == SVG_PRESERVEASPECTRATIO_XMAXYMIN) {
             temp.translate(-logicX, -logicY);
-        else if (align() == SVG_PRESERVEASPECTRATIO_XMINYMID || align() == SVG_PRESERVEASPECTRATIO_XMIDYMID || align() == SVG_PRESERVEASPECTRATIO_XMAXYMID)
+        } else if (align() == SVG_PRESERVEASPECTRATIO_XMINYMID || align() == SVG_PRESERVEASPECTRATIO_XMIDYMID || align() == SVG_PRESERVEASPECTRATIO_XMAXYMID) {
             temp.translate(-logicX, -logicY - (logicHeight - physHeight * logicWidth / physWidth) / 2);
-        else
+        } else {
             temp.translate(-logicX, -logicY - (logicHeight - physHeight * logicWidth / physWidth));
+        }
     }
 
     return temp;

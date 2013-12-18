@@ -27,54 +27,80 @@
 
 #include "SVGPathSeg.h"
 
-namespace WebCore {
-    class SVGPathSegMovetoAbs : public SVGPathSeg { 
-    public:
-        static PassRefPtr<SVGPathSegMovetoAbs> create(float x, float y) { return adoptRef(new SVGPathSegMovetoAbs(x, y)); }
-        virtual ~SVGPathSegMovetoAbs();
+namespace WebCore
+{
+class SVGPathSegMovetoAbs : public SVGPathSeg
+{
+public:
+    static PassRefPtr<SVGPathSegMovetoAbs> create(float x, float y)
+    {
+        return adoptRef(new SVGPathSegMovetoAbs(x, y));
+    }
+    virtual ~SVGPathSegMovetoAbs();
 
-        virtual unsigned short pathSegType() const { return PATHSEG_MOVETO_ABS; }
-        virtual String pathSegTypeAsLetter() const { return "M"; }
-        virtual String toString() const { return String::format("M %.6lg %.6lg", m_x, m_y); }
+    virtual unsigned short pathSegType() const
+    {
+        return PATHSEG_MOVETO_ABS;
+    }
+    virtual String pathSegTypeAsLetter() const
+    {
+        return "M";
+    }
+    virtual String toString() const
+    {
+        return String::format("M %.6lg %.6lg", m_x, m_y);
+    }
 
-        void setX(float);
-        float x() const;
+    void setX(float);
+    float x() const;
 
-        void setY(float);
-        float y() const;
+    void setY(float);
+    float y() const;
 
-    private:
-        SVGPathSegMovetoAbs(float x, float y);
+private:
+    SVGPathSegMovetoAbs(float x, float y);
 
-        float m_x;
-        float m_y;
-    };
+    float m_x;
+    float m_y;
+};
 
-    class SVGPathSegMovetoRel : public SVGPathSeg { 
-    public:
-        static PassRefPtr<SVGPathSegMovetoRel> create(float x, float y) { return adoptRef(new SVGPathSegMovetoRel(x, y)); }
-        virtual ~SVGPathSegMovetoRel();
+class SVGPathSegMovetoRel : public SVGPathSeg
+{
+public:
+    static PassRefPtr<SVGPathSegMovetoRel> create(float x, float y)
+    {
+        return adoptRef(new SVGPathSegMovetoRel(x, y));
+    }
+    virtual ~SVGPathSegMovetoRel();
 
-        virtual unsigned short pathSegType() const { return PATHSEG_MOVETO_REL; }
-        virtual String pathSegTypeAsLetter() const { return "m"; }
-        virtual String toString() const { return String::format("m %.6lg %.6lg", m_x, m_y); }
+    virtual unsigned short pathSegType() const
+    {
+        return PATHSEG_MOVETO_REL;
+    }
+    virtual String pathSegTypeAsLetter() const
+    {
+        return "m";
+    }
+    virtual String toString() const
+    {
+        return String::format("m %.6lg %.6lg", m_x, m_y);
+    }
 
-        void setX(float);
-        float x() const;
+    void setX(float);
+    float x() const;
 
-        void setY(float);
-        float y() const;
+    void setY(float);
+    float y() const;
 
-    private:
-        SVGPathSegMovetoRel(float x, float y);
+private:
+    SVGPathSegMovetoRel(float x, float y);
 
-        float m_x;
-        float m_y;
-    };
+    float m_x;
+    float m_y;
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

@@ -11,7 +11,8 @@
 #define SVG_NAMESPACE "http://www.w3.org/2000/svg"
 #define XLINK_NAMESPACE "http://www.w3.org/1999/xlink"
 #define XHTML_NAMESPACE "http://www.w3.org/1999/xhtml"
-namespace DOM {
+namespace DOM
+{
 
 #define NodeImpl_IdNSMask    0xffff0000
 #define NodeImpl_IdLocalMask 0x0000ffff
@@ -28,14 +29,22 @@ const quint16 emptyPrefix = 0;
 const quint16 xmlPrefix = 1;
 const quint16 xmlnsPrefix = 2;
 
-inline quint16 localNamePart(quint32 id) { return id & NodeImpl_IdLocalMask; }
-inline quint16 namespacePart(quint32 id) { return (((unsigned int)id) & NodeImpl_IdNSMask) >> 16; }
-inline quint32 makeId(quint16 n, quint16 l) { return (n << 16) | l; }
+inline quint16 localNamePart(quint32 id)
+{
+    return id & NodeImpl_IdLocalMask;
+}
+inline quint16 namespacePart(quint32 id)
+{
+    return (((unsigned int)id) & NodeImpl_IdNSMask) >> 16;
+}
+inline quint32 makeId(quint16 n, quint16 l)
+{
+    return (n << 16) | l;
+}
 
 const quint32 anyQName = makeId(anyNamespace, anyLocalName);
 
 }
-
 
 #define ID_A 1
 #define ID_ABBR 2
@@ -630,50 +639,58 @@ const quint32 anyQName = makeId(anyNamespace, anyLocalName);
 
 #define caseSensitiveAttr(id) (((localNamePart(id)) > ATTR_LAST_CI_ATTR || (id) == ATTR_ABBR || (id) == ATTR_CITE || (id) == ATTR_CODE || (id) == ATTR_LABEL || (id) == ATTR_OBJECT || (id) == ATTR_TITLE))
 
-namespace khtml {
+namespace khtml
+{
 
-class NamespaceFactory {
+class NamespaceFactory
+{
 public:
-    static IDTable<NamespaceFactory>* idTable() {
+    static IDTable<NamespaceFactory> *idTable()
+    {
         return s_idTable;
     }
-    static IDTable<NamespaceFactory>* initIdTable();
+    static IDTable<NamespaceFactory> *initIdTable();
 protected:
-    static IDTable<NamespaceFactory>* s_idTable;
+    static IDTable<NamespaceFactory> *s_idTable;
 };
 
-class LocalNameFactory {
+class LocalNameFactory
+{
 public:
-    static IDTable<LocalNameFactory>* idTable() {
+    static IDTable<LocalNameFactory> *idTable()
+    {
         return s_idTable;
     }
-    static IDTable<LocalNameFactory>* initIdTable();
+    static IDTable<LocalNameFactory> *initIdTable();
 protected:
-    static IDTable<LocalNameFactory>* s_idTable;
+    static IDTable<LocalNameFactory> *s_idTable;
 };
 
-class PrefixFactory {
+class PrefixFactory
+{
 public:
-    static IDTable<PrefixFactory>* idTable() {
+    static IDTable<PrefixFactory> *idTable()
+    {
         return s_idTable;
     }
-    static IDTable<PrefixFactory>* initIdTable();
+    static IDTable<PrefixFactory> *initIdTable();
 protected:
-    static IDTable<PrefixFactory>* s_idTable;
+    static IDTable<PrefixFactory> *s_idTable;
 };
 
 }
 
-namespace DOM {
+namespace DOM
+{
 
-    typedef khtml::IDString<khtml::NamespaceFactory> NamespaceName;
-    typedef khtml::IDString<khtml::LocalNameFactory> LocalName;
-    typedef khtml::IDString<khtml::PrefixFactory> PrefixName;
-    extern PrefixName emptyPrefixName;
-    extern LocalName emptyLocalName;
-    extern NamespaceName emptyNamespaceName;
+typedef khtml::IDString<khtml::NamespaceFactory> NamespaceName;
+typedef khtml::IDString<khtml::LocalNameFactory> LocalName;
+typedef khtml::IDString<khtml::PrefixFactory> PrefixName;
+extern PrefixName emptyPrefixName;
+extern LocalName emptyLocalName;
+extern NamespaceName emptyNamespaceName;
 
-    QString getPrintableName(int id);
+QString getPrintableName(int id);
 
 }
 

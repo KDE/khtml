@@ -30,91 +30,93 @@
 #include "xpath/expression.h"
 #include "xpath/parsedstatement.h"
 
-namespace DOM {
-    class DOMStringImpl;
-    class NodeImpl;
+namespace DOM
+{
+class DOMStringImpl;
+class NodeImpl;
 }
 
-namespace khtml {
+namespace khtml
+{
 
 class XPathNSResolverImpl;
 
 class XPathResultImpl : public Shared<XPathResultImpl>
 {
-	public:
-		XPathResultImpl();
-		XPathResultImpl( const XPath::Value &value );
+public:
+    XPathResultImpl();
+    XPathResultImpl(const XPath::Value &value);
 
-		void convertTo( unsigned short type, int &exceptioncode );
+    void convertTo(unsigned short type, int &exceptioncode);
 
-		unsigned short resultType() const;
+    unsigned short resultType() const;
 
-		double numberValue( int &exceptioncode ) const;
-		DOM::DOMString stringValue( int &exceptioncode ) const;
-		bool booleanValue( int &exceptioncode ) const;
-		DOM::NodeImpl *singleNodeValue( int &exceptioncode ) const;
+    double numberValue(int &exceptioncode) const;
+    DOM::DOMString stringValue(int &exceptioncode) const;
+    bool booleanValue(int &exceptioncode) const;
+    DOM::NodeImpl *singleNodeValue(int &exceptioncode) const;
 
-		bool invalidIteratorState() const;
-		unsigned long snapshotLength( int &exceptioncode ) const;
-		DOM::NodeImpl *iterateNext( int &exceptioncode );
-		DOM::NodeImpl *snapshotItem( unsigned long index, int &exceptioncode );
+    bool invalidIteratorState() const;
+    unsigned long snapshotLength(int &exceptioncode) const;
+    DOM::NodeImpl *iterateNext(int &exceptioncode);
+    DOM::NodeImpl *snapshotItem(unsigned long index, int &exceptioncode);
 
-	private:
-		XPath::Value m_value;
-		unsigned long  m_nodeIterator;
-		unsigned short m_resultType;
+private:
+    XPath::Value m_value;
+    unsigned long  m_nodeIterator;
+    unsigned short m_resultType;
 };
 
 class XPathExpressionImpl : public Shared<XPathExpressionImpl>
 {
-	public:
-		XPathExpressionImpl( const DOM::DOMString &expression,
-		                     XPathNSResolverImpl *resolver );
+public:
+    XPathExpressionImpl(const DOM::DOMString &expression,
+                        XPathNSResolverImpl *resolver);
 
-		// expression we got while parsing, or 0
-		int parseExceptionCode();
+    // expression we got while parsing, or 0
+    int parseExceptionCode();
 
-		XPathResultImpl *evaluate( DOM::NodeImpl *contextNode,
-		                           unsigned short type,
-		                           XPathResultImpl *result,
-		                           int &exceptioncode );
+    XPathResultImpl *evaluate(DOM::NodeImpl *contextNode,
+                              unsigned short type,
+                              XPathResultImpl *result,
+                              int &exceptioncode);
 
-
-	private:
-		XPath::ParsedStatement m_statement;
+private:
+    XPath::ParsedStatement m_statement;
 };
 
 // This is the base class for resolver interfaces
 class XPathNSResolverImpl : public khtml::Shared<XPathNSResolverImpl>
 {
-	public:
-		enum Type {
-			Default,
-			JS,
-			CPP
-		};
+public:
+    enum Type {
+        Default,
+        JS,
+        CPP
+    };
 
-		virtual DOM::DOMString lookupNamespaceURI( const DOM::DOMString& prefix ) = 0;
-		virtual Type type() = 0;
-		virtual ~XPathNSResolverImpl() {}
+    virtual DOM::DOMString lookupNamespaceURI(const DOM::DOMString &prefix) = 0;
+    virtual Type type() = 0;
+    virtual ~XPathNSResolverImpl() {}
 };
 
 // This is the default implementation, used by createNSResolver
 class DefaultXPathNSResolverImpl : public XPathNSResolverImpl
 {
-	public:
-		DefaultXPathNSResolverImpl( DOM::NodeImpl *node );
+public:
+    DefaultXPathNSResolverImpl(DOM::NodeImpl *node);
 
-		virtual DOM::DOMString lookupNamespaceURI( const DOM::DOMString& prefix );
-		virtual Type type() { return Default; }
+    virtual DOM::DOMString lookupNamespaceURI(const DOM::DOMString &prefix);
+    virtual Type type()
+    {
+        return Default;
+    }
 
-	private:
-		SharedPtr<DOM::NodeImpl> m_node;
+private:
+    SharedPtr<DOM::NodeImpl> m_node;
 };
-
 
 } // namespace khtml
 
 #endif // XPATHRESULTIMPL_H
 
-// kate: indent-width 4; replace-tabs off; tab-width 4; space-indent off;

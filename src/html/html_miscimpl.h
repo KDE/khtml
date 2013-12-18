@@ -27,7 +27,8 @@
 #include "xml/dom_nodelistimpl.h"
 #include "misc/shared.h"
 
-namespace DOM {
+namespace DOM
+{
 
 class Node;
 class DOMString;
@@ -78,33 +79,35 @@ public:
 
     HTMLCollectionImpl(NodeImpl *_base, int _tagId);
 
-    virtual NodeImpl *item ( unsigned long index ) const;
+    virtual NodeImpl *item(unsigned long index) const;
 
     // obsolete and not domtree changes save
     virtual NodeImpl *firstItem() const;
     virtual NodeImpl *nextItem() const;
 
-    virtual NodeImpl *namedItem ( const DOMString &name ) const;
+    virtual NodeImpl *namedItem(const DOMString &name) const;
     // In case of multiple items named the same way
-    virtual NodeImpl *nextNamedItem( const DOMString &name ) const;
+    virtual NodeImpl *nextNamedItem(const DOMString &name) const;
 
-    QList<NodeImpl*> namedItems( const DOMString &name ) const;
+    QList<NodeImpl *> namedItems(const DOMString &name) const;
 
-    int getType() const {
+    int getType() const
+    {
         return type;
     }
 
-    NodeImpl* base() {
-      return m_refNode;
+    NodeImpl *base()
+    {
+        return m_refNode;
     }
 protected:
     virtual unsigned long calcLength(NodeImpl *start) const;
 
     // The collection list the following elements
-    int type:8;
+    int type: 8;
 
     // Reimplemented from DynamicNodeListImpl
-    virtual bool nodeMatches( NodeImpl *testNode, bool& doRecurse ) const;
+    virtual bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const;
 
     // Helper for name iteration: checks whether ID matches,
     // and inserts any name-matching things into namedItemsWithName
@@ -118,16 +121,16 @@ class HTMLFormCollectionImpl : public HTMLCollectionImpl
 {
 public:
     // base must inherit HTMLGenericFormElementImpl or this won't work
-    HTMLFormCollectionImpl(NodeImpl* _base);
+    HTMLFormCollectionImpl(NodeImpl *_base);
     ~HTMLFormCollectionImpl() { }
 
-    virtual NodeImpl *item ( unsigned long index ) const;
+    virtual NodeImpl *item(unsigned long index) const;
 
-    virtual NodeImpl *namedItem ( const DOMString &name ) const;
+    virtual NodeImpl *namedItem(const DOMString &name) const;
     // In case of multiple items named the same way
-    virtual NodeImpl *nextNamedItem( const DOMString &name ) const;
+    virtual NodeImpl *nextNamedItem(const DOMString &name) const;
 protected:
-    virtual unsigned long calcLength( NodeImpl *start ) const;
+    virtual unsigned long calcLength(NodeImpl *start) const;
 
 private:
     mutable unsigned currentNamePos;
@@ -142,10 +145,10 @@ private:
 class HTMLMappedNameCollectionImpl : public HTMLCollectionImpl
 {
 public:
-    HTMLMappedNameCollectionImpl(NodeImpl* _base, int type, const DOMString& name);
-    virtual bool nodeMatches( NodeImpl *testNode, bool& doRecurse ) const;
+    HTMLMappedNameCollectionImpl(NodeImpl *_base, int type, const DOMString &name);
+    virtual bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const;
 
-    static bool matchesName( ElementImpl* el, int type, const DOMString& name);
+    static bool matchesName(ElementImpl *el, int type, const DOMString &name);
 private:
     DOMString name;
 };

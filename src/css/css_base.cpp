@@ -42,19 +42,24 @@ using namespace DOM;
 
 void StyleBaseImpl::checkLoaded() const
 {
-    if(m_parent) m_parent->checkLoaded();
+    if (m_parent) {
+        m_parent->checkLoaded();
+    }
 }
 
 void StyleBaseImpl::checkPending() const
 {
-    if(m_parent) m_parent->checkPending();
-} 
+    if (m_parent) {
+        m_parent->checkPending();
+    }
+}
 
-StyleSheetImpl* StyleBaseImpl::stylesheet()
+StyleSheetImpl *StyleBaseImpl::stylesheet()
 {
-    StyleBaseImpl* b = this;
-    while(b && !b->isStyleSheet())
+    StyleBaseImpl *b = this;
+    while (b && !b->isStyleSheet()) {
         b = b->m_parent;
+    }
     return static_cast<StyleSheetImpl *>(b);
 }
 
@@ -66,28 +71,35 @@ QUrl StyleBaseImpl::baseURL()
 
     StyleSheetImpl *sheet = stylesheet();
 
-    if(!sheet) return QUrl();
+    if (!sheet) {
+        return QUrl();
+    }
 
-    if(!sheet->href().isNull())
-        return QUrl( sheet->href().string() );
+    if (!sheet->href().isNull()) {
+        return QUrl(sheet->href().string());
+    }
 
     // find parent
-    if(sheet->parent()) return sheet->parent()->baseURL();
+    if (sheet->parent()) {
+        return sheet->parent()->baseURL();
+    }
 
-    if(!sheet->ownerNode()) return QUrl();
+    if (!sheet->ownerNode()) {
+        return QUrl();
+    }
 
     return sheet->ownerNode()->document()->baseURL();
 }
 
 void StyleBaseImpl::setParsedValue(int propId, const CSSValueImpl *parsedValue,
-				   bool important, QList<CSSProperty*> *propList)
+                                   bool important, QList<CSSProperty *> *propList)
 {
-    QMutableListIterator<CSSProperty*> propIt(*propList);
+    QMutableListIterator<CSSProperty *> propIt(*propList);
     propIt.toBack(); // just remove the top one - not sure what should happen if we have multiple instances of the property
-    CSSProperty* p;
+    CSSProperty *p;
     while (propIt.hasPrevious()) {
         p = propIt.previous();
-        if (p->m_id == propId && p->m_important == important ) {
+        if (p->m_id == propId && p->m_important == important) {
             delete propIt.value();
             propIt.remove();
             break;
@@ -102,8 +114,8 @@ void StyleBaseImpl::setParsedValue(int propId, const CSSValueImpl *parsedValue,
     propList->append(prop);
 #ifdef CSS_DEBUG
     qDebug() << "added property: " << getPropertyName(propId).string()
-                    // non implemented yet << ", value: " << parsedValue->cssText().string()
-                    << " important: " << prop->m_important;
+             // non implemented yet << ", value: " << parsedValue->cssText().string()
+             << " important: " << prop->m_important;
 #endif
 }
 
@@ -113,14 +125,17 @@ StyleListImpl::~StyleListImpl()
 {
     StyleBaseImpl *n;
 
-    if(!m_lstChildren) return;
+    if (!m_lstChildren) {
+        return;
+    }
 
-    QListIterator<StyleBaseImpl*> it( *m_lstChildren );
-    while ( it.hasNext() )
-    {
+    QListIterator<StyleBaseImpl *> it(*m_lstChildren);
+    while (it.hasNext()) {
         n = it.next();
         n->setParent(0);
-        if( !n->refCount() ) delete n;
+        if (!n->refCount()) {
+            delete n;
+        }
     }
     delete m_lstChildren;
 }
@@ -130,10 +145,11 @@ StyleListImpl::~StyleListImpl()
 void CSSSelector::print(void)
 {
     // qDebug() << "[Selector: tag = " <<       QString::number(makeId(tagNamespace.id(), tagLocalName.id()),16) << ", attr = \"" << makeId(attrNamespace.id(), attrLocalName.id()) << "\", match = \"" << match
-		//    << "\" value = \"" << value.string().string().toLatin1().constData() << "\" relation = " << (int)relation
-		//    << "]" << endl;
-    if ( tagHistory )
+    //    << "\" value = \"" << value.string().string().toLatin1().constData() << "\" relation = " << (int)relation
+    //    << "]" << endl;
+    if (tagHistory) {
         tagHistory->print();
+    }
     // qDebug() << "    specificity = " << specificity();
 }
 
@@ -141,11 +157,10 @@ unsigned int CSSSelector::specificity() const
 {
 
     int s = ((tagLocalName.id() == anyLocalName) ? 0 : 1);
-    switch(match)
-    {
+    switch (match) {
     case Id:
-	s += 0x10000;
-	break;
+        s += 0x10000;
+        break;
     case Exact:
     case Set:
     case List:
@@ -160,167 +175,184 @@ unsigned int CSSSelector::specificity() const
     case None:
         break;
     }
-    if(tagHistory)
+    if (tagHistory) {
         s += tagHistory->specificity();
+    }
     // make sure it doesn't overflow
     return s & 0xffffff;
 }
 
 void CSSSelector::extractPseudoType() const
 {
-    if (match != PseudoClass && match != PseudoElement)
+    if (match != PseudoClass && match != PseudoElement) {
         return;
+    }
     _pseudoType = PseudoOther;
     bool element = false;
     bool compat = false;
     if (!value.isEmpty()) {
         value = value.string().lower();
         switch (value[0].unicode()) {
-            case '-':
-                if (value == "-khtml-replaced")
-                    _pseudoType = PseudoReplaced;
-                else
-                if (value == "-khtml-marker")
-                    _pseudoType = PseudoMarker;
+        case '-':
+            if (value == "-khtml-replaced") {
+                _pseudoType = PseudoReplaced;
+            } else if (value == "-khtml-marker") {
+                _pseudoType = PseudoMarker;
+            }
+            element = true;
+            break;
+        case 'a':
+            if (value == "active") {
+                _pseudoType = PseudoActive;
+            } else if (value == "after") {
+                _pseudoType = PseudoAfter;
+                element = compat = true;
+            }
+            break;
+        case 'b':
+            if (value == "before") {
+                _pseudoType = PseudoBefore;
+                element = compat = true;
+            }
+            break;
+        case 'c':
+            if (value == "checked") {
+                _pseudoType = PseudoChecked;
+            } else if (value == "contains(") {
+                _pseudoType = PseudoContains;
+            }
+            break;
+        case 'd':
+            if (value == "disabled") {
+                _pseudoType = PseudoDisabled;
+            }
+            if (value == "default") {
+                _pseudoType = PseudoDefault;
+            }
+            break;
+        case 'e':
+            if (value == "empty") {
+                _pseudoType = PseudoEmpty;
+            } else if (value == "enabled") {
+                _pseudoType = PseudoEnabled;
+            }
+            break;
+        case 'f':
+            if (value == "first-child") {
+                _pseudoType = PseudoFirstChild;
+            } else if (value == "first-letter") {
+                _pseudoType = PseudoFirstLetter;
+                element = compat = true;
+            } else if (value == "first-line") {
+                _pseudoType = PseudoFirstLine;
+                element = compat = true;
+            } else if (value == "first-of-type") {
+                _pseudoType = PseudoFirstOfType;
+            } else if (value == "focus") {
+                _pseudoType = PseudoFocus;
+            }
+            break;
+        case 'h':
+            if (value == "hover") {
+                _pseudoType = PseudoHover;
+            }
+            break;
+        case 'i':
+            if (value == "indeterminate") {
+                _pseudoType = PseudoIndeterminate;
+            }
+            break;
+        case 'l':
+            if (value == "link") {
+                _pseudoType = PseudoLink;
+            } else if (value == "lang(") {
+                _pseudoType = PseudoLang;
+            } else if (value == "last-child") {
+                _pseudoType = PseudoLastChild;
+            } else if (value == "last-of-type") {
+                _pseudoType = PseudoLastOfType;
+            }
+            break;
+        case 'n':
+            if (value == "not(") {
+                _pseudoType = PseudoNot;
+            } else if (value == "nth-child(") {
+                _pseudoType = PseudoNthChild;
+            } else if (value == "nth-last-child(") {
+                _pseudoType = PseudoNthLastChild;
+            } else if (value == "nth-of-type(") {
+                _pseudoType = PseudoNthOfType;
+            } else if (value == "nth-last-of-type(") {
+                _pseudoType = PseudoNthLastOfType;
+            }
+            break;
+        case 'o':
+            if (value == "only-child") {
+                _pseudoType = PseudoOnlyChild;
+            } else if (value == "only-of-type") {
+                _pseudoType = PseudoOnlyOfType;
+            }
+            break;
+        case 'r':
+            if (value == "root") {
+                _pseudoType = PseudoRoot;
+            } else if (value == "read-only") {
+                _pseudoType = PseudoReadOnly;
+            } else if (value == "read-write") {
+                _pseudoType = PseudoReadWrite;
+            }
+            break;
+        case 's':
+            if (value == "selection") {
+                _pseudoType = PseudoSelection;
                 element = true;
-                break;
-            case 'a':
-                if (value == "active")
-                    _pseudoType = PseudoActive;
-                else if (value == "after") {
-                    _pseudoType = PseudoAfter;
-                    element = compat = true;
-                }
-                break;
-            case 'b':
-                if (value == "before") {
-                    _pseudoType = PseudoBefore;
-                    element = compat = true;
-                }
-                break;
-            case 'c':
-                if (value == "checked")
-                    _pseudoType = PseudoChecked;
-                else if (value == "contains(")
-                    _pseudoType = PseudoContains;
-                break;
-            case 'd':
-                if (value == "disabled")
-                    _pseudoType = PseudoDisabled;
-                if (value == "default")
-                    _pseudoType = PseudoDefault;
-                break;
-            case 'e':
-                if (value == "empty")
-                    _pseudoType = PseudoEmpty;
-                else if (value == "enabled")
-                    _pseudoType = PseudoEnabled;
-                break;
-            case 'f':
-                if (value == "first-child")
-                    _pseudoType = PseudoFirstChild;
-                else if (value == "first-letter") {
-                    _pseudoType = PseudoFirstLetter;
-                    element = compat = true;
-                }
-                else if (value == "first-line") {
-                    _pseudoType = PseudoFirstLine;
-                    element = compat = true;
-                }
-                else if (value == "first-of-type")
-                    _pseudoType = PseudoFirstOfType;
-                else if (value == "focus")
-                    _pseudoType = PseudoFocus;
-                break;
-            case 'h':
-                if (value == "hover")
-                    _pseudoType = PseudoHover;
-                break;
-            case 'i':
-                if (value == "indeterminate")
-                    _pseudoType = PseudoIndeterminate;
-                break;
-            case 'l':
-                if (value == "link")
-                    _pseudoType = PseudoLink;
-                else if (value == "lang(")
-                    _pseudoType = PseudoLang;
-                else if (value == "last-child")
-                    _pseudoType = PseudoLastChild;
-                else if (value == "last-of-type")
-                    _pseudoType = PseudoLastOfType;
-                break;
-            case 'n':
-                if (value == "not(")
-                    _pseudoType = PseudoNot;
-                else if (value == "nth-child(")
-                    _pseudoType = PseudoNthChild;
-                else if (value == "nth-last-child(")
-                    _pseudoType = PseudoNthLastChild;
-                else if (value == "nth-of-type(")
-                    _pseudoType = PseudoNthOfType;
-                else if (value == "nth-last-of-type(")
-                    _pseudoType = PseudoNthLastOfType;
-                break;
-            case 'o':
-                if (value == "only-child")
-                    _pseudoType = PseudoOnlyChild;
-                else if (value == "only-of-type")
-                    _pseudoType = PseudoOnlyOfType;
-                break;
-            case 'r':
-                if (value == "root")
-                    _pseudoType = PseudoRoot;
-                else if (value == "read-only")
-                    _pseudoType = PseudoReadOnly;
-                else if (value == "read-write")
-                    _pseudoType = PseudoReadWrite;
-                break;
-            case 's':
-                if (value == "selection") {
-                    _pseudoType = PseudoSelection;
-                    element = true;
-                }
-                break;
-            case 't':
-                if (value == "target")
-                    _pseudoType = PseudoTarget;
-                break;
-            case 'v':
-                if (value == "visited")
-                    _pseudoType = PseudoVisited;
-                break;
+            }
+            break;
+        case 't':
+            if (value == "target") {
+                _pseudoType = PseudoTarget;
+            }
+            break;
+        case 'v':
+            if (value == "visited") {
+                _pseudoType = PseudoVisited;
+            }
+            break;
         }
     }
     if (match == PseudoClass && element)
-        if (!compat) _pseudoType = PseudoOther;
-        else match = PseudoElement;
-    else
-    if (match == PseudoElement && !element)
+        if (!compat) {
+            _pseudoType = PseudoOther;
+        } else {
+            match = PseudoElement;
+        }
+    else if (match == PseudoElement && !element) {
         _pseudoType = PseudoOther;
+    }
 }
 
-
-bool CSSSelector::operator == ( const CSSSelector &other ) const
+bool CSSSelector::operator == (const CSSSelector &other) const
 {
     const CSSSelector *sel1 = this;
     const CSSSelector *sel2 = &other;
 
-    while ( sel1 && sel2 ) {
+    while (sel1 && sel2) {
         //assert(sel1->_pseudoType != PseudoNotParsed);
         //assert(sel2->_pseudoType != PseudoNotParsed);
-	if ( sel1->tagLocalName.id() != sel2->tagLocalName.id() || sel1->attrLocalName.id() != sel2->attrLocalName.id() ||
-         sel1->tagNamespace.id() != sel2->tagNamespace.id() || sel1->attrNamespace.id() != sel2->attrNamespace.id() ||
-	     sel1->relation != sel2->relation || sel1->match != sel2->match ||
-	     sel1->value != sel2->value ||
-             sel1->pseudoType() != sel2->pseudoType() ||
-             sel1->string_arg != sel2->string_arg)
-	    return false;
-	sel1 = sel1->tagHistory;
-	sel2 = sel2->tagHistory;
+        if (sel1->tagLocalName.id() != sel2->tagLocalName.id() || sel1->attrLocalName.id() != sel2->attrLocalName.id() ||
+                sel1->tagNamespace.id() != sel2->tagNamespace.id() || sel1->attrNamespace.id() != sel2->attrNamespace.id() ||
+                sel1->relation != sel2->relation || sel1->match != sel2->match ||
+                sel1->value != sel2->value ||
+                sel1->pseudoType() != sel2->pseudoType() ||
+                sel1->string_arg != sel2->string_arg) {
+            return false;
+        }
+        sel1 = sel1->tagHistory;
+        sel2 = sel2->tagHistory;
     }
-    if ( sel1 || sel2 )
-	return false;
+    if (sel1 || sel2) {
+        return false;
+    }
     return true;
 }
 
@@ -329,27 +361,23 @@ DOMString CSSSelector::selectorText() const
     // FIXME: Support namespaces when dumping the selector text.  This requires preserving
     // the original namespace prefix used. Ugh. -dwh
     DOMString str;
-    const CSSSelector* cs = this;
+    const CSSSelector *cs = this;
     quint16 tag = cs->tagLocalName.id();
-    if (tag == anyLocalName && cs->match == CSSSelector::None)
+    if (tag == anyLocalName && cs->match == CSSSelector::None) {
         str = "*";
-    else if (tag != anyLocalName)
+    } else if (tag != anyLocalName) {
         str = LocalName::fromId(tag).toString();
+    }
 
-    const CSSSelector* op = 0;
+    const CSSSelector *op = 0;
     while (true) {
-        if ( makeId(cs->attrNamespace.id(), cs->attrLocalName.id()) == ATTR_ID && cs->match == CSSSelector::Id )
-        {
+        if (makeId(cs->attrNamespace.id(), cs->attrLocalName.id()) == ATTR_ID && cs->match == CSSSelector::Id) {
             str += "#";
             str += cs->value;
-        }
-        else if ( cs->match == CSSSelector::Class )
-        {
+        } else if (cs->match == CSSSelector::Class) {
             str += ".";
             str += cs->value;
-        }
-        else if ( cs->match == CSSSelector::PseudoClass )
-        {
+        } else if (cs->match == CSSSelector::PseudoClass) {
             str += ":";
             str += cs->value;
             if (!cs->string_arg.isEmpty()) { // e.g :nth-child(...)
@@ -360,14 +388,12 @@ DOMString CSSSelector::selectorText() const
                 cs = cs->simpleSelector;
                 continue;
             }
-        }
-        else if ( cs->match == CSSSelector::PseudoElement )
-        {
+        } else if (cs->match == CSSSelector::PseudoElement) {
             str += "::";
             str += cs->value;
         }
         // optional attribute
-        else if ( cs->attrLocalName.id() ) {
+        else if (cs->attrLocalName.id()) {
             DOMString attrName = LocalName::fromId(cs->attrLocalName.id()).toString();
             str += "[";
             str += attrName;
@@ -403,26 +429,28 @@ DOMString CSSSelector::selectorText() const
             str += "]";
         }
         if (op && !cs->tagHistory) {
-            cs=op;
-            op=0;
+            cs = op;
+            op = 0;
             str += ")";
         }
 
-        if ((cs->relation != CSSSelector::SubSelector && !op) || !cs->tagHistory)
+        if ((cs->relation != CSSSelector::SubSelector && !op) || !cs->tagHistory) {
             break;
+        }
         cs = cs->tagHistory;
     }
 
-    if ( cs->tagHistory ) {
+    if (cs->tagHistory) {
         DOMString tagHistoryText = cs->tagHistory->selectorText();
-        if ( cs->relation == DirectAdjacent )
+        if (cs->relation == DirectAdjacent) {
             str = tagHistoryText + DOMString(" + ") + str;
-        else if ( cs->relation == IndirectAdjacent )
+        } else if (cs->relation == IndirectAdjacent) {
             str = tagHistoryText + DOMString(" ~ ") + str;
-        else if ( cs->relation == Child )
+        } else if (cs->relation == Child) {
             str = tagHistoryText + DOMString(" > ") + str;
-        else // Descendant
+        } else { // Descendant
             str = tagHistoryText + DOMString(" ") + str;
+        }
     }
     return str;
 }

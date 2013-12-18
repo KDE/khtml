@@ -27,9 +27,10 @@
 
 #include "RenderSVGHiddenContainer.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGDefsElement::SVGDefsElement(const QualifiedName& tagName, Document* doc)
+SVGDefsElement::SVGDefsElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledTransformableElement(tagName, doc)
     , SVGTests()
     , SVGLangSpace()
@@ -46,9 +47,9 @@ bool SVGDefsElement::isValid() const
     return SVGTests::isValid();
 }
 
-RenderObject* SVGDefsElement::createRenderer(RenderArena* arena, RenderStyle*)
+RenderObject *SVGDefsElement::createRenderer(RenderArena *arena, RenderStyle *)
 {
-    return new (arena) RenderSVGHiddenContainer(this);
+    return new(arena) RenderSVGHiddenContainer(this);
 }
 
 // KHTML ElementImpl pure virtual method

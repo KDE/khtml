@@ -26,7 +26,8 @@
 
 #include "tile.h"
 
-namespace khtmlImLoad {
+namespace khtmlImLoad
+{
 
 /**
  All picture data, whether image or pixmap-related, logically
@@ -41,32 +42,33 @@ public:
     unsigned int height; //height in pixels
     unsigned int tilesWidth;  //width  in tiles
     unsigned int tilesHeight; //height in tiles
-    
+
     Plane(unsigned int _width, unsigned int _height)
     {
         width   = _width;
         height  = _height;
-        tilesWidth  = (width  + Tile::TileSize - 1)/Tile::TileSize;
-        tilesHeight = (height + Tile::TileSize - 1)/Tile::TileSize;
+        tilesWidth  = (width  + Tile::TileSize - 1) / Tile::TileSize;
+        tilesHeight = (height + Tile::TileSize - 1) / Tile::TileSize;
     }
-    
+
     unsigned int tileWidth(unsigned int tileX)
     {
-        if (tileX == (tilesWidth - 1))
+        if (tileX == (tilesWidth - 1)) {
             return width - tileX * Tile::TileSize;
+        }
         return Tile::TileSize;
     }
-    
+
     unsigned int tileHeight(unsigned int tileY)
     {
-        if (tileY == (tilesHeight - 1))
+        if (tileY == (tilesHeight - 1)) {
             return height - tileY * Tile::TileSize;
+        }
         return Tile::TileSize;
     }
-    
+
 };
 
 }
 
 #endif
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

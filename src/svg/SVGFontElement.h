@@ -28,41 +28,51 @@
 #include "SVGHKernElement.h"
 #include "SVGStyledElement.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-    class SVGMissingGlyphElement;    
-    class SVGFontElement : public SVGStyledElement
-                         , public SVGExternalResourcesRequired {
-    public:
-        SVGFontElement(const QualifiedName&, Document*);
-        virtual ~SVGFontElement();
+class SVGMissingGlyphElement;
+class SVGFontElement : public SVGStyledElement
+    , public SVGExternalResourcesRequired
+{
+public:
+    SVGFontElement(const QualifiedName &, Document *);
+    virtual ~SVGFontElement();
 
-        virtual bool rendererIsNeeded(RenderStyle*) { return false; }    
-        virtual const SVGElement* contextElement() const { return this; }
+    virtual bool rendererIsNeeded(RenderStyle *)
+    {
+        return false;
+    }
+    virtual const SVGElement *contextElement() const
+    {
+        return this;
+    }
 
-        void invalidateGlyphCache();
+    void invalidateGlyphCache();
 
-        void getGlyphIdentifiersForString(const String&, Vector<SVGGlyphIdentifier>&) const;
+    void getGlyphIdentifiersForString(const String &, Vector<SVGGlyphIdentifier> &) const;
 
-        bool getHorizontalKerningPairForStringsAndGlyphs(const String& u1, const String& g1, const String& u2, const String& g2, SVGHorizontalKerningPair& kerningPair) const;
+    bool getHorizontalKerningPairForStringsAndGlyphs(const String &u1, const String &g1, const String &u2, const String &g2, SVGHorizontalKerningPair &kerningPair) const;
 
-        SVGMissingGlyphElement* firstMissingGlyphElement() const;
+    SVGMissingGlyphElement *firstMissingGlyphElement() const;
 
-        // KHTML ElementImpl pure virtual method
-        virtual quint32 id() const { return SVGNames::textTag.id(); }
-    private:
-        void ensureGlyphCache() const;
+    // KHTML ElementImpl pure virtual method
+    virtual quint32 id() const
+    {
+        return SVGNames::textTag.id();
+    }
+private:
+    void ensureGlyphCache() const;
 
-        typedef Vector<SVGHorizontalKerningPair> KerningPairVector;
+    typedef Vector<SVGHorizontalKerningPair> KerningPairVector;
 
-        mutable KerningPairVector m_kerningPairs;
-        mutable SVGGlyphMap m_glyphMap;
-        mutable bool m_isGlyphCacheValid;
-    };
+    mutable KerningPairVector m_kerningPairs;
+    mutable SVGGlyphMap m_glyphMap;
+    mutable bool m_isGlyphCacheValid;
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG_FONTS)
 #endif
 
-// vim:ts=4:noet

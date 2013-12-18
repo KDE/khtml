@@ -30,44 +30,52 @@
 
 namespace khtml
 {
-    class AtomicString;
+class AtomicString;
 }
 
-namespace WebCore {
+namespace WebCore
+{
 
-    //class AtomicString;
-    using khtml::AtomicString;
-    struct SVGFontData;
+//class AtomicString;
+using khtml::AtomicString;
+struct SVGFontData;
 
-    // Describe an SVG <hkern> element
-    struct SVGHorizontalKerningPair {
-        String unicode1;
-        String glyphName1;
-        String unicode2;
-        String glyphName2;
-        double kerning;
-        
-        SVGHorizontalKerningPair()
-            : kerning(0)
-        {
-        }
-    };
+// Describe an SVG <hkern> element
+struct SVGHorizontalKerningPair {
+    String unicode1;
+    String glyphName1;
+    String unicode2;
+    String glyphName2;
+    double kerning;
 
-    class SVGHKernElement : public SVGElement {
-    public:
-        SVGHKernElement(const QualifiedName&, Document*);
-        virtual ~SVGHKernElement();
+    SVGHorizontalKerningPair()
+        : kerning(0)
+    {
+    }
+};
 
-        virtual void insertedIntoDocument();
-        virtual void removedFromDocument();
+class SVGHKernElement : public SVGElement
+{
+public:
+    SVGHKernElement(const QualifiedName &, Document *);
+    virtual ~SVGHKernElement();
 
-        virtual bool rendererIsNeeded(RenderStyle*) { return false; }
+    virtual void insertedIntoDocument();
+    virtual void removedFromDocument();
 
-        SVGHorizontalKerningPair buildHorizontalKerningPair() const;
+    virtual bool rendererIsNeeded(RenderStyle *)
+    {
+        return false;
+    }
 
-        // KHTML ElementImpl pure virtual method
-        virtual quint32 id() const { return SVGNames::textTag.id(); }
-    };
+    SVGHorizontalKerningPair buildHorizontalKerningPair() const;
+
+    // KHTML ElementImpl pure virtual method
+    virtual quint32 id() const
+    {
+        return SVGNames::textTag.id();
+    }
+};
 
 } // namespace WebCore
 

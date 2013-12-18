@@ -33,28 +33,28 @@ class KHTMLPart;
 
 namespace khtml
 {
-  class ChildFrame;
+class ChildFrame;
 }
 
 class KHTMLRun : public KParts::BrowserRun
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  KHTMLRun( KHTMLPart *part, khtml::ChildFrame *child, const QUrl &url,
-            const KParts::OpenUrlArguments& args,
-            const KParts::BrowserArguments &browserArgs,
-            bool hideErrorDialog );
+    KHTMLRun(KHTMLPart *part, khtml::ChildFrame *child, const QUrl &url,
+             const KParts::OpenUrlArguments &args,
+             const KParts::BrowserArguments &browserArgs,
+             bool hideErrorDialog);
 
-  virtual void foundMimeType( const QString &mimetype );
-  virtual void handleError( KJob* job );
+    virtual void foundMimeType(const QString &mimetype);
+    virtual void handleError(KJob *job);
 
-  //KHTMLPart *htmlPart() const;
+    //KHTMLPart *htmlPart() const;
 
 protected:
-  virtual void save(const QUrl & url, const QString & suggestedFilename);
+    virtual void save(const QUrl &url, const QString &suggestedFilename);
 
 private:
-  khtml::ChildFrame *m_child;
+    khtml::ChildFrame *m_child;
 };
 
 #endif

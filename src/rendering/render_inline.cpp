@@ -33,7 +33,7 @@
 
 using namespace khtml;
 
-void RenderInline::setStyle(RenderStyle* _style)
+void RenderInline::setStyle(RenderStyle *_style)
 {
     RenderFlow::setStyle(_style);
     setInline(true);
@@ -44,10 +44,10 @@ void RenderInline::setStyle(RenderStyle* _style)
     // e.g., <font>foo <h4>goo</h4> moo</font>.  The <font> inlines before
     // and after the block share the same style, but the block doesn't
     // need to pass its style on to anyone else.
-    RenderFlow* currCont = continuation();
+    RenderFlow *currCont = continuation();
     while (currCont) {
         if (currCont->isInline()) {
-            RenderFlow* nextCont = currCont->continuation();
+            RenderFlow *nextCont = currCont->continuation();
             currCont->setContinuation(0);
             currCont->setStyle(style());
             currCont->setContinuation(nextCont);
@@ -77,53 +77,53 @@ bool RenderInline::isInlineContinuation() const
     return m_isContinuation;
 }
 
-void RenderInline::addChildToFlow(RenderObject* newChild, RenderObject* beforeChild)
+void RenderInline::addChildToFlow(RenderObject *newChild, RenderObject *beforeChild)
 {
     // Make sure we don't append things after :after-generated content if we have it.
-    if (!beforeChild && lastChild() && lastChild()->style()->styleType() == RenderStyle::AFTER)
+    if (!beforeChild && lastChild() && lastChild()->style()->styleType() == RenderStyle::AFTER) {
         beforeChild = lastChild();
+    }
 
-    if (!newChild->isInline() && !newChild->isFloatingOrPositioned() )
-    {
+    if (!newChild->isInline() && !newChild->isFloatingOrPositioned()) {
         // We are placing a block inside an inline. We have to perform a split of this
         // inline into continuations.  This involves creating an anonymous block box to hold
         // |newChild|.  We then make that block box a continuation of this inline.  We take all of
         // the children after |beforeChild| and put them in a clone of this object.
 
         RenderBlock *newBox = createAnonymousBlock();
-        RenderFlow* oldContinuation = continuation();
+        RenderFlow *oldContinuation = continuation();
         setContinuation(newBox);
 
         splitFlow(beforeChild, newBox, newChild, oldContinuation);
         return;
     }
 
-    RenderBox::addChild(newChild,beforeChild);
+    RenderBox::addChild(newChild, beforeChild);
 
     newChild->setNeedsLayoutAndMinMaxRecalc();
 }
 
-RenderInline* RenderInline::cloneInline(RenderFlow* src)
+RenderInline *RenderInline::cloneInline(RenderFlow *src)
 {
-    RenderInline *o = new (src->renderArena()) RenderInline(src->element());
+    RenderInline *o = new(src->renderArena()) RenderInline(src->element());
     o->m_isContinuation = true;
     o->setStyle(src->style());
     return o;
 }
 
-void RenderInline::splitInlines(RenderBlock* fromBlock, RenderBlock* toBlock,
-                                RenderBlock* middleBlock,
-                                RenderObject* beforeChild, RenderFlow* oldCont)
+void RenderInline::splitInlines(RenderBlock *fromBlock, RenderBlock *toBlock,
+                                RenderBlock *middleBlock,
+                                RenderObject *beforeChild, RenderFlow *oldCont)
 {
     // Create a clone of this inline.
-    RenderInline* clone = cloneInline(this);
+    RenderInline *clone = cloneInline(this);
     clone->setContinuation(oldCont);
 
     // Now take all of the children from beforeChild to the end and remove
     // then from |this| and place them in the clone.
-    RenderObject* o = beforeChild;
+    RenderObject *o = beforeChild;
     while (o) {
-        RenderObject* tmp = o;
+        RenderObject *tmp = o;
         o = tmp->nextSibling();
         clone->addChildToFlow(removeChildNode(tmp), 0);
         tmp->setNeedsLayoutAndMinMaxRecalc();
@@ -135,18 +135,18 @@ void RenderInline::splitInlines(RenderBlock* fromBlock, RenderBlock* toBlock,
     // We have been reparented and are now under the fromBlock.  We need
     // to walk up our inline parent chain until we hit the containing block.
     // Once we hit the containing block we're done.
-    RenderFlow* curr = static_cast<RenderFlow*>(parent());
-    RenderFlow* currChild = this;
+    RenderFlow *curr = static_cast<RenderFlow *>(parent());
+    RenderFlow *currChild = this;
     while (curr && curr != fromBlock) {
         // Create a new clone.
-        RenderInline* cloneChild = clone;
+        RenderInline *cloneChild = clone;
         clone = cloneInline(curr);
 
         // Insert our child clone as the first child.
         clone->addChildToFlow(cloneChild, 0);
 
         // Hook the clone up as a continuation of |curr|.
-        RenderFlow* oldCont = curr->continuation();
+        RenderFlow *oldCont = curr->continuation();
         curr->setContinuation(clone);
         clone->setContinuation(oldCont);
 
@@ -154,7 +154,7 @@ void RenderInline::splitInlines(RenderBlock* fromBlock, RenderBlock* toBlock,
         // *after* currChild and append them all to the clone.
         o = currChild->nextSibling();
         while (o) {
-            RenderObject* tmp = o;
+            RenderObject *tmp = o;
             o = tmp->nextSibling();
             clone->appendChildNode(curr->removeChildNode(tmp));
             tmp->setNeedsLayoutAndMinMaxRecalc();
@@ -162,7 +162,7 @@ void RenderInline::splitInlines(RenderBlock* fromBlock, RenderBlock* toBlock,
 
         // Keep walking up the chain.
         currChild = curr;
-        curr = static_cast<RenderFlow*>(curr->parent());
+        curr = static_cast<RenderFlow *>(curr->parent());
     }
 
     // Now we are at the block level. We need to put the clone into the toBlock.
@@ -172,17 +172,17 @@ void RenderInline::splitInlines(RenderBlock* fromBlock, RenderBlock* toBlock,
     // and put them in the toBlock.
     o = currChild->nextSibling();
     while (o) {
-        RenderObject* tmp = o;
+        RenderObject *tmp = o;
         o = tmp->nextSibling();
         toBlock->appendChildNode(fromBlock->removeChildNode(tmp));
     }
 }
 
-void RenderInline::splitFlow(RenderObject* beforeChild, RenderBlock* newBlockBox,
-                             RenderObject* newChild, RenderFlow* oldCont)
+void RenderInline::splitFlow(RenderObject *beforeChild, RenderBlock *newBlockBox,
+                             RenderObject *newChild, RenderFlow *oldCont)
 {
-    RenderBlock* pre = 0;
-    RenderBlock* block = containingBlock();
+    RenderBlock *pre = 0;
+    RenderBlock *block = containingBlock();
     bool madeNewBeforeBlock = false;
 
     // Delete our line boxes before we do the inline split into continuations.
@@ -192,27 +192,26 @@ void RenderInline::splitFlow(RenderObject* beforeChild, RenderBlock* newBlockBox
         // We can reuse this block and make it the preBlock of the next continuation.
         pre = block;
         block = block->containingBlock();
-    }
-    else {
+    } else {
         // No anonymous block available for use.  Make one.
         pre = block->createAnonymousBlock();
         madeNewBeforeBlock = true;
     }
 
-    RenderBlock* post = block->createAnonymousBlock();
+    RenderBlock *post = block->createAnonymousBlock();
 
-    RenderObject* boxFirst = madeNewBeforeBlock ? block->firstChild() : pre->nextSibling();
-    if (madeNewBeforeBlock)
+    RenderObject *boxFirst = madeNewBeforeBlock ? block->firstChild() : pre->nextSibling();
+    if (madeNewBeforeBlock) {
         block->insertChildNode(pre, boxFirst);
+    }
     block->insertChildNode(newBlockBox, boxFirst);
     block->insertChildNode(post, boxFirst);
     block->setChildrenInline(false);
 
     if (madeNewBeforeBlock) {
-        RenderObject* o = boxFirst;
-        while (o)
-        {
-            RenderObject* no = o;
+        RenderObject *o = boxFirst;
+        while (o) {
+            RenderObject *no = o;
             o = no->nextSibling();
             pre->appendChildNode(block->removeChildNode(no));
             no->setNeedsLayoutAndMinMaxRecalc();
@@ -248,7 +247,7 @@ void RenderInline::splitFlow(RenderObject* beforeChild, RenderBlock* newBlockBox
     block->setNeedsLayoutAndMinMaxRecalc();
 }
 
-void RenderInline::paint(PaintInfo& i, int _tx, int _ty)
+void RenderInline::paint(PaintInfo &i, int _tx, int _ty)
 {
     paintLines(i, _tx, _ty);
 }
@@ -264,7 +263,9 @@ inline static bool appendIfNew(QVector<QPoint> &pointArray, const QPoint &pnt)
 {
 //   if (!pointArray.isEmpty()) qDebug() << "appifnew: " << pointArray.back() << " == " << pnt << ": " << (pointArray.back() == pnt);
 //   else qDebug() << "appifnew: " << pnt << " (unconditional)";
-    if (!pointArray.isEmpty() && pointArray.back() == pnt) return false;
+    if (!pointArray.isEmpty() && pointArray.back() == pnt) {
+        return false;
+    }
     pointArray.append(pnt);
     return true;
 }
@@ -299,7 +300,9 @@ inline static bool appendIfNew(QVector<QPoint> &pointArray, const QPoint &pnt)
  */
 inline static bool reduceSpike(QVector<QPoint> &pointArray)
 {
-    if (pointArray.size() < 3) return false;
+    if (pointArray.size() < 3) {
+        return false;
+    }
     QVector<QPoint>::Iterator it = pointArray.end();
     QPoint p0 = *--it;
     QPoint p1 = *--it;
@@ -308,24 +311,24 @@ inline static bool reduceSpike(QVector<QPoint> &pointArray)
     bool elide = false;
 
     if ((p0.x() == p1.x() && p1.x() == p2.x()
-         && ((p1.y() < p0.y() && p0.y() < p2.y())
-             || (p2.y() < p0.y() && p0.y() < p1.y())
-             || (p1.y() < p2.y() && p2.y() < p0.y())
-             || (p0.y() < p2.y() && p2.y() < p1.y())
-             || (elide = p2.y() == p0.y() && p0.y() < p1.y())
-             || (elide = p1.y() < p0.y() && p0.y() == p2.y())))
-        || (p0.y() == p1.y() && p1.y() == p2.y()
-            && ((p1.x() < p0.x() && p0.x() < p2.x())
-                || (p2.x() < p0.x() && p0.x() < p1.x())
-                || (p1.x() < p2.x() && p2.x() < p0.x())
-                || (p0.x() < p2.x() && p2.x() < p1.x())
-                || (elide = p2.x() == p0.x() && p0.x() < p1.x())
-                || (elide = p1.x() < p0.x() && p0.x() == p2.x()))))
-    {
+            && ((p1.y() < p0.y() && p0.y() < p2.y())
+                || (p2.y() < p0.y() && p0.y() < p1.y())
+                || (p1.y() < p2.y() && p2.y() < p0.y())
+                || (p0.y() < p2.y() && p2.y() < p1.y())
+                || (elide = p2.y() == p0.y() && p0.y() < p1.y())
+                || (elide = p1.y() < p0.y() && p0.y() == p2.y())))
+            || (p0.y() == p1.y() && p1.y() == p2.y()
+                && ((p1.x() < p0.x() && p0.x() < p2.x())
+                    || (p2.x() < p0.x() && p0.x() < p1.x())
+                    || (p1.x() < p2.x() && p2.x() < p0.x())
+                    || (p0.x() < p2.x() && p2.x() < p1.x())
+                    || (elide = p2.x() == p0.x() && p0.x() < p1.x())
+                    || (elide = p1.x() < p0.x() && p0.x() == p2.x())))) {
 //     qDebug() << "spikered p2" << (elide ? " (elide)" : "") << ": " << p2 << " p1: " << p1 << " p0: " << p0;
         pointArray.pop_back(); pointArray.pop_back();
-        if (!elide)
+        if (!elide) {
             pointArray.push_back(p0);
+        }
         return true;
     }
     return false;
@@ -365,7 +368,9 @@ inline static bool reduceSpike(QVector<QPoint> &pointArray)
  */
 inline static bool reduceSegmentSeparator(QVector<QPoint> &pointArray)
 {
-    if (pointArray.size() < 3) return false;
+    if (pointArray.size() < 3) {
+        return false;
+    }
     QVector<QPoint>::Iterator it = pointArray.end();
     QPoint p0 = *--it;
     QPoint p1 = *--it;
@@ -373,12 +378,11 @@ inline static bool reduceSegmentSeparator(QVector<QPoint> &pointArray)
 //     qDebug() << "checking p2: " << p2 << " p1: " << p1 << " p0: " << p0;
 
     if ((p0.x() == p1.x() && p1.x() == p2.x()
-         && ((p2.y() < p1.y() && p1.y() < p0.y())
-             || (p0.y() < p1.y() && p1.y() < p2.y())))
-        || (p0.y() == p1.y() && p1.y() == p2.y()
-            && ((p2.x() < p1.x() && p1.x() < p0.x())
-                || (p0.x() < p1.x() && p1.x() < p2.x()))))
-    {
+            && ((p2.y() < p1.y() && p1.y() < p0.y())
+                || (p0.y() < p1.y() && p1.y() < p2.y())))
+            || (p0.y() == p1.y() && p1.y() == p2.y()
+                && ((p2.x() < p1.x() && p1.x() < p0.x())
+                    || (p0.x() < p1.x() && p1.x() < p2.x())))) {
 //     qDebug() << "segred p2: " << p2 << " p1: " << p1 << " p0: " << p0;
         pointArray.pop_back(); pointArray.pop_back();
         pointArray.push_back(p0);
@@ -393,10 +397,12 @@ inline static bool reduceSegmentSeparator(QVector<QPoint> &pointArray)
  */
 static void appendPoint(QVector<QPoint> &pointArray, const QPoint &pnt)
 {
-  if (!appendIfNew(pointArray, pnt)) return;
+    if (!appendIfNew(pointArray, pnt)) {
+        return;
+    }
 //   qDebug() << "appendPoint: appended " << pnt;
-  reduceSegmentSeparator(pointArray)
-  || reduceSpike(pointArray);
+    reduceSegmentSeparator(pointArray)
+    || reduceSpike(pointArray);
 }
 
 /**
@@ -405,21 +411,22 @@ static void appendPoint(QVector<QPoint> &pointArray, const QPoint &pnt)
  * @param box inline box
  * @param pointArray array collecting coordinates
  * @param bottom \c true, collect bottom coordinates, \c false, collect top
- * 	coordinates.
+ *  coordinates.
  * @param limit lower limit that an y-coordinate must at least reach. Note
- *	that limit designates the highest y-coordinate for \c bottom, and
- *	the lowest for !\c bottom.
+ *  that limit designates the highest y-coordinate for \c bottom, and
+ *  the lowest for !\c bottom.
  */
 static void collectHorizontalBoxCoordinates(InlineBox *box,
-                                            QVector<QPoint> &pointArray,
-                                            bool bottom, int offset, int limit = -500000)
+        QVector<QPoint> &pointArray,
+        bool bottom, int offset, int limit = -500000)
 {
 //   qDebug() << "collectHorizontalBoxCoordinates: ";
-    offset = bottom ? offset:-offset;
-    int y = box->yPos() + bottom*box->height() + offset;
-    if (limit != -500000 && (bottom ? y < limit : y > limit))
+    offset = bottom ? offset : -offset;
+    int y = box->yPos() + bottom * box->height() + offset;
+    if (limit != -500000 && (bottom ? y < limit : y > limit)) {
         y = limit;
-    int x = box->xPos() + bottom*box->width() + offset;
+    }
+    int x = box->xPos() + bottom * box->width() + offset;
     QPoint newPnt(x, y);
     // Add intersection point if point-array not empty.
     if (!pointArray.isEmpty()) {
@@ -436,7 +443,7 @@ static void collectHorizontalBoxCoordinates(InlineBox *box,
     // Insert starting point of box
     appendPoint(pointArray, newPnt);
 
-    newPnt.rx() += (bottom ? -box->width() : box->width()) - 2*offset;
+    newPnt.rx() += (bottom ? -box->width() : box->width()) - 2 * offset;
 
     if (box->isInlineFlowBox()) {
         InlineFlowBox *flowBox = static_cast<InlineFlowBox *>(box);
@@ -445,10 +452,11 @@ static void collectHorizontalBoxCoordinates(InlineBox *box,
             // the vertical position of the outline if they have a different
             // x-coordinate
             int l2;
-            if (b->xPos() != box->xPos() && b->xPos() + b->width() != box->xPos() + box->width())
-              l2 = y;
-            else
-              l2 = limit;
+            if (b->xPos() != box->xPos() && b->xPos() + b->width() != box->xPos() + box->width()) {
+                l2 = y;
+            } else {
+                l2 = limit;
+            }
             collectHorizontalBoxCoordinates(b, pointArray, bottom, qAbs(offset), l2);
         }
 
@@ -472,14 +480,14 @@ static void collectHorizontalBoxCoordinates(InlineBox *box,
  * extents are disjount (i. e. do not share the same x-coordinate range).
  * @param line line box
  * @param toBegin \c true, compare with preceding line box, \c false, with
- *	succeeding
+ *  succeeding
  * @return \c true if this and the next box are disjoint
  */
 inline static bool lineBoxesDisjoint(InlineRunBox *line, int offset, bool toBegin)
 {
-  InlineRunBox *next = toBegin ? line->prevLineBox() : line->nextLineBox();
-  return !next || next->xPos() + next->width() + 2*offset < line->xPos()
-               || next->xPos() > line->xPos() + line->width() + 2*offset;
+    InlineRunBox *next = toBegin ? line->prevLineBox() : line->nextLineBox();
+    return !next || next->xPos() + next->width() + 2 * offset < line->xPos()
+           || next->xPos() > line->xPos() + line->width() + 2 * offset;
 }
 
 /**
@@ -488,38 +496,45 @@ inline static bool lineBoxesDisjoint(InlineRunBox *line, int offset, bool toBegi
  * @param line line box to begin traversal
  * @param pointArray point array
  * @param left \c true, traverse the left vertical coordinates,
- *	\c false, traverse the right vertical coordinates.
+ *  \c false, traverse the right vertical coordinates.
  * @param lastline if not 0, returns the pointer to the last line box traversed
  */
 static void collectVerticalBoxCoordinates(InlineRunBox *line,
-                                          QVector<QPoint> &pointArray,
-                                          bool left, int offset, InlineRunBox **lastline = 0)
+        QVector<QPoint> &pointArray,
+        bool left, int offset, InlineRunBox **lastline = 0)
 {
     InlineRunBox *last = 0;
-    offset = left ? -offset:offset;
-    for (InlineRunBox* curr = line; curr && !last; curr = left ? curr->prevLineBox() : curr->nextLineBox()) {
+    offset = left ? -offset : offset;
+    for (InlineRunBox *curr = line; curr && !last; curr = left ? curr->prevLineBox() : curr->nextLineBox()) {
         InlineBox *root = curr;
 
         bool isLast = lineBoxesDisjoint(curr, qAbs(offset), left);
-        if (isLast) last = curr;
+        if (isLast) {
+            last = curr;
+        }
 
         if (root != line && !isLast)
-            while (root->parent()) root = root->parent();
-        QPoint newPnt(curr->xPos() + !left*curr->width() + offset,
+            while (root->parent()) {
+                root = root->parent();
+            }
+        QPoint newPnt(curr->xPos() + !left * curr->width() + offset,
                       (left ? root->topOverflow() : root->bottomOverflow()) + offset);
         if (!pointArray.isEmpty()) {
             QPoint lastPnt = pointArray.back();
-            if (newPnt.x()>lastPnt.x() && !left)
-                pointArray.back().setY( qMin(lastPnt.y(), root->topOverflow()-offset) );
-            else if (newPnt.x()<lastPnt.x() && left)
-                pointArray.back().setY( qMax(lastPnt.y(), root->bottomOverflow()+offset) );
+            if (newPnt.x() > lastPnt.x() && !left) {
+                pointArray.back().setY(qMin(lastPnt.y(), root->topOverflow() - offset));
+            } else if (newPnt.x() < lastPnt.x() && left) {
+                pointArray.back().setY(qMax(lastPnt.y(), root->bottomOverflow() + offset));
+            }
             QPoint insPnt(newPnt.x(), pointArray.back().y());
 //         qDebug() << "left: " << lastPnt << " == " << insPnt << ": " << (insPnt == lastPnt);
             appendPoint(pointArray, insPnt);
         }
         appendPoint(pointArray, newPnt);
     }
-    if (lastline) *lastline = last;
+    if (lastline) {
+        *lastline = last;
+    }
 }
 
 /**
@@ -553,7 +568,9 @@ static QPoint *linkEndToBegin(QVector<QPoint> &pointArray)
     uint index = 0;
     // ### BUG: outlines with zero width aren't treated correctly
     // this is not the right fix
-    if (pointArray.size() < 3) return pointArray.data();
+    if (pointArray.size() < 3) {
+        return pointArray.data();
+    }
 
     // if first and last points match, ignore the last one.
     bool linkup = false; QPoint linkupPnt;
@@ -570,7 +587,7 @@ static QPoint *linkEndToBegin(QVector<QPoint> &pointArray)
 //     qDebug() << "linkcheck plast: " << plast << " pfirst: " << pfirst << " pnext: " << pnext;
 
     if ((plast.x() == pfirst.x() && pfirst.x() == pnext.x())
-        || (plast.y() == pfirst.y() && pfirst.y() == pnext.y())) {
+            || (plast.y() == pfirst.y() && pfirst.y() == pnext.y())) {
 
         ++index;
         appendPoint(pointArray, pfirst); // ### do we really need this point?
@@ -580,29 +597,32 @@ static QPoint *linkEndToBegin(QVector<QPoint> &pointArray)
             ++index;
             appendPoint(pointArray, *++it);
         }
-    } else if (linkup)
-      pointArray.push_back(linkupPnt);
+    } else if (linkup) {
+        pointArray.push_back(linkupPnt);
+    }
     return pointArray.data() + index;
 }
 
 // assumes clock-wise orientation
-static RenderObject::BorderSide borderSide( const QPoint &first,
-                                            const QPoint &second )
+static RenderObject::BorderSide borderSide(const QPoint &first,
+        const QPoint &second)
 {
-    if (second.x() > first.x())
+    if (second.x() > first.x()) {
         return RenderObject::BSTop;
-    else if (second.x() < first.x())
+    } else if (second.x() < first.x()) {
         return RenderObject::BSBottom;
-    else if (second.y() > first.y())
+    } else if (second.y() > first.y()) {
         return RenderObject::BSRight;
-    else // second.y() < first.y()
+    } else { // second.y() < first.y()
         return RenderObject::BSLeft;
+    }
 }
 
 void RenderInline::paintOutlines(QPainter *p, int _tx, int _ty)
 {
-    if (style()->outlineWidth() == 0 || style()->outlineStyle() <= BHIDDEN)
+    if (style()->outlineWidth() == 0 || style()->outlineStyle() <= BHIDDEN) {
         return;
+    }
     int offset = style()->outlineOffset();
 
     // We may have to draw more than one outline path as they may be
@@ -619,7 +639,9 @@ void RenderInline::paintOutlines(QPainter *p, int _tx, int _ty)
         // collect left outline
         collectVerticalBoxCoordinates(curr, path, true, offset);
 
-        if (path.size() < 3) continue;
+        if (path.size() < 3) {
+            continue;
+        }
 
         const QPoint *begin = linkEndToBegin(path);
 
@@ -659,7 +681,7 @@ inline BSOrientation bsOrientation(RenderObject::BorderSide bs)
     case RenderObject::BSRight:
         return BSVertical;
     }
-    return BSHorizontal;	// make gcc happy (sigh)
+    return BSHorizontal;    // make gcc happy (sigh)
 }
 
 /**
@@ -673,20 +695,20 @@ inline BSOrientation bsOrientation(RenderObject::BorderSide bs)
 inline RenderObject::BorderSide newBorderSide(RenderObject::BorderSide oldBS, int direction, const QPoint &last, const QPoint &cur)
 {
     bool below = direction < 0;
-    if (last.x() == cur.x()) {	// new segment is vertical
+    if (last.x() == cur.x()) {  // new segment is vertical
         bool t = oldBS == RenderObject::BSTop;
         bool b = oldBS == RenderObject::BSBottom;
         if ((t || b) && last.y() != cur.y())
             return (cur.y() < last.y()) ^ ((t && below) || (b && !below))
-                    ? RenderObject::BSLeft : RenderObject::BSRight;
-    } else /*if (last.y() == cur.y())*/ {	// new segment is horizontal
+                   ? RenderObject::BSLeft : RenderObject::BSRight;
+    } else { /*if (last.y() == cur.y())*/    // new segment is horizontal
         bool l = oldBS == RenderObject::BSLeft;
         bool r = oldBS == RenderObject::BSRight;
         if ((l || r) && last.x() != cur.x())
             return (cur.x() < last.x()) ^ ((l && below) || (r && !below))
-                    ? RenderObject::BSTop : RenderObject::BSBottom;
+                   ? RenderObject::BSTop : RenderObject::BSBottom;
     }
-    return oldBS;			// same direction
+    return oldBS;           // same direction
 }
 
 /**
@@ -717,26 +739,30 @@ static void paintOutlineSegment(RenderObject *o, QPainter *p, int tx, int ty,
     int y2 = ty + p2.y();
     if (x1 > x2) {
         kSwap(x1, x2);
-        if (bsOrientation(curBS) == BSHorizontal) kSwap(prevBS, nextBS);
+        if (bsOrientation(curBS) == BSHorizontal) {
+            kSwap(prevBS, nextBS);
+        }
     }
     if (y1 > y2) {
         kSwap(y1, y2);
-        if (bsOrientation(curBS) == BSVertical) kSwap(prevBS, nextBS);
+        if (bsOrientation(curBS) == BSVertical) {
+            kSwap(prevBS, nextBS);
+        }
     }
 
 //     qDebug() << "segment(" << x1 << "," << y1 << ") - (" << x2 << "," << y2 << ")";
-/*    p->setPen(Qt::gray);
-    p->drawLine(x1,y1,x2,y2);*/
+    /*    p->setPen(Qt::gray);
+        p->drawLine(x1,y1,x2,y2);*/
     switch (curBS) {
     case RenderObject::BSLeft:
     case RenderObject::BSRight:
-/*        p->setPen(QColor("#ffe4dd"));
-        p->drawLine(
-                      x1 - (curBS == RenderObject::BSLeft ? ow : 0),
-                      y1 - (prevBS == RenderObject::BSTop ? ow : 0),
-                      x2 + (curBS == RenderObject::BSRight ? ow : 0),
-                      y2 + (nextBS == RenderObject::BSBottom ? ow : 0)
-                      );*/
+        /*        p->setPen(QColor("#ffe4dd"));
+                p->drawLine(
+                              x1 - (curBS == RenderObject::BSLeft ? ow : 0),
+                              y1 - (prevBS == RenderObject::BSTop ? ow : 0),
+                              x2 + (curBS == RenderObject::BSRight ? ow : 0),
+                              y2 + (nextBS == RenderObject::BSBottom ? ow : 0)
+                              );*/
         o->drawBorder(p,
                       x1 - (curBS == RenderObject::BSLeft ? ow : 0),
                       y1 - (prevBS == RenderObject::BSTop ? ow : 0),
@@ -744,9 +770,9 @@ static void paintOutlineSegment(RenderObject *o, QPainter *p, int tx, int ty,
                       y2 + (nextBS == RenderObject::BSBottom ? ow : 0),
                       curBS, oc, o->style()->color(), os,
                       prevBS == RenderObject::BSTop ? ow
-                              : prevBS == RenderObject::BSBottom ? -ow : 0,
+                      : prevBS == RenderObject::BSBottom ? -ow : 0,
                       nextBS == RenderObject::BSTop ? -ow
-                              : nextBS == RenderObject::BSBottom ? ow : 0,
+                      : nextBS == RenderObject::BSBottom ? ow : 0,
                       true);
         break;
     case RenderObject::BSBottom:
@@ -759,9 +785,9 @@ static void paintOutlineSegment(RenderObject *o, QPainter *p, int tx, int ty,
                       y2 + (curBS == RenderObject::BSBottom ? ow : 0),
                       curBS, oc, o->style()->color(), os,
                       prevBS == RenderObject::BSLeft ? ow
-                              : prevBS == RenderObject::BSRight ? -ow : 0,
+                      : prevBS == RenderObject::BSRight ? -ow : 0,
                       nextBS == RenderObject::BSLeft ? -ow
-                              : nextBS == RenderObject::BSRight ? ow : 0,
+                      : nextBS == RenderObject::BSRight ? ow : 0,
                       true);
         break;
     }
@@ -770,8 +796,9 @@ static void paintOutlineSegment(RenderObject *o, QPainter *p, int tx, int ty,
 void RenderInline::paintOutlinePath(QPainter *p, int tx, int ty, const QPoint *begin, const QPoint *end, BorderSide bs, int direction, BorderSide endingBS)
 {
     int ow = style()->outlineWidth();
-    if (ow == 0 || m_isContinuation) // Continuations get painted by the original inline.
+    if (ow == 0 || m_isContinuation) { // Continuations get painted by the original inline.
         return;
+    }
 
     QPoint last = *begin;
     BorderSide lastBS = bs;
@@ -792,8 +819,9 @@ void RenderInline::paintOutlinePath(QPainter *p, int tx, int ty, const QPoint *b
             direction = diff.x() + diff.y();
             nextBS = newBorderSide(bs, direction, cur, *(it + 1));
 //             qDebug() << "newBorderSide*: " << bs << " " << direction << "d " << cur << " - " << *(it + 1) << " => " << nextBS;
-        } else
+        } else {
             nextBS = endingBS;
+        }
 
         Q_ASSERT(bsOrientation(bs) != bsOrientation(nextBS));
         paintOutlineSegment(this, p, tx, ty, last, cur,
@@ -807,7 +835,7 @@ void RenderInline::paintOutlinePath(QPainter *p, int tx, int ty, const QPoint *b
 
 void RenderInline::calcMinMaxWidth()
 {
-    KHTMLAssert( !minMaxKnown() );
+    KHTMLAssert(!minMaxKnown());
 
 #ifdef DEBUG_LAYOUT
     // qDebug() << renderName() << "(RenderInline)::calcMinMaxWidth() this=" << this;
@@ -825,11 +853,13 @@ short RenderInline::width() const
     // Return the width of the minimal left side and the maximal right side.
     short leftSide = 0;
     short rightSide = 0;
-    for (InlineRunBox* curr = firstLineBox(); curr; curr = curr->nextLineBox()) {
-        if (curr == firstLineBox() || curr->xPos() < leftSide)
+    for (InlineRunBox *curr = firstLineBox(); curr; curr = curr->nextLineBox()) {
+        if (curr == firstLineBox() || curr->xPos() < leftSide) {
             leftSide = curr->xPos();
-        if (curr == firstLineBox() || curr->xPos() + curr->width() > rightSide)
+        }
+        if (curr == firstLineBox() || curr->xPos() + curr->width() > rightSide) {
             rightSide = curr->xPos() + curr->width();
+        }
     }
 
     return rightSide - leftSide;
@@ -838,37 +868,42 @@ short RenderInline::width() const
 int RenderInline::height() const
 {
     int h = 0;
-    if (firstLineBox())
+    if (firstLineBox()) {
         h = lastLineBox()->yPos() + lastLineBox()->height() - firstLineBox()->yPos();
+    }
     return h;
 }
 
 int RenderInline::offsetLeft() const
 {
     int x = RenderFlow::offsetLeft();
-    if (firstLineBox())
+    if (firstLineBox()) {
         x += firstLineBox()->xPos();
+    }
     return x;
 }
 
 int RenderInline::offsetTop() const
 {
     int y = RenderFlow::offsetTop();
-    if (firstLineBox())
+    if (firstLineBox()) {
         y += firstLineBox()->yPos();
+    }
     return y;
 }
 
 const char *RenderInline::renderName() const
 {
-    if (isRelPositioned())
+    if (isRelPositioned()) {
         return "RenderInline (relative positioned)";
-    if (isAnonymous())
+    }
+    if (isAnonymous()) {
         return "RenderInline (anonymous)";
+    }
     return "RenderInline";
 }
 
-bool RenderInline::nodeAtPoint(NodeInfo& info, int _x, int _y, int _tx, int _ty, HitTestAction hitTestAction, bool inside)
+bool RenderInline::nodeAtPoint(NodeInfo &info, int _x, int _y, int _tx, int _ty, HitTestAction hitTestAction, bool inside)
 {
 
     // Check our line boxes if we're still not inside.
@@ -879,7 +914,7 @@ bool RenderInline::nodeAtPoint(NodeInfo& info, int _x, int _y, int _tx, int _ty,
 
     if (inside && element() && style()->visibility() != HIDDEN) {
         if (info.innerNode() && info.innerNode()->renderer() &&
-            !info.innerNode()->renderer()->isInline()) {
+                !info.innerNode()->renderer()->isInline()) {
             // Within the same layer, inlines are ALWAYS fully above blocks.  Change inner node.
             info.setInnerNode(element());
 
@@ -888,11 +923,13 @@ bool RenderInline::nodeAtPoint(NodeInfo& info, int _x, int _y, int _tx, int _ty,
             info.setURLElement(0);
         }
 
-        if (!info.innerNode())
+        if (!info.innerNode()) {
             info.setInnerNode(element());
+        }
 
-        if(!info.innerNonSharedNode())
+        if (!info.innerNonSharedNode()) {
             info.setInnerNonSharedNode(element());
+        }
     }
 
     return inside;
@@ -901,8 +938,9 @@ bool RenderInline::nodeAtPoint(NodeInfo& info, int _x, int _y, int _tx, int _ty,
 RenderPosition RenderInline::positionForCoordinates(int x, int y)
 {
     for (RenderObject *c = continuation(); c; c = c->continuation()) {
-        if (c->isInline() || c->firstChild())
+        if (c->isInline() || c->firstChild()) {
             return c->positionForCoordinates(x, y);
+        }
     }
 
     return RenderFlow::positionForCoordinates(x, y);
@@ -923,29 +961,29 @@ void RenderInline::caretPos(int offset, int flags, int &_x, int &_y, int &width,
     // the same.
     InlineFlowBox *line = !outsideEnd ^ rtl ? firstLineBox() : lastLineBox();
 
-    if (!line) {		// umpf, handle "gracefully"
+    if (!line) {        // umpf, handle "gracefully"
         RenderFlow::caretPos(offset, flags, _x, _y, width, height);
         return;
     }
 
     _x = line->xPos();
-    width = 1;		// ### regard CFOverride
+    width = 1;      // ### regard CFOverride
 
     // Place caret outside the border
     if (flags & CFOutside) {
         RenderStyle *s = element() && element()->parent()
-			&& element()->parent()->renderer()
-			? element()->parent()->renderer()->style()
-			: style();
+                         && element()->parent()->renderer()
+                         ? element()->parent()->renderer()->style()
+                         : style();
         const QFontMetrics &fm = s->fontMetrics();
         _y = line->yPos() + line->baseline() - fm.ascent();
         height = fm.height();
 
-	if (!outsideEnd ^ rtl) {
-	    _x -= line->marginBorderPaddingLeft();
-	} else {
-	    _x += line->width() + line->marginBorderPaddingRight();
-	}
+        if (!outsideEnd ^ rtl) {
+            _x -= line->marginBorderPaddingLeft();
+        } else {
+            _x += line->width() + line->marginBorderPaddingRight();
+        }
 
     } else {
         const QFontMetrics &fm = style()->fontMetrics();
@@ -954,7 +992,7 @@ void RenderInline::caretPos(int offset, int flags, int &_x, int &_y, int &width,
     }
 
     int absx, absy;
-    if (cb && cb->absolutePosition(absx,absy)) {
+    if (cb && cb->absolutePosition(absx, absy)) {
         //qDebug() << "absx=" << absx << " absy=" << absy;
         _x += absx;
         _y += absy;
@@ -967,10 +1005,13 @@ void RenderInline::caretPos(int offset, int flags, int &_x, int &_y, int &width,
 
 inline int minXPos(const RenderInline *o)
 {
-    int retval=6666666;
-    if (!o->firstLineBox()) return 0;
-    for (InlineRunBox* curr = o->firstLineBox(); curr; curr = curr->nextLineBox())
-        retval = qMin( retval, int( curr->m_x ));
+    int retval = 6666666;
+    if (!o->firstLineBox()) {
+        return 0;
+    }
+    for (InlineRunBox *curr = o->firstLineBox(); curr; curr = curr->nextLineBox()) {
+        retval = qMin(retval, int(curr->m_x));
+    }
     return retval;
 }
 

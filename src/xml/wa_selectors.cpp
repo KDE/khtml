@@ -30,22 +30,24 @@
 
 using namespace DOM;
 
-namespace khtml {
+namespace khtml
+{
 
-namespace SelectorQuery {
+namespace SelectorQuery
+{
 
-static WTF::PassRefPtr<DOM::NodeListImpl>  querySelectorImp(bool justOne, DOM::NodeImpl* root, const DOM::DOMString& query, int& ec)
+static WTF::PassRefPtr<DOM::NodeListImpl>  querySelectorImp(bool justOne, DOM::NodeImpl *root, const DOM::DOMString &query, int &ec)
 {
     // Parse the query.
     CSSParser p;
-    QList<CSSSelector*> selectors = p.parseSelectorList(root->document(), query);
+    QList<CSSSelector *> selectors = p.parseSelectorList(root->document(), query);
 
     if (selectors.isEmpty()) {
         ec = DOMException::SYNTAX_ERR;
         return 0;
     }
 
-    khtml::CSSStyleSelector* styleSelector = root->document()->styleSelector();
+    khtml::CSSStyleSelector *styleSelector = root->document()->styleSelector();
 
     // ### not in the spec.
     if (!styleSelector) {
@@ -54,32 +56,38 @@ static WTF::PassRefPtr<DOM::NodeListImpl>  querySelectorImp(bool justOne, DOM::N
     }
 
     // Check for matches. We specialize some paths for common selectors.
-    DOM::StaticNodeListImpl* matches = new DOM::StaticNodeListImpl;
+    DOM::StaticNodeListImpl *matches = new DOM::StaticNodeListImpl;
 
     bool requiresClass = true;
     bool requiresId    = true;
     for (int i = 0; i < selectors.size(); ++i) {
-        if (selectors[i]->match != CSSSelector::Class)
+        if (selectors[i]->match != CSSSelector::Class) {
             requiresClass = false;
-        if (selectors[i]->match != CSSSelector::Id)
+        }
+        if (selectors[i]->match != CSSSelector::Id) {
             requiresId    = false;
+        }
     }
 
-    for (DOM::NodeImpl* cur = root; cur; cur = cur->traverseNextNode(root)) {
-        if (requiresClass && !cur->hasClass())
+    for (DOM::NodeImpl *cur = root; cur; cur = cur->traverseNextNode(root)) {
+        if (requiresClass && !cur->hasClass()) {
             continue;
+        }
 
-        if (requiresId && !cur->hasID())
-            continue;            
+        if (requiresId && !cur->hasID()) {
+            continue;
+        }
 
-        DOM::ElementImpl* e = 0;
-        if (cur->isElementNode())
-            e = static_cast<DOM::ElementImpl*>(cur);
-    
+        DOM::ElementImpl *e = 0;
+        if (cur->isElementNode()) {
+            e = static_cast<DOM::ElementImpl *>(cur);
+        }
+
         if (e && styleSelector->isMatchedByAnySelector(e, selectors)) {
             matches->append(e);
-            if (justOne)
+            if (justOne) {
                 break;
+            }
         }
     }
 
@@ -90,25 +98,23 @@ static WTF::PassRefPtr<DOM::NodeListImpl>  querySelectorImp(bool justOne, DOM::N
     return matches;
 }
 
-WTF::PassRefPtr<DOM::ElementImpl> querySelector(DOM::NodeImpl* root, const DOM::DOMString& query, int& ec)
+WTF::PassRefPtr<DOM::ElementImpl> querySelector(DOM::NodeImpl *root, const DOM::DOMString &query, int &ec)
 {
     WTF::RefPtr<DOM::NodeListImpl> nl = querySelectorImp(true, root, query, ec);
 
     if (nl && nl->length()) {
-        return static_cast<DOM::ElementImpl*>(nl->item(0));
+        return static_cast<DOM::ElementImpl *>(nl->item(0));
     }
 
     return 0;
 }
 
-WTF::PassRefPtr<DOM::NodeListImpl> querySelectorAll(DOM::NodeImpl* root, const DOM::DOMString& query, int& ec)
+WTF::PassRefPtr<DOM::NodeListImpl> querySelectorAll(DOM::NodeImpl *root, const DOM::DOMString &query, int &ec)
 {
     return querySelectorImp(false, root, query, ec);
 }
 
 } // namespace SelectorQuery
-    
+
 } // namespace khtml
 
-
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

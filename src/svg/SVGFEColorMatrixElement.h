@@ -29,31 +29,33 @@
 
 namespace WebCore
 {
-    class SVGNumberList;
+class SVGNumberList;
 
-    class SVGFEColorMatrixElement : public SVGFilterPrimitiveStandardAttributes
+class SVGFEColorMatrixElement : public SVGFilterPrimitiveStandardAttributes
+{
+public:
+    SVGFEColorMatrixElement(const QualifiedName &, Document *);
+    virtual ~SVGFEColorMatrixElement();
+
+    virtual void parseMappedAttribute(MappedAttribute *);
+    virtual SVGFEColorMatrix *filterEffect(SVGResourceFilter *) const;
+
+protected:
+    virtual const SVGElement *contextElement() const
     {
-    public:
-        SVGFEColorMatrixElement(const QualifiedName&, Document*);
-        virtual ~SVGFEColorMatrixElement();
+        return this;
+    }
 
-        virtual void parseMappedAttribute(MappedAttribute*);
-        virtual SVGFEColorMatrix* filterEffect(SVGResourceFilter*) const;
+private:
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFEColorMatrixElement, String, String, In1, in1)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFEColorMatrixElement, int, int, Type, type)
+    ANIMATED_PROPERTY_DECLARATIONS(SVGFEColorMatrixElement, SVGNumberList *, RefPtr<SVGNumberList>, Values, values)
 
-    protected:
-        virtual const SVGElement* contextElement() const { return this; }
-
-    private:
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFEColorMatrixElement, String, String, In1, in1)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFEColorMatrixElement, int, int, Type, type)
-        ANIMATED_PROPERTY_DECLARATIONS(SVGFEColorMatrixElement, SVGNumberList*, RefPtr<SVGNumberList>, Values, values)
-
-        mutable SVGFEColorMatrix* m_filterEffect;
-    };
+    mutable SVGFEColorMatrix *m_filterEffect;
+};
 
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

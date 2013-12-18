@@ -31,11 +31,11 @@
 #include <QtCore/QStringList>
 #include <QWidget>
 
-
 // -------------------------------------------------------------------------
 class KHTMLPart;
 
-namespace DOM {
+namespace DOM
+{
 
 class HTMLFormElementImpl;
 class HTMLEmbedElementImpl;
@@ -71,14 +71,17 @@ public:
 
     // This is called when a mimetype is discovered, and should return true
     // if KHTMLPart should not make a kpart for it, but rather let it be handled directly.
-    virtual bool mimetypeHandledInternally(const QString& mime);
+    virtual bool mimetypeHandledInternally(const QString &mime);
 
     virtual bool event(QEvent *e);
 
     // IMPORTANT: you should call this when requesting a URL, to make sure
     // that we don't get stale references to iframes or such.
     void clearChildWidget();
-    QWidget* childWidget() const { return m_childWidget; }
+    QWidget *childWidget() const
+    {
+        return m_childWidget;
+    }
 
     void postResizeEvent();
     static void sendPostedResizeEvents();
@@ -87,12 +90,12 @@ public Q_SLOTS:
 private:
     friend class ::KHTMLPart;
     // This is called by KHTMLPart to notify us of the new widget.
-    void setWidget(QWidget* widget);
+    void setWidget(QWidget *widget);
 private:
     virtual void computeContent() = 0;
     bool m_needToComputeContent; // This flag is set to true when
-                                 // we may have to load a new KPart, due to
-                                 // source changing, etc.
+    // we may have to load a new KPart, due to
+    // source changing, etc.
     QPointer<QWidget> m_childWidget; // may be deleted by global child widget cleanup on us..
 };
 
@@ -113,21 +116,21 @@ public:
     QString serviceType;
 
     bool m_rerender; // This is set to true if a reattach is pending,
-                     // due to a change in how we need to display this...
+    // due to a change in how we need to display this...
 
     bool m_renderAlternative;
     bool m_imageLike;
 
     virtual void insertedIntoDocument();
     virtual void removedFromDocument();
-    virtual void addId(const DOMString& id);
-    virtual void removeId(const DOMString& id);
+    virtual void addId(const DOMString &id);
+    virtual void removeId(const DOMString &id);
 
-    HTMLEmbedElementImpl* relevantEmbed();
+    HTMLEmbedElementImpl *relevantEmbed();
 
-    virtual void setWidgetNotify( QWidget *widget );
+    virtual void setWidgetNotify(QWidget *widget);
     virtual void partLoadingErrorNotify();
-    virtual bool mimetypeHandledInternally(const QString& mime);
+    virtual bool mimetypeHandledInternally(const QString &mime);
 
     // This method figures out what to render -- perhaps KPart, perhaps an image, perhaps
     // alternative content, and forces a reattach if need be.
@@ -175,7 +178,7 @@ public:
     virtual void attach();
     virtual void computeContent();
 
-    virtual HTMLEmbedElementImpl* relevantEmbed();
+    virtual HTMLEmbedElementImpl *relevantEmbed();
 
     QString pluginPage;
     bool hidden;
@@ -198,7 +201,7 @@ public:
 
     virtual void attach();
 
-    DocumentImpl* contentDocument() const;
+    DocumentImpl *contentDocument() const;
 };
 
 // -------------------------------------------------------------------------
@@ -207,16 +210,22 @@ class HTMLParamElementImpl : public HTMLElementImpl
 {
     friend class HTMLAppletElementImpl;
 public:
-    HTMLParamElementImpl(DocumentImpl* _doc) : HTMLElementImpl(_doc) {}
+    HTMLParamElementImpl(DocumentImpl *_doc) : HTMLElementImpl(_doc) {}
 
     virtual Id id() const;
 
     virtual void parseAttribute(AttributeImpl *token);
 
-    QString name() const { return m_name; }
-    QString value() const { return m_value; }
+    QString name() const
+    {
+        return m_name;
+    }
+    QString value() const
+    {
+        return m_value;
+    }
 
- protected:
+protected:
     QString m_name;
     QString m_value;
 };

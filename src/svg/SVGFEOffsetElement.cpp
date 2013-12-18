@@ -26,9 +26,10 @@
 #include "Attr.h"
 #include "SVGResourceFilter.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFEOffsetElement::SVGFEOffsetElement(const QualifiedName& tagName, Document* doc)
+SVGFEOffsetElement::SVGFEOffsetElement(const QualifiedName &tagName, Document *doc)
     : SVGFilterPrimitiveStandardAttributes(tagName, doc)
     , m_dx(0.0f)
     , m_dy(0.0f)
@@ -45,29 +46,31 @@ ANIMATED_PROPERTY_DEFINITIONS(SVGFEOffsetElement, String, String, string, In1, i
 ANIMATED_PROPERTY_DEFINITIONS(SVGFEOffsetElement, float, Number, number, Dx, dx, SVGNames::dxAttr, m_dx)
 ANIMATED_PROPERTY_DEFINITIONS(SVGFEOffsetElement, float, Number, number, Dy, dy, SVGNames::dyAttr, m_dy)
 
-void SVGFEOffsetElement::parseMappedAttribute(MappedAttribute* attr)
+void SVGFEOffsetElement::parseMappedAttribute(MappedAttribute *attr)
 {
-    const String& value = attr->value();
-    if (attr->name() == SVGNames::dxAttr)
+    const String &value = attr->value();
+    if (attr->name() == SVGNames::dxAttr) {
         setDxBaseValue(value.toFloat());
-    else if (attr->name() == SVGNames::dyAttr)
+    } else if (attr->name() == SVGNames::dyAttr) {
         setDyBaseValue(value.toFloat());
-    else if (attr->name() == SVGNames::inAttr)
+    } else if (attr->name() == SVGNames::inAttr) {
         setIn1BaseValue(value);
-    else
+    } else {
         SVGFilterPrimitiveStandardAttributes::parseMappedAttribute(attr);
+    }
 }
 
-SVGFEOffset* SVGFEOffsetElement::filterEffect(SVGResourceFilter* filter) const
+SVGFEOffset *SVGFEOffsetElement::filterEffect(SVGResourceFilter *filter) const
 {
-    if (!m_filterEffect)
+    if (!m_filterEffect) {
         m_filterEffect = new SVGFEOffset(filter);
-    
+    }
+
     m_filterEffect->setIn(in1());
     m_filterEffect->setDx(dx());
     m_filterEffect->setDy(dy());
 
-    setStandardAttributes(m_filterEffect); 
+    setStandardAttributes(m_filterEffect);
     return m_filterEffect;
 }
 
@@ -75,4 +78,3 @@ SVGFEOffset* SVGFEOffsetElement::filterEffect(SVGResourceFilter* filter) const
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

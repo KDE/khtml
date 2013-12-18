@@ -35,7 +35,8 @@
 #include <dom/html_element.h>
 #include <dom/html_form.h>
 
-namespace DOM {
+namespace DOM
+{
 
 class HTMLAppletElementImpl;
 
@@ -52,13 +53,15 @@ public:
     HTMLAppletElement();
     HTMLAppletElement(const HTMLAppletElement &other);
     HTMLAppletElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLAppletElement(HTMLAppletElementImpl *impl);
 public:
 
-    HTMLAppletElement & operator = (const HTMLAppletElement &other);
-    HTMLAppletElement & operator = (const Node &other);
+    HTMLAppletElement &operator = (const HTMLAppletElement &other);
+    HTMLAppletElement &operator = (const Node &other);
 
     ~HTMLAppletElement();
 
@@ -75,7 +78,7 @@ public:
     /**
      * see align
      */
-    void setAlign( const DOMString & );
+    void setAlign(const DOMString &);
 
     /**
      * Alternate text for user agents not rendering the normal content
@@ -90,7 +93,7 @@ public:
     /**
      * see alt
      */
-    void setAlt( const DOMString & );
+    void setAlt(const DOMString &);
 
     /**
      * Comma-separated archive list. See the <a
@@ -104,7 +107,7 @@ public:
     /**
      * see archive
      */
-    void setArchive( const DOMString & );
+    void setArchive(const DOMString &);
 
     /**
      * Applet class file. See the <a
@@ -118,7 +121,7 @@ public:
     /**
      * see code
      */
-    void setCode( const DOMString & );
+    void setCode(const DOMString &);
 
     /**
      * Optional base URI for applet. See the <a
@@ -132,7 +135,7 @@ public:
     /**
      * see codeBase
      */
-    void setCodeBase( const DOMString &value );
+    void setCodeBase(const DOMString &value);
 
     /**
      * Override height. See the <a
@@ -146,7 +149,7 @@ public:
     /**
      * see height
      */
-    void setHeight( const DOMString & );
+    void setHeight(const DOMString &);
 
     /**
      * Horizontal space, in pixels, to the left and right of this image, applet,
@@ -158,10 +161,10 @@ public:
      */
     long getHspace() const;
 
-     /**
-      * see hspace
-      */
-    void setHspace( long );
+    /**
+     * see hspace
+     */
+    void setHspace(long);
 
     /**
      * @deprecated
@@ -174,7 +177,7 @@ public:
      * @deprecated
      */
 #ifndef KDE_NO_DEPRECATED
-    KHTML_DEPRECATED void setHspace( const DOMString &value );
+    KHTML_DEPRECATED void setHspace(const DOMString &value);
 #endif
 
     /**
@@ -189,7 +192,7 @@ public:
     /**
      * see name
      */
-    void setName( const DOMString & );
+    void setName(const DOMString &);
 
     /**
      * Serialized applet file. See the <a
@@ -203,7 +206,7 @@ public:
     /**
      * see object
      */
-    void setObject( const DOMString & );
+    void setObject(const DOMString &);
 
     /**
      * Vertical space, in pixels, above and below this image, applet, or object.
@@ -215,10 +218,10 @@ public:
      */
     long getVspace() const;
 
-     /**
-      * see vspace
-      */
-    void setVspace( long );
+    /**
+     * see vspace
+     */
+    void setVspace(long);
 
     /**
      * @deprecated
@@ -231,7 +234,7 @@ public:
      * @deprecated
      */
 #ifndef KDE_NO_DEPRECATED
-    KHTML_DEPRECATED void setVspace( const DOMString & );
+    KHTML_DEPRECATED void setVspace(const DOMString &);
 #endif
 
     /**
@@ -246,7 +249,7 @@ public:
     /**
      * see width
      */
-    void setWidth( const DOMString & );
+    void setWidth(const DOMString &);
 };
 
 // --------------------------------------------------------------------------
@@ -268,13 +271,15 @@ public:
     HTMLObjectElement();
     HTMLObjectElement(const HTMLObjectElement &other);
     HTMLObjectElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLObjectElement(HTMLObjectElementImpl *impl);
 public:
 
-    HTMLObjectElement & operator = (const HTMLObjectElement &other);
-    HTMLObjectElement & operator = (const Node &other);
+    HTMLObjectElement &operator = (const HTMLObjectElement &other);
+    HTMLObjectElement &operator = (const Node &other);
 
     ~HTMLObjectElement();
 
@@ -296,7 +301,7 @@ public:
     /**
      * see code
      */
-    void setCode( const DOMString & );
+    void setCode(const DOMString &);
 
     /**
      * Aligns this object (vertically or horizontally) with respect to
@@ -311,7 +316,7 @@ public:
     /**
      * see align
      */
-    void setAlign( const DOMString & );
+    void setAlign(const DOMString &);
 
     /**
      * Space-separated list of archives. See the <a
@@ -324,7 +329,7 @@ public:
     /**
      * see archive
      */
-    void setArchive( const DOMString & );
+    void setArchive(const DOMString &);
 
     /**
      * Width of border around the object. See the <a
@@ -338,7 +343,7 @@ public:
     /**
      * see border
      */
-    void setBorder( const DOMString & );
+    void setBorder(const DOMString &);
 
     /**
      * Base URI for \c classid , \c data , and
@@ -352,7 +357,7 @@ public:
     /**
      * see codeBase
      */
-    void setCodeBase( const DOMString & );
+    void setCodeBase(const DOMString &);
 
     /**
      * Content type for data downloaded via \c classid
@@ -366,7 +371,7 @@ public:
     /**
      * see codeType
      */
-    void setCodeType( const DOMString & );
+    void setCodeType(const DOMString &);
 
     /**
      * A URI specifying the location of the object's data. See the <a
@@ -379,7 +384,7 @@ public:
     /**
      * see data
      */
-    void setData( const DOMString & );
+    void setData(const DOMString &);
 
     /**
      * Declare (for future reference), but do not instantiate, this
@@ -393,7 +398,7 @@ public:
     /**
      * see declare
      */
-    void setDeclare( bool );
+    void setDeclare(bool);
 
     /**
      * Override height. See the <a
@@ -406,7 +411,7 @@ public:
     /**
      * see height
      */
-    void setHeight( const DOMString & );
+    void setHeight(const DOMString &);
 
     /**
      * Horizontal space, in pixels, to the left and right of this image, applet,
@@ -418,10 +423,10 @@ public:
      */
     long getHspace() const;
 
-     /**
-      * see hspace
-      */
-    void setHspace( long );
+    /**
+     * see hspace
+     */
+    void setHspace(long);
 
     /**
      * @deprecated
@@ -434,7 +439,7 @@ public:
      * @deprecated
      */
 #ifndef KDE_NO_DEPRECATED
-    KHTML_DEPRECATED void setHspace( const DOMString & );
+    KHTML_DEPRECATED void setHspace(const DOMString &);
 #endif
 
     /**
@@ -449,7 +454,7 @@ public:
     /**
      * see name
      */
-    void setName( const DOMString & );
+    void setName(const DOMString &);
 
     /**
      * Message to render while loading the object. See the <a
@@ -462,7 +467,7 @@ public:
     /**
      * see standby
      */
-    void setStandby( const DOMString & );
+    void setStandby(const DOMString &);
 
     /**
      * Index that represents the element's position in the tabbing
@@ -476,7 +481,7 @@ public:
     /**
      * see tabIndex
      */
-    void setTabIndex( long );
+    void setTabIndex(long);
 
     /**
      * Content type for data downloaded via \c data
@@ -490,7 +495,7 @@ public:
     /**
      * see type
      */
-    void setType( const DOMString & );
+    void setType(const DOMString &);
 
     /**
      * Use client-side image map. See the <a
@@ -503,7 +508,7 @@ public:
     /**
      * see useMap
      */
-    void setUseMap( const DOMString & );
+    void setUseMap(const DOMString &);
 
     /**
      * Vertical space, in pixels, above and below this image, applet, or object.
@@ -515,10 +520,10 @@ public:
      */
     long getVspace() const;
 
-     /**
-      * see vspace
-      */
-    void setVspace( long );
+    /**
+     * see vspace
+     */
+    void setVspace(long);
 
     /**
      * @deprecated
@@ -531,7 +536,7 @@ public:
      * @deprecated
      */
 #ifndef KDE_NO_DEPRECATED
-    KHTML_DEPRECATED void setVspace( const DOMString & );
+    KHTML_DEPRECATED void setVspace(const DOMString &);
 #endif
 
     /**
@@ -545,7 +550,7 @@ public:
     /**
      * see width
      */
-    void setWidth( const DOMString & );
+    void setWidth(const DOMString &);
 
     /**
      * Introduced in DOM Level 2
@@ -575,13 +580,15 @@ public:
     HTMLParamElement();
     HTMLParamElement(const HTMLParamElement &other);
     HTMLParamElement(const Node &other) : HTMLElement()
-         {(*this)=other;}
+    {
+        (*this) = other;
+    }
 protected:
     HTMLParamElement(HTMLParamElementImpl *impl);
 public:
 
-    HTMLParamElement & operator = (const HTMLParamElement &other);
-    HTMLParamElement & operator = (const Node &other);
+    HTMLParamElement &operator = (const HTMLParamElement &other);
+    HTMLParamElement &operator = (const Node &other);
 
     ~HTMLParamElement();
 
@@ -596,7 +603,7 @@ public:
     /**
      * see name
      */
-    void setName( const DOMString & );
+    void setName(const DOMString &);
 
     /**
      * Content type for the \c value attribute when
@@ -610,7 +617,7 @@ public:
     /**
      * see type
      */
-    void setType( const DOMString & );
+    void setType(const DOMString &);
 
     /**
      * The value of a run-time parameter. See the <a
@@ -623,7 +630,7 @@ public:
     /**
      * see value
      */
-    void setValue( const DOMString & );
+    void setValue(const DOMString &);
 
     /**
      * Information about the meaning of the \c value
@@ -637,7 +644,7 @@ public:
     /**
      * see valueType
      */
-    void setValueType( const DOMString & );
+    void setValueType(const DOMString &);
 };
 
 } // namespace

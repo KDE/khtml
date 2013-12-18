@@ -29,18 +29,32 @@
 //#include "RenderText.h"
 #include "render_text.h"
 
-namespace WebCore {
+namespace WebCore
+{
 using namespace khtml;
-class RenderSVGInlineText : public RenderText {
+class RenderSVGInlineText : public RenderText
+{
 public:
-    RenderSVGInlineText(DOM::NodeImpl*, DOM::DOMStringImpl*);
-    virtual const char* renderName() const { return "RenderSVGInlineText"; }
-    virtual void absoluteRects(Vector<IntRect>& rects, int tx, int ty, bool topLevel = true);
-    virtual bool requiresLayer() const { return false; }
+    RenderSVGInlineText(DOM::NodeImpl *, DOM::DOMStringImpl *);
+    virtual const char *renderName() const
+    {
+        return "RenderSVGInlineText";
+    }
+    virtual void absoluteRects(Vector<IntRect> &rects, int tx, int ty, bool topLevel = true);
+    virtual bool requiresLayer() const
+    {
+        return false;
+    }
     virtual IntRect selectionRect(bool clipToVisibleContent = true);
-    virtual bool isSVGText() const { return true; }
-    virtual InlineTextBox* createInlineTextBox();
-    virtual InlineBox* createInlineBox(bool,bool) { return createInlineTextBox(); }
+    virtual bool isSVGText() const
+    {
+        return true;
+    }
+    virtual InlineTextBox *createInlineTextBox();
+    virtual InlineBox *createInlineBox(bool, bool)
+    {
+        return createInlineTextBox();
+    }
 
     /*virtual IntRect caretRect(int offset, EAffinity, int* extraWidthToEndOfLine = 0);
     virtual VisiblePosition positionForCoordinates(int x, int y);*/

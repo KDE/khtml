@@ -40,9 +40,10 @@
 #include "SVGTransformList.h"
 #include "SVGURIReference.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-RenderSVGText::RenderSVGText(SVGTextElement* node) 
+RenderSVGText::RenderSVGText(SVGTextElement *node)
     : RenderSVGBlock(node)
 {
 }
@@ -53,13 +54,15 @@ IntRect RenderSVGText::absoluteClippedOverflowRect()
 
 #if ENABLE(SVG_FILTERS)
     // Filters can expand the bounding box
-    SVGResourceFilter* filter = getFilterById(document(), SVGURIReference::getTarget(style()->svgStyle()->filter()));
-    if (filter)
+    SVGResourceFilter *filter = getFilterById(document(), SVGURIReference::getTarget(style()->svgStyle()->filter()));
+    if (filter) {
         repaintRect.unite(filter->filterBBoxForItemBBox(repaintRect));
+    }
 #endif
 
-    if (!repaintRect.isEmpty())
-        repaintRect.inflate(1); // inflate 1 pixel for antialiasing
+    if (!repaintRect.isEmpty()) {
+        repaintRect.inflate(1);    // inflate 1 pixel for antialiasing
+    }
 
     return enclosingIntRect(repaintRect);
 }
@@ -72,14 +75,14 @@ bool RenderSVGText::requiresLayer() const
 bool RenderSVGText::calculateLocalTransform()
 {
     AffineTransform oldTransform = m_localTransform;
-    m_localTransform = static_cast<SVGTextElement*>(element())->animatedLocalTransform();
+    m_localTransform = static_cast<SVGTextElement *>(element())->animatedLocalTransform();
     return (oldTransform != m_localTransform);
 }
 
 void RenderSVGText::layout()
 {
     ASSERT(needsLayout());
-    
+
     // FIXME: This is a hack to avoid the RenderBlock::layout() partial repainting code which is not (yet) SVG aware
     setNeedsLayout(true);
 
@@ -92,11 +95,11 @@ void RenderSVGText::layout()
     }*/
 
     // Best guess for a relative starting point
-    SVGTextElement* text = static_cast<SVGTextElement*>(element());
+    SVGTextElement *text = static_cast<SVGTextElement *>(element());
     int xOffset = (int)(text->x()->getFirst().value());
     int yOffset = (int)(text->y()->getFirst().value());
     setPos(xOffset, yOffset);
-    
+
     calculateLocalTransform();
 
     RenderBlock::layout();
@@ -106,26 +109,26 @@ void RenderSVGText::layout()
     /*bool repainted = false;
     if (checkForRepaint)
         repainted = repaintAfterLayoutIfNeeded(oldBounds, oldOutlineBox);*/
-    
+
     setNeedsLayout(false);
 }
 
-InlineBox* RenderSVGText::createInlineBox(bool makePlaceHolderBox, bool isRootLineBox/*, bool isOnlyRun*/)
+InlineBox *RenderSVGText::createInlineBox(bool makePlaceHolderBox, bool isRootLineBox/*, bool isOnlyRun*/)
 {
     Q_UNUSED(makePlaceHolderBox);
     Q_UNUSED(isRootLineBox);
     // qDebug() << "createInlineBox" << makePlaceHolderBox << isRootLineBox << endl;
     ASSERT(!isInlineFlow());
-    InlineFlowBox* flowBox = new (renderArena()) SVGRootInlineBox(this);
-    
-    if (!m_firstLineBox)
+    InlineFlowBox *flowBox = new(renderArena()) SVGRootInlineBox(this);
+
+    if (!m_firstLineBox) {
         m_firstLineBox = m_lastLineBox = flowBox;
-    else {
+    } else {
         m_lastLineBox->setNextLineBox(flowBox);
         flowBox->setPreviousLineBox(m_lastLineBox);
         m_lastLineBox = flowBox;
     }
-    
+
     return flowBox;
 }
 
@@ -147,24 +150,25 @@ InlineBox* RenderSVGText::createInlineBox(bool makePlaceHolderBox, bool isRootLi
     return false;
 }*/
 
-void RenderSVGText::absoluteRects(Vector<IntRect>& rects, int, int, bool)
+void RenderSVGText::absoluteRects(Vector<IntRect> &rects, int, int, bool)
 {
-    RenderSVGRoot* root = findSVGRootObject(parent());
-    if (!root)
+    RenderSVGRoot *root = findSVGRootObject(parent());
+    if (!root) {
         return;
+    }
 
     int x, y;
     absolutePosition(x, y);
 
     AffineTransform htmlParentCtm = root->RenderContainer::absoluteTransform();
- 
+
     // Don't use relativeBBox here, as it's unites the selection rects. Makes it hard
     // to spot errors, if there are any using WebInspector. Individually feed them into 'rects'.
-    for (InlineRunBox* runBox = firstLineBox(); runBox; runBox = runBox->nextLineBox()) {
+    for (InlineRunBox *runBox = firstLineBox(); runBox; runBox = runBox->nextLineBox()) {
         ASSERT(runBox->isInlineFlowBox());
 
-        InlineFlowBox* flowBox = static_cast<InlineFlowBox*>(runBox);
-        for (InlineBox* box = flowBox->firstChild(); box; box = box->nextOnLine()) {
+        InlineFlowBox *flowBox = static_cast<InlineFlowBox *>(runBox);
+        for (InlineBox *box = flowBox->firstChild(); box; box = box->nextOnLine()) {
             FloatRect boxRect(box->xPos(), box->yPos(), box->width(), box->height());
             boxRect.move(narrowPrecisionToFloat(x - htmlParentCtm.e()), narrowPrecisionToFloat(y - htmlParentCtm.f()));
             rects.append(enclosingIntRect(absoluteTransform().mapRect(boxRect)));
@@ -172,8 +176,8 @@ void RenderSVGText::absoluteRects(Vector<IntRect>& rects, int, int, bool)
     }
 }
 
-void RenderSVGText::paint(PaintInfo& paintInfo, int, int)
-{   
+void RenderSVGText::paint(PaintInfo &paintInfo, int, int)
+{
     RenderObject::PaintInfo pi(paintInfo);
     //FIXME khtml pi.rect = absoluteTransform().inverse().mapRect(pi.rect);
     RenderBlock::paint(pi, 0, 0);
@@ -183,12 +187,13 @@ FloatRect RenderSVGText::relativeBBox(bool includeStroke) const
 {
     FloatRect repaintRect;
 
-    for (InlineRunBox* runBox = firstLineBox(); runBox; runBox = runBox->nextLineBox()) {
+    for (InlineRunBox *runBox = firstLineBox(); runBox; runBox = runBox->nextLineBox()) {
         ASSERT(runBox->isInlineFlowBox());
 
-        InlineFlowBox* flowBox = static_cast<InlineFlowBox*>(runBox);
-        for (InlineBox* box = flowBox->firstChild(); box; box = box->nextOnLine())
+        InlineFlowBox *flowBox = static_cast<InlineFlowBox *>(runBox);
+        for (InlineBox *box = flowBox->firstChild(); box; box = box->nextOnLine()) {
             repaintRect.unite(FloatRect(box->xPos(), box->yPos(), box->width(), box->height()));
+        }
     }
 
     // SVG needs to include the strokeWidth(), not the textStrokeWidth().
@@ -216,4 +221,3 @@ FloatRect RenderSVGText::relativeBBox(bool includeStroke) const
 
 #endif // ENABLE(SVG)
 
-// vim:ts=4:noet

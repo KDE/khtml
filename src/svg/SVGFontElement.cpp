@@ -33,11 +33,12 @@
 
 using namespace WTF;
 
-namespace WebCore {
+namespace WebCore
+{
 
 using namespace SVGNames;
 
-SVGFontElement::SVGFontElement(const QualifiedName& tagName, Document* doc)
+SVGFontElement::SVGFontElement(const QualifiedName &tagName, Document *doc)
     : SVGStyledElement(tagName, doc)
     , m_isGlyphCacheValid(false)
 {
@@ -56,11 +57,12 @@ void SVGFontElement::invalidateGlyphCache()
     m_isGlyphCacheValid = false;
 }
 
-SVGMissingGlyphElement* SVGFontElement::firstMissingGlyphElement() const
+SVGMissingGlyphElement *SVGFontElement::firstMissingGlyphElement() const
 {
-    for (Node* child = firstChild(); child; child = child->nextSibling()) {
-        if (child->hasTagName(missing_glyphTag))
-            return static_cast<SVGMissingGlyphElement*>(child);
+    for (Node *child = firstChild(); child; child = child->nextSibling()) {
+        if (child->hasTagName(missing_glyphTag)) {
+            return static_cast<SVGMissingGlyphElement *>(child);
+        }
     }
 
     return 0;
@@ -68,27 +70,29 @@ SVGMissingGlyphElement* SVGFontElement::firstMissingGlyphElement() const
 
 void SVGFontElement::ensureGlyphCache() const
 {
-    if (m_isGlyphCacheValid)
+    if (m_isGlyphCacheValid) {
         return;
+    }
 
-    for (Node* child = firstChild(); child; child = child->nextSibling()) {
+    for (Node *child = firstChild(); child; child = child->nextSibling()) {
         if (child->hasTagName(glyphTag)) {
-            SVGGlyphElement* glyph = static_cast<SVGGlyphElement*>(child);
+            SVGGlyphElement *glyph = static_cast<SVGGlyphElement *>(child);
             String unicode = glyph->getAttribute(unicodeAttr);
-            if (unicode.length())
+            if (unicode.length()) {
                 m_glyphMap.add(unicode, glyph->buildGlyphIdentifier());
+            }
         } else if (child->hasTagName(hkernTag)) {
-            SVGHKernElement* hkern = static_cast<SVGHKernElement*>(child);
+            SVGHKernElement *hkern = static_cast<SVGHKernElement *>(child);
             SVGHorizontalKerningPair kerningPair = hkern->buildHorizontalKerningPair();
             m_kerningPairs.append(kerningPair);
         }
     }
-        
+
     m_isGlyphCacheValid = true;
 }
-    
+
 // Returns the number of characters consumed or 0 if no range was found.
-static unsigned parseUnicodeRange(const UChar* characters, unsigned length, pair<unsigned, unsigned>& range)
+static unsigned parseUnicodeRange(const UChar *characters, unsigned length, pair<unsigned, unsigned> &range)
 {
     Q_UNUSED(characters);
     Q_UNUSED(length);
@@ -101,7 +105,7 @@ static unsigned parseUnicodeRange(const UChar* characters, unsigned length, pair
         return 0;
     if (characters[1] != '+')
         return 0;
-    
+
     // Parse the starting hex number (or its prefix).
     unsigned start = 0;
     unsigned startLength = 0;
@@ -112,12 +116,12 @@ static unsigned parseUnicodeRange(const UChar* characters, unsigned length, pair
             return 0;
         start = (start << 4) | toASCIIHexValue(characters[i]);
     }
-    
+
     // Handle the case of ranges separated by "-" sign.
     if (2 + startLength < length && characters[2 + startLength] == '-') {
         if (!startLength)
             return 0;
-        
+
         // Parse the ending hex number (or its prefix).
         unsigned end = 0;
         unsigned endLength = 0;
@@ -128,15 +132,15 @@ static unsigned parseUnicodeRange(const UChar* characters, unsigned length, pair
                 return 0;
             end = (end << 4) | toASCIIHexValue(characters[i]);
         }
-        
+
         if (!endLength)
             return 0;
-        
+
         range.first = start;
         range.second = end;
         return 2 + startLength + 1 + endLength;
     }
-    
+
     // Handle the case of a number with some optional trailing question marks.
     unsigned end = start;
     for (unsigned i = 2 + startLength; i < length; ++i) {
@@ -147,24 +151,25 @@ static unsigned parseUnicodeRange(const UChar* characters, unsigned length, pair
         start <<= 4;
         end = (end << 4) | 0xF;
     }
-    
+
     if (!startLength)
         return 0;
-    
+
     range.first = start;
     range.second = end;
     return 2 + startLength;*/
 }
-    
-static bool parseUnicodeRangeList(const UChar* characters, unsigned length, Vector<pair<unsigned, unsigned> >& ranges)
+
+static bool parseUnicodeRangeList(const UChar *characters, unsigned length, Vector<pair<unsigned, unsigned> > &ranges)
 {
     ranges.clear();
-    if (!length)
+    if (!length) {
         return true;
-    
-    const UChar* remainingCharacters = characters;
+    }
+
+    const UChar *remainingCharacters = characters;
     unsigned remainingLength = length;
-    
+
     while (1) {
         pair<unsigned, unsigned> range;
         unsigned charactersConsumed = parseUnicodeRange(remainingCharacters, remainingLength, range);
@@ -173,70 +178,81 @@ static bool parseUnicodeRangeList(const UChar* characters, unsigned length, Vect
             remainingCharacters += charactersConsumed;
             remainingLength -= charactersConsumed;
         } else {
-            if (!remainingLength)
+            if (!remainingLength) {
                 return false;
+            }
             UChar character = remainingCharacters[0];
-            if (character == ',')
+            if (character == ',') {
                 return false;
+            }
             ranges.append(make_pair(character.unicode(), character.unicode()));
             ++remainingCharacters;
             --remainingLength;
         }
-        if (!remainingLength)
+        if (!remainingLength) {
             return true;
-        if (remainingCharacters[0] != ',')
+        }
+        if (remainingCharacters[0] != ',') {
             return false;
+        }
         ++remainingCharacters;
         --remainingLength;
     }
 }
 
-static bool stringMatchesUnicodeRange(const String& unicodeString, const String& unicodeRangeSpec)
+static bool stringMatchesUnicodeRange(const String &unicodeString, const String &unicodeRangeSpec)
 {
     Vector<pair<unsigned, unsigned> > ranges;
-    if (!parseUnicodeRangeList(unicodeRangeSpec.characters(), unicodeRangeSpec.length(), ranges))
+    if (!parseUnicodeRangeList(unicodeRangeSpec.characters(), unicodeRangeSpec.length(), ranges)) {
         return false;
-    
-    if (unicodeString.length() != ranges.size())
+    }
+
+    if (unicodeString.length() != ranges.size()) {
         return false;
-    
+    }
+
     for (size_t i = 0; i < unicodeString.length(); ++i) {
         UChar c = unicodeString[i];
-        if (c < ranges[i].first || c > ranges[i].second)
+        if (c < ranges[i].first || c > ranges[i].second) {
             return false;
+        }
     }
-    
+
     return true;
 }
-    
-static bool matches(const String& u1, const String& g1, const String& u2, const String& g2, const SVGHorizontalKerningPair& kerningPair)
+
+static bool matches(const String &u1, const String &g1, const String &u2, const String &g2, const SVGHorizontalKerningPair &kerningPair)
 {
-    if (kerningPair.unicode1.length() && !stringMatchesUnicodeRange(u1, kerningPair.unicode1))
+    if (kerningPair.unicode1.length() && !stringMatchesUnicodeRange(u1, kerningPair.unicode1)) {
         return false;
-    if (kerningPair.glyphName1.length() && kerningPair.glyphName1 != g1)
+    }
+    if (kerningPair.glyphName1.length() && kerningPair.glyphName1 != g1) {
         return false;
-    
-    if (kerningPair.unicode2.length() && !stringMatchesUnicodeRange(u2, kerningPair.unicode2))
+    }
+
+    if (kerningPair.unicode2.length() && !stringMatchesUnicodeRange(u2, kerningPair.unicode2)) {
         return false;
-    if (kerningPair.glyphName2.length() && kerningPair.glyphName2 != g2)
+    }
+    if (kerningPair.glyphName2.length() && kerningPair.glyphName2 != g2) {
         return false;
-    
+    }
+
     return true;
 }
-    
-bool SVGFontElement::getHorizontalKerningPairForStringsAndGlyphs(const String& u1, const String& g1, const String& u2, const String& g2, SVGHorizontalKerningPair& kerningPair) const
+
+bool SVGFontElement::getHorizontalKerningPairForStringsAndGlyphs(const String &u1, const String &g1, const String &u2, const String &g2, SVGHorizontalKerningPair &kerningPair) const
 {
     for (size_t i = 0; i < m_kerningPairs.size(); ++i) {
         if (matches(u1, g1, u2, g2, m_kerningPairs[i])) {
             kerningPair = m_kerningPairs[i];
             return true;
-        }        
+        }
     }
-    
+
     return false;
 }
 
-void SVGFontElement::getGlyphIdentifiersForString(const String& string, Vector<SVGGlyphIdentifier>& glyphs) const
+void SVGFontElement::getGlyphIdentifiersForString(const String &string, Vector<SVGGlyphIdentifier> &glyphs) const
 {
     ensureGlyphCache();
     m_glyphMap.get(string, glyphs);

@@ -46,29 +46,32 @@
 using namespace DOM;
 using namespace khtml;
 
-RenderFlow* RenderFlow::createFlow(DOM::NodeImpl* node, RenderStyle* style, RenderArena* arena)
+RenderFlow *RenderFlow::createFlow(DOM::NodeImpl *node, RenderStyle *style, RenderArena *arena)
 {
-    RenderFlow* result;
-    if (style->display() == INLINE)
-        result = new (arena) RenderInline(node);
-    else
-        result = new (arena) RenderBlock(node);
+    RenderFlow *result;
+    if (style->display() == INLINE) {
+        result = new(arena) RenderInline(node);
+    } else {
+        result = new(arena) RenderBlock(node);
+    }
     result->setStyle(style);
     return result;
 }
 
-RenderFlow* RenderFlow::continuationBefore(RenderObject* beforeChild)
+RenderFlow *RenderFlow::continuationBefore(RenderObject *beforeChild)
 {
-    if (beforeChild && beforeChild->parent() == this)
+    if (beforeChild && beforeChild->parent() == this) {
         return this;
+    }
 
-    RenderFlow* curr = continuation();
-    RenderFlow* nextToLast = this;
-    RenderFlow* last = this;
+    RenderFlow *curr = continuation();
+    RenderFlow *nextToLast = this;
+    RenderFlow *last = this;
     while (curr) {
         if (beforeChild && beforeChild->parent() == curr) {
-            if (curr->firstChild() == beforeChild)
+            if (curr->firstChild() == beforeChild) {
                 return last;
+            }
             return curr;
         }
 
@@ -77,23 +80,25 @@ RenderFlow* RenderFlow::continuationBefore(RenderObject* beforeChild)
         curr = curr->continuation();
     }
 
-    if (!beforeChild && !last->firstChild())
+    if (!beforeChild && !last->firstChild()) {
         return nextToLast;
+    }
     return last;
 }
 
-void RenderFlow::addChildWithContinuation(RenderObject* newChild, RenderObject* beforeChild)
+void RenderFlow::addChildWithContinuation(RenderObject *newChild, RenderObject *beforeChild)
 {
-    RenderFlow* flow = continuationBefore(beforeChild);
-    while(beforeChild && beforeChild->parent() != flow && !beforeChild->parent()->isAnonymousBlock()) {
+    RenderFlow *flow = continuationBefore(beforeChild);
+    while (beforeChild && beforeChild->parent() != flow && !beforeChild->parent()->isAnonymousBlock()) {
         // skip implicit containers around beforeChild
         beforeChild = beforeChild->parent();
     }
-    RenderFlow* beforeChildParent = beforeChild ? static_cast<RenderFlow*>(beforeChild->parent()) :
+    RenderFlow *beforeChildParent = beforeChild ? static_cast<RenderFlow *>(beforeChild->parent()) :
                                     (flow->continuation() ? flow->continuation() : flow);
 
-    if (newChild->isFloatingOrPositioned())
+    if (newChild->isFloatingOrPositioned()) {
         return beforeChildParent->addChildToFlow(newChild, beforeChild);
+    }
 
     // A continuation always consists of two potential candidates: an inline or an anonymous
     // block box holding block children.
@@ -101,17 +106,18 @@ void RenderFlow::addChildWithContinuation(RenderObject* newChild, RenderObject* 
     bool bcpInline = beforeChildParent->isInline();
     bool flowInline = flow->isInline();
 
-    if (flow == beforeChildParent)
+    if (flow == beforeChildParent) {
         return flow->addChildToFlow(newChild, beforeChild);
-    else {
+    } else {
         // The goal here is to match up if we can, so that we can coalesce and create the
         // minimal # of continuations needed for the inline.
-        if (childInline == bcpInline)
+        if (childInline == bcpInline) {
             return beforeChildParent->addChildToFlow(newChild, beforeChild);
-        else if (flowInline == childInline)
-            return flow->addChildToFlow(newChild, 0); // Just treat like an append.
-        else
+        } else if (flowInline == childInline) {
+            return flow->addChildToFlow(newChild, 0);    // Just treat like an append.
+        } else {
             return beforeChildParent->addChildToFlow(newChild, beforeChild);
+        }
     }
 }
 
@@ -119,68 +125,79 @@ void RenderFlow::addChild(RenderObject *newChild, RenderObject *beforeChild)
 {
 #ifdef DEBUG_LAYOUT
     // qDebug() << renderName() << "(RenderFlow)::addChild( " << newChild->renderName() <<
-                       ", " << (beforeChild ? beforeChild->renderName() : "0") << " )" << endl;
+    ", " << (beforeChild ? beforeChild->renderName() : "0") << " )" << endl;
     // qDebug() << "current height = " << m_height;
 #endif
 
-    if (continuation())
+    if (continuation()) {
         return addChildWithContinuation(newChild, beforeChild);
+    }
     return addChildToFlow(newChild, beforeChild);
 }
 
-void RenderFlow::extractLineBox(InlineFlowBox* box)
+void RenderFlow::extractLineBox(InlineFlowBox *box)
 {
     m_lastLineBox = box->prevFlowBox();
-    if (box == m_firstLineBox)
+    if (box == m_firstLineBox) {
         m_firstLineBox = 0;
-    if (box->prevLineBox())
+    }
+    if (box->prevLineBox()) {
         box->prevLineBox()->setNextLineBox(0);
+    }
     box->setPreviousLineBox(0);
-    for (InlineRunBox* curr = box; curr; curr = curr->nextLineBox())
+    for (InlineRunBox *curr = box; curr; curr = curr->nextLineBox()) {
         curr->setExtracted();
+    }
 }
 
-void RenderFlow::attachLineBox(InlineFlowBox* box)
+void RenderFlow::attachLineBox(InlineFlowBox *box)
 {
     if (m_lastLineBox) {
         m_lastLineBox->setNextLineBox(box);
         box->setPreviousLineBox(m_lastLineBox);
-    } else
+    } else {
         m_firstLineBox = box;
-    InlineFlowBox* last = box;
-    for (InlineFlowBox* curr = box; curr; curr = curr->nextFlowBox()) {
+    }
+    InlineFlowBox *last = box;
+    for (InlineFlowBox *curr = box; curr; curr = curr->nextFlowBox()) {
         curr->setExtracted(false);
         last = curr;
     }
     m_lastLineBox = last;
 }
 
-void RenderFlow::removeInlineBox(InlineBox* _box)
+void RenderFlow::removeInlineBox(InlineBox *_box)
 {
-    if ( _box->isInlineFlowBox() ) {
-        InlineFlowBox* box = static_cast<InlineFlowBox*>(_box);
-        if (box == m_firstLineBox)
+    if (_box->isInlineFlowBox()) {
+        InlineFlowBox *box = static_cast<InlineFlowBox *>(_box);
+        if (box == m_firstLineBox) {
             m_firstLineBox = box->nextFlowBox();
-        if (box == m_lastLineBox)
+        }
+        if (box == m_lastLineBox) {
             m_lastLineBox = box->prevFlowBox();
-        if (box->nextLineBox())
+        }
+        if (box->nextLineBox()) {
             box->nextLineBox()->setPreviousLineBox(box->prevLineBox());
-        if (box->prevLineBox())
+        }
+        if (box->prevLineBox()) {
             box->prevLineBox()->setNextLineBox(box->nextLineBox());
+        }
     }
-    RenderBox::removeInlineBox( _box );
+    RenderBox::removeInlineBox(_box);
 }
 
-void RenderFlow::deleteInlineBoxes(RenderArena* arena)
+void RenderFlow::deleteInlineBoxes(RenderArena *arena)
 {
     if (m_firstLineBox) {
-        if (!arena)
+        if (!arena) {
             arena = renderArena();
-        InlineRunBox *curr=m_firstLineBox, *next=0;
+        }
+        InlineRunBox *curr = m_firstLineBox, *next = 0;
         while (curr) {
             next = curr->nextLineBox();
-            if (!curr->isPlaceHolderBox())
+            if (!curr->isPlaceHolderBox()) {
                 curr->detach(arena, true /*noRemove*/);
+            }
             curr = next;
         }
         m_firstLineBox = 0;
@@ -190,32 +207,35 @@ void RenderFlow::deleteInlineBoxes(RenderArena* arena)
 
 void RenderFlow::dirtyInlineBoxes(bool fullLayout, bool isRootLineBox)
 {
-    if (!isRootLineBox && (isReplaced() || isPositioned()))
+    if (!isRootLineBox && (isReplaced() || isPositioned())) {
         return RenderBox::dirtyInlineBoxes(fullLayout, isRootLineBox);
+    }
 
-    if (fullLayout)
+    if (fullLayout) {
         deleteInlineBoxes();
-    else {
-        for (InlineRunBox* curr = firstLineBox(); curr; curr = curr->nextLineBox())
+    } else {
+        for (InlineRunBox *curr = firstLineBox(); curr; curr = curr->nextLineBox()) {
             curr->dirtyInlineBoxes();
+        }
     }
 }
 
-void RenderFlow::deleteLastLineBox(RenderArena* arena)
+void RenderFlow::deleteLastLineBox(RenderArena *arena)
 {
     if (m_lastLineBox) {
-        if (!arena)
+        if (!arena) {
             arena = renderArena();
-        InlineRunBox *curr=m_lastLineBox, *prev = m_lastLineBox;
-        if (m_firstLineBox == m_lastLineBox)
+        }
+        InlineRunBox *curr = m_lastLineBox, *prev = m_lastLineBox;
+        if (m_firstLineBox == m_lastLineBox) {
             m_firstLineBox = m_lastLineBox = 0;
-        else {
+        } else {
             prev = curr->prevLineBox();
             while (!prev->isInlineFlowBox()) {
                 prev = prev->prevLineBox();
                 prev->detach(arena);
             }
-            m_lastLineBox = static_cast<InlineFlowBox*>(prev);
+            m_lastLineBox = static_cast<InlineFlowBox *>(prev);
             prev->setNextLineBox(0);
         }
         if (curr->parent()) {
@@ -225,17 +245,19 @@ void RenderFlow::deleteLastLineBox(RenderArena* arena)
     }
 }
 
-InlineBox* RenderFlow::createInlineBox(bool makePlaceHolderBox, bool isRootLineBox)
+InlineBox *RenderFlow::createInlineBox(bool makePlaceHolderBox, bool isRootLineBox)
 {
-    if ( !isRootLineBox &&
-         (isReplaced() || makePlaceHolderBox) )       // Inline tables and inline blocks
-         return RenderBox::createInlineBox(false, false);    // (or positioned element placeholders).
+    if (!isRootLineBox &&
+            (isReplaced() || makePlaceHolderBox)) {      // Inline tables and inline blocks
+        return RenderBox::createInlineBox(false, false);    // (or positioned element placeholders).
+    }
 
-    InlineFlowBox* flowBox = 0;
-    if (isInlineFlow())
-        flowBox = new (renderArena()) InlineFlowBox(this);
-    else
-        flowBox = new (renderArena()) RootInlineBox(this);
+    InlineFlowBox *flowBox = 0;
+    if (isInlineFlow()) {
+        flowBox = new(renderArena()) InlineFlowBox(this);
+    } else {
+        flowBox = new(renderArena()) RootInlineBox(this);
+    }
 
     if (!m_firstLineBox) {
         m_firstLineBox = m_lastLineBox = flowBox;
@@ -248,52 +270,60 @@ InlineBox* RenderFlow::createInlineBox(bool makePlaceHolderBox, bool isRootLineB
     return flowBox;
 }
 
-void RenderFlow::dirtyLinesFromChangedChild(RenderObject* child)
+void RenderFlow::dirtyLinesFromChangedChild(RenderObject *child)
 {
-    if (!parent() || (selfNeedsLayout() && !isInlineFlow()) || isTable())
+    if (!parent() || (selfNeedsLayout() && !isInlineFlow()) || isTable()) {
         return;
+    }
 
     // If we have no first line box, then just bail early.
     if (!firstLineBox()) {
         // For an empty inline, propagate the check up to our parent, unless the parent
         // is already dirty.
-        if (isInline() && !parent()->selfNeedsLayout() && parent()->isInlineFlow())
-            static_cast<RenderFlow*>(parent())->dirtyLinesFromChangedChild(this);
+        if (isInline() && !parent()->selfNeedsLayout() && parent()->isInlineFlow()) {
+            static_cast<RenderFlow *>(parent())->dirtyLinesFromChangedChild(this);
+        }
         return;
     }
 
     // Try to figure out which line box we belong in.  First try to find a previous
-    // line box by examining our siblings.  If we didn't find a line box, then use our 
+    // line box by examining our siblings.  If we didn't find a line box, then use our
     // parent's first line box.
-    RootInlineBox* box = 0;
-    RenderObject* curr = 0;
+    RootInlineBox *box = 0;
+    RenderObject *curr = 0;
     for (curr = child->previousSibling(); curr; curr = curr->previousSibling()) {
-        if (curr->isFloatingOrPositioned())
+        if (curr->isFloatingOrPositioned()) {
             continue;
-
-        if (curr->isReplaced() && curr->isBox()) {
-            InlineBox* placeHolderBox = static_cast<RenderBox*>(curr)->placeHolderBox();
-            if (placeHolderBox)
-                box = placeHolderBox->root();
-        } else if (curr->isText()) {
-            InlineTextBox* textBox = static_cast<RenderText*>(curr)->lastTextBox();
-            if (textBox)
-                box = textBox->root();
-        } else if (curr->isInlineFlow()) {
-            InlineRunBox* runBox = static_cast<RenderFlow*>(curr)->lastLineBox();
-            if (runBox)
-                box = runBox->root();
         }
 
-        if (box)
+        if (curr->isReplaced() && curr->isBox()) {
+            InlineBox *placeHolderBox = static_cast<RenderBox *>(curr)->placeHolderBox();
+            if (placeHolderBox) {
+                box = placeHolderBox->root();
+            }
+        } else if (curr->isText()) {
+            InlineTextBox *textBox = static_cast<RenderText *>(curr)->lastTextBox();
+            if (textBox) {
+                box = textBox->root();
+            }
+        } else if (curr->isInlineFlow()) {
+            InlineRunBox *runBox = static_cast<RenderFlow *>(curr)->lastLineBox();
+            if (runBox) {
+                box = runBox->root();
+            }
+        }
+
+        if (box) {
             break;
+        }
     }
-    if (!box)
+    if (!box) {
         box = firstLineBox()->root();
+    }
 
     // If we found a line box, then dirty it.
     if (box) {
-        RootInlineBox* adjacentBox;
+        RootInlineBox *adjacentBox;
         box->markDirty();
 
         // dirty the adjacent lines that might be affected
@@ -304,12 +334,14 @@ void RenderFlow::dirtyLinesFromChangedChild(RenderObject* child)
         // despite the name, actually returns the first RenderObject after the BR.
 
         adjacentBox = box->prevRootBox();
-        if (adjacentBox)
+        if (adjacentBox) {
             adjacentBox->markDirty();
+        }
         if (child->isBR() || (curr && curr->isBR())) {
             adjacentBox = box->nextRootBox();
-            if (adjacentBox)
+            if (adjacentBox) {
                 adjacentBox->markDirty();
+            }
         }
     }
 }
@@ -344,8 +376,9 @@ QList< QRectF > RenderFlow::getClientRects()
 
 void RenderFlow::detach()
 {
-    if (continuation())
+    if (continuation()) {
         continuation()->detach();
+    }
     m_continuation = 0;
 
     // Make sure to destroy anonymous children first while they are still connected to the rest of the tree, so that they will
@@ -356,8 +389,9 @@ void RenderFlow::detach()
         if (m_firstLineBox) {
             // We can't wait for RenderContainer::destroy to clear the selection,
             // because by then we will have nuked the line boxes.
-            if (isSelectionBorder())
+            if (isSelectionBorder()) {
                 canvas()->clearSelection();
+            }
 
             // If line boxes are contained inside a root, that means we're an inline.
             // In that case, we need to remove all the line boxes so that the parent
@@ -365,37 +399,43 @@ void RenderFlow::detach()
             // not have a parent that means they are either already disconnected or
             // root lines that can just be destroyed without disconnecting.
             if (m_firstLineBox->parent()) {
-                for (InlineRunBox* box = m_firstLineBox; box; box = box->nextLineBox())
+                for (InlineRunBox *box = m_firstLineBox; box; box = box->nextLineBox()) {
                     box->remove();
+                }
             }
 
             // If we are an anonymous block, then our line boxes might have children
             // that will outlast this block. In the non-anonymous block case those
             // children will be destroyed by the time we return from this function.
             if (isAnonymousBlock()) {
-                for (InlineFlowBox* box = m_firstLineBox; box; box = box->nextFlowBox()) {
-                    while (InlineBox* childBox = box->firstChild())
+                for (InlineFlowBox *box = m_firstLineBox; box; box = box->nextFlowBox()) {
+                    while (InlineBox *childBox = box->firstChild()) {
                         childBox->remove();
+                    }
                 }
             }
         } else if (isInline() && parent())
             // empty inlines propagate linebox dirtying to the parent
+        {
             parent()->dirtyLinesFromChangedChild(this);
+        }
     }
 
     deleteInlineBoxes();
 
-    RenderBox::detach(); 
+    RenderBox::detach();
 }
 
-void RenderFlow::paintLines(PaintInfo& i, int _tx, int _ty)
+void RenderFlow::paintLines(PaintInfo &i, int _tx, int _ty)
 {
     // Only paint during the foreground/selection phases.
-    if (i.phase != PaintActionForeground && i.phase != PaintActionSelection && i.phase != PaintActionOutline)
+    if (i.phase != PaintActionForeground && i.phase != PaintActionSelection && i.phase != PaintActionOutline) {
         return;
+    }
 
-    if (!firstLineBox())
+    if (!firstLineBox()) {
         return;
+    }
 
     // We can check the first box and last box and avoid painting if we don't
     // intersect.  This is a quick short-circuit that we can take to avoid walking any lines.
@@ -406,48 +446,52 @@ void RenderFlow::paintLines(PaintInfo& i, int _tx, int _ty)
     int yPos = firstLineBox()->root()->topOverflow() - maxOutlineSize;
     int h = maxOutlineSize + lastLineBox()->root()->bottomOverflow() - yPos;
     yPos += _ty;
-    if ((yPos >= i.r.y() + i.r.height()) || (yPos + h <= i.r.y()))
+    if ((yPos >= i.r.y() + i.r.height()) || (yPos + h <= i.r.y())) {
         return;
-    for (InlineFlowBox* curr = firstLineBox(); curr; curr = curr->nextFlowBox()) {
+    }
+    for (InlineFlowBox *curr = firstLineBox(); curr; curr = curr->nextFlowBox()) {
         yPos = curr->root()->topOverflow() - maxOutlineSize;
         h = curr->root()->bottomOverflow() + maxOutlineSize - yPos;
         yPos += _ty;
-        if ((yPos < i.r.y() + i.r.height()) && (yPos + h > i.r.y()))
+        if ((yPos < i.r.y() + i.r.height()) && (yPos + h > i.r.y())) {
             curr->paint(i, _tx, _ty);
+        }
     }
 
     if (i.phase == PaintActionOutline && i.outlineObjects) {
-          foreach (RenderFlow* oo, *i.outlineObjects)
-              if (oo->isRenderInline())
-                  static_cast<RenderInline*>(oo)->paintOutlines(i.p, _tx, _ty);
-          i.outlineObjects->clear();
+        foreach (RenderFlow *oo, *i.outlineObjects)
+            if (oo->isRenderInline()) {
+                static_cast<RenderInline *>(oo)->paintOutlines(i.p, _tx, _ty);
+            }
+        i.outlineObjects->clear();
     }
 }
 
-
-bool RenderFlow::hitTestLines(NodeInfo& i, int x, int y, int tx, int ty, HitTestAction hitTestAction)
+bool RenderFlow::hitTestLines(NodeInfo &i, int x, int y, int tx, int ty, HitTestAction hitTestAction)
 {
-   (void) hitTestAction;
-   /*
-    if (hitTestAction != HitTestForeground) // ### port hitTest
-        return false;
-   */
+    (void) hitTestAction;
+    /*
+     if (hitTestAction != HitTestForeground) // ### port hitTest
+         return false;
+    */
 
-    if (!firstLineBox())
+    if (!firstLineBox()) {
         return false;
+    }
 
     // We can check the first box and last box and avoid hit testing if we don't
     // contain the point.  This is a quick short-circuit that we can take to avoid walking any lines.
     // FIXME: This check is flawed in two extremely obscure ways.
     // (1) If some line in the middle has a huge overflow, it might actually extend below the last line.
     // (2) The overflow from an inline block on a line is not reported to the line.
-    if ((y >= ty + lastLineBox()->root()->bottomOverflow()) || (y < ty + firstLineBox()->root()->topOverflow()))
+    if ((y >= ty + lastLineBox()->root()->bottomOverflow()) || (y < ty + firstLineBox()->root()->topOverflow())) {
         return false;
+    }
 
     // See if our root lines contain the point.  If so, then we hit test
     // them further.  Note that boxes can easily overlap, so we can't make any assumptions
     // based off positions of our first line box or our last line box.
-    for (InlineFlowBox* curr = lastLineBox(); curr; curr = curr->prevFlowBox()) {
+    for (InlineFlowBox *curr = lastLineBox(); curr; curr = curr->prevFlowBox()) {
         if (y >= ty + curr->root()->topOverflow() && y < ty + curr->root()->bottomOverflow()) {
             bool inside = curr->nodeAtPoint(i, x, y, tx, ty);
             if (inside) {
@@ -460,7 +504,6 @@ bool RenderFlow::hitTestLines(NodeInfo& i, int x, int y, int tx, int ty, HitTest
     return false;
 }
 
-
 void RenderFlow::repaint(Priority prior)
 {
     if (isInlineFlow()) {
@@ -468,39 +511,39 @@ void RenderFlow::repaint(Priority prior)
         int left = 0;
         // root inline box not reliably availabe during relayout
         int top = firstLineBox() ? (
-                needsLayout() ? firstLineBox()->xPos() : firstLineBox()->root()->topOverflow()
-            ) : 0;
-        for (InlineRunBox* curr = firstLineBox(); curr; curr = curr->nextLineBox())
-            if (curr == firstLineBox() || curr->xPos() < left)
+                      needsLayout() ? firstLineBox()->xPos() : firstLineBox()->root()->topOverflow()
+                  ) : 0;
+        for (InlineRunBox *curr = firstLineBox(); curr; curr = curr->nextLineBox())
+            if (curr == firstLineBox() || curr->xPos() < left) {
                 left = curr->xPos();
+            }
 
         // Now invalidate a rectangle.
         int ow = style() ? style()->outlineSize() : 0;
 
         // We need to add in the relative position offsets of any inlines (including us) up to our
         // containing block.
-        RenderBlock* cb = containingBlock();
-        for (RenderObject* inlineFlow = this; inlineFlow && inlineFlow->isInlineFlow() && inlineFlow != cb;
-             inlineFlow = inlineFlow->parent()) {
-             if (inlineFlow->style() && inlineFlow->style()->position() == PRELATIVE && inlineFlow->layer()) {
+        RenderBlock *cb = containingBlock();
+        for (RenderObject *inlineFlow = this; inlineFlow && inlineFlow->isInlineFlow() && inlineFlow != cb;
+                inlineFlow = inlineFlow->parent()) {
+            if (inlineFlow->style() && inlineFlow->style()->position() == PRELATIVE && inlineFlow->layer()) {
                 KHTMLAssert(inlineFlow->isBox());
-                static_cast<RenderBox*>(inlineFlow)->relativePositionOffset(left, top);
-             }
+                static_cast<RenderBox *>(inlineFlow)->relativePositionOffset(left, top);
+            }
         }
 
         RootInlineBox *lastRoot = lastLineBox() && !needsLayout() ? lastLineBox()->root() : 0;
-        containingBlock()->repaintRectangle(-ow+left, -ow+top,
-                                            width()+ow*2,
-					    (lastRoot ? lastRoot->bottomOverflow() - top : height())+ow*2, prior);
-    }
-    else {
+        containingBlock()->repaintRectangle(-ow + left, -ow + top,
+                                            width() + ow * 2,
+                                            (lastRoot ? lastRoot->bottomOverflow() - top : height()) + ow * 2, prior);
+    } else {
         if (firstLineBox() && firstLineBox()->topOverflow() < 0) {
             int ow = style() ? style()->outlineSize() : 0;
-            repaintRectangle(-ow, -ow+firstLineBox()->topOverflow(),
-                             effectiveWidth()+ow*2, effectiveHeight()+ow*2, prior);
-        }
-        else
+            repaintRectangle(-ow, -ow + firstLineBox()->topOverflow(),
+                             effectiveWidth() + ow * 2, effectiveHeight() + ow * 2, prior);
+        } else {
             return RenderBox::repaint(prior);
+        }
     }
 }
 
@@ -508,8 +551,9 @@ int
 RenderFlow::lowestPosition(bool includeOverflowInterior, bool includeSelf) const
 {
     int bottom = includeSelf && m_width > 0 ? m_height : 0;
-    if (!includeOverflowInterior && hasOverflowClip())
+    if (!includeOverflowInterior && hasOverflowClip()) {
         return bottom;
+    }
 
     // FIXME: Come up with a way to use the layer tree to avoid visiting all the kids.
     // For now, we have to descend into all the children, since we may have a huge abs div inside
@@ -533,8 +577,9 @@ RenderFlow::lowestPosition(bool includeOverflowInterior, bool includeSelf) const
 int RenderFlow::rightmostPosition(bool includeOverflowInterior, bool includeSelf) const
 {
     int right = includeSelf && m_height > 0 ? m_width : 0;
-    if (!includeOverflowInterior && hasOverflowClip())
+    if (!includeOverflowInterior && hasOverflowClip()) {
         return right;
+    }
 
     // FIXME: Come up with a way to use the layer tree to avoid visiting all the kids.
     // For now, we have to descend into all the children, since we may have a huge abs div inside
@@ -558,8 +603,9 @@ int RenderFlow::rightmostPosition(bool includeOverflowInterior, bool includeSelf
 int RenderFlow::leftmostPosition(bool includeOverflowInterior, bool includeSelf) const
 {
     int left = includeSelf && m_height > 0 ? 0 : m_width;
-    if (!includeOverflowInterior && hasOverflowClip())
+    if (!includeOverflowInterior && hasOverflowClip()) {
         return left;
+    }
 
     // FIXME: Come up with a way to use the layer tree to avoid visiting all the kids.
     // For now, we have to descend into all the children, since we may have a huge abs div inside
@@ -583,8 +629,9 @@ int RenderFlow::leftmostPosition(bool includeOverflowInterior, bool includeSelf)
 int RenderFlow::highestPosition(bool includeOverflowInterior, bool includeSelf) const
 {
     int top = RenderBox::highestPosition(includeOverflowInterior, includeSelf);
-    if (!includeOverflowInterior && hasOverflowClip())
+    if (!includeOverflowInterior && hasOverflowClip()) {
         return top;
+    }
 
     // FIXME: Come up with a way to use the layer tree to avoid visiting all the kids.
     // For now, we have to descend into all the children, since we may have a huge abs div inside

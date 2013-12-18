@@ -29,44 +29,61 @@
 
 namespace DOM
 {
-  class HTMLFrameElementImpl;
-  class HTMLElementImpl;
-  class MouseEventImpl;
+class HTMLFrameElementImpl;
+class HTMLElementImpl;
+class MouseEventImpl;
 }
 
 namespace khtml
 {
-    class ChildFrame;
+class ChildFrame;
 
 class RenderFrameSet : public RenderBox
 {
     friend class DOM::HTMLFrameSetElementImpl;
 public:
-    RenderFrameSet( DOM::HTMLFrameSetElementImpl *frameSet );
+    RenderFrameSet(DOM::HTMLFrameSetElementImpl *frameSet);
 
     virtual ~RenderFrameSet();
 
-    virtual const char *renderName() const { return "RenderFrameSet"; }
-    virtual bool isFrameSet() const { return true; }
+    virtual const char *renderName() const
+    {
+        return "RenderFrameSet";
+    }
+    virtual bool isFrameSet() const
+    {
+        return true;
+    }
 
     virtual void layout();
 
-    void positionFrames( );
-    void paintFrameSetRules( QPainter *paint, const QRect& damageRect );
+    void positionFrames();
+    void paintFrameSetRules(QPainter *paint, const QRect &damageRect);
 
-    bool resizing() const { return m_resizing; }
-    bool noResize() const { return element()->noResize(); }
+    bool resizing() const
+    {
+        return m_resizing;
+    }
+    bool noResize() const
+    {
+        return element()->noResize();
+    }
 
-    bool userResize( DOM::MouseEventImpl *evt );
-    bool canResize( int _x, int _y);
+    bool userResize(DOM::MouseEventImpl *evt);
+    bool canResize(int _x, int _y);
     void setResizing(bool e);
 
-    Qt::CursorShape cursorShape() const { return m_cursor; }
+    Qt::CursorShape cursorShape() const
+    {
+        return m_cursor;
+    }
 
-    bool nodeAtPoint(NodeInfo& info, int x, int y, int tx, int ty, HitTestAction hitTestAction, bool inside);
+    bool nodeAtPoint(NodeInfo &info, int x, int y, int tx, int ty, HitTestAction hitTestAction, bool inside);
 
     DOM::HTMLFrameSetElementImpl *element() const
-    { return static_cast<DOM::HTMLFrameSetElementImpl*>(RenderObject::element()); }
+    {
+        return static_cast<DOM::HTMLFrameSetElementImpl *>(RenderObject::element());
+    }
 
 #ifdef ENABLE_DUMP
     virtual void dump(QTextStream &stream, const QString &ind) const;
@@ -76,8 +93,8 @@ private:
     Qt::CursorShape m_cursor;
     int m_oldpos;
     int m_gridLen[2];
-    int* m_gridDelta[2];
-    int* m_gridLayout[2];
+    int *m_gridDelta[2];
+    int *m_gridLayout[2];
 
     bool *m_hSplitVar; // is this split variable?
     bool *m_vSplitVar;
@@ -96,11 +113,14 @@ class RenderPart : public khtml::RenderWidget
 {
     Q_OBJECT
 public:
-    RenderPart(DOM::HTMLElementImpl* node);
+    RenderPart(DOM::HTMLElementImpl *node);
 
-    virtual const char *renderName() const { return "RenderPart"; }
+    virtual const char *renderName() const
+    {
+        return "RenderPart";
+    }
 
-    virtual void setWidget( QWidget *widget );
+    virtual void setWidget(QWidget *widget);
 
     virtual short intrinsicWidth() const;
     virtual int intrinsicHeight() const;
@@ -113,19 +133,39 @@ class RenderFrame : public khtml::RenderPart
 {
     Q_OBJECT
 public:
-    RenderFrame( DOM::HTMLFrameElementImpl *frame );
+    RenderFrame(DOM::HTMLFrameElementImpl *frame);
 
-    virtual const char *renderName() const { return "RenderFrame"; }
-    virtual bool isFrame() const { return true; }
+    virtual const char *renderName() const
+    {
+        return "RenderFrame";
+    }
+    virtual bool isFrame() const
+    {
+        return true;
+    }
 
     // frames never have padding
-    virtual int paddingTop() const { return 0; }
-    virtual int paddingBottom() const { return 0; }
-    virtual int paddingLeft() const { return 0; }
-    virtual int paddingRight() const { return 0; }
+    virtual int paddingTop() const
+    {
+        return 0;
+    }
+    virtual int paddingBottom() const
+    {
+        return 0;
+    }
+    virtual int paddingLeft() const
+    {
+        return 0;
+    }
+    virtual int paddingRight() const
+    {
+        return 0;
+    }
 
     DOM::HTMLFrameElementImpl *element() const
-    { return static_cast<DOM::HTMLFrameElementImpl*>(RenderObject::element()); }
+    {
+        return static_cast<DOM::HTMLFrameElementImpl *>(RenderObject::element());
+    }
 
 public Q_SLOTS:
     void slotViewCleared();
@@ -136,13 +176,19 @@ class RenderPartObject : public khtml::RenderPart
 {
     Q_OBJECT
 public:
-    RenderPartObject( DOM::HTMLElementImpl * );
+    RenderPartObject(DOM::HTMLElementImpl *);
 
-    virtual const char *renderName() const { return "RenderPartObject"; }
+    virtual const char *renderName() const
+    {
+        return "RenderPartObject";
+    }
 
-    virtual void layout( );
-    
-    virtual bool canHaveBorder() const { return true; }
+    virtual void layout();
+
+    virtual bool canHaveBorder() const
+    {
+        return true;
+    }
 
 public Q_SLOTS:
     void slotViewCleared();

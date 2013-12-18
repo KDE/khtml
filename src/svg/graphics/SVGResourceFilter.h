@@ -30,54 +30,96 @@
 
 #include <wtf/OwnPtr.h>
 
-namespace WebCore {
+namespace WebCore
+{
 
 class GraphicsContext;
 class SVGFilterEffect;
-    
-class SVGResourceFilterPlatformData {
+
+class SVGResourceFilterPlatformData
+{
 public:
     virtual ~SVGResourceFilterPlatformData() {}
 };
 
-class SVGResourceFilter : public SVGResource {
+class SVGResourceFilter : public SVGResource
+{
 public:
     SVGResourceFilter();
-    
-    virtual SVGResourceType resourceType() const { return FilterResourceType; }
 
-    bool filterBoundingBoxMode() const { return m_filterBBoxMode; }
-    void setFilterBoundingBoxMode(bool bboxMode) { m_filterBBoxMode = bboxMode; }
+    virtual SVGResourceType resourceType() const
+    {
+        return FilterResourceType;
+    }
 
-    bool effectBoundingBoxMode() const { return m_effectBBoxMode; }
-    void setEffectBoundingBoxMode(bool bboxMode) { m_effectBBoxMode = bboxMode; }
+    bool filterBoundingBoxMode() const
+    {
+        return m_filterBBoxMode;
+    }
+    void setFilterBoundingBoxMode(bool bboxMode)
+    {
+        m_filterBBoxMode = bboxMode;
+    }
 
-    bool xBoundingBoxMode() const { return m_xBBoxMode; }
-    void setXBoundingBoxMode(bool bboxMode) { m_xBBoxMode = bboxMode; }
+    bool effectBoundingBoxMode() const
+    {
+        return m_effectBBoxMode;
+    }
+    void setEffectBoundingBoxMode(bool bboxMode)
+    {
+        m_effectBBoxMode = bboxMode;
+    }
 
-    bool yBoundingBoxMode() const { return m_yBBoxMode; }
-    void setYBoundingBoxMode(bool bboxMode) { m_yBBoxMode = bboxMode; }
+    bool xBoundingBoxMode() const
+    {
+        return m_xBBoxMode;
+    }
+    void setXBoundingBoxMode(bool bboxMode)
+    {
+        m_xBBoxMode = bboxMode;
+    }
 
-    FloatRect filterRect() const { return m_filterRect; }
-    void setFilterRect(const FloatRect& rect) { m_filterRect = rect; }
+    bool yBoundingBoxMode() const
+    {
+        return m_yBBoxMode;
+    }
+    void setYBoundingBoxMode(bool bboxMode)
+    {
+        m_yBBoxMode = bboxMode;
+    }
 
-    FloatRect filterBBoxForItemBBox(const FloatRect& itemBBox) const;
+    FloatRect filterRect() const
+    {
+        return m_filterRect;
+    }
+    void setFilterRect(const FloatRect &rect)
+    {
+        m_filterRect = rect;
+    }
+
+    FloatRect filterBBoxForItemBBox(const FloatRect &itemBBox) const;
 
     void clearEffects();
-    void addFilterEffect(SVGFilterEffect*);
+    void addFilterEffect(SVGFilterEffect *);
 
-    virtual TextStream& externalRepresentation(TextStream&) const;
+    virtual TextStream &externalRepresentation(TextStream &) const;
 
     // To be implemented in platform specific code.
-    void prepareFilter(GraphicsContext*&, const FloatRect& bbox);
-    void applyFilter(GraphicsContext*&, const FloatRect& bbox);
-    
-    SVGResourceFilterPlatformData* platformData() { return m_platformData.get(); }
-    const Vector<SVGFilterEffect*>& effects() { return m_effects; }
-    
+    void prepareFilter(GraphicsContext *&, const FloatRect &bbox);
+    void applyFilter(GraphicsContext *&, const FloatRect &bbox);
+
+    SVGResourceFilterPlatformData *platformData()
+    {
+        return m_platformData.get();
+    }
+    const Vector<SVGFilterEffect *> &effects()
+    {
+        return m_effects;
+    }
+
 private:
-    SVGResourceFilterPlatformData* createPlatformData();
-    
+    SVGResourceFilterPlatformData *createPlatformData();
+
     OwnPtr<SVGResourceFilterPlatformData> m_platformData;
 
     bool m_filterBBoxMode : 1;
@@ -87,10 +129,10 @@ private:
     bool m_yBBoxMode : 1;
 
     FloatRect m_filterRect;
-    Vector<SVGFilterEffect*> m_effects;
+    Vector<SVGFilterEffect *> m_effects;
 };
 
-SVGResourceFilter* getFilterById(Document*, const AtomicString&);
+SVGResourceFilter *getFilterById(Document *, const AtomicString &);
 
 } // namespace WebCore
 

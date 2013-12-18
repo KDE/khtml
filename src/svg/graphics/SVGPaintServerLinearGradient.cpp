@@ -20,7 +20,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include "wtf/Platform.h"
@@ -29,9 +29,10 @@
 #include "SVGPaintServerLinearGradient.h"
 //#include "SVGRenderTreeAsText.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGPaintServerLinearGradient::SVGPaintServerLinearGradient(const SVGGradientElement* owner)
+SVGPaintServerLinearGradient::SVGPaintServerLinearGradient(const SVGGradientElement *owner)
     : SVGPaintServerGradient(owner)
 {
     // qDebug() << "create LinearGradient Paint server" << endl;
@@ -46,7 +47,7 @@ FloatPoint SVGPaintServerLinearGradient::gradientStart() const
     return m_start;
 }
 
-void SVGPaintServerLinearGradient::setGradientStart(const FloatPoint& start)
+void SVGPaintServerLinearGradient::setGradientStart(const FloatPoint &start)
 {
     m_start = start;
 }
@@ -56,7 +57,7 @@ FloatPoint SVGPaintServerLinearGradient::gradientEnd() const
     return m_end;
 }
 
-void SVGPaintServerLinearGradient::setGradientEnd(const FloatPoint& end)
+void SVGPaintServerLinearGradient::setGradientEnd(const FloatPoint &end)
 {
     m_end = end;
 }

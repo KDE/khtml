@@ -20,7 +20,8 @@
 
 #include "interpreter_ctx.h"
 
-namespace KJSDebugger {
+namespace KJSDebugger
+{
 
 void InterpreterContext::addCall(DebugDocument::Ptr doc, const QString &function, int lineNumber)
 {
@@ -60,4 +61,3 @@ bool InterpreterContext::hasActiveDocument() const
 
 }
 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

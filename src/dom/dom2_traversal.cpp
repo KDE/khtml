@@ -27,7 +27,6 @@
 
 using namespace DOM;
 
-
 NodeIterator::NodeIterator()
 {
     impl = 0;
@@ -36,90 +35,114 @@ NodeIterator::NodeIterator()
 NodeIterator::NodeIterator(const NodeIterator &other)
 {
     impl = other.impl;
-    if (impl) impl->ref();
+    if (impl) {
+        impl->ref();
+    }
 }
 
 NodeIterator::NodeIterator(NodeIteratorImpl *i)
 {
     impl = i;
-    if (impl) impl->ref();
+    if (impl) {
+        impl->ref();
+    }
 }
 
 NodeIterator &NodeIterator::operator = (const NodeIterator &other)
 {
-    if ( impl != other.impl ) {
-	if (impl) impl->deref();
-	impl = other.impl;
-	if (impl) impl->ref();
+    if (impl != other.impl) {
+        if (impl) {
+            impl->deref();
+        }
+        impl = other.impl;
+        if (impl) {
+            impl->ref();
+        }
     }
     return *this;
 }
 
 NodeIterator::~NodeIterator()
 {
-    if (impl) impl->deref();
+    if (impl) {
+        impl->deref();
+    }
 }
 
 Node NodeIterator::root()
 {
-    if (impl) return impl->root();
+    if (impl) {
+        return impl->root();
+    }
     return 0;
 }
 
 unsigned long NodeIterator::whatToShow()
 {
-    if (impl) return impl->whatToShow();
+    if (impl) {
+        return impl->whatToShow();
+    }
     return 0;
 }
 
 NodeFilter NodeIterator::filter()
 {
-    if (impl) return impl->filter();
+    if (impl) {
+        return impl->filter();
+    }
     return 0;
 }
 
 bool NodeIterator::expandEntityReferences()
 {
-    if (impl) return impl->expandEntityReferences();
+    if (impl) {
+        return impl->expandEntityReferences();
+    }
     return 0;
 }
 
-Node NodeIterator::nextNode(  )
+Node NodeIterator::nextNode()
 {
-    void* dummy;
-    if (!impl)
-	throw DOMException(DOMException::INVALID_STATE_ERR);
+    void *dummy;
+    if (!impl) {
+        throw DOMException(DOMException::INVALID_STATE_ERR);
+    }
 
     int exceptioncode = 0;
     SharedPtr<NodeImpl> r = impl->nextNode(exceptioncode, dummy);
-    if (exceptioncode)
-	throw DOMException(exceptioncode);
+    if (exceptioncode) {
+        throw DOMException(exceptioncode);
+    }
     return r.get();
 }
 
-Node NodeIterator::previousNode(  )
+Node NodeIterator::previousNode()
 {
-    void* dummy; // ### rely on C++ exception propagation --- might not be safe
-                 // we could probably proxy the DOM exceptions at the very least
-    if (!impl)
-	throw DOMException(DOMException::INVALID_STATE_ERR);
+    void *dummy; // ### rely on C++ exception propagation --- might not be safe
+    // we could probably proxy the DOM exceptions at the very least
+    if (!impl) {
+        throw DOMException(DOMException::INVALID_STATE_ERR);
+    }
 
     int exceptioncode = 0;
     SharedPtr<NodeImpl> r = impl->previousNode(exceptioncode, dummy);
-    if (exceptioncode)
-	throw DOMException(exceptioncode);
+    if (exceptioncode) {
+        throw DOMException(exceptioncode);
+    }
     return r.get();
 }
 
 void NodeIterator::detach()
 {
-    if (!impl)
-	throw DOMException(DOMException::INVALID_STATE_ERR);
+    if (!impl) {
+        throw DOMException(DOMException::INVALID_STATE_ERR);
+    }
 
     int exceptioncode = 0;
     impl->detach(exceptioncode);
-    if (exceptioncode)
-	throw DOMException(exceptioncode);
+    if (exceptioncode) {
+        throw DOMException(exceptioncode);
+    }
 }
 
 NodeIteratorImpl *NodeIterator::handle() const
@@ -142,45 +165,61 @@ NodeFilter::NodeFilter()
 NodeFilter::NodeFilter(const NodeFilter &other)
 {
     impl = other.impl;
-    if (impl) impl->ref();
+    if (impl) {
+        impl->ref();
+    }
 }
 
 NodeFilter::NodeFilter(NodeFilterImpl *i)
 {
     impl = i;
-    if (impl) impl->ref();
+    if (impl) {
+        impl->ref();
+    }
 }
 
 NodeFilter &NodeFilter::operator = (const NodeFilter &other)
 {
-    if ( impl != other.impl ) {
-	if (impl) impl->deref();
-	impl = other.impl;
-	if (impl) impl->ref();
+    if (impl != other.impl) {
+        if (impl) {
+            impl->deref();
+        }
+        impl = other.impl;
+        if (impl) {
+            impl->ref();
+        }
     }
     return *this;
 }
 
 NodeFilter::~NodeFilter()
 {
-    if (impl) impl->deref();
+    if (impl) {
+        impl->deref();
+    }
 }
 
 short NodeFilter::acceptNode(const Node &n)
 {
-    void* dummy;
-    if (impl) return impl->acceptNode(n, dummy);
+    void *dummy;
+    if (impl) {
+        return impl->acceptNode(n, dummy);
+    }
     return 0;
 }
 
 void NodeFilter::setCustomNodeFilter(CustomNodeFilter *custom)
 {
-    if (impl) impl->setCustomNodeFilter(custom);
+    if (impl) {
+        impl->setCustomNodeFilter(custom);
+    }
 }
 
 CustomNodeFilter *NodeFilter::customNodeFilter()
 {
-    if (impl) return impl->customNodeFilter();
+    if (impl) {
+        return impl->customNodeFilter();
+    }
     return 0;
 }
 
@@ -211,7 +250,7 @@ CustomNodeFilter::~CustomNodeFilter()
 {
 }
 
-short CustomNodeFilter::acceptNode (const Node &/*n*/)
+short CustomNodeFilter::acceptNode(const Node &/*n*/)
 {
     return NodeFilter::FILTER_ACCEPT;
 }
@@ -236,21 +275,29 @@ TreeWalker::TreeWalker()
 TreeWalker::TreeWalker(const TreeWalker &other)
 {
     impl = other.impl;
-    if (impl) impl->ref();
+    if (impl) {
+        impl->ref();
+    }
 }
 
 TreeWalker::TreeWalker(TreeWalkerImpl *i)
 {
     impl = i;
-    if (impl) impl->ref();
+    if (impl) {
+        impl->ref();
+    }
 }
 
-TreeWalker & TreeWalker::operator = (const TreeWalker &other)
+TreeWalker &TreeWalker::operator = (const TreeWalker &other)
 {
-    if ( impl != other.impl ) {
-	if (impl) impl->deref();
-	impl = other.impl;
-	if (impl) impl->ref();
+    if (impl != other.impl) {
+        if (impl) {
+            impl->deref();
+        }
+        impl = other.impl;
+        if (impl) {
+            impl->ref();
+        }
     }
 
     return *this;
@@ -258,93 +305,122 @@ TreeWalker & TreeWalker::operator = (const TreeWalker &other)
 
 TreeWalker::~TreeWalker()
 {
-    if (impl) impl->deref();
+    if (impl) {
+        impl->deref();
+    }
 }
 
 Node TreeWalker::root()
 {
-    if (impl) return impl->getRoot();
+    if (impl) {
+        return impl->getRoot();
+    }
     return 0;
 }
 
 unsigned long TreeWalker::whatToShow()
 {
-    if (impl) return impl->getWhatToShow();
+    if (impl) {
+        return impl->getWhatToShow();
+    }
     return 0;
 }
 
 NodeFilter TreeWalker::filter()
 {
-    if (impl) return impl->getFilter();
+    if (impl) {
+        return impl->getFilter();
+    }
     return 0;
 }
 
 bool TreeWalker::expandEntityReferences()
 {
-    if (impl) return impl->getExpandEntityReferences();
+    if (impl) {
+        return impl->getExpandEntityReferences();
+    }
     return false;
 }
 
 Node TreeWalker::currentNode()
 {
-    if (impl) return impl->getCurrentNode();
+    if (impl) {
+        return impl->getCurrentNode();
+    }
     return 0;
 }
 
-void TreeWalker::setCurrentNode(const Node& _currentNode)
+void TreeWalker::setCurrentNode(const Node &_currentNode)
 {
     int exceptionCode = 0;
-    if (impl) impl->setCurrentNode(_currentNode.handle(), exceptionCode);
-    if (exceptionCode)
+    if (impl) {
+        impl->setCurrentNode(_currentNode.handle(), exceptionCode);
+    }
+    if (exceptionCode) {
         throw DOMException(exceptionCode);
+    }
 }
 
 Node TreeWalker::parentNode()
 {
     void *dummy;
-    if (impl) return impl->parentNode(dummy);
+    if (impl) {
+        return impl->parentNode(dummy);
+    }
     return 0;
 }
 
 Node TreeWalker::firstChild()
 {
     void *dummy;
-    if (impl) return impl->firstChild(dummy);
+    if (impl) {
+        return impl->firstChild(dummy);
+    }
     return 0;
 }
 
 Node TreeWalker::lastChild()
 {
     void *dummy;
-    if (impl) return impl->lastChild(dummy);
+    if (impl) {
+        return impl->lastChild(dummy);
+    }
     return 0;
 }
 
 Node TreeWalker::previousSibling()
 {
     void *dummy;
-    if (impl) return impl->previousSibling(dummy);
+    if (impl) {
+        return impl->previousSibling(dummy);
+    }
     return 0;
 }
 
 Node TreeWalker::nextSibling()
 {
     void *dummy;
-    if (impl) return impl->nextSibling(dummy);
+    if (impl) {
+        return impl->nextSibling(dummy);
+    }
     return 0;
 }
 
 Node TreeWalker::previousNode()
 {
     void *dummy;
-    if (impl) return impl->previousNode(dummy);
+    if (impl) {
+        return impl->previousNode(dummy);
+    }
     return 0;
 }
 
 Node TreeWalker::nextNode()
 {
     void *dummy;
-    if (impl) return impl->nextNode(dummy);
+    if (impl) {
+        return impl->nextNode(dummy);
+    }
     return 0;
 }
 

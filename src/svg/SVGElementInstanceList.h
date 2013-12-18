@@ -27,22 +27,26 @@
 #include <wtf/RefCounted.h>
 #include "SVGElementInstance.h"
 
-namespace WebCore {
-    class SVGElementInstanceList : public RefCounted<SVGElementInstanceList> {
-    public:
-        static PassRefPtr<SVGElementInstanceList> create(PassRefPtr<SVGElementInstance> rootInstance) { return adoptRef(new SVGElementInstanceList(rootInstance)); }
-        virtual ~SVGElementInstanceList();
+namespace WebCore
+{
+class SVGElementInstanceList : public RefCounted<SVGElementInstanceList>
+{
+public:
+    static PassRefPtr<SVGElementInstanceList> create(PassRefPtr<SVGElementInstance> rootInstance)
+    {
+        return adoptRef(new SVGElementInstanceList(rootInstance));
+    }
+    virtual ~SVGElementInstanceList();
 
-        unsigned int length() const;
-        RefPtr<SVGElementInstance> item(unsigned int index);
+    unsigned int length() const;
+    RefPtr<SVGElementInstance> item(unsigned int index);
 
-    private:
-        SVGElementInstanceList(PassRefPtr<SVGElementInstance> rootInstance);
-        RefPtr<SVGElementInstance> m_rootInstance;
-    };
+private:
+    SVGElementInstanceList(PassRefPtr<SVGElementInstance> rootInstance);
+    RefPtr<SVGElementInstance> m_rootInstance;
+};
 } // namespace WebCore
 
 #endif // ENABLE(SVG)
 #endif
 
-// vim:ts=4:noet

@@ -22,9 +22,10 @@
 #if ENABLE(SVG) && ENABLE(SVG_FILTERS)
 #include "SVGFEColorMatrix.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-SVGFEColorMatrix::SVGFEColorMatrix(SVGResourceFilter* filter)
+SVGFEColorMatrix::SVGFEColorMatrix(SVGResourceFilter *filter)
     : SVGFilterEffect(filter)
     , m_type(SVG_FECOLORMATRIX_TYPE_UNKNOWN)
 {
@@ -40,7 +41,7 @@ void SVGFEColorMatrix::setType(SVGColorMatrixType type)
     m_type = type;
 }
 
-const Vector<float>& SVGFEColorMatrix::values() const
+const Vector<float> &SVGFEColorMatrix::values() const
 {
     return m_values;
 }
@@ -50,30 +51,29 @@ void SVGFEColorMatrix::setValues(const Vector<float> &values)
     m_values = values;
 }
 
-static TextStream& operator<<(TextStream& ts, SVGColorMatrixType t)
+static TextStream &operator<<(TextStream &ts, SVGColorMatrixType t)
 {
-    switch (t)
-    {
-        case SVG_FECOLORMATRIX_TYPE_UNKNOWN:
-            ts << "UNKNOWN"; break;
-        case SVG_FECOLORMATRIX_TYPE_MATRIX:
-            ts << "CMT_MATRIX"; break;
-        case SVG_FECOLORMATRIX_TYPE_SATURATE:
-            ts << "CMT_SATURATE"; break;
-        case SVG_FECOLORMATRIX_TYPE_HUEROTATE:
-            ts << "HUE-ROTATE"; break;
-        case SVG_FECOLORMATRIX_TYPE_LUMINANCETOALPHA:
-            ts << "LUMINANCE-TO-ALPHA"; break;
+    switch (t) {
+    case SVG_FECOLORMATRIX_TYPE_UNKNOWN:
+        ts << "UNKNOWN"; break;
+    case SVG_FECOLORMATRIX_TYPE_MATRIX:
+        ts << "CMT_MATRIX"; break;
+    case SVG_FECOLORMATRIX_TYPE_SATURATE:
+        ts << "CMT_SATURATE"; break;
+    case SVG_FECOLORMATRIX_TYPE_HUEROTATE:
+        ts << "HUE-ROTATE"; break;
+    case SVG_FECOLORMATRIX_TYPE_LUMINANCETOALPHA:
+        ts << "LUMINANCE-TO-ALPHA"; break;
     }
     return ts;
 }
 
-TextStream& SVGFEColorMatrix::externalRepresentation(TextStream& ts) const
+TextStream &SVGFEColorMatrix::externalRepresentation(TextStream &ts) const
 {
     ts << "[type=COLOR-MATRIX] ";
     SVGFilterEffect::externalRepresentation(ts);
     ts << " [color matrix type=" << type() << "]"
-        << " [values=" << values() << "]";
+       << " [values=" << values() << "]";
     return ts;
 }
 

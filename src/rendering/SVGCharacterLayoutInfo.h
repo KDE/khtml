@@ -37,7 +37,8 @@
 // khtml
 #include "rendering/render_line.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
 using namespace khtml;
 //class InlineBox;
@@ -81,7 +82,7 @@ class PositionedFloatVector : public PositionedVector<float> { };
 struct SVGChar;
 
 struct SVGCharacterLayoutInfo {
-    SVGCharacterLayoutInfo(Vector<SVGChar>&);
+    SVGCharacterLayoutInfo(Vector<SVGChar> &);
 
     enum StackType { XStack, YStack, DxStack, DyStack, AngleStack, BaselineShiftStack };
 
@@ -105,13 +106,13 @@ struct SVGCharacterLayoutInfo {
     bool nextPathLayoutPointAndAngle(float glyphAdvance, float extraAdvance, float newOffset);
 
     // Used for text-on-path.
-    void addLayoutInformation(InlineFlowBox*, float textAnchorOffset = 0.0f);
+    void addLayoutInformation(InlineFlowBox *, float textAnchorOffset = 0.0f);
 
     bool inPathLayout() const;
     void setInPathLayout(bool value);
 
     // Used for anything else.
-    void addLayoutInformation(SVGTextPositioningElement*);
+    void addLayoutInformation(SVGTextPositioningElement *);
 
     // Global position
     float curx;
@@ -134,7 +135,7 @@ struct SVGCharacterLayoutInfo {
     float pathChunkLength;
 
     // Result vector
-    Vector<SVGChar>& svgChars;
+    Vector<SVGChar> &svgChars;
     bool nextDrawnSeperated : 1;
 
 private:
@@ -142,12 +143,12 @@ private:
     void addStackContent(StackType, float);
 
     // Used for angle.
-    void addStackContent(StackType, SVGNumberList*);
+    void addStackContent(StackType, SVGNumberList *);
 
-    // Used for x/y/dx/dy.    
-    void addStackContent(StackType, SVGLengthList*);
+    // Used for x/y/dx/dy.
+    void addStackContent(StackType, SVGLengthList *);
 
-    void addStackContent(StackType, const PositionedFloatVector&);
+    void addStackContent(StackType, const PositionedFloatVector &);
 
     void xStackWalk();
     void yStackWalk();
@@ -181,7 +182,10 @@ private:
 
 // Holds extra data, when the character is laid out on a path
 struct SVGCharOnPath : RefCounted<SVGCharOnPath> {
-    static PassRefPtr<SVGCharOnPath> create() { return adoptRef(new SVGCharOnPath); }
+    static PassRefPtr<SVGCharOnPath> create()
+    {
+        return adoptRef(new SVGCharOnPath);
+    }
 
     float xScale;
     float yScale;
@@ -192,7 +196,7 @@ struct SVGCharOnPath : RefCounted<SVGCharOnPath> {
     float orientationAngle;
 
     bool hidden : 1;
-    
+
 private:
     SVGCharOnPath()
         : xScale(1.0f)
@@ -250,13 +254,19 @@ struct SVGInlineBoxCharacterRange {
     {
     }
 
-    bool isOpen() const { return (startOffset == endOffset) && (endOffset == INT_MIN); }
-    bool isClosed() const { return startOffset != INT_MIN && endOffset != INT_MIN; }
+    bool isOpen() const
+    {
+        return (startOffset == endOffset) && (endOffset == INT_MIN);
+    }
+    bool isClosed() const
+    {
+        return startOffset != INT_MIN && endOffset != INT_MIN;
+    }
 
     int startOffset;
     int endOffset;
 
-    InlineBox* box;
+    InlineBox *box;
 };
 
 // Convenience typedef
@@ -296,34 +306,34 @@ struct SVGTextChunk {
 struct SVGTextChunkWalkerBase {
     virtual ~SVGTextChunkWalkerBase() { }
 
-    virtual void operator()(SVGInlineTextBox* textBox, int startOffset, const AffineTransform& chunkCtm,
-                            const Vector<SVGChar>::iterator& start, const Vector<SVGChar>::iterator& end) = 0;
+    virtual void operator()(SVGInlineTextBox *textBox, int startOffset, const AffineTransform &chunkCtm,
+                            const Vector<SVGChar>::iterator &start, const Vector<SVGChar>::iterator &end) = 0;
 
     // Followings methods are only used for painting text chunks
-    virtual void start(InlineBox*) = 0;
-    virtual void end(InlineBox*) = 0;
-    
-    virtual bool setupFill(InlineBox*) = 0;
-    virtual bool setupStroke(InlineBox*) = 0;
+    virtual void start(InlineBox *) = 0;
+    virtual void end(InlineBox *) = 0;
+
+    virtual bool setupFill(InlineBox *) = 0;
+    virtual bool setupStroke(InlineBox *) = 0;
 };
 
 template<typename CallbackClass>
 struct SVGTextChunkWalker : public SVGTextChunkWalkerBase {
 public:
-    typedef void (CallbackClass::*SVGTextChunkWalkerCallback)(SVGInlineTextBox* textBox,
-                                                              int startOffset,
-                                                              const AffineTransform& chunkCtm,
-                                                              const Vector<SVGChar>::iterator& start,
-                                                              const Vector<SVGChar>::iterator& end);
+    typedef void (CallbackClass::*SVGTextChunkWalkerCallback)(SVGInlineTextBox *textBox,
+            int startOffset,
+            const AffineTransform &chunkCtm,
+            const Vector<SVGChar>::iterator &start,
+            const Vector<SVGChar>::iterator &end);
 
     // These callbacks are only used for painting!
-    typedef void (CallbackClass::*SVGTextChunkStartCallback)(InlineBox* box);
-    typedef void (CallbackClass::*SVGTextChunkEndCallback)(InlineBox* box);
+    typedef void (CallbackClass::*SVGTextChunkStartCallback)(InlineBox *box);
+    typedef void (CallbackClass::*SVGTextChunkEndCallback)(InlineBox *box);
 
-    typedef bool (CallbackClass::*SVGTextChunkSetupFillCallback)(InlineBox* box);
-    typedef bool (CallbackClass::*SVGTextChunkSetupStrokeCallback)(InlineBox* box);
+    typedef bool (CallbackClass::*SVGTextChunkSetupFillCallback)(InlineBox *box);
+    typedef bool (CallbackClass::*SVGTextChunkSetupStrokeCallback)(InlineBox *box);
 
-    SVGTextChunkWalker(CallbackClass* object,
+    SVGTextChunkWalker(CallbackClass *object,
                        SVGTextChunkWalkerCallback walker,
                        SVGTextChunkStartCallback start = 0,
                        SVGTextChunkEndCallback end = 0,
@@ -340,49 +350,53 @@ public:
         ASSERT(walker);
     }
 
-    virtual void operator()(SVGInlineTextBox* textBox, int startOffset, const AffineTransform& chunkCtm,
-                            const Vector<SVGChar>::iterator& start, const Vector<SVGChar>::iterator& end)
+    virtual void operator()(SVGInlineTextBox *textBox, int startOffset, const AffineTransform &chunkCtm,
+                            const Vector<SVGChar>::iterator &start, const Vector<SVGChar>::iterator &end)
     {
         (*m_object.*m_walkerCallback)(textBox, startOffset, chunkCtm, start, end);
     }
 
     // Followings methods are only used for painting text chunks
-    virtual void start(InlineBox* box)
+    virtual void start(InlineBox *box)
     {
-        if (m_startCallback)
+        if (m_startCallback) {
             (*m_object.*m_startCallback)(box);
-        else
+        } else {
             ASSERT_NOT_REACHED();
+        }
     }
 
-    virtual void end(InlineBox* box)
+    virtual void end(InlineBox *box)
     {
-        if (m_endCallback)
+        if (m_endCallback) {
             (*m_object.*m_endCallback)(box);
-        else
+        } else {
             ASSERT_NOT_REACHED();
+        }
     }
 
-    virtual bool setupFill(InlineBox* box)
+    virtual bool setupFill(InlineBox *box)
     {
-        if (m_setupFillCallback)
+        if (m_setupFillCallback) {
             return (*m_object.*m_setupFillCallback)(box);
+        }
 
         ASSERT_NOT_REACHED();
         return false;
     }
 
-    virtual bool setupStroke(InlineBox* box)
+    virtual bool setupStroke(InlineBox *box)
     {
-        if (m_setupStrokeCallback)
+        if (m_setupStrokeCallback) {
             return (*m_object.*m_setupStrokeCallback)(box);
+        }
 
         ASSERT_NOT_REACHED();
         return false;
     }
 
 private:
-    CallbackClass* m_object;
+    CallbackClass *m_object;
     SVGTextChunkWalkerCallback m_walkerCallback;
     SVGTextChunkStartCallback m_startCallback;
     SVGTextChunkEndCallback m_endCallback;
@@ -391,7 +405,7 @@ private:
 };
 
 struct SVGTextChunkLayoutInfo {
-    SVGTextChunkLayoutInfo(Vector<SVGTextChunk>& textChunks)
+    SVGTextChunkLayoutInfo(Vector<SVGTextChunk> &textChunks)
         : assignChunkProperties(true)
         , handlingTextPath(false)
         , svgTextChunks(textChunks)
@@ -402,7 +416,7 @@ struct SVGTextChunkLayoutInfo {
     bool assignChunkProperties : 1;
     bool handlingTextPath : 1;
 
-    Vector<SVGTextChunk>& svgTextChunks;
+    Vector<SVGTextChunk> &svgTextChunks;
     Vector<SVGChar>::iterator it;
 
     SVGTextChunk chunk;
@@ -410,8 +424,8 @@ struct SVGTextChunkLayoutInfo {
 
 struct SVGTextDecorationInfo {
     // ETextDecoration is meant to be used here
-    HashMap<int, RenderObject*> fillServerMap;
-    HashMap<int, RenderObject*> strokeServerMap;
+    HashMap<int, RenderObject *> fillServerMap;
+    HashMap<int, RenderObject *> strokeServerMap;
 };
 
 } // namespace WebCore

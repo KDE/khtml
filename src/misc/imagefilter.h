@@ -31,8 +31,8 @@
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-namespace khtml {
-
+namespace khtml
+{
 
 class ImageFilter
 {

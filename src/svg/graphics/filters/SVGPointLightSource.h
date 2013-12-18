@@ -26,18 +26,23 @@
 #include "FloatPoint3D.h"
 #include "SVGLightSource.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-class SVGPointLightSource : public SVGLightSource {
+class SVGPointLightSource : public SVGLightSource
+{
 public:
-    SVGPointLightSource(const FloatPoint3D& position)
+    SVGPointLightSource(const FloatPoint3D &position)
         : SVGLightSource(LS_POINT)
         , m_position(position)
     { }
 
-    const FloatPoint3D& position() const { return m_position; }
+    const FloatPoint3D &position() const
+    {
+        return m_position;
+    }
 
-    virtual TextStream& externalRepresentation(TextStream&) const;
+    virtual TextStream &externalRepresentation(TextStream &) const;
 
 private:
     FloatPoint3D m_position;

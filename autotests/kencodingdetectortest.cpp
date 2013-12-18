@@ -22,11 +22,10 @@
 
 #include <kencodingdetector.h>
 
-
 static const char data1[] = "this should decode correctly";
 static const char data2[] = "this is an invalid utf-8 byte: \xBF and another one: \xBE";
 
-static KEncodingDetector* ed = 0;
+static KEncodingDetector *ed = 0;
 
 void KEncodingDetectorTest::initTestCase()
 {
@@ -35,15 +34,15 @@ void KEncodingDetectorTest::initTestCase()
 
 void KEncodingDetectorTest::testSetEncoding()
 {
-    QCOMPARE(ed->setEncoding( "iso8859-1", KEncodingDetector::UserChosenEncoding ), true);
-    QCOMPARE(ed->setEncoding( "utf-8", KEncodingDetector::UserChosenEncoding ), true);
+    QCOMPARE(ed->setEncoding("iso8859-1", KEncodingDetector::UserChosenEncoding), true);
+    QCOMPARE(ed->setEncoding("utf-8", KEncodingDetector::UserChosenEncoding), true);
 }
 
 void KEncodingDetectorTest::testDecode()
 {
-    QString s = ed->decode( data1, sizeof(data1)-1);
+    QString s = ed->decode(data1, sizeof(data1) - 1);
     QCOMPARE(ed->decodedInvalidCharacters(), false);
-    QString s2 = ed->decode( data2, sizeof(data2)-1);
+    QString s2 = ed->decode(data2, sizeof(data2) - 1);
     QCOMPARE(ed->decodedInvalidCharacters(), true);
     QCOMPARE(s, QString::fromLatin1(data1));
 
@@ -51,11 +50,11 @@ void KEncodingDetectorTest::testDecode()
     QVERIFY(!ed->decodedInvalidCharacters());
 
     // set to automatic detection
-    ed->setEncoding( "", KEncodingDetector::DefaultEncoding );
+    ed->setEncoding("", KEncodingDetector::DefaultEncoding);
 
     // decodeWithBuffering should just accumulate the buffer here,
     // waiting for some HTML/XML encoding tags
-    s = ed->decodeWithBuffering(data2, sizeof data2 -1);
+    s = ed->decodeWithBuffering(data2, sizeof data2 - 1);
 
     // shouldn't even decode anything yet, so:
     QCOMPARE(s.isEmpty(), true);
@@ -64,7 +63,7 @@ void KEncodingDetectorTest::testDecode()
     // force encoding, as the high bytes must have switched the encoding
     // to anything *but* utf-8
     QCOMPARE(QString::fromLatin1("utf-8").startsWith(QString::fromLatin1(ed->encoding()), Qt::CaseInsensitive), false);
-    ed->setEncoding( "utf-8", KEncodingDetector::UserChosenEncoding );
+    ed->setEncoding("utf-8", KEncodingDetector::UserChosenEncoding);
     QCOMPARE(QString::fromLatin1("utf-8").startsWith(QString::fromLatin1(ed->encoding()), Qt::CaseInsensitive), true);
 
     // force decoding now
@@ -73,17 +72,17 @@ void KEncodingDetectorTest::testDecode()
     QCOMPARE(ed->decodedInvalidCharacters(), true);
 
     // now check that resetDecoder() empties the buffer
-    s2 = ed->decodeWithBuffering(data1, sizeof data1 -1);
+    s2 = ed->decodeWithBuffering(data1, sizeof data1 - 1);
     ed->resetDecoder();
     s2 = ed->flush();
     QCOMPARE(s2.isEmpty(), true);
 
     // check that buffered decoding with non-overridable specified codec decodes right away
-    ed->setEncoding( "utf-8", KEncodingDetector::EncodingFromHTTPHeader );
-    s = ed->decodeWithBuffering(data2, sizeof data2 -1);
+    ed->setEncoding("utf-8", KEncodingDetector::EncodingFromHTTPHeader);
+    s = ed->decodeWithBuffering(data2, sizeof data2 - 1);
 
-    QCOMPARE( s.isEmpty(), false );
-    QCOMPARE( ed->decodedInvalidCharacters(), true );
+    QCOMPARE(s.isEmpty(), false);
+    QCOMPARE(ed->decodedInvalidCharacters(), true);
 }
 
 QTEST_MAIN(KEncodingDetectorTest)

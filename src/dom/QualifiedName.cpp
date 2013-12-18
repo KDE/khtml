@@ -24,16 +24,17 @@
 #include "QualifiedName.h"
 #include "xml/dom_nodeimpl.h"
 
-namespace DOM {
+namespace DOM
+{
 
-QualifiedName::QualifiedName(const DOMString& prefix, const DOMString& localName, const DOMString& namespaceURI)
+QualifiedName::QualifiedName(const DOMString &prefix, const DOMString &localName, const DOMString &namespaceURI)
 {
     m_prefix = PrefixName::fromString(prefix);
     m_localName = LocalName::fromString(localName);
     m_namespace = NamespaceName::fromString(namespaceURI);
 }
 
-QualifiedName::QualifiedName(const QualifiedName& name)
+QualifiedName::QualifiedName(const QualifiedName &name)
 {
     m_prefix = name.prefixId();
     m_namespace = name.namespaceNameId();
@@ -47,13 +48,14 @@ QualifiedName::QualifiedName(int prefix, int localName, int namespaceName)
     m_namespace = NamespaceName::fromId(namespaceName);
 }
 
-QualifiedName::QualifiedName(quint32 id, PrefixName prefix) {
+QualifiedName::QualifiedName(quint32 id, PrefixName prefix)
+{
     m_prefix = prefix;
     m_localName = LocalName::fromId(localNamePart(id));
     m_namespace = NamespaceName::fromId(namespacePart(id));
 }
 
-const QualifiedName& QualifiedName::operator=(const QualifiedName& name)
+const QualifiedName &QualifiedName::operator=(const QualifiedName &name)
 {
     m_prefix = name.prefixId();
     m_namespace = name.namespaceNameId();
@@ -61,7 +63,7 @@ const QualifiedName& QualifiedName::operator=(const QualifiedName& name)
     return *this;
 }
 
-bool QualifiedName::operator==(const QualifiedName& other) const
+bool QualifiedName::operator==(const QualifiedName &other) const
 {
     /*// qDebug() << m_prefix.id() << other.prefixId().id() << ((m_prefix == other.prefixId())) << endl;
     // qDebug() << (m_prefix == other.prefixId()) << (m_localName == other.localNameId()) << (m_namespace == other.namespaceNameId()) << endl;*/
@@ -70,20 +72,22 @@ bool QualifiedName::operator==(const QualifiedName& other) const
 
 bool QualifiedName::hasPrefix() const
 {
-    return m_prefix.id() != 0/*emptyPrefix*/; 
+    return m_prefix.id() != 0/*emptyPrefix*/;
 }
 
-bool QualifiedName::matches(const QualifiedName& other) const
+bool QualifiedName::matches(const QualifiedName &other) const
 {
     //FIXME: IMPLEMENT
     return *this == other || (m_localName == other.localNameId() && (m_prefix == other.prefixId() || m_namespace == other.namespaceNameId()));
 }
 
-void QualifiedName::setPrefix(const PrefixName& prefix) {
+void QualifiedName::setPrefix(const PrefixName &prefix)
+{
     m_prefix = prefix;
 }
 
-void QualifiedName::setPrefix(const DOMString& prefix) {
+void QualifiedName::setPrefix(const DOMString &prefix)
+{
     m_prefix = PrefixName::fromString(prefix);
 }
 
@@ -96,8 +100,9 @@ DOMString QualifiedName::tagName() const
 {
     DOMString prefix = m_prefix.toString();
     DOMString localName = m_localName.toString();
-    if (prefix.isEmpty())
+    if (prefix.isEmpty()) {
         return localName;
+    }
     return prefix + DOMString(":") + localName;
 }
 
@@ -123,4 +128,3 @@ DOMString QualifiedName::toString() const
 
 }
 
-// kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

@@ -27,11 +27,12 @@
 #include "SVGFontFaceUriElement.h"
 #include "SVGNames.h"
 
-namespace WebCore {
-    
+namespace WebCore
+{
+
 using namespace SVGNames;
-    
-SVGFontFaceSrcElement::SVGFontFaceSrcElement(const QualifiedName& tagName, Document* doc)
+
+SVGFontFaceSrcElement::SVGFontFaceSrcElement(const QualifiedName &tagName, Document *doc)
     : SVGElement(tagName, doc)
 {
 }
@@ -39,20 +40,22 @@ SVGFontFaceSrcElement::SVGFontFaceSrcElement(const QualifiedName& tagName, Docum
 PassRefPtr<CSSValueList> SVGFontFaceSrcElement::srcValue() const
 {
     RefPtr<CSSValueList> list = new CSSValueList; // ### CSSValueListImpl(CSSValueListImpl::Comma)
-    for (Node* child = firstChild(); child; child = child->nextSibling()) {
-        if (child->hasTagName(font_face_uriTag))
-            list->append(static_cast<SVGFontFaceUriElement*>(child)->srcValue());
-        else if (child->hasTagName(font_face_nameTag))
-            list->append(static_cast<SVGFontFaceNameElement*>(child)->srcValue());
+    for (Node *child = firstChild(); child; child = child->nextSibling()) {
+        if (child->hasTagName(font_face_uriTag)) {
+            list->append(static_cast<SVGFontFaceUriElement *>(child)->srcValue());
+        } else if (child->hasTagName(font_face_nameTag)) {
+            list->append(static_cast<SVGFontFaceNameElement *>(child)->srcValue());
+        }
     }
     return list;
 }
 
-void SVGFontFaceSrcElement::childrenChanged(bool changedByParser, Node* beforeChange, Node* afterChange, int childCountDelta)
+void SVGFontFaceSrcElement::childrenChanged(bool changedByParser, Node *beforeChange, Node *afterChange, int childCountDelta)
 {
     SVGElement::childrenChanged(changedByParser, beforeChange, afterChange, childCountDelta);
-    if (parentNode() && parentNode()->hasTagName(font_faceTag))
-        static_cast<SVGFontFaceElement*>(parentNode())->rebuildFontFace();
+    if (parentNode() && parentNode()->hasTagName(font_faceTag)) {
+        static_cast<SVGFontFaceElement *>(parentNode())->rebuildFontFace();
+    }
 }
 
 }

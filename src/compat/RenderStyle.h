@@ -5,8 +5,8 @@
 
 namespace WebCore
 {
-    //using namespace khtml;
-    using khtml::RenderStyle;
+//using namespace khtml;
+using khtml::RenderStyle;
 } // namespace WebCore
 
 #endif

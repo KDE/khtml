@@ -25,22 +25,23 @@
 #include "SVGSpotLightSource.h"
 #include "SVGDistantLightSource.h"
 
-namespace WebCore {
+namespace WebCore
+{
 
-static TextStream& operator<<(TextStream& ts, const FloatPoint3D& p)
+static TextStream &operator<<(TextStream &ts, const FloatPoint3D &p)
 {
     ts << "x=" << p.x() << " y=" << p.y() << " z=" << p.z();
     return ts;
 }
 
-TextStream& SVGPointLightSource::externalRepresentation(TextStream& ts) const
+TextStream &SVGPointLightSource::externalRepresentation(TextStream &ts) const
 {
     ts << "[type=POINT-LIGHT] ";
     ts << "[position=\"" << position() << "\"]";
     return ts;
 }
 
-TextStream& SVGSpotLightSource::externalRepresentation(TextStream& ts) const
+TextStream &SVGSpotLightSource::externalRepresentation(TextStream &ts) const
 {
     ts << "[type=SPOT-LIGHT] ";
     ts << "[position=\"" << position() << "\"]";
@@ -50,7 +51,7 @@ TextStream& SVGSpotLightSource::externalRepresentation(TextStream& ts) const
     return ts;
 }
 
-TextStream& SVGDistantLightSource::externalRepresentation(TextStream& ts) const
+TextStream &SVGDistantLightSource::externalRepresentation(TextStream &ts) const
 {
     ts << "[type=DISTANT-LIGHT] ";
     ts << "[azimuth=\"" << azimuth() << "\"]";

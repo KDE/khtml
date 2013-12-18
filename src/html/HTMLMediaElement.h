@@ -21,7 +21,7 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef HTMLMediaElement_h
@@ -33,16 +33,18 @@
 #include <wtf/PassRefPtr.h>
 #include <QPointer>
 
-namespace khtml {
+namespace khtml
+{
 
 class MediaError;
 class TimeRanges;
 class RenderMedia;
 class MediaPlayer;
 
-class HTMLMediaElement : public HTMLElement {
+class HTMLMediaElement : public HTMLElement
+{
 public:
-    HTMLMediaElement(Document*);
+    HTMLMediaElement(Document *);
     virtual ~HTMLMediaElement();
 
     virtual void attach();
@@ -52,7 +54,10 @@ public:
     using DOM::ElementImpl::attributeChanged;
     virtual void attributeChanged(NodeImpl::Id attrId);
 
-    virtual bool isVideo() const { return false; }
+    virtual bool isVideo() const
+    {
+        return false;
+    }
 
     void scheduleLoad();
 
@@ -62,17 +67,16 @@ public:
 
 // network state
     String src() const;
-    void setSrc(const String&);
+    void setSrc(const String &);
     String currentSrc() const;
-    
+
     enum NetworkState { NETWORK_EMPTY, NETWORK_IDLE, NETWORK_LOADING, NETWORK_NO_SOURCE };
     NetworkState networkState() const;
     bool autobuffer() const;
     void setAutobuffer(bool b);
     PassRefPtr<TimeRanges> buffered() const;
-    void load(ExceptionCode&);
+    void load(ExceptionCode &);
     String canPlayType(String type);
-    
 
 // ready state
     enum ReadyState { HAVE_NOTHING, HAVE_METADATA, HAVE_CURRENT_DATA, HAVE_FUTURE_DATA, HAVE_ENOUGH_DATA };
@@ -81,29 +85,29 @@ public:
 
 // playback state
     float currentTime() const;
-    void setCurrentTime(float, ExceptionCode&);
+    void setCurrentTime(float, ExceptionCode &);
     float startTime() const;
     float duration() const;
     bool paused() const;
     float defaultPlaybackRate() const;
-    void setDefaultPlaybackRate(float, ExceptionCode&);
+    void setDefaultPlaybackRate(float, ExceptionCode &);
     float playbackRate() const;
-    void setPlaybackRate(float, ExceptionCode&);
+    void setPlaybackRate(float, ExceptionCode &);
     PassRefPtr<TimeRanges> played() const;
     PassRefPtr<TimeRanges> seekable() const;
     bool ended() const;
-    bool autoplay() const;    
+    bool autoplay() const;
     void setAutoplay(bool b);
     bool loop() const;
     void setLoop(bool b);
-    void play(ExceptionCode&);
-    void pause(ExceptionCode&);
-    
+    void play(ExceptionCode &);
+    void pause(ExceptionCode &);
+
 // controls
     bool controls() const;
     void setControls(bool);
     float volume() const;
-    void setVolume(float, ExceptionCode&);
+    void setVolume(float, ExceptionCode &);
     bool muted() const;
     void setMuted(bool);
 
@@ -115,9 +119,9 @@ protected:
     void setReadyState(ReadyState);
 
 private:
-    void loadResource(String& url);
+    void loadResource(String &url);
     void updateLoadState();
-    
+
     void updateVolume();
     void updatePlayState();
     bool endedPlayback() const;
@@ -127,26 +131,26 @@ protected:
     NetworkState m_networkState;
     ReadyState m_readyState;
     String m_currentSrc;
-    
+
     RefPtr<MediaError> m_error;
-    
+
     bool m_begun;
     bool m_loadedFirstFrame;
     bool m_autoplaying;
     bool m_autobuffer;
-    
+
     float m_volume;
     bool m_muted;
-    
+
     bool m_paused;
     bool m_seeking;
-    
+
     float m_currentTimeDuringSeek;
-    
+
     unsigned m_previousProgress;
     double m_previousProgressTime;
     bool m_sentStalledEvent;
-    
+
     QPointer<MediaPlayer> m_player;
 };
 
