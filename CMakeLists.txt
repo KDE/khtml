@@ -7,6 +7,7 @@ set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 include(FeatureSummary)
 include(CMakePackageConfigHelpers)
 include(ECMSetupVersion)
+include(ECMGenerateHeaders)
 
 set(REQUIRED_QT_VERSION "5.2")
 find_package(Qt5 "${REQUIRED_QT_VERSION}" CONFIG REQUIRED Widgets Network DBus PrintSupport Xml Test)
