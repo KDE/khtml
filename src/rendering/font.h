@@ -192,7 +192,7 @@ public:
      *      decoration painting
      * @param deco combined text decoration (see Decoration)
      */
-    void drawText(QPainter *p, int x, int y, QChar *str, int slen, int pos, int len, int width,
+    void drawText(QPainter *p, int x, int y, const QChar *str, int slen, int pos, int len, int width,
                   Qt::LayoutDirection d, int from = -1, int to = -1, QColor bg = QColor(),
                   int uy = -1, int h = -1, int deco = 0) const;
 
