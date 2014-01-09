@@ -2993,8 +2993,13 @@ JSValue *Location::getValueProperty(ExecState *exec, int token) const
 {
     QUrl url = m_frame->m_part->url();
     switch (token) {
-    case Hash:
-        return jsString(UString(url.fragment().isNull() ? QString("") : '#' + url.fragment()));
+    case Hash: {
+        const QString encodedHash = url.fragment();
+        if (encodedHash.isEmpty()) {
+            return jsString("");
+        }
+        return jsString(QLatin1Char('#') + encodedHash);
+    }
     case Host: {
         UString str = url.host();
         if (url.port() > 0) {
