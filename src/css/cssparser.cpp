@@ -384,6 +384,7 @@ CSSStyleDeclarationImpl *CSSParser::createStyleDeclaration(CSSStyleRuleImpl *rul
 CSSStyleDeclarationImpl *CSSParser::createFontFaceStyleDeclaration(CSSFontFaceRuleImpl *rule)
 {
     QList<CSSProperty *> *propList = new QList<CSSProperty *>;
+    CSSProperty *overriddenSrcProperty = 0;
     for (int i = 0; i < numParsedProperties; i++) {
         CSSProperty *property = parsedProperties[i];
         int id = property->id();
@@ -394,9 +395,18 @@ CSSStyleDeclarationImpl *CSSParser::createFontFaceStyleDeclaration(CSSFontFaceRu
             property->setValue(new CSSValueListImpl(CSSValueListImpl::Comma));
             static_cast<CSSValueListImpl *>(property->value())->append(value);
             value->deref();
+        } else if (id == CSS_PROP_SRC) {
+            overriddenSrcProperty = property;
+            continue;
         }
-        propList->append(parsedProperties[i]);
+
+        propList->append(property);
     }
+
+    if (overriddenSrcProperty) {
+        propList->append(overriddenSrcProperty);
+    }
+
     numParsedProperties = 0;
     return new CSSStyleDeclarationImpl(rule, propList);
 }
