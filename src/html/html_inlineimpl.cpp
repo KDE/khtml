@@ -39,6 +39,8 @@
 #include "rendering/render_image.h"
 #include "rendering/render_inline.h"
 
+#include <QKeyEvent>
+
 using namespace khtml;
 using namespace DOM;
 

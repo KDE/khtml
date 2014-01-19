@@ -29,6 +29,7 @@
 #include <QtCore/QTimer>
 #include <QVBoxLayout>
 
+#include <kparts/guiactivateevent.h>
 #include <kjobuidelegate.h>
 #include <kio/job.h>
 #include <qmimedatabase.h>

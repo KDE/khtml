@@ -25,6 +25,7 @@
 #include <klocalizedstring.h>
 #include <QDebug>
 #include <kparts/browserextension.h>
+#include <kparts/liveconnectextension.h>
 
 class KJavaAppletPrivate
 {

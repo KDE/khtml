@@ -62,6 +62,7 @@
 #include <QtCore/QTextCodec>
 #include <QStandardPaths>
 #include <QTemporaryFile>
+#include <QKeyEvent>
 
 // for keygen
 #include <ksslkeygen.h>

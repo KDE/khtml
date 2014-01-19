@@ -28,8 +28,9 @@
 #include "dom/dom_doc.h"
 #include "dom/dom2_range.h"
 
-#include <kparts/part.h>
+#include <kparts/readonlypart.h>
 #include <kparts/browserextension.h>
+#include <kparts/browserhostextension.h>
 #include <kfind.h>
 #include <kfinddialog.h>
 #include <klocalizedstring.h>

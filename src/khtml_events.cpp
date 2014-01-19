@@ -22,6 +22,8 @@
 #include "xml/dom_nodeimpl.h"
 #include "xml/dom_position.h"
 
+#include <QMouseEvent>
+
 using namespace khtml;
 using namespace DOM;
 

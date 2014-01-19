@@ -35,6 +35,7 @@
 #include "khtmlpart_p.h"
 
 #include <QStack>
+#include <QKeyEvent>
 
 #ifndef APPLE_CHANGES
 #  ifdef assert

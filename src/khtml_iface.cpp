@@ -25,6 +25,7 @@
 #include <kio/global.h>
 #include <QApplication>
 #include <QtCore/QVariant>
+#include <QKeyEvent>
 
 KHTMLPartIface::KHTMLPartIface(KHTMLPart *_part)
     : QDBusAbstractAdaptor(_part), part(_part)

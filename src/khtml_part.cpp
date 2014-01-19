@@ -63,6 +63,8 @@ using namespace DOM;
 #include "khtmlview.h"
 #include <kparts/partmanager.h>
 #include <kparts/browseropenorsavequestion.h>
+#include <kparts/guiactivateevent.h>
+
 #include <kacceleratormanager.h>
 #include "ecma/kjs_proxy.h"
 #include "ecma/kjs_window.h"
@@ -96,6 +98,7 @@ using namespace DOM;
 #include <kurlauthorized.h>
 #include <kparts/browserinterface.h>
 #include <kparts/scriptableextension.h>
+#include <kparts/liveconnectextension.h>
 #include <kactionmenu.h>
 #include <ktoggleaction.h>
 #include <kcodecaction.h>
@@ -117,6 +120,7 @@ using namespace DOM;
 #include <QMenu>
 #include <QToolTip>
 #include <QDrag>
+#include <QMouseEvent>
 #include <QtCore/QFile>
 #include <QtCore/QMetaEnum>
 #include <QTextDocument>

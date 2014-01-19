@@ -34,6 +34,8 @@
 #include <kselectaction.h>
 #include <kparts/textextension.h>
 #include <kparts/htmlextension.h>
+#include <kparts/selectorinterface.h>
+#include <kparts/htmlsettingsinterface.h>
 #include <kio/global.h>
 
 /**

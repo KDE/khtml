@@ -26,6 +26,7 @@
 #include <kfind.h>
 #include <kcolorscheme.h>
 
+#include <QKeyEvent>
 #include <QMenu>
 #include <QLineEdit>
 

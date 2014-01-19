@@ -26,6 +26,7 @@
 #include <kparts/part.h>
 #include <kparts/browserextension.h>
 #include <kparts/statusbarextension.h>
+#include <kparts/liveconnectextension.h>
 #include <kpluginfactory.h>
 #include <QDialog>
 #include <QUrl>

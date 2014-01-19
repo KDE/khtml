@@ -24,6 +24,9 @@
 #include "dom/dom_node.h"
 #include "dom/dom_string.h"
 
+class QMouseEvent;
+class QPainter;
+
 namespace khtml
 {
 

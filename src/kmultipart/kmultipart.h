@@ -28,6 +28,7 @@
 
 class HTTPFilterGZip;
 class QTemporaryFile;
+class QTimer;
 class KLineParser;
 
 /**

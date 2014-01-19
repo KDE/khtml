@@ -75,6 +75,7 @@
 #include <QDialog>
 #include <QDialogButtonBox>
 #include <QLabel>
+#include <QKeyEvent>
 #include <QtCore/QObject>
 #include <QPainter>
 #include <QtCore/QHash>

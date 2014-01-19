@@ -37,6 +37,7 @@
 #include <QDBusInterface>
 #include <QDBusReply>
 #include <QDBusConnection>
+#include <QKeyEvent>
 
 #include <kurlauthorized.h>
 #include <kaboutdata.h>
