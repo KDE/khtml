@@ -1,5 +1,8 @@
 [Desktop Entry]
 Name=Embedded Java Applet Viewer
+Name[pt_BR]=Visualizador de miniaplicativos Java integrado
+Name[sk]=Zabudovaný prehliadač Java apletov
+Name[uk]=Вмонтований переглядач аплетів Java
 Name[x-test]=xxEmbedded Java Applet Viewerxx
 X-KDE-Library=kjavaappletviewer
 Icon=java

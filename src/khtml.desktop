@@ -1,10 +1,16 @@
 [Desktop Entry]
 Type=Service
 Comment=Embeddable HTML viewing component
+Comment[pt_BR]=Componente integrado de visualização HTML
+Comment[sk]=Vložiteľný komponent pre zobrazenie HTML
+Comment[uk]=Вбудований компонент «переглядач HTML»
 Comment[x-test]=xxEmbeddable HTML viewing componentxx
 MimeType=text/html;application/xml;application/xhtml+xml;
 Icon=konqueror
 Name=KHTML
+Name[pt_BR]=KHTML
+Name[sk]=KHTML
+Name[uk]=KHTML
 Name[x-test]=xxKHTMLxx
 X-KDE-ServiceTypes=KParts/ReadOnlyPart,Browser/View
 X-KDE-Library=libkhtmlpart

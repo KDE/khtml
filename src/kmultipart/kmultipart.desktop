@@ -2,6 +2,9 @@
 Type=Service
 MimeType=multipart/mixed;multipart/x-mixed-replace;
 Name=Embeddable Component for multipart/mixed
+Name[pt_BR]=Componente para multipart/mixed integrado
+Name[sk]=Vložiteľný komponent pre multipart/mixed
+Name[uk]=Вбудовна компонента для повідомлень multipart/mixed
 Name[x-test]=xxEmbeddable Component for multipart/mixedxx
 X-KDE-ServiceTypes=KParts/ReadOnlyPart
 X-KDE-Library=libkmultipart
