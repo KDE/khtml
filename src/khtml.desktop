@@ -1,9 +1,11 @@
 [Desktop Entry]
 Type=Service
 Comment=Embeddable HTML viewing component
+Comment[x-test]=xxEmbeddable HTML viewing componentxx
 MimeType=text/html;application/xml;application/xhtml+xml;
 Icon=konqueror
 Name=KHTML
+Name[x-test]=xxKHTMLxx
 X-KDE-ServiceTypes=KParts/ReadOnlyPart,Browser/View
 X-KDE-Library=libkhtmlpart
 InitialPreference=10

@@ -1,8 +1,10 @@
 [Desktop Entry]
 Type=Service
 Comment=Embeddable Image Viewing Component
+Comment[x-test]=xxEmbeddable Image Viewing Componentxx
 MimeType=image/gif;image/x-xpixmap;image/x-xbitmap;image/jpeg;image/bmp;image/png;image/x-jng;image/x-ico;image/x-portable-bitmap;image/x-portable-pixmap;image/x-portable-graymap;image/tiff;video/x-mng;image/x-tga;
 Name=Embeddable Image Viewer
+Name[x-test]=xxEmbeddable Image Viewerxx
 X-KDE-ServiceTypes=KParts/ReadOnlyPart,Browser/View
 InitialPreference=4
 X-KDE-Library=khtmlimagepart

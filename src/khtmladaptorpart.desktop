@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=KHTML Extension Adaptor
+Name[x-test]=xxKHTML Extension Adaptorxx
 X-KDE-Library=khtmladaptorpart
 MimeType=application/x-khtml-adaptor;
 X-KDE-ServiceTypes=KParts/ReadOnlyPart,Browser/View

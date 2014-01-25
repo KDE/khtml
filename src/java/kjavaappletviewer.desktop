@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=Embedded Java Applet Viewer
+Name[x-test]=xxEmbedded Java Applet Viewerxx
 X-KDE-Library=kjavaappletviewer
 Icon=java
 MimeType=application/x-java-applet;application/x-java;
