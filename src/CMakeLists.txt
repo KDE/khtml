@@ -798,4 +798,6 @@ install(FILES error.html DESTINATION ${DATA_INSTALL_DIR}/khtml )
 
 install(FILES khtmlrc DESTINATION ${CONFIG_INSTALL_DIR} )
 
-
+include(ECMGeneratePriFile)
+ecm_generate_pri_file(BASE_NAME KHtml LIB_NAME KF5KHtml DEPS "gui KIOCore KJS KI18n KParts" FILENAME_VAR PRI_FILENAME)
+install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
