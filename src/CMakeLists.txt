@@ -1,5 +1,4 @@
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  ${KDE_ENABLE_EXCEPTIONS}")
-
+kde_enable_exceptions()
 
 find_package(OpenSSL)
 set_package_properties(OpenSSL PROPERTIES DESCRIPTION "Support for secure network communications (SSL and TLS)"
