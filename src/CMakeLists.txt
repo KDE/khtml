@@ -526,7 +526,7 @@ set(khtml_LIB_SRCS
    ${decoders_STAT_SRCS}
    ${khtmlgraphics_STAT_SRCS} # for WebCore compatibility
    ${khtmlsvg_STAT_SRCS} # for SVG
-   ${CMAKE_CURRENT_BINARY_DIR}/org.kde.KHtmlPart.xml # just so that it gets generated
+   #   ${CMAKE_CURRENT_BINARY_DIR}/org.kde.KHtmlPart.xml # just so that it gets generated
    )
 
 # Fairly certain this isn't used anywhere
