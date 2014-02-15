@@ -239,13 +239,13 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    if (app.arguments().count() == 0) {
+    if (app.arguments().count() <= 1) {
         qWarning() << "Argument expected: url to open";
         return 1;
     }
 
     TestKHTML *test = new TestKHTML;
-    QUrl url = QUrl::fromUserInput(app.arguments().at(0)); // TODO support for relative paths
+    QUrl url = QUrl::fromUserInput(app.arguments().at(1)); // TODO support for relative paths
     if (url.path().right(4).toLower() == ".xml") {
         KParts::OpenUrlArguments args(test->doc()->arguments());
         args.setMimeType("text/xml");

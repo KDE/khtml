@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    if (a.arguments().count() == 0) {
+    if (a.arguments().count() <= 1) {
         qWarning() << "Argument expected: url to open";
         return 1;
     }
@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 
     QObject::connect(doc, SIGNAL(completed()), dummy, SLOT(handleDone()));
 
-    QUrl url = QUrl::fromUserInput(a.arguments().at(0)); // TODO support for relative paths
+    QUrl url = QUrl::fromUserInput(a.arguments().at(1)); // TODO support for relative paths
     if (url.path().right(4).toLower() == ".xml") {
         KParts::OpenUrlArguments args(doc->arguments());
         args.setMimeType("text/xml");
