@@ -703,7 +703,6 @@ set(khtmlpart_PART_SRCS khtml_factory.cpp )
 
 
 add_library(khtmlpart MODULE ${khtmlpart_PART_SRCS})
-set_target_properties(khtmlpart PROPERTIES PREFIX "${CMAKE_SHARED_LIBRARY_PREFIX}")
 
 target_link_libraries(khtmlpart KF5::KHtml KF5::XmlGui KF5::TextWidgets KF5::Parts KF5::I18n)
 

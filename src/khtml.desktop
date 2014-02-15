@@ -197,5 +197,5 @@ Name[zh_CN]=KHTML
 Name[zh_HK]=KHTML
 Name[zh_TW]=KHTML
 X-KDE-ServiceTypes=KParts/ReadOnlyPart,Browser/View
-X-KDE-Library=libkhtmlpart
+X-KDE-Library=khtmlpart
 InitialPreference=10
