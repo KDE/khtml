@@ -707,15 +707,14 @@ set_target_properties(khtmlpart PROPERTIES PREFIX "${CMAKE_SHARED_LIBRARY_PREFIX
 
 target_link_libraries(khtmlpart KF5::KHtml KF5::XmlGui KF5::TextWidgets KF5::Parts KF5::I18n)
 
-ecm_generate_headers(
+ecm_generate_headers(KHtml_HEADERS
+  HEADER_NAMES
   KHTMLPart
   KHTMLView
   KHTMLSettings
 
-  MODULE_NAME KHtml
   REQUIRED_HEADERS KHtml_HEADERS
 )
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/KHtml DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)
 
 install(TARGETS khtmlpart  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
