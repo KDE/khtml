@@ -1,5 +1,8 @@
 include(ECMMarkAsTest)
 
+find_package(Qt5X11Extras "${REQUIRED_QT_VERSION}" CONFIG REQUIRED)
+set_package_properties(Qt5X11Extras PROPERTIES PURPOSE "Required for tests")
+
 include_directories(
   ${KHTML_SOURCE_DIR}
   ${KHTML_SOURCE_DIR}/

@@ -11,37 +11,27 @@ include(ECMSetupVersion)
 include(ECMGenerateHeaders)
 
 set(REQUIRED_QT_VERSION "5.2")
-find_package(Qt5 "${REQUIRED_QT_VERSION}" CONFIG REQUIRED Widgets Network DBus PrintSupport Xml Test)
+find_package(Qt5 "${REQUIRED_QT_VERSION}" CONFIG REQUIRED Widgets Network DBus PrintSupport Xml)
 include(KDEInstallDirs)
 include(KDEFrameworkCompilerSettings)
 include(KDECMakeSettings)
 
 set(KF5_VERSION "4.96.0")
-if("${CMAKE_BINARY_DIR}" STREQUAL "${CMAKE_CURRENT_BINARY_DIR}")
-    find_package(KF5Archive ${KF5_VERSION} REQUIRED)
-    find_package(KF5I18n ${KF5_VERSION} REQUIRED) #
-    find_package(KF5CoreAddons ${KF5_VERSION} REQUIRED)
-    find_package(KF5GuiAddons ${KF5_VERSION} REQUIRED)
-    find_package(KF5DBusAddons ${KF5_VERSION} REQUIRED)
-    find_package(KF5Service ${KF5_VERSION} REQUIRED)
-    find_package(KF5WindowSystem ${KF5_VERSION} REQUIRED) #
-    find_package(KF5Crash ${KF5_VERSION} REQUIRED)
-    find_package(KF5Init ${KF5_VERSION} REQUIRED)
-    find_package(KF5JS ${KF5_VERSION} REQUIRED)
-    find_package(KF5ConfigWidgets ${KF5_VERSION} REQUIRED)
-    find_package(KF5ItemViews ${KF5_VERSION} REQUIRED)
-    find_package(KF5IconThemes ${KF5_VERSION} REQUIRED)
-    find_package(KF5Notifications ${KF5_VERSION} REQUIRED)
-    find_package(KF5Completion ${KF5_VERSION} REQUIRED)
-    find_package(KF5TextWidgets ${KF5_VERSION} REQUIRED)
-    find_package(KF5XmlGui ${KF5_VERSION} REQUIRED)
-    find_package(KF5Parts ${KF5_VERSION} REQUIRED)
-    find_package(KF5KIO ${KF5_VERSION} REQUIRED)
-    find_package(KF5Wallet ${KF5_VERSION} REQUIRED)
-    find_package(KF5GlobalAccel ${KF5_VERSION} REQUIRED)
-else()
-  set(KJS_CREATE_HASH_TABLE "${CMAKE_SOURCE_DIR}/tier1/kjs/src/kjs/create_hash_table")
-endif()
+find_package(KF5Archive ${KF5_VERSION} REQUIRED)
+find_package(KF5Codecs ${KF5_VERSION} REQUIRED)
+find_package(KF5GlobalAccel ${KF5_VERSION} REQUIRED)
+find_package(KF5I18n ${KF5_VERSION} REQUIRED)
+find_package(KF5IconThemes ${KF5_VERSION} REQUIRED)
+find_package(KF5KIO ${KF5_VERSION} REQUIRED)
+find_package(KF5JS ${KF5_VERSION} REQUIRED)
+find_package(KF5Notifications ${KF5_VERSION} REQUIRED)
+find_package(KF5Parts ${KF5_VERSION} REQUIRED)
+find_package(KF5Sonnet ${KF5_VERSION} REQUIRED)
+find_package(KF5TextWidgets ${KF5_VERSION} REQUIRED)
+find_package(KF5Wallet ${KF5_VERSION} REQUIRED)
+find_package(KF5WidgetsAddons ${KF5_VERSION} REQUIRED)
+find_package(KF5WindowSystem ${KF5_VERSION} REQUIRED)
+find_package(KF5XmlGui ${KF5_VERSION} REQUIRED)
 
 ecm_setup_version(${KF5_VERSION} VARIABLE_PREFIX KHTML
                         VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/khtml_version.h"
@@ -76,7 +66,7 @@ set_package_properties(PNG PROPERTIES DESCRIPTION "PNG image format support"
                        PURPOSE "Required by khtml"
                       )
 
-if(NOT WIN32)
+if(NOT WIN32 AND X11_FOUND)
     find_package(Qt5 5.2.0 CONFIG REQUIRED X11Extras)
 endif()
 
@@ -95,8 +85,10 @@ set(KHTML_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(KHTML_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/src)
 
 add_subdirectory(src)
-add_subdirectory(tests)
-add_subdirectory(autotests)
+if(BUILD_TESTING)
+  add_subdirectory(tests)
+  add_subdirectory(autotests)
+endif()
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
 set(CMAKECONFIG_INSTALL_DIR "${CMAKECONFIG_INSTALL_PREFIX}/KF5KHtml")
@@ -123,6 +115,4 @@ install(FILES
   DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel
 )
 
-if ("${CMAKE_BINARY_DIR}" STREQUAL "${CMAKE_CURRENT_BINARY_DIR}")
-  feature_summary(WHAT ALL   FATAL_ON_MISSING_REQUIRED_PACKAGES)
-endif()
+feature_summary(WHAT ALL   FATAL_ON_MISSING_REQUIRED_PACKAGES)

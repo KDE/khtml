@@ -1,5 +1,8 @@
 include(ECMMarkAsTest)
 
+find_package(Qt5Test "${REQUIRED_QT_VERSION}" CONFIG REQUIRED)
+set_package_properties(Qt5Test PROPERTIES PURPOSE "Required for autotests")
+
 include_directories(
   ${KHTML_SOURCE_DIR}/
   ${KHTML_SOURCE_DIR}/misc
