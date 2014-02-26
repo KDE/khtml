@@ -172,7 +172,7 @@ DOMStringImpl *AtomicString::add(const QChar *s, int length)
     }
 
     init();
-    UCharBuffer buf = { s, length };
+    UCharBuffer buf = { s, static_cast<uint>(length) };
     std::pair<HashSet<DOMStringImpl *>::iterator, bool> addResult = stringTable->add<UCharBuffer, UCharBufferTranslator>(buf);
     if (!addResult.second) {
         return *addResult.first;
@@ -196,7 +196,7 @@ DOMStringImpl *AtomicString::add(const QChar *s)
     }
 
     init();
-    UCharBuffer buf = {s, length};
+    UCharBuffer buf = {s, static_cast<uint>(length)};
     std::pair<HashSet<DOMStringImpl *>::iterator, bool> addResult = stringTable->add<UCharBuffer, UCharBufferTranslator>(buf);
     if (!addResult.second) {
         return *addResult.first;
