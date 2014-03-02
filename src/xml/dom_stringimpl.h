@@ -32,8 +32,8 @@
 #include "misc/khtmllayout.h"
 #include "misc/shared.h"
 
-#define QT_ALLOC_QCHAR_VEC( N ) (QChar*) new char[ sizeof(QChar)*( N ) ]
-#define QT_DELETE_QCHAR_VEC( P ) delete[] ((char*)( P ))
+#define QT_ALLOC_QCHAR_VEC( N ) reinterpret_cast<QChar*>(new char[ sizeof(QChar)*( N ) ])
+#define QT_DELETE_QCHAR_VEC( P ) delete[] (reinterpret_cast<char*>( P ))
 
 namespace DOM
 {
