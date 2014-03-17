@@ -350,12 +350,16 @@ QList< QRectF > RenderFlow::getClientRects()
 {
     if (isRenderInline() && isInlineFlow()) {
         QList<QRectF> list;
-        for (InlineFlowBox *child = firstLineBox(); child; child = child->nextFlowBox()) {
-            QRectF rect(parent()->offsetLeft() + child->xPos(),
-                        parent()->offsetTop() + child->yPos(),
-                        child->width(), child->height());
 
-            list.append(clientRectToViewport(rect));
+        InlineFlowBox *child = firstLineBox();
+        if (child) {
+            int x = 0, y = 0;
+            absolutePosition(x,y);
+            do {
+                QRectF rect(x + child->xPos(), y + child->yPos(), child->width(), child->height());
+                list.append(clientRectToViewport(rect));
+                child = child->nextFlowBox();
+            } while (child);
         }
 
         // In case our flow is splitted by blocks
