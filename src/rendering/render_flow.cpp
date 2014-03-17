@@ -58,7 +58,7 @@ RenderFlow *RenderFlow::createFlow(DOM::NodeImpl *node, RenderStyle *style, Rend
     return result;
 }
 
-RenderFlow *RenderFlow::continuationBefore(RenderObject *beforeChild)
+RenderFlow *RenderFlow::continuationBefore(const RenderObject *beforeChild)
 {
     if (beforeChild && beforeChild->parent() == this) {
         return this;
@@ -89,11 +89,14 @@ RenderFlow *RenderFlow::continuationBefore(RenderObject *beforeChild)
 void RenderFlow::addChildWithContinuation(RenderObject *newChild, RenderObject *beforeChild)
 {
     RenderFlow *flow = continuationBefore(beforeChild);
-    while (beforeChild && beforeChild->parent() != flow && !beforeChild->parent()->isAnonymousBlock()) {
+
+    RenderObject *bc = beforeChild;
+    while (bc && bc->parent() != flow && !bc->parent()->isAnonymousBlock()) {
         // skip implicit containers around beforeChild
-        beforeChild = beforeChild->parent();
+        bc = bc->parent();
     }
-    RenderFlow *beforeChildParent = beforeChild ? static_cast<RenderFlow *>(beforeChild->parent()) :
+
+    RenderFlow *beforeChildParent = bc ? static_cast<RenderFlow *>(bc->parent()) :
                                     (flow->continuation() ? flow->continuation() : flow);
 
     if (newChild->isFloatingOrPositioned()) {
