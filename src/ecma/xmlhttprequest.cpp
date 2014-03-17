@@ -273,36 +273,35 @@ static bool isValidFieldValue(const QString &name)
 
 static bool canSetRequestHeader(const QString &name)
 {
-    static QSet<CaseInsensitiveString> forbiddenHeaders;
+    if (name.startsWith(QLatin1String("sec-"), Qt::CaseInsensitive) ||
+        name.startsWith(QLatin1String("proxy-"), Qt::CaseInsensitive)) {
+        return false;
+    }
 
+    static QSet<CaseInsensitiveString> forbiddenHeaders;
     if (forbiddenHeaders.isEmpty()) {
         static const char *const hdrs[] = {
             "accept-charset",
             "accept-encoding",
+            "access-control-request-headers",
+            "access-control-request-method",
+            "connection",
             "content-length",
-            "connect",
-            "copy",
+            "content-transfer-encoding",
+            "cookie",
+            "cookie2",
             "date",
-            "delete",
+            "dnt",
             "expect",
-            "head",
             "host",
             "keep-alive",
-            "lock",
-            "mkcol",
-            "move",
-            "options",
-            "put",
-            "propfind",
-            "proppatch",
-            "proxy-authorization",
+            "origin",
             "referer",
             "te",
-            "trace",
             "trailer",
             "transfer-encoding",
-            "unlock",
             "upgrade",
+            "user-agent",
             "via"
         };
         for (size_t i = 0; i < sizeof(hdrs) / sizeof(char *); ++i) {
@@ -622,11 +621,11 @@ void XMLHttpRequest::setRequestHeader(const QString &_name, const QString &_valu
         ec = DOMException::SYNTAX_ERR;
         return;
     }
-    QString name = _name.toLower();
+
     QString value = _value.trimmed();
 
     // Content-type needs to be set separately from the other headers
-    if (name == "content-type") {
+    if (_name.compare(QLatin1String("content-type"), Qt::CaseInsensitive) == 0) {
         contentType = "Content-type: " + value;
         return;
     }
