@@ -495,25 +495,26 @@ void XMLHttpRequest::send(const QString &_body, int &ec)
 
     // We need to use a POST-like setup even for non-post whenever we
     // have a payload.
-    if (m_method == QLatin1String("POST") || !_body.isEmpty()) {
-
+    const bool havePayload = !_body.isEmpty();
+    if (m_method == QLatin1String("POST") || havePayload) {
         // FIXME: determine post encoding correctly by looking in headers
         // for charset.
         QByteArray buf = _body.toUtf8();
-
         job = KIO::storedHttpPost(buf, url, KIO::HideProgressInfo);
-        if (contentType.isNull()) {
-            job->addMetaData("content-type", "Content-type: text/plain");
-        } else {
-            job->addMetaData("content-type", contentType);
-        }
-
     } else {
         job = KIO::storedGet(url, KIO::NoReload, KIO::HideProgressInfo);
     }
 
     // Regardless of job type, make sure the method is set
     job->addMetaData("CustomHTTPMethod", m_method);
+
+    // Set headers
+
+    if (!contentType.isNull()) {
+        job->addMetaData("content-type", contentType);
+    } else if (havePayload) {
+        job->addMetaData("content-type", "Content-type: text/plain");
+    }
 
     if (!m_requestHeaders.isEmpty()) {
         QString rh;
@@ -990,10 +991,10 @@ JSValue *XMLHttpRequestProtoFunc::callAsFunction(ExecState *exec, JSObject *this
         JSValue *keyArgument = args[0];
         JSValue *valArgument = args[1];
         QString key, val;
-        if (!keyArgument->isUndefined() && !keyArgument->isNull()) {
+        if (!keyArgument->isUndefinedOrNull()) {
             key = keyArgument->toString(exec).qstring();
         }
-        if (!valArgument->isUndefined() && !valArgument->isNull()) {
+        if (!valArgument->isUndefinedOrNull()) {
             val = valArgument->toString(exec).qstring();
         }
         request->setRequestHeader(key, val, ec);
