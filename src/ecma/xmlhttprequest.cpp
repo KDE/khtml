@@ -657,7 +657,11 @@ void XMLHttpRequest::setRequestHeader(const QString &_name, const QString &_valu
         return;
     }
 
-    m_requestHeaders[_name] = value;
+    if (m_requestHeaders.contains(_name)) {
+        m_requestHeaders[_name] += (QLatin1String(", ") + value);
+    } else {
+        m_requestHeaders[_name] = value;
+    }
 }
 
 JSValue *XMLHttpRequest::getAllResponseHeaders(int &ec) const
