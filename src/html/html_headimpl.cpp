@@ -836,17 +836,15 @@ DOMString HTMLTitleElementImpl::text()
 void HTMLTitleElementImpl::setText(const DOMString &str)
 {
     int exceptioncode = 0;
-    // Look for an existing text child node
-    DOM::NodeListImpl *nl(childNodes());
-    if (nl) {
-        for (unsigned int i = 0; i < nl->length(); i++) {
-            if (nl->item(i)->nodeType() == DOM::Node::TEXT_NODE) {
-                static_cast<DOM::TextImpl *>(nl->item(i))->setData(str, exceptioncode);
-                return;
-            }
+    RefPtr<DOM::NodeListImpl> nl = childNodes();
+    const unsigned int length = nl->length();
+    for (unsigned int i = 0; i < length; ++i) {
+        if (nl->item(i)->nodeType() == DOM::Node::TEXT_NODE) {
+            static_cast<DOM::TextImpl *>(nl->item(i))->setData(str, exceptioncode);
+            return;
         }
-        delete nl;
     }
+
     // No child text node found, creating one
     DOM::TextImpl *t = document()->createTextNode(str.implementation());
     appendChild(t, exceptioncode);

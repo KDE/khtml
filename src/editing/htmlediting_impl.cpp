@@ -2416,8 +2416,8 @@ RemoveNodeCommandImpl::RemoveNodeCommandImpl(DocumentImpl *document, NodeImpl *r
     assert(m_parent);
     m_parent->ref();
 
-    NodeListImpl *children = m_parent->childNodes();
-    for (int i = children->length(); i >= 0; i--) {
+    RefPtr<DOM::NodeListImpl> children = m_parent->childNodes();
+    for (long i = children->length() - 1; i >= 0; --i) {
         NodeImpl *node = children->item(i);
         if (node == m_removeChild) {
             break;
@@ -2523,9 +2523,9 @@ RemoveNodePreservingChildrenCommandImpl::~RemoveNodePreservingChildrenCommandImp
 
 void RemoveNodePreservingChildrenCommandImpl::doApply()
 {
-    NodeListImpl *children = node()->childNodes();
-    int length = children->length();
-    for (int i = 0; i < length; i++) {
+    RefPtr<DOM::NodeListImpl> children = node()->childNodes();
+    const unsigned int length = children->length();
+    for (unsigned int i = 0; i < length; ++i) {
         NodeImpl *child = children->item(0);
         removeNode(child);
         insertNodeBefore(child, node());

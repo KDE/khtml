@@ -102,7 +102,7 @@ public:
     {
         return m_next;
     }
-    virtual NodeListImpl *childNodes();
+    virtual WTF::PassRefPtr<NodeListImpl> childNodes();
     virtual NodeImpl *firstChild() const;
     virtual NodeImpl *lastChild() const;
 
