@@ -26,9 +26,9 @@
 
 #include <kconfig.h>
 #include <kconfiggroup.h>
-#include <klibrary.h>
 #include <QtCore/QCoreApplication>
 #include <QtCore/QFile>
+#include <QtCore/QLibrary>
 #include <QtCore/QRegExp>
 
 extern "C" {
@@ -203,8 +203,8 @@ public:
         : sslLib(0), cryptoLib(0), ok(false)
     {}
 
-    KLibrary *sslLib;
-    KLibrary *cryptoLib;
+    QLibrary *sslLib;
+    QLibrary *cryptoLib;
     bool ok;
 
     static KOpenSSLProxy *sSelf;
@@ -298,7 +298,7 @@ KOpenSSLProxy::KOpenSSLProxy()
     }
 
 #ifdef Q_OS_WIN
-    d->cryptoLib = new KLibrary("libeay32.dll");
+    d->cryptoLib = new QLibrary("libeay32.dll");
     if (!d->cryptoLib->load()) {
         delete d->cryptoLib;
         d->cryptoLib = 0;
@@ -307,7 +307,7 @@ KOpenSSLProxy::KOpenSSLProxy()
     {
         QString libname = findMostRecentLib("/usr/lib" KDELIBSUFF, "crypto");
         if (!libname.isNull()) {
-            d->cryptoLib = new KLibrary(libname);
+            d->cryptoLib = new QLibrary(libname);
             d->cryptoLib->setLoadHints(QLibrary::ExportExternalSymbolsHint);
             if (!d->cryptoLib->load()) {
                 delete d->cryptoLib;
@@ -391,7 +391,7 @@ KOpenSSLProxy::KOpenSSLProxy()
             QString tmpStr(alib);
             tmpStr.remove(QRegExp("\\(.*\\)"));
             if (QFile(tmpStr).isReadable()) {
-                d->cryptoLib = new KLibrary(alib);
+                d->cryptoLib = new QLibrary(alib);
                 d->cryptoLib->setLoadHints(QLibrary::ExportExternalSymbolsHint);
             }
             if (d->cryptoLib && d->cryptoLib->load()) {
@@ -408,133 +408,133 @@ KOpenSSLProxy::KOpenSSLProxy()
 
     if (d->cryptoLib) {
 #if KSSL_HAVE_SSL
-        K_X509_free = (void (*)(X509 *)) d->cryptoLib->resolveFunction("X509_free");
-        K_RAND_egd = (int (*)(const char *)) d->cryptoLib->resolveFunction("RAND_egd");
-        K_RAND_load_file = (int (*)(const char *, long)) d->cryptoLib->resolveFunction("RAND_load_file");
-        K_RAND_file_name = (const char *(*)(char *, size_t)) d->cryptoLib->resolveFunction("RAND_file_name");
-        K_RAND_write_file = (int (*)(const char *)) d->cryptoLib->resolveFunction("RAND_write_file");
-        K_CRYPTO_free = (void (*)(void *)) d->cryptoLib->resolveFunction("CRYPTO_free");
-        K_d2i_X509 = (X509 * (*)(X509 **, unsigned char **, long)) d->cryptoLib->resolveFunction("d2i_X509");
-        K_i2d_X509 = (int (*)(X509 *, unsigned char **)) d->cryptoLib->resolveFunction("i2d_X509");
-        K_X509_cmp = (int (*)(X509 *, X509 *)) d->cryptoLib->resolveFunction("X509_cmp");
-        K_X509_STORE_CTX_new = (X509_STORE_CTX * (*)(void)) d->cryptoLib->resolveFunction("X509_STORE_CTX_new");
-        K_X509_STORE_CTX_free = (void (*)(X509_STORE_CTX *)) d->cryptoLib->resolveFunction("X509_STORE_CTX_free");
-        K_X509_verify_cert = (int (*)(X509_STORE_CTX *)) d->cryptoLib->resolveFunction("X509_verify_cert");
-        K_X509_STORE_new = (X509_STORE * (*)(void)) d->cryptoLib->resolveFunction("X509_STORE_new");
-        K_X509_STORE_free = (void (*)(X509_STORE *)) d->cryptoLib->resolveFunction("X509_STORE_free");
-        K_X509_NAME_oneline = (char *(*)(X509_NAME *, char *, int)) d->cryptoLib->resolveFunction("X509_NAME_oneline");
-        K_X509_get_subject_name = (X509_NAME * (*)(X509 *)) d->cryptoLib->resolveFunction("X509_get_subject_name");
-        K_X509_get_issuer_name = (X509_NAME * (*)(X509 *)) d->cryptoLib->resolveFunction("X509_get_issuer_name");
-        K_X509_STORE_add_lookup = (X509_LOOKUP * (*)(X509_STORE *, X509_LOOKUP_METHOD *)) d->cryptoLib->resolveFunction("X509_STORE_add_lookup");
-        K_X509_LOOKUP_file = (X509_LOOKUP_METHOD * (*)(void)) d->cryptoLib->resolveFunction("X509_LOOKUP_file");
-        K_X509_LOOKUP_free = (void (*)(X509_LOOKUP *)) d->cryptoLib->resolveFunction("X509_LOOKUP_free");
-        K_X509_LOOKUP_ctrl = (int (*)(X509_LOOKUP *, int, const char *, long, char **)) d->cryptoLib->resolveFunction("X509_LOOKUP_ctrl");
-        K_X509_STORE_CTX_init = (void (*)(X509_STORE_CTX *, X509_STORE *, X509 *, STACK_OF(X509) *)) d->cryptoLib->resolveFunction("X509_STORE_CTX_init");
-        K_X509_dup = (X509 * (*)(X509 *)) d->cryptoLib->resolveFunction("X509_dup");
-        K_BIO_s_mem = (BIO_METHOD * (*)(void)) d->cryptoLib->resolveFunction("BIO_s_mem");
-        K_BIO_new = (BIO * (*)(BIO_METHOD *)) d->cryptoLib->resolveFunction("BIO_new");
-        K_BIO_new_fp = (BIO * (*)(FILE *, int)) d->cryptoLib->resolveFunction("BIO_new_fp");
-        K_BIO_new_mem_buf = (BIO * (*)(void *, int)) d->cryptoLib->resolveFunction("BIO_new_mem_buf");
-        K_BIO_free = (int (*)(BIO *)) d->cryptoLib->resolveFunction("BIO_free");
-        K_BIO_ctrl = (long(*)(BIO *, int, long, void *)) d->cryptoLib->resolveFunction("BIO_ctrl");
-        K_BIO_write = (int (*)(BIO * b, const void *data, int len)) d->cryptoLib->resolveFunction("BIO_write");
-        K_PEM_ASN1_write_bio = (int (*)(int (*)(), const char *, BIO *, char *, const EVP_CIPHER *, unsigned char *, int, pem_password_cb *, void *)) d->cryptoLib->resolveFunction("PEM_ASN1_write_bio");
+        K_X509_free = (void (*)(X509 *)) d->cryptoLib->resolve("X509_free");
+        K_RAND_egd = (int (*)(const char *)) d->cryptoLib->resolve("RAND_egd");
+        K_RAND_load_file = (int (*)(const char *, long)) d->cryptoLib->resolve("RAND_load_file");
+        K_RAND_file_name = (const char *(*)(char *, size_t)) d->cryptoLib->resolve("RAND_file_name");
+        K_RAND_write_file = (int (*)(const char *)) d->cryptoLib->resolve("RAND_write_file");
+        K_CRYPTO_free = (void (*)(void *)) d->cryptoLib->resolve("CRYPTO_free");
+        K_d2i_X509 = (X509 * (*)(X509 **, unsigned char **, long)) d->cryptoLib->resolve("d2i_X509");
+        K_i2d_X509 = (int (*)(X509 *, unsigned char **)) d->cryptoLib->resolve("i2d_X509");
+        K_X509_cmp = (int (*)(X509 *, X509 *)) d->cryptoLib->resolve("X509_cmp");
+        K_X509_STORE_CTX_new = (X509_STORE_CTX * (*)(void)) d->cryptoLib->resolve("X509_STORE_CTX_new");
+        K_X509_STORE_CTX_free = (void (*)(X509_STORE_CTX *)) d->cryptoLib->resolve("X509_STORE_CTX_free");
+        K_X509_verify_cert = (int (*)(X509_STORE_CTX *)) d->cryptoLib->resolve("X509_verify_cert");
+        K_X509_STORE_new = (X509_STORE * (*)(void)) d->cryptoLib->resolve("X509_STORE_new");
+        K_X509_STORE_free = (void (*)(X509_STORE *)) d->cryptoLib->resolve("X509_STORE_free");
+        K_X509_NAME_oneline = (char *(*)(X509_NAME *, char *, int)) d->cryptoLib->resolve("X509_NAME_oneline");
+        K_X509_get_subject_name = (X509_NAME * (*)(X509 *)) d->cryptoLib->resolve("X509_get_subject_name");
+        K_X509_get_issuer_name = (X509_NAME * (*)(X509 *)) d->cryptoLib->resolve("X509_get_issuer_name");
+        K_X509_STORE_add_lookup = (X509_LOOKUP * (*)(X509_STORE *, X509_LOOKUP_METHOD *)) d->cryptoLib->resolve("X509_STORE_add_lookup");
+        K_X509_LOOKUP_file = (X509_LOOKUP_METHOD * (*)(void)) d->cryptoLib->resolve("X509_LOOKUP_file");
+        K_X509_LOOKUP_free = (void (*)(X509_LOOKUP *)) d->cryptoLib->resolve("X509_LOOKUP_free");
+        K_X509_LOOKUP_ctrl = (int (*)(X509_LOOKUP *, int, const char *, long, char **)) d->cryptoLib->resolve("X509_LOOKUP_ctrl");
+        K_X509_STORE_CTX_init = (void (*)(X509_STORE_CTX *, X509_STORE *, X509 *, STACK_OF(X509) *)) d->cryptoLib->resolve("X509_STORE_CTX_init");
+        K_X509_dup = (X509 * (*)(X509 *)) d->cryptoLib->resolve("X509_dup");
+        K_BIO_s_mem = (BIO_METHOD * (*)(void)) d->cryptoLib->resolve("BIO_s_mem");
+        K_BIO_new = (BIO * (*)(BIO_METHOD *)) d->cryptoLib->resolve("BIO_new");
+        K_BIO_new_fp = (BIO * (*)(FILE *, int)) d->cryptoLib->resolve("BIO_new_fp");
+        K_BIO_new_mem_buf = (BIO * (*)(void *, int)) d->cryptoLib->resolve("BIO_new_mem_buf");
+        K_BIO_free = (int (*)(BIO *)) d->cryptoLib->resolve("BIO_free");
+        K_BIO_ctrl = (long(*)(BIO *, int, long, void *)) d->cryptoLib->resolve("BIO_ctrl");
+        K_BIO_write = (int (*)(BIO * b, const void *data, int len)) d->cryptoLib->resolve("BIO_write");
+        K_PEM_ASN1_write_bio = (int (*)(int (*)(), const char *, BIO *, char *, const EVP_CIPHER *, unsigned char *, int, pem_password_cb *, void *)) d->cryptoLib->resolve("PEM_ASN1_write_bio");
         K_ASN1_item_i2d_fp = (int (*)(ASN1_ITEM *, FILE *, unsigned char *))
-                             d->cryptoLib->resolveFunction("ASN1_item_i2d_fp");
-        K_NETSCAPE_X509_it = (ASN1_ITEM *) d->cryptoLib->resolveFunction("NETSCAPE_X509_it");
-        K_X509_print_fp = (int (*)(FILE *, X509 *)) d->cryptoLib->resolveFunction("X509_print_fp");
-        K_i2d_PKCS12 = (int (*)(PKCS12 *, unsigned char **)) d->cryptoLib->resolveFunction("i2d_PKCS12");
-        K_i2d_PKCS12_fp = (int (*)(FILE *, PKCS12 *)) d->cryptoLib->resolveFunction("i2d_PKCS12_fp");
-        K_PKCS12_newpass = (int (*)(PKCS12 *, char *, char *)) d->cryptoLib->resolveFunction("PKCS12_newpass");
-        K_d2i_PKCS12_fp = (PKCS12 * (*)(FILE *, PKCS12 **)) d->cryptoLib->resolveFunction("d2i_PKCS12_fp");
-        K_PKCS12_new = (PKCS12 * (*)()) d->cryptoLib->resolveFunction("PKCS12_new");
-        K_PKCS12_free = (void (*)(PKCS12 *)) d->cryptoLib->resolveFunction("PKCS12_free");
+                             d->cryptoLib->resolve("ASN1_item_i2d_fp");
+        K_NETSCAPE_X509_it = (ASN1_ITEM *) d->cryptoLib->resolve("NETSCAPE_X509_it");
+        K_X509_print_fp = (int (*)(FILE *, X509 *)) d->cryptoLib->resolve("X509_print_fp");
+        K_i2d_PKCS12 = (int (*)(PKCS12 *, unsigned char **)) d->cryptoLib->resolve("i2d_PKCS12");
+        K_i2d_PKCS12_fp = (int (*)(FILE *, PKCS12 *)) d->cryptoLib->resolve("i2d_PKCS12_fp");
+        K_PKCS12_newpass = (int (*)(PKCS12 *, char *, char *)) d->cryptoLib->resolve("PKCS12_newpass");
+        K_d2i_PKCS12_fp = (PKCS12 * (*)(FILE *, PKCS12 **)) d->cryptoLib->resolve("d2i_PKCS12_fp");
+        K_PKCS12_new = (PKCS12 * (*)()) d->cryptoLib->resolve("PKCS12_new");
+        K_PKCS12_free = (void (*)(PKCS12 *)) d->cryptoLib->resolve("PKCS12_free");
         K_PKCS12_parse = (int (*)(PKCS12 *, const char *, EVP_PKEY **,
-                                  X509 **, STACK_OF(X509) **)) d->cryptoLib->resolveFunction("PKCS12_parse");
-        K_EVP_PKEY_free = (void (*)(EVP_PKEY *)) d->cryptoLib->resolveFunction("EVP_PKEY_free");
-        K_EVP_PKEY_new = (EVP_PKEY * (*)()) d->cryptoLib->resolveFunction("EVP_PKEY_new");
-        K_X509_REQ_free = (void (*)(X509_REQ *)) d->cryptoLib->resolveFunction("X509_REQ_free");
-        K_X509_REQ_new = (X509_REQ * (*)()) d->cryptoLib->resolveFunction("X509_REQ_new");
-        K_X509_STORE_CTX_set_chain = (void (*)(X509_STORE_CTX *, STACK_OF(X509) *)) d->cryptoLib->resolveFunction("X509_STORE_CTX_set_chain");
-        K_X509_STORE_CTX_set_purpose = (void (*)(X509_STORE_CTX *, int)) d->cryptoLib->resolveFunction("X509_STORE_CTX_set_purpose");
-        K_sk_free = (void (*)(STACK *)) d->cryptoLib->resolveFunction("sk_free");
-        K_sk_num = (int (*)(STACK *)) d->cryptoLib->resolveFunction("sk_num");
-        K_sk_pop = (char *(*)(STACK *)) d->cryptoLib->resolveFunction("sk_pop");
-        K_sk_value = (char *(*)(STACK *, int)) d->cryptoLib->resolveFunction("sk_value");
-        K_sk_new = (STACK * (*)(int (*)())) d->cryptoLib->resolveFunction("sk_new");
-        K_sk_push = (int (*)(STACK *, char *)) d->cryptoLib->resolveFunction("sk_push");
-        K_sk_dup = (STACK * (*)(STACK *)) d->cryptoLib->resolveFunction("sk_dup");
-        K_i2s_ASN1_INTEGER = (char *(*)(X509V3_EXT_METHOD *, ASN1_INTEGER *)) d->cryptoLib->resolveFunction("i2s_ASN1_INTEGER");
-        K_X509_get_serialNumber = (ASN1_INTEGER * (*)(X509 *)) d->cryptoLib->resolveFunction("X509_get_serialNumber");
-        K_X509_get_pubkey = (EVP_PKEY * (*)(X509 *)) d->cryptoLib->resolveFunction("X509_get_pubkey");
-        K_i2d_PublicKey = (int (*)(EVP_PKEY *, unsigned char **)) d->cryptoLib->resolveFunction("i2d_PublicKey");
-        K_X509_check_private_key = (int (*)(X509 *, EVP_PKEY *)) d->cryptoLib->resolveFunction("X509_check_private_key");
-        K_BN_bn2hex = (char *(*)(const BIGNUM *)) d->cryptoLib->resolveFunction("BN_bn2hex");
-        K_X509_digest = (int (*)(const X509 *, const EVP_MD *, unsigned char *, unsigned int *)) d->cryptoLib->resolveFunction("X509_digest");
-        K_EVP_md5 = (EVP_MD * (*)()) d->cryptoLib->resolveFunction("EVP_md5");
-        K_ASN1_INTEGER_free = (void (*)(ASN1_INTEGER *)) d->cryptoLib->resolveFunction("ASN1_INTEGER_free");
-        K_OBJ_obj2nid = (int (*)(ASN1_OBJECT *)) d->cryptoLib->resolveFunction("OBJ_obj2nid");
-        K_OBJ_nid2ln = (const char *(*)(int)) d->cryptoLib->resolveFunction("OBJ_nid2ln");
-        K_X509_get_ext_count = (int (*)(X509 *)) d->cryptoLib->resolveFunction("X509_get_ext_count");
-        K_X509_get_ext_by_NID = (int (*)(X509 *, int, int)) d->cryptoLib->resolveFunction("X509_get_ext_by_NID");
-        K_X509_get_ext_by_OBJ = (int (*)(X509 *, ASN1_OBJECT *, int)) d->cryptoLib->resolveFunction("X509_get_ext_by_OBJ");
-        K_X509_get_ext = (X509_EXTENSION * (*)(X509 *, int)) d->cryptoLib->resolveFunction("X509_get_ext");
-        K_X509_delete_ext = (X509_EXTENSION * (*)(X509 *, int)) d->cryptoLib->resolveFunction("X509_delete_ext");
-        K_X509_add_ext = (int (*)(X509 *, X509_EXTENSION *, int)) d->cryptoLib->resolveFunction("X509_add_ext");
-        K_X509_get_ext_d2i = (void *(*)(X509 *, int, int *, int *)) d->cryptoLib->resolveFunction("X509_get_ext_d2i");
-        K_i2s_ASN1_OCTET_STRING = (char *(*)(X509V3_EXT_METHOD *, ASN1_OCTET_STRING *)) d->cryptoLib->resolveFunction("i2s_ASN1_OCTET_STRING");
-        K_ASN1_BIT_STRING_get_bit = (int (*)(ASN1_BIT_STRING *, int)) d->cryptoLib->resolveFunction("ASN1_BIT_STRING_get_bit");
-        K_PKCS7_new = (PKCS7 * (*)()) d->cryptoLib->resolveFunction("PKCS7_new");
-        K_PKCS7_free = (void (*)(PKCS7 *)) d->cryptoLib->resolveFunction("PKCS7_free");
-        K_PKCS7_content_free = (void (*)(PKCS7 *)) d->cryptoLib->resolveFunction("PKCS7_content_free");
-        K_i2d_PKCS7 = (int (*)(PKCS7 *, unsigned char **)) d->cryptoLib->resolveFunction("i2d_PKCS7");
-        K_i2d_PKCS7_fp = (int (*)(FILE *, PKCS7 *)) d->cryptoLib->resolveFunction("i2d_PKCS7_fp");
-        K_i2d_PKCS7_bio = (int (*)(BIO * bp, PKCS7 * p7)) d->cryptoLib->resolveFunction("i2d_PKCS7_bio");
-        K_d2i_PKCS7 = (PKCS7 * (*)(PKCS7 **, unsigned char **, long)) d->cryptoLib->resolveFunction("d2i_PKCS7");
-        K_d2i_PKCS7_fp = (PKCS7 * (*)(FILE *, PKCS7 **)) d->cryptoLib->resolveFunction("d2i_PKCS7_fp");
-        K_d2i_PKCS7_bio = (PKCS7 * (*)(BIO * bp, PKCS7 **p7)) d->cryptoLib->resolveFunction("d2i_PKCS7_bio");
-        K_PKCS7_dup = (PKCS7 * (*)(PKCS7 *)) d->cryptoLib->resolveFunction("PKCS7_dup");
-        K_PKCS7_sign = (PKCS7 * (*)(X509 *, EVP_PKEY *, STACK_OF(X509) *, BIO *, int)) d->cryptoLib->resolveFunction("PKCS7_sign");
-        K_PKCS7_verify = (int (*)(PKCS7 *, STACK_OF(X509) *, X509_STORE *, BIO *, BIO *, int)) d->cryptoLib->resolveFunction("PKCS7_verify");
-        K_PKCS7_get0_signers = (STACK_OF(X509) * (*)(PKCS7 *, STACK_OF(X509) *, int)) d->cryptoLib->resolveFunction("PKCS7_get0_signers");
-        K_PKCS7_encrypt = (PKCS7 * (*)(STACK_OF(X509) *, BIO *, EVP_CIPHER *, int)) d->cryptoLib->resolveFunction("PKCS7_encrypt");
-        K_PKCS7_decrypt = (int (*)(PKCS7 *, EVP_PKEY *, X509 *, BIO *, int)) d->cryptoLib->resolveFunction("PKCS7_decrypt");
-        K_PEM_X509_INFO_read = (STACK_OF(X509_INFO) * (*)(FILE *, STACK_OF(X509_INFO) *, pem_password_cb *, void *)) d->cryptoLib->resolveFunction("PEM_X509_INFO_read");
-        K_ASN1_d2i_fp = (char *(*)(char *(*)(), char *(*)(), FILE *, unsigned char **)) d->cryptoLib->resolveFunction("ASN1_d2i_fp");
-        K_X509_new = (X509 * (*)()) d->cryptoLib->resolveFunction("X509_new");
-        K_X509_PURPOSE_get_count = (int (*)()) d->cryptoLib->resolveFunction("X509_PURPOSE_get_count");
-        K_X509_PURPOSE_get_id = (int (*)(X509_PURPOSE *)) d->cryptoLib->resolveFunction("X509_PURPOSE_get_id");
-        K_X509_check_purpose = (int (*)(X509 *, int, int)) d->cryptoLib->resolveFunction("X509_check_purpose");
-        K_X509_PURPOSE_get0 = (X509_PURPOSE * (*)(int)) d->cryptoLib->resolveFunction("X509_PURPOSE_get0");
-        K_EVP_PKEY_assign = (int (*)(EVP_PKEY *, int, char *)) d->cryptoLib->resolveFunction("EVP_PKEY_assign");
-        K_X509_REQ_set_pubkey = (int (*)(X509_REQ *, EVP_PKEY *)) d->cryptoLib->resolveFunction("X509_REQ_set_pubkey");
-        K_RSA_generate_key = (RSA * (*)(int, unsigned long, void (*)(int, int, void *), void *)) d->cryptoLib->resolveFunction("RSA_generate_key");
-        K_i2d_X509_REQ_fp = (int (*)(FILE *, X509_REQ *)) d->cryptoLib->resolveFunction("i2d_X509_REQ_fp");
-        K_ERR_clear_error = (void (*)()) d->cryptoLib->resolveFunction("ERR_clear_error");
-        K_ERR_get_error = (unsigned long(*)()) d->cryptoLib->resolveFunction("ERR_get_error");
-        K_ERR_print_errors_fp = (void (*)(FILE *)) d->cryptoLib->resolveFunction("ERR_print_errors_fp");
-        K_X509_get1_email = (STACK * (*)(X509 * x)) d->cryptoLib->resolveFunction("X509_get1_email");
-        K_X509_email_free = (void (*)(STACK * sk)) d->cryptoLib->resolveFunction("X509_email_free");
-        K_EVP_des_ede3_cbc = (EVP_CIPHER * (*)()) d->cryptoLib->resolveFunction("EVP_des_ede3_cbc");
-        K_EVP_des_cbc = (EVP_CIPHER * (*)()) d->cryptoLib->resolveFunction("EVP_des_cbc");
-        K_EVP_rc2_cbc = (EVP_CIPHER * (*)()) d->cryptoLib->resolveFunction("EVP_rc2_cbc");
-        K_EVP_rc2_64_cbc = (EVP_CIPHER * (*)()) d->cryptoLib->resolveFunction("EVP_rc2_64_cbc");
-        K_EVP_rc2_40_cbc = (EVP_CIPHER * (*)()) d->cryptoLib->resolveFunction("EVP_rc2_40_cbc");
-        K_i2d_PrivateKey_fp = (int (*)(FILE *, EVP_PKEY *)) d->cryptoLib->resolveFunction("i2d_PrivateKey_fp");
-        K_i2d_PKCS8PrivateKey_fp = (int (*)(FILE *, EVP_PKEY *, const EVP_CIPHER *, char *, int, pem_password_cb *, void *)) d->cryptoLib->resolveFunction("i2d_PKCS8PrivateKey_fp");
-        K_RSA_free = (void (*)(RSA *)) d->cryptoLib->resolveFunction("RSA_free");
-        K_EVP_bf_cbc = (EVP_CIPHER * (*)()) d->cryptoLib->resolveFunction("EVP_bf_cbc");
-        K_X509_REQ_sign = (int (*)(X509_REQ *, EVP_PKEY *, const EVP_MD *)) d->cryptoLib->resolveFunction("X509_REQ_sign");
-        K_X509_NAME_add_entry_by_txt = (int (*)(X509_NAME *, char *, int, unsigned char *, int, int, int)) d->cryptoLib->resolveFunction("X509_NAME_add_entry_by_txt");
-        K_X509_NAME_new = (X509_NAME * (*)()) d->cryptoLib->resolveFunction("X509_NAME_new");
-        K_X509_REQ_set_subject_name = (int (*)(X509_REQ *, X509_NAME *)) d->cryptoLib->resolveFunction("X509_REQ_set_subject_name");
-        K_ASN1_STRING_data = (unsigned char *(*)(ASN1_STRING *)) d->cryptoLib->resolveFunction("ASN1_STRING_data");
-        K_ASN1_STRING_length = (int (*)(ASN1_STRING *)) d->cryptoLib->resolveFunction("ASN1_STRING_length");
+                                  X509 **, STACK_OF(X509) **)) d->cryptoLib->resolve("PKCS12_parse");
+        K_EVP_PKEY_free = (void (*)(EVP_PKEY *)) d->cryptoLib->resolve("EVP_PKEY_free");
+        K_EVP_PKEY_new = (EVP_PKEY * (*)()) d->cryptoLib->resolve("EVP_PKEY_new");
+        K_X509_REQ_free = (void (*)(X509_REQ *)) d->cryptoLib->resolve("X509_REQ_free");
+        K_X509_REQ_new = (X509_REQ * (*)()) d->cryptoLib->resolve("X509_REQ_new");
+        K_X509_STORE_CTX_set_chain = (void (*)(X509_STORE_CTX *, STACK_OF(X509) *)) d->cryptoLib->resolve("X509_STORE_CTX_set_chain");
+        K_X509_STORE_CTX_set_purpose = (void (*)(X509_STORE_CTX *, int)) d->cryptoLib->resolve("X509_STORE_CTX_set_purpose");
+        K_sk_free = (void (*)(STACK *)) d->cryptoLib->resolve("sk_free");
+        K_sk_num = (int (*)(STACK *)) d->cryptoLib->resolve("sk_num");
+        K_sk_pop = (char *(*)(STACK *)) d->cryptoLib->resolve("sk_pop");
+        K_sk_value = (char *(*)(STACK *, int)) d->cryptoLib->resolve("sk_value");
+        K_sk_new = (STACK * (*)(int (*)())) d->cryptoLib->resolve("sk_new");
+        K_sk_push = (int (*)(STACK *, char *)) d->cryptoLib->resolve("sk_push");
+        K_sk_dup = (STACK * (*)(STACK *)) d->cryptoLib->resolve("sk_dup");
+        K_i2s_ASN1_INTEGER = (char *(*)(X509V3_EXT_METHOD *, ASN1_INTEGER *)) d->cryptoLib->resolve("i2s_ASN1_INTEGER");
+        K_X509_get_serialNumber = (ASN1_INTEGER * (*)(X509 *)) d->cryptoLib->resolve("X509_get_serialNumber");
+        K_X509_get_pubkey = (EVP_PKEY * (*)(X509 *)) d->cryptoLib->resolve("X509_get_pubkey");
+        K_i2d_PublicKey = (int (*)(EVP_PKEY *, unsigned char **)) d->cryptoLib->resolve("i2d_PublicKey");
+        K_X509_check_private_key = (int (*)(X509 *, EVP_PKEY *)) d->cryptoLib->resolve("X509_check_private_key");
+        K_BN_bn2hex = (char *(*)(const BIGNUM *)) d->cryptoLib->resolve("BN_bn2hex");
+        K_X509_digest = (int (*)(const X509 *, const EVP_MD *, unsigned char *, unsigned int *)) d->cryptoLib->resolve("X509_digest");
+        K_EVP_md5 = (EVP_MD * (*)()) d->cryptoLib->resolve("EVP_md5");
+        K_ASN1_INTEGER_free = (void (*)(ASN1_INTEGER *)) d->cryptoLib->resolve("ASN1_INTEGER_free");
+        K_OBJ_obj2nid = (int (*)(ASN1_OBJECT *)) d->cryptoLib->resolve("OBJ_obj2nid");
+        K_OBJ_nid2ln = (const char *(*)(int)) d->cryptoLib->resolve("OBJ_nid2ln");
+        K_X509_get_ext_count = (int (*)(X509 *)) d->cryptoLib->resolve("X509_get_ext_count");
+        K_X509_get_ext_by_NID = (int (*)(X509 *, int, int)) d->cryptoLib->resolve("X509_get_ext_by_NID");
+        K_X509_get_ext_by_OBJ = (int (*)(X509 *, ASN1_OBJECT *, int)) d->cryptoLib->resolve("X509_get_ext_by_OBJ");
+        K_X509_get_ext = (X509_EXTENSION * (*)(X509 *, int)) d->cryptoLib->resolve("X509_get_ext");
+        K_X509_delete_ext = (X509_EXTENSION * (*)(X509 *, int)) d->cryptoLib->resolve("X509_delete_ext");
+        K_X509_add_ext = (int (*)(X509 *, X509_EXTENSION *, int)) d->cryptoLib->resolve("X509_add_ext");
+        K_X509_get_ext_d2i = (void *(*)(X509 *, int, int *, int *)) d->cryptoLib->resolve("X509_get_ext_d2i");
+        K_i2s_ASN1_OCTET_STRING = (char *(*)(X509V3_EXT_METHOD *, ASN1_OCTET_STRING *)) d->cryptoLib->resolve("i2s_ASN1_OCTET_STRING");
+        K_ASN1_BIT_STRING_get_bit = (int (*)(ASN1_BIT_STRING *, int)) d->cryptoLib->resolve("ASN1_BIT_STRING_get_bit");
+        K_PKCS7_new = (PKCS7 * (*)()) d->cryptoLib->resolve("PKCS7_new");
+        K_PKCS7_free = (void (*)(PKCS7 *)) d->cryptoLib->resolve("PKCS7_free");
+        K_PKCS7_content_free = (void (*)(PKCS7 *)) d->cryptoLib->resolve("PKCS7_content_free");
+        K_i2d_PKCS7 = (int (*)(PKCS7 *, unsigned char **)) d->cryptoLib->resolve("i2d_PKCS7");
+        K_i2d_PKCS7_fp = (int (*)(FILE *, PKCS7 *)) d->cryptoLib->resolve("i2d_PKCS7_fp");
+        K_i2d_PKCS7_bio = (int (*)(BIO * bp, PKCS7 * p7)) d->cryptoLib->resolve("i2d_PKCS7_bio");
+        K_d2i_PKCS7 = (PKCS7 * (*)(PKCS7 **, unsigned char **, long)) d->cryptoLib->resolve("d2i_PKCS7");
+        K_d2i_PKCS7_fp = (PKCS7 * (*)(FILE *, PKCS7 **)) d->cryptoLib->resolve("d2i_PKCS7_fp");
+        K_d2i_PKCS7_bio = (PKCS7 * (*)(BIO * bp, PKCS7 **p7)) d->cryptoLib->resolve("d2i_PKCS7_bio");
+        K_PKCS7_dup = (PKCS7 * (*)(PKCS7 *)) d->cryptoLib->resolve("PKCS7_dup");
+        K_PKCS7_sign = (PKCS7 * (*)(X509 *, EVP_PKEY *, STACK_OF(X509) *, BIO *, int)) d->cryptoLib->resolve("PKCS7_sign");
+        K_PKCS7_verify = (int (*)(PKCS7 *, STACK_OF(X509) *, X509_STORE *, BIO *, BIO *, int)) d->cryptoLib->resolve("PKCS7_verify");
+        K_PKCS7_get0_signers = (STACK_OF(X509) * (*)(PKCS7 *, STACK_OF(X509) *, int)) d->cryptoLib->resolve("PKCS7_get0_signers");
+        K_PKCS7_encrypt = (PKCS7 * (*)(STACK_OF(X509) *, BIO *, EVP_CIPHER *, int)) d->cryptoLib->resolve("PKCS7_encrypt");
+        K_PKCS7_decrypt = (int (*)(PKCS7 *, EVP_PKEY *, X509 *, BIO *, int)) d->cryptoLib->resolve("PKCS7_decrypt");
+        K_PEM_X509_INFO_read = (STACK_OF(X509_INFO) * (*)(FILE *, STACK_OF(X509_INFO) *, pem_password_cb *, void *)) d->cryptoLib->resolve("PEM_X509_INFO_read");
+        K_ASN1_d2i_fp = (char *(*)(char *(*)(), char *(*)(), FILE *, unsigned char **)) d->cryptoLib->resolve("ASN1_d2i_fp");
+        K_X509_new = (X509 * (*)()) d->cryptoLib->resolve("X509_new");
+        K_X509_PURPOSE_get_count = (int (*)()) d->cryptoLib->resolve("X509_PURPOSE_get_count");
+        K_X509_PURPOSE_get_id = (int (*)(X509_PURPOSE *)) d->cryptoLib->resolve("X509_PURPOSE_get_id");
+        K_X509_check_purpose = (int (*)(X509 *, int, int)) d->cryptoLib->resolve("X509_check_purpose");
+        K_X509_PURPOSE_get0 = (X509_PURPOSE * (*)(int)) d->cryptoLib->resolve("X509_PURPOSE_get0");
+        K_EVP_PKEY_assign = (int (*)(EVP_PKEY *, int, char *)) d->cryptoLib->resolve("EVP_PKEY_assign");
+        K_X509_REQ_set_pubkey = (int (*)(X509_REQ *, EVP_PKEY *)) d->cryptoLib->resolve("X509_REQ_set_pubkey");
+        K_RSA_generate_key = (RSA * (*)(int, unsigned long, void (*)(int, int, void *), void *)) d->cryptoLib->resolve("RSA_generate_key");
+        K_i2d_X509_REQ_fp = (int (*)(FILE *, X509_REQ *)) d->cryptoLib->resolve("i2d_X509_REQ_fp");
+        K_ERR_clear_error = (void (*)()) d->cryptoLib->resolve("ERR_clear_error");
+        K_ERR_get_error = (unsigned long(*)()) d->cryptoLib->resolve("ERR_get_error");
+        K_ERR_print_errors_fp = (void (*)(FILE *)) d->cryptoLib->resolve("ERR_print_errors_fp");
+        K_X509_get1_email = (STACK * (*)(X509 * x)) d->cryptoLib->resolve("X509_get1_email");
+        K_X509_email_free = (void (*)(STACK * sk)) d->cryptoLib->resolve("X509_email_free");
+        K_EVP_des_ede3_cbc = (EVP_CIPHER * (*)()) d->cryptoLib->resolve("EVP_des_ede3_cbc");
+        K_EVP_des_cbc = (EVP_CIPHER * (*)()) d->cryptoLib->resolve("EVP_des_cbc");
+        K_EVP_rc2_cbc = (EVP_CIPHER * (*)()) d->cryptoLib->resolve("EVP_rc2_cbc");
+        K_EVP_rc2_64_cbc = (EVP_CIPHER * (*)()) d->cryptoLib->resolve("EVP_rc2_64_cbc");
+        K_EVP_rc2_40_cbc = (EVP_CIPHER * (*)()) d->cryptoLib->resolve("EVP_rc2_40_cbc");
+        K_i2d_PrivateKey_fp = (int (*)(FILE *, EVP_PKEY *)) d->cryptoLib->resolve("i2d_PrivateKey_fp");
+        K_i2d_PKCS8PrivateKey_fp = (int (*)(FILE *, EVP_PKEY *, const EVP_CIPHER *, char *, int, pem_password_cb *, void *)) d->cryptoLib->resolve("i2d_PKCS8PrivateKey_fp");
+        K_RSA_free = (void (*)(RSA *)) d->cryptoLib->resolve("RSA_free");
+        K_EVP_bf_cbc = (EVP_CIPHER * (*)()) d->cryptoLib->resolve("EVP_bf_cbc");
+        K_X509_REQ_sign = (int (*)(X509_REQ *, EVP_PKEY *, const EVP_MD *)) d->cryptoLib->resolve("X509_REQ_sign");
+        K_X509_NAME_add_entry_by_txt = (int (*)(X509_NAME *, char *, int, unsigned char *, int, int, int)) d->cryptoLib->resolve("X509_NAME_add_entry_by_txt");
+        K_X509_NAME_new = (X509_NAME * (*)()) d->cryptoLib->resolve("X509_NAME_new");
+        K_X509_REQ_set_subject_name = (int (*)(X509_REQ *, X509_NAME *)) d->cryptoLib->resolve("X509_REQ_set_subject_name");
+        K_ASN1_STRING_data = (unsigned char *(*)(ASN1_STRING *)) d->cryptoLib->resolve("ASN1_STRING_data");
+        K_ASN1_STRING_length = (int (*)(ASN1_STRING *)) d->cryptoLib->resolve("ASN1_STRING_length");
 #endif
     }
 
 #ifdef Q_OS_WIN
-    d->sslLib = new KLibrary("ssleay32.dll");
+    d->sslLib = new QLibrary("ssleay32.dll");
     if (!d->sslLib->load()) {
         delete d->sslLib;
         d->sslLib = 0;
@@ -543,7 +543,7 @@ KOpenSSLProxy::KOpenSSLProxy()
     {
         QString libname = findMostRecentLib("/usr/lib", "ssl");
         if (!libname.isNull()) {
-            d->sslLib = new KLibrary(libname);
+            d->sslLib = new QLibrary(libname);
             d->sslLib->setLoadHints(QLibrary::ExportExternalSymbolsHint);
             if (!d->sslLib->load()) {
                 delete d->sslLib;
@@ -566,7 +566,7 @@ KOpenSSLProxy::KOpenSSLProxy()
             QString tmpStr(alib);
             tmpStr.remove(QRegExp("\\(.*\\)"));
             if (QFile(tmpStr).isReadable()) {
-                d->sslLib = new KLibrary(alib);
+                d->sslLib = new QLibrary(alib);
                 d->sslLib->setLoadHints(QLibrary::ExportExternalSymbolsHint);
             }
             if (d->sslLib && d->sslLib->load()) {
@@ -585,88 +585,88 @@ KOpenSSLProxy::KOpenSSLProxy()
     if (d->sslLib) {
 #if KSSL_HAVE_SSL
         // stand back from your monitor and look at this.  it's fun! :)
-        K_SSL_connect = (int (*)(SSL *)) d->sslLib->resolveFunction("SSL_connect");
-        K_SSL_accept = (int (*)(SSL *)) d->sslLib->resolveFunction("SSL_accept");
-        K_SSL_read = (int (*)(SSL *, void *, int)) d->sslLib->resolveFunction("SSL_read");
+        K_SSL_connect = (int (*)(SSL *)) d->sslLib->resolve("SSL_connect");
+        K_SSL_accept = (int (*)(SSL *)) d->sslLib->resolve("SSL_accept");
+        K_SSL_read = (int (*)(SSL *, void *, int)) d->sslLib->resolve("SSL_read");
         K_SSL_write = (int (*)(SSL *, const void *, int))
-                      d->sslLib->resolveFunction("SSL_write");
-        K_SSL_new = (SSL * (*)(SSL_CTX *)) d->sslLib->resolveFunction("SSL_new");
-        K_SSL_free = (void (*)(SSL *)) d->sslLib->resolveFunction("SSL_free");
-        K_SSL_shutdown = (int (*)(SSL *)) d->sslLib->resolveFunction("SSL_shutdown");
-        K_SSL_CTX_new = (SSL_CTX * (*)(SSL_METHOD *)) d->sslLib->resolveFunction("SSL_CTX_new");
-        K_SSL_CTX_free = (void (*)(SSL_CTX *)) d->sslLib->resolveFunction("SSL_CTX_free");
-        K_SSL_set_fd = (int (*)(SSL *, int)) d->sslLib->resolveFunction("SSL_set_fd");
-        K_SSL_pending = (int (*)(SSL *)) d->sslLib->resolveFunction("SSL_pending");
+                      d->sslLib->resolve("SSL_write");
+        K_SSL_new = (SSL * (*)(SSL_CTX *)) d->sslLib->resolve("SSL_new");
+        K_SSL_free = (void (*)(SSL *)) d->sslLib->resolve("SSL_free");
+        K_SSL_shutdown = (int (*)(SSL *)) d->sslLib->resolve("SSL_shutdown");
+        K_SSL_CTX_new = (SSL_CTX * (*)(SSL_METHOD *)) d->sslLib->resolve("SSL_CTX_new");
+        K_SSL_CTX_free = (void (*)(SSL_CTX *)) d->sslLib->resolve("SSL_CTX_free");
+        K_SSL_set_fd = (int (*)(SSL *, int)) d->sslLib->resolve("SSL_set_fd");
+        K_SSL_pending = (int (*)(SSL *)) d->sslLib->resolve("SSL_pending");
         K_SSL_CTX_set_cipher_list = (int (*)(SSL_CTX *, const char *))
-                                    d->sslLib->resolveFunction("SSL_CTX_set_cipher_list");
-        K_SSL_CTX_set_verify = (void (*)(SSL_CTX *, int, int (*)(int, X509_STORE_CTX *))) d->sslLib->resolveFunction("SSL_CTX_set_verify");
+                                    d->sslLib->resolve("SSL_CTX_set_cipher_list");
+        K_SSL_CTX_set_verify = (void (*)(SSL_CTX *, int, int (*)(int, X509_STORE_CTX *))) d->sslLib->resolve("SSL_CTX_set_verify");
         K_SSL_use_certificate = (int (*)(SSL *, X509 *))
-                                d->sslLib->resolveFunction("SSL_CTX_use_certificate");
+                                d->sslLib->resolve("SSL_CTX_use_certificate");
         K_SSL_get_current_cipher = (SSL_CIPHER * (*)(SSL *))
-                                   d->sslLib->resolveFunction("SSL_get_current_cipher");
+                                   d->sslLib->resolve("SSL_get_current_cipher");
         K_SSL_ctrl = (long(*)(SSL *, int, long, char *))
-                     d->sslLib->resolveFunction("SSL_ctrl");
-        K_TLSv1_client_method = (SSL_METHOD * (*)()) d->sslLib->resolveFunction("TLSv1_client_method");
-        K_SSLv23_client_method = (SSL_METHOD * (*)()) d->sslLib->resolveFunction("SSLv23_client_method");
-        K_SSL_get_peer_certificate = (X509 * (*)(SSL *)) d->sslLib->resolveFunction("SSL_get_peer_certificate");
-        K_SSL_CIPHER_get_bits = (int (*)(SSL_CIPHER *, int *)) d->sslLib->resolveFunction("SSL_CIPHER_get_bits");
-        K_SSL_CIPHER_get_version = (char *(*)(SSL_CIPHER *)) d->sslLib->resolveFunction("SSL_CIPHER_get_version");
-        K_SSL_CIPHER_get_name = (const char *(*)(SSL_CIPHER *)) d->sslLib->resolveFunction("SSL_CIPHER_get_name");
-        K_SSL_CIPHER_description = (char *(*)(SSL_CIPHER *, char *, int)) d->sslLib->resolveFunction("SSL_CIPHER_description");
-        K_SSL_CTX_use_PrivateKey = (int (*)(SSL_CTX *, EVP_PKEY *)) d->sslLib->resolveFunction("SSL_CTX_use_PrivateKey");
-        K_SSL_CTX_use_certificate = (int (*)(SSL_CTX *, X509 *)) d->sslLib->resolveFunction("SSL_CTX_use_certificate");
-        K_SSL_get_error = (int (*)(SSL *, int)) d->sslLib->resolveFunction("SSL_get_error");
-        K_SSL_get_peer_cert_chain = (STACK_OF(X509) * (*)(SSL *)) d->sslLib->resolveFunction("SSL_get_peer_cert_chain");
-        K_SSL_load_client_CA_file = (STACK_OF(X509_NAME) * (*)(const char *)) d->sslLib->resolveFunction("SSL_load_client_CA_file");
-        K_SSL_peek = (int (*)(SSL *, void *, int)) d->sslLib->resolveFunction("SSL_peek");
-        K_SSL_get1_session = (SSL_SESSION * (*)(SSL *)) d->sslLib->resolveFunction("SSL_get1_session");
-        K_SSL_SESSION_free = (void (*)(SSL_SESSION *)) d->sslLib->resolveFunction("SSL_SESSION_free");
-        K_SSL_set_session = (int (*)(SSL *, SSL_SESSION *)) d->sslLib->resolveFunction("SSL_set_session");
-        K_d2i_SSL_SESSION = (SSL_SESSION * (*)(SSL_SESSION **, unsigned char **, long)) d->sslLib->resolveFunction("d2i_SSL_SESSION");
-        K_i2d_SSL_SESSION = (int (*)(SSL_SESSION *, unsigned char **)) d->sslLib->resolveFunction("i2d_SSL_SESSION");
-        K_SSL_get_ciphers = (STACK_OF(SSL_CIPHER) * (*)(const SSL *)) d->sslLib->resolveFunction("SSL_get_ciphers");
+                     d->sslLib->resolve("SSL_ctrl");
+        K_TLSv1_client_method = (SSL_METHOD * (*)()) d->sslLib->resolve("TLSv1_client_method");
+        K_SSLv23_client_method = (SSL_METHOD * (*)()) d->sslLib->resolve("SSLv23_client_method");
+        K_SSL_get_peer_certificate = (X509 * (*)(SSL *)) d->sslLib->resolve("SSL_get_peer_certificate");
+        K_SSL_CIPHER_get_bits = (int (*)(SSL_CIPHER *, int *)) d->sslLib->resolve("SSL_CIPHER_get_bits");
+        K_SSL_CIPHER_get_version = (char *(*)(SSL_CIPHER *)) d->sslLib->resolve("SSL_CIPHER_get_version");
+        K_SSL_CIPHER_get_name = (const char *(*)(SSL_CIPHER *)) d->sslLib->resolve("SSL_CIPHER_get_name");
+        K_SSL_CIPHER_description = (char *(*)(SSL_CIPHER *, char *, int)) d->sslLib->resolve("SSL_CIPHER_description");
+        K_SSL_CTX_use_PrivateKey = (int (*)(SSL_CTX *, EVP_PKEY *)) d->sslLib->resolve("SSL_CTX_use_PrivateKey");
+        K_SSL_CTX_use_certificate = (int (*)(SSL_CTX *, X509 *)) d->sslLib->resolve("SSL_CTX_use_certificate");
+        K_SSL_get_error = (int (*)(SSL *, int)) d->sslLib->resolve("SSL_get_error");
+        K_SSL_get_peer_cert_chain = (STACK_OF(X509) * (*)(SSL *)) d->sslLib->resolve("SSL_get_peer_cert_chain");
+        K_SSL_load_client_CA_file = (STACK_OF(X509_NAME) * (*)(const char *)) d->sslLib->resolve("SSL_load_client_CA_file");
+        K_SSL_peek = (int (*)(SSL *, void *, int)) d->sslLib->resolve("SSL_peek");
+        K_SSL_get1_session = (SSL_SESSION * (*)(SSL *)) d->sslLib->resolve("SSL_get1_session");
+        K_SSL_SESSION_free = (void (*)(SSL_SESSION *)) d->sslLib->resolve("SSL_SESSION_free");
+        K_SSL_set_session = (int (*)(SSL *, SSL_SESSION *)) d->sslLib->resolve("SSL_set_session");
+        K_d2i_SSL_SESSION = (SSL_SESSION * (*)(SSL_SESSION **, unsigned char **, long)) d->sslLib->resolve("d2i_SSL_SESSION");
+        K_i2d_SSL_SESSION = (int (*)(SSL_SESSION *, unsigned char **)) d->sslLib->resolve("i2d_SSL_SESSION");
+        K_SSL_get_ciphers = (STACK_OF(SSL_CIPHER) * (*)(const SSL *)) d->sslLib->resolve("SSL_get_ciphers");
 #endif
 
         // Initialize the library (once only!)
-        KLibrary::void_function_ptr x;
-        x = d->sslLib->resolveFunction("SSL_library_init");
+        QFunctionPointer x;
+        x = d->sslLib->resolve("SSL_library_init");
         if (d->cryptoLib) {
             if (x) {
                 ((int (*)())x)();
             }
-            x = d->cryptoLib->resolveFunction("OpenSSL_add_all_algorithms");
+            x = d->cryptoLib->resolve("OpenSSL_add_all_algorithms");
             if (!x) {
-                x = d->cryptoLib->resolveFunction("OPENSSL_add_all_algorithms");
+                x = d->cryptoLib->resolve("OPENSSL_add_all_algorithms");
             }
             if (x) {
                 ((void (*)())x)();
             } else {
-                x = d->cryptoLib->resolveFunction("OpenSSL_add_all_algorithms_conf");
+                x = d->cryptoLib->resolve("OpenSSL_add_all_algorithms_conf");
                 if (!x) {
-                    x = d->cryptoLib->resolveFunction("OPENSSL_add_all_algorithms_conf");
+                    x = d->cryptoLib->resolve("OPENSSL_add_all_algorithms_conf");
                 }
                 if (x) {
                     ((void (*)())x)();
                 } else {
-                    x = d->cryptoLib->resolveFunction("OpenSSL_add_all_algorithms_noconf");
+                    x = d->cryptoLib->resolve("OpenSSL_add_all_algorithms_noconf");
                     if (!x) {
-                        x = d->cryptoLib->resolveFunction("OPENSSL_add_all_algorithms_noconf");
+                        x = d->cryptoLib->resolve("OPENSSL_add_all_algorithms_noconf");
                     }
                     if (x) {
                         ((void (*)())x)();
                     }
                 }
             }
-            x = d->cryptoLib->resolveFunction("OpenSSL_add_all_ciphers");
+            x = d->cryptoLib->resolve("OpenSSL_add_all_ciphers");
             if (!x) {
-                x = d->cryptoLib->resolveFunction("OPENSSL_add_all_ciphers");
+                x = d->cryptoLib->resolve("OPENSSL_add_all_ciphers");
             }
             if (x) {
                 ((void (*)())x)();
             }
-            x = d->cryptoLib->resolveFunction("OpenSSL_add_all_digests");
+            x = d->cryptoLib->resolve("OpenSSL_add_all_digests");
             if (!x) {
-                x = d->cryptoLib->resolveFunction("OPENSSL_add_all_digests");
+                x = d->cryptoLib->resolve("OPENSSL_add_all_digests");
             }
             if (x) {
                 ((void (*)())x)();

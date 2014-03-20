@@ -1,5 +1,5 @@
 #include <break_lines.h>
-#include <klibrary.h>
+#include <QtCore/QLibrary>
 #include <QtCore/QTextCodec>
 #include <stdio.h>
 #include <stdlib.h>
@@ -46,7 +46,7 @@ struct ThaiCache {
     int *isbreakable;
     int allocated;
     int numwbrpos, numisbreakable;
-    KLibrary *library;
+    QLibrary *library;
 };
 static ThaiCache *cache = 0;
 
@@ -66,13 +66,13 @@ bool isBreakableThai(const QChar *string, const int pos, const int len)
 
 #ifndef HAVE_LIBTHAI
 
-    KLibrary *lib = new KLibrary(QLatin1String("libthai"));
+    QLibrary *lib = new QLibrary(QLatin1String("libthai"));
 
     /* load libthai dynamically */
     if ((!th_brk) && thaiCodec) {
         printf("Try to load libthai dynamically...\n");
         if (lib->load()) {
-            th_brk = (th_brk_def) lib->resolveFunction("th_brk");
+            th_brk = (th_brk_def) lib->resolve("th_brk");
         }
         if (!th_brk) {
             // indication that loading failed and we shouldn't try to load again
