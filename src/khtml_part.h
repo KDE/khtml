@@ -1190,8 +1190,8 @@ Q_SIGNALS:
     /**
      * If form notification is on, this will be emitted either for a form
      * submit or before the form submit according to the setting.
-     * ### KDE4 remove me
      */
+    // TODO: remove/deprecate?
     void formSubmitNotification(const char *action, const QString &url,
                                 const QByteArray &formData, const QString &target,
                                 const QString &contentType, const QString &boundary);
@@ -1376,9 +1376,9 @@ public Q_SLOTS:
      */
     void setCaretVisible(bool show);
 
-    // ### KDE4 FIXME:
-    //          Remove this and make the one below protected+virtual slot.
-    //          Warning: this is effectively "internal".  Be careful.
+    // ### FIXME:
+    //     Remove this and make the one below protected+virtual slot.
+    //     Warning: this is effectively "internal".  Be careful.
     void submitFormProxy(const char *action, const QString &url,
                          const QByteArray &formData,
                          const QString &target,
@@ -1720,13 +1720,13 @@ private:
     /**
      * @internal
      */
-    // ### KDE4 FIXME:
-    //          It is desirable to be able to filter form submissions as well.
-    //          For instance, forms can have a target and an inheriting class
-    //          might want to filter based on the target.  Make this protected
-    //          and virtual, or provide a better solution.
-    //          See the web_module for the sidebar for an example where this is
-    //          necessary.
+    // ### FIXME:
+    //     It is desirable to be able to filter form submissions as well.
+    //     For instance, forms can have a target and an inheriting class
+    //     might want to filter based on the target.  Make this protected
+    //     and virtual, or provide a better solution.
+    //     See the web_module for the sidebar for an example where this is
+    //     necessary.
     void submitForm(const char *action, const QString &url, const QByteArray &formData,
                     const QString &target, const QString &contentType = QString(),
                     const QString &boundary = QString());

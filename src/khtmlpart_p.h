@@ -261,7 +261,6 @@ public:
     bool m_restoreScrollPosition;
     bool m_statusMessagesEnabled;
     bool m_bWalletOpened;
-    bool m_urlSelectedOpenedURL; // KDE4: remove
     bool m_bDNSPrefetchIsDefault;
     int m_DNSPrefetchTimer;
     int m_DNSTTLTimer;

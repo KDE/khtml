@@ -27,7 +27,7 @@ namespace KJSDebugger
 {
 
 BreakpointsDock::BreakpointsDock(QWidget *parent)
-    : QDockWidget("", parent) //### KDE4.1: restore title
+    : QDockWidget("", parent) // TODO: restore title
 {
     setFeatures(DockWidgetMovable | DockWidgetFloatable);
     QListWidget *widget = new QListWidget;

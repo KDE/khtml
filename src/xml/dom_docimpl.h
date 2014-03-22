@@ -145,8 +145,8 @@ public:
 
 /**
  * @internal A cache of element name (or id) to pointer
- * ### KDE4, QHash: better to store values here
  */
+// TODO: QHash: better to store values here
 class ElementMappingCache
 {
 public:

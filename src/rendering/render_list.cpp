@@ -376,7 +376,7 @@ void RenderListMarker::paint(PaintInfo &paintInfo, int _tx, int _ty)
             if (listPositionInside()) {
                 //BEGIN HACK
 #ifdef __GNUC__
-#warning "KDE4: hack for testregression, remove when main branch"
+#warning "FIXME: hack for testregression, remove"
 #endif
                 _tx += qMax(-fm.minLeftBearing(), 0);
                 //END HACK
@@ -399,7 +399,7 @@ void RenderListMarker::paint(PaintInfo &paintInfo, int _tx, int _ty)
                 } else {
                     //BEGIN HACK
 #ifdef __GNUC__
-#warning "KDE4: hack for testregression, remove when main branch"
+#warning "FIXME: hack for testregression, remove"
 #endif
                     _tx += qMax(-fm.minLeftBearing(), 0);
                     //END HACK

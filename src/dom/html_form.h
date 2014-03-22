@@ -188,9 +188,7 @@ public:
 
     ~HTMLFieldSetElement();
 
-    /**
-     * ### KDE 4.0: remove.
-     */
+    // TODO: deprecate/remove?
     HTMLFormElement form() const;
 };
 
@@ -394,9 +392,7 @@ public:
      */
     void setDefaultChecked(bool);
 
-    /**
-     * ### KDE 4.0: remove.
-     */
+    // TODO: deprecate/remove?
     HTMLFormElement form() const;
 
     /**
@@ -787,9 +783,7 @@ public:
 
     ~HTMLLegendElement();
 
-    /**
-     * ### KDE 4.0: remove
-     */
+    // TODO: deprecate/remove?
     HTMLFormElement form() const;
 
     /**
@@ -940,9 +934,7 @@ public:
      */
     long length() const;
 
-    /**
-     * ### KDE 4.0: remove.
-     */
+    // TODO: deprecate/remove?
     HTMLFormElement form() const;
 
     /**
@@ -1094,9 +1086,7 @@ public:
      */
     void setDefaultValue(const DOMString &);
 
-    /**
-     * ### KDE 4.0: remove.
-     */
+    // TODO: deprecate/remove?
     HTMLFormElement form() const;
 
     /**
@@ -1293,9 +1283,7 @@ public:
 
     ~HTMLOptionElement();
 
-    /**
-     * ### KDE 4.0: remove
-     */
+    // TODO: deprecate/remove?
     HTMLFormElement form() const;
 
     /**
@@ -1414,9 +1402,7 @@ public:
 
     ~HTMLIsIndexElement();
 
-    /**
-     * ### KDE 4.0: remove
-     */
+    // TODO: deprecate/remove?
     HTMLFormElement form() const;
 
     /**

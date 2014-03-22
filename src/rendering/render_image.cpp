@@ -119,7 +119,7 @@ void RenderImage::updatePixmap(const QRect &r, CachedImage *o)
                 iw = br.width();
             }
 //#ifdef __GNUC__
-//  #warning "KDE4: hack for testregression, remove (use above instead) when main branch"
+//  #warning "FIXME: hack for testregression, remove (use above instead)"
 //#endif
 //              iw = br.width() + qMax(-fm.minLeftBearing(), 0) + qMax(-fm.minRightBearing(), 0);
 
@@ -290,7 +290,7 @@ void RenderImage::paint(PaintInfo &paintInfo, int _tx, int _ty)
 //BEGIN HACK
 #if 0
 #ifdef __GNUC__
-#warning "KDE4: hack for testregression, remove when main branch"
+#warning "FIXME: hack for testregression, remove"
 #endif
                 ax     += qMax(-fm.minLeftBearing(), 0);
                 cWidth -= qMax(-fm.minLeftBearing(), 0);

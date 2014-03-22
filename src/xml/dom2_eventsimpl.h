@@ -115,7 +115,7 @@ struct RegisteredListenerList {
     bool hasEventListener(EventName id);
     void clear();
 
-    //### KDE4: should disappear
+    // TODO: remove/deprecate?
     bool stillContainsListener(const RegisteredEventListener &listener);
 
     QList<RegisteredEventListener> *listeners;//The actual listener list - may be 0

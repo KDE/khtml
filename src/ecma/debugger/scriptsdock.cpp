@@ -91,7 +91,7 @@ void ScriptsDock::addDocument(DebugDocument *document)
     QString favicon;
 
     if (document->url().isEmpty()) {
-        domain = "????";    // ### KDE4.1: proper i18n'able string
+        domain = "????";    // TODO: proper i18n'able string
     }
 
     else {

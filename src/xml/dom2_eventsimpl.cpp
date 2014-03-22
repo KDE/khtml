@@ -54,7 +54,7 @@ void EventTargetImpl::handleLocalEvents(EventImpl *evt, bool useCapture)
     QList<RegisteredEventListener> listeners = *m_regdListeners.listeners;
     QList<RegisteredEventListener>::iterator it;
     for (it = listeners.begin(); it != listeners.end(); ++it) {
-        //Check whether this got removed...KDE4: use Java-style iterators
+        //Check whether this got removed... TODO: use Java-style iterators
         if (!m_regdListeners.stillContainsListener(*it)) {
             continue;
         }

@@ -292,8 +292,8 @@ public:
 class ScheduledAction
 {
 public:
-    ScheduledAction(JSObject *_func, List _args, DateTimeMS _nextTime, int _interval, bool _singleShot, int _timerId);
-    ScheduledAction(QString _code, DateTimeMS _nextTime, int _interval, bool _singleShot, int _timerId);
+    ScheduledAction(JSObject *_func, const List &_args, const DateTimeMS &_nextTime, int _interval, bool _singleShot, int _timerId);
+    ScheduledAction(const QString &_code, const DateTimeMS &_nextTime, int _interval, bool _singleShot, int _timerId);
     ~ScheduledAction();
     bool execute(Window *window);
     void mark();

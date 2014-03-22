@@ -2553,8 +2553,7 @@ JSValue *WindowFunc::callAsFunction(ExecState *exec, JSObject *thisObj, const Li
 
 ////////////////////// ScheduledAction ////////////////////////
 
-// KDE 4: Make those parameters const ... &
-ScheduledAction::ScheduledAction(JSObject *_func, List _args, DateTimeMS _nextTime, int _interval, bool _singleShot,
+ScheduledAction::ScheduledAction(JSObject *_func, const List &_args, const DateTimeMS &_nextTime, int _interval, bool _singleShot,
                                  int _timerId)
 {
     //qDebug() << "ScheduledAction::ScheduledAction(isFunction) " << this;
@@ -2568,8 +2567,7 @@ ScheduledAction::ScheduledAction(JSObject *_func, List _args, DateTimeMS _nextTi
     timerId = _timerId;
 }
 
-// KDE 4: Make it const QString &
-ScheduledAction::ScheduledAction(QString _code, DateTimeMS _nextTime, int _interval, bool _singleShot, int _timerId)
+ScheduledAction::ScheduledAction(const QString &_code, const DateTimeMS &_nextTime, int _interval, bool _singleShot, int _timerId)
 {
     //qDebug() << "ScheduledAction::ScheduledAction(!isFunction) " << this;
     //func = 0;
