@@ -1,3 +1,5 @@
+FIXME: update these docs for Qt5 / KF5
+
 In order to be able to use testregression, you have to build your Qt and kdelibs in a special manner.
 Here are the needed steps.
 
