@@ -1331,7 +1331,7 @@ void KHTMLPart::launchJSConfigDialog()
 {
     QStringList args;
     args << "khtml_java_js";
-    KToolInvocation::kdeinitExec("kcmshell4", args);
+    KToolInvocation::kdeinitExec("kcmshell5", args);
 }
 
 QVariant KHTMLPart::executeScript(const QString &filename, int baseLine, const DOM::Node &n, const QString &script)
