@@ -2994,7 +2994,7 @@ JSValue *Location::getValueProperty(ExecState *exec, int token) const
     QUrl url = m_frame->m_part->url();
     switch (token) {
     case Hash: {
-        const QString encodedHash = url.fragment();
+        const QString encodedHash = url.fragment(QUrl::FullyEncoded);
         if (encodedHash.isEmpty()) {
             return jsString("");
         }

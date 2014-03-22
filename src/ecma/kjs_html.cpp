@@ -1884,7 +1884,7 @@ JSValue *KJS::HTMLElement::getValueProperty(ExecState *exec, int token) const
         QString href = getURLArg(ATTR_HREF);
         switch (token) {
         case AnchorHash: {
-            const QString encodedHash = QUrl(href).fragment();
+            const QString encodedHash = QUrl(href).fragment(QUrl::FullyEncoded);
             if (encodedHash.isEmpty()) {
                 return jsString("");
             }
@@ -1967,7 +1967,7 @@ JSValue *KJS::HTMLElement::getValueProperty(ExecState *exec, int token) const
         case AreaHref:
             return jsString(url.url());
         case AreaHash: {
-            const QString encodedHash = url.fragment();
+            const QString encodedHash = url.fragment(QUrl::FullyEncoded);
             if (encodedHash.isEmpty()) {
                 return jsString("");
             }

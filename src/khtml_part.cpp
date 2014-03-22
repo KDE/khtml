@@ -679,8 +679,8 @@ void KHTMLPartPrivate::executeAnchorJump(const QUrl &url, bool lockHistory)
     }
 
     DOM::HashChangeEventImpl *hashChangeEvImpl = 0;
-    const QString &oldRef = q->url().fragment();
-    const QString &newRef = url.fragment();
+    const QString &oldRef = q->url().fragment(QUrl::FullyEncoded);
+    const QString &newRef = url.fragment(QUrl::FullyEncoded);
     if ((oldRef != newRef) || (oldRef.isNull() && newRef.isEmpty())) {
         hashChangeEvImpl = new DOM::HashChangeEventImpl();
         hashChangeEvImpl->initHashChangeEvent("hashchange",
@@ -692,7 +692,7 @@ void KHTMLPartPrivate::executeAnchorJump(const QUrl &url, bool lockHistory)
     }
 
     if (!q->gotoAnchor(url.fragment(QUrl::FullyEncoded))) {
-        q->gotoAnchor(url.fragment());
+        q->gotoAnchor(url.fragment(QUrl::FullyDecoded));
     }
 
     q->setUrl(url);
@@ -703,9 +703,8 @@ void KHTMLPartPrivate::executeAnchorJump(const QUrl &url, bool lockHistory)
     }
 }
 
-bool KHTMLPart::openUrl(const QUrl &_url)
+bool KHTMLPart::openUrl(const QUrl &url)
 {
-    QUrl url(_url);
     // qDebug() << this << "opening" << url;
 
 #ifndef KHTML_NO_WALLET
@@ -815,7 +814,7 @@ bool KHTMLPart::openUrl(const QUrl &_url)
             emit started(0);
 
             if (!gotoAnchor(url.fragment(QUrl::FullyEncoded))) {
-                gotoAnchor(url.fragment());
+                gotoAnchor(url.fragment(QUrl::FullyDecoded));
             }
 
             d->m_bComplete = true;
@@ -950,8 +949,8 @@ bool KHTMLPart::openUrl(const QUrl &_url)
     // If this was an explicit reload and the user style sheet should be used,
     // do a stat to see whether the stylesheet was changed in the meanwhile.
     if (args.reload() && !settings()->userStyleSheet().isEmpty()) {
-        QUrl url(settings()->userStyleSheet());
-        KIO::StatJob *job = KIO::stat(url, KIO::HideProgressInfo);
+        QUrl userStyleSheetUrl(settings()->userStyleSheet());
+        KIO::StatJob *job = KIO::stat(userStyleSheetUrl, KIO::HideProgressInfo);
         connect(job, SIGNAL(result(KJob*)),
                 this, SLOT(slotUserSheetStatDone(KJob*)));
     }
@@ -7281,8 +7280,8 @@ void KHTMLPart::restoreScrollPosition()
         if (!d->m_doc || !d->m_doc->parsing()) {
             disconnect(d->m_view, SIGNAL(finishedLayout()), this, SLOT(restoreScrollPosition()));
         }
-        if (!gotoAnchor(QUrl(url()).fragment())) {
-            gotoAnchor(url().fragment());
+        if (!gotoAnchor(url().fragment(QUrl::FullyEncoded))) {
+            gotoAnchor(url().fragment(QUrl::FullyDecoded));
         }
         return;
     }
@@ -7291,7 +7290,7 @@ void KHTMLPart::restoreScrollPosition()
     // offsets. If the document has been fully loaded, force the new coordinates,
     // even if the canvas is too short (can happen when user resizes the window
     // during loading).
-    if (d->m_view->contentsHeight() - d->m_view->visibleHeight() >= args.yOffset()
+    if ((d->m_view->contentsHeight() - d->m_view->visibleHeight()) >= args.yOffset()
             || d->m_bComplete) {
         d->m_view->setContentsPos(args.xOffset(), args.yOffset());
         disconnect(d->m_view, SIGNAL(finishedLayout()), this, SLOT(restoreScrollPosition()));
