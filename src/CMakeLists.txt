@@ -532,11 +532,6 @@ set(khtml_LIB_SRCS
 # Fairly certain this isn't used anywhere
 # qt5_generate_dbus_interface(khtml_iface.h org.kde.KHtmlPart.xml)
 
-if(kdelibs_SOURCE_DIR)
-    qt5_generate_dbus_interface(${CMAKE_SOURCE_DIR}/tier3/kio/src/ioslaves/http/kcookiejar/kcookieserver.h org.kde.KCookieServer.xml)
-    set(KCookieServer_DBUS_INTERFACE ${CMAKE_CURRENT_BINARY_DIR}/org.kde.KCookieServer.xml)
-endif()
-
 qt5_add_dbus_interface(khtml_LIB_SRCS ${KCookieServer_DBUS_INTERFACE} kcookiejar_interface)
 
 
