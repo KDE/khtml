@@ -103,7 +103,7 @@ DOMString HTMLDocumentImpl::cookie() const
     }
 
     org::kde::KCookieServer kcookiejar("org.kde.kded5", "/modules/kcookiejar", QDBusConnection::sessionBus());
-    QDBusReply<QString> reply = kcookiejar.findDOMCookies(URL().url());
+    QDBusReply<QString> reply = kcookiejar.findDOMCookies(URL().url(), qlonglong(windowId));
 
     if (!reply.isValid()) {
         qWarning() << "Can't communicate with cookiejar!";
