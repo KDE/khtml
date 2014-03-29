@@ -139,6 +139,7 @@ using namespace DOM;
 #include "rendering/render_form.h"
 #include <kwindowsystem.h>
 #include <kconfiggroup.h>
+#include <ksharedconfig.h>
 
 #ifdef KJS_DEBUGGER
 #include "ecma/debugger/debugwindow.h"

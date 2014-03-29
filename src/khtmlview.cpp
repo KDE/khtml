@@ -70,6 +70,7 @@
 
 #include <kstringhandler.h>
 #include <kconfiggroup.h>
+#include <ksharedconfig.h>
 
 #include <QBitmap>
 #include <QDialog>

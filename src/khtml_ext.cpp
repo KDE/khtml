@@ -49,6 +49,7 @@
 #include <assert.h>
 
 #include <kconfiggroup.h>
+#include <ksharedconfig.h>
 #include <QDebug>
 #include <klocalizedstring.h>
 #include <kjobuidelegate.h>
