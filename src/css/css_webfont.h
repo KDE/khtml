@@ -176,7 +176,7 @@ class CSSFontFace : public khtml::Shared<CSSFontFace>
 {
 public:
     CSSFontFace(FontTraitsMask traitsMask, CSSFontSelector *fs)
-        : m_traitsMask(traitsMask), m_fontSelector(fs), m_refed(false)
+        : m_traitsMask(traitsMask), m_fontSelector(fs), m_refed(false), m_installed(false)
     {
     }
     ~CSSFontFace();
@@ -197,6 +197,9 @@ public:
 
     bool isLoaded() const;
     bool isValid() const;
+
+    void setInstalled();
+    bool installed() const;
 
     void addSource(CSSFontFaceSource *);
 
@@ -242,6 +245,7 @@ private:
     WTF::Vector<CSSFontFaceSource *> m_sources;
     CSSFontSelector *m_fontSelector;
     bool m_refed;
+    bool m_installed; // Successfully added into application font db
 };
 
 class CSSFontSelector : public khtml::Shared<CSSFontSelector>
