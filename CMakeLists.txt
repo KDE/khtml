@@ -85,6 +85,7 @@ add_definitions(-DWTF_PLATFORM_QT)
 set(KHTML_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(KHTML_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/src)
 
+add_definitions(-DTRANSLATION_DOMAIN=\"khtml5\")
 add_subdirectory(src)
 if(BUILD_TESTING)
   add_subdirectory(tests)
