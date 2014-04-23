@@ -445,10 +445,15 @@ void KHTMLSettings::init(KConfig *config, bool reset)
             d->defaultFonts = QStringList();
             d->defaultFonts.append(cgHtml.readEntry("StandardFont", QFontDatabase::systemFont(QFontDatabase::GeneralFont).family()));
             d->defaultFonts.append(cgHtml.readEntry("FixedFont", QFontDatabase::systemFont(QFontDatabase::FixedFont).family()));
-            d->defaultFonts.append(cgHtml.readEntry("SerifFont", HTML_DEFAULT_VIEW_SERIF_FONT));
-            d->defaultFonts.append(cgHtml.readEntry("SansSerifFont", HTML_DEFAULT_VIEW_SANSSERIF_FONT));
-            d->defaultFonts.append(cgHtml.readEntry("CursiveFont", HTML_DEFAULT_VIEW_CURSIVE_FONT));
-            d->defaultFonts.append(cgHtml.readEntry("FantasyFont", HTML_DEFAULT_VIEW_FANTASY_FONT));
+            // Resolve generic font family names
+            const QString serifFont = QFontInfo(QFont(QLatin1String(HTML_DEFAULT_VIEW_SERIF_FONT))).family();
+            const QString sansSerifFont = QFontInfo(QFont(QLatin1String(HTML_DEFAULT_VIEW_SANSSERIF_FONT))).family();
+            const QString cursiveFont = QFontInfo(QFont(QLatin1String(HTML_DEFAULT_VIEW_CURSIVE_FONT))).family();
+            const QString fantasyFont = QFontInfo(QFont(QLatin1String(HTML_DEFAULT_VIEW_FANTASY_FONT))).family();
+            d->defaultFonts.append(cgHtml.readEntry("SerifFont", serifFont));
+            d->defaultFonts.append(cgHtml.readEntry("SansSerifFont", sansSerifFont));
+            d->defaultFonts.append(cgHtml.readEntry("CursiveFont", cursiveFont));
+            d->defaultFonts.append(cgHtml.readEntry("FantasyFont", fantasyFont));
             d->defaultFonts.append(QString("0"));     // font size adjustment
         }
 
@@ -461,6 +466,15 @@ void KHTMLSettings::init(KConfig *config, bool reset)
         }
 
         d->fonts = cgHtml.readEntry("Fonts", QStringList());
+        const int fontsListLength = d->fonts.length();
+        // Resolve generic font family names
+        for (int i = 0; i < fontsListLength; ++i) {
+            const QString fontFamily = d->fonts.at(i);
+            if (!fontFamily.isEmpty()) {
+                d->fonts[i] = QFontInfo(QFont(fontFamily)).family();
+                //qWarning() << "Font family name:" << fontFamily << "resolved to:" << d->fonts.at(i);
+            }
+        }
 
         if (reset || cgHtml.hasKey("DefaultEncoding")) {
             d->m_encoding = cgHtml.readEntry("DefaultEncoding", "");
