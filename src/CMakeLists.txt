@@ -547,7 +547,7 @@ add_library(KF5::KHtml ALIAS KF5KHtml)
 
 generate_export_header(KF5KHtml BASE_NAME KHtml)
 
-target_include_directories(KF5KHtml INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KHtml>")
+target_include_directories(KF5KHtml INTERFACE "$<INSTALL_INTERFACE:${KF5_INCLUDE_INSTALL_DIR}/KHtml>")
 
 target_link_libraries(KF5KHtml
   PUBLIC
@@ -735,7 +735,7 @@ install(TARGETS khtmladaptorpart DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 ########### install files ###############
 
-install(TARGETS KF5KHtml EXPORT KF5KHtmlTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS KF5KHtml EXPORT KF5KHtmlTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/khtml_export.h
@@ -745,7 +745,7 @@ install(FILES
   khtmldefaults.h
   misc/kencodingdetector.h
   ${KHtml_HEADERS}
-  DESTINATION ${INCLUDE_INSTALL_DIR}/KHtml COMPONENT Devel
+  DESTINATION ${KF5_INCLUDE_INSTALL_DIR}/KHtml COMPONENT Devel
 )
 
 install(FILES
@@ -778,7 +778,7 @@ install(FILES
   dom/dom2_traversal.h
   dom/dom2_events.h
   dom/dom2_views.h
-  DESTINATION ${INCLUDE_INSTALL_DIR}/KHtml/dom COMPONENT Devel
+  DESTINATION ${KF5_INCLUDE_INSTALL_DIR}/KHtml/dom COMPONENT Devel
 )
 
 install(FILES khtml.desktop khtmlimage.desktop
