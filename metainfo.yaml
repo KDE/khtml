@@ -1,1 +1,9 @@
-tier: 4
+maintainer: sandsmark
+description: KHTML APIs
+tier: 3
+type: solution
+platforms:
+    - name: All
+portingAid: true
+deprecated: true
+release: true
