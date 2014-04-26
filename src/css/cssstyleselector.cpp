@@ -401,7 +401,7 @@ void CSSStyleSelector::loadDefaultStyle(const KHTMLSettings *s, DocumentImpl *do
     MediaQueryEvaluator printEval("print");
 
     {
-        QFile f(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "khtml/css/html4.css"));
+        QFile f(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kf5/khtml/css/html4.css"));
         f.open(QIODevice::ReadOnly);
 
         QByteArray file(f.size() + 1, 0);
@@ -436,7 +436,7 @@ void CSSStyleSelector::loadDefaultStyle(const KHTMLSettings *s, DocumentImpl *do
         s_defaultPrintStyle->append(s_defaultSheet, &printEval, doc->styleSelector());
     }
     {
-        QFile f(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "khtml/css/quirks.css"));
+        QFile f(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kf5/khtml/css/quirks.css"));
         f.open(QIODevice::ReadOnly);
 
         QByteArray file(f.size() + 1, 0);
@@ -457,7 +457,7 @@ void CSSStyleSelector::loadDefaultStyle(const KHTMLSettings *s, DocumentImpl *do
         s_defaultQuirksStyle->append(s_quirksSheet, &screenEval, doc->styleSelector());
     }
     {
-        QFile f(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "khtml/css/presentational.css"));
+        QFile f(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kf5/khtml/css/presentational.css"));
         f.open(QIODevice::ReadOnly);
 
         QByteArray file(f.size() + 1, 0);

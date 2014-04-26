@@ -787,7 +787,7 @@ install(FILES khtml.rc khtml_browser.rc  DESTINATION  ${DATA_INSTALL_DIR}/khtml 
 
 # install(FILES ${CMAKE_CURRENT_BINARY_DIR}/org.kde.KHtmlPart.xml DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} )
 
-install(FILES error.html DESTINATION ${DATA_INSTALL_DIR}/khtml )
+install(FILES error.html DESTINATION ${KF5_DATA_INSTALL_DIR}/khtml )
 
 install(FILES khtmlrc DESTINATION ${CONFIG_INSTALL_DIR} )
 

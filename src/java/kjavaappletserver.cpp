@@ -238,7 +238,7 @@ void KJavaAppletServer::setupJava(KJavaProcess *p)
     p->setJVMPath(jvm_path);
 
     // Prepare classpath variable
-    QString kjava_class = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kjava/kjava.jar");
+    QString kjava_class = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kf5/kjava/kjava.jar");
     // qDebug() << "kjava_class = " << kjava_class;
     if (kjava_class.isNull()) { // Should not happen
         return;

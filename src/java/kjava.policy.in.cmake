@@ -1,4 +1,4 @@
-grant codeBase "file:${DATA_INSTALL_DIR}/kjava/-"
+grant codeBase "file:${KF5_DATA_INSTALL_DIR}/kjava/-"
 {
     permission java.security.AllPermission;
 };

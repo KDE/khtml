@@ -1909,7 +1909,7 @@ void KHTMLPart::htmlError(int errorCode, const QString &text, const QUrl &reqUrl
     protocol = reqUrl.scheme();
     datetime = QDateTime::currentDateTime().toString(Qt::DefaultLocaleLongDate);
 
-    QString filename(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "khtml/error.html"));
+    QString filename(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kf5/khtml/error.html"));
     QFile file(filename);
     bool isOpened = file.open(QIODevice::ReadOnly);
     if (!isOpened) {
