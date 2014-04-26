@@ -943,7 +943,7 @@ void WebShortcutCreator::createFile(QString query, QString name, QString keys)
     // SearchProvider class is part of kdebase, so the file is written as
     // an standard desktop file.
     QString fileName(keys);
-    QString dir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/kde5/services/searchproviders";
+    QString dir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/kservices5/searchproviders";
     QDir().mkpath(dir);
     while (QFile::exists(dir + fileName + ".desktop")) {
         fileName += '_';
