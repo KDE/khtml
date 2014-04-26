@@ -3837,7 +3837,7 @@ void KHTMLPart::overURL(const QString &url, const QString &target, bool /*shiftP
                     QString flagImg = QLatin1String("<img src=%1>").arg(
                                           locate("locale", QLatin1String("l10n/")
                                                  + countryCode
-                                                 + QLatin1String("/flag.png")));
+                                                 + QLatin1String("/kf5_flag.png")));
                     emit setStatusBarText(flagImg + u.toDisplayString() + extra);
                 }
             }
