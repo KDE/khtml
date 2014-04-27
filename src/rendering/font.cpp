@@ -477,6 +477,8 @@ struct CachedFontFamilyKey { // basically, FontDef minus the size (and for now S
 
     CachedFontFamilyKey() {}
 
+    // resolvedFamily is not actually what it claims to be, as it comes from css style.
+    // e.g. it could be something like "foo,Open Sans,Impact"
     CachedFontFamilyKey(const QString &resolvedFamily, int weight, bool italic) :
         family(resolvedFamily), weight(weight), italic(italic)
     {}
@@ -555,16 +557,18 @@ CachedFontFamily *Font::queryFamily(const QString &name, int weight, bool italic
         QFont font(name);
         font.setItalic(italic);
         font.setWeight(weight);
-
+        // Use resolved family name to query font database
+        const QFontInfo fontInfo(font);
         QFontDatabase db;
-        QString styleString = db.styleString(font);
+        const QString resolvedFamily = fontInfo.family();
+        const QString styleString = db.styleString(fontInfo);
         f = new CachedFontFamily;
         f->def       = key;
-        f->scaleable = db.isSmoothlyScalable(font.family(), styleString);
+        f->scaleable = db.isSmoothlyScalable(resolvedFamily, styleString);
 
         if (!f->scaleable) {
             /* Cache size info */
-            f->sizes = db.smoothSizes(font.family(), styleString);
+            f->sizes = db.smoothSizes(resolvedFamily, styleString);
         }
 
         fontCache->insert(key, f);

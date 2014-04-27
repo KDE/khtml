@@ -109,7 +109,7 @@ class FontDef
 {
 public:
     FontDef()
-        : size(0), italic(false), smallCaps(false), weight(50) {}
+        : size(0), italic(false), smallCaps(false), weight(QFont::Normal/*50*/) {}
     bool operator == (const FontDef &other) const
     {
         return (family == other.family &&
