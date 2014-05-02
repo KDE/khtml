@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=KHTML Extension Adaptor
+Name[nl]=KHTML-extensie aanpassen
 Name[uk]=Адаптер розширень KHTML
 Name[x-test]=xxKHTML Extension Adaptorxx
 X-KDE-Library=khtmladaptorpart
