@@ -55,8 +55,8 @@ using namespace DOM;
 
 ValueList::~ValueList()
 {
-    unsigned numValues = m_values.size();
-    for (unsigned i = 0; i < numValues; i++)
+    const int numValues = m_values.size();
+    for (int i = 0; i < numValues; i++)
         if (m_values[i].unit == Value::Function) {
             delete m_values[i].function;
         }
@@ -497,7 +497,7 @@ bool CSSParser::parseValue(int propId, bool important)
 
     int id = value->id;
 
-    int num = inShorthand() ? 1 : valueList->size();
+    const int num = inShorthand() ? 1 : valueList->size();
 
     if (id == CSS_VAL_INHERIT) {
         if (num != 1) {
@@ -1596,7 +1596,7 @@ bool CSSParser::parse4Values(int propId, const int *properties,  bool important)
      * right, bottom, and left, respectively.
      */
 
-    int num = inShorthand() ? 1 : valueList->size();
+    const int num = inShorthand() ? 1 : valueList->size();
     //qDebug("parse4Values: num=%d %d", num,  valueList->numValues );
 
     ShorthandScope scope(this, propId);
@@ -1738,8 +1738,9 @@ bool CSSParser::parseContent(int propId, bool important)
 
 CSSValueImpl *CSSParser::parseCounterContent(ValueList *args, bool counters)
 {
-    if (counters || (args->size() != 1 && args->size() != 3))
-        if (!counters || (args->size() != 3 && args->size() != 5)) {
+    const int argsSize = args->size();
+    if (counters || (argsSize != 1 && argsSize != 3))
+        if (!counters || (argsSize != 3 && argsSize != 5)) {
             return 0;
         }
 
@@ -2139,8 +2140,9 @@ bool CSSParser::parseShape(int propId, bool important)
         return false;
     }
 
+    const int argsSize = args->size();
     // rect( t, r, b, l ) || rect( t r b l )
-    if (args->size() != 4 && args->size() != 7) {
+    if (argsSize != 4 && argsSize != 7) {
         return false;
     }
     RectImpl *rect = new RectImpl();
@@ -2169,7 +2171,7 @@ bool CSSParser::parseShape(int propId, bool important)
             rect->setLeft(length);
         }
         a = args->next();
-        if (a && args->size() == 7) {
+        if (a && argsSize == 7) {
             if (a->unit == Value::Operator && a->iValue == ',') {
                 a = args->next();
             } else {

@@ -100,7 +100,7 @@ public:
     {
         m_values.append(v);
     }
-    unsigned int size() const
+    int size() const
     {
         return m_values.size();
     }
