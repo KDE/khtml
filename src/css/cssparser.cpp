@@ -738,21 +738,10 @@ bool CSSParser::parseValue(int propId, bool important)
         }
         break;
 
-    case CSS_PROP_FONT_WEIGHT:  // normal | bold | bolder | lighter | 100 | 200 | 300 | 400 |
-        // 500 | 600 | 700 | 800 | 900 | inherit
-        if (id >= CSS_VAL_NORMAL && id <= CSS_VAL_900) {
-            // Already correct id
+    case CSS_PROP_FONT_WEIGHT: // normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | inherit
+        id = parseFontWeight(value, false);
+        if (id) {
             valid_primitive = true;
-        } else if (validUnit(value, FInteger | FNonNeg, false)) {
-            int weight = (int)value->fValue;
-            if ((weight % 100)) {
-                break;
-            }
-            weight /= 100;
-            if (weight >= 1 && weight <= 9) {
-                id = CSS_VAL_100 + weight - 1;
-                valid_primitive = true;
-            }
         }
         break;
     case CSS_PROP__KHTML_BORDER_TOP_RIGHT_RADIUS:
@@ -2193,82 +2182,40 @@ bool CSSParser::parseShape(int propId, bool important)
 // [ 'font-style' || 'font-variant' || 'font-weight' ]? 'font-size' [ / 'line-height' ]? 'font-family'
 bool CSSParser::parseFont(bool important)
 {
-//     qDebug() << "parsing font property current=" << valueList->currentValue;
-    bool valid = true;
     Value *value = valueList->current();
-    CSSValueListImpl *family = 0;
+    CSSValueListImpl* family = 0;
     CSSPrimitiveValueImpl *style = 0, *variant = 0, *weight = 0, *size = 0, *lineHeight = 0;
+
     // optional font-style, font-variant and font-weight
     while (value) {
-//         qDebug() << "got value " << value->id << " / " << (value->unit == CSSPrimitiveValue::CSS_STRING ||
-        //                                    value->unit == CSSPrimitiveValue::CSS_IDENT ? qString( value->string ) : QString() )
-//                         << endl;
-        int id = value->id;
-        if (id) {
-            if (id == CSS_VAL_NORMAL) {
-                // do nothing, it's the initial value for all three
-            }
-            /*
-              else if ( id == CSS_VAL_INHERIT ) {
-              // set all non set ones to inherit
-              // This is not that simple as the inherit could also apply to the following font-size.
-              // very ahrd to tell without looking ahead.
-              inherit = true;
-                } */
-            else if (id == CSS_VAL_ITALIC || id == CSS_VAL_OBLIQUE) {
-                if (style) {
-                    goto invalid;
-                }
-                style = new CSSPrimitiveValueImpl(id);
-            } else if (id == CSS_VAL_SMALL_CAPS) {
-                if (variant) {
-                    goto invalid;
-                }
-                variant = new CSSPrimitiveValueImpl(id);
-            } else if (id >= CSS_VAL_BOLD && id <= CSS_VAL_LIGHTER) {
-                if (weight) {
-                    goto invalid;
-                }
-                weight = new CSSPrimitiveValueImpl(id);
-            } else {
-                valid = false;
-            }
-        } else if (!weight && validUnit(value, FInteger | FNonNeg, true)) {
-            int w = (int)value->fValue;
-            int val = 0;
-            if (w == 100) {
-                val = CSS_VAL_100;
-            } else if (w == 200) {
-                val = CSS_VAL_200;
-            } else if (w == 300) {
-                val = CSS_VAL_300;
-            } else if (w == 400) {
-                val = CSS_VAL_400;
-            } else if (w == 500) {
-                val = CSS_VAL_500;
-            } else if (w == 600) {
-                val = CSS_VAL_600;
-            } else if (w == 700) {
-                val = CSS_VAL_700;
-            } else if (w == 800) {
-                val = CSS_VAL_800;
-            } else if (w == 900) {
-                val = CSS_VAL_900;
-            }
+        //qWarning() << "got value" << value->id << "/" <<
+        //(value->unit == CSSPrimitiveValue::CSS_STRING || value->unit == CSSPrimitiveValue::CSS_IDENT ? qString(value->string) : QString());
+        const int id = value->id;
 
-            if (val) {
-                weight = new CSSPrimitiveValueImpl(val);
-            } else {
-                valid = false;
+        if (id == CSS_VAL_NORMAL) {
+            // do nothing, it's the initial value for all three
+        } else if (id == CSS_VAL_ITALIC || id == CSS_VAL_OBLIQUE) {
+            if (style) {
+                goto invalid;
             }
+            style = new CSSPrimitiveValueImpl(id);
+        } else if (id == CSS_VAL_SMALL_CAPS) {
+            if (variant) {
+                goto invalid;
+            }
+            variant = new CSSPrimitiveValueImpl(id);
+        } else if (int weightValueId = parseFontWeight(value, true)) {
+            if (weight) {
+                goto invalid;
+            }
+            weight = new CSSPrimitiveValueImpl(weightValueId);
         } else {
-            valid = false;
-        }
-        if (!valid) {
             break;
         }
+
         value = valueList->next();
     }
+
     if (!value) {
         goto invalid;
     }
@@ -2284,21 +2231,25 @@ bool CSSParser::parseFont(bool important)
         weight = new CSSPrimitiveValueImpl(CSS_VAL_NORMAL);
     }
 
-//     qDebug() << "  got style, variant and weight current=" << valueList->currentValue;
+    //qWarning() << "parsed style, variant, weight:" << style->cssText() << variant->cssText() << weight->cssText();
 
-    // now a font size _must_ come
+    // now a font-size _must_ come
     // <absolute-size> | <relative-size> | <length> | <percentage> | inherit
     if (value->id >= CSS_VAL_XX_SMALL && value->id <= CSS_VAL_LARGER) {
         size = new CSSPrimitiveValueImpl(value->id);
     } else if (validUnit(value, FLength | FPercent, strict)) {
         size = new CSSPrimitiveValueImpl(value->fValue, (CSSPrimitiveValue::UnitTypes) value->unit);
     }
-    value = valueList->next();
-    if (!size || !value) {
+    if (!size) {
         goto invalid;
     }
+    //qWarning() << "parsed size:" << size->cssText();
 
-    // qDebug() << "  got size";
+    // now /line-height could come, next font-family _must_ come
+    value = valueList->next();
+    if (!value) {
+        goto invalid;
+    }
 
     if (value->unit == Value::Operator && value->iValue == '/') {
         // line-height
@@ -2318,18 +2269,19 @@ bool CSSParser::parseFont(bool important)
             goto invalid;
         }
     }
+    // if undefined set to default
     if (!lineHeight) {
         lineHeight = new CSSPrimitiveValueImpl(CSS_VAL_NORMAL);
     }
+    //qWarning() << "parsed line-height:" << lineHeight->cssText();
 
-//     qDebug() << "  got line height current=" << valueList->currentValue;
-    // font family must come now
+    // font-family _must_ come now
     family = parseFontFamily();
 
     if (valueList->current() || !family) {
         goto invalid;
     }
-    //qDebug() << "  got family, parsing ok!";
+    //qWarning() << "parsed family:" << family->cssText();
 
     addProperty(CSS_PROP_FONT_FAMILY,  family,     important);
     addProperty(CSS_PROP_FONT_STYLE,   style,      important);
@@ -2340,7 +2292,7 @@ bool CSSParser::parseFont(bool important)
     return true;
 
 invalid:
-    //qDebug() << "   -> invalid";
+    //qWarning() << " -> invalid";
     delete family;
     delete style;
     delete variant;
@@ -2349,6 +2301,27 @@ invalid:
     delete lineHeight;
 
     return false;
+}
+
+int CSSParser::parseFontWeight(Value *val, bool strict)
+{
+    const int valId = val->id;
+    if (valId >= CSS_VAL_NORMAL && valId <= CSS_VAL_900) {
+        // Valid primitive
+        return valId;
+    }
+    if (validUnit(val, FInteger | FNonNeg, strict)) {
+        int weight = static_cast<int>(val->fValue);
+        if ((weight % 100)) {
+            // Invalid
+            return 0;
+        }
+        weight /= 100;
+        if (weight >= 1 && weight <= 9) {
+            return (CSS_VAL_100 + weight - 1);
+        }
+    }
+    return 0;
 }
 
 CSSValueListImpl *CSSParser::parseFontFamily()

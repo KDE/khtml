@@ -194,6 +194,9 @@ public:
     bool parseFontFaceSrc();
     bool parseCounter(int propId, bool increment, bool important);
 
+    // returns parsed font-weight's css value id if valid, otherwise 0 (CSS_VAL_INVALID)
+    int parseFontWeight(Value *val, bool strict);
+
     bool parseColorParameters(Value *, int *colorValues, bool parseAlpha);
     bool parseHSLParameters(Value *, double *colorValues, bool parseAlpha);
 
