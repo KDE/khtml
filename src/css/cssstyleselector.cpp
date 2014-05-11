@@ -2784,39 +2784,65 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
             fontDef.weight = parentStyle->htmlFont().fontDef.weight;
         } else if (isInitial) {
             fontDef.weight = QFont::Normal;
-        } else {
-            if (!primitiveValue) {
+        } else if (primitiveValue) {
+            // Map CSS weights into available QFont::Weight
+            switch (primitiveValue->getIdent()) {
+            case CSS_VAL_100:
+            case CSS_VAL_200:
+            case CSS_VAL_300:
+                fontDef.weight = QFont::Light; // 25
+                break;
+            case CSS_VAL_NORMAL:
+            case CSS_VAL_400:
+            case CSS_VAL_500:
+                fontDef.weight = QFont::Normal; // 50
+                break;
+            case CSS_VAL_600:
+                fontDef.weight = QFont::DemiBold; // 63
+                break;
+            case CSS_VAL_BOLD:
+            case CSS_VAL_700:
+                fontDef.weight = QFont::Bold; // 75
+                break;
+            case CSS_VAL_800:
+            case CSS_VAL_900:
+                fontDef.weight = QFont::Black; // 87
+                break;
+            case CSS_VAL_BOLDER: {
+                // FIXME: Should return the next heaviest weight available for current family
+                const unsigned int inheritedWeight = parentStyle->htmlFont().fontDef.weight;
+                if (inheritedWeight < QFont::Normal) {
+                    fontDef.weight = QFont::Normal;
+                } else if (inheritedWeight < QFont::DemiBold) {
+                    fontDef.weight = QFont::DemiBold;
+                } else if (inheritedWeight < QFont::Bold) {
+                    fontDef.weight = QFont::Bold;
+                } else {
+                    fontDef.weight = QFont::Black;
+                }
+            }
+                break;
+            case CSS_VAL_LIGHTER: {
+                // FIXME: Should return the next lightest weight available for current family
+                const unsigned int inheritedWeight = parentStyle->htmlFont().fontDef.weight;
+                if (inheritedWeight > QFont::Bold) {
+                    fontDef.weight = QFont::Bold;
+                } else if (inheritedWeight > QFont::DemiBold) {
+                    fontDef.weight = QFont::DemiBold;
+                } else if (inheritedWeight > QFont::Normal) {
+                    fontDef.weight = QFont::Normal;
+                } else {
+                    fontDef.weight = QFont::Light;
+                }
+            }
+                break;
+            default:
                 return;
             }
-            if (primitiveValue->getIdent()) {
-                switch (primitiveValue->getIdent()) {
-                // ### we just support normal and bold fonts at the moment...
-                // setWeight can actually accept values between 0 and 99...
-                case CSS_VAL_BOLD:
-                case CSS_VAL_BOLDER:
-                case CSS_VAL_600:
-                case CSS_VAL_700:
-                case CSS_VAL_800:
-                case CSS_VAL_900:
-                    fontDef.weight = QFont::Bold;
-                    break;
-                case CSS_VAL_NORMAL:
-                case CSS_VAL_LIGHTER:
-                case CSS_VAL_100:
-                case CSS_VAL_200:
-                case CSS_VAL_300:
-                case CSS_VAL_400:
-                case CSS_VAL_500:
-                    fontDef.weight = QFont::Normal;
-                    break;
-                default:
-                    return;
-                }
-            } else {
-                // ### fix parsing of 100-900 values in parser, apply them here
-            }
+        } else {
+            return;
         }
-        fontDirty |= style->setFontDef(fontDef);
+        fontDirty |= style->setFontDef( fontDef );
         break;
     }
 
