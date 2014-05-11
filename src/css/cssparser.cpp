@@ -1275,10 +1275,10 @@ bool CSSParser::parseValue(int propId, bool important)
         if (id >= CSS_VAL_CAPTION && id <= CSS_VAL_STATUS_BAR) {
             valid_primitive = true;
         } else {
+            ShorthandScope scope(this, CSS_PROP_FONT);
             return parseFont(important);
         }
         break;
-
     case CSS_PROP_LIST_STYLE: {
         const int properties[3] = { CSS_PROP_LIST_STYLE_TYPE, CSS_PROP_LIST_STYLE_POSITION,
                                     CSS_PROP_LIST_STYLE_IMAGE
@@ -2337,12 +2337,17 @@ CSSValueListImpl *CSSParser::parseFontFamily()
 //                             value->unit == CSSPrimitiveValue::CSS_IDENT ? qString( value->string ) : QString() )
 //                         << endl;
         Value *nextValue = valueList->next();
-        bool nextValBreaksFont = !nextValue ||
-                                 (nextValue->unit == Value::Operator && nextValue->iValue == ',');
+        bool nextValBreaksFont = !nextValue || (nextValue->unit == Value::Operator && nextValue->iValue == ',');
         bool nextValIsFontName = nextValue &&
                                  ((nextValue->id >= CSS_VAL_SERIF && nextValue->id <= CSS_VAL_MONOSPACE) ||
                                   (nextValue->unit == CSSPrimitiveValue::CSS_STRING ||
                                    nextValue->unit == CSSPrimitiveValue::CSS_IDENT));
+
+        if (value->id == CSS_VAL_INHERIT && inShorthand() && currFace.isNull() && nextValBreaksFont) {
+            // fail (#169610)
+            delete list;
+            return 0;
+        }
 
         if (value->id >= CSS_VAL_SERIF && value->id <= CSS_VAL_MONOSPACE) {
             if (!currFace.isNull()) {
