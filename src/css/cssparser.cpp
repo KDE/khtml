@@ -2183,7 +2183,7 @@ bool CSSParser::parseShape(int propId, bool important)
 bool CSSParser::parseFont(bool important)
 {
     Value *value = valueList->current();
-    CSSValueListImpl* family = 0;
+    CSSValueListImpl *family = 0;
     CSSPrimitiveValueImpl *style = 0, *variant = 0, *weight = 0, *size = 0, *lineHeight = 0;
 
     // optional font-style, font-variant and font-weight
