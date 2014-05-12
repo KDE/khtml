@@ -42,8 +42,10 @@ ecm_setup_version(${KF5_VERSION} VARIABLE_PREFIX KHTML
 find_package(Perl)
 set_package_properties(Perl PROPERTIES URL "http://www.perl.org" TYPE REQUIRED PURPOSE "Needed for building kdelibs")
 
-find_package(X11)
-set(HAVE_X11 ${X11_FOUND})
+if(NOT APPLE)
+  find_package(X11)
+  set(HAVE_X11 ${X11_FOUND})
+endif()
 
 find_package(Phonon4Qt5 4.6.60 REQUIRED NO_MODULE)
 
@@ -68,7 +70,7 @@ set_package_properties(PNG PROPERTIES DESCRIPTION "PNG image format support"
                        PURPOSE "Required by khtml"
                       )
 
-if(NOT WIN32 AND X11_FOUND)
+if(NOT WIN32 AND NOT APPLE AND X11_FOUND)
     find_package(Qt5 5.2.0 CONFIG REQUIRED X11Extras)
 endif()
 

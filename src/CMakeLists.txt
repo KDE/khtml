@@ -563,7 +563,6 @@ target_link_libraries(KF5KHtml
     ${PNG_LIBRARIES}
     ${X11_LIBRARIES}
     Qt5::PrintSupport
-    Qt5::X11Extras
     KF5::Archive
     KF5::SonnetCore
     KF5::WidgetsAddons
@@ -575,6 +574,10 @@ target_link_libraries(KF5KHtml
     KF5::KIOWidgets # KUrlRequester
     KF5::GlobalAccel
 )
+if(NOT APPLE)
+  target_link_libraries(KF5KHtml PRIVATE Qt5::X11Extras)
+endif()
+
 if (KJS_DEBUGGER)
   target_link_libraries(KF5KHtml PRIVATE KF5::KTextEditor)
 endif()
