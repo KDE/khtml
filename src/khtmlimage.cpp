@@ -43,7 +43,7 @@ KAboutData *KHTMLImageFactory::s_aboutData = 0;
 
 KHTMLImageFactory::KHTMLImageFactory()
 {
-    s_aboutData = new KAboutData("khtmlimage", QString(), i18n("KHTML Image"), QStringLiteral(KHTML_VERSION_STRING));
+    s_aboutData = new KAboutData("khtmlimage", i18n("KHTML Image"), QStringLiteral(KHTML_VERSION_STRING));
 }
 
 KHTMLImageFactory::~KHTMLImageFactory()

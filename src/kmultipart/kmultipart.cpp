@@ -37,10 +37,10 @@
 
 static KAboutData kmultipartAboutData()
 {
-    KAboutData aboutData("kmultipart", QString(), i18n("KMultiPart"),
+    KAboutData aboutData("kmultipart", i18n("KMultiPart"),
                          "0.1",
                          i18n("Embeddable component for multipart/mixed"),
-                         KAboutData::License_GPL,
+                         KAboutLicense::GPL,
                          i18n("Copyright 2001-2011, David Faure <email>faure@kde.org</email>"));
     return aboutData;
 }

@@ -200,9 +200,9 @@ const KAboutData &KHTMLGlobal::aboutData()
     assert(s_self);
 
     if (!s_about) {
-        s_about = new KAboutData("khtml", 0, i18n("KHTML"), QStringLiteral(KHTML_VERSION_STRING),
+        s_about = new KAboutData("khtml", i18n("KHTML"), QStringLiteral(KHTML_VERSION_STRING),
                                  i18n("Embeddable HTML component"),
-                                 KAboutData::License_LGPL);
+                                 KAboutLicense::LGPL);
         s_about->addAuthor(QStringLiteral("Lars Knoll"), QString(), "knoll@kde.org");
         s_about->addAuthor(QStringLiteral("Antti Koivisto"), QString(), "koivisto@kde.org");
         s_about->addAuthor(QStringLiteral("Waldo Bastian"), QString(), "bastian@kde.org");

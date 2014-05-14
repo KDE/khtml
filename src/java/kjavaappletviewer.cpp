@@ -56,7 +56,7 @@ KIconLoader *KJavaAppletViewerFactory::s_iconLoader = 0;
 
 KJavaAppletViewerFactory::KJavaAppletViewerFactory()
 {
-    s_aboutData = new KAboutData("KJavaAppletViewer", QString(), i18n("KDE Java Applet Plugin"), "1.0");
+    s_aboutData = new KAboutData("KJavaAppletViewer", i18n("KDE Java Applet Plugin"), "1.0");
     s_iconLoader = new KIconLoader("kjava");
 }
 
