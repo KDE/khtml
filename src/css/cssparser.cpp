@@ -2907,6 +2907,7 @@ static inline int yyerror(const char *str)
     return 1;
 }
 
+static const qreal dIntMax = INT_MAX;
 #define END 0
 
 #include "parser.h"
@@ -2992,8 +2993,8 @@ int DOM::CSSParser::lex(void *_yylval)
         length--;
     case FLOAT:
     case INTEGER:
-        yylval->val = QString((QChar *)t, length).toDouble();
-        //qDebug("value = %s, converted=%.2f", QString( (QChar *)t, length ).toLatin1().constData(), yylval->val );
+        yylval->val = qMin(QString((QChar *)t, length).toDouble(), dIntMax);
+        //qDebug("value = %s, converted=%.2f", QString((QChar *)t, length).toLatin1().constData(), yylval->val);
         break;
 
     default:

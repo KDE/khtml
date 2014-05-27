@@ -57,12 +57,12 @@ using namespace DOM;
 #include "cssproperties.c"
 #include "cssvalues.c"
 
-static QHash<QString,int>* sCompatibleProperties = 0;
+static QHash<QString,int> *sCompatibleProperties = 0;
 
 static const int sMinCompatPropLen = 21; // shortest key in the hash below
 
 static void initCompatibleProperties() {
-     QHash<QString,int>*& cp = sCompatibleProperties;
+     QHash<QString,int> *&cp = sCompatibleProperties;
      // Hash of (Property name, Vendor Prefix length)
      cp = new QHash<QString, int>;
      cp->insert("-webkit-background-clip", 7);
@@ -79,8 +79,9 @@ int DOM::getPropertyID(const char *tagStr, int len)
 {
     { // HTML CSS Properties
         const struct css_prop *prop = findProp(tagStr, len);
-        if (!prop)
+        if (!prop) {
             return 0;
+        }
 
         return prop->id;
     }
@@ -90,8 +91,9 @@ int DOM::getValueID(const char *tagStr, int len)
 {
     { // HTML CSS Values
         const struct css_value *val = findValue(tagStr, len);
-        if (!val)
+        if (!val) {
             return 0;
+        }
 
         return val->id;
     }
@@ -111,13 +113,13 @@ int DOM::getValueID(const char *tagStr, int len)
 %union {
     CSSRuleImpl *rule;
     CSSSelector *selector;
-    QList<CSSSelector*> *selectorList;
+    QList<CSSSelector *> *selectorList;
     bool ok;
     MediaListImpl *mediaList;
     CSSMediaRuleImpl *mediaRule;
     CSSRuleListImpl *ruleList;
     ParseString string;
-    float val;
+    double val;
     int prop_id;
     unsigned int attribute;
     unsigned int element;
@@ -128,26 +130,26 @@ int DOM::getValueID(const char *tagStr, int len)
     Value value;
     ValueList *valueList;
 
-    khtml::MediaQuery* mediaQuery;
-    khtml::MediaQueryExp* mediaQueryExp;
-    QList<khtml::MediaQueryExp*>* mediaQueryExpList;
+    khtml::MediaQuery *mediaQuery;
+    khtml::MediaQueryExp *mediaQueryExp;
+    QList<khtml::MediaQueryExp *> *mediaQueryExpList;
     khtml::MediaQuery::Restrictor mediaQueryRestrictor;
 }
 
 %{
 
-static inline int cssyyerror(const char *x )
+static inline int cssyyerror(const char *x)
 {
 #ifdef CSS_DEBUG
-    qDebug( "%s", x );
+    qDebug("%s", x);
 #else
-    Q_UNUSED( x );
+    Q_UNUSED(x);
 #endif
     return 1;
 }
 
-static int cssyylex( YYSTYPE *yylval ) {
-    return CSSParser::current()->lex( yylval );
+static int cssyylex(YYSTYPE *yylval) {
+    return CSSParser::current()->lex(yylval);
 }
 
 #define null 1
@@ -566,7 +568,7 @@ maybe_media_restrictor:
 media_query:
     media_query_exp_list {
         $$ = new khtml::MediaQuery(khtml::MediaQuery::None, "all", $1);
-    }                    
+    }
     | maybe_media_restrictor maybe_space medium maybe_and_media_query_exp_list {
         $$ = new khtml::MediaQuery($1, domString($3).lower(), $4);
     }
