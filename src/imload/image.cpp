@@ -376,7 +376,7 @@ PixmapPlane *Image::getSize(QSize size)
         return original;
     }
 
-    return scaled[trSize(size)];
+    return scaled.value(trSize(size));
 }
 
 void Image::derefSize(QSize size)
@@ -388,7 +388,7 @@ void Image::derefSize(QSize size)
     }
 
     QPair<int, int> key = trSize(size);
-    PixmapPlane *plane = scaled[key];
+    PixmapPlane *plane = scaled.value(key);
     --plane->refCount;
     if (plane->refCount == 0) {
         delete plane;
@@ -405,7 +405,7 @@ void Image::refSize(QSize size)
     }
 
     QPair<int, int> key = trSize(size);
-    PixmapPlane *plane = scaled[key];
+    PixmapPlane *plane = scaled.value(key);
     if (plane) {
         ++plane->refCount;
     } else {

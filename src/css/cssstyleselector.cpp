@@ -3803,7 +3803,7 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
         if (!primitiveValue || primitiveValue->primitiveType() != CSSPrimitiveValue::CSS_NUMBER) {
             return;
         }
-        style->setWidows((int)primitiveValue->floatValue(CSSPrimitiveValue::CSS_NUMBER));
+        style->setWidows((short)primitiveValue->floatValue(CSSPrimitiveValue::CSS_NUMBER));
         break;
     }
 
@@ -3812,7 +3812,7 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
         if (!primitiveValue || primitiveValue->primitiveType() != CSSPrimitiveValue::CSS_NUMBER) {
             return;
         }
-        style->setOrphans((int)primitiveValue->floatValue(CSSPrimitiveValue::CSS_NUMBER));
+        style->setOrphans((short)primitiveValue->floatValue(CSSPrimitiveValue::CSS_NUMBER));
         break;
     }
 
