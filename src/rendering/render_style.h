@@ -343,8 +343,8 @@ public:
 
     EBoxSizing box_sizing;
 
-    signed int z_index : 31;
-    bool z_auto        : 1;
+    int z_index;
+    bool z_auto;
 };
 
 //------------------------------------------------
@@ -2183,7 +2183,7 @@ public:
 
     int zIndex() const
     {
-        return box->z_auto ? 0 : box->z_index;
+        return box->z_index;
     }
     void setZIndex(int v)
     {
@@ -2197,6 +2197,7 @@ public:
     void setHasAutoZIndex()
     {
         SET_VAR(box, z_auto, true);
+        SET_VAR(box, z_index, 0);
     }
 
     void setWidows(short w)
