@@ -3775,8 +3775,17 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
     }
 
     case CSS_PROP_Z_INDEX: {
-        HANDLE_INHERIT_ON_NONINHERITED_PROPERTY(zIndex, ZIndex)
-        else if (isInitial) {
+        if (isInherit) {
+            style->setInheritedNoninherited(true);
+            if (parentStyle->hasAutoZIndex()) {
+                style->setHasAutoZIndex();
+            } else {
+                style->setZIndex(parentStyle->zIndex());
+            }
+            return;
+        }
+
+        if (isInitial) {
             style->setHasAutoZIndex();
             return;
         }
