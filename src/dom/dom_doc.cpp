@@ -355,10 +355,15 @@ Attr Document::createAttributeNS(const DOMString &namespaceURI, const DOMString 
 
 EntityReference Document::createEntityReference(const DOMString &name)
 {
-    if (impl) {
-        return ((DocumentImpl *)impl)->createEntityReference(name);
+    if (!impl) {
+        return 0;
     }
-    return 0;
+    int exceptioncode = 0;
+    EntityReferenceImpl *er = ((DocumentImpl *)impl)->createEntityReference(name, exceptioncode);
+    if (exceptioncode) {
+        throw DOMException(exceptioncode);
+    }
+    return er;
 }
 
 Element Document::getElementById(const DOMString &elementId) const

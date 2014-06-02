@@ -1134,7 +1134,7 @@ JSValue *DOMDocumentProtoFunc::callAsFunction(ExecState *exec, JSObject *thisObj
     case DOMDocument::CreateAttribute:
         return getDOMNode(exec, doc.createAttribute(s, exception));
     case DOMDocument::CreateEntityReference:
-        return getDOMNode(exec, doc.createEntityReference(args[0]->toString(exec).domString()));
+        return getDOMNode(exec, doc.createEntityReference(args[0]->toString(exec).domString(), exception));
     case DOMDocument::GetElementsByTagName:
         return getDOMNodeList(exec, doc.getElementsByTagName(s));
     case DOMDocument::ImportNode: // DOM2

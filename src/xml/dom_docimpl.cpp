@@ -682,8 +682,12 @@ ProcessingInstructionImpl *DocumentImpl::createProcessingInstruction(const DOMSt
     return new ProcessingInstructionImpl(docPtr(), target, data);
 }
 
-EntityReferenceImpl *DocumentImpl::createEntityReference(const DOMString &name)
+EntityReferenceImpl *DocumentImpl::createEntityReference(const DOMString &name, int &exceptioncode)
 {
+    if (isHTMLDocument()) {
+        exceptioncode = DOMException::NOT_SUPPORTED_ERR;
+        return 0;
+    }
     return new EntityReferenceImpl(docPtr(), name.implementation());
 }
 
@@ -733,7 +737,7 @@ NodeImpl *DocumentImpl::importNode(NodeImpl *importedNode, bool deep, int &excep
         result = createCDATASection(static_cast<CDATASectionImpl *>(importedNode)->string(), exceptioncode);
         deep = false;
     } else if (importedNode->nodeType() == Node::ENTITY_REFERENCE_NODE) {
-        result = createEntityReference(importedNode->nodeName());
+        result = createEntityReference(importedNode->nodeName(), exceptioncode);
     } else if (importedNode->nodeType() == Node::PROCESSING_INSTRUCTION_NODE) {
         result = createProcessingInstruction(importedNode->nodeName(), importedNode->nodeValue().implementation());
         deep = false;

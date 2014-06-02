@@ -232,7 +232,7 @@ public:
     CommentImpl *createComment(DOMStringImpl *data);
     CDATASectionImpl *createCDATASection(DOMStringImpl *data, int &exceptioncode);
     ProcessingInstructionImpl *createProcessingInstruction(const DOMString &target, DOMStringImpl *data);
-    EntityReferenceImpl *createEntityReference(const DOMString &name);
+    EntityReferenceImpl *createEntityReference(const DOMString &name, int &exceptioncode);
     NodeImpl *importNode(NodeImpl *importedNode, bool deep, int &exceptioncode);
     virtual ElementImpl *createElementNS(const DOMString &_namespaceURI, const DOMString &_qualifiedName,
                                          int *pExceptioncode = 0);
