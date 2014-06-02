@@ -42,7 +42,6 @@
 #include <khtmlview.h>
 #include <khtml_part.h>
 #include <xml/dom_docimpl.h>
-#include <css/csshelper.h>
 #include <ecma/kjs_proxy.h>
 #include <kcharsets.h>
 #include <ctype.h>
@@ -452,12 +451,13 @@ void HTMLTokenizer::scriptHandler()
         CachedScript *cs = 0;
 
         // forget what we just got, load from src url instead
-        if (!currentScriptSrc.isEmpty() && javascript &&
-                (cs = parser->doc()->docLoader()->requestScript(currentScriptSrc, scriptSrcCharset))) {
-            cachedScript.enqueue(cs);
+        if (!currentScriptSrc.isEmpty() && javascript) {
+            const QString completeScriptUrl = parser->doc()->completeURL(currentScriptSrc);
+            cs = parser->doc()->docLoader()->requestScript(completeScriptUrl, scriptSrcCharset);
         }
 
         if (cs) {
+            cachedScript.enqueue(cs);
             pendingQueue.push(src);
             int scriptCount = cachedScript.count();
             setSrc(TokenizerString());
@@ -466,7 +466,7 @@ void HTMLTokenizer::scriptHandler()
             if (cachedScript.count() == scriptCount) {
                 deferredScript = true;
             }
-        } else if (currentScriptSrc.isEmpty() && view && javascript) {
+        } else if (currentScriptSrc.isNull()/*no src attribute*/ && view && javascript) {
             pendingQueue.push(src);
             setSrc(TokenizerString());
             rawContentSize = rawContentResync = 0;
@@ -1494,7 +1494,7 @@ void HTMLTokenizer::parseTag(TokenizerString &src)
                         parser->doc()->view()->part()->jScriptEnabled() /* jscript allowed at all? */
                    ) {
                     if ((a = currToken.attrs->getValue(ATTR_SRC))) {
-                        scriptSrc = parser->doc()->completeURL(khtml::parseURL(DOMString(a)).string());
+                        scriptSrc = DOMString(a).string().trimmed();
                     }
                     if ((a = currToken.attrs->getValue(ATTR_CHARSET))) {
                         scriptSrcCharset = DOMString(a).string().trimmed();
