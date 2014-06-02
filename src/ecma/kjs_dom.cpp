@@ -1127,7 +1127,7 @@ JSValue *DOMDocumentProtoFunc::callAsFunction(ExecState *exec, JSObject *thisObj
     case DOMDocument::CreateComment:
         return getDOMNode(exec, doc.createComment(s.implementation()));
     case DOMDocument::CreateCDATASection:
-        return getDOMNode(exec, doc.createCDATASection(s.implementation())); /* TODO: okay ? */
+        return getDOMNode(exec, doc.createCDATASection(s.implementation(), exception));
     case DOMDocument::CreateProcessingInstruction:
         return getDOMNode(exec, doc.createProcessingInstruction(args[0]->toString(exec).domString(),
                           args[1]->toString(exec).domString().implementation()));

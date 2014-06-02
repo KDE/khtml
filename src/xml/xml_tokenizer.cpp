@@ -268,8 +268,9 @@ bool XMLHandler::startCDATA()
         exitText();
     }
 
-    NodeImpl *newNode = m_doc->createCDATASection(new DOMStringImpl(""));
-    if (currentNode()->addChild(newNode)) {
+    int exceptioncode = 0;
+    NodeImpl *newNode = m_doc->createCDATASection(new DOMStringImpl(""), exceptioncode);
+    if (!exceptioncode && currentNode()->addChild(newNode)) {
         if (m_view && !newNode->attached() && !m_doc->hasPendingSheets()) {
             newNode->attach();
         }

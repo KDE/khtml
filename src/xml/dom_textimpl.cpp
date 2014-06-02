@@ -659,7 +659,8 @@ unsigned short CDATASectionImpl::nodeType() const
 
 WTF::PassRefPtr<NodeImpl> CDATASectionImpl::cloneNode(bool /*deep*/)
 {
-    return document()->createCDATASection(str);
+    int ec = 0;
+    return document()->createCDATASection(str, ec);
 }
 
 // DOM Section 1.1.1

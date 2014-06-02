@@ -668,8 +668,12 @@ CommentImpl *DocumentImpl::createComment(DOMStringImpl *data)
     return new CommentImpl(docPtr(), data);
 }
 
-CDATASectionImpl *DocumentImpl::createCDATASection(DOMStringImpl *data)
+CDATASectionImpl *DocumentImpl::createCDATASection(DOMStringImpl *data, int &exceptioncode)
 {
+    if (isHTMLDocument()) {
+        exceptioncode = DOMException::NOT_SUPPORTED_ERR;
+        return 0;
+    }
     return new CDATASectionImpl(docPtr(), data);
 }
 
@@ -726,7 +730,7 @@ NodeImpl *DocumentImpl::importNode(NodeImpl *importedNode, bool deep, int &excep
         result = createTextNode(static_cast<TextImpl *>(importedNode)->string());
         deep = false;
     } else if (importedNode->nodeType() == Node::CDATA_SECTION_NODE) {
-        result = createCDATASection(static_cast<CDATASectionImpl *>(importedNode)->string());
+        result = createCDATASection(static_cast<CDATASectionImpl *>(importedNode)->string(), exceptioncode);
         deep = false;
     } else if (importedNode->nodeType() == Node::ENTITY_REFERENCE_NODE) {
         result = createEntityReference(importedNode->nodeName());

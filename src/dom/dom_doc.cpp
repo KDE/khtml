@@ -302,11 +302,15 @@ Comment Document::createComment(const DOMString &data)
 
 CDATASection Document::createCDATASection(const DOMString &data)
 {
-    // ### DOM1 spec says raise exception if html documents - what about XHTML documents?
-    if (impl) {
-        return ((DocumentImpl *)impl)->createCDATASection(data.implementation());
+    if (!impl) {
+        return 0;
     }
-    return 0;
+    int exceptioncode = 0;
+    CDATASectionImpl *d = ((DocumentImpl *)impl)->createCDATASection(data.implementation(), exceptioncode);
+    if (exceptioncode) {
+        throw DOMException(exceptioncode);
+    }
+    return d;
 }
 
 ProcessingInstruction Document::createProcessingInstruction(const DOMString &target, const DOMString &data)
