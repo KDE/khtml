@@ -713,7 +713,7 @@ ecm_generate_headers(KHtml_HEADERS
   REQUIRED_HEADERS KHtml_HEADERS
 )
 
-install(TARGETS khtmlpart  DESTINATION ${PLUGIN_INSTALL_DIR} )
+install(TARGETS khtmlpart  DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/parts)
 
 
 ########### next target ###############
@@ -725,7 +725,7 @@ add_library(khtmlimagepart MODULE khtmlimage_init.cpp)
 
 target_link_libraries(khtmlimagepart KF5::KHtml KF5::WidgetsAddons KF5::XmlGui KF5::TextWidgets KF5::Parts KF5::I18n)
 
-install(TARGETS khtmlimagepart  DESTINATION ${PLUGIN_INSTALL_DIR} )
+install(TARGETS khtmlimagepart  DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/parts)
 
 ########### next target ###############
 
@@ -733,7 +733,7 @@ add_library(khtmladaptorpart MODULE khtmladaptorpart.cpp)
 
 target_link_libraries(khtmladaptorpart KF5::Parts KF5::JS KF5::I18n KF5::XmlGui)
 
-install(TARGETS khtmladaptorpart DESTINATION ${PLUGIN_INSTALL_DIR} )
+install(TARGETS khtmladaptorpart DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/parts)
 
 
 ########### install files ###############

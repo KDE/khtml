@@ -92,4 +92,4 @@ Name[zh_CN]=可嵌入的 multipart/mixed 组件
 Name[zh_HK]=multipart/mixed 的可嵌入元件
 Name[zh_TW]=multipart/mixed 的可嵌入元件
 X-KDE-ServiceTypes=KParts/ReadOnlyPart
-X-KDE-Library=libkmultipart
+X-KDE-Library=kf5/parts/kmultipart
