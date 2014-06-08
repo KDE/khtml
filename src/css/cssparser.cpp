@@ -2907,7 +2907,7 @@ static inline int yyerror(const char *str)
     return 1;
 }
 
-static const qreal dIntMax = INT_MAX;
+static const double dIntMax = INT_MAX;
 #define END 0
 
 #include "parser.h"
