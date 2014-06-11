@@ -361,16 +361,26 @@ public:
         }
 
         if (DGifSlurp(file) == GIF_ERROR) {
+#if GIFLIB_MAJOR >= 5 && GIFLIB_MINOR >= 1
+            DGifCloseFile(file, &errorCode);
+            return errorCode;
+#else
             DGifCloseFile(file);
             return Error;
+#endif
         }
 
         //We use canvas size only for animations
         if (file->ImageCount > 1) {
             // Verify it..
             if (!ImageManager::isAcceptableSize(file->SWidth, file->SHeight)) {
+#if GIFLIB_MAJOR >= 5 && GIFLIB_MINOR >= 1
+                DGifCloseFile(file, &errorCode);
+                return errorCode;
+#else
                 DGifCloseFile(file);
                 return Error;
+#endif
             }
             notifyImageInfo(file->SWidth, file->SHeight);
         }
@@ -380,8 +390,13 @@ public:
             //Extract colormap, geometry, so that we can create the frame
             SavedImage *curFrame = &file->SavedImages[frame];
             if (!ImageManager::isAcceptableSize(curFrame->ImageDesc.Width, curFrame->ImageDesc.Height)) {
+#if GIFLIB_MAJOR >= 5 && GIFLIB_MINOR >= 1
+                DGifCloseFile(file, &errorCode);
+                return errorCode;
+#else
                 DGifCloseFile(file);
                 return Error;
+#endif
             }
         }
 
@@ -559,7 +574,11 @@ public:
             frame0->animProvider = new GIFAnimProvider(frame0, image, frameProps, bgColor);
         }
 
+#if GIFLIB_MAJOR >= 5 && GIFLIB_MINOR >= 1
+        DGifCloseFile(file, &errorCode);
+#else
         DGifCloseFile(file);
+#endif
 
         return Done;
     }
