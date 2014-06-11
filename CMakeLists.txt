@@ -40,34 +40,44 @@ ecm_setup_version(${KF5_VERSION} VARIABLE_PREFIX KHTML
                         SOVERSION 5)
 
 find_package(Perl)
-set_package_properties(Perl PROPERTIES URL "http://www.perl.org" TYPE REQUIRED PURPOSE "Needed for building kdelibs")
+set_package_properties(Perl PROPERTIES
+                       URL "http://www.perl.org"
+                       TYPE REQUIRED
+                       PURPOSE "Required for generating JS bindings for elements"
+                      )
 
 if(NOT APPLE)
   find_package(X11)
   set(HAVE_X11 ${X11_FOUND})
 endif()
 
-find_package(Phonon4Qt5 4.6.60 REQUIRED NO_MODULE)
+find_package(Phonon4Qt5 4.6.60)
+set_package_properties(Phonon4Qt5 PROPERTIES
+                      DESCRIPTION "Qt Multimedia Library"
+                      URL "http://phonon.kde.org"
+                      TYPE REQUIRED
+                      PURPOSE "Required for HTML5 multimedia elements"
+                     )
 
 find_package(JPEG)
-set_package_properties(JPEG PROPERTIES DESCRIPTION "JPEG image format support"
+set_package_properties(JPEG PROPERTIES DESCRIPTION "JPEG decoding library"
                        URL "http://www.ijg.org"
                        TYPE REQUIRED
-                       PURPOSE "Required by khtml"
+                       PURPOSE "Required for decoding and displaying JPEG images"
                       )
 
 find_package(GIF)
-set_package_properties(GIF PROPERTIES DESCRIPTION "GIF image format support"
+set_package_properties(GIF PROPERTIES DESCRIPTION "GIF decoding library"
                        URL "http://sourceforge.net/projects/giflib"
                        TYPE REQUIRED
-                       PURPOSE "Required by khtml"
+                       PURPOSE "Required for decoding and displaying GIF images"
                       )
 
 find_package(PNG)
-set_package_properties(PNG PROPERTIES DESCRIPTION "PNG image format support"
+set_package_properties(PNG PROPERTIES DESCRIPTION "PNG decoding library"
                        URL "http://www.libpng.org/pub/png"
                        TYPE REQUIRED
-                       PURPOSE "Required by khtml"
+                       PURPOSE "Required for decoding and displaying PNG images"
                       )
 
 if(NOT WIN32 AND NOT APPLE AND X11_FOUND)
