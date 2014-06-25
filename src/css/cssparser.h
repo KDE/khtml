@@ -156,6 +156,7 @@ public:
     unsigned int defaultNamespace();
 
     void addProperty(int propId, CSSValueImpl *value, bool important);
+    void rollbackParsedProperties(int toNumParsedProperties);
     bool hasProperties() const
     {
         return numParsedProperties > 0;
