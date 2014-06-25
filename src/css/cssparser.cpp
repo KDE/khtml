@@ -925,7 +925,7 @@ bool CSSParser::parseValue(int propId, bool important)
         if (id == CSS_VAL_THIN || id == CSS_VAL_MEDIUM || id == CSS_VAL_THICK) {
             valid_primitive = true;
         } else {
-            valid_primitive = (validUnit(value, FLength, strict));
+            valid_primitive = validUnit(value, FLength|FNonNeg, strict);
         }
         break;
 
