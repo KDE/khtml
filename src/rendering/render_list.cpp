@@ -68,13 +68,15 @@ void RenderListItem::setStyle(RenderStyle *_style)
 
     newStyle->inheritFrom(style());
 
-    if (!m_marker && style()->listStyleType() != LNONE) {
+    const bool showListMarker = style()->listStyleImage() || style()->listStyleType() != LNONE;
+
+    if (!m_marker && showListMarker) {
         m_marker = new(renderArena()) RenderListMarker(element());
         m_marker->setIsAnonymous(true);
         m_marker->setStyle(newStyle);
         m_marker->setListItem(this);
         m_deleteMarker = true;
-    } else if (m_marker && style()->listStyleType() == LNONE) {
+    } else if (m_marker && !showListMarker) {
         m_marker->detach();
         m_marker = 0;
     } else if (m_marker) {
