@@ -1280,10 +1280,7 @@ bool CSSParser::parseValue(int propId, bool important)
         }
         break;
     case CSS_PROP_LIST_STYLE: {
-        const int properties[3] = { CSS_PROP_LIST_STYLE_TYPE, CSS_PROP_LIST_STYLE_POSITION,
-                                    CSS_PROP_LIST_STYLE_IMAGE
-                                  };
-        return parseShortHand(propId, properties, 3, important);
+        return parseListStyleShorthand(important);
     }
     case CSS_PROP_WORD_WRAP:
         // normal | break-word
@@ -2475,6 +2472,107 @@ bool CSSParser::parseFontFaceSrc()
     } else {
         delete values;
     }
+
+    return false;
+}
+
+// [ <list-style-type> || <list-style-position> || <list-style-image> ]
+bool CSSParser::parseListStyleShorthand(bool important)
+{
+    if (valueList->size() > 3) {
+        // discard
+        return false;
+    }
+
+    CSSValueImpl *type = 0;
+    CSSValueImpl *position = 0;
+    CSSValueImpl *image = 0;
+
+    int numberOfNone = 0;
+    Value *value = valueList->current();
+    while (value) {
+        const int valId = value->id;
+        if (valId == CSS_VAL_NONE) {
+            // just count
+            ++numberOfNone;
+        } else if (valId >= CSS_VAL_DISC && valId <= CSS_VAL__KHTML_CLOSE_QUOTE) {
+            if (!type) {
+                type = new CSSPrimitiveValueImpl(valId);
+            } else {
+                goto invalid;
+            }
+        } else if (valId == CSS_VAL_INSIDE || valId == CSS_VAL_OUTSIDE) {
+            if (!position) {
+                position = new CSSPrimitiveValueImpl(valId);
+            } else {
+                goto invalid;
+            }
+        } else if (value->unit == CSSPrimitiveValue::CSS_URI) {
+            if (!image) {
+                // ### allow string in non strict mode?
+                DOMString uri = domString(value->string);
+                if (!uri.isNull() && styleElement) {
+                    image = new CSSImageValueImpl(uri, styleElement);
+                }
+            } else {
+                goto invalid;
+            }
+        } else {
+            goto invalid;
+        }
+        value = valueList->next();
+    }
+
+    // Set whichever of 'list-style-type' and 'list-style-image' are not otherwise specified, to 'none'
+    switch (numberOfNone) {
+        case 0: {
+            break;
+        }
+        case 1: {
+            if (image && type) {
+                goto invalid;
+            }
+            if (!image) {
+                image = new CSSImageValueImpl();
+            }
+            if (!type) {
+                type = new CSSPrimitiveValueImpl(CSS_VAL_NONE);
+            }
+            break;
+        }
+        case 2: {
+            if (image || type) {
+                goto invalid;
+            } else {
+                image = new CSSImageValueImpl();
+                type = new CSSPrimitiveValueImpl(CSS_VAL_NONE);
+            }
+            break;
+        }
+        default: // numberOfNone == 3
+            goto invalid;
+    }
+
+    // The shorthand is valid: fill-in any remaining properties with default value
+    if (!type) {
+        type = new CSSPrimitiveValueImpl(CSS_VAL_DISC);
+    }
+    if (!position) {
+        position = new CSSPrimitiveValueImpl(CSS_VAL_OUTSIDE);
+    }
+    if (!image) {
+        image = new CSSImageValueImpl();
+    }
+    addProperty(CSS_PROP_LIST_STYLE_TYPE, type, important);
+    addProperty(CSS_PROP_LIST_STYLE_POSITION, position, important);
+    addProperty(CSS_PROP_LIST_STYLE_IMAGE, image, important);
+
+    return true;
+
+invalid:
+    delete type;
+    delete position;
+    delete image;
 
     return false;
 }
