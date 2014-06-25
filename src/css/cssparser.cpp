@@ -1539,35 +1539,62 @@ bool CSSParser::parseBorderRadius(bool important)
     return true;
 }
 
-bool CSSParser::parseShortHand(int propId, const int *properties, int numProperties, bool important)
+bool CSSParser::parseShortHand(int propId, const int *properties, const int numProperties, bool important)
 {
-    /* We try to match as many properties as possible
-     * We setup an array of booleans to mark which property has been found,
-     * and we try to search for properties until it makes no longer any sense
-     */
+    if (valueList->size() > numProperties) {
+        // discard
+        return false;
+    }
+
     ShorthandScope scope(this, propId);
 
-    bool found = false;
+    // Store current numParsedProperties, we need it in case we should rollback later
+    const int oldNumParsedProperties = numParsedProperties;
+
+    // Setup an array of booleans to mark which property has been found
     bool fnd[6]; //Trust me ;)
     for (int i = 0; i < numProperties; i++) {
         fnd[i] = false;
     }
 
+    bool discard = false;
+    unsigned short numValidProperties = 0;
+    bool foundValid = false;
     while (valueList->current()) {
-        found = false;
-        for (int propIndex = 0; !found && propIndex < numProperties; ++propIndex) {
-            if (!fnd[propIndex]) {
-                if (parseValue(properties[propIndex], important)) {
-                    fnd[propIndex] = found = true;
+        foundValid = false;
+        for (int propIndex = 0; propIndex < numProperties; ++propIndex) {
+            if (parseValue(properties[propIndex], important)) {
+                foundValid = true;
+                ++numValidProperties;
+                if (fnd[propIndex]) { // found a duplicate
+                    discard = true;
+                } else {
+                    fnd[propIndex] = true;
                 }
+
+                break;
             }
         }
 
         // if we didn't find at least one match, this is an
         // invalid shorthand and we have to ignore it
-        if (!found) {
-            return false;
+        if (!foundValid) {
+            discard = true;
         }
+
+        if (discard) {
+            break;
+        }
+    }
+
+    if (discard) {
+        // Remove valid properties previously added by parseValue(), if any
+        rollbackParsedProperties(oldNumParsedProperties);
+        return false;
+    }
+
+    if (numValidProperties == numProperties) {
+        return true;
     }
 
     // Fill in any remaining properties with the initial value.

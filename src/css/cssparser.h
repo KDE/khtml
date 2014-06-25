@@ -167,7 +167,7 @@ public:
 
     bool parseValue(int propId, bool important);
     bool parseSVGValue(int propId, bool important);
-    bool parseShortHand(int propId, const int *properties, int numProperties, bool important);
+    bool parseShortHand(int propId, const int *properties, const int numProperties, bool important);
     bool parse4Values(int propId, const int *properties, bool important);
     bool parseContent(int propId, bool important);
 
