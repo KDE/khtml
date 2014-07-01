@@ -1,0 +1,2149 @@
+# Hausa translation for kdelibs strings.
+# Copyright 2009 Adriaan de Groot, Mustapha Abubakar, Ibrahim Dasuna
+# This file is distributed under the same license as the kdelibs package.
+#
+# Adriaan de Groot <groot@kde.org>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-06-03 10:25+0000\n"
+"PO-Revision-Date: 2009-03-17 11:22+0100\n"
+"Last-Translator: Adriaan de Groot <groot@kde.org>\n"
+"Language-Team: Hausa <kde-i18n-doc@lists.kde.org>\n"
+"Language: ha\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 0.2\n"
+
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Mustapha Abubakar,Adriaan de Groot,Ibrahim Dasuna"
+
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr ",groot@kde.org,"
+
+#: ecma/debugger/callstackdock.cpp:35
+msgid "Call Stack"
+msgstr ""
+
+#: ecma/debugger/callstackdock.cpp:39
+msgid "Call"
+msgstr ""
+
+#: ecma/debugger/callstackdock.cpp:39
+msgid "Line"
+msgstr ""
+
+#: ecma/debugger/consoledock.cpp:220
+msgid "Console"
+msgstr ""
+
+#: ecma/debugger/consoledock.cpp:243
+msgid "Enter"
+msgstr ""
+
+#: ecma/debugger/debugdocument.cpp:206
+msgid ""
+"Unable to find the Kate editor component;\n"
+"please check your KDE installation."
+msgstr ""
+
+#: ecma/debugger/debugdocument.cpp:272
+msgid "Breakpoint"
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:101
+msgid "JavaScript Debugger"
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:178
+msgid "&Break at Next Statement"
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:179
+msgid "Break at Next"
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:184
+msgid "Continue"
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:190
+msgid "Step Over"
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:196
+msgid "Step Into"
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:203
+msgid "Step Out"
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:209
+msgid "Reindent Sources"
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:214
+msgid "Report Exceptions"
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:222
+msgid "&Debug"
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:230
+msgid "&Settings"
+msgstr "&Tsarawa"
+
+#: ecma/debugger/debugwindow.cpp:256
+msgid "Close source"
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:262
+msgid "Ready"
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:587
+#, kde-format
+msgid ""
+"An error occurred while attempting to run a script on this page.\n"
+"\n"
+"%1 line %2:\n"
+"%3"
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:780
+msgid ""
+"Do not know where to evaluate the expression. Please pause a script or open "
+"a source file."
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:814
+#, kde-format
+msgid "Evaluation threw an exception %1"
+msgstr ""
+
+#: ecma/debugger/errordlg.cpp:35
+msgid "JavaScript Error"
+msgstr ""
+
+#: ecma/debugger/errordlg.cpp:49
+msgid "&Do not show this message again"
+msgstr ""
+
+#: ecma/debugger/localvariabledock.cpp:43
+msgid "Local Variables"
+msgstr ""
+
+#: ecma/debugger/localvariabledock.cpp:51
+msgid "Reference"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
+#: java/kjavaappletviewer.cpp:150
+msgid "Value"
+msgstr ""
+
+#: ecma/debugger/scriptsdock.cpp:37
+msgid "Loaded Scripts"
+msgstr ""
+
+#: ecma/kjs_binding.cpp:196
+msgid ""
+"A script on this page is causing KHTML to freeze. If it continues to run, "
+"other applications may become less responsive.\n"
+"Do you want to stop the script?"
+msgstr ""
+
+#: ecma/kjs_binding.cpp:196
+msgid "JavaScript"
+msgstr ""
+
+#: ecma/kjs_binding.cpp:196
+msgid "&Stop Script"
+msgstr ""
+
+#: ecma/kjs_binding.cpp:437
+#, kde-format
+msgid "Parse error at %1 line %2"
+msgstr ""
+
+#: ecma/kjs_html.cpp:2233 ecma/kjs_window.cpp:1949
+msgid "Confirmation: JavaScript Popup"
+msgstr ""
+
+#: ecma/kjs_html.cpp:2235
+msgid ""
+"This site is submitting a form which will open up a new browser window via "
+"JavaScript.\n"
+"Do you want to allow the form to be submitted?"
+msgstr ""
+
+#: ecma/kjs_html.cpp:2238
+#, kde-format
+msgid ""
+"<qt>This site is submitting a form which will open <p>%1</p> in a new "
+"browser window via JavaScript.<br />Do you want to allow the form to be "
+"submitted?</qt>"
+msgstr ""
+
+#: ecma/kjs_html.cpp:2240 ecma/kjs_window.cpp:1957
+msgid "Allow"
+msgstr ""
+
+#: ecma/kjs_html.cpp:2240 ecma/kjs_window.cpp:1957
+msgid "Do Not Allow"
+msgstr ""
+
+#: ecma/kjs_window.cpp:1952
+msgid ""
+"This site is requesting to open up a new browser window via JavaScript.\n"
+"Do you want to allow this?"
+msgstr ""
+
+#: ecma/kjs_window.cpp:1955
+#, kde-format
+msgid ""
+"<qt>This site is requesting to open<p>%1</p>in a new browser window via "
+"JavaScript.<br />Do you want to allow this?</qt>"
+msgstr ""
+
+#: ecma/kjs_window.cpp:2288
+msgid "Close window?"
+msgstr ""
+
+#: ecma/kjs_window.cpp:2288
+msgid "Confirmation Required"
+msgstr ""
+
+#: ecma/kjs_window.cpp:3237
+#, kde-format
+msgid ""
+"Do you want a bookmark pointing to the location \"%1\" to be added to your "
+"collection?"
+msgstr ""
+
+#: ecma/kjs_window.cpp:3240
+#, kde-format
+msgid ""
+"Do you want a bookmark pointing to the location \"%1\" titled \"%2\" to be "
+"added to your collection?"
+msgstr ""
+
+#: ecma/kjs_window.cpp:3249
+msgid "JavaScript Attempted Bookmark Insert"
+msgstr ""
+
+#: ecma/kjs_window.cpp:3253
+msgid "Insert"
+msgstr ""
+
+#: ecma/kjs_window.cpp:3253
+msgid "Disallow"
+msgstr ""
+
+#: html/html_formimpl.cpp:421
+msgid ""
+"The following files will not be uploaded because they could not be found.\n"
+"Do you want to continue?"
+msgstr ""
+
+#: html/html_formimpl.cpp:425
+msgid "Submit Confirmation"
+msgstr ""
+
+#: html/html_formimpl.cpp:425
+msgid "&Submit Anyway"
+msgstr ""
+
+#: html/html_formimpl.cpp:435
+msgid ""
+"You are about to transfer the following files from your local computer to "
+"the Internet.\n"
+"Do you really want to continue?"
+msgstr ""
+
+#: html/html_formimpl.cpp:439
+msgid "Send Confirmation"
+msgstr ""
+
+#: html/html_formimpl.cpp:439
+msgid "&Send File"
+msgid_plural "&Send Files"
+msgstr[0] ""
+msgstr[1] ""
+
+#: html/html_formimpl.cpp:1689 html/html_formimpl.cpp:1910 khtml_part.cpp:4967
+#: khtmlview.cpp:2881 khtmlview.cpp:2925
+msgid "Submit"
+msgstr ""
+
+#: html/html_formimpl.cpp:1902 khtmlview.cpp:2896 khtmlview.cpp:2931
+msgid "Reset"
+msgstr ""
+
+#: html/html_formimpl.cpp:2830
+msgid "Key Generator"
+msgstr ""
+
+#: html/html_objectimpl.cpp:633
+#, kde-format
+msgid ""
+"No plugin found for '%1'.\n"
+"Do you want to download one from %2?"
+msgstr ""
+
+#: html/html_objectimpl.cpp:634
+msgid "Missing Plugin"
+msgstr ""
+
+#: html/html_objectimpl.cpp:634
+msgid "Download"
+msgstr ""
+
+#: html/html_objectimpl.cpp:634
+msgid "Do Not Download"
+msgstr ""
+
+#: html/htmlparser.cpp:1978
+msgid "This is a searchable index. Enter search keywords: "
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, fuzzy
+#| msgid "Password:"
+msgid "&Repeat password:"
+msgstr "Harrufan sirri:"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, fuzzy
+#| msgid "Password:"
+msgid "&Choose password:"
+msgstr "Harrufan sirri:"
+
+#: html/ksslkeygen.cpp:82
+msgid "KDE Certificate Request"
+msgstr ""
+
+#: html/ksslkeygen.cpp:89
+msgid "KDE Certificate Request - Password"
+msgstr ""
+
+#: html/ksslkeygen.cpp:126
+msgid "Unsupported key size."
+msgstr ""
+
+#: html/ksslkeygen.cpp:126
+#, fuzzy
+#| msgid "Information"
+msgid "KDE SSL Information"
+msgstr "Bayani"
+
+#: html/ksslkeygen.cpp:132 khtml_part.cpp:5022
+msgid "KDE"
+msgstr ""
+
+#: html/ksslkeygen.cpp:133
+msgid "Please wait while the encryption keys are generated..."
+msgstr ""
+
+#: html/ksslkeygen.cpp:148
+msgid "Do you wish to store the passphrase in your wallet file?"
+msgstr ""
+
+#: html/ksslkeygen.cpp:148
+msgid "Store"
+msgstr ""
+
+#: html/ksslkeygen.cpp:148
+msgid "Do Not Store"
+msgstr ""
+
+#: html/ksslkeygen.cpp:257
+msgid "2048 (High Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:258
+msgid "1024 (Medium Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:259
+msgid "768  (Low Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:260
+msgid "512  (Low Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:262
+msgid "No SSL support."
+msgstr ""
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+msgid "Document Information"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+msgid "URL:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+msgid "Title:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+msgid "Last modified:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+msgid "Document encoding:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+msgid "Rendering mode:"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+msgid "HTTP Headers"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+msgid "Property"
+msgstr ""
+
+#: java/kjavaapplet.cpp:227
+#, kde-format
+msgid "Initializing Applet \"%1\"..."
+msgstr ""
+
+#: java/kjavaapplet.cpp:233
+#, kde-format
+msgid "Starting Applet \"%1\"..."
+msgstr ""
+
+#: java/kjavaapplet.cpp:240
+#, kde-format
+msgid "Applet \"%1\" started"
+msgstr ""
+
+#: java/kjavaapplet.cpp:246
+#, kde-format
+msgid "Applet \"%1\" stopped"
+msgstr ""
+
+#: java/kjavaappletserver.cpp:144
+msgid "Loading Applet"
+msgstr ""
+
+#: java/kjavaappletserver.cpp:147
+msgid "Error: java executable not found"
+msgstr ""
+
+#: java/kjavaappletserver.cpp:674
+#, kde-format
+msgid "Signed by (validation: %1)"
+msgstr ""
+
+#: java/kjavaappletserver.cpp:676
+#, kde-format
+msgid "Certificate (validation: %1)"
+msgstr ""
+
+#: java/kjavaappletserver.cpp:812 khtml_part.cpp:7053
+msgid "Security Alert"
+msgstr ""
+
+#: java/kjavaappletserver.cpp:817
+msgid "Do you grant Java applet with certificate(s):"
+msgstr ""
+
+#: java/kjavaappletserver.cpp:819
+msgid "the following permission"
+msgstr ""
+
+#: java/kjavaappletserver.cpp:828
+msgid "&No"
+msgstr "&A'a"
+
+#: java/kjavaappletserver.cpp:832
+msgid "&Reject All"
+msgstr ""
+
+#: java/kjavaappletserver.cpp:835
+msgid "&Yes"
+msgstr "&Ee"
+
+#: java/kjavaappletserver.cpp:838
+msgid "&Grant All"
+msgstr ""
+
+#: java/kjavaappletviewer.cpp:59
+msgid "KDE Java Applet Plugin"
+msgstr ""
+
+#: java/kjavaappletviewer.cpp:141
+msgid "Applet Parameters"
+msgstr ""
+
+#: java/kjavaappletviewer.cpp:149
+msgid "Parameter"
+msgstr ""
+
+#: java/kjavaappletviewer.cpp:153
+msgid "Class"
+msgstr ""
+
+#: java/kjavaappletviewer.cpp:159
+msgid "Base URL"
+msgstr ""
+
+#: java/kjavaappletviewer.cpp:165
+msgid "Archives"
+msgstr ""
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+msgid "&Edit"
+msgstr ""
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+msgid "&File"
+msgstr ""
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+msgid "&View"
+msgstr ""
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+msgid "HTML Toolbar"
+msgstr ""
+
+#: khtml_ext.cpp:413
+msgid "&Copy Text"
+msgstr ""
+
+#: khtml_ext.cpp:427
+#, kde-format
+msgid "Open '%1'"
+msgstr ""
+
+#: khtml_ext.cpp:444
+msgid "&Copy Email Address"
+msgstr ""
+
+#: khtml_ext.cpp:449
+msgid "&Save Link As..."
+msgstr ""
+
+#: khtml_ext.cpp:454
+msgid "&Copy Link Address"
+msgstr ""
+
+#: khtml_ext.cpp:466
+msgctxt "@title:menu HTML frame/iframe"
+msgid "Frame"
+msgstr ""
+
+#: khtml_ext.cpp:467
+msgid "Open in New &Window"
+msgstr ""
+
+#: khtml_ext.cpp:473
+msgid "Open in &This Window"
+msgstr ""
+
+#: khtml_ext.cpp:478
+msgid "Open in &New Tab"
+msgstr ""
+
+#: khtml_ext.cpp:488
+msgid "Reload Frame"
+msgstr ""
+
+#: khtml_ext.cpp:493 khtml_part.cpp:449
+msgid "Print Frame..."
+msgstr ""
+
+#: khtml_ext.cpp:499 khtml_part.cpp:301
+msgid "Save &Frame As..."
+msgstr ""
+
+#: khtml_ext.cpp:504 khtml_part.cpp:277
+msgid "View Frame Source"
+msgstr ""
+
+#: khtml_ext.cpp:509
+msgid "View Frame Information"
+msgstr ""
+
+#: khtml_ext.cpp:519
+msgid "Block IFrame..."
+msgstr ""
+
+#: khtml_ext.cpp:543
+msgid "Save Image As..."
+msgstr ""
+
+#: khtml_ext.cpp:548
+msgid "Send Image..."
+msgstr ""
+
+#: khtml_ext.cpp:554
+msgid "Copy Image"
+msgstr ""
+
+#: khtml_ext.cpp:562
+msgid "Copy Image Location"
+msgstr ""
+
+#: khtml_ext.cpp:571
+#, kde-format
+msgid "View Image (%1)"
+msgstr ""
+
+#: khtml_ext.cpp:577
+msgid "Block Image..."
+msgstr ""
+
+#: khtml_ext.cpp:584
+#, kde-format
+msgid "Block Images From %1"
+msgstr ""
+
+#: khtml_ext.cpp:596
+msgid "Stop Animations"
+msgstr ""
+
+#: khtml_ext.cpp:637
+#, kde-format
+msgid "Search for '%1' with %2"
+msgstr ""
+
+#: khtml_ext.cpp:647
+#, kde-format
+msgid "Search for '%1' with"
+msgstr ""
+
+#: khtml_ext.cpp:693
+msgid "Save Link As"
+msgstr ""
+
+#: khtml_ext.cpp:712
+msgid "Save Image As"
+msgstr ""
+
+#: khtml_ext.cpp:726 khtml_ext.cpp:738
+msgid "Add URL to Filter"
+msgstr ""
+
+#: khtml_ext.cpp:727 khtml_ext.cpp:739
+msgid "Enter the URL:"
+msgstr ""
+
+#: khtml_ext.cpp:875
+#, kde-format
+msgid ""
+"A file named \"%1\" already exists. Are you sure you want to overwrite it?"
+msgstr ""
+
+#: khtml_ext.cpp:875
+msgid "Overwrite File?"
+msgstr ""
+
+#: khtml_ext.cpp:875
+msgid "Overwrite"
+msgstr ""
+
+#: khtml_ext.cpp:927
+#, kde-format
+msgid "The Download Manager (%1) could not be found in your $PATH "
+msgstr ""
+
+#: khtml_ext.cpp:928
+msgid ""
+"Try to reinstall it  \n"
+"\n"
+"The integration with Konqueror will be disabled."
+msgstr ""
+
+#: khtml_ext.cpp:1007
+#, no-c-format
+msgid "Default Font Size (100%)"
+msgstr ""
+
+#: khtml_ext.cpp:1021
+#, no-c-format, kde-format
+msgid "%1%"
+msgstr ""
+
+#: khtml_global.cpp:203
+msgid "KHTML"
+msgstr ""
+
+#: khtml_global.cpp:204
+msgid "Embeddable HTML component"
+msgstr ""
+
+#: khtml_part.cpp:270
+msgid "View Do&cument Source"
+msgstr ""
+
+#: khtml_part.cpp:284
+msgid "View Document Information"
+msgstr ""
+
+#: khtml_part.cpp:291
+msgid "Save &Background Image As..."
+msgstr ""
+
+#: khtml_part.cpp:313 khtml_part.cpp:4194
+msgid "SSL"
+msgstr ""
+
+#: khtml_part.cpp:317
+msgid "Print Rendering Tree to STDOUT"
+msgstr ""
+
+#: khtml_part.cpp:321
+msgid "Print DOM Tree to STDOUT"
+msgstr ""
+
+#: khtml_part.cpp:325
+msgid "Print frame tree to STDOUT"
+msgstr ""
+
+#: khtml_part.cpp:329
+msgid "Stop Animated Images"
+msgstr ""
+
+#: khtml_part.cpp:333
+msgid "Set &Encoding"
+msgstr ""
+
+#: khtml_part.cpp:379
+msgid "Use S&tylesheet"
+msgstr ""
+
+#: khtml_part.cpp:384
+msgid "Enlarge Font"
+msgstr ""
+
+#: khtml_part.cpp:387
+msgid ""
+"<qt>Enlarge Font<br /><br />Make the font in this window bigger. Click and "
+"hold down the mouse button for a menu with all available font sizes.</qt>"
+msgstr ""
+
+#: khtml_part.cpp:391
+msgid "Shrink Font"
+msgstr ""
+
+#: khtml_part.cpp:394
+msgid ""
+"<qt>Shrink Font<br /><br />Make the font in this window smaller. Click and "
+"hold down the mouse button for a menu with all available font sizes.</qt>"
+msgstr ""
+
+#: khtml_part.cpp:409
+msgid ""
+"<qt>Find text<br /><br />Shows a dialog that allows you to find text on the "
+"displayed page.</qt>"
+msgstr ""
+
+#: khtml_part.cpp:413
+msgid ""
+"<qt>Find next<br /><br />Find the next occurrence of the text that you have "
+"found using the <b>Find Text</b> function.</qt>"
+msgstr ""
+
+#: khtml_part.cpp:419
+msgid ""
+"<qt>Find previous<br /><br />Find the previous occurrence of the text that "
+"you have found using the <b>Find Text</b> function.</qt>"
+msgstr ""
+
+#: khtml_part.cpp:424
+msgid "Find Text as You Type"
+msgstr ""
+
+#: khtml_part.cpp:427
+msgid ""
+"This shortcut shows the find bar, for finding text in the displayed page. It "
+"cancels the effect of \"Find Links as You Type\", which sets the \"Find "
+"links only\" option."
+msgstr ""
+
+#: khtml_part.cpp:431
+msgid "Find Links as You Type"
+msgstr ""
+
+#: khtml_part.cpp:437
+msgid ""
+"This shortcut shows the find bar, and sets the option \"Find links only\"."
+msgstr ""
+
+#: khtml_part.cpp:453
+msgid ""
+"<qt>Print Frame<br /><br />Some pages have several frames. To print only a "
+"single frame, click on it and then use this function.</qt>"
+msgstr ""
+
+#: khtml_part.cpp:468
+msgid "Toggle Caret Mode"
+msgstr ""
+
+#: khtml_part.cpp:768
+#, kde-format
+msgid "The fake user-agent '%1' is in use."
+msgstr ""
+
+#: khtml_part.cpp:1272
+msgid "This web page contains coding errors."
+msgstr ""
+
+#: khtml_part.cpp:1317
+msgid "&Hide Errors"
+msgstr ""
+
+#: khtml_part.cpp:1318
+msgid "&Disable Error Reporting"
+msgstr ""
+
+#: khtml_part.cpp:1361
+#, kde-format
+msgid "<qt><b>Error</b>: %1: %2</qt>"
+msgstr ""
+
+#: khtml_part.cpp:1410
+#, kde-format
+msgid "<qt><b>Error</b>: node %1: %2</qt>"
+msgstr ""
+
+#: khtml_part.cpp:1532
+msgid "Display Images on Page"
+msgstr ""
+
+#: khtml_part.cpp:1916
+#, kde-format
+msgid "Error: %1 - %2"
+msgstr ""
+
+#: khtml_part.cpp:1921
+msgid "The requested operation could not be completed"
+msgstr ""
+
+#: khtml_part.cpp:1927
+msgid "Technical Reason: "
+msgstr ""
+
+#: khtml_part.cpp:1933
+msgid "Details of the Request:"
+msgstr ""
+
+#: khtml_part.cpp:1935
+#, kde-format
+msgid "URL: %1"
+msgstr ""
+
+#: khtml_part.cpp:1938
+#, kde-format
+msgid "Protocol: %1"
+msgstr ""
+
+#: khtml_part.cpp:1941
+#, kde-format
+msgid "Date and Time: %1"
+msgstr ""
+
+#: khtml_part.cpp:1943
+#, kde-format
+msgid "Additional Information: %1"
+msgstr ""
+
+#: khtml_part.cpp:1945
+msgid "Description:"
+msgstr "ƙwatan tawa:"
+
+#: khtml_part.cpp:1951
+msgid "Possible Causes:"
+msgstr ""
+
+#: khtml_part.cpp:1958
+msgid "Possible Solutions:"
+msgstr ""
+
+#: khtml_part.cpp:2406
+msgid "Page loaded."
+msgstr ""
+
+#: khtml_part.cpp:2408
+#, kde-format
+msgid "%1 Image of %2 loaded."
+msgid_plural "%1 Images of %2 loaded."
+msgstr[0] ""
+msgstr[1] ""
+
+#: khtml_part.cpp:2586
+msgid "Automatic Detection"
+msgstr ""
+
+#: khtml_part.cpp:3717 khtml_part.cpp:3781 khtml_part.cpp:3791
+msgid " (In new window)"
+msgstr ""
+
+#: khtml_part.cpp:3745
+msgid "Symbolic Link"
+msgstr ""
+
+#: khtml_part.cpp:3747
+#, kde-format
+msgid "%1 (Link)"
+msgstr ""
+
+#: khtml_part.cpp:3763
+#, kde-format
+msgid "%2 (%1 byte)"
+msgid_plural "%2 (%1 bytes)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: khtml_part.cpp:3766
+#, kde-format
+msgid "%2 (%1 K)"
+msgstr ""
+
+#: khtml_part.cpp:3793
+msgid " (In other frame)"
+msgstr ""
+
+#: khtml_part.cpp:3799
+msgid "Email to: "
+msgstr ""
+
+#: khtml_part.cpp:3805
+msgid " - Subject: "
+msgstr ""
+
+#: khtml_part.cpp:3807
+msgid " - CC: "
+msgstr ""
+
+#: khtml_part.cpp:3809
+msgid " - BCC: "
+msgstr ""
+
+#: khtml_part.cpp:3890 khtml_part.cpp:4112 khtml_part.cpp:4548
+#: khtml_run.cpp:106
+msgid "Save As"
+msgstr ""
+
+#: khtml_part.cpp:3895
+#, kde-format
+msgid ""
+"<qt>This untrusted page links to<br /><b>%1</b>.<br />Do you want to follow "
+"the link?</qt>"
+msgstr ""
+
+#: khtml_part.cpp:3896
+msgid "Follow"
+msgstr ""
+
+#: khtml_part.cpp:3991
+msgid "Frame Information"
+msgstr ""
+
+#: khtml_part.cpp:3997
+#, kde-format
+msgid "   <a href=\"%1\">[Properties]</a>"
+msgstr ""
+
+#: khtml_part.cpp:4023
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Quirks"
+msgstr ""
+
+#: khtml_part.cpp:4026
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Almost standards"
+msgstr ""
+
+#: khtml_part.cpp:4030
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Strict"
+msgstr ""
+
+#: khtml_part.cpp:4099
+msgid "Save Background Image As"
+msgstr ""
+
+#: khtml_part.cpp:4192
+msgid "The peer SSL certificate chain appears to be corrupt."
+msgstr ""
+
+#: khtml_part.cpp:4213
+msgid "Save Frame As"
+msgstr ""
+
+#: khtml_part.cpp:4257
+msgid "&Find in Frame..."
+msgstr ""
+
+#: khtml_part.cpp:4259
+msgid "&Find..."
+msgstr ""
+
+#: khtml_part.cpp:4906
+msgid ""
+"Warning:  This is a secure form but it is attempting to send your data back "
+"unencrypted.\n"
+"A third party may be able to intercept and view this information.\n"
+"Are you sure you wish to continue?"
+msgstr ""
+
+#: khtml_part.cpp:4909 khtml_part.cpp:4919 khtml_part.cpp:4944
+msgid "Network Transmission"
+msgstr ""
+
+#: khtml_part.cpp:4909 khtml_part.cpp:4920
+msgid "&Send Unencrypted"
+msgstr ""
+
+#: khtml_part.cpp:4917
+msgid ""
+"Warning: Your data is about to be transmitted across the network "
+"unencrypted.\n"
+"Are you sure you wish to continue?"
+msgstr ""
+
+#: khtml_part.cpp:4942
+msgid ""
+"This site is attempting to submit form data via email.\n"
+"Do you want to continue?"
+msgstr ""
+
+#: khtml_part.cpp:4945
+msgid "&Send Email"
+msgstr ""
+
+#: khtml_part.cpp:4966
+#, kde-format
+msgid ""
+"<qt>The form will be submitted to <br /><b>%1</b><br />on your local "
+"filesystem.<br />Do you want to submit the form?</qt>"
+msgstr ""
+
+#: khtml_part.cpp:5022
+msgid ""
+"This site attempted to attach a file from your computer in the form "
+"submission. The attachment was removed for your protection."
+msgstr ""
+
+#: khtml_part.cpp:6116
+#, kde-format
+msgid "(%1/s)"
+msgstr ""
+
+#: khtml_part.cpp:7045
+msgid "Security Warning"
+msgstr ""
+
+#: khtml_part.cpp:7052
+#, kde-format
+msgid "<qt>Access by untrusted page to<br /><b>%1</b><br /> denied.</qt>"
+msgstr ""
+
+#: khtml_part.cpp:7423
+#, kde-format
+msgid "The wallet '%1' is open and being used for form data and passwords."
+msgstr ""
+
+#: khtml_part.cpp:7482
+msgid "&Close Wallet"
+msgstr ""
+
+#: khtml_part.cpp:7485
+msgid "&Allow storing passwords for this site"
+msgstr ""
+
+#: khtml_part.cpp:7490
+#, kde-format
+msgid "Remove password for form %1"
+msgstr ""
+
+#: khtml_part.cpp:7605
+msgid "JavaScript &Debugger"
+msgstr ""
+
+#: khtml_part.cpp:7638
+msgid "This page was prevented from opening a new window via JavaScript."
+msgstr ""
+
+#: khtml_part.cpp:7644
+msgid "Popup Window Blocked"
+msgstr ""
+
+#: khtml_part.cpp:7644
+msgid ""
+"This page has attempted to open a popup window but was blocked.\n"
+"You can click on this icon in the status bar to control this behavior\n"
+"or to open the popup."
+msgstr ""
+
+#: khtml_part.cpp:7658
+#, kde-format
+msgid "&Show Blocked Popup Window"
+msgid_plural "&Show %1 Blocked Popup Windows"
+msgstr[0] ""
+msgstr[1] ""
+
+#: khtml_part.cpp:7660
+msgid "Show Blocked Window Passive Popup &Notification"
+msgstr ""
+
+#: khtml_part.cpp:7662
+msgid "&Configure JavaScript New Window Policies..."
+msgstr ""
+
+#: khtml_printsettings.cpp:30
+msgid ""
+"<qt><p><strong>'Print images'</strong></p><p>If this checkbox is enabled, "
+"images contained in the HTML page will be printed. Printing may take longer "
+"and use more ink or toner.</p><p>If this checkbox is disabled, only the text "
+"of the HTML page will be printed, without the included images. Printing will "
+"be faster and use less ink or toner.</p> </qt>"
+msgstr ""
+
+#: khtml_printsettings.cpp:42
+msgid ""
+"<qt><p><strong>'Print header'</strong></p><p>If this checkbox is enabled, "
+"the printout of the HTML document will contain a header line at the top of "
+"each page. This header contains the current date, the location URL of the "
+"printed page and the page number.</p><p>If this checkbox is disabled, the "
+"printout of the HTML document will not contain such a header line.</p> </qt>"
+msgstr ""
+
+#: khtml_printsettings.cpp:55
+msgid ""
+"<qt><p><strong>'Printerfriendly mode'</strong></p><p>If this checkbox is "
+"enabled, the printout of the HTML document will be black and white only, and "
+"all colored background will be converted into white. Printout will be faster "
+"and use less ink or toner.</p><p>If this checkbox is disabled, the printout "
+"of the HTML document will happen in the original color settings as you see "
+"in your application. This may result in areas of full-page color (or "
+"grayscale, if you use a black+white printer). Printout will possibly happen "
+"more slowly and will probably use more toner or ink.</p> </qt>"
+msgstr ""
+
+#: khtml_printsettings.cpp:70
+msgid "HTML Settings"
+msgstr ""
+
+#: khtml_printsettings.cpp:72
+msgid "Printer friendly mode (black text, no background)"
+msgstr ""
+
+#: khtml_printsettings.cpp:75
+msgid "Print images"
+msgstr ""
+
+#: khtml_printsettings.cpp:78
+msgid "Print header"
+msgstr ""
+
+#: khtml_settings.cpp:906
+msgid "Filter error"
+msgstr ""
+
+#: khtmladaptorpart.cpp:29
+msgid "Inactive"
+msgstr ""
+
+#: khtmlimage.cpp:46
+msgid "KHTML Image"
+msgstr ""
+
+#: khtmlimage.cpp:217
+#, kde-format
+msgid "%1 (%2 - %3x%4 Pixels)"
+msgstr ""
+
+#: khtmlimage.cpp:219
+#, kde-format
+msgid "%1 - %2x%3 Pixels"
+msgstr ""
+
+#: khtmlimage.cpp:224
+#, kde-format
+msgid "%1 (%2x%3 Pixels)"
+msgstr ""
+
+#: khtmlimage.cpp:226
+#, kde-format
+msgid "Image - %1x%2 Pixels"
+msgstr ""
+
+#: khtmlimage.cpp:232
+msgid "Done."
+msgstr ""
+
+#: khtmlview.cpp:1904
+msgid "Access Keys activated"
+msgstr ""
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:14
+msgid "JavaScript Errors"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:17
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at http://bugs.kde.org/.  A test case "
+"which illustrates the problem will be appreciated."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QPushButton, _close)
+#: kjserrordlgbase.ui:29
+msgid "&Close"
+msgstr "&Rufe"
+
+#. i18n: ectx: property (text), widget (QPushButton, _clear)
+#: kjserrordlgbase.ui:36
+msgid "C&lear"
+msgstr ""
+
+#: kmultipart/kmultipart.cpp:40
+msgid "KMultiPart"
+msgstr ""
+
+#: kmultipart/kmultipart.cpp:42
+msgid "Embeddable component for multipart/mixed"
+msgstr ""
+
+#: kmultipart/kmultipart.cpp:44
+msgid "Copyright 2001-2011, David Faure <email>faure@kde.org</email>"
+msgstr ""
+
+#: kmultipart/kmultipart.cpp:337
+#, kde-format
+msgid "No handler found for %1."
+msgstr ""
+
+#: misc/kencodingdetector.cpp:1119 misc/kencodingdetector.cpp:1220
+msgctxt "@item Text character set"
+msgid "Unicode"
+msgstr ""
+
+#: misc/kencodingdetector.cpp:1121 misc/kencodingdetector.cpp:1190
+msgctxt "@item Text character set"
+msgid "Cyrillic"
+msgstr ""
+
+#: misc/kencodingdetector.cpp:1123 misc/kencodingdetector.cpp:1205
+msgctxt "@item Text character set"
+msgid "Western European"
+msgstr ""
+
+#: misc/kencodingdetector.cpp:1125 misc/kencodingdetector.cpp:1187
+msgctxt "@item Text character set"
+msgid "Central European"
+msgstr ""
+
+#: misc/kencodingdetector.cpp:1127 misc/kencodingdetector.cpp:1193
+msgctxt "@item Text character set"
+msgid "Greek"
+msgstr ""
+
+#: misc/kencodingdetector.cpp:1129 misc/kencodingdetector.cpp:1196
+msgctxt "@item Text character set"
+msgid "Hebrew"
+msgstr ""
+
+#: misc/kencodingdetector.cpp:1131 misc/kencodingdetector.cpp:1202
+msgctxt "@item Text character set"
+msgid "Turkish"
+msgstr ""
+
+#: misc/kencodingdetector.cpp:1133 misc/kencodingdetector.cpp:1199
+msgctxt "@item Text character set"
+msgid "Japanese"
+msgstr ""
+
+#: misc/kencodingdetector.cpp:1135 misc/kencodingdetector.cpp:1184
+msgctxt "@item Text character set"
+msgid "Baltic"
+msgstr ""
+
+#: misc/kencodingdetector.cpp:1137 misc/kencodingdetector.cpp:1181
+msgctxt "@item Text character set"
+msgid "Arabic"
+msgstr ""
+
+#: misc/kencodingdetector.cpp:1208
+msgctxt "@item Text character set"
+msgid "Chinese Traditional"
+msgstr ""
+
+#: misc/kencodingdetector.cpp:1211
+msgctxt "@item Text character set"
+msgid "Chinese Simplified"
+msgstr ""
+
+#: misc/kencodingdetector.cpp:1214
+msgctxt "@item Text character set"
+msgid "Korean"
+msgstr ""
+
+#: misc/kencodingdetector.cpp:1217
+msgctxt "@item Text character set"
+msgid "Thai"
+msgstr ""
+
+#: rendering/media_controls.cpp:46
+msgid "Play"
+msgstr ""
+
+#: rendering/media_controls.cpp:49
+msgid "Pause"
+msgstr "Dakata"
+
+#: rendering/render_form.cpp:903
+msgid "New Web Shortcut"
+msgstr ""
+
+#: rendering/render_form.cpp:924
+#, kde-format
+msgid "%1 is already assigned to %2"
+msgstr ""
+
+#: rendering/render_form.cpp:924
+msgid "Error"
+msgstr ""
+
+#: rendering/render_form.cpp:970
+msgid "Search &provider name:"
+msgstr ""
+
+#: rendering/render_form.cpp:972
+msgid "New search provider"
+msgstr ""
+
+#: rendering/render_form.cpp:977
+msgid "UR&I shortcuts:"
+msgstr ""
+
+#: rendering/render_form.cpp:1056
+msgid "Clear &History"
+msgstr ""
+
+#: rendering/render_form.cpp:1071
+msgid "Create Web Shortcut"
+msgstr ""
+
+#: ui/findbar/khtmlfindbar.cpp:49
+msgid "C&ase sensitive"
+msgstr ""
+
+#: ui/findbar/khtmlfindbar.cpp:51
+msgid "&Whole words only"
+msgstr ""
+
+#: ui/findbar/khtmlfindbar.cpp:53
+msgid "From c&ursor"
+msgstr ""
+
+#: ui/findbar/khtmlfindbar.cpp:55
+msgid "&Selected text"
+msgstr ""
+
+#: ui/findbar/khtmlfindbar.cpp:57
+msgid "Regular e&xpression"
+msgstr ""
+
+#: ui/findbar/khtmlfindbar.cpp:59
+msgid "Find &links only"
+msgstr ""
+
+#: ui/findbar/khtmlfindbar.cpp:224
+msgid "Not found"
+msgstr ""
+
+#: ui/findbar/khtmlfindbar.cpp:239
+msgid "No more matches for this search direction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+msgid "F&ind:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+msgid "&Next"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+msgid "&Previous"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+msgid "Opt&ions"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
+msgid "Do you want to store this password?"
+msgstr ""
+
+#: ui/passwordbar/storepassbar.cpp:61
+#, kde-format
+msgid "Do you want to store this password for %1?"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+msgid "&Store"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+msgid "Ne&ver store for this site"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+msgid "Do &not store this time"
+msgstr ""
+
+#: xml/dom_docimpl.cpp:2380
+msgid "Basic Page Style"
+msgstr ""
+
+#: xml/xml_tokenizer.cpp:347
+msgid "the document is not in the correct file format"
+msgstr ""
+
+#: xml/xml_tokenizer.cpp:352
+#, kde-format
+msgid "fatal parsing error: %1 in line %2, column %3"
+msgstr ""
+
+#: xml/xml_tokenizer.cpp:567
+msgid "XML parsing error"
+msgstr ""
+
+#~ msgid "&About"
+#~ msgstr "&Game da"
+
+#~ msgid "A&uthor"
+#~ msgstr "&Mawallafi"
+
+#~ msgid "A&uthors"
+#~ msgstr "&Mawallafa"
+
+#~ msgid ""
+#~ "Please use <a href=\"http://bugs.kde.org\">http://bugs.kde.org</a> to "
+#~ "report bugs.\n"
+#~ msgstr ""
+#~ "Yi amfani da <a href=\"http://bugs.kde.org\">http://bugs.kde.org</a> "
+#~ "domin sanar da matsaloli.\n"
+
+#~ msgid "Please report bugs to <a href=\"mailto:%1\">%2</a>.\n"
+#~ msgstr "Sanar da matsaloli ga <a href=\"mailto:%1\">%2</a>.\n"
+
+#~ msgid "&Thanks To"
+#~ msgstr "G&odiya ga"
+
+#~ msgid "T&ranslation"
+#~ msgstr "Ma&ffassara"
+
+#~ msgid "&License Agreement"
+#~ msgstr "Yarjejeniyar &lasisi"
+
+#~ msgid "Author"
+#~ msgstr "Mawallafi"
+
+#~ msgid "Other Contributors:"
+#~ msgstr "Sauran mataimaka:"
+
+#~ msgid "About %1"
+#~ msgstr "Bayani akan %1"
+
+#~ msgid "&Language:"
+#~ msgstr "&Yare:"
+
+#~ msgid "am"
+#~ msgstr "safe"
+
+#~ msgid "pm"
+#~ msgstr "yamma"
+
+#~ msgid "Today"
+#~ msgstr "Yau"
+
+#~ msgid "Yesterday"
+#~ msgstr "Jiya"
+
+#~ msgid "KDE Daemon"
+#~ msgstr "KDE Fatalwa"
+
+#~ msgctxt "show help"
+#~ msgid "&Help"
+#~ msgstr "&Agaji"
+
+#, fuzzy
+#~| msgid "Close the current document."
+#~ msgid "Create new document"
+#~ msgstr "Rufe wannan -dokumen-"
+
+#, fuzzy
+#~| msgid "&Close Document"
+#~ msgid "Save document"
+#~ msgstr "&Rufe -dokumen-"
+
+#, fuzzy
+#~| msgid "&Close Document"
+#~ msgid "Close document"
+#~ msgstr "&Rufe -dokumen-"
+
+#, fuzzy
+#~| msgid "&Close Document"
+#~ msgid "Print document"
+#~ msgstr "&Rufe -dokumen-"
+
+#~ msgid "Configure &Notifications..."
+#~ msgstr "Haɗawa &Sanerwa"
+
+#~ msgid "&About %1"
+#~ msgstr "&Bayani akan %1"
+
+#~ msgid "About &KDE"
+#~ msgstr "Bayani akan &KDE"
+
+#~ msgid "License Agreement"
+#~ msgstr "Yarjejeniyar lasisi"
+
+#, fuzzy
+#~| msgid "Other Contributors:"
+#~ msgctxt "Action to send an email to a contributor"
+#~ msgid "Email contributor"
+#~ msgstr "Sauran mataimaka:"
+
+#, fuzzy
+#~| msgid "Other Contributors:"
+#~ msgctxt "Action to send an email to a contributor"
+#~ msgid ""
+#~ "Email contributor\n"
+#~ "%1"
+#~ msgstr "Sauran mataimaka:"
+
+#~ msgctxt "@item Contributor name in about dialog."
+#~ msgid "%1"
+#~ msgstr "%1"
+
+#~ msgid "About KDE"
+#~ msgstr "Bayani akan KDE"
+
+#~ msgctxt "About KDE"
+#~ msgid "&About"
+#~ msgstr "&Game da"
+
+#~ msgid "&Join KDE"
+#~ msgstr "&Tarayya da KDE"
+
+#~ msgid "&Support KDE"
+#~ msgstr "&Temakama KDE"
+
+#~ msgctxt "Email sender address"
+#~ msgid "From:"
+#~ msgstr "Daga:"
+
+#~ msgid "Configure Email..."
+#~ msgstr "Haɗawa wasikan lantarki"
+
+#~ msgctxt "Email receiver address"
+#~ msgid "To:"
+#~ msgstr "Zuwa:"
+
+#~ msgid "&Send"
+#~ msgstr "&Aika"
+
+#~ msgid "Send bug report."
+#~ msgstr "Aika bayanin matsala."
+
+#~ msgid "Send this bug report to %1."
+#~ msgstr "Aika wannan bayanin matsala zuwa %1."
+
+#~ msgid "OS:"
+#~ msgstr "Tsarin budanarwa:"
+
+#~ msgid "Compiler:"
+#~ msgstr "Mehadawa:"
+
+#~ msgid "Se&verity"
+#~ msgstr "Mahimmanchi"
+
+#~ msgid "Critical"
+#~ msgstr "Tsanani"
+
+#~ msgid "Grave"
+#~ msgstr "Mantikar Tsanani"
+
+#~ msgctxt "normal severity"
+#~ msgid "Normal"
+#~ msgstr "Matsala"
+
+#~ msgid "Wishlist"
+#~ msgstr "Abinda zan so"
+
+#~ msgid "Translation"
+#~ msgstr "Fassara"
+
+#~ msgid "S&ubject: "
+#~ msgstr "Abinda wasika yerkoni tsa"
+
+#~ msgid "Configure"
+#~ msgstr "Haɗawa"
+
+#~ msgid "1"
+#~ msgstr "1"
+
+#~ msgid "6"
+#~ msgstr "6"
+
+#~ msgid "2"
+#~ msgstr "2"
+
+#~ msgid "9"
+#~ msgstr "9"
+
+#~ msgid "4"
+#~ msgstr "4"
+
+#~ msgid "16"
+#~ msgstr "16"
+
+#~ msgctxt "@action:button filter-yes"
+#~ msgid "%1"
+#~ msgstr "%1"
+
+#~ msgctxt "@action:button filter-no"
+#~ msgid "%1"
+#~ msgstr "%1"
+
+#~ msgctxt "@action:button filter-continue"
+#~ msgid "%1"
+#~ msgstr "%1"
+
+#~ msgctxt "@action:button filter-cancel"
+#~ msgid "%1"
+#~ msgstr "%1"
+
+#~ msgctxt "@action:button post-filter"
+#~ msgid "."
+#~ msgstr "."
+
+#~ msgid "Question"
+#~ msgstr "Tambaya"
+
+#~ msgid "Username:"
+#~ msgstr "Sunan shiga:"
+
+#~ msgid "Action"
+#~ msgstr "Aiki"
+
+#~ msgid "Shortcut"
+#~ msgstr "Gajeran hanya"
+
+#~ msgid "Alternate"
+#~ msgstr "Wata gajeran hanya"
+
+#~ msgctxt "@item:intable Action name in shortcuts configuration"
+#~ msgid "%1"
+#~ msgstr "%1"
+
+#~ msgid "Remove"
+#~ msgstr "Cire"
+
+#~ msgid "Stop"
+#~ msgstr "Tsaya"
+
+#~ msgctxt "@action:button"
+#~ msgid "Close"
+#~ msgstr "Rufe"
+
+#~ msgctxt "@action"
+#~ msgid "Close"
+#~ msgstr "Rufe"
+
+#~ msgctxt "@action"
+#~ msgid "Help"
+#~ msgstr "Agaji"
+
+#~ msgctxt "@action"
+#~ msgid "Configure Notifications"
+#~ msgstr "Haɗawa Sanerwa"
+
+#~ msgctxt "@action"
+#~ msgid "About KDE"
+#~ msgstr "Bayani akan KDE"
+
+#~ msgid "Default language:"
+#~ msgstr "Yaren farko:"
+
+#~ msgid "Yes"
+#~ msgstr "Ee"
+
+#~ msgid "No"
+#~ msgstr "A'a"
+
+#~ msgid "Close the current window or document"
+#~ msgstr "Rufe wannan tagar"
+
+#~ msgid "&Close Window"
+#~ msgstr "&Rufe taga"
+
+#~ msgid "Close the current window."
+#~ msgstr "Rufe wannan tagar."
+
+#~ msgid "&Close Document"
+#~ msgstr "&Rufe -dokumen-"
+
+#~ msgid "Close the current document."
+#~ msgstr "Rufe wannan -dokumen-"
+
+#, fuzzy
+#~| msgid "Today"
+#~ msgctxt "@option today"
+#~ msgid "Today"
+#~ msgstr "Yau"
+
+#, fuzzy
+#~| msgid "Yesterday"
+#~ msgctxt "@option yesterday"
+#~ msgid "Yesterday"
+#~ msgstr "Jiya"
+
+#~ msgid "&Remove"
+#~ msgstr "&Cire"
+
+#~ msgid "&Help"
+#~ msgstr "&Agaji"
+
+#, fuzzy
+#~| msgid "Settings"
+#~ msgctxt "@title:menu"
+#~ msgid "Toolbar Settings"
+#~ msgstr "Tsarawa"
+
+#, fuzzy
+#~| msgid "Translation"
+#~ msgctxt "Toolbar orientation"
+#~ msgid "Orientation"
+#~ msgstr "Fassara"
+
+#~ msgid "Settings"
+#~ msgstr "Tsarawa"
+
+#~ msgid "Quit"
+#~ msgstr "Kashi"
+
+#~ msgid "Quit application..."
+#~ msgstr "Rufewa -afelikashon-"
+
+#~ msgid "?"
+#~ msgstr "?"
+
+#~ msgid "Author:"
+#~ msgstr "Mawallafi:"
+
+#~ msgid "GPL"
+#~ msgstr "GPL"
+
+#~ msgid "LGPL"
+#~ msgstr "LGPL"
+
+#~ msgid "BSD"
+#~ msgstr "BSD"
+
+#~ msgid "Language:"
+#~ msgstr "Yare:"
+
+#~ msgid "Configure Notifications"
+#~ msgstr "Haɗawa Sanerwa"
+
+#, fuzzy
+#~| msgid "Settings"
+#~ msgid "Apply Settings"
+#~ msgstr "Tsarawa"
+
+#~ msgid "Color for links"
+#~ msgstr "Launin ma'isa"
+
+#~ msgid "What color links should be that have not yet been clicked on"
+#~ msgstr ""
+#~ "Wani launi ma'isa kake so launin ma'isar ya kasance wanda ba a taɓa ba"
+
+#~ msgid "Color for visited links"
+#~ msgstr "Launin ma'isar da aka taɓa"
+
+#~ msgid "What country"
+#~ msgstr "Wacce ƙasa"
+
+#~ msgid ""
+#~ "Used to determine how to display numbers, currency and time/date, for "
+#~ "example"
+#~ msgstr "ƙasarce take zaɓar haruffa, lambobi da lokaci da take amfani dashi"
+
+#~ msgid "Path to the autostart directory"
+#~ msgstr "Hanyan jakar farawa da kai"
+
+#, fuzzy
+#~| msgid "About %1"
+#~ msgctxt "Used only for plugins"
+#~ msgid "About %1"
+#~ msgstr "Bayani akan %1"
+
+#, fuzzy
+#~| msgid "Today"
+#~ msgctxt ""
+#~ "referring to a filter on the modification and usage date of files/"
+#~ "resources"
+#~ msgid "Today"
+#~ msgstr "Yau"
+
+#, fuzzy
+#~| msgid "Yesterday"
+#~ msgctxt ""
+#~ "referring to a filter on the modification and usage date of files/"
+#~ "resources"
+#~ msgid "Yesterday"
+#~ msgstr "Jiya"
+
+#, fuzzy
+#~| msgid "A&uthor"
+#~ msgid "Before"
+#~ msgstr "&Mawallafi"
+
+#, fuzzy
+#~| msgid "A&uthor"
+#~ msgctxt ""
+#~ "@option:check An item in a list of resources that allows to query for "
+#~ "more resources to put in the list"
+#~ msgid "More..."
+#~ msgstr "&Mawallafi"
+
+#, fuzzy
+#~| msgid "&Close Document"
+#~ msgctxt "@option:check A filter on file type"
+#~ msgid "Documents"
+#~ msgstr "&Rufe -dokumen-"
+
+#~ msgid "Start"
+#~ msgstr "Tada"
+
+#~ msgid "What time is it? Click to update."
+#~ msgstr "Ƙarfe nawa? Denna don sabuntawa."
+
+#, fuzzy
+#~| msgid "Today"
+#~ msgctxt "@info/plain"
+#~ msgid "today"
+#~ msgstr "Yau"
+
+#~ msgctxt "@item Author name in about dialog"
+#~ msgid "%1"
+#~ msgstr "%1"
+
+#~ msgid "..."
+#~ msgstr "..."
+
+#, fuzzy
+#~| msgid "Question"
+#~ msgid "description"
+#~ msgstr "Tambaya"
+
+#, fuzzy
+#~| msgid "Author"
+#~ msgid "Autor Name"
+#~ msgstr "Mawallafi"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Indian National month 10 - LongNamePossessive"
+#~ msgid "of Paush"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Indian National month 10 - ShortName"
+#~ msgid "Pau"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Indian National month 10 - LongName"
+#~ msgid "Paush"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic month 2 - ShortNamePossessive"
+#~ msgid "of Pao"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic month 7 - ShortNamePossessive"
+#~ msgid "of Par"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic month 8 - ShortNamePossessive"
+#~ msgid "of Pam"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic month 9 - ShortNamePossessive"
+#~ msgid "of Pas"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic month 10 - ShortNamePossessive"
+#~ msgid "of Pan"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic month 2 - LongNamePossessive"
+#~ msgid "of Paope"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic month 4 - LongNamePossessive"
+#~ msgid "of Kiahk"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic month 8 - LongNamePossessive"
+#~ msgid "of Parmoute"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic month 9 - LongNamePossessive"
+#~ msgid "of Pashons"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic month 10 - LongNamePossessive"
+#~ msgid "of Paone"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic month 2 - ShortName"
+#~ msgid "Pao"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Yes"
+#~ msgctxt "Coptic month 6 - ShortName"
+#~ msgid "Mes"
+#~ msgstr "Ee"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic month 7 - ShortName"
+#~ msgid "Par"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "am"
+#~ msgctxt "Coptic month 8 - ShortName"
+#~ msgid "Pam"
+#~ msgstr "safe"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic month 9 - ShortName"
+#~ msgid "Pas"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic month 10 - ShortName"
+#~ msgid "Pan"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic month 2 - LongName"
+#~ msgid "Paope"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Author"
+#~ msgctxt "Coptic month 3 - LongName"
+#~ msgid "Hathor"
+#~ msgstr "Mawallafi"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic month 8 - LongName"
+#~ msgid "Parmoute"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic month 9 - LongName"
+#~ msgid "Pashons"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic month 10 - LongName"
+#~ msgid "Paone"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Yes"
+#~ msgctxt "Coptic weekday 1 - ShortDayName"
+#~ msgid "Pes"
+#~ msgstr "Ee"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic weekday 2 - ShortDayName"
+#~ msgid "Psh"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic weekday 6 - ShortDayName"
+#~ msgid "Psa"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Coptic weekday 1 - LongDayName"
+#~ msgid "Pesnau"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Ethiopian month 4 - ShortNamePossessive"
+#~ msgid "of Tah"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Ethiopian month 13 - ShortNamePossessive"
+#~ msgid "of Pag"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Ethiopian month 13 - LongNamePossessive"
+#~ msgid "of Pagumen"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Yes"
+#~ msgctxt "Ethiopian month 1 - ShortName"
+#~ msgid "Mes"
+#~ msgstr "Ee"
+
+#, fuzzy
+#~| msgid "am"
+#~ msgctxt "Ethiopian month 11 - ShortName"
+#~ msgid "Ham"
+#~ msgstr "safe"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Ethiopian month 13 - ShortName"
+#~ msgid "Pag"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Ethiopian month 13 - LongName"
+#~ msgid "Pagumen"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "am"
+#~ msgctxt "Ethiopian weekday 4 - ShortDayName"
+#~ msgid "Ham"
+#~ msgstr "safe"
+
+#, fuzzy
+#~| msgid "Pause"
+#~ msgctxt "Ethiopian weekday 4 - LongDayName"
+#~ msgid "Hamus"
+#~ msgstr "Dakata"
+
+#, fuzzy
+#~| msgid "Action"
+#~ msgid "Long Action"
+#~ msgstr "Aiki"
+
+#~ msgid "Path for the trash can"
+#~ msgstr "Hanyan zubar da shara"
+
+#~ msgid "Path to documents folder"
+#~ msgstr "Hanyan jakar -dokumen-"
