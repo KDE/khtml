@@ -85,7 +85,6 @@ if(NOT WIN32 AND NOT APPLE AND X11_FOUND)
 endif()
 
 
-remove_definitions(-DQT_NO_CAST_TO_ASCII)
 remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 remove_definitions(-DQT_NO_CAST_FROM_BYTEARRAY)
 
