@@ -786,10 +786,8 @@ install(FILES
 
 install(FILES khtml.desktop khtmlimage.desktop
          khtmladaptorpart.desktop DESTINATION  ${SERVICES_INSTALL_DIR} )
-# XmlGui files are expected in GenericDataLocation/ComponentName
-# (ie: ${DATA_INSTALL_DIR}/khtml), so we version the files themselves
-install(FILES khtml.rc          DESTINATION  ${DATA_INSTALL_DIR}/khtml RENAME khtml5.rc )
-install(FILES khtml_browser.rc  DESTINATION  ${DATA_INSTALL_DIR}/khtml RENAME khtml5_browser.rc )
+install(FILES khtml.rc          DESTINATION  ${KXMLGUI_INSTALL_DIR}/khtml)
+install(FILES khtml_browser.rc  DESTINATION  ${KXMLGUI_INSTALL_DIR}/khtml)
 
 # install(FILES ${CMAKE_CURRENT_BINARY_DIR}/org.kde.KHtmlPart.xml DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} )
 

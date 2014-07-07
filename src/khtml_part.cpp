@@ -220,9 +220,9 @@ KHTMLPart::KHTMLPart(KHTMLView *view, QObject *parent, GUIProfile prof)
 void KHTMLPart::init(KHTMLView *view, GUIProfile prof)
 {
     if (prof == DefaultGUI) {
-        setXMLFile("khtml5.rc");
+        setXMLFile("khtml.rc");
     } else if (prof == BrowserViewGUI) {
-        setXMLFile("khtml5_browser.rc");
+        setXMLFile("khtml_browser.rc");
     }
 
     d = new KHTMLPartPrivate(this, parent());
