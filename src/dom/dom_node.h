@@ -942,14 +942,14 @@ public:
      * @internal returns the index of a node
      */
     unsigned long index() const;
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
     KHTML_DEPRECATED QString toHTML();
 #endif
     void applyChanges();
     /**
      * @deprecated without substitution since 3.2
      */
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
     KHTML_DEPRECATED void getCursor(int offset, int &_x, int &_y, int &height);
 #endif
     /**

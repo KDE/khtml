@@ -147,7 +147,7 @@ void HTMLAppletElement::setHeight(const DOMString &value)
     }
 }
 
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
 DOMString HTMLAppletElement::hspace() const
 {
     if (!impl) {
@@ -157,7 +157,7 @@ DOMString HTMLAppletElement::hspace() const
 }
 #endif
 
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
 void HTMLAppletElement::setHspace(const DOMString &value)
 {
     if (impl) {
@@ -211,7 +211,7 @@ void HTMLAppletElement::setObject(const DOMString &value)
     }
 }
 
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
 DOMString HTMLAppletElement::vspace() const
 {
     if (!impl) {
@@ -221,7 +221,7 @@ DOMString HTMLAppletElement::vspace() const
 }
 #endif
 
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
 void HTMLAppletElement::setVspace(const DOMString &value)
 {
     if (impl) {
@@ -437,7 +437,7 @@ void HTMLObjectElement::setHeight(const DOMString &value)
     }
 }
 
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
 DOMString HTMLObjectElement::hspace() const
 {
     if (!impl) {
@@ -447,7 +447,7 @@ DOMString HTMLObjectElement::hspace() const
 }
 #endif
 
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
 void HTMLObjectElement::setHspace(const DOMString &value)
 {
     if (impl) {
@@ -547,7 +547,7 @@ void HTMLObjectElement::setUseMap(const DOMString &value)
     }
 }
 
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
 DOMString HTMLObjectElement::vspace() const
 {
     if (!impl) {
@@ -557,7 +557,7 @@ DOMString HTMLObjectElement::vspace() const
 }
 #endif
 
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
 void HTMLObjectElement::setVspace(const DOMString &value)
 {
     if (impl) {

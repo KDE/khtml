@@ -258,14 +258,14 @@ public:
     /**
      * @deprecated
      */
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
     KHTML_DEPRECATED long border() const;
 #endif
 
     /**
      * @deprecated
      */
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
     KHTML_DEPRECATED void setBorder(long);
 #endif
 

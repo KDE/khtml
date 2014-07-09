@@ -169,14 +169,14 @@ public:
     /**
      * @deprecated
      */
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
     KHTML_DEPRECATED DOMString hspace() const;
 #endif
 
     /**
      * @deprecated
      */
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
     KHTML_DEPRECATED void setHspace(const DOMString &value);
 #endif
 
@@ -226,14 +226,14 @@ public:
     /**
      * @deprecated
      */
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
     KHTML_DEPRECATED DOMString vspace() const;
 #endif
 
     /**
      * @deprecated
      */
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
     KHTML_DEPRECATED void setVspace(const DOMString &);
 #endif
 
@@ -431,14 +431,14 @@ public:
     /**
      * @deprecated
      */
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
     KHTML_DEPRECATED DOMString hspace() const;
 #endif
 
     /**
      * @deprecated
      */
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
     KHTML_DEPRECATED void setHspace(const DOMString &);
 #endif
 
@@ -528,14 +528,14 @@ public:
     /**
      * @deprecated
      */
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
     KHTML_DEPRECATED DOMString vspace() const;
 #endif
 
     /**
      * @deprecated
      */
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
     KHTML_DEPRECATED void setVspace(const DOMString &);
 #endif
 

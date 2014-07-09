@@ -260,7 +260,7 @@ void HTMLImageElement::setAlt(const DOMString &value)
     }
 }
 
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
 long HTMLImageElement::border() const
 {
     if (!impl) {
@@ -271,7 +271,7 @@ long HTMLImageElement::border() const
 }
 #endif
 
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
 void HTMLImageElement::setBorder(long value)
 {
     if (impl) {

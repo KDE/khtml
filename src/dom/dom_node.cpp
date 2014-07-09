@@ -522,7 +522,7 @@ unsigned long Node::index() const
     return impl->nodeIndex();
 }
 
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
 QString Node::toHTML()
 {
     if (!impl) {
@@ -540,7 +540,7 @@ void Node::applyChanges()
     impl->recalcStyle(NodeImpl::Inherit);
 }
 
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
 void Node::getCursor(int offset, int &_x, int &_y, int &height)
 {
     if (!impl) {

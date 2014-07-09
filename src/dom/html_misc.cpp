@@ -84,7 +84,7 @@ void HTMLBaseFontElement::setFace(const DOMString &value)
     }
 }
 
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
 DOMString HTMLBaseFontElement::size() const
 {
     if (!impl) {
@@ -94,7 +94,7 @@ DOMString HTMLBaseFontElement::size() const
 }
 #endif
 
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
 void HTMLBaseFontElement::setSize(const DOMString &value)
 {
     if (impl) {

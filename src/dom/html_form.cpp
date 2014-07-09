@@ -574,7 +574,7 @@ void HTMLInputElement::setReadOnly(bool _readOnly)
 }
 
 /* The next two are provided for backwards compatibility. */
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
 DOMString HTMLInputElement::size() const
 {
     if (!impl) {
@@ -584,7 +584,7 @@ DOMString HTMLInputElement::size() const
 }
 #endif
 
-#ifndef KDE_NO_DEPRECATED
+#ifndef KHTML_NO_DEPRECATED
 void HTMLInputElement::setSize(const DOMString &value)
 {
     if (impl) {
