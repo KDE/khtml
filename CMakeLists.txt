@@ -84,6 +84,11 @@ if(NOT WIN32 AND NOT APPLE AND X11_FOUND)
     find_package(Qt5 5.2.0 CONFIG REQUIRED X11Extras)
 endif()
 
+if(WIN32)
+    find_package(KDEWin REQUIRED)
+    INCLUDE_DIRECTORIES(${KDEWIN_INCLUDES})
+    LINK_LIBRARIES(${KDEWIN_LIBRARIES})
+endif()
 
 remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 remove_definitions(-DQT_NO_CAST_FROM_BYTEARRAY)

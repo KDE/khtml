@@ -1,6 +1,6 @@
 include(ECMMarkAsTest)
 
-if(NOT APPLE)
+if(NOT WIN32 AND NOT APPLE AND X11_FOUND)
   find_package(Qt5X11Extras "${REQUIRED_QT_VERSION}" CONFIG REQUIRED)
   set_package_properties(Qt5X11Extras PROPERTIES PURPOSE "Required for tests")
 endif()

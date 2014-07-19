@@ -574,7 +574,7 @@ target_link_libraries(KF5KHtml
     KF5::KIOWidgets # KUrlRequester
     KF5::GlobalAccel
 )
-if(NOT APPLE)
+if(NOT WIN32 AND NOT APPLE AND X11_FOUND)
   target_link_libraries(KF5KHtml PRIVATE Qt5::X11Extras)
 endif()
 

@@ -81,6 +81,11 @@ using namespace DOM;
 using namespace khtml;
 using namespace std;
 
+// on Windows fmod might be a macro so std::fmod will not work
+#ifdef fmod
+#undef fmod
+#endif
+
 // -------------------------------------------------------------------------
 
 HTMLCanvasElementImpl::HTMLCanvasElementImpl(DocumentImpl *doc)
