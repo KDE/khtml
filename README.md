@@ -36,9 +36,3 @@ Another option is to use KDEWebKit, WebKit is a fork of KHTML with substantial
 industry support.
 
 
-## Links
-
-- Home page: <https://projects.kde.org/projects/frameworks/khtml>
-- Mailing list: <https://mail.kde.org/mailman/listinfo/kde-frameworks-devel>
-- IRC channel: #khtml on Freenode
-- Git repository: <https://projects.kde.org/projects/frameworks/khtml/repository>

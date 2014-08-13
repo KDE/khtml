@@ -7,3 +7,7 @@ platforms:
 portingAid: true
 deprecated: true
 release: true
+libraries:
+ - qmake: KHtml
+   cmake: "KF5::KHtml"
+cmakename: KF5KHtml
