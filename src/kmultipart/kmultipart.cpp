@@ -41,7 +41,7 @@ static KAboutData kmultipartAboutData()
                          "0.1",
                          i18n("Embeddable component for multipart/mixed"),
                          KAboutLicense::GPL,
-                         i18n("Copyright 2001-2011, David Faure <email>faure@kde.org</email>"));
+                         i18n("Copyright 2001-2011, David Faure <faure@kde.org>"));
     return aboutData;
 }
 
