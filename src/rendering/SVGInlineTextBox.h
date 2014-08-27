@@ -33,9 +33,9 @@ namespace WebCore
 {
 using namespace khtml;
 
-class SVGChar;
+struct SVGChar;
 class SVGRootInlineBox;
-class SVGTextDecorationInfo;
+struct SVGTextDecorationInfo;
 
 class SVGInlineTextBox : public InlineTextBox
 {

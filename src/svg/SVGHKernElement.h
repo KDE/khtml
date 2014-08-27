@@ -38,7 +38,7 @@ namespace WebCore
 
 //class AtomicString;
 using khtml::AtomicString;
-struct SVGFontData;
+class SVGFontData;
 
 // Describe an SVG <hkern> element
 struct SVGHorizontalKerningPair {

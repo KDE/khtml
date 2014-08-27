@@ -36,7 +36,7 @@ namespace WebCore
 {
 
 using khtml::AtomicString;
-struct SVGFontData;
+class SVGFontData;
 
 // Describe a SVG <glyph> element
 struct SVGGlyphIdentifier {
