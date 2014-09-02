@@ -1274,9 +1274,10 @@ void RenderStyleDeclarationImpl::removeProperty(int, DOM::DOMString *)
     // ### emit error since we're read-only
 }
 
-void RenderStyleDeclarationImpl::removePropertiesInSet(const int *, unsigned)
+bool RenderStyleDeclarationImpl::removePropertiesInSet(const int *, unsigned)
 {
     // ### emit error since we're read-only
+    return false;
 }
 
 bool RenderStyleDeclarationImpl::setProperty(int, const DOM::DOMString &, bool, int &ec)
