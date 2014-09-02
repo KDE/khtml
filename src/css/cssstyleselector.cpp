@@ -4303,26 +4303,6 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
             fontDef.size = m_fontSizes[3];
             style->setLineHeight(RenderStyle::initialLineHeight());
             fontDirty |= style->setFontDef(fontDef);
-        } else if (value->isFontValue()) {
-            FontValueImpl *font = static_cast<FontValueImpl *>(value);
-            if (!font->style || !font->variant || !font->weight ||
-                    !font->size || !font->lineHeight || !font->family) {
-                return;
-            }
-            applyRule(CSS_PROP_FONT_STYLE, font->style);
-            applyRule(CSS_PROP_FONT_VARIANT, font->variant);
-            applyRule(CSS_PROP_FONT_WEIGHT, font->weight);
-            applyRule(CSS_PROP_FONT_SIZE, font->size);
-
-            // Line-height can depend on font().pixelSize(), so we have to update the font
-            // before we evaluate line-height, e.g., font: 1em/1em.  FIXME: Still not
-            // good enough: style="font:1em/1em; font-size:36px" should have a line-height of 36px.
-            if (fontDirty) {
-                style->htmlFont().update(logicalDpiY);
-            }
-
-            applyRule(CSS_PROP_LINE_HEIGHT, font->lineHeight);
-            applyRule(CSS_PROP_FONT_FAMILY, font->family);
         } else if (primitiveValue) {
             // Handle system fonts. We extract out properties from a QFont
             // into the RenderStyle.
