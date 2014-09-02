@@ -1963,7 +1963,7 @@ CSSValueImpl *CSSParser::parseBackgroundSize()
     if (value->id == CSS_VAL_AUTO) {
         parsedValue1 = new CSSPrimitiveValueImpl(0, CSSPrimitiveValue::CSS_UNKNOWN);
     } else {
-        if (!validUnit(value, FLength | FPercent, strict)) {
+        if (!validUnit(value, FLength | FPercent | FNonNeg, strict)) {
             return 0;
         }
         parsedValue1 = new CSSPrimitiveValueImpl(value->fValue, (CSSPrimitiveValue::UnitTypes)value->unit);
@@ -1974,7 +1974,7 @@ CSSValueImpl *CSSParser::parseBackgroundSize()
         if (value->id == CSS_VAL_AUTO) {
             parsedValue2 = new CSSPrimitiveValueImpl(0, CSSPrimitiveValue::CSS_UNKNOWN);
         } else {
-            if (!validUnit(value, FLength | FPercent, strict)) {
+            if (!validUnit(value, FLength | FPercent | FNonNeg, strict)) {
                 delete parsedValue1;
                 return 0;
             }
