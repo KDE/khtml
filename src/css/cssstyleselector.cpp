@@ -3757,10 +3757,6 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
             }
         }
 
-        if (size < 0) {
-            return;
-        }
-
         // we never want to get smaller than the minimum font size to keep fonts readable
         // do not however maximize zero as that is commonly used for fancy layouting purposes
         if (size && size < minFontSize) {
