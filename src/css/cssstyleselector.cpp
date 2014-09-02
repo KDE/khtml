@@ -530,7 +530,7 @@ void CSSStyleSelector::computeFontSizesFor(int logicalDpiY, int zoomFactor, QVec
     float scale = 1.0;
     static const float fontFactors[] =      {3.0f / 5.0f, 3.0f / 4.0f, 8.0f / 9.0f, 1.0f, 6.0f / 5.0f, 3.0f / 2.0f, 2.0f, 3.0f};
     static const float smallFontFactors[] = {3.0f / 4.0f, 5.0f / 6.0f, 8.0f / 9.0f, 1.0f, 6.0f / 5.0f, 3.0f / 2.0f, 2.0f, 3.0f};
-    float mediumFontSize, minFontSize, factor;
+    float mediumFontSize, factor;
     if (!khtml::printpainter) {
         scale *= zoomFactor / 100.0;
 #ifdef APPLE_CHANGES
@@ -539,17 +539,17 @@ void CSSStyleSelector::computeFontSizesFor(int logicalDpiY, int zoomFactor, QVec
         } else
 #endif
             mediumFontSize = settings->mediumFontSize() * toPix;
-        minFontSize = settings->minFontSize() * toPix;
+        m_minFontSize = settings->minFontSize() * toPix;
     } else {
         // ### depending on something / configurable ?
         mediumFontSize = 12;
-        minFontSize = 6;
+        m_minFontSize = 6;
     }
     const float *factors = scale * mediumFontSize >= 12.5 ? fontFactors : smallFontFactors;
     for (int i = 0; i < MAXFONTSIZES; i++) {
         factor = scale * factors[i];
-        fontSizes[i] = int(qMax(mediumFontSize * factor + .5f, minFontSize));
-        //qDebug() << "index: " << i << " factor: " << factors[i] << " font pix size: " << int(qMax( mediumFontSize*factor +.5f, minFontSize));
+        fontSizes[i] = qMax(qRound(mediumFontSize * factor), m_minFontSize);
+        //qDebug() << "index:" << i << "factor:" << factors[i] << "font pix size:" << fontSizes[i];
     }
 }
 
@@ -3689,14 +3689,7 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
     case CSS_PROP_FONT_SIZE: {
         FontDef fontDef = style->htmlFont().fontDef;
         int oldSize;
-        float size = 0;
-
-        float toPix = logicalDpiY / 72.0f;
-        if (toPix  < 96.0f / 72.0f) {
-            toPix = 96.0f / 72.0f;
-        }
-
-        float minFontSize = settings->minFontSize() * toPix;
+        int size = 0;
 
         if (parentNode) {
             oldSize = parentStyle->font().pixelSize();
@@ -3740,29 +3733,27 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
             int type = primitiveValue->primitiveType();
             if (type > CSSPrimitiveValue::CSS_PERCENTAGE && type < CSSPrimitiveValue::CSS_DEG) {
                 if (!khtml::printpainter && type != CSSPrimitiveValue::CSS_EMS && type != CSSPrimitiveValue::CSS_EXS &&
-                        view && view->part())
-                    size = primitiveValue->computeLengthFloat(parentStyle, logicalDpiY) *
-                           view->part()->fontScaleFactor() / 100.0;
-                else {
-                    size = primitiveValue->computeLengthFloat(parentStyle, logicalDpiY);
+                        view && view->part()) {
+                    size = qRound(primitiveValue->computeLengthFloat(parentStyle, logicalDpiY) * view->part()->fontScaleFactor() / 100.0);
+                } else {
+                    size = qRound(primitiveValue->computeLengthFloat(parentStyle, logicalDpiY));
                 }
             } else if (type == CSSPrimitiveValue::CSS_PERCENTAGE)
-                size = primitiveValue->floatValue(CSSPrimitiveValue::CSS_PERCENTAGE)
-                       * parentStyle->font().pixelSize() / 100.0;
+                size = qRound(primitiveValue->floatValue(CSSPrimitiveValue::CSS_PERCENTAGE) * parentStyle->font().pixelSize() / 100.0);
             else {
                 return;
             }
-        }
 
-        // we never want to get smaller than the minimum font size to keep fonts readable
-        // do not however maximize zero as that is commonly used for fancy layouting purposes
-        if (size && size < minFontSize) {
-            size = minFontSize;
+            // we never want to get smaller than the minimum font size to keep fonts readable
+            // do not however maximize zero as that is commonly used for fancy layouting purposes
+            if (size) {
+                size = qMax(size, m_minFontSize);
+            }
         }
 
         //qDebug() << "computed raw font size: " << size;
 
-        fontDef.size = qRound(size);
+        fontDef.size = size;
         fontDirty |= style->setFontDef(fontDef);
         return;
     }

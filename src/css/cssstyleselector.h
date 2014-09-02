@@ -347,6 +347,7 @@ protected:
     RenderStyle     *m_rootDefaultStyle;
     QVector<int>     m_fontSizes;
     QVector<int>     m_fixedFontSizes;
+    int m_minFontSize;
 
     bool fontDirty;
     DOM::CSSFontSelector *m_fontSelector;
