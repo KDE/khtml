@@ -2165,6 +2165,7 @@ void CSSStyleSelector::setupDefaultRootStyle(DOM::DocumentImpl *d)
     CSSInitialValueImpl i(true);
     applyRule(CSS_PROP_FONT_SIZE, &i);
     style->htmlFont().update(logicalDpiY);
+    fontDirty = false;
 }
 
 void CSSStyleSelector::buildLists()
