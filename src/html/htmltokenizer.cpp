@@ -30,7 +30,7 @@
 // KDE HTML Widget - Tokenizers
 
 // #define TOKEN_DEBUG 1
-//#define TOKEN_DEBUG 2
+// #define TOKEN_DEBUG 2
 
 #include "htmltokenizer.h"
 #include "html_documentimpl.h"
@@ -1090,11 +1090,10 @@ void HTMLTokenizer::parseTag(TokenizerString &src)
         checkBuffer();
 #if defined(TOKEN_DEBUG) && TOKEN_DEBUG > 1
         uint l = 0;
-        while (l < src.length() && (src.toString()[l]).toLatin1().constData() != '>') {
+        while (l < src.length() && (src.toString()[l]).toLatin1() != '>') {
             l++;
         }
-        qDebug("src is now: *%s*, tquote: %d",
-               src.toString().left(l).toLatin1().constData(), tquote);
+        qDebug("src is now: *%s*, tquote: %d", src.toString().left(l).toLatin1().constData(), tquote);
 #endif
         switch (tag) {
         case NoTag:
