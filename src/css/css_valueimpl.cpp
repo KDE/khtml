@@ -531,8 +531,6 @@ static void initShorthandMap(QHash<int, PropertyLonghand> &shorthandMap)
 #define SET_SHORTHAND_MAP_ENTRY(map, propID, array) \
     map.insert(propID, PropertyLonghand(array, sizeof(array) / sizeof(array[0])))
 
-    // FIXME: The 'font' property has "shorthand nature" but is not parsed as a shorthand.
-
     // Do not change the order of the following four shorthands, and keep them together.
     static const int borderProperties[4][3] = {
         { CSS_PROP_BORDER_TOP_COLOR, CSS_PROP_BORDER_TOP_STYLE, CSS_PROP_BORDER_TOP_WIDTH },
@@ -675,6 +673,16 @@ static void initShorthandMap(QHash<int, PropertyLonghand> &shorthandMap)
         CSS_PROP_MARKER_END
     };
     SET_SHORTHAND_MAP_ENTRY(shorthandMap, CSS_PROP_MARKER, markerProperties);
+
+    static const int fontProperties[] = {
+        CSS_PROP_FONT_STYLE,
+        CSS_PROP_FONT_VARIANT,
+        CSS_PROP_FONT_WEIGHT,
+        CSS_PROP_FONT_SIZE,
+        CSS_PROP_LINE_HEIGHT,
+        CSS_PROP_FONT_FAMILY
+    };
+    SET_SHORTHAND_MAP_ENTRY(shorthandMap, CSS_PROP_FONT, fontProperties);
 
 #undef SET_SHORTHAND_MAP_ENTRY
 }
