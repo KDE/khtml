@@ -36,9 +36,6 @@
 #  endif
 #endif
 
-#include <khtml_global.h>
-#include <khtml_settings.h>
-
 #include <QDebug>
 
 #include <QtCore/QHash>
@@ -668,11 +665,9 @@ unsigned CachedFontInstance::calcAndCacheWidth(unsigned short codePoint)
 
 void Font::update(int logicalDpiY) const
 {
-    QString familyName = fontDef.family.isEmpty() ? KHTMLGlobal::defaultHTMLSettings()->stdFontName() : fontDef.family;
-    CachedFontFamily *family = queryFamily(familyName, fontDef.weight, fontDef.italic);
+    CachedFontFamily *family = queryFamily(fontDef.family, fontDef.weight, fontDef.italic);
 
     int size = fontDef.size;
-    const int lDpiY = qMax(logicalDpiY, 96);
 
     // ok, now some magic to get a nice unscaled font
     // all other font properties should be set before this one!!!!
@@ -681,6 +676,7 @@ void Font::update(int logicalDpiY) const
         // lets see if we find a nice looking font, which is not too far away
         // from the requested one.
         // qDebug() << "khtml::setFontSize family = " << f.family() << " size requested=" << size;
+        const float toPix = qMax(logicalDpiY, 96) / 72.0f;
 
         float diff = 1; // ### 100% deviation
         float bestSize = 0;
@@ -689,7 +685,7 @@ void Font::update(int logicalDpiY) const
         const QList<int>::ConstIterator itEnd = pointSizes.end();
 
         for (; it != itEnd; ++it) {
-            float newDiff = ((*it) * (lDpiY / 72.) - float(size)) / float(size);
+            float newDiff = (((*it) * toPix) - float(size)) / float(size);
             //qDebug() << "smooth font size: " << *it << " diff=" << newDiff;
             if (newDiff < 0) {
                 newDiff = -newDiff;
@@ -701,7 +697,7 @@ void Font::update(int logicalDpiY) const
         }
         //qDebug() << "best smooth font size: " << bestSize << " diff=" << diff;
         if (bestSize != 0 && diff < 0.2) { // 20% deviation, otherwise we use a scaled font...
-            size = (int)((bestSize * lDpiY) / 72);
+            size = static_cast<int>(bestSize * toPix);
         }
     }
 

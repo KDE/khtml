@@ -1447,26 +1447,14 @@ void DocumentImpl::recalcStyle(StyleChange change)
         RenderStyle *_style = new RenderStyle();
         _style->setDisplay(BLOCK);
         _style->setVisuallyOrdered(visuallyOrdered);
-        // ### make the font stuff _really_ work!!!!
+        // ### make the font stuff _really_ work!!!! (??)
 
-        khtml::FontDef fontDef;
-        QFont f = QFontDatabase::systemFont(QFontDatabase::GeneralFont);
-        fontDef.family = f.family();
-        fontDef.italic = f.italic();
-        fontDef.weight = f.weight();
-        if (m_view) {
-            const KHTMLSettings *settings = m_view->part()->settings();
-            QString stdfont = settings->stdFontName();
-            if (!stdfont.isEmpty()) {
-                fontDef.family = stdfont;
-            }
-
-            fontDef.size = m_styleSelector->fontSizes()[3];
-        }
-
-        //qDebug() << "DocumentImpl::attach: setting to charset " << settings->charset();
+        FontDef fontDef = FontDef();
+        // Initial fontDef.size is 0
+        fontDef.size = m_styleSelector->fontSizes()[3];
         _style->setFontDef(fontDef);
         _style->htmlFont().update(0);
+
         if (inCompatMode()) {
             _style->setHtmlHacks(true);    // enable html specific rendering tricks
         }

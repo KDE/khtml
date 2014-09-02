@@ -25,6 +25,9 @@
 #ifndef KHTMLFONT_H
 #define KHTMLFONT_H
 
+#include <khtml_global.h>
+#include <khtml_settings.h>
+
 #include <QCache>
 #include <QFont>
 #include <QFontMetrics>
@@ -109,7 +112,7 @@ class FontDef
 {
 public:
     FontDef()
-        : size(0), italic(false), smallCaps(false), weight(QFont::Normal/*50*/) {}
+        : family(KHTMLGlobal::defaultHTMLSettings()->stdFontName()), size(0), italic(false), smallCaps(false), weight(QFont::Normal) {}
     bool operator == (const FontDef &other) const
     {
         return (family == other.family &&

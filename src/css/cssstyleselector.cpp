@@ -523,11 +523,7 @@ void CSSStyleSelector::computeFontSizesFor(int logicalDpiY, int zoomFactor, QVec
 #else
     Q_UNUSED(isFixed);
 
-    // ### get rid of float / double
-    float toPix = logicalDpiY / 72.0f;
-    if (toPix  < 96.0f / 72.0f) {
-        toPix = 96.0f / 72.0f;
-    }
+    const float toPix = qMax(logicalDpiY, 96) / 72.0f;
 #endif // ######### fix isFixed code again.
 
     fontSizes.resize(MAXFONTSIZES);
@@ -4033,7 +4029,7 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
 #ifdef APPLE_CHANGES
             fontDef.family = initialDef.firstFamily();
 #else
-            fontDef.family.clear();
+            fontDef.family = initialDef.family;
 #endif
             if (style->setFontDef(fontDef)) {
                 fontDirty = true;
