@@ -4303,10 +4303,9 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
             fontDirty |= style->setFontDef(fontDef);
         } else if (isInitial) {
             FontDef fontDef;
+            fontDef.size = m_fontSizes[3];
             style->setLineHeight(RenderStyle::initialLineHeight());
-            if (style->setFontDef(fontDef)) {
-                fontDirty = true;
-            }
+            fontDirty |= style->setFontDef(fontDef);
         } else if (value->isFontValue()) {
             FontValueImpl *font = static_cast<FontValueImpl *>(value);
             if (!font->style || !font->variant || !font->weight ||
