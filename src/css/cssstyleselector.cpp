@@ -4415,7 +4415,7 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
                 if (ident) {
                     col = colorForCSSValue(ident);
                 } else if (item->color->primitiveType() == CSSPrimitiveValue::CSS_RGBCOLOR) {
-                    col.setRgb(item->color->getRGBColorValue());
+                    col.setRgba(item->color->getRGBColorValue());
                 }
             }
             ShadowData *shadowData = new ShadowData(x, y, blur, col);
