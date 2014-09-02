@@ -2489,11 +2489,11 @@ public:
     }
     static Length initialBackgroundXPosition()
     {
-        return Length();
+        return Length(0.0, Percent);
     }
     static Length initialBackgroundYPosition()
     {
-        return Length();
+        return Length(0.0, Percent);
     }
     static short initialBorderHorizontalSpacing()
     {
