@@ -271,20 +271,20 @@ void KHTMLPart::init(KHTMLView *view, GUIProfile prof)
         actionCollection()->addAction("viewDocumentSource", d->m_paViewDocument);
         connect(d->m_paViewDocument, SIGNAL(triggered(bool)), this, SLOT(slotViewDocumentSource()));
         if (!parentPart()) {
-            d->m_paViewDocument->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_U));
+            actionCollection()->setDefaultShortcut(d->m_paViewDocument,QKeySequence(Qt::CTRL + Qt::Key_U));
         }
 
         d->m_paViewFrame = new QAction(i18n("View Frame Source"), this);
         actionCollection()->addAction("viewFrameSource", d->m_paViewFrame);
         connect(d->m_paViewFrame, SIGNAL(triggered(bool)), this, SLOT(slotViewFrameSource()));
         if (!parentPart()) {
-            d->m_paViewFrame->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_U));
+            actionCollection()->setDefaultShortcut(d->m_paViewFrame,QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_U));
         }
 
         d->m_paViewInfo = new QAction(i18n("View Document Information"), this);
         actionCollection()->addAction("viewPageInfo", d->m_paViewInfo);
         if (!parentPart()) {
-            d->m_paViewInfo->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_I));
+            actionCollection()->setDefaultShortcut(d->m_paViewInfo, QKeySequence(Qt::CTRL + Qt::Key_I));
         }
         connect(d->m_paViewInfo, SIGNAL(triggered(bool)), this, SLOT(slotViewPageInfo()));
 
@@ -400,8 +400,8 @@ void KHTMLPart::init(KHTMLView *view, GUIProfile prof)
 
             // TODO: Why also CTRL+=?  Because of http://trolltech.com/developer/knowledgebase/524/?
             // Nobody else does it...
-            d->m_paIncZoomFactor->setShortcut(QKeySequence("CTRL++; CTRL+="));
-            d->m_paDecZoomFactor->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Minus));
+            actionCollection()->setDefaultShortcut(d->m_paIncZoomFactor, QKeySequence("CTRL++; CTRL+="));
+            actionCollection()->setDefaultShortcut(d->m_paDecZoomFactor, QKeySequence(Qt::CTRL + Qt::Key_Minus));
         }
     }
 
@@ -423,7 +423,7 @@ void KHTMLPart::init(KHTMLView *view, GUIProfile prof)
     // These two actions aren't visible in the menus, but exist for the (configurable) shortcut
     d->m_paFindAheadText = new QAction(i18n("Find Text as You Type"), this);
     actionCollection()->addAction("findAheadText", d->m_paFindAheadText);
-    d->m_paFindAheadText->setShortcut(QKeySequence("/"));
+    actionCollection()->setDefaultShortcut(d->m_paFindAheadText, QKeySequence("/"));
     d->m_paFindAheadText->setToolTip(i18n("This shortcut shows the find bar, for finding text in the displayed page. It cancels the effect of \"Find Links as You Type\", which sets the \"Find links only\" option."));
     d->m_paFindAheadText->setStatusTip(d->m_paFindAheadText->toolTip());
     connect(d->m_paFindAheadText, SIGNAL(triggered(bool)), this, SLOT(slotFindAheadText()));
@@ -467,7 +467,7 @@ void KHTMLPart::init(KHTMLView *view, GUIProfile prof)
 
     d->m_paToggleCaretMode = new KToggleAction(i18n("Toggle Caret Mode"), this);
     actionCollection()->addAction("caretMode", d->m_paToggleCaretMode);
-    d->m_paToggleCaretMode->setShortcut(QKeySequence(Qt::Key_F7));
+    actionCollection()->setDefaultShortcut(d->m_paToggleCaretMode, QKeySequence(Qt::Key_F7));
     connect(d->m_paToggleCaretMode, SIGNAL(triggered(bool)), this, SLOT(slotToggleCaretMode()));
     d->m_paToggleCaretMode->setChecked(isCaretMode());
     if (parentPart()) {
