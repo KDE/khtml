@@ -183,26 +183,26 @@ void DebugWindow::createActions()
 
     m_continueAct = new QAction(QIcon::fromTheme(":/images/continue.png"), i18n("Continue"), this);
     actionCollection()->addAction("continue", m_continueAct);
-    m_continueAct->setShortcut(Qt::Key_F9);
+    actionCollection()->setDefaultShortcut(m_continueAct, Qt::Key_F9);
     m_continueAct->setEnabled(false);
     connect(m_continueAct, SIGNAL(triggered(bool)), this, SLOT(continueExecution()));
 
     m_stepOverAct = new QAction(QIcon::fromTheme(":/images/step-over.png"), i18n("Step Over"), this);
     actionCollection()->addAction("stepOver", m_stepOverAct);
-    m_stepOverAct->setShortcut(Qt::Key_F10);
+    actionCollection()->setDefaultShortcut(m_stepOverAct, Qt::Key_F10);
     m_stepOverAct->setEnabled(false);
     connect(m_stepOverAct, SIGNAL(triggered(bool)), this, SLOT(stepOver()));
 
     m_stepIntoAct = new QAction(QIcon::fromTheme(":/images/step-into.png"), i18n("Step Into"), this);
     actionCollection()->addAction("stepInto", m_stepIntoAct);
-    m_stepIntoAct->setShortcut(Qt::Key_F11);
+    actionCollection()->setDefaultShortcut(m_stepIntoAct, Qt::Key_F11);
     m_stepIntoAct->setEnabled(false);
 
     connect(m_stepIntoAct, SIGNAL(triggered(bool)), this, SLOT(stepInto()));
 
     m_stepOutAct = new QAction(QIcon::fromTheme(":/images/step-out.png"), i18n("Step Out"), this);
     actionCollection()->addAction("stepOut", m_stepOutAct);
-    m_stepOutAct->setShortcut(Qt::Key_F12);
+    actionCollection()->setDefaultShortcut(m_stepOutAct, Qt::Key_F12);
     m_stepOutAct->setEnabled(false);
     connect(m_stepOutAct, SIGNAL(triggered(bool)), this, SLOT(stepOut()));
 
