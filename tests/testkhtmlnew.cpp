@@ -151,7 +151,7 @@ void TestKHTML::setupActions()
     QAction *action = new QAction(QIcon::fromTheme("view-refresh"), "Reload", this);
     m_part->actionCollection()->addAction("reload", action);
     connect(action, SIGNAL(triggered(bool)), this, SLOT(reload()));
-    action->setShortcut(Qt::Key_F5);
+    m_part->actionCollection()->setDefaultShortcut(action, Qt::Key_F5);
 
     QAction *kprint = new QAction(QIcon::fromTheme("document-print"), "Print", this);
     m_part->actionCollection()->addAction("print", kprint);

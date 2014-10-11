@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
     QAction *action = new QAction(QIcon::fromTheme("view-refresh"),  "Reload", doc);
     doc->actionCollection()->addAction("reload", action);
     QObject::connect(action, SIGNAL(triggered(bool)), dummy, SLOT(reload()));
-    action->setShortcut(Qt::Key_F5);
+    doc->actionCollection()->setDefaultShortcut(action, Qt::Key_F5);
 
     QAction *bench = new QAction(QIcon(), "Benchmark...", doc);
     doc->actionCollection()->addAction("debugDoBenchmark", bench);
