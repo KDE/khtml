@@ -3347,8 +3347,7 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
         if (!primitiveValue) {
             return;
         }
-        style->setListStyleImage(static_cast<CSSImageValueImpl *>(primitiveValue)->image());
-        //qDebug() << "setting image in list to " << image->image();
+        style->setListStyleImage(static_cast<CSSImageValueImpl *>(primitiveValue)->requestCssImage(element->document()));
         break;
     }
 
@@ -3954,7 +3953,7 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
                 }
             } else if (val->primitiveType() == CSSPrimitiveValue::CSS_URI) {
                 CSSImageValueImpl *image = static_cast<CSSImageValueImpl *>(val);
-                style->addContent(image->image());
+                style->addContent(image->requestCssImage(element->document()));
             } else if (val->primitiveType() == CSSPrimitiveValue::CSS_COUNTER) {
                 style->addContent(val->getCounterValue());
             } else if (val->primitiveType() == CSSPrimitiveValue::CSS_IDENT) {
@@ -4676,7 +4675,7 @@ void CSSStyleSelector::mapBackgroundImage(BackgroundLayer *layer, DOM::CSSValueI
         return;
     }
     CSSPrimitiveValueImpl *primitiveValue = static_cast<CSSPrimitiveValueImpl *>(value);
-    layer->setBackgroundImage(static_cast<CSSImageValueImpl *>(primitiveValue)->image());
+    layer->setBackgroundImage(static_cast<CSSImageValueImpl *>(primitiveValue)->requestCssImage(element->document()));
 }
 
 void CSSStyleSelector::mapBackgroundRepeat(BackgroundLayer *layer, DOM::CSSValueImpl *value)

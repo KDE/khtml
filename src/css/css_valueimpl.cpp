@@ -37,8 +37,6 @@
 #include <xml/dom_stringimpl.h>
 #include <xml/dom_docimpl.h>
 
-#include <misc/loader.h>
-
 #include <rendering/font.h>
 #include <rendering/render_style.h>
 
@@ -1490,21 +1488,9 @@ CSSImageValueImpl::CSSImageValueImpl(const DOMString &url, StyleBaseImpl *style)
 {
     m_image = 0;
     if (!url.isEmpty()) {
-        khtml::DocLoader *docLoader = 0;
-        const StyleBaseImpl *root = style;
-        while (root->parent()) {
-            root = root->parent();
-        }
-        if (root->isCSSStyleSheet()) {
-            docLoader = static_cast<const CSSStyleSheetImpl *>(root)->docLoader();
-        }
-        if (docLoader) {
-            const QUrl fullURL = style->baseURL().resolved(QUrl(url.string()));
-            m_image = docLoader->requestImage(fullURL.url());
-            if (m_image) {
-                m_image->ref(this);
-            }
-        }
+        m_fullImageUrl = style->baseURL().resolved(QUrl(url.string())).url();
+    } else {
+        m_fullImageUrl.clear();
     }
 }
 
@@ -1512,6 +1498,7 @@ CSSImageValueImpl::CSSImageValueImpl()
     : CSSPrimitiveValueImpl(CSS_VAL_NONE)
 {
     m_image = 0;
+    m_fullImageUrl.clear();
 }
 
 CSSImageValueImpl::~CSSImageValueImpl()
@@ -1519,6 +1506,17 @@ CSSImageValueImpl::~CSSImageValueImpl()
     if (m_image) {
         m_image->deref(this);
     }
+}
+
+khtml::CachedImage *CSSImageValueImpl::requestCssImage(DocumentImpl *doc)
+{
+    if (!m_image && !m_fullImageUrl.isEmpty()) {
+        m_image = doc->docLoader()->requestImage(m_fullImageUrl);
+        if (m_image) {
+            m_image->ref(this);
+        }
+    }
+    return m_image;
 }
 
 // ------------------------------------------------------------------------
