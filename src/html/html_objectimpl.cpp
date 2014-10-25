@@ -39,7 +39,6 @@
 
 #include "xml/dom_docimpl.h"
 #include "css/cssstyleselector.h"
-#include "css/csshelper.h"
 #include "css/cssproperties.h"
 #include "css/cssvalues.h"
 #include "rendering/render_frames.h"
@@ -725,7 +724,7 @@ void HTMLEmbedElementImpl::parseAttribute(AttributeImpl *attr)
     switch (attr->id()) {
     case ATTR_CODE:
     case ATTR_SRC:
-        url = khtml::parseURL(attr->val()).string();
+        url = attr->val()->string();
         setNeedComputeContent();
         break;
     case ATTR_BORDER:
@@ -807,7 +806,7 @@ void HTMLObjectElementImpl::parseAttribute(AttributeImpl *attr)
 {
     switch (attr->id()) {
     case ATTR_DATA:
-        url = khtml::parseURL(attr->val()).string();
+        url = attr->val()->string();
         setNeedComputeContent();
         break;
     case ATTR_CLASSID:

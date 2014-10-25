@@ -55,7 +55,6 @@
 #include <khtml_global.h>
 #include <css/cssproperties.h>
 #include <css/cssvalues.h>
-#include <css/csshelper.h>
 
 #include <rendering/render_object.h>
 
@@ -997,7 +996,8 @@ NodeImpl *KHTMLParser::getElement(Token *t)
                 KHTMLGlobal::defaultHTMLSettings()->isAdFilterEnabled() &&
                 KHTMLGlobal::defaultHTMLSettings()->isHideAdsEnabled() &&
                 !strcasecmp(t->attrs->getValue(ATTR_TYPE), "image")) {
-            if (KHTMLGlobal::defaultHTMLSettings()->isAdFiltered(doc()->completeURL(khtml::parseURL(t->attrs->getValue(ATTR_SRC)).string()))) {
+            const QString url = doc()->completeURL(t->attrs->getValue(ATTR_SRC)->string());
+            if (KHTMLGlobal::defaultHTMLSettings()->isAdFiltered(url)) {
                 return 0;
             }
         }
@@ -1125,7 +1125,7 @@ NodeImpl *KHTMLParser::getElement(Token *t)
         if (t->attrs &&
                 KHTMLGlobal::defaultHTMLSettings()->isAdFilterEnabled() &&
                 KHTMLGlobal::defaultHTMLSettings()->isHideAdsEnabled()) {
-            QString url = doc()->completeURL(khtml::parseURL(t->attrs->getValue(ATTR_SRC)).string());
+            const QString url = doc()->completeURL(t->attrs->getValue(ATTR_SRC)->string());
             if (KHTMLGlobal::defaultHTMLSettings()->isAdFiltered(url)) {
                 return 0;
             }

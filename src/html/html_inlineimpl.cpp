@@ -30,7 +30,6 @@
 
 #include "khtmlview.h"
 #include "khtml_part.h"
-#include "css/csshelper.h"
 #include "css/cssproperties.h"
 #include "css/cssvalues.h"
 #include "css/cssstyleselector.h"
@@ -69,8 +68,6 @@ void HTMLAnchorElementImpl::defaultEventHandler(EventImpl *evt)
             k = static_cast<KeyEventBaseImpl *>(evt);
         }
 
-        QString utarget;
-        QString url;
         if (e && e->button() == 2) {
             HTMLElementImpl::defaultEventHandler(evt);
             return;
@@ -89,9 +86,8 @@ void HTMLAnchorElementImpl::defaultEventHandler(EventImpl *evt)
             }
         }
 
-        url = khtml::parseURL(getAttribute(ATTR_HREF)).string();
-
-        utarget = getAttribute(ATTR_TARGET).string();
+        QString url = getAttribute(ATTR_HREF).string();
+        QString utarget = getAttribute(ATTR_TARGET).string();
 
         if (e && e->button() == 1) {
             utarget = "_blank";

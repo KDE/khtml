@@ -57,7 +57,6 @@
 #include "xml/dom2_rangeimpl.h"
 #include "xml/xml_tokenizer.h"
 #include "css/cssstyleselector.h"
-#include "css/csshelper.h"
 using namespace DOM;
 
 #include "khtmlview.h"
@@ -6611,14 +6610,13 @@ bool KHTMLPart::handleMouseMoveEventDrag(khtml::MouseMoveEvent *event)
         return false;
     }
 
-    DOM::Node innerNode = event->innerNode();
-
     if ((d->m_bMousePressed &&
             ((!d->m_strSelectedURL.isEmpty() && !isEditable())
              || (!d->m_mousePressNode.isNull() && d->m_mousePressNode.elementId() == ID_IMG)))
             && (d->m_dragStartPos - QPoint(event->x(), event->y())).manhattanLength() > QApplication::startDragDistance()) {
 
-        DOM::DOMString url = event->url();
+        const DOM::DOMString url = event->url();
+        DOM::NodeImpl *innerNodeImpl = event->innerNode().handle();
 
         QPixmap pix;
         HTMLImageElementImpl *img = 0L;
@@ -6628,9 +6626,9 @@ bool KHTMLPart::handleMouseMoveEventDrag(khtml::MouseMoveEvent *event)
         // qDebug("****************** Event Target: %s", target.string().toLatin1().constData());
 
         // Normal image...
-        if (url.length() == 0 && innerNode.handle() && innerNode.handle()->id() == ID_IMG) {
-            img = static_cast<HTMLImageElementImpl *>(innerNode.handle());
-            u = QUrl(completeURL(khtml::parseURL(img->getAttribute(ATTR_SRC)).string()));
+        if (url.isEmpty() && innerNodeImpl && innerNodeImpl->id() == ID_IMG) {
+            img = static_cast<HTMLImageElementImpl *>(innerNodeImpl);
+            u = completeURL(img->getAttribute(ATTR_SRC).string());
             pix = KIconLoader::global()->loadIcon("image-x-generic", KIconLoader::Desktop);
         } else {
             // Text or image link...

@@ -38,7 +38,6 @@
 #include <css/cssstyleselector.h>
 #include <css/cssproperties.h>
 #include <css/cssvalues.h>
-#include <css/csshelper.h>
 
 #include <rendering/render_table.h>
 
@@ -520,8 +519,8 @@ void HTMLTableElementImpl::parseAttribute(AttributeImpl *attr)
         }
         break;
     case ATTR_BACKGROUND: {
-        if (!attr->value().isEmpty()) {
-            QString url = khtml::parseURL(attr->value()).string();
+        QString url = attr->val()->string();
+        if (!url.isEmpty()) {
             url = document()->completeURL(url);
             addCSSProperty(CSS_PROP_BACKGROUND_IMAGE, DOMString("url('" + url + "')"));
         } else {
@@ -676,8 +675,8 @@ void HTMLTablePartElementImpl::parseAttribute(AttributeImpl *attr)
         }
         break;
     case ATTR_BACKGROUND: {
-        if (attr->val()) {
-            QString url = khtml::parseURL(attr->value()).string();
+        QString url = attr->val()->string();
+        if (!url.isEmpty()) {
             url = document()->completeURL(url);
             addCSSProperty(CSS_PROP_BACKGROUND_IMAGE,  DOMString("url('" + url + "')"));
         } else {

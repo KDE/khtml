@@ -36,7 +36,6 @@
 #include "css/cssstyleselector.h"
 #include "css/cssproperties.h"
 #include "css/cssvalues.h"
-#include "css/csshelper.h"
 #include "xml/dom_textimpl.h"
 #include "xml/dom_docimpl.h"
 #include "xml/dom2_eventsimpl.h"
@@ -684,19 +683,18 @@ void HTMLFormElementImpl::submit()
         }
 #endif // KHTML_NO_WALLET
 
-        DOMString value = getAttribute(ATTR_ACTION);
-        DOMString url = khtml::parseURL(value);
+        QString url = getAttribute(ATTR_ACTION).string();
         // ignore base url if 'action' attribute is empty.
-        if (value.isEmpty()) {
+        if (url.isEmpty()) {
             url = formUrl.url();
         }
         if (m_post) {
-            view->part()->submitForm("post", url.string(), form_data,
+            view->part()->submitForm("post", url, form_data,
                                      m_target.string(),
                                      enctype().string(),
                                      m_boundary);
         } else {
-            view->part()->submitForm("get", url.string(), form_data,
+            view->part()->submitForm("get", url, form_data,
                                      m_target.string());
         }
     }

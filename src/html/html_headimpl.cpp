@@ -32,11 +32,9 @@
 #include "khtml_part.h"
 
 #include "misc/loader.h"
-#include "misc/helper.h"
 
 #include "css/cssstyleselector.h"
 #include "css/css_stylesheetimpl.h"
-#include "css/csshelper.h"
 #include "css/css_mediaquery.h"
 
 #include "ecma/kjs_proxy.h"
@@ -56,7 +54,7 @@ void HTMLBaseElementImpl::parseAttribute(AttributeImpl *attr)
 {
     switch (attr->id()) {
     case ATTR_HREF:
-        m_href = khtml::parseURL(attr->value());
+        m_href = attr->value();
         process();
         break;
     case ATTR_TARGET:
@@ -122,7 +120,7 @@ void HTMLLinkElementImpl::parseAttribute(AttributeImpl *attr)
 {
     switch (attr->id()) {
     case ATTR_HREF:
-        m_url = document()->completeURL(khtml::parseURL(attr->value()).string());
+        m_url = document()->completeURL(attr->val()->string());
         process();
         break;
     case ATTR_REL:

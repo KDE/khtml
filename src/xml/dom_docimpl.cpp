@@ -37,10 +37,8 @@
 #include <html/htmltokenizer.h>
 #include "dom_restyler.h"
 
-#include <css/csshelper.h>
 #include <css/cssstyleselector.h>
 #include <css/css_stylesheetimpl.h>
-#include <misc/helper.h>
 #include <misc/seed.h>
 #include <misc/loader.h>
 #include <ecma/kjs_proxy.h>
@@ -2083,7 +2081,6 @@ void DocumentImpl::processHttpEquiv(const DOMString &equiv, const DOMString &con
                     (str[str.length() - 1] == ';' || str[str.length() - 1] == ',')) {
                 str.resize(str.length() - 1);
             }
-            str = parseURL(DOMString(str)).string();
             QString newURL = document()->completeURL(str);
             if (ok) {
                 v->part()->scheduleRedirection(delay, newURL,  delay < 2 || newURL == URL().url());
@@ -2139,7 +2136,7 @@ bool DocumentImpl::prepareMouseEvent(bool readonly, int _x, int _y, MouseEvent *
             //qDebug("urlnode: %s  (%d)", getTagName(renderInfo.URLElement()->id()).string().toLatin1().constData(), renderInfo.URLElement()->id());
 
             ElementImpl *e =  static_cast<ElementImpl *>(renderInfo.URLElement());
-            DOMString href = khtml::parseURL(e->getAttribute(ATTR_HREF));
+            DOMString href = e->getAttribute(ATTR_HREF);
             DOMString target = e->getAttribute(ATTR_TARGET);
 
             if (!target.isNull() && !href.isNull()) {
