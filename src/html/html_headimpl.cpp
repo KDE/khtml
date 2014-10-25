@@ -119,10 +119,14 @@ NodeImpl::Id HTMLLinkElementImpl::id() const
 void HTMLLinkElementImpl::parseAttribute(AttributeImpl *attr)
 {
     switch (attr->id()) {
-    case ATTR_HREF:
-        m_url = document()->completeURL(attr->val()->string());
+    case ATTR_HREF: {
+        const QString hrefUrl = attr->val()->string().trimmed();
+        if (!hrefUrl.isEmpty()) {
+            m_url = document()->completeURL(hrefUrl);
+        }
         process();
         break;
+    }
     case ATTR_REL:
     case ATTR_TYPE:
         process();
@@ -191,12 +195,10 @@ void HTMLLinkElementImpl::process()
 
     // IE extension: location of small icon for locationbar / bookmarks
     // Uses both "shortcut icon" and "icon"
-    if (part && rel.contains("icon") && !m_url.isEmpty() && !part->parentPart()) {
+    if (rel.contains("icon") && !m_url.isEmpty() && part && !part->parentPart()) {
         part->browserExtension()->setIconUrl(QUrl(m_url.string()));
-    }
-
-    // Stylesheet
-    else if (!m_isDisabled && rel.contains("stylesheet")) {
+    } // Stylesheet
+    else if (rel.contains("stylesheet") && !m_url.isEmpty() && !m_isDisabled) {
         // no need to load style sheets which aren't for the screen output
         // ### there may be in some situations e.g. for an editor or script to manipulate
         khtml::MediaQueryEvaluator allEval(true);
