@@ -449,12 +449,16 @@ void RenderImage::updateFromElement()
     DOMString u = element()->id() == ID_OBJECT ?
                   element()->getAttribute(ATTR_DATA) : element()->getAttribute(ATTR_SRC);
 
-    if (!u.isEmpty() &&
-            (!m_cachedImage || m_cachedImage->url() != u)) {
-        CachedImage *new_image = element()->document()->docLoader()->requestImage(u);
-
-        if (new_image && new_image != m_cachedImage) {
-            updateImage(new_image);
+    if (!u.isEmpty()) {
+        // Need to compute completeURL, as 'u' can be relative
+        // while m_cachedImage->url() is always full url
+        DocumentImpl *docImpl = element()->document();
+        const QString fullUrl = docImpl->completeURL(u.string());
+        if (!m_cachedImage || m_cachedImage->url() != fullUrl) {
+            CachedImage *new_image = docImpl->docLoader()->requestImage(fullUrl);
+            if (new_image && new_image != m_cachedImage) {
+                updateImage(new_image);
+            }
         }
     }
 }
