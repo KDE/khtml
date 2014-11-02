@@ -1,0 +1,1600 @@
+# translation of kdelibs4.po to Icelandic
+# íslensk þýðing á kdelibs4.po
+# Copyright (C) 1998,2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012 Free Software Foundation, Inc.
+#
+# Logi Ragnarsson <logi@logi.org>, 1998-2003.
+# Richard Allen <ra@ra.is>, 1998-2004.
+# Pjetur G. Hjaltason <pjetur@pjetur.net>, 2003.
+# Arnar Leósson <leosson@frisurf.no>, 2003, 2005.
+# Sveinn í Felli <sveinki@nett.is>, 2007, 2008, 2009, 2010, 2011, 2012, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-10-26 07:52+0000\n"
+"PO-Revision-Date: 2013-05-13 22:40+0000\n"
+"Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
+"Language-Team: Icelandic <kde-isl@molar.is>\n"
+"Language: is\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.2\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr ""
+"Richard Allen, Logi Ragnarsson, Pjetur G. Hjaltason, Arnar Leósson, Svanur "
+"Pálsson, Sveinn í Felli"
+
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr ""
+"ra@ra.is, logi@logi.org, pjetur@pjetur.net, leosson@frisurf.no, svanur@tern."
+"is, sveinki@nett.is"
+
+#: ecma/debugger/callstackdock.cpp:35
+msgid "Call Stack"
+msgstr "Rakning"
+
+#: ecma/debugger/callstackdock.cpp:39
+msgid "Call"
+msgstr "Kalla"
+
+#: ecma/debugger/callstackdock.cpp:39
+msgid "Line"
+msgstr "Lína"
+
+#: ecma/debugger/consoledock.cpp:220
+msgid "Console"
+msgstr "Stjórnskjár"
+
+#: ecma/debugger/consoledock.cpp:243
+msgid "Enter"
+msgstr "Byrja"
+
+#: ecma/debugger/debugdocument.cpp:206
+msgid ""
+"Unable to find the Kate editor component;\n"
+"please check your KDE installation."
+msgstr ""
+"Eining Kate textaritilsins fannst ekki;\n"
+"Athugaðu KDE uppsetninguna."
+
+#: ecma/debugger/debugdocument.cpp:272
+msgid "Breakpoint"
+msgstr "Rofstaður"
+
+#: ecma/debugger/debugwindow.cpp:101
+msgid "JavaScript Debugger"
+msgstr "JavaScript aflúsarinn"
+
+#: ecma/debugger/debugwindow.cpp:178
+msgid "&Break at Next Statement"
+msgstr "&Stöðva við næstu setningu"
+
+#: ecma/debugger/debugwindow.cpp:179
+msgid "Break at Next"
+msgstr "Stöðva við næstu setningu"
+
+#: ecma/debugger/debugwindow.cpp:184
+msgid "Continue"
+msgstr "Áfram"
+
+#: ecma/debugger/debugwindow.cpp:190
+msgid "Step Over"
+msgstr "Stíga yfir"
+
+#: ecma/debugger/debugwindow.cpp:196
+msgid "Step Into"
+msgstr "Stíga inn í"
+
+#: ecma/debugger/debugwindow.cpp:203
+msgid "Step Out"
+msgstr "Stíga út úr"
+
+#: ecma/debugger/debugwindow.cpp:209
+msgid "Reindent Sources"
+msgstr "Endurinndraga grunnkóða"
+
+#: ecma/debugger/debugwindow.cpp:214
+msgid "Report Exceptions"
+msgstr "Tilkynna undantekningar"
+
+#: ecma/debugger/debugwindow.cpp:222
+msgid "&Debug"
+msgstr "Af&lúsa"
+
+#: ecma/debugger/debugwindow.cpp:230
+msgid "&Settings"
+msgstr "&Stillingar"
+
+#: ecma/debugger/debugwindow.cpp:256
+msgid "Close source"
+msgstr "Loka upprunaskrá"
+
+#: ecma/debugger/debugwindow.cpp:262
+msgid "Ready"
+msgstr "Tilbúin(n)"
+
+#: ecma/debugger/debugwindow.cpp:587
+#, kde-format
+msgid ""
+"An error occurred while attempting to run a script on this page.\n"
+"\n"
+"%1 line %2:\n"
+"%3"
+msgstr ""
+"Villa kom upp þegar reynt var að keyra skriftuna á þessari síðu.\n"
+"\n"
+"%1 lína %2:\n"
+"%3"
+
+#: ecma/debugger/debugwindow.cpp:780
+msgid ""
+"Do not know where to evaluate the expression. Please pause a script or open "
+"a source file."
+msgstr ""
+"Veit ekki hvar prófa ætti skilyrðinguna. Vinsamlega slökktu á skriftum eða "
+"opnaðu upprunaskrá."
+
+#: ecma/debugger/debugwindow.cpp:814
+#, kde-format
+msgid "Evaluation threw an exception %1"
+msgstr "Prófun gaf upp undantekninguna (exception) %1"
+
+#: ecma/debugger/errordlg.cpp:35
+msgid "JavaScript Error"
+msgstr "JavaSkrift villa"
+
+#: ecma/debugger/errordlg.cpp:49
+msgid "&Do not show this message again"
+msgstr "Ekki sýna þessi skilaboð &aftur"
+
+#: ecma/debugger/localvariabledock.cpp:43
+msgid "Local Variables"
+msgstr "Staðværar breytur"
+
+#: ecma/debugger/localvariabledock.cpp:51
+msgid "Reference"
+msgstr "Tilvísun"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
+#: java/kjavaappletviewer.cpp:150
+msgid "Value"
+msgstr "Gildi"
+
+#: ecma/debugger/scriptsdock.cpp:37
+msgid "Loaded Scripts"
+msgstr "Hlaðnar skriftur"
+
+#: ecma/kjs_binding.cpp:196
+msgid ""
+"A script on this page is causing KHTML to freeze. If it continues to run, "
+"other applications may become less responsive.\n"
+"Do you want to stop the script?"
+msgstr ""
+"Skrifta á þessarri síðu stöðvaði KHTML.  EF það heldur áfram gæti það haft "
+"áhrif á önnur forrit.\n"
+"Viltu stöðva skriftuna?"
+
+#: ecma/kjs_binding.cpp:196
+msgid "JavaScript"
+msgstr "JavaSkrift"
+
+#: ecma/kjs_binding.cpp:196
+msgid "&Stop Script"
+msgstr "&Stöðva skriftu"
+
+#: ecma/kjs_binding.cpp:437
+#, kde-format
+msgid "Parse error at %1 line %2"
+msgstr "Þáttunarvilla á %1 í línu %2"
+
+#: ecma/kjs_html.cpp:2231 ecma/kjs_window.cpp:1949
+msgid "Confirmation: JavaScript Popup"
+msgstr "Staðfesting: Javascript gluggi"
+
+#: ecma/kjs_html.cpp:2233
+msgid ""
+"This site is submitting a form which will open up a new browser window via "
+"JavaScript.\n"
+"Do you want to allow the form to be submitted?"
+msgstr ""
+"Þessi vefur er að reyna að opna nýjan vafraglugga með Javascript.\n"
+"Vilt þú leyfa honum það?"
+
+#: ecma/kjs_html.cpp:2236
+#, kde-format
+msgid ""
+"<qt>This site is submitting a form which will open <p>%1</p> in a new "
+"browser window via JavaScript.<br />Do you want to allow the form to be "
+"submitted?</qt>"
+msgstr ""
+"<qt>Þessi vefur er að reyna að opna <p>%1</p> í nýjum vafraglugga með "
+"Javascript.<br />Vilt þú leyfa honum það?</qt>"
+
+#: ecma/kjs_html.cpp:2238 ecma/kjs_window.cpp:1957
+msgid "Allow"
+msgstr "Leyfa"
+
+#: ecma/kjs_html.cpp:2238 ecma/kjs_window.cpp:1957
+msgid "Do Not Allow"
+msgstr "Ekki leyfa"
+
+#: ecma/kjs_window.cpp:1952
+msgid ""
+"This site is requesting to open up a new browser window via JavaScript.\n"
+"Do you want to allow this?"
+msgstr ""
+"Þessi vefur er að reyna að opna nýjan vafraglugga með Javascript.\n"
+"Vilt þú leyfa honum það?"
+
+#: ecma/kjs_window.cpp:1955
+#, kde-format
+msgid ""
+"<qt>This site is requesting to open<p>%1</p>in a new browser window via "
+"JavaScript.<br />Do you want to allow this?</qt>"
+msgstr ""
+"<qt>Þessi vefur er að reyna að opna<p>%1</p> í nýjum vafraglugga með "
+"Javascript.<br />Vilt þú leyfa honum það?</qt>"
+
+#: ecma/kjs_window.cpp:2288
+msgid "Close window?"
+msgstr "Loka glugga?"
+
+#: ecma/kjs_window.cpp:2288
+msgid "Confirmation Required"
+msgstr "Þarfnast staðfestingar"
+
+#: ecma/kjs_window.cpp:3237
+#, kde-format
+msgid ""
+"Do you want a bookmark pointing to the location \"%1\" to be added to your "
+"collection?"
+msgstr "Viltu fá bókamerki sem vísar á \"%1\" bætt við bókamerkjasafnið þitt?"
+
+#: ecma/kjs_window.cpp:3240
+#, kde-format
+msgid ""
+"Do you want a bookmark pointing to the location \"%1\" titled \"%2\" to be "
+"added to your collection?"
+msgstr ""
+"Viltu fá bókamerki sem vísar á \"%1\" með titlinum \"%2\" bætt við "
+"bókamerkjasafnið þitt?"
+
+#: ecma/kjs_window.cpp:3249
+msgid "JavaScript Attempted Bookmark Insert"
+msgstr "JavaSkrift forrit reyndi að bæta við bókamerki"
+
+#: ecma/kjs_window.cpp:3253
+msgid "Insert"
+msgstr "Setja inn"
+
+#: ecma/kjs_window.cpp:3253
+msgid "Disallow"
+msgstr "Ekki leyfa"
+
+#: html/html_formimpl.cpp:420
+msgid ""
+"The following files will not be uploaded because they could not be found.\n"
+"Do you want to continue?"
+msgstr ""
+"Eftirfarandi skrár verða ekki sendar því þær fundust ekki.\n"
+"Viltu halda áfram?"
+
+#: html/html_formimpl.cpp:424
+msgid "Submit Confirmation"
+msgstr "Staðfesta sendingu"
+
+#: html/html_formimpl.cpp:424
+msgid "&Submit Anyway"
+msgstr "&Senda samt"
+
+#: html/html_formimpl.cpp:434
+msgid ""
+"You are about to transfer the following files from your local computer to "
+"the Internet.\n"
+"Do you really want to continue?"
+msgstr ""
+"Þú ert um það bil að senda eftirfarandi skrár frá þinni tölvu út á netið.\n"
+"Ertu viss um að þú viljir halda áfram?"
+
+#: html/html_formimpl.cpp:438
+msgid "Send Confirmation"
+msgstr "Staðfesta sendingu"
+
+#: html/html_formimpl.cpp:438
+msgid "&Send File"
+msgid_plural "&Send Files"
+msgstr[0] "&Senda skrá"
+msgstr[1] "&Senda skrár"
+
+#: html/html_formimpl.cpp:1687 html/html_formimpl.cpp:1908 khtml_part.cpp:4966
+#: khtmlview.cpp:2879 khtmlview.cpp:2923
+msgid "Submit"
+msgstr "Senda"
+
+#: html/html_formimpl.cpp:1900 khtmlview.cpp:2894 khtmlview.cpp:2929
+msgid "Reset"
+msgstr "Endurstilla"
+
+#: html/html_formimpl.cpp:2828
+msgid "Key Generator"
+msgstr "Lykilgjafi"
+
+#: html/html_objectimpl.cpp:632
+#, kde-format
+msgid ""
+"No plugin found for '%1'.\n"
+"Do you want to download one from %2?"
+msgstr ""
+"Ekkert íforrit fannst fyrir '%1'.\n"
+"Viltu sækja það frá %2?"
+
+#: html/html_objectimpl.cpp:633
+msgid "Missing Plugin"
+msgstr "Vantar íforrit"
+
+#: html/html_objectimpl.cpp:633
+msgid "Download"
+msgstr "Sækja"
+
+#: html/html_objectimpl.cpp:633
+msgid "Do Not Download"
+msgstr "Ekki sækja"
+
+#: html/htmlparser.cpp:1978
+msgid "This is a searchable index. Enter search keywords: "
+msgstr "Þetta er leitaryfirlit. Sláðu inn leitarorð: "
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, fuzzy
+#| msgid "&Keep password"
+msgid "&Repeat password:"
+msgstr "&Geyma lykilorð"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, fuzzy
+#| msgid "&Keep password"
+msgid "&Choose password:"
+msgstr "&Geyma lykilorð"
+
+#: html/ksslkeygen.cpp:82
+#, fuzzy
+#| msgid "Details of the Request:"
+msgid "KDE Certificate Request"
+msgstr "Nánar um beiðni:"
+
+#: html/ksslkeygen.cpp:89
+msgid "KDE Certificate Request - Password"
+msgstr ""
+
+#: html/ksslkeygen.cpp:126
+#, fuzzy
+#| msgid "Unsupported Key"
+msgid "Unsupported key size."
+msgstr "Óstuddur lykill"
+
+#: html/ksslkeygen.cpp:126
+#, fuzzy
+#| msgid "Information"
+msgid "KDE SSL Information"
+msgstr "Upplýsingar"
+
+#: html/ksslkeygen.cpp:132 khtml_part.cpp:5021
+msgid "KDE"
+msgstr "KDE"
+
+#: html/ksslkeygen.cpp:133
+msgid "Please wait while the encryption keys are generated..."
+msgstr ""
+
+#: html/ksslkeygen.cpp:148
+#, fuzzy
+#| msgid "Do you want to store this password for %1?"
+msgid "Do you wish to store the passphrase in your wallet file?"
+msgstr "Viltu geyma þetta lykilorð fyrir %1?"
+
+#: html/ksslkeygen.cpp:148
+#, fuzzy
+#| msgid "&Store"
+msgid "Store"
+msgstr "&Geyma"
+
+#: html/ksslkeygen.cpp:148
+#, fuzzy
+#| msgid "&Do Not Save"
+msgid "Do Not Store"
+msgstr "&Ekki vista"
+
+#: html/ksslkeygen.cpp:257
+msgid "2048 (High Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:258
+msgid "1024 (Medium Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:259
+msgid "768  (Low Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:260
+msgid "512  (Low Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:262
+#, fuzzy
+#| msgid "Enable SOCKS support"
+msgid "No SSL support."
+msgstr "Virkja SOCKS stuðning"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+msgid "Document Information"
+msgstr "Upplýsingar um skjal"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "Almennt"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+msgid "URL:"
+msgstr "Slóð:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+msgid "Title:"
+msgstr "Titill:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+msgid "Last modified:"
+msgstr "Síðast breytt:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+msgid "Document encoding:"
+msgstr "Kóðun skjals:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+msgid "Rendering mode:"
+msgstr "Myndgerðarhamur:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+msgid "HTTP Headers"
+msgstr "HTTP hausar"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+msgid "Property"
+msgstr "Eiginleiki"
+
+#: java/kjavaapplet.cpp:227
+#, kde-format
+msgid "Initializing Applet \"%1\"..."
+msgstr "Frumstilli smáforrit \"%1\" ..."
+
+#: java/kjavaapplet.cpp:233
+#, kde-format
+msgid "Starting Applet \"%1\"..."
+msgstr "Ræsi smáforrit \"%1\" ..."
+
+#: java/kjavaapplet.cpp:240
+#, kde-format
+msgid "Applet \"%1\" started"
+msgstr "Smáforritið \"%1\" ræst"
+
+#: java/kjavaapplet.cpp:246
+#, kde-format
+msgid "Applet \"%1\" stopped"
+msgstr "Smáforritið \"%1\" stöðvað"
+
+#: java/kjavaappletserver.cpp:144
+msgid "Loading Applet"
+msgstr "Hleð inn smáforriti"
+
+#: java/kjavaappletserver.cpp:147
+msgid "Error: java executable not found"
+msgstr "Villa: java keyrsluforritið fannst ekki"
+
+#: java/kjavaappletserver.cpp:674
+#, kde-format
+msgid "Signed by (validation: %1)"
+msgstr "Undirritað af (auðkenning: %1)"
+
+#: java/kjavaappletserver.cpp:676
+#, kde-format
+msgid "Certificate (validation: %1)"
+msgstr "Skílríki (auðkenning: %1)"
+
+#: java/kjavaappletserver.cpp:812 khtml_part.cpp:7051
+msgid "Security Alert"
+msgstr "Öryggisaðvörun"
+
+#: java/kjavaappletserver.cpp:817
+msgid "Do you grant Java applet with certificate(s):"
+msgstr "Viltu veita Java forritinu með skílrikjunum:"
+
+#: java/kjavaappletserver.cpp:819
+msgid "the following permission"
+msgstr "eftirfarandi heimildir"
+
+#: java/kjavaappletserver.cpp:828
+msgid "&No"
+msgstr "&Nei"
+
+#: java/kjavaappletserver.cpp:832
+msgid "&Reject All"
+msgstr "&Hafna öllu"
+
+#: java/kjavaappletserver.cpp:835
+msgid "&Yes"
+msgstr "&Já"
+
+#: java/kjavaappletserver.cpp:838
+msgid "&Grant All"
+msgstr "&Leyfa allt"
+
+#: java/kjavaappletviewer.cpp:59
+msgid "KDE Java Applet Plugin"
+msgstr "KDE Java smáforrit"
+
+#: java/kjavaappletviewer.cpp:141
+msgid "Applet Parameters"
+msgstr "Viðföng smáforrits"
+
+#: java/kjavaappletviewer.cpp:149
+msgid "Parameter"
+msgstr "Viðfang"
+
+#: java/kjavaappletviewer.cpp:153
+msgid "Class"
+msgstr "Flokkur"
+
+#: java/kjavaappletviewer.cpp:159
+msgid "Base URL"
+msgstr "Grunnslóð"
+
+#: java/kjavaappletviewer.cpp:165
+msgid "Archives"
+msgstr "Söfn"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+msgid "&Edit"
+msgstr "Sýs&l"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+msgid "&File"
+msgstr "&Skrá"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+msgid "&View"
+msgstr "Sý&n"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+msgid "HTML Toolbar"
+msgstr "HTML tækjaslá"
+
+#: khtml_ext.cpp:413
+msgid "&Copy Text"
+msgstr "&Afrita texta"
+
+#: khtml_ext.cpp:427
+#, kde-format
+msgid "Open '%1'"
+msgstr "Opna '%1'"
+
+#: khtml_ext.cpp:444
+msgid "&Copy Email Address"
+msgstr "Afrita tölvu&póstfang"
+
+#: khtml_ext.cpp:449
+msgid "&Save Link As..."
+msgstr "&Vista tengil sem..."
+
+#: khtml_ext.cpp:454
+msgid "&Copy Link Address"
+msgstr "Afrita ten&gil"
+
+#: khtml_ext.cpp:466
+msgctxt "@title:menu HTML frame/iframe"
+msgid "Frame"
+msgstr "Rammi"
+
+#: khtml_ext.cpp:467
+msgid "Open in New &Window"
+msgstr "Opna í nýjum &glugga"
+
+#: khtml_ext.cpp:473
+msgid "Open in &This Window"
+msgstr "Opna í þ&essum glugga"
+
+#: khtml_ext.cpp:478
+msgid "Open in &New Tab"
+msgstr "Opna í &nýjum flipa"
+
+#: khtml_ext.cpp:488
+msgid "Reload Frame"
+msgstr "Endurlesa ramma"
+
+#: khtml_ext.cpp:493 khtml_part.cpp:448
+msgid "Print Frame..."
+msgstr "Prenta ramma..."
+
+#: khtml_ext.cpp:499 khtml_part.cpp:300
+msgid "Save &Frame As..."
+msgstr "Vista &ramma sem..."
+
+#: khtml_ext.cpp:504 khtml_part.cpp:276
+msgid "View Frame Source"
+msgstr "Sjá frumtexta ramma"
+
+#: khtml_ext.cpp:509
+msgid "View Frame Information"
+msgstr "Upplýsingar um ramma"
+
+#: khtml_ext.cpp:519
+msgid "Block IFrame..."
+msgstr "Blokka IFrame..."
+
+#: khtml_ext.cpp:543
+msgid "Save Image As..."
+msgstr "Vista mynd sem..."
+
+#: khtml_ext.cpp:548
+msgid "Send Image..."
+msgstr "Senda mynd..."
+
+#: khtml_ext.cpp:554
+msgid "Copy Image"
+msgstr "Afrita mynd"
+
+#: khtml_ext.cpp:562
+msgid "Copy Image Location"
+msgstr "Afrita staðsetningu myndarinnar"
+
+#: khtml_ext.cpp:571
+#, kde-format
+msgid "View Image (%1)"
+msgstr "Birta mynd (%1)"
+
+#: khtml_ext.cpp:577
+msgid "Block Image..."
+msgstr "Blokka mynd..."
+
+#: khtml_ext.cpp:584
+#, kde-format
+msgid "Block Images From %1"
+msgstr "Blokka myndir frá %1"
+
+#: khtml_ext.cpp:596
+msgid "Stop Animations"
+msgstr "Stöðva hreyfimyndir"
+
+#: khtml_ext.cpp:637
+#, kde-format
+msgid "Search for '%1' with %2"
+msgstr "Leita að '%1' með %2"
+
+#: khtml_ext.cpp:647
+#, kde-format
+msgid "Search for '%1' with"
+msgstr "Leita að '%1' með"
+
+#: khtml_ext.cpp:693
+msgid "Save Link As"
+msgstr "Vista tengil sem"
+
+#: khtml_ext.cpp:712
+msgid "Save Image As"
+msgstr "Vista mynd sem"
+
+#: khtml_ext.cpp:726 khtml_ext.cpp:738
+msgid "Add URL to Filter"
+msgstr "Bæta slóð við síu"
+
+#: khtml_ext.cpp:727 khtml_ext.cpp:739
+msgid "Enter the URL:"
+msgstr "Sláðu inn slóðina:"
+
+#: khtml_ext.cpp:875
+#, kde-format
+msgid ""
+"A file named \"%1\" already exists. Are you sure you want to overwrite it?"
+msgstr "Skráin \"%1\" er nú þegar til. Skrifa yfir hana?"
+
+#: khtml_ext.cpp:875
+msgid "Overwrite File?"
+msgstr "Skrifa yfir skrá?"
+
+#: khtml_ext.cpp:875
+msgid "Overwrite"
+msgstr "Skrifa yfir"
+
+#: khtml_ext.cpp:927
+#, kde-format
+msgid "The Download Manager (%1) could not be found in your $PATH "
+msgstr "Niðurhalsstjórinn (%1) finnst ekki á slóðinni $PATH "
+
+#: khtml_ext.cpp:928
+msgid ""
+"Try to reinstall it  \n"
+"\n"
+"The integration with Konqueror will be disabled."
+msgstr ""
+"Reyndu að setja það upp aftur  \n"
+"\n"
+"Samtvinnun við Konqueror verður aftengd."
+
+#: khtml_ext.cpp:1007
+#, no-c-format
+msgid "Default Font Size (100%)"
+msgstr "Sjálfgefin stærð leturs (100%)"
+
+#: khtml_ext.cpp:1021
+#, no-c-format, kde-format
+msgid "%1%"
+msgstr "%1%"
+
+#: khtml_global.cpp:203
+msgid "KHTML"
+msgstr "KHTML"
+
+#: khtml_global.cpp:204
+msgid "Embeddable HTML component"
+msgstr "Innfellanlegur HTML íhlutur"
+
+#: khtml_part.cpp:269
+msgid "View Do&cument Source"
+msgstr "Sjá &frumtexta skjals"
+
+#: khtml_part.cpp:283
+msgid "View Document Information"
+msgstr "Sjá upplýsingar um skjal"
+
+#: khtml_part.cpp:290
+msgid "Save &Background Image As..."
+msgstr "Vista &bakgrunnsmynd sem..."
+
+#: khtml_part.cpp:312 khtml_part.cpp:4193
+msgid "SSL"
+msgstr "SSL"
+
+#: khtml_part.cpp:316
+msgid "Print Rendering Tree to STDOUT"
+msgstr "Prenta 'Rendering' greinar á STDOUT"
+
+#: khtml_part.cpp:320
+msgid "Print DOM Tree to STDOUT"
+msgstr "Prenta 'DOM-greinar' á STDOUT"
+
+#: khtml_part.cpp:324
+msgid "Print frame tree to STDOUT"
+msgstr "Prenta 'rammagreinar' á STDOUT"
+
+#: khtml_part.cpp:328
+msgid "Stop Animated Images"
+msgstr "Stöðva hreyfimyndir"
+
+#: khtml_part.cpp:332
+msgid "Set &Encoding"
+msgstr "Velja stafa&töflu"
+
+#: khtml_part.cpp:378
+msgid "Use S&tylesheet"
+msgstr "Nota s&tílsnið"
+
+#: khtml_part.cpp:383
+msgid "Enlarge Font"
+msgstr "Stækka letur"
+
+#: khtml_part.cpp:386
+msgid ""
+"<qt>Enlarge Font<br /><br />Make the font in this window bigger. Click and "
+"hold down the mouse button for a menu with all available font sizes.</qt>"
+msgstr ""
+"<qt>Stækka letrið<br /><br />Gera letrið í þessum glugga stærra. Smelltu "
+"músarhnappnum og haltu honum niðri til að fá valmynd með mögulegum "
+"leturstærðum.</qt>"
+
+#: khtml_part.cpp:390
+msgid "Shrink Font"
+msgstr "Smækka letur"
+
+#: khtml_part.cpp:393
+msgid ""
+"<qt>Shrink Font<br /><br />Make the font in this window smaller. Click and "
+"hold down the mouse button for a menu with all available font sizes.</qt>"
+msgstr ""
+"<qt>Smækka letrið<br /><br />Gera letrið í þessum glugga smærra. Smelltu "
+"músarhnappnum og haltu honum niðri til að fá valmynd með mögulegum "
+"leturstærðum.</qt>"
+
+#: khtml_part.cpp:408
+msgid ""
+"<qt>Find text<br /><br />Shows a dialog that allows you to find text on the "
+"displayed page.</qt>"
+msgstr ""
+"<qt>Finna texta<br /><br />Birtir glugga sem gerir þér kleift að leita að "
+"texta á síðunni.</qt>"
+
+#: khtml_part.cpp:412
+msgid ""
+"<qt>Find next<br /><br />Find the next occurrence of the text that you have "
+"found using the <b>Find Text</b> function.</qt>"
+msgstr ""
+"<qt>Finna næsta<br /><br />Finna næsta tilfelli af textanum sem fannst með "
+"leitinni í <b>Finna texta</b> aðgerðinni.</qt>"
+
+#: khtml_part.cpp:418
+msgid ""
+"<qt>Find previous<br /><br />Find the previous occurrence of the text that "
+"you have found using the <b>Find Text</b> function.</qt>"
+msgstr ""
+"<qt>Finna fyrra<br /><br />Finna fyrra tilfelli af textanum sem fannst með "
+"leitinni í <b> Finna texta</b> aðgerðinni.</qt>"
+
+#: khtml_part.cpp:423
+msgid "Find Text as You Type"
+msgstr "Leita að texta meðan þú skrifar"
+
+#: khtml_part.cpp:426
+msgid ""
+"This shortcut shows the find bar, for finding text in the displayed page. It "
+"cancels the effect of \"Find Links as You Type\", which sets the \"Find "
+"links only\" option."
+msgstr ""
+
+#: khtml_part.cpp:430
+msgid "Find Links as You Type"
+msgstr "Leita að tenglum meðan þú skrifar"
+
+#: khtml_part.cpp:436
+msgid ""
+"This shortcut shows the find bar, and sets the option \"Find links only\"."
+msgstr ""
+
+#: khtml_part.cpp:452
+msgid ""
+"<qt>Print Frame<br /><br />Some pages have several frames. To print only a "
+"single frame, click on it and then use this function.</qt>"
+msgstr ""
+"<qt>Prenta ramma<br /><br />Sumar vefsíður hafa marga ramma. Ef þú vilt "
+"prenta einungis einn þeirra skaltu smella á hann og velja þessa aðgerð.</qt>"
+
+#: khtml_part.cpp:467
+msgid "Toggle Caret Mode"
+msgstr "Caret hamur af/á"
+
+#: khtml_part.cpp:767
+#, kde-format
+msgid "The fake user-agent '%1' is in use."
+msgstr "Plat kennistrengurinn '%1' er í notkun."
+
+#: khtml_part.cpp:1271
+msgid "This web page contains coding errors."
+msgstr "Þessi vefsíða inniheldur kóðunarvillur."
+
+#: khtml_part.cpp:1316
+msgid "&Hide Errors"
+msgstr "&Fela villur"
+
+#: khtml_part.cpp:1317
+msgid "&Disable Error Reporting"
+msgstr "&Stöðva villutilkynningar"
+
+#: khtml_part.cpp:1360
+#, kde-format
+msgid "<qt><b>Error</b>: %1: %2</qt>"
+msgstr "<qt><b>Villa</b>: %1: %2</qt>"
+
+#: khtml_part.cpp:1409
+#, kde-format
+msgid "<qt><b>Error</b>: node %1: %2</qt>"
+msgstr "<qt><b>Villa</b>: hnútur %1: %2</qt>"
+
+#: khtml_part.cpp:1531
+msgid "Display Images on Page"
+msgstr "Sýna myndir á síðu"
+
+#: khtml_part.cpp:1915
+#, kde-format
+msgid "Error: %1 - %2"
+msgstr "Villa: %1 - %2"
+
+#: khtml_part.cpp:1920
+msgid "The requested operation could not be completed"
+msgstr "Ekki tókst að ljúka þessarri aðgerð"
+
+#: khtml_part.cpp:1926
+msgid "Technical Reason: "
+msgstr "Tæknilegar ástæður: "
+
+#: khtml_part.cpp:1932
+msgid "Details of the Request:"
+msgstr "Nánar um beiðni:"
+
+#: khtml_part.cpp:1934
+#, kde-format
+msgid "URL: %1"
+msgstr "Slóð: %1"
+
+#: khtml_part.cpp:1937
+#, kde-format
+msgid "Protocol: %1"
+msgstr "Samskiptamáti: %1"
+
+#: khtml_part.cpp:1940
+#, kde-format
+msgid "Date and Time: %1"
+msgstr "Dagur og tími : %1"
+
+#: khtml_part.cpp:1942
+#, kde-format
+msgid "Additional Information: %1"
+msgstr "Aðrar upplýsingar: %1"
+
+#: khtml_part.cpp:1944
+msgid "Description:"
+msgstr "Lýsing:"
+
+#: khtml_part.cpp:1950
+msgid "Possible Causes:"
+msgstr "Mögulegar ástæður:"
+
+#: khtml_part.cpp:1957
+msgid "Possible Solutions:"
+msgstr "Mögulegar lausnir:"
+
+#: khtml_part.cpp:2405
+msgid "Page loaded."
+msgstr "Síða lesin."
+
+#: khtml_part.cpp:2407
+#, kde-format
+msgid "%1 Image of %2 loaded."
+msgid_plural "%1 Images of %2 loaded."
+msgstr[0] "%1 mynd af %2 komin."
+msgstr[1] "%1 myndir af %2 komnar."
+
+#: khtml_part.cpp:2585
+msgid "Automatic Detection"
+msgstr "Sjálfvirk leit"
+
+#: khtml_part.cpp:3716 khtml_part.cpp:3780 khtml_part.cpp:3790
+msgid " (In new window)"
+msgstr " (Í nýjum glugga)"
+
+#: khtml_part.cpp:3744
+msgid "Symbolic Link"
+msgstr "Tákntengi"
+
+#: khtml_part.cpp:3746
+#, kde-format
+msgid "%1 (Link)"
+msgstr "%1 (tengill)"
+
+#: khtml_part.cpp:3762
+#, kde-format
+msgid "%2 (%1 byte)"
+msgid_plural "%2 (%1 bytes)"
+msgstr[0] "%2 (%1 bæti)"
+msgstr[1] "%2 (%1 bæti)"
+
+#: khtml_part.cpp:3765
+#, kde-format
+msgid "%2 (%1 K)"
+msgstr "%2 (%1 K)"
+
+#: khtml_part.cpp:3792
+msgid " (In other frame)"
+msgstr " (Í öðrum ramma)"
+
+#: khtml_part.cpp:3798
+msgid "Email to: "
+msgstr "Tölvupóstur til: "
+
+#: khtml_part.cpp:3804
+msgid " - Subject: "
+msgstr " - Viðfangsefni: "
+
+#: khtml_part.cpp:3806
+msgid " - CC: "
+msgstr " - CC: "
+
+#: khtml_part.cpp:3808
+msgid " - BCC: "
+msgstr " - BCC: "
+
+#: khtml_part.cpp:3889 khtml_part.cpp:4111 khtml_part.cpp:4547
+#: khtml_run.cpp:106
+msgid "Save As"
+msgstr "Vista sem"
+
+#: khtml_part.cpp:3894
+#, kde-format
+msgid ""
+"<qt>This untrusted page links to<br /><b>%1</b>.<br />Do you want to follow "
+"the link?</qt>"
+msgstr ""
+"<qt>Þessi ótrausta síða tengir inn á<br /><B>%1</B>.<br />Viltu fylgja "
+"tenglinum?</qt>"
+
+#: khtml_part.cpp:3895
+msgid "Follow"
+msgstr "Fylgja"
+
+#: khtml_part.cpp:3990
+msgid "Frame Information"
+msgstr "Upplýsingar um ramma"
+
+#: khtml_part.cpp:3996
+#, kde-format
+msgid "   <a href=\"%1\">[Properties]</a>"
+msgstr "   <a href=\"%1\">[Eiginleikar]</a>"
+
+#: khtml_part.cpp:4022
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Quirks"
+msgstr "Kenjótt"
+
+#: khtml_part.cpp:4025
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Almost standards"
+msgstr "Næstum staðlað"
+
+#: khtml_part.cpp:4029
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Strict"
+msgstr "Strangt"
+
+#: khtml_part.cpp:4098
+msgid "Save Background Image As"
+msgstr "Vista bakgrunnsmynd sem"
+
+#: khtml_part.cpp:4191
+msgid "The peer SSL certificate chain appears to be corrupt."
+msgstr "Skírteiniskeðja SSL-jafningja lítur út fyrir að vera gölluð."
+
+#: khtml_part.cpp:4212
+msgid "Save Frame As"
+msgstr "Vista ramma sem"
+
+#: khtml_part.cpp:4256
+msgid "&Find in Frame..."
+msgstr "&Finna í ramma..."
+
+#: khtml_part.cpp:4258
+msgid "&Find..."
+msgstr "&Finna..."
+
+#: khtml_part.cpp:4905
+msgid ""
+"Warning:  This is a secure form but it is attempting to send your data back "
+"unencrypted.\n"
+"A third party may be able to intercept and view this information.\n"
+"Are you sure you wish to continue?"
+msgstr ""
+"Aðvörun:  Þetta er traust eyðublað, en er að reyna að senda gögnin þín "
+"ódulrituð.\n"
+"Það gæti einhver gripið gögnin á leiðinni og skoðað þau.\n"
+"Ertu viss um að þú viljir halda áfram?"
+
+#: khtml_part.cpp:4908 khtml_part.cpp:4918 khtml_part.cpp:4943
+msgid "Network Transmission"
+msgstr "Netsamskipti"
+
+#: khtml_part.cpp:4908 khtml_part.cpp:4919
+msgid "&Send Unencrypted"
+msgstr "&Senda án dulritunar"
+
+#: khtml_part.cpp:4916
+msgid ""
+"Warning: Your data is about to be transmitted across the network "
+"unencrypted.\n"
+"Are you sure you wish to continue?"
+msgstr ""
+"Aðvörun: Gögnin þín verða send um netið ódulrituð.\n"
+"Ertu viss um að þú viljir halda áfram?"
+
+#: khtml_part.cpp:4941
+msgid ""
+"This site is attempting to submit form data via email.\n"
+"Do you want to continue?"
+msgstr ""
+"Þessi vefur er að reyna að senda póst með póstforriti.\n"
+"Vilt þú leyfa honum það?"
+
+#: khtml_part.cpp:4944
+msgid "&Send Email"
+msgstr "&Senda tölvupóst"
+
+#: khtml_part.cpp:4965
+#, kde-format
+msgid ""
+"<qt>The form will be submitted to <br /><b>%1</b><br />on your local "
+"filesystem.<br />Do you want to submit the form?</qt>"
+msgstr ""
+"<qt>Valblaðið verður sent til<br /> <b>%1</b><br /> á skráakerfinu þínu.<br /"
+"> Viltu senda valblaðið?</qt>"
+
+#: khtml_part.cpp:5021
+msgid ""
+"This site attempted to attach a file from your computer in the form "
+"submission. The attachment was removed for your protection."
+msgstr ""
+"Þessi vefur reyndi að tengja skrá frá tölvunni þinni við innsent form. Það "
+"hefur verið fjarlægt til öryggis."
+
+#: khtml_part.cpp:6115
+#, kde-format
+msgid "(%1/s)"
+msgstr "(%1/s)"
+
+#: khtml_part.cpp:7043
+msgid "Security Warning"
+msgstr "Öryggisaðvörun"
+
+#: khtml_part.cpp:7050
+#, kde-format
+msgid "<qt>Access by untrusted page to<br /><b>%1</b><br /> denied.</qt>"
+msgstr ""
+"<qt>Aðgangi í síðu sem er ekki treyst að<br /><b>%1</b><br /> hafnað.</qt>"
+
+#: khtml_part.cpp:7421
+#, kde-format
+msgid "The wallet '%1' is open and being used for form data and passwords."
+msgstr ""
+"Veskið '%1' er opið og upplýsingar í því notaðar þegar auðkenning er "
+"nauðsynleg."
+
+#: khtml_part.cpp:7480
+msgid "&Close Wallet"
+msgstr "&Loka veski"
+
+#: khtml_part.cpp:7483
+msgid "&Allow storing passwords for this site"
+msgstr "Leyf&a að lykilorð séu geymd fyrir þetta svæði"
+
+#: khtml_part.cpp:7488
+#, kde-format
+msgid "Remove password for form %1"
+msgstr "Fjarlægja lykilorð frá %1"
+
+#: khtml_part.cpp:7603
+msgid "JavaScript &Debugger"
+msgstr "JavaScript &aflúsarinn"
+
+#: khtml_part.cpp:7636
+msgid "This page was prevented from opening a new window via JavaScript."
+msgstr ""
+"Komið var í veg fyrir að þessi síða opnaði nýjan glugga með Java skriftu."
+
+#: khtml_part.cpp:7642
+msgid "Popup Window Blocked"
+msgstr "Komið í veg fyrir að gluggi opnaðist"
+
+#: khtml_part.cpp:7642
+msgid ""
+"This page has attempted to open a popup window but was blocked.\n"
+"You can click on this icon in the status bar to control this behavior\n"
+"or to open the popup."
+msgstr ""
+"Komið var í veg fyrir að þessi síða opnaði nýjan glugga.\n"
+"Þú getur smellt á táknmyndina í stöðuslánni til að breyta stillingum\n"
+"eða til að opna gluggann."
+
+#: khtml_part.cpp:7656
+#, kde-format
+msgid "&Show Blocked Popup Window"
+msgid_plural "&Show %1 Blocked Popup Windows"
+msgstr[0] "&Sýna blokkaðann sprettglugga"
+msgstr[1] "&Sýna %1 blokkaða sprettglugga"
+
+#: khtml_part.cpp:7658
+msgid "Show Blocked Window Passive Popup &Notification"
+msgstr "Sýna tilky&nningar um blokkaða glugga"
+
+#: khtml_part.cpp:7660
+msgid "&Configure JavaScript New Window Policies..."
+msgstr "&Stilla stefnu JavaScript fyrir nýja glugga..."
+
+#: khtml_printsettings.cpp:30
+msgid ""
+"<qt><p><strong>'Print images'</strong></p><p>If this checkbox is enabled, "
+"images contained in the HTML page will be printed. Printing may take longer "
+"and use more ink or toner.</p><p>If this checkbox is disabled, only the text "
+"of the HTML page will be printed, without the included images. Printing will "
+"be faster and use less ink or toner.</p> </qt>"
+msgstr ""
+"<qt><p><strong>'Prenta myndir'</strong></p><p>Ef hakað er í þetta verða "
+"myndir sem eru í HTML skjölum einnig prentaðar út með skjalinu. Útprentunin "
+"gæti því tekið lengri tíma og nota meira blek eða tóner.</p><p>Ef ekki er "
+"hakað við hér verða myndir ekki prentaðar með heldur einungis HTML skjalið. "
+"Útprentun verður fljótvirkari og minna blek eða tóner verður notað.</p> </qt>"
+
+#: khtml_printsettings.cpp:42
+msgid ""
+"<qt><p><strong>'Print header'</strong></p><p>If this checkbox is enabled, "
+"the printout of the HTML document will contain a header line at the top of "
+"each page. This header contains the current date, the location URL of the "
+"printed page and the page number.</p><p>If this checkbox is disabled, the "
+"printout of the HTML document will not contain such a header line.</p> </qt>"
+msgstr ""
+"<qt><p><strong>'Prenta haus'</strong></p><p>Ef það er hakað við þetta mun "
+"útprentunin af HTML skjalinu innihalda línu efst á hverri síðu sem "
+"inniheldur tíma og dagsetningu útprentunarinnar, staðsetningu skjalsins og "
+"síðunúmer.</p><p>Sé ekki hakað við hér mun útprentun skjalsins ekki "
+"innihalda slíka línu.</p> </qt>"
+
+#: khtml_printsettings.cpp:55
+msgid ""
+"<qt><p><strong>'Printerfriendly mode'</strong></p><p>If this checkbox is "
+"enabled, the printout of the HTML document will be black and white only, and "
+"all colored background will be converted into white. Printout will be faster "
+"and use less ink or toner.</p><p>If this checkbox is disabled, the printout "
+"of the HTML document will happen in the original color settings as you see "
+"in your application. This may result in areas of full-page color (or "
+"grayscale, if you use a black+white printer). Printout will possibly happen "
+"more slowly and will probably use more toner or ink.</p> </qt>"
+msgstr ""
+"<qt><p><strong>'Prentvænn hamur'</strong></p><p>Ef það er hakað við hér "
+"verður HTML skjalið prentað út í svart hvítu og öllum lituðum bakgrunni "
+"umbreytt í hvítt. Útprentunin mun þá taka styttri tíma og nota minna blek "
+"eða tóner.</p><p>Sé ekki hakað við hér verður skjalið prentað út í fullum "
+"gæðum eins og það er í forritinu sem þú sérð það í. Útprentanir í þessum "
+"gæðum geta orðið heilsíður í fullum litum (eða gráskölum ef þú ert með "
+"svarthvítan prentara). Útprentunin mun líklega taka lengri tíma og mun "
+"sannarlega nota meiri blek eða tóner.</p> </qt>"
+
+#: khtml_printsettings.cpp:70
+msgid "HTML Settings"
+msgstr "HTML stillingar"
+
+#: khtml_printsettings.cpp:72
+msgid "Printer friendly mode (black text, no background)"
+msgstr "Prentvænn hamur (svartur texti, enginn bakgrunnur)"
+
+#: khtml_printsettings.cpp:75
+msgid "Print images"
+msgstr "Prenta myndir"
+
+#: khtml_printsettings.cpp:78
+msgid "Print header"
+msgstr "Prenta haus"
+
+#: khtml_settings.cpp:906
+msgid "Filter error"
+msgstr "Síuvilla"
+
+#: khtmladaptorpart.cpp:29
+msgid "Inactive"
+msgstr "Óvirkt"
+
+#: khtmlimage.cpp:46
+#, fuzzy
+#| msgid "KHTML"
+msgid "KHTML Image"
+msgstr "KHTML"
+
+#: khtmlimage.cpp:217
+#, kde-format
+msgid "%1 (%2 - %3x%4 Pixels)"
+msgstr "%1 (%2 - %3x%4 punktar)"
+
+#: khtmlimage.cpp:219
+#, kde-format
+msgid "%1 - %2x%3 Pixels"
+msgstr "%1 - %2x%3 punktar"
+
+#: khtmlimage.cpp:224
+#, kde-format
+msgid "%1 (%2x%3 Pixels)"
+msgstr "%1 (%2x%3 punktar)"
+
+#: khtmlimage.cpp:226
+#, kde-format
+msgid "Image - %1x%2 Pixels"
+msgstr "Mynd - %1x%2 punktar"
+
+#: khtmlimage.cpp:232
+msgid "Done."
+msgstr "Lokið."
+
+#: khtmlview.cpp:1902
+msgid "Access Keys activated"
+msgstr "Aðgangslyklar virkir"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:14
+msgid "JavaScript Errors"
+msgstr "Javaforritavillur"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:17
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at http://bugs.kde.org/.  A test case "
+"which illustrates the problem will be appreciated."
+msgstr ""
+"Þessi gluggi veitir upplýsingar um villur í forritum á vefsíðum. Í mörgum "
+"tilfellum er við höfund viðkomandi vefsíðu að sakast en í öðrum er þetta "
+"forritunarvilla í Konqueror vafranum. Ef þig grunar að fyrra tilfellið sé "
+"það rétta skaltu hafa samband við höfund síðunnar. Á hinn bóginn, ef þig "
+"grunar að vandinn sé í Konqueror skaltu fara á http://bugs.kde.org/ og "
+"tilkynna vandann.  Nákvæmar leiðbeiningar um hvernig framkalla má villuna "
+"eru vel þegnar."
+
+#. i18n: ectx: property (text), widget (QPushButton, _close)
+#: kjserrordlgbase.ui:29
+msgid "&Close"
+msgstr "&Loka"
+
+#. i18n: ectx: property (text), widget (QPushButton, _clear)
+#: kjserrordlgbase.ui:36
+msgid "C&lear"
+msgstr "Hr&einsa"
+
+#: kmultipart/kmultipart.cpp:40
+msgid "KMultiPart"
+msgstr "KMultiPart"
+
+#: kmultipart/kmultipart.cpp:42
+msgid "Embeddable component for multipart/mixed"
+msgstr "Innfellanlegur íhlutur fyrir marghluta/blönduð"
+
+#: kmultipart/kmultipart.cpp:44
+#, fuzzy
+#| msgid "Copyright 2001-2011, David Faure <email>faure@kde.org</email>"
+msgid "Copyright 2001-2011, David Faure <faure@kde.org>"
+msgstr "Höfundarréttur 2001, David Faure <email>david@mandrakesoft.com</email>"
+
+#: kmultipart/kmultipart.cpp:337
+#, kde-format
+msgid "No handler found for %1."
+msgstr "Engin meðhöndlari fannst fyrir %1."
+
+#: misc/kencodingdetector.cpp:1119 misc/kencodingdetector.cpp:1220
+msgctxt "@item Text character set"
+msgid "Unicode"
+msgstr "Unicode"
+
+#: misc/kencodingdetector.cpp:1121 misc/kencodingdetector.cpp:1190
+msgctxt "@item Text character set"
+msgid "Cyrillic"
+msgstr "Kýrílskt"
+
+#: misc/kencodingdetector.cpp:1123 misc/kencodingdetector.cpp:1205
+msgctxt "@item Text character set"
+msgid "Western European"
+msgstr "Vesturevrópskt"
+
+#: misc/kencodingdetector.cpp:1125 misc/kencodingdetector.cpp:1187
+msgctxt "@item Text character set"
+msgid "Central European"
+msgstr "Mið-evrópskt"
+
+#: misc/kencodingdetector.cpp:1127 misc/kencodingdetector.cpp:1193
+msgctxt "@item Text character set"
+msgid "Greek"
+msgstr "Grískt"
+
+#: misc/kencodingdetector.cpp:1129 misc/kencodingdetector.cpp:1196
+msgctxt "@item Text character set"
+msgid "Hebrew"
+msgstr "Hebreskt"
+
+#: misc/kencodingdetector.cpp:1131 misc/kencodingdetector.cpp:1202
+msgctxt "@item Text character set"
+msgid "Turkish"
+msgstr "Tyrknenskt"
+
+#: misc/kencodingdetector.cpp:1133 misc/kencodingdetector.cpp:1199
+msgctxt "@item Text character set"
+msgid "Japanese"
+msgstr "Japanskt"
+
+#: misc/kencodingdetector.cpp:1135 misc/kencodingdetector.cpp:1184
+msgctxt "@item Text character set"
+msgid "Baltic"
+msgstr "Baltneskt"
+
+#: misc/kencodingdetector.cpp:1137 misc/kencodingdetector.cpp:1181
+msgctxt "@item Text character set"
+msgid "Arabic"
+msgstr "Arabískt"
+
+#: misc/kencodingdetector.cpp:1208
+msgctxt "@item Text character set"
+msgid "Chinese Traditional"
+msgstr "Hefðbundin kínverska"
+
+#: misc/kencodingdetector.cpp:1211
+msgctxt "@item Text character set"
+msgid "Chinese Simplified"
+msgstr "Einfölduð kínverska"
+
+#: misc/kencodingdetector.cpp:1214
+msgctxt "@item Text character set"
+msgid "Korean"
+msgstr "Kóreskt"
+
+#: misc/kencodingdetector.cpp:1217
+msgctxt "@item Text character set"
+msgid "Thai"
+msgstr "Tælenskt"
+
+#: rendering/media_controls.cpp:46
+msgid "Play"
+msgstr "Spila"
+
+#: rendering/media_controls.cpp:49
+msgid "Pause"
+msgstr "Gera hlé"
+
+#: rendering/render_form.cpp:903
+msgid "New Web Shortcut"
+msgstr "Nýr vefflýtilykill"
+
+#: rendering/render_form.cpp:924
+#, kde-format
+msgid "%1 is already assigned to %2"
+msgstr "%1 er þegar úthlutað til %2"
+
+#: rendering/render_form.cpp:924
+msgid "Error"
+msgstr "Villa"
+
+#: rendering/render_form.cpp:970
+msgid "Search &provider name:"
+msgstr "&Nafn leitarþjónustu:"
+
+#: rendering/render_form.cpp:972
+msgid "New search provider"
+msgstr "Ný leitarþjónusta"
+
+#: rendering/render_form.cpp:977
+msgid "UR&I shortcuts:"
+msgstr "Slóðastytt&ingar:"
+
+#: rendering/render_form.cpp:1056
+msgid "Clear &History"
+msgstr "Hreinsa &sögu"
+
+#: rendering/render_form.cpp:1071
+msgid "Create Web Shortcut"
+msgstr "Búa til vefflýtilykil"
+
+#: ui/findbar/khtmlfindbar.cpp:49
+msgid "C&ase sensitive"
+msgstr "&Háð há-/lágstöfum"
+
+#: ui/findbar/khtmlfindbar.cpp:51
+msgid "&Whole words only"
+msgstr "Aðeins stök &orð"
+
+#: ui/findbar/khtmlfindbar.cpp:53
+msgid "From c&ursor"
+msgstr "&Frá bendli"
+
+#: ui/findbar/khtmlfindbar.cpp:55
+msgid "&Selected text"
+msgstr "&Valinn texti"
+
+#: ui/findbar/khtmlfindbar.cpp:57
+msgid "Regular e&xpression"
+msgstr "&Reglulega segð"
+
+#: ui/findbar/khtmlfindbar.cpp:59
+msgid "Find &links only"
+msgstr "&Leita aðeins í tenglum"
+
+#: ui/findbar/khtmlfindbar.cpp:224
+msgid "Not found"
+msgstr "Fannst ekki"
+
+#: ui/findbar/khtmlfindbar.cpp:239
+msgid "No more matches for this search direction."
+msgstr "Engar fleiri samsvaranir þegar leitað er í þessa átt."
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+msgid "F&ind:"
+msgstr "&Finna:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+msgid "&Next"
+msgstr "&Næsta"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+msgid "&Previous"
+msgstr "&Fyrra"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+msgid "Opt&ions"
+msgstr "Valk&ostir"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
+msgid "Do you want to store this password?"
+msgstr "Viltu geyma þetta lykilorð?"
+
+#: ui/passwordbar/storepassbar.cpp:61
+#, kde-format
+msgid "Do you want to store this password for %1?"
+msgstr "Viltu geyma þetta lykilorð fyrir %1?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+msgid "&Store"
+msgstr "&Geyma"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+msgid "Ne&ver store for this site"
+msgstr "Aldrei fyrir þennan &vef"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+msgid "Do &not store this time"
+msgstr "E&kki geyma það núna"
+
+#: xml/dom_docimpl.cpp:2365
+msgid "Basic Page Style"
+msgstr "Grunnstíll síðu"
+
+#: xml/xml_tokenizer.cpp:347
+msgid "the document is not in the correct file format"
+msgstr "Skjalið inniheldur ekki rétt form skráartegundar"
+
+#: xml/xml_tokenizer.cpp:352
+#, kde-format
+msgid "fatal parsing error: %1 in line %2, column %3"
+msgstr "Alvarleg túlkunarvilla: %1 í línu %2, dálk %3"
+
+#: xml/xml_tokenizer.cpp:567
+msgid "XML parsing error"
+msgstr "XML túlkunarvilla"
