@@ -2202,7 +2202,7 @@ JSValue *WindowFunc::callAsFunction(ExecState *exec, JSObject *thisObj, const Li
         if (part) {
             emit part->browserExtension()->requestFocus(part);
         }
-        KMessageBox::error(widget, Qt::convertFromPlainText(str, Qt::WhiteSpaceNormal), caption);
+        KMessageBox::error(widget, Qt::convertFromPlainText(str), caption);
         return jsUndefined();
     }
     case Window::Confirm: {
