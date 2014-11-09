@@ -514,7 +514,7 @@ bool KHTMLView::event(QEvent *e)
                                              viewportToContents(QPoint(0, 0)), p, r, s);
                 }
                 if (!found) {
-                    s = e->getAttribute(ATTR_TITLE).string();
+                    s = e->getAttribute(ATTR_TITLE).string().trimmed();
                     r = node->getRect();
                 }
                 region |= QRect(contentsToViewport(r.topLeft()), r.size());
