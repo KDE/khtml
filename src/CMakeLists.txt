@@ -216,7 +216,7 @@ set(khtmlfind_STAT_SRCS
   ui/findbar/khtmlfindbar.cpp
 )
 
-qt5_wrap_ui(khtmlfind_STAT_SRCS
+ki18n_wrap_ui(khtmlfind_STAT_SRCS
   ui/findbar/khtmlfindbar_base.ui
 )
 
@@ -224,7 +224,7 @@ set(passwordbar_STAT_SRCS
   ui/passwordbar/storepassbar.cpp
 )
 
-qt5_wrap_ui(passwordbar_STAT_SRCS
+ki18n_wrap_ui(passwordbar_STAT_SRCS
   ui/passwordbar/storepassbar_base.ui
 )
 
@@ -535,7 +535,7 @@ set(khtml_LIB_SRCS
 qt5_add_dbus_interface(khtml_LIB_SRCS ${KCookieServer_DBUS_INTERFACE} kcookiejar_interface)
 
 
-qt5_wrap_ui(khtml_LIB_SRCS
+ki18n_wrap_ui(khtml_LIB_SRCS
    kjserrordlgbase.ui
    htmlpageinfo.ui
    html/keygenwizard.ui
