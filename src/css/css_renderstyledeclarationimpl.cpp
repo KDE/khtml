@@ -39,6 +39,7 @@ static const int computedProperties[] = {
     CSS_PROP_BACKGROUND_IMAGE,
     CSS_PROP_BACKGROUND_REPEAT,
     CSS_PROP_BACKGROUND_ATTACHMENT,
+    CSS_PROP_BACKGROUND_ORIGIN,
     CSS_PROP_BACKGROUND_POSITION,
     CSS_PROP_BACKGROUND_POSITION_X,
     CSS_PROP_BACKGROUND_POSITION_Y,
@@ -464,6 +465,17 @@ CSSValueImpl *RenderStyleDeclarationImpl::getPropertyCSSValue(int propertyID) co
         default:
             Q_ASSERT(0);
         }
+        break;
+    case CSS_PROP_BACKGROUND_ORIGIN:
+        switch (style->backgroundLayers()->backgroundOrigin()) {
+            case BGBORDER:
+                return new CSSPrimitiveValueImpl(CSS_VAL_BORDER_BOX);
+            case BGPADDING:
+                return new CSSPrimitiveValueImpl(CSS_VAL_PADDING_BOX);
+            case BGCONTENT:
+                return new CSSPrimitiveValueImpl(CSS_VAL_CONTENT_BOX);
+        }
+        Q_ASSERT(0);
         break;
     case CSS_PROP_BACKGROUND_POSITION: {
         RETURN_NULL_ON_NULL(renderer);
