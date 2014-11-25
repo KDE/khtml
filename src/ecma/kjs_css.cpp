@@ -279,22 +279,26 @@ JSValue *DOMCSSStyleDeclarationProtoFunc::callAsFunction(ExecState *exec, JSObje
     KJS_CHECK_THIS(KJS::DOMCSSStyleDeclaration, thisObj);
     CSSStyleDeclarationImpl &styleDecl = *static_cast<DOMCSSStyleDeclaration *>(thisObj)->impl();
 
-    DOM::DOMString s = args[0]->toString(exec).domString();
+    const DOM::DOMString cssProp = args[0]->toString(exec).domString();
 
     switch (id) {
     case DOMCSSStyleDeclaration::GetPropertyValue:
-        return jsString(styleDecl.getPropertyValue(s));
+        return jsString(styleDecl.getPropertyValue(cssProp));
     case DOMCSSStyleDeclaration::GetPropertyCSSValue:
-        return getDOMCSSValue(exec, styleDecl.getPropertyCSSValue(s));
+        return getDOMCSSValue(exec, styleDecl.getPropertyCSSValue(cssProp));
     case DOMCSSStyleDeclaration::RemoveProperty:
-        return jsString(styleDecl.removeProperty(s));
+        return jsString(styleDecl.removeProperty(cssProp));
     case DOMCSSStyleDeclaration::GetPropertyPriority:
-        return jsString(styleDecl.getPropertyPriority(s));
-    case DOMCSSStyleDeclaration::SetProperty:
-        styleDecl.setProperty(args[0]->toString(exec).domString(),
-                              args[1]->toString(exec).domString(),
-                              args[2]->toString(exec).domString());
+        return jsString(styleDecl.getPropertyPriority(cssProp));
+    case DOMCSSStyleDeclaration::SetProperty: {
+        const DOM::DOMString cssVal = args[1]->toString(exec).domString();
+        if (cssVal.isEmpty()) {
+            styleDecl.removeProperty(cssProp);
+        } else {
+            styleDecl.setProperty(cssProp, cssVal, args[2]->toString(exec).domString());
+        }
         return jsUndefined();
+    }
     case DOMCSSStyleDeclaration::Item:
         return jsString(styleDecl.item(args[0]->toInteger(exec)));
     default:

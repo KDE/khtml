@@ -124,6 +124,10 @@ void CSSStyleDeclaration::setProperty(const DOMString &propName, const DOMString
     if (!impl) {
         return;
     }
+    if (value.isEmpty()) {
+        static_cast<CSSStyleDeclarationImpl *>(impl)->removeProperty(propName);
+        return;
+    }
     static_cast<CSSStyleDeclarationImpl *>(impl)->setProperty(propName, value, priority);
 }
 
