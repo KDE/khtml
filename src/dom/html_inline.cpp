@@ -109,7 +109,7 @@ DOMString HTMLAnchorElement::href() const
     if (!impl) {
         return DOMString();
     }
-    DOMString href = static_cast<ElementImpl *>(impl)->getAttribute(ATTR_HREF);
+    const DOMString href = static_cast<ElementImpl *>(impl)->getAttribute(ATTR_HREF).trimSpaces();
     return !href.isNull() ? impl->document()->completeURL(href.string()) : href;
 }
 

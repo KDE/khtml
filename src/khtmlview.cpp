@@ -2863,7 +2863,7 @@ QMap< ElementImpl *, QChar > KHTMLView::buildFallbackAccessKeys() const
             bool text_before = false;
             switch (element->id()) {
             case ID_A:
-                url = element->getAttribute(ATTR_HREF).string();
+                url = element->getAttribute(ATTR_HREF).trimSpaces().string();
                 if (url.isEmpty()) { // doesn't have href, it's only an anchor
                     continue;
                 }

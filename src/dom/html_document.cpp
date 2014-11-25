@@ -111,7 +111,7 @@ DOMString HTMLDocument::completeURL(const DOMString &str) const
     if (!impl) {
         return str;
     }
-    return ((HTMLDocumentImpl *)impl)->completeURL(str.string());
+    return ((HTMLDocumentImpl *)impl)->completeURL(str.trimSpaces().string());
 }
 
 DOMString HTMLDocument::domain() const

@@ -335,6 +335,38 @@ bool DOMString::startsWith(const DOMString &str) const
     return impl->startsWith(str.implementation());
 }
 
+static inline bool isSpaceCharacter(const ushort &c)
+{
+    // http://dev.w3.org/html5/spec-LC/common-microsyntaxes.html#space-character
+    return ((c < 0x0021) &&
+            (c == 0x0020 || c == 0x0009 || c == 0x000A || c == 0x000C || c == 0x000D));
+}
+
+DOMString DOMString::trimSpaces() const
+{
+    if (!impl || !impl->l) {
+        return *this;
+    }
+
+    const QChar *s = impl->s;
+    unsigned int start = 0;
+    unsigned int end = impl->l - 1;
+
+    while ((start <= end) && isSpaceCharacter(s[start].unicode())) {
+        ++start;
+    }
+
+    if (start > end) {
+        return DOMString("");
+    }
+
+    while (end && isSpaceCharacter(s[end].unicode())) {
+        --end;
+    }
+
+    return new DOMStringImpl(s + start, end - start + 1);
+}
+
 // ------------------------------------------------------------------------
 
 bool DOM::strcasecmp(const DOMString &as, const DOMString &bs)

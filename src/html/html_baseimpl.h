@@ -108,7 +108,7 @@ public:
     {
         return noresize;
     }
-    void setLocation(const DOMString &str);
+    void setLocation(const QString &str);
 
     virtual bool isFocusableImpl(FocusType ft) const;
     virtual void setFocus(bool);
@@ -116,7 +116,7 @@ public:
     DocumentImpl *contentDocument() const;
     KHTMLPart    *contentPart() const;
 
-    DOMString url;
+    QString url;
     DOMString name; //Computed name for the frame map
 
     int marginWidth;

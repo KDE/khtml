@@ -2066,7 +2066,7 @@ void DocumentImpl::processHttpEquiv(const DOMString &equiv, const DOMString &con
             }
         } else {
             pos++;
-            while (pos < (int)str.length() && str[pos].isSpace()) {
+            while (pos < str.length() && str[pos].isSpace()) {
                 pos++;
             }
             str = str.mid(pos);
@@ -2081,7 +2081,8 @@ void DocumentImpl::processHttpEquiv(const DOMString &equiv, const DOMString &con
                     (str[str.length() - 1] == ';' || str[str.length() - 1] == ',')) {
                 str.resize(str.length() - 1);
             }
-            QString newURL = document()->completeURL(str);
+            str = DOMString(str).trimSpaces().string();
+            const QString newURL = document()->completeURL(str);
             if (ok) {
                 v->part()->scheduleRedirection(delay, newURL,  delay < 2 || newURL == URL().url());
             }
@@ -2136,7 +2137,7 @@ bool DocumentImpl::prepareMouseEvent(bool readonly, int _x, int _y, MouseEvent *
             //qDebug("urlnode: %s  (%d)", getTagName(renderInfo.URLElement()->id()).string().toLatin1().constData(), renderInfo.URLElement()->id());
 
             ElementImpl *e =  static_cast<ElementImpl *>(renderInfo.URLElement());
-            DOMString href = e->getAttribute(ATTR_HREF);
+            DOMString href = e->getAttribute(ATTR_HREF).trimSpaces();
             DOMString target = e->getAttribute(ATTR_TARGET);
 
             if (!target.isNull() && !href.isNull()) {

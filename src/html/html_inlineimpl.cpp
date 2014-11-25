@@ -86,7 +86,7 @@ void HTMLAnchorElementImpl::defaultEventHandler(EventImpl *evt)
             }
         }
 
-        QString url = getAttribute(ATTR_HREF).string();
+        QString url = getAttribute(ATTR_HREF).trimSpaces().string();
         QString utarget = getAttribute(ATTR_TARGET).string();
 
         if (e && e->button() == 1) {

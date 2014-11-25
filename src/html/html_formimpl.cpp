@@ -683,7 +683,7 @@ void HTMLFormElementImpl::submit()
         }
 #endif // KHTML_NO_WALLET
 
-        QString url = getAttribute(ATTR_ACTION).string();
+        QString url = getAttribute(ATTR_ACTION).trimSpaces().string();
         // ignore base url if 'action' attribute is empty.
         if (url.isEmpty()) {
             url = formUrl.url();

@@ -54,7 +54,7 @@ void HTMLBaseElementImpl::parseAttribute(AttributeImpl *attr)
 {
     switch (attr->id()) {
     case ATTR_HREF:
-        m_href = attr->value();
+        m_href = attr->value().trimSpaces().string();
         process();
         break;
     case ATTR_TARGET:
@@ -89,7 +89,7 @@ void HTMLBaseElementImpl::process()
     }
 
     if (!m_href.isEmpty() && document()->part()) {
-        document()->setBaseURL(QUrl(document()->part()->url()).resolved(QUrl(m_href.string())));
+        document()->setBaseURL(QUrl(document()->part()->url()).resolved(QUrl(m_href)));
     }
 
     if (!m_target.isEmpty()) {
@@ -120,9 +120,9 @@ void HTMLLinkElementImpl::parseAttribute(AttributeImpl *attr)
 {
     switch (attr->id()) {
     case ATTR_HREF: {
-        const QString hrefUrl = attr->val()->string().trimmed();
+        const DOMString hrefUrl = attr->value().trimSpaces();
         if (!hrefUrl.isEmpty()) {
-            m_url = document()->completeURL(hrefUrl);
+            m_url = document()->completeURL(hrefUrl.string());
         }
         process();
         break;
@@ -406,7 +406,7 @@ void HTMLScriptElementImpl::parseAttribute(AttributeImpl *attr)
         if (m_evaluated || m_cachedScript || m_createdByParser || !inDocument()) {
             return;
         }
-        DOMString url = attr->value();
+        const DOMString url = attr->value().trimSpaces();
         if (!url.isEmpty()) {
             loadFromUrl(url);
         }
@@ -516,7 +516,7 @@ void HTMLScriptElementImpl::insertedIntoDocument()
         return;
     }
 
-    DOMString url = getAttribute(ATTR_SRC).string();
+    const DOMString url = getAttribute(ATTR_SRC).trimSpaces();
     if (!url.isEmpty()) {
         loadFromUrl(url);
         return;
@@ -651,7 +651,7 @@ void HTMLScriptElementImpl::setDefer(bool defer)
 
 DOMString HTMLScriptElementImpl::src() const
 {
-    return document()->completeURL(getAttribute(ATTR_SRC).string());
+    return document()->completeURL(getAttribute(ATTR_SRC).trimSpaces().string());
 }
 
 void HTMLScriptElementImpl::setSrc(const DOMString &value)

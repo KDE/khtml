@@ -2465,9 +2465,8 @@ bool CSSParser::parseFontFaceSrc()
     while ((val = valueList->current())) {
         CSSFontFaceSrcValueImpl *parsedValue = 0;
         if (val->unit == CSSPrimitiveValue::CSS_URI && !expectComma && styleElement) {
-            const QString uri = qString(val->string);
-            parsedValue = new CSSFontFaceSrcValueImpl(
-                DOMString(QUrl(styleElement->baseURL()).resolved(QUrl(uri)).toString()), false /*local*/);
+            const DOMString uri = domString(val->string).trimSpaces();
+            parsedValue = new CSSFontFaceSrcValueImpl(DOMString(QUrl(styleElement->baseURL()).resolved(QUrl(uri.string())).toString()), false /*local*/);
             uriValue = parsedValue;
             allowFormat = true;
             expectComma = true;

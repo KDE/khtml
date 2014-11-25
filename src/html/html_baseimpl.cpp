@@ -71,7 +71,7 @@ void HTMLBodyElementImpl::parseAttribute(AttributeImpl *attr)
     switch (attr->id()) {
 
     case ATTR_BACKGROUND: {
-        QString url = attr->val()->string();
+        QString url = attr->value().trimSpaces().string();
         if (!url.isEmpty()) {
             url = document()->completeURL(url);
             addCSSProperty(CSS_PROP_BACKGROUND_IMAGE, DOMString("url('" + url + "')"));
@@ -261,7 +261,7 @@ HTMLFrameElementImpl::HTMLFrameElementImpl(DocumentImpl *doc)
     marginHeight = -1;
     scrolling = Qt::ScrollBarAsNeeded;
     noresize = false;
-    url = "about:blank";
+    url = QLatin1String("about:blank");
 }
 
 HTMLFrameElementImpl::~HTMLFrameElementImpl()
@@ -337,7 +337,7 @@ void HTMLFrameElementImpl::parseAttribute(AttributeImpl *attr)
 {
     switch (attr->id()) {
     case ATTR_SRC:
-        setLocation(attr->value());
+        setLocation(attr->value().trimSpaces().string());
         break;
     case ATTR_FRAMEBORDER: {
         frameBorder = attr->value().toInt();
@@ -404,7 +404,7 @@ void HTMLFrameElementImpl::attach()
     }
 
     if (parentNode()->renderer() && parentNode()->renderer()->childAllowed()
-            && document()->isURLAllowed(url.string()))  {
+            && document()->isURLAllowed(url))  {
         RenderStyle *_style = document()->styleSelector()->styleForElement(this);
         _style->ref();
         if (_style->display() != NONE) {
@@ -439,7 +439,7 @@ void HTMLFrameElementImpl::computeContent()
     }
 
     // Bail out on any disallowed URLs
-    if (!document()->isURLAllowed(url.string())) {
+    if (!document()->isURLAllowed(url)) {
         return;
     }
 
@@ -455,21 +455,21 @@ void HTMLFrameElementImpl::computeContent()
 
     // Go ahead and load a part... We don't need to clear the widget here,
     // since the -frames- have their lifetime managed, using the name uniqueness.
-    parentPart->loadFrameElement(this, url.string(), name.string());
+    parentPart->loadFrameElement(this, url, name.string());
 }
 
-void HTMLFrameElementImpl::setLocation(const DOMString &str)
+void HTMLFrameElementImpl::setLocation(const QString &str)
 {
     url = str;
 
-    if (!document()->isURLAllowed(url.string())) {
+    if (!document()->isURLAllowed(url)) {
         return;
     }
 
     // if we already have a child part, ask it to go there..
     KHTMLPart *childPart = contentPart();
     if (childPart) {
-        childPart->openUrl(QUrl(document()->completeURL(url.string())));
+        childPart->openUrl(QUrl(document()->completeURL(url)));
     } else {
         setNeedComputeContent();    // otherwise, request it..
     }
@@ -792,7 +792,7 @@ void HTMLIFrameElementImpl::parseAttribute(AttributeImpl *attr)
         addHTMLAlignment(attr->value());
         break;
     case ATTR_SRC:
-        url = attr->value();
+        url = attr->value().trimSpaces().string();
         setNeedComputeContent();
         // ### synchronously start the process?
         break;
@@ -843,7 +843,7 @@ void HTMLIFrameElementImpl::attach()
 
     RenderStyle *style = document()->styleSelector()->styleForElement(this);
     style->ref();
-    if (document()->isURLAllowed(url.string()) && parentNode()->renderer()
+    if (document()->isURLAllowed(url) && parentNode()->renderer()
             && parentNode()->renderer()->childAllowed() && style->display() != NONE) {
         m_render = new(document()->renderArena()) RenderPartObject(this);
         m_render->setStyle(style);
@@ -866,7 +866,7 @@ void HTMLIFrameElementImpl::computeContent()
         return;
     }
 
-    if (!document()->isURLAllowed(url.string())) {
+    if (!document()->isURLAllowed(url)) {
         return;
     }
 
@@ -880,7 +880,7 @@ void HTMLIFrameElementImpl::computeContent()
 
     // make sure "" is handled as about: blank
     const QString aboutBlank = QLatin1String("about:blank");
-    QString effectiveURL = url.string();
+    QString effectiveURL = url;
     if (effectiveURL.isEmpty()) {
         effectiveURL = aboutBlank;
     }

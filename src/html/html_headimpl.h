@@ -49,7 +49,7 @@ public:
 
     DOMString href() const
     {
-        return m_href;
+        return DOMString(m_href);
     }
     DOMString target() const
     {
@@ -64,7 +64,7 @@ public:
     void process();
 
 protected:
-    DOMString m_href;
+    QString m_href;
     DOMString m_target;
 };
 

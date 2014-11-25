@@ -132,6 +132,13 @@ public:
     bool startsWith(const DOMString &str) const;
 
     /**
+     * Returns a string with Space Characters removed from the start and the end.
+     * Space Characters as defined in
+     * http://dev.w3.org/html5/spec-LC/common-microsyntaxes.html#space-character
+     */
+    DOMString trimSpaces() const;
+
+    /**
      * @internal get a handle to the imlementation of the DOMString
      * Use at own risk!!!
      */

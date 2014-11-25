@@ -1577,7 +1577,7 @@ const KJS::HTMLElement::BoundPropInfo KJS::HTMLElement::bpTable[] = {
     {ID_FRAME,    FrameName,         T_String, ATTR_NAME},
     {ID_FRAME,    FrameNoResize,     T_Bool,   ATTR_NORESIZE},
     {ID_FRAME,    FrameScrolling,    T_String, ATTR_SCROLLING},
-    {ID_FRAME,    FrameSrc,          T_String, ATTR_SRC}, //### not URL?
+    {ID_FRAME,    FrameSrc,          T_URL, ATTR_SRC},
     {ID_FRAME,    FrameLocation,     BoundPropType(T_String | T_ReadOnly), ATTR_SRC},
     {ID_IFRAME,   IFrameFrameBorder, T_String, ATTR_FRAMEBORDER},
     {ID_IFRAME,   IFrameLongDesc,    T_String, ATTR_LONGDESC},
@@ -1613,7 +1613,7 @@ QHash<int, const HTMLElement::BoundPropInfo *> *HTMLElement::boundPropInfo()
 
 QString KJS::HTMLElement::getURLArg(unsigned id) const
 {
-    const DOMString rel = impl()->getAttribute(id);
+    const DOMString rel = impl()->getAttribute(id).trimSpaces();
     return !rel.isNull() ? impl()->document()->completeURL(rel.string()) : QString();
 }
 
@@ -2804,7 +2804,7 @@ void KJS::HTMLElement::putValueProperty(ExecState *exec, int token, JSValue *val
         switch (token) {
         // read-only: FrameContentDocument:
         case FrameLocation:        {
-            frameElement.setLocation(str);
+            frameElement.setLocation(str.string());
             return;
         }
         }
