@@ -1037,7 +1037,7 @@ bool CSSParser::parseValue(int propId, bool important)
         if (id == CSS_VAL_NORMAL) {
             valid_primitive = true;
         } else {
-            valid_primitive = (!id && validUnit(value, FNumber | FLength | FPercent, strict));
+            valid_primitive = (!id && validUnit(value, FNumber | FLength | FPercent | FNonNeg, strict));
         }
         break;
     case CSS_PROP_COUNTER_INCREMENT:    // [ <identifier> <integer>? ]+ | none | inherit
@@ -2304,7 +2304,7 @@ bool CSSParser::parseFontShorthand(bool important)
         }
         if (value->id == CSS_VAL_NORMAL) {
             // default value, nothing to do
-        } else if (validUnit(value, FNumber | FLength | FPercent, strict)) {
+        } else if (validUnit(value, FNumber | FLength | FPercent | FNonNeg, strict)) {
             lineHeight = new CSSPrimitiveValueImpl(value->fValue, (CSSPrimitiveValue::UnitTypes) value->unit);
         } else {
             goto invalid;
