@@ -42,6 +42,7 @@ static const int computedProperties[] = {
     CSS_PROP_BACKGROUND_POSITION,
     CSS_PROP_BACKGROUND_POSITION_X,
     CSS_PROP_BACKGROUND_POSITION_Y,
+    CSS_PROP_BACKGROUND_SIZE,
     CSS_PROP_BORDER_COLLAPSE,
     CSS_PROP_BORDER_SPACING,
     CSS_PROP__KHTML_BORDER_HORIZONTAL_SPACING,
@@ -488,6 +489,43 @@ CSSValueImpl *RenderStyleDeclarationImpl::getPropertyCSSValue(int propertyID) co
     case CSS_PROP_BACKGROUND_POSITION_Y:
         RETURN_NULL_ON_NULL(renderer);
         return valueForLength(style->backgroundYPosition(), renderer->contentHeight());
+    case CSS_PROP_BACKGROUND_SIZE: {
+        const EBackgroundSizeType backgroundSizeType = style->backgroundLayers()->backgroundSizeType();
+        switch (backgroundSizeType) {
+            case BGSCONTAIN:
+                return new CSSPrimitiveValueImpl(CSS_VAL_CONTAIN);
+            case BGSCOVER:
+                return new CSSPrimitiveValueImpl(CSS_VAL_COVER);
+            case BGSLENGTH: {
+                const LengthSize bgLengthSize = style->backgroundLayers()->backgroundSize();
+                CSSValueListImpl *values = new CSSValueListImpl(CSSValueListImpl::Space);
+                switch (bgLengthSize.width.type()) {
+                    case Auto:
+                        values->append(new CSSPrimitiveValueImpl(CSS_VAL_AUTO));
+                        break;
+                    case Percent:
+                        values->append(new CSSPrimitiveValueImpl(bgLengthSize.width.percent(), CSSPrimitiveValue::CSS_PERCENTAGE));
+                        break;
+                    default:
+                        values->append(new CSSPrimitiveValueImpl(bgLengthSize.width.value(), CSSPrimitiveValue::CSS_PX));
+                }
+                switch (bgLengthSize.height.type()) {
+                    case Auto:
+                        values->append(new CSSPrimitiveValueImpl(CSS_VAL_AUTO));
+                        break;
+                    case Percent:
+                        values->append(new CSSPrimitiveValueImpl(bgLengthSize.height.percent(), CSSPrimitiveValue::CSS_PERCENTAGE));
+                        break;
+                    default:
+                        values->append(new CSSPrimitiveValueImpl(bgLengthSize.height.value(), CSSPrimitiveValue::CSS_PX));
+                }
+                return values;
+            }
+            default:
+                Q_ASSERT(0);
+        }
+        break;
+    }
     case CSS_PROP_BORDER_COLLAPSE:
         if (style->borderCollapse()) {
             return new CSSPrimitiveValueImpl(CSS_VAL_COLLAPSE);
