@@ -106,7 +106,7 @@ int DOM::getValueID(const char *tagStr, int len)
 #define YYLTYPE_IS_TRIVIAL 1
 %}
 
-%expect 39
+%expect 40
 
 %pure_parser
 
@@ -212,6 +212,7 @@ static int cssyylex(YYSTYPE *yylval) {
 %token <val> QEMS
 %token <val> EMS
 %token <val> EXS
+%token <val> CHS
 %token <val> PXS
 %token <val> CMS
 %token <val> MMS
@@ -1229,6 +1230,7 @@ unary_term:
   | EMS maybe_space { $$.id = 0; $$.fValue = $1; $$.unit = CSSPrimitiveValue::CSS_EMS; }
   | QEMS maybe_space { $$.id = 0; $$.fValue = $1; $$.unit = Value::Q_EMS; }
   | EXS maybe_space { $$.id = 0; $$.fValue = $1; $$.unit = CSSPrimitiveValue::CSS_EXS; }
+  | CHS maybe_space { $$.id = 0; $$.fValue = $1; $$.unit = CSSPrimitiveValue::CSS_CHS; }
   | DPI maybe_space { $$.id = 0; $$.fValue = $1; $$.unit = CSSPrimitiveValue::CSS_DPI; }
   | DPCM maybe_space { $$.id = 0; $$.fValue = $1; $$.unit = CSSPrimitiveValue::CSS_DPCM; }
     ;

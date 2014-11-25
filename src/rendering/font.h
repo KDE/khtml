@@ -86,6 +86,7 @@ public:
     int descent;
     int height;
     int lineSpacing;
+    int m_zeroCharWidth;
     mutable bool invalidated;
 
     ~CachedFontInstance();
@@ -278,6 +279,12 @@ public:
     float xHeight() const
     {
         return cfi->fm.xHeight();
+    }
+
+    // return -1 if '0' char glyph not in font
+    int zeroCharWidth() const
+    {
+        return cfi->m_zeroCharWidth;
     }
     //FIXME: IMPLEMENT ME
     unsigned unitsPerEm() const

@@ -1233,6 +1233,7 @@ const ClassInfo CSSPrimitiveValueConstructor::info = { "CSSPrimitiveValueConstru
   CSS_PERCENTAGE    DOM::CSSPrimitiveValue::CSS_PERCENTAGE  DontDelete|ReadOnly
   CSS_EMS           DOM::CSSPrimitiveValue::CSS_EMS     DontDelete|ReadOnly
   CSS_EXS           DOM::CSSPrimitiveValue::CSS_EXS     DontDelete|ReadOnly
+  CSS_CHS           DOM::CSSPrimitiveValue::CSS_CHS     DontDelete|ReadOnly
   CSS_PX            DOM::CSSPrimitiveValue::CSS_PX      DontDelete|ReadOnly
   CSS_CM            DOM::CSSPrimitiveValue::CSS_CM      DontDelete|ReadOnly
   CSS_MM            DOM::CSSPrimitiveValue::CSS_MM      DontDelete|ReadOnly

@@ -3728,10 +3728,11 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
             }
 
         } else {
-            int type = primitiveValue->primitiveType();
+            const int type = primitiveValue->primitiveType();
             if (type > CSSPrimitiveValue::CSS_PERCENTAGE && type < CSSPrimitiveValue::CSS_DEG) {
-                if (!khtml::printpainter && type != CSSPrimitiveValue::CSS_EMS && type != CSSPrimitiveValue::CSS_EXS &&
-                        view && view->part()) {
+                // Scale for the font zoom factor only for types other than "em", "ex", "ch", since those are
+                // already based on the font size.
+                if (!khtml::printpainter && !(type >= CSSPrimitiveValue::CSS_EMS && type <= CSSPrimitiveValue::CSS_CHS) && view && view->part()) {
                     size = qRound(primitiveValue->computeLengthFloat(parentStyle, logicalDpiY) * view->part()->fontScaleFactor() / 100.0);
                 } else {
                     size = qRound(primitiveValue->computeLengthFloat(parentStyle, logicalDpiY));
@@ -3814,17 +3815,15 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
             return;
         }
         Length lineHeight;
-        int type = primitiveValue->primitiveType();
+        const int type = primitiveValue->primitiveType();
         if (primitiveValue->getIdent() == CSS_VAL_NORMAL) {
             lineHeight = Length(-100.0, Percent);
         } else if (type > CSSPrimitiveValue::CSS_PERCENTAGE && type < CSSPrimitiveValue::CSS_DEG) {
-            // Scale for the font zoom factor only for types other than "em" and "ex", since those are
+            // Scale for the font zoom factor only for types other than "em", "ex", "ch", since those are
             // already based on the font size.
-            if (!khtml::printpainter && type != CSSPrimitiveValue::CSS_EMS && type != CSSPrimitiveValue::CSS_EXS &&
-                    view && view->part())
-                lineHeight = Length(primitiveValue->computeLength(style, logicalDpiY) *
-                                    view->part()->fontScaleFactor() / 100, Fixed);
-            else {
+            if (!khtml::printpainter && !(type >= CSSPrimitiveValue::CSS_EMS && type <= CSSPrimitiveValue::CSS_CHS) && view && view->part()) {
+                lineHeight = Length(primitiveValue->computeLength(style, logicalDpiY) * view->part()->fontScaleFactor() / 100, Fixed);
+            } else {
                 lineHeight = Length(primitiveValue->computeLength(style, logicalDpiY), Fixed);
             }
         } else if (type == CSSPrimitiveValue::CSS_PERCENTAGE) {

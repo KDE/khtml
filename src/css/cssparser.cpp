@@ -463,6 +463,7 @@ bool CSSParser::validUnit(Value *value, int unitflags, bool strict)
     case Value::Q_EMS:
     case CSSPrimitiveValue::CSS_EMS:
     case CSSPrimitiveValue::CSS_EXS:
+    case CSSPrimitiveValue::CSS_CHS:
     case CSSPrimitiveValue::CSS_PX:
     case CSSPrimitiveValue::CSS_CM:
     case CSSPrimitiveValue::CSS_MM:
@@ -3125,6 +3126,7 @@ int DOM::CSSParser::lex(void *_yylval)
     case HERZ:
     case EMS:
     case EXS:
+    case CHS:
     case PXS:
     case CMS:
     case MMS:
