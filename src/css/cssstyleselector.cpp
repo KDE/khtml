@@ -4721,9 +4721,13 @@ void CSSStyleSelector::mapBackgroundSize(BackgroundLayer *layer, CSSValueImpl *v
     }
 
     CSSPrimitiveValueImpl *primitiveValue = static_cast<CSSPrimitiveValueImpl *>(value);
-    int id = primitiveValue->getIdent();
-    if (id == CSS_VAL_CONTAIN || id == CSS_VAL_COVER) {
-        layer->setBackgroundSizeType((id ==  CSS_VAL_CONTAIN) ? BGSCONTAIN : BGSCOVER);
+    const int id = primitiveValue->getIdent();
+    if (id == CSS_VAL_CONTAIN) {
+        layer->setBackgroundSizeType(BGSCONTAIN);
+        return;
+    }
+    if (id == CSS_VAL_COVER) {
+        layer->setBackgroundSizeType(BGSCOVER);
         return;
     }
 

@@ -466,7 +466,7 @@ CSSValueImpl *RenderStyleDeclarationImpl::getPropertyCSSValue(int propertyID) co
         break;
     case CSS_PROP_BACKGROUND_POSITION: {
         RETURN_NULL_ON_NULL(renderer);
-        DOMString string;
+        QString string;
         Length length(style->backgroundXPosition());
         if (length.isPercent()) {
             string = QString(QString::number(length.percent()) + "%");
@@ -480,7 +480,7 @@ CSSValueImpl *RenderStyleDeclarationImpl::getPropertyCSSValue(int propertyID) co
         } else {
             string += QString(QString::number(length.minWidth(renderer->contentWidth())) + "px");
         }
-        return new CSSPrimitiveValueImpl(string, CSSPrimitiveValue::CSS_STRING);
+        return new CSSPrimitiveValueImpl(DOMString(string), CSSPrimitiveValue::CSS_STRING);
     }
     case CSS_PROP_BACKGROUND_POSITION_X:
         RETURN_NULL_ON_NULL(renderer);
