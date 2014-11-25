@@ -4744,27 +4744,31 @@ void CSSStyleSelector::mapBackgroundSize(BackgroundLayer *layer, CSSValueImpl *v
     }
 
     Length firstLength, secondLength;
-    int firstType = first->primitiveType();
-    int secondType = second->primitiveType();
 
-    if (firstType == CSSPrimitiveValue::CSS_UNKNOWN) {
+    if (first->getIdent() == CSS_VAL_AUTO) {
         firstLength = Length(Auto);
-    } else if (firstType > CSSPrimitiveValue::CSS_PERCENTAGE && firstType < CSSPrimitiveValue::CSS_DEG) {
-        firstLength = Length(first->computeLength(style, logicalDpiY), Fixed);
-    } else if (firstType == CSSPrimitiveValue::CSS_PERCENTAGE) {
-        firstLength = Length(first->floatValue(CSSPrimitiveValue::CSS_PERCENTAGE), Percent);
     } else {
-        return;
+        const int firstType = first->primitiveType();
+        if (firstType > CSSPrimitiveValue::CSS_PERCENTAGE && firstType < CSSPrimitiveValue::CSS_DEG) {
+            firstLength = Length(first->computeLength(style, logicalDpiY), Fixed);
+        } else if (firstType == CSSPrimitiveValue::CSS_PERCENTAGE) {
+            firstLength = Length(first->floatValue(CSSPrimitiveValue::CSS_PERCENTAGE), Percent);
+        } else {
+            return;
+        }
     }
 
-    if (secondType == CSSPrimitiveValue::CSS_UNKNOWN) {
+    if (second->getIdent() == CSS_VAL_AUTO) {
         secondLength = Length(Auto);
-    } else if (secondType > CSSPrimitiveValue::CSS_PERCENTAGE && secondType < CSSPrimitiveValue::CSS_DEG) {
-        secondLength = Length(second->computeLength(style, logicalDpiY), Fixed);
-    } else if (secondType == CSSPrimitiveValue::CSS_PERCENTAGE) {
-        secondLength = Length(second->floatValue(CSSPrimitiveValue::CSS_PERCENTAGE), Percent);
     } else {
-        return;
+        const int secondType = second->primitiveType();
+        if (secondType > CSSPrimitiveValue::CSS_PERCENTAGE && secondType < CSSPrimitiveValue::CSS_DEG) {
+            secondLength = Length(second->computeLength(style, logicalDpiY), Fixed);
+        } else if (secondType == CSSPrimitiveValue::CSS_PERCENTAGE) {
+            secondLength = Length(second->floatValue(CSSPrimitiveValue::CSS_PERCENTAGE), Percent);
+        } else {
+            return;
+        }
     }
 
     b.width = firstLength;
