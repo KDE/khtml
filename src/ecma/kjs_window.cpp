@@ -1371,17 +1371,15 @@ void Window::put(ExecState *exec, const Identifier &propertyName, JSValue *value
     }
 
     const HashEntry *entry = Lookup::findEntry(&WindowTable, propertyName);
-    if (entry && !m_frame.isNull() && !m_frame->m_part.isNull()) {
+    if (entry) {
 #ifdef KJS_VERBOSE
         qDebug() << "Window(" << this << ")::put " << propertyName.qstring();
 #endif
-        switch (entry->value) {
-        case _Location:
-            goURL(exec, value->toString(exec).qstring(), false /*don't lock history*/);
+        if (entry->value == _Location) {
+            goURL(exec, value->toString(exec).qstring());
             return;
-        default:
-            break;
         }
+
         KHTMLPart *part = qobject_cast<KHTMLPart *>(m_frame->m_part);
         if (part) {
             switch (entry->value) {
@@ -1785,10 +1783,9 @@ void Window::goURL(ExecState *exec, const QString &url, bool lockHistory)
         // qDebug() << "Window::goURL dstUrl=" << dstUrl;
 
         // check if we're allowed to inject javascript
-        if (!KHTMLPartPrivate::isJavaScriptURL(dstUrl) || isSafeScript(exec))
-            part->scheduleRedirection(-1,
-                                      dstUrl,
-                                      lockHistory);
+        if (!KHTMLPartPrivate::isJavaScriptURL(dstUrl) || isSafeScript(exec)) {
+            part->scheduleRedirection(-1, dstUrl, lockHistory);
+        }
     } else if (!part && m_frame->m_partContainerElement) {
         KParts::BrowserExtension *b = KParts::BrowserExtension::childObject(m_frame->m_part);
         if (b) {
@@ -2078,22 +2075,22 @@ JSValue *Window::executeOpenWindow(ExecState *exec, const QUrl &url, const QStri
         while (p->parentPart()) {
             p = p->parentPart();
         }
-        Window::retrieveWindow(p)->goURL(exec, url.url(), false /*don't lock history*/);
+        Window::retrieveWindow(p)->goURL(exec, url.url());
         return Window::retrieve(p);
     }
     if (browserArgs.frameName.toLower() == "_parent") {
         if (p->parentPart()) {
             p = p->parentPart();
         }
-        Window::retrieveWindow(p)->goURL(exec, url.url(), false /*don't lock history*/);
+        Window::retrieveWindow(p)->goURL(exec, url.url());
         return Window::retrieve(p);
     }
     if (browserArgs.frameName.toLower() == "_self") {
-        Window::retrieveWindow(p)->goURL(exec, url.url(), false /*don't lock history*/);
+        Window::retrieveWindow(p)->goURL(exec, url.url());
         return Window::retrieve(p);
     }
     if (browserArgs.frameName.toLower() == "replace") {
-        Window::retrieveWindow(p)->goURL(exec, url.url(), true /*lock history*/);
+        Window::retrieveWindow(p)->goURL(exec, url.url(), true/*lock history*/);
         return Window::retrieve(p);
     }
     args.setMimeType("text/html");
@@ -2320,7 +2317,7 @@ JSValue *WindowFunc::callAsFunction(ExecState *exec, JSObject *thisObj, const Li
         return new KJS::DOMSelection(exec, part->xmlDocImpl());
 
     case Window::Navigate:
-        window->goURL(exec, args[0]->toString(exec).qstring(), false /*don't lock history*/);
+        window->goURL(exec, args[0]->toString(exec).qstring());
         return jsUndefined();
     case Window::Focus: {
         KHTMLSettings::KJSWindowFocusPolicy policy =
@@ -3044,7 +3041,7 @@ void Location::put(ExecState *exec, const Identifier &p, JSValue *v, int attr)
         return;
     }
 
-    const Window *window = Window::retrieveWindow(m_frame->m_part);
+    Window *window = Window::retrieveWindow(m_frame->m_part);
     if (!window) {
         return;
     }
@@ -3116,7 +3113,7 @@ void Location::put(ExecState *exec, const Identifier &p, JSValue *v, int attr)
         return;
     }
 
-    Window::retrieveWindow(m_frame->m_part)->goURL(exec, url.url(), false /* don't lock history*/);
+    window->goURL(exec, url.url());
 }
 
 JSValue *Location::toPrimitive(ExecState *exec, JSType) const
@@ -3166,9 +3163,10 @@ JSValue *LocationFunc::callAsFunction(ExecState *exec, JSObject *thisObj, const 
 
     switch (id) {
     case Location::Assign:
+        window->goURL(exec, args[0]->toString(exec).qstring());
+        break;
     case Location::Replace:
-        Window::retrieveWindow(part)->goURL(exec, args[0]->toString(exec).qstring(),
-                                            id == Location::Replace);
+        window->goURL(exec, args[0]->toString(exec).qstring(), true/*lock history*/);
         break;
     case Location::Reload: {
         KHTMLPart *khtmlpart = qobject_cast<KHTMLPart *>(part);
