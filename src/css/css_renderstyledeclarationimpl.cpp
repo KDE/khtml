@@ -467,21 +467,10 @@ CSSValueImpl *RenderStyleDeclarationImpl::getPropertyCSSValue(int propertyID) co
         break;
     case CSS_PROP_BACKGROUND_POSITION: {
         RETURN_NULL_ON_NULL(renderer);
-        QString string;
-        Length length(style->backgroundXPosition());
-        if (length.isPercent()) {
-            string = QString(QString::number(length.percent()) + "%");
-        } else {
-            string = QString(QString::number(length.minWidth(renderer->contentWidth())) + "px");
-        }
-        string += " ";
-        length = style->backgroundYPosition();
-        if (length.isPercent()) {
-            string += QString(QString::number(length.percent()) + "%");
-        } else {
-            string += QString(QString::number(length.minWidth(renderer->contentWidth())) + "px");
-        }
-        return new CSSPrimitiveValueImpl(DOMString(string), CSSPrimitiveValue::CSS_STRING);
+        CSSValueListImpl *values = new CSSValueListImpl(CSSValueListImpl::Space);
+        values->append(valueForLength(style->backgroundXPosition(), renderer->contentWidth()));
+        values->append(valueForLength(style->backgroundYPosition(), renderer->contentHeight()));
+        return values;
     }
     case CSS_PROP_BACKGROUND_POSITION_X:
         RETURN_NULL_ON_NULL(renderer);
@@ -533,18 +522,15 @@ CSSValueImpl *RenderStyleDeclarationImpl::getPropertyCSSValue(int propertyID) co
             return new CSSPrimitiveValueImpl(CSS_VAL_SEPARATE);
         }
     case CSS_PROP_BORDER_SPACING: {
-        QString string(QString::number(style->borderHorizontalSpacing()) +
-                       "px " +
-                       QString::number(style->borderVerticalSpacing()) +
-                       "px");
-        return new CSSPrimitiveValueImpl(DOMString(string), CSSPrimitiveValue::CSS_STRING);
+        CSSValueListImpl *values = new CSSValueListImpl(CSSValueListImpl::Space);
+        values->append(new CSSPrimitiveValueImpl(style->borderHorizontalSpacing(), CSSPrimitiveValue::CSS_PX));
+        values->append(new CSSPrimitiveValueImpl(style->borderVerticalSpacing(), CSSPrimitiveValue::CSS_PX));
+        return values;
     }
     case CSS_PROP__KHTML_BORDER_HORIZONTAL_SPACING:
-        return new CSSPrimitiveValueImpl(style->borderHorizontalSpacing(),
-                                         CSSPrimitiveValue::CSS_PX);
+        return new CSSPrimitiveValueImpl(style->borderHorizontalSpacing(), CSSPrimitiveValue::CSS_PX);
     case CSS_PROP__KHTML_BORDER_VERTICAL_SPACING:
-        return new CSSPrimitiveValueImpl(style->borderVerticalSpacing(),
-                                         CSSPrimitiveValue::CSS_PX);
+        return new CSSPrimitiveValueImpl(style->borderVerticalSpacing(), CSSPrimitiveValue::CSS_PX);
     case CSS_PROP__KHTML_BORDER_TOP_RIGHT_RADIUS:
     case CSS_PROP_BORDER_TOP_RIGHT_RADIUS:
         return valueForBorderRadii(style->borderTopRightRadius());
