@@ -212,7 +212,7 @@ DOMString CSSStyleDeclarationImpl::removeProperty(const DOMString &propertyName)
 
 DOMString CSSStyleDeclarationImpl::getPropertyValue(int propertyID) const
 {
-    if (!m_lstValues) {
+    if (!m_lstValues || m_lstValues->isEmpty()) {
         return DOMString();
     }
     CSSValueImpl *value = getPropertyCSSValue(propertyID);
@@ -462,7 +462,7 @@ DOMString CSSStyleDeclarationImpl::getShortHandValue(const int *properties, int 
 
 CSSValueImpl *CSSStyleDeclarationImpl::getPropertyCSSValue(int propertyID) const
 {
-    if (!m_lstValues) {
+    if (!m_lstValues || m_lstValues->isEmpty()) {
         return 0;
     }
 
@@ -689,7 +689,7 @@ static void initShorthandMap(QHash<int, PropertyLonghand> &shorthandMap)
 
 void CSSStyleDeclarationImpl::removeProperty(int propertyID, DOM::DOMString *old)
 {
-    if (!m_lstValues) {
+    if (!m_lstValues || m_lstValues->isEmpty()) {
         return;
     }
 
@@ -779,7 +779,7 @@ void CSSStyleDeclarationImpl::clear()
 
 bool CSSStyleDeclarationImpl::getPropertyPriority(int propertyID) const
 {
-    if (m_lstValues) {
+    if (m_lstValues && !m_lstValues->isEmpty()) {
         QListIterator<CSSProperty *> lstValuesIt(*m_lstValues);
         CSSProperty *current;
         while (lstValuesIt.hasNext()) {
@@ -884,22 +884,24 @@ CSSRuleImpl *CSSStyleDeclarationImpl::parentRule() const
 
 DOM::DOMString CSSStyleDeclarationImpl::cssText() const
 {
+    if (!m_lstValues || m_lstValues->isEmpty()) {
+        return DOMString();
+    }
+
     DOMString result;
 
     const CSSProperty *positionXProp = 0;
     const CSSProperty *positionYProp = 0;
 
-    if (m_lstValues) {
-        QListIterator<CSSProperty *> lstValuesIt(*m_lstValues);
-        while (lstValuesIt.hasNext()) {
-            const CSSProperty *cur = lstValuesIt.next();
-            if (cur->id() == CSS_PROP_BACKGROUND_POSITION_X) {
-                positionXProp = cur;
-            } else if (cur->id() == CSS_PROP_BACKGROUND_POSITION_Y) {
-                positionYProp = cur;
-            } else {
-                result += cur->cssText();
-            }
+    QListIterator<CSSProperty *> lstValuesIt(*m_lstValues);
+    while (lstValuesIt.hasNext()) {
+        const CSSProperty *cur = lstValuesIt.next();
+        if (cur->id() == CSS_PROP_BACKGROUND_POSITION_X) {
+            positionXProp = cur;
+        } else if (cur->id() == CSS_PROP_BACKGROUND_POSITION_Y) {
+            positionYProp = cur;
+        } else {
+            result += cur->cssText();
         }
     }
 
