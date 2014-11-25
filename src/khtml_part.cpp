@@ -673,15 +673,18 @@ bool KHTMLPartPrivate::isLocalAnchorJump(const QUrl &url)
 
 void KHTMLPartPrivate::executeAnchorJump(const QUrl &url, bool lockHistory)
 {
-    // Note: we want to emit openUrlNotify first thing, to make the history capture the old state.
-    if (!lockHistory) {
-        emit m_extension->openUrlNotify();
-    }
-
     DOM::HashChangeEventImpl *hashChangeEvImpl = 0;
     const QString &oldRef = q->url().fragment(QUrl::FullyEncoded);
     const QString &newRef = url.fragment(QUrl::FullyEncoded);
-    if ((oldRef != newRef) || (oldRef.isNull() && newRef.isEmpty())) {
+    const bool hashChanged = (oldRef != newRef) || (oldRef.isNull() && newRef.isEmpty());
+
+    if (hashChanged) {
+        // Note: we want to emit openUrlNotify first thing to make the history capture the old state,
+        // however do not update history if a lock was explicitly requested, e.g. Location.replace()
+        if (!lockHistory) {
+            emit m_extension->openUrlNotify();
+        }
+        // Create hashchange event
         hashChangeEvImpl = new DOM::HashChangeEventImpl();
         hashChangeEvImpl->initHashChangeEvent("hashchange",
                                               true, //bubble
@@ -691,8 +694,8 @@ void KHTMLPartPrivate::executeAnchorJump(const QUrl &url, bool lockHistory)
                                              );
     }
 
-    if (!q->gotoAnchor(url.fragment(QUrl::FullyEncoded))) {
-        q->gotoAnchor(url.fragment(QUrl::FullyDecoded));
+    if (!q->gotoAnchor(newRef)) { // encoded fragment
+        q->gotoAnchor(url.fragment(QUrl::FullyDecoded)); // not encoded fragment
     }
 
     q->setUrl(url);
