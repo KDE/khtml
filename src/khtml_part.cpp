@@ -2834,8 +2834,7 @@ bool KHTMLPart::gotoAnchor(const QString &name)
         return false;
     }
 
-    HTMLCollectionImpl *anchors =
-        new HTMLCollectionImpl(d->m_doc, HTMLCollectionImpl::DOC_ANCHORS);
+    HTMLCollectionImpl *anchors = new HTMLCollectionImpl(d->m_doc, HTMLCollectionImpl::DOC_ANCHORS);
     anchors->ref();
     NodeImpl *n = anchors->namedItem(name);
     anchors->deref();
@@ -2846,10 +2845,10 @@ bool KHTMLPart::gotoAnchor(const QString &name)
 
     d->m_doc->setCSSTarget(n); // Setting to null will clear the current target.
 
-    // Implement the rule that "" and "top" both mean top of page as in other browsers.
-    bool quirkyName = !n && !d->m_doc->inStrictMode() && (name.isEmpty() || name.toLower() == "top");
+    // Implement the rule that "" and "top" both mean top of page.
+    bool top = !n && (name.isEmpty() || name.toLower() == "top");
 
-    if (quirkyName) {
+    if (top) {
         d->m_view->setContentsPos(d->m_view->contentsX(), 0);
         return true;
     } else if (!n) {
