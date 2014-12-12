@@ -3077,12 +3077,12 @@ void Location::put(ExecState *exec, const Identifier &p, JSValue *v, int attr)
             // Note that we want to do gotoAnchor even when the hash is already set, so we
             // scroll the destination into view.
 
-            // Setting this must always provide a ref, even if just ; see
+            // Setting this must always provide a ref, even if just # see
             // HTML5 2.6.
             if (str.isEmpty()) {
                 url.setFragment("");
             } else {
-                url.setFragment(str);
+                url.setFragment(QUrl::fromPercentEncoding(str.toUtf8()), QUrl::DecodedMode);
             }
             break;
         case Host: {

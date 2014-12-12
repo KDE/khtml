@@ -1765,6 +1765,16 @@ void DocumentImpl::finishParsing()
 
 QString DocumentImpl::completeURL(const QString &url) const
 {
+    if (url.startsWith(QLatin1Char('#'))) {
+        const QString ref = QUrl::fromPercentEncoding(url.mid(1).toUtf8());
+        QUrl u = baseURL();
+        if (ref.isEmpty()) {
+            u.setFragment("");
+        } else {
+            u.setFragment(ref, QUrl::DecodedMode);
+        }
+    }
+
     return baseURL().resolved(QUrl(url)).toString();
 }
 
