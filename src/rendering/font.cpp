@@ -750,7 +750,7 @@ void Font::initDefault()
     // ### this may cache an instance we don't need though; but font family
     // is extremely likely to be used
     Font f;
-    f.fontDef.size = 10;
+    f.fontDef.size = 16;
     f.update(96);
 
     defaultCFI = f.cfi.get();
