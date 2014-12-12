@@ -579,7 +579,7 @@ static bool device_heightMediaFeatureEval(CSSValueImpl *value, RenderStyle *styl
             doc = static_cast<DOM::DocumentImpl *>(part->document().handle());
         }
         int logicalDpiY = doc->logicalDpiY();
-        return value->isPrimitiveValue() && compareValue(height, static_cast<CSSPrimitiveValueImpl *>(value)->computeLength(style, logicalDpiY), op);
+        return value->isPrimitiveValue() && compareValue(height, static_cast<CSSPrimitiveValueImpl *>(value)->computeLength(style, style, logicalDpiY), op);
     }
     // ({,min-,max-}device-height)
     // assume if we have a device, assume non-zero
@@ -604,7 +604,7 @@ static bool device_widthMediaFeatureEval(CSSValueImpl *value, RenderStyle *style
             doc = static_cast<DOM::DocumentImpl *>(part->document().handle());
         }
         int logicalDpiY = doc->logicalDpiY();
-        return value->isPrimitiveValue() && compareValue(width, static_cast<CSSPrimitiveValueImpl *>(value)->computeLength(style, logicalDpiY), op);
+        return value->isPrimitiveValue() && compareValue(width, static_cast<CSSPrimitiveValueImpl *>(value)->computeLength(style, style, logicalDpiY), op);
     }
     // ({,min-,max-}device-width)
     // assume if we have a device, assume non-zero
@@ -633,7 +633,7 @@ static bool widthMediaFeatureEval(CSSValueImpl *value, RenderStyle *style, KHTML
     }
     int logicalDpiY = doc->logicalDpiY();
     if (value) {
-        return value->isPrimitiveValue() && compareValue(width, static_cast<CSSPrimitiveValueImpl *>(value)->computeLength(style, logicalDpiY), op);
+        return value->isPrimitiveValue() && compareValue(width, static_cast<CSSPrimitiveValueImpl *>(value)->computeLength(style, style, logicalDpiY), op);
     }
 
     return width > 0;
@@ -657,7 +657,7 @@ static bool heightMediaFeatureEval(CSSValueImpl *value, RenderStyle *style, KHTM
     }
     int logicalDpiY = doc->logicalDpiY();
     if (value) {
-        return value->isPrimitiveValue() && compareValue(height, static_cast<CSSPrimitiveValueImpl *>(value)->computeLength(style, logicalDpiY), op);
+        return value->isPrimitiveValue() && compareValue(height, static_cast<CSSPrimitiveValueImpl *>(value)->computeLength(style, style, logicalDpiY), op);
     }
 
     return height > 0;

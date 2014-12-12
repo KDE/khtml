@@ -675,6 +675,9 @@ RenderStyle *CSSStyleSelector::styleForElement(ElementImpl *e, RenderStyle *fall
         parentStyle = style;
     }
 
+    const RenderObject *docElementRenderer = e->document()->documentElement()->renderer();
+    m_rootStyle = docElementRenderer ? docElementRenderer->style() : m_rootDefaultStyle;
+
     // try to sort out most style rules as early as possible.
     quint16 cssTagId = localNamePart(element->id());
     int smatch = 0;
@@ -2444,7 +2447,7 @@ void CSSOrderedPropertyList::append(DOM::CSSStyleDeclarationImpl *decl, uint sel
 // -------------------------------------------------------------------------------------
 // this is mostly boring stuff on how to apply a certain rule to the renderstyle...
 
-static Length convertToLength(CSSPrimitiveValueImpl *primitiveValue, RenderStyle *style, int logicalDpiY, bool *ok = 0)
+static Length convertToLength(CSSPrimitiveValueImpl *primitiveValue, RenderStyle *style, RenderStyle *rootStyle, int logicalDpiY, bool *ok = 0)
 {
     Length l;
     if (!primitiveValue) {
@@ -2454,7 +2457,7 @@ static Length convertToLength(CSSPrimitiveValueImpl *primitiveValue, RenderStyle
     } else {
         int type = primitiveValue->primitiveType();
         if (type > CSSPrimitiveValue::CSS_PERCENTAGE && type < CSSPrimitiveValue::CSS_DEG) {
-            l = Length(primitiveValue->computeLength(style, logicalDpiY), Fixed);
+            l = Length(primitiveValue->computeLength(style, rootStyle, logicalDpiY), Fixed);
         } else if (type == CSSPrimitiveValue::CSS_PERCENTAGE) {
             l = Length(primitiveValue->floatValue(CSSPrimitiveValue::CSS_PERCENTAGE), Percent);
         } else if (type == CSSPrimitiveValue::CSS_NUMBER) {
@@ -2469,7 +2472,7 @@ static Length convertToLength(CSSPrimitiveValueImpl *primitiveValue, RenderStyle
 }
 
 // Extracts out border radii lengths from a pair
-static BorderRadii convertToBorderRadii(CSSPrimitiveValueImpl *value, RenderStyle *style, int logicalDpiY)
+static BorderRadii convertToBorderRadii(CSSPrimitiveValueImpl *value, RenderStyle *style, RenderStyle *rootStyle, int logicalDpiY)
 {
     BorderRadii ret;
     if (!value) {
@@ -2482,8 +2485,8 @@ static BorderRadii convertToBorderRadii(CSSPrimitiveValueImpl *value, RenderStyl
     }
 
     assert(p->first()->isPrimitiveValue() && p->second()->isPrimitiveValue());
-    ret.horizontal = static_cast<CSSPrimitiveValueImpl *>(p->first())->computeLength(style, logicalDpiY);
-    ret.vertical   = static_cast<CSSPrimitiveValueImpl *>(p->second())->computeLength(style, logicalDpiY);
+    ret.horizontal = static_cast<CSSPrimitiveValueImpl *>(p->first())->computeLength(style, rootStyle, logicalDpiY);
+    ret.vertical   = static_cast<CSSPrimitiveValueImpl *>(p->second())->computeLength(style, rootStyle, logicalDpiY);
     return ret;
 }
 
@@ -3174,7 +3177,7 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
         if (!primitiveValue) {
             break;
         }
-        short spacing =  primitiveValue->computeLength(style, logicalDpiY);
+        short spacing =  primitiveValue->computeLength(style, m_rootStyle, logicalDpiY);
         style->setBorderHorizontalSpacing(spacing);
         break;
     }
@@ -3183,7 +3186,7 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
         if (!primitiveValue) {
             break;
         }
-        short spacing =  primitiveValue->computeLength(style, logicalDpiY);
+        short spacing =  primitiveValue->computeLength(style, m_rootStyle, logicalDpiY);
         style->setBorderVerticalSpacing(spacing);
         break;
     }
@@ -3191,19 +3194,19 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
     // ### should these handle initial & inherit?
     case CSS_PROP__KHTML_BORDER_TOP_RIGHT_RADIUS:
     case CSS_PROP_BORDER_TOP_RIGHT_RADIUS:
-        style->setBorderTopRightRadius(convertToBorderRadii(primitiveValue, style, logicalDpiY));
+        style->setBorderTopRightRadius(convertToBorderRadii(primitiveValue, style, m_rootStyle, logicalDpiY));
         break;
     case CSS_PROP__KHTML_BORDER_TOP_LEFT_RADIUS:
     case CSS_PROP_BORDER_TOP_LEFT_RADIUS:
-        style->setBorderTopLeftRadius(convertToBorderRadii(primitiveValue, style, logicalDpiY));
+        style->setBorderTopLeftRadius(convertToBorderRadii(primitiveValue, style, m_rootStyle, logicalDpiY));
         break;
     case CSS_PROP__KHTML_BORDER_BOTTOM_RIGHT_RADIUS:
     case CSS_PROP_BORDER_BOTTOM_RIGHT_RADIUS:
-        style->setBorderBottomRightRadius(convertToBorderRadii(primitiveValue, style, logicalDpiY));
+        style->setBorderBottomRightRadius(convertToBorderRadii(primitiveValue, style, m_rootStyle, logicalDpiY));
         break;
     case CSS_PROP__KHTML_BORDER_BOTTOM_LEFT_RADIUS:
     case CSS_PROP_BORDER_BOTTOM_LEFT_RADIUS:
-        style->setBorderBottomLeftRadius(convertToBorderRadii(primitiveValue, style, logicalDpiY));
+        style->setBorderBottomLeftRadius(convertToBorderRadii(primitiveValue, style, m_rootStyle, logicalDpiY));
         break;
 
     case CSS_PROP_CURSOR:
@@ -3389,7 +3392,7 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
             width = 5;
             break;
         case CSS_VAL_INVALID: {
-            double widthd = primitiveValue->computeLengthFloat(style, logicalDpiY);
+            double widthd = primitiveValue->computeLengthFloat(style, m_rootStyle, logicalDpiY);
             width = CSSPrimitiveValueImpl::snapValue(widthd);
             // somewhat resemble Mozilla's granularity
             // this makes border-width: 0.5pt borders visible
@@ -3444,7 +3447,7 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
 
         int width = 0;
         if (primitiveValue->getIdent() != CSS_VAL_NORMAL) {
-            width = primitiveValue->computeLength(style, logicalDpiY);
+            width = primitiveValue->computeLength(style, m_rootStyle, logicalDpiY);
         }
 
         switch (id) {
@@ -3535,8 +3538,7 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
             int type = primitiveValue->primitiveType();
             if (type > CSSPrimitiveValue::CSS_PERCENTAGE && type < CSSPrimitiveValue::CSS_DEG)
                 // Handle our quirky margin units if we have them.
-                l = Length(primitiveValue->computeLength(style, logicalDpiY), Fixed,
-                           primitiveValue->isQuirkValue());
+                l = Length(primitiveValue->computeLength(style, m_rootStyle, logicalDpiY), Fixed, primitiveValue->isQuirkValue());
             else if (type == CSSPrimitiveValue::CSS_PERCENTAGE) {
                 l = Length(primitiveValue->floatValue(CSSPrimitiveValue::CSS_PERCENTAGE), Percent);
             } else if (type == CSSPrimitiveValue::CSS_HTML_RELATIVE) {
@@ -3614,7 +3616,7 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
         if (primitiveValue && !apply) {
             int type = primitiveValue->primitiveType();
             if (type > CSSPrimitiveValue::CSS_PERCENTAGE && type < CSSPrimitiveValue::CSS_DEG) {
-                l = Length(primitiveValue->computeLength(style, logicalDpiY), Fixed);
+                l = Length(primitiveValue->computeLength(style, m_rootStyle, logicalDpiY), Fixed);
             } else if (type == CSSPrimitiveValue::CSS_PERCENTAGE) {
                 l = Length(primitiveValue->floatValue(CSSPrimitiveValue::CSS_PERCENTAGE), Percent);
             } else {
@@ -3675,7 +3677,7 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
             int type = primitiveValue->primitiveType();
             Length l;
             if (type > CSSPrimitiveValue::CSS_PERCENTAGE && type < CSSPrimitiveValue::CSS_DEG) {
-                l = Length(primitiveValue->computeLength(style, logicalDpiY), Fixed);
+                l = Length(primitiveValue->computeLength(style, m_rootStyle, logicalDpiY), Fixed);
             } else if (type == CSSPrimitiveValue::CSS_PERCENTAGE) {
                 l = Length(primitiveValue->floatValue(CSSPrimitiveValue::CSS_PERCENTAGE), Percent);
             }
@@ -3688,6 +3690,8 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
     case CSS_PROP_FONT_SIZE: {
         FontDef fontDef = style->htmlFont().fontDef;
         int size = 0;
+
+        const bool isRootElement = element && (element->document()->documentElement() == element);
 
         if (isInherit) {
             size = parentStyle->font().pixelSize();
@@ -3730,12 +3734,12 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
         } else {
             const int type = primitiveValue->primitiveType();
             if (type > CSSPrimitiveValue::CSS_PERCENTAGE && type < CSSPrimitiveValue::CSS_DEG) {
-                // Scale for the font zoom factor only for types other than "em", "ex", "ch", since those are
-                // already based on the font size.
-                if (!khtml::printpainter && !(type >= CSSPrimitiveValue::CSS_EMS && type <= CSSPrimitiveValue::CSS_CHS) && view && view->part()) {
-                    size = qRound(primitiveValue->computeLengthFloat(parentStyle, logicalDpiY) * view->part()->fontScaleFactor() / 100.0);
+                // Scale for the font zoom factor only for types other than "em", "ex", "ch", "rem",
+                // since those are already based on the font size.
+                if (!khtml::printpainter && !(type >= CSSPrimitiveValue::CSS_EMS && type <= CSSPrimitiveValue::CSS_REMS) && view && view->part()) {
+                    size = qRound(primitiveValue->computeLengthFloat(parentStyle, m_rootStyle, logicalDpiY) * view->part()->fontScaleFactor() / 100.0);
                 } else {
-                    size = qRound(primitiveValue->computeLengthFloat(parentStyle, logicalDpiY));
+                    size = qRound(primitiveValue->computeLengthFloat(parentStyle, isRootElement ? m_rootDefaultStyle : m_rootStyle, logicalDpiY));
                 }
             } else if (type == CSSPrimitiveValue::CSS_PERCENTAGE)
                 size = qRound(primitiveValue->floatValue(CSSPrimitiveValue::CSS_PERCENTAGE) * parentStyle->font().pixelSize() / 100.0);
@@ -3754,6 +3758,14 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
 
         fontDef.size = size;
         fontDirty |= style->setFontDef(fontDef);
+
+        if (isRootElement) {
+            // We changed font size of root element, update now our root style reference
+            // so that root css properties based on 'rem' unit are correctly computed
+            // TESTCASE: html { font-size: 30px; width: 10rem; border: solid; }
+            m_rootStyle = style;
+        }
+
         return;
     }
 
@@ -3819,12 +3831,12 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
         if (primitiveValue->getIdent() == CSS_VAL_NORMAL) {
             lineHeight = Length(-100.0, Percent);
         } else if (type > CSSPrimitiveValue::CSS_PERCENTAGE && type < CSSPrimitiveValue::CSS_DEG) {
-            // Scale for the font zoom factor only for types other than "em", "ex", "ch", since those are
-            // already based on the font size.
-            if (!khtml::printpainter && !(type >= CSSPrimitiveValue::CSS_EMS && type <= CSSPrimitiveValue::CSS_CHS) && view && view->part()) {
-                lineHeight = Length(primitiveValue->computeLength(style, logicalDpiY) * view->part()->fontScaleFactor() / 100, Fixed);
+            // Scale for the font zoom factor only for types other than "em", "ex", "ch", "rem",
+            // since those are already based on the font size.
+            if (!khtml::printpainter && !(type >= CSSPrimitiveValue::CSS_EMS && type <= CSSPrimitiveValue::CSS_REMS) && view && view->part()) {
+                lineHeight = Length(primitiveValue->computeLength(style, m_rootStyle, logicalDpiY) * view->part()->fontScaleFactor() / 100, Fixed);
             } else {
-                lineHeight = Length(primitiveValue->computeLength(style, logicalDpiY), Fixed);
+                lineHeight = Length(primitiveValue->computeLength(style, m_rootStyle, logicalDpiY), Fixed);
             }
         } else if (type == CSSPrimitiveValue::CSS_PERCENTAGE) {
             lineHeight = Length((style->font().pixelSize() * int(primitiveValue->floatValue(CSSPrimitiveValue::CSS_PERCENTAGE))) / 100, Fixed);
@@ -3870,16 +3882,16 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
                 hasClip = true;
                 // As a convention, we pass in auto as Length(Auto). See RenderBox::clipRect
                 top    = rect->top()->getIdent()    == CSS_VAL_AUTO ? Length(Auto)
-                         : convertToLength(rect->top(), style, logicalDpiY);
+                         : convertToLength(rect->top(), style, m_rootStyle, logicalDpiY);
 
                 right  = rect->right()->getIdent()  == CSS_VAL_AUTO ? Length(Auto)
-                         : convertToLength(rect->right(), style, logicalDpiY);
+                         : convertToLength(rect->right(), style, m_rootStyle, logicalDpiY);
 
                 bottom = rect->bottom()->getIdent() == CSS_VAL_AUTO ? Length(Auto)
-                         : convertToLength(rect->bottom(), style, logicalDpiY);
+                         : convertToLength(rect->bottom(), style, m_rootStyle, logicalDpiY);
 
                 left   = rect->left()->getIdent()   == CSS_VAL_AUTO ? Length(Auto)
-                         : convertToLength(rect->left(), style, logicalDpiY);
+                         : convertToLength(rect->left(), style, m_rootStyle, logicalDpiY);
             }
         }
 
@@ -4374,7 +4386,7 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
     case CSS_PROP_OUTLINE_OFFSET: {
         HANDLE_INITIAL_AND_INHERIT_ON_NONINHERITED_PROPERTY(outlineOffset, OutlineOffset)
 
-        int offset = primitiveValue->computeLength(style, logicalDpiY);
+        int offset = primitiveValue->computeLength(style, m_rootStyle, logicalDpiY);
         if (offset < 0) {
             return;
         }
@@ -4404,9 +4416,9 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
         for (int i = 0; i < len; i++) {
             ShadowValueImpl *item = static_cast<ShadowValueImpl *>(list->item(i));
 
-            int x = item->x->computeLength(style, logicalDpiY);
-            int y = item->y->computeLength(style, logicalDpiY);
-            int blur = item->blur ? item->blur->computeLength(style, logicalDpiY) : 0;
+            int x = item->x->computeLength(style, m_rootStyle, logicalDpiY);
+            int y = item->y->computeLength(style, m_rootStyle, logicalDpiY);
+            int blur = item->blur ? item->blur->computeLength(style, m_rootStyle, logicalDpiY) : 0;
             QColor col = khtml::transparentColor;
             if (item->color) {
                 int ident = item->color->getIdent();
@@ -4498,7 +4510,7 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
             }
         } else {
             bool ok = true;
-            Length l = convertToLength(primitiveValue, style, logicalDpiY, &ok);
+            Length l = convertToLength(primitiveValue, style, m_rootStyle, logicalDpiY, &ok);
             if (ok) {
                 style->setMarqueeIncrement(l);
             }
@@ -4747,10 +4759,10 @@ void CSSStyleSelector::mapBackgroundSize(BackgroundLayer *layer, CSSValueImpl *v
     if (first->getIdent() == CSS_VAL_AUTO) {
         firstLength = Length(Auto);
     } else {
-        const int firstType = first->primitiveType();
-        if (firstType > CSSPrimitiveValue::CSS_PERCENTAGE && firstType < CSSPrimitiveValue::CSS_DEG) {
-            firstLength = Length(first->computeLength(style, logicalDpiY), Fixed);
-        } else if (firstType == CSSPrimitiveValue::CSS_PERCENTAGE) {
+        const int type = first->primitiveType();
+        if (type > CSSPrimitiveValue::CSS_PERCENTAGE && type < CSSPrimitiveValue::CSS_DEG) {
+            firstLength = Length(first->computeLength(style, m_rootStyle, logicalDpiY), Fixed);
+        } else if (type == CSSPrimitiveValue::CSS_PERCENTAGE) {
             firstLength = Length(first->floatValue(CSSPrimitiveValue::CSS_PERCENTAGE), Percent);
         } else {
             return;
@@ -4760,10 +4772,10 @@ void CSSStyleSelector::mapBackgroundSize(BackgroundLayer *layer, CSSValueImpl *v
     if (second->getIdent() == CSS_VAL_AUTO) {
         secondLength = Length(Auto);
     } else {
-        const int secondType = second->primitiveType();
-        if (secondType > CSSPrimitiveValue::CSS_PERCENTAGE && secondType < CSSPrimitiveValue::CSS_DEG) {
-            secondLength = Length(second->computeLength(style, logicalDpiY), Fixed);
-        } else if (secondType == CSSPrimitiveValue::CSS_PERCENTAGE) {
+        const int type = second->primitiveType();
+        if (type > CSSPrimitiveValue::CSS_PERCENTAGE && type < CSSPrimitiveValue::CSS_DEG) {
+            secondLength = Length(second->computeLength(style, m_rootStyle, logicalDpiY), Fixed);
+        } else if (type == CSSPrimitiveValue::CSS_PERCENTAGE) {
             secondLength = Length(second->floatValue(CSSPrimitiveValue::CSS_PERCENTAGE), Percent);
         } else {
             return;
@@ -4789,7 +4801,7 @@ void CSSStyleSelector::mapBackgroundXPosition(BackgroundLayer *layer, DOM::CSSVa
     Length l;
     int type = primitiveValue->primitiveType();
     if (type > CSSPrimitiveValue::CSS_PERCENTAGE && type < CSSPrimitiveValue::CSS_DEG) {
-        l = Length(primitiveValue->computeLength(style, logicalDpiY), Fixed);
+        l = Length(primitiveValue->computeLength(style, m_rootStyle, logicalDpiY), Fixed);
     } else if (type == CSSPrimitiveValue::CSS_PERCENTAGE) {
         l = Length(primitiveValue->floatValue(CSSPrimitiveValue::CSS_PERCENTAGE), Percent);
     } else {
@@ -4812,7 +4824,7 @@ void CSSStyleSelector::mapBackgroundYPosition(BackgroundLayer *layer, DOM::CSSVa
     Length l;
     int type = primitiveValue->primitiveType();
     if (type > CSSPrimitiveValue::CSS_PERCENTAGE && type < CSSPrimitiveValue::CSS_DEG) {
-        l = Length(primitiveValue->computeLength(style, logicalDpiY), Fixed);
+        l = Length(primitiveValue->computeLength(style, m_rootStyle, logicalDpiY), Fixed);
     } else if (type == CSSPrimitiveValue::CSS_PERCENTAGE) {
         l = Length(primitiveValue->floatValue(CSSPrimitiveValue::CSS_PERCENTAGE), Percent);
     } else {

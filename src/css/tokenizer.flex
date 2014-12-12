@@ -68,6 +68,7 @@ nth             ([\+-]?[0-9]*n[ \t\r\n\f]*[\+-][ \t\r\n\f]*[0-9]+)|([\+-]?[0-9]*
 {num}__qem              {yyTok = QEMS; return yyTok;} /* quirky ems */
 {num}ex                 {yyTok = EXS; return yyTok;}
 {num}ch                 {yyTok = CHS; return yyTok;}
+{num}rem                {yyTok = REMS; return yyTok;}
 {num}px                 {yyTok = PXS; return yyTok;}
 {num}cm                 {yyTok = CMS; return yyTok;}
 {num}mm                 {yyTok = MMS; return yyTok;}

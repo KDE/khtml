@@ -249,9 +249,9 @@ public:
      * this is screen/printer dependent, so we probably need a config option for this,
      * and some tool to calibrate.
      */
-    int computeLength(khtml::RenderStyle *style, int logicalDpiY);
+    int computeLength(khtml::RenderStyle *style, khtml::RenderStyle *rootStyle, int logicalDpiY);
 
-    double computeLengthFloat(khtml::RenderStyle *style, int logicalDpiY);
+    double computeLengthFloat(khtml::RenderStyle *style, khtml::RenderStyle *rootStyle, int logicalDpiY);
 
     /*
      * rounds a computer value into integer as appropriate. This takes

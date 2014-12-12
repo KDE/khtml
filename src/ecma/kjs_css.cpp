@@ -1227,13 +1227,14 @@ JSValue *DOMCSSPrimitiveValueProtoFunc::callAsFunction(ExecState *exec, JSObject
 const ClassInfo CSSPrimitiveValueConstructor::info = { "CSSPrimitiveValueConstructor", 0, &CSSPrimitiveValueConstructorTable, 0 };
 
 /*
-@begin CSSPrimitiveValueConstructorTable 27
+@begin CSSPrimitiveValueConstructorTable 28
   CSS_UNKNOWN       DOM::CSSPrimitiveValue::CSS_UNKNOWN DontDelete|ReadOnly
   CSS_NUMBER        DOM::CSSPrimitiveValue::CSS_NUMBER  DontDelete|ReadOnly
   CSS_PERCENTAGE    DOM::CSSPrimitiveValue::CSS_PERCENTAGE  DontDelete|ReadOnly
   CSS_EMS           DOM::CSSPrimitiveValue::CSS_EMS     DontDelete|ReadOnly
   CSS_EXS           DOM::CSSPrimitiveValue::CSS_EXS     DontDelete|ReadOnly
   CSS_CHS           DOM::CSSPrimitiveValue::CSS_CHS     DontDelete|ReadOnly
+  CSS_REMS          DOM::CSSPrimitiveValue::CSS_REMS    DontDelete|ReadOnly
   CSS_PX            DOM::CSSPrimitiveValue::CSS_PX      DontDelete|ReadOnly
   CSS_CM            DOM::CSSPrimitiveValue::CSS_CM      DontDelete|ReadOnly
   CSS_MM            DOM::CSSPrimitiveValue::CSS_MM      DontDelete|ReadOnly

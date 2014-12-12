@@ -1131,12 +1131,12 @@ void CSSPrimitiveValueImpl::cleanup()
     m_type = 0;
 }
 
-int CSSPrimitiveValueImpl::computeLength(khtml::RenderStyle *style, int logicalDpiY)
+int CSSPrimitiveValueImpl::computeLength(khtml::RenderStyle *style, khtml::RenderStyle *rootStyle, int logicalDpiY)
 {
-    return snapValue(computeLengthFloat(style, logicalDpiY));
+    return snapValue(computeLengthFloat(style, rootStyle, logicalDpiY));
 }
 
-double CSSPrimitiveValueImpl::computeLengthFloat(khtml::RenderStyle *style, int logicalDpiY)
+double CSSPrimitiveValueImpl::computeLengthFloat(khtml::RenderStyle *style, khtml::RenderStyle *rootStyle, int logicalDpiY)
 {
     unsigned short type = primitiveType();
 
@@ -1166,6 +1166,9 @@ double CSSPrimitiveValueImpl::computeLengthFloat(khtml::RenderStyle *style, int 
         }
         break;
     }
+    case CSSPrimitiveValue::CSS_REMS:
+        factor = rootStyle->font().pixelSize();
+        break;
     case CSSPrimitiveValue::CSS_PX:
         break;
     case CSSPrimitiveValue::CSS_CM:
@@ -1288,6 +1291,9 @@ DOM::DOMString CSSPrimitiveValueImpl::cssText() const
         break;
     case CSSPrimitiveValue::CSS_CHS:
         text = DOMString(QString::number( m_value.num ) + "ch");
+        break;
+    case CSSPrimitiveValue::CSS_REMS:
+        text = DOMString(QString::number( m_value.num ) + "rem");
         break;
     case CSSPrimitiveValue::CSS_PX:
         text = DOMString(QString::number(m_value.num) + "px");
