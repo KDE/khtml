@@ -86,6 +86,7 @@ public:
     int descent;
     int height;
     int lineSpacing;
+    int xHeight;
     int m_zeroCharWidth;
     mutable bool invalidated;
 
@@ -276,9 +277,9 @@ public:
     {
         return cfi->lineSpacing;
     }
-    float xHeight() const
+    int xHeight() const
     {
-        return cfi->fm.xHeight();
+        return cfi->xHeight;
     }
 
     // return -1 if '0' char glyph not in font

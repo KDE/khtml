@@ -619,6 +619,7 @@ CachedFontInstance::CachedFontInstance(CachedFontFamily *p, int sz):
     descent = fm.descent();
     height  = fm.height();
     lineSpacing = fm.lineSpacing();
+    xHeight = fm.xHeight();
 
     const QChar zeroChar((ushort)48);
     if (!fm.inFont(zeroChar)) {
@@ -648,6 +649,7 @@ void CachedFontInstance::invalidate()
     descent = fm.descent();
     height  = fm.height();
     lineSpacing = fm.lineSpacing();
+    xHeight = fm.xHeight();
 
     const QChar zeroChar((ushort)48);
     if (!fm.inFont(zeroChar)) {
