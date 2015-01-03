@@ -1,0 +1,1572 @@
+# translation of kdelibs4.po to Thai
+# Copyright (C) 2003,2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
+#
+# Thanomsub Noppaburana <donga_n@yahoo.com>, 2003,2004, 2005.
+# Thanomsub Noppaburana <donga.nb@gmail.com>, 2005, 2008, 2010.
+# Sahachart Anukulkitch <drrider@gmail.com>, 2006, 2007.
+# Narachai Sakorn <narachai@gmail.com>, 2008.
+# Phuwanat Sakornsakolpat <narachai@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-12-13 07:55+0000\n"
+"PO-Revision-Date: 2010-12-31 22:47+0700\n"
+"Last-Translator: Phuwanat Sakornsakolpat <narachai@gmail.com>\n"
+"Language-Team: Thai <thai-l10n@googlegroups.com>\n"
+"Language: th\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "ถนอมทรัพย์ นพบูรณ์, สหชาติ อนุกูลกิจ"
+
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "donga.nb@gmail.com, drrider@gmail.com"
+
+#: ecma/debugger/callstackdock.cpp:35
+msgid "Call Stack"
+msgstr "เรียกสแต็ก"
+
+#: ecma/debugger/callstackdock.cpp:39
+msgid "Call"
+msgstr "เรียก"
+
+#: ecma/debugger/callstackdock.cpp:39
+msgid "Line"
+msgstr "บรรทัด"
+
+#: ecma/debugger/consoledock.cpp:220
+msgid "Console"
+msgstr "คอนโซล"
+
+#: ecma/debugger/consoledock.cpp:243
+msgid "Enter"
+msgstr "เข้า"
+
+#: ecma/debugger/debugdocument.cpp:206
+msgid ""
+"Unable to find the Kate editor component;\n"
+"please check your KDE installation."
+msgstr ""
+"ไม่พบส่วนประกอบโปรแกรมแก้ไขข้อความ Kate;\n"
+"โปรดตรวจสอบการติดตั้ง KDE ของคุณ"
+
+#: ecma/debugger/debugdocument.cpp:272
+msgid "Breakpoint"
+msgstr "จุดหยุด"
+
+#: ecma/debugger/debugwindow.cpp:101
+msgid "JavaScript Debugger"
+msgstr "เครื่องมือดีบั๊กจาวาสคริปต์์"
+
+#: ecma/debugger/debugwindow.cpp:178
+msgid "&Break at Next Statement"
+msgstr "&หยุดในข้อความถัดไป"
+
+#: ecma/debugger/debugwindow.cpp:179
+msgid "Break at Next"
+msgstr "หยุดในลำดับถัดไป"
+
+#: ecma/debugger/debugwindow.cpp:184
+msgid "Continue"
+msgstr "ทำต่อไป"
+
+#: ecma/debugger/debugwindow.cpp:190
+msgid "Step Over"
+msgstr "ทำไปทีละขั้น"
+
+#: ecma/debugger/debugwindow.cpp:196
+msgid "Step Into"
+msgstr "ทำทีละขั้นไปยัง"
+
+#: ecma/debugger/debugwindow.cpp:203
+msgid "Step Out"
+msgstr "ทำออกมาทีละขั้น"
+
+#: ecma/debugger/debugwindow.cpp:209
+msgid "Reindent Sources"
+msgstr "จัดระยะเยื้องของต้นฉบับใหม่"
+
+#: ecma/debugger/debugwindow.cpp:214
+msgid "Report Exceptions"
+msgstr "รายงานข้อยกเว้น"
+
+#: ecma/debugger/debugwindow.cpp:222
+msgid "&Debug"
+msgstr "&ดีบั๊ก"
+
+#: ecma/debugger/debugwindow.cpp:230
+msgid "&Settings"
+msgstr "&ตั้งค่า"
+
+#: ecma/debugger/debugwindow.cpp:256
+msgid "Close source"
+msgstr "ปิดต้นฉบับ"
+
+#: ecma/debugger/debugwindow.cpp:262
+msgid "Ready"
+msgstr "พร้อม"
+
+#: ecma/debugger/debugwindow.cpp:587
+#, kde-format
+msgid ""
+"An error occurred while attempting to run a script on this page.\n"
+"\n"
+"%1 line %2:\n"
+"%3"
+msgstr ""
+"เกิดข้อผิดพลาดขณะพยายามประมวลผลสคริปต์ในหน้าเว็บนี้\n"
+"\n"
+"%1 บรรทัดที่ %2:\n"
+"%3"
+
+#: ecma/debugger/debugwindow.cpp:780
+msgid ""
+"Do not know where to evaluate the expression. Please pause a script or open "
+"a source file."
+msgstr "ไม่ทราบว่าจะประเมินประโยคคำสั่งได้ที่ใด โปรดหยุดสคริปต์ไว้ชั่วคราวก่อน หรือเปิดแฟ้มต้นฉบับ"
+
+#: ecma/debugger/debugwindow.cpp:814
+#, kde-format
+msgid "Evaluation threw an exception %1"
+msgstr "การประเมินผลโยนข้อยกเว้น %1 ออกมา"
+
+#: ecma/debugger/errordlg.cpp:35
+msgid "JavaScript Error"
+msgstr "จาวาสคริปต์ผิดพลาด"
+
+#: ecma/debugger/errordlg.cpp:49
+msgid "&Do not show this message again"
+msgstr "ไม่ต้องแสดงข้อความนี้อีก"
+
+#: ecma/debugger/localvariabledock.cpp:43
+msgid "Local Variables"
+msgstr "ตัวแปรภายใน"
+
+#: ecma/debugger/localvariabledock.cpp:51
+msgid "Reference"
+msgstr "การอ้างอิง"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
+#: java/kjavaappletviewer.cpp:150
+msgid "Value"
+msgstr "ค่า"
+
+#: ecma/debugger/scriptsdock.cpp:37
+msgid "Loaded Scripts"
+msgstr "สคริปต์ที่โหลด"
+
+#: ecma/kjs_binding.cpp:196
+msgid ""
+"A script on this page is causing KHTML to freeze. If it continues to run, "
+"other applications may become less responsive.\n"
+"Do you want to stop the script?"
+msgstr ""
+"สคริปต์บนหน้าเว็บนี้ กำลังจะทำให้ KHTML ถูกแช่แข็ง, หากคุณเรียกใช้งานต่อไป "
+"อาจจะทำให้โปรแกรมอื่น ๆ ไม่ตอบสนองไปด้วย\n"
+"คุณต้องการจะยุติการทำงานของสคริปต์นี้หรือไม่ ?"
+
+#: ecma/kjs_binding.cpp:196
+msgid "JavaScript"
+msgstr "จาวาสคริปต์"
+
+#: ecma/kjs_binding.cpp:196
+msgid "&Stop Script"
+msgstr "&หยุดสคริปต์"
+
+#: ecma/kjs_binding.cpp:437
+#, kde-format
+msgid "Parse error at %1 line %2"
+msgstr "การวิเคราะห์ค่าผิดพลาดที่ %1 บรรทัดที่ %2"
+
+#: ecma/kjs_html.cpp:2231 ecma/kjs_window.cpp:1946
+msgid "Confirmation: JavaScript Popup"
+msgstr "ยืนยัน: จาวาสคริปต์ป๊อปอัพ"
+
+#: ecma/kjs_html.cpp:2233
+msgid ""
+"This site is submitting a form which will open up a new browser window via "
+"JavaScript.\n"
+"Do you want to allow the form to be submitted?"
+msgstr ""
+"เว็บไซต์นี้พยายามจะส่งข้อมูลในแบบฟอร์มด้วยการเปิดหน้าต่างใหม่ผ่านทางจาวาสคริปต์\n"
+"คุณต้องการจะอนุญาตให้ส่งข้อมูลในแบบฟอร์มหรือไม่ ?"
+
+#: ecma/kjs_html.cpp:2236
+#, kde-format
+msgid ""
+"<qt>This site is submitting a form which will open <p>%1</p> in a new "
+"browser window via JavaScript.<br />Do you want to allow the form to be "
+"submitted?</qt>"
+msgstr ""
+"<qt>เว็บไซต์นี้พยายามจะส่งข้อมูลในแบบฟอร์มด้วยการเปิด<p>%1</p> "
+"ในหน้าต่างใหม่ผ่านทางจาวาสคริปต์<br />คุณต้องการจะอนุญาตให้ส่งข้อมูลในแบบฟอร์มหรือไม่ ?</qt>"
+
+#: ecma/kjs_html.cpp:2238 ecma/kjs_window.cpp:1954
+msgid "Allow"
+msgstr "อนุญาต"
+
+#: ecma/kjs_html.cpp:2238 ecma/kjs_window.cpp:1954
+msgid "Do Not Allow"
+msgstr "ไม่อนุญาต"
+
+#: ecma/kjs_window.cpp:1949
+msgid ""
+"This site is requesting to open up a new browser window via JavaScript.\n"
+"Do you want to allow this?"
+msgstr ""
+"เว็บไซต์นี้พยายามเปิดหน้าต่างโดยใช้จาวาสคริปต์\n"
+"คุณจะอนุญาตหรือไม่ ?"
+
+#: ecma/kjs_window.cpp:1952
+#, kde-format
+msgid ""
+"<qt>This site is requesting to open<p>%1</p>in a new browser window via "
+"JavaScript.<br />Do you want to allow this?</qt>"
+msgstr ""
+"<qt>เว็บไซต์นี้พยายามเปิด<p>%1</p>ในหน้าต่างใหม่โดยใช้จาวาสคริปต์<br />คุณจะอนุญาตหรือไม่ ?"
+"</qt>"
+
+#: ecma/kjs_window.cpp:2285
+msgid "Close window?"
+msgstr "ปิดหน้าต่างหรือไม่ ?"
+
+#: ecma/kjs_window.cpp:2285
+msgid "Confirmation Required"
+msgstr "ต้องการการยืนยัน"
+
+#: ecma/kjs_window.cpp:3235
+#, kde-format
+msgid ""
+"Do you want a bookmark pointing to the location \"%1\" to be added to your "
+"collection?"
+msgstr "คุณต้องการจะทำคั่นหน้าตำแหน่ง \"%1\" เพื่อเก็บเข้าที่คั่นหน้าหรือไม่ ?"
+
+#: ecma/kjs_window.cpp:3238
+#, kde-format
+msgid ""
+"Do you want a bookmark pointing to the location \"%1\" titled \"%2\" to be "
+"added to your collection?"
+msgstr "คุณต้องการจะทำคั่นหน้าตำแหน่ง \"%1\" หัวเรื่อง \"%2\" เพื่อเก็บเข้าที่คั่นหน้าหรือไม่ ?"
+
+#: ecma/kjs_window.cpp:3247
+msgid "JavaScript Attempted Bookmark Insert"
+msgstr "จาวาสคริปต์จะทำการคั่นหน้าเข้าไปยังที่คั่นหน้า"
+
+#: ecma/kjs_window.cpp:3251
+msgid "Insert"
+msgstr "แทรก"
+
+#: ecma/kjs_window.cpp:3251
+msgid "Disallow"
+msgstr "ไม่อนุญาต"
+
+#: html/html_formimpl.cpp:420
+msgid ""
+"The following files will not be uploaded because they could not be found.\n"
+"Do you want to continue?"
+msgstr ""
+"แฟ้มต่อไปนี้จะไม่สามารถทำการอัปโหลดได้ เนื่องจากไม่พบแฟ้ม\n"
+"คุณต้องการจะทำต่อไปหรือไม่ ?"
+
+#: html/html_formimpl.cpp:424
+msgid "Submit Confirmation"
+msgstr "ยืนยันการส่งข้อมูล"
+
+#: html/html_formimpl.cpp:424
+msgid "&Submit Anyway"
+msgstr "ทำการ&ส่งข้อมูลต่อไป"
+
+#: html/html_formimpl.cpp:434
+msgid ""
+"You are about to transfer the following files from your local computer to "
+"the Internet.\n"
+"Do you really want to continue?"
+msgstr ""
+"คุณกำลังจะทำการส่งแฟ้มเหล่านี้จากเครื่องของคุณไปยังเครือข่ายอินเทอร์เน็ต\n"
+"คุณต้องการจะทำต่อไปหรือไม่ ?"
+
+#: html/html_formimpl.cpp:438
+msgid "Send Confirmation"
+msgstr "ยืนยันการส่ง"
+
+#: html/html_formimpl.cpp:438
+msgid "&Send File"
+msgid_plural "&Send Files"
+msgstr[0] "&ส่งแฟ้ม"
+
+#: html/html_formimpl.cpp:1687 html/html_formimpl.cpp:1908 khtml_part.cpp:4968
+#: khtmlview.cpp:2879 khtmlview.cpp:2923
+msgid "Submit"
+msgstr "ส่งข้อมูล"
+
+#: html/html_formimpl.cpp:1900 khtmlview.cpp:2894 khtmlview.cpp:2929
+msgid "Reset"
+msgstr "ปรับกลับค่าเดิม"
+
+#: html/html_formimpl.cpp:2828
+msgid "Key Generator"
+msgstr "ตัวสร้างกุญแจ"
+
+#: html/html_objectimpl.cpp:632
+#, kde-format
+msgid ""
+"No plugin found for '%1'.\n"
+"Do you want to download one from %2?"
+msgstr ""
+"ไม่พบส่วนเสริมสำหรับ '%1'\n"
+"คุณต้องการจะดาวน์โหลดมันจาก %2 หรือไม่ ?"
+
+#: html/html_objectimpl.cpp:633
+msgid "Missing Plugin"
+msgstr "ไม่พบส่วนเสริม"
+
+#: html/html_objectimpl.cpp:633
+msgid "Download"
+msgstr "ดาวน์โหลด"
+
+#: html/html_objectimpl.cpp:633
+msgid "Do Not Download"
+msgstr "ไม่ต้องดาวน์โหลด"
+
+#: html/htmlparser.cpp:1978
+msgid "This is a searchable index. Enter search keywords: "
+msgstr "นี่เป็นดัชนีที่ใช้ค้นหาได้ เติมข้อความหรือคำที่ต้องการค้นหา: "
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, fuzzy
+#| msgid "&Keep password"
+msgid "&Repeat password:"
+msgstr "&จดจำรหัสผ่าน"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, fuzzy
+#| msgid "&Keep password"
+msgid "&Choose password:"
+msgstr "&จดจำรหัสผ่าน"
+
+#: html/ksslkeygen.cpp:82
+#, fuzzy
+#| msgid "Details of the Request:"
+msgid "KDE Certificate Request"
+msgstr "รายละเอียดของการร้องขอ:"
+
+#: html/ksslkeygen.cpp:89
+msgid "KDE Certificate Request - Password"
+msgstr ""
+
+#: html/ksslkeygen.cpp:126
+#, fuzzy
+#| msgid "Unsupported Key"
+msgid "Unsupported key size."
+msgstr "ปุ่มพิมพ์ที่ยังไม่รองรับ"
+
+#: html/ksslkeygen.cpp:126
+#, fuzzy
+#| msgid "Information"
+msgid "KDE SSL Information"
+msgstr "ข้อมูล"
+
+#: html/ksslkeygen.cpp:132 khtml_part.cpp:5023
+msgid "KDE"
+msgstr "KDE"
+
+#: html/ksslkeygen.cpp:133
+msgid "Please wait while the encryption keys are generated..."
+msgstr ""
+
+#: html/ksslkeygen.cpp:148
+#, fuzzy
+#| msgid "Do you want to store this password for %1?"
+msgid "Do you wish to store the passphrase in your wallet file?"
+msgstr "คุณต้องการจัดเก็บรหัสผ่านนี้สำหรับ %1 หรือไม่ ?"
+
+#: html/ksslkeygen.cpp:148
+#, fuzzy
+#| msgid "&Store"
+msgid "Store"
+msgstr "&จัดเก็บ"
+
+#: html/ksslkeygen.cpp:148
+#, fuzzy
+#| msgid "Do Not Store"
+msgid "Do Not Store"
+msgstr "ไม่ต้องจัดเก็บ"
+
+#: html/ksslkeygen.cpp:257
+msgid "2048 (High Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:258
+msgid "1024 (Medium Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:259
+msgid "768  (Low Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:260
+msgid "512  (Low Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:262
+#, fuzzy
+#| msgid "Enable SOCKS support"
+msgid "No SSL support."
+msgstr "เปิดการรองรับพร็อกซีแบบ SOCKS"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+msgid "Document Information"
+msgstr "ข้อมูลของเอกสาร"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "ทั่วไป"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+msgid "URL:"
+msgstr "ที่อยู่ URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+msgid "Title:"
+msgstr "หัวเรื่อง:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+msgid "Last modified:"
+msgstr "แก้ไขล่าสุด:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+msgid "Document encoding:"
+msgstr "รหัสภาษาของเอกสาร:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+msgid "Rendering mode:"
+msgstr "โหมดการแสดงผล:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+msgid "HTTP Headers"
+msgstr "ส่วนหัว HTTP"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+msgid "Property"
+msgstr "คุณสมบัติ"
+
+#: java/kjavaapplet.cpp:227
+#, kde-format
+msgid "Initializing Applet \"%1\"..."
+msgstr "เริ่มเรียกใช้งานแอพเพล็ต \"%1\"..."
+
+#: java/kjavaapplet.cpp:233
+#, kde-format
+msgid "Starting Applet \"%1\"..."
+msgstr "เริ่มการทำงานแอพเพล็ต \"%1\"..."
+
+#: java/kjavaapplet.cpp:240
+#, kde-format
+msgid "Applet \"%1\" started"
+msgstr "แอพเพล็ต \"%1\" เริ่มทำงานแล้ว"
+
+#: java/kjavaapplet.cpp:246
+#, kde-format
+msgid "Applet \"%1\" stopped"
+msgstr "แอพเพล็ต \"%1\" หยุดทำงานแล้ว"
+
+#: java/kjavaappletserver.cpp:144
+msgid "Loading Applet"
+msgstr "กำลังโหลดแอพเพล็ต"
+
+#: java/kjavaappletserver.cpp:147
+msgid "Error: java executable not found"
+msgstr "ผิดพลาด: ไม่พบตัวประมวลผลภาษาจาวา"
+
+#: java/kjavaappletserver.cpp:674
+#, kde-format
+msgid "Signed by (validation: %1)"
+msgstr "เซ็นกำกับโดย (การตรวจสอบ: %1)"
+
+#: java/kjavaappletserver.cpp:676
+#, kde-format
+msgid "Certificate (validation: %1)"
+msgstr "ใบรับรอง (การตรวจสอบ: %1)"
+
+#: java/kjavaappletserver.cpp:812 khtml_part.cpp:7053
+msgid "Security Alert"
+msgstr "แจ้งความปลอดภัย"
+
+#: java/kjavaappletserver.cpp:817
+msgid "Do you grant Java applet with certificate(s):"
+msgstr "คุณจะยอมรับจาวาแอพเพล็ตที่มีใบรับรองเหล่านี้หรือไม่:"
+
+#: java/kjavaappletserver.cpp:819
+msgid "the following permission"
+msgstr "สิทธิ์ที่อนุญาตต่อไปนี้"
+
+#: java/kjavaappletserver.cpp:828
+msgid "&No"
+msgstr "ไ&ม่ใช่"
+
+#: java/kjavaappletserver.cpp:832
+msgid "&Reject All"
+msgstr "&ปฏิเสธทั้งหมด"
+
+#: java/kjavaappletserver.cpp:835
+msgid "&Yes"
+msgstr "ใ&ช่"
+
+#: java/kjavaappletserver.cpp:838
+msgid "&Grant All"
+msgstr "&ยอมรับทั้งหมด"
+
+#: java/kjavaappletviewer.cpp:59
+msgid "KDE Java Applet Plugin"
+msgstr "ส่วนเสริมจาวาแอพเพล็ตของ KDE"
+
+#: java/kjavaappletviewer.cpp:141
+msgid "Applet Parameters"
+msgstr "พารามิเตอร์ของแอพเพล็ต"
+
+#: java/kjavaappletviewer.cpp:149
+msgid "Parameter"
+msgstr "พารามิเตอร์"
+
+#: java/kjavaappletviewer.cpp:153
+msgid "Class"
+msgstr "คลาส"
+
+#: java/kjavaappletviewer.cpp:159
+msgid "Base URL"
+msgstr "ที่อยู่ URL หลัก"
+
+#: java/kjavaappletviewer.cpp:165
+msgid "Archives"
+msgstr "แฟ้มเก็บข้อมูล"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+msgid "&Edit"
+msgstr "แ&ก้ไข"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+msgid "&File"
+msgstr "แ&ฟ้ม"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+msgid "&View"
+msgstr "&มุมมอง"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+msgid "HTML Toolbar"
+msgstr "แถบเครื่องมือ HTML"
+
+#: khtml_ext.cpp:413
+msgid "&Copy Text"
+msgstr "&คัดลอกข้อความ"
+
+#: khtml_ext.cpp:427
+#, kde-format
+msgid "Open '%1'"
+msgstr "เปิด '%1'"
+
+#: khtml_ext.cpp:444
+msgid "&Copy Email Address"
+msgstr "&คัดลอกที่อยู่อีเมล"
+
+#: khtml_ext.cpp:449
+msgid "&Save Link As..."
+msgstr "&บันทึกส่วนเชื่อมโยงเป็น..."
+
+#: khtml_ext.cpp:454
+msgid "&Copy Link Address"
+msgstr "&คัดลอกที่อยู่ของส่วนเชื่อมโยง"
+
+#: khtml_ext.cpp:466
+msgctxt "@title:menu HTML frame/iframe"
+msgid "Frame"
+msgstr "กรอบ"
+
+#: khtml_ext.cpp:467
+msgid "Open in New &Window"
+msgstr "เปิดในหน้า&ต่างใหม่"
+
+#: khtml_ext.cpp:473
+msgid "Open in &This Window"
+msgstr "เปิดในหน้าต่าง&นี้"
+
+#: khtml_ext.cpp:478
+msgid "Open in &New Tab"
+msgstr "เปิดในแท็บใ&หม่"
+
+#: khtml_ext.cpp:488
+msgid "Reload Frame"
+msgstr "โหลดเฟรมใหม่"
+
+#: khtml_ext.cpp:493 khtml_part.cpp:448
+msgid "Print Frame..."
+msgstr "พิมพ์เฟรม..."
+
+#: khtml_ext.cpp:499 khtml_part.cpp:300
+msgid "Save &Frame As..."
+msgstr "บันทึกเ&ฟรมเป็น..."
+
+#: khtml_ext.cpp:504 khtml_part.cpp:276
+msgid "View Frame Source"
+msgstr "แสดงต้นฉบับของเฟรม"
+
+#: khtml_ext.cpp:509
+msgid "View Frame Information"
+msgstr "แสดงข้อมูลของเฟรม"
+
+#: khtml_ext.cpp:519
+msgid "Block IFrame..."
+msgstr "บล็อค IFrame..."
+
+#: khtml_ext.cpp:543
+msgid "Save Image As..."
+msgstr "บันทึกภาพเป็น..."
+
+#: khtml_ext.cpp:548
+msgid "Send Image..."
+msgstr "ส่งภาพ..."
+
+#: khtml_ext.cpp:554
+msgid "Copy Image"
+msgstr "คัดลอกภาพ"
+
+#: khtml_ext.cpp:562
+msgid "Copy Image Location"
+msgstr "คัดลอกตำแหน่งของภาพ"
+
+#: khtml_ext.cpp:571
+#, kde-format
+msgid "View Image (%1)"
+msgstr "แสดงภาพ (%1)"
+
+#: khtml_ext.cpp:577
+msgid "Block Image..."
+msgstr "บล็อคภาพ..."
+
+#: khtml_ext.cpp:584
+#, kde-format
+msgid "Block Images From %1"
+msgstr "บล็อครูปภาพจาก %1"
+
+#: khtml_ext.cpp:596
+msgid "Stop Animations"
+msgstr "หยุดการเคลื่อนไหว"
+
+#: khtml_ext.cpp:637
+#, kde-format
+msgid "Search for '%1' with %2"
+msgstr "ค้นหา '%1' ด้วย %2"
+
+#: khtml_ext.cpp:647
+#, kde-format
+msgid "Search for '%1' with"
+msgstr "ค้นหา '%1' ด้วย"
+
+#: khtml_ext.cpp:693
+msgid "Save Link As"
+msgstr "บันทึกส่วนเชื่อมโยงเป็น"
+
+#: khtml_ext.cpp:712
+msgid "Save Image As"
+msgstr "บันทึกภาพเป็น"
+
+#: khtml_ext.cpp:726 khtml_ext.cpp:738
+msgid "Add URL to Filter"
+msgstr "เพิ่มที่อยู่ URL ไปยังตัวกรอง"
+
+#: khtml_ext.cpp:727 khtml_ext.cpp:739
+msgid "Enter the URL:"
+msgstr "ป้อนที่อยู่ URL:"
+
+#: khtml_ext.cpp:875
+#, kde-format
+msgid ""
+"A file named \"%1\" already exists. Are you sure you want to overwrite it?"
+msgstr "มีแฟ้มที่ชื่อ \"%1\" อยู่แล้ว คุณแน่ใจหรือไม่ว่าต้องการจะเขียนทับมัน ?"
+
+#: khtml_ext.cpp:875
+msgid "Overwrite File?"
+msgstr "เขียนทับแฟ้มหรือไม่ ?"
+
+#: khtml_ext.cpp:875
+msgid "Overwrite"
+msgstr "เขียนทับ"
+
+#: khtml_ext.cpp:927
+#, kde-format
+msgid "The Download Manager (%1) could not be found in your $PATH "
+msgstr "ไม่พบตัวจัดการดาวน์โหลด (%1) ในเส้นทางพาธของคุณ"
+
+#: khtml_ext.cpp:928
+msgid ""
+"Try to reinstall it  \n"
+"\n"
+"The integration with Konqueror will be disabled."
+msgstr ""
+"ลองติดตั้งมันใหม่อีกครั้ง  \n"
+"\n"
+"ส่วนที่รวมกับ Konqueror จะถูกปิดการใช้งาน"
+
+#: khtml_ext.cpp:1007
+#, no-c-format
+msgid "Default Font Size (100%)"
+msgstr "ขนาดปริยายของตัวอักษร (100%)"
+
+#: khtml_ext.cpp:1021
+#, no-c-format, kde-format
+msgid "%1%"
+msgstr "%1%"
+
+#: khtml_global.cpp:203
+msgid "KHTML"
+msgstr "KHTML"
+
+#: khtml_global.cpp:204
+msgid "Embeddable HTML component"
+msgstr "ส่วนประกอบ HTML แบบฝังแนบได้"
+
+#: khtml_part.cpp:269
+msgid "View Do&cument Source"
+msgstr "แสดง&ต้นฉบับของเอกสาร"
+
+#: khtml_part.cpp:283
+msgid "View Document Information"
+msgstr "แสดงข้อมูลของเอกสาร"
+
+#: khtml_part.cpp:290
+msgid "Save &Background Image As..."
+msgstr "บันทึก&ภาพพื้นหลังเป็น..."
+
+#: khtml_part.cpp:312 khtml_part.cpp:4195
+msgid "SSL"
+msgstr "SSL"
+
+#: khtml_part.cpp:316
+msgid "Print Rendering Tree to STDOUT"
+msgstr "พิมพ์ส่วนต่าง ๆ เป็นรายการต้นไม้ออก STDOUT"
+
+#: khtml_part.cpp:320
+msgid "Print DOM Tree to STDOUT"
+msgstr "พิมพ์ DOM แบบรายการต้นไม้ออกทาง STDOUT"
+
+#: khtml_part.cpp:324
+msgid "Print frame tree to STDOUT"
+msgstr "พิมพ์กรอบแบบรายการต้นไม้ออกทาง STDOUT"
+
+#: khtml_part.cpp:328
+msgid "Stop Animated Images"
+msgstr "หยุดการเคลื่อนไหวของภาพ"
+
+#: khtml_part.cpp:332
+msgid "Set &Encoding"
+msgstr "ตั้งการเข้า&รหัสภาษา"
+
+#: khtml_part.cpp:378
+msgid "Use S&tylesheet"
+msgstr "ใช้รูปแบบ&สไตล์ชีต"
+
+#: khtml_part.cpp:383
+msgid "Enlarge Font"
+msgstr "เพิ่มขนาดตัวอักษร"
+
+#: khtml_part.cpp:386
+msgid ""
+"<qt>Enlarge Font<br /><br />Make the font in this window bigger. Click and "
+"hold down the mouse button for a menu with all available font sizes.</qt>"
+msgstr ""
+"<qt>เพิ่มขนาดตัวอักษร<br /><br />ทำให้แบบอักษรในหน้าต่างนี้ใหญ่ขึ้น โดยคลิกปุ่มเมาส์ค้างไว้ "
+"เพื่อแสดงเมนูรายการขนาดตัวอักษรที่ใช้ได้</qt>"
+
+#: khtml_part.cpp:390
+msgid "Shrink Font"
+msgstr "ลดขนาดตัวอักษร"
+
+#: khtml_part.cpp:393
+msgid ""
+"<qt>Shrink Font<br /><br />Make the font in this window smaller. Click and "
+"hold down the mouse button for a menu with all available font sizes.</qt>"
+msgstr ""
+"<qt>ลดขนาดตัวอักษร<br /><br />ทำให้แบบอักษรในหน้าต่างนี้เล็กลง โดยคลิกปุ่มเมาส์ค้างไว้ "
+"เพื่อแสดงเมนูรายการขนาดตัวอักษรที่ใช้ได้</qt>"
+
+#: khtml_part.cpp:408
+msgid ""
+"<qt>Find text<br /><br />Shows a dialog that allows you to find text on the "
+"displayed page.</qt>"
+msgstr "<qt>ค้นหาข้อความ<br /><br />แสดงกล่องการค้นหาข้อความในหน้าที่แสดงอยู่</qt>"
+
+#: khtml_part.cpp:412
+msgid ""
+"<qt>Find next<br /><br />Find the next occurrence of the text that you have "
+"found using the <b>Find Text</b> function.</qt>"
+msgstr ""
+"<qt>ค้นหาต่อไป<br /><br />ค้นหาข้อความต่อจากข้อความที่พบ โดยใช้ฟังก์ชัน <b>ค้นหาข้อความ</"
+"b></qt>"
+
+#: khtml_part.cpp:418
+msgid ""
+"<qt>Find previous<br /><br />Find the previous occurrence of the text that "
+"you have found using the <b>Find Text</b> function.</qt>"
+msgstr ""
+"<qt>ค้นหาก่อนหน้า<br /><br />ค้นหาข้อความย้อนจากข้อความที่พบไปก่อนหน้านี้ โดยใช้ฟังก์ชัน "
+"<b>ค้นหาข้อความ</b></qt>"
+
+#: khtml_part.cpp:423
+msgid "Find Text as You Type"
+msgstr "ค้นหาข้อความตามที่คุณพิมพ์"
+
+#: khtml_part.cpp:426
+msgid ""
+"This shortcut shows the find bar, for finding text in the displayed page. It "
+"cancels the effect of \"Find Links as You Type\", which sets the \"Find "
+"links only\" option."
+msgstr ""
+"ทางลัดนี้ใช้ในการแสดงแถบเครื่องมือค้นหา สำหรับใช้ในการค้นหาข้อความในหน้าเว็บที่ถูกแสดงอยู่ "
+"โดยมันจะยกเลิกสิ่งที่ได้จาก \"ค้นหาส่วนเชื่อมโยงที่คุณพิมพ์\" ซึ่งถูกตั้งค่าในตัวเลือก "
+"\"ค้นหาส่วนเชื่อมโยงเท่านั้น\""
+
+#: khtml_part.cpp:430
+msgid "Find Links as You Type"
+msgstr "ค้นหาส่วนเชื่อมโยงตามที่คุณพิมพ์"
+
+#: khtml_part.cpp:436
+msgid ""
+"This shortcut shows the find bar, and sets the option \"Find links only\"."
+msgstr "ทางลัดนี้ใช้ในการแสดงแถบเครื่องมือค้นหา และตั้งค่าตัวเลือก \"ค้นหาส่วนเชื่อมโยงเท่านั้น\""
+
+#: khtml_part.cpp:452
+msgid ""
+"<qt>Print Frame<br /><br />Some pages have several frames. To print only a "
+"single frame, click on it and then use this function.</qt>"
+msgstr ""
+"<qt>พิมพ์เฟรม<br /><br />บางหน้าอาจจะแยกเป็นเฟรมหลายเฟรม "
+"หากต้องการจะพิมพ์เฉพาะบางเฟรม ให้คลิกบนเฟรมและเรียกใช้ฟังก์ชันนี้</qt>"
+
+#: khtml_part.cpp:467
+msgid "Toggle Caret Mode"
+msgstr "สลับโหมด Caret"
+
+#: khtml_part.cpp:770
+#, kde-format
+msgid "The fake user-agent '%1' is in use."
+msgstr "แสดงตัวเป็นเบราว์เซอร์ '%1' อยู่แล้ว"
+
+#: khtml_part.cpp:1274
+msgid "This web page contains coding errors."
+msgstr "หน้าเว็บนี้มีรหัสโค้ดที่ผิดพลาดอยู่"
+
+#: khtml_part.cpp:1319
+msgid "&Hide Errors"
+msgstr "ซ่&อนข้อผิดพลาด"
+
+#: khtml_part.cpp:1320
+msgid "&Disable Error Reporting"
+msgstr "&ปิดการรายงานข้อผิดพลาด"
+
+#: khtml_part.cpp:1363
+#, kde-format
+msgid "<qt><b>Error</b>: %1: %2</qt>"
+msgstr "<qt><b>ข้อผิดพลาด</b>: %1: %2</qt>"
+
+#: khtml_part.cpp:1412
+#, kde-format
+msgid "<qt><b>Error</b>: node %1: %2</qt>"
+msgstr "<qt><b>ข้อผิดพลาด</b>: โหนด %1: %2</qt>"
+
+#: khtml_part.cpp:1534
+msgid "Display Images on Page"
+msgstr "แสดงภาพบนหน้าเว็บ"
+
+#: khtml_part.cpp:1918
+#, kde-format
+msgid "Error: %1 - %2"
+msgstr "ข้อผิดพลาด: %1 - %2"
+
+#: khtml_part.cpp:1923
+msgid "The requested operation could not be completed"
+msgstr "ไม่สามารถปฏิบัติการที่ร้องขอมาให้สำเร็จได้"
+
+#: khtml_part.cpp:1929
+msgid "Technical Reason: "
+msgstr "เหตุผลทางเทคนิค: "
+
+#: khtml_part.cpp:1935
+msgid "Details of the Request:"
+msgstr "รายละเอียดของการร้องขอ:"
+
+#: khtml_part.cpp:1937
+#, kde-format
+msgid "URL: %1"
+msgstr "ที่อยู่ URL: %1"
+
+#: khtml_part.cpp:1940
+#, kde-format
+msgid "Protocol: %1"
+msgstr "โพรโทคอล: %1"
+
+#: khtml_part.cpp:1943
+#, kde-format
+msgid "Date and Time: %1"
+msgstr "วันและเวลา : %1"
+
+#: khtml_part.cpp:1945
+#, kde-format
+msgid "Additional Information: %1"
+msgstr "ข้อมูลเพิ่มเติม: %1"
+
+#: khtml_part.cpp:1947
+msgid "Description:"
+msgstr "คำอธิบาย:"
+
+#: khtml_part.cpp:1953
+msgid "Possible Causes:"
+msgstr "สาเหตุที่เป็นไปได้:"
+
+#: khtml_part.cpp:1960
+msgid "Possible Solutions:"
+msgstr "วิธีแก้ไขที่เป็นไปได้:"
+
+#: khtml_part.cpp:2408
+msgid "Page loaded."
+msgstr "โหลดหน้าเว็บเรียบร้อยแล้ว"
+
+#: khtml_part.cpp:2410
+#, kde-format
+msgid "%1 Image of %2 loaded."
+msgid_plural "%1 Images of %2 loaded."
+msgstr[0] "โหลดแล้ว %1 ภาพจาก %2 ภาพ"
+
+#: khtml_part.cpp:2588
+msgid "Automatic Detection"
+msgstr "ตรวจสอบอัตโนมัติ"
+
+#: khtml_part.cpp:3718 khtml_part.cpp:3782 khtml_part.cpp:3792
+msgid " (In new window)"
+msgstr " (ในหน้าต่างใหม่)"
+
+#: khtml_part.cpp:3746
+msgid "Symbolic Link"
+msgstr "เชื่อมโยงแบบสัญลักษณ์"
+
+#: khtml_part.cpp:3748
+#, kde-format
+msgid "%1 (Link)"
+msgstr "%1 (ส่วนเชื่อมโยง)"
+
+#: khtml_part.cpp:3764
+#, kde-format
+msgid "%2 (%1 byte)"
+msgid_plural "%2 (%1 bytes)"
+msgstr[0] "%2 (%1 ไบต์)"
+
+#: khtml_part.cpp:3767
+#, kde-format
+msgid "%2 (%1 K)"
+msgstr "%2 (%1 กิโล)"
+
+#: khtml_part.cpp:3794
+msgid " (In other frame)"
+msgstr " (ในเฟรมอื่น)"
+
+#: khtml_part.cpp:3800
+msgid "Email to: "
+msgstr "ส่งอีเมลไปยัง:"
+
+#: khtml_part.cpp:3806
+msgid " - Subject: "
+msgstr " - เรื่อง: "
+
+#: khtml_part.cpp:3808
+msgid " - CC: "
+msgstr " - สำเนาถึง: "
+
+#: khtml_part.cpp:3810
+msgid " - BCC: "
+msgstr " - สำเนาถึง (ซ่อน): "
+
+#: khtml_part.cpp:3891 khtml_part.cpp:4113 khtml_part.cpp:4549
+#: khtml_run.cpp:106
+msgid "Save As"
+msgstr "บันทึกเป็น"
+
+#: khtml_part.cpp:3896
+#, kde-format
+msgid ""
+"<qt>This untrusted page links to<br /><b>%1</b>.<br />Do you want to follow "
+"the link?</qt>"
+msgstr ""
+"<qt>หน้าเว็บที่ไม่น่าเชื่อถือนี้มีส่วนเชื่อมโยงไปยัง <br /><b>%1</b> <br /> "
+"คุณต้องการจะเรียกไปยังตำแหน่งเชื่อมโยงนี้หรือไม่ ?</qt>"
+
+#: khtml_part.cpp:3897
+msgid "Follow"
+msgstr "เรียกไป"
+
+#: khtml_part.cpp:3992
+msgid "Frame Information"
+msgstr "ข้อมูลของเฟรม"
+
+#: khtml_part.cpp:3998
+#, kde-format
+msgid "   <a href=\"%1\">[Properties]</a>"
+msgstr "   <a href=\"%1\">[คุณสมบัติ]</a>"
+
+#: khtml_part.cpp:4024
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Quirks"
+msgstr "เปลี่ยนแปลงฉับพลัน"
+
+#: khtml_part.cpp:4027
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Almost standards"
+msgstr "ใกล้เคียงมาตรฐานที่สุด"
+
+#: khtml_part.cpp:4031
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Strict"
+msgstr "เข้มงวด"
+
+#: khtml_part.cpp:4100
+msgid "Save Background Image As"
+msgstr "บันทึกภาพพื้นหลังเป็น"
+
+#: khtml_part.cpp:4193
+msgid "The peer SSL certificate chain appears to be corrupt."
+msgstr "ห่วงโซ่ใบรับรอง SSL แบบตรงดูเหมือนจะมีส่วนผิดพลาด"
+
+#: khtml_part.cpp:4214
+msgid "Save Frame As"
+msgstr "บันทึกเฟรมเป็น"
+
+#: khtml_part.cpp:4258
+msgid "&Find in Frame..."
+msgstr "&ค้นหาภายในเฟรม..."
+
+#: khtml_part.cpp:4260
+msgid "&Find..."
+msgstr "ค้น&หา..."
+
+#: khtml_part.cpp:4907
+msgid ""
+"Warning:  This is a secure form but it is attempting to send your data back "
+"unencrypted.\n"
+"A third party may be able to intercept and view this information.\n"
+"Are you sure you wish to continue?"
+msgstr ""
+"คำเตือน:  นี่เป็นแบบฟอร์มที่อยู่ในโหมดความปลอดภัย แต่กลับมีการส่งข้อมูลของคุณ "
+"กลับไปโดยไม่ผ่านการเข้ารหัส\n"
+"บุคคลที่สามอาจจะสามารถดักจับและแสดงข้อมูลนี้ได้\n"
+"คุณแน่ใจว่าต้องการจะทำต่อไปหรือไม่ ?"
+
+#: khtml_part.cpp:4910 khtml_part.cpp:4920 khtml_part.cpp:4945
+msgid "Network Transmission"
+msgstr "การส่งถ่ายข้อมูลผ่านเครือข่าย"
+
+#: khtml_part.cpp:4910 khtml_part.cpp:4921
+msgid "&Send Unencrypted"
+msgstr "&ส่งโดยไม่ต้องเข้ารหัส"
+
+#: khtml_part.cpp:4918
+msgid ""
+"Warning: Your data is about to be transmitted across the network "
+"unencrypted.\n"
+"Are you sure you wish to continue?"
+msgstr ""
+"คำเตือน: จะมีการส่งถ่ายข้อมูลของคุณระหว่างเครือข่ายที่ไม่มีการเข้ารหัสไว้\n"
+"คุณแน่ใจว่าต้องการจะทำต่อไปหรือไม่ ?"
+
+#: khtml_part.cpp:4943
+msgid ""
+"This site is attempting to submit form data via email.\n"
+"Do you want to continue?"
+msgstr ""
+"เว็บไซต์นี้พยายามจะส่งข้อมูลในแบบฟอร์มผ่านทางอีเมล\n"
+"คุณต้องการจะทำต่อไปหรือไม่ ?"
+
+#: khtml_part.cpp:4946
+msgid "&Send Email"
+msgstr "&ส่งอีเมล"
+
+#: khtml_part.cpp:4967
+#, kde-format
+msgid ""
+"<qt>The form will be submitted to <br /><b>%1</b><br />on your local "
+"filesystem.<br />Do you want to submit the form?</qt>"
+msgstr ""
+"<qt>แบบฟอร์มนี้จะถูกส่งไปยัง <br /><b>%1</b><br />บนระบบแฟ้มภายในเครื่องของคุณ <br /"
+">คุณต้องการที่จะส่งข้อมูลของแบบฟอร์มนี้หรือไม่ ?</qt>"
+
+#: khtml_part.cpp:5023
+msgid ""
+"This site attempted to attach a file from your computer in the form "
+"submission. The attachment was removed for your protection."
+msgstr ""
+"เว็บไซต์นี้พยายามจะแนบแฟ้มที่อยู่ภายในเครื่องของคุณไปกับการส่งแบบฟอร์ม "
+"ซึ่งแฟ้มที่แนบจะถูกเอาออกเนื่องจากการตั้งการป้องกันของคุณ"
+
+#: khtml_part.cpp:6117
+#, kde-format
+msgid "(%1/s)"
+msgstr "(%1/วินาที)"
+
+#: khtml_part.cpp:7045
+msgid "Security Warning"
+msgstr "แจ้งเตือนความปลอดภัย"
+
+#: khtml_part.cpp:7052
+#, kde-format
+msgid "<qt>Access by untrusted page to<br /><b>%1</b><br /> denied.</qt>"
+msgstr "<qt>การเข้าใช้จากหน้าเว็บที่ไม่น่าเชื่อถือไปยัง <br /><b>%1</b><br />ถูกปฏิเสธ</qt>"
+
+#: khtml_part.cpp:7423
+#, kde-format
+msgid "The wallet '%1' is open and being used for form data and passwords."
+msgstr "กระเป๋าคุมข้อมูล '%1' ถูกเปิดและใช้สำหรับข้อมูลในฟอร์มและรหัสผ่าน"
+
+#: khtml_part.cpp:7482
+msgid "&Close Wallet"
+msgstr "&ปิดกระเป๋าคุมข้อมูล"
+
+#: khtml_part.cpp:7485
+msgid "&Allow storing passwords for this site"
+msgstr "&อนุญาตให้จัดเก็บรหัสผ่านสำหรับเว็บไซต์นี้"
+
+#: khtml_part.cpp:7490
+#, kde-format
+msgid "Remove password for form %1"
+msgstr "ลบรหัสผ่านสำหรับแบบฟอร์ม %1 ออก"
+
+#: khtml_part.cpp:7605
+msgid "JavaScript &Debugger"
+msgstr "เครื่องมือ&ดีบั๊กจาวาสคริปต์"
+
+#: khtml_part.cpp:7638
+msgid "This page was prevented from opening a new window via JavaScript."
+msgstr "Konqueror ได้ป้องกันการเปิดหน้าต่างป้อบอัพโดยจาวาสคริปต์จากหน้าเว็บนี้"
+
+#: khtml_part.cpp:7644
+msgid "Popup Window Blocked"
+msgstr "หน้าต่างแบบป้อบอัพถูกบล็อค"
+
+#: khtml_part.cpp:7644
+msgid ""
+"This page has attempted to open a popup window but was blocked.\n"
+"You can click on this icon in the status bar to control this behavior\n"
+"or to open the popup."
+msgstr ""
+"หน้าเว็บนี้ต้องการเปิดหน้าต่างป้อบอัพ แต่โดนบล็อคไว้\n"
+"คุณสามารถคลิกที่ไอคอนนี้ในแถบสถานะเพื่อควบคุมพฤติกรรมนี้\n"
+"หรือเพื่อเลือกเปิดหน้าต่างป้อบอัพดังกล่าวได้"
+
+#: khtml_part.cpp:7658
+#, kde-format
+msgid "&Show Blocked Popup Window"
+msgid_plural "&Show %1 Blocked Popup Windows"
+msgstr[0] "แ&สดงหน้าต่างป้อพอัพที่ถูกบล็อคไว้ %1 หน้าต่าง"
+
+#: khtml_part.cpp:7660
+msgid "Show Blocked Window Passive Popup &Notification"
+msgstr "แสดงการแจ้งถึงหน้าต่างป้อบอัพที่ถูกบล็อคไว้"
+
+#: khtml_part.cpp:7662
+msgid "&Configure JavaScript New Window Policies..."
+msgstr "&ปรับแต่งข้อกำหนดการเปิดหน้าต่างใหม่จากจาวาสคริปต์..."
+
+#: khtml_printsettings.cpp:30
+msgid ""
+"<qt><p><strong>'Print images'</strong></p><p>If this checkbox is enabled, "
+"images contained in the HTML page will be printed. Printing may take longer "
+"and use more ink or toner.</p><p>If this checkbox is disabled, only the text "
+"of the HTML page will be printed, without the included images. Printing will "
+"be faster and use less ink or toner.</p> </qt>"
+msgstr ""
+"<qt><p><strong>'พิมพ์ภาพ'</strong></p><p>หากเปิดใช้ตัวเลือกนี้ จะมีการพิมพ์ภาพที่อยู่ในหน้า "
+"HTML ด้วย ซึ่งอาจจะทำให้ใช้เวลานานขึ้น รวมถึงการเปลืองหมึกที่ใช้พิมพ์อีกด้วย</"
+"p><p>หากปิดการใช้งาน จะมีการพิมพ์เฉพาะข้อความที่อยู่ในหน้า HTML เท่านั้น โดยไม่มีการพิมพ์รูปภาพ "
+"ซึ่งจะช่วยให้พิมพ์ได้รวดเร็วขึ้นและประหยัดหมึกมากขึ้นด้วย</p> </qt>"
+
+#: khtml_printsettings.cpp:42
+msgid ""
+"<qt><p><strong>'Print header'</strong></p><p>If this checkbox is enabled, "
+"the printout of the HTML document will contain a header line at the top of "
+"each page. This header contains the current date, the location URL of the "
+"printed page and the page number.</p><p>If this checkbox is disabled, the "
+"printout of the HTML document will not contain such a header line.</p> </qt>"
+msgstr ""
+"<qt><p><strong>'พิมพ์หัวกระดาษ'</strong></p><p>หากเปิดใช้ตัวเลือกนี้ เมื่อมีการพิมพ์เอกสาร "
+"HTML จะมีการพิมพ์หัวกระดาษด้วย โดยจะเป็นบรรทัดด้านบนสุดของหน้ากระดาษ "
+"ซึ่งประกอบด้วยข้อมูลวันที่ปัจจุบัน ที่อยู่ URL ที่เรียกพิมพ์ และหมายเลขหน้า</"
+"p><p>หากปิดตัวเลือกนี้จะพิมพ์เอกสาร HTML โดยไม่มีการพิมพ์หัวกระดาษ</p> </qt>"
+
+#: khtml_printsettings.cpp:55
+msgid ""
+"<qt><p><strong>'Printerfriendly mode'</strong></p><p>If this checkbox is "
+"enabled, the printout of the HTML document will be black and white only, and "
+"all colored background will be converted into white. Printout will be faster "
+"and use less ink or toner.</p><p>If this checkbox is disabled, the printout "
+"of the HTML document will happen in the original color settings as you see "
+"in your application. This may result in areas of full-page color (or "
+"grayscale, if you use a black+white printer). Printout will possibly happen "
+"more slowly and will probably use more toner or ink.</p> </qt>"
+msgstr ""
+"<qt><p><strong>'โหมดเหมาะกับการพิมพ์'</strong></p><p>หากเปิดใช้ตัวเลือกนี้ "
+"การพิมพ์เอกสาร HTML จะเป็นแบบขาวดำเท่านั้น โดยสีพื้นหลังไม่ว่าจะเป็นสีอะไร "
+"ก็จะถูกเปลี่ยนเป็นสีขาวทั้งหมด ซึ่งจะทำให้การพิมพ์รวดเร็วและประหยัดหมึกมากขึ้น</"
+"p><p>หากปิดการใช้งานตัวเลือกนี้ การพิมพ์เอกสาร HTML จะใช้สีจากต้นฉบับที่คุณเห็นในโปรแกรม "
+"โดยจะได้ผลลัพธ์เป็นการพิมพ์เต็มหน้าแบบสี (หรือแบบไล่ระดับสีเทา "
+"หากเครื่องพิมพ์ของคุณเป็นแบบขาวดำ) ซึ่งจะทำให้การพิมพ์ช้ามากขึ้น "
+"รวมถึงการเปลืองหมึกที่ใช้พิมพ์ด้วย</p> </qt>"
+
+#: khtml_printsettings.cpp:70
+msgid "HTML Settings"
+msgstr "ตั้งค่า HTML"
+
+#: khtml_printsettings.cpp:72
+msgid "Printer friendly mode (black text, no background)"
+msgstr "โหมดเหมาะกับการพิมพ์ (ข้อความสีดำ ไม่มีพื้นหลัง)"
+
+#: khtml_printsettings.cpp:75
+msgid "Print images"
+msgstr "พิมพ์ภาพ"
+
+#: khtml_printsettings.cpp:78
+msgid "Print header"
+msgstr "พิมพ์หัวกระดาษ"
+
+#: khtml_settings.cpp:906
+msgid "Filter error"
+msgstr "ตัวกรองผิดพลาด"
+
+#: khtmladaptorpart.cpp:29
+msgid "Inactive"
+msgstr "ไม่ได้ทำงานอยู่"
+
+#: khtmlimage.cpp:46
+#, fuzzy
+#| msgid "KHTML"
+msgid "KHTML Image"
+msgstr "KHTML"
+
+#: khtmlimage.cpp:217
+#, kde-format
+msgid "%1 (%2 - %3x%4 Pixels)"
+msgstr "%1 (%2 - %3x%4 พิกเซล)"
+
+#: khtmlimage.cpp:219
+#, kde-format
+msgid "%1 - %2x%3 Pixels"
+msgstr "%1 - %2x%3 พิกเซล"
+
+#: khtmlimage.cpp:224
+#, kde-format
+msgid "%1 (%2x%3 Pixels)"
+msgstr "%1 - (%2x%3 พิกเซล)"
+
+#: khtmlimage.cpp:226
+#, kde-format
+msgid "Image - %1x%2 Pixels"
+msgstr "ภาพ - %1x%2 พิกเซล"
+
+#: khtmlimage.cpp:232
+msgid "Done."
+msgstr "เสร็จแล้ว"
+
+#: khtmlview.cpp:1902
+msgid "Access Keys activated"
+msgstr "เปิดใช้กุญแจสำหรับเข้าถึง"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:14
+msgid "JavaScript Errors"
+msgstr "ข้อผิดพลาดของจาวาสคริปต์"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:17
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at http://bugs.kde.org/.  A test case "
+"which illustrates the problem will be appreciated."
+msgstr ""
+"กล่องโต้ตอบนี้จะมีการแจ้งเตือนและรายละเอียดของข้อผิดพลาดของสคริปต์ที่เกิดขึ้นในหน้าเว็บ "
+"ส่วนมากจะเกิดจากข้อผิดพลาดที่เว็บไซต์ที่ถูกออกแบบโดยผู้จัดทำ อีกกรณีหนึ่ง "
+"เกิดขึ้นจากข้อผิดพลาดของโปรแกรมใน Konqueror หากคุณสงสัยในข้อแรก "
+"โปรดติดต่อกับเว็บมาสเตอร์ของไซต์ที่เกิดปัญหา แต่ถ้าหากว่าคุณสงสัยว่าเกิดจากข้อผิดพลาดใน "
+"Konqueror โปรด แจ้งบั๊กได้ที่ http://bugs.kde.org/  "
+"หากมีกรณีทดสอบซึ่งแสดงถึงปัญหาที่เกิดขึ้นมาด้วย จะขอบคุณมาก"
+
+#. i18n: ectx: property (text), widget (QPushButton, _close)
+#: kjserrordlgbase.ui:29
+msgid "&Close"
+msgstr "&ปิด"
+
+#. i18n: ectx: property (text), widget (QPushButton, _clear)
+#: kjserrordlgbase.ui:36
+msgid "C&lear"
+msgstr "&ล้าง"
+
+#: kmultipart/kmultipart.cpp:40
+msgid "KMultiPart"
+msgstr "KMultiPart"
+
+#: kmultipart/kmultipart.cpp:42
+msgid "Embeddable component for multipart/mixed"
+msgstr "ส่วนประกอบที่ฝังแนบได้ของ multipart/mixed"
+
+#: kmultipart/kmultipart.cpp:44
+#, fuzzy
+#| msgid "Copyright 2001, David Faure <email>david@mandrakesoft.com</email>"
+msgid "Copyright 2001-2011, David Faure <faure@kde.org>"
+msgstr "สงวนลิขสิทธิ์ 2001, David Faure <email>david@mandrakesoft.com</email>"
+
+#: kmultipart/kmultipart.cpp:337
+#, kde-format
+msgid "No handler found for %1."
+msgstr "ไม่พบตัวจัดการสำหรับ %1"
+
+#: misc/kencodingdetector.cpp:1119 misc/kencodingdetector.cpp:1220
+msgctxt "@item Text character set"
+msgid "Unicode"
+msgstr "ยูนิโค้ด"
+
+#: misc/kencodingdetector.cpp:1121 misc/kencodingdetector.cpp:1190
+msgctxt "@item Text character set"
+msgid "Cyrillic"
+msgstr "ไซริลิค"
+
+#: misc/kencodingdetector.cpp:1123 misc/kencodingdetector.cpp:1205
+msgctxt "@item Text character set"
+msgid "Western European"
+msgstr "ยุโรปตะวันตก"
+
+#: misc/kencodingdetector.cpp:1125 misc/kencodingdetector.cpp:1187
+msgctxt "@item Text character set"
+msgid "Central European"
+msgstr "ยุโรปตอนกลาง"
+
+#: misc/kencodingdetector.cpp:1127 misc/kencodingdetector.cpp:1193
+msgctxt "@item Text character set"
+msgid "Greek"
+msgstr "กรีก"
+
+#: misc/kencodingdetector.cpp:1129 misc/kencodingdetector.cpp:1196
+msgctxt "@item Text character set"
+msgid "Hebrew"
+msgstr "ฮิบรู"
+
+#: misc/kencodingdetector.cpp:1131 misc/kencodingdetector.cpp:1202
+msgctxt "@item Text character set"
+msgid "Turkish"
+msgstr "ตุรกี"
+
+#: misc/kencodingdetector.cpp:1133 misc/kencodingdetector.cpp:1199
+msgctxt "@item Text character set"
+msgid "Japanese"
+msgstr "ญี่ปุ่น"
+
+#: misc/kencodingdetector.cpp:1135 misc/kencodingdetector.cpp:1184
+msgctxt "@item Text character set"
+msgid "Baltic"
+msgstr "บอลติก"
+
+#: misc/kencodingdetector.cpp:1137 misc/kencodingdetector.cpp:1181
+msgctxt "@item Text character set"
+msgid "Arabic"
+msgstr "อารบิก"
+
+#: misc/kencodingdetector.cpp:1208
+msgctxt "@item Text character set"
+msgid "Chinese Traditional"
+msgstr "จีนดั้งเดิม"
+
+#: misc/kencodingdetector.cpp:1211
+msgctxt "@item Text character set"
+msgid "Chinese Simplified"
+msgstr "จีนประยุกต์"
+
+#: misc/kencodingdetector.cpp:1214
+msgctxt "@item Text character set"
+msgid "Korean"
+msgstr "เกาหลี"
+
+#: misc/kencodingdetector.cpp:1217
+msgctxt "@item Text character set"
+msgid "Thai"
+msgstr "ไทย"
+
+#: rendering/media_controls.cpp:46
+msgid "Play"
+msgstr "เล่น"
+
+#: rendering/media_controls.cpp:49
+msgid "Pause"
+msgstr "หยุดชั่วคราว"
+
+#: rendering/render_form.cpp:903
+msgid "New Web Shortcut"
+msgstr "ทางลัดเว็บตัวใหม่"
+
+#: rendering/render_form.cpp:924
+#, kde-format
+msgid "%1 is already assigned to %2"
+msgstr "%1 ถูกกำหนดไปยัง %2 อยู่แล้ว"
+
+#: rendering/render_form.cpp:924
+msgid "Error"
+msgstr "ผิดพลาด"
+
+#: rendering/render_form.cpp:970
+msgid "Search &provider name:"
+msgstr "ค้นหาชื่อ&ผู้จัดทำ:"
+
+#: rendering/render_form.cpp:972
+msgid "New search provider"
+msgstr "ค้นหาชื่อผู้จัดทำใหม่"
+
+#: rendering/render_form.cpp:977
+msgid "UR&I shortcuts:"
+msgstr "ทางลัดที่อยู่ UR&I:"
+
+#: rendering/render_form.cpp:1056
+msgid "Clear &History"
+msgstr "ล้าง&ประวัติ"
+
+#: rendering/render_form.cpp:1071
+msgid "Create Web Shortcut"
+msgstr "สร้างทางลัดของเว็บ"
+
+#: ui/findbar/khtmlfindbar.cpp:49
+msgid "C&ase sensitive"
+msgstr "แยกแยะตัวพิมพ์เล็ก-ใหญ่"
+
+#: ui/findbar/khtmlfindbar.cpp:51
+msgid "&Whole words only"
+msgstr "ตรงกัน&ทุกตัวอักษร"
+
+#: ui/findbar/khtmlfindbar.cpp:53
+msgid "From c&ursor"
+msgstr "จากเ&คอร์เซอร์"
+
+#: ui/findbar/khtmlfindbar.cpp:55
+msgid "&Selected text"
+msgstr "ข้อความที่เ&ลือกไว้"
+
+#: ui/findbar/khtmlfindbar.cpp:57
+msgid "Regular e&xpression"
+msgstr "เ&งื่อนไขการค้นหา"
+
+#: ui/findbar/khtmlfindbar.cpp:59
+msgid "Find &links only"
+msgstr "ค้นหา&ส่วนเชื่อมโยงเท่านั้น"
+
+#: ui/findbar/khtmlfindbar.cpp:224
+msgid "Not found"
+msgstr "ค้นไม่พบ"
+
+#: ui/findbar/khtmlfindbar.cpp:239
+msgid "No more matches for this search direction."
+msgstr "ไม่พบสิ่งใดที่เข้าคู่กับการค้นหานี้"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+msgid "F&ind:"
+msgstr "ค้น&หา:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+msgid "&Next"
+msgstr "&ถัดไป"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+msgid "&Previous"
+msgstr "&ก่อนหน้า"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+msgid "Opt&ions"
+msgstr "ตัวเลือ&ก"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
+msgid "Do you want to store this password?"
+msgstr "คุณต้องการจัดเก็บรหัสผ่านนี้หรือไม่ ?"
+
+#: ui/passwordbar/storepassbar.cpp:61
+#, kde-format
+msgid "Do you want to store this password for %1?"
+msgstr "คุณต้องการจัดเก็บรหัสผ่านนี้สำหรับ %1 หรือไม่ ?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+msgid "&Store"
+msgstr "&จัดเก็บ"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+msgid "Ne&ver store for this site"
+msgstr "ไ&ม่ต้องจัดเก็บกับเว็บไซต์นี้"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+msgid "Do &not store this time"
+msgstr "ไม่&ต้องจัดเก็บในตอนนี้"
+
+#: xml/dom_docimpl.cpp:2376
+msgid "Basic Page Style"
+msgstr "รูปแบบหน้าเว็บพื้นฐาน"
+
+#: xml/xml_tokenizer.cpp:347
+msgid "the document is not in the correct file format"
+msgstr "เอกสารไม่ได้อยู่ในรูปแบบของแฟ้มเอกสารที่ถูกต้อง"
+
+#: xml/xml_tokenizer.cpp:352
+#, kde-format
+msgid "fatal parsing error: %1 in line %2, column %3"
+msgstr "การวิเคราะห์ค่าผิดพลาด: %1 ในบรรทัดที่ %2, คอลัมน์ที่ %3"
+
+#: xml/xml_tokenizer.cpp:567
+msgid "XML parsing error"
+msgstr "การวิเคราะห์ค่า XML ผิดพลาด"

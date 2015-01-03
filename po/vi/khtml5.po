@@ -1,0 +1,1585 @@
+# Vietnamese translation for kdelibs.
+# Copyright © 2007 KDE i18n Project for Vietnamese.
+#
+# Clytie Siddall <clytie@riverland.net.au>, 2006-2007.
+# Hoàng Đức Hiếu <hieu.d.hoang@gmail.com>, 2008, 2011.
+# Lê Hoàng Phương <herophuong93@gmail.com>, 2011, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-12-13 07:55+0000\n"
+"PO-Revision-Date: 2012-09-23 18:43+0800\n"
+"Last-Translator: Lê Hoàng Phương <herophuong93@gmail.com>\n"
+"Language-Team: American English <kde-i18n-vi@kde.org>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 1.5\n"
+
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Nhóm Việt hoá KDE"
+
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "kde-l10n-vi@kde.org"
+
+#: ecma/debugger/callstackdock.cpp:35
+msgid "Call Stack"
+msgstr "Stack gọi lệnh"
+
+#: ecma/debugger/callstackdock.cpp:39
+msgid "Call"
+msgstr "Gọi"
+
+#: ecma/debugger/callstackdock.cpp:39
+msgid "Line"
+msgstr "Dòng"
+
+#: ecma/debugger/consoledock.cpp:220
+msgid "Console"
+msgstr "Dòng lệnh"
+
+#: ecma/debugger/consoledock.cpp:243
+msgid "Enter"
+msgstr "Nhập"
+
+#: ecma/debugger/debugdocument.cpp:206
+msgid ""
+"Unable to find the Kate editor component;\n"
+"please check your KDE installation."
+msgstr ""
+"Không tìm thấy thành phần soạn thảo văn bản Kate;\n"
+"hãy kiểm tra lại bản cài đặt KDE của bạn."
+
+#: ecma/debugger/debugdocument.cpp:272
+msgid "Breakpoint"
+msgstr "Điểm ngắt"
+
+#: ecma/debugger/debugwindow.cpp:101
+msgid "JavaScript Debugger"
+msgstr "Bộ gỡ lỗi JavaScript"
+
+#: ecma/debugger/debugwindow.cpp:178
+msgid "&Break at Next Statement"
+msgstr "&Ngắt tại câu kế"
+
+#: ecma/debugger/debugwindow.cpp:179
+msgid "Break at Next"
+msgstr "Ngắt tại điểm kết tiếp"
+
+#: ecma/debugger/debugwindow.cpp:184
+msgid "Continue"
+msgstr "Tiếp tục"
+
+#: ecma/debugger/debugwindow.cpp:190
+msgid "Step Over"
+msgstr "Bước qua"
+
+#: ecma/debugger/debugwindow.cpp:196
+msgid "Step Into"
+msgstr "Bước vào"
+
+#: ecma/debugger/debugwindow.cpp:203
+msgid "Step Out"
+msgstr "Bước ra"
+
+#: ecma/debugger/debugwindow.cpp:209
+msgid "Reindent Sources"
+msgstr "Căn lề lại nguồn"
+
+#: ecma/debugger/debugwindow.cpp:214
+msgid "Report Exceptions"
+msgstr "Báo cáo lỗi"
+
+#: ecma/debugger/debugwindow.cpp:222
+msgid "&Debug"
+msgstr "&Gỡ lỗi"
+
+#: ecma/debugger/debugwindow.cpp:230
+msgid "&Settings"
+msgstr "Thiết &lập"
+
+#: ecma/debugger/debugwindow.cpp:256
+msgid "Close source"
+msgstr "Đóng nguồn"
+
+#: ecma/debugger/debugwindow.cpp:262
+msgid "Ready"
+msgstr "Sẵn sàng"
+
+#: ecma/debugger/debugwindow.cpp:587
+#, kde-format
+msgid ""
+"An error occurred while attempting to run a script on this page.\n"
+"\n"
+"%1 line %2:\n"
+"%3"
+msgstr ""
+"Gặp lỗi khi cố chạy một tập lệnh trên trang này.\n"
+"\n"
+"%1 dòng %2:\n"
+"%3"
+
+#: ecma/debugger/debugwindow.cpp:780
+msgid ""
+"Do not know where to evaluate the expression. Please pause a script or open "
+"a source file."
+msgstr ""
+"Không biết nơi nào để kiểm thử biểu thức. Hãy dừng một lệnh hoặc mở một tập "
+"tin nguồn."
+
+#: ecma/debugger/debugwindow.cpp:814
+#, kde-format
+msgid "Evaluation threw an exception %1"
+msgstr "Kiểm thử cho ra một lỗi %1"
+
+#: ecma/debugger/errordlg.cpp:35
+msgid "JavaScript Error"
+msgstr "Lỗi JavaScript"
+
+#: ecma/debugger/errordlg.cpp:49
+msgid "&Do not show this message again"
+msgstr "&Đừng hiện thông điệp này lần nữa"
+
+#: ecma/debugger/localvariabledock.cpp:43
+msgid "Local Variables"
+msgstr "Biến cục bộ"
+
+#: ecma/debugger/localvariabledock.cpp:51
+msgid "Reference"
+msgstr "Tham chiếu"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
+#: java/kjavaappletviewer.cpp:150
+msgid "Value"
+msgstr "Giá trị"
+
+#: ecma/debugger/scriptsdock.cpp:37
+msgid "Loaded Scripts"
+msgstr "Mã lệnh đã tải"
+
+#: ecma/kjs_binding.cpp:196
+msgid ""
+"A script on this page is causing KHTML to freeze. If it continues to run, "
+"other applications may become less responsive.\n"
+"Do you want to stop the script?"
+msgstr ""
+"Một tập lệnh trên trang này đang làm KHTML ngưng hoạt động. Nếu nó tiếp tục "
+"chạy, các ứng dụng khác có thể sẽ không đáp ứng được.\n"
+"Bạn có muốn dừng tập lệnh này không?"
+
+#: ecma/kjs_binding.cpp:196
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: ecma/kjs_binding.cpp:196
+msgid "&Stop Script"
+msgstr "&Dừng mã lệnh"
+
+#: ecma/kjs_binding.cpp:437
+#, kde-format
+msgid "Parse error at %1 line %2"
+msgstr "Lỗi phân tách tại %1 dòng %2"
+
+#: ecma/kjs_html.cpp:2231 ecma/kjs_window.cpp:1946
+msgid "Confirmation: JavaScript Popup"
+msgstr "Xác nhận: Bật lên JavaScript"
+
+#: ecma/kjs_html.cpp:2233
+msgid ""
+"This site is submitting a form which will open up a new browser window via "
+"JavaScript.\n"
+"Do you want to allow the form to be submitted?"
+msgstr ""
+"Nơi Mạng này đang gởi đơn sẽ mở một cửa sổ duyệt mới bằng JavaScript.\n"
+"Bạn có muốn cho phép gởi đơn này không?"
+
+#: ecma/kjs_html.cpp:2236
+#, kde-format
+msgid ""
+"<qt>This site is submitting a form which will open <p>%1</p> in a new "
+"browser window via JavaScript.<br />Do you want to allow the form to be "
+"submitted?</qt>"
+msgstr ""
+"<qt>Nơi Mạng này đang gởi đơn sẽ mở <p>%1</p>trong một cửa sổ duyệt mới bằng "
+"JavaScript.<br />Bạn có muốn cho phép gởi đơn này không?</qt>"
+
+#: ecma/kjs_html.cpp:2238 ecma/kjs_window.cpp:1954
+msgid "Allow"
+msgstr "Cho phép"
+
+#: ecma/kjs_html.cpp:2238 ecma/kjs_window.cpp:1954
+msgid "Do Not Allow"
+msgstr "Không cho phép"
+
+#: ecma/kjs_window.cpp:1949
+msgid ""
+"This site is requesting to open up a new browser window via JavaScript.\n"
+"Do you want to allow this?"
+msgstr ""
+"Nơi Mạng này yêu cầu mở một cửa sổ duyệt mới bằng JavaScript.\n"
+"Bạn muốn cho phép không?"
+
+#: ecma/kjs_window.cpp:1952
+#, kde-format
+msgid ""
+"<qt>This site is requesting to open<p>%1</p>in a new browser window via "
+"JavaScript.<br />Do you want to allow this?</qt>"
+msgstr ""
+"<qt>Nơi Mạng này yêu cầu mở <p>%1</p> một cửa sổ duyệt mới bằng JavaScript."
+"<br/>Bạn muốn cho phép không?</qt>"
+
+#: ecma/kjs_window.cpp:2285
+msgid "Close window?"
+msgstr "Đóng cửa sổ ?"
+
+#: ecma/kjs_window.cpp:2285
+msgid "Confirmation Required"
+msgstr "Cần thiết xác nhận"
+
+#: ecma/kjs_window.cpp:3235
+#, kde-format
+msgid ""
+"Do you want a bookmark pointing to the location \"%1\" to be added to your "
+"collection?"
+msgstr ""
+"Bạn có muốn đánh dấu chỉ tới địa điểm \"%1\" được thêm vào tập hợp mình "
+"không?"
+
+#: ecma/kjs_window.cpp:3238
+#, kde-format
+msgid ""
+"Do you want a bookmark pointing to the location \"%1\" titled \"%2\" to be "
+"added to your collection?"
+msgstr ""
+"Bạn có muốn đánh dấu tên \"%2\" chỉ tới địa điểm \"%1\" được thêm vào tập "
+"hợp mình không?"
+
+#: ecma/kjs_window.cpp:3247
+msgid "JavaScript Attempted Bookmark Insert"
+msgstr "Sự cố chèn đánh dấu JavaScript"
+
+#: ecma/kjs_window.cpp:3251
+msgid "Insert"
+msgstr "Chèn"
+
+#: ecma/kjs_window.cpp:3251
+msgid "Disallow"
+msgstr "Cấm"
+
+#: html/html_formimpl.cpp:420
+msgid ""
+"The following files will not be uploaded because they could not be found.\n"
+"Do you want to continue?"
+msgstr ""
+"Những tập tin theo đây sẽ không được tải lên vì không tìm thấy chúng.\n"
+"Bạn có muốn tiếp tục không?"
+
+#: html/html_formimpl.cpp:424
+msgid "Submit Confirmation"
+msgstr "Xác nhận"
+
+#: html/html_formimpl.cpp:424
+msgid "&Submit Anyway"
+msgstr "Vẫn &gởi"
+
+#: html/html_formimpl.cpp:434
+msgid ""
+"You are about to transfer the following files from your local computer to "
+"the Internet.\n"
+"Do you really want to continue?"
+msgstr ""
+"Bạn sắp truyền những tập tin theo đây từ máy tính cục bộ lên Mạng.\n"
+"Bạn thực sự muốn tiếp tục không?"
+
+#: html/html_formimpl.cpp:438
+msgid "Send Confirmation"
+msgstr "Xác nhận"
+
+#: html/html_formimpl.cpp:438
+msgid "&Send File"
+msgid_plural "&Send Files"
+msgstr[0] "&Gửi tập tin"
+
+#: html/html_formimpl.cpp:1687 html/html_formimpl.cpp:1908 khtml_part.cpp:4968
+#: khtmlview.cpp:2879 khtmlview.cpp:2923
+msgid "Submit"
+msgstr "Gởi"
+
+#: html/html_formimpl.cpp:1900 khtmlview.cpp:2894 khtmlview.cpp:2929
+msgid "Reset"
+msgstr "Đặt lại"
+
+#: html/html_formimpl.cpp:2828
+msgid "Key Generator"
+msgstr ""
+
+#: html/html_objectimpl.cpp:632
+#, kde-format
+msgid ""
+"No plugin found for '%1'.\n"
+"Do you want to download one from %2?"
+msgstr ""
+"Không tìm thấy bộ cầm phít cho \"%1\".\n"
+"Bạn có muốn tải điều xuống %2 không?"
+
+#: html/html_objectimpl.cpp:633
+msgid "Missing Plugin"
+msgstr "Thiếu bộ cầm phít"
+
+#: html/html_objectimpl.cpp:633
+msgid "Download"
+msgstr "Tải về"
+
+#: html/html_objectimpl.cpp:633
+msgid "Do Not Download"
+msgstr "Không tải về"
+
+#: html/htmlparser.cpp:1978
+msgid "This is a searchable index. Enter search keywords: "
+msgstr "Đây là chỉ mục tìm kiếm được. Hãy nhập từ khóa tìm kiếm: "
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, fuzzy
+#| msgid "&Keep password"
+msgid "&Repeat password:"
+msgstr "&Nhớ mật khẩu"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, fuzzy
+#| msgid "&Keep password"
+msgid "&Choose password:"
+msgstr "&Nhớ mật khẩu"
+
+#: html/ksslkeygen.cpp:82
+#, fuzzy
+#| msgid "KDE Certificate Part"
+msgid "KDE Certificate Request"
+msgstr "Phần chứng nhận KDE"
+
+#: html/ksslkeygen.cpp:89
+#, fuzzy
+#| msgid "KDE Certificate Part"
+msgid "KDE Certificate Request - Password"
+msgstr "Phần chứng nhận KDE"
+
+#: html/ksslkeygen.cpp:126
+#, fuzzy
+#| msgid "Unsupported Key"
+msgid "Unsupported key size."
+msgstr "Phím không hỗ trợ"
+
+#: html/ksslkeygen.cpp:126
+#, fuzzy
+#| msgid "Information"
+msgid "KDE SSL Information"
+msgstr "Thông tin"
+
+#: html/ksslkeygen.cpp:132 khtml_part.cpp:5023
+msgid "KDE"
+msgstr "KDE"
+
+#: html/ksslkeygen.cpp:133
+msgid "Please wait while the encryption keys are generated..."
+msgstr ""
+
+#: html/ksslkeygen.cpp:148
+#, fuzzy
+#| msgid "Do you want to store this password for %1?"
+msgid "Do you wish to store the passphrase in your wallet file?"
+msgstr "Bạn có muốn lưu mật khẩu này cho %1?"
+
+#: html/ksslkeygen.cpp:148
+#, fuzzy
+#| msgid "&Store"
+msgid "Store"
+msgstr "&Lưu"
+
+#: html/ksslkeygen.cpp:148
+#, fuzzy
+#| msgid "Do Not Store"
+msgid "Do Not Store"
+msgstr "Không lưu"
+
+#: html/ksslkeygen.cpp:257
+msgid "2048 (High Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:258
+msgid "1024 (Medium Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:259
+msgid "768  (Low Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:260
+msgid "512  (Low Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:262
+#, fuzzy
+#| msgid "Enable SOCKS support"
+msgid "No SSL support."
+msgstr "Bật hỗ trợ SOCKS"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+msgid "Document Information"
+msgstr "Thông tin Tài liệu"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "Chung"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+msgid "URL:"
+msgstr "Địa chỉ Mạng:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+msgid "Title:"
+msgstr "Tựa :"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+msgid "Last modified:"
+msgstr "Sửa đổi cuối cùng:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+msgid "Document encoding:"
+msgstr "Bảng mã Tài liệu :"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+msgid "Rendering mode:"
+msgstr "Chế độ hiển thị:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+msgid "HTTP Headers"
+msgstr "Dòng đầu HTTP"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+msgid "Property"
+msgstr "Thuộc tính"
+
+#: java/kjavaapplet.cpp:227
+#, kde-format
+msgid "Initializing Applet \"%1\"..."
+msgstr "Đang sở khởi tiểu dụng \"%1\"..."
+
+#: java/kjavaapplet.cpp:233
+#, kde-format
+msgid "Starting Applet \"%1\"..."
+msgstr "Đang khởi chạy tiểu dụng \"%1\"..."
+
+#: java/kjavaapplet.cpp:240
+#, kde-format
+msgid "Applet \"%1\" started"
+msgstr "Tiểu dụng \"%1\" đã khởi chạy"
+
+#: java/kjavaapplet.cpp:246
+#, kde-format
+msgid "Applet \"%1\" stopped"
+msgstr "Tiểu dụng \"%1\" đã dừng"
+
+#: java/kjavaappletserver.cpp:144
+msgid "Loading Applet"
+msgstr "Đang tải tiểu dụng..."
+
+#: java/kjavaappletserver.cpp:147
+msgid "Error: java executable not found"
+msgstr "Lỗi : không tìm thấy tập tin thực hiện được Java"
+
+#: java/kjavaappletserver.cpp:674
+#, kde-format
+msgid "Signed by (validation: %1)"
+msgstr "Đã ký bởi (xác thực: %1)"
+
+#: java/kjavaappletserver.cpp:676
+#, kde-format
+msgid "Certificate (validation: %1)"
+msgstr "Chứng thực (xác thực: %1)"
+
+#: java/kjavaappletserver.cpp:812 khtml_part.cpp:7053
+msgid "Security Alert"
+msgstr "Cảnh giác bảo mật"
+
+#: java/kjavaappletserver.cpp:817
+msgid "Do you grant Java applet with certificate(s):"
+msgstr "Bạn có cho tiểu dụng Java có chứng nhận:"
+
+#: java/kjavaappletserver.cpp:819
+msgid "the following permission"
+msgstr "quyền theo đây"
+
+#: java/kjavaappletserver.cpp:828
+msgid "&No"
+msgstr "&Không"
+
+#: java/kjavaappletserver.cpp:832
+msgid "&Reject All"
+msgstr "&Từ chối hết"
+
+#: java/kjavaappletserver.cpp:835
+msgid "&Yes"
+msgstr "&Có"
+
+#: java/kjavaappletserver.cpp:838
+msgid "&Grant All"
+msgstr "Cho &phép hết"
+
+#: java/kjavaappletviewer.cpp:59
+msgid "KDE Java Applet Plugin"
+msgstr "Bộ cầm phít tiểu dụng Java KDE"
+
+#: java/kjavaappletviewer.cpp:141
+msgid "Applet Parameters"
+msgstr "Tham số tiểu dụng"
+
+#: java/kjavaappletviewer.cpp:149
+msgid "Parameter"
+msgstr "Tham số"
+
+#: java/kjavaappletviewer.cpp:153
+msgid "Class"
+msgstr "Hạng"
+
+#: java/kjavaappletviewer.cpp:159
+msgid "Base URL"
+msgstr "Địa chỉ Mạng cơ bản"
+
+#: java/kjavaappletviewer.cpp:165
+msgid "Archives"
+msgstr "Kho"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+msgid "&Edit"
+msgstr "&Hiệu chỉnh"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+msgid "&File"
+msgstr "&Tập tin"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+msgid "&View"
+msgstr "&Xem"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+msgid "HTML Toolbar"
+msgstr "Thanh công cụ HTML"
+
+#: khtml_ext.cpp:413
+msgid "&Copy Text"
+msgstr "&Chép văn bản"
+
+#: khtml_ext.cpp:427
+#, kde-format
+msgid "Open '%1'"
+msgstr "Mở \"%1\""
+
+#: khtml_ext.cpp:444
+msgid "&Copy Email Address"
+msgstr "&Chép địa chỉ thư"
+
+#: khtml_ext.cpp:449
+msgid "&Save Link As..."
+msgstr "&Lưu liên kết dạng..."
+
+#: khtml_ext.cpp:454
+msgid "&Copy Link Address"
+msgstr "C&hép địa chỉ liên kết"
+
+#: khtml_ext.cpp:466
+msgctxt "@title:menu HTML frame/iframe"
+msgid "Frame"
+msgstr "Khung"
+
+#: khtml_ext.cpp:467
+msgid "Open in New &Window"
+msgstr "Mở trong cửa sổ &mới"
+
+#: khtml_ext.cpp:473
+msgid "Open in &This Window"
+msgstr "Mở trong cửa sổ &này"
+
+#: khtml_ext.cpp:478
+msgid "Open in &New Tab"
+msgstr "Mở trong &tab mới"
+
+#: khtml_ext.cpp:488
+msgid "Reload Frame"
+msgstr "Tải lại khung"
+
+#: khtml_ext.cpp:493 khtml_part.cpp:448
+msgid "Print Frame..."
+msgstr "In khung..."
+
+#: khtml_ext.cpp:499 khtml_part.cpp:300
+msgid "Save &Frame As..."
+msgstr "Lưu &khung dạng..."
+
+#: khtml_ext.cpp:504 khtml_part.cpp:276
+msgid "View Frame Source"
+msgstr "Xem mã nguồn khung"
+
+#: khtml_ext.cpp:509
+msgid "View Frame Information"
+msgstr "Xem thông tin khung"
+
+#: khtml_ext.cpp:519
+msgid "Block IFrame..."
+msgstr "Chặn IFrame..."
+
+#: khtml_ext.cpp:543
+msgid "Save Image As..."
+msgstr "Lưu ảnh dạng..."
+
+#: khtml_ext.cpp:548
+msgid "Send Image..."
+msgstr "Gởi ảnh..."
+
+#: khtml_ext.cpp:554
+msgid "Copy Image"
+msgstr "Chép ảnh"
+
+#: khtml_ext.cpp:562
+msgid "Copy Image Location"
+msgstr "Chép địa điểm ảnh"
+
+#: khtml_ext.cpp:571
+#, kde-format
+msgid "View Image (%1)"
+msgstr "Xem ảnh (%1)"
+
+#: khtml_ext.cpp:577
+msgid "Block Image..."
+msgstr "Chặn ảnh..."
+
+#: khtml_ext.cpp:584
+#, kde-format
+msgid "Block Images From %1"
+msgstr "Chặn các ảnh từ %1"
+
+#: khtml_ext.cpp:596
+msgid "Stop Animations"
+msgstr "Dừng hoạt cảnh"
+
+#: khtml_ext.cpp:637
+#, kde-format
+msgid "Search for '%1' with %2"
+msgstr "Tìm kiếm \"%1\" bằng %2"
+
+#: khtml_ext.cpp:647
+#, kde-format
+msgid "Search for '%1' with"
+msgstr "Tìm kiếm \"%1\" bằng"
+
+#: khtml_ext.cpp:693
+msgid "Save Link As"
+msgstr "Lưu liên kết dạng"
+
+#: khtml_ext.cpp:712
+msgid "Save Image As"
+msgstr "Lưu ảnh dạng"
+
+#: khtml_ext.cpp:726 khtml_ext.cpp:738
+msgid "Add URL to Filter"
+msgstr "Thêm địa chỉ Mạng vào bộ lọc"
+
+#: khtml_ext.cpp:727 khtml_ext.cpp:739
+msgid "Enter the URL:"
+msgstr "Nhập URL:"
+
+#: khtml_ext.cpp:875
+#, kde-format
+msgid ""
+"A file named \"%1\" already exists. Are you sure you want to overwrite it?"
+msgstr "Tập tin tên \"%1\" đã có. Bạn có chắc muốn ghi đè lên nó không?"
+
+#: khtml_ext.cpp:875
+msgid "Overwrite File?"
+msgstr "Ghi đè tập tin không?"
+
+#: khtml_ext.cpp:875
+msgid "Overwrite"
+msgstr "Ghi đè"
+
+#: khtml_ext.cpp:927
+#, kde-format
+msgid "The Download Manager (%1) could not be found in your $PATH "
+msgstr ""
+"Không tìm thấy Bộ Quản lý Tải về (%1) trong PATH (đường dẫn ứng dụng) của "
+"bạn."
+
+#: khtml_ext.cpp:928
+msgid ""
+"Try to reinstall it  \n"
+"\n"
+"The integration with Konqueror will be disabled."
+msgstr ""
+"Hãy thử cài đặt lại nó.\n"
+"\n"
+"Khả năng hợp nhất với Konqueror sẽ bị tắt."
+
+#: khtml_ext.cpp:1007
+#, no-c-format
+msgid "Default Font Size (100%)"
+msgstr "Kích cỡ phông chữ mặc định (100%)"
+
+#: khtml_ext.cpp:1021
+#, no-c-format, kde-format
+msgid "%1%"
+msgstr "%1%"
+
+#: khtml_global.cpp:203
+msgid "KHTML"
+msgstr "KHTML"
+
+#: khtml_global.cpp:204
+msgid "Embeddable HTML component"
+msgstr "Thành phần HTML nhúng được"
+
+#: khtml_part.cpp:269
+msgid "View Do&cument Source"
+msgstr "Xem &mã nguồn tài liệu"
+
+#: khtml_part.cpp:283
+msgid "View Document Information"
+msgstr "Xem thông tin tài liệu"
+
+#: khtml_part.cpp:290
+msgid "Save &Background Image As..."
+msgstr "Lưu ảnh &nền dạng..."
+
+#: khtml_part.cpp:312 khtml_part.cpp:4195
+msgid "SSL"
+msgstr "SSL"
+
+#: khtml_part.cpp:316
+msgid "Print Rendering Tree to STDOUT"
+msgstr "In cây vẽ ra thiết bị xuất chuẩn"
+
+#: khtml_part.cpp:320
+msgid "Print DOM Tree to STDOUT"
+msgstr "In cây DOM ra thiết bị xuất chuẩn"
+
+#: khtml_part.cpp:324
+msgid "Print frame tree to STDOUT"
+msgstr "In cây khung ra STDOUT"
+
+#: khtml_part.cpp:328
+msgid "Stop Animated Images"
+msgstr "Dừng ảnh hoạt cảnh"
+
+#: khtml_part.cpp:332
+msgid "Set &Encoding"
+msgstr "Đặt &bảng mã"
+
+#: khtml_part.cpp:378
+msgid "Use S&tylesheet"
+msgstr "Dùng &Tờ kiểu dáng"
+
+#: khtml_part.cpp:383
+msgid "Enlarge Font"
+msgstr "Phóng to phông"
+
+#: khtml_part.cpp:386
+msgid ""
+"<qt>Enlarge Font<br /><br />Make the font in this window bigger. Click and "
+"hold down the mouse button for a menu with all available font sizes.</qt>"
+msgstr ""
+"<qt>Phóng to phông<br /><br />Làm cho phông chữ trong cửa sổ này to hơn. "
+"Nhấn và giữ nút chuột để thấy trình đơn với tất cả các cỡ phông sẵn có.</qt>"
+
+#: khtml_part.cpp:390
+msgid "Shrink Font"
+msgstr "Thu nhỏ phông"
+
+#: khtml_part.cpp:393
+msgid ""
+"<qt>Shrink Font<br /><br />Make the font in this window smaller. Click and "
+"hold down the mouse button for a menu with all available font sizes.</qt>"
+msgstr ""
+"<qt>Thu nhỏ phông<br /><br />Làm phông chữ trong cửa sổ này nhỏ hơn. Nhấn và "
+"giữ nút chuột để thấy trình đơn các cỡ phông sẵn có.</qt>"
+
+#: khtml_part.cpp:408
+msgid ""
+"<qt>Find text<br /><br />Shows a dialog that allows you to find text on the "
+"displayed page.</qt>"
+msgstr ""
+"<qt>Tìm văn bản<br /><br />Hiển thị hộp thoại cho bạn khả năng tìm văn  bản "
+"trong trang được hiển thị.</qt>"
+
+#: khtml_part.cpp:412
+msgid ""
+"<qt>Find next<br /><br />Find the next occurrence of the text that you have "
+"found using the <b>Find Text</b> function.</qt>"
+msgstr ""
+"<qt>Tìm tiếp<br /><br />Tìm lần kế tiếp gặp văn bản đang tìm bằng chức năng "
+"<b>Tìm tiếp</b>.</qt>"
+
+#: khtml_part.cpp:418
+msgid ""
+"<qt>Find previous<br /><br />Find the previous occurrence of the text that "
+"you have found using the <b>Find Text</b> function.</qt>"
+msgstr ""
+"<qt>Tìm trước<br /><br />Tìm lần trước gặp đoạn đã tìm bằng chức năng <b>Tìm "
+"trước</b>.</qt>"
+
+#: khtml_part.cpp:423
+msgid "Find Text as You Type"
+msgstr "Tìm văn bản khi gõ"
+
+#: khtml_part.cpp:426
+msgid ""
+"This shortcut shows the find bar, for finding text in the displayed page. It "
+"cancels the effect of \"Find Links as You Type\", which sets the \"Find "
+"links only\" option."
+msgstr ""
+"Phím tắt này sẽ hiện ra thanh tìm để tìm văn bản trong trang được hiển thị. "
+"Nó sẽ hủy hiệu lực của \"Tìm liên kết khi gõ\" do điều này dùng tùy chọn "
+"\"Chỉ tìm liên kết\"."
+
+#: khtml_part.cpp:430
+msgid "Find Links as You Type"
+msgstr "Tìm liên kết khi gõ"
+
+#: khtml_part.cpp:436
+msgid ""
+"This shortcut shows the find bar, and sets the option \"Find links only\"."
+msgstr "Phím tắt này sẽ hiện thanh tìm và đặt tùy chọn \"Chỉ tìm liên kết\""
+
+#: khtml_part.cpp:452
+msgid ""
+"<qt>Print Frame<br /><br />Some pages have several frames. To print only a "
+"single frame, click on it and then use this function.</qt>"
+msgstr ""
+"<qt>In khung<br /><br />Một số trang chứa nhiều khung. Để in chỉ một khung "
+"riêng lẻ, hãy nhấp vào nó rồi chọn chức năng này.</qt>"
+
+#: khtml_part.cpp:467
+msgid "Toggle Caret Mode"
+msgstr "Bật/tắt chế độn con nháy"
+
+#: khtml_part.cpp:770
+#, kde-format
+msgid "The fake user-agent '%1' is in use."
+msgstr "Tác nhân người dùng giả \"%1\" đang được dùng."
+
+#: khtml_part.cpp:1274
+msgid "This web page contains coding errors."
+msgstr "Trang Mạng này chứa lỗi tạo mã."
+
+#: khtml_part.cpp:1319
+msgid "&Hide Errors"
+msgstr "Ẩ&n lỗi"
+
+#: khtml_part.cpp:1320
+msgid "&Disable Error Reporting"
+msgstr "&Tắt thông báo lỗi"
+
+#: khtml_part.cpp:1363
+#, kde-format
+msgid "<qt><b>Error</b>: %1: %2</qt>"
+msgstr "<qt><b>Lỗi</b> : %1: %2</qt>"
+
+#: khtml_part.cpp:1412
+#, kde-format
+msgid "<qt><b>Error</b>: node %1: %2</qt>"
+msgstr "<qt><b>Lỗi</b> : nút %1: %2</qt>"
+
+#: khtml_part.cpp:1534
+msgid "Display Images on Page"
+msgstr "Hiển thị ảnh trên trang"
+
+#: khtml_part.cpp:1918
+#, kde-format
+msgid "Error: %1 - %2"
+msgstr "Lỗi : %1 - %2"
+
+#: khtml_part.cpp:1923
+msgid "The requested operation could not be completed"
+msgstr "Không thể làm xong thao tác đã yêu cầu"
+
+#: khtml_part.cpp:1929
+msgid "Technical Reason: "
+msgstr "Lý do kỹ thuật: "
+
+#: khtml_part.cpp:1935
+msgid "Details of the Request:"
+msgstr "Chi tiết về yêu cầu :"
+
+#: khtml_part.cpp:1937
+#, kde-format
+msgid "URL: %1"
+msgstr "Địa chỉ Mạng: %1"
+
+#: khtml_part.cpp:1940
+#, kde-format
+msgid "Protocol: %1"
+msgstr "Giao thức: %1"
+
+#: khtml_part.cpp:1943
+#, kde-format
+msgid "Date and Time: %1"
+msgstr "Ngày và Giờ : %1"
+
+#: khtml_part.cpp:1945
+#, kde-format
+msgid "Additional Information: %1"
+msgstr "Thông tin thêm: %1"
+
+#: khtml_part.cpp:1947
+msgid "Description:"
+msgstr "Mô tả :"
+
+#: khtml_part.cpp:1953
+msgid "Possible Causes:"
+msgstr "Nguyên nhân có thể :"
+
+#: khtml_part.cpp:1960
+msgid "Possible Solutions:"
+msgstr "Giải pháp có thể :"
+
+#: khtml_part.cpp:2408
+msgid "Page loaded."
+msgstr "Trang đã tải."
+
+#: khtml_part.cpp:2410
+#, kde-format
+msgid "%1 Image of %2 loaded."
+msgid_plural "%1 Images of %2 loaded."
+msgstr[0] "%1 ảnh của %2 đã tải."
+
+#: khtml_part.cpp:2588
+msgid "Automatic Detection"
+msgstr "Phát hiện tự động"
+
+#: khtml_part.cpp:3718 khtml_part.cpp:3782 khtml_part.cpp:3792
+msgid " (In new window)"
+msgstr " (Trong cửa sổ mới)"
+
+#: khtml_part.cpp:3746
+msgid "Symbolic Link"
+msgstr "Liên kết tượng trưng"
+
+#: khtml_part.cpp:3748
+#, kde-format
+msgid "%1 (Link)"
+msgstr "%1 (Liên kết)"
+
+#: khtml_part.cpp:3764
+#, kde-format
+msgid "%2 (%1 byte)"
+msgid_plural "%2 (%1 bytes)"
+msgstr[0] "%2 (%1 byte)"
+
+#: khtml_part.cpp:3767
+#, kde-format
+msgid "%2 (%1 K)"
+msgstr "%2 (%1 K)"
+
+#: khtml_part.cpp:3794
+msgid " (In other frame)"
+msgstr " (Trong khung khác)"
+
+#: khtml_part.cpp:3800
+msgid "Email to: "
+msgstr "Gởi thư cho : "
+
+#: khtml_part.cpp:3806
+msgid " - Subject: "
+msgstr " • Chủ đề : "
+
+#: khtml_part.cpp:3808
+msgid " - CC: "
+msgstr " • CC: "
+
+#: khtml_part.cpp:3810
+msgid " - BCC: "
+msgstr " • BCC: "
+
+#: khtml_part.cpp:3891 khtml_part.cpp:4113 khtml_part.cpp:4549
+#: khtml_run.cpp:106
+msgid "Save As"
+msgstr "Lưu dạng"
+
+#: khtml_part.cpp:3896
+#, kde-format
+msgid ""
+"<qt>This untrusted page links to<br /><b>%1</b>.<br />Do you want to follow "
+"the link?</qt>"
+msgstr ""
+"<qt>Trang không tin cậy này có liên kết tới<br /><b>%1</b>.<br />Bạn có muốn "
+"theo liên kết này không?</qt>"
+
+#: khtml_part.cpp:3897
+msgid "Follow"
+msgstr "Theo"
+
+#: khtml_part.cpp:3992
+msgid "Frame Information"
+msgstr "Thông tin khung"
+
+#: khtml_part.cpp:3998
+#, kde-format
+msgid "   <a href=\"%1\">[Properties]</a>"
+msgstr "   <a href=\"%1\">[Thuộc tính]</a>"
+
+#: khtml_part.cpp:4024
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Quirks"
+msgstr ""
+
+#: khtml_part.cpp:4027
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Almost standards"
+msgstr "Hầu như chuẩn"
+
+#: khtml_part.cpp:4031
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Strict"
+msgstr "Chính xác"
+
+#: khtml_part.cpp:4100
+msgid "Save Background Image As"
+msgstr "Lưu ảnh nền dạng"
+
+#: khtml_part.cpp:4193
+msgid "The peer SSL certificate chain appears to be corrupt."
+msgstr "Chuỗi chứng thực SSL ngang hàng có vẻ như bị hỏng."
+
+#: khtml_part.cpp:4214
+msgid "Save Frame As"
+msgstr "Lưu khung dạng"
+
+#: khtml_part.cpp:4258
+msgid "&Find in Frame..."
+msgstr "&Tìm trong khung..."
+
+#: khtml_part.cpp:4260
+msgid "&Find..."
+msgstr "&Tìm..."
+
+#: khtml_part.cpp:4907
+msgid ""
+"Warning:  This is a secure form but it is attempting to send your data back "
+"unencrypted.\n"
+"A third party may be able to intercept and view this information.\n"
+"Are you sure you wish to continue?"
+msgstr ""
+"Cảnh báo : đơn này bảo mật, nhưng nó đang cố gởi dữ liệu bạn\n"
+"một cách không mật mã.\n"
+"Có lẽ người khác có thể lấy và xem thông tin này.\n"
+"Bạn cọ chắc muốn tiếp tục không?"
+
+#: khtml_part.cpp:4910 khtml_part.cpp:4920 khtml_part.cpp:4945
+msgid "Network Transmission"
+msgstr "Truyền qua mạng"
+
+#: khtml_part.cpp:4910 khtml_part.cpp:4921
+msgid "&Send Unencrypted"
+msgstr "&Gởi không mật mã"
+
+#: khtml_part.cpp:4918
+msgid ""
+"Warning: Your data is about to be transmitted across the network "
+"unencrypted.\n"
+"Are you sure you wish to continue?"
+msgstr ""
+"Cảnh báo : dữ liệu của bạn sắp được gởi một cách không mật mã.\n"
+"Bạn cọ chắc muốn tiếp tục không?"
+
+#: khtml_part.cpp:4943
+msgid ""
+"This site is attempting to submit form data via email.\n"
+"Do you want to continue?"
+msgstr ""
+"Nơi Mạng này đang cố gởi dữ liệu của đơn thông qua thư điện tử.\n"
+"Bạn có muốn tiếp tục không?"
+
+#: khtml_part.cpp:4946
+msgid "&Send Email"
+msgstr "&Gởi thư"
+
+#: khtml_part.cpp:4967
+#, kde-format
+msgid ""
+"<qt>The form will be submitted to <br /><b>%1</b><br />on your local "
+"filesystem.<br />Do you want to submit the form?</qt>"
+msgstr ""
+"<qt>Biểu mẫu sẽ được gửi cho <br /><b>%1</b><br /> trong hệ thống tập tin "
+"cục bộ của bạn.<br />Bạn có muốn gởi đơn này không?</qt>"
+
+#: khtml_part.cpp:5023
+msgid ""
+"This site attempted to attach a file from your computer in the form "
+"submission. The attachment was removed for your protection."
+msgstr ""
+"Nơi Mạng này đã cố đính một tập tin từ máy tính của bạn kèm đơn đã gởi. Tập "
+"tin đính kèm đã được gỡ bỏ để bảo vệ bạn."
+
+#: khtml_part.cpp:6117
+#, kde-format
+msgid "(%1/s)"
+msgstr "(%1/g)"
+
+#: khtml_part.cpp:7045
+msgid "Security Warning"
+msgstr "Cảnh báo bảo mật"
+
+#: khtml_part.cpp:7052
+#, kde-format
+msgid "<qt>Access by untrusted page to<br /><b>%1</b><br /> denied.</qt>"
+msgstr "<qt>Đã từ chối truy cập từ trang không tin cậy<br /><b>%1</b></qt>"
+
+#: khtml_part.cpp:7423
+#, kde-format
+msgid "The wallet '%1' is open and being used for form data and passwords."
+msgstr "Ví \"%1\" đã mở, và hoạt động với dữ liệu đơn và mật khẩu."
+
+#: khtml_part.cpp:7482
+msgid "&Close Wallet"
+msgstr "Đóng ví"
+
+#: khtml_part.cpp:7485
+msgid "&Allow storing passwords for this site"
+msgstr "&Cho phép lưu mật khẩu cho trang này"
+
+#: khtml_part.cpp:7490
+#, kde-format
+msgid "Remove password for form %1"
+msgstr "Xóa mật khẩu cho biểu mẫu %1"
+
+#: khtml_part.cpp:7605
+msgid "JavaScript &Debugger"
+msgstr "Bộ gỡ lỗi &JavaScript"
+
+#: khtml_part.cpp:7638
+msgid "This page was prevented from opening a new window via JavaScript."
+msgstr "Trang này bị JavaScript ngăn cản mở cửa sổ mới."
+
+#: khtml_part.cpp:7644
+msgid "Popup Window Blocked"
+msgstr "Cửa sổ bất lên bị chặn"
+
+#: khtml_part.cpp:7644
+msgid ""
+"This page has attempted to open a popup window but was blocked.\n"
+"You can click on this icon in the status bar to control this behavior\n"
+"or to open the popup."
+msgstr ""
+"Trang này đã cố mở cửa sổ bật lên nhưng bị chặn.\n"
+"Bạn có thể nhắp vào biểu tượng này trong thanh trạng thái\n"
+"để điều khiển ứng xử này, hoặc để mở cửa sổ bật lên."
+
+#: khtml_part.cpp:7658
+#, kde-format
+msgid "&Show Blocked Popup Window"
+msgid_plural "&Show %1 Blocked Popup Windows"
+msgstr[0] "&Hiện %1 cửa sổ bật lên bị chặn"
+
+#: khtml_part.cpp:7660
+msgid "Show Blocked Window Passive Popup &Notification"
+msgstr "Hiện thông &báo bật lên bị động cửa sổ bị chặn"
+
+#: khtml_part.cpp:7662
+msgid "&Configure JavaScript New Window Policies..."
+msgstr "&Cấu hình chính sách về cửa sổ JavaScript mới..."
+
+#: khtml_printsettings.cpp:30
+msgid ""
+"<qt><p><strong>'Print images'</strong></p><p>If this checkbox is enabled, "
+"images contained in the HTML page will be printed. Printing may take longer "
+"and use more ink or toner.</p><p>If this checkbox is disabled, only the text "
+"of the HTML page will be printed, without the included images. Printing will "
+"be faster and use less ink or toner.</p> </qt>"
+msgstr ""
+"<qt><p><strong>\"In ảnh\"</strong></p><p>Nếu chọn, các ảnh chứa trong trang "
+"HTML sẽ được in. Như thế thì việc in có thể mất thời gian hơn và ăn mực "
+"nhiều hơn.</p><p>Còn nếu không chọn, chỉ phần chữ của trang HTML sẽ được in. "
+"Như thế việc in sẽ chạy nhanh hơn và dùng ít mực hơn.</p> </qt>"
+
+#: khtml_printsettings.cpp:42
+msgid ""
+"<qt><p><strong>'Print header'</strong></p><p>If this checkbox is enabled, "
+"the printout of the HTML document will contain a header line at the top of "
+"each page. This header contains the current date, the location URL of the "
+"printed page and the page number.</p><p>If this checkbox is disabled, the "
+"printout of the HTML document will not contain such a header line.</p> </qt>"
+msgstr ""
+"<qt><p><strong>\"In đầu trang\"</strong></p><p>Nếu chọn, bản in cũa tài liệu "
+"HTML sẽ chứa một dòng riêng tại đầu mỗi trang. Đầu trang này hiển thị ngày "
+"hiện thời, địa chỉ Mạng gốc của trang đã in, và số hiệu trang.</p><p>Còn nếu "
+"không chon, bản in của tài liệu HTML sẽ không chứa đầu trang như thế.</p> </"
+"qt>"
+
+#: khtml_printsettings.cpp:55
+msgid ""
+"<qt><p><strong>'Printerfriendly mode'</strong></p><p>If this checkbox is "
+"enabled, the printout of the HTML document will be black and white only, and "
+"all colored background will be converted into white. Printout will be faster "
+"and use less ink or toner.</p><p>If this checkbox is disabled, the printout "
+"of the HTML document will happen in the original color settings as you see "
+"in your application. This may result in areas of full-page color (or "
+"grayscale, if you use a black+white printer). Printout will possibly happen "
+"more slowly and will probably use more toner or ink.</p> </qt>"
+msgstr ""
+"<qt><p><strong>'Chế độ thân thiện máy in'</strong></p><p>Nếu chọn, bản in "
+"tài liệu HTML sẽ chỉ có màu trắng đen, và tất cả nền màu sắc sẽ được chuyển "
+"thành trắng. Bản in sẽ nhanh hơn và dùng ít mực hơn.</p><p>Nếu không chọn, "
+"bản in tài liệu HTML sẽ sử dụng thiết lập màu gốc như bạn nhìn thấy trong "
+"ứng dụng của mình. Điều này có thể tạo ra những vùng toàn bộ trang là màu "
+"sắc (hoặc xám đen nếu dùng máy in đen trắng). Bản in có thể sẽ chậm hơn và "
+"có thể dùng nhiều mực hơn.</p></qt>"
+
+#: khtml_printsettings.cpp:70
+msgid "HTML Settings"
+msgstr "Thiết lập HTML"
+
+#: khtml_printsettings.cpp:72
+msgid "Printer friendly mode (black text, no background)"
+msgstr "Chế độ thân thiện máy in (chữ đen, không có nền)"
+
+#: khtml_printsettings.cpp:75
+msgid "Print images"
+msgstr "In ảnh"
+
+#: khtml_printsettings.cpp:78
+msgid "Print header"
+msgstr "In đầu trang"
+
+#: khtml_settings.cpp:906
+msgid "Filter error"
+msgstr "Lỗi lọc"
+
+#: khtmladaptorpart.cpp:29
+msgid "Inactive"
+msgstr "Không hoạt động"
+
+#: khtmlimage.cpp:46
+#, fuzzy
+#| msgid "KHTML"
+msgid "KHTML Image"
+msgstr "KHTML"
+
+#: khtmlimage.cpp:217
+#, kde-format
+msgid "%1 (%2 - %3x%4 Pixels)"
+msgstr "%1 (%2 - %3x%4 điểm ảnh)"
+
+#: khtmlimage.cpp:219
+#, kde-format
+msgid "%1 - %2x%3 Pixels"
+msgstr "%1 - %2x%3 điểm ảnh"
+
+#: khtmlimage.cpp:224
+#, kde-format
+msgid "%1 (%2x%3 Pixels)"
+msgstr "%1 (%2x%3 điểm ảnh)"
+
+#: khtmlimage.cpp:226
+#, kde-format
+msgid "Image - %1x%2 Pixels"
+msgstr "Ảnh - %1x%2 điểm ảnh"
+
+#: khtmlimage.cpp:232
+msgid "Done."
+msgstr "Đã xong."
+
+#: khtmlview.cpp:1902
+msgid "Access Keys activated"
+msgstr "Phím truy cập hoạt động"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:14
+msgid "JavaScript Errors"
+msgstr "Lỗi JavaScript"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:17
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at http://bugs.kde.org/.  A test case "
+"which illustrates the problem will be appreciated."
+msgstr ""
+"Hộp thoại này cung cấp thông báo và chi tiết về lỗi tập lệnh xảy ra trên "
+"trang Mạng. Trong nhiều trường hợp, lỗi này do lỗi trong nơi Mạng như bị tác "
+"giả thiết kế. Trong trường hợp khác, nó do lỗi lập trình trong Konqueror. "
+"Nếu bạn hoài nghi trường hợp trước, vui lòng liên lạc với chủ nơi Mạng đó. "
+"Còn nếu bạn hoài nghi lỗi trong Konqueror, vui lòng thông báo lỗi đó tại "
+"\"http://bugs.kde.org/\" . Tốt hơn khi bạn gồm lời thí dụ diễn tả lỗi."
+
+#. i18n: ectx: property (text), widget (QPushButton, _close)
+#: kjserrordlgbase.ui:29
+msgid "&Close"
+msgstr "&Đóng"
+
+#. i18n: ectx: property (text), widget (QPushButton, _clear)
+#: kjserrordlgbase.ui:36
+msgid "C&lear"
+msgstr "&Xoá"
+
+#: kmultipart/kmultipart.cpp:40
+msgid "KMultiPart"
+msgstr "KMultiPart"
+
+#: kmultipart/kmultipart.cpp:42
+msgid "Embeddable component for multipart/mixed"
+msgstr ""
+"Thành phần nhúng được cho kiểu \"multipart/mixed\" (đa phần, đã trộn với "
+"nhau)"
+
+#: kmultipart/kmultipart.cpp:44
+#, fuzzy
+#| msgid "Copyright 2001-2011, David Faure <email>faure@kde.org</email>"
+msgid "Copyright 2001-2011, David Faure <faure@kde.org>"
+msgstr "Bản quyền 2001-2011, David Faure <email>faure@kde.org</email>"
+
+#: kmultipart/kmultipart.cpp:337
+#, kde-format
+msgid "No handler found for %1."
+msgstr "Không tìm thấy bộ quản lý cho %1."
+
+#: misc/kencodingdetector.cpp:1119 misc/kencodingdetector.cpp:1220
+msgctxt "@item Text character set"
+msgid "Unicode"
+msgstr "Unicode"
+
+#: misc/kencodingdetector.cpp:1121 misc/kencodingdetector.cpp:1190
+msgctxt "@item Text character set"
+msgid "Cyrillic"
+msgstr "Cyrillic"
+
+#: misc/kencodingdetector.cpp:1123 misc/kencodingdetector.cpp:1205
+msgctxt "@item Text character set"
+msgid "Western European"
+msgstr "Tây Âu"
+
+#: misc/kencodingdetector.cpp:1125 misc/kencodingdetector.cpp:1187
+msgctxt "@item Text character set"
+msgid "Central European"
+msgstr "Trung Âu"
+
+#: misc/kencodingdetector.cpp:1127 misc/kencodingdetector.cpp:1193
+msgctxt "@item Text character set"
+msgid "Greek"
+msgstr "Hy Lạp"
+
+#: misc/kencodingdetector.cpp:1129 misc/kencodingdetector.cpp:1196
+msgctxt "@item Text character set"
+msgid "Hebrew"
+msgstr "Do Thái"
+
+#: misc/kencodingdetector.cpp:1131 misc/kencodingdetector.cpp:1202
+msgctxt "@item Text character set"
+msgid "Turkish"
+msgstr "Thổ Nhĩ Kỳ"
+
+#: misc/kencodingdetector.cpp:1133 misc/kencodingdetector.cpp:1199
+msgctxt "@item Text character set"
+msgid "Japanese"
+msgstr "Nhật Bản"
+
+#: misc/kencodingdetector.cpp:1135 misc/kencodingdetector.cpp:1184
+msgctxt "@item Text character set"
+msgid "Baltic"
+msgstr "Ban-tích"
+
+#: misc/kencodingdetector.cpp:1137 misc/kencodingdetector.cpp:1181
+msgctxt "@item Text character set"
+msgid "Arabic"
+msgstr "Ả Rập"
+
+#: misc/kencodingdetector.cpp:1208
+msgctxt "@item Text character set"
+msgid "Chinese Traditional"
+msgstr "Tiếng Trung phồn thể"
+
+#: misc/kencodingdetector.cpp:1211
+msgctxt "@item Text character set"
+msgid "Chinese Simplified"
+msgstr "Tiếng Trung giản thể"
+
+#: misc/kencodingdetector.cpp:1214
+msgctxt "@item Text character set"
+msgid "Korean"
+msgstr "Hàn Quốc"
+
+#: misc/kencodingdetector.cpp:1217
+msgctxt "@item Text character set"
+msgid "Thai"
+msgstr "Thái"
+
+#: rendering/media_controls.cpp:46
+msgid "Play"
+msgstr "Phát"
+
+#: rendering/media_controls.cpp:49
+msgid "Pause"
+msgstr "Tạm dừng"
+
+#: rendering/render_form.cpp:903
+msgid "New Web Shortcut"
+msgstr "Lối tắt mạng mới"
+
+#: rendering/render_form.cpp:924
+#, kde-format
+msgid "%1 is already assigned to %2"
+msgstr "%1 đã được gán cho %2"
+
+#: rendering/render_form.cpp:924
+msgid "Error"
+msgstr "Lỗi"
+
+#: rendering/render_form.cpp:970
+msgid "Search &provider name:"
+msgstr "Tìm tên &nhà cung cấp:"
+
+#: rendering/render_form.cpp:972
+msgid "New search provider"
+msgstr "Nhà cung cấp tìm kiếm mới"
+
+#: rendering/render_form.cpp:977
+msgid "UR&I shortcuts:"
+msgstr "Lối tắt UR&I:"
+
+#: rendering/render_form.cpp:1056
+msgid "Clear &History"
+msgstr "Xoá &Lược sử"
+
+#: rendering/render_form.cpp:1071
+msgid "Create Web Shortcut"
+msgstr "Tạo lối tắt mạng"
+
+#: ui/findbar/khtmlfindbar.cpp:49
+msgid "C&ase sensitive"
+msgstr "&Phân biệt chữ hoa/thường"
+
+#: ui/findbar/khtmlfindbar.cpp:51
+msgid "&Whole words only"
+msgstr "Chỉ ng&uyên từ"
+
+#: ui/findbar/khtmlfindbar.cpp:53
+msgid "From c&ursor"
+msgstr "Từ c&on chạy"
+
+#: ui/findbar/khtmlfindbar.cpp:55
+msgid "&Selected text"
+msgstr "Đoạn đã &chọn"
+
+#: ui/findbar/khtmlfindbar.cpp:57
+msgid "Regular e&xpression"
+msgstr "&Biểu thức chính quy"
+
+#: ui/findbar/khtmlfindbar.cpp:59
+msgid "Find &links only"
+msgstr "Chỉ tìm &liên kết"
+
+#: ui/findbar/khtmlfindbar.cpp:224
+msgid "Not found"
+msgstr "Không tìm thấy"
+
+#: ui/findbar/khtmlfindbar.cpp:239
+msgid "No more matches for this search direction."
+msgstr "Không còn kết quả nào cho hướng tìm kiếm này nữa."
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+msgid "F&ind:"
+msgstr "Tì&m:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+msgid "&Next"
+msgstr "&Tiếp"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+msgid "&Previous"
+msgstr "&Lùi"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+msgid "Opt&ions"
+msgstr "Tùy c&họn"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
+msgid "Do you want to store this password?"
+msgstr "Bạn có muốn lưu mật khẩu này không?"
+
+#: ui/passwordbar/storepassbar.cpp:61
+#, kde-format
+msgid "Do you want to store this password for %1?"
+msgstr "Bạn có muốn lưu mật khẩu này cho %1?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+msgid "&Store"
+msgstr "&Lưu"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+msgid "Ne&ver store for this site"
+msgstr "Không b&ao giờ lưu cho trang này"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+msgid "Do &not store this time"
+msgstr "Không &lưu lần này"
+
+#: xml/dom_docimpl.cpp:2376
+msgid "Basic Page Style"
+msgstr "Kiểu dáng trang cơ bản"
+
+#: xml/xml_tokenizer.cpp:347
+msgid "the document is not in the correct file format"
+msgstr "tài liệu không phải có dạng thức tập tin đúng"
+
+#: xml/xml_tokenizer.cpp:352
+#, kde-format
+msgid "fatal parsing error: %1 in line %2, column %3"
+msgstr "lỗi phân tách nghiêm trọng: %1 trên dòng %2, cột %3"
+
+#: xml/xml_tokenizer.cpp:567
+msgid "XML parsing error"
+msgstr "Lỗi phân tách XML"
