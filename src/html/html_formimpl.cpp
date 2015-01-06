@@ -2627,11 +2627,7 @@ bool HTMLSelectElementImpl::encoding(const QTextCodec *codec, khtml::encodingLis
             (items[0]->id() == ID_OPTION && !items[0]->disabled())) {
         HTMLOptionElementImpl *const option = static_cast<HTMLOptionElementImpl *>(items[0]);
         encoded_values += enc_name;
-        if (option->value().isNull()) {
-            encoded_values += fixUpfromUnicode(codec, option->text().string());
-        } else {
-            encoded_values += fixUpfromUnicode(codec, option->value().string());
-        }
+        encoded_values += fixUpfromUnicode(codec, option->value().string());
         successful = true;
     }
 
@@ -2922,7 +2918,7 @@ DOMString HTMLOptionElementImpl::value() const
         return m_value;
     }
     // Use the text if the value wasn't set.
-    return text().string();
+    return text();
 }
 
 void HTMLOptionElementImpl::setValue(DOMStringImpl *value)
