@@ -87,10 +87,10 @@ bool CSSFontFaceSource::isValid() const
     return true;
 }
 
-void CSSFontFaceSource::notifyFinished(khtml::CachedObject */*finishedObj*/)
+void CSSFontFaceSource::notifyFinished(khtml::CachedObject *finishedObj)
 {
-    if (m_face->installed()) {
-        // qWarning() << "Font already added from other src";
+    // Nothing to do if font already added from other src or failed to download
+    if (m_face->installed() || finishedObj->hadError()) {
         return;
     }
 
@@ -673,13 +673,18 @@ void CSSFontSelector::addFontFaceRule(const CSSFontFaceRuleImpl *fontFaceRule)
 
 void CSSFontSelector::requestFamilyName(const DOMString &familyName)
 {
-    QHash<DOMString, CSSFontFace *>::const_iterator it = m_locallyInstalledFontFaces.constBegin();
-    QHash<DOMString, CSSFontFace *>::const_iterator end = m_locallyInstalledFontFaces.constEnd();
-    for (; it != end; ++it) {
-        if (it.key() == familyName.lower()) {
+    QHash<DOMString, CSSFontFace*>::const_iterator it = m_locallyInstalledFontFaces.constBegin();
+    QHash<DOMString, CSSFontFace*>::const_iterator end = m_locallyInstalledFontFaces.constEnd();
+    if (it == end) {
+        return;
+    }
+    const DOMString familyNameLower = familyName.lower();
+    do {
+        if (it.key() == familyNameLower) {
             it.value()->refLoaders();
         }
-    }
+        ++it;
+    } while (it != end);
 }
 
 void CSSFontSelector::fontLoaded()
