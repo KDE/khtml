@@ -1894,11 +1894,11 @@ void RenderSelect::updateFromElement()
                 // Prefer label if set
                 DOMString label = optElem->getAttribute(ATTR_LABEL);
                 if (!label.isEmpty()) {
-                    domText = label;
+                    domText = label.string();
                 }
                 domText = domText.implementation()->collapseWhiteSpace(false, false);
 
-                QString text;
+                QString   text;
 
                 ElementImpl *parentOptGroup = optElem->parentNode()->id() == ID_OPTGROUP ?
                                               static_cast<ElementImpl *>(optElem->parentNode()) : 0;
