@@ -547,7 +547,7 @@ add_library(KF5::KHtml ALIAS KF5KHtml)
 
 generate_export_header(KF5KHtml BASE_NAME KHtml)
 
-target_include_directories(KF5KHtml INTERFACE "$<INSTALL_INTERFACE:${KF5_INCLUDE_INSTALL_DIR}/KHtml>")
+target_include_directories(KF5KHtml INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KHtml>")
 
 target_link_libraries(KF5KHtml
   PUBLIC
@@ -713,7 +713,7 @@ ecm_generate_headers(KHtml_HEADERS
   REQUIRED_HEADERS KHtml_HEADERS
 )
 
-install(TARGETS khtmlpart  DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/parts)
+install(TARGETS khtmlpart  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/parts)
 
 
 ########### next target ###############
@@ -725,7 +725,7 @@ add_library(khtmlimagepart MODULE khtmlimage_init.cpp)
 
 target_link_libraries(khtmlimagepart KF5::KHtml KF5::WidgetsAddons KF5::XmlGui KF5::TextWidgets KF5::Parts KF5::I18n)
 
-install(TARGETS khtmlimagepart  DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/parts)
+install(TARGETS khtmlimagepart  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/parts)
 
 ########### next target ###############
 
@@ -733,7 +733,7 @@ add_library(khtmladaptorpart MODULE khtmladaptorpart.cpp)
 
 target_link_libraries(khtmladaptorpart KF5::Parts KF5::JS KF5::I18n KF5::XmlGui)
 
-install(TARGETS khtmladaptorpart DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/parts)
+install(TARGETS khtmladaptorpart DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/parts)
 
 
 ########### install files ###############
@@ -748,7 +748,7 @@ install(FILES
   khtmldefaults.h
   misc/kencodingdetector.h
   ${KHtml_HEADERS}
-  DESTINATION ${KF5_INCLUDE_INSTALL_DIR}/KHtml COMPONENT Devel
+  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KHtml COMPONENT Devel
 )
 
 install(FILES
@@ -781,20 +781,20 @@ install(FILES
   dom/dom2_traversal.h
   dom/dom2_events.h
   dom/dom2_views.h
-  DESTINATION ${KF5_INCLUDE_INSTALL_DIR}/KHtml/dom COMPONENT Devel
+  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KHtml/dom COMPONENT Devel
 )
 
 install(FILES khtml.desktop khtmlimage.desktop
-         khtmladaptorpart.desktop DESTINATION  ${SERVICES_INSTALL_DIR} )
-install(FILES khtml.rc          DESTINATION  ${KXMLGUI_INSTALL_DIR}/khtml)
-install(FILES khtml_browser.rc  DESTINATION  ${KXMLGUI_INSTALL_DIR}/khtml)
+         khtmladaptorpart.desktop DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )
+install(FILES khtml.rc          DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/khtml)
+install(FILES khtml_browser.rc  DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/khtml)
 
-# install(FILES ${CMAKE_CURRENT_BINARY_DIR}/org.kde.KHtmlPart.xml DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} )
+# install(FILES ${CMAKE_CURRENT_BINARY_DIR}/org.kde.KHtmlPart.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR} )
 
-install(FILES error.html DESTINATION ${KF5_DATA_INSTALL_DIR}/khtml )
+install(FILES error.html DESTINATION ${KDE_INSTALL_DATADIR_KF5}/khtml )
 
-install(FILES khtmlrc DESTINATION ${CONFIG_INSTALL_DIR} )
+install(FILES khtmlrc DESTINATION ${KDE_INSTALL_CONFDIR} )
 
 include(ECMGeneratePriFile)
-ecm_generate_pri_file(BASE_NAME KHtml LIB_NAME KF5KHtml DEPS "gui KIOCore KJS KI18n KParts" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KF5_INCLUDE_INSTALL_DIR}/KHtml)
+ecm_generate_pri_file(BASE_NAME KHtml LIB_NAME KF5KHtml DEPS "gui KIOCore KJS KI18n KParts" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF5}/KHtml)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})

@@ -18,8 +18,8 @@ target_link_libraries(kmultipart
                         KF5::I18n
                         KF5::TextWidgets)
 
-install(TARGETS kmultipart  DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/parts)
-install(FILES kmultipart.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
+install(TARGETS kmultipart  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/parts)
+install(FILES kmultipart.desktop  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )
 
 
 

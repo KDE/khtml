@@ -25,7 +25,7 @@ target_link_libraries(kjavaappletviewer
                       KF5::I18n
                       KF5::IconThemes )
 
-install(TARGETS kjavaappletviewer  DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/parts)
+install(TARGETS kjavaappletviewer  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/parts)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/kjava.policy.in.cmake ${CMAKE_CURRENT_BINARY_DIR}/kjava.policy )
 set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_MAKE_CLEAN_FILES ${CMAKE_CURRENT_BINARY_DIR}/kjava.policy )
@@ -34,5 +34,5 @@ add_definitions(-DMAKE_KHTML_LIB)
 ########### install files ###############
 
 # kjava.policy
-install( FILES kjava.jar ${CMAKE_CURRENT_BINARY_DIR}/kjava.policy pluginsinfo  DESTINATION  ${KF5_DATA_INSTALL_DIR}/kjava/ )
-install( FILES kjavaappletviewer.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
+install( FILES kjava.jar ${CMAKE_CURRENT_BINARY_DIR}/kjava.policy pluginsinfo  DESTINATION  ${KDE_INSTALL_DATADIR_KF5}/kjava/ )
+install( FILES kjavaappletviewer.desktop  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )
