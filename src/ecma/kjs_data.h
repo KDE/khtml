@@ -61,8 +61,8 @@ class DelayedPostMessage: public Window::DelayedAction
 public:
     DelayedPostMessage(KHTMLPart *source, const QString &_sourceOrigin, const QString &_targetOrigin, JSValue *_payload);
 
-    virtual void mark();
-    virtual bool execute(Window *);
+    void mark() Q_DECL_OVERRIDE;
+    bool execute(Window *) Q_DECL_OVERRIDE;
 private:
     QString  sourceOrigin;
     QString  targetOrigin;

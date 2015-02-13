@@ -41,22 +41,22 @@ public:
     SVGStyledTransformableElement(const QualifiedName &, Document *);
     virtual ~SVGStyledTransformableElement();
 
-    virtual bool isStyledTransformable() const
+    bool isStyledTransformable() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
-    virtual AffineTransform getCTM() const;
-    virtual AffineTransform getScreenCTM() const;
-    virtual SVGElement *nearestViewportElement() const;
-    virtual SVGElement *farthestViewportElement() const;
+    AffineTransform getCTM() const Q_DECL_OVERRIDE;
+    AffineTransform getScreenCTM() const Q_DECL_OVERRIDE;
+    SVGElement *nearestViewportElement() const Q_DECL_OVERRIDE;
+    SVGElement *farthestViewportElement() const Q_DECL_OVERRIDE;
 
-    virtual AffineTransform animatedLocalTransform() const;
-    virtual AffineTransform *supplementalTransform();
+    AffineTransform animatedLocalTransform() const Q_DECL_OVERRIDE;
+    AffineTransform *supplementalTransform() Q_DECL_OVERRIDE;
 
-    virtual FloatRect getBBox() const;
+    FloatRect getBBox() const Q_DECL_OVERRIDE;
 
-    virtual void parseMappedAttribute(MappedAttribute *);
+    void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
     bool isKnownAttribute(const QualifiedName &);
 
     // "base class" methods for all the elements which render as paths
@@ -68,7 +68,7 @@ public:
     {
         return toPathData();
     }
-    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
+    RenderObject *createRenderer(RenderArena *, RenderStyle *) Q_DECL_OVERRIDE;
 
 protected:
     ANIMATED_PROPERTY_DECLARATIONS(SVGStyledTransformableElement, SVGTransformList *, RefPtr<SVGTransformList>, Transform, transform)

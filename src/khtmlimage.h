@@ -50,7 +50,7 @@ public:
                             QWidget *parentWidget,
                             QObject *parent,
                             const QVariantList &args,
-                            const QString &keyword);
+                            const QString &keyword) Q_DECL_OVERRIDE;
 
     static const KAboutData &aboutData()
     {
@@ -72,24 +72,24 @@ public:
                QObject *parent, KHTMLPart::GUIProfile prof);
     virtual ~KHTMLImage();
 
-    virtual bool openFile()
+    bool openFile() Q_DECL_OVERRIDE
     {
         return true;    // grmbl, should be non-pure in part.h, IMHO
     }
 
-    virtual bool openUrl(const QUrl &url);
+    bool openUrl(const QUrl &url) Q_DECL_OVERRIDE;
 
-    virtual bool closeUrl();
+    bool closeUrl() Q_DECL_OVERRIDE;
 
     KHTMLPart *doc() const
     {
         return m_khtml;
     }
 
-    virtual void notifyFinished(khtml::CachedObject *o);
+    void notifyFinished(khtml::CachedObject *o) Q_DECL_OVERRIDE;
 
 protected:
-    virtual void guiActivateEvent(KParts::GUIActivateEvent *e);
+    void guiActivateEvent(KParts::GUIActivateEvent *e) Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
     void restoreScrollPosition();
@@ -124,8 +124,8 @@ class KHTMLImageBrowserExtension : public KParts::BrowserExtension
 public:
     KHTMLImageBrowserExtension(KHTMLImage *parent);
 
-    virtual int xOffset();
-    virtual int yOffset();
+    int xOffset() Q_DECL_OVERRIDE;
+    int yOffset() Q_DECL_OVERRIDE;
 
 protected Q_SLOTS:
     void print();

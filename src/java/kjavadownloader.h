@@ -58,7 +58,7 @@ public:
     KJavaDownloader(int ID, const QString &url);
     ~KJavaDownloader();
 
-    virtual void jobCommand(int cmd);
+    void jobCommand(int cmd) Q_DECL_OVERRIDE;
 protected Q_SLOTS:
     void slotData(KIO::Job *, const QByteArray &);
     void slotConnected(KIO::Job *);
@@ -78,8 +78,8 @@ public:
     KJavaUploader(int ID, const QString &url);
     ~KJavaUploader();
 
-    virtual void jobCommand(int cmd);
-    virtual void data(const QByteArray &qb);
+    void jobCommand(int cmd) Q_DECL_OVERRIDE;
+    void data(const QByteArray &qb) Q_DECL_OVERRIDE;
     void start();
 protected Q_SLOTS:
     void slotDataRequest(KIO::Job *, QByteArray &);

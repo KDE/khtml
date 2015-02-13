@@ -39,15 +39,15 @@ public:
     }
     virtual ~SVGPathSegCurvetoCubicSmoothAbs();
 
-    virtual unsigned short pathSegType() const
+    unsigned short pathSegType() const Q_DECL_OVERRIDE
     {
         return PATHSEG_CURVETO_CUBIC_SMOOTH_ABS;
     }
-    virtual String pathSegTypeAsLetter() const
+    String pathSegTypeAsLetter() const Q_DECL_OVERRIDE
     {
         return "S";
     }
-    virtual String toString() const
+    String toString() const Q_DECL_OVERRIDE
     {
         return String::format("S %.6lg %.6lg %.6lg %.6lg", m_x2, m_y2, m_x, m_y);
     }
@@ -82,15 +82,15 @@ public:
     }
     virtual ~SVGPathSegCurvetoCubicSmoothRel();
 
-    virtual unsigned short pathSegType() const
+    unsigned short pathSegType() const Q_DECL_OVERRIDE
     {
         return PATHSEG_CURVETO_CUBIC_SMOOTH_REL;
     }
-    virtual String pathSegTypeAsLetter() const
+    String pathSegTypeAsLetter() const Q_DECL_OVERRIDE
     {
         return "s";
     }
-    virtual String toString() const
+    String toString() const Q_DECL_OVERRIDE
     {
         return String::format("s %.6lg %.6lg %.6lg %.6lg", m_x2, m_y2, m_x, m_y);
     }

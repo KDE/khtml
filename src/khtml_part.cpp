@@ -177,7 +177,7 @@ public:
             m_cachedSheet->deref(this);
         }
     }
-    virtual void setStyleSheet(const DOM::DOMString &, const DOM::DOMString &sheet, const DOM::DOMString &, const DOM::DOMString &/*mimetype*/)
+    void setStyleSheet(const DOM::DOMString &, const DOM::DOMString &sheet, const DOM::DOMString &, const DOM::DOMString &/*mimetype*/) Q_DECL_OVERRIDE
     {
         if (m_part) {
             m_part->setUserStyleSheet(sheet.string());
@@ -185,7 +185,7 @@ public:
 
         delete this;
     }
-    virtual void error(int, const QString &)
+    void error(int, const QString &) Q_DECL_OVERRIDE
     {
         delete this;
     }

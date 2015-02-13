@@ -138,8 +138,8 @@ public:
     virtual ~DynamicNodeListImpl();
 
     // DOM methods & attributes for NodeList
-    virtual unsigned long length() const;
-    virtual NodeImpl *item(unsigned long index) const;
+    unsigned long length() const Q_DECL_OVERRIDE;
+    NodeImpl *item(unsigned long index) const Q_DECL_OVERRIDE;
 
     // Other methods (not part of DOM)
 
@@ -165,7 +165,7 @@ public:
     ChildNodeListImpl(NodeImpl *n);
 
 protected:
-    virtual bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const;
+    bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const Q_DECL_OVERRIDE;
 };
 
 /**
@@ -180,7 +180,7 @@ public:
     // Other methods (not part of DOM)
 
 protected:
-    virtual bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const;
+    bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const Q_DECL_OVERRIDE;
     NamespaceName m_namespace;
     LocalName m_localName;
     PrefixName m_prefix;
@@ -199,7 +199,7 @@ public:
     // Other methods (not part of DOM)
 
 protected:
-    virtual bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const;
+    bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const Q_DECL_OVERRIDE;
 
     DOMString nodeName;
 };
@@ -211,7 +211,7 @@ public:
     ClassNodeListImpl(NodeImpl *rootNode, const DOMString &classNames);
 
 private:
-    virtual bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const;
+    bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const Q_DECL_OVERRIDE;
 
     ClassNames m_classNames;
 };
@@ -223,8 +223,8 @@ public:
     ~StaticNodeListImpl();
 
     // Implementation of the NodeList API
-    virtual unsigned long length() const;
-    virtual NodeImpl *item(unsigned long index) const;
+    unsigned long length() const Q_DECL_OVERRIDE;
+    NodeImpl *item(unsigned long index) const Q_DECL_OVERRIDE;
 
     // Methods specific to StaticNodeList
     void append(NodeImpl *n);

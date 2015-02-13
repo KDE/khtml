@@ -59,7 +59,7 @@ struct CollectionCache: public DynamicNodeListImpl::Cache {
 
     CollectionCache(): Cache(DocumentImpl::TV_IDNameHref) {}
 
-    virtual void clear(DocumentImpl *doc)
+    void clear(DocumentImpl *doc) Q_DECL_OVERRIDE
     {
         Cache::clear(doc);
         qDeleteAll(nameCache);

@@ -60,10 +60,10 @@ public:
     SVGHKernElement(const QualifiedName &, Document *);
     virtual ~SVGHKernElement();
 
-    virtual void insertedIntoDocument();
-    virtual void removedFromDocument();
+    void insertedIntoDocument() Q_DECL_OVERRIDE;
+    void removedFromDocument() Q_DECL_OVERRIDE;
 
-    virtual bool rendererIsNeeded(RenderStyle *)
+    bool rendererIsNeeded(RenderStyle *) Q_DECL_OVERRIDE
     {
         return false;
     }
@@ -71,7 +71,7 @@ public:
     SVGHorizontalKerningPair buildHorizontalKerningPair() const;
 
     // KHTML ElementImpl pure virtual method
-    virtual quint32 id() const
+    quint32 id() const Q_DECL_OVERRIDE
     {
         return SVGNames::textTag.id();
     }

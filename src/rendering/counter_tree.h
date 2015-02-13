@@ -134,24 +134,24 @@ public:
     CounterReset(RenderObject *o);
     virtual ~CounterReset();
 
-    virtual CounterNode *firstChild() const
+    CounterNode *firstChild() const Q_DECL_OVERRIDE
     {
         return m_first;
     }
-    virtual CounterNode *lastChild() const
+    CounterNode *lastChild() const Q_DECL_OVERRIDE
     {
         return m_last;
     }
-    virtual void insertAfter(CounterNode *newChild, CounterNode *refChild);
-    virtual void removeChild(CounterNode *oldChild);
+    void insertAfter(CounterNode *newChild, CounterNode *refChild) Q_DECL_OVERRIDE;
+    void removeChild(CounterNode *oldChild) Q_DECL_OVERRIDE;
 
-    virtual bool isReset()
+    bool isReset() Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual void recount(bool first = false);
-    virtual void setSelfDirty();
-    virtual void setParentDirty();
+    void recount(bool first = false) Q_DECL_OVERRIDE;
+    void setSelfDirty() Q_DECL_OVERRIDE;
+    void setParentDirty() Q_DECL_OVERRIDE;
 
     void updateTotal(int value);
     // The highest value among children

@@ -33,7 +33,7 @@ class RenderSVGTSpan : public RenderSVGInline
 {
 public:
     RenderSVGTSpan(DOM::NodeImpl *);
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderSVGTSpan";
     }

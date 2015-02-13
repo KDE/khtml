@@ -31,20 +31,20 @@ class XMLSerializerConstructorImp : public JSObject
 {
 public:
     XMLSerializerConstructorImp(ExecState *);
-    virtual bool implementsConstruct() const;
+    bool implementsConstruct() const Q_DECL_OVERRIDE;
     using KJS::JSObject::construct;
-    virtual JSObject *construct(ExecState *exec, const List &args);
+    JSObject *construct(ExecState *exec, const List &args) Q_DECL_OVERRIDE;
 };
 
 class XMLSerializer : public DOMObject
 {
 public:
     XMLSerializer(ExecState *);
-    virtual bool toBoolean(ExecState *) const
+    bool toBoolean(ExecState *) const Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }

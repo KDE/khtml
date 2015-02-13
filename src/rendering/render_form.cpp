@@ -93,7 +93,7 @@ struct KHTMLProxyStyle : public QProxyStyle {
         clearButtonOverlay = 0;
     }
 
-    QRect subElementRect(SubElement element, const QStyleOption *option, const QWidget *widget) const
+    QRect subElementRect(SubElement element, const QStyleOption *option, const QWidget *widget) const Q_DECL_OVERRIDE
     {
         QRect r = QProxyStyle::subElementRect(element, option, widget);
         switch (element) {
@@ -107,7 +107,7 @@ struct KHTMLProxyStyle : public QProxyStyle {
         return r;
     }
 
-    void drawControl(ControlElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget) const
+    void drawControl(ControlElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget) const Q_DECL_OVERRIDE
     {
         if (element == QStyle::CE_ComboBoxLabel) {
             const QStyleOptionComboBox *o = qstyleoption_cast<const QStyleOptionComboBox *>(option);
@@ -129,7 +129,7 @@ struct KHTMLProxyStyle : public QProxyStyle {
         QProxyStyle::drawControl(element, option, painter, widget);
     }
 
-    void drawComplexControl(ComplexControl cc, const QStyleOptionComplex *opt, QPainter *painter, const QWidget *widget) const
+    void drawComplexControl(ComplexControl cc, const QStyleOptionComplex *opt, QPainter *painter, const QWidget *widget) const Q_DECL_OVERRIDE
     {
         if ((cc == QStyle::CC_ComboBox) && noBorder) {
             if (const QStyleOptionComboBox *cbOpt = qstyleoption_cast<const QStyleOptionComboBox *>(opt)) {
@@ -177,7 +177,7 @@ struct KHTMLProxyStyle : public QProxyStyle {
         QProxyStyle::drawComplexControl(cc, opt, painter, widget);
     }
 
-    QRect subControlRect(ComplexControl cc, const QStyleOptionComplex *opt, SubControl sc, const QWidget *widget) const
+    QRect subControlRect(ComplexControl cc, const QStyleOptionComplex *opt, SubControl sc, const QWidget *widget) const Q_DECL_OVERRIDE
     {
         // Make sure we give combo popup's enough room to display contents;
         // Qt doesn't do this by default
@@ -785,7 +785,7 @@ class CompletionWidget: public KCompletionBox
 {
 public:
     CompletionWidget(QWidget *parent = 0) : KCompletionBox(parent) {}
-    virtual QPoint globalPositionHint() const
+    QPoint globalPositionHint() const Q_DECL_OVERRIDE
     {
         QWidget *pw = parentWidget();
         KHTMLWidget *kwp = dynamic_cast<KHTMLWidget *>(pw);

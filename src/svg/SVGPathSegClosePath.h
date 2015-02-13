@@ -38,15 +38,15 @@ public:
     }
     virtual ~SVGPathSegClosePath();
 
-    virtual unsigned short pathSegType() const
+    unsigned short pathSegType() const Q_DECL_OVERRIDE
     {
         return PATHSEG_CLOSEPATH;
     }
-    virtual String pathSegTypeAsLetter() const
+    String pathSegTypeAsLetter() const Q_DECL_OVERRIDE
     {
         return "Z";
     }
-    virtual String toString() const
+    String toString() const Q_DECL_OVERRIDE
     {
         return "Z";
     }

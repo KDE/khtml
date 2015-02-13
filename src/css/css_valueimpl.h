@@ -77,12 +77,12 @@ public:
     DOM::DOMString cssText() const;
     void setCssText(const DOM::DOMString &str);
 
-    virtual bool isStyleDeclaration() const
+    bool isStyleDeclaration() const Q_DECL_OVERRIDE
     {
         return true;
     }
     virtual bool isPropertyImplicit(int propertyID) const;
-    virtual bool parseString(const DOMString &string, bool = false);
+    bool parseString(const DOMString &string, bool = false) Q_DECL_OVERRIDE;
 
     CSSValueImpl *getPropertyCSSValue(const DOMString &propertyName) const;
     DOMString getPropertyValue(const DOMString &propertyName) const;
@@ -121,7 +121,7 @@ class CSSInlineStyleDeclarationImpl : public CSSStyleDeclarationImpl
 {
 public:
     CSSInlineStyleDeclarationImpl(CSSRuleImpl *parentRule): CSSStyleDeclarationImpl(parentRule) {}
-    virtual void setChanged();
+    void setChanged() Q_DECL_OVERRIDE;
     void updateFromAttribute(const DOMString &value);
 };
 
@@ -135,7 +135,7 @@ public:
     virtual DOM::DOMString cssText() const = 0;
     void setCssText(const DOM::DOMString &) { } // FIXME: Not implemented.
 
-    virtual bool isValue() const
+    bool isValue() const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -155,8 +155,8 @@ public:
     CSSInheritedValueImpl() : CSSValueImpl() {}
     virtual ~CSSInheritedValueImpl() {}
 
-    virtual unsigned short cssValueType() const;
-    virtual DOM::DOMString cssText() const;
+    unsigned short cssValueType() const Q_DECL_OVERRIDE;
+    DOM::DOMString cssText() const Q_DECL_OVERRIDE;
 };
 
 class CSSInitialValueImpl : public CSSValueImpl
@@ -165,10 +165,10 @@ public:
     CSSInitialValueImpl(bool implicit)
         : m_implicit(implicit)
     {}
-    virtual unsigned short cssValueType() const;
-    virtual DOM::DOMString cssText() const;
+    unsigned short cssValueType() const Q_DECL_OVERRIDE;
+    DOM::DOMString cssText() const Q_DECL_OVERRIDE;
 
-    virtual bool isImplicitInitialValue() const
+    bool isImplicitInitialValue() const Q_DECL_OVERRIDE
     {
         return m_implicit;
     }
@@ -199,15 +199,15 @@ public:
         return  index < length() ? m_values.at(index) : 0;
     }
 
-    virtual bool isValueList() const
+    bool isValueList() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
-    virtual unsigned short cssValueType() const;
+    unsigned short cssValueType() const Q_DECL_OVERRIDE;
 
     void append(CSSValueImpl *val);
-    virtual DOM::DOMString cssText() const;
+    DOM::DOMString cssText() const Q_DECL_OVERRIDE;
 
 protected:
     KDE_BF_ENUM(Separator) m_separator: 1;
@@ -308,16 +308,16 @@ public:
         return (m_type != CSSPrimitiveValue::CSS_PAIR ? 0 : m_value.pair);
     }
 
-    virtual bool isPrimitiveValue() const
+    bool isPrimitiveValue() const Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual unsigned short cssValueType() const;
+    unsigned short cssValueType() const Q_DECL_OVERRIDE;
 
     int getIdent();
 
-    virtual bool parseString(const DOMString &string, bool = false);
-    virtual DOM::DOMString cssText() const;
+    bool parseString(const DOMString &string, bool = false) Q_DECL_OVERRIDE;
+    DOM::DOMString cssText() const Q_DECL_OVERRIDE;
 
     virtual bool isQuirkValue() const
     {
@@ -349,7 +349,7 @@ public:
 
     virtual ~CSSQuirkPrimitiveValueImpl() {}
 
-    virtual bool isQuirkValue() const
+    bool isQuirkValue() const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -484,14 +484,14 @@ public:
     FontValueImpl();
     virtual ~FontValueImpl();
 
-    virtual unsigned short cssValueType() const
+    unsigned short cssValueType() const Q_DECL_OVERRIDE
     {
         return CSSValue::CSS_CUSTOM;
     }
 
-    virtual DOM::DOMString cssText() const;
+    DOM::DOMString cssText() const Q_DECL_OVERRIDE;
 
-    virtual bool isFontValue() const
+    bool isFontValue() const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -511,11 +511,11 @@ public:
     QuotesValueImpl();
 //    virtual ~QuotesValueImpl();
 
-    virtual unsigned short cssValueType() const
+    unsigned short cssValueType() const Q_DECL_OVERRIDE
     {
         return CSSValue::CSS_CUSTOM;
     }
-    virtual DOM::DOMString cssText() const;
+    DOM::DOMString cssText() const Q_DECL_OVERRIDE;
 
     void addLevel(const QString &open, const QString &close);
     QString openQuote(int level) const;
@@ -533,12 +533,12 @@ public:
                     CSSPrimitiveValueImpl *_blur, CSSPrimitiveValueImpl *_color);
     virtual ~ShadowValueImpl();
 
-    virtual unsigned short cssValueType() const
+    unsigned short cssValueType() const Q_DECL_OVERRIDE
     {
         return CSSValue::CSS_CUSTOM;
     }
 
-    virtual DOM::DOMString cssText() const;
+    DOM::DOMString cssText() const Q_DECL_OVERRIDE;
 
     CSSPrimitiveValueImpl *x;
     CSSPrimitiveValueImpl *y;
@@ -553,11 +553,11 @@ public:
     CounterActImpl(const DOMString &c, short v) : m_counter(c), m_value(v) { }
     virtual ~CounterActImpl() {}
 
-    virtual unsigned short cssValueType() const
+    unsigned short cssValueType() const Q_DECL_OVERRIDE
     {
         return CSSValue::CSS_CUSTOM;
     }
-    virtual DOM::DOMString cssText() const;
+    DOM::DOMString cssText() const Q_DECL_OVERRIDE;
 
     const DOMString &counter() const
     {
@@ -590,7 +590,7 @@ public:
     }
     virtual ~CSSFontFaceSrcValueImpl() { }
 
-    virtual unsigned short cssValueType() const
+    unsigned short cssValueType() const Q_DECL_OVERRIDE
     {
         return CSSValue::CSS_CUSTOM;
     }
@@ -629,7 +629,7 @@ public:
     }
 #endif
 
-    virtual DOMString cssText() const;
+    DOMString cssText() const Q_DECL_OVERRIDE;
 
 private:
 

@@ -36,24 +36,24 @@ class RenderInline : public RenderFlow
 public:
     RenderInline(DOM::NodeImpl *node) : RenderFlow(node), m_isContinuation(false) {}
 
-    virtual const char *renderName() const;
+    const char *renderName() const Q_DECL_OVERRIDE;
 
-    virtual bool isRenderInline() const
+    bool isRenderInline() const Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual bool isInlineFlow() const
+    bool isInlineFlow() const Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual bool childrenInline() const
+    bool childrenInline() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
-    virtual bool isInlineContinuation() const;
+    bool isInlineContinuation() const Q_DECL_OVERRIDE;
 
-    virtual void addChildToFlow(RenderObject *newChild, RenderObject *beforeChild);
+    void addChildToFlow(RenderObject *newChild, RenderObject *beforeChild) Q_DECL_OVERRIDE;
 
     void splitInlines(RenderBlock *fromBlock, RenderBlock *toBlock, RenderBlock *middleBlock,
                       RenderObject *beforeChild, RenderFlow *oldCont);

@@ -63,7 +63,7 @@ public:
     SVGPathElement(const QualifiedName &, Document *);
     virtual ~SVGPathElement();
 
-    virtual bool isValid() const
+    bool isValid() const Q_DECL_OVERRIDE
     {
         return SVGTests::isValid();
     }
@@ -92,25 +92,25 @@ public:
     static PassRefPtr<SVGPathSegCurvetoQuadraticSmoothRel> createSVGPathSegCurvetoQuadraticSmoothRel(float x, float y);
 
     // Derived from: 'SVGAnimatedPathData'
-    virtual SVGPathSegList *pathSegList() const;
-    virtual SVGPathSegList *normalizedPathSegList() const;
-    virtual SVGPathSegList *animatedPathSegList() const;
-    virtual SVGPathSegList *animatedNormalizedPathSegList() const;
+    SVGPathSegList *pathSegList() const Q_DECL_OVERRIDE;
+    SVGPathSegList *normalizedPathSegList() const Q_DECL_OVERRIDE;
+    SVGPathSegList *animatedPathSegList() const Q_DECL_OVERRIDE;
+    SVGPathSegList *animatedNormalizedPathSegList() const Q_DECL_OVERRIDE;
 
-    virtual void parseMappedAttribute(MappedAttribute *);
-    virtual void svgAttributeChanged(const QualifiedName &);
+    void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
+    void svgAttributeChanged(const QualifiedName &) Q_DECL_OVERRIDE;
 
-    virtual Path toPathData() const;
+    Path toPathData() const Q_DECL_OVERRIDE;
 
-    virtual bool supportsMarkers() const
+    bool supportsMarkers() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
     // KHTML ElementImpl pure virtual method
-    virtual quint32 id() const;
+    quint32 id() const Q_DECL_OVERRIDE;
 protected:
-    virtual const SVGElement *contextElement() const
+    const SVGElement *contextElement() const Q_DECL_OVERRIDE
     {
         return this;
     }

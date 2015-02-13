@@ -44,7 +44,7 @@ public:
     void setArguments(const QList<Expression *> &args);
     void setName(const DOM::DOMString &name);
 
-    virtual QString dump() const;
+    QString dump() const Q_DECL_OVERRIDE;
 
 protected:
     Expression *arg(int pos);

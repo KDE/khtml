@@ -35,18 +35,18 @@ class SVGTitleElement : public SVGStyledElement,
 public:
     SVGTitleElement(const QualifiedName &, Document *);
 
-    virtual void insertedIntoDocument();
-    virtual void removedFromDocument();
+    void insertedIntoDocument() Q_DECL_OVERRIDE;
+    void removedFromDocument() Q_DECL_OVERRIDE;
     using DOM::NodeImpl::childrenChanged;
-    virtual void childrenChanged(bool changedByParser = false, Node *beforeChange = 0, Node *afterChange = 0, int childCountDelta = 0);
+    void childrenChanged(bool changedByParser = false, Node *beforeChange = 0, Node *afterChange = 0, int childCountDelta = 0) Q_DECL_OVERRIDE;
 
-    virtual bool rendererIsNeeded(RenderStyle *)
+    bool rendererIsNeeded(RenderStyle *) Q_DECL_OVERRIDE
     {
         return false;
     }
 
     // KHTML ElementImpl pure virtual method
-    virtual quint32 id() const
+    quint32 id() const Q_DECL_OVERRIDE
     {
         return SVGNames::titleTag.id();
     }

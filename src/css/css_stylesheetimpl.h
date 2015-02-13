@@ -58,7 +58,7 @@ public:
     StyleSheetImpl(khtml::CachedCSSStyleSheet *cached, DOM::DOMString href  = DOMString());
     virtual ~StyleSheetImpl();
 
-    virtual bool isStyleSheet() const
+    bool isStyleSheet() const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -123,12 +123,12 @@ public:
         delete m_namespaces;
     }
 
-    virtual bool isCSSStyleSheet() const
+    bool isCSSStyleSheet() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
-    virtual DOM::DOMString type() const
+    DOM::DOMString type() const Q_DECL_OVERRIDE
     {
         return "text/css";
     }
@@ -154,12 +154,12 @@ public:
         return m_charset;
     }
 
-    virtual bool parseString(const DOMString &string, bool strict = true);
+    bool parseString(const DOMString &string, bool strict = true) Q_DECL_OVERRIDE;
 
     bool isLoading() const;
 
-    virtual void checkLoaded() const;
-    virtual void checkPending() const;
+    void checkLoaded() const Q_DECL_OVERRIDE;
+    void checkPending() const Q_DECL_OVERRIDE;
     bool loadedHint() const
     {
         return m_loadedHint;
@@ -236,7 +236,7 @@ public:
     MediaListImpl(CSSRuleImpl *parentRule, const DOM::DOMString &media, bool fallbackToDescription = false);
     ~MediaListImpl();
 
-    virtual bool isMediaList() const
+    bool isMediaList() const Q_DECL_OVERRIDE
     {
         return true;
     }

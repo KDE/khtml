@@ -54,12 +54,12 @@ public:
     SVGSVGElement(const QualifiedName &, Document *);
     virtual ~SVGSVGElement();
 
-    virtual bool isSVG() const
+    bool isSVG() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
-    virtual bool isValid() const
+    bool isValid() const Q_DECL_OVERRIDE
     {
         return SVGTests::isValid();
     }
@@ -123,31 +123,31 @@ public:
     static SVGTransform createSVGTransform();
     static SVGTransform createSVGTransformFromMatrix(const AffineTransform &);
 
-    virtual void parseMappedAttribute(MappedAttribute *);
+    void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
 
     // 'virtual SVGLocatable' functions
-    virtual AffineTransform getCTM() const;
-    virtual AffineTransform getScreenCTM() const;
+    AffineTransform getCTM() const Q_DECL_OVERRIDE;
+    AffineTransform getScreenCTM() const Q_DECL_OVERRIDE;
 
-    virtual bool rendererIsNeeded(RenderStyle *style)
+    bool rendererIsNeeded(RenderStyle *style) Q_DECL_OVERRIDE
     {
         return StyledElement::rendererIsNeeded(style);
     }
-    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
+    RenderObject *createRenderer(RenderArena *, RenderStyle *) Q_DECL_OVERRIDE;
 
-    virtual void insertedIntoDocument();
-    virtual void removedFromDocument();
+    void insertedIntoDocument() Q_DECL_OVERRIDE;
+    void removedFromDocument() Q_DECL_OVERRIDE;
 
-    virtual void svgAttributeChanged(const QualifiedName &);
+    void svgAttributeChanged(const QualifiedName &) Q_DECL_OVERRIDE;
 
-    virtual AffineTransform viewBoxToViewTransform(float viewWidth, float viewHeight) const;
+    AffineTransform viewBoxToViewTransform(float viewWidth, float viewHeight) const Q_DECL_OVERRIDE;
 
     //void inheritViewAttributes(SVGViewElement*);
 
     // KHTML ElementImpl pure virtual method
-    virtual quint32 id() const;
+    quint32 id() const Q_DECL_OVERRIDE;
 protected:
-    virtual const SVGElement *contextElement() const
+    const SVGElement *contextElement() const Q_DECL_OVERRIDE
     {
         return this;
     }
@@ -155,7 +155,7 @@ protected:
     friend class RenderSVGRoot;
     /*friend class RenderSVGViewportContainer;*/
 
-    virtual bool hasRelativeValues() const;
+    bool hasRelativeValues() const Q_DECL_OVERRIDE;
 
     bool isOutermostSVG() const;
 

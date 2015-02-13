@@ -34,16 +34,16 @@ public:
     SVGTSpanElement(const QualifiedName &, Document *);
     virtual ~SVGTSpanElement();
 
-    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
-    bool childShouldCreateRenderer(Node *) const;
+    RenderObject *createRenderer(RenderArena *, RenderStyle *) Q_DECL_OVERRIDE;
+    bool childShouldCreateRenderer(Node *) const Q_DECL_OVERRIDE;
 
     // KHTML ElementImpl pure virtual method
-    virtual quint32 id() const
+    quint32 id() const Q_DECL_OVERRIDE
     {
         return SVGNames::tspanTag.id();
     }
 protected:
-    virtual const SVGElement *contextElement() const
+    const SVGElement *contextElement() const Q_DECL_OVERRIDE
     {
         return this;
     }

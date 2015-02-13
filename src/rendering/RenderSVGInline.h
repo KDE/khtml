@@ -34,13 +34,13 @@ class RenderSVGInline : public RenderInline
 {
 public:
     RenderSVGInline(DOM::NodeImpl *);
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderSVGInline";
     }
     using khtml::RenderFlow::createInlineBox;
     virtual InlineBox *createInlineBox(bool makePlaceHolderBox, bool isRootLineBox, bool isOnlyRun = false);
-    virtual bool requiresLayer() const
+    bool requiresLayer() const Q_DECL_OVERRIDE
     {
         return false;
     }

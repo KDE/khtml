@@ -66,37 +66,37 @@ public:
     RenderFormElement(DOM::HTMLGenericFormElementImpl *node);
     virtual ~RenderFormElement();
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderForm";
     }
-    virtual void setStyle(RenderStyle *style);
+    void setStyle(RenderStyle *style) Q_DECL_OVERRIDE;
 
-    virtual bool isFormElement() const
+    bool isFormElement() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
     // form elements apply the padding themselves, so
     // the rest of the layout should disregard it
-    virtual int paddingTop() const;
-    virtual int paddingBottom() const;
-    virtual int paddingLeft() const;
-    virtual int paddingRight() const;
+    int paddingTop() const Q_DECL_OVERRIDE;
+    int paddingBottom() const Q_DECL_OVERRIDE;
+    int paddingLeft() const Q_DECL_OVERRIDE;
+    int paddingRight() const Q_DECL_OVERRIDE;
 
     // some widgets don't apply padding, and thus it is ignored
     // entirely, this function allows them to opt out
-    virtual bool includesPadding() const;
+    bool includesPadding() const Q_DECL_OVERRIDE;
 
-    virtual void updateFromElement();
+    void updateFromElement() Q_DECL_OVERRIDE;
 
-    virtual void layout();
-    virtual void calcWidth();
-    virtual void calcHeight();
-    virtual void calcMinMaxWidth();
-    virtual short baselinePosition(bool) const;
-    virtual int calcContentWidth(int w) const;
-    virtual int calcContentHeight(int h) const;
+    void layout() Q_DECL_OVERRIDE;
+    void calcWidth() Q_DECL_OVERRIDE;
+    void calcHeight() Q_DECL_OVERRIDE;
+    void calcMinMaxWidth() Q_DECL_OVERRIDE;
+    short baselinePosition(bool) const Q_DECL_OVERRIDE;
+    int calcContentWidth(int w) const Q_DECL_OVERRIDE;
+    int calcContentHeight(int h) const Q_DECL_OVERRIDE;
 
     DOM::HTMLGenericFormElementImpl *element() const
     {
@@ -111,12 +111,12 @@ protected:
     {
         return false;
     }
-    virtual bool isEditable() const
+    bool isEditable() const Q_DECL_OVERRIDE
     {
         return false;
     }
     virtual void setPadding();
-    virtual void paintOneBackground(QPainter *p, const QColor &c, const BackgroundLayer *bgLayer, QRect clipr, int _tx, int _ty, int w, int height);
+    void paintOneBackground(QPainter *p, const QColor &c, const BackgroundLayer *bgLayer, QRect clipr, int _tx, int _ty, int w, int height) Q_DECL_OVERRIDE;
 
     Qt::Alignment textAlignment() const;
     QProxyStyle *getProxyStyle();
@@ -134,15 +134,15 @@ class RenderButton : public RenderFormElement
 public:
     RenderButton(DOM::HTMLGenericFormElementImpl *node);
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderButton";
     }
 
-    virtual void layout();
-    virtual short baselinePosition(bool) const;
-    virtual void setStyle(RenderStyle *style);
-    virtual bool forceTransparentText() const
+    void layout() Q_DECL_OVERRIDE;
+    short baselinePosition(bool) const Q_DECL_OVERRIDE;
+    void setStyle(RenderStyle *style) Q_DECL_OVERRIDE;
+    bool forceTransparentText() const Q_DECL_OVERRIDE
     {
         return m_hasTextIndentHack;
     }
@@ -154,7 +154,7 @@ public:
     }
 
 protected:
-    virtual bool isRenderButton() const
+    bool isRenderButton() const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -179,21 +179,21 @@ class RenderCheckBox : public RenderButton
 public:
     RenderCheckBox(DOM::HTMLInputElementImpl *node);
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderCheckBox";
     }
-    virtual void updateFromElement();
-    virtual void calcMinMaxWidth();
+    void updateFromElement() Q_DECL_OVERRIDE;
+    void calcMinMaxWidth() Q_DECL_OVERRIDE;
 
-    virtual bool handleEvent(const DOM::EventImpl &);
+    bool handleEvent(const DOM::EventImpl &) Q_DECL_OVERRIDE;
 
     QCheckBox *widget() const
     {
         return static_cast<QCheckBox *>(m_widget);
     }
 protected:
-    virtual bool includesPadding() const
+    bool includesPadding() const Q_DECL_OVERRIDE
     {
         return false;
     }
@@ -220,22 +220,22 @@ class RenderRadioButton : public RenderButton
 public:
     RenderRadioButton(DOM::HTMLInputElementImpl *node);
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderRadioButton";
     }
 
-    virtual void calcMinMaxWidth();
-    virtual void updateFromElement();
+    void calcMinMaxWidth() Q_DECL_OVERRIDE;
+    void updateFromElement() Q_DECL_OVERRIDE;
 
-    virtual bool handleEvent(const DOM::EventImpl &);
+    bool handleEvent(const DOM::EventImpl &) Q_DECL_OVERRIDE;
 
     QRadioButton *widget() const
     {
         return static_cast<QRadioButton *>(m_widget);
     }
 protected:
-    virtual bool includesPadding() const
+    bool includesPadding() const Q_DECL_OVERRIDE
     {
         return false;
     }
@@ -261,18 +261,18 @@ class RenderSubmitButton : public RenderButton
 public:
     RenderSubmitButton(DOM::HTMLInputElementImpl *element);
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderSubmitButton";
     }
 
-    virtual void calcMinMaxWidth();
-    virtual void updateFromElement();
-    virtual short baselinePosition(bool) const;
+    void calcMinMaxWidth() Q_DECL_OVERRIDE;
+    void updateFromElement() Q_DECL_OVERRIDE;
+    short baselinePosition(bool) const Q_DECL_OVERRIDE;
 protected:
-    virtual void setPadding();
-    virtual void setStyle(RenderStyle *style);
-    virtual bool canHaveBorder() const;
+    void setPadding() Q_DECL_OVERRIDE;
+    void setStyle(RenderStyle *style) Q_DECL_OVERRIDE;
+    bool canHaveBorder() const Q_DECL_OVERRIDE;
 private:
     QString rawText();
 };
@@ -285,7 +285,7 @@ public:
     RenderImageButton(DOM::HTMLInputElementImpl *element)
         : RenderImage(element) {}
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderImageButton";
     }
@@ -298,7 +298,7 @@ class RenderResetButton : public RenderSubmitButton
 public:
     RenderResetButton(DOM::HTMLInputElementImpl *element);
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderResetButton";
     }
@@ -323,16 +323,16 @@ class RenderLineEdit : public RenderFormElement
 public:
     RenderLineEdit(DOM::HTMLInputElementImpl *element);
 
-    virtual void calcMinMaxWidth();
+    void calcMinMaxWidth() Q_DECL_OVERRIDE;
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderLineEdit";
     }
-    virtual void updateFromElement();
-    virtual void setStyle(RenderStyle *style);
-    virtual short baselinePosition(bool) const;
-    virtual void handleFocusOut();
+    void updateFromElement() Q_DECL_OVERRIDE;
+    void setStyle(RenderStyle *style) Q_DECL_OVERRIDE;
+    short baselinePosition(bool) const Q_DECL_OVERRIDE;
+    void handleFocusOut() Q_DECL_OVERRIDE;
 
     void select();
 
@@ -355,12 +355,12 @@ public Q_SLOTS:
     void slotReturnPressed();
     void slotTextChanged(const QString &string);
 protected:
-    virtual bool canHaveBorder() const
+    bool canHaveBorder() const Q_DECL_OVERRIDE
     {
         return true;
     }
 private:
-    virtual bool isEditable() const
+    bool isEditable() const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -380,9 +380,9 @@ public:
     void highLightWord(unsigned int length, unsigned int pos);
 
 protected:
-    virtual bool event(QEvent *e);
-    virtual void mouseMoveEvent(QMouseEvent *e);
-    virtual void contextMenuEvent(QContextMenuEvent *e);
+    bool event(QEvent *e) Q_DECL_OVERRIDE;
+    void mouseMoveEvent(QMouseEvent *e) Q_DECL_OVERRIDE;
+    void contextMenuEvent(QContextMenuEvent *e) Q_DECL_OVERRIDE;
 private Q_SLOTS:
     void clearHistoryActivated();
     void slotCheckSpelling();
@@ -408,20 +408,20 @@ class RenderFieldset : public RenderBlock
 public:
     RenderFieldset(DOM::HTMLGenericFormElementImpl *element);
 
-    virtual void calcMinMaxWidth();
-    virtual const char *renderName() const
+    void calcMinMaxWidth() Q_DECL_OVERRIDE;
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderFieldSet";
     }
-    virtual RenderObject *layoutLegend(bool relayoutChildren);
-    virtual void setStyle(RenderStyle *_style);
+    RenderObject *layoutLegend(bool relayoutChildren) Q_DECL_OVERRIDE;
+    void setStyle(RenderStyle *_style) Q_DECL_OVERRIDE;
 
 protected:
-    virtual void paintBoxDecorations(PaintInfo &pI, int _tx, int _ty);
+    void paintBoxDecorations(PaintInfo &pI, int _tx, int _ty) Q_DECL_OVERRIDE;
     void paintBorderMinusLegend(QPainter *p, int _tx, int _ty, int w,
                                 int h, const RenderStyle *style, int lx, int lw, int lb);
     RenderObject *findLegend() const;
-    virtual short intrinsicWidth() const
+    short intrinsicWidth() const Q_DECL_OVERRIDE
     {
         return m_intrinsicWidth;
     }
@@ -445,13 +445,13 @@ class RenderFileButton : public RenderFormElement
 public:
     RenderFileButton(DOM::HTMLInputElementImpl *element);
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderFileButton";
     }
-    virtual void calcMinMaxWidth();
-    virtual void updateFromElement();
-    virtual short baselinePosition(bool) const;
+    void calcMinMaxWidth() Q_DECL_OVERRIDE;
+    void updateFromElement() Q_DECL_OVERRIDE;
+    short baselinePosition(bool) const Q_DECL_OVERRIDE;
     void select();
 
     KUrlRequester *widget() const
@@ -470,18 +470,18 @@ public Q_SLOTS:
     void slotUrlSelected();
 
 protected:
-    virtual void handleFocusOut();
+    void handleFocusOut() Q_DECL_OVERRIDE;
 
-    virtual bool isEditable() const
+    bool isEditable() const Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual bool acceptsSyntheticEvents() const
+    bool acceptsSyntheticEvents() const Q_DECL_OVERRIDE
     {
         return false;
     }
 
-    virtual bool includesPadding() const
+    bool includesPadding() const Q_DECL_OVERRIDE
     {
         return false;
     }
@@ -497,13 +497,13 @@ class RenderLabel : public RenderFormElement
 public:
     RenderLabel(DOM::HTMLGenericFormElementImpl *element);
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderLabel";
     }
 
 protected:
-    virtual bool canHaveBorder() const
+    bool canHaveBorder() const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -516,7 +516,7 @@ class RenderLegend : public RenderBlock
 public:
     RenderLegend(DOM::HTMLGenericFormElementImpl *element);
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderLegend";
     }
@@ -530,11 +530,11 @@ public:
     ComboBoxWidget(QWidget *parent);
 
 protected:
-    virtual bool event(QEvent *);
-    virtual bool eventFilter(QObject *dest, QEvent *e);
-    virtual void keyPressEvent(QKeyEvent *e);
-    virtual void showPopup();
-    virtual void hidePopup();
+    bool event(QEvent *) Q_DECL_OVERRIDE;
+    bool eventFilter(QObject *dest, QEvent *e) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    void showPopup() Q_DECL_OVERRIDE;
+    void hidePopup() Q_DECL_OVERRIDE;
 };
 
 // -------------------------------------------------------------------------
@@ -547,11 +547,11 @@ public:
         m_kwp->setIsRedirected(true);
     }
 protected:
-    void scrollContentsBy(int, int)
+    void scrollContentsBy(int, int) Q_DECL_OVERRIDE
     {
         viewport()->update();
     }
-    virtual bool event(QEvent *event);
+    bool event(QEvent *event) Q_DECL_OVERRIDE;
 };
 
 class RenderSelect : public RenderFormElement
@@ -560,13 +560,13 @@ class RenderSelect : public RenderFormElement
 public:
     RenderSelect(DOM::HTMLSelectElementImpl *element);
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderSelect";
     }
 
-    virtual void calcMinMaxWidth();
-    virtual void layout();
+    void calcMinMaxWidth() Q_DECL_OVERRIDE;
+    void layout() Q_DECL_OVERRIDE;
 
     void setOptionsChanged(bool _optionsChanged);
 
@@ -578,9 +578,9 @@ public:
     {
         m_selectionChanged = _selectionChanged;
     }
-    virtual void setStyle(RenderStyle *_style);
-    virtual void updateFromElement();
-    virtual short baselinePosition(bool) const;
+    void setStyle(RenderStyle *_style) Q_DECL_OVERRIDE;
+    void updateFromElement() Q_DECL_OVERRIDE;
+    short baselinePosition(bool) const Q_DECL_OVERRIDE;
 
     void updateSelection();
 
@@ -590,7 +590,7 @@ public:
     }
 
 protected:
-    void setPadding();
+    void setPadding() Q_DECL_OVERRIDE;
     ListBoxWidget *createListBox();
     ComboBoxWidget *createComboBox();
 
@@ -602,7 +602,7 @@ protected:
     bool m_optionsChanged;
 
     void clearItemFlags(int index, Qt::ItemFlags flags);
-    virtual bool canHaveBorder() const
+    bool canHaveBorder() const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -621,9 +621,9 @@ public:
     virtual ~TextAreaWidget();
 
 protected:
-    virtual bool event(QEvent *e);
-    virtual void keyPressEvent(QKeyEvent *e);
-    virtual void scrollContentsBy(int dx, int dy);
+    bool event(QEvent *e) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    void scrollContentsBy(int dx, int dy) Q_DECL_OVERRIDE;
 
 };
 
@@ -636,17 +636,17 @@ public:
     RenderTextArea(DOM::HTMLTextAreaElementImpl *element);
     ~RenderTextArea();
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderTextArea";
     }
-    virtual void calcMinMaxWidth();
-    virtual void setStyle(RenderStyle *style);
+    void calcMinMaxWidth() Q_DECL_OVERRIDE;
+    void setStyle(RenderStyle *style) Q_DECL_OVERRIDE;
 
-    virtual short scrollWidth() const;
-    virtual int scrollHeight() const;
+    short scrollWidth() const Q_DECL_OVERRIDE;
+    int scrollHeight() const Q_DECL_OVERRIDE;
 
-    virtual void updateFromElement();
+    void updateFromElement() Q_DECL_OVERRIDE;
 
     // don't even think about making this method virtual!
     TextAreaWidget *widget() const
@@ -674,13 +674,13 @@ protected Q_SLOTS:
     void slotTextChanged();
 
 protected:
-    virtual void handleFocusOut();
+    void handleFocusOut() Q_DECL_OVERRIDE;
 
-    virtual bool isEditable() const
+    bool isEditable() const Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual bool canHaveBorder() const
+    bool canHaveBorder() const Q_DECL_OVERRIDE
     {
         return true;
     }

@@ -54,14 +54,14 @@ public:
     RenderTable(DOM::NodeImpl *node);
     ~RenderTable();
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderTable";
     }
 
-    virtual void setStyle(RenderStyle *style);
+    void setStyle(RenderStyle *style) Q_DECL_OVERRIDE;
 
-    virtual bool isTable() const
+    bool isTable() const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -84,23 +84,23 @@ public:
     {
         return style()->borderCollapse();
     }
-    int borderLeft() const;
-    int borderRight() const;
-    int borderTop() const;
-    int borderBottom() const;
-    int paddingLeft() const
+    int borderLeft() const Q_DECL_OVERRIDE;
+    int borderRight() const Q_DECL_OVERRIDE;
+    int borderTop() const Q_DECL_OVERRIDE;
+    int borderBottom() const Q_DECL_OVERRIDE;
+    int paddingLeft() const Q_DECL_OVERRIDE
     {
         return collapseBorders() ? 0 : RenderBlock::paddingLeft();
     }
-    int paddingRight() const
+    int paddingRight() const Q_DECL_OVERRIDE
     {
         return collapseBorders() ? 0 : RenderBlock::paddingRight();
     }
-    int paddingTop() const
+    int paddingTop() const Q_DECL_OVERRIDE
     {
         return collapseBorders() ? 0 : RenderBlock::paddingTop();
     }
-    int paddingBottom() const
+    int paddingBottom() const Q_DECL_OVERRIDE
     {
         return collapseBorders() ? 0 : RenderBlock::paddingBottom();
     }
@@ -201,7 +201,7 @@ public:
         needSectionRecalc = true;
     }
 
-    virtual RenderObject *removeChildNode(RenderObject *child);
+    RenderObject *removeChildNode(RenderObject *child) Q_DECL_OVERRIDE;
 
     RenderTableSection *sectionAbove(const RenderTableSection *, bool skipEmptySections = false);
     RenderTableSection *sectionBelow(const RenderTableSection *, bool skipEmptySections = false);
@@ -317,29 +317,29 @@ public:
         return (*(grid[row].row))[col];
     }
 
-    virtual int lowestPosition(bool includeOverflowInterior, bool includeSelf) const;
-    virtual int rightmostPosition(bool includeOverflowInterior, bool includeSelf) const;
-    virtual int leftmostPosition(bool includeOverflowInterior, bool includeSelf) const;
-    virtual int highestPosition(bool includeOverflowInterior, bool includeSelf) const;
+    int lowestPosition(bool includeOverflowInterior, bool includeSelf) const Q_DECL_OVERRIDE;
+    int rightmostPosition(bool includeOverflowInterior, bool includeSelf) const Q_DECL_OVERRIDE;
+    int leftmostPosition(bool includeOverflowInterior, bool includeSelf) const Q_DECL_OVERRIDE;
+    int highestPosition(bool includeOverflowInterior, bool includeSelf) const Q_DECL_OVERRIDE;
 
-    int borderLeft() const
+    int borderLeft() const Q_DECL_OVERRIDE
     {
         return table()->collapseBorders() ? 0 : RenderBox::borderLeft();
     }
-    int borderRight() const
+    int borderRight() const Q_DECL_OVERRIDE
     {
         return table()->collapseBorders() ? 0 : RenderBox::borderRight();
     }
-    int borderTop() const
+    int borderTop() const Q_DECL_OVERRIDE
     {
         return table()->collapseBorders() ? 0 : RenderBox::borderTop();
     }
-    int borderBottom() const
+    int borderBottom() const Q_DECL_OVERRIDE
     {
         return table()->collapseBorders() ? 0 : RenderBox::borderBottom();
     }
 
-    virtual void paint(PaintInfo &i, int tx, int ty);
+    void paint(PaintInfo &i, int tx, int ty) Q_DECL_OVERRIDE;
 
     int numRows() const
     {
@@ -356,12 +356,12 @@ public:
         table()->setNeedSectionRecalc();
     }
 
-    virtual RenderObject *removeChildNode(RenderObject *child);
+    RenderObject *removeChildNode(RenderObject *child) Q_DECL_OVERRIDE;
 
-    virtual bool canClear(RenderObject *child, PageBreakLevel level);
+    bool canClear(RenderObject *child, PageBreakLevel level) Q_DECL_OVERRIDE;
     void addSpaceAt(int pos, int dy);
 
-    virtual bool nodeAtPoint(NodeInfo &info, int x, int y, int tx, int ty, HitTestAction action, bool inside);
+    bool nodeAtPoint(NodeInfo &info, int x, int y, int tx, int ty, HitTestAction action, bool inside) Q_DECL_OVERRIDE;
 
     // this gets a cell grid data structure. changing the number of
     // columns is done by the table
@@ -396,42 +396,42 @@ class RenderTableRow : public RenderBox
 public:
     RenderTableRow(DOM::NodeImpl *node);
 
-    virtual void detach();
+    void detach() Q_DECL_OVERRIDE;
 
-    virtual void setStyle(RenderStyle *);
-    virtual const char *renderName() const
+    void setStyle(RenderStyle *) Q_DECL_OVERRIDE;
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderTableRow";
     }
-    virtual bool isTableRow() const
+    bool isTableRow() const Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual void addChild(RenderObject *child, RenderObject *beforeChild = 0);
+    void addChild(RenderObject *child, RenderObject *beforeChild = 0) Q_DECL_OVERRIDE;
 
-    virtual short offsetWidth() const;
-    virtual int offsetHeight() const;
-    virtual int offsetLeft() const;
-    virtual int offsetTop() const;
+    short offsetWidth() const Q_DECL_OVERRIDE;
+    int offsetHeight() const Q_DECL_OVERRIDE;
+    int offsetLeft() const Q_DECL_OVERRIDE;
+    int offsetTop() const Q_DECL_OVERRIDE;
 
-    virtual short lineHeight(bool) const
+    short lineHeight(bool) const Q_DECL_OVERRIDE
     {
         return 0;
     }
-    virtual void position(InlineBox *, int, int, bool) {}
+    void position(InlineBox *, int, int, bool) Q_DECL_OVERRIDE {}
 
-    virtual bool nodeAtPoint(NodeInfo &info, int x, int y, int tx, int ty, HitTestAction action, bool inside);
+    bool nodeAtPoint(NodeInfo &info, int x, int y, int tx, int ty, HitTestAction action, bool inside) Q_DECL_OVERRIDE;
 
-    virtual void layout();
+    void layout() Q_DECL_OVERRIDE;
 
-    virtual RenderObject *removeChildNode(RenderObject *child);
+    RenderObject *removeChildNode(RenderObject *child) Q_DECL_OVERRIDE;
 
     // The only time rows get a layer is when they have transparency.
-    virtual bool requiresLayer() const
+    bool requiresLayer() const Q_DECL_OVERRIDE
     {
         return style()->opacity() < 1.0f;
     }
-    virtual void paint(PaintInfo &i, int tx, int ty);
+    void paint(PaintInfo &i, int tx, int ty) Q_DECL_OVERRIDE;
 
     void paintRow(PaintInfo &i, int tx, int ty, int w, int h);
 
@@ -452,14 +452,14 @@ class RenderTableCell : public RenderBlock
 public:
     RenderTableCell(DOM::NodeImpl *node);
 
-    virtual void layout();
-    virtual void detach();
+    void layout() Q_DECL_OVERRIDE;
+    void detach() Q_DECL_OVERRIDE;
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderTableCell";
     }
-    virtual bool isTableCell() const
+    bool isTableCell() const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -545,26 +545,26 @@ public:
         return _bottomExtra;
     }
 
-    int pageTopAfter(int x) const;
+    int pageTopAfter(int x) const Q_DECL_OVERRIDE;
 
-    virtual void paint(PaintInfo &i, int tx, int ty);
+    void paint(PaintInfo &i, int tx, int ty) Q_DECL_OVERRIDE;
 
     void paintCollapsedBorder(QPainter *p, int x, int y, int w, int h);
     void paintBackgroundsBehindCell(PaintInfo &i, int _tx, int _ty, RenderObject *backgroundObject);
 
-    virtual void close();
+    void close() Q_DECL_OVERRIDE;
 
     // lie position to outside observers
-    virtual int yPos() const
+    int yPos() const Q_DECL_OVERRIDE
     {
         return m_y + _topExtra;
     }
 
-    virtual void repaintRectangle(int x, int y, int w, int h, Priority p = NormalPriority, bool f = false);
+    void repaintRectangle(int x, int y, int w, int h, Priority p = NormalPriority, bool f = false) Q_DECL_OVERRIDE;
 
-    virtual short baselinePosition(bool = false) const;
+    short baselinePosition(bool = false) const Q_DECL_OVERRIDE;
 
-    virtual bool nodeAtPoint(NodeInfo &info, int _x, int _y, int _tx, int _ty, HitTestAction hitTestAction, bool inside);
+    bool nodeAtPoint(NodeInfo &info, int _x, int _y, int _tx, int _ty, HitTestAction hitTestAction, bool inside) Q_DECL_OVERRIDE;
 
     RenderTable *table() const
     {
@@ -576,7 +576,7 @@ public:
     }
 
 #ifdef ENABLE_DUMP
-    virtual void dump(QTextStream &stream, const QString &ind) const;
+    void dump(QTextStream &stream, const QString &ind) const Q_DECL_OVERRIDE;
 #endif
 
     bool widthChanged()
@@ -604,12 +604,12 @@ public:
     }
 
 protected:
-    virtual void paintBoxDecorations(PaintInfo &p, int _tx, int _ty);
-    virtual int borderTopExtra() const
+    void paintBoxDecorations(PaintInfo &p, int _tx, int _ty) Q_DECL_OVERRIDE;
+    int borderTopExtra() const Q_DECL_OVERRIDE
     {
         return _topExtra;
     }
-    virtual int borderBottomExtra() const
+    int borderBottomExtra() const Q_DECL_OVERRIDE
     {
         return _bottomExtra;
     }
@@ -632,31 +632,31 @@ class RenderTableCol : public RenderBox
 public:
     RenderTableCol(DOM::NodeImpl *node);
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderTableCol";
     }
 
-    virtual bool isTableCol() const
+    bool isTableCol() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
-    virtual short lineHeight(bool) const
+    short lineHeight(bool) const Q_DECL_OVERRIDE
     {
         return 0;
     }
-    virtual void position(InlineBox *, int, int, bool) {}
-    virtual void layout() {}
-    virtual bool requiresLayer() const
+    void position(InlineBox *, int, int, bool) Q_DECL_OVERRIDE {}
+    void layout() Q_DECL_OVERRIDE {}
+    bool requiresLayer() const Q_DECL_OVERRIDE
     {
         return false;
     }
 
-    virtual void updateFromElement();
+    void updateFromElement() Q_DECL_OVERRIDE;
 
 #ifdef ENABLE_DUMP
-    virtual void dump(QTextStream &stream, const QString &ind) const;
+    void dump(QTextStream &stream, const QString &ind) const Q_DECL_OVERRIDE;
 #endif
 
     int span() const

@@ -53,7 +53,7 @@ public:
                             QWidget *wparent,
                             QObject *parent,
                             const QVariantList &args,
-                            const QString &keyword);
+                            const QString &keyword) Q_DECL_OVERRIDE;
 };
 
 class AdaptorView : public KParts::ReadOnlyPart,
@@ -64,12 +64,12 @@ class AdaptorView : public KParts::ReadOnlyPart,
 public:
     AdaptorView(QWidget *wparent, QObject *parent, const QStringList &args);
 
-    void initScripting(KJS::ExecState *exec);
-    void stopScripting() { }
-    KJS::JSObject *scriptObject();
+    void initScripting(KJS::ExecState *exec) Q_DECL_OVERRIDE;
+    void stopScripting() Q_DECL_OVERRIDE { }
+    KJS::JSObject *scriptObject() Q_DECL_OVERRIDE;
 
 protected:
-    bool openFile();
+    bool openFile() Q_DECL_OVERRIDE;
 };
 
 #endif

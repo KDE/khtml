@@ -37,10 +37,10 @@ public:
     DOMRange(ExecState *exec, DOM::RangeImpl *r);
     ~DOMRange();
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -67,11 +67,11 @@ public:
     DOMSelection(ExecState *exec, DOM::DocumentImpl *parentDocument);
 
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
     // no put - all read-only
 
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -93,10 +93,10 @@ class RangeConstructor : public DOMObject
 public:
     RangeConstructor(ExecState *);
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -118,7 +118,7 @@ class RangeException : public DOMObject
 {
 public:
     RangeException(ExecState *exec);
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }

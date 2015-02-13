@@ -62,7 +62,7 @@ public:
     SVGElement *viewTarget() const;
 
 protected:
-    virtual const SVGElement *contextElement() const;
+    const SVGElement *contextElement() const Q_DECL_OVERRIDE;
 
 private:
     mutable RefPtr<SVGTransformList> m_transform;

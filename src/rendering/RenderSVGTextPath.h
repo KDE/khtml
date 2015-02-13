@@ -39,7 +39,7 @@ public:
     bool exactAlignment() const;
     bool stretchMethod() const;
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderSVGTextPath";
     }

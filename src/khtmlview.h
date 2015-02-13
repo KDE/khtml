@@ -364,33 +364,33 @@ Q_SIGNALS:
 protected:
     void clear();
 
-    virtual bool event(QEvent *event);
-    virtual void paintEvent(QPaintEvent *);
-    virtual void resizeEvent(QResizeEvent *event);
-    virtual void showEvent(QShowEvent *);
-    virtual void hideEvent(QHideEvent *);
-    virtual bool focusNextPrevChild(bool next);
-    virtual void mousePressEvent(QMouseEvent *);
-    virtual void focusInEvent(QFocusEvent *);
-    virtual void focusOutEvent(QFocusEvent *);
-    virtual void mouseDoubleClickEvent(QMouseEvent *);
-    virtual void mouseMoveEvent(QMouseEvent *);
-    virtual void mouseReleaseEvent(QMouseEvent *);
+    bool event(QEvent *event) Q_DECL_OVERRIDE;
+    void paintEvent(QPaintEvent *) Q_DECL_OVERRIDE;
+    void resizeEvent(QResizeEvent *event) Q_DECL_OVERRIDE;
+    void showEvent(QShowEvent *) Q_DECL_OVERRIDE;
+    void hideEvent(QHideEvent *) Q_DECL_OVERRIDE;
+    bool focusNextPrevChild(bool next) Q_DECL_OVERRIDE;
+    void mousePressEvent(QMouseEvent *) Q_DECL_OVERRIDE;
+    void focusInEvent(QFocusEvent *) Q_DECL_OVERRIDE;
+    void focusOutEvent(QFocusEvent *) Q_DECL_OVERRIDE;
+    void mouseDoubleClickEvent(QMouseEvent *) Q_DECL_OVERRIDE;
+    void mouseMoveEvent(QMouseEvent *) Q_DECL_OVERRIDE;
+    void mouseReleaseEvent(QMouseEvent *) Q_DECL_OVERRIDE;
 #ifndef QT_NO_WHEELEVENT
-    virtual void wheelEvent(QWheelEvent *);
+    void wheelEvent(QWheelEvent *) Q_DECL_OVERRIDE;
 #endif
-    virtual void dragEnterEvent(QDragEnterEvent *);
-    virtual void dropEvent(QDropEvent *);
-    virtual void closeEvent(QCloseEvent *);
+    void dragEnterEvent(QDragEnterEvent *) Q_DECL_OVERRIDE;
+    void dropEvent(QDropEvent *) Q_DECL_OVERRIDE;
+    void closeEvent(QCloseEvent *) Q_DECL_OVERRIDE;
     virtual bool widgetEvent(QEvent *);
-    virtual bool viewportEvent(QEvent *e);
-    virtual bool eventFilter(QObject *, QEvent *);
-    virtual void scrollContentsBy(int dx, int dy);
+    bool viewportEvent(QEvent *e) Q_DECL_OVERRIDE;
+    bool eventFilter(QObject *, QEvent *) Q_DECL_OVERRIDE;
+    void scrollContentsBy(int dx, int dy) Q_DECL_OVERRIDE;
 
-    void keyPressEvent(QKeyEvent *_ke);
-    void keyReleaseEvent(QKeyEvent *_ke);
+    void keyPressEvent(QKeyEvent *_ke) Q_DECL_OVERRIDE;
+    void keyReleaseEvent(QKeyEvent *_ke) Q_DECL_OVERRIDE;
     void doAutoScroll();
-    void timerEvent(QTimerEvent *);
+    void timerEvent(QTimerEvent *) Q_DECL_OVERRIDE;
 
     void setSmoothScrollingModeDefault(SmoothScrollingMode m);
 

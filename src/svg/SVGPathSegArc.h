@@ -42,15 +42,15 @@ public:
 
     virtual ~SVGPathSegArcAbs();
 
-    virtual unsigned short pathSegType() const
+    unsigned short pathSegType() const Q_DECL_OVERRIDE
     {
         return PATHSEG_ARC_ABS;
     }
-    virtual String pathSegTypeAsLetter() const
+    String pathSegTypeAsLetter() const Q_DECL_OVERRIDE
     {
         return "A";
     }
-    virtual String toString() const
+    String toString() const Q_DECL_OVERRIDE
     {
         return String::format("A %.6lg %.6lg %.6lg %d %d %.6lg %.6lg", m_r1, m_r2, m_angle, m_largeArcFlag, m_sweepFlag, m_x, m_y);
     }
@@ -98,15 +98,15 @@ public:
     }
     virtual ~SVGPathSegArcRel();
 
-    virtual unsigned short pathSegType() const
+    unsigned short pathSegType() const Q_DECL_OVERRIDE
     {
         return PATHSEG_ARC_REL;
     }
-    virtual String pathSegTypeAsLetter() const
+    String pathSegTypeAsLetter() const Q_DECL_OVERRIDE
     {
         return "a";
     }
-    virtual String toString() const
+    String toString() const Q_DECL_OVERRIDE
     {
         return String::format("a %.6lg %.6lg %.6lg %d %d %.6lg %.6lg", m_r1, m_r2, m_angle, m_largeArcFlag, m_sweepFlag, m_x, m_y);
     }

@@ -56,7 +56,7 @@ public:
     HTMLBodyElementImpl(DocumentImpl *doc);
     ~HTMLBodyElementImpl();
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
     DOMString aLink() const;
     void setALink(const DOMString &value);
@@ -69,11 +69,11 @@ public:
     DOMString vLink() const;
     void setVLink(const DOMString &value);
 
-    virtual void parseAttribute(AttributeImpl *);
-    virtual void attach();
+    void parseAttribute(AttributeImpl *) Q_DECL_OVERRIDE;
+    void attach() Q_DECL_OVERRIDE;
 
-    virtual void insertedIntoDocument();
-    virtual void removedFromDocument();
+    void insertedIntoDocument() Q_DECL_OVERRIDE;
+    void removedFromDocument() Q_DECL_OVERRIDE;
 
     CSSStyleSheetImpl *sheet() const
     {
@@ -98,11 +98,11 @@ public:
 
     ~HTMLFrameElementImpl();
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
-    virtual void parseAttribute(AttributeImpl *);
-    virtual void attach();
-    virtual void defaultEventHandler(EventImpl *evt);
+    void parseAttribute(AttributeImpl *) Q_DECL_OVERRIDE;
+    void attach() Q_DECL_OVERRIDE;
+    void defaultEventHandler(EventImpl *evt) Q_DECL_OVERRIDE;
 
     bool noResize()
     {
@@ -110,8 +110,8 @@ public:
     }
     void setLocation(const QString &str);
 
-    virtual bool isFocusableImpl(FocusType ft) const;
-    virtual void setFocus(bool);
+    bool isFocusableImpl(FocusType ft) const Q_DECL_OVERRIDE;
+    void setFocus(bool) Q_DECL_OVERRIDE;
 
     DocumentImpl *contentDocument() const;
     KHTMLPart    *contentPart() const;
@@ -128,8 +128,8 @@ public:
     bool noresize : 1;
 
     void ensureUniqueName();
-    virtual void computeContent();
-    virtual void setWidgetNotify(QWidget *widget);
+    void computeContent() Q_DECL_OVERRIDE;
+    void setWidgetNotify(QWidget *widget) Q_DECL_OVERRIDE;
 };
 
 // -------------------------------------------------------------------------
@@ -142,12 +142,12 @@ public:
 
     ~HTMLFrameSetElementImpl();
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
-    virtual void parseAttribute(AttributeImpl *);
-    virtual void attach();
+    void parseAttribute(AttributeImpl *) Q_DECL_OVERRIDE;
+    void attach() Q_DECL_OVERRIDE;
 
-    virtual void defaultEventHandler(EventImpl *evt);
+    void defaultEventHandler(EventImpl *evt) Q_DECL_OVERRIDE;
 
     bool frameBorder()
     {
@@ -170,9 +170,9 @@ public:
     {
         return frameborder ? m_border : 0;
     }
-    virtual void detach();
+    void detach() Q_DECL_OVERRIDE;
 
-    virtual void recalcStyle(StyleChange ch);
+    void recalcStyle(StyleChange ch) Q_DECL_OVERRIDE;
 
 protected:
     khtml::Length *m_rows;
@@ -196,7 +196,7 @@ public:
     HTMLHeadElementImpl(DocumentImpl *doc)
         : HTMLElementImpl(doc) {}
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 };
 
 // -------------------------------------------------------------------------
@@ -207,7 +207,7 @@ public:
     HTMLHtmlElementImpl(DocumentImpl *doc)
         : HTMLElementImpl(doc) {}
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 };
 
 // -------------------------------------------------------------------------
@@ -219,16 +219,16 @@ public:
 
     ~HTMLIFrameElementImpl();
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
-    virtual void parseAttribute(AttributeImpl *attr);
-    virtual void attach();
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
+    void attach() Q_DECL_OVERRIDE;
 
-    virtual void computeContent();
-    virtual void setWidgetNotify(QWidget *widget);
+    void computeContent() Q_DECL_OVERRIDE;
+    void setWidgetNotify(QWidget *widget) Q_DECL_OVERRIDE;
 
-    virtual void insertedIntoDocument();
-    virtual void removedFromDocument();
+    void insertedIntoDocument() Q_DECL_OVERRIDE;
+    void removedFromDocument() Q_DECL_OVERRIDE;
 protected:
 
     void updateFrame();

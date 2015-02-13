@@ -37,7 +37,7 @@ protected:
         return m_centralWidget;
     }
 
-    void resizeEvent(QResizeEvent *event);
+    void resizeEvent(QResizeEvent *event) Q_DECL_OVERRIDE;
 
 Q_SIGNALS:
     void hideMe();

@@ -39,11 +39,11 @@ public:
     SVGFontElement(const QualifiedName &, Document *);
     virtual ~SVGFontElement();
 
-    virtual bool rendererIsNeeded(RenderStyle *)
+    bool rendererIsNeeded(RenderStyle *) Q_DECL_OVERRIDE
     {
         return false;
     }
-    virtual const SVGElement *contextElement() const
+    const SVGElement *contextElement() const Q_DECL_OVERRIDE
     {
         return this;
     }
@@ -57,7 +57,7 @@ public:
     SVGMissingGlyphElement *firstMissingGlyphElement() const;
 
     // KHTML ElementImpl pure virtual method
-    virtual quint32 id() const
+    quint32 id() const Q_DECL_OVERRIDE
     {
         return SVGNames::textTag.id();
     }

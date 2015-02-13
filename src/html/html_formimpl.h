@@ -67,12 +67,12 @@ public:
     HTMLFormElementImpl(DocumentImpl *doc, bool implicit);
     virtual ~HTMLFormElementImpl();
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
-    virtual void insertedIntoDocument();
-    virtual void removedFromDocument();
-    virtual void addId(const DOMString &id);
-    virtual void removeId(const DOMString &id);
+    void insertedIntoDocument() Q_DECL_OVERRIDE;
+    void removedFromDocument() Q_DECL_OVERRIDE;
+    void addId(const DOMString &id) Q_DECL_OVERRIDE;
+    void removeId(const DOMString &id) Q_DECL_OVERRIDE;
 
     // See "past names map" in HTML5, 4.10.3, "The form element"
     HTMLGenericFormElementImpl *lookupByPastName(const DOMString &id);
@@ -99,7 +99,7 @@ public:
     void doAutoFill();
     void walletOpened(KWallet::Wallet *w);
 
-    virtual void parseAttribute(AttributeImpl *attr);
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
 
     void uncheckOtherRadioButtonsInGroup(HTMLGenericFormElementImpl *caller, bool setDefaultChecked = false);
 
@@ -168,12 +168,12 @@ public:
         return m_form;
     }
 
-    virtual void parseAttribute(AttributeImpl *attr);
-    virtual void attach();
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
+    void attach() Q_DECL_OVERRIDE;
     virtual void reset() {}
 
-    virtual void insertedIntoDocument();
-    virtual void removedFromDocument();
+    void insertedIntoDocument() Q_DECL_OVERRIDE;
+    void removedFromDocument() Q_DECL_OVERRIDE;
 
     void onSelect();
     void onChange();
@@ -184,7 +184,7 @@ public:
     }
     void setDisabled(bool _disabled);
 
-    virtual bool isFocusableImpl(FocusType ft) const;
+    bool isFocusableImpl(FocusType ft) const Q_DECL_OVERRIDE;
     virtual bool isEnumerable() const
     {
         return false;
@@ -206,7 +206,7 @@ public:
     DOMString name() const;
     void setName(const DOMString &name);
 
-    virtual bool isGenericFormElement() const
+    bool isGenericFormElement() const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -234,7 +234,7 @@ public:
         return false;
     }
 
-    virtual void defaultEventHandler(EventImpl *evt);
+    void defaultEventHandler(EventImpl *evt) Q_DECL_OVERRIDE;
     virtual bool isEditable();
 
     virtual bool unsubmittedFormChanges() const
@@ -265,8 +265,8 @@ public:
         BUTTON
     };
 
-    virtual Id id() const;
-    virtual bool isEnumerable() const
+    Id id() const Q_DECL_OVERRIDE;
+    bool isEnumerable() const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -276,11 +276,11 @@ public:
     {
         return KDE_CAST_BF_ENUM(typeEnum, m_type);
     }
-    virtual void parseAttribute(AttributeImpl *attr);
-    virtual void defaultEventHandler(EventImpl *evt);
-    virtual bool encoding(const QTextCodec *, khtml::encodingList &, bool);
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
+    void defaultEventHandler(EventImpl *evt) Q_DECL_OVERRIDE;
+    bool encoding(const QTextCodec *, khtml::encodingList &, bool) Q_DECL_OVERRIDE;
     void activate();
-    virtual void attach();
+    void attach() Q_DECL_OVERRIDE;
     void click();
 
 protected:
@@ -301,9 +301,9 @@ public:
 
     virtual ~HTMLFieldSetElementImpl();
 
-    virtual Id id() const;
-    virtual void attach();
-    virtual void parseAttribute(AttributeImpl *attr);
+    Id id() const Q_DECL_OVERRIDE;
+    void attach() Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
 
 };
 
@@ -334,17 +334,17 @@ public:
     HTMLInputElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0);
     virtual ~HTMLInputElementImpl();
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
-    virtual bool isEnumerable() const
+    bool isEnumerable() const Q_DECL_OVERRIDE
     {
         return inputType() != IMAGE;
     }
-    virtual bool isDefault() const
+    bool isDefault() const Q_DECL_OVERRIDE
     {
         return m_defaultChecked;
     }
-    virtual bool isHiddenInput() const
+    bool isHiddenInput() const Q_DECL_OVERRIDE
     {
         return inputType() == HIDDEN;
     }
@@ -384,28 +384,28 @@ public:
 
     DOMString valueWithDefault() const;
 
-    virtual bool maintainsState()
+    bool maintainsState() Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual QString state();
-    virtual void restoreState(const QString &state);
+    QString state() Q_DECL_OVERRIDE;
+    void restoreState(const QString &state) Q_DECL_OVERRIDE;
 
     void select();
     void click();
 
-    virtual void parseAttribute(AttributeImpl *attr);
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
 
-    virtual void copyNonAttributeProperties(const ElementImpl *source);
+    void copyNonAttributeProperties(const ElementImpl *source) Q_DECL_OVERRIDE;
 
-    virtual void attach();
-    virtual bool encoding(const QTextCodec *, khtml::encodingList &, bool);
+    void attach() Q_DECL_OVERRIDE;
+    bool encoding(const QTextCodec *, khtml::encodingList &, bool) Q_DECL_OVERRIDE;
 
     typeEnum inputType() const
     {
         return KDE_CAST_BF_ENUM(typeEnum, m_type);
     }
-    virtual void reset();
+    void reset() Q_DECL_OVERRIDE;
 
     // used in case input type=image was clicked.
     int clickX() const
@@ -417,8 +417,8 @@ public:
         return yPos;
     }
 
-    virtual void defaultEventHandler(EventImpl *evt);
-    virtual bool isEditable();
+    void defaultEventHandler(EventImpl *evt) Q_DECL_OVERRIDE;
+    bool isEditable() Q_DECL_OVERRIDE;
 
     DOMString altText() const;
     void activate();
@@ -427,7 +427,7 @@ public:
     {
         m_unsubmittedFormChange = unsubmitted;
     }
-    virtual bool unsubmittedFormChanges() const
+    bool unsubmittedFormChanges() const Q_DECL_OVERRIDE
     {
         return m_unsubmittedFormChange;
     }
@@ -473,10 +473,10 @@ public:
     HTMLLabelElementImpl(DocumentImpl *doc);
     virtual ~HTMLLabelElementImpl();
 
-    virtual Id id() const;
-    virtual void attach();
-    virtual void defaultEventHandler(EventImpl *evt);
-    virtual bool isFocusableImpl(FocusType ft) const;
+    Id id() const Q_DECL_OVERRIDE;
+    void attach() Q_DECL_OVERRIDE;
+    void defaultEventHandler(EventImpl *evt) Q_DECL_OVERRIDE;
+    bool isFocusableImpl(FocusType ft) const Q_DECL_OVERRIDE;
     NodeImpl *getFormElement();
 
 private:
@@ -491,9 +491,9 @@ public:
     HTMLLegendElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0);
     virtual ~HTMLLegendElementImpl();
 
-    virtual Id id() const;
-    virtual void attach();
-    virtual void parseAttribute(AttributeImpl *attr);
+    Id id() const Q_DECL_OVERRIDE;
+    void attach() Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
 };
 
 // -------------------------------------------------------------------------
@@ -506,7 +506,7 @@ public:
     HTMLSelectElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0);
     ~HTMLSelectElementImpl();
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
     DOMString type() const;
 
@@ -515,7 +515,7 @@ public:
     long selectedIndex() const;
     void setSelectedIndex(long index);
 
-    virtual bool isEnumerable() const
+    bool isEnumerable() const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -544,26 +544,26 @@ public:
     DOMString value() const;
     void setValue(DOMStringImpl *value);
 
-    virtual bool maintainsState()
+    bool maintainsState() Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual QString state();
-    virtual void restoreState(const QString &state);
+    QString state() Q_DECL_OVERRIDE;
+    void restoreState(const QString &state) Q_DECL_OVERRIDE;
 
-    virtual NodeImpl *insertBefore(NodeImpl *newChild, NodeImpl *refChild, int &exceptioncode);
-    virtual void      replaceChild(NodeImpl *newChild, NodeImpl *oldChild, int &exceptioncode);
-    virtual void      removeChild(NodeImpl *oldChild, int &exceptioncode);
-    virtual void      removeChildren();
-    virtual NodeImpl *appendChild(NodeImpl *newChild, int &exceptioncode);
-    virtual NodeImpl *addChild(NodeImpl *newChild);
+    NodeImpl *insertBefore(NodeImpl *newChild, NodeImpl *refChild, int &exceptioncode) Q_DECL_OVERRIDE;
+    void      replaceChild(NodeImpl *newChild, NodeImpl *oldChild, int &exceptioncode) Q_DECL_OVERRIDE;
+    void      removeChild(NodeImpl *oldChild, int &exceptioncode) Q_DECL_OVERRIDE;
+    void      removeChildren() Q_DECL_OVERRIDE;
+    NodeImpl *appendChild(NodeImpl *newChild, int &exceptioncode) Q_DECL_OVERRIDE;
+    NodeImpl *addChild(NodeImpl *newChild) Q_DECL_OVERRIDE;
 
-    virtual void childrenChanged();
+    void childrenChanged() Q_DECL_OVERRIDE;
 
-    virtual void parseAttribute(AttributeImpl *attr);
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
 
-    virtual void attach();
-    virtual bool encoding(const QTextCodec *, khtml::encodingList &, bool);
+    void attach() Q_DECL_OVERRIDE;
+    bool encoding(const QTextCodec *, khtml::encodingList &, bool) Q_DECL_OVERRIDE;
 
     // get the actual listbox index of the optionIndexth option
     int optionToListIndex(int optionIndex) const;
@@ -579,7 +579,7 @@ public:
         }
         return m_listItems;
     }
-    virtual void reset();
+    void reset() Q_DECL_OVERRIDE;
     void notifyOptionSelected(HTMLOptionElementImpl *selectedOption, bool selected);
 
 private:
@@ -602,7 +602,7 @@ class HTMLKeygenElementImpl : public HTMLSelectElementImpl
 public:
     HTMLKeygenElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0);
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
     DOMString type() const;
 
@@ -610,13 +610,13 @@ public:
     void setSelectedIndex(long index);
 
     // ### this is just a rough guess
-    virtual bool isEnumerable() const
+    bool isEnumerable() const Q_DECL_OVERRIDE
     {
         return false;
     }
 
-    virtual void parseAttribute(AttributeImpl *attr);
-    virtual bool encoding(const QTextCodec *, khtml::encodingList &, bool);
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
+    bool encoding(const QTextCodec *, khtml::encodingList &, bool) Q_DECL_OVERRIDE;
 
 };
 
@@ -628,7 +628,7 @@ public:
     HTMLOptGroupElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0)
         : HTMLGenericFormElementImpl(doc, f) {}
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 };
 
 // ---------------------------------------------------------------------------
@@ -641,17 +641,17 @@ class HTMLOptionElementImpl : public HTMLGenericFormElementImpl
 public:
     HTMLOptionElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0);
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
     DOMString text() const;
 
     long index() const;
     void setIndex(long);
-    virtual void parseAttribute(AttributeImpl *attr);
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
     DOMString value() const;
     void setValue(DOMStringImpl *value);
 
-    virtual bool isDefault() const
+    bool isDefault() const Q_DECL_OVERRIDE
     {
         return m_defaultSelected;
     }
@@ -691,8 +691,8 @@ public:
     HTMLTextAreaElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0);
     ~HTMLTextAreaElementImpl();
 
-    virtual Id id() const;
-    virtual void childrenChanged();
+    Id id() const Q_DECL_OVERRIDE;
+    void childrenChanged() Q_DECL_OVERRIDE;
 
     long cols() const
     {
@@ -709,37 +709,37 @@ public:
         return m_wrap;
     }
 
-    virtual bool isEnumerable() const
+    bool isEnumerable() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
     DOMString type() const;
 
-    virtual bool maintainsState()
+    bool maintainsState() Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual QString state();
-    virtual void restoreState(const QString &state);
+    QString state() Q_DECL_OVERRIDE;
+    void restoreState(const QString &state) Q_DECL_OVERRIDE;
 
     void select();
 
-    virtual void parseAttribute(AttributeImpl *attr);
-    virtual void attach();
-    virtual bool encoding(const QTextCodec *, khtml::encodingList &, bool);
-    virtual void reset();
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
+    void attach() Q_DECL_OVERRIDE;
+    bool encoding(const QTextCodec *, khtml::encodingList &, bool) Q_DECL_OVERRIDE;
+    void reset() Q_DECL_OVERRIDE;
     DOMString value();
     void setValue(DOMString _value);
     DOMString defaultValue();
     void setDefaultValue(DOMString _defaultValue);
 
-    virtual bool isEditable();
+    bool isEditable() Q_DECL_OVERRIDE;
     void setUnsubmittedFormChange(bool unsubmitted)
     {
         m_unsubmittedFormChange = unsubmitted;
     }
-    virtual bool unsubmittedFormChanges() const
+    bool unsubmittedFormChanges() const Q_DECL_OVERRIDE
     {
         return m_unsubmittedFormChange;
     }
@@ -774,8 +774,8 @@ public:
     HTMLIsIndexElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0);
     ~HTMLIsIndexElementImpl();
 
-    virtual Id id() const;
-    virtual void parseAttribute(AttributeImpl *attr);
+    Id id() const Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
 
     DOMString prompt() const;
     void setPrompt(const DOMString &_value);

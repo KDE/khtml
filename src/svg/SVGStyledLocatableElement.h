@@ -39,17 +39,17 @@ public:
     SVGStyledLocatableElement(const QualifiedName &, Document *);
     virtual ~SVGStyledLocatableElement();
 
-    virtual bool isStyledLocatable() const
+    bool isStyledLocatable() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
-    virtual SVGElement *nearestViewportElement() const;
-    virtual SVGElement *farthestViewportElement() const;
+    SVGElement *nearestViewportElement() const Q_DECL_OVERRIDE;
+    SVGElement *farthestViewportElement() const Q_DECL_OVERRIDE;
 
-    virtual FloatRect getBBox() const;
-    virtual AffineTransform getCTM() const;
-    virtual AffineTransform getScreenCTM() const;
+    FloatRect getBBox() const Q_DECL_OVERRIDE;
+    AffineTransform getCTM() const Q_DECL_OVERRIDE;
+    AffineTransform getScreenCTM() const Q_DECL_OVERRIDE;
 };
 
 } // namespace WebCore

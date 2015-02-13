@@ -196,7 +196,7 @@ public:
         }
     }
 
-    virtual void paint(int dx, int dy, QPainter *p, int sx, int sy, int width, int height)
+    void paint(int dx, int dy, QPainter *p, int sx, int sy, int width, int height) Q_DECL_OVERRIDE
     {
         if (!width || !height) {
             return;    //Nothing to draw.
@@ -235,7 +235,7 @@ public:
 #endif
     }
 
-    virtual AnimProvider *clone(PixmapPlane *plane)
+    AnimProvider *clone(PixmapPlane *plane) Q_DECL_OVERRIDE
     {
         if (frame0->height == 0 || frame0->width == 0 ||
                 plane->height == 0 || plane->width == 0) {
@@ -274,7 +274,7 @@ public:
     {
     }
 
-    virtual int processData(uchar *data, int length)
+    int processData(uchar *data, int length) Q_DECL_OVERRIDE
     {
         //Collect data in the buffer
         int pos = buffer.size();
@@ -346,7 +346,7 @@ public:
                      << map->Colors[c].Blue;
     }
 
-    virtual int processEOF()
+    int processEOF() Q_DECL_OVERRIDE
     {
         //Feed the buffered data to libUnGif
 #if GIFLIB_MAJOR >= 5

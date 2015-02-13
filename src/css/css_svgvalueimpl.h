@@ -43,7 +43,7 @@ public:
         return false;
     }
 
-    virtual unsigned short cssValueType() const
+    unsigned short cssValueType() const Q_DECL_OVERRIDE
     {
         return DOM::CSSValue::CSS_SVG_VALUE;
     }
@@ -80,17 +80,17 @@ public:
     void setRGBColorICCColor(const DOMString &rgbColor, const DOMString &iccColor, int &);
     void setColor(unsigned short colorType, const DOMString &rgbColor, const DOMString &iccColor, int &);
 
-    virtual DOMString cssText() const;
+    DOMString cssText() const Q_DECL_OVERRIDE;
 
     // Helpers
     const QColor &color() const;
 
-    virtual bool isSVGColor() const
+    bool isSVGColor() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
-    virtual unsigned short cssValueType() const
+    unsigned short cssValueType() const Q_DECL_OVERRIDE
     {
         return DOM::CSSValue::CSS_SVG_VALUE;
     }
@@ -133,12 +133,12 @@ public:
     void setUri(const DOMString &);
     void setPaint(SVGPaintType, const DOMString &uri, const DOMString &rgbPaint, const DOMString &iccPaint, int &);
 
-    virtual DOMString cssText() const;
+    DOMString cssText() const Q_DECL_OVERRIDE;
 
     static SVGPaintImpl *defaultFill();
     static SVGPaintImpl *defaultStroke();
 
-    virtual bool isSVGPaint() const
+    bool isSVGPaint() const Q_DECL_OVERRIDE
     {
         return true;
     }

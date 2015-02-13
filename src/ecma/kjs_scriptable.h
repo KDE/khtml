@@ -47,18 +47,18 @@ class ScriptableOperations: public ScriptableExtension
     Q_OBJECT
 public:
     // ScriptableExtension API
-    virtual QVariant callAsFunction(ScriptableExtension *callerPrincipal, quint64 objId, const ArgList &args);
+    QVariant callAsFunction(ScriptableExtension *callerPrincipal, quint64 objId, const ArgList &args) Q_DECL_OVERRIDE;
     virtual QVariant callFunctionReference(ScriptableExtension *callerPrincipal, quint64 objId,
-                                           const QString &f, const ArgList &args);
-    virtual QVariant callAsConstructor(ScriptableExtension *callerPrincipal, quint64 objId, const ArgList &args);
-    virtual bool hasProperty(ScriptableExtension *callerPrincipal, quint64 objId, const QString &propName);
-    virtual QVariant get(ScriptableExtension *callerPrincipal, quint64 objId, const QString &propName);
-    virtual bool put(ScriptableExtension *callerPrincipal, quint64 objId, const QString &propName, const QVariant &value);
-    virtual bool removeProperty(ScriptableExtension *callerPrincipal, quint64 objId, const QString &propName);
-    virtual bool enumerateProperties(ScriptableExtension *callerPrincipal, quint64 objId, QStringList *result);
+                                           const QString &f, const ArgList &args) Q_DECL_OVERRIDE;
+    QVariant callAsConstructor(ScriptableExtension *callerPrincipal, quint64 objId, const ArgList &args) Q_DECL_OVERRIDE;
+    bool hasProperty(ScriptableExtension *callerPrincipal, quint64 objId, const QString &propName) Q_DECL_OVERRIDE;
+    QVariant get(ScriptableExtension *callerPrincipal, quint64 objId, const QString &propName) Q_DECL_OVERRIDE;
+    bool put(ScriptableExtension *callerPrincipal, quint64 objId, const QString &propName, const QVariant &value) Q_DECL_OVERRIDE;
+    bool removeProperty(ScriptableExtension *callerPrincipal, quint64 objId, const QString &propName) Q_DECL_OVERRIDE;
+    bool enumerateProperties(ScriptableExtension *callerPrincipal, quint64 objId, QStringList *result) Q_DECL_OVERRIDE;
 
-    virtual void acquire(quint64 objid);
-    virtual void release(quint64 objid);
+    void acquire(quint64 objid) Q_DECL_OVERRIDE;
+    void release(quint64 objid) Q_DECL_OVERRIDE;
 
     // May return null.
     static JSObject *objectForId(quint64 objId);
@@ -119,20 +119,20 @@ class KHTMLPartScriptable: public ScriptableExtension
 public:
     KHTMLPartScriptable(KHTMLPart *part);
 
-    virtual QVariant rootObject();
-    virtual QVariant encloserForKid(KParts::ScriptableExtension *kid);
+    QVariant rootObject() Q_DECL_OVERRIDE;
+    QVariant encloserForKid(KParts::ScriptableExtension *kid) Q_DECL_OVERRIDE;
 
-    virtual bool setException(ScriptableExtension *callerPrincipal, const QString &message);
+    bool setException(ScriptableExtension *callerPrincipal, const QString &message) Q_DECL_OVERRIDE;
 
     virtual QVariant evaluateScript(ScriptableExtension *callerPrincipal,
                                     quint64 contextObjectId,
                                     const QString &code,
-                                    ScriptLanguage language = ECMAScript);
-    virtual bool isScriptLanguageSupported(ScriptLanguage lang) const;
+                                    ScriptLanguage language = ECMAScript) Q_DECL_OVERRIDE;
+    bool isScriptLanguageSupported(ScriptLanguage lang) const Q_DECL_OVERRIDE;
 
     // For paranoia: forward to ScriptOperations
-    virtual void acquire(quint64 objid);
-    virtual void release(quint64 objid);
+    void acquire(quint64 objid) Q_DECL_OVERRIDE;
+    void release(quint64 objid) Q_DECL_OVERRIDE;
 private:
     KJS::Interpreter *interpreter();
     KHTMLPart *m_part;
@@ -155,40 +155,40 @@ public:
 
     ~WrapScriptableObject();
 
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
     static const ClassInfo info;
 
-    virtual bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &);
+    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) Q_DECL_OVERRIDE;
     using JSObject::getOwnPropertySlot;
-    virtual void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int);
+    void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int) Q_DECL_OVERRIDE;
     using JSObject::put;
-    virtual bool deleteProperty(ExecState *exec, const Identifier &i);
+    bool deleteProperty(ExecState *exec, const Identifier &i) Q_DECL_OVERRIDE;
     using JSObject::deleteProperty;
 
-    virtual bool isFunctionType() const
+    bool isFunctionType() const Q_DECL_OVERRIDE
     {
         return false;
     }
-    virtual bool implementsCall() const
+    bool implementsCall() const Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual JSValue *callAsFunction(ExecState *exec, JSObject *thisObj, const List &args);
+    JSValue *callAsFunction(ExecState *exec, JSObject *thisObj, const List &args) Q_DECL_OVERRIDE;
 
     // We claim true, since may be calleable
-    virtual bool implementsConstruct() const
+    bool implementsConstruct() const Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual JSObject *construct(ExecState *exec, const List &args);
+    JSObject *construct(ExecState *exec, const List &args) Q_DECL_OVERRIDE;
     using JSObject::construct;
 
-    virtual void getOwnPropertyNames(ExecState *, PropertyNameArray &, PropertyMap::PropertyMode mode);
+    void getOwnPropertyNames(ExecState *, PropertyNameArray &, PropertyMap::PropertyMode mode) Q_DECL_OVERRIDE;
 
-    virtual UString toString(ExecState *exec) const;
+    UString toString(ExecState *exec) const Q_DECL_OVERRIDE;
 
     // This method is used to note that the object has been ref'd on our
     // behalf by an external producer.

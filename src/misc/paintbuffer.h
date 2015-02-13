@@ -63,7 +63,7 @@ public:
 
     PaintBuffer();
     void reset();
-    virtual void timerEvent(QTimerEvent *e);
+    void timerEvent(QTimerEvent *e) Q_DECL_OVERRIDE;
 
 private:
     QPixmap *getBuf(QSize S);

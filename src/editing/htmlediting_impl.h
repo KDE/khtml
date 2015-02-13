@@ -95,33 +95,33 @@ public:
     EditCommandImpl(DOM::DocumentImpl *);
     virtual ~EditCommandImpl();
 
-    bool isCompositeStep() const
+    bool isCompositeStep() const Q_DECL_OVERRIDE
     {
         return parent();
     }
-    EditCommandImpl *parent() const;
-    void setParent(EditCommandImpl *);
+    EditCommandImpl *parent() const Q_DECL_OVERRIDE;
+    void setParent(EditCommandImpl *) Q_DECL_OVERRIDE;
 
     enum ECommandState { NotApplied, Applied };
 
-    void apply();
-    void unapply();
-    void reapply();
+    void apply() Q_DECL_OVERRIDE;
+    void unapply() Q_DECL_OVERRIDE;
+    void reapply() Q_DECL_OVERRIDE;
 
     virtual void doApply() = 0;
     virtual void doUnapply() = 0;
     virtual void doReapply();  // calls doApply()
 
-    virtual DOM::DocumentImpl *document() const
+    DOM::DocumentImpl *document() const Q_DECL_OVERRIDE
     {
         return m_document.get();
     }
 
-    DOM::Selection startingSelection() const
+    DOM::Selection startingSelection() const Q_DECL_OVERRIDE
     {
         return m_startingSelection;
     }
-    DOM::Selection endingSelection() const
+    DOM::Selection endingSelection() const Q_DECL_OVERRIDE
     {
         return m_endingSelection;
     }
@@ -135,8 +135,8 @@ public:
         m_state = state;
     }
 
-    void setStartingSelection(const DOM::Selection &s);
-    void setEndingSelection(const DOM::Selection &s);
+    void setStartingSelection(const DOM::Selection &s) Q_DECL_OVERRIDE;
+    void setEndingSelection(const DOM::Selection &s) Q_DECL_OVERRIDE;
 
 public:
     virtual bool isTypingCommand() const
@@ -166,8 +166,8 @@ public:
     virtual ~CompositeEditCommandImpl();
 
     virtual void doApply() = 0;
-    virtual void doUnapply();
-    virtual void doReapply();
+    void doUnapply() Q_DECL_OVERRIDE;
+    void doReapply() Q_DECL_OVERRIDE;
 
 protected:
     //
@@ -212,8 +212,8 @@ public:
     AppendNodeCommandImpl(DOM::DocumentImpl *, DOM::NodeImpl *parentNode, DOM::NodeImpl *appendChild);
     virtual ~AppendNodeCommandImpl();
 
-    virtual void doApply();
-    virtual void doUnapply();
+    void doApply() Q_DECL_OVERRIDE;
+    void doUnapply() Q_DECL_OVERRIDE;
 
     DOM::NodeImpl *parentNode() const
     {
@@ -238,7 +238,7 @@ public:
     ApplyStyleCommandImpl(DOM::DocumentImpl *, DOM::CSSStyleDeclarationImpl *style);
     virtual ~ApplyStyleCommandImpl();
 
-    virtual void doApply();
+    void doApply() Q_DECL_OVERRIDE;
 
     DOM::CSSStyleDeclarationImpl *style() const
     {
@@ -283,7 +283,7 @@ public:
 
     virtual ~DeleteCollapsibleWhitespaceCommandImpl();
 
-    virtual void doApply();
+    void doApply() Q_DECL_OVERRIDE;
 
 private:
     DOM::Position deleteWhitespace(const DOM::Position &pos);
@@ -304,7 +304,7 @@ public:
 
     virtual ~DeleteSelectionCommandImpl();
 
-    virtual void doApply();
+    void doApply() Q_DECL_OVERRIDE;
 
 private:
     void deleteContentBeforeOffset(NodeImpl *node, int offset);
@@ -327,8 +327,8 @@ public:
     DeleteTextCommandImpl(DOM::DocumentImpl *document, DOM::TextImpl *node, long offset, long count);
     virtual ~DeleteTextCommandImpl();
 
-    virtual void doApply();
-    virtual void doUnapply();
+    void doApply() Q_DECL_OVERRIDE;
+    void doUnapply() Q_DECL_OVERRIDE;
 
     DOM::TextImpl *node() const
     {
@@ -359,7 +359,7 @@ public:
     InputNewlineCommandImpl(DOM::DocumentImpl *document);
     virtual ~InputNewlineCommandImpl();
 
-    virtual void doApply();
+    void doApply() Q_DECL_OVERRIDE;
 
 private:
     void insertNodeAfterPosition(DOM::NodeImpl *node, const DOM::Position &pos);
@@ -375,7 +375,7 @@ public:
     InputTextCommandImpl(DOM::DocumentImpl *document);
     virtual ~InputTextCommandImpl();
 
-    virtual void doApply();
+    void doApply() Q_DECL_OVERRIDE;
 
     void deleteCharacter();
     void input(const DOM::DOMString &text);
@@ -385,7 +385,7 @@ public:
         return m_charactersAdded;
     }
 
-    virtual bool isInputTextCommand() const
+    bool isInputTextCommand() const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -406,8 +406,8 @@ public:
     InsertNodeBeforeCommandImpl(DOM::DocumentImpl *, DOM::NodeImpl *insertChild, DOM::NodeImpl *refChild);
     virtual ~InsertNodeBeforeCommandImpl();
 
-    virtual void doApply();
-    virtual void doUnapply();
+    void doApply() Q_DECL_OVERRIDE;
+    void doUnapply() Q_DECL_OVERRIDE;
 
     DOM::NodeImpl *insertChild() const
     {
@@ -432,8 +432,8 @@ public:
     InsertTextCommandImpl(DOM::DocumentImpl *document, DOM::TextImpl *, long, const DOM::DOMString &);
     virtual ~InsertTextCommandImpl();
 
-    virtual void doApply();
-    virtual void doUnapply();
+    void doApply() Q_DECL_OVERRIDE;
+    void doUnapply() Q_DECL_OVERRIDE;
 
     DOM::TextImpl *node() const
     {
@@ -463,8 +463,8 @@ public:
     JoinTextNodesCommandImpl(DOM::DocumentImpl *, DOM::TextImpl *, DOM::TextImpl *);
     virtual ~JoinTextNodesCommandImpl();
 
-    virtual void doApply();
-    virtual void doUnapply();
+    void doApply() Q_DECL_OVERRIDE;
+    void doUnapply() Q_DECL_OVERRIDE;
 
     DOM::TextImpl *firstNode() const
     {
@@ -490,7 +490,7 @@ public:
     ReplaceSelectionCommandImpl(DOM::DocumentImpl *document, DOM::DocumentFragmentImpl *fragment, bool selectReplacement = true);
     virtual ~ReplaceSelectionCommandImpl();
 
-    virtual void doApply();
+    void doApply() Q_DECL_OVERRIDE;
 
 private:
     DOM::DocumentFragmentImpl *m_fragment;
@@ -506,7 +506,7 @@ public:
     MoveSelectionCommandImpl(DOM::DocumentImpl *document, DOM::DocumentFragmentImpl *fragment, DOM::Position &position);
     virtual ~MoveSelectionCommandImpl();
 
-    virtual void doApply();
+    void doApply() Q_DECL_OVERRIDE;
 
 private:
     DOM::DocumentFragmentImpl *m_fragment;
@@ -522,8 +522,8 @@ public:
     RemoveCSSPropertyCommandImpl(DOM::DocumentImpl *, DOM::CSSStyleDeclarationImpl *, int property);
     virtual ~RemoveCSSPropertyCommandImpl();
 
-    virtual void doApply();
-    virtual void doUnapply();
+    void doApply() Q_DECL_OVERRIDE;
+    void doUnapply() Q_DECL_OVERRIDE;
 
     DOM::CSSStyleDeclarationImpl *styleDeclaration() const
     {
@@ -550,8 +550,8 @@ public:
     RemoveNodeAttributeCommandImpl(DOM::DocumentImpl *, DOM::ElementImpl *, DOM::NodeImpl::Id attribute);
     virtual ~RemoveNodeAttributeCommandImpl();
 
-    virtual void doApply();
-    virtual void doUnapply();
+    void doApply() Q_DECL_OVERRIDE;
+    void doUnapply() Q_DECL_OVERRIDE;
 
     DOM::ElementImpl *element() const
     {
@@ -577,8 +577,8 @@ public:
     RemoveNodeCommandImpl(DOM::DocumentImpl *, DOM::NodeImpl *);
     virtual ~RemoveNodeCommandImpl();
 
-    virtual void doApply();
-    virtual void doUnapply();
+    void doApply() Q_DECL_OVERRIDE;
+    void doUnapply() Q_DECL_OVERRIDE;
 
     DOM::NodeImpl *node() const
     {
@@ -600,7 +600,7 @@ public:
     RemoveNodeAndPruneCommandImpl(DOM::DocumentImpl *, DOM::NodeImpl *pruneNode, DOM::NodeImpl *stopNode = 0);
     virtual ~RemoveNodeAndPruneCommandImpl();
 
-    virtual void doApply();
+    void doApply() Q_DECL_OVERRIDE;
 
     DOM::NodeImpl *pruneNode() const
     {
@@ -625,7 +625,7 @@ public:
     RemoveNodePreservingChildrenCommandImpl(DOM::DocumentImpl *, DOM::NodeImpl *);
     virtual ~RemoveNodePreservingChildrenCommandImpl();
 
-    virtual void doApply();
+    void doApply() Q_DECL_OVERRIDE;
 
     DOM::NodeImpl *node() const
     {
@@ -645,8 +645,8 @@ public:
     SetNodeAttributeCommandImpl(DOM::DocumentImpl *, DOM::ElementImpl *, DOM::NodeImpl::Id attribute, const DOM::DOMString &value);
     virtual ~SetNodeAttributeCommandImpl();
 
-    virtual void doApply();
-    virtual void doUnapply();
+    void doApply() Q_DECL_OVERRIDE;
+    void doUnapply() Q_DECL_OVERRIDE;
 
     DOM::ElementImpl *element() const
     {
@@ -677,8 +677,8 @@ public:
     SplitTextNodeCommandImpl(DOM::DocumentImpl *, DOM::TextImpl *, long);
     virtual ~SplitTextNodeCommandImpl();
 
-    virtual void doApply();
-    virtual void doUnapply();
+    void doApply() Q_DECL_OVERRIDE;
+    void doUnapply() Q_DECL_OVERRIDE;
 
     DOM::TextImpl *node() const
     {
@@ -704,7 +704,7 @@ public:
     TypingCommandImpl(DOM::DocumentImpl *document);
     virtual ~TypingCommandImpl();
 
-    virtual void doApply();
+    void doApply() Q_DECL_OVERRIDE;
 
     bool openForMoreTyping() const
     {
@@ -719,7 +719,7 @@ public:
     void insertNewline();
     void deleteKeyPressed();
 
-    virtual bool isTypingCommand() const
+    bool isTypingCommand() const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -747,7 +747,7 @@ public:
     InsertListCommandImpl(DOM::DocumentImpl *document, Type type);
     virtual ~InsertListCommandImpl();
 
-    virtual void doApply();
+    void doApply() Q_DECL_OVERRIDE;
 
     static void insertList(DocumentImpl *document, Type type);
 
@@ -768,7 +768,7 @@ public:
     IndentOutdentCommandImpl(DocumentImpl *document, Type type);
     virtual ~IndentOutdentCommandImpl();
 
-    virtual void doApply();
+    void doApply() Q_DECL_OVERRIDE;
 
 private:
     void indent();

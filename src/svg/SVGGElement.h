@@ -41,25 +41,25 @@ public:
     SVGGElement(const QualifiedName &, Document *);
     virtual ~SVGGElement();
 
-    virtual bool isValid() const
+    bool isValid() const Q_DECL_OVERRIDE
     {
         return SVGTests::isValid();
     }
 
-    virtual void parseMappedAttribute(MappedAttribute *);
-    virtual void svgAttributeChanged(const QualifiedName &);
+    void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
+    void svgAttributeChanged(const QualifiedName &) Q_DECL_OVERRIDE;
     using DOM::NodeImpl::childrenChanged;
-    virtual void childrenChanged(bool changedByParser = false, Node *beforeChange = 0, Node *afterChange = 0, int childCountDelta = 0);
+    void childrenChanged(bool changedByParser = false, Node *beforeChange = 0, Node *afterChange = 0, int childCountDelta = 0) Q_DECL_OVERRIDE;
 
-    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
+    RenderObject *createRenderer(RenderArena *, RenderStyle *) Q_DECL_OVERRIDE;
 
     // KHTML ElementImpl pure virtual method
-    virtual quint32 id() const
+    quint32 id() const Q_DECL_OVERRIDE
     {
         return SVGNames::gTag.id();
     }
 protected:
-    virtual const SVGElement *contextElement() const
+    const SVGElement *contextElement() const Q_DECL_OVERRIDE
     {
         return this;
     }

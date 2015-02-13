@@ -35,17 +35,17 @@ public:
     SVGStopElement(const QualifiedName &, Document *);
     virtual ~SVGStopElement();
 
-    virtual bool isGradientStop() const
+    bool isGradientStop() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
-    virtual void parseMappedAttribute(MappedAttribute *);
+    void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
 
-    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
+    RenderObject *createRenderer(RenderArena *, RenderStyle *) Q_DECL_OVERRIDE;
 
     // KHTML ElementImpl pure virtual method
-    virtual quint32 id() const;
+    quint32 id() const Q_DECL_OVERRIDE;
 private:
     ANIMATED_PROPERTY_DECLARATIONS(SVGStopElement, float, float, Offset, offset)
 };

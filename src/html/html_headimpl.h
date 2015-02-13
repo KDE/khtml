@@ -56,10 +56,10 @@ public:
         return m_target;
     }
 
-    virtual Id id() const;
-    virtual void parseAttribute(AttributeImpl *attr);
-    virtual void insertedIntoDocument();
-    virtual void removedFromDocument();
+    Id id() const Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
+    void insertedIntoDocument() Q_DECL_OVERRIDE;
+    void removedFromDocument() Q_DECL_OVERRIDE;
 
     void process();
 
@@ -79,7 +79,7 @@ public:
 
     ~HTMLLinkElementImpl();
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
     const StyleSheetImpl *sheet() const
     {
@@ -91,19 +91,19 @@ public:
     }
 
     // overload from HTMLElementImpl
-    virtual void parseAttribute(AttributeImpl *attr);
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
 
     void process();
 
-    virtual void insertedIntoDocument();
-    virtual void removedFromDocument();
+    void insertedIntoDocument() Q_DECL_OVERRIDE;
+    void removedFromDocument() Q_DECL_OVERRIDE;
 
     // from CachedObjectClient
-    virtual void setStyleSheet(const DOM::DOMString &url, const DOM::DOMString &sheet, const DOM::DOMString &charset, const DOM::DOMString &mimetype);
-    virtual void error(int err, const QString &text);
+    void setStyleSheet(const DOM::DOMString &url, const DOM::DOMString &sheet, const DOM::DOMString &charset, const DOM::DOMString &mimetype) Q_DECL_OVERRIDE;
+    void error(int err, const QString &text) Q_DECL_OVERRIDE;
     bool isLoading() const;
-    virtual bool checkAddPendingSheet();
-    virtual bool checkRemovePendingSheet();
+    bool checkAddPendingSheet() Q_DECL_OVERRIDE;
+    bool checkRemovePendingSheet() Q_DECL_OVERRIDE;
 
     bool isAlternate() const
     {
@@ -143,9 +143,9 @@ public:
     HTMLMetaElementImpl(DocumentImpl *doc)
         : HTMLElementImpl(doc) {}
 
-    virtual Id id() const;
-    virtual void parseAttribute(AttributeImpl *attr);
-    virtual void insertedIntoDocument();
+    Id id() const Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
+    void insertedIntoDocument() Q_DECL_OVERRIDE;
 
     void process();
 
@@ -162,13 +162,13 @@ public:
     HTMLScriptElementImpl(DocumentImpl *doc);
     ~HTMLScriptElementImpl();
 
-    virtual void parseAttribute(AttributeImpl *attr);
-    virtual void insertedIntoDocument();
-    virtual void removedFromDocument();
-    virtual void notifyFinished(khtml::CachedObject *finishedObj);
-    virtual void childrenChanged();
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
+    void insertedIntoDocument() Q_DECL_OVERRIDE;
+    void removedFromDocument() Q_DECL_OVERRIDE;
+    void notifyFinished(khtml::CachedObject *finishedObj) Q_DECL_OVERRIDE;
+    void childrenChanged() Q_DECL_OVERRIDE;
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
     virtual bool isURLAttribute(AttributeImpl *attr) const;
 
     void setCreatedByParser(bool createdByParser)
@@ -217,7 +217,7 @@ public:
         : HTMLElementImpl(doc), m_sheet(0), m_loading(false) {}
     ~HTMLStyleElementImpl();
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
     CSSStyleSheetImpl *sheet()
     {
@@ -225,14 +225,14 @@ public:
     }
 
     // overload from HTMLElementImpl
-    virtual void parseAttribute(AttributeImpl *attr);
-    virtual void insertedIntoDocument();
-    virtual void removedFromDocument();
-    virtual void childrenChanged();
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
+    void insertedIntoDocument() Q_DECL_OVERRIDE;
+    void removedFromDocument() Q_DECL_OVERRIDE;
+    void childrenChanged() Q_DECL_OVERRIDE;
 
     bool isLoading() const;
-    virtual bool checkAddPendingSheet();
-    virtual bool checkRemovePendingSheet();
+    bool checkAddPendingSheet() Q_DECL_OVERRIDE;
+    bool checkRemovePendingSheet() Q_DECL_OVERRIDE;
 
 protected:
     void parseText();
@@ -254,9 +254,9 @@ public:
     DOMString text();
     void setText(const DOMString &str);
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
-    virtual void childrenChanged();
+    void childrenChanged() Q_DECL_OVERRIDE;
 
 protected:
     DOMString m_title;

@@ -55,7 +55,7 @@ public:
         : HTMLElementImpl(doc)
     { }
 
-    virtual void parseAttribute(AttributeImpl *attr);
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
 };
 
 // -------------------------------------------------------------------------
@@ -67,7 +67,7 @@ public:
 
     ~HTMLTableSectionElementImpl();
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
     HTMLElementImpl *insertRow(long index, int &exceptioncode);
     void deleteRow(long index, int &exceptioncode);
@@ -86,7 +86,7 @@ public:
     HTMLTableRowElementImpl(DocumentImpl *doc)
         : HTMLTablePartElementImpl(doc) {}
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
     long rowIndex() const;
     long sectionRowIndex() const;
@@ -134,12 +134,12 @@ public:
         return rSpan;
     }
 
-    virtual Id id() const
+    Id id() const Q_DECL_OVERRIDE
     {
         return _id;
     }
-    virtual void parseAttribute(AttributeImpl *attr);
-    virtual void attach();
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
+    void attach() Q_DECL_OVERRIDE;
 
 protected:
     int _row;
@@ -159,7 +159,7 @@ class HTMLTableColElementImpl : public HTMLTablePartElementImpl
 public:
     HTMLTableColElementImpl(DocumentImpl *doc, ushort i);
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
     void setTable(HTMLTableElementImpl *t)
     {
@@ -191,8 +191,8 @@ public:
     HTMLTableCaptionElementImpl(DocumentImpl *doc)
         : HTMLTablePartElementImpl(doc) {}
 
-    virtual Id id() const;
-    virtual void parseAttribute(AttributeImpl *attr);
+    Id id() const Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
 };
 
 // -------------------------------------------------------------------------
@@ -290,7 +290,7 @@ public:
     HTMLTableElementImpl(DocumentImpl *doc);
     ~HTMLTableElementImpl();
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
     HTMLTableCaptionElementImpl *caption() const
     {

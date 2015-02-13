@@ -57,15 +57,15 @@ public:
 
     // DOM methods overridden from  parent classes
 
-    virtual DOMString nodeName() const;
-    virtual unsigned short nodeType() const;
-    virtual WTF::PassRefPtr<NodeImpl> cloneNode(bool deep);
+    DOMString nodeName() const Q_DECL_OVERRIDE;
+    unsigned short nodeType() const Q_DECL_OVERRIDE;
+    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) Q_DECL_OVERRIDE;
 
     // Other methods (not part of DOM)
 
-    virtual bool childTypeAllowed(unsigned short type);
+    bool childTypeAllowed(unsigned short type) Q_DECL_OVERRIDE;
 
-    virtual DOMString toString() const;
+    DOMString toString() const Q_DECL_OVERRIDE;
 
 protected:
     DOMStringImpl *m_publicId;
@@ -83,15 +83,15 @@ public:
 
     // DOM methods overridden from  parent classes
 
-    virtual DOMString nodeName() const;
-    virtual unsigned short nodeType() const;
-    virtual WTF::PassRefPtr<NodeImpl> cloneNode(bool deep);
+    DOMString nodeName() const Q_DECL_OVERRIDE;
+    unsigned short nodeType() const Q_DECL_OVERRIDE;
+    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) Q_DECL_OVERRIDE;
 
     // Other methods (not part of DOM)
 
-    virtual bool childTypeAllowed(unsigned short type);
+    bool childTypeAllowed(unsigned short type) Q_DECL_OVERRIDE;
 
-    virtual DOMString toString() const;
+    DOMString toString() const Q_DECL_OVERRIDE;
 protected:
     DOMStringImpl *m_entityName;
 };
@@ -110,13 +110,13 @@ public:
 
     // DOM methods overridden from  parent classes
 
-    virtual DOMString nodeName() const;
-    virtual unsigned short nodeType() const;
-    virtual WTF::PassRefPtr<NodeImpl> cloneNode(bool deep);
+    DOMString nodeName() const Q_DECL_OVERRIDE;
+    unsigned short nodeType() const Q_DECL_OVERRIDE;
+    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) Q_DECL_OVERRIDE;
 
     // Other methods (not part of DOM)
 
-    virtual bool childTypeAllowed(unsigned short type);
+    bool childTypeAllowed(unsigned short type) Q_DECL_OVERRIDE;
 protected:
     DOMStringImpl *m_name;
     DOMStringImpl *m_publicId;
@@ -141,28 +141,28 @@ public:
 
     // DOM methods overridden from  parent classes
 
-    virtual DOMString nodeName() const;
-    virtual unsigned short nodeType() const;
-    virtual DOMString nodeValue() const;
-    virtual void setNodeValue(const DOMString &_nodeValue, int &exceptioncode);
-    virtual WTF::PassRefPtr<NodeImpl> cloneNode(bool deep);
+    DOMString nodeName() const Q_DECL_OVERRIDE;
+    unsigned short nodeType() const Q_DECL_OVERRIDE;
+    DOMString nodeValue() const Q_DECL_OVERRIDE;
+    void setNodeValue(const DOMString &_nodeValue, int &exceptioncode) Q_DECL_OVERRIDE;
+    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) Q_DECL_OVERRIDE;
 
     // Other methods (not part of DOM)
 
     virtual DOMString localHref() const;
-    virtual bool childTypeAllowed(unsigned short type);
+    bool childTypeAllowed(unsigned short type) Q_DECL_OVERRIDE;
     StyleSheetImpl *sheet() const;
     void checkStyleSheet();
-    virtual void setStyleSheet(const DOM::DOMString &url, const DOM::DOMString &sheet, const DOM::DOMString &charset, const DOM::DOMString &mimetype);
+    void setStyleSheet(const DOM::DOMString &url, const DOM::DOMString &sheet, const DOM::DOMString &charset, const DOM::DOMString &mimetype) Q_DECL_OVERRIDE;
     virtual void setStyleSheet(CSSStyleSheetImpl *sheet);
 
-    virtual DOMString toString() const;
+    DOMString toString() const Q_DECL_OVERRIDE;
 
-    virtual bool offsetInCharacters() const
+    bool offsetInCharacters() const Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual int maxCharacterOffset() const;
+    int maxCharacterOffset() const Q_DECL_OVERRIDE;
 
     bool isAlternate() const
     {
@@ -185,7 +185,7 @@ public:
     XMLAttributeReader(const QString &_attrString);
     virtual ~XMLAttributeReader();
     QXmlAttributes readAttrs(bool &ok);
-    bool startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &atts);
+    bool startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &atts) Q_DECL_OVERRIDE;
 
 protected:
     QXmlAttributes attrs;

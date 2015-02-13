@@ -104,7 +104,7 @@ public:
      */
     void showApplet();
 
-    QSize sizeHint() const;
+    QSize sizeHint() const Q_DECL_OVERRIDE;
     void resize(int, int);
 
 protected Q_SLOTS:
@@ -117,7 +117,7 @@ protected Q_SLOTS:
 protected:
     //The counter to generate ID's for the applets
     static int appletCount;
-    void showEvent(QShowEvent *);
+    void showEvent(QShowEvent *) Q_DECL_OVERRIDE;
 
 private:
     KJavaAppletWidgetPrivate *const d;

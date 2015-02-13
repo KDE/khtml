@@ -35,16 +35,16 @@ class RenderContainer : public RenderObject
 public:
     RenderContainer(DOM::NodeImpl *node);
 
-    RenderObject *firstChild() const
+    RenderObject *firstChild() const Q_DECL_OVERRIDE
     {
         return m_first;
     }
-    RenderObject *lastChild() const
+    RenderObject *lastChild() const Q_DECL_OVERRIDE
     {
         return m_last;
     }
 
-    virtual bool childAllowed() const
+    bool childAllowed() const Q_DECL_OVERRIDE
     {
         // Prevent normal children when we are replaced by generated content
         if (style()) {
@@ -53,23 +53,23 @@ public:
         return true;
     }
 
-    virtual void addChild(RenderObject *newChild, RenderObject *beforeChild = 0);
+    void addChild(RenderObject *newChild, RenderObject *beforeChild = 0) Q_DECL_OVERRIDE;
 
-    virtual RenderObject *removeChildNode(RenderObject *child);
-    virtual void appendChildNode(RenderObject *child);
-    virtual void insertChildNode(RenderObject *child, RenderObject *before);
+    RenderObject *removeChildNode(RenderObject *child) Q_DECL_OVERRIDE;
+    void appendChildNode(RenderObject *child) Q_DECL_OVERRIDE;
+    void insertChildNode(RenderObject *child, RenderObject *before) Q_DECL_OVERRIDE;
 
-    virtual void layout();
-    virtual void calcMinMaxWidth()
+    void layout() Q_DECL_OVERRIDE;
+    void calcMinMaxWidth() Q_DECL_OVERRIDE
     {
         setMinMaxKnown(true);
     }
 
-    virtual void removeSuperfluousAnonymousBlockChild(RenderObject *child);
+    void removeSuperfluousAnonymousBlockChild(RenderObject *child) Q_DECL_OVERRIDE;
 
-    virtual void setStyle(RenderStyle *_style);
+    void setStyle(RenderStyle *_style) Q_DECL_OVERRIDE;
 
-    virtual RenderPosition positionForCoordinates(int x, int y);
+    RenderPosition positionForCoordinates(int x, int y) Q_DECL_OVERRIDE;
 
 protected:
     // Generate CSS content

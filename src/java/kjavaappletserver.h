@@ -156,7 +156,7 @@ protected:
 protected Q_SLOTS:
     void slotJavaRequest(const QByteArray &qb);
     void checkShutdown();
-    void timerEvent(QTimerEvent *);
+    void timerEvent(QTimerEvent *) Q_DECL_OVERRIDE;
     void killTimers();
 
 private:

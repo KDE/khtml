@@ -40,33 +40,33 @@ class RenderSVGText : public RenderSVGBlock
 public:
     RenderSVGText(SVGTextElement *node);
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderSVGText";
     }
 
-    virtual bool isSVGText() const
+    bool isSVGText() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
     bool calculateLocalTransform();
-    virtual AffineTransform localTransform() const
+    AffineTransform localTransform() const Q_DECL_OVERRIDE
     {
         return m_localTransform;
     }
 
-    virtual void paint(PaintInfo &, int tx, int ty);
+    void paint(PaintInfo &, int tx, int ty) Q_DECL_OVERRIDE;
     /*virtual bool nodeAtPoint(const HitTestRequest&, HitTestResult&, int x, int y, int tx, int ty, HitTestAction);*/
 
-    virtual bool requiresLayer() const;
-    virtual void layout();
+    bool requiresLayer() const Q_DECL_OVERRIDE;
+    void layout() Q_DECL_OVERRIDE;
 
     virtual void absoluteRects(Vector<IntRect> &, int tx, int ty, bool topLevel = true);
     virtual IntRect absoluteClippedOverflowRect();
-    virtual FloatRect relativeBBox(bool includeStroke = true) const;
+    FloatRect relativeBBox(bool includeStroke = true) const Q_DECL_OVERRIDE;
 
-    virtual InlineBox *createInlineBox(bool makePlaceHolderBox, bool isRootLineBox/*, bool isOnlyRun = false*/);
+    InlineBox *createInlineBox(bool makePlaceHolderBox, bool isRootLineBox/*, bool isOnlyRun = false*/) Q_DECL_OVERRIDE;
 
 private:
     AffineTransform m_localTransform;

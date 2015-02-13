@@ -55,8 +55,8 @@ public:
     void computeContentIfNeeded();
     void setNeedComputeContent();
 
-    virtual void recalcStyle(StyleChange ch);
-    virtual void close();
+    void recalcStyle(StyleChange ch) Q_DECL_OVERRIDE;
+    void close() Q_DECL_OVERRIDE;
 
     // These methods will be called to notify the element of
     // any progress in loading of the document: setWidgetNotify if the
@@ -73,7 +73,7 @@ public:
     // if KHTMLPart should not make a kpart for it, but rather let it be handled directly.
     virtual bool mimetypeHandledInternally(const QString &mime);
 
-    virtual bool event(QEvent *e);
+    bool event(QEvent *e) Q_DECL_OVERRIDE;
 
     // IMPORTANT: you should call this when requesting a URL, to make sure
     // that we don't get stale references to iframes or such.
@@ -105,9 +105,9 @@ class HTMLObjectBaseElementImpl : public HTMLPartContainerElementImpl
 public:
     HTMLObjectBaseElementImpl(DocumentImpl *doc);
 
-    virtual void parseAttribute(AttributeImpl *attr);
-    virtual void attach();
-    virtual void defaultEventHandler(EventImpl *e);
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
+    void attach() Q_DECL_OVERRIDE;
+    void defaultEventHandler(EventImpl *e) Q_DECL_OVERRIDE;
 
     void setServiceType(const QString &);
 
@@ -121,20 +121,20 @@ public:
     bool m_renderAlternative;
     bool m_imageLike;
 
-    virtual void insertedIntoDocument();
-    virtual void removedFromDocument();
-    virtual void addId(const DOMString &id);
-    virtual void removeId(const DOMString &id);
+    void insertedIntoDocument() Q_DECL_OVERRIDE;
+    void removedFromDocument() Q_DECL_OVERRIDE;
+    void addId(const DOMString &id) Q_DECL_OVERRIDE;
+    void removeId(const DOMString &id) Q_DECL_OVERRIDE;
 
     HTMLEmbedElementImpl *relevantEmbed();
 
-    virtual void setWidgetNotify(QWidget *widget);
-    virtual void partLoadingErrorNotify();
-    virtual bool mimetypeHandledInternally(const QString &mime);
+    void setWidgetNotify(QWidget *widget) Q_DECL_OVERRIDE;
+    void partLoadingErrorNotify() Q_DECL_OVERRIDE;
+    bool mimetypeHandledInternally(const QString &mime) Q_DECL_OVERRIDE;
 
     // This method figures out what to render -- perhaps KPart, perhaps an image, perhaps
     // alternative content, and forces a reattach if need be.
-    virtual void computeContent();
+    void computeContent() Q_DECL_OVERRIDE;
 
     // Ask for a reattach, since we may need a different renderer..
     void requestRerender();
@@ -156,10 +156,10 @@ public:
 
     ~HTMLAppletElementImpl();
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
-    virtual void parseAttribute(AttributeImpl *token);
-    virtual void computeContent();
+    void parseAttribute(AttributeImpl *token) Q_DECL_OVERRIDE;
+    void computeContent() Q_DECL_OVERRIDE;
 protected:
     khtml::VAlign valign;
 };
@@ -172,11 +172,11 @@ public:
     HTMLEmbedElementImpl(DocumentImpl *doc);
     ~HTMLEmbedElementImpl();
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
-    virtual void parseAttribute(AttributeImpl *attr);
-    virtual void attach();
-    virtual void computeContent();
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
+    void attach() Q_DECL_OVERRIDE;
+    void computeContent() Q_DECL_OVERRIDE;
 
     virtual HTMLEmbedElementImpl *relevantEmbed();
 
@@ -193,13 +193,13 @@ public:
 
     ~HTMLObjectElementImpl();
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
     HTMLFormElementImpl *form() const;
 
-    virtual void parseAttribute(AttributeImpl *token);
+    void parseAttribute(AttributeImpl *token) Q_DECL_OVERRIDE;
 
-    virtual void attach();
+    void attach() Q_DECL_OVERRIDE;
 
     DocumentImpl *contentDocument() const;
 };
@@ -212,9 +212,9 @@ class HTMLParamElementImpl : public HTMLElementImpl
 public:
     HTMLParamElementImpl(DocumentImpl *_doc) : HTMLElementImpl(_doc) {}
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
-    virtual void parseAttribute(AttributeImpl *token);
+    void parseAttribute(AttributeImpl *token) Q_DECL_OVERRIDE;
 
     QString name() const
     {

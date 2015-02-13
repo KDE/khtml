@@ -45,22 +45,22 @@ public:
     RenderCanvas(DOM::NodeImpl *node, KHTMLView *view);
     ~RenderCanvas();
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderCanvas";
     }
 
-    virtual bool isCanvas() const
+    bool isCanvas() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
-    virtual void setStyle(RenderStyle *style);
-    virtual void layout();
-    virtual void calcWidth();
-    virtual void calcHeight();
-    virtual void calcMinMaxWidth();
-    virtual bool absolutePosition(int &xPos, int &yPos, bool f = false) const;
+    void setStyle(RenderStyle *style) Q_DECL_OVERRIDE;
+    void layout() Q_DECL_OVERRIDE;
+    void calcWidth() Q_DECL_OVERRIDE;
+    void calcHeight() Q_DECL_OVERRIDE;
+    void calcMinMaxWidth() Q_DECL_OVERRIDE;
+    bool absolutePosition(int &xPos, int &yPos, bool f = false) const Q_DECL_OVERRIDE;
 
     int docHeight() const;
     int docWidth() const;
@@ -70,15 +70,15 @@ public:
         return m_view;
     }
 
-    virtual void repaint(Priority p = NormalPriority);
-    virtual void repaintRectangle(int x, int y, int w, int h, Priority p = NormalPriority, bool f = false);
+    void repaint(Priority p = NormalPriority) Q_DECL_OVERRIDE;
+    void repaintRectangle(int x, int y, int w, int h, Priority p = NormalPriority, bool f = false) Q_DECL_OVERRIDE;
     void repaintViewRectangle(int x, int y, int w, int h, bool asap = false);
     bool needsFullRepaint() const;
     void deferredRepaint(RenderObject *o);
     void scheduleDeferredRepaints();
 
-    virtual void paint(PaintInfo &, int tx, int ty);
-    virtual void paintBoxDecorations(PaintInfo &paintInfo, int _tx, int _ty);
+    void paint(PaintInfo &, int tx, int ty) Q_DECL_OVERRIDE;
+    void paintBoxDecorations(PaintInfo &paintInfo, int _tx, int _ty) Q_DECL_OVERRIDE;
     virtual void setSelection(RenderObject *s, int sp, RenderObject *e, int ep);
     virtual void clearSelection(bool doRepaint = true);
     virtual RenderObject *selectionStart() const
@@ -148,7 +148,7 @@ public:
         return m_pageBottom;
     }
 
-    int pageTopAfter(int y) const
+    int pageTopAfter(int y) const Q_DECL_OVERRIDE
     {
         if (pageHeight() == 0) {
             return 0;
@@ -156,7 +156,7 @@ public:
         return (y / pageHeight() + 1) * pageHeight();
     }
 
-    int crossesPageBreak(int top, int bottom) const
+    int crossesPageBreak(int top, int bottom) const Q_DECL_OVERRIDE
     {
         if (pageHeight() == 0) {
             return false;
@@ -178,11 +178,11 @@ public:
 
     void updateInvalidatedFonts();
 public:
-    virtual void setWidth(int width)
+    void setWidth(int width) Q_DECL_OVERRIDE
     {
         m_rootWidth = m_width = width;
     }
-    virtual void setHeight(int height)
+    void setHeight(int height) Q_DECL_OVERRIDE
     {
         m_rootHeight = m_height = height;
     }
@@ -246,9 +246,9 @@ protected:
         m_cachedDocHeight = h;
     }
 
-    virtual void selectionStartEnd(int &spos, int &epos);
+    void selectionStartEnd(int &spos, int &epos) Q_DECL_OVERRIDE;
 
-    virtual QRect viewRect() const;
+    QRect viewRect() const Q_DECL_OVERRIDE;
 
     KHTMLView *m_view;
 

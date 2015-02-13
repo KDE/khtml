@@ -34,10 +34,10 @@ public:
 
     JSValue *getValueProperty(ExecState *exec, int token);
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
 
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }

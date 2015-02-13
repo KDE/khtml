@@ -45,13 +45,13 @@ class ArrayBufferViewConstructorImp : public JSObject
 {
 public:
     ArrayBufferViewConstructorImp(ExecState *exec, DOM::DocumentImpl *d);
-    virtual bool implementsConstruct() const;
+    bool implementsConstruct() const Q_DECL_OVERRIDE;
     using KJS::JSObject::construct;
-    virtual JSObject *construct(ExecState *exec, const List &args);
+    JSObject *construct(ExecState *exec, const List &args) Q_DECL_OVERRIDE;
 
     JSValue *getValueProperty(ExecState *exec, int token) const;
     using KJS::JSObject::getOwnPropertySlot;
-    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
 private:
     SharedPtr<DOM::DocumentImpl> doc;
 };
@@ -64,12 +64,12 @@ public:
     explicit ArrayBufferView(ExecState *exec, ArrayBuffer *buffer, size_t byteOffset, size_t byteLength);
     virtual ~ArrayBufferView();
 
-    bool getOwnPropertySlot(ExecState *exec, unsigned i, PropertySlot &slot);
-    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, unsigned i, PropertySlot &slot) Q_DECL_OVERRIDE;
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
 
-    void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None);
-    void put(ExecState *exec, unsigned propertyName, JSValue *value, int attr = None);
+    void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None) Q_DECL_OVERRIDE;
+    void put(ExecState *exec, unsigned propertyName, JSValue *value, int attr = None) Q_DECL_OVERRIDE;
 
     ArrayBuffer *buffer() const
     {
@@ -110,7 +110,7 @@ template <class T, class U>
 class ArrayBufferViewProto : public KJS::JSObject
 {
 public:
-    bool getOwnPropertySlot(KJS::ExecState *, const KJS::Identifier &, KJS::PropertySlot &);
+    bool getOwnPropertySlot(KJS::ExecState *, const KJS::Identifier &, KJS::PropertySlot &) Q_DECL_OVERRIDE;
     using JSObject::getOwnPropertySlot;
 protected:
     ArrayBufferViewProto(KJS::ExecState *exec);
@@ -127,7 +127,7 @@ public:
         put(exec, exec->propertyNames().length, KJS::jsNumber(len), KJS::DontDelete | KJS::ReadOnly | KJS::DontEnum);
     }
 
-    virtual KJS::JSValue *callAsFunction(KJS::ExecState *exec, KJS::JSObject *thisObj, const KJS::List &args);
+    KJS::JSValue *callAsFunction(KJS::ExecState *exec, KJS::JSObject *thisObj, const KJS::List &args) Q_DECL_OVERRIDE;
 private:
     int id;
 };

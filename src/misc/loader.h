@@ -291,16 +291,16 @@ public:
         return m_sheet;
     }
 
-    virtual void ref(CachedObjectClient *consumer);
+    void ref(CachedObjectClient *consumer) Q_DECL_OVERRIDE;
 
-    virtual void data(QBuffer &buffer, bool eof);
-    virtual void error(int err, const char *text);
+    void data(QBuffer &buffer, bool eof) Q_DECL_OVERRIDE;
+    void error(int err, const char *text) Q_DECL_OVERRIDE;
 
     void setCharsetHint(const QString &charset)
     {
         m_charsetHint = charset;
     }
-    void setCharset(const QString &charset)
+    void setCharset(const QString &charset) Q_DECL_OVERRIDE
     {
         m_charset = charset;
     }
@@ -330,10 +330,10 @@ public:
         return m_script;
     }
 
-    virtual void ref(CachedObjectClient *consumer);
+    void ref(CachedObjectClient *consumer) Q_DECL_OVERRIDE;
 
-    virtual void data(QBuffer &buffer, bool eof);
-    virtual void error(int err, const char *text);
+    void data(QBuffer &buffer, bool eof) Q_DECL_OVERRIDE;
+    void error(int err, const char *text) Q_DECL_OVERRIDE;
 
     void checkNotify();
 
@@ -341,7 +341,7 @@ public:
     {
         return !m_loading;
     }
-    void setCharset(const QString &charset)
+    void setCharset(const QString &charset) Q_DECL_OVERRIDE
     {
         m_charset = charset;
     }
@@ -374,11 +374,11 @@ public:
     {
         return !isErrorImage() && pixmap_size().width() > 0 && pixmap_size().height() > 0;
     }
-    void ref(CachedObjectClient *consumer);
-    virtual void deref(CachedObjectClient *consumer);
+    void ref(CachedObjectClient *consumer) Q_DECL_OVERRIDE;
+    void deref(CachedObjectClient *consumer) Q_DECL_OVERRIDE;
 
-    virtual void data(QBuffer &buffer, bool eof);
-    virtual void error(int err, const char *text);
+    void data(QBuffer &buffer, bool eof) Q_DECL_OVERRIDE;
+    void error(int err, const char *text) Q_DECL_OVERRIDE;
 
     bool isComplete() const
     {
@@ -422,7 +422,7 @@ public:
 
     void setShowAnimations(KHTMLSettings::KAnimationAdvice);
 
-    virtual void finish();
+    void finish() Q_DECL_OVERRIDE;
 
     khtmlImLoad::Image *image()
     {
@@ -436,10 +436,10 @@ private:
     /**
      Interface to the image
     */
-    virtual void imageHasGeometry(khtmlImLoad::Image *img, int width, int height);
-    virtual void imageChange(khtmlImLoad::Image *img, QRect region);
-    virtual void imageError(khtmlImLoad::Image *img);
-    virtual void imageDone(khtmlImLoad::Image *img);
+    void imageHasGeometry(khtmlImLoad::Image *img, int width, int height) Q_DECL_OVERRIDE;
+    void imageChange(khtmlImLoad::Image *img, QRect region) Q_DECL_OVERRIDE;
+    void imageError(khtmlImLoad::Image *img) Q_DECL_OVERRIDE;
+    void imageDone(khtmlImLoad::Image *img) Q_DECL_OVERRIDE;
 private:
     void doNotifyFinished();
 
@@ -472,9 +472,9 @@ public:
         return m_sound;
     }
 
-    virtual void ref(CachedObjectClient *consumer);
-    virtual void data(QBuffer &buffer, bool eof);
-    virtual void error(int err, const char *text);
+    void ref(CachedObjectClient *consumer) Q_DECL_OVERRIDE;
+    void data(QBuffer &buffer, bool eof) Q_DECL_OVERRIDE;
+    void error(int err, const char *text) Q_DECL_OVERRIDE;
 
     void checkNotify();
 
@@ -500,9 +500,9 @@ public:
         return m_font;
     }
 
-    virtual void ref(CachedObjectClient *consumer);
-    virtual void data(QBuffer &buffer, bool eof);
-    virtual void error(int err, const char *text);
+    void ref(CachedObjectClient *consumer) Q_DECL_OVERRIDE;
+    void data(QBuffer &buffer, bool eof) Q_DECL_OVERRIDE;
+    void error(int err, const char *text) Q_DECL_OVERRIDE;
 
     void checkNotify();
 

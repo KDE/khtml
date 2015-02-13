@@ -77,7 +77,7 @@ class SVGPaintServer : public SVGResource
 public:
     virtual ~SVGPaintServer();
 
-    virtual SVGResourceType resourceType() const
+    SVGResourceType resourceType() const Q_DECL_OVERRIDE
     {
         return PaintServerResourceType;
     }

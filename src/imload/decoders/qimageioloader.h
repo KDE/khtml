@@ -11,9 +11,9 @@ class ImageLoader;
 class QImageIOLoaderProvider: public ImageLoaderProvider
 {
 public:
-    virtual Type type();
+    Type type() Q_DECL_OVERRIDE;
     static const QStringList &mimeTypes();
-    virtual ImageLoader *loaderFor(const QByteArray &prefix);
+    ImageLoader *loaderFor(const QByteArray &prefix) Q_DECL_OVERRIDE;
 };
 
 }

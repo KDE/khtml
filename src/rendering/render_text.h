@@ -70,7 +70,7 @@ public:
         return m_len;
     }
 
-    void detach(RenderArena *renderArena, bool noRemove = false);
+    void detach(RenderArena *renderArena, bool noRemove = false) Q_DECL_OVERRIDE;
 
     InlineTextBox *nextTextBox() const
     {
@@ -81,11 +81,11 @@ public:
         return static_cast<InlineTextBox *>(prevLineBox());
     }
 
-    virtual void clearTruncation()
+    void clearTruncation() Q_DECL_OVERRIDE
     {
         m_truncation = cNoTruncation;
     }
-    virtual int placeEllipsisBox(bool ltr, int blockEdge, int ellipsisWidth, bool &foundBox);
+    int placeEllipsisBox(bool ltr, int blockEdge, int ellipsisWidth, bool &foundBox) Q_DECL_OVERRIDE;
 
     // Overloaded new operator.  Derived classes must override operator new
     // in order to allocate out of the RenderArena.
@@ -110,12 +110,12 @@ public:
         return m_toAdd;
     }
 
-    virtual bool isInlineTextBox() const
+    bool isInlineTextBox() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
-    void paint(RenderObject::PaintInfo &i, int tx, int ty);
+    void paint(RenderObject::PaintInfo &i, int tx, int ty) Q_DECL_OVERRIDE;
     void paintDecoration(QPainter *pt, const Font *f, int _tx, int _ty, int decoration);
     void paintShadow(QPainter *pt, const Font *f, int _tx, int _ty, const ShadowData *shadow);
     void paintSelection(const Font *f, RenderText *text, QPainter *p, RenderStyle *style, int tx, int ty, int startPos, int endPos, int deco);
@@ -152,18 +152,18 @@ public:
      */
     int widthFromStart(int pos) const;
 
-    virtual long caretMinOffset() const;
-    virtual long caretMaxOffset() const;
-    virtual unsigned long caretMaxRenderedOffset() const;
+    long caretMinOffset() const Q_DECL_OVERRIDE;
+    long caretMaxOffset() const Q_DECL_OVERRIDE;
+    unsigned long caretMaxRenderedOffset() const Q_DECL_OVERRIDE;
 
     /** returns the associated render text
      */
     const RenderText *renderText() const;
     RenderText *renderText();
 
-    virtual void extractLine();
-    virtual void deleteLine(RenderArena *arena);
-    virtual void attachLine();
+    void extractLine() Q_DECL_OVERRIDE;
+    void deleteLine(RenderArena *arena) Q_DECL_OVERRIDE;
+    void attachLine() Q_DECL_OVERRIDE;
 
     int m_start;
     unsigned short m_len;
@@ -189,18 +189,18 @@ public:
     virtual bool isTextFragment() const;
     virtual DOM::DOMStringImpl *originalString() const;
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderText";
     }
 
-    virtual void setStyle(RenderStyle *style);
+    void setStyle(RenderStyle *style) Q_DECL_OVERRIDE;
 
-    virtual void detach();
+    void detach() Q_DECL_OVERRIDE;
 
-    virtual void deleteInlineBoxes(RenderArena *arena = 0);
-    virtual void dirtyInlineBoxes(bool fullLayout, bool);
-    virtual void removeInlineBox(InlineBox *_box);
+    void deleteInlineBoxes(RenderArena *arena = 0) Q_DECL_OVERRIDE;
+    void dirtyInlineBoxes(bool fullLayout, bool) Q_DECL_OVERRIDE;
+    void removeInlineBox(InlineBox *_box) Q_DECL_OVERRIDE;
 
     DOM::DOMString data() const
     {
@@ -211,23 +211,23 @@ public:
         return str;
     }
 
-    virtual InlineBox *createInlineBox(bool, bool);
+    InlineBox *createInlineBox(bool, bool) Q_DECL_OVERRIDE;
 
-    virtual void layout()
+    void layout() Q_DECL_OVERRIDE
     {
         assert(false);
     }
 
-    virtual bool nodeAtPoint(NodeInfo &info, int x, int y, int tx, int ty, HitTestAction hitTestAction, bool inBox);
+    bool nodeAtPoint(NodeInfo &info, int x, int y, int tx, int ty, HitTestAction hitTestAction, bool inBox) Q_DECL_OVERRIDE;
 
-    virtual RenderPosition positionForCoordinates(int _x, int _y);
+    RenderPosition positionForCoordinates(int _x, int _y) Q_DECL_OVERRIDE;
 
     // Return before, after (offset set to max), or inside the text, at @p offset
     virtual FindSelectionResult checkSelectionPoint(int _x, int _y, int _tx, int _ty,
             DOM::NodeImpl *&node, int &offset,
             SelPointState &);
 
-    unsigned int length() const
+    unsigned int length() const Q_DECL_OVERRIDE
     {
         if (str) {
             return str->l;
@@ -290,8 +290,8 @@ public:
     // defaults to 0.
     int minXPos() const;
 
-    virtual int inlineXPos() const;
-    virtual int inlineYPos() const;
+    int inlineXPos() const Q_DECL_OVERRIDE;
+    int inlineYPos() const Q_DECL_OVERRIDE;
 
     bool hasReturn() const
     {
@@ -299,35 +299,35 @@ public:
     }
 
     virtual const QFont &font();
-    virtual short verticalPositionHint(bool firstLine) const;
+    short verticalPositionHint(bool firstLine) const Q_DECL_OVERRIDE;
 
     bool isFixedWidthFont() const;
 
     void setText(DOM::DOMStringImpl *text, bool force = false);
 
-    virtual SelectionState selectionState() const
+    SelectionState selectionState() const Q_DECL_OVERRIDE
     {
         return KDE_CAST_BF_ENUM(SelectionState, m_selectionState);
     }
-    virtual void setSelectionState(SelectionState s)
+    void setSelectionState(SelectionState s) Q_DECL_OVERRIDE
     {
         m_selectionState = s;
     }
-    virtual void caretPos(int offset, int flags, int &_x, int &_y, int &width, int &height) const;
-    virtual bool absolutePosition(int &/*xPos*/, int &/*yPos*/, bool f = false) const;
+    void caretPos(int offset, int flags, int &_x, int &_y, int &width, int &height) const Q_DECL_OVERRIDE;
+    bool absolutePosition(int &/*xPos*/, int &/*yPos*/, bool f = false) const Q_DECL_OVERRIDE;
     bool posOfChar(int ch, int &x, int &y) const;
-    virtual bool isPointInsideSelection(int x, int y, const DOM::Selection &) const;
+    bool isPointInsideSelection(int x, int y, const DOM::Selection &) const Q_DECL_OVERRIDE;
 
-    virtual short marginLeft() const
+    short marginLeft() const Q_DECL_OVERRIDE
     {
         return style()->marginLeft().minWidth(0);
     }
-    virtual short marginRight() const
+    short marginRight() const Q_DECL_OVERRIDE
     {
         return style()->marginRight().minWidth(0);
     }
 
-    virtual void repaint(Priority p = NormalPriority);
+    void repaint(Priority p = NormalPriority) Q_DECL_OVERRIDE;
 
     InlineTextBox *firstTextBox() const
     {
@@ -338,7 +338,7 @@ public:
         return m_lastTextBox;
     }
 
-    virtual QList< QRectF > getClientRects();
+    QList< QRectF > getClientRects() Q_DECL_OVERRIDE;
 
     bool hasBreakableChar() const
     {
@@ -356,19 +356,19 @@ public:
         return static_cast<DOM::TextImpl *>(RenderObject::element());
     }
 
-    virtual InlineBox *inlineBox(long offset);
+    InlineBox *inlineBox(long offset) Q_DECL_OVERRIDE;
 
     void removeTextBox(InlineTextBox *box);
     void attachTextBox(InlineTextBox *box);
     void extractTextBox(InlineTextBox *box);
 
 #ifdef ENABLE_DUMP
-    virtual void dump(QTextStream &stream, const QString &ind) const;
+    void dump(QTextStream &stream, const QString &ind) const Q_DECL_OVERRIDE;
 #endif
 
-    virtual long caretMinOffset() const;
-    virtual long caretMaxOffset() const;
-    virtual unsigned long caretMaxRenderedOffset() const;
+    long caretMinOffset() const Q_DECL_OVERRIDE;
+    long caretMaxOffset() const Q_DECL_OVERRIDE;
+    unsigned long caretMaxRenderedOffset() const Q_DECL_OVERRIDE;
 
     /** Find the text box that includes the character at @p offset
      * and return pos, which is the position of the char in the run.
@@ -434,8 +434,8 @@ public:
     RenderTextFragment(DOM::NodeImpl *_node, DOM::DOMStringImpl *_str);
     ~RenderTextFragment();
 
-    virtual bool isTextFragment() const;
-    virtual const char *renderName() const
+    bool isTextFragment() const Q_DECL_OVERRIDE;
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderTextFragment";
     }
@@ -453,7 +453,7 @@ public:
     {
         return m_generatedContentStr;
     }
-    virtual DOM::DOMStringImpl *originalString() const;
+    DOM::DOMStringImpl *originalString() const Q_DECL_OVERRIDE;
 
     RenderObject *firstLetter() const
     {

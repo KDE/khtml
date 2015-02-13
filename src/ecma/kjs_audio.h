@@ -32,9 +32,9 @@ class AudioConstructorImp : public JSObject
 {
 public:
     AudioConstructorImp(ExecState *exec, DOM::DocumentImpl *d);
-    virtual bool implementsConstruct() const;
+    bool implementsConstruct() const Q_DECL_OVERRIDE;
     using KJS::JSObject::construct;
-    virtual JSObject *construct(ExecState *exec, const List &args);
+    JSObject *construct(ExecState *exec, const List &args) Q_DECL_OVERRIDE;
 private:
     SharedPtr<DOM::DocumentImpl> doc;
 };

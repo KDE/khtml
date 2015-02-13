@@ -65,28 +65,28 @@ private:
 class FunLast : public Function
 {
 public:
-    virtual bool isConstant() const;
+    bool isConstant() const Q_DECL_OVERRIDE;
 
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunPosition : public Function
 {
 public:
-    virtual bool isConstant() const;
+    bool isConstant() const Q_DECL_OVERRIDE;
 
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunCount : public Function
 {
 public:
-    virtual bool isConstant() const;
+    bool isConstant() const Q_DECL_OVERRIDE;
 
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 // Base for various node-property functions, that have
@@ -95,170 +95,170 @@ private:
 class NodeFunction : public Function
 {
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
     virtual Value evaluateOnNode(DOM::NodeImpl *node) const = 0;
 };
 
 class FunLocalName : public NodeFunction
 {
 public:
-    virtual bool isConstant() const;
+    bool isConstant() const Q_DECL_OVERRIDE;
 
 private:
-    virtual Value evaluateOnNode(DOM::NodeImpl *node) const;
+    Value evaluateOnNode(DOM::NodeImpl *node) const Q_DECL_OVERRIDE;
 };
 
 class FunNamespaceURI : public NodeFunction
 {
 public:
-    virtual bool isConstant() const;
+    bool isConstant() const Q_DECL_OVERRIDE;
 
 private:
-    virtual Value evaluateOnNode(DOM::NodeImpl *node) const;
+    Value evaluateOnNode(DOM::NodeImpl *node) const Q_DECL_OVERRIDE;
 };
 
 class FunName : public NodeFunction
 {
 public:
-    virtual bool isConstant() const;
+    bool isConstant() const Q_DECL_OVERRIDE;
 
 private:
-    virtual Value evaluateOnNode(DOM::NodeImpl *node) const;
+    Value evaluateOnNode(DOM::NodeImpl *node) const Q_DECL_OVERRIDE;
 };
 
 class FunId : public Function
 {
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunString : public Function
 {
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunConcat : public Function
 {
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunStartsWith : public Function
 {
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunContains : public Function
 {
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunSubstringBefore : public Function
 {
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunSubstringAfter : public Function
 {
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunSubstring : public Function
 {
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunStringLength : public Function
 {
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunNormalizeSpace : public Function
 {
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunTranslate : public Function
 {
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunBoolean : public Function
 {
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunNot : public Function
 {
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunTrue : public Function
 {
 public:
-    virtual bool isConstant() const;
+    bool isConstant() const Q_DECL_OVERRIDE;
 
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunFalse : public Function
 {
 public:
-    virtual bool isConstant() const;
+    bool isConstant() const Q_DECL_OVERRIDE;
 
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunLang : public Function
 {
 public:
-    virtual bool isConstant() const;
+    bool isConstant() const Q_DECL_OVERRIDE;
 
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunNumber : public Function
 {
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunSum : public Function
 {
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunFloor : public Function
 {
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunCeiling : public Function
 {
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class FunRound : public Function
 {
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 DEFINE_FUNCTION_CREATOR(FunLast)

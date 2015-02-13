@@ -44,33 +44,33 @@ public:
     SVGAElement(const QualifiedName &, Document *);
     virtual ~SVGAElement();
 
-    virtual bool isValid() const
+    bool isValid() const Q_DECL_OVERRIDE
     {
         return SVGTests::isValid();
     }
 
     virtual String title() const;
 
-    virtual void parseMappedAttribute(MappedAttribute *);
-    virtual void svgAttributeChanged(const QualifiedName &);
+    void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
+    void svgAttributeChanged(const QualifiedName &) Q_DECL_OVERRIDE;
 
-    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
+    RenderObject *createRenderer(RenderArena *, RenderStyle *) Q_DECL_OVERRIDE;
 
-    virtual void defaultEventHandler(Event *);
+    void defaultEventHandler(Event *) Q_DECL_OVERRIDE;
 
     virtual bool supportsFocus() const;
-    virtual bool isFocusableImpl(FocusType ft) const;
+    bool isFocusableImpl(FocusType ft) const Q_DECL_OVERRIDE;
 
-    virtual bool childShouldCreateRenderer(Node *) const;
+    bool childShouldCreateRenderer(Node *) const Q_DECL_OVERRIDE;
 
     // KHTML ElementImpl pure virtual method
-    virtual quint32 id() const
+    quint32 id() const Q_DECL_OVERRIDE
     {
         return SVGNames::aTag.id();
     }
 
 protected:
-    virtual const SVGElement *contextElement() const
+    const SVGElement *contextElement() const Q_DECL_OVERRIDE
     {
         return this;
     }

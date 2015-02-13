@@ -40,13 +40,13 @@ public:
     DOMCSSStyleDeclaration(ExecState *exec, DOM::CSSStyleDeclarationImpl *s);
     virtual ~DOMCSSStyleDeclaration();
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &);
-    virtual void getOwnPropertyNames(ExecState *, PropertyNameArray &, PropertyMap::PropertyMode mode);
+    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) Q_DECL_OVERRIDE;
+    void getOwnPropertyNames(ExecState *, PropertyNameArray &, PropertyMap::PropertyMode mode) Q_DECL_OVERRIDE;
     using KJS::JSObject::put;
-    virtual void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None);
+    void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token);
 
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -77,15 +77,15 @@ public:
     virtual ~DOMStyleSheet();
 
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &);
+    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
     using KJS::JSObject::put;
-    virtual void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None);
-    virtual bool toBoolean(ExecState *) const
+    void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None) Q_DECL_OVERRIDE;
+    bool toBoolean(ExecState *) const Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -106,22 +106,22 @@ public:
 
     JSValue *getValueProperty(ExecState *exec, int token) const;
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &);
-    virtual JSValue *callAsFunction(ExecState *exec, JSObject *thisObj, const List &args);
-    virtual bool implementsCall() const
+    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) Q_DECL_OVERRIDE;
+    JSValue *callAsFunction(ExecState *exec, JSObject *thisObj, const List &args) Q_DECL_OVERRIDE;
+    bool implementsCall() const Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual bool isFunctionType() const
+    bool isFunctionType() const Q_DECL_OVERRIDE
     {
         return false;
     }
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
-    virtual bool toBoolean(ExecState *) const
+    bool toBoolean(ExecState *) const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -150,15 +150,15 @@ public:
     virtual ~DOMMediaList();
 
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &);
+    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
     using KJS::JSObject::put;
-    virtual void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None);
-    virtual const ClassInfo *classInfo() const
+    void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None) Q_DECL_OVERRIDE;
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
-    virtual bool toBoolean(ExecState *) const
+    bool toBoolean(ExecState *) const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -184,9 +184,9 @@ public:
     virtual ~DOMCSSStyleSheet();
     JSValue *getValueProperty(ExecState *exec, int token);
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &);
+    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) Q_DECL_OVERRIDE;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -207,9 +207,9 @@ public:
     virtual ~DOMCSSRuleList();
     JSValue *getValueProperty(ExecState *exec, int token) const;
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &);
+    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) Q_DECL_OVERRIDE;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -233,12 +233,12 @@ public:
     DOMCSSRule(ExecState *, DOM::CSSRuleImpl *r);
     virtual ~DOMCSSRule();
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &);
+    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
     using KJS::JSObject::put;
-    virtual void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None);
+    void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None) Q_DECL_OVERRIDE;
     void putValueProperty(ExecState *exec, int token, JSValue *value, int attr);
-    virtual const ClassInfo *classInfo() const;
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE;
     static const ClassInfo info;
     static const ClassInfo style_info, media_info, fontface_info, page_info, import_info, charset_info, namespace_info;
     enum { ParentStyleSheet, Type, CssText, ParentRule,
@@ -265,10 +265,10 @@ class CSSRuleConstructor : public DOMObject
 public:
     CSSRuleConstructor(ExecState *);
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &);
+    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -285,10 +285,10 @@ public:
     virtual ~DOMCSSValue();
     JSValue *getValueProperty(ExecState *exec, int token) const;
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &);
+    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) Q_DECL_OVERRIDE;
     using KJS::JSObject::put;
-    virtual void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None);
-    virtual const ClassInfo *classInfo() const
+    void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None) Q_DECL_OVERRIDE;
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -306,10 +306,10 @@ class CSSValueConstructor : public DOMObject
 public:
     CSSValueConstructor(ExecState *exec);
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &);
+    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -325,9 +325,9 @@ public:
     DOMCSSPrimitiveValue(ExecState *exec, DOM::CSSPrimitiveValueImpl *v);
     JSValue *getValueProperty(ExecState *exec, int token);
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &);
+    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) Q_DECL_OVERRIDE;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -347,10 +347,10 @@ class CSSPrimitiveValueConstructor : public CSSValueConstructor
 public:
     CSSPrimitiveValueConstructor(ExecState *exec) : CSSValueConstructor(exec) { }
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &);
+    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -364,9 +364,9 @@ class DOMCSSValueList : public DOMCSSValue
 public:
     DOMCSSValueList(ExecState *exec, DOM::CSSValueListImpl *v);
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &);
+    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) Q_DECL_OVERRIDE;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -384,10 +384,10 @@ class DOMRGBColor : public DOMObject
 public:
     DOMRGBColor(ExecState *exec, QRgb color);
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &);
+    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -405,10 +405,10 @@ public:
     DOMRect(ExecState *, DOM::RectImpl *r);
     ~DOMRect();
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &);
+    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -426,10 +426,10 @@ public:
     DOMCounter(ExecState *, DOM::CounterImpl *c);
     ~DOMCounter();
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &);
+    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }

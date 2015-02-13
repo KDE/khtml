@@ -40,7 +40,7 @@ public:
     HTMLDivElementImpl(DocumentImpl *doc, ushort _tagid)
         : HTMLGenericElementImpl(doc, _tagid) {}
 
-    virtual void parseAttribute(AttributeImpl *token);
+    void parseAttribute(AttributeImpl *token) Q_DECL_OVERRIDE;
 };
 
 // -------------------------------------------------------------------------
@@ -51,9 +51,9 @@ public:
     HTMLHRElementImpl(DocumentImpl *doc)
         : HTMLElementImpl(doc) {}
 
-    virtual NodeImpl::Id id() const;
-    virtual void parseAttribute(AttributeImpl *);
-    virtual void attach();
+    NodeImpl::Id id() const Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *) Q_DECL_OVERRIDE;
+    void attach() Q_DECL_OVERRIDE;
 };
 
 // -------------------------------------------------------------------------
@@ -75,8 +75,8 @@ class HTMLMarqueeElementImpl : public HTMLElementImpl
 public:
     HTMLMarqueeElementImpl(DocumentImpl *doc);
 
-    virtual NodeImpl::Id id() const;
-    virtual void parseAttribute(AttributeImpl *token);
+    NodeImpl::Id id() const Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *token) Q_DECL_OVERRIDE;
 
     int minimumDelay() const
     {
@@ -94,13 +94,13 @@ class HTMLLayerElementImpl : public HTMLDivElementImpl
 public:
     HTMLLayerElementImpl(DocumentImpl *doc, ushort _tagid);
 
-    virtual void parseAttribute(AttributeImpl *);
-    virtual NodeImpl *addChild(NodeImpl *child);
+    void parseAttribute(AttributeImpl *) Q_DECL_OVERRIDE;
+    NodeImpl *addChild(NodeImpl *child) Q_DECL_OVERRIDE;
 
-    virtual void removedFromDocument();
-    virtual void insertedIntoDocument();
-    virtual void addId(const DOMString &id);
-    virtual void removeId(const DOMString &id);
+    void removedFromDocument() Q_DECL_OVERRIDE;
+    void insertedIntoDocument() Q_DECL_OVERRIDE;
+    void addId(const DOMString &id) Q_DECL_OVERRIDE;
+    void removeId(const DOMString &id) Q_DECL_OVERRIDE;
 private:
     DOMString m_name;
     bool fixed;

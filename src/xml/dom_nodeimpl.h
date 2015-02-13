@@ -75,7 +75,7 @@ public:
     }
 
     // EventTarget
-    virtual Type eventTargetType() const
+    Type eventTargetType() const Q_DECL_OVERRIDE
     {
         return DOM_NODE;
     }
@@ -467,7 +467,7 @@ public:
     }
     void setDocument(DocumentImpl *doc);
 
-    virtual DocumentImpl *eventTargetDocument();
+    DocumentImpl *eventTargetDocument() Q_DECL_OVERRIDE;
 
     void dispatchEvent(EventImpl *evt, int &exceptioncode, bool tempEvent = false);
 
@@ -724,32 +724,32 @@ public:
     virtual ~NodeBaseImpl();
 
     // DOM methods overridden from  parent classes
-    virtual NodeImpl *firstChild() const;
-    virtual NodeImpl *lastChild() const;
-    virtual NodeImpl *insertBefore(NodeImpl *newChild, NodeImpl *refChild, int &exceptioncode);
-    virtual void replaceChild(NodeImpl *newChild, NodeImpl *oldChild, int &exceptioncode);
-    virtual void removeChild(NodeImpl *oldChild, int &exceptioncode);
-    virtual NodeImpl *appendChild(NodeImpl *newChild, int &exceptioncode);
-    virtual bool hasChildNodes() const;
+    NodeImpl *firstChild() const Q_DECL_OVERRIDE;
+    NodeImpl *lastChild() const Q_DECL_OVERRIDE;
+    NodeImpl *insertBefore(NodeImpl *newChild, NodeImpl *refChild, int &exceptioncode) Q_DECL_OVERRIDE;
+    void replaceChild(NodeImpl *newChild, NodeImpl *oldChild, int &exceptioncode) Q_DECL_OVERRIDE;
+    void removeChild(NodeImpl *oldChild, int &exceptioncode) Q_DECL_OVERRIDE;
+    NodeImpl *appendChild(NodeImpl *newChild, int &exceptioncode) Q_DECL_OVERRIDE;
+    bool hasChildNodes() const Q_DECL_OVERRIDE;
 
     // Other methods (not part of DOM)
     virtual void removeChildren();
     void cloneChildNodes(NodeImpl *clone);
 
-    virtual void setFirstChild(NodeImpl *child);
-    virtual void setLastChild(NodeImpl *child);
-    virtual NodeImpl *addChild(NodeImpl *newChild);
-    virtual void attach();
-    virtual void detach();
+    void setFirstChild(NodeImpl *child) Q_DECL_OVERRIDE;
+    void setLastChild(NodeImpl *child) Q_DECL_OVERRIDE;
+    NodeImpl *addChild(NodeImpl *newChild) Q_DECL_OVERRIDE;
+    void attach() Q_DECL_OVERRIDE;
+    void detach() Q_DECL_OVERRIDE;
 
     bool getUpperLeftCorner(int &xPos, int &yPos) const;
     bool getLowerRightCorner(int &xPos, int &yPos) const;
 
-    virtual void setFocus(bool = true);
-    virtual void setActive(bool = true);
-    virtual void setHovered(bool = true);
-    virtual unsigned long childNodeCount();
-    virtual NodeImpl *childNode(unsigned long index);
+    void setFocus(bool = true) Q_DECL_OVERRIDE;
+    void setActive(bool = true) Q_DECL_OVERRIDE;
+    void setHovered(bool = true) Q_DECL_OVERRIDE;
+    unsigned long childNodeCount() Q_DECL_OVERRIDE;
+    NodeImpl *childNode(unsigned long index) Q_DECL_OVERRIDE;
 
 protected:
     NodeImpl *_first;
@@ -815,14 +815,14 @@ public:
 
     // DOM methods & attributes for NamedNodeMap
 
-    virtual NodeImpl *getNamedItem(NodeImpl::Id id, const PrefixName &prefix = emptyPrefixName, bool nsAware = false);
-    virtual Node removeNamedItem(NodeImpl::Id id, const PrefixName &prefix, bool nsAware, int &exceptioncode);
-    virtual Node setNamedItem(NodeImpl *arg, const PrefixName &prefix, bool nsAware, int &exceptioncode);
+    NodeImpl *getNamedItem(NodeImpl::Id id, const PrefixName &prefix = emptyPrefixName, bool nsAware = false) Q_DECL_OVERRIDE;
+    Node removeNamedItem(NodeImpl::Id id, const PrefixName &prefix, bool nsAware, int &exceptioncode) Q_DECL_OVERRIDE;
+    Node setNamedItem(NodeImpl *arg, const PrefixName &prefix, bool nsAware, int &exceptioncode) Q_DECL_OVERRIDE;
 
-    virtual NodeImpl *item(unsigned index);
-    virtual unsigned length() const;
+    NodeImpl *item(unsigned index) Q_DECL_OVERRIDE;
+    unsigned length() const Q_DECL_OVERRIDE;
 
-    virtual bool isReadOnly()
+    bool isReadOnly() Q_DECL_OVERRIDE
     {
         return true;
     }

@@ -39,40 +39,40 @@ public:
     RenderSVGContainer(SVGStyledElement *);
     ~RenderSVGContainer();
 
-    virtual RenderObject *firstChild() const
+    RenderObject *firstChild() const Q_DECL_OVERRIDE
     {
         return m_firstChild;
     }
-    virtual RenderObject *lastChild() const
+    RenderObject *lastChild() const Q_DECL_OVERRIDE
     {
         return m_lastChild;
     }
 
-    virtual short/*khtml*/ int width() const
+    short/*khtml*/ int width() const Q_DECL_OVERRIDE
     {
         return m_width;
     }
-    virtual int height() const
+    int height() const Q_DECL_OVERRIDE
     {
         return m_height;
     }
 
     virtual bool canHaveChildren() const;
-    virtual void addChild(RenderObject *newChild, RenderObject *beforeChild = 0);
-    virtual void removeChild(RenderObject *);
+    void addChild(RenderObject *newChild, RenderObject *beforeChild = 0) Q_DECL_OVERRIDE;
+    void removeChild(RenderObject *) Q_DECL_OVERRIDE;
 
     virtual void destroy();
     void destroyLeftoverChildren();
 
     // uncomment if you know how line 64' ambiguoty should be solved in that case.
     // using khtml::RenderObject::removeChildNode;
-    virtual RenderObject *removeChildNode(RenderObject *);
+    RenderObject *removeChildNode(RenderObject *) Q_DECL_OVERRIDE;
     // uncomment if you know how line 64' ambiguoty should be solved in that case.
     // using khtml::RenderObject::appendChildNode;
-    virtual void appendChildNode(RenderObject *);
+    void appendChildNode(RenderObject *) Q_DECL_OVERRIDE;
     // uncomment if you know how line 62' of the implementation ambiguoty should be solved in that case.
     // using khtml::RenderObject::insertChildNode;
-    virtual void insertChildNode(RenderObject *child, RenderObject *before);
+    void insertChildNode(RenderObject *child, RenderObject *before) Q_DECL_OVERRIDE;
 
     // Designed for speed.  Don't waste time doing a bunch of work like layer updating and repainting when we know that our
     // change in parentage is not going to affect anything.
@@ -81,7 +81,7 @@ public:
         appendChildNode(child->parent()->removeChildNode(child));
     }
 
-    virtual void calcMinMaxWidth()
+    void calcMinMaxWidth() Q_DECL_OVERRIDE
     {
         setMinMaxKnown();
     }
@@ -92,34 +92,34 @@ public:
     void setDrawsContents(bool);
     bool drawsContents() const;
 
-    virtual bool isSVGContainer() const
+    bool isSVGContainer() const Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderSVGContainer";
     }
 
-    virtual bool requiresLayer() const;
-    virtual short lineHeight(bool b) const;
-    virtual short baselinePosition(bool b) const;
+    bool requiresLayer() const Q_DECL_OVERRIDE;
+    short lineHeight(bool b) const Q_DECL_OVERRIDE;
+    short baselinePosition(bool b) const Q_DECL_OVERRIDE;
 
-    virtual void layout();
-    virtual void paint(PaintInfo &, int parentX, int parentY);
+    void layout() Q_DECL_OVERRIDE;
+    void paint(PaintInfo &, int parentX, int parentY) Q_DECL_OVERRIDE;
 
     virtual IntRect absoluteClippedOverflowRect();
     virtual void absoluteRects(Vector<IntRect> &rects, int tx, int ty, bool topLevel = true);
 
-    FloatRect relativeBBox(bool includeStroke = true) const;
+    FloatRect relativeBBox(bool includeStroke = true) const Q_DECL_OVERRIDE;
 
     virtual bool calculateLocalTransform();
-    virtual AffineTransform localTransform() const;
+    AffineTransform localTransform() const Q_DECL_OVERRIDE;
     virtual AffineTransform viewportTransform() const;
 
     /*virtual bool nodeAtPoint(const HitTestRequest&, HitTestResult&, int x, int y, int tx, int ty, HitTestAction);*/
 
-    virtual bool childAllowed() const
+    bool childAllowed() const Q_DECL_OVERRIDE
     {
         return true;
     }

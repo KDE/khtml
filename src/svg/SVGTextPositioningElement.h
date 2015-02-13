@@ -38,7 +38,7 @@ public:
     SVGTextPositioningElement(const QualifiedName &, Document *);
     virtual ~SVGTextPositioningElement();
 
-    virtual void parseMappedAttribute(MappedAttribute *);
+    void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
 
     bool isKnownAttribute(const QualifiedName &);
 

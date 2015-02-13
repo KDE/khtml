@@ -217,7 +217,7 @@ public:
     ~CoverWidget() {}
     KJavaAppletWidget *appletWidget() const;
 protected:
-    void resizeEvent(QResizeEvent *e);
+    void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
 };
 
 inline CoverWidget::CoverWidget(QWidget *parent)
@@ -248,7 +248,7 @@ public:
         setPixmap(KJavaAppletViewerFactory::iconLoader()->loadIcon("java", KIconLoader::Small));
     }
 protected:
-    void mousePressEvent(QMouseEvent *)
+    void mousePressEvent(QMouseEvent *) Q_DECL_OVERRIDE
     {
         serverMaintainer()->server->showConsole();
     }

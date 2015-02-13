@@ -61,39 +61,39 @@ public:
     QString errorProtocol();
 
     // overloaded handler functions
-    bool startDocument();
-    bool startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &atts);
-    bool endElement(const QString &namespaceURI, const QString &localName, const QString &qName);
-    bool startCDATA();
-    bool endCDATA();
-    bool characters(const QString &ch);
-    bool comment(const QString &ch);
-    bool processingInstruction(const QString &target, const QString &data);
-    bool startDTD(const QString &name, const QString &publicId, const QString &systemId);
-    bool endDTD();
+    bool startDocument() Q_DECL_OVERRIDE;
+    bool startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &atts) Q_DECL_OVERRIDE;
+    bool endElement(const QString &namespaceURI, const QString &localName, const QString &qName) Q_DECL_OVERRIDE;
+    bool startCDATA() Q_DECL_OVERRIDE;
+    bool endCDATA() Q_DECL_OVERRIDE;
+    bool characters(const QString &ch) Q_DECL_OVERRIDE;
+    bool comment(const QString &ch) Q_DECL_OVERRIDE;
+    bool processingInstruction(const QString &target, const QString &data) Q_DECL_OVERRIDE;
+    bool startDTD(const QString &name, const QString &publicId, const QString &systemId) Q_DECL_OVERRIDE;
+    bool endDTD() Q_DECL_OVERRIDE;
 
     // namespace handling, to workaround problem in QXML where some attributes
     // do not get the namespace resolved properly
-    bool startPrefixMapping(const QString &prefix, const QString &uri);
-    bool endPrefixMapping(const QString &prefix);
+    bool startPrefixMapping(const QString &prefix, const QString &uri) Q_DECL_OVERRIDE;
+    bool endPrefixMapping(const QString &prefix) Q_DECL_OVERRIDE;
     void fixUpNSURI(QString &uri, const QString &qname);
     QMap<QString, QStack<QString> > namespaceInfo;
 
     // from QXmlDeclHandler
-    bool attributeDecl(const QString &eName, const QString &aName, const QString &type, const QString &valueDefault, const QString &value);
-    bool externalEntityDecl(const QString &name, const QString &publicId, const QString &systemId);
-    bool internalEntityDecl(const QString &name, const QString &value);
+    bool attributeDecl(const QString &eName, const QString &aName, const QString &type, const QString &valueDefault, const QString &value) Q_DECL_OVERRIDE;
+    bool externalEntityDecl(const QString &name, const QString &publicId, const QString &systemId) Q_DECL_OVERRIDE;
+    bool internalEntityDecl(const QString &name, const QString &value) Q_DECL_OVERRIDE;
 
     // from QXmlDTDHandler
-    bool notationDecl(const QString &name, const QString &publicId, const QString &systemId);
-    bool unparsedEntityDecl(const QString &name, const QString &publicId, const QString &systemId, const QString &notationName);
+    bool notationDecl(const QString &name, const QString &publicId, const QString &systemId) Q_DECL_OVERRIDE;
+    bool unparsedEntityDecl(const QString &name, const QString &publicId, const QString &systemId, const QString &notationName) Q_DECL_OVERRIDE;
 
     bool enterText();
     void exitText();
 
-    QString errorString() const;
+    QString errorString() const Q_DECL_OVERRIDE;
 
-    bool fatalError(const QXmlParseException &exception);
+    bool fatalError(const QXmlParseException &exception) Q_DECL_OVERRIDE;
 
     int errorLine;
     int errorCol;
@@ -149,11 +149,11 @@ class XMLIncrementalSource : public QXmlInputSource
 {
 public:
     XMLIncrementalSource();
-    virtual void fetchData();
-    virtual QChar next();
-    virtual void setData(const QString &str);
-    virtual void setData(const QByteArray &data);
-    virtual QString data() const;
+    void fetchData() Q_DECL_OVERRIDE;
+    QChar next() Q_DECL_OVERRIDE;
+    void setData(const QString &str) Q_DECL_OVERRIDE;
+    void setData(const QByteArray &data) Q_DECL_OVERRIDE;
+    QString data() const Q_DECL_OVERRIDE;
 
     void appendXML(const QString &str);
     void setFinished(bool);
@@ -176,18 +176,18 @@ class XMLTokenizer : public Tokenizer, public khtml::CachedObjectClient
 public:
     XMLTokenizer(DOM::DocumentImpl *, KHTMLView * = 0);
     virtual ~XMLTokenizer();
-    virtual void begin();
-    virtual void write(const TokenizerString &str, bool);
-    virtual void end();
-    virtual void finish();
+    void begin() Q_DECL_OVERRIDE;
+    void write(const TokenizerString &str, bool) Q_DECL_OVERRIDE;
+    void end() Q_DECL_OVERRIDE;
+    void finish() Q_DECL_OVERRIDE;
 
     // from CachedObjectClient
-    void notifyFinished(khtml::CachedObject *finishedObj);
+    void notifyFinished(khtml::CachedObject *finishedObj) Q_DECL_OVERRIDE;
 
-    void executeScriptsWaitingForStylesheets() {}
+    void executeScriptsWaitingForStylesheets() Q_DECL_OVERRIDE {}
 
-    virtual bool isWaitingForScripts() const;
-    virtual bool isExecutingScript() const
+    bool isWaitingForScripts() const Q_DECL_OVERRIDE;
+    bool isExecutingScript() const Q_DECL_OVERRIDE
     {
         return m_executingScript;
     }

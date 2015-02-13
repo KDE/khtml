@@ -50,14 +50,14 @@ public:
     SVGGradientElement(const QualifiedName &, Document *);
     virtual ~SVGGradientElement();
 
-    virtual void parseMappedAttribute(MappedAttribute *);
-    virtual void svgAttributeChanged(const QualifiedName &);
+    void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
+    void svgAttributeChanged(const QualifiedName &) Q_DECL_OVERRIDE;
 
     using DOM::NodeImpl::childrenChanged;
-    virtual void childrenChanged(bool changedByParser = false, Node *beforeChange = 0, Node *afterChange = 0, int childCountDelta = 0);
-    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
+    void childrenChanged(bool changedByParser = false, Node *beforeChange = 0, Node *afterChange = 0, int childCountDelta = 0) Q_DECL_OVERRIDE;
+    RenderObject *createRenderer(RenderArena *, RenderStyle *) Q_DECL_OVERRIDE;
 
-    virtual SVGResource *canvasResource();
+    SVGResource *canvasResource() Q_DECL_OVERRIDE;
 
 protected:
     friend class SVGPaintServerGradient;

@@ -85,7 +85,7 @@ public:
     {
         return !_prop.isEmpty();
     }
-    virtual UString toString(ExecState *exec) const;
+    UString toString(ExecState *exec) const Q_DECL_OVERRIDE;
 };
 
 /**
@@ -131,10 +131,10 @@ public:
     /**
      * Mark objects in the DOMObject cache.
      */
-    virtual void mark(bool isMain);
+    void mark(bool isMain) Q_DECL_OVERRIDE;
     KParts::ReadOnlyPart *part() const;
 
-    virtual int rtti()
+    int rtti() Q_DECL_OVERRIDE
     {
         return 1;
     }
@@ -163,7 +163,7 @@ public:
      * CPU guard API. This should be used instead of Interpreter
      * methods as it manages the timeouts, including VG support
      */
-    virtual bool shouldInterruptScript() const;
+    bool shouldInterruptScript() const Q_DECL_OVERRIDE;
     void startCPUGuard();
     void stopCPUGuard();
 
@@ -231,7 +231,7 @@ public:
         ScriptInterpreter::forgetDOMObject(m_impl.get());
     }
 
-    virtual bool toBoolean(ExecState *) const
+    bool toBoolean(ExecState *) const Q_DECL_OVERRIDE
     {
         return true;
     }

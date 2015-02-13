@@ -45,24 +45,24 @@ public:
     DOM::DOMString cssText() const;
     void setCssText(DOM::DOMString str);
 
-    DOM::CSSValueImpl *getPropertyCSSValue(int propertyID) const;
-    DOM::DOMString getPropertyValue(int propertyID) const;
-    bool getPropertyPriority(int propertyID) const;
-    unsigned long length() const;
+    DOM::CSSValueImpl *getPropertyCSSValue(int propertyID) const Q_DECL_OVERRIDE;
+    DOM::DOMString getPropertyValue(int propertyID) const Q_DECL_OVERRIDE;
+    bool getPropertyPriority(int propertyID) const Q_DECL_OVERRIDE;
+    unsigned long length() const Q_DECL_OVERRIDE;
 
-    virtual void removeProperty(int propertyID, DOM::DOMString *old = 0);
-    virtual bool removePropertiesInSet(const int *set, unsigned length);
-    virtual bool isPropertyImplicit(int /*propertyID*/) const
+    void removeProperty(int propertyID, DOM::DOMString *old = 0) Q_DECL_OVERRIDE;
+    bool removePropertiesInSet(const int *set, unsigned length) Q_DECL_OVERRIDE;
+    bool isPropertyImplicit(int /*propertyID*/) const Q_DECL_OVERRIDE
     {
         return false;
     }
-    bool setProperty(int propertyId, const DOM::DOMString &value, bool important, int &ec);
-    bool setProperty(int propertyId, const DOM::DOMString &value, bool important = false);
-    void setProperty(int propertyId, int value, bool important = false);
-    void setLengthProperty(int id, const DOM::DOMString &value, bool important, bool multiLength = false);
+    bool setProperty(int propertyId, const DOM::DOMString &value, bool important, int &ec) Q_DECL_OVERRIDE;
+    bool setProperty(int propertyId, const DOM::DOMString &value, bool important = false) Q_DECL_OVERRIDE;
+    void setProperty(int propertyId, int value, bool important = false) Q_DECL_OVERRIDE;
+    void setLengthProperty(int id, const DOM::DOMString &value, bool important, bool multiLength = false) Q_DECL_OVERRIDE;
 
-    void setProperty(const DOM::DOMString &propertyString);
-    DOM::DOMString item(unsigned long index) const;
+    void setProperty(const DOM::DOMString &propertyString) Q_DECL_OVERRIDE;
+    DOM::DOMString item(unsigned long index) const Q_DECL_OVERRIDE;
 
 protected:
     DOM::CSSProperty property(int id) const;

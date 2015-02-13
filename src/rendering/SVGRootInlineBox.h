@@ -55,12 +55,12 @@ public:
     {
     }
 
-    virtual bool isSVGRootInlineBox() const
+    bool isSVGRootInlineBox() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
-    virtual void paint(RenderObject::PaintInfo &, int tx, int ty);
+    void paint(RenderObject::PaintInfo &, int tx, int ty) Q_DECL_OVERRIDE;
 
     virtual int placeBoxesHorizontally(int x, int &leftPosition, int &rightPosition, bool &needsWordSpacing);
     virtual void verticallyAlignBoxes(int &heightOfBlock);

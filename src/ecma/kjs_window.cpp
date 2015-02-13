@@ -89,9 +89,9 @@ public:
     History(ExecState *exec, KHTMLPart *p)
         : JSObject(exec->lexicalInterpreter()->builtinObjectPrototype()), part(p) { }
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -108,8 +108,8 @@ public:
     External(ExecState *exec, KHTMLPart *p)
         : JSObject(exec->lexicalInterpreter()->builtinObjectPrototype()), part(p) { }
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
-    virtual const ClassInfo *classInfo() const
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -1801,7 +1801,7 @@ public:
     DelayedGoHistory(int _steps): steps(_steps)
     {}
 
-    virtual bool execute(Window *win)
+    bool execute(Window *win) Q_DECL_OVERRIDE
     {
         win->goHistory(steps);
         return true;
@@ -2148,7 +2148,7 @@ void Window::showSuppressedWindows()
 class DelayedClose: public Window::DelayedAction
 {
 public:
-    virtual bool execute(Window *win)
+    bool execute(Window *win) Q_DECL_OVERRIDE
     {
         win->scheduleClose();
         return false;

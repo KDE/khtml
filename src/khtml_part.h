@@ -330,12 +330,12 @@ public:
      *
      * Reimplemented from KParts::ReadOnlyPart::openUrl .
      */
-    virtual bool openUrl(const QUrl &url);
+    bool openUrl(const QUrl &url) Q_DECL_OVERRIDE;
 
     /**
      * Stops loading the document and kills all data requests (for images, etc.)
      */
-    virtual bool closeUrl();
+    bool closeUrl() Q_DECL_OVERRIDE;
 
     /**
      * Called when a certain error situation (i.e. connection timed out) occurred.
@@ -1217,7 +1217,7 @@ protected:
      */
     void htmlError(int errorCode, const QString &text, const QUrl &reqUrl);
 
-    virtual void customEvent(QEvent *event);
+    void customEvent(QEvent *event) Q_DECL_OVERRIDE;
 
     /**
      * Eventhandler of the khtml::MousePressEvent.
@@ -1243,12 +1243,12 @@ protected:
     /**
      * Internal reimplementation of KParts::Part::guiActivateEvent .
      */
-    virtual void guiActivateEvent(KParts::GUIActivateEvent *event);
+    void guiActivateEvent(KParts::GUIActivateEvent *event) Q_DECL_OVERRIDE;
 
     /**
      * Internal empty reimplementation of KParts::ReadOnlyPart::openFile .
      */
-    virtual bool openFile();
+    bool openFile() Q_DECL_OVERRIDE;
 
     virtual bool urlSelected(const QString &url, int button, int state,
                              const QString &_target,
@@ -1279,22 +1279,22 @@ protected:
     /**
      * Implements the streaming API of KParts::ReadOnlyPart.
      */
-    virtual bool doOpenStream(const QString &mimeType);
+    bool doOpenStream(const QString &mimeType) Q_DECL_OVERRIDE;
 
     /**
      * Implements the streaming API of KParts::ReadOnlyPart.
      */
-    virtual bool doWriteStream(const QByteArray &data);
+    bool doWriteStream(const QByteArray &data) Q_DECL_OVERRIDE;
 
     /**
      * Implements the streaming API of KParts::ReadOnlyPart.
      */
-    virtual bool doCloseStream();
+    bool doCloseStream() Q_DECL_OVERRIDE;
 
     /**
      * @internal
      */
-    virtual void timerEvent(QTimerEvent *);
+    void timerEvent(QTimerEvent *) Q_DECL_OVERRIDE;
 
     /**
      * Will pre-resolve @p name according to dnsPrefetch current settings

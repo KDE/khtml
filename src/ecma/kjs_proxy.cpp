@@ -163,11 +163,11 @@ class TestFunctionImp : public JSObject
 {
 public:
     TestFunctionImp() : JSObject() {}
-    virtual bool implementsCall() const
+    bool implementsCall() const Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual JSValue *callAsFunction(ExecState *exec, JSObject *thisObj, const List &args);
+    JSValue *callAsFunction(ExecState *exec, JSObject *thisObj, const List &args) Q_DECL_OVERRIDE;
 };
 
 JSValue *TestFunctionImp::callAsFunction(ExecState *exec, JSObject * /*thisObj*/, const List &args)

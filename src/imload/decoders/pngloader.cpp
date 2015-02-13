@@ -233,7 +233,7 @@ public:
         //### CHECKME!
     }
 
-    virtual int processData(uchar *data, int length)
+    int processData(uchar *data, int length) Q_DECL_OVERRIDE
     {
         if (done) {
             return Done;

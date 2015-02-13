@@ -40,19 +40,19 @@ public:
     SVGSymbolElement(const QualifiedName &, Document *);
     virtual ~SVGSymbolElement();
 
-    virtual void parseMappedAttribute(MappedAttribute *);
+    void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
     virtual bool shouldAttachChild(Element *) const
     {
         return false;
     }
 
-    virtual bool rendererIsNeeded(RenderStyle *)
+    bool rendererIsNeeded(RenderStyle *) Q_DECL_OVERRIDE
     {
         return false;
     }
 
 protected:
-    virtual const SVGElement *contextElement() const
+    const SVGElement *contextElement() const Q_DECL_OVERRIDE
     {
         return this;
     }

@@ -44,26 +44,26 @@ public:
     RenderBlock(DOM::NodeImpl *node);
     virtual ~RenderBlock();
 
-    virtual const char *renderName() const;
+    const char *renderName() const Q_DECL_OVERRIDE;
 
-    virtual bool isRenderBlock() const
+    bool isRenderBlock() const Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual bool isBlockFlow() const
+    bool isBlockFlow() const Q_DECL_OVERRIDE
     {
         return (!isInline() || isReplaced()) && !isTable();
     }
-    virtual bool isInlineFlow() const
+    bool isInlineFlow() const Q_DECL_OVERRIDE
     {
         return isInline() && !isReplaced();
     }
-    virtual bool isInlineBlockOrInlineTable() const
+    bool isInlineBlockOrInlineTable() const Q_DECL_OVERRIDE
     {
         return isInline() && isReplaced();
     }
 
-    virtual bool childrenInline() const
+    bool childrenInline() const Q_DECL_OVERRIDE
     {
         return m_childrenInline;
     }
@@ -71,7 +71,7 @@ public:
     {
         m_childrenInline = b;
     }
-    virtual short baselinePosition(bool firstLine) const;
+    short baselinePosition(bool firstLine) const Q_DECL_OVERRIDE;
 
     int getBaselineOfLastLineBox() const;
     void makeChildrenNonInline(RenderObject *insertionPoint = 0);
@@ -81,19 +81,19 @@ public:
     // The height (and width) of a block when you include overflow spillage out of the bottom
     // of the block (e.g., a <div style="height:25px"> that has a 100px tall image inside
     // it would have an overflow height of borderTop() + paddingTop() + 100px.
-    virtual int overflowHeight() const
+    int overflowHeight() const Q_DECL_OVERRIDE
     {
         return m_overflowHeight;
     }
-    virtual int overflowWidth() const
+    int overflowWidth() const Q_DECL_OVERRIDE
     {
         return m_overflowWidth;
     }
-    virtual int overflowLeft() const
+    int overflowLeft() const Q_DECL_OVERRIDE
     {
         return m_overflowLeft;
     }
-    virtual int overflowTop() const
+    int overflowTop() const Q_DECL_OVERRIDE
     {
         return m_overflowTop;
     }
@@ -114,17 +114,17 @@ public:
         m_overflowTop = t;
     }
 
-    virtual bool isSelfCollapsingBlock() const;
-    virtual bool isTopMarginQuirk() const
+    bool isSelfCollapsingBlock() const Q_DECL_OVERRIDE;
+    bool isTopMarginQuirk() const Q_DECL_OVERRIDE
     {
         return m_topMarginQuirk;
     }
-    virtual bool isBottomMarginQuirk() const
+    bool isBottomMarginQuirk() const Q_DECL_OVERRIDE
     {
         return m_bottomMarginQuirk;
     }
 
-    virtual short maxTopMargin(bool positive) const
+    short maxTopMargin(bool positive) const Q_DECL_OVERRIDE
     {
         if (positive) {
             return m_maxTopPosMargin;
@@ -132,7 +132,7 @@ public:
             return m_maxTopNegMargin;
         }
     }
-    virtual short maxBottomMargin(bool positive) const
+    short maxBottomMargin(bool positive) const Q_DECL_OVERRIDE
     {
         if (positive) {
             return m_maxBottomPosMargin;
@@ -155,14 +155,14 @@ public:
         }
     }
 
-    virtual void addChildToFlow(RenderObject *newChild, RenderObject *beforeChild);
-    virtual void removeChild(RenderObject *oldChild);
+    void addChildToFlow(RenderObject *newChild, RenderObject *beforeChild) Q_DECL_OVERRIDE;
+    void removeChild(RenderObject *oldChild) Q_DECL_OVERRIDE;
 
-    virtual void setStyle(RenderStyle *_style);
-    virtual void attach();
+    void setStyle(RenderStyle *_style) Q_DECL_OVERRIDE;
+    void attach() Q_DECL_OVERRIDE;
     void updateFirstLetter();
 
-    virtual void layout();
+    void layout() Q_DECL_OVERRIDE;
     void layoutBlock(bool relayoutChildren);
     void layoutBlockChildren(bool relayoutChildren);
     void layoutInlineChildren(bool relayoutChildren, int breakBeforeLine = 0);
@@ -198,7 +198,7 @@ public:
                         RootInlineBox *&endLine, int &endYPos);
     // end bidi.cpp functions
 
-    virtual void paint(PaintInfo &i, int tx, int ty);
+    void paint(PaintInfo &i, int tx, int ty) Q_DECL_OVERRIDE;
     void paintObject(PaintInfo &i, int tx, int ty, bool paintOutline = true);
     void paintFloats(PaintInfo &i, int _tx, int _ty, bool paintSelection = false);
 
@@ -209,18 +209,18 @@ public:
     void positionNewFloats();
     void clearFloats();
     int getClearDelta(RenderObject *child, int yPos);
-    virtual void markAllDescendantsWithFloatsForLayout(RenderObject *floatToRemove = 0);
+    void markAllDescendantsWithFloatsForLayout(RenderObject *floatToRemove = 0) Q_DECL_OVERRIDE;
 
     // FIXME: containsFloats() should not return true if the floating objects list
     // is empty. However, layoutInlineChildren() relies on the current behavior.
     // http://bugzilla.opendarwin.org/show_bug.cgi?id=7395#c3
-    virtual bool hasFloats() const
+    bool hasFloats() const Q_DECL_OVERRIDE
     {
         return m_floatingObjects != 0;
     }
-    virtual bool containsFloat(RenderObject *o) const;
+    bool containsFloat(RenderObject *o) const Q_DECL_OVERRIDE;
 
-    virtual bool hasOverhangingFloats() const
+    bool hasOverhangingFloats() const Q_DECL_OVERRIDE
     {
         return floatBottom() > m_height;
     }
@@ -232,10 +232,10 @@ public:
     inline int rightBottom();
 
     virtual unsigned short lineWidth(int y, bool *canClearLine = 0) const;
-    virtual int lowestPosition(bool includeOverflowInterior = true, bool includeSelf = true) const;
-    virtual int rightmostPosition(bool includeOverflowInterior = true, bool includeSelf = true) const;
-    virtual int leftmostPosition(bool includeOverflowInterior = true, bool includeSelf = true) const;
-    virtual int highestPosition(bool includeOverflowInterior, bool includeSelf) const;
+    int lowestPosition(bool includeOverflowInterior = true, bool includeSelf = true) const Q_DECL_OVERRIDE;
+    int rightmostPosition(bool includeOverflowInterior = true, bool includeSelf = true) const Q_DECL_OVERRIDE;
+    int leftmostPosition(bool includeOverflowInterior = true, bool includeSelf = true) const Q_DECL_OVERRIDE;
+    int highestPosition(bool includeOverflowInterior, bool includeSelf) const Q_DECL_OVERRIDE;
     int lowestAbsolutePosition() const;
     int leftmostAbsolutePosition() const;
     int rightmostAbsolutePosition() const;
@@ -255,19 +255,19 @@ public:
         return leftRelOffset(y, leftOffset(), true, 0, canClearLine);
     }
 
-    virtual bool nodeAtPoint(NodeInfo &info, int x, int y, int _tx, int _ty, HitTestAction hitTestAction = HitTestAll, bool inside = false);
+    bool nodeAtPoint(NodeInfo &info, int x, int y, int _tx, int _ty, HitTestAction hitTestAction = HitTestAll, bool inside = false) Q_DECL_OVERRIDE;
 
     bool isPointInScrollbar(int x, int y, int tx, int ty);
 
-    virtual RenderPosition positionForCoordinates(int x, int y);
+    RenderPosition positionForCoordinates(int x, int y) Q_DECL_OVERRIDE;
 
-    virtual void calcMinMaxWidth();
+    void calcMinMaxWidth() Q_DECL_OVERRIDE;
     void calcInlineMinMaxWidth();
     void calcBlockMinMaxWidth();
 
-    virtual void close();
+    void close() Q_DECL_OVERRIDE;
 
-    virtual int getBaselineOfFirstLineBox();
+    int getBaselineOfFirstLineBox() Q_DECL_OVERRIDE;
 
     RootInlineBox *firstRootBox() const
     {
@@ -278,14 +278,14 @@ public:
         return static_cast<RootInlineBox *>(m_lastLineBox);
     }
 
-    virtual InlineFlowBox *getFirstLineBox();
+    InlineFlowBox *getFirstLineBox() Q_DECL_OVERRIDE;
 
     bool inRootBlockContext() const;
     void deleteLineBoxTree();
 
 #ifdef ENABLE_DUMP
-    virtual void printTree(int indent = 0) const;
-    virtual void dump(QTextStream &stream, const QString &ind) const;
+    void printTree(int indent = 0) const Q_DECL_OVERRIDE;
+    void dump(QTextStream &stream, const QString &ind) const Q_DECL_OVERRIDE;
 #endif
 
 protected:
@@ -545,7 +545,7 @@ protected:
         }
     };
 
-    virtual bool canClear(RenderObject *child, PageBreakLevel level);
+    bool canClear(RenderObject *child, PageBreakLevel level) Q_DECL_OVERRIDE;
     void clearPageBreak(RenderObject *child, int pageBottom);
 
     void adjustPositionedBlock(RenderObject *child, const MarginInfo &marginInfo);

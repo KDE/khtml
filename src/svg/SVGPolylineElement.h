@@ -35,10 +35,10 @@ public:
     SVGPolylineElement(const QualifiedName &, Document *);
     virtual ~SVGPolylineElement();
 
-    virtual Path toPathData() const;
+    Path toPathData() const Q_DECL_OVERRIDE;
 
     // KHTML ElementImpl pure virtual method
-    virtual quint32 id() const;
+    quint32 id() const Q_DECL_OVERRIDE;
 };
 
 } // namespace WebCore

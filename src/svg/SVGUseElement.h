@@ -49,37 +49,37 @@ public:
     SVGElementInstance *instanceRoot() const;
     SVGElementInstance *animatedInstanceRoot() const;
 
-    virtual bool isValid() const
+    bool isValid() const Q_DECL_OVERRIDE
     {
         return SVGTests::isValid();
     }
 
-    virtual void insertedIntoDocument();
-    virtual void removedFromDocument();
-    virtual void buildPendingResource();
+    void insertedIntoDocument() Q_DECL_OVERRIDE;
+    void removedFromDocument() Q_DECL_OVERRIDE;
+    void buildPendingResource() Q_DECL_OVERRIDE;
 
-    virtual void parseMappedAttribute(MappedAttribute *);
+    void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
     using DOM::NodeImpl::childrenChanged;
-    virtual void childrenChanged(bool changedByParser = false, Node *beforeChange = 0, Node *afterChange = 0, int childCountDelta = 0);
+    void childrenChanged(bool changedByParser = false, Node *beforeChange = 0, Node *afterChange = 0, int childCountDelta = 0) Q_DECL_OVERRIDE;
 
-    virtual void svgAttributeChanged(const QualifiedName &);
-    virtual void recalcStyle(StyleChange = NoChange);
+    void svgAttributeChanged(const QualifiedName &) Q_DECL_OVERRIDE;
+    void recalcStyle(StyleChange = NoChange) Q_DECL_OVERRIDE;
 
-    virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
-    virtual void attach();
-    virtual void detach();
+    RenderObject *createRenderer(RenderArena *, RenderStyle *) Q_DECL_OVERRIDE;
+    void attach() Q_DECL_OVERRIDE;
+    void detach() Q_DECL_OVERRIDE;
 
-    virtual Path toClipPath() const;
+    Path toClipPath() const Q_DECL_OVERRIDE;
 
     static void removeDisallowedElementsFromSubtree(Node *element);
 
     // KHTML ElementImpl pure virtual method
-    virtual quint32 id() const
+    quint32 id() const Q_DECL_OVERRIDE
     {
         return SVGNames::useTag.id();
     }
 protected:
-    virtual const SVGElement *contextElement() const
+    const SVGElement *contextElement() const Q_DECL_OVERRIDE
     {
         return this;
     }

@@ -80,9 +80,9 @@ class XMLHttpRequestConstructorImp : public JSObject
 {
 public:
     XMLHttpRequestConstructorImp(ExecState *exec, DOM::DocumentImpl *d);
-    virtual bool implementsConstruct() const;
+    bool implementsConstruct() const Q_DECL_OVERRIDE;
     using KJS::JSObject::construct;
-    virtual JSObject *construct(ExecState *exec, const List &args);
+    JSObject *construct(ExecState *exec, const List &args) Q_DECL_OVERRIDE;
 private:
     SharedPtr<DOM::DocumentImpl> doc;
 };
@@ -93,22 +93,22 @@ public:
     XMLHttpRequest(ExecState *, DOM::DocumentImpl *d);
     ~XMLHttpRequest();
 
-    virtual Type eventTargetType() const
+    Type eventTargetType() const Q_DECL_OVERRIDE
     {
         return XML_HTTP_REQUEST;
     }
 
     using KJS::JSObject::getOwnPropertySlot;
-    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
     using KJS::JSObject::put;
-    virtual void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None);
+    void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None) Q_DECL_OVERRIDE;
     void putValueProperty(ExecState *exec, int token, JSValue *value, int /*attr*/);
-    virtual bool toBoolean(ExecState *) const
+    bool toBoolean(ExecState *) const Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }

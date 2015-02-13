@@ -37,11 +37,11 @@ class Number : public Expression
 public:
     Number(double value);
 
-    bool isConstant() const;
-    virtual QString dump() const;
+    bool isConstant() const Q_DECL_OVERRIDE;
+    QString dump() const Q_DECL_OVERRIDE;
 
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 
     double m_value;
 };
@@ -51,11 +51,11 @@ class String : public Expression
 public:
     String(const DOM::DOMString &value);
 
-    bool isConstant() const;
-    virtual QString dump() const;
+    bool isConstant() const Q_DECL_OVERRIDE;
+    QString dump() const Q_DECL_OVERRIDE;
 
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 
     DOM::DOMString m_value;
 };
@@ -63,16 +63,16 @@ private:
 class Negative : public Expression
 {
 public:
-    virtual QString dump() const;
+    QString dump() const Q_DECL_OVERRIDE;
 
 private:
-    virtual Value doEvaluate() const;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class BinaryExprBase : public Expression
 {
 public:
-    virtual QString dump() const;
+    QString dump() const Q_DECL_OVERRIDE;
 
 protected:
     virtual QString opName() const = 0;
@@ -92,8 +92,8 @@ public:
     NumericOp(int opCode, Expression *lhs, Expression *rhs);
 
 private:
-    virtual QString opName() const;
-    virtual Value doEvaluate() const;
+    QString opName() const Q_DECL_OVERRIDE;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
     int opCode;
 };
 
@@ -112,8 +112,8 @@ public:
     RelationOp(int opCode, Expression *lhs, Expression *rhs);
 
 private:
-    virtual QString opName() const;
-    virtual Value doEvaluate() const;
+    QString opName() const Q_DECL_OVERRIDE;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
     int opCode;
 
     // compares strings based on the op-code
@@ -131,20 +131,20 @@ public:
 
     LogicalOp(int opCode, Expression *lhs, Expression *rhs);
 
-    virtual bool isConstant() const;
+    bool isConstant() const Q_DECL_OVERRIDE;
 
 private:
     bool    shortCircuitOn() const;
-    virtual QString opName() const;
-    virtual Value doEvaluate() const;
+    QString opName() const Q_DECL_OVERRIDE;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
     int opCode;
 };
 
 class Union : public BinaryExprBase
 {
 private:
-    virtual QString opName() const;
-    virtual Value doEvaluate() const;
+    QString opName() const Q_DECL_OVERRIDE;
+    Value doEvaluate() const Q_DECL_OVERRIDE;
 };
 
 class Predicate

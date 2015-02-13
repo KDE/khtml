@@ -41,7 +41,7 @@ public:
     SVGDocument(Frame *);
     virtual ~SVGDocument();
 
-    virtual bool isSVGDocument() const
+    bool isSVGDocument() const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -57,7 +57,7 @@ public:
     void updatePan(const FloatPoint &pos) const;
 
     // KHTML
-    virtual void close();
+    void close() Q_DECL_OVERRIDE;
 
 private:
     FloatPoint m_translate;

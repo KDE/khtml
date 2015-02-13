@@ -41,24 +41,24 @@ public:
     SVGEllipseElement(const QualifiedName &, Document *);
     virtual ~SVGEllipseElement();
 
-    virtual bool isValid() const
+    bool isValid() const Q_DECL_OVERRIDE
     {
         return SVGTests::isValid();
     }
 
-    virtual void parseMappedAttribute(MappedAttribute *);
-    virtual void svgAttributeChanged(const QualifiedName &);
+    void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
+    void svgAttributeChanged(const QualifiedName &) Q_DECL_OVERRIDE;
 
-    virtual Path toPathData() const;
+    Path toPathData() const Q_DECL_OVERRIDE;
 
     // khtml
-    virtual quint32 id() const;
+    quint32 id() const Q_DECL_OVERRIDE;
 protected:
-    virtual const SVGElement *contextElement() const
+    const SVGElement *contextElement() const Q_DECL_OVERRIDE
     {
         return this;
     }
-    virtual bool hasRelativeValues() const;
+    bool hasRelativeValues() const Q_DECL_OVERRIDE;
 
 private:
     ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGExternalResourcesRequired, bool, ExternalResourcesRequired, externalResourcesRequired)

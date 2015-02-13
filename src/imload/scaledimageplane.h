@@ -41,15 +41,15 @@ class ScaledImagePlane: public ImagePlane
 public:
     virtual ~ScaledImagePlane();
 
-    virtual void flushCache();
+    void flushCache() Q_DECL_OVERRIDE;
 
     ScaledImagePlane(unsigned int _width, unsigned int _height, RawImagePlane *_parent);
 
     virtual bool isUpToDate(unsigned int tileX, unsigned int tileY,
-                            PixmapTile *tile);
+                            PixmapTile *tile) Q_DECL_OVERRIDE;
 
     virtual void ensureUpToDate(unsigned int tileX, unsigned int tileY,
-                                PixmapTile *tile);
+                                PixmapTile *tile) Q_DECL_OVERRIDE;
 private:
     RawImagePlane     *parent;
     Array2D<ImageTile> tiles;

@@ -62,8 +62,8 @@ public:
         m_markupBox = markupBox;
     }
 
-    void paint(RenderObject::PaintInfo &i, int _tx, int _ty);
-    bool nodeAtPoint(RenderObject::NodeInfo &info, int _x, int _y, int _tx, int _ty);
+    void paint(RenderObject::PaintInfo &i, int _tx, int _ty) Q_DECL_OVERRIDE;
+    bool nodeAtPoint(RenderObject::NodeInfo &info, int _x, int _y, int _tx, int _ty) Q_DECL_OVERRIDE;
 
 private:
     DOM::DOMString m_str;

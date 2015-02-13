@@ -35,9 +35,9 @@ class DOMParserConstructorImp : public JSObject
 {
 public:
     DOMParserConstructorImp(ExecState *, DOM::DocumentImpl *d);
-    virtual bool implementsConstruct() const;
+    bool implementsConstruct() const Q_DECL_OVERRIDE;
     using KJS::JSObject::construct;
-    virtual JSObject *construct(ExecState *exec, const List &args);
+    JSObject *construct(ExecState *exec, const List &args) Q_DECL_OVERRIDE;
 private:
     SharedPtr<DOM::DocumentImpl> doc;
 };
@@ -46,11 +46,11 @@ class DOMParser : public DOMObject
 {
 public:
     DOMParser(ExecState *, DOM::DocumentImpl *d);
-    virtual bool toBoolean(ExecState *) const
+    bool toBoolean(ExecState *) const Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }

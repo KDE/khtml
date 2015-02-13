@@ -38,17 +38,17 @@ public:
 
     virtual ~HTMLElementImpl();
 
-    virtual bool isHTMLElement() const
+    bool isHTMLElement() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
-    virtual bool isInline() const;
+    bool isInline() const Q_DECL_OVERRIDE;
 
     virtual Id id() const = 0;
-    virtual DOMString namespaceURI() const;
+    DOMString namespaceURI() const Q_DECL_OVERRIDE;
 
-    virtual void parseAttribute(AttributeImpl *token);
+    void parseAttribute(AttributeImpl *token) Q_DECL_OVERRIDE;
 
     void addCSSLength(int id, const DOMString &value, bool numOnly = false, bool multiLength = false);
     void addCSSProperty(int id, const DOMString &value);
@@ -56,7 +56,7 @@ public:
     void addHTMLColor(int id, const DOMString &c);
     void removeCSSProperty(int id);
 
-    virtual void recalcStyle(StyleChange);
+    void recalcStyle(StyleChange) Q_DECL_OVERRIDE;
 
     DOMString innerHTML() const;
     DOMString innerText() const;
@@ -68,7 +68,7 @@ public:
     virtual void setContentEditable(AttributeImpl *attr);
     virtual void setContentEditable(const DOMString &enabled);
 
-    virtual DOMString toString() const;
+    DOMString toString() const Q_DECL_OVERRIDE;
 
 protected:
     // for IMG, OBJECT and APPLET
@@ -83,7 +83,7 @@ public:
 
     virtual ~HTMLGenericElementImpl();
 
-    virtual Id id() const
+    Id id() const Q_DECL_OVERRIDE
     {
         return m_localName.id();
     }

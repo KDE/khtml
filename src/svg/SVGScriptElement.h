@@ -43,17 +43,17 @@ public:
     void setType(const String &);
 
     // Internal
-    virtual void parseMappedAttribute(MappedAttribute *attr);
+    void parseMappedAttribute(MappedAttribute *attr) Q_DECL_OVERRIDE;
 
     virtual void getSubresourceAttributeStrings(Vector<String> &) const;
 
     // KHTML ElementImpl pure virtual method
-    virtual quint32 id() const
+    quint32 id() const Q_DECL_OVERRIDE
     {
         return SVGNames::scriptTag.id();
     }
 protected:
-    virtual const SVGElement *contextElement() const
+    const SVGElement *contextElement() const Q_DECL_OVERRIDE
     {
         return this;
     }

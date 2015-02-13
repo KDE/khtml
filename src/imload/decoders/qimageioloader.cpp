@@ -50,7 +50,7 @@ public:
     {
     }
 
-    virtual int processData(uchar *data, int length)
+    int processData(uchar *data, int length) Q_DECL_OVERRIDE
     {
         //Collect data in the buffer
         int pos = array.size();
@@ -59,7 +59,7 @@ public:
         return length;
     }
 
-    virtual int processEOF()
+    int processEOF() Q_DECL_OVERRIDE
     {
         QBuffer buffer(&array);
         buffer.open(QIODevice::ReadOnly);

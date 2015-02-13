@@ -35,10 +35,10 @@ public:
     SVGPolygonElement(const QualifiedName &, Document *);
     virtual ~SVGPolygonElement();
 
-    virtual Path toPathData() const;
+    Path toPathData() const Q_DECL_OVERRIDE;
 
     // KHTML ElementImpl pure virtual method
-    virtual quint32 id() const;
+    quint32 id() const Q_DECL_OVERRIDE;
 };
 
 } // namespace WebCore

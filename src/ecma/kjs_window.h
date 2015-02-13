@@ -71,11 +71,11 @@ public:
         AvailWidth
     };
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
 private:
     KHTMLView *view;
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -98,9 +98,9 @@ public:
         ErrorType   = 1 << 4
     };
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
 private:
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -138,13 +138,13 @@ public:
         return m_frame.isNull() ? 0L : m_frame->m_part.data();
     }
 
-    virtual void mark();
+    void mark() Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token);
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     using KJS::JSObject::put;
-    virtual void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None);
-    virtual bool toBoolean(ExecState *exec) const;
+    void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None) Q_DECL_OVERRIDE;
+    bool toBoolean(ExecState *exec) const Q_DECL_OVERRIDE;
     virtual DOM::AbstractViewImpl *toAbstractView() const;
     void scheduleClose();
     void closeNow();
@@ -170,13 +170,13 @@ public:
     JSLazyEventListener *getJSLazyEventListener(const QString &code, const QString &sourceUrl, int lineNo,
             const QString &name, DOM::NodeImpl *node, bool svg = false);
     void clear(ExecState *exec);
-    virtual UString toString(ExecState *exec) const;
+    UString toString(ExecState *exec) const Q_DECL_OVERRIDE;
 
     // Set the current "event" object
     void setCurrentEvent(DOM::EventImpl *evt);
 
     QHash<const QPair<void *, bool>, JSEventListener *> jsEventListeners;
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -329,7 +329,7 @@ public Q_SLOTS:
 protected Q_SLOTS:
     void parentDestroyed();
 protected:
-    void timerEvent(QTimerEvent *e);
+    void timerEvent(QTimerEvent *e) Q_DECL_OVERRIDE;
     void setNextTimer();
     void killTimers();
 private:
@@ -375,16 +375,16 @@ public:
 
     JSValue *getValueProperty(ExecState *exec, int token) const;
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     using KJS::JSObject::put;
-    virtual void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None);
-    virtual JSValue *toPrimitive(ExecState *exec, JSType preferred) const;
-    virtual UString toString(ExecState *exec) const;
+    void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None) Q_DECL_OVERRIDE;
+    JSValue *toPrimitive(ExecState *exec, JSType preferred) const Q_DECL_OVERRIDE;
+    UString toString(ExecState *exec) const Q_DECL_OVERRIDE;
     enum { Hash, Href, Hostname, Host, Pathname, Port, Protocol, Search, EqualEqual,
            Assign, Replace, Reload, ToString
          };
     KParts::ReadOnlyPart *part() const;
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }

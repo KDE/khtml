@@ -46,16 +46,16 @@ public:
 
     virtual ~RenderFrameSet();
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderFrameSet";
     }
-    virtual bool isFrameSet() const
+    bool isFrameSet() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
-    virtual void layout();
+    void layout() Q_DECL_OVERRIDE;
 
     void positionFrames();
     void paintFrameSetRules(QPainter *paint, const QRect &damageRect);
@@ -78,7 +78,7 @@ public:
         return m_cursor;
     }
 
-    bool nodeAtPoint(NodeInfo &info, int x, int y, int tx, int ty, HitTestAction hitTestAction, bool inside);
+    bool nodeAtPoint(NodeInfo &info, int x, int y, int tx, int ty, HitTestAction hitTestAction, bool inside) Q_DECL_OVERRIDE;
 
     DOM::HTMLFrameSetElementImpl *element() const
     {
@@ -86,7 +86,7 @@ public:
     }
 
 #ifdef ENABLE_DUMP
-    virtual void dump(QTextStream &stream, const QString &ind) const;
+    void dump(QTextStream &stream, const QString &ind) const Q_DECL_OVERRIDE;
 #endif
 
 private:
@@ -115,15 +115,15 @@ class RenderPart : public khtml::RenderWidget
 public:
     RenderPart(DOM::HTMLElementImpl *node);
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderPart";
     }
 
     virtual void setWidget(QWidget *widget);
 
-    virtual short intrinsicWidth() const;
-    virtual int intrinsicHeight() const;
+    short intrinsicWidth() const Q_DECL_OVERRIDE;
+    int intrinsicHeight() const Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
     virtual void slotViewCleared();
@@ -135,29 +135,29 @@ class RenderFrame : public khtml::RenderPart
 public:
     RenderFrame(DOM::HTMLFrameElementImpl *frame);
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderFrame";
     }
-    virtual bool isFrame() const
+    bool isFrame() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
     // frames never have padding
-    virtual int paddingTop() const
+    int paddingTop() const Q_DECL_OVERRIDE
     {
         return 0;
     }
-    virtual int paddingBottom() const
+    int paddingBottom() const Q_DECL_OVERRIDE
     {
         return 0;
     }
-    virtual int paddingLeft() const
+    int paddingLeft() const Q_DECL_OVERRIDE
     {
         return 0;
     }
-    virtual int paddingRight() const
+    int paddingRight() const Q_DECL_OVERRIDE
     {
         return 0;
     }
@@ -168,7 +168,7 @@ public:
     }
 
 public Q_SLOTS:
-    void slotViewCleared();
+    void slotViewCleared() Q_DECL_OVERRIDE;
 };
 
 // I can hardly call the class RenderObject ;-)
@@ -178,20 +178,20 @@ class RenderPartObject : public khtml::RenderPart
 public:
     RenderPartObject(DOM::HTMLElementImpl *);
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderPartObject";
     }
 
-    virtual void layout();
+    void layout() Q_DECL_OVERRIDE;
 
-    virtual bool canHaveBorder() const
+    bool canHaveBorder() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
 public Q_SLOTS:
-    void slotViewCleared();
+    void slotViewCleared() Q_DECL_OVERRIDE;
 };
 
 }

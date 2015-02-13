@@ -41,7 +41,7 @@ public:
 
     ~HTMLBaseFontElementImpl();
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 };
 
 // -------------------------------------------------------------------------
@@ -79,7 +79,7 @@ public:
 
     HTMLCollectionImpl(NodeImpl *_base, int _tagId);
 
-    virtual NodeImpl *item(unsigned long index) const;
+    NodeImpl *item(unsigned long index) const Q_DECL_OVERRIDE;
 
     // obsolete and not domtree changes save
     virtual NodeImpl *firstItem() const;
@@ -101,13 +101,13 @@ public:
         return m_refNode;
     }
 protected:
-    virtual unsigned long calcLength(NodeImpl *start) const;
+    unsigned long calcLength(NodeImpl *start) const Q_DECL_OVERRIDE;
 
     // The collection list the following elements
     int type: 8;
 
     // Reimplemented from DynamicNodeListImpl
-    virtual bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const;
+    bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const Q_DECL_OVERRIDE;
 
     // Helper for name iteration: checks whether ID matches,
     // and inserts any name-matching things into namedItemsWithName
@@ -124,13 +124,13 @@ public:
     HTMLFormCollectionImpl(NodeImpl *_base);
     ~HTMLFormCollectionImpl() { }
 
-    virtual NodeImpl *item(unsigned long index) const;
+    NodeImpl *item(unsigned long index) const Q_DECL_OVERRIDE;
 
-    virtual NodeImpl *namedItem(const DOMString &name) const;
+    NodeImpl *namedItem(const DOMString &name) const Q_DECL_OVERRIDE;
     // In case of multiple items named the same way
-    virtual NodeImpl *nextNamedItem(const DOMString &name) const;
+    NodeImpl *nextNamedItem(const DOMString &name) const Q_DECL_OVERRIDE;
 protected:
-    virtual unsigned long calcLength(NodeImpl *start) const;
+    unsigned long calcLength(NodeImpl *start) const Q_DECL_OVERRIDE;
 
 private:
     mutable unsigned currentNamePos;
@@ -146,7 +146,7 @@ class HTMLMappedNameCollectionImpl : public HTMLCollectionImpl
 {
 public:
     HTMLMappedNameCollectionImpl(NodeImpl *_base, int type, const DOMString &name);
-    virtual bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const;
+    bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const Q_DECL_OVERRIDE;
 
     static bool matchesName(ElementImpl *el, int type, const DOMString &name);
 private:

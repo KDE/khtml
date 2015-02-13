@@ -37,7 +37,7 @@ public:
     HTMLSourceElement(Document *);
     virtual ~HTMLSourceElement();
 
-    virtual Id id() const;
+    Id id() const Q_DECL_OVERRIDE;
 
     DOMString src() const;
     DOMString media() const;

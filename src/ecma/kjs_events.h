@@ -43,8 +43,8 @@ public:
      */
     JSEventListener(JSObject *_listener, JSObject *_compareListenerImp, JSObject *_win, bool _html = false);
     virtual ~JSEventListener();
-    virtual void handleEvent(DOM::Event &evt);
-    virtual DOM::DOMString eventListenerType();
+    void handleEvent(DOM::Event &evt) Q_DECL_OVERRIDE;
+    DOM::DOMString eventListenerType() Q_DECL_OVERRIDE;
     // Return the KJS function object executed when this event is emitted
     virtual JSObject *listenerObj() const;
     // for Window::clear(). This is a bad hack though. The JSEventListener might not get deleted
@@ -83,8 +83,8 @@ public:
     JSLazyEventListener(const QString &_code, const QString &_url, int _lineNum,
                         const QString &_name, JSObject *_win, DOM::NodeImpl *node, bool _svg = false);
     ~JSLazyEventListener();
-    virtual void handleEvent(DOM::Event &evt);
-    JSObject *listenerObj() const;
+    void handleEvent(DOM::Event &evt) Q_DECL_OVERRIDE;
+    JSObject *listenerObj() const Q_DECL_OVERRIDE;
 private:
     void parseCode() const;
 
@@ -110,14 +110,14 @@ public:
     ~DOMEvent();
 
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *, int token) const;
     using KJS::JSObject::put;
     virtual void put(ExecState *exec, const Identifier &propertyName,
-                     JSValue *value, int attr = None);
-    virtual JSValue *defaultValue(ExecState *exec, KJS::JSType hint) const;
+                     JSValue *value, int attr = None) Q_DECL_OVERRIDE;
+    JSValue *defaultValue(ExecState *exec, KJS::JSType hint) const Q_DECL_OVERRIDE;
     void putValueProperty(ExecState *exec, int token, JSValue *value, int);
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -148,10 +148,10 @@ class EventExceptionConstructor : public DOMObject
 public:
     EventExceptionConstructor(ExecState *);
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -168,10 +168,10 @@ public:
     DOMUIEvent(JSObject *proto, DOM::UIEventImpl *ue);
     ~DOMUIEvent();
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -189,10 +189,10 @@ public:
     DOMMouseEvent(ExecState *exec, DOM::MouseEventImpl *me);
     ~DOMMouseEvent();
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -215,10 +215,10 @@ public:
     ~DOMKeyEventBase();
 
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -236,10 +236,10 @@ public:
     DOMTextEvent(ExecState *exec, DOM::TextEventImpl *ke);
     ~DOMTextEvent();
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -257,10 +257,10 @@ public:
     DOMKeyboardEvent(ExecState *exec, DOM::KeyboardEventImpl *ke);
     ~DOMKeyboardEvent();
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -278,10 +278,10 @@ class KeyboardEventConstructor : public DOMObject
 public:
     KeyboardEventConstructor(ExecState *);
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -296,10 +296,10 @@ class MutationEventConstructor : public DOMObject
 public:
     MutationEventConstructor(ExecState *);
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -314,10 +314,10 @@ public:
     DOMMutationEvent(ExecState *exec, DOM::MutationEventImpl *me);
     ~DOMMutationEvent();
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -337,10 +337,10 @@ public:
     DOMMessageEvent(ExecState *exec, DOM::MessageEventImpl *me);
 
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -360,10 +360,10 @@ public:
     DOMHashChangeEvent(ExecState *exec, DOM::HashChangeEventImpl *me);
 
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }

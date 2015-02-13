@@ -38,22 +38,22 @@ public:
     DOMNode(ExecState *exec,  DOM::NodeImpl *n);
     DOMNode(JSObject *proto, DOM::NodeImpl *n);
     ~DOMNode();
-    virtual bool toBoolean(ExecState *) const;
+    bool toBoolean(ExecState *) const Q_DECL_OVERRIDE;
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
 
     using KJS::JSObject::put;
-    virtual void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None);
+    void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None) Q_DECL_OVERRIDE;
     void putValueProperty(ExecState *exec, int token, JSValue *value, int attr);
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
     static const ClassInfo info;
 
-    virtual JSValue *toPrimitive(ExecState *exec, JSType preferred = UndefinedType) const;
-    virtual UString toString(ExecState *exec) const;
+    JSValue *toPrimitive(ExecState *exec, JSType preferred = UndefinedType) const Q_DECL_OVERRIDE;
+    UString toString(ExecState *exec) const Q_DECL_OVERRIDE;
     void setListener(ExecState *exec, int eventId, JSValue *func) const;
     JSValue *getListener(int eventId) const;
     virtual void pushEventHandlerScope(ExecState *exec, ScopeChain &scope) const;
@@ -94,24 +94,24 @@ public:
 
     JSValue *indexGetter(ExecState *exec, unsigned index);
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
-    virtual JSValue *callAsFunction(ExecState *exec, JSObject *thisObj, const List &args);
-    virtual bool implementsCall() const
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
+    JSValue *callAsFunction(ExecState *exec, JSObject *thisObj, const List &args) Q_DECL_OVERRIDE;
+    bool implementsCall() const Q_DECL_OVERRIDE
     {
         return true;
     }
-    virtual bool isFunctionType() const
+    bool isFunctionType() const Q_DECL_OVERRIDE
     {
         return false;
     }
-    virtual void getOwnPropertyNames(ExecState *, PropertyNameArray &, PropertyMap::PropertyMode mode);
+    void getOwnPropertyNames(ExecState *, PropertyNameArray &, PropertyMap::PropertyMode mode) Q_DECL_OVERRIDE;
 
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
-    virtual bool toBoolean(ExecState *) const
+    bool toBoolean(ExecState *) const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -142,13 +142,13 @@ public:
     DOMDocument(JSObject *proto, DOM::DocumentImpl *d);
 
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
 
     using KJS::JSObject::put;
-    virtual void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None);
+    void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None) Q_DECL_OVERRIDE;
     void putValueProperty(ExecState *exec, int token, JSValue *value, int attr);
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -181,7 +181,7 @@ class DOMDocumentFragment : public DOMNode
 {
 public:
     DOMDocumentFragment(ExecState *exec, DOM::DocumentFragmentImpl *i);
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -196,13 +196,13 @@ class DOMAttr : public DOMNode
 public:
     DOMAttr(ExecState *exec, DOM::AttrImpl *a) : DOMNode(exec, a) { }
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
 
     using KJS::JSObject::put;
-    virtual void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None);
+    void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None) Q_DECL_OVERRIDE;
     void putValueProperty(ExecState *exec, int token, JSValue *value, int attr);
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -217,11 +217,11 @@ public:
     DOMElement(ExecState *exec, DOM::ElementImpl *e);
     DOMElement(JSObject *proto, DOM::ElementImpl *e);
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
 
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -254,11 +254,11 @@ public:
     DOMDOMImplementation(ExecState *, DOM::DOMImplementationImpl *i);
     ~DOMDOMImplementation();
     // no put - all functions
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
-    virtual bool toBoolean(ExecState *) const
+    bool toBoolean(ExecState *) const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -280,10 +280,10 @@ public:
     DOMDocumentType(ExecState *exec, DOM::DocumentTypeImpl *dt);
 
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -298,14 +298,14 @@ public:
     ~DOMNamedNodeMap();
 
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
-    virtual bool toBoolean(ExecState *) const
+    bool toBoolean(ExecState *) const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -331,12 +331,12 @@ public:
     DOMProcessingInstruction(ExecState *exec, DOM::ProcessingInstructionImpl *pi) : DOMNode(exec, pi) { }
 
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
 
     using KJS::JSObject::put;
-    virtual void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None);
-    virtual const ClassInfo *classInfo() const
+    void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None) Q_DECL_OVERRIDE;
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -350,10 +350,10 @@ public:
     DOMNotation(ExecState *exec, DOM::NotationImpl *n) : DOMNode(exec, n) { }
 
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -366,10 +366,10 @@ class DOMEntity : public DOMNode
 public:
     DOMEntity(ExecState *exec, DOM::EntityImpl *e) : DOMNode(exec, e) { }
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
     // no put - all read-only
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -383,7 +383,7 @@ class JSDOMException : public DOMObject
 {
 public:
     JSDOMException(ExecState *exec);
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -405,8 +405,8 @@ class DOMNamedNodesCollection : public DOMObject
 public:
     DOMNamedNodesCollection(ExecState *exec, const QList<SharedPtr<DOM::NodeImpl> > &nodes);
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
-    virtual const ClassInfo *classInfo() const
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -429,11 +429,11 @@ public:
     // Build a DOMCharacterData
     DOMCharacterData(ExecState *exec, DOM::CharacterDataImpl *d);
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *, int token) const;
     using KJS::JSObject::put;
-    virtual void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None);
-    virtual const ClassInfo *classInfo() const
+    void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None) Q_DECL_OVERRIDE;
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -452,9 +452,9 @@ class DOMText : public DOMCharacterData
 public:
     DOMText(ExecState *exec, DOM::TextImpl *t);
     using KJS::JSObject::getOwnPropertySlot;
-    virtual bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot);
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
     JSValue *getValueProperty(ExecState *exec, int token) const;
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }
@@ -470,7 +470,7 @@ class DOMComment : public DOMCharacterData
 {
 public:
     DOMComment(ExecState *exec, DOM::CommentImpl *t);
-    virtual const ClassInfo *classInfo() const
+    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
     {
         return &info;
     }

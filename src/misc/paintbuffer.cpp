@@ -43,7 +43,7 @@ public:
         m_reset = false;
     }
 
-    void timerEvent(QTimerEvent *e)
+    void timerEvent(QTimerEvent *e) Q_DECL_OVERRIDE
     {
         assert(m_timer == e->timerId());
         Q_UNUSED(e);

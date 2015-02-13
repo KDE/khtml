@@ -43,7 +43,7 @@ public:
     }
     virtual ~SVGPaintServerRadialGradient();
 
-    virtual SVGPaintServerType type() const
+    SVGPaintServerType type() const Q_DECL_OVERRIDE
     {
         return RadialGradientPaintServer;
     }
@@ -60,7 +60,7 @@ public:
     /*virtual TextStream& externalRepresentation(TextStream&) const;*/
 
 #if PLATFORM(QT)
-    virtual QGradient setupGradient(QPainter *painter, QPainterPath *painterPath, const RenderObject *) const;
+    QGradient setupGradient(QPainter *painter, QPainterPath *painterPath, const RenderObject *) const Q_DECL_OVERRIDE;
 #endif
 
 private:

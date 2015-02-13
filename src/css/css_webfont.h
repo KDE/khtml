@@ -138,7 +138,7 @@ public:
         m_face = face;
     }
 
-    virtual void notifyFinished(khtml::CachedObject *finishedObj);
+    void notifyFinished(khtml::CachedObject *finishedObj) Q_DECL_OVERRIDE;
     void refLoader();
 
 //    SimpleFontData* getFontData(const FontDef&, bool syntheticBold, bool syntheticItalic, CSSFontSelector*);
