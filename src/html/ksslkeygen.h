@@ -76,7 +76,7 @@ public:
     void setKeySize(int idx);
 
 private:
-    /*reimp*/ bool validateCurrentPage() Q_DECL_OVERRIDE;
+    bool validateCurrentPage() Q_DECL_OVERRIDE;
 
 private:
     KSSLKeyGenPrivate *const d;
