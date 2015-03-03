@@ -364,7 +364,20 @@ DOMString DOMString::trimSpaces() const
         --end;
     }
 
-    return new DOMStringImpl(s + start, end - start + 1);
+    const unsigned int len = end - start + 1;
+    DOMStringImpl *out = new DOMStringImpl(s + start, len);
+
+    // remove garbage
+    unsigned int newLen = 0;
+    for (unsigned int k = 0; k < len; ++k) {
+        QChar ch = out->s[k];
+        if (ch.unicode() > '\r') {
+            out->s[newLen++] = ch;
+        }
+    }
+    out->l = newLen;
+
+    return out;
 }
 
 // ------------------------------------------------------------------------
