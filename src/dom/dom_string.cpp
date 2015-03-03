@@ -337,17 +337,18 @@ bool DOMString::startsWith(const DOMString &str) const
 
 static inline bool isSpaceCharacter(const ushort &c)
 {
-    // http://dev.w3.org/html5/spec-LC/common-microsyntaxes.html#space-character
+    // http://www.w3.org/TR/html/infrastructure.html#space-character
     return ((c < 0x0021) &&
             (c == 0x0020 || c == 0x0009 || c == 0x000A || c == 0x000C || c == 0x000D));
 }
 
-DOMString DOMString::trimSpaces() const
+DOMString DOMString::parsedUrl() const
 {
     if (!impl || !impl->l) {
         return *this;
     }
 
+    // 1. strip leading and trailing whitespace
     const QChar *s = impl->s;
     unsigned int start = 0;
     unsigned int end = impl->l - 1;
@@ -367,7 +368,7 @@ DOMString DOMString::trimSpaces() const
     const unsigned int len = end - start + 1;
     DOMStringImpl *out = new DOMStringImpl(s + start, len);
 
-    // remove garbage
+    // 2. remove garbage
     unsigned int newLen = 0;
     for (unsigned int k = 0; k < len; ++k) {
         QChar ch = out->s[k];

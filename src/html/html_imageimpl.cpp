@@ -85,7 +85,7 @@ void HTMLImageElementImpl::parseAttribute(AttributeImpl *attr)
         setChanged();
 
         //Start loading the image already, to generate events
-        const DOMString imgSrcUrl = attr->value().trimSpaces();
+        const DOMString imgSrcUrl = attr->value().parsedUrl();
         if (!imgSrcUrl.isEmpty()) { //### why do we not hide or something when setting this?
             CachedImage *newImage = document()->docLoader()->requestImage(imgSrcUrl);
             if (newImage && newImage != m_image) {
@@ -155,7 +155,7 @@ void HTMLImageElementImpl::parseAttribute(AttributeImpl *attr)
         if (attr->value()[0] == '#') {
             usemap = attr->value().lower();
         } else {
-            QString url = document()->completeURL(attr->value().trimSpaces().string());
+            QString url = document()->completeURL(attr->value().parsedUrl().string());
             // ### we remove the part before the anchor and hope
             // the map is on the same html page....
             usemap = url;
@@ -443,7 +443,7 @@ void HTMLMapElementImpl::parseAttribute(AttributeImpl *attr)
             break;
         } else {
             // add name with full url:
-            QString url = document()->completeURL(attr->value().trimSpaces().string());
+            QString url = document()->completeURL(attr->value().parsedUrl().string());
             if (document()->isHTMLDocument()) {
                 static_cast<HTMLDocumentImpl *>(document())->mapMap[url] = this;
             }

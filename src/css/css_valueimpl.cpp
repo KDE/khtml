@@ -1509,7 +1509,7 @@ CSSImageValueImpl::CSSImageValueImpl(const DOMString &url, StyleBaseImpl *style)
     : CSSPrimitiveValueImpl(url, CSSPrimitiveValue::CSS_URI)
 {
     m_image = 0;
-    const DOMString imgUrl = url.trimSpaces();
+    const DOMString imgUrl = url.parsedUrl();
     if (!imgUrl.isEmpty()) {
         m_fullImageUrl = style->baseURL().resolved(QUrl(imgUrl.string())).toString();
     } else {

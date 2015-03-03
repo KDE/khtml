@@ -519,7 +519,7 @@ void HTMLTableElementImpl::parseAttribute(AttributeImpl *attr)
         }
         break;
     case ATTR_BACKGROUND: {
-        QString url = attr->value().trimSpaces().string();
+        QString url = attr->value().parsedUrl().string();
         if (!url.isEmpty()) {
             url = document()->completeURL(url);
             addCSSProperty(CSS_PROP_BACKGROUND_IMAGE, DOMString("url('" + url + "')"));
@@ -675,7 +675,7 @@ void HTMLTablePartElementImpl::parseAttribute(AttributeImpl *attr)
         }
         break;
     case ATTR_BACKGROUND: {
-        QString url = attr->value().trimSpaces().string();
+        QString url = attr->value().parsedUrl().string();
         if (!url.isEmpty()) {
             url = document()->completeURL(url);
             addCSSProperty(CSS_PROP_BACKGROUND_IMAGE,  DOMString("url('" + url + "')"));

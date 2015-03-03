@@ -1613,7 +1613,7 @@ QHash<int, const HTMLElement::BoundPropInfo *> *HTMLElement::boundPropInfo()
 
 QString KJS::HTMLElement::getURLArg(unsigned id) const
 {
-    const DOMString rel = impl()->getAttribute(id).trimSpaces();
+    const DOMString rel = impl()->getAttribute(id).parsedUrl();
     return !rel.isNull() ? impl()->document()->completeURL(rel.string()) : QString();
 }
 
