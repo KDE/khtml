@@ -139,51 +139,48 @@ map {
 
 /*
  * heading elements
- * margin values rely on font-sizes ratio defined in css-2.1 15.7
- * (cf. cssstyleselector for absolute font-sizes computation)
- * we have an 1.1/font-ratio margin
  */
 
 h1 {
-	display: block;
-	font-size: xx-large;
-	margin: .55__qem 0 .55em 0;
-	font-weight: bolder;
+        display: block;
+        margin: 0.67__qem 0 0.67em 0;
+        font-size: 2em;
+        font-weight: bold;
 }
 
 h2 {
-	display: block;
-	font-size: x-large;
-	margin: .73__qem 0 .73em 0;
-	font-weight: bolder;
+        display: block;
+        margin: 0.83__qem 0 0.83em 0;
+        font-size: 1.5em;
+        font-weight: bold;
 }
 
 h3 {
-	display: block;
-	font-size: large;
-	margin: 0.92__qem 0 0.92em 0;
-	font-weight: bolder;
+        display: block;
+        margin: 1__qem 0 1em 0;
+        font-size: 1.17em;
+        font-weight: bold;
 }
 
 h4 {
-	display: block;
-        font-size: medium;
-	margin: 1.1__qem 0 1.1em 0;
-	font-weight: bolder;
+        display: block;
+        margin: 1.33__qem 0 1.33em 0;
+        font-size: 1em;
+        font-weight: bold;
 }
 
 h5 {
-	display: block;
-	font-size: small;
-	margin: 1.24__qem 0 1.24em 0;
-	font-weight: bolder;
+        display: block;
+        margin: 1.67__qem 0 1.67em 0;
+        font-size: 0.83em;
+        font-weight: bold;
 }
 
 h6 {
-	display: block;
-	font-size: xx-small;
-	margin: 1.83__qem 0 1.83em 0;
-	font-weight: bolder;
+        display: block;
+        margin: 2.33__qem 0 2.33em 0;
+        font-size: 0.67em;
+        font-weight: bold;
 }
 
 /*
