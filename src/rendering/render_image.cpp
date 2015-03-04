@@ -447,7 +447,7 @@ void RenderImage::updateFromElement()
     }
 
     const DOMString u = element()->id() == ID_OBJECT ?
-                  element()->getAttribute(ATTR_DATA).parsedUrl() : element()->getAttribute(ATTR_SRC).parsedUrl();
+                  element()->getAttribute(ATTR_DATA).trimSpaces() : element()->getAttribute(ATTR_SRC).trimSpaces();
 
     if (!u.isEmpty()) {
         // Need to compute completeURL, as 'u' can be relative

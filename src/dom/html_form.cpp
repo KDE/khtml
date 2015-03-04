@@ -613,7 +613,7 @@ DOMString HTMLInputElement::src() const
     if (!impl) {
         return DOMString();
     }
-    const DOMString s = static_cast<ElementImpl *>(impl)->getAttribute(ATTR_SRC).parsedUrl();
+    const DOMString s = static_cast<ElementImpl *>(impl)->getAttribute(ATTR_SRC).trimSpaces();
     return !s.isNull() ? impl->document()->completeURL(s.string()) : s;
 }
 

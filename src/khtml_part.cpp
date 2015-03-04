@@ -6630,7 +6630,7 @@ bool KHTMLPart::handleMouseMoveEventDrag(khtml::MouseMoveEvent *event)
         // Normal image...
         if (url.isEmpty() && innerNodeImpl && innerNodeImpl->id() == ID_IMG) {
             img = static_cast<HTMLImageElementImpl *>(innerNodeImpl);
-            u = completeURL(img->getAttribute(ATTR_SRC).parsedUrl().string());
+            u = completeURL(img->getAttribute(ATTR_SRC).trimSpaces().string());
             pix = KIconLoader::global()->loadIcon("image-x-generic", KIconLoader::Desktop);
         } else {
             // Text or image link...
@@ -6934,7 +6934,7 @@ void KHTMLPart::runAdFilter()
             if (node->id() == ID_IMG ||
                     node->id() == ID_IFRAME ||
                     (node->id() == ID_INPUT && static_cast<HTMLInputElementImpl *>(node)->inputType() == HTMLInputElementImpl::IMAGE)) {
-                if (KHTMLGlobal::defaultHTMLSettings()->isAdFiltered(d->m_doc->completeURL(static_cast<ElementImpl *>(node)->getAttribute(ATTR_SRC).parsedUrl().string()))) {
+                if (KHTMLGlobal::defaultHTMLSettings()->isAdFiltered(d->m_doc->completeURL(static_cast<ElementImpl *>(node)->getAttribute(ATTR_SRC).trimSpaces().string()))) {
                     // Since any kids of node will be deleted, too, fastforward nextNode
                     // until we get outside of node.
                     while (nextNode && nextNode->isAncestor(node)) {

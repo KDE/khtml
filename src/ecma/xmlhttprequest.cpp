@@ -920,7 +920,7 @@ JSValue *XMLHttpRequestProtoFunc::callAsFunction(ExecState *exec, JSObject *this
         }
 
         QString method = args[0]->toString(exec).qstring();
-        DOMString urlArg = args[1]->toString(exec).domString().parsedUrl();
+        DOMString urlArg = args[1]->toString(exec).domString().trimSpaces();
         QUrl url = QUrl(request->doc->completeURL(urlArg.string()));
 
         bool async = true;

@@ -109,7 +109,7 @@ DOMString HTMLAreaElement::href() const
     if (!impl) {
         return DOMString();
     }
-    const DOMString href = static_cast<ElementImpl *>(impl)->getAttribute(ATTR_HREF).parsedUrl();
+    const DOMString href = static_cast<ElementImpl *>(impl)->getAttribute(ATTR_HREF).trimSpaces();
     return !href.isNull() ? impl->document()->completeURL(href.string()) : href;
 }
 
@@ -365,7 +365,7 @@ DOMString HTMLImageElement::src() const
     if (!impl) {
         return DOMString();
     }
-    const DOMString s = ((ElementImpl *)impl)->getAttribute(ATTR_SRC).parsedUrl();
+    const DOMString s = ((ElementImpl *)impl)->getAttribute(ATTR_SRC).trimSpaces();
     return !s.isNull() ? impl->document()->completeURL(s.string()) : s;
 }
 

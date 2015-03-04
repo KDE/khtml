@@ -1493,7 +1493,7 @@ void HTMLTokenizer::parseTag(TokenizerString &src)
                         parser->doc()->view()->part()->jScriptEnabled() /* jscript allowed at all? */
                    ) {
                     if ((a = currToken.attrs->getValue(ATTR_SRC))) {
-                        scriptSrc = DOMString(a).parsedUrl().string();
+                        scriptSrc = DOMString(a).trimSpaces().string();
                     }
                     if ((a = currToken.attrs->getValue(ATTR_CHARSET))) {
                         scriptSrcCharset = DOMString(a).string().trimmed();

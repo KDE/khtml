@@ -71,7 +71,7 @@ void HTMLBodyElementImpl::parseAttribute(AttributeImpl *attr)
     switch (attr->id()) {
 
     case ATTR_BACKGROUND: {
-        QString url = attr->value().parsedUrl().string();
+        QString url = attr->value().trimSpaces().string();
         if (!url.isEmpty()) {
             url = document()->completeURL(url);
             addCSSProperty(CSS_PROP_BACKGROUND_IMAGE, DOMString("url('" + url + "')"));
@@ -337,7 +337,7 @@ void HTMLFrameElementImpl::parseAttribute(AttributeImpl *attr)
 {
     switch (attr->id()) {
     case ATTR_SRC:
-        setLocation(attr->value().parsedUrl().string());
+        setLocation(attr->value().trimSpaces().string());
         break;
     case ATTR_FRAMEBORDER: {
         frameBorder = attr->value().toInt();
@@ -792,7 +792,7 @@ void HTMLIFrameElementImpl::parseAttribute(AttributeImpl *attr)
         addHTMLAlignment(attr->value());
         break;
     case ATTR_SRC:
-        url = attr->value().parsedUrl().string();
+        url = attr->value().trimSpaces().string();
         setNeedComputeContent();
         // ### synchronously start the process?
         break;
