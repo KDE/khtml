@@ -136,9 +136,6 @@ hash_Entity (register const char *str, register unsigned int len)
 
 #ifdef __GNUC__
 __inline
-#ifdef __GNUC_STDC_INLINE__
-__attribute__ ((__gnu_inline__))
-#endif
 #endif
 const struct entity *
 kde_findEntity (register const char *str, register unsigned int len)
