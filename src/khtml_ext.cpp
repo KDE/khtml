@@ -620,7 +620,7 @@ void KHTMLPopupGUIClient::addSearchActions(QList<QAction *> &editActions)
 {
     QString selectedText = d->m_khtml->simplifiedSelectedText();
     // replace linefeeds with spaces
-    selectedText.replace(QChar(10), QChar(32)).trimmed();
+    selectedText = selectedText.replace(QChar(10), QChar(32)).trimmed();
 
     if (selectedText.isEmpty()) {
         return;
