@@ -20,7 +20,7 @@ include(KDEInstallDirs)
 include(KDEFrameworkCompilerSettings)
 include(KDECMakeSettings)
 
-set(KF5_VERSION "5.12.0") # handled by release scripts
+set(KF5_VERSION "5.13.0") # handled by release scripts
 set(KF5_DEP_VERSION "5.12.0") # handled by release scripts
 find_package(KF5Archive ${KF5_DEP_VERSION} REQUIRED)
 find_package(KF5Codecs ${KF5_DEP_VERSION} REQUIRED)
