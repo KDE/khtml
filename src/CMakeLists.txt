@@ -556,6 +556,8 @@ target_link_libraries(KF5KHtml
     KF5::JS
     KF5::I18n
     KF5::Parts
+    KF5::TextWidgets
+    KF5::Codecs
   PRIVATE
     ${PHONON_LIBRARIES}
     ${JPEG_LIBRARIES}
