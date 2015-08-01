@@ -14,7 +14,7 @@ include(ECMPackageConfigHelpers)
 include(ECMSetupVersion)
 include(ECMGenerateHeaders)
 
-set(REQUIRED_QT_VERSION "5.2")
+set(REQUIRED_QT_VERSION "5.3")
 find_package(Qt5 "${REQUIRED_QT_VERSION}" CONFIG REQUIRED Widgets Network DBus PrintSupport Xml)
 include(KDEInstallDirs)
 include(KDEFrameworkCompilerSettings)
@@ -85,7 +85,7 @@ set_package_properties(PNG PROPERTIES DESCRIPTION "PNG decoding library"
                       )
 
 if(NOT WIN32 AND NOT APPLE AND X11_FOUND)
-    find_package(Qt5 5.2.0 CONFIG REQUIRED X11Extras)
+    find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED X11Extras)
 endif()
 
 if(WIN32)
