@@ -56,7 +56,7 @@ public:
     virtual RenderObject *createRenderer(RenderArena *, RenderStyle *);
     virtual SVGResource *canvasResource();
 
-    std::auto_ptr<ImageBuffer> drawMaskerContent(const FloatRect &targetRect, FloatRect &maskRect) const;
+    std::unique_ptr<ImageBuffer> drawMaskerContent(const FloatRect &targetRect, FloatRect &maskRect) const;
 
 protected:
     ANIMATED_PROPERTY_FORWARD_DECLARATIONS(SVGURIReference, String, Href, href)

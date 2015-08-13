@@ -144,7 +144,7 @@ void SVGMaskElement::childrenChanged(bool changedByParser, Node *beforeChange, N
     m_masker->invalidate();
 }
 
-auto_ptr<ImageBuffer> SVGMaskElement::drawMaskerContent(const FloatRect &targetRect, FloatRect &maskDestRect) const
+unique_ptr<ImageBuffer> SVGMaskElement::drawMaskerContent(const FloatRect &targetRect, FloatRect &maskDestRect) const
 {
     // Determine specified mask size
     float xValue;
@@ -175,7 +175,7 @@ auto_ptr<ImageBuffer> SVGMaskElement::drawMaskerContent(const FloatRect &targetR
         heightValue = imageSize.height();
     }
 
-    auto_ptr<ImageBuffer> maskImage = ImageBuffer::create(imageSize, false);
+    unique_ptr<ImageBuffer> maskImage = ImageBuffer::create(imageSize, false);
     if (!maskImage.get()) {
         return maskImage;
     }

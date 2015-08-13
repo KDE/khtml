@@ -68,7 +68,7 @@ ImageBuffer *SVGPaintServerPattern::tile() const
     return m_tile.get();
 }
 
-void SVGPaintServerPattern::setTile(auto_ptr<ImageBuffer> tile)
+void SVGPaintServerPattern::setTile(unique_ptr<ImageBuffer> tile)
 {
     m_tile.set(tile.release());
 }
