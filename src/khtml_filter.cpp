@@ -64,9 +64,9 @@ void FilterSet::addFilter(const QString &filterStr)
 {
     QString filter = filterStr;
 
-    /** ignore special lines starting with "[", "!", "&", or "#" or contain "#" (comments or features are not supported by KHTML's AdBlock */
-    QChar firstChar = filter.at(0);
-    if (firstChar == QLatin1Char('[') || firstChar == QLatin1Char('!') || firstChar == QLatin1Char('&') || firstChar == QLatin1Char('#') || filter.contains(QLatin1Char('#'))) {
+    /** ignore special lines starting with "[", "!", or "#" or contain "#" (comments or features are not supported by KHTML's AdBlock */
+    const QChar firstChar = filter.at(0);
+    if (firstChar == QLatin1Char('[') || firstChar == QLatin1Char('!') || firstChar == QLatin1Char('#') || filter.contains(QLatin1Char('#'))) {
         return;
     }
 
