@@ -62,7 +62,10 @@ static QRegExp fromAdBlockWildcard(const QString &wcStr)
 
 void FilterSet::addFilter(const QString &filterStr)
 {
-    QString filter = filterStr;
+    QString filter = filterStr.trimmed();
+    if (filter.isEmpty()) {
+        return;
+    }
 
     /** ignore special lines starting with "[", "!", or "#" or contain "#" (comments or features are not supported by KHTML's AdBlock */
     const QChar firstChar = filter.at(0);
