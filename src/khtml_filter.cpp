@@ -74,28 +74,23 @@ void FilterSet::addFilter(const QString &filterStr)
     }
 
     // Strip leading @@
-    int first = 0;
-    int last  = filter.length() - 1;
     if (filter.startsWith(QLatin1String("@@"))) {
-        first = 2;
+        filter.remove(0, 2);
     }
 
     // Strip options, we ignore them for now.
     int dollar = filter.lastIndexOf(QLatin1Char('$'));
     if (dollar != -1) {
-        last = dollar - 1;
-        // If only "*" is left after ignoring the options, disregard the rule.
-        if (first == last && firstChar == QLatin1Char('*')) {
-            return;
+        // Is it adblock's options delimiter or the special '$' char in a regular expression?
+        if (!filter.startsWith(QLatin1Char('/')) || !filter.endsWith(QLatin1Char('/'))) {
+            filter = filter.mid(0, dollar);
         }
     }
 
-    // Perhaps nothing left?
-    if (first > last) {
+    // Disregard the rule if only one char is left after ignoring the options.
+    if (filter.length() < 2) {
         return;
     }
-
-    filter = filter.mid(first, last - first + 1);
 
     // Is it a regexp filter?
     if (filter.length() > 2 && filter.startsWith(QLatin1Char('/')) && filter.endsWith(QLatin1Char('/'))) {
@@ -108,8 +103,8 @@ void FilterSet::addFilter(const QString &filterStr)
         // Note: For these, we also need to handle |.
 
         // Strip wildcards at the ends
-        first = 0;
-        last  = filter.length() - 1;
+        int first = 0;
+        int last  = filter.length() - 1;
 
         while (first < filter.length() && filter[first] == QLatin1Char('*')) {
             ++first;
