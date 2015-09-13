@@ -79,11 +79,13 @@ void FilterSet::addFilter(const QString &filterStr)
     }
 
     // Strip options, we ignore them for now.
+    bool hadOptions = false;
     int dollar = filter.lastIndexOf(QLatin1Char('$'));
     if (dollar != -1) {
         // Is it adblock's options delimiter or the special '$' char in a regular expression?
         if (!filter.startsWith(QLatin1Char('/')) || !filter.endsWith(QLatin1Char('/'))) {
             filter = filter.mid(0, dollar);
+            hadOptions = true;
         }
     }
 
@@ -94,10 +96,14 @@ void FilterSet::addFilter(const QString &filterStr)
 
     // Is it a regexp filter?
     if (filter.length() > 2 && filter.startsWith(QLatin1Char('/')) && filter.endsWith(QLatin1Char('/'))) {
+        // Ignore regexp that had options as we do not support them
+        if (hadOptions) {
+            return;
+        }
         QString inside = filter.mid(1, filter.length() - 2);
         QRegExp rx(inside);
         reFilters.append(rx);
-//         qDebug() << "R:" << inside;
+        //qDebug() << "R:" << inside;
     } else {
         // Nope, a wildcard one.
         // Note: For these, we also need to handle |.
