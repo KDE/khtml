@@ -89,11 +89,6 @@ void FilterSet::addFilter(const QString &filterStr)
         }
     }
 
-    // Disregard the rule if only one char is left after ignoring the options.
-    if (filter.length() < 2) {
-        return;
-    }
-
     // Is it a regexp filter?
     if (filter.length() > 2 && filter.startsWith(QLatin1Char('/')) && filter.endsWith(QLatin1Char('/'))) {
         // Ignore regexp that had options as we do not support them
@@ -104,48 +99,51 @@ void FilterSet::addFilter(const QString &filterStr)
         QRegExp rx(inside);
         reFilters.append(rx);
         //qDebug() << "R:" << inside;
-    } else {
-        // Nope, a wildcard one.
-        // Note: For these, we also need to handle |.
-
-        // Strip wildcards at the ends
-        int first = 0;
-        int last  = filter.length() - 1;
-
-        while (first < filter.length() && filter[first] == QLatin1Char('*')) {
-            ++first;
-        }
-
-        while (last >= 0 && filter[last] == QLatin1Char('*')) {
-            --last;
-        }
-
-        if (first > last) {
-            filter = QLatin1String("*");    // erm... Well, they asked for it.
-        } else {
-            filter = filter.mid(first, last - first + 1);
-        }
-
-        // Now, do we still have any wildcard stuff left?
-        if (filter.contains("*")) {
-            // check if we can use RK first (and then check full RE for the rest) for better performance
-            int aPos = filter.indexOf('*');
-            if (aPos < 0) {
-                aPos = filter.length();
-            }
-            if (aPos > 7) {
-                QRegExp rx = fromAdBlockWildcard(filter.mid(aPos) + QLatin1Char('*'));
-                // We pad the final r.e. with * so we can check for an exact match
-                stringFiltersMatcher.addWildedString(filter.mid(0, aPos), rx);
-            } else {
-                QRegExp rx = fromAdBlockWildcard(filter);
-                reFilters.append(rx);
-            }
-        } else {
-            // Fast path
-            stringFiltersMatcher.addString(filter);
-        }
+        return;
     }
+    // Nope, a wildcard one.
+    // Note: For these, we also need to handle |.
+
+    // Disregard the rule if only one char is left after ignoring the options.
+    if (filter.length() < 2) {
+        return;
+    }
+
+    // Strip wildcards at the ends
+    int first = 0;
+    int last  = filter.length() - 1;
+
+    while (first < filter.length() && filter.at(first) == QLatin1Char('*')) {
+        ++first;
+    }
+
+    while (last >= 0 && filter.at(last) == QLatin1Char('*')) {
+        --last;
+    }
+
+    if (first > last) {
+        filter = QLatin1String("*"); // erm... Well, they asked for it.
+    } else {
+        filter = filter.mid(first, last - first + 1);
+    }
+
+    // Now, do we still have any wildcard stuff left?
+    int aPos = filter.indexOf('*');
+    if (aPos != -1) {
+        // check if we can use RK first (and then check full RE for the rest) for better performance
+        if (aPos > 7) {
+            QRegExp rx = fromAdBlockWildcard(filter.mid(aPos) + QLatin1Char('*'));
+            // We pad the final r.e. with * so we can check for an exact match
+            stringFiltersMatcher.addWildedString(filter.mid(0, aPos), rx);
+        } else {
+            QRegExp rx = fromAdBlockWildcard(filter);
+            reFilters.append(rx);
+        }
+    } else {
+        // Fast path
+        stringFiltersMatcher.addString(filter);
+    }
+
 }
 
 bool FilterSet::isUrlMatched(const QString &url)
