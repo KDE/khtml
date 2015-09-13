@@ -102,10 +102,9 @@ void FilterSet::addFilter(const QString &filterStr)
         return;
     }
     // Nope, a wildcard one.
-    // Note: For these, we also need to handle |.
 
-    // Disregard the rule if only one char is left after ignoring the options.
-    if (filter.length() < 2) {
+    // Disregard the rule if only one char is left or it contains unsupported adblock features ('|', "||", '^')
+    if (filter.length() < 2 || filter.contains(QLatin1Char('|')) || filter.contains(QLatin1Char('^'))) {
         return;
     }
 
