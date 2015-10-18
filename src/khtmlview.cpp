@@ -3137,11 +3137,9 @@ void KHTMLView::print(bool quick)
         return;
     }
 
-    QPointer<KHTMLPrintSettings> printSettings(new KHTMLPrintSettings); //XXX: doesn't save settings between prints like this
-    const QPointerDeleter settingsDeleter(printSettings); //the printdialog takes ownership of the settings widget, thus this workaround to avoid double deletion
     QPrinter printer;
     QPointer<QPrintDialog> dialog(new QPrintDialog(&printer, this));
-    printSettings->setParent(printSettings);
+    QPointer<KHTMLPrintSettings> printSettings(new KHTMLPrintSettings(dialog)); //XXX: doesn't save settings between prints like this
     dialog->setOptionTabs(QList<QWidget *>() << printSettings.data());
 
     const QPointerDeleter dialogDeleter(dialog);
