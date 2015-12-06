@@ -1,0 +1,1598 @@
+# translation of kdelibs4.po to galician
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# mvillarino <mvillarino@users.sourceforge.net>, 2007, 2008, 2009.
+# Marce Villarino <mvillarino@kde-espana.es>, 2008, 2009.
+# marce villarino <mvillarino@users.sourceforge.net>, 2009.
+# marce villarino <mvillarino@gmail.com>, 2009.
+# Marce Villarino <mvillarino@kde-espana.es>, 2009, 2010, 2011, 2012.
+# Xosé <xosecalvo@gmail.com>, 2010.
+# Marce Villarino <mvillarino@kde-espana.es>, 2011, 2012, 2013, 2014.
+# Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2015.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2015-11-30 08:04+0000\n"
+"PO-Revision-Date: 2015-12-02 11:54+0100\n"
+"Last-Translator: Adrián Chaves Fernández (Gallaecio) <adriyetichaves@gmail."
+"com>\n"
+"Language-Team: Galician <kde-i18n-doc@kde.org>\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 2.0\n"
+"X-Environment: kde, development\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Xabier García Feal, marce villarino, Xosé Calvo"
+
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "xosecalvo@gmail.com, mvillarino@gmail.com, proxecto@trasno.net"
+
+#: ecma/debugger/callstackdock.cpp:35
+msgid "Call Stack"
+msgstr "Pila de chamadas"
+
+#: ecma/debugger/callstackdock.cpp:39
+msgid "Call"
+msgstr "Chamada"
+
+#: ecma/debugger/callstackdock.cpp:39
+msgid "Line"
+msgstr "Liña"
+
+#: ecma/debugger/consoledock.cpp:220
+msgid "Console"
+msgstr "Consola"
+
+#: ecma/debugger/consoledock.cpp:243
+msgid "Enter"
+msgstr "Entrar"
+
+#: ecma/debugger/debugdocument.cpp:206
+msgid ""
+"Unable to find the Kate editor component;\n"
+"please check your KDE installation."
+msgstr ""
+"Non foi posíbel atopar a compoñente de edición de Kate;\n"
+"Comprobe a instalación de KDE."
+
+#: ecma/debugger/debugdocument.cpp:272
+msgid "Breakpoint"
+msgstr "Punto de parada"
+
+#: ecma/debugger/debugwindow.cpp:101
+msgid "JavaScript Debugger"
+msgstr "Depurador de JavaScript"
+
+#: ecma/debugger/debugwindow.cpp:178
+msgid "&Break at Next Statement"
+msgstr "&Interromper na seguinte sentenza"
+
+#: ecma/debugger/debugwindow.cpp:179
+msgid "Break at Next"
+msgstr "Interromper na seguinte"
+
+#: ecma/debugger/debugwindow.cpp:184
+msgid "Continue"
+msgstr "Continuar"
+
+#: ecma/debugger/debugwindow.cpp:190
+msgid "Step Over"
+msgstr "Pasar por riba"
+
+#: ecma/debugger/debugwindow.cpp:196
+msgid "Step Into"
+msgstr "Entrar"
+
+#: ecma/debugger/debugwindow.cpp:203
+msgid "Step Out"
+msgstr "Saír"
+
+#: ecma/debugger/debugwindow.cpp:209
+msgid "Reindent Sources"
+msgstr "Sangrar de novo as fontes"
+
+#: ecma/debugger/debugwindow.cpp:214
+msgid "Report Exceptions"
+msgstr "Informar das excepcións"
+
+#: ecma/debugger/debugwindow.cpp:222
+msgid "&Debug"
+msgstr "&Depurar"
+
+#: ecma/debugger/debugwindow.cpp:230
+msgid "&Settings"
+msgstr "&Configuración"
+
+#: ecma/debugger/debugwindow.cpp:256
+msgid "Close source"
+msgstr "Pechar a fonte"
+
+#: ecma/debugger/debugwindow.cpp:262
+msgid "Ready"
+msgstr "Listo"
+
+#: ecma/debugger/debugwindow.cpp:587
+#, kde-format
+msgid ""
+"An error occurred while attempting to run a script on this page.\n"
+"\n"
+"%1 line %2:\n"
+"%3"
+msgstr ""
+"Produciuse un erro ao tentar executar un script nesta páxina.\n"
+"\n"
+"%1 liña %2:\n"
+"%3"
+
+#: ecma/debugger/debugwindow.cpp:780
+msgid ""
+"Do not know where to evaluate the expression. Please pause a script or open "
+"a source file."
+msgstr ""
+"Non se sabe onde avaliar a expresión. Deteña o script ou abra un ficheiro de "
+"fontes."
+
+#: ecma/debugger/debugwindow.cpp:814
+#, kde-format
+msgid "Evaluation threw an exception %1"
+msgstr "A avaliación lanzou unha excepción %1"
+
+#: ecma/debugger/errordlg.cpp:35
+msgid "JavaScript Error"
+msgstr "Erro de JavaScript"
+
+#: ecma/debugger/errordlg.cpp:49
+msgid "&Do not show this message again"
+msgstr "&Non mostrar esta mensaxe de novo"
+
+#: ecma/debugger/localvariabledock.cpp:43
+msgid "Local Variables"
+msgstr "Variábeis locais"
+
+#: ecma/debugger/localvariabledock.cpp:51
+msgid "Reference"
+msgstr "Referencia"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
+#: java/kjavaappletviewer.cpp:150
+msgid "Value"
+msgstr "Valor"
+
+#: ecma/debugger/scriptsdock.cpp:37
+msgid "Loaded Scripts"
+msgstr "Scripts cargados"
+
+#: ecma/kjs_binding.cpp:196
+msgid ""
+"A script on this page is causing KHTML to freeze. If it continues to run, "
+"other applications may become less responsive.\n"
+"Do you want to stop the script?"
+msgstr ""
+"Un script desta páxina está a bloquear a KHTML. Se continúa a executarse, "
+"outros programas poderían tornarse menos receptivos.\n"
+"Desexa deter este script?"
+
+#: ecma/kjs_binding.cpp:196
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: ecma/kjs_binding.cpp:196
+msgid "&Stop Script"
+msgstr "&Deter o script"
+
+#: ecma/kjs_binding.cpp:437
+#, kde-format
+msgid "Parse error at %1 line %2"
+msgstr "Erro de procesamento en %1 liña %2"
+
+#: ecma/kjs_html.cpp:2231 ecma/kjs_window.cpp:1946
+msgid "Confirmation: JavaScript Popup"
+msgstr "Confirmación: Xanela emerxente de JavaScript"
+
+#: ecma/kjs_html.cpp:2233
+msgid ""
+"This site is submitting a form which will open up a new browser window via "
+"JavaScript.\n"
+"Do you want to allow the form to be submitted?"
+msgstr ""
+"Este sitio está enviando un formulario que abrirá unha xanela nova do "
+"navegador mediante JavaScript.\n"
+"Desexa permitir o envío deste formulario?"
+
+#: ecma/kjs_html.cpp:2236
+#, kde-format
+msgid ""
+"<qt>This site is submitting a form which will open <p>%1</p> in a new "
+"browser window via JavaScript.<br />Do you want to allow the form to be "
+"submitted?</qt>"
+msgstr ""
+"<qt>Este sitio está enviando un formulario que abrirá <p>%1</p> nunha xanela "
+"nova do navegador mediante JavaScript.<br />Desexa permitir o envío deste "
+"formulario?</qt>"
+
+#: ecma/kjs_html.cpp:2238 ecma/kjs_window.cpp:1954
+msgid "Allow"
+msgstr "Permitir"
+
+#: ecma/kjs_html.cpp:2238 ecma/kjs_window.cpp:1954
+msgid "Do Not Allow"
+msgstr "Non permitir"
+
+#: ecma/kjs_window.cpp:1949
+msgid ""
+"This site is requesting to open up a new browser window via JavaScript.\n"
+"Do you want to allow this?"
+msgstr ""
+"Este sitio está pedindo abrir unha xanela nova do navegador mediante "
+"JavaScript.\n"
+"Desexa permitirllo?"
+
+#: ecma/kjs_window.cpp:1952
+#, kde-format
+msgid ""
+"<qt>This site is requesting to open<p>%1</p>in a new browser window via "
+"JavaScript.<br />Do you want to allow this?</qt>"
+msgstr ""
+"<qt>Este sitio está pedindo abrir <p>%1</p> nunha xanela nova do navegador "
+"mediante JavaScript.<br />Desexa permitirllo?</qt>"
+
+#: ecma/kjs_window.cpp:2285
+msgid "Close window?"
+msgstr "Desexa pechar a xanela?"
+
+#: ecma/kjs_window.cpp:2285
+msgid "Confirmation Required"
+msgstr "Requírese unha confirmación"
+
+#: ecma/kjs_window.cpp:3235
+#, kde-format
+msgid ""
+"Do you want a bookmark pointing to the location \"%1\" to be added to your "
+"collection?"
+msgstr ""
+"Desexa engadir á súa colección un marcador apuntando á localización «%1»?"
+
+#: ecma/kjs_window.cpp:3238
+#, kde-format
+msgid ""
+"Do you want a bookmark pointing to the location \"%1\" titled \"%2\" to be "
+"added to your collection?"
+msgstr ""
+"Desexa engadir á súa colección un marcador titulado «%2» que apunte á "
+"localización «%1»?"
+
+#: ecma/kjs_window.cpp:3247
+msgid "JavaScript Attempted Bookmark Insert"
+msgstr "JavaScript tentou inserir un marcador"
+
+#: ecma/kjs_window.cpp:3251
+msgid "Insert"
+msgstr "Inserir"
+
+#: ecma/kjs_window.cpp:3251
+msgid "Disallow"
+msgstr "Prohibir"
+
+#: html/html_formimpl.cpp:420
+msgid ""
+"The following files will not be uploaded because they could not be found.\n"
+"Do you want to continue?"
+msgstr ""
+"Os seguintes ficheiros non se enviarán porque non foi posíbel atopalos.\n"
+"Desexa continuar?"
+
+#: html/html_formimpl.cpp:424
+msgid "Submit Confirmation"
+msgstr "Confirmación de envío"
+
+#: html/html_formimpl.cpp:424
+msgid "&Submit Anyway"
+msgstr "&Enviar aínda así"
+
+#: html/html_formimpl.cpp:434
+msgid ""
+"You are about to transfer the following files from your local computer to "
+"the Internet.\n"
+"Do you really want to continue?"
+msgstr ""
+"Está a piques de transferir os seguintes ficheiros desde o seu ordenador "
+"local a internet.\n"
+"Desexa realmente continuar?"
+
+#: html/html_formimpl.cpp:438
+msgid "Send Confirmation"
+msgstr "Confirmación de envío"
+
+#: html/html_formimpl.cpp:438
+msgid "&Send File"
+msgid_plural "&Send Files"
+msgstr[0] "&Enviar o ficheiro"
+msgstr[1] "&Enviar os ficheiros"
+
+#: html/html_formimpl.cpp:1687 html/html_formimpl.cpp:1908 khtml_part.cpp:4968
+#: khtmlview.cpp:2879 khtmlview.cpp:2923
+msgid "Submit"
+msgstr "Enviar"
+
+#: html/html_formimpl.cpp:1900 khtmlview.cpp:2894 khtmlview.cpp:2929
+msgid "Reset"
+msgstr "Reiniciar"
+
+#: html/html_formimpl.cpp:2824
+msgid "Key Generator"
+msgstr "Xerador de chaves"
+
+#: html/html_objectimpl.cpp:632
+#, kde-format
+msgid ""
+"No plugin found for '%1'.\n"
+"Do you want to download one from %2?"
+msgstr ""
+"Non se atopou ningún complemento para «%1».\n"
+"Desexa descargar un desde %2?"
+
+#: html/html_objectimpl.cpp:633
+msgid "Missing Plugin"
+msgstr "Non se atopou o complemento"
+
+#: html/html_objectimpl.cpp:633
+msgid "Download"
+msgstr "Descargar"
+
+#: html/html_objectimpl.cpp:633
+msgid "Do Not Download"
+msgstr "Non descargar"
+
+#: html/htmlparser.cpp:1978
+msgid "This is a searchable index. Enter search keywords: "
+msgstr ""
+"Este é un índice con capacidade de busca. Introduza as palabras chaves da "
+"busca: "
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+"Indicou que quer obter ou mercar un certificado seguro. Este asistente "
+"guiarao a través do proceso. Pode interrompelo a calquera altura, co que "
+"interromperá a transacción."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+"Agora debe fornecer un contrasinal para o pedido de certificado. Por favor, "
+"escolla un contrasinal moi seguro xa que se usará para cifrar a súa chave "
+"privada."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+msgid "&Repeat password:"
+msgstr "&Repetir o contrasinal:"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+msgid "&Choose password:"
+msgstr "&Escoller o contrasinal:"
+
+#: html/ksslkeygen.cpp:82
+msgid "KDE Certificate Request"
+msgstr "Pedido de certificado de KDE"
+
+#: html/ksslkeygen.cpp:89
+msgid "KDE Certificate Request - Password"
+msgstr "Pedido de certificado de KDE - Contrasinal"
+
+#: html/ksslkeygen.cpp:126
+msgid "Unsupported key size."
+msgstr "Tamaño de chave non soportado."
+
+#: html/ksslkeygen.cpp:126
+msgid "KDE SSL Information"
+msgstr "Información SSL de KDE"
+
+#: html/ksslkeygen.cpp:132 khtml_part.cpp:5023
+msgid "KDE"
+msgstr "KDE"
+
+#: html/ksslkeygen.cpp:133
+msgid "Please wait while the encryption keys are generated..."
+msgstr "Agarde mentres se xeran as chaves de cifraxe..."
+
+#: html/ksslkeygen.cpp:148
+msgid "Do you wish to store the passphrase in your wallet file?"
+msgstr "Desexa gardar a frase de paso no seu ficheiro de carteira?"
+
+#: html/ksslkeygen.cpp:148
+msgid "Store"
+msgstr "Almacenar"
+
+#: html/ksslkeygen.cpp:148
+msgid "Do Not Store"
+msgstr "Non gardar"
+
+#: html/ksslkeygen.cpp:257
+msgid "2048 (High Grade)"
+msgstr "2048 (alta seguranza)"
+
+#: html/ksslkeygen.cpp:258
+msgid "1024 (Medium Grade)"
+msgstr "1024 (seguranza media)"
+
+#: html/ksslkeygen.cpp:259
+msgid "768  (Low Grade)"
+msgstr "768  (seguranza baixa)"
+
+#: html/ksslkeygen.cpp:260
+msgid "512  (Low Grade)"
+msgstr "512  (seguranza baixa)"
+
+#: html/ksslkeygen.cpp:262
+msgid "No SSL support."
+msgstr "Non hai compatibilidade con SSL."
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+msgid "Document Information"
+msgstr "Información do documento"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "Xeral"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+msgid "Title:"
+msgstr "Título:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+msgid "Last modified:"
+msgstr "Última modificación:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+msgid "Document encoding:"
+msgstr "Codificación do documento:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+msgid "Rendering mode:"
+msgstr "Método de debuxado:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+msgid "HTTP Headers"
+msgstr "Cabezallos HTTP"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+msgid "Property"
+msgstr "Propiedade"
+
+#: java/kjavaapplet.cpp:227
+#, kde-format
+msgid "Initializing Applet \"%1\"..."
+msgstr "Estase inicializar a applet «%1»..."
+
+#: java/kjavaapplet.cpp:233
+#, kde-format
+msgid "Starting Applet \"%1\"..."
+msgstr "Estase lanzar a applet «%1»..."
+
+#: java/kjavaapplet.cpp:240
+#, kde-format
+msgid "Applet \"%1\" started"
+msgstr "A applet «%1» foi iniciada"
+
+#: java/kjavaapplet.cpp:246
+#, kde-format
+msgid "Applet \"%1\" stopped"
+msgstr "A applet «%1» está detida"
+
+#: java/kjavaappletserver.cpp:144
+msgid "Loading Applet"
+msgstr "Estase cargar a Applet"
+
+#: java/kjavaappletserver.cpp:147
+msgid "Error: java executable not found"
+msgstr "Erro: non se atopou ningún executábel de java"
+
+#: java/kjavaappletserver.cpp:674
+#, kde-format
+msgid "Signed by (validation: %1)"
+msgstr "Asinado por (validación: %1)"
+
+#: java/kjavaappletserver.cpp:676
+#, kde-format
+msgid "Certificate (validation: %1)"
+msgstr "Certificado (validación: %1)"
+
+#: java/kjavaappletserver.cpp:812 khtml_part.cpp:7053
+msgid "Security Alert"
+msgstr "Alerta de seguranza"
+
+#: java/kjavaappletserver.cpp:817
+msgid "Do you grant Java applet with certificate(s):"
+msgstr "Desexa concederlle á applet de Java con certificado(s):"
+
+#: java/kjavaappletserver.cpp:819
+msgid "the following permission"
+msgstr "o seguinte permiso"
+
+#: java/kjavaappletserver.cpp:828
+msgid "&No"
+msgstr "&Non"
+
+#: java/kjavaappletserver.cpp:832
+msgid "&Reject All"
+msgstr "&Rexeitar todos"
+
+#: java/kjavaappletserver.cpp:835
+msgid "&Yes"
+msgstr "&Si"
+
+#: java/kjavaappletserver.cpp:838
+msgid "&Grant All"
+msgstr "&Conceder todos"
+
+#: java/kjavaappletviewer.cpp:59
+msgid "KDE Java Applet Plugin"
+msgstr "Complemento de Applets de Java para KDE"
+
+#: java/kjavaappletviewer.cpp:141
+msgid "Applet Parameters"
+msgstr "Parámetros da applet"
+
+#: java/kjavaappletviewer.cpp:149
+msgid "Parameter"
+msgstr "Parámetro"
+
+#: java/kjavaappletviewer.cpp:153
+msgid "Class"
+msgstr "Clase"
+
+#: java/kjavaappletviewer.cpp:159
+msgid "Base URL"
+msgstr "URL base"
+
+#: java/kjavaappletviewer.cpp:165
+msgid "Archives"
+msgstr "Arquivos"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+msgid "&Edit"
+msgstr "&Editar"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+msgid "&File"
+msgstr "&Ficheiro"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+msgid "&View"
+msgstr "&Vista"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+msgid "HTML Toolbar"
+msgstr "Barra de ferramentas de HTML"
+
+#: khtml_ext.cpp:413
+msgid "&Copy Text"
+msgstr "&Copiar o texto"
+
+#: khtml_ext.cpp:427
+#, kde-format
+msgid "Open '%1'"
+msgstr "Abrir «%1»"
+
+#: khtml_ext.cpp:444
+msgid "&Copy Email Address"
+msgstr "&Copiar o enderezo de correo"
+
+#: khtml_ext.cpp:449
+msgid "&Save Link As..."
+msgstr "&Gardar a ligazón como..."
+
+#: khtml_ext.cpp:454
+msgid "&Copy Link Address"
+msgstr "&Copiar o enderezo da ligazón"
+
+#: khtml_ext.cpp:466
+msgctxt "@title:menu HTML frame/iframe"
+msgid "Frame"
+msgstr "Marco"
+
+#: khtml_ext.cpp:467
+msgid "Open in New &Window"
+msgstr "Abrir nunha &xanela nova"
+
+#: khtml_ext.cpp:473
+msgid "Open in &This Window"
+msgstr "Abrir nesta &xanela"
+
+#: khtml_ext.cpp:478
+msgid "Open in &New Tab"
+msgstr "Abrir nunha páxina &nova"
+
+#: khtml_ext.cpp:488
+msgid "Reload Frame"
+msgstr "Cargar de novo o marco"
+
+#: khtml_ext.cpp:493 khtml_part.cpp:448
+msgid "Print Frame..."
+msgstr "Imprimir o marco..."
+
+#: khtml_ext.cpp:499 khtml_part.cpp:300
+msgid "Save &Frame As..."
+msgstr "Gardar o &marco como..."
+
+#: khtml_ext.cpp:504 khtml_part.cpp:276
+msgid "View Frame Source"
+msgstr "Ver o código fonte do marco"
+
+#: khtml_ext.cpp:509
+msgid "View Frame Information"
+msgstr "Ver información do marco"
+
+#: khtml_ext.cpp:519
+msgid "Block IFrame..."
+msgstr "Bloquear o IFrame..."
+
+#: khtml_ext.cpp:543
+msgid "Save Image As..."
+msgstr "Gardar a imaxe como..."
+
+#: khtml_ext.cpp:548
+msgid "Send Image..."
+msgstr "Enviar a imaxe..."
+
+#: khtml_ext.cpp:554
+msgid "Copy Image"
+msgstr "Copiar a imaxe"
+
+#: khtml_ext.cpp:562
+msgid "Copy Image Location"
+msgstr "Copiar o enderezo da imaxe"
+
+#: khtml_ext.cpp:571
+#, kde-format
+msgid "View Image (%1)"
+msgstr "Ver a imaxe (%1)"
+
+#: khtml_ext.cpp:577
+msgid "Block Image..."
+msgstr "Bloquear a imaxe..."
+
+#: khtml_ext.cpp:584
+#, kde-format
+msgid "Block Images From %1"
+msgstr "Bloquear as imaxes de %1"
+
+#: khtml_ext.cpp:596
+msgid "Stop Animations"
+msgstr "Deter as animacións"
+
+#: khtml_ext.cpp:637
+#, kde-format
+msgid "Search for '%1' with %2"
+msgstr "Buscar «%1» con %2"
+
+#: khtml_ext.cpp:647
+#, kde-format
+msgid "Search for '%1' with"
+msgstr "Buscar «%1» con"
+
+#: khtml_ext.cpp:693
+msgid "Save Link As"
+msgstr "Gardar a ligazón como"
+
+#: khtml_ext.cpp:712
+msgid "Save Image As"
+msgstr "Gardar a imaxe como"
+
+#: khtml_ext.cpp:726 khtml_ext.cpp:738
+msgid "Add URL to Filter"
+msgstr "Engadir un URL ao filtro"
+
+#: khtml_ext.cpp:727 khtml_ext.cpp:739
+msgid "Enter the URL:"
+msgstr "Introduza o URL:"
+
+#: khtml_ext.cpp:875
+#, kde-format
+msgid ""
+"A file named \"%1\" already exists. Are you sure you want to overwrite it?"
+msgstr "Xa existe un ficheiro chamado «%1». Desexa realmente sobrescribilo?"
+
+#: khtml_ext.cpp:875
+msgid "Overwrite File?"
+msgstr "Sobrescribir o ficheiro?"
+
+#: khtml_ext.cpp:875
+msgid "Overwrite"
+msgstr "Sobrescribir"
+
+#: khtml_ext.cpp:927
+#, kde-format
+msgid "The Download Manager (%1) could not be found in your $PATH "
+msgstr "Non foi posíbel atopar o Xestor de descargas (%1) no seu $PATH"
+
+#: khtml_ext.cpp:928
+msgid ""
+"Try to reinstall it  \n"
+"\n"
+"The integration with Konqueror will be disabled."
+msgstr ""
+"Tente instalalo de novo\n"
+"\n"
+"Desactivarase a integración con Konqueror."
+
+#: khtml_ext.cpp:1007
+#, no-c-format
+msgid "Default Font Size (100%)"
+msgstr "Tamaño de letra por omisión (100%)"
+
+#: khtml_ext.cpp:1021
+#, no-c-format, kde-format
+msgid "%1%"
+msgstr "%1%"
+
+#: khtml_global.cpp:203
+msgid "KHTML"
+msgstr "KHTML"
+
+#: khtml_global.cpp:204
+msgid "Embeddable HTML component"
+msgstr "Compoñente HTML integrábel"
+
+#: khtml_part.cpp:269
+msgid "View Do&cument Source"
+msgstr "Ver a fonte do do&cumento"
+
+#: khtml_part.cpp:283
+msgid "View Document Information"
+msgstr "Ver información do documento"
+
+#: khtml_part.cpp:290
+msgid "Save &Background Image As..."
+msgstr "Gardar a imaxe de &fondo como..."
+
+#: khtml_part.cpp:312 khtml_part.cpp:4195
+msgid "SSL"
+msgstr "SSL"
+
+#: khtml_part.cpp:316
+msgid "Print Rendering Tree to STDOUT"
+msgstr "Imprimir a árbore de debuxado en STDOUT"
+
+#: khtml_part.cpp:320
+msgid "Print DOM Tree to STDOUT"
+msgstr "Imprimir a árbore DOM en STDOUT"
+
+#: khtml_part.cpp:324
+msgid "Print frame tree to STDOUT"
+msgstr "Imprimir a árbore do marco en STDOUT"
+
+#: khtml_part.cpp:328
+msgid "Stop Animated Images"
+msgstr "Deter as imaxes animadas"
+
+#: khtml_part.cpp:332
+msgid "Set &Encoding"
+msgstr "Estabelecer a &codificación"
+
+#: khtml_part.cpp:378
+msgid "Use S&tylesheet"
+msgstr "Usar unha foll&a de estilos"
+
+#: khtml_part.cpp:383
+msgid "Enlarge Font"
+msgstr "Aumentar o tamaño das letras"
+
+#: khtml_part.cpp:386
+msgid ""
+"<qt>Enlarge Font<br /><br />Make the font in this window bigger. Click and "
+"hold down the mouse button for a menu with all available font sizes.</qt>"
+msgstr ""
+"<qt>Aumentar o tamaño das letras<br /><br />Fai os textos desta xanela máis "
+"grandes. Manteña premido o botón do rato para obter un menú con todos os "
+"tamaños de letra dispoñíbeis.</qt>"
+
+#: khtml_part.cpp:390
+msgid "Shrink Font"
+msgstr "Diminuír o tamaño das letras"
+
+#: khtml_part.cpp:393
+msgid ""
+"<qt>Shrink Font<br /><br />Make the font in this window smaller. Click and "
+"hold down the mouse button for a menu with all available font sizes.</qt>"
+msgstr ""
+"<qt>Diminuír o tamaño das letras<br /><br />Fai os textos desta xanela máis "
+"pequenos. Manteña premido o botón do rato para obter un menú con todos os "
+"tamaños de letra dispoñíbeis.</qt>"
+
+#: khtml_part.cpp:408
+msgid ""
+"<qt>Find text<br /><br />Shows a dialog that allows you to find text on the "
+"displayed page.</qt>"
+msgstr ""
+"<qt>Procurar un texto<br /><br />Mostra un diálogo que permite atopar un "
+"texto na páxina actual.</qt>"
+
+#: khtml_part.cpp:412
+msgid ""
+"<qt>Find next<br /><br />Find the next occurrence of the text that you have "
+"found using the <b>Find Text</b> function.</qt>"
+msgstr ""
+"<qt>Procurar o seguinte<br /><br />Procura a seguinte coincidencia do texto "
+"que se atopase empregando a función <b>Procurar un texto</b></qt>"
+
+#: khtml_part.cpp:418
+msgid ""
+"<qt>Find previous<br /><br />Find the previous occurrence of the text that "
+"you have found using the <b>Find Text</b> function.</qt>"
+msgstr ""
+"<qt>Procurar o anterior<br /><br />Procura a anterior coincidencia do texto "
+"que se atopase empregando a función <b>Procurar un texto</b></qt>"
+
+#: khtml_part.cpp:423
+msgid "Find Text as You Type"
+msgstr "Buscar un texto mentres o escribe"
+
+#: khtml_part.cpp:426
+msgid ""
+"This shortcut shows the find bar, for finding text in the displayed page. It "
+"cancels the effect of \"Find Links as You Type\", which sets the \"Find "
+"links only\" option."
+msgstr ""
+"Este atallo mostra a barra de buscas para atopar texto na páxina. Cancela o "
+"efecto de «Procurar ligazóns mentres as escribe», que configura a opción "
+"«Atopar só ligazóns»."
+
+#: khtml_part.cpp:430
+msgid "Find Links as You Type"
+msgstr "Buscar ligazóns mentres as escribe"
+
+#: khtml_part.cpp:436
+msgid ""
+"This shortcut shows the find bar, and sets the option \"Find links only\"."
+msgstr ""
+"Este atallo mostra a barra de procuras e configura a opción \"Atopar só "
+"ligazóns\"."
+
+#: khtml_part.cpp:452
+msgid ""
+"<qt>Print Frame<br /><br />Some pages have several frames. To print only a "
+"single frame, click on it and then use this function.</qt>"
+msgstr ""
+"<qt>Imprimir o marco<br /><br />Algunhas páxinas teñen varios marco. Para "
+"imprimir só un, prémao e empregue esta función.</qt>"
+
+#: khtml_part.cpp:467
+msgid "Toggle Caret Mode"
+msgstr "Conmutar o modo do cursor"
+
+#: khtml_part.cpp:770
+#, kde-format
+msgid "The fake user-agent '%1' is in use."
+msgstr "Está a usarse a identificación falsa «%1» do programa cliente."
+
+#: khtml_part.cpp:1274
+msgid "This web page contains coding errors."
+msgstr "Esta páxina web contén erros no código."
+
+#: khtml_part.cpp:1319
+msgid "&Hide Errors"
+msgstr "&Agochar os erros"
+
+#: khtml_part.cpp:1320
+msgid "&Disable Error Reporting"
+msgstr "&Desactivar o informe de erros"
+
+#: khtml_part.cpp:1363
+#, kde-format
+msgid "<qt><b>Error</b>: %1: %2</qt>"
+msgstr "<qt><b>Erro</b>: %1: %2</qt>"
+
+#: khtml_part.cpp:1412
+#, kde-format
+msgid "<qt><b>Error</b>: node %1: %2</qt>"
+msgstr "<qt><b>Erro</b>: nodo %1: %2</qt>"
+
+#: khtml_part.cpp:1534
+msgid "Display Images on Page"
+msgstr "Mostrar as imaxes da páxina"
+
+#: khtml_part.cpp:1918
+#, kde-format
+msgid "Error: %1 - %2"
+msgstr "Erro: %1 - %2"
+
+#: khtml_part.cpp:1923
+msgid "The requested operation could not be completed"
+msgstr "Non foi posíbel completar a operación pedida"
+
+#: khtml_part.cpp:1929
+msgid "Technical Reason: "
+msgstr "Razón técnica: "
+
+#: khtml_part.cpp:1935
+msgid "Details of the Request:"
+msgstr "Detalles do pedido:"
+
+#: khtml_part.cpp:1937
+#, kde-format
+msgid "URL: %1"
+msgstr "URL: %1"
+
+#: khtml_part.cpp:1940
+#, kde-format
+msgid "Protocol: %1"
+msgstr "Protocolo: %1"
+
+#: khtml_part.cpp:1943
+#, kde-format
+msgid "Date and Time: %1"
+msgstr "Data e hora: %1"
+
+#: khtml_part.cpp:1945
+#, kde-format
+msgid "Additional Information: %1"
+msgstr "Información adicional: %1"
+
+#: khtml_part.cpp:1947
+msgid "Description:"
+msgstr "Descrición:"
+
+#: khtml_part.cpp:1953
+msgid "Possible Causes:"
+msgstr "Causas posíbeis:"
+
+#: khtml_part.cpp:1960
+msgid "Possible Solutions:"
+msgstr "Posíbeis solucións:"
+
+#: khtml_part.cpp:2408
+msgid "Page loaded."
+msgstr "Páxina cargada."
+
+#: khtml_part.cpp:2410
+#, kde-format
+msgid "%1 Image of %2 loaded."
+msgid_plural "%1 Images of %2 loaded."
+msgstr[0] "Cargouse %1 imaxe de %2."
+msgstr[1] "Cargáronse %1 imaxes de %2."
+
+#: khtml_part.cpp:2588
+msgid "Automatic Detection"
+msgstr "Detección automática"
+
+#: khtml_part.cpp:3718 khtml_part.cpp:3782 khtml_part.cpp:3792
+msgid " (In new window)"
+msgstr " (Nunha xanela nova)"
+
+#: khtml_part.cpp:3746
+msgid "Symbolic Link"
+msgstr "Ligazón simbólica"
+
+#: khtml_part.cpp:3748
+#, kde-format
+msgid "%1 (Link)"
+msgstr "%1 (Ligazón)"
+
+#: khtml_part.cpp:3764
+#, kde-format
+msgid "%2 (%1 byte)"
+msgid_plural "%2 (%1 bytes)"
+msgstr[0] "%2 (%1 byte)"
+msgstr[1] "%2 (%1 bytes)"
+
+#: khtml_part.cpp:3767
+#, kde-format
+msgid "%2 (%1 K)"
+msgstr "%2 (%1 K)"
+
+#: khtml_part.cpp:3794
+msgid " (In other frame)"
+msgstr " (Noutro marco)"
+
+#: khtml_part.cpp:3800
+msgid "Email to: "
+msgstr "Enviar por correo a: "
+
+#: khtml_part.cpp:3806
+msgid " - Subject: "
+msgstr " - Asunto: "
+
+#: khtml_part.cpp:3808
+msgid " - CC: "
+msgstr " - Copia: "
+
+#: khtml_part.cpp:3810
+msgid " - BCC: "
+msgstr " - Copia oculta: "
+
+#: khtml_part.cpp:3891 khtml_part.cpp:4113 khtml_part.cpp:4549
+#: khtml_run.cpp:106
+msgid "Save As"
+msgstr "Gardar como"
+
+#: khtml_part.cpp:3896
+#, kde-format
+msgid ""
+"<qt>This untrusted page links to<br /><b>%1</b>.<br />Do you want to follow "
+"the link?</qt>"
+msgstr ""
+"<qt>Esta páxina non autenticada contén unha ligazón a<br /><b>%1</b>.<br /"
+">Desexa seguir a ligazón?</qt>"
+
+#: khtml_part.cpp:3897
+msgid "Follow"
+msgstr "Seguir"
+
+#: khtml_part.cpp:3992
+msgid "Frame Information"
+msgstr "Información do marco"
+
+#: khtml_part.cpp:3998
+#, kde-format
+msgid "   <a href=\"%1\">[Properties]</a>"
+msgstr "   <a href=\"%1\">[Propiedades]</a>"
+
+#: khtml_part.cpp:4024
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Quirks"
+msgstr "Modo rarezas"
+
+#: khtml_part.cpp:4027
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Almost standards"
+msgstr "Modo case padrón"
+
+#: khtml_part.cpp:4031
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Strict"
+msgstr "Modo estrito"
+
+#: khtml_part.cpp:4100
+msgid "Save Background Image As"
+msgstr "Gardar a imaxe de fondo como"
+
+#: khtml_part.cpp:4193
+msgid "The peer SSL certificate chain appears to be corrupt."
+msgstr "A cadea do certificado SSL do parceiro semella corrupta."
+
+#: khtml_part.cpp:4214
+msgid "Save Frame As"
+msgstr "Gardar o marco como"
+
+#: khtml_part.cpp:4258
+msgid "&Find in Frame..."
+msgstr "&Buscar no marco..."
+
+#: khtml_part.cpp:4260
+msgid "&Find..."
+msgstr "&Buscar..."
+
+#: khtml_part.cpp:4907
+msgid ""
+"Warning:  This is a secure form but it is attempting to send your data back "
+"unencrypted.\n"
+"A third party may be able to intercept and view this information.\n"
+"Are you sure you wish to continue?"
+msgstr ""
+"Coidado: Este é un formulario seguro pero está a tentar enviar os seus datos "
+"sen cifrar.\n"
+"Esta información podería ser interceptada por terceiros.\n"
+"Desexa realmente continuar?"
+
+#: khtml_part.cpp:4910 khtml_part.cpp:4920 khtml_part.cpp:4945
+msgid "Network Transmission"
+msgstr "Transmisión pola rede"
+
+#: khtml_part.cpp:4910 khtml_part.cpp:4921
+msgid "&Send Unencrypted"
+msgstr "&Enviar sen cifrar"
+
+#: khtml_part.cpp:4918
+msgid ""
+"Warning: Your data is about to be transmitted across the network "
+"unencrypted.\n"
+"Are you sure you wish to continue?"
+msgstr ""
+"Coidado: Os seus datos están a piques de ser transmitidos pola rede sen "
+"cifrar.\n"
+"Desexa realmente continuar?"
+
+#: khtml_part.cpp:4943
+msgid ""
+"This site is attempting to submit form data via email.\n"
+"Do you want to continue?"
+msgstr ""
+"Este sitio está a tentar enviar os datos do formulario por correo.\n"
+"Desexa continuar?"
+
+#: khtml_part.cpp:4946
+msgid "&Send Email"
+msgstr "&Enviar por correo"
+
+#: khtml_part.cpp:4967
+#, kde-format
+msgid ""
+"<qt>The form will be submitted to <br /><b>%1</b><br />on your local "
+"filesystem.<br />Do you want to submit the form?</qt>"
+msgstr ""
+"<qt>O formulario enviarase a <br /><b>%1</b><br />no seu sistema de "
+"ficheiros local.<br />Desexa enviar o formulario?</qt>"
+
+#: khtml_part.cpp:5023
+msgid ""
+"This site attempted to attach a file from your computer in the form "
+"submission. The attachment was removed for your protection."
+msgstr ""
+"Este sitio está tentando anexarlle un ficheiro do seu ordenador ao "
+"formulario. O anexo foi eliminado para a súa protección."
+
+#: khtml_part.cpp:6117
+#, kde-format
+msgid "(%1/s)"
+msgstr "(%1/s)"
+
+#: khtml_part.cpp:7045
+msgid "Security Warning"
+msgstr "Aviso de seguranza"
+
+#: khtml_part.cpp:7052
+#, kde-format
+msgid "<qt>Access by untrusted page to<br /><b>%1</b><br /> denied.</qt>"
+msgstr ""
+"<qt>Denegouse o acceso a <br /><b>%1</b><br /> por unha páxina non "
+"autenticada.</qt>"
+
+#: khtml_part.cpp:7423
+#, kde-format
+msgid "The wallet '%1' is open and being used for form data and passwords."
+msgstr ""
+"A carteira «%1» está aberta e sendo empregada para os datos de formularios e "
+"contrasinais."
+
+#: khtml_part.cpp:7482
+msgid "&Close Wallet"
+msgstr "&Pechar a carteira"
+
+#: khtml_part.cpp:7485
+msgid "&Allow storing passwords for this site"
+msgstr "&Permitir gardar os contrasinais deste sitio"
+
+#: khtml_part.cpp:7490
+#, kde-format
+msgid "Remove password for form %1"
+msgstr "Eliminar o contrasinal do formulario %1"
+
+#: khtml_part.cpp:7605
+msgid "JavaScript &Debugger"
+msgstr "&Depurador de JavaScript"
+
+#: khtml_part.cpp:7638
+msgid "This page was prevented from opening a new window via JavaScript."
+msgstr "Evitouse que esta páxina abrise unha xanela nova mediante JavaScript."
+
+#: khtml_part.cpp:7644
+msgid "Popup Window Blocked"
+msgstr "Bloqueouse unha xanela emerxente"
+
+#: khtml_part.cpp:7644
+msgid ""
+"This page has attempted to open a popup window but was blocked.\n"
+"You can click on this icon in the status bar to control this behavior\n"
+"or to open the popup."
+msgstr ""
+"Evitouse que esta páxina abrise unha xanela emerxente pero foi bloqueada.\n"
+"Pode premer esta icona da barra de estado para controlar este\n"
+"comportamento ou para abrir a xanela emerxente."
+
+#: khtml_part.cpp:7658
+#, kde-format
+msgid "&Show Blocked Popup Window"
+msgid_plural "&Show %1 Blocked Popup Windows"
+msgstr[0] "&Mostrar a xanela emerxente bloqueada"
+msgstr[1] "Mostrar %1 xanelas emerxentes bloqueadas"
+
+#: khtml_part.cpp:7660
+msgid "Show Blocked Window Passive Popup &Notification"
+msgstr "Mostrar a &notificación de bloqueo de xanelas emerxentes"
+
+#: khtml_part.cpp:7662
+msgid "&Configure JavaScript New Window Policies..."
+msgstr "&Configurar a política das xanelas novas de JavaScript..."
+
+#: khtml_printsettings.cpp:30
+msgid ""
+"<qt><p><strong>'Print images'</strong></p><p>If this checkbox is enabled, "
+"images contained in the HTML page will be printed. Printing may take longer "
+"and use more ink or toner.</p><p>If this checkbox is disabled, only the text "
+"of the HTML page will be printed, without the included images. Printing will "
+"be faster and use less ink or toner.</p> </qt>"
+msgstr ""
+"<qt><p><strong>Imprimir as imaxes</strong></p><p>Se escolle esta opción as "
+"imaxes contidas na páxina HTML serán impresas. A impresión pode levar máis "
+"tempo e gastar máis tinta ou tóner.</p><p>Se non escolle esta opción só se "
+"imprimirá o texto da páxina HTML, sen as imaxes incluídas. A impresión será "
+"máis rápida e gastará menos tinta ou tóner.</p></qt>"
+
+#: khtml_printsettings.cpp:42
+msgid ""
+"<qt><p><strong>'Print header'</strong></p><p>If this checkbox is enabled, "
+"the printout of the HTML document will contain a header line at the top of "
+"each page. This header contains the current date, the location URL of the "
+"printed page and the page number.</p><p>If this checkbox is disabled, the "
+"printout of the HTML document will not contain such a header line.</p> </qt>"
+msgstr ""
+"<qt><p><strong>Imprimir un cabezallo</strong></p><p>Se escolle esta opción o "
+"impreso co documento HTML conterá unha liña de cabezallo no cume de cada "
+"páxina. Este cabezallo conterá a data, o URL da localización da páxina "
+"impresa e o número de páxina.</p><p>Se non escolle esta opción o impreso co "
+"documento HTML non conterá esta liña de cabezallo.</p></qt>"
+
+#: khtml_printsettings.cpp:55
+msgid ""
+"<qt><p><strong>'Printerfriendly mode'</strong></p><p>If this checkbox is "
+"enabled, the printout of the HTML document will be black and white only, and "
+"all colored background will be converted into white. Printout will be faster "
+"and use less ink or toner.</p><p>If this checkbox is disabled, the printout "
+"of the HTML document will happen in the original color settings as you see "
+"in your application. This may result in areas of full-page color (or "
+"grayscale, if you use a black+white printer). Printout will possibly happen "
+"more slowly and will probably use more toner or ink.</p> </qt>"
+msgstr ""
+"<qt><p><strong>«Modo de versión para imprimir»</strong></p><p>Se escolle "
+"esta opción o impreso co documento HTML será só en branco e negro, e todo o "
+"fondo colorido da páxina será convertido en branco. A impresión será máis "
+"rápida e gastará menos tinta ou tóner.</p><p>Se non escolle esta opción o "
+"documento HTML será impreso coa configuración de cores orixinal tal como a "
+"ve no programa. Isto pode producir páxinas enteiras a cores (ou en escala de "
+"grises, se usa unha impresora en branco e negro). A impresión posibelmente "
+"será máis lenta e gastará máis tinta ou tóner.</p></qt>"
+
+#: khtml_printsettings.cpp:70
+msgid "HTML Settings"
+msgstr "Configuración de HTML"
+
+#: khtml_printsettings.cpp:72
+msgid "Printer friendly mode (black text, no background)"
+msgstr "Modo de versión para imprimir (texto negro, sen fondo)"
+
+#: khtml_printsettings.cpp:75
+msgid "Print images"
+msgstr "Imprimir as imaxes"
+
+#: khtml_printsettings.cpp:78
+msgid "Print header"
+msgstr "Imprimir un cabezallo"
+
+#: khtml_settings.cpp:906
+msgid "Filter error"
+msgstr "Erro do filtro"
+
+#: khtmladaptorpart.cpp:29
+msgid "Inactive"
+msgstr "Inactivo"
+
+#: khtmlimage.cpp:46
+msgid "KHTML Image"
+msgstr "Imaxe de KHTML"
+
+#: khtmlimage.cpp:217
+#, kde-format
+msgid "%1 (%2 - %3x%4 Pixels)"
+msgstr "%1 (%2 - %3x%4 píxeles)"
+
+#: khtmlimage.cpp:219
+#, kde-format
+msgid "%1 - %2x%3 Pixels"
+msgstr "%1 - %2x%3 píxeles"
+
+#: khtmlimage.cpp:224
+#, kde-format
+msgid "%1 (%2x%3 Pixels)"
+msgstr "%1 (%2x%3 píxeles)"
+
+#: khtmlimage.cpp:226
+#, kde-format
+msgid "Image - %1x%2 Pixels"
+msgstr "Imaxe- %1x%2 píxeles"
+
+#: khtmlimage.cpp:232
+msgid "Done."
+msgstr "Feito."
+
+#: khtmlview.cpp:1902
+msgid "Access Keys activated"
+msgstr "Teclas de acceso activadas"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:14
+msgid "JavaScript Errors"
+msgstr "Erros de JavaScript"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:17
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at http://bugs.kde.org/.  A test case "
+"which illustrates the problem will be appreciated."
+msgstr ""
+"Este diálogo fornécelle unha notificación e detalles dos erros de script que "
+"acontecen nas páxinas web. Na maioría dos casos, isto é debido a un erro no "
+"deseño do autor do sitio. Noutros casos, é o resultado dun fallo de "
+"programación de Konqueror. Se sospeita que se trata do primeiro, por favor, "
+"contacte co deseñador da páxina en cuestión. Se pola contra, sospeita que se "
+"trata dun fallo de Konqueror, por favor, envíe un informe de fallos a http://"
+"bugs.kde.org/. Será útil un caso de proba que ilustre o problema."
+
+#. i18n: ectx: property (text), widget (QPushButton, _close)
+#: kjserrordlgbase.ui:29
+msgid "&Close"
+msgstr "&Pechar"
+
+#. i18n: ectx: property (text), widget (QPushButton, _clear)
+#: kjserrordlgbase.ui:36
+msgid "C&lear"
+msgstr "&Limpar"
+
+#: kmultipart/httpfiltergzip.cpp:89
+msgid "Receiving corrupt data."
+msgstr "Estanse a recibir datos corrompidos."
+
+#: kmultipart/kmultipart.cpp:40
+msgid "KMultiPart"
+msgstr "KMultiPart"
+
+#: kmultipart/kmultipart.cpp:42
+msgid "Embeddable component for multipart/mixed"
+msgstr "Compoñente integrábel para multipart/mixed"
+
+#: kmultipart/kmultipart.cpp:44
+msgid "Copyright 2001-2011, David Faure <faure@kde.org>"
+msgstr "© 2001-2011 David Faure <faure@kde.org>"
+
+#: kmultipart/kmultipart.cpp:337
+#, kde-format
+msgid "No handler found for %1."
+msgstr "Non se atopou un xestor para %1."
+
+#: misc/kencodingdetector.cpp:1123 misc/kencodingdetector.cpp:1224
+msgctxt "@item Text character set"
+msgid "Unicode"
+msgstr "Unicode"
+
+#: misc/kencodingdetector.cpp:1125 misc/kencodingdetector.cpp:1194
+msgctxt "@item Text character set"
+msgid "Cyrillic"
+msgstr "Cirílico"
+
+#: misc/kencodingdetector.cpp:1127 misc/kencodingdetector.cpp:1209
+msgctxt "@item Text character set"
+msgid "Western European"
+msgstr "Europa occidental"
+
+#: misc/kencodingdetector.cpp:1129 misc/kencodingdetector.cpp:1191
+msgctxt "@item Text character set"
+msgid "Central European"
+msgstr "Centroeuropeo"
+
+#: misc/kencodingdetector.cpp:1131 misc/kencodingdetector.cpp:1197
+msgctxt "@item Text character set"
+msgid "Greek"
+msgstr "Grego"
+
+#: misc/kencodingdetector.cpp:1133 misc/kencodingdetector.cpp:1200
+msgctxt "@item Text character set"
+msgid "Hebrew"
+msgstr "Hebreo"
+
+#: misc/kencodingdetector.cpp:1135 misc/kencodingdetector.cpp:1206
+msgctxt "@item Text character set"
+msgid "Turkish"
+msgstr "Turco"
+
+#: misc/kencodingdetector.cpp:1137 misc/kencodingdetector.cpp:1203
+msgctxt "@item Text character set"
+msgid "Japanese"
+msgstr "Xaponés"
+
+#: misc/kencodingdetector.cpp:1139 misc/kencodingdetector.cpp:1188
+msgctxt "@item Text character set"
+msgid "Baltic"
+msgstr "Báltico"
+
+#: misc/kencodingdetector.cpp:1141 misc/kencodingdetector.cpp:1185
+msgctxt "@item Text character set"
+msgid "Arabic"
+msgstr "Árabe"
+
+#: misc/kencodingdetector.cpp:1212
+msgctxt "@item Text character set"
+msgid "Chinese Traditional"
+msgstr "Chinés tradicional"
+
+#: misc/kencodingdetector.cpp:1215
+msgctxt "@item Text character set"
+msgid "Chinese Simplified"
+msgstr "Chinés simplificado"
+
+#: misc/kencodingdetector.cpp:1218
+msgctxt "@item Text character set"
+msgid "Korean"
+msgstr "Coreano"
+
+#: misc/kencodingdetector.cpp:1221
+msgctxt "@item Text character set"
+msgid "Thai"
+msgstr "Tailandés"
+
+#: rendering/media_controls.cpp:46
+msgid "Play"
+msgstr "Reproducir"
+
+#: rendering/media_controls.cpp:49
+msgid "Pause"
+msgstr "Pausa"
+
+#: rendering/render_form.cpp:903
+msgid "New Web Shortcut"
+msgstr "Novo atallo web"
+
+#: rendering/render_form.cpp:924
+#, kde-format
+msgid "%1 is already assigned to %2"
+msgstr "%1 xa está asignado a %2"
+
+#: rendering/render_form.cpp:924
+msgid "Error"
+msgstr "Erro"
+
+#: rendering/render_form.cpp:970
+msgid "Search &provider name:"
+msgstr "Nome do fornecedor de &buscas:"
+
+#: rendering/render_form.cpp:972
+msgid "New search provider"
+msgstr "Novo fornecedor de buscas"
+
+#: rendering/render_form.cpp:977
+msgid "UR&I shortcuts:"
+msgstr "Atallos de &URI:"
+
+#: rendering/render_form.cpp:1056
+msgid "Clear &History"
+msgstr "Limpar o &historial"
+
+#: rendering/render_form.cpp:1071
+msgid "Create Web Shortcut"
+msgstr "Crear un atallo web"
+
+#: ui/findbar/khtmlfindbar.cpp:49
+msgid "C&ase sensitive"
+msgstr "&Distinguir as maiúsculas das minúsculas"
+
+#: ui/findbar/khtmlfindbar.cpp:51
+msgid "&Whole words only"
+msgstr "Só &palabras completas"
+
+#: ui/findbar/khtmlfindbar.cpp:53
+msgid "From c&ursor"
+msgstr "Desde o &cursor"
+
+#: ui/findbar/khtmlfindbar.cpp:55
+msgid "&Selected text"
+msgstr "Texto esco&llido"
+
+#: ui/findbar/khtmlfindbar.cpp:57
+msgid "Regular e&xpression"
+msgstr "E&xpresión regular"
+
+#: ui/findbar/khtmlfindbar.cpp:59
+msgid "Find &links only"
+msgstr "Atopar só &ligazóns"
+
+#: ui/findbar/khtmlfindbar.cpp:224
+msgid "Not found"
+msgstr "Non se atopou"
+
+#: ui/findbar/khtmlfindbar.cpp:239
+msgid "No more matches for this search direction."
+msgstr "Non hai máis resultados nesta dirección da busca."
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+msgid "F&ind:"
+msgstr "&Buscar:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+msgid "&Next"
+msgstr "&Seguinte"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+msgid "&Previous"
+msgstr "&Anterior"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+msgid "Opt&ions"
+msgstr "&Opcións"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
+msgid "Do you want to store this password?"
+msgstr "Desexa gardar este contrasinal?"
+
+#: ui/passwordbar/storepassbar.cpp:61
+#, kde-format
+msgid "Do you want to store this password for %1?"
+msgstr "Desexa gardar este contrasinal para %1?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+msgid "&Store"
+msgstr "&Gardar"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+msgid "Ne&ver store for this site"
+msgstr "Nunca gardar para &este sitio"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+msgid "Do &not store this time"
+msgstr "&Non gardar desta vez"
+
+#: xml/dom_docimpl.cpp:2376
+msgid "Basic Page Style"
+msgstr "Estilo de páxina básico"
+
+#: xml/xml_tokenizer.cpp:347
+msgid "the document is not in the correct file format"
+msgstr "o documento non está no formato de ficheiro correcto"
+
+#: xml/xml_tokenizer.cpp:352
+#, kde-format
+msgid "fatal parsing error: %1 in line %2, column %3"
+msgstr "erro fatal de procesado: %1 na liña %2, columna %3"
+
+#: xml/xml_tokenizer.cpp:567
+msgid "XML parsing error"
+msgstr "Erro de procesamento de XML"
