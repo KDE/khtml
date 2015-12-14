@@ -36,7 +36,7 @@
 #include <kjs/lookup.h>
 #include <kjs_binding.h>
 #include <khtml_part.h>
-#include <sys/utsname.h>
+#include <qsysinfo.h>
 #include <qstandardpaths.h>
 
 using namespace KJS;
@@ -292,23 +292,10 @@ JSValue *Navigator::getValueProperty(ExecState *exec, int token) const
                    (userAgent.indexOf(QLatin1String("Mac_PowerPC"), 0, Qt::CaseInsensitive) >= 0)) {
             return jsString("MacPPC");
         } else {
-            struct utsname name;
-            int ret = uname(&name);
-            if (ret >= 0) {
-                return jsString(QString::fromLatin1("%1 %2").arg(name.sysname).arg(name.machine));
-            } else { // can't happen
-                return jsString("Unix X11");
-            }
+            return jsString(QString::fromLatin1("%1 %2").arg(QSysInfo::kernelType()).arg(QSysInfo::currentCpuArchitecture()));
         }
-    case CpuClass: {
-        struct utsname name;
-        int ret = uname(&name);
-        if (ret >= 0) {
-            return jsString(name.machine);
-        } else { // can't happen
-            return jsString("unknown");
-        }
-    }
+    case CpuClass:
+            return jsString(QSysInfo::currentCpuArchitecture());
     case _Plugins:
         return new Plugins(exec, m_part->pluginsEnabled());
     case _MimeTypes:

@@ -29,7 +29,6 @@
 #include <kmimetypetrader.h>
 #include <kpluginfactory.h>
 #include <khtml_part.h>
-#include <unistd.h>
 #include <kxmlguifactory.h>
 #include <QtCore/QTimer>
 #include <QVBoxLayout>

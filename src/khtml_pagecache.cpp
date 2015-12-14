@@ -31,8 +31,6 @@
 #include <QtCore/QFile>
 #include <QtCore/QDir>
 #include <QtCore/QDataStream>
-#include <sys/types.h>
-#include <unistd.h>
 #include <assert.h>
 
 // We keep 12 pages in memory.

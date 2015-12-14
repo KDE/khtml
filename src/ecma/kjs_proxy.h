@@ -23,7 +23,6 @@
 
 #include <QtCore/QVariant>
 #include <QtCore/QString>
-#include <sys/time.h>
 #include <wtf/RefPtr.h>
 
 class KHTMLPart;

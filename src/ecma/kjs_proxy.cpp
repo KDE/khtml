@@ -32,7 +32,6 @@
 #include <kprotocolmanager.h>
 #include <QDebug>
 #include <klocalizedstring.h>
-#include <unistd.h>
 #include <assert.h>
 #include <kjs/function.h>
 #include <kjs/JSLock.h>

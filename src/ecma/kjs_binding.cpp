@@ -345,9 +345,9 @@ void setDOMException(ExecState *exec, int internalCode)
         char buffer[100];
 
         if (!name.isEmpty()) {
-            snprintf(buffer, 99, "%s: %s Exception %d", name.string().toLatin1().data(), type, code);
+            qsnprintf(buffer, 99, "%s: %s Exception %d", name.string().toLatin1().data(), type, code);
         } else {
-            snprintf(buffer, 99, "%s Exception %d", type, code);
+            qsnprintf(buffer, 99, "%s Exception %d", type, code);
         }
         errorObject = throwError(exec, GeneralError, buffer);
     } else {
