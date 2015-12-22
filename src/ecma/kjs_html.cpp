@@ -3495,6 +3495,7 @@ void KJS::HTMLSelectCollection::put(ExecState *exec, const Identifier &propertyN
         option = static_cast<DOM::HTMLOptionElementImpl *>(element->ownerDocument()->importNode(option, true, exception));
     }
     if (exception.triggered()) {
+        delete option;
         return;
     }
 
@@ -3507,6 +3508,7 @@ void KJS::HTMLSelectCollection::put(ExecState *exec, const Identifier &propertyN
                 static_cast<DOM::HTMLElementImpl *>(element->document()->createElement("OPTION")),
                 before, exception);
             if (exception.triggered()) {
+                delete option;
                 return;
             }
         }
