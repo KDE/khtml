@@ -2106,12 +2106,14 @@ bool CSSParser::parseBackgroundProperty(int propId, int &propId1, int &propId2,
                 values = new CSSValueListImpl();
                 values->append(value);
                 value = 0;
-            }
 
-            if (value2 && !values2) {
-                values2 = new CSSValueListImpl();
-                values2->append(value2);
-                value2 = 0;
+                // Track value, value2 as either a pair of items or a pair
+                // of lists, not in-between
+                if (value2 && !values2) {
+                    values2 = new CSSValueListImpl();
+                    values2->append(value2);
+                    value2 = 0;
+                }
             }
 
             if (values) {
