@@ -385,7 +385,7 @@ KJavaAppletViewer::KJavaAppletViewer(QWidget *wparent,
         }
 
         // make the call
-        QDBusInterface kpasswdserver("org.kde.kded5", "/modules/kpasswdserver", "org.kde.KPasswdServer");
+        QDBusInterface kpasswdserver("org.kde.kpasswdserver", "/modules/kpasswdserver", "org.kde.KPasswdServer");
         QDBusReply<QByteArray> reply = kpasswdserver.call("checkAuthInfo", params, qlonglong(m_view->topLevelWidget()->winId()), qlonglong(KUserTimestamp::userTimestamp()));
 
         if (!reply.isValid()) {
