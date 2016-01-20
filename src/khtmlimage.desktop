@@ -2,7 +2,7 @@
 Type=Service
 Comment=Embeddable Image Viewing Component
 Comment[af]=Inlegbare Beeld Aansig Komponent
-Comment[ar]=مكون عرض صور مضمن
+Comment[ar]=مكوّن لعرض صور قابل للتّضمين
 Comment[as]=প্ৰোথিত কৰিব পৰা প্ৰতিমূৰ্ত্তি প্ৰদৰ্শনৰ অংশ
 Comment[be]=Унутраны праглядальнік відарысаў
 Comment[be@latin]=Unutrany kampanent dla prahladu vyjavaŭ
@@ -98,7 +98,7 @@ Comment[zh_TW]=可嵌入的影像檢視元件
 MimeType=image/gif;image/x-xpixmap;image/x-xbitmap;image/jpeg;image/bmp;image/png;image/x-jng;image/x-ico;image/x-portable-bitmap;image/x-portable-pixmap;image/x-portable-graymap;image/tiff;video/x-mng;image/x-tga;
 Name=Embeddable Image Viewer
 Name[af]=Inlegbare Beeldbekyker
-Name[ar]=عارض صور مضمن
+Name[ar]=عارض صور قابل للتّضمين
 Name[as]=প্ৰোথিত কৰিব পৰা প্ৰতিমূৰ্ত্তিৰ প্ৰদৰ্শক
 Name[be]=Унутраны праглядальнік відарысаў
 Name[be@latin]=Unutrany prahladnik vyjavaŭ
