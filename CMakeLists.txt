@@ -17,7 +17,7 @@ include(ECMGenerateHeaders)
 set(REQUIRED_QT_VERSION "5.3")
 find_package(Qt5 "${REQUIRED_QT_VERSION}" CONFIG REQUIRED Widgets Network DBus PrintSupport Xml)
 include(KDEInstallDirs)
-include(KDEFrameworkCompilerSettings)
+include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
 
 set(KF5_VERSION "5.19.0") # handled by release scripts
