@@ -182,20 +182,38 @@ void HTMLLinkElementImpl::parseAttribute(AttributeImpl *attr)
     }
 }
 
+static inline bool isIconLink(const QString &relAttribute)
+{
+    // http://www.w3.org/TR/html5/links.html#linkTypes:
+    // split rel attribute on spaces and search for "icon" keyword.
+    // note: relAttribute is supposed to be a lower case string
+    const QLatin1String icon("icon");
+    int iconPos = relAttribute.indexOf(icon);
+    while (iconPos != -1) {
+        const bool found = (iconPos == 0 || relAttribute.at(iconPos - 1).isSpace()) &&
+                           (((iconPos + 4) == relAttribute.length()) || relAttribute.at(iconPos + 4).isSpace());
+        if (found) {
+            return true;
+        }
+        iconPos = relAttribute.indexOf(icon, iconPos + 5);
+    }
+
+    return false;
+}
+
 void HTMLLinkElementImpl::process()
 {
     if (!inDocument()) {
         return;
     }
 
-    QString type = getAttribute(ATTR_TYPE).string().toLower();
-    QString rel = getAttribute(ATTR_REL).string().toLower();
+    //QString type = getAttribute(ATTR_TYPE).string().toLower();
+    const QString rel = getAttribute(ATTR_REL).string().toLower();
 
     KHTMLPart *part = document()->part();
 
-    // IE extension: location of small icon for locationbar / bookmarks
-    // Uses both "shortcut icon" and "icon"
-    if (rel.contains("icon") && !m_url.isEmpty() && part && !part->parentPart()) {
+    // Location of small icon for locationbar / bookmarks (aka "favicon")
+    if (isIconLink(rel) && !m_url.isEmpty() && part && !part->parentPart()) {
         part->browserExtension()->setIconUrl(QUrl(m_url.string()));
     } // Stylesheet
     else if (rel.contains("stylesheet") && !m_url.isEmpty() && !m_isDisabled) {
