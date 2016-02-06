@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8.12)
 project(KHtml)
 
 include(FeatureSummary)
-find_package(ECM 5.18.0  NO_MODULE)
+find_package(ECM 5.19.0  NO_MODULE)
 set_package_properties(ECM PROPERTIES TYPE REQUIRED DESCRIPTION "Extra CMake Modules." URL "https://projects.kde.org/projects/kdesupport/extra-cmake-modules")
 feature_summary(WHAT REQUIRED_PACKAGES_NOT_FOUND FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
@@ -21,7 +21,7 @@ include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
 
 set(KF5_VERSION "5.19.0") # handled by release scripts
-set(KF5_DEP_VERSION "5.18.0") # handled by release scripts
+set(KF5_DEP_VERSION "5.19.0") # handled by release scripts
 find_package(KF5Archive ${KF5_DEP_VERSION} REQUIRED)
 find_package(KF5Codecs ${KF5_DEP_VERSION} REQUIRED)
 find_package(KF5GlobalAccel ${KF5_DEP_VERSION} REQUIRED)
