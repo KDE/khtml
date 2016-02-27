@@ -198,6 +198,11 @@ bool ScriptInterpreter::shouldInterruptScript() const
 
 UString::UString(const QString &d)
 {
+    if (d.length() > UString::maxUChars()) {
+        m_rep = &Rep::null;
+        return;
+    }
+
     unsigned int len = d.length();
     UChar *dat = static_cast<UChar *>(fastMalloc(sizeof(UChar) * len));
     memcpy(dat, d.unicode(), len * sizeof(UChar));
@@ -211,6 +216,10 @@ UString::UString(const DOM::DOMString &d)
         // the boundary to kjs. They should either be empty strings
         // or explicitly converted to KJS::Null via getString().
         m_rep = &Rep::empty;
+        return;
+    }
+    if (d.length() > UString::maxUChars()) {
+        m_rep = &Rep::null;
         return;
     }
 
