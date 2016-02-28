@@ -1513,13 +1513,12 @@ void KHTMLView::mouseMoveEvent(QMouseEvent *_mouse)
         setCursor = true;
     }
 
-#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
     QWidget *vp = viewport();
     for (KHTMLPart *p = m_part; p; p = p->parentPart())
         if (!p->parentPart()) {
             vp = p->view()->viewport();
         }
-    if (setCursor && vp->cursor().handle() != c.handle()) {
+    if (setCursor && (vp->cursor().shape() != c.shape() || c.shape() == Qt::BitmapCursor)) {
         if (c.shape() == Qt::ArrowCursor) {
             for (KHTMLPart *p = m_part; p; p = p->parentPart()) {
                 p->view()->viewport()->unsetCursor();
@@ -1528,7 +1527,6 @@ void KHTMLView::mouseMoveEvent(QMouseEvent *_mouse)
             vp->setCursor(c);
         }
     }
-#endif
 
     if (linkCursor != LINK_NORMAL && isVisible() && hasFocus()) {
 #if HAVE_X11
