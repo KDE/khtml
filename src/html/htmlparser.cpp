@@ -66,6 +66,8 @@
 #undef __GNUC_GNU_INLINE__
 #include "doctypes.cpp"
 
+#undef OPTIONAL  // for win32, MinGW
+
 using namespace DOM;
 using namespace khtml;
 

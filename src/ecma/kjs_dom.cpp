@@ -55,6 +55,10 @@
 #include <dom/html_document.h>
 #include <khtmlpart_p.h>
 
+// for win32, MinGW
+#undef FOCUS_EVENT
+#undef CreateEvent
+
 using namespace KJS;
 using namespace khtml;
 using namespace DOM;

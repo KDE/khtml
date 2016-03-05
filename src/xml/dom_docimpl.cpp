@@ -122,6 +122,8 @@
 #include <stdlib.h>
 #include <limits.h>
 
+#undef FOCUS_EVENT  // for win32, MinGW
+
 template class QStack<DOM::NodeImpl *>;
 
 using namespace DOM;

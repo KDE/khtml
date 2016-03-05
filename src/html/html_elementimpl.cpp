@@ -49,6 +49,8 @@
 
 #include <QDebug>
 
+#undef FOCUS_EVENT  // for win32, MinGW
+
 using namespace DOM;
 using namespace khtml;
 

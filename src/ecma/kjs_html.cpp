@@ -64,6 +64,8 @@
 #include <QtCore/QList>
 #include <QtCore/QHash>
 
+#undef FOCUS_EVENT  // for win32, MinGW
+
 using namespace DOM;
 
 namespace KJS
