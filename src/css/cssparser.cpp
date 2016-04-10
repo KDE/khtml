@@ -30,6 +30,7 @@
 
 #include <QDebug>
 #include <QUrl>
+#include <QScopedPointer>
 
 #include "css_valueimpl.h"
 #include "css_ruleimpl.h"
@@ -1677,7 +1678,8 @@ bool CSSParser::parse4Values(int propId, const int *properties,  bool important)
 // [ <string> | attr(X) | open-quote | close-quote | no-open-quote | no-close-quote ]+ | inherit
 bool CSSParser::parseContent(int propId, bool important)
 {
-    CSSValueListImpl *values = new CSSValueListImpl(CSSValueListImpl::Comma);
+    QScopedPointer<CSSValueListImpl> values(
+            new CSSValueListImpl(CSSValueListImpl::Comma));
 
     bool isValid = true;
     Value *val;
@@ -1748,12 +1750,11 @@ bool CSSParser::parseContent(int propId, bool important)
         valueList->next();
     }
     if (isValid && values->length()) {
-        addProperty(propId, values, important);
+        addProperty(propId, values.take(), important);
         valueList->next();
         return true;
     }
 
-    delete values;  // also frees any content by deref
     return false;
 }
 
@@ -2105,12 +2106,14 @@ bool CSSParser::parseBackgroundProperty(int propId, int &propId1, int &propId2,
                 values = new CSSValueListImpl();
                 values->append(value);
                 value = 0;
-            }
 
-            if (value2 && !values2) {
-                values2 = new CSSValueListImpl();
-                values2->append(value2);
-                value2 = 0;
+                // Track value, value2 as either a pair of items or a pair
+                // of lists, not in-between
+                if (value2 && !values2) {
+                    values2 = new CSSValueListImpl();
+                    values2->append(value2);
+                    value2 = 0;
+                }
             }
 
             if (values) {

@@ -154,6 +154,7 @@ const unsigned short DOM::tagPriorityArray[] = {
     0, // ID_WBR
     5, // ID_XMP
     0, // ID_TEXT
+    0, // ID_COMMENT
 };
 
 const tagStatus DOM::endTagArray[] = {
@@ -266,7 +267,8 @@ const tagStatus DOM::endTagArray[] = {
     REQUIRED,  // ID_VIDEO
     FORBIDDEN, // ID_WBR
     REQUIRED,  // ID_XMP
-    REQUIRED   // ID_TEXT
+    REQUIRED,  // ID_TEXT
+    REQUIRED   // ID_COMMENT
 };
 
 // This a combination of HTML4.dtd XHTML11.dtd and various extensions

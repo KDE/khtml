@@ -3213,6 +3213,7 @@ khtml::XPathResultImpl *DocumentImpl::evaluate(DOMString &expression,
 {
     XPathExpressionImpl *expr = createExpression(expression, resolver, exceptioncode);
     if (exceptioncode) {
+        delete expr;
         return 0;
     }
 

@@ -669,6 +669,11 @@ void CSSFontSelector::addFontFaceRule(const CSSFontFaceRuleImpl *fontFaceRule)
                 familyFontFaces->append(fontFace);
         */
     }
+
+    // Should be impossible, but in case empty/invalid family name makes it through...
+    if (fontFace->refCount() < 1) {
+        delete fontFace;
+    }
 }
 
 void CSSFontSelector::requestFamilyName(const DOMString &familyName)

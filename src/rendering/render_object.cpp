@@ -1083,27 +1083,32 @@ void RenderObject::drawBorder(QPainter *p, int x1, int y1, int x2, int y2,
             quint64 key = int(horizontal) << 31 | (onLen & 0xff) << 23 | (offLen & 0xff) << 15 | (width & 0x7fff);
             key = key << 32 | c.rgba();
 
-            QPixmap *tile = s_dashedLineCache->object(key);
-            if (!tile) {
+            QPixmap *tilePtr = s_dashedLineCache->object(key);
+            QPixmap tile;
+            if (!tilePtr) {
                 QPainterPath path;
                 int size = (onLen + offLen) * (64 / (onLen + offLen));
                 if (horizontal) {
-                    tile = new QPixmap(size, width);
-                    tile->fill(Qt::transparent);
-                    for (int x = 0; x < tile->width(); x += onLen + offLen) {
-                        path.addRect(x, 0, onLen, tile->height());
+                    tilePtr = new QPixmap(size, width);
+                    tilePtr->fill(Qt::transparent);
+                    for (int x = 0; x < tilePtr->width(); x += onLen + offLen) {
+                        path.addRect(x, 0, onLen, tilePtr->height());
                     }
                 } else { //Vertical
-                    tile = new QPixmap(width, size);
-                    tile->fill(Qt::transparent);
-                    for (int y = 0; y < tile->height(); y += onLen + offLen) {
-                        path.addRect(0, y, tile->width(), onLen);
+                    tilePtr = new QPixmap(width, size);
+                    tilePtr->fill(Qt::transparent);
+                    for (int y = 0; y < tilePtr->height(); y += onLen + offLen) {
+                        path.addRect(0, y, tilePtr->width(), onLen);
                     }
                 }
-                QPainter p2(tile);
+                QPainter p2(tilePtr);
                 p2.fillPath(path, c);
                 p2.end();
-                s_dashedLineCache->insert(key, tile);
+                tile = tilePtr->copy();
+                s_dashedLineCache->insert(key, tilePtr);
+            }
+            else {
+                tile = *tilePtr;
             }
 
             QRect r = QRect(x1, y1, x2 - x1, y2 - y1);
@@ -1118,7 +1123,7 @@ void RenderObject::drawBorder(QPainter *p, int x1, int y1, int x2, int y2,
                 offset.ry() += (y1 - r.top());
             }
 
-            p->drawTiledPixmap(r, *tile, -offset);
+            p->drawTiledPixmap(r, tile, -offset);
         } else {
             const QRect bounding(x1, y1, x2 - x1, y2 - y1);
             QPainterPath path;
