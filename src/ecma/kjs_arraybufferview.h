@@ -23,6 +23,8 @@
 #include "ecma/kjs_arraybuffer.h"
 
 #include <kjs/object.h>
+#include <kjs/function.h>
+#include <kjs/function_object.h>
 #include <kjs/operations.h>
 #include <kjs/array_instance.h>
 #include <dom/dom_exception.h>
@@ -41,7 +43,7 @@ enum {
 
 //type, TypedArrayClass
 template <class T, class U>
-class ArrayBufferViewConstructorImp : public JSObject
+class ArrayBufferViewConstructorImp : public KJS::FunctionPrototype
 {
 public:
     ArrayBufferViewConstructorImp(ExecState *exec, DOM::DocumentImpl *d);
@@ -243,7 +245,7 @@ JSValue *ArrayBufferViewProtoFunc<T, U>::callAsFunction(ExecState *exec, JSObjec
 
 template <class T, class U>
 ArrayBufferViewConstructorImp<T, U>::ArrayBufferViewConstructorImp(ExecState *exec, DOM::DocumentImpl *d)
-    : JSObject(exec->lexicalInterpreter()->builtinFunctionPrototype()),
+    : KJS::FunctionPrototype(exec),
       doc(d)
 {
 }
@@ -330,7 +332,7 @@ JSValue *ArrayBufferViewConstructorImp<T, U>::getValueProperty(ExecState *, int)
 template <class T, class U>
 bool ArrayBufferViewConstructorImp<T, U>::getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot)
 {
-    return getStaticValueSlot<ArrayBufferViewConstructorImp<T, U>, JSObject>(exec, &ArrayBufferViewConstTable, this, propertyName, slot);
+    return getStaticPropertySlot<ArrayBufferViewProtoFunc<T, U>, ArrayBufferViewConstructorImp<T, U>, KJS::FunctionPrototype>(exec, &ArrayBufferViewConstTable, this, propertyName, slot);
 }
 
 // -------------------- ArrayBufferView ---------------------
