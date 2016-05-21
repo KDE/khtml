@@ -1873,7 +1873,6 @@ CSSValueImpl *CSSParser::parseBackgroundPositionXY(BackgroundPosKind &kindOut)
 void CSSParser::parseBackgroundPosition(CSSValueImpl *&value1, CSSValueImpl *&value2)
 {
     value1 = value2 = 0;
-    Value *value = valueList->current();
 
     // Parse the first value.  We're just making sure that it is one of the valid keywords or a percentage/length.
     BackgroundPosKind value1pos;
@@ -1882,21 +1881,20 @@ void CSSParser::parseBackgroundPosition(CSSValueImpl *&value1, CSSValueImpl *&va
         return;
     }
 
-    // It only takes one value for background-position to be correctly parsed if it was specified in a shorthand (since we
-    // can assume that any other values belong to the rest of the shorthand).  If we're not parsing a shorthand, though, the
-    // value was explicitly specified for our property.
-    value = valueList->next();
+    // Parse the second value, if any.
+    Value *value = valueList->next();
 
     // First check for the comma.  If so, we are finished parsing this value or value pair.
     if (value && value->unit == Value::Operator && value->iValue == ',') {
         value = 0;
     }
 
+    bool secondValueSpecifiedAndValid = false;
     BackgroundPosKind value2pos = BgPos_Center; // true if not specified.
     if (value) {
         value2 = parseBackgroundPositionXY(value2pos);
         if (value2) {
-            valueList->next();
+            secondValueSpecifiedAndValid = true;
         } else {
             if (!inShorthand()) {
                 delete value1;
@@ -1949,6 +1947,10 @@ void CSSParser::parseBackgroundPosition(CSSValueImpl *&value1, CSSValueImpl *&va
         CSSValueImpl *val = value2;
         value2 = value1;
         value1 = val;
+    }
+
+    if (secondValueSpecifiedAndValid) {
+        valueList->next();
     }
 }
 
