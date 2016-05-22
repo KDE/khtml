@@ -188,17 +188,6 @@ bool BackgroundLayer::operator==(const BackgroundLayer &o) const
 void BackgroundLayer::fillUnsetProperties()
 {
     BackgroundLayer *curr;
-    for (curr = this; curr && curr->isBackgroundImageSet(); curr = curr->next()) {};
-    if (curr && curr != this) {
-        // We need to fill in the remaining values with the pattern specified.
-        for (BackgroundLayer *pattern = this; curr; curr = curr->next()) {
-            curr->m_image = pattern->m_image;
-            pattern = pattern->next();
-            if (pattern == curr || !pattern) {
-                pattern = this;
-            }
-        }
-    }
 
     for (curr = this; curr && curr->isBackgroundXPositionSet(); curr = curr->next()) {};
     if (curr && curr != this) {
@@ -290,11 +279,7 @@ void BackgroundLayer::cullEmptyLayers()
     BackgroundLayer *next;
     for (BackgroundLayer *p = this; p; p = next) {
         next = p->m_next;
-        if (next && !next->isBackgroundImageSet() &&
-                !next->isBackgroundXPositionSet() && !next->isBackgroundYPositionSet() &&
-                !next->isBackgroundAttachmentSet() && !next->isBackgroundClipSet() &&
-                !next->isBackgroundOriginSet() && !next->isBackgroundRepeatSet() &&
-                !next->isBackgroundSizeSet()) {
+        if (next && !next->isBackgroundImageSet()) {
             delete next;
             p->m_next = 0;
             break;
@@ -1022,8 +1007,9 @@ void RenderStyle::setPaletteColor(QPalette::ColorGroup g, QPalette::ColorRole r,
 
 void RenderStyle::adjustBackgroundLayers()
 {
+    // https://www.w3.org/TR/css3-background/#layering
     if (backgroundLayers()->next()) {
-        // First we cull out layers that have no properties set.
+        // First we cull out backgroundLayers that have no image property set.
         accessBackgroundLayers()->cullEmptyLayers();
 
         // Next we repeat patterns into layers that don't have some properties set.
