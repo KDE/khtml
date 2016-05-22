@@ -11,3 +11,7 @@ libraries:
  - qmake: KHtml
    cmake: "KF5::KHtml"
 cmakename: KF5KHtml
+
+public_lib: true
+group: Frameworks
+subgroup: Porting Aids
