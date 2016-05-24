@@ -1998,10 +1998,10 @@ bool CSSParser::parseBackgroundProperty(int propId, int &propId1, int &propId2,
     qDebug() << "parseBackgroundProperty()";
     qDebug() << "LOOKING FOR: " << getPropertyName(propId).string();
 #endif
-    CSSValueListImpl *values = 0, *values2 = 0;
     Value *val;
-    CSSValueImpl *value = 0, *value2 = 0;
-    bool allowComma = false;
+    CSSValueListImpl *value  = new CSSValueListImpl;
+    CSSValueListImpl *value2 = new CSSValueListImpl;
+    bool expectComma = false;
 
     retValue1 = retValue2 = 0;
     propId1 = propId;
@@ -2013,12 +2013,12 @@ bool CSSParser::parseBackgroundProperty(int propId, int &propId1, int &propId2,
 
     while ((val = valueList->current())) {
         CSSValueImpl *currValue = 0, *currValue2 = 0;
-        if (allowComma) {
+        if (expectComma) {
             if (val->unit != Value::Operator || val->iValue != ',') {
                 goto failed;
             }
             valueList->next();
-            allowComma = false;
+            expectComma = false;
         } else {
             switch (propId) {
             case CSS_PROP_BACKGROUND_ATTACHMENT:
@@ -2104,57 +2104,38 @@ bool CSSParser::parseBackgroundProperty(int propId, int &propId1, int &propId2,
                 goto failed;
             }
 
-            if (value && !values) {
-                values = new CSSValueListImpl();
-                values->append(value);
-                value = 0;
-
-                // Track value, value2 as either a pair of items or a pair
-                // of lists, not in-between
-                if (value2 && !values2) {
-                    values2 = new CSSValueListImpl();
-                    values2->append(value2);
-                    value2 = 0;
+            // When parsing the 'background' shorthand property return the parsed value...
+            if (inShorthand()) {
+                retValue1 = currValue;
+                if (currValue2) {
+                    retValue2 = currValue2;
                 }
+                delete value; delete value2;
+                return true;
             }
 
-            if (values) {
-                values->append(currValue);
-            } else {
-                value = currValue;
-            }
+            // ...if not in shorthand, append to the list of value for the property
+            // and expect a comma for the next value (if any)
+            value->append(currValue);
             if (currValue2) {
-                if (values2) {
-                    values2->append(currValue2);
-                } else {
-                    value2 = currValue2;
-                }
+                value2->append(currValue2);
             }
-            allowComma = true;
-        }
-
-        // When parsing the 'background' shorthand property, we let it handle building up the lists for all
-        // properties.
-        if (inShorthand()) {
-            break;
+            expectComma = true;
         }
     }
 
-    if (values && values->length()) {
-        retValue1 = values;
-        if (values2 && values2->length()) {
-            retValue2 = values2;
-        }
-        return true;
-    }
-    if (value) {
+    // Now return the value list
+    if (value->length() > 0) {
         retValue1 = value;
-        retValue2 = value2;
+        if (value2->length() > 0) {
+            retValue2 = value2;
+        } else {
+            delete value2;
+        }
         return true;
     }
 
 failed:
-    delete values; delete values2;
     delete value; delete value2;
     return false;
 }
