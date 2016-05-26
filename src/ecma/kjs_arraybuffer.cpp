@@ -165,6 +165,6 @@ JSValue *ArrayBufferProtoFunc::callAsFunction(ExecState *exec, JSObject *thisObj
     default:
         return jsUndefined();
     }
-};
+}
 
 } // namespace KJS
