@@ -1,0 +1,7 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/kxmlgui5/khtml">
+        <file>khtml.rc</file>
+        <file>khtml_browser.rc</file>
+    </qresource>
+</RCC>

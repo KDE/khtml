@@ -542,6 +542,8 @@ ki18n_wrap_ui(khtml_LIB_SRCS
    html/keygenwizard2.ui
 )
 
+qt5_add_resources( khtml_LIB_SRCS khtml.qrc )
+
 add_library(KF5KHtml ${khtml_LIB_SRCS})
 add_library(KF5::KHtml ALIAS KF5KHtml)
 
@@ -788,8 +790,6 @@ install(FILES
 
 install(FILES khtml.desktop khtmlimage.desktop
          khtmladaptorpart.desktop DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )
-install(FILES khtml.rc          DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/khtml)
-install(FILES khtml_browser.rc  DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/khtml)
 
 # install(FILES ${CMAKE_CURRENT_BINARY_DIR}/org.kde.KHtmlPart.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR} )
 
