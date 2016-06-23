@@ -2524,6 +2524,10 @@ public:
     {
         return 3;
     }
+    static BorderRadii initialBorderRadius()
+    {
+        return BorderRadii();
+    }
     static int initialLetterWordSpacing()
     {
         return 0;

@@ -2476,10 +2476,6 @@ static Length convertToLength(CSSPrimitiveValueImpl *primitiveValue, RenderStyle
 static BorderRadii convertToBorderRadii(CSSPrimitiveValueImpl *value, RenderStyle *style, RenderStyle *rootStyle, int logicalDpiY)
 {
     BorderRadii ret;
-    if (!value) {
-        return ret;
-    }
-
     PairImpl *p = value->getPairValue();
     if (!p) {
         return ret;
@@ -3192,23 +3188,57 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
         break;
     }
 
-    // ### should these handle initial & inherit?
     case CSS_PROP__KHTML_BORDER_TOP_RIGHT_RADIUS:
     case CSS_PROP_BORDER_TOP_RIGHT_RADIUS:
-        style->setBorderTopRightRadius(convertToBorderRadii(primitiveValue, style, m_rootStyle, logicalDpiY));
-        break;
     case CSS_PROP__KHTML_BORDER_TOP_LEFT_RADIUS:
     case CSS_PROP_BORDER_TOP_LEFT_RADIUS:
-        style->setBorderTopLeftRadius(convertToBorderRadii(primitiveValue, style, m_rootStyle, logicalDpiY));
-        break;
     case CSS_PROP__KHTML_BORDER_BOTTOM_RIGHT_RADIUS:
     case CSS_PROP_BORDER_BOTTOM_RIGHT_RADIUS:
-        style->setBorderBottomRightRadius(convertToBorderRadii(primitiveValue, style, m_rootStyle, logicalDpiY));
-        break;
     case CSS_PROP__KHTML_BORDER_BOTTOM_LEFT_RADIUS:
-    case CSS_PROP_BORDER_BOTTOM_LEFT_RADIUS:
-        style->setBorderBottomLeftRadius(convertToBorderRadii(primitiveValue, style, m_rootStyle, logicalDpiY));
-        break;
+    case CSS_PROP_BORDER_BOTTOM_LEFT_RADIUS: {
+        if (isInherit) {
+            style->setInheritedNoninherited(true);
+            HANDLE_INHERIT_COND(CSS_PROP_BORDER_TOP_RIGHT_RADIUS, borderTopRightRadius, BorderTopRightRadius)
+            HANDLE_INHERIT_COND(CSS_PROP_BORDER_TOP_LEFT_RADIUS, borderTopLeftRadius, BorderTopLeftRadius)
+            HANDLE_INHERIT_COND(CSS_PROP_BORDER_BOTTOM_RIGHT_RADIUS, borderBottomRightRadius, BorderBottomRightRadius)
+            HANDLE_INHERIT_COND(CSS_PROP_BORDER_BOTTOM_LEFT_RADIUS, borderBottomLeftRadius, BorderBottomLeftRadius)
+            return;
+        } else if (isInitial) {
+            HANDLE_INITIAL_COND_WITH_VALUE(CSS_PROP_BORDER_TOP_RIGHT_RADIUS, BorderTopRightRadius, BorderRadius)
+            HANDLE_INITIAL_COND_WITH_VALUE(CSS_PROP_BORDER_TOP_LEFT_RADIUS, BorderTopLeftRadius, BorderRadius)
+            HANDLE_INITIAL_COND_WITH_VALUE(CSS_PROP_BORDER_BOTTOM_RIGHT_RADIUS, BorderBottomRightRadius, BorderRadius)
+            HANDLE_INITIAL_COND_WITH_VALUE(CSS_PROP_BORDER_BOTTOM_LEFT_RADIUS, BorderBottomLeftRadius, BorderRadius)
+            return;
+        }
+
+        if (!primitiveValue) {
+            return;
+        }
+
+        BorderRadii bradii = convertToBorderRadii(primitiveValue, style, m_rootStyle, logicalDpiY);
+        switch(id) {
+            case CSS_PROP__KHTML_BORDER_TOP_RIGHT_RADIUS:
+            case CSS_PROP_BORDER_TOP_RIGHT_RADIUS:
+                style->setBorderTopRightRadius(bradii);
+                break;
+            case CSS_PROP__KHTML_BORDER_TOP_LEFT_RADIUS:
+            case CSS_PROP_BORDER_TOP_LEFT_RADIUS:
+                style->setBorderTopLeftRadius(bradii);
+                break;
+            case CSS_PROP__KHTML_BORDER_BOTTOM_RIGHT_RADIUS:
+            case CSS_PROP_BORDER_BOTTOM_RIGHT_RADIUS:
+                style->setBorderBottomRightRadius(bradii);
+                break;
+            case CSS_PROP__KHTML_BORDER_BOTTOM_LEFT_RADIUS:
+            case CSS_PROP_BORDER_BOTTOM_LEFT_RADIUS:
+                style->setBorderBottomLeftRadius(bradii);
+                break;
+            default:
+                break;
+            }
+        return;
+    }
+    break;
 
     case CSS_PROP_CURSOR:
         HANDLE_INITIAL_AND_INHERIT_ON_INHERITED_PROPERTY(cursor, Cursor)
@@ -4231,6 +4261,21 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
                 style->setBorderLeftWidth(RenderStyle::initialBorderWidth());
                 style->setBorderRightWidth(RenderStyle::initialBorderWidth());
             }
+        }
+        return;
+    case CSS_PROP__KHTML_BORDER_RADIUS:
+    case CSS_PROP_BORDER_RADIUS:
+        if (isInherit) {
+            style->setInheritedNoninherited(true);
+            style->setBorderTopLeftRadius(parentStyle->borderTopLeftRadius());
+            style->setBorderTopRightRadius(parentStyle->borderTopRightRadius());
+            style->setBorderBottomRightRadius(parentStyle->borderBottomRightRadius());
+            style->setBorderBottomLeftRadius(parentStyle->borderBottomLeftRadius());
+        } else if (isInitial) {
+            style->setBorderTopLeftRadius(RenderStyle::initialBorderRadius());
+            style->setBorderTopRightRadius(RenderStyle::initialBorderRadius());
+            style->setBorderBottomRightRadius(RenderStyle::initialBorderRadius());
+            style->setBorderBottomLeftRadius(RenderStyle::initialBorderRadius());
         }
         return;
     case CSS_PROP_BORDER_TOP:
