@@ -154,7 +154,7 @@ const unsigned short DOM::tagPriorityArray[] = {
     0, // ID_WBR
     5, // ID_XMP
     0, // ID_TEXT
-    0, // ID_COMMENT
+    0  // ID_COMMENT
 };
 
 const tagStatus DOM::endTagArray[] = {
