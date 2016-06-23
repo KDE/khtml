@@ -1423,6 +1423,9 @@ bool CSSParser::parseBackgroundShorthand(bool important)
                         }
                     } else if (properties[i] == CSS_PROP_BACKGROUND_ORIGIN) {
                         parsedOriginIdent = static_cast<CSSPrimitiveValueImpl *>(val1)->getIdent();
+                    } else if (properties[i] == CSS_PROP_BACKGROUND_SIZE) {
+                        // we caught an invalid length|percent as background-size
+                        goto fail;
                     }
                 }
             }
