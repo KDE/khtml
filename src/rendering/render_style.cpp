@@ -190,7 +190,7 @@ void BackgroundLayer::fillUnsetProperties()
     if (curr && curr != this) {
         // We need to fill in the remaining values with the pattern specified.
         for (BackgroundLayer *pattern = this; curr; curr = curr->next()) {
-            curr->m_xPosition = pattern->m_xPosition;
+            curr->setBackgroundXPosition(pattern->backgroundXPosition());
             pattern = pattern->next();
             if (pattern == curr || !pattern) {
                 pattern = this;
@@ -202,7 +202,7 @@ void BackgroundLayer::fillUnsetProperties()
     if (curr && curr != this) {
         // We need to fill in the remaining values with the pattern specified.
         for (BackgroundLayer *pattern = this; curr; curr = curr->next()) {
-            curr->m_yPosition = pattern->m_yPosition;
+            curr->setBackgroundYPosition(pattern->backgroundYPosition());
             pattern = pattern->next();
             if (pattern == curr || !pattern) {
                 pattern = this;
@@ -214,7 +214,7 @@ void BackgroundLayer::fillUnsetProperties()
     if (curr && curr != this) {
         // We need to fill in the remaining values with the pattern specified.
         for (BackgroundLayer *pattern = this; curr; curr = curr->next()) {
-            curr->m_bgAttachment = pattern->m_bgAttachment;
+            curr->setBackgroundAttachment(pattern->backgroundAttachment());
             pattern = pattern->next();
             if (pattern == curr || !pattern) {
                 pattern = this;
@@ -226,7 +226,7 @@ void BackgroundLayer::fillUnsetProperties()
     if (curr && curr != this) {
         // We need to fill in the remaining values with the pattern specified.
         for (BackgroundLayer *pattern = this; curr; curr = curr->next()) {
-            curr->m_bgClip = pattern->m_bgClip;
+            curr->setBackgroundClip(pattern->backgroundClip());
             pattern = pattern->next();
             if (pattern == curr || !pattern) {
                 pattern = this;
@@ -238,7 +238,7 @@ void BackgroundLayer::fillUnsetProperties()
     if (curr && curr != this) {
         // We need to fill in the remaining values with the pattern specified.
         for (BackgroundLayer *pattern = this; curr; curr = curr->next()) {
-            curr->m_bgOrigin = pattern->m_bgOrigin;
+            curr->setBackgroundOrigin(pattern->backgroundOrigin());
             pattern = pattern->next();
             if (pattern == curr || !pattern) {
                 pattern = this;
@@ -250,7 +250,7 @@ void BackgroundLayer::fillUnsetProperties()
     if (curr && curr != this) {
         // We need to fill in the remaining values with the pattern specified.
         for (BackgroundLayer *pattern = this; curr; curr = curr->next()) {
-            curr->m_bgRepeat = pattern->m_bgRepeat;
+            curr->setBackgroundRepeat(pattern->backgroundRepeat());
             pattern = pattern->next();
             if (pattern == curr || !pattern) {
                 pattern = this;
@@ -262,7 +262,7 @@ void BackgroundLayer::fillUnsetProperties()
     if (curr && curr != this) {
         // We need to fill in the remaining values with the pattern specified.
         for (BackgroundLayer *pattern = this; curr; curr = curr->next()) {
-            curr->m_backgroundSize = pattern->m_backgroundSize;
+            curr->setBackgroundSize(pattern->backgroundSize());
             pattern = pattern->next();
             if (pattern == curr || !pattern) {
                 pattern = this;
