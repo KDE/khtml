@@ -230,11 +230,12 @@ DOMString CSSStyleDeclarationImpl::getPropertyValue(int propertyID) const
         return getLayeredShortHandValue(properties, 2);
     }
     case CSS_PROP_BACKGROUND: {
-        const int properties[6] = { CSS_PROP_BACKGROUND_IMAGE, CSS_PROP_BACKGROUND_REPEAT,
-                                    CSS_PROP_BACKGROUND_ATTACHMENT, CSS_PROP_BACKGROUND_POSITION_X,
-                                    CSS_PROP_BACKGROUND_POSITION_Y, CSS_PROP_BACKGROUND_COLOR
+        // 'clip' must come after 'origin' in this array
+        const int properties[9] = { CSS_PROP_BACKGROUND_IMAGE, CSS_PROP_BACKGROUND_REPEAT, CSS_PROP_BACKGROUND_ATTACHMENT,
+                                    CSS_PROP_BACKGROUND_POSITION_X, CSS_PROP_BACKGROUND_POSITION_Y, CSS_PROP_BACKGROUND_SIZE,
+                                    CSS_PROP_BACKGROUND_ORIGIN, CSS_PROP_BACKGROUND_CLIP, CSS_PROP_BACKGROUND_COLOR
                                   };
-        return getLayeredShortHandValue(properties, 6);
+        return getLayeredShortHandValue(properties, 9);
     }
     case CSS_PROP_BORDER: {
         const int properties[3][4] = {{
@@ -381,6 +382,31 @@ DOMString CSSStyleDeclarationImpl::get4Values(const int *properties) const
     return res;
 }
 
+static inline DOMString posXYSize_string_helper(DOMString &bPosX, DOMString &bPosY, DOMString &bSize)
+{
+    DOMString res, position;
+
+    if (!bPosX.isEmpty() && !bPosY.isEmpty()) {
+        position = bPosX + DOMString(" ") + bPosY;
+    } else if (bPosX.isEmpty() && !bPosY.isEmpty()) {
+        position = DOMString("0% ") + bPosY;
+    } else if (!bPosX.isEmpty() && bPosY.isEmpty()) {
+        position = bPosX + DOMString(" 0%");
+    }
+
+    if (!bSize.isEmpty()) {
+        if (position.isEmpty()) {
+            res = DOMString("0% 0%") + DOMString(" / ") + bSize;
+        } else {
+            res = position + DOMString(" / ") + bSize;
+        }
+    } else {
+        res = position;
+    }
+
+    return res;
+}
+
 DOMString CSSStyleDeclarationImpl::getLayeredShortHandValue(const int *properties, unsigned number) const
 {
     DOMString res;
@@ -403,10 +429,11 @@ DOMString CSSStyleDeclarationImpl::getLayeredShortHandValue(const int *propertie
         }
     }
 
-    // Now stitch the properties together.  Implicit initial values are flagged as such and
-    // can safely be omitted.
+    // Now stitch the properties together.
+    // Implicit initial values are flagged as such and can safely be omitted.
     for (i = 0; i < numLayers; i++) {
         DOMString layerRes;
+        DOMString bPosX, bPosY, bSize;
         for (j = 0; j < number; j++) {
             CSSValueImpl *value = 0;
             if (values[j]) {
@@ -427,11 +454,30 @@ DOMString CSSStyleDeclarationImpl::getLayeredShortHandValue(const int *propertie
             }
 
             if (value && !value->isImplicitInitialValue()) {
-                if (!layerRes.isNull()) {
-                    layerRes += " ";
+                // positionX,positionY,size should be handled separately in order
+                // to return a consistent and valid 'background' property string
+                if (properties[j] == CSS_PROP_BACKGROUND_POSITION_X) {
+                    bPosX = value->cssText();
+                } else if (properties[j] == CSS_PROP_BACKGROUND_POSITION_Y) {
+                    bPosY = value->cssText();
+                } else if (properties[j] == CSS_PROP_BACKGROUND_SIZE) {
+                    bSize = value->cssText();
+                } else {
+                    if (!layerRes.isNull()) {
+                        layerRes += " ";
+                    }
+                    layerRes += value->cssText();
                 }
-                layerRes += value->cssText();
             }
+        }
+
+        // now add positionX,positionY,size
+        DOMString posXYSize = posXYSize_string_helper(bPosX, bPosY, bSize);
+        if (!posXYSize.isEmpty()) {
+            if (!layerRes.isNull()) {
+                layerRes += " ";
+            }
+            layerRes += posXYSize;
         }
 
         if (!layerRes.isNull()) {
@@ -631,7 +677,11 @@ static void initShorthandMap(QHash<int, PropertyLonghand> &shorthandMap)
         CSS_PROP_BACKGROUND_POSITION_Y,
         CSS_PROP_BACKGROUND_REPEAT,
         CSS_PROP__KHTML_BACKGROUND_SIZE,
-        CSS_PROP_BACKGROUND_SIZE
+        CSS_PROP_BACKGROUND_SIZE,
+        CSS_PROP__KHTML_BACKGROUND_ORIGIN,
+        CSS_PROP_BACKGROUND_ORIGIN,
+        CSS_PROP__KHTML_BACKGROUND_CLIP,
+        CSS_PROP_BACKGROUND_CLIP
     };
     SET_SHORTHAND_MAP_ENTRY(shorthandMap, CSS_PROP_BACKGROUND, backgroundProperties);
 
