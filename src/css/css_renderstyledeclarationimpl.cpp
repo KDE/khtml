@@ -491,34 +491,34 @@ CSSValueImpl *RenderStyleDeclarationImpl::getPropertyCSSValue(int propertyID) co
         RETURN_NULL_ON_NULL(renderer);
         return valueForLength(style->backgroundYPosition(), renderer->contentHeight());
     case CSS_PROP_BACKGROUND_SIZE: {
-        const EBackgroundSizeType backgroundSizeType = style->backgroundLayers()->backgroundSizeType();
+        const EBackgroundSizeType backgroundSizeType = style->backgroundLayers()->backgroundSize().type;
         switch (backgroundSizeType) {
             case BGSCONTAIN:
                 return new CSSPrimitiveValueImpl(CSS_VAL_CONTAIN);
             case BGSCOVER:
                 return new CSSPrimitiveValueImpl(CSS_VAL_COVER);
             case BGSLENGTH: {
-                const LengthSize bgLengthSize = style->backgroundLayers()->backgroundSize();
+                const BGSize bgSize = style->backgroundLayers()->backgroundSize();
                 CSSValueListImpl *values = new CSSValueListImpl(CSSValueListImpl::Space);
-                switch (bgLengthSize.width.type()) {
+                switch (bgSize.width.type()) {
                     case Auto:
                         values->append(new CSSPrimitiveValueImpl(CSS_VAL_AUTO));
                         break;
                     case Percent:
-                        values->append(new CSSPrimitiveValueImpl(bgLengthSize.width.percent(), CSSPrimitiveValue::CSS_PERCENTAGE));
+                        values->append(new CSSPrimitiveValueImpl(bgSize.width.percent(), CSSPrimitiveValue::CSS_PERCENTAGE));
                         break;
                     default:
-                        values->append(new CSSPrimitiveValueImpl(bgLengthSize.width.value(), CSSPrimitiveValue::CSS_PX));
+                        values->append(new CSSPrimitiveValueImpl(bgSize.width.value(), CSSPrimitiveValue::CSS_PX));
                 }
-                switch (bgLengthSize.height.type()) {
+                switch (bgSize.height.type()) {
                     case Auto:
                         values->append(new CSSPrimitiveValueImpl(CSS_VAL_AUTO));
                         break;
                     case Percent:
-                        values->append(new CSSPrimitiveValueImpl(bgLengthSize.height.percent(), CSSPrimitiveValue::CSS_PERCENTAGE));
+                        values->append(new CSSPrimitiveValueImpl(bgSize.height.percent(), CSSPrimitiveValue::CSS_PERCENTAGE));
                         break;
                     default:
-                        values->append(new CSSPrimitiveValueImpl(bgLengthSize.height.value(), CSSPrimitiveValue::CSS_PX));
+                        values->append(new CSSPrimitiveValueImpl(bgSize.height.value(), CSSPrimitiveValue::CSS_PX));
                 }
                 return values;
             }

@@ -414,7 +414,22 @@ enum EBackgroundAttachment {
     BGASCROLL, BGAFIXED, BGALOCAL
 };
 
-struct LengthSize {
+struct BGSize {
+    BGSize() : type(BGSLENGTH), width(Length()), height(Length()) {}
+    // Use to set BGSCONTAIN|BGSCOVER
+    BGSize(EBackgroundSizeType t) : type(t), width(Length()), height(Length())
+    {
+        Q_ASSERT(t != BGSLENGTH);
+    }
+    // Use to set lenghts
+    BGSize(Length w, Length h) : type(BGSLENGTH), width(w), height(h) {}
+
+    bool operator==(const BGSize &o) const
+    {
+        return type == o.type && width == o.width && height == o.height;
+    }
+
+    EBackgroundSizeType type : 2;
     Length width;
     Length height;
 };
@@ -452,13 +467,9 @@ public:
     {
         return KDE_CAST_BF_ENUM(EBackgroundRepeat, m_bgRepeat);
     }
-    LengthSize backgroundSize() const
+    BGSize backgroundSize() const
     {
         return m_backgroundSize;
-    }
-    EBackgroundSizeType backgroundSizeType() const
-    {
-        return KDE_CAST_BF_ENUM(EBackgroundSizeType, m_bgSizeType);
     }
 
     BackgroundLayer *next() const
@@ -538,14 +549,9 @@ public:
         m_bgRepeat = r;
         m_repeatSet = true;
     }
-    void setBackgroundSize(const LengthSize &b)
+    void setBackgroundSize(const BGSize &b)
     {
         m_backgroundSize = b;
-        m_backgroundSizeSet = true;
-    }
-    void setBackgroundSizeType(EBackgroundSizeType t)
-    {
-        m_bgSizeType = t;
         m_backgroundSizeSet = true;
     }
 
@@ -635,9 +641,8 @@ public:
     KDE_BF_ENUM(EBackgroundBox) m_bgClip : 2;
     KDE_BF_ENUM(EBackgroundBox) m_bgOrigin : 2;
     KDE_BF_ENUM(EBackgroundRepeat) m_bgRepeat : 2;
-    KDE_BF_ENUM(EBackgroundSizeType) m_bgSizeType : 2;
 
-    LengthSize m_backgroundSize;
+    BGSize m_backgroundSize;
 
     bool m_imageSet : 1;
     bool m_attachmentSet : 1;
@@ -2387,13 +2392,9 @@ public:
     {
         return REPEAT;
     }
-    static LengthSize initialBackgroundSize()
+    static BGSize initialBackgroundSize()
     {
-        return LengthSize();
-    }
-    static EBackgroundSizeType initialBackgroundSizeType()
-    {
-        return BGSLENGTH;
+        return BGSize();
     }
     static bool initialBorderCollapse()
     {
