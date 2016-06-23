@@ -1363,6 +1363,7 @@ bool CSSParser::parseBackgroundShorthand(bool important)
     bool parsedProperty[numProperties] = { false }; // compiler will repeat false as necessary
     CSSValueImpl *values[numProperties] = { 0 }; // compiler will repeat 0 as necessary
     CSSValueImpl *positionYValue = 0;
+    int parsedOriginIdent = 0;
     int i;
 
     while (valueList->current()) {
@@ -1379,13 +1380,18 @@ bool CSSParser::parseBackgroundShorthand(bool important)
                 }
 
                 if (!parsedProperty[i] && properties[i] != CSS_PROP_BACKGROUND_COLOR) {
-                    addBackgroundValue(values[i], new CSSInitialValueImpl(true/*implicit initial*/));
-                    if (properties[i] == CSS_PROP_BACKGROUND_POSITION) {
-                        addBackgroundValue(positionYValue, new CSSInitialValueImpl(true/*implicit initial*/));
+                    if (properties[i] == CSS_PROP_BACKGROUND_CLIP && parsedOriginIdent != 0) {
+                        addBackgroundValue(values[i], new CSSPrimitiveValueImpl(parsedOriginIdent));
+                    } else {
+                        addBackgroundValue(values[i], new CSSInitialValueImpl(true/*implicit initial*/));
+                        if (properties[i] == CSS_PROP_BACKGROUND_POSITION) {
+                            addBackgroundValue(positionYValue, new CSSInitialValueImpl(true/*implicit initial*/));
+                        }
                     }
                 }
                 parsedProperty[i] = false;
             }
+            parsedOriginIdent = 0;
             if (!valueList->current()) {
                 break;
             }
@@ -1415,6 +1421,8 @@ bool CSSParser::parseBackgroundShorthand(bool important)
                                 goto fail;
                             }
                         }
+                    } else if (properties[i] == CSS_PROP_BACKGROUND_ORIGIN) {
+                        parsedOriginIdent = static_cast<CSSPrimitiveValueImpl *>(val1)->getIdent();
                     }
                 }
             }
@@ -1431,9 +1439,13 @@ bool CSSParser::parseBackgroundShorthand(bool important)
     // Fill in any remaining properties with the initial value.
     for (i = 0; i < numProperties; ++i) {
         if (!parsedProperty[i]) {
-            addBackgroundValue(values[i], new CSSInitialValueImpl(true/*implicit initial*/));
-            if (properties[i] == CSS_PROP_BACKGROUND_POSITION) {
-                addBackgroundValue(positionYValue, new CSSInitialValueImpl(true/*implicit initial*/));
+            if (properties[i] == CSS_PROP_BACKGROUND_CLIP && parsedOriginIdent != 0) {
+                addBackgroundValue(values[i], new CSSPrimitiveValueImpl(parsedOriginIdent));
+            } else {
+                addBackgroundValue(values[i], new CSSInitialValueImpl(true/*implicit initial*/));
+                if (properties[i] == CSS_PROP_BACKGROUND_POSITION) {
+                    addBackgroundValue(positionYValue, new CSSInitialValueImpl(true/*implicit initial*/));
+                }
             }
         }
     }
