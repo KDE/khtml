@@ -1334,7 +1334,7 @@ void CSSParser::addBackgroundValue(CSSValueImpl *&lval, CSSValueImpl *rval)
             static_cast<CSSValueListImpl *>(lval)->append(rval);
         } else {
             CSSValueImpl *oldVal = lval;
-            CSSValueListImpl *list = new CSSValueListImpl();
+            CSSValueListImpl *list = new CSSValueListImpl(CSSValueListImpl::Comma);
             lval = list;
             list->append(oldVal);
             list->append(rval);
@@ -2043,8 +2043,8 @@ bool CSSParser::parseBackgroundProperty(int propId, int &propId1, int &propId2,
     qDebug() << "LOOKING FOR: " << getPropertyName(propId).string();
 #endif
     Value *val;
-    CSSValueListImpl *value  = new CSSValueListImpl;
-    CSSValueListImpl *value2 = new CSSValueListImpl;
+    CSSValueListImpl *value  = new CSSValueListImpl(CSSValueListImpl::Comma);
+    CSSValueListImpl *value2 = new CSSValueListImpl(CSSValueListImpl::Comma);
     bool expectComma = false;
 
     retValue1 = retValue2 = 0;
