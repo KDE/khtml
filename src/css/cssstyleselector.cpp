@@ -4411,6 +4411,7 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
         break;
     case CSS_PROP_OUTLINE:
         if (isInherit) {
+            style->setInheritedNoninherited(true);
             style->setOutlineWidth(parentStyle->outlineWidth());
             style->setOutlineColor(parentStyle->outlineColor());
             style->setOutlineStyle(parentStyle->outlineStyle());
