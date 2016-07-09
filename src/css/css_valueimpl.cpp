@@ -116,6 +116,12 @@ static DOMString quoteStringIfNeeded(const DOMString &string)
     return isCSSTokenizerIdentifier(string) ? string : quoteString(string);
 }
 
+static inline bool isInitialOrInherit(const CSSValueImpl *value)
+{
+    const unsigned short t = value->cssValueType();
+    return (t == CSSValue::CSS_INHERIT || t == CSSValue::CSS_INITIAL);
+}
+
 CSSStyleDeclarationImpl::CSSStyleDeclarationImpl(CSSRuleImpl *parent)
     : StyleBaseImpl(parent)
 {
@@ -366,19 +372,38 @@ DOMString CSSStyleDeclarationImpl::getCommonValue(const int *properties, int num
 
 DOMString CSSStyleDeclarationImpl::get4Values(const int *properties) const
 {
-    DOMString res;
+    // Assume the properties are in the order top, right, bottom, left.
+    QVector<DOMString> values(4);
     for (int i = 0; i < 4; ++i) {
-        if (!isPropertyImplicit(properties[i])) {
-            CSSValueImpl *value = getPropertyCSSValue(properties[i]);
-            if (!value) {   // apparently all 4 properties must be specified.
-                return DOMString();
-            }
-            if (i > 0) {
-                res += " ";
-            }
-            res += value->cssText();
+        CSSValueImpl *val = getPropertyCSSValue(properties[i]);
+        // All 4 properties must be specified.
+        if (!val || isInitialOrInherit(val)) {
+            return DOMString();
+        } else {
+            values[i] = val->cssText();
         }
     }
+
+    // Reduce shorthand.
+    if (values.at(1) == values.at(3)) { // right/left
+        values.remove(3);
+        if (values.at(0) == values.at(2)) { // top/bottom
+            values.remove(2);
+            if (values.at(0) == values.at(1)) {
+                values.remove(1);
+            }
+        }
+    }
+
+    DOMString res;
+    const int valuesSize = values.size();
+    for (int i = 0; i < valuesSize; ++i) {
+        if (!res.isNull()) {
+            res += " ";
+        }
+        res += values.at(i);
+    }
+
     return res;
 }
 
