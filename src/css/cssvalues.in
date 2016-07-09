@@ -421,12 +421,6 @@ ellipsis
 # content-box
 padding-box
 
-# for early implementation, of BACKGROUND_CLIP/ORIGIN
-# using khtml prefix
-border
-content
-padding
-
 #
 # CSS_PROP_BACKGROUND_SIZE
 #

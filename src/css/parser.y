@@ -57,24 +57,6 @@ using namespace DOM;
 #include "cssproperties.c"
 #include "cssvalues.c"
 
-static QHash<QString,int> *sCompatibleProperties = 0;
-
-static const int sMinCompatPropLen = 21; // shortest key in the hash below
-
-static void initCompatibleProperties() {
-     QHash<QString,int> *&cp = sCompatibleProperties;
-     // Hash of (Property name, Vendor Prefix length)
-     cp = new QHash<QString, int>;
-     cp->insert("-webkit-background-clip", 7);
-     cp->insert("-webkit-background-origin", 7);
-     cp->insert("-webkit-background-size", 7);
-     cp->insert("-webkit-border-top-right-radius", 7);
-     cp->insert("-webkit-border-bottom-right-radius", 7);
-     cp->insert("-webkit-border-bottom-left-radius", 7);
-     cp->insert("-webkit-border-top-left-radius", 7);
-     cp->insert("-webkit-border-radius", 7);
-}
-
 int DOM::getPropertyID(const char *tagStr, int len)
 {
     { // HTML CSS Properties
@@ -1133,23 +1115,8 @@ declaration:
 
 property:
     IDENT maybe_space {
-	QString str = qString($1);
-	str = str.toLower();
-	if (str.length() >= sMinCompatPropLen && str[0] == '-' && str[1] != 'k') {
-	    // vendor extension. Lets try and convert a selected few
-	    if (!sCompatibleProperties)
-	        initCompatibleProperties();
-            QHash<QString,int>::iterator it = sCompatibleProperties->find( str );
-            if (it != sCompatibleProperties->end()) {
-                str = "-khtml" + str.mid( it.value() );
-              
-                $$ = getPropertyID( str.toLatin1(), str.length() );
-            } else {
-                $$ = 0;
-            }
-	} else {
-	    $$ = getPropertyID( str.toLatin1(), str.length() );
-        }
+        QString str = qString($1);
+        $$ = getPropertyID(str.toLower().toLatin1(), str.length());
     }
   ;
 

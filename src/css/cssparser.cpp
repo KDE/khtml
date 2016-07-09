@@ -753,10 +753,6 @@ bool CSSParser::parseValue(int propId, bool important)
             valid_primitive = true;
         }
         break;
-    case CSS_PROP__KHTML_BORDER_TOP_RIGHT_RADIUS:
-    case CSS_PROP__KHTML_BORDER_BOTTOM_RIGHT_RADIUS:
-    case CSS_PROP__KHTML_BORDER_BOTTOM_LEFT_RADIUS:
-    case CSS_PROP__KHTML_BORDER_TOP_LEFT_RADIUS:
     case CSS_PROP_BORDER_TOP_RIGHT_RADIUS:
     case CSS_PROP_BORDER_BOTTOM_RIGHT_RADIUS:
     case CSS_PROP_BORDER_BOTTOM_LEFT_RADIUS:
@@ -789,7 +785,6 @@ bool CSSParser::parseValue(int propId, bool important)
         return true;
     }
 
-    case CSS_PROP__KHTML_BORDER_RADIUS:
     case CSS_PROP_BORDER_RADIUS:
         return parseBorderRadius(important);
 
@@ -882,15 +877,12 @@ bool CSSParser::parseValue(int propId, bool important)
         break;
 
     case CSS_PROP_BACKGROUND_ATTACHMENT:
-    case CSS_PROP__KHTML_BACKGROUND_CLIP:
     case CSS_PROP_BACKGROUND_CLIP:
     case CSS_PROP_BACKGROUND_IMAGE:
-    case CSS_PROP__KHTML_BACKGROUND_ORIGIN:
     case CSS_PROP_BACKGROUND_ORIGIN:
     case CSS_PROP_BACKGROUND_POSITION:
     case CSS_PROP_BACKGROUND_POSITION_X:
     case CSS_PROP_BACKGROUND_POSITION_Y:
-    case CSS_PROP__KHTML_BACKGROUND_SIZE:
     case CSS_PROP_BACKGROUND_SIZE:
     case CSS_PROP_BACKGROUND_REPEAT: {
         CSSValueImpl *val1 = 0, *val2 = 0;
@@ -2095,13 +2087,6 @@ bool CSSParser::parseBackgroundProperty(int propId, int &propId1, int &propId2,
                     valueList->next();
                 }
                 break;
-            case CSS_PROP__KHTML_BACKGROUND_CLIP:
-            case CSS_PROP__KHTML_BACKGROUND_ORIGIN:
-                if (val->id == CSS_VAL_BORDER || val->id == CSS_VAL_PADDING || val->id == CSS_VAL_CONTENT) {
-                    currValue = new CSSPrimitiveValueImpl(val->id);
-                    valueList->next();
-                }
-                break;
             case CSS_PROP_BACKGROUND_POSITION:
                 parseBackgroundPosition(currValue, currValue2);
                 // parseBackgroundPosition advances the valueList pointer
@@ -2138,7 +2123,6 @@ bool CSSParser::parseBackgroundProperty(int propId, int &propId1, int &propId2,
                     valueList->next();
                 }
                 break;
-            case CSS_PROP__KHTML_BACKGROUND_SIZE:
             case CSS_PROP_BACKGROUND_SIZE:
                 currValue = parseBackgroundSize();
                 // parseBackgroundSize advances the valueList pointer

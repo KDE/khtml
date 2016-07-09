@@ -20,14 +20,6 @@ background-position
 background-position-x
 background-position-y
 # CSS3 Extensions
--khtml-background-clip
--khtml-background-origin
--khtml-background-size
--khtml-border-top-right-radius
--khtml-border-bottom-right-radius
--khtml-border-bottom-left-radius
--khtml-border-top-left-radius
--khtml-border-radius
 background-clip
 background-origin
 background-size

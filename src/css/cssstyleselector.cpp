@@ -2555,18 +2555,15 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
     case CSS_PROP_BACKGROUND_ATTACHMENT:
         HANDLE_BACKGROUND_VALUE(backgroundAttachment, BackgroundAttachment, value)
         break;
-    case CSS_PROP__KHTML_BACKGROUND_CLIP:
     case CSS_PROP_BACKGROUND_CLIP:
         HANDLE_BACKGROUND_VALUE(backgroundClip, BackgroundClip, value)
         break;
-    case CSS_PROP__KHTML_BACKGROUND_ORIGIN:
     case CSS_PROP_BACKGROUND_ORIGIN:
         HANDLE_BACKGROUND_VALUE(backgroundOrigin, BackgroundOrigin, value)
         break;
     case CSS_PROP_BACKGROUND_REPEAT:
         HANDLE_BACKGROUND_VALUE(backgroundRepeat, BackgroundRepeat, value)
         break;
-    case CSS_PROP__KHTML_BACKGROUND_SIZE:
     case CSS_PROP_BACKGROUND_SIZE:
         HANDLE_BACKGROUND_VALUE(backgroundSize, BackgroundSize, value)
         break;
@@ -3188,13 +3185,9 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
         break;
     }
 
-    case CSS_PROP__KHTML_BORDER_TOP_RIGHT_RADIUS:
     case CSS_PROP_BORDER_TOP_RIGHT_RADIUS:
-    case CSS_PROP__KHTML_BORDER_TOP_LEFT_RADIUS:
     case CSS_PROP_BORDER_TOP_LEFT_RADIUS:
-    case CSS_PROP__KHTML_BORDER_BOTTOM_RIGHT_RADIUS:
     case CSS_PROP_BORDER_BOTTOM_RIGHT_RADIUS:
-    case CSS_PROP__KHTML_BORDER_BOTTOM_LEFT_RADIUS:
     case CSS_PROP_BORDER_BOTTOM_LEFT_RADIUS: {
         if (isInherit) {
             style->setInheritedNoninherited(true);
@@ -3203,7 +3196,8 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
             HANDLE_INHERIT_COND(CSS_PROP_BORDER_BOTTOM_RIGHT_RADIUS, borderBottomRightRadius, BorderBottomRightRadius)
             HANDLE_INHERIT_COND(CSS_PROP_BORDER_BOTTOM_LEFT_RADIUS, borderBottomLeftRadius, BorderBottomLeftRadius)
             return;
-        } else if (isInitial) {
+        }
+        if (isInitial) {
             HANDLE_INITIAL_COND_WITH_VALUE(CSS_PROP_BORDER_TOP_RIGHT_RADIUS, BorderTopRightRadius, BorderRadius)
             HANDLE_INITIAL_COND_WITH_VALUE(CSS_PROP_BORDER_TOP_LEFT_RADIUS, BorderTopLeftRadius, BorderRadius)
             HANDLE_INITIAL_COND_WITH_VALUE(CSS_PROP_BORDER_BOTTOM_RIGHT_RADIUS, BorderBottomRightRadius, BorderRadius)
@@ -3217,19 +3211,15 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
 
         BorderRadii bradii = convertToBorderRadii(primitiveValue, style, m_rootStyle, logicalDpiY);
         switch(id) {
-            case CSS_PROP__KHTML_BORDER_TOP_RIGHT_RADIUS:
             case CSS_PROP_BORDER_TOP_RIGHT_RADIUS:
                 style->setBorderTopRightRadius(bradii);
                 break;
-            case CSS_PROP__KHTML_BORDER_TOP_LEFT_RADIUS:
             case CSS_PROP_BORDER_TOP_LEFT_RADIUS:
                 style->setBorderTopLeftRadius(bradii);
                 break;
-            case CSS_PROP__KHTML_BORDER_BOTTOM_RIGHT_RADIUS:
             case CSS_PROP_BORDER_BOTTOM_RIGHT_RADIUS:
                 style->setBorderBottomRightRadius(bradii);
                 break;
-            case CSS_PROP__KHTML_BORDER_BOTTOM_LEFT_RADIUS:
             case CSS_PROP_BORDER_BOTTOM_LEFT_RADIUS:
                 style->setBorderBottomLeftRadius(bradii);
                 break;
@@ -4263,7 +4253,6 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
             }
         }
         return;
-    case CSS_PROP__KHTML_BORDER_RADIUS:
     case CSS_PROP_BORDER_RADIUS:
         if (isInherit) {
             style->setInheritedNoninherited(true);
@@ -4683,15 +4672,13 @@ void CSSStyleSelector::mapBackgroundClip(BackgroundLayer *layer, CSSValueImpl *v
     }
     CSSPrimitiveValueImpl *primitiveValue = static_cast<CSSPrimitiveValueImpl *>(value);
     switch (primitiveValue->getIdent()) {
-    case CSS_VAL_BORDER:
     case CSS_VAL_BORDER_BOX:
         layer->setBackgroundClip(BGBORDER);
         break;
-    case CSS_VAL_PADDING:
     case CSS_VAL_PADDING_BOX:
         layer->setBackgroundClip(BGPADDING);
         break;
-    default: // CSS_VAL_CONTENT
+    default: // CSS_VAL_CONTENT_BOX
         layer->setBackgroundClip(BGCONTENT);
         break;
     }
@@ -4709,15 +4696,13 @@ void CSSStyleSelector::mapBackgroundOrigin(BackgroundLayer *layer, CSSValueImpl 
     }
     CSSPrimitiveValueImpl *primitiveValue = static_cast<CSSPrimitiveValueImpl *>(value);
     switch (primitiveValue->getIdent()) {
-    case CSS_VAL_BORDER:
     case CSS_VAL_BORDER_BOX:
         layer->setBackgroundOrigin(BGBORDER);
         break;
-    case CSS_VAL_PADDING:
     case CSS_VAL_PADDING_BOX:
         layer->setBackgroundOrigin(BGPADDING);
         break;
-    default: // CSS_VAL_CONTENT
+    default: // CSS_VAL_CONTENT_BOX
         layer->setBackgroundOrigin(BGCONTENT);
         break;
     }

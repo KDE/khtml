@@ -132,24 +132,6 @@ using namespace DOM;
 #include "cssproperties.c"
 #include "cssvalues.c"
 
-static QHash<QString,int> *sCompatibleProperties = 0;
-
-static const int sMinCompatPropLen = 21; // shortest key in the hash below
-
-static void initCompatibleProperties() {
-     QHash<QString,int> *&cp = sCompatibleProperties;
-     // Hash of (Property name, Vendor Prefix length)
-     cp = new QHash<QString, int>;
-     cp->insert("-webkit-background-clip", 7);
-     cp->insert("-webkit-background-origin", 7);
-     cp->insert("-webkit-background-size", 7);
-     cp->insert("-webkit-border-top-right-radius", 7);
-     cp->insert("-webkit-border-bottom-right-radius", 7);
-     cp->insert("-webkit-border-bottom-left-radius", 7);
-     cp->insert("-webkit-border-top-left-radius", 7);
-     cp->insert("-webkit-border-radius", 7);
-}
-
 int DOM::getPropertyID(const char *tagStr, int len)
 {
     { // HTML CSS Properties
@@ -713,27 +695,27 @@ static const yytype_int16 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,   312,   312,   313,   314,   315,   316,   317,   321,   322,
-     323,   327,   334,   340,   365,   377,   383,   385,   389,   390,
-     393,   395,   396,   399,   401,   404,   413,   415,   419,   421,
-     432,   442,   445,   451,   452,   456,   466,   474,   475,   479,
-     480,   483,   485,   496,   497,   498,   499,   500,   501,   502,
-     506,   507,   508,   509,   513,   514,   518,   524,   527,   533,
-     539,   543,   550,   553,   559,   562,   565,   571,   574,   580,
-     583,   588,   592,   597,   604,   615,   627,   628,   638,   656,
-     659,   665,   672,   675,   681,   682,   683,   687,   688,   692,
-     714,   727,   745,   755,   758,   761,   775,   789,   796,   797,
-     798,   802,   807,   814,   821,   829,   839,   852,   857,   864,
-     872,   885,   889,   895,   898,   908,   915,   929,   930,   931,
-     935,   952,   959,   965,   972,   981,   994,   997,  1000,  1003,
-    1006,  1009,  1015,  1016,  1020,  1026,  1032,  1039,  1046,  1053,
-    1060,  1069,  1072,  1075,  1078,  1083,  1089,  1093,  1096,  1101,
-    1107,  1129,  1135,  1157,  1158,  1162,  1166,  1182,  1185,  1188,
-    1194,  1195,  1197,  1198,  1199,  1205,  1206,  1207,  1209,  1215,
-    1216,  1217,  1218,  1219,  1220,  1221,  1222,  1223,  1224,  1225,
-    1226,  1227,  1228,  1229,  1230,  1231,  1232,  1233,  1234,  1235,
-    1236,  1237,  1242,  1250,  1266,  1273,  1279,  1288,  1314,  1315,
-    1319,  1320
+       0,   294,   294,   295,   296,   297,   298,   299,   303,   304,
+     305,   309,   316,   322,   347,   359,   365,   367,   371,   372,
+     375,   377,   378,   381,   383,   386,   395,   397,   401,   403,
+     414,   424,   427,   433,   434,   438,   448,   456,   457,   461,
+     462,   465,   467,   478,   479,   480,   481,   482,   483,   484,
+     488,   489,   490,   491,   495,   496,   500,   506,   509,   515,
+     521,   525,   532,   535,   541,   544,   547,   553,   556,   562,
+     565,   570,   574,   579,   586,   597,   609,   610,   620,   638,
+     641,   647,   654,   657,   663,   664,   665,   669,   670,   674,
+     696,   709,   727,   737,   740,   743,   757,   771,   778,   779,
+     780,   784,   789,   796,   803,   811,   821,   834,   839,   846,
+     854,   867,   871,   877,   880,   890,   897,   911,   912,   913,
+     917,   934,   941,   947,   954,   963,   976,   979,   982,   985,
+     988,   991,   997,   998,  1002,  1008,  1014,  1021,  1028,  1035,
+    1042,  1051,  1054,  1057,  1060,  1065,  1071,  1075,  1078,  1083,
+    1089,  1111,  1117,  1124,  1125,  1129,  1133,  1149,  1152,  1155,
+    1161,  1162,  1164,  1165,  1166,  1172,  1173,  1174,  1176,  1182,
+    1183,  1184,  1185,  1186,  1187,  1188,  1189,  1190,  1191,  1192,
+    1193,  1194,  1195,  1196,  1197,  1198,  1199,  1200,  1201,  1202,
+    1203,  1204,  1209,  1217,  1233,  1240,  1246,  1255,  1281,  1282,
+    1286,  1287
 };
 #endif
 
@@ -3099,23 +3081,8 @@ yyreduce:
   case 152:
 
     {
-	QString str = qString((yyvsp[(1) - (2)].string));
-	str = str.toLower();
-	if (str.length() >= sMinCompatPropLen && str[0] == '-' && str[1] != 'k') {
-	    // vendor extension. Lets try and convert a selected few
-	    if (!sCompatibleProperties)
-	        initCompatibleProperties();
-            QHash<QString,int>::iterator it = sCompatibleProperties->find( str );
-            if (it != sCompatibleProperties->end()) {
-                str = "-khtml" + str.mid( it.value() );
-              
-                (yyval.prop_id) = getPropertyID( str.toLatin1(), str.length() );
-            } else {
-                (yyval.prop_id) = 0;
-            }
-	} else {
-	    (yyval.prop_id) = getPropertyID( str.toLatin1(), str.length() );
-        }
+        QString str = qString((yyvsp[(1) - (2)].string));
+        (yyval.prop_id) = getPropertyID(str.toLower().toLatin1(), str.length());
     }
     break;
 
