@@ -228,7 +228,8 @@ protected:
     void calcAbsoluteHorizontalReplaced();
 
     QPainterPath borderRadiusClipPath(const BackgroundLayer *bgLayer, int _tx, int _ty, int w, int h,
-                                      int bleft, int bright, int btop, int bbottom) const;
+                                      int borderLeft, int borderRight, int borderTop, int borderBottom,
+                                      int paddingLeft, int paddingRight, int paddingTop, int paddingBottom) const;
     QRect overflowClipRect(int tx, int ty) Q_DECL_OVERRIDE;
     QRect clipRect(int tx, int ty) Q_DECL_OVERRIDE;
 

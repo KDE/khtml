@@ -1312,15 +1312,32 @@ void RenderObject::drawBorder(QPainter *p, int x1, int y1, int x2, int y2,
     }
 }
 
-void RenderObject::adjustBorderRadii(BorderRadii &tl, BorderRadii &tr, BorderRadii &bl, BorderRadii &br, int w, int h) const
+void RenderObject::calcBorderRadii(QPoint &topLeftRadii, QPoint &topRightRadii, QPoint &bottomLeftRadii, QPoint &bottomRightRadii, int w, int h) const
 {
-    // CSS Backgrounds and Borders Module Level 3 (WD-css3-background-20080910), chapter 4.5:
-    // "  Corners do not overlap: When the sum of two adjacent corner radii exceeds the size of the border box,
-    //  UAs must reduce one or more of the radii. The algorithm for reducing radii is as follows:"
-    //  The sum of two adjacent radii may not be more than the width or height (whichever is relevant) of the box.
-    //  If any sum exceeds that value, all radii are reduced according to the following formula:"
-    const int horS = qMax(tl.horizontal + tr.horizontal, bl.horizontal + br.horizontal);
-    const int verS = qMax(tl.vertical + bl.vertical, tr.vertical + br.vertical);
+    // CSS Backgrounds and Borders Module Level 3 (http://www.w3.org/TR/2014/CR-css3-background-20140909/), chapter 5.5:
+    // "Corner curves must not overlap: When the sum of any two adjacent border radii exceeds the size of the border box,
+    //  UAs must proportionally reduce the used values of all border radii until none of them overlap.
+    //  The algorithm for reducing radii is as follows: ..."
+
+    const RenderStyle *s = style();
+    if (!s->hasBorderRadius()) {
+        return;
+    }
+
+    // Border radii Length is Fixed|Percent
+    topLeftRadii.rx() = s->borderTopLeftRadius().horizontal.minWidth(w);
+    topLeftRadii.ry() = s->borderTopLeftRadius().vertical.minWidth(h);
+    topRightRadii.rx() = s->borderTopRightRadius().horizontal.minWidth(w);
+    topRightRadii.ry() = s->borderTopRightRadius().vertical.minWidth(h);
+    bottomLeftRadii.rx() = s->borderBottomLeftRadius().horizontal.minWidth(w);
+    bottomLeftRadii.ry() = s->borderBottomLeftRadius().vertical.minWidth(h);
+    bottomRightRadii.rx() = s->borderBottomRightRadius().horizontal.minWidth(w);
+    bottomRightRadii.ry() = s->borderBottomRightRadius().vertical.minWidth(h);
+
+    // Adjust the border radii so they don't overlap when taking the size of the box into account.
+
+    const int horS = qMax(topLeftRadii.x() + topRightRadii.x(), bottomLeftRadii.x() + bottomRightRadii.x());
+    const int verS = qMax(topLeftRadii.y() + bottomLeftRadii.y(), topRightRadii.y() + bottomRightRadii.y());
 
     qreal f = 1.0;
     if (horS > 0) {
@@ -1331,14 +1348,10 @@ void RenderObject::adjustBorderRadii(BorderRadii &tl, BorderRadii &tr, BorderRad
     }
 
     if (f < 1.0) {
-        tl.horizontal *= f;
-        tr.horizontal *= f;
-        bl.horizontal *= f;
-        br.horizontal *= f;
-        tl.vertical   *= f;
-        tr.vertical   *= f;
-        bl.vertical   *= f;
-        br.vertical   *= f;
+        topLeftRadii *= f;
+        topRightRadii *= f;
+        bottomLeftRadii *= f;
+        bottomRightRadii *= f;
     }
 }
 
@@ -1387,7 +1400,7 @@ static QImage blendCornerImages(const QImage &image1, const QImage &image2)
     return composite;
 }
 
-static QBrush cornerGradient(int cx, int cy, const BorderRadii &radius, int angleStart, int angleSpan,
+static QBrush cornerGradient(int cx, int cy, const QPoint &radius, int angleStart, int angleSpan,
                              const QColor &startColor, const QColor &finalColor)
 {
     QConicalGradient g(0, 0, angleStart);
@@ -1399,10 +1412,10 @@ static QBrush cornerGradient(int cx, int cy, const BorderRadii &radius, int angl
     QTransform xform;
     xform.translate(cx, cy);
 
-    if (radius.horizontal < radius.vertical) {
-        xform.scale(radius.horizontal / radius.vertical, 1);
-    } else if (radius.vertical < radius.horizontal) {
-        xform.scale(1, radius.vertical / radius.horizontal);
+    if (radius.x() < radius.y()) {
+        xform.scale(radius.x() / radius.y(), 1);
+    } else if (radius.y() < radius.x()) {
+        xform.scale(1, radius.y() / radius.x());
     }
 
     brush.setTransform(xform);
@@ -1410,7 +1423,7 @@ static QBrush cornerGradient(int cx, int cy, const BorderRadii &radius, int angl
 }
 
 void RenderObject::drawBorderArc(QPainter *p, int x, int y, float horThickness, float vertThickness,
-                                 const BorderRadii &radius, int angleStart, int angleSpan, const QBrush &brush,
+                                 const QPoint &radius, int angleStart, int angleSpan, const QBrush &brush,
                                  const QColor &textColor, EBorderStyle style, qreal *nextDashOffset) const
 {
     QColor c = brush.color();
@@ -1447,7 +1460,7 @@ void RenderObject::drawBorderArc(QPainter *p, int x, int y, float horThickness, 
     }
 
     case SOLID: {
-        const QRect outerRect = QRect(x - radius.horizontal, y - radius.vertical, radius.horizontal * 2, radius.vertical * 2);
+        const QRect outerRect = QRect(x - radius.x(), y - radius.y(), radius.x() * 2, radius.y() * 2);
         const QRect innerRect = outerRect.adjusted(horThickness, vertThickness, -horThickness, -vertThickness);
         QPainterPath path;
         path.arcMoveTo(outerRect, angleStart);
@@ -1466,9 +1479,7 @@ void RenderObject::drawBorderArc(QPainter *p, int x, int y, float horThickness, 
         const qreal hw = (horThickness + 1) / 3;
         const qreal vw = (vertThickness + 1) / 3;
 
-        BorderRadii br;
-        br.horizontal = radius.horizontal - hw * 2 + 1;
-        br.vertical = radius.vertical - vw * 2 + 1;
+        QPoint br(radius.x() - hw * 2 + 1, radius.y() - vw * 2 + 1);
 
         drawBorderArc(p, x, y, hw, vw, radius, angleStart, angleSpan, brush, textColor, SOLID);
         drawBorderArc(p, x, y, hw, vw, br, angleStart, angleSpan, brush, textColor, SOLID);
@@ -1477,7 +1488,7 @@ void RenderObject::drawBorderArc(QPainter *p, int x, int y, float horThickness, 
 
     case INSET:
     case OUTSET: {
-        QImage image1(radius.horizontal * 2, radius.vertical * 2, QImage::Format_ARGB32_Premultiplied);
+        QImage image1(radius.x() * 2, radius.y() * 2, QImage::Format_ARGB32_Premultiplied);
         image1.fill(0);
 
         QImage image2 = image1;
@@ -1487,22 +1498,22 @@ void RenderObject::drawBorderArc(QPainter *p, int x, int y, float horThickness, 
 
         QPainter p2;
         p2.begin(&image1);
-        drawBorderArc(&p2, radius.horizontal, radius.vertical, horThickness, vertThickness,
+        drawBorderArc(&p2, radius.x(), radius.y(), horThickness, vertThickness,
                       radius, angleStart, angleSpan, c1, textColor, SOLID);
         p2.end();
 
         p2.begin(&image2);
-        drawBorderArc(&p2, radius.horizontal, radius.vertical, horThickness, vertThickness,
+        drawBorderArc(&p2, radius.x(), radius.y(), horThickness, vertThickness,
                       radius, angleStart, angleSpan, c2, textColor, SOLID);
         p2.end();
 
-        p->drawImage(x - radius.horizontal, y - radius.vertical, blendCornerImages(image1, image2));
+        p->drawImage(x - radius.x(), y - radius.y(), blendCornerImages(image1, image2));
         break;
     }
 
     case RIDGE:
     case GROOVE: {
-        QImage image1(radius.horizontal * 2, radius.vertical * 2, QImage::Format_ARGB32_Premultiplied);
+        QImage image1(radius.x() * 2, radius.y() * 2, QImage::Format_ARGB32_Premultiplied);
         image1.fill(0);
 
         QImage image2 = image1;
@@ -1512,12 +1523,10 @@ void RenderObject::drawBorderArc(QPainter *p, int x, int y, float horThickness, 
 
         const qreal hw = horThickness / 2;
         const qreal vw = vertThickness / 2;
-        int cx = radius.horizontal;
-        int cy = radius.vertical;
+        int cx = radius.x();
+        int cy = radius.y();
 
-        BorderRadii innerRadius;
-        innerRadius.horizontal = radius.horizontal - hw;
-        innerRadius.vertical = radius.vertical - vw;
+        QPoint innerRadius(radius.x() - hw, radius.y() - vw);
 
         QPainter p2;
         p2.begin(&image1);
@@ -1530,13 +1539,13 @@ void RenderObject::drawBorderArc(QPainter *p, int x, int y, float horThickness, 
         drawBorderArc(&p2, cx, cy, hw, vw, innerRadius, angleStart, angleSpan, c1, textColor, SOLID);
         p2.end();
 
-        p->drawImage(x - radius.horizontal, y - radius.vertical, blendCornerImages(image1, image2));
+        p->drawImage(x - radius.x(), y - radius.y(), blendCornerImages(image1, image2));
         break;
     }
 
     case DOTTED:
     case DASHED: {
-        const QRectF rect = QRectF(x - radius.horizontal, y - radius.vertical, radius.horizontal * 2, radius.vertical * 2);
+        const QRectF rect = QRectF(x - radius.x(), y - radius.y(), radius.x() * 2, radius.y() * 2);
         int width;
 
         // Figure out which border we're starting from
@@ -1600,16 +1609,8 @@ void RenderObject::paintBorder(QPainter *p, int _tx, int _ty, int w, int h, cons
     bool render_r = rs > BHIDDEN && end && !rt;
     bool render_b = bs > BHIDDEN && !bt;
 
-    BorderRadii topLeft = style->borderTopLeftRadius();
-    BorderRadii topRight = style->borderTopRightRadius();
-    BorderRadii bottomLeft = style->borderBottomLeftRadius();
-    BorderRadii bottomRight = style->borderBottomRightRadius();
-
-    if (style->hasBorderRadius()) {
-        // Adjust the border radii so they don't overlap when taking the size of the box
-        // into account.
-        adjustBorderRadii(topLeft, topRight, bottomLeft, bottomRight, w, h);
-    }
+    QPoint topLeftRadii, topRightRadii, bottomLeftRadii, bottomRightRadii;
+    calcBorderRadii(topLeftRadii, topRightRadii, bottomLeftRadii, bottomRightRadii, w, h);
 
     bool upperLeftBorderStylesMatch = render_l && (ts == ls) && (tc == lc);
     bool upperRightBorderStylesMatch = render_r && (ts == rs) && (tc == rc);
@@ -1627,22 +1628,22 @@ void RenderObject::paintBorder(QPainter *p, int _tx, int _ty, int w, int h, cons
 
     // Draw the borders counter-clockwise starting with the upper right corner
     if (render_t) {
-        bool ignore_left = (topLeft.horizontal > 0) ||
+        bool ignore_left = (topLeftRadii.x() > 0) ||
                            ((tc == lc) && (tt == lt) &&
                             (ts >= OUTSET) &&
                             (ls == DOTTED || ls == DASHED || ls == SOLID || ls == OUTSET));
 
-        bool ignore_right = (topRight.horizontal > 0) ||
+        bool ignore_right = (topRightRadii.x() > 0) ||
                             ((tc == rc) && (tt == rt) &&
                              (ts >= OUTSET) &&
                              (rs == DOTTED || rs == DASHED || rs == SOLID || rs == INSET));
 
-        int x = _tx + topLeft.horizontal;
-        int x2 = _tx + w - topRight.horizontal;
+        int x = _tx + topLeftRadii.x();
+        int x2 = _tx + w - topRightRadii.x();
 
-        if (topRight.hasBorderRadius()) {
-            int x = _tx + w - topRight.horizontal;
-            int y = _ty + topRight.vertical;
+        if (!topRightRadii.isNull()) {
+            int x = _tx + w - topRightRadii.x();
+            int y = _ty + topRightRadii.y();
             int startAngle, span;
 
             if (upperRightBorderStylesMatch || upperRightGradient) {
@@ -1654,96 +1655,96 @@ void RenderObject::paintBorder(QPainter *p, int _tx, int _ty, int w, int h, cons
             }
 
             const QBrush brush = upperRightGradient ?
-                                 cornerGradient(x, y, topRight, startAngle, span, rc, tc) : tc;
+                                 cornerGradient(x, y, topRightRadii, startAngle, span, rc, tc) : tc;
 
             // Draw the upper right arc
             drawBorderArc(p, x, y, style->borderRightWidth(), style->borderTopWidth(),
-                          topRight, startAngle, span, brush, style->color(), ts, &nextDashOffset);
+                          topRightRadii, startAngle, span, brush, style->color(), ts, &nextDashOffset);
         }
 
         drawBorder(p, x, _ty, x2, _ty + style->borderTopWidth(), BSTop, tc, style->color(), ts,
                    ignore_left ? 0 : style->borderLeftWidth(),
                    ignore_right ? 0 : style->borderRightWidth(), false, &nextDashOffset);
 
-        if (topLeft.hasBorderRadius()) {
-            int x = _tx + topLeft.horizontal;
-            int y = _ty + topLeft.vertical;
+        if (!topLeftRadii.isNull()) {
+            int x = _tx + topLeftRadii.x();
+            int y = _ty + topLeftRadii.y();
             int startAngle = 90;
             int span = (upperLeftBorderStylesMatch || upperLeftGradient) ? 90 : 45;
             const QBrush brush = upperLeftGradient ?
-                                 cornerGradient(x, y, topLeft, startAngle, span, tc, lc) : tc;
+                                 cornerGradient(x, y, topLeftRadii, startAngle, span, tc, lc) : tc;
 
             // Draw the upper left arc
             drawBorderArc(p, x, y, style->borderLeftWidth(), style->borderTopWidth(),
-                          topLeft, startAngle, span, brush, style->color(), ts, &nextDashOffset);
+                          topLeftRadii, startAngle, span, brush, style->color(), ts, &nextDashOffset);
         } else if (ls == DASHED || ls == DOTTED) {
             nextDashOffset = 0;    // Reset the offset to avoid partially overlapping dashes
         }
     }
 
     if (render_l) {
-        bool ignore_top = (topLeft.vertical > 0) ||
+        bool ignore_top = (topLeftRadii.y() > 0) ||
                           ((tc == lc) && (tt == lt) &&
                            (ls >= OUTSET) &&
                            (ts == DOTTED || ts == DASHED || ts == SOLID || ts == OUTSET));
 
-        bool ignore_bottom = (bottomLeft.vertical > 0) ||
+        bool ignore_bottom = (bottomLeftRadii.y() > 0) ||
                              ((bc == lc) && (bt == lt) &&
                               (ls >= OUTSET) &&
                               (bs == DOTTED || bs == DASHED || bs == SOLID || bs == INSET));
 
-        int y = _ty + topLeft.vertical;
-        int y2 = _ty + h - bottomLeft.vertical;
+        int y = _ty + topLeftRadii.y();
+        int y2 = _ty + h - bottomLeftRadii.y();
 
-        if (!upperLeftBorderStylesMatch && !upperLeftGradient && topLeft.hasBorderRadius()) {
-            int x = _tx + topLeft.horizontal;
-            int y = _ty + topLeft.vertical;
+        if (!upperLeftBorderStylesMatch && !upperLeftGradient && !topLeftRadii.isNull()) {
+            int x = _tx + topLeftRadii.x();
+            int y = _ty + topLeftRadii.y();
             int startAngle = 135;
             int span = 45;
 
             // Draw the upper left arc
             drawBorderArc(p, x, y, style->borderLeftWidth(), style->borderTopWidth(),
-                          topLeft, startAngle, span, lc, style->color(), ls, &nextDashOffset);
+                          topLeftRadii, startAngle, span, lc, style->color(), ls, &nextDashOffset);
         }
 
         drawBorder(p, _tx, y, _tx + style->borderLeftWidth(), y2, BSLeft, lc, style->color(), ls,
                    ignore_top ? 0 : style->borderTopWidth(),
                    ignore_bottom ? 0 : style->borderBottomWidth(), false, &nextDashOffset);
 
-        if (!lowerLeftBorderStylesMatch && !lowerLeftGradient && bottomLeft.hasBorderRadius()) {
-            int x = _tx + bottomLeft.horizontal;
-            int y = _ty + h - bottomLeft.vertical;
+        if (!lowerLeftBorderStylesMatch && !lowerLeftGradient && !bottomLeftRadii.isNull()) {
+            int x = _tx + bottomLeftRadii.x();
+            int y = _ty + h - bottomLeftRadii.y();
             int startAngle = 180;
             int span = 45;
 
             // Draw the bottom left arc
             drawBorderArc(p, x, y, style->borderLeftWidth(), style->borderBottomWidth(),
-                          bottomLeft, startAngle, span, lc, style->color(), ls, &nextDashOffset);
+                          bottomLeftRadii, startAngle, span, lc, style->color(), ls, &nextDashOffset);
         }
 
         // Reset the offset to avoid partially overlapping dashes
-        if (!bottomLeft.hasBorderRadius() && (bs == DASHED || bs == DOTTED)) {
+        if (bottomLeftRadii.isNull() && (bs == DASHED || bs == DOTTED)) {
             nextDashOffset = 0;
         }
     }
 
     if (render_b) {
-        bool ignore_left = (bottomLeft.horizontal > 0) ||
+        bool ignore_left = (bottomLeftRadii.x() > 0) ||
                            ((bc == lc) && (bt == lt) &&
                             (bs >= OUTSET) &&
                             (ls == DOTTED || ls == DASHED || ls == SOLID || ls == INSET));
 
-        bool ignore_right = (bottomRight.horizontal > 0) ||
+        bool ignore_right = (bottomRightRadii.x() > 0) ||
                             ((bc == rc) && (bt == rt) &&
                              (bs >= OUTSET) &&
                              (rs == DOTTED || rs == DASHED || rs == SOLID || rs == OUTSET));
 
-        int x = _tx + bottomLeft.horizontal;
-        int x2 = _tx + w - bottomRight.horizontal;
+        int x = _tx + bottomLeftRadii.x();
+        int x2 = _tx + w - bottomRightRadii.x();
 
-        if (bottomLeft.hasBorderRadius()) {
-            int x = _tx + bottomLeft.horizontal;
-            int y = _ty + h - bottomLeft.vertical;
+        if (!bottomLeftRadii.isNull()) {
+            int x = _tx + bottomLeftRadii.x();
+            int y = _ty + h - bottomLeftRadii.y();
             int startAngle, span;
 
             if (lowerLeftBorderStylesMatch || lowerLeftGradient) {
@@ -1755,71 +1756,71 @@ void RenderObject::paintBorder(QPainter *p, int _tx, int _ty, int w, int h, cons
             }
 
             const QBrush brush = lowerLeftGradient ?
-                                 cornerGradient(x, y, bottomLeft, startAngle, span, lc, bc) : bc;
+                                 cornerGradient(x, y, bottomLeftRadii, startAngle, span, lc, bc) : bc;
 
             // Draw the bottom left arc
             drawBorderArc(p, x, y, style->borderLeftWidth(), style->borderBottomWidth(),
-                          bottomLeft, startAngle, span, brush, style->color(), bs, &nextDashOffset);
+                          bottomLeftRadii, startAngle, span, brush, style->color(), bs, &nextDashOffset);
         }
 
         drawBorder(p, x, _ty + h - style->borderBottomWidth(), x2, _ty + h, BSBottom, bc, style->color(), bs,
                    ignore_left ? 0 : style->borderLeftWidth(),
                    ignore_right ? 0 : style->borderRightWidth(), false, &nextDashOffset);
 
-        if (bottomRight.hasBorderRadius()) {
-            int x = _tx + w - bottomRight.horizontal;
-            int y = _ty + h - bottomRight.vertical;
+        if (!bottomRightRadii.isNull()) {
+            int x = _tx + w - bottomRightRadii.x();
+            int y = _ty + h - bottomRightRadii.y();
             int startAngle = 270;
             int span = (lowerRightBorderStylesMatch || lowerRightGradient) ? 90 : 45;
             const QBrush brush = lowerRightGradient ?
-                                 cornerGradient(x, y, bottomRight, startAngle, span, bc, rc) : bc;
+                                 cornerGradient(x, y, bottomRightRadii, startAngle, span, bc, rc) : bc;
 
             // Draw the bottom right arc
             drawBorderArc(p, x, y, style->borderRightWidth(), style->borderBottomWidth(),
-                          bottomRight, startAngle, span, brush, style->color(), bs, &nextDashOffset);
+                          bottomRightRadii, startAngle, span, brush, style->color(), bs, &nextDashOffset);
         } else if (rs == DASHED || rs == DOTTED) {
             nextDashOffset = 0;    // Reset the offset to avoid partially overlapping dashes
         }
     }
 
     if (render_r) {
-        bool ignore_top = (topRight.vertical > 0) ||
+        bool ignore_top = (topRightRadii.y() > 0) ||
                           ((tc == rc) && (tt == rt) &&
                            (rs >= DOTTED || rs == INSET) &&
                            (ts == DOTTED || ts == DASHED || ts == SOLID || ts == OUTSET));
 
-        bool ignore_bottom = (bottomRight.vertical > 0) ||
+        bool ignore_bottom = (bottomRightRadii.y() > 0) ||
                              ((bc == rc) && (bt == rt) &&
                               (rs >= DOTTED || rs == INSET) &&
                               (bs == DOTTED || bs == DASHED || bs == SOLID || bs == INSET));
 
-        int y = _ty + topRight.vertical;
-        int y2 = _ty + h - bottomRight.vertical;
+        int y = _ty + topRightRadii.y();
+        int y2 = _ty + h - bottomRightRadii.y();
 
-        if (!lowerRightBorderStylesMatch && !lowerRightGradient && bottomRight.hasBorderRadius()) {
-            int x = _tx + w - bottomRight.horizontal;
-            int y = _ty + h - bottomRight.vertical;
+        if (!lowerRightBorderStylesMatch && !lowerRightGradient && !bottomRightRadii.isNull()) {
+            int x = _tx + w - bottomRightRadii.x();
+            int y = _ty + h - bottomRightRadii.y();
             int startAngle = 315;
             int span = 45;
 
             // Draw the bottom right arc
             drawBorderArc(p, x, y, style->borderRightWidth(), style->borderBottomWidth(),
-                          bottomRight, startAngle, span, rc, style->color(), rs, &nextDashOffset);
+                          bottomRightRadii, startAngle, span, rc, style->color(), rs, &nextDashOffset);
         }
 
         drawBorder(p, _tx + w - style->borderRightWidth(), y, _tx + w, y2, BSRight, rc, style->color(), rs,
                    ignore_top ? 0 : style->borderTopWidth(),
                    ignore_bottom ? 0 : style->borderBottomWidth(), false, &nextDashOffset);
 
-        if (!upperRightBorderStylesMatch && !upperRightGradient && topRight.hasBorderRadius()) {
-            int x = _tx + w - topRight.horizontal;
-            int y = _ty + topRight.vertical;
+        if (!upperRightBorderStylesMatch && !upperRightGradient && !topRightRadii.isNull()) {
+            int x = _tx + w - topRightRadii.x();
+            int y = _ty + topRightRadii.y();
             int startAngle = 0;
             int span = 45;
 
             // Draw the upper right arc
             drawBorderArc(p, x, y, style->borderRightWidth(), style->borderTopWidth(),
-                          topRight, startAngle, span, rc, style->color(), rs, &nextDashOffset);
+                          topRightRadii, startAngle, span, rc, style->color(), rs, &nextDashOffset);
         }
     }
 }

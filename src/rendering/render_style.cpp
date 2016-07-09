@@ -429,6 +429,15 @@ bool BorderRadii::operator==(const BorderRadii &o) const
            vertical   == o.vertical;
 }
 
+BorderRadiusData::BorderRadiusData()
+    :Shared<BorderRadiusData>()
+{
+    topRight = RenderStyle::initialBorderRadius();
+    bottomRight = RenderStyle::initialBorderRadius();
+    bottomLeft = RenderStyle::initialBorderRadius();
+    topLeft = RenderStyle::initialBorderRadius();
+}
+
 bool BorderRadiusData::operator==(const BorderRadiusData &o) const
 {
     return topRight == o.topRight && bottomRight == o.bottomRight

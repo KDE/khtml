@@ -133,7 +133,7 @@ static const int computedProperties[] = {
 
 const unsigned numComputedProperties = sizeof(computedProperties) / sizeof(computedProperties[0]);
 
-static CSSValueImpl *valueForLength(const Length &length, int max)
+static CSSPrimitiveValueImpl *valueForLength(const Length &length, int max)
 {
     if (length.isPercent()) {
         return new CSSPrimitiveValueImpl(length.percent(), CSSPrimitiveValue::CSS_PERCENTAGE);
@@ -142,7 +142,7 @@ static CSSValueImpl *valueForLength(const Length &length, int max)
     }
 }
 
-static CSSValueImpl *valueForLength2(const Length &length)
+static CSSPrimitiveValueImpl *valueForLength2(const Length &length)
 {
     if (length.isPercent()) {
         return new CSSPrimitiveValueImpl(length.percent(), CSSPrimitiveValue::CSS_PERCENTAGE);
@@ -183,8 +183,8 @@ static CSSValueImpl *valueForBorderStyle(EBorderStyle style)
 
 static CSSValueImpl *valueForBorderRadii(BorderRadii radii)
 {
-    CSSPrimitiveValueImpl *h = new CSSPrimitiveValueImpl(radii.horizontal, CSSPrimitiveValue::CSS_PX);
-    CSSPrimitiveValueImpl *v = new CSSPrimitiveValueImpl(radii.vertical, CSSPrimitiveValue::CSS_PX);
+    CSSPrimitiveValueImpl *h = valueForLength2(radii.horizontal);
+    CSSPrimitiveValueImpl *v = valueForLength2(radii.vertical);
     return new CSSPrimitiveValueImpl(new PairImpl(h, v));
 }
 

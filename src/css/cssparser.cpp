@@ -762,7 +762,7 @@ bool CSSParser::parseValue(int propId, bool important)
             return false;
         }
 
-        if (!validUnit(value, FLength | FNonNeg, strict)) {
+        if (!validUnit(value, FLength | FPercent | FNonNeg, strict)) {
             return false;
         }
 
@@ -772,7 +772,7 @@ bool CSSParser::parseValue(int propId, bool important)
 
         if (num == 2) {
             value = valueList->next();
-            if (!validUnit(value, FLength | FNonNeg, strict)) {
+            if (!validUnit(value, FLength | FPercent | FNonNeg, strict)) {
                 delete horiz;
                 return false;
             }
@@ -1501,7 +1501,7 @@ bool CSSParser::parseBorderRadius(bool important)
             break;    //Saw slash -- exit w/o consuming as we'll use it below.
         }
 
-        if (!validUnit(value, FLength | FNonNeg, strict)) {
+        if (!validUnit(value, FLength | FPercent | FNonNeg, strict)) {
             return false;
         }
 
@@ -1526,7 +1526,7 @@ bool CSSParser::parseBorderRadius(bool important)
                 break;
             }
 
-            if (!validUnit(value, FLength | FNonNeg, strict)) {
+            if (!validUnit(value, FLength | FPercent | FNonNeg, strict)) {
                 return false;
             }
 

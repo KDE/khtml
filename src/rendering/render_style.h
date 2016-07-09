@@ -775,14 +775,14 @@ public:
 };
 
 struct BorderRadii {
-    int horizontal;
-    int vertical;
+    Length horizontal;
+    Length vertical;
 
-    BorderRadii(): horizontal(0), vertical(0) {}
+    BorderRadii(): horizontal(Length(0, Fixed)), vertical(Length(0, Fixed)) {}
 
     bool hasBorderRadius() const
     {
-        return horizontal > 0 && vertical > 0;
+        return (!horizontal.isZero() && !vertical.isZero());
     }
 
     bool operator==(const BorderRadii &o) const;
@@ -795,7 +795,7 @@ struct BorderRadii {
 class BorderRadiusData : public Shared<BorderRadiusData>
 {
 public:
-    BorderRadiusData() : Shared<BorderRadiusData>() {};
+    BorderRadiusData();
     BorderRadiusData(const BorderRadiusData &other) : Shared<BorderRadiusData>(),
         topRight(other.topRight),
         bottomRight(other.bottomRight),

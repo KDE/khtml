@@ -714,10 +714,10 @@ public:
     };
     virtual void paint(PaintInfo &i, int tx, int ty);
 
-    void adjustBorderRadii(BorderRadii &tl, BorderRadii &tr, BorderRadii &bl, BorderRadii &br, int w, int h) const;
+    void calcBorderRadii(QPoint &topLeftRadii, QPoint &topRightRadii, QPoint &bottomLeftRadii, QPoint &bottomRightRadii, int w, int h) const;
 
     void drawBorderArc(QPainter *p, int x, int y, float horThickness, float vertThickness,
-                       const BorderRadii &radius, int angleStart, int angleSpan, const QBrush &brush,
+                       const QPoint &radius, int angleStart, int angleSpan, const QBrush &brush,
                        const QColor &textColor, EBorderStyle style, qreal *dashOffset = 0) const;
 
     void paintBorder(QPainter *p, int _tx, int _ty, int w, int h, const RenderStyle *style, bool begin = true, bool end = true);
