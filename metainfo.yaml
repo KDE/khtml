@@ -4,6 +4,7 @@ tier: 3
 type: solution
 platforms:
     - name: Linux
+    - name: FreeBSD
     - name: Windows
     - name: MacOSX
 portingAid: true
