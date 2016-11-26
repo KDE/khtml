@@ -831,15 +831,15 @@ QString PermissionDialog::exec(const QString &cert, const QString &perm)
     buttonLayout->addWidget(no);
 
     QPushButton *const reject = new QPushButton(i18n("&Reject All"), dialog);
-    no->setObjectName("reject");
+    reject->setObjectName("reject");
     buttonLayout->addWidget(reject);
 
     QPushButton *const yes = new QPushButton(i18n("&Yes"), dialog);
-    no->setObjectName("yes");
+    yes->setObjectName("yes");
     buttonLayout->addWidget(yes);
 
     QPushButton *const grant = new QPushButton(i18n("&Grant All"), dialog);
-    no->setObjectName("grant");
+    grant->setObjectName("grant");
     buttonLayout->addWidget(grant);
     dialogLayout->addLayout(buttonLayout);
     dialog->resize(dialog->minimumSizeHint());
