@@ -196,3 +196,4 @@ Name[zh_TW]=可嵌入的影像檢視器
 X-KDE-ServiceTypes=KParts/ReadOnlyPart,Browser/View
 InitialPreference=4
 X-KDE-Library=kf5/parts/khtmlimagepart
+Icon=image-x-generic

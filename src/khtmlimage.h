@@ -37,39 +37,14 @@ class CachedImage;
 
 /**
  * @internal
- * (Only exported for khtmlimage_init.cpp, i.e. the part)
  */
-class KHTML_EXPORT KHTMLImageFactory : public KPluginFactory
+class KHTML_EXPORT KHTMLImage : public KParts::ReadOnlyPart, public khtml::CachedObjectClient
 {
     Q_OBJECT
-public:
-    KHTMLImageFactory();
-    virtual ~KHTMLImageFactory();
 
-    virtual QObject *create(const char *iface,
-                            QWidget *parentWidget,
-                            QObject *parent,
-                            const QVariantList &args,
-                            const QString &keyword) Q_DECL_OVERRIDE;
-
-    static const KAboutData &aboutData()
-    {
-        return *s_aboutData;
-    }
-
-private:
-    static KAboutData *s_aboutData;
-};
-
-/**
- * @internal
- */
-class KHTMLImage : public KParts::ReadOnlyPart, public khtml::CachedObjectClient
-{
-    Q_OBJECT
 public:
     KHTMLImage(QWidget *parentWidget,
-               QObject *parent, KHTMLPart::GUIProfile prof);
+               QObject *parent, const QVariantList &args);
     virtual ~KHTMLImage();
 
     bool openFile() Q_DECL_OVERRIDE

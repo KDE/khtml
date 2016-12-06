@@ -39,41 +39,19 @@
 
 #include "../khtml_version.h"
 
-KAboutData *KHTMLImageFactory::s_aboutData = 0;
-
-KHTMLImageFactory::KHTMLImageFactory()
-{
-    s_aboutData = new KAboutData("khtmlimage", i18n("KHTML Image"), QStringLiteral(KHTML_VERSION_STRING));
-}
-
-KHTMLImageFactory::~KHTMLImageFactory()
-{
-    delete s_aboutData;
-}
-
-QObject *KHTMLImageFactory::create(const char *iface,
-                                   QWidget *parentWidget,
-                                   QObject *parent,
-                                   const QVariantList &args,
-                                   const QString &keyword)
-{
-    Q_UNUSED(keyword);
-    KHTMLPart::GUIProfile prof = KHTMLPart::DefaultGUI;
-    if (strcmp(iface, "Browser/View") == 0) { // old hack, now unused - KDE5: remove
-        prof = KHTMLPart::BrowserViewGUI;
-    }
-    if (args.contains("Browser/View")) {
-        prof = KHTMLPart::BrowserViewGUI;
-    }
-    return new KHTMLImage(parentWidget, parent, prof);
-}
 
 KHTMLImage::KHTMLImage(QWidget *parentWidget,
-                       QObject *parent, KHTMLPart::GUIProfile prof)
+                       QObject *parent, const QVariantList &args)
     : KParts::ReadOnlyPart(parent), m_image(0)
 {
     KHTMLPart *parentPart = qobject_cast<KHTMLPart *>(parent);
-    setComponentData(KHTMLImageFactory::aboutData(), prof == KHTMLPart::BrowserViewGUI && !parentPart);
+
+    KAboutData about("khtmlimage", i18n("KHTML Image"), QStringLiteral(KHTML_VERSION_STRING));
+    KHTMLPart::GUIProfile prof = KHTMLPart::DefaultGUI;
+    if (args.contains("Browser/View")) {
+        prof = KHTMLPart::BrowserViewGUI;
+    }
+    setComponentData(about, prof == KHTMLPart::BrowserViewGUI && !parentPart);
 
     QWidget *box = new QWidget(parentWidget);
     box->setLayout(new QVBoxLayout(box));

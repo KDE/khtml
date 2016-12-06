@@ -726,6 +726,7 @@ install(TARGETS khtmlpart  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/parts)
 # Only the entry point is separated into khtmlimage_init.cpp
 add_library(khtmlimagepart MODULE khtmlimage_init.cpp)
 
+kservice_desktop_to_json(khtmlimagepart khtmlimage.desktop)
 
 target_link_libraries(khtmlimagepart KF5::KHtml KF5::WidgetsAddons KF5::XmlGui KF5::TextWidgets KF5::Parts KF5::I18n)
 

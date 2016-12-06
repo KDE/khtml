@@ -19,4 +19,6 @@
 
 #include "khtmlimage.h"
 
-K_EXPORT_PLUGIN(KHTMLImageFactory)
+K_PLUGIN_FACTORY_WITH_JSON(KHTMLImageFactory, "khtmlimage.json", registerPlugin<KHTMLImage>();)
+
+#include "khtmlimage_init.moc"
