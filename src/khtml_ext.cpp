@@ -872,7 +872,7 @@ void KHTMLPopupGUIClient::saveURL(QWidget *parent, const QString &caption,
             QFileInfo info(destURL.toLocalFile());
             if (info.exists()) {
                 // TODO: use KIO::RenameDlg (shows more information)
-                query = KMessageBox::warningContinueCancel(parent, i18n("A file named \"%1\" already exists. " "Are you sure you want to overwrite it?",  info.fileName()), i18n("Overwrite File?"), KGuiItem(i18n("Overwrite")));
+                query = KMessageBox::warningContinueCancel(parent, i18n("A file named \"%1\" already exists. " "Are you sure you want to overwrite it?",  info.fileName()), i18n("Overwrite File?"), KStandardGuiItem::overwrite());
             }
         }
     } while (query == KMessageBox::Cancel);
