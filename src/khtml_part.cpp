@@ -1278,10 +1278,6 @@ KJSErrorDlg *KHTMLPart::jsErrorExtension()
     if (!d->m_jsedlg) {
         d->m_jsedlg = new KJSErrorDlg;
         d->m_jsedlg->setURL(url().toDisplayString());
-        if (widget()->style()->styleHint(QStyle::SH_DialogButtonBox_ButtonsHaveIcons, 0, widget())) {
-            d->m_jsedlg->_clear->setIcon(QIcon::fromTheme("edit-clear-locationbar-ltr"));
-            d->m_jsedlg->_close->setIcon(QIcon::fromTheme("window-close"));
-        }
     }
     return d->m_jsedlg;
 }

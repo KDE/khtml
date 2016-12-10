@@ -1,11 +1,15 @@
 #include "kjserrordlg.h"
 
+#include <QPushButton>
+
 KJSErrorDlg::KJSErrorDlg(QWidget *parent)
     : QDialog(parent)
 {
     setupUi(this);
-    connect(_clear, SIGNAL(clicked()), this, SLOT(clear()));
-    connect(_close, SIGNAL(clicked()), this, SLOT(hide()));
+    QPushButton *clear = _buttonBox->addButton(i18n("C&lear"), QDialogButtonBox::ActionRole);
+    clear->setIcon(QIcon::fromTheme("edit-clear-locationbar-ltr"));
+    connect(clear, SIGNAL(clicked()), this, SLOT(clear()));
+    connect(_buttonBox, SIGNAL(rejected()), this, SLOT(hide()));
     init();
 }
 
