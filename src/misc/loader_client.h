@@ -16,7 +16,7 @@ class CachedImage;
  * inherit from this class and overload one of the 3 functions
  *
  */
-class CachedObjectClient
+class KHTML_EXPORT CachedObjectClient
 {
 public:
     virtual ~CachedObjectClient();
