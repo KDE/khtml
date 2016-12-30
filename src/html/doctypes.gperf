@@ -1,3 +1,9 @@
+%readonly-tables
+%enum
+%struct-type
+%language=ANSI-C
+%define lookup-function-name findDoctypeEntry
+%define initializer-suffix ,PubIDInfo::eAlmostStandards,PubIDInfo::eAlmostStandards
 %{
 /* //krazy:skip */
 %}
