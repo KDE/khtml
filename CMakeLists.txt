@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(KHtml)
+set(KF5_VERSION "5.30.0") # handled by release scripts
+set(KF5_DEP_VERSION "5.29.0") # handled by release scripts
+project(KHtml VERSION ${KF5_VERSION})
 
 include(FeatureSummary)
 find_package(ECM 5.29.0  NO_MODULE)
@@ -20,8 +22,6 @@ include(KDEInstallDirs)
 include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
 
-set(KF5_VERSION "5.30.0") # handled by release scripts
-set(KF5_DEP_VERSION "5.29.0") # handled by release scripts
 find_package(KF5Archive ${KF5_DEP_VERSION} REQUIRED)
 find_package(KF5Codecs ${KF5_DEP_VERSION} REQUIRED)
 find_package(KF5GlobalAccel ${KF5_DEP_VERSION} REQUIRED)
@@ -38,7 +38,7 @@ find_package(KF5WidgetsAddons ${KF5_DEP_VERSION} REQUIRED)
 find_package(KF5WindowSystem ${KF5_DEP_VERSION} REQUIRED)
 find_package(KF5XmlGui ${KF5_DEP_VERSION} REQUIRED)
 
-ecm_setup_version(${KF5_VERSION} VARIABLE_PREFIX KHTML
+ecm_setup_version(PROJECT VARIABLE_PREFIX KHTML
                         VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/khtml_version.h"
                         PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF5KHtmlConfigVersion.cmake"
                         SOVERSION 5)
