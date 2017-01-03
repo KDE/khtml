@@ -33,7 +33,7 @@ public:
     {
         delete ui2;
     }
-    /*reimp*/ bool isComplete() const;
+    /*reimp*/ bool isComplete() const Q_DECL_OVERRIDE;
     QString password() const;
 
 private Q_SLOTS:

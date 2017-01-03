@@ -61,40 +61,40 @@ public:
     void splitFlow(RenderObject *beforeChild, RenderBlock *newBlockBox,
                    RenderObject *newChild, RenderFlow *oldCont);
 
-    virtual void setStyle(RenderStyle *_style);
-    virtual void attach();
+    void setStyle(RenderStyle *_style) Q_DECL_OVERRIDE;
+    void attach() Q_DECL_OVERRIDE;
 
-    virtual void layout()
+    void layout() Q_DECL_OVERRIDE
     {
         setNeedsLayout(false);    // Do nothing for layout()
     }
 
-    virtual void paint(PaintInfo &, int tx, int ty);
+    void paint(PaintInfo &, int tx, int ty) Q_DECL_OVERRIDE;
 
-    virtual bool nodeAtPoint(NodeInfo &info, int _x, int _y, int _tx, int _ty, HitTestAction hitTestAction, bool inside);
+    bool nodeAtPoint(NodeInfo &info, int _x, int _y, int _tx, int _ty, HitTestAction hitTestAction, bool inside) Q_DECL_OVERRIDE;
 
-    virtual void calcMinMaxWidth();
+    void calcMinMaxWidth() Q_DECL_OVERRIDE;
 
     // overrides RenderObject
-    virtual bool requiresLayer() const
+    bool requiresLayer() const Q_DECL_OVERRIDE
     {
         return isRelPositioned();
     }
 
-    virtual short width() const;
-    virtual int height() const;
+    short width() const Q_DECL_OVERRIDE;
+    int height() const Q_DECL_OVERRIDE;
 
-    virtual int inlineXPos() const;
-    virtual int inlineYPos() const;
+    int inlineXPos() const Q_DECL_OVERRIDE;
+    int inlineYPos() const Q_DECL_OVERRIDE;
 
     // used to calculate offsetWidth/Height.  Overridden by inlines (render_flow) to return
     // the remaining width on a given line (and the height of a single line).
-    virtual int offsetLeft() const;
-    virtual int offsetTop() const;
+    int offsetLeft() const Q_DECL_OVERRIDE;
+    int offsetTop() const Q_DECL_OVERRIDE;
 
-    virtual RenderPosition positionForCoordinates(int x, int y);
+    RenderPosition positionForCoordinates(int x, int y) Q_DECL_OVERRIDE;
 
-    virtual void caretPos(int offset, int flags, int &_x, int &_y, int &width, int &height) const;
+    void caretPos(int offset, int flags, int &_x, int &_y, int &width, int &height) const Q_DECL_OVERRIDE;
     void paintOutlines(QPainter *p, int tx, int ty);
 
 protected:

@@ -120,28 +120,28 @@ public:
     }
 
     // overrides
-    virtual void addChild(RenderObject *child, RenderObject *beforeChild = 0);
-    virtual void paint(PaintInfo &, int tx, int ty);
-    virtual void paintBoxDecorations(PaintInfo &, int _tx, int _ty);
-    virtual void layout();
-    virtual void calcMinMaxWidth();
-    virtual void close();
+    void addChild(RenderObject *child, RenderObject *beforeChild = 0) Q_DECL_OVERRIDE;
+    void paint(PaintInfo &, int tx, int ty) Q_DECL_OVERRIDE;
+    void paintBoxDecorations(PaintInfo &, int _tx, int _ty) Q_DECL_OVERRIDE;
+    void layout() Q_DECL_OVERRIDE;
+    void calcMinMaxWidth() Q_DECL_OVERRIDE;
+    void close() Q_DECL_OVERRIDE;
 
-    virtual short lineHeight(bool b) const;
-    virtual short baselinePosition(bool b) const;
+    short lineHeight(bool b) const Q_DECL_OVERRIDE;
+    short baselinePosition(bool b) const Q_DECL_OVERRIDE;
 
     virtual void setCellWidths();
 
-    virtual void calcWidth();
+    void calcWidth() Q_DECL_OVERRIDE;
 
-    virtual QList< QRectF > getClientRects();
+    QList< QRectF > getClientRects() Q_DECL_OVERRIDE;
 
     virtual FindSelectionResult checkSelectionPoint(int _x, int _y, int _tx, int _ty,
             DOM::NodeImpl *&node, int &offset,
             SelPointState &);
 
 #ifdef ENABLE_DUMP
-    virtual void dump(QTextStream &stream, const QString &ind) const;
+    void dump(QTextStream &stream, const QString &ind) const Q_DECL_OVERRIDE;
 #endif
     struct ColumnStruct {
         enum {
@@ -258,34 +258,34 @@ class RenderTableSection : public RenderBox
 public:
     RenderTableSection(DOM::NodeImpl *node);
     ~RenderTableSection();
-    virtual void detach();
+    void detach() Q_DECL_OVERRIDE;
 
-    virtual void setStyle(RenderStyle *style);
+    void setStyle(RenderStyle *style) Q_DECL_OVERRIDE;
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderTableSection";
     }
 
     // overrides
-    virtual void addChild(RenderObject *child, RenderObject *beforeChild = 0);
-    virtual bool isTableSection() const
+    void addChild(RenderObject *child, RenderObject *beforeChild = 0) Q_DECL_OVERRIDE;
+    bool isTableSection() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
-    virtual short lineHeight(bool) const
+    short lineHeight(bool) const Q_DECL_OVERRIDE
     {
         return 0;
     }
-    virtual void position(InlineBox *, int, int, bool) {}
+    void position(InlineBox *, int, int, bool) Q_DECL_OVERRIDE {}
 
     virtual FindSelectionResult checkSelectionPoint(int _x, int _y, int _tx, int _ty,
             DOM::NodeImpl *&node, int &offset,
             SelPointState &);
 
 #ifdef ENABLE_DUMP
-    virtual void dump(QTextStream &stream, const QString &ind) const;
+    void dump(QTextStream &stream, const QString &ind) const Q_DECL_OVERRIDE;
 #endif
 
     void addCell(RenderTableCell *cell, RenderTableRow *row);
@@ -509,24 +509,24 @@ public:
     Length styleOrColWidth();
 
     // overrides
-    virtual void calcMinMaxWidth();
-    virtual void calcWidth();
-    virtual void setWidth(int width);
-    virtual void setStyle(RenderStyle *style);
-    virtual bool requiresLayer() const;
+    void calcMinMaxWidth() Q_DECL_OVERRIDE;
+    void calcWidth() Q_DECL_OVERRIDE;
+    void setWidth(int width) Q_DECL_OVERRIDE;
+    void setStyle(RenderStyle *style) Q_DECL_OVERRIDE;
+    bool requiresLayer() const Q_DECL_OVERRIDE;
 
-    int borderLeft() const;
-    int borderRight() const;
-    int borderTop() const;
-    int borderBottom() const;
+    int borderLeft() const Q_DECL_OVERRIDE;
+    int borderRight() const Q_DECL_OVERRIDE;
+    int borderTop() const Q_DECL_OVERRIDE;
+    int borderBottom() const Q_DECL_OVERRIDE;
 
     CollapsedBorderValue collapsedLeftBorder(bool rtl) const;
     CollapsedBorderValue collapsedRightBorder(bool rtl) const;
     CollapsedBorderValue collapsedTopBorder() const;
     CollapsedBorderValue collapsedBottomBorder() const;
-    virtual void collectBorders(QList<CollapsedBorderValue> &borderStyles);
+    void collectBorders(QList<CollapsedBorderValue> &borderStyles) Q_DECL_OVERRIDE;
 
-    virtual void updateFromElement();
+    void updateFromElement() Q_DECL_OVERRIDE;
 
     void setCellTopExtra(int p)
     {

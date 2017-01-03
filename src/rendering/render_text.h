@@ -247,24 +247,24 @@ public:
     {
         return str->l;    // non virtual implementation of length()
     }
-    virtual void position(InlineBox *box, int from, int len, bool reverse);
+    void position(InlineBox *box, int from, int len, bool reverse) Q_DECL_OVERRIDE;
 
     virtual unsigned int width(unsigned int from, unsigned int len, const Font *f) const;
     virtual unsigned int width(unsigned int from, unsigned int len, bool firstLine = false) const;
-    virtual short width() const;
-    virtual int height() const;
+    short width() const Q_DECL_OVERRIDE;
+    int height() const Q_DECL_OVERRIDE;
 
     // height of the contents (without paddings, margins and borders)
-    virtual short lineHeight(bool firstLine) const;
-    virtual short baselinePosition(bool firstLine) const;
+    short lineHeight(bool firstLine) const Q_DECL_OVERRIDE;
+    short baselinePosition(bool firstLine) const Q_DECL_OVERRIDE;
 
     // overrides
-    virtual void calcMinMaxWidth();
-    virtual short minWidth() const
+    void calcMinMaxWidth() Q_DECL_OVERRIDE;
+    short minWidth() const Q_DECL_OVERRIDE
     {
         return m_minWidth;
     }
-    virtual int maxWidth() const
+    int maxWidth() const Q_DECL_OVERRIDE
     {
         return m_maxWidth;
     }
@@ -465,9 +465,9 @@ public:
     }
 
     // overrides
-    virtual void detach();
+    void detach() Q_DECL_OVERRIDE;
 private:
-    virtual void setTextInternal(DOM::DOMStringImpl *text);
+    void setTextInternal(DOM::DOMStringImpl *text) Q_DECL_OVERRIDE;
 
     uint m_start;
     uint m_end;

@@ -165,7 +165,7 @@ public:
     CompositeEditCommandImpl(DOM::DocumentImpl *);
     virtual ~CompositeEditCommandImpl();
 
-    virtual void doApply() = 0;
+    void doApply() Q_DECL_OVERRIDE = 0;
     void doUnapply() Q_DECL_OVERRIDE;
     void doReapply() Q_DECL_OVERRIDE;
 

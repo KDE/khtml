@@ -37,61 +37,61 @@ public:
     RenderBR(DOM::NodeImpl *node);
     virtual ~RenderBR();
 
-    virtual const char *renderName() const
+    const char *renderName() const Q_DECL_OVERRIDE
     {
         return "RenderBR";
     }
 
-    virtual void paint(PaintInfo &, int, int) {}
+    void paint(PaintInfo &, int, int) Q_DECL_OVERRIDE {}
 
-    virtual unsigned int width(unsigned int, unsigned int, const Font *) const
+    unsigned int width(unsigned int, unsigned int, const Font *) const Q_DECL_OVERRIDE
     {
         return 0;
     }
-    virtual unsigned int width(unsigned int, unsigned int, bool) const
+    unsigned int width(unsigned int, unsigned int, bool) const Q_DECL_OVERRIDE
     {
         return 0;
     }
-    virtual short width() const
+    short width() const Q_DECL_OVERRIDE
     {
         return RenderText::width();
     }
 
-    virtual int height() const
+    int height() const Q_DECL_OVERRIDE
     {
         return 0;
     }
 
     // overrides
-    virtual void calcMinMaxWidth() {}
-    virtual short minWidth() const
+    void calcMinMaxWidth() Q_DECL_OVERRIDE {}
+    short minWidth() const Q_DECL_OVERRIDE
     {
         return 0;
     }
-    virtual int maxWidth() const
+    int maxWidth() const Q_DECL_OVERRIDE
     {
         return 0;
     }
 
-    virtual FindSelectionResult checkSelectionPoint(int _x, int _y, int _tx, int _ty,
+    FindSelectionResult checkSelectionPoint(int _x, int _y, int _tx, int _ty,
             DOM::NodeImpl *&node, int &offset,
-            SelPointState &);
+            SelPointState &) Q_DECL_OVERRIDE;
 
-    virtual bool isBR() const
+    bool isBR() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
-    virtual long caretMinOffset() const;
-    virtual long caretMaxOffset() const;
-    virtual unsigned long caretMaxRenderedOffset() const;
+    long caretMinOffset() const Q_DECL_OVERRIDE;
+    long caretMaxOffset() const Q_DECL_OVERRIDE;
+    unsigned long caretMaxRenderedOffset() const Q_DECL_OVERRIDE;
 
-    virtual RenderPosition positionForCoordinates(int _x, int _y);
+    RenderPosition positionForCoordinates(int _x, int _y) Q_DECL_OVERRIDE;
 #if 0
     virtual void caretPos(int offset, int flags, int &_x, int &_y, int &width, int &height) const;
 #endif
 
-    virtual InlineBox *inlineBox(long offset);
+    InlineBox *inlineBox(long offset) Q_DECL_OVERRIDE;
 
 };
 

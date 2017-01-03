@@ -167,7 +167,7 @@ public:
     }
 
     // overrides
-    virtual void parseAttribute(AttributeImpl *attr);
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
 
     int span() const
     {
@@ -322,16 +322,16 @@ public:
     void deleteRow(long index, int &exceptioncode);
 
     // overrides
-    virtual NodeImpl *addChild(NodeImpl *child);
-    virtual NodeImpl *insertBefore(NodeImpl *newChild, NodeImpl *refChild, int &exceptioncode);
-    virtual void      replaceChild(NodeImpl *newChild, NodeImpl *oldChild, int &exceptioncode);
-    virtual void      removeChild(NodeImpl *oldChild, int &exceptioncode);
-    virtual void      removeChildren();
-    virtual NodeImpl *appendChild(NodeImpl *newChild, int &exceptioncode);
+    NodeImpl *addChild(NodeImpl *child) Q_DECL_OVERRIDE;
+    NodeImpl *insertBefore(NodeImpl *newChild, NodeImpl *refChild, int &exceptioncode) Q_DECL_OVERRIDE;
+    void      replaceChild(NodeImpl *newChild, NodeImpl *oldChild, int &exceptioncode) Q_DECL_OVERRIDE;
+    void      removeChild(NodeImpl *oldChild, int &exceptioncode) Q_DECL_OVERRIDE;
+    void      removeChildren() Q_DECL_OVERRIDE;
+    NodeImpl *appendChild(NodeImpl *newChild, int &exceptioncode) Q_DECL_OVERRIDE;
 
-    virtual void parseAttribute(AttributeImpl *attr);
-    virtual void attach();
-    virtual void close();
+    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
+    void attach() Q_DECL_OVERRIDE;
+    void close() Q_DECL_OVERRIDE;
 
     /* Tries to find the section containing row number outIndex.
        Returns whether it succeeded or not. negative outIndex values

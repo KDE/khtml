@@ -337,7 +337,7 @@ public:
     unsigned short nodeType() const Q_DECL_OVERRIDE;
     WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) Q_DECL_OVERRIDE;
     DOMString nodeName() const Q_DECL_OVERRIDE;
-    virtual NodeImpl::Id id() const = 0;
+    NodeImpl::Id id() const Q_DECL_OVERRIDE = 0;
     bool isElementNode() const Q_DECL_OVERRIDE
     {
         return true;

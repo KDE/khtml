@@ -45,7 +45,7 @@ public:
 
     bool isInline() const Q_DECL_OVERRIDE;
 
-    virtual Id id() const = 0;
+    Id id() const Q_DECL_OVERRIDE = 0;
     DOMString namespaceURI() const Q_DECL_OVERRIDE;
 
     void parseAttribute(AttributeImpl *token) Q_DECL_OVERRIDE;
