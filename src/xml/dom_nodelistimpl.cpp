@@ -65,7 +65,7 @@ NodeImpl *DynamicNodeListImpl::item(unsigned long index) const
 
     m_cache->updateNodeListInfo(m_refNode->document());
 
-    NodeImpl *n = 0;
+    NodeImpl *n = nullptr;
     bool usedCache = false;
     if (m_cache->current.node) {
         //Compute distance from the requested index to the cache node
@@ -107,7 +107,7 @@ unsigned long DynamicNodeListImpl::length() const
 unsigned long DynamicNodeListImpl::calcLength(NodeImpl *start) const
 {
     unsigned long len = 0;
-    for (NodeImpl *n = start->firstChild(); n != 0; n = n->nextSibling()) {
+    for (NodeImpl *n = start->firstChild(); n != nullptr; n = n->nextSibling()) {
         bool recurse = true;
         if (nodeMatches(n, recurse)) {
             len++;
@@ -149,26 +149,26 @@ static NodeImpl *helperNext(NodeImpl *node, NodeImpl *absStart)
     if (node != absStart) {
         return node->nextSibling();
     } else {
-        return 0;
+        return nullptr;
     }
 }
 
 NodeImpl *DynamicNodeListImpl::recursiveItem(NodeImpl *absStart, NodeImpl *start, unsigned long &offset) const
 {
-    for (NodeImpl *n = start; n != 0; n = helperNext(n, absStart)) {
+    for (NodeImpl *n = start; n != nullptr; n = helperNext(n, absStart)) {
         bool recurse = true;
         if (nodeMatches(n, recurse))
             if (!offset--) {
                 return n;
             }
 
-        NodeImpl *depthSearch = recurse ? recursiveItem(n, n->firstChild(), offset) : 0;
+        NodeImpl *depthSearch = recurse ? recursiveItem(n, n->firstChild(), offset) : nullptr;
         if (depthSearch) {
             return depthSearch;
         }
     }
 
-    return 0; // no matching node in this subtree
+    return nullptr; // no matching node in this subtree
 }
 
 NodeImpl *DynamicNodeListImpl::recursiveItemBack(NodeImpl *absStart, NodeImpl *start, unsigned long &offset) const
@@ -205,7 +205,7 @@ NodeImpl *DynamicNodeListImpl::recursiveItemBack(NodeImpl *absStart, NodeImpl *s
         }
     } while (n && n != absStart);
 
-    return 0;
+    return nullptr;
 }
 
 // ---------------------------------------------------------------------------
@@ -234,7 +234,7 @@ DynamicNodeListImpl::Cache::~Cache()
 void DynamicNodeListImpl::Cache::clear(DocumentImpl *doc)
 {
     hasLength = false;
-    current.node = 0;
+    current.node = nullptr;
     version          = doc->domTreeVersion(DocumentImpl::TV_Structural);
     secondaryVersion = doc->domTreeVersion(relevantSecondaryVer);
 }
@@ -363,7 +363,7 @@ void StaticNodeListImpl::append(NodeImpl *n)
 
 NodeImpl *StaticNodeListImpl::item(unsigned long index) const
 {
-    return index < m_kids.size() ? m_kids[index].get() : 0;
+    return index < m_kids.size() ? m_kids[index].get() : nullptr;
 }
 
 unsigned long StaticNodeListImpl::length() const
@@ -390,7 +390,7 @@ void StaticNodeListImpl::normalizeUpto(NormalizationKind kind)
     qSort(m_kids.begin(), m_kids.end(), nodeLess);
 
     // Now get rid of dupes.
-    DOM::NodeImpl *last = 0;
+    DOM::NodeImpl *last = nullptr;
     unsigned out = 0;
     for (unsigned in = 0; in < m_kids.size(); ++in) {
         DOM::NodeImpl *cur = m_kids[in].get();

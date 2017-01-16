@@ -64,7 +64,7 @@ public:
     bool rendererIsNeeded(RenderStyle *) Q_DECL_OVERRIDE;
     virtual SVGResource *canvasResource()
     {
-        return 0;
+        return nullptr;
     }
 
     /*virtual bool mapToEntry(const QualifiedName&, MappedAttributeEntry&) const;*/
@@ -73,7 +73,7 @@ public:
     void svgAttributeChanged(const QualifiedName &) Q_DECL_OVERRIDE;
 
     using DOM::NodeImpl::childrenChanged;
-    virtual void childrenChanged(bool changedByParser = false, Node *beforeChange = 0, Node *afterChange = 0, int childCountDelta = 0);
+    virtual void childrenChanged(bool changedByParser = false, Node *beforeChange = nullptr, Node *afterChange = nullptr, int childCountDelta = 0);
 
     // Centralized place to force a manual style resolution. Hacky but needed for now.
     RenderStyle *resolveStyle(RenderStyle *parentStyle);

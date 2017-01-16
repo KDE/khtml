@@ -40,9 +40,9 @@ namespace khtmlImLoad
 Image::Image(ImageOwner *_owner)
 {
     owner       = _owner;
-    loader      = 0;
-    loaderPlane = 0;
-    original    = 0;
+    loader      = nullptr;
+    loaderPlane = nullptr;
+    original    = nullptr;
     loaderScanline = 0;
 
     fullyDecoded = false;
@@ -95,7 +95,7 @@ void Image::loadError()
 {
     inError = true;
     delete loader;
-    loader = 0;
+    loader = nullptr;
 
     //Make sure to call this last, since we may get deleted here.
     owner->imageError(this);
@@ -201,7 +201,7 @@ void Image::processEOF()
 
     //... and get rid of it
     delete loader;
-    loader = 0;
+    loader = nullptr;
 
     if (!decodedOK) {
         loadError();
@@ -418,7 +418,7 @@ void Image::refSize(QSize size)
         double hRatio = size.height() / double(height);
 
         //Go through and make scaled planes for each position
-        PixmapPlane *first = 0, *prev = 0;
+        PixmapPlane *first = nullptr, *prev = nullptr;
 
         //### might need unification with ScaledImagePlane's size handling
         for (PixmapPlane *cur = original; cur; cur = cur->nextFrame) {
@@ -467,7 +467,7 @@ void Image::refSize(QSize size)
 QImage *Image::qimage() const
 {
     if (!original || !original->parent) {
-        return 0;
+        return nullptr;
     }
 
     return &static_cast<RawImagePlane *>(original->parent)->image;

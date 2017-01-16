@@ -132,14 +132,14 @@ NodeImpl *XPathResultImpl::singleNodeValue(int &exceptioncode) const
     if (resultType() != ANY_UNORDERED_NODE_TYPE &&
             resultType() != FIRST_ORDERED_NODE_TYPE) {
         exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
-        return 0;
+        return nullptr;
     }
     DomNodeList nodes = m_value.toNodeset();
 
     if (nodes && nodes->length()) {
         return nodes->item(0);
     } else {
-        return 0;
+        return nullptr;
     }
 }
 
@@ -171,14 +171,14 @@ NodeImpl *XPathResultImpl::iterateNext(int &exceptioncode)
     if (resultType() != UNORDERED_NODE_ITERATOR_TYPE &&
             resultType() != ORDERED_NODE_ITERATOR_TYPE) {
         exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
-        return 0;
+        return nullptr;
     }
     // XXX How to tell whether the document was changed since this
     // result was returned? We need to throw an INVALID_STATE_ERR if that
     // is the case.
     SharedPtr<DOM::StaticNodeListImpl> nodes = m_value.toNodeset();
     if (!nodes || m_nodeIterator >= nodes->length()) {
-        return 0;
+        return nullptr;
     } else {
         NodeImpl *n = nodes->item(m_nodeIterator);
         ++m_nodeIterator;
@@ -191,11 +191,11 @@ NodeImpl *XPathResultImpl::snapshotItem(unsigned long index, int &exceptioncode)
     if (resultType() != UNORDERED_NODE_SNAPSHOT_TYPE &&
             resultType() != ORDERED_NODE_SNAPSHOT_TYPE) {
         exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
-        return 0;
+        return nullptr;
     }
     DomNodeList nodes = m_value.toNodeset();
     if (!nodes || index >= nodes->length()) {
-        return 0;
+        return nullptr;
     }
     return nodes->item(index);
 }
@@ -229,7 +229,7 @@ XPathResultImpl *XPathExpressionImpl::evaluate(NodeImpl *contextNode,
 {
     if (!isValidContextNode(contextNode)) {
         exceptioncode = DOMException::NOT_SUPPORTED_ERR;
-        return 0;
+        return nullptr;
     }
 
     // We are permitted, but not required, to re-use result_. We don't.
@@ -241,7 +241,7 @@ XPathResultImpl *XPathExpressionImpl::evaluate(NodeImpl *contextNode,
         if (exceptioncode) {
             // qDebug() << "couldn't convert XPathResult to" <<  type << "from" << xpathRes.type();
             delete result;
-            return 0;
+            return nullptr;
         }
     }
 

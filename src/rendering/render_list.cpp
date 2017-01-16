@@ -53,8 +53,8 @@ RenderListItem::RenderListItem(DOM::NodeImpl *node)
     setInline(false);   // our object is not Inline
 
     predefVal = -1;
-    m_marker = 0;
-    m_counter = 0;
+    m_marker = nullptr;
+    m_counter = nullptr;
     m_insideList = false;
     m_deleteMarker = false;
 }
@@ -78,7 +78,7 @@ void RenderListItem::setStyle(RenderStyle *_style)
         m_deleteMarker = true;
     } else if (m_marker && !showListMarker) {
         m_marker->detach();
-        m_marker = 0;
+        m_marker = nullptr;
     } else if (m_marker) {
         m_marker->setStyle(newStyle);
     }
@@ -98,7 +98,7 @@ static RenderObject *getParentOfFirstLineBox(RenderBlock *curr, RenderObject *ma
 {
     RenderObject *firstChild = curr->firstChild();
     if (!firstChild) {
-        return 0;
+        return nullptr;
     }
 
     for (RenderObject *currChild = firstChild;
@@ -131,7 +131,7 @@ static RenderObject *getParentOfFirstLineBox(RenderBlock *curr, RenderObject *ma
         }
     }
 
-    return 0;
+    return nullptr;
 }
 
 static RenderObject *firstNonMarkerChild(RenderObject *parent)
@@ -211,7 +211,7 @@ void RenderListItem::layout()
 // -----------------------------------------------------------
 
 RenderListMarker::RenderListMarker(DOM::NodeImpl *node)
-    : RenderBox(node), m_listImage(0), m_markerWidth(0)
+    : RenderBox(node), m_listImage(nullptr), m_markerWidth(0)
 {
     // init RenderObject attributes
     setInline(true);   // our object is Inline
@@ -278,7 +278,7 @@ void RenderListMarker::paint(PaintInfo &paintInfo, int _tx, int _ty)
     const QFontMetrics fm = p->fontMetrics();
 
     // The marker needs to adjust its tx, for the case where it's an outside marker.
-    RenderObject *listItem = 0;
+    RenderObject *listItem = nullptr;
     int leftLineOffset = 0;
     int rightLineOffset = 0;
     if (!listPositionInside()) {

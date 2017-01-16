@@ -212,19 +212,19 @@ void InlineFlowBox::attachLine()
 void InlineFlowBox::deleteLine(RenderArena *arena)
 {
     InlineBox *child = firstChild();
-    InlineBox *next = 0;
+    InlineBox *next = nullptr;
     while (child) {
         assert(this == child->parent());
         next = child->nextOnLine();
 #ifndef NDEBUG
-        child->setParent(0);
+        child->setParent(nullptr);
 #endif
         child->deleteLine(arena);
         child = next;
     }
 #ifndef NDEBUG
-    m_firstChild = 0;
-    m_lastChild = 0;
+    m_firstChild = nullptr;
+    m_lastChild = nullptr;
 #endif
 
     m_object->removeInlineBox(this);
@@ -252,7 +252,7 @@ void InlineFlowBox::removeFromLine(InlineBox *child)
         child->prevOnLine()->m_next = child->nextOnLine();
     }
 
-    child->setParent(0);
+    child->setParent(nullptr);
 }
 
 void InlineBox::dirtyInlineBoxes()
@@ -266,7 +266,7 @@ void InlineBox::dirtyInlineBoxes()
 void InlineBox::deleteLine(RenderArena *arena)
 {
     if (!m_extracted && m_object->isBox()) {
-        static_cast<RenderBox *>(m_object)->setPlaceHolderBox(0);
+        static_cast<RenderBox *>(m_object)->setPlaceHolderBox(nullptr);
     }
     detach(arena, true /*no remove*/);
 }
@@ -275,7 +275,7 @@ void InlineBox::extractLine()
 {
     m_extracted = true;
     if (m_object->isBox()) {
-        static_cast<RenderBox *>(m_object)->setPlaceHolderBox(0);
+        static_cast<RenderBox *>(m_object)->setPlaceHolderBox(nullptr);
     }
 }
 
@@ -1195,7 +1195,7 @@ void RootInlineBox::detach(RenderArena *arena, bool noRemove)
     if (m_lineBreakContext) {
         m_lineBreakContext->deref();
     }
-    m_lineBreakContext = 0;
+    m_lineBreakContext = nullptr;
     detachEllipsisBox(arena);
     InlineFlowBox::detach(arena, noRemove);
 
@@ -1205,7 +1205,7 @@ void RootInlineBox::detachEllipsisBox(RenderArena *arena)
 {
     if (m_ellipsisBox) {
         m_ellipsisBox->detach(arena);
-        m_ellipsisBox = 0;
+        m_ellipsisBox = nullptr;
     }
 }
 
@@ -1295,11 +1295,11 @@ BidiStatus RootInlineBox::lineBreakBidiStatus() const
 void RootInlineBox::childRemoved(InlineBox *box)
 {
     if (box->object() == m_lineBreakObj) {
-        setLineBreakInfo(0, 0, BidiStatus(), 0);
+        setLineBreakInfo(nullptr, 0, BidiStatus(), nullptr);
     }
 
     for (RootInlineBox *prev = prevRootBox(); prev && prev->lineBreakObj() == box->object(); prev = prev->prevRootBox()) {
-        prev->setLineBreakInfo(0, 0, BidiStatus(), 0);
+        prev->setLineBreakInfo(nullptr, 0, BidiStatus(), nullptr);
         prev->markDirty();
     }
 }
@@ -1324,7 +1324,7 @@ InlineBox *InlineFlowBox::firstLeafChild()
 {
     InlineBox *box = firstChild();
     while (box) {
-        InlineBox *next = 0;
+        InlineBox *next = nullptr;
         if (!box->isInlineFlowBox()) {
             break;
         }
@@ -1341,7 +1341,7 @@ InlineBox *InlineFlowBox::lastLeafChild()
 {
     InlineBox *box = lastChild();
     while (box) {
-        InlineBox *next = 0;
+        InlineBox *next = nullptr;
         if (!box->isInlineFlowBox()) {
             break;
         }
@@ -1373,6 +1373,6 @@ InlineBox *InlineFlowBox::closestChildForXPos(int _x, int _tx)
                 return box;
             }
 
-    return 0;
+    return nullptr;
 }
 

@@ -125,15 +125,15 @@ static inline bool isInitialOrInherit(const CSSValueImpl *value)
 CSSStyleDeclarationImpl::CSSStyleDeclarationImpl(CSSRuleImpl *parent)
     : StyleBaseImpl(parent)
 {
-    m_lstValues = 0;
-    m_node = 0;
+    m_lstValues = nullptr;
+    m_node = nullptr;
 }
 
 CSSStyleDeclarationImpl::CSSStyleDeclarationImpl(CSSRuleImpl *parent, QList<CSSProperty *> *lstValues)
     : StyleBaseImpl(parent)
 {
     m_lstValues = lstValues;
-    m_node = 0;
+    m_node = nullptr;
 }
 
 CSSStyleDeclarationImpl  &CSSStyleDeclarationImpl::operator= (const CSSStyleDeclarationImpl &o)
@@ -147,7 +147,7 @@ CSSStyleDeclarationImpl  &CSSStyleDeclarationImpl::operator= (const CSSStyleDecl
         qDeleteAll(*m_lstValues);
     }
     delete m_lstValues;
-    m_lstValues = 0;
+    m_lstValues = nullptr;
     if (o.m_lstValues) {
         m_lstValues = new QList<CSSProperty *>;
         QListIterator<CSSProperty *> lstValuesIt(*o.m_lstValues);
@@ -172,7 +172,7 @@ CSSValueImpl *CSSStyleDeclarationImpl::getPropertyCSSValue(const DOMString &prop
 {
     int propID = propertyID(propertyName);
     if (!propID) {
-        return 0;
+        return nullptr;
     }
     return getPropertyCSSValue(propID);
 }
@@ -460,7 +460,7 @@ DOMString CSSStyleDeclarationImpl::getLayeredShortHandValue(const int *propertie
         DOMString layerRes;
         DOMString bPosX, bPosY, bSize;
         for (j = 0; j < number; j++) {
-            CSSValueImpl *value = 0;
+            CSSValueImpl *value = nullptr;
             if (values[j]) {
                 if (values[j]->isValueList()) {
                     value = static_cast<CSSValueListImpl *>(values[j])->item(i);
@@ -470,10 +470,10 @@ DOMString CSSStyleDeclarationImpl::getLayeredShortHandValue(const int *propertie
                     // Color only belongs in the last layer.
                     if (properties[j] == CSS_PROP_BACKGROUND_COLOR) {
                         if (i != numLayers - 1) {
-                            value = 0;
+                            value = nullptr;
                         }
                     } else if (i != 0) { // Other singletons only belong in the first layer.
-                        value = 0;
+                        value = nullptr;
                     }
                 }
             }
@@ -534,7 +534,7 @@ DOMString CSSStyleDeclarationImpl::getShortHandValue(const int *properties, int 
 CSSValueImpl *CSSStyleDeclarationImpl::getPropertyCSSValue(int propertyID) const
 {
     if (!m_lstValues || m_lstValues->isEmpty()) {
-        return 0;
+        return nullptr;
     }
 
     QListIterator<CSSProperty *> lstValuesIt(*m_lstValues);
@@ -545,7 +545,7 @@ CSSValueImpl *CSSStyleDeclarationImpl::getPropertyCSSValue(int propertyID) const
             return current->value();
         }
     }
-    return 0;
+    return nullptr;
 }
 
 bool CSSStyleDeclarationImpl::isPropertyImplicit(int propertyID) const
@@ -570,7 +570,7 @@ bool CSSStyleDeclarationImpl::isPropertyImplicit(int propertyID) const
 
 struct PropertyLonghand {
     PropertyLonghand()
-        : m_properties(0)
+        : m_properties(nullptr)
         , m_length(0)
     {
     }
@@ -944,7 +944,7 @@ DOMString CSSStyleDeclarationImpl::item(unsigned long index) const
 CSSRuleImpl *CSSStyleDeclarationImpl::parentRule() const
 {
     return (m_parent && m_parent->isRule()) ?
-           static_cast<CSSRuleImpl *>(m_parent) : 0;
+           static_cast<CSSRuleImpl *>(m_parent) : nullptr;
 }
 
 DOM::DOMString CSSStyleDeclarationImpl::cssText() const
@@ -955,8 +955,8 @@ DOM::DOMString CSSStyleDeclarationImpl::cssText() const
 
     DOMString result;
 
-    const CSSProperty *positionXProp = 0;
-    const CSSProperty *positionYProp = 0;
+    const CSSProperty *positionXProp = nullptr;
+    const CSSProperty *positionYProp = nullptr;
 
     QListIterator<CSSProperty *> lstValuesIt(*m_lstValues);
     while (lstValuesIt.hasNext()) {
@@ -1463,10 +1463,10 @@ DOM::DOMString CSSPrimitiveValueImpl::cssText() const
 
 RectImpl::RectImpl()
 {
-    m_top = 0;
-    m_right = 0;
-    m_bottom = 0;
-    m_left = 0;
+    m_top = nullptr;
+    m_right = nullptr;
+    m_bottom = nullptr;
+    m_left = nullptr;
 }
 
 RectImpl::~RectImpl()
@@ -1573,7 +1573,7 @@ void PairImpl::setSecond(CSSPrimitiveValueImpl *second)
 CSSImageValueImpl::CSSImageValueImpl(const DOMString &url, StyleBaseImpl *style)
     : CSSPrimitiveValueImpl(url, CSSPrimitiveValue::CSS_URI)
 {
-    m_image = 0;
+    m_image = nullptr;
     const DOMString imgUrl = url.trimSpaces();
     if (!imgUrl.isEmpty()) {
         m_fullImageUrl = style->baseURL().resolved(QUrl(imgUrl.string())).toString();
@@ -1585,7 +1585,7 @@ CSSImageValueImpl::CSSImageValueImpl(const DOMString &url, StyleBaseImpl *style)
 CSSImageValueImpl::CSSImageValueImpl()
     : CSSPrimitiveValueImpl(CSS_VAL_NONE)
 {
-    m_image = 0;
+    m_image = nullptr;
     m_fullImageUrl.clear();
 }
 
@@ -1660,7 +1660,7 @@ FontFamilyValueImpl::FontFamilyValueImpl(const QString &string)
 }
 
 FontValueImpl::FontValueImpl()
-    : style(0), variant(0), weight(0), size(0), lineHeight(0), family(0)
+    : style(nullptr), variant(nullptr), weight(nullptr), size(nullptr), lineHeight(nullptr), family(nullptr)
 {
 }
 

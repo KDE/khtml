@@ -228,19 +228,19 @@ SVGPathSegList *SVGPathElement::pathSegList() const
 SVGPathSegList *SVGPathElement::normalizedPathSegList() const
 {
     // TODO
-    return 0;
+    return nullptr;
 }
 
 SVGPathSegList *SVGPathElement::animatedPathSegList() const
 {
     // TODO
-    return 0;
+    return nullptr;
 }
 
 SVGPathSegList *SVGPathElement::animatedNormalizedPathSegList() const
 {
     // TODO
-    return 0;
+    return nullptr;
 }
 
 Path SVGPathElement::toPathData() const

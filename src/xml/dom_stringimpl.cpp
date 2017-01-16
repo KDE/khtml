@@ -383,7 +383,7 @@ khtml::Length *DOMStringImpl::toLengthArray(int &len) const
 
     // If we have no commas, we have no array.
     if (len == 1) {
-        return 0L;
+        return nullptr;
     }
 
     khtml::Length *r = new khtml::Length[len];
@@ -559,7 +559,7 @@ bool DOMStringImpl::startsWith(DOMStringImpl *str, CaseSensitivity cs) const
 DOMStringImpl *DOMStringImpl::substring(unsigned pos, unsigned len) const
 {
     if (pos >= l) {
-        return 0;
+        return nullptr;
     }
     if (len > l - pos) {
         len = l - pos;

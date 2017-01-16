@@ -180,7 +180,7 @@ QList<const PluginBase::PluginInfo *> *KJS::PluginBase::plugins;
 QList<const PluginBase::MimeClassInfo *> *KJS::PluginBase::mimes;
 int KJS::PluginBase::m_refCount;
 
-const ClassInfo Navigator::info = { "Navigator", 0, &NavigatorTable, 0 };
+const ClassInfo Navigator::info = { "Navigator", nullptr, &NavigatorTable, nullptr };
 /*
 @begin NavigatorTable 12
   appCodeName   Navigator::AppCodeName  DontDelete|ReadOnly
@@ -394,14 +394,14 @@ PluginBase::~PluginBase()
         }
         delete plugins;
         delete mimes;
-        plugins = 0;
-        mimes = 0;
+        plugins = nullptr;
+        mimes = nullptr;
     }
 }
 
 /*******************************************************************/
 
-const ClassInfo Plugins::info = { "PluginArray", 0, &PluginsTable, 0 };
+const ClassInfo Plugins::info = { "PluginArray", nullptr, &PluginsTable, nullptr };
 /*
 @begin PluginsTable 4
   length    Plugins_Length      DontDelete|ReadOnly
@@ -507,7 +507,7 @@ JSValue *PluginsFunc::callAsFunction(ExecState *exec, JSObject *thisObj, const L
 
 /*******************************************************************/
 
-const ClassInfo MimeTypes::info = { "MimeTypeArray", 0, &MimeTypesTable, 0 };
+const ClassInfo MimeTypes::info = { "MimeTypeArray", nullptr, &MimeTypesTable, nullptr };
 /*
 @begin MimeTypesTable 3
   length    MimeTypes_Length    DontDelete|ReadOnly
@@ -610,7 +610,7 @@ JSValue *MimeTypesFunc::callAsFunction(ExecState *exec, JSObject *thisObj, const
 }
 
 /************************************************************************/
-const ClassInfo Plugin::info = { "Plugin", 0, &PluginTable, 0 };
+const ClassInfo Plugin::info = { "Plugin", nullptr, &PluginTable, nullptr };
 /*
 @begin PluginTable 7
   name      Plugin_Name     DontDelete|ReadOnly
@@ -718,7 +718,7 @@ JSValue *PluginFunc::callAsFunction(ExecState *exec, JSObject *thisObj, const Li
 
 /*****************************************************************************/
 
-const ClassInfo MimeType::info = { "MimeType", 0, &MimeTypeTable, 0 };
+const ClassInfo MimeType::info = { "MimeType", nullptr, &MimeTypeTable, nullptr };
 /*
 @begin MimeTypeTable 4
   description   MimeType_Description        DontDelete|ReadOnly

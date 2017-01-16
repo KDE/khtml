@@ -52,7 +52,7 @@ HTMLPartContainerElementImpl::HTMLPartContainerElementImpl(DocumentImpl *doc)
     : HTMLElementImpl(doc)
 {
     m_needToComputeContent = true;
-    m_childWidget          = 0;
+    m_childWidget          = nullptr;
 }
 
 HTMLPartContainerElementImpl::~HTMLPartContainerElementImpl()
@@ -124,7 +124,7 @@ void HTMLPartContainerElementImpl::partLoadingErrorNotify()
 
 void HTMLPartContainerElementImpl::clearChildWidget()
 {
-    setWidget(0);
+    setWidget(nullptr);
 }
 
 bool HTMLPartContainerElementImpl::mimetypeHandledInternally(const QString &)
@@ -144,7 +144,7 @@ void HTMLPartContainerElementImpl::postResizeEvent()
 
 void HTMLPartContainerElementImpl::sendPostedResizeEvents()
 {
-    QApplication::sendPostedEvents(0, DOMCFResizeEvent);
+    QApplication::sendPostedEvents(nullptr, DOMCFResizeEvent);
 }
 
 bool HTMLPartContainerElementImpl::event(QEvent *e)
@@ -349,7 +349,7 @@ HTMLEmbedElementImpl *HTMLObjectBaseElementImpl::relevantEmbed()
         }
     }
 
-    return 0;
+    return nullptr;
 }
 
 bool HTMLObjectBaseElementImpl::mimetypeHandledInternally(const QString &mime)
@@ -799,7 +799,7 @@ NodeImpl::Id HTMLObjectElementImpl::id() const
 
 HTMLFormElementImpl *HTMLObjectElementImpl::form() const
 {
-    return 0;
+    return nullptr;
 }
 
 void HTMLObjectElementImpl::parseAttribute(AttributeImpl *attr)
@@ -846,7 +846,7 @@ DocumentImpl *HTMLObjectElementImpl::contentDocument() const
     if (widget && qobject_cast<KHTMLView *>(widget)) {
         return static_cast<KHTMLView *>(widget)->part()->xmlDocImpl();
     }
-    return 0;
+    return nullptr;
 }
 
 void HTMLObjectElementImpl::attach()

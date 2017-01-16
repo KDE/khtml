@@ -168,7 +168,7 @@ public:
     // ### remove? (clients should use sheet->doc()->docLoader())
     khtml::DocLoader *docLoader() const
     {
-        return m_doc ? m_doc->docLoader() : 0;
+        return m_doc ? m_doc->docLoader() : nullptr;
     }
 
     DocumentImpl *doc() const
@@ -186,7 +186,7 @@ protected:
     void dirtyNamespaceInfo()
     {
         delete m_namespaces;
-        m_namespaces = 0;
+        m_namespaces = nullptr;
     }
 
     DocumentImpl *m_doc;
@@ -204,7 +204,7 @@ class StyleSheetListImpl : public khtml::Shared<StyleSheetListImpl>
 public:
     // the manager argument should be passed only when this is
     // document.styleSheets.
-    StyleSheetListImpl(DocumentImpl *manager = 0): managerDocument(manager) {}
+    StyleSheetListImpl(DocumentImpl *manager = nullptr): managerDocument(manager) {}
     ~StyleSheetListImpl();
 
     // the following two ignore implicit stylesheets
@@ -228,7 +228,7 @@ class MediaListImpl : public StyleBaseImpl
 {
 public:
     MediaListImpl(bool fallbackToDescription = false)
-        : StyleBaseImpl(0), m_fallback(fallbackToDescription) {}
+        : StyleBaseImpl(nullptr), m_fallback(fallbackToDescription) {}
     MediaListImpl(CSSStyleSheetImpl *parentSheet, bool fallbackToDescription = false)
         : StyleBaseImpl(parentSheet), m_fallback(fallbackToDescription) {}
     MediaListImpl(CSSStyleSheetImpl *parentSheet,

@@ -57,7 +57,7 @@ public:
 
     virtual unsigned long length() const;
     CSSRuleImpl *parentRule() const;
-    virtual void removeProperty(int propertyID, DOM::DOMString *old = 0);
+    virtual void removeProperty(int propertyID, DOM::DOMString *old = nullptr);
     virtual bool removePropertiesInSet(const int *set, unsigned length);
     virtual bool setProperty(int propertyId, const DOM::DOMString &value, bool important, int &ec);
     virtual bool setProperty(int propertyId, const DOM::DOMString &value, bool important = false);
@@ -196,7 +196,7 @@ public:
     }
     CSSValueImpl *item(unsigned long index)
     {
-        return  index < length() ? m_values.at(index) : 0;
+        return  index < length() ? m_values.at(index) : nullptr;
     }
 
     bool isValueList() const Q_DECL_OVERRIDE
@@ -286,16 +286,16 @@ public:
         return ((m_type < CSSPrimitiveValue::CSS_STRING ||
                  m_type > CSSPrimitiveValue::CSS_ATTR ||
                  m_type == CSSPrimitiveValue::CSS_IDENT) ?  // fix IDENT
-                0 : m_value.string);
+                nullptr : m_value.string);
     }
     CounterImpl *getCounterValue() const
     {
-        return (m_type != CSSPrimitiveValue::CSS_COUNTER ? 0 : m_value.counter);
+        return (m_type != CSSPrimitiveValue::CSS_COUNTER ? nullptr : m_value.counter);
     }
 
     RectImpl *getRectValue() const
     {
-        return (m_type != CSSPrimitiveValue::CSS_RECT ? 0 : m_value.rect);
+        return (m_type != CSSPrimitiveValue::CSS_RECT ? nullptr : m_value.rect);
     }
 
     QRgb getRGBColorValue() const
@@ -305,7 +305,7 @@ public:
 
     PairImpl *getPairValue() const
     {
-        return (m_type != CSSPrimitiveValue::CSS_PAIR ? 0 : m_value.pair);
+        return (m_type != CSSPrimitiveValue::CSS_PAIR ? nullptr : m_value.pair);
     }
 
     bool isPrimitiveValue() const Q_DECL_OVERRIDE
@@ -418,7 +418,7 @@ protected:
 class PairImpl : public khtml::Shared<PairImpl>
 {
 public:
-    PairImpl() : m_first(0), m_second(0) { }
+    PairImpl() : m_first(nullptr), m_second(nullptr) { }
     PairImpl(CSSPrimitiveValueImpl *first, CSSPrimitiveValueImpl *second)
         : m_first(first), m_second(second)
     {
@@ -653,7 +653,7 @@ public:
     {
         m_id = -1;
         m_important = false;
-        m_value = 0;
+        m_value = nullptr;
     }
     CSSProperty(const CSSProperty &o)
     {

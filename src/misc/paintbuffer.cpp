@@ -113,21 +113,21 @@ void PaintBuffer::cleanup()
     if (s_avail) {
         qDeleteAll(*s_avail);
         delete s_avail;
-        s_avail = 0;
+        s_avail = nullptr;
     }
     if (s_grabbed) {
         qDeleteAll(*s_grabbed);
         delete s_grabbed;
-        s_grabbed = 0;
+        s_grabbed = nullptr;
     }
     if (s_full) {
         qDeleteAll(*s_full);
         delete s_full;
-        s_full = 0;
+        s_full = nullptr;
     }
     if (s_sweeper) {
         s_sweeper->deleteLater();
-        s_sweeper = 0;
+        s_sweeper = nullptr;
     }
 }
 
@@ -211,7 +211,7 @@ QPixmap *PaintBuffer::getBuf(QSize s)
 {
     assert(!m_grabbed);
     if (s.isEmpty()) {
-        return 0;
+        return nullptr;
     }
 
     m_grabbed = true;
@@ -242,10 +242,10 @@ QPixmap *PaintBuffer::getBuf(QSize s)
     return &m_buf;
 }
 
-QStack<PaintBuffer *> *PaintBuffer::s_avail = 0;
-QStack<PaintBuffer *> *PaintBuffer::s_grabbed = 0;
-QStack<QPixmap *>     *PaintBuffer::s_full = 0;
-BufferSweeper        *PaintBuffer::s_sweeper = 0;
+QStack<PaintBuffer *> *PaintBuffer::s_avail = nullptr;
+QStack<PaintBuffer *> *PaintBuffer::s_grabbed = nullptr;
+QStack<QPixmap *>     *PaintBuffer::s_full = nullptr;
+BufferSweeper        *PaintBuffer::s_sweeper = nullptr;
 
 // ### benchark me in release mode
 #define USE_PIXMAP_CACHE
@@ -254,7 +254,7 @@ BufferSweeper        *PaintBuffer::s_sweeper = 0;
 BufferedPainter *BufferedPainter::start(QPainter *&p, const QRegion &rr)
 {
     if (rr.isEmpty()) {
-        return 0;
+        return nullptr;
     }
 #ifdef USE_PIXMAP_CACHE
     QPixmap *pm = PaintBuffer::grab(rr.boundingRect().size());
@@ -262,7 +262,7 @@ BufferedPainter *BufferedPainter::start(QPainter *&p, const QRegion &rr)
     QPixmap *pm =  new QPixmap(rr.boundingRect().size());
 #endif
     if (!pm || pm->isNull()) {
-        return 0;
+        return nullptr;
     }
     return new BufferedPainter(pm, p, rr, true /*replacePainter*/);
 }

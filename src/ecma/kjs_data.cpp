@@ -65,7 +65,7 @@ static JSValue *cloneInternal(ExecState *exec, Interpreter *ctx, JSValue *in, QS
 
         path.insert(obj);
 
-        JSObject *clone = 0;
+        JSObject *clone = nullptr;
         if (obj->inherits(&ArrayInstance::info)) {
             clone = new ArrayInstance(ctx->builtinArrayPrototype(), 0);
         } else if (!obj->classInfo()) { // plain object
@@ -121,7 +121,7 @@ DOM::MessageEventImpl::Data *encapsulateMessageEventData(ExecState *exec, Interp
     QSet<JSObject *> visited;
     JSValue *copy = cloneInternal(exec, ctx, data, visited);
     if (exec->hadException()) {
-        return 0;
+        return nullptr;
     } else {
         return new JSMessageData(copy);
     }
@@ -154,8 +154,8 @@ void DelayedPostMessage::mark()
 bool DelayedPostMessage::execute(Window *w)
 {
     KHTMLPart *part = qobject_cast<KHTMLPart *>(w->part());
-    DOM::DocumentImpl *doc = part ? static_cast<DOM::DocumentImpl *>(part->document().handle()) : 0;
-    KJSProxy *js = part ? KJSProxy::proxy(part) : 0;
+    DOM::DocumentImpl *doc = part ? static_cast<DOM::DocumentImpl *>(part->document().handle()) : nullptr;
+    KJSProxy *js = part ? KJSProxy::proxy(part) : nullptr;
 
     // qDebug() << doc << js << sourceOrigin << targetOrigin;
     if (doc && js) {

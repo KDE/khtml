@@ -104,7 +104,7 @@ public:
     CommentImpl(DocumentImpl *doc, DOMStringImpl *_text)
         : CharacterDataImpl(doc, _text) {}
     CommentImpl(DocumentImpl *doc)
-        : CharacterDataImpl(doc, 0) {}
+        : CharacterDataImpl(doc, nullptr) {}
     // DOM methods overridden from  parent classes
     DOMString nodeName() const Q_DECL_OVERRIDE;
     unsigned short nodeType() const Q_DECL_OVERRIDE;
@@ -126,7 +126,7 @@ public:
     TextImpl(DocumentImpl *impl, DOMStringImpl *_text)
         : CharacterDataImpl(impl, _text) {}
     TextImpl(DocumentImpl *impl)
-        : CharacterDataImpl(impl, 0) {}
+        : CharacterDataImpl(impl, nullptr) {}
 
     // DOM methods & attributes for CharacterData
 

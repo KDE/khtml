@@ -62,10 +62,10 @@ static inline EAlignmentBaseline dominantBaselineToShift(bool isVerticalText, co
 {
     ASSERT(text);
 
-    const SVGRenderStyle *style = text->style() ? text->style()->svgStyle() : 0;
+    const SVGRenderStyle *style = text->style() ? text->style()->svgStyle() : nullptr;
     ASSERT(style);
 
-    const SVGRenderStyle *parentStyle = text->parent() && text->parent()->style() ? text->parent()->style()->svgStyle() : 0;
+    const SVGRenderStyle *parentStyle = text->parent() && text->parent()->style() ? text->parent()->style()->svgStyle() : nullptr;
 
     EDominantBaseline baseline = style->dominantBaseline();
     if (baseline == DB_AUTO) {
@@ -123,10 +123,10 @@ static inline float alignmentBaselineToShift(bool isVerticalText, const RenderOb
 {
     ASSERT(text);
 
-    const SVGRenderStyle *style = text->style() ? text->style()->svgStyle() : 0;
+    const SVGRenderStyle *style = text->style() ? text->style()->svgStyle() : nullptr;
     ASSERT(style);
 
-    const SVGRenderStyle *parentStyle = text->parent() && text->parent()->style() ? text->parent()->style()->svgStyle() : 0;
+    const SVGRenderStyle *parentStyle = text->parent() && text->parent()->style() ? text->parent()->style()->svgStyle() : nullptr;
 
     EAlignmentBaseline baseline = style->alignmentBaseline();
     if (baseline == AB_AUTO) {
@@ -357,12 +357,12 @@ struct SVGRootInlineBoxPaintWalker {
         , m_paintInfo(paintInfo)
         , m_savedInfo(paintInfo)
         , m_boundingBox(tx + rootBox->xPos(), ty + rootBox->yPos(), rootBox->width(), rootBox->height())
-        , m_filter(0)
+        , m_filter(nullptr)
         , m_rootFilter(rootFilter)
-        , m_fillPaintServer(0)
-        , m_strokePaintServer(0)
-        , m_fillPaintServerObject(0)
-        , m_strokePaintServerObject(0)
+        , m_fillPaintServer(nullptr)
+        , m_strokePaintServer(nullptr)
+        , m_fillPaintServerObject(nullptr)
+        , m_strokePaintServerObject(nullptr)
         , m_tx(tx)
         , m_ty(ty)
     {
@@ -384,10 +384,10 @@ struct SVGRootInlineBoxPaintWalker {
             return;
         }
 
-        m_fillPaintServer->teardown(m_paintInfo.p, 0, m_fillPaintServerObject, ApplyToFillTargetType, true);
+        m_fillPaintServer->teardown(m_paintInfo.p, nullptr, m_fillPaintServerObject, ApplyToFillTargetType, true);
 
-        m_fillPaintServer = 0;
-        m_fillPaintServerObject = 0;
+        m_fillPaintServer = nullptr;
+        m_fillPaintServerObject = nullptr;
     }
 
     void teardownStrokePaintServer()
@@ -396,10 +396,10 @@ struct SVGRootInlineBoxPaintWalker {
             return;
         }
 
-        m_strokePaintServer->teardown(m_paintInfo.p, 0, m_strokePaintServerObject, ApplyToStrokeTargetType, true);
+        m_strokePaintServer->teardown(m_paintInfo.p, nullptr, m_strokePaintServerObject, ApplyToStrokeTargetType, true);
 
-        m_strokePaintServer = 0;
-        m_strokePaintServerObject = 0;
+        m_strokePaintServer = nullptr;
+        m_strokePaintServerObject = nullptr;
     }
 
     void chunkStartCallback(InlineBox *box)
@@ -446,7 +446,7 @@ struct SVGRootInlineBoxPaintWalker {
         // Finalize text rendering
         if (!flowBox->isRootInlineBox()) {
             //FIXME khtml finishRenderSVGContent(object, m_paintInfo, m_boundingBox, m_filter, m_savedInfo.context);
-            m_filter = 0;
+            m_filter = nullptr;
         }
 
         // Restore context & repaint rect
@@ -467,7 +467,7 @@ struct SVGRootInlineBoxPaintWalker {
 
         m_fillPaintServer = SVGPaintServer::fillPaintServer(object->style(), object);
         if (m_fillPaintServer) {
-            m_fillPaintServer->setup(m_paintInfo.p, 0, object, ApplyToFillTargetType, true);
+            m_fillPaintServer->setup(m_paintInfo.p, nullptr, object, ApplyToFillTargetType, true);
             m_fillPaintServerObject = object;
             return true;
         }
@@ -490,7 +490,7 @@ struct SVGRootInlineBoxPaintWalker {
         m_strokePaintServer = SVGPaintServer::strokePaintServer(object->style(), object);
 
         if (m_strokePaintServer) {
-            m_strokePaintServer->setup(m_paintInfo.p, 0, object, ApplyToStrokeTargetType, true);
+            m_strokePaintServer->setup(m_paintInfo.p, nullptr, object, ApplyToStrokeTargetType, true);
             m_strokePaintServerObject = object;
             return true;
         }
@@ -602,7 +602,7 @@ void SVGRootInlineBox::paint(RenderObject::PaintInfo &paintInfo, int tx, int ty)
     RenderObject::PaintInfo savedInfo(paintInfo);
     //paintInfo.context->save();
 
-    SVGResourceFilter *filter = 0;
+    SVGResourceFilter *filter = nullptr;
     FloatRect boundingBox(tx + xPos(), ty + yPos(), width(), height());
 
     // Initialize text rendering
@@ -980,7 +980,7 @@ void SVGRootInlineBox::buildLayoutInformation(InlineFlowBox *start, SVGCharacter
                 info.setInPathLayout(true);
 
                 // Handle text-anchor/textLength on path, which is special.
-                SVGTextContentElement *textContent = 0;
+                SVGTextContentElement *textContent = nullptr;
                 Node *node = flowBox->object()->element();
                 if (node && node->isSVGElement()) {
                     textContent = static_cast<SVGTextContentElement *>(node);
@@ -1460,7 +1460,7 @@ void SVGRootInlineBox::buildTextChunks(Vector<SVGChar> &svgChars, InlineFlowBox 
             ASSERT(text);
             ASSERT(text->element());
 
-            SVGTextContentElement *textContent = 0;
+            SVGTextContentElement *textContent = nullptr;
             Node *node = text->element()->parent();
             if (node && node->isSVGElement()) {
                 textContent = static_cast<SVGTextContentElement *>(node);
@@ -1732,8 +1732,8 @@ void SVGRootInlineBox::walkTextChunks(SVGTextChunkWalkerBase *walker, const SVGI
         Vector<SVGInlineBoxCharacterRange>::iterator boxIt = curChunk.boxes.begin();
         Vector<SVGInlineBoxCharacterRange>::iterator boxEnd = curChunk.boxes.end();
 
-        InlineBox *lastNotifiedBox = 0;
-        InlineBox *prevBox = 0;
+        InlineBox *lastNotifiedBox = nullptr;
+        InlineBox *prevBox = nullptr;
 
         unsigned int chunkOffset = 0;
         bool startedFirstChunk = false;

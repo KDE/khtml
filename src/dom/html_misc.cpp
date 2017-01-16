@@ -122,7 +122,7 @@ void HTMLBaseFontElement::setSize(long _value)
 // --------------------------------------------------------------------------
 
 HTMLCollection::HTMLCollection()
-    : impl(0)
+    : impl(nullptr)
 {
 }
 
@@ -179,7 +179,7 @@ unsigned long HTMLCollection::length() const
 Node HTMLCollection::item(unsigned long index) const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return ((HTMLCollectionImpl *)impl)->item(index);
 }
@@ -187,7 +187,7 @@ Node HTMLCollection::item(unsigned long index) const
 Node HTMLCollection::namedItem(const DOMString &name) const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return ((HTMLCollectionImpl *)impl)->namedItem(name);
 }
@@ -195,7 +195,7 @@ Node HTMLCollection::namedItem(const DOMString &name) const
 Node HTMLCollection::base() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
 
     return static_cast<HTMLCollectionImpl *>(impl)->m_refNode;
@@ -204,7 +204,7 @@ Node HTMLCollection::base() const
 Node HTMLCollection::firstItem() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return static_cast<HTMLCollectionImpl *>(impl)->firstItem();
 }
@@ -212,7 +212,7 @@ Node HTMLCollection::firstItem() const
 Node HTMLCollection::nextItem() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return static_cast<HTMLCollectionImpl *>(impl)->nextItem();
 }
@@ -220,7 +220,7 @@ Node HTMLCollection::nextItem() const
 Node HTMLCollection::nextNamedItem(const DOMString &name) const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return static_cast<HTMLCollectionImpl *>(impl)->nextNamedItem(name);
 }
@@ -232,7 +232,7 @@ HTMLCollectionImpl *HTMLCollection::handle() const
 
 bool HTMLCollection::isNull() const
 {
-    return (impl == 0);
+    return (impl == nullptr);
 }
 
 // -----------------------------------------------------------------------------

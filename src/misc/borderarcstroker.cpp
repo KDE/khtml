@@ -301,7 +301,7 @@ qreal KCubicBezier::tAtIntersection(const QLineF &line) const
     const QLineF l = QLineF(line.pointAt(1.0 / len * -1e10), line.pointAt(1.0 / len * 1e10));
 
     // Check if the line intersects the curve at all
-    if (chord().intersect(l, 0) != QLineF::BoundedIntersection) {
+    if (chord().intersect(l, nullptr) != QLineF::BoundedIntersection) {
         return 1;
     }
 
@@ -320,7 +320,7 @@ qreal KCubicBezier::tAtIntersection(const QLineF &line) const
         c.split(&left, &right);
 
         // If the line intersects the left section
-        if (left.chord().intersect(l, 0) == QLineF::BoundedIntersection) {
+        if (left.chord().intersect(l, nullptr) == QLineF::BoundedIntersection) {
             upperT = t;
             c = left;
         } else {

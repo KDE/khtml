@@ -667,7 +667,7 @@ findProp (register const char *str, register unsigned int len)
             }
         }
     }
-  return 0;
+  return nullptr;
 }
 #line 193 "cssproperties.gperf"
 
@@ -852,7 +852,7 @@ static const char * const propertyList[] = {
 "text-anchor", 
 "text-rendering", 
 "writing-mode", 
-    0
+    nullptr
 };
 DOMString getPropertyName(unsigned short id)
 {

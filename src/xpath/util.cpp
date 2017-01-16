@@ -114,7 +114,7 @@ bool isValidContextNode(NodeImpl *node)
 
 DOM::NodeImpl *xpathParentNode(DOM::NodeImpl *node)
 {
-    DOM::NodeImpl *res = 0;
+    DOM::NodeImpl *res = nullptr;
     if (node) {
         if (node->nodeType() == Node::ATTRIBUTE_NODE) {
             res = static_cast<DOM::AttrImpl *>(node)->ownerElement();
@@ -127,7 +127,7 @@ DOM::NodeImpl *xpathParentNode(DOM::NodeImpl *node)
 
 DOM::NodeImpl *xpathFirstChild(DOM::NodeImpl *node)
 {
-    DOM::NodeImpl *res = 0;
+    DOM::NodeImpl *res = nullptr;
     if (node && node->nodeType() != Node::ATTRIBUTE_NODE) {
         res = node->firstChild();
     }
@@ -136,7 +136,7 @@ DOM::NodeImpl *xpathFirstChild(DOM::NodeImpl *node)
 
 DOM::NodeImpl *xpathLastChild(DOM::NodeImpl *node)
 {
-    DOM::NodeImpl *res = 0;
+    DOM::NodeImpl *res = nullptr;
     if (node && node->nodeType() != Node::ATTRIBUTE_NODE) {
         res = node->lastChild();
     }
@@ -145,7 +145,7 @@ DOM::NodeImpl *xpathLastChild(DOM::NodeImpl *node)
 
 DOM::NodeImpl *nextSiblingForFollowing(DOM::NodeImpl *node)
 {
-    DOM::NodeImpl *res = 0;
+    DOM::NodeImpl *res = nullptr;
     if (node) {
         if (node->nodeType() == Node::ATTRIBUTE_NODE) {
             res = static_cast<DOM::AttrImpl *>(node)->ownerElement()->firstChild();

@@ -125,7 +125,7 @@ KJS_IMPLEMENT_PROTOTYPE_IMP("DOMNode", DOMNodeProto, DOMNodeProtoFunc, DOMNodeCo
     putDirect(exec->propertyNames().constructor, NodeConstructor::self(exec), DontEnum);
 }
 
-const ClassInfo DOMNode::info = { "Node", 0, &DOMNodeTable, 0 };
+const ClassInfo DOMNode::info = { "Node", nullptr, &DOMNodeTable, nullptr };
 
 DOMNode::DOMNode(ExecState *exec, DOM::NodeImpl *n)
     : DOMObject(DOMNodeProto::self(exec)), m_impl(n)
@@ -225,7 +225,7 @@ static khtml::RenderObject *handleBodyRootQuirk(const DOM::NodeImpl *node, khtml
     //This emulates the quirks of various height/width properties on the viewport and root. Note that it
     //is (mostly) IE-compatible in quirks, and mozilla-compatible in strict.
     if (!rend) {
-        return 0;
+        return nullptr;
     }
 
     bool quirksMode = rend->style() && rend->style()->htmlHacks();
@@ -293,7 +293,7 @@ JSValue *DOMNode::getValueProperty(ExecState *exec, int token) const
     case NextSibling:
         return getDOMNode(exec, node.nextSibling());
     case Attributes: {
-        DOM::NamedNodeMapImpl *attrs = 0;
+        DOM::NamedNodeMapImpl *attrs = nullptr;
         if (node.isElementNode()) {
             DOM::ElementImpl &el = static_cast<DOM::ElementImpl &>(node);
             attrs = el.attributes();
@@ -399,8 +399,8 @@ JSValue *DOMNode::getValueProperty(ExecState *exec, int token) const
         case OffsetHeight:
             return rend ? jsNumber(rend->offsetHeight()) : jsNumber(0);
         case OffsetParent: {
-            khtml::RenderObject *par = rend ? rend->offsetParent() : 0;
-            return getDOMNode(exec, par ? par->element() : 0);
+            khtml::RenderObject *par = rend ? rend->offsetParent() : nullptr;
+            return getDOMNode(exec, par ? par->element() : nullptr);
         }
         case ClientWidth:
             return rend ? jsNumber(rend->clientWidth()) : jsNumber(0);
@@ -739,7 +739,7 @@ KJS_IMPLEMENT_PROTOTYPE("DOMNodeList", DOMNodeListProto, DOMNodeListProtoFunc, O
 
 IMPLEMENT_PSEUDO_CONSTRUCTOR(NodeListPseudoCtor, "NodeList", DOMNodeListProto)
 
-const ClassInfo DOMNodeList::info = { "NodeList", 0, 0, 0 };
+const ClassInfo DOMNodeList::info = { "NodeList", nullptr, nullptr, nullptr };
 
 DOMNodeList::DOMNodeList(ExecState *exec, DOM::NodeListImpl *l)
     : DOMObject(DOMNodeListProto::self(exec)), m_impl(l) { }
@@ -780,7 +780,7 @@ DOM::NodeImpl *DOMNodeList::getByName(const Identifier &name)
             }
         }
     }
-    return 0;
+    return nullptr;
 }
 
 bool DOMNodeList::getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot)
@@ -868,7 +868,7 @@ JSValue *DOMNodeListProtoFunc::callAsFunction(ExecState *exec, JSObject *thisObj
 // -------------------------------------------------------------------------
 
 //### FIXME: link to the node prototype.
-const ClassInfo DOMAttr::info = { "Attr", &DOMNode::info, &DOMAttrTable, 0 };
+const ClassInfo DOMAttr::info = { "Attr", &DOMNode::info, &DOMAttrTable, nullptr };
 
 /* Source for DOMAttrTable.
 @begin DOMAttrTable 5
@@ -926,7 +926,7 @@ void DOMAttr::putValueProperty(ExecState *exec, int token, JSValue *value, int /
 AttrImpl *toAttr(JSValue *val)
 {
     if (!val || !val->isObject(&DOMAttr::info)) {
-        return 0;
+        return nullptr;
     }
     return static_cast<AttrImpl *>(static_cast<DOMNode *>(val)->impl());
 }
@@ -977,7 +977,7 @@ KJS_IMPLEMENT_PROTOTYPE("DOMDocument", DOMDocumentProto, DOMDocumentProtoFunc, D
 
 IMPLEMENT_PSEUDO_CONSTRUCTOR(DocumentPseudoCtor, "Document", DOMDocumentProto)
 
-const ClassInfo DOMDocument::info = { "Document", &DOMNode::info, &DOMDocumentTable, 0 };
+const ClassInfo DOMDocument::info = { "Document", &DOMNode::info, &DOMDocumentTable, nullptr };
 
 /* Source for DOMDocumentTable.
 @begin DOMDocumentTable 4
@@ -1251,7 +1251,7 @@ JSValue *DOMDocumentProtoFunc::callAsFunction(ExecState *exec, JSObject *thisObj
                                                     toNode(args[1]), // contextNode,
                                                     toResolver(exec, args[2]), // resolver
                                                     args[3]->toInt32(exec), // type
-                                                    0, // result reuse, ignored
+                                                    nullptr, // result reuse, ignored
                                                     exception));
     }
     default:
@@ -1295,7 +1295,7 @@ KJS_IMPLEMENT_PROTOTYPE("DOMElement", DOMElementProto, DOMElementProtoFunc, DOMN
 
 IMPLEMENT_PSEUDO_CONSTRUCTOR(ElementPseudoCtor, "Element", DOMElementProto)
 
-const ClassInfo DOMElement::info = { "Element", &DOMNode::info, &DOMElementTable, 0 };
+const ClassInfo DOMElement::info = { "Element", &DOMNode::info, &DOMElementTable, nullptr };
 /* Source for DOMElementTable.
 @begin DOMElementTable 7
   tagName       DOMElement::TagName                 DontDelete|ReadOnly
@@ -1486,7 +1486,7 @@ DOM::ElementImpl *KJS::toElement(JSValue *v)
     if (node && node->isElementNode()) {
         return static_cast<DOM::ElementImpl *>(node);
     }
-    return 0;
+    return nullptr;
 }
 
 DOM::AttrImpl *KJS::toAttr(JSValue *v)
@@ -1495,7 +1495,7 @@ DOM::AttrImpl *KJS::toAttr(JSValue *v)
     if (node && node->isAttributeNode()) {
         return static_cast<DOM::AttrImpl *>(node);
     }
-    return 0;
+    return nullptr;
 }
 
 // -------------------------------------------------------------------------
@@ -1514,7 +1514,7 @@ KJS_DEFINE_PROTOTYPE(DOMDOMImplementationProto)
 KJS_IMPLEMENT_PROTOFUNC(DOMDOMImplementationProtoFunc)
 KJS_IMPLEMENT_PROTOTYPE("DOMImplementation", DOMDOMImplementationProto, DOMDOMImplementationProtoFunc, ObjectPrototype)
 
-const ClassInfo DOMDOMImplementation::info = { "DOMImplementation", 0, 0, 0 };
+const ClassInfo DOMDOMImplementation::info = { "DOMImplementation", nullptr, nullptr, nullptr };
 
 DOMDOMImplementation::DOMDOMImplementation(ExecState *exec, DOM::DOMImplementationImpl *i)
     : DOMObject(DOMDOMImplementationProto::self(exec)), m_impl(i) { }
@@ -1580,7 +1580,7 @@ JSValue *DOMDOMImplementationProtoFunc::callAsFunction(ExecState *exec, JSObject
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMDocumentType::info = { "DocumentType", &DOMNode::info, &DOMDocumentTypeTable, 0 };
+const ClassInfo DOMDocumentType::info = { "DocumentType", &DOMNode::info, &DOMDocumentTypeTable, nullptr };
 
 /* Source for DOMDocumentTypeTable.
 @begin DOMDocumentTypeTable 6
@@ -1647,7 +1647,7 @@ KJS_DEFINE_PROTOTYPE(DOMNamedNodeMapProto)
 KJS_IMPLEMENT_PROTOFUNC(DOMNamedNodeMapProtoFunc)
 KJS_IMPLEMENT_PROTOTYPE("NamedNodeMap", DOMNamedNodeMapProto, DOMNamedNodeMapProtoFunc, ObjectPrototype)
 
-const ClassInfo DOMNamedNodeMap::info = { "NamedNodeMap", 0, &DOMNamedNodeMapTable, 0 };
+const ClassInfo DOMNamedNodeMap::info = { "NamedNodeMap", nullptr, &DOMNamedNodeMapTable, nullptr };
 
 DOMNamedNodeMap::DOMNamedNodeMap(ExecState *exec, DOM::NamedNodeMapImpl *m)
     : DOMObject(DOMNamedNodeMapProto::self(exec)), m_impl(m) { }
@@ -1729,7 +1729,7 @@ JSValue *DOMNamedNodeMapProtoFunc::callAsFunction(ExecState *exec, JSObject *thi
 
 // -------------------------------------------------------------------------
 //### FIXME: proto
-const ClassInfo DOMProcessingInstruction::info = { "ProcessingInstruction", &DOMNode::info, &DOMProcessingInstructionTable, 0 };
+const ClassInfo DOMProcessingInstruction::info = { "ProcessingInstruction", &DOMNode::info, &DOMProcessingInstructionTable, nullptr };
 
 /* Source for DOMProcessingInstructionTable.
 @begin DOMProcessingInstructionTable 3
@@ -1773,7 +1773,7 @@ void DOMProcessingInstruction::put(ExecState *exec, const Identifier &propertyNa
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMNotation::info = { "Notation", &DOMNode::info, &DOMNotationTable, 0 };
+const ClassInfo DOMNotation::info = { "Notation", &DOMNode::info, &DOMNotationTable, nullptr };
 
 /* Source for DOMNotationTable.
 @begin DOMNotationTable 2
@@ -1802,7 +1802,7 @@ JSValue *DOMNotation::getValueProperty(ExecState *, int token) const
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMEntity::info = { "Entity", &DOMNode::info, 0, 0 };
+const ClassInfo DOMEntity::info = { "Entity", &DOMNode::info, nullptr, nullptr };
 
 /* Source for DOMEntityTable.
 @begin DOMEntityTable 2
@@ -1841,7 +1841,7 @@ bool KJS::checkNodeSecurity(ExecState *exec, const DOM::NodeImpl *n)
         return true;
     }
     KHTMLPart *part = n->document()->part();
-    Window *win = part ? Window::retrieveWindow(part) : 0L;
+    Window *win = part ? Window::retrieveWindow(part) : nullptr;
     if (!win || !win->isSafeScript(exec)) {
         return false;
     }
@@ -1875,7 +1875,7 @@ JSValue *KJS::getEventTarget(ExecState *exec, DOM::EventTargetImpl *t)
 
 JSValue *KJS::getDOMNode(ExecState *exec, DOM::NodeImpl *n)
 {
-    DOMObject *ret = 0;
+    DOMObject *ret = nullptr;
     if (!n) {
         return jsNull();
     }
@@ -2008,7 +2008,7 @@ JSDOMException::JSDOMException(ExecState *exec)
 {
 }
 
-const ClassInfo JSDOMException::info = { "DOMException", 0, 0, 0 };
+const ClassInfo JSDOMException::info = { "DOMException", nullptr, nullptr, nullptr };
 
 JSObject *KJS::getDOMExceptionConstructor(ExecState *exec)
 {
@@ -2022,7 +2022,7 @@ JSObject *KJS::getDOMExceptionConstructor(ExecState *exec)
   length        KJS::DOMNamedNodesCollection::Length        DontDelete|ReadOnly
 @end
 */
-const ClassInfo KJS::DOMNamedNodesCollection::info = { "DOMNamedNodesCollection", 0, &DOMNamedNodesCollectionTable, 0 };
+const ClassInfo KJS::DOMNamedNodesCollection::info = { "DOMNamedNodesCollection", nullptr, &DOMNamedNodesCollectionTable, nullptr };
 
 // Such a collection is usually very short-lived, it only exists
 // for constructs like document.forms.<name>[1],
@@ -2065,7 +2065,7 @@ bool DOMNamedNodesCollection::getOwnPropertySlot(ExecState *exec, const Identifi
 // -------------------------------------------------------------------------
 
 const ClassInfo DOMCharacterData::info = { "CharacterImp",
-                                           &DOMNode::info, &DOMCharacterDataTable, 0
+                                           &DOMNode::info, &DOMCharacterDataTable, nullptr
                                          };
 /*
 @begin DOMCharacterDataTable 2
@@ -2154,7 +2154,7 @@ JSValue *DOMCharacterDataProtoFunc::callAsFunction(ExecState *exec, JSObject *th
 // -------------------------------------------------------------------------
 
 const ClassInfo DOMText::info = { "Text", &DOMCharacterData::info,
-                                  &DOMTextTable, 0
+                                  &DOMTextTable, nullptr
                                 };
 
 /*
@@ -2212,7 +2212,7 @@ JSValue *DOMTextProtoFunc::callAsFunction(ExecState *exec, JSObject *thisObj, co
 // -------------------------------------------------------------------------
 
 const ClassInfo DOMComment::info = { "Comment",
-                                     &DOMCharacterData::info, 0, 0
+                                     &DOMCharacterData::info, nullptr, nullptr
                                    };
 /*
 @begin DOMCommentProtoTable 1
@@ -2238,7 +2238,7 @@ JSValue *DOMCommentProtoFunc::callAsFunction(ExecState *exec, JSObject *thisObj,
 // -------------------------------------------------------------------------
 
 const ClassInfo DOMDocumentFragment::info = { "DocumentFragment",
-                                              &DOMNode::info, 0, 0
+                                              &DOMNode::info, nullptr, nullptr
                                             };
 /*
 @begin DOMDocumentFragmentProtoTable 2

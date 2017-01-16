@@ -51,8 +51,8 @@
 
 K_EXPORT_PLUGIN(KJavaAppletViewerFactory)
 
-KAboutData *KJavaAppletViewerFactory::s_aboutData = 0;
-KIconLoader *KJavaAppletViewerFactory::s_iconLoader = 0;
+KAboutData *KJavaAppletViewerFactory::s_aboutData = nullptr;
+KIconLoader *KJavaAppletViewerFactory::s_iconLoader = nullptr;
 
 KJavaAppletViewerFactory::KJavaAppletViewerFactory()
 {
@@ -262,7 +262,7 @@ KJavaAppletViewer::KJavaAppletViewer(QWidget *wparent,
       m_browserextension(new KJavaAppletViewerBrowserExtension(this)),
       m_liveconnect(new KJavaAppletViewerLiveConnectExtension(this)),
       m_statusbar(new KParts::StatusBarExtension(this)),
-      m_statusbar_icon(0L),
+      m_statusbar_icon(nullptr),
       m_closed(true)
 {
     m_view = new CoverWidget(wparent);
@@ -436,7 +436,7 @@ bool KJavaAppletViewer::eventFilter(QObject *o, QEvent *e)
 
 KJavaAppletViewer::~KJavaAppletViewer()
 {
-    m_view = 0L;
+    m_view = nullptr;
     serverMaintainer()->releaseContext(parent(), baseurl);
     if (m_statusbar_icon) {
         m_statusbar->removeStatusBarItem(m_statusbar_icon);
@@ -481,7 +481,7 @@ bool KJavaAppletViewer::openUrl(const QUrl &url)
         QTimer::singleShot(10, this, SLOT(delayedCreateTimeOut()));
     }
     if (!applet->failed()) {
-        emit started(0L);
+        emit started(nullptr);
     }
     return url.isValid();
 }

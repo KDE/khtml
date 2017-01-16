@@ -62,7 +62,7 @@ EventListener *SVGDocumentExtensions::createSVGEventListener(const DOMString &fu
         if (frame->scriptProxy()->isEnabled())
             return frame->scriptProxy()->createSVGEventHandler(functionName, code, node);*/
     if (!m_doc || !m_doc->part()) {
-        return 0;
+        return nullptr;
     }
     // qDebug() << "create listener: (" << code << functionName << node << ")" << endl;
     return m_doc->part()->createHTMLEventListener(code.string(), functionName.string(), node, true/*svg*/);

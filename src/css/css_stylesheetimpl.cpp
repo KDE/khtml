@@ -50,8 +50,8 @@ StyleSheetImpl::StyleSheetImpl(StyleSheetImpl *parentSheet, DOMString href)
     : StyleListImpl(parentSheet)
 {
     m_disabled = false;
-    m_media = 0;
-    m_parentNode = 0;
+    m_media = nullptr;
+    m_parentNode = nullptr;
     m_strHref = href;
 }
 
@@ -60,7 +60,7 @@ StyleSheetImpl::StyleSheetImpl(DOM::NodeImpl *parentNode, DOMString href)
 {
     m_parentNode = parentNode;
     m_disabled = false;
-    m_media = 0;
+    m_media = nullptr;
     m_strHref = href;
 }
 
@@ -68,15 +68,15 @@ StyleSheetImpl::StyleSheetImpl(StyleBaseImpl *owner, DOMString href)
     : StyleListImpl(owner)
 {
     m_disabled = false;
-    m_media = 0;
-    m_parentNode = 0;
+    m_media = nullptr;
+    m_parentNode = nullptr;
     m_strHref = href;
 }
 
 StyleSheetImpl::~StyleSheetImpl()
 {
     if (m_media) {
-        m_media->setParent(0);
+        m_media->setParent(nullptr);
         m_media->deref();
     }
 }
@@ -84,7 +84,7 @@ StyleSheetImpl::~StyleSheetImpl()
 StyleSheetImpl *StyleSheetImpl::parentStyleSheet() const
 {
     if (!m_parent) {
-        return 0;
+        return nullptr;
     }
     if (m_parent->isStyleSheet()) {
         return static_cast<StyleSheetImpl *>(m_parent);
@@ -92,7 +92,7 @@ StyleSheetImpl *StyleSheetImpl::parentStyleSheet() const
     if (m_parent->isRule()) {
         return m_parent->stylesheet();
     }
-    return 0;
+    return nullptr;
 }
 
 void StyleSheetImpl::setMedia(MediaListImpl *media)
@@ -101,7 +101,7 @@ void StyleSheetImpl::setMedia(MediaListImpl *media)
         media->ref();
     }
     if (m_media) {
-        m_media->setParent(0);
+        m_media->setParent(nullptr);
         m_media->deref();
     }
     m_media = media;
@@ -125,9 +125,9 @@ CSSStyleSheetImpl::CSSStyleSheetImpl(CSSStyleSheetImpl *parentSheet, DOMString h
     : StyleSheetImpl(parentSheet, href)
 {
     m_lstChildren = new QList<StyleBaseImpl *>;
-    m_doc = parentSheet ? parentSheet->doc() : 0;
+    m_doc = parentSheet ? parentSheet->doc() : nullptr;
     m_implicit = false;
-    m_namespaces = 0;
+    m_namespaces = nullptr;
     m_defaultNamespace = NamespaceName::fromId(anyNamespace);
     m_loadedHint = false;
 }
@@ -138,7 +138,7 @@ CSSStyleSheetImpl::CSSStyleSheetImpl(DOM::NodeImpl *parentNode, DOMString href, 
     m_lstChildren = new QList<StyleBaseImpl *>;
     m_doc = parentNode->document();
     m_implicit = _implicit;
-    m_namespaces = 0;
+    m_namespaces = nullptr;
     m_defaultNamespace = NamespaceName::fromId(anyNamespace);
     m_loadedHint = false;
 }
@@ -149,7 +149,7 @@ CSSStyleSheetImpl::CSSStyleSheetImpl(CSSRuleImpl *ownerRule, DOMString href)
     m_lstChildren = new QList<StyleBaseImpl *>;
     m_doc = static_cast<CSSStyleSheetImpl *>(ownerRule->stylesheet())->doc();
     m_implicit = false;
-    m_namespaces = 0;
+    m_namespaces = nullptr;
     m_defaultNamespace = NamespaceName::fromId(anyNamespace);
     m_loadedHint = false;
 }
@@ -167,7 +167,7 @@ CSSStyleSheetImpl::CSSStyleSheetImpl(DOM::NodeImpl *parentNode, CSSStyleSheetImp
     }
     m_doc = parentNode->document();
     m_implicit = false;
-    m_namespaces = 0;
+    m_namespaces = nullptr;
     m_defaultNamespace = NamespaceName::fromId(anyNamespace);
     m_loadedHint = false;
 
@@ -188,7 +188,7 @@ CSSStyleSheetImpl::CSSStyleSheetImpl(CSSRuleImpl *ownerRule, CSSStyleSheetImpl *
     }
     m_doc = static_cast<CSSStyleSheetImpl *>(ownerRule->stylesheet())->doc();
     m_implicit = false;
-    m_namespaces = 0;
+    m_namespaces = nullptr;
     m_defaultNamespace = NamespaceName::fromId(anyNamespace);
     m_loadedHint = false;
 
@@ -198,12 +198,12 @@ CSSStyleSheetImpl::CSSStyleSheetImpl(CSSRuleImpl *ownerRule, CSSStyleSheetImpl *
 CSSRuleImpl *CSSStyleSheetImpl::ownerRule() const
 {
     if (!m_parent) {
-        return 0;
+        return nullptr;
     }
     if (m_parent->isRule()) {
         return static_cast<CSSRuleImpl *>(m_parent);
     }
-    return 0;
+    return nullptr;
 }
 
 unsigned long CSSStyleSheetImpl::insertRule(const DOMString &rule, unsigned long index, int &exceptioncode)
@@ -271,7 +271,7 @@ void CSSStyleSheetImpl::deleteRule(unsigned long index, int &exceptioncode)
     }
 
     // TreeShared requires delete not deref when removed from tree
-    b->setParent(0);
+    b->setParent(nullptr);
     if (!b->refCount()) {
         delete b;
     }
@@ -461,7 +461,7 @@ StyleSheetImpl *StyleSheetListImpl::item(unsigned long index)
             ++l;
         }
     }
-    return 0;
+    return nullptr;
 }
 
 // --------------------------------------------------------------------------------------------
@@ -543,7 +543,7 @@ CSSStyleSheetImpl *MediaListImpl::parentStyleSheet() const
     if (m_parent->isCSSStyleSheet()) {
         return static_cast<CSSStyleSheetImpl *>(m_parent);
     }
-    return 0;
+    return nullptr;
 }
 
 CSSRuleImpl *MediaListImpl::parentRule() const
@@ -551,7 +551,7 @@ CSSRuleImpl *MediaListImpl::parentRule() const
     if (m_parent->isRule()) {
         return static_cast<CSSRuleImpl *>(m_parent);
     }
-    return 0;
+    return nullptr;
 }
 
 static DOMString parseMediaDescriptor(const DOMString &s)
@@ -581,7 +581,7 @@ void MediaListImpl::deleteMedium(const DOMString &oldMedium, int &ec)
     MediaListImpl tempMediaList;
     CSSParser p(true);
 
-    MediaQuery *oldQuery = 0;
+    MediaQuery *oldQuery = nullptr;
     bool deleteOldQuery = false;
 
     if (p.parseMediaQuery(&tempMediaList, oldMedium)) {
@@ -591,7 +591,7 @@ void MediaListImpl::deleteMedium(const DOMString &oldMedium, int &ec)
     } else if (m_fallback) {
         DOMString medium = parseMediaDescriptor(oldMedium);
         if (!medium.isNull()) {
-            oldQuery = new MediaQuery(MediaQuery::None, medium, 0);
+            oldQuery = new MediaQuery(MediaQuery::None, medium, nullptr);
             deleteOldQuery = true;
         }
     }
@@ -648,7 +648,7 @@ void MediaListImpl::setMediaText(const DOM::DOMString &value, int &ec)
                 if (m_fallback) {
                     DOMString mediaDescriptor = parseMediaDescriptor(medium);
                     if (!mediaDescriptor.isNull()) {
-                        tempMediaList.m_queries.append(new MediaQuery(MediaQuery::None, mediaDescriptor, 0));
+                        tempMediaList.m_queries.append(new MediaQuery(MediaQuery::None, mediaDescriptor, nullptr));
                     }
                 } else {
                     ec = CSSException::SYNTAX_ERR;
@@ -694,7 +694,7 @@ void MediaListImpl::appendMedium(const DOMString &newMedium, int &ec)
     } else if (m_fallback) {
         DOMString medium = parseMediaDescriptor(newMedium);
         if (!medium.isNull()) {
-            m_queries.append(new MediaQuery(MediaQuery::None, medium, 0));
+            m_queries.append(new MediaQuery(MediaQuery::None, medium, nullptr));
             ec = 0;
         }
     }

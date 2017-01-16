@@ -196,7 +196,7 @@ public:
 KHTMLPart::KHTMLPart(QWidget *parentWidget, QObject *parent, GUIProfile prof)
     : KParts::ReadOnlyPart(parent)
 {
-    d = 0;
+    d = nullptr;
     KHTMLGlobal::registerPart(this);
     setComponentData(KHTMLGlobal::aboutData(), false);
     init(new KHTMLView(this, parentWidget), prof);
@@ -205,7 +205,7 @@ KHTMLPart::KHTMLPart(QWidget *parentWidget, QObject *parent, GUIProfile prof)
 KHTMLPart::KHTMLPart(KHTMLView *view, QObject *parent, GUIProfile prof)
     : KParts::ReadOnlyPart(parent)
 {
-    d = 0;
+    d = nullptr;
     KHTMLGlobal::registerPart(this);
     setComponentData(KHTMLGlobal::aboutData(), false);
     assert(view);
@@ -255,11 +255,11 @@ void KHTMLPart::init(KHTMLView *view, GUIProfile prof)
     d->m_scriptableExtension = new KJS::KHTMLPartScriptable(this);
     new KHTMLTextExtension(this);
     new KHTMLHtmlExtension(this);
-    d->m_statusBarPopupLabel = 0L;
+    d->m_statusBarPopupLabel = nullptr;
     d->m_openableSuppressedPopups = 0;
 
-    d->m_paLoadImages = 0;
-    d->m_paDebugScript = 0;
+    d->m_paLoadImages = nullptr;
+    d->m_paDebugScript = nullptr;
     d->m_bMousePressed = false;
     d->m_bRightMousePressed = false;
     d->m_bCleared = false;
@@ -300,12 +300,12 @@ void KHTMLPart::init(KHTMLView *view, GUIProfile prof)
         actionCollection()->addAction("saveFrame", d->m_paSaveFrame);
         connect(d->m_paSaveFrame, SIGNAL(triggered(bool)), this, SLOT(slotSaveFrame()));
     } else {
-        d->m_paViewDocument = 0;
-        d->m_paViewFrame = 0;
-        d->m_paViewInfo = 0;
-        d->m_paSaveBackground = 0;
-        d->m_paSaveDocument = 0;
-        d->m_paSaveFrame = 0;
+        d->m_paViewDocument = nullptr;
+        d->m_paViewFrame = nullptr;
+        d->m_paViewInfo = nullptr;
+        d->m_paSaveBackground = nullptr;
+        d->m_paSaveDocument = nullptr;
+        d->m_paSaveFrame = nullptr;
     }
 
     d->m_paSecurity = new QAction(i18n("SSL"), this);
@@ -588,20 +588,20 @@ KHTMLPart::~KHTMLPart()
     hide();
 
     if (d->m_view) {
-        d->m_view->m_part = 0;
+        d->m_view->m_part = nullptr;
     }
 
     // Have to delete this here since we forward declare it in khtmlpart_p and
     // at least some compilers won't call the destructor in this case.
     delete d->m_jsedlg;
-    d->m_jsedlg = 0;
+    d->m_jsedlg = nullptr;
 
     if (!parentPart()) { // only delete d->m_frame if the top khtml_part closes
         delete d->m_frame;
     } else if (d->m_frame && d->m_frame->m_run) { // for kids, they may get detached while
         d->m_frame->m_run.data()->abort();    //  resolving mimetype; cancel that if needed
     }
-    delete d; d = 0;
+    delete d; d = nullptr;
     KHTMLGlobal::deregisterPart(this);
 }
 
@@ -639,7 +639,7 @@ bool KHTMLPart::restoreURL(const QUrl &url)
 
     KHTMLPageCache::self()->fetchData(d->m_cacheId, this, SLOT(slotRestoreData(QByteArray)));
 
-    emit started(0L);
+    emit started(nullptr);
 
     return true;
 }
@@ -672,7 +672,7 @@ bool KHTMLPartPrivate::isLocalAnchorJump(const QUrl &url)
 
 void KHTMLPartPrivate::executeAnchorJump(const QUrl &url, bool lockHistory)
 {
-    DOM::HashChangeEventImpl *hashChangeEvImpl = 0;
+    DOM::HashChangeEventImpl *hashChangeEvImpl = nullptr;
     const QString &oldRef = q->url().fragment(QUrl::FullyEncoded);
     const QString &newRef = url.fragment(QUrl::FullyEncoded);
     const bool hashChanged = (oldRef != newRef) || (oldRef.isNull() && newRef.isEmpty());
@@ -770,7 +770,7 @@ bool KHTMLPart::openUrl(const QUrl &url)
         } else if (d->m_statusBarUALabel) {
             d->m_statusBarExtension->removeStatusBarItem(d->m_statusBarUALabel);
             delete d->m_statusBarUALabel;
-            d->m_statusBarUALabel = 0L;
+            d->m_statusBarUALabel = nullptr;
         }
     }
 
@@ -813,7 +813,7 @@ bool KHTMLPart::openUrl(const QUrl &url)
         if (noReloadForced &&  d->isLocalAnchorJump(url)) {
             // qDebug() << "jumping to anchor. m_url = " << url;
             setUrl(url);
-            emit started(0);
+            emit started(nullptr);
 
             if (!gotoAnchor(url.fragment(QUrl::FullyEncoded))) {
                 gotoAnchor(url.fragment(QUrl::FullyDecoded));
@@ -883,7 +883,7 @@ bool KHTMLPart::openUrl(const QUrl &url)
     setUrl(d->m_workingURL);
 
     QMap<QString, QString> &metaData = args.metaData();
-    metaData.insert("main_frame_request", parentPart() == 0 ? "TRUE" : "FALSE");
+    metaData.insert("main_frame_request", parentPart() == nullptr ? "TRUE" : "FALSE");
     metaData.insert("ssl_parent_ip", d->m_ssl_parent_ip);
     metaData.insert("ssl_parent_cert", d->m_ssl_parent_cert);
     metaData.insert("PropagateHttpHeader", "true");
@@ -957,7 +957,7 @@ bool KHTMLPart::openUrl(const QUrl &url)
                 this, SLOT(slotUserSheetStatDone(KJob*)));
     }
     startingJob(d->m_job);
-    emit started(0L);
+    emit started(nullptr);
 
     return true;
 }
@@ -967,7 +967,7 @@ bool KHTMLPart::closeUrl()
     if (d->m_job) {
         KHTMLPageCache::self()->cancelEntry(d->m_cacheId);
         d->m_job->kill();
-        d->m_job = 0;
+        d->m_job = nullptr;
     }
 
     if (d->m_doc && d->m_doc->isHTMLDocument()) {
@@ -1051,7 +1051,7 @@ DOM::HTMLDocument KHTMLPart::htmlDocument() const
     if (d->m_doc && d->m_doc->isHTMLDocument()) {
         return static_cast<HTMLDocumentImpl *>(d->m_doc);
     } else {
-        return static_cast<HTMLDocumentImpl *>(0);
+        return static_cast<HTMLDocumentImpl *>(nullptr);
     }
 }
 
@@ -1127,7 +1127,7 @@ KJS::Interpreter *KHTMLPart::jScriptInterpreter()
 {
     KJSProxy *proxy = jScript();
     if (!proxy || proxy->paused()) {
-        return 0;
+        return nullptr;
     }
 
     return proxy->interpreter();
@@ -1186,7 +1186,7 @@ bool KHTMLPart::metaRefreshEnabled() const
 KJSProxy *KHTMLPart::jScript()
 {
     if (!jScriptEnabled()) {
-        return 0;
+        return nullptr;
     }
 
     if (!d->m_frame) {
@@ -1204,7 +1204,7 @@ KJSProxy *KHTMLPart::jScript()
                 }
         }
         if (!d->m_frame) {
-            return 0;
+            return nullptr;
         }
     }
     if (!d->m_frame->m_jscript) {
@@ -1258,7 +1258,7 @@ QVariant KHTMLPart::crossFrameExecuteScript(const QString &target,  const QStrin
 KJSErrorDlg *KHTMLPart::jsErrorExtension()
 {
     if (!d->m_settings->jsErrorsEnabled()) {
-        return 0L;
+        return nullptr;
     }
 
     if (parentPart()) {
@@ -1288,13 +1288,13 @@ void KHTMLPart::removeJSErrorExtension()
         parentPart()->removeJSErrorExtension();
         return;
     }
-    if (d->m_statusBarJSErrorLabel != 0) {
+    if (d->m_statusBarJSErrorLabel != nullptr) {
         d->m_statusBarExtension->removeStatusBarItem(d->m_statusBarJSErrorLabel);
         delete d->m_statusBarJSErrorLabel;
-        d->m_statusBarJSErrorLabel = 0;
+        d->m_statusBarJSErrorLabel = nullptr;
     }
     delete d->m_jsedlg;
-    d->m_jsedlg = 0;
+    d->m_jsedlg = nullptr;
 }
 
 void KHTMLPart::disableJSErrorExtension()
@@ -1310,7 +1310,7 @@ void KHTMLPart::disableJSErrorExtension()
 
 void KHTMLPart::jsErrorDialogContextMenu()
 {
-    QMenu *m = new QMenu(0L);
+    QMenu *m = new QMenu(nullptr);
     m->addAction(i18n("&Hide Errors"), this, SLOT(removeJSErrorExtension()));
     m->addAction(i18n("&Disable Error Reporting"), this, SLOT(disableJSErrorExtension()));
     m->popup(QCursor::pos());
@@ -1524,7 +1524,7 @@ void KHTMLPart::setAutoloadImages(bool enable)
 
     if (enable) {
         delete d->m_paLoadImages;
-        d->m_paLoadImages = 0;
+        d->m_paLoadImages = nullptr;
     } else if (!d->m_paLoadImages) {
         d->m_paLoadImages = new QAction(i18n("Display Images on Page"), this);
         actionCollection()->addAction("loadImages", d->m_paLoadImages);
@@ -1608,10 +1608,10 @@ void KHTMLPart::clear()
     if (d->m_doc) {
         d->m_doc->deref();
     }
-    d->m_doc = 0;
+    d->m_doc = nullptr;
 
     delete d->m_decoder;
-    d->m_decoder = 0;
+    d->m_decoder = nullptr;
 
     // We don't want to change between parts if we are going to delete all of them anyway
     if (partManager()) {
@@ -1701,7 +1701,7 @@ DOM::HTMLDocumentImpl *KHTMLPart::docImpl() const
     if (d && d->m_doc && d->m_doc->isHTMLDocument()) {
         return static_cast<HTMLDocumentImpl *>(d->m_doc);
     }
-    return 0;
+    return nullptr;
 }
 
 DOM::DocumentImpl *KHTMLPart::xmlDocImpl() const
@@ -1709,7 +1709,7 @@ DOM::DocumentImpl *KHTMLPart::xmlDocImpl() const
     if (d) {
         return d->m_doc;
     }
-    return 0;
+    return nullptr;
 }
 
 void KHTMLPart::slotInfoMessage(KJob *kio_job, const QString &msg)
@@ -1971,13 +1971,13 @@ void KHTMLPart::htmlError(int errorCode, const QString &text, const QUrl &reqUrl
     // (so that 'back' works)
     setUrl(reqUrl); // same as d->m_workingURL
     d->m_workingURL = QUrl();
-    emit started(0);
+    emit started(nullptr);
     emit completed();
 }
 
 void KHTMLPart::slotFinished(KJob *job)
 {
-    d->m_job = 0L;
+    d->m_job = nullptr;
     d->m_jobspeed = 0L;
 
     if (job->error()) {
@@ -2003,7 +2003,7 @@ void KHTMLPart::slotFinished(KJob *job)
     KIO::TransferJob *tjob = ::qobject_cast<KIO::TransferJob *>(job);
     if (tjob && tjob->isErrorPage()) {
         HTMLPartContainerElementImpl *elt = d->m_frame ?
-                                            d->m_frame->m_partContainerElement.data() : 0;
+                                            d->m_frame->m_partContainerElement.data() : nullptr;
 
         if (!elt) {
             return;
@@ -2317,7 +2317,7 @@ void KHTMLPart::resetFromScript()
     connect(d->m_doc, SIGNAL(finishedParsing()), this, SLOT(slotFinishedParsing()));
     d->m_doc->setParsing(true);
 
-    emit started(0L);
+    emit started(nullptr);
 }
 
 void KHTMLPart::slotFinishedParsing()
@@ -2556,7 +2556,7 @@ void KHTMLPart::checkCompleted()
     if (!d->m_redirectURL.isEmpty()) {
         // DA: Do not start redirection for frames here! That action is
         // deferred until the parent emits a completed signal.
-        if (parentPart() == 0) {
+        if (parentPart() == nullptr) {
             //qDebug() << this << " starting redirection timer";
             d->m_redirectionTimer.setSingleShot(true);
             d->m_redirectionTimer.start(qMax(0, 1000 * d->m_delayRedirect));
@@ -3527,7 +3527,7 @@ void KHTMLPart::setFocusNodeIfNeeded(const Selection &s)
     }
 
     NodeImpl *n = s.start().node();
-    NodeImpl *target = (n && n->isContentEditable()) ? n : 0;
+    NodeImpl *target = (n && n->isContentEditable()) ? n : nullptr;
     if (!target) {
         while (n && n != s.end().node()) {
             if (n->isContentEditable()) {
@@ -3537,7 +3537,7 @@ void KHTMLPart::setFocusNodeIfNeeded(const Selection &s)
             n = n->traverseNextNode();
         }
     }
-    assert(target == 0 || target->isContentEditable());
+    assert(target == nullptr || target->isContentEditable());
 
     if (target) {
         for (; target && !target->isFocusable(); target = target->parentNode()) {
@@ -3545,7 +3545,7 @@ void KHTMLPart::setFocusNodeIfNeeded(const Selection &s)
         if (target && target->isMouseFocusable()) {
             xmlDocImpl()->setFocusNode(target);
         } else if (!target || !target->focused()) {
-            xmlDocImpl()->setFocusNode(0);
+            xmlDocImpl()->setFocusNode(nullptr);
         }
     }
 }
@@ -3896,7 +3896,7 @@ bool KHTMLPart::urlSelected(const QString &url, int button, int state, const QSt
     browserArgs.frameName = target;
 
     args.metaData().insert("main_frame_request",
-                           parentPart() == 0 ? "TRUE" : "FALSE");
+                           parentPart() == nullptr ? "TRUE" : "FALSE");
     args.metaData().insert("ssl_parent_ip", d->m_ssl_parent_ip);
     args.metaData().insert("ssl_parent_cert", d->m_ssl_parent_cert);
     args.metaData().insert("PropagateHttpHeader", "true");
@@ -3970,7 +3970,7 @@ void KHTMLPart::slotViewPageInfo()
 {
     Ui_KHTMLInfoDlg ui;
 
-    QDialog *dlg = new QDialog(0);
+    QDialog *dlg = new QDialog(nullptr);
     dlg->setAttribute(Qt::WA_DeleteOnClose);
     dlg->setObjectName("KHTML Page Info Dialog");
     ui.setupUi(dlg);
@@ -4159,7 +4159,7 @@ void KHTMLPart::slotSecurity()
     //the dialog deletes itself on close
 #endif
 
-    KSslInfoDialog *kid = new KSslInfoDialog(0);
+    KSslInfoDialog *kid = new KSslInfoDialog(nullptr);
     //### This is boilerplate code and it's copied from SlaveInterface.
     QStringList sl = d->m_ssl_peer_chain.split('\x01', QString::SkipEmptyParts);
     QList<QSslCertificate> certChain;
@@ -4185,7 +4185,7 @@ void KHTMLPart::slotSecurity()
         kid->exec();
         // qDebug() << "SSL Info dialog closed";
     } else {
-        KMessageBox::information(0, i18n("The peer SSL certificate chain "
+        KMessageBox::information(nullptr, i18n("The peer SSL certificate chain "
                                          "appears to be corrupt."),
                                  i18n("SSL"));
     }
@@ -4255,7 +4255,7 @@ void KHTMLPart::updateActions()
         d->m_paFind->setText(i18n("&Find..."));
     }
 
-    KParts::Part *frame = 0;
+    KParts::Part *frame = nullptr;
 
     if (frames) {
         frame = currentFrame();
@@ -4293,7 +4293,7 @@ void KHTMLPart::updateActions()
     }
 
     if (d->m_paDebugScript) {
-        d->m_paDebugScript->setEnabled(d->m_frame ? d->m_frame->m_jscript : 0L);
+        d->m_paDebugScript->setEnabled(d->m_frame ? d->m_frame->m_jscript : nullptr);
     }
 }
 
@@ -4304,7 +4304,7 @@ KParts::ScriptableExtension *KHTMLPart::scriptableExtension(const DOM::NodeImpl 
         if ((*it)->m_partContainerElement.data() == frame) {
             return (*it)->m_scriptable.data();
         }
-    return 0L;
+    return nullptr;
 }
 
 void KHTMLPart::loadFrameElement(DOM::HTMLPartContainerElementImpl *frame, const QString &url,
@@ -4432,7 +4432,7 @@ bool KHTMLPart::requestObject(khtml::ChildFrame *child, const QUrl &url, const K
     child->m_args.metaData().insert("ssl_parent_ip", d->m_ssl_parent_ip);
     child->m_args.metaData().insert("ssl_parent_cert", d->m_ssl_parent_cert);
     child->m_args.metaData().insert("main_frame_request",
-                                    parentPart() == 0 ? "TRUE" : "FALSE");
+                                    parentPart() == nullptr ? "TRUE" : "FALSE");
     child->m_args.metaData().insert("ssl_was_in_use",
                                     d->m_ssl_in_use ? "TRUE" : "FALSE");
     child->m_args.metaData().insert("ssl_activate_warnings", "TRUE");
@@ -4794,12 +4794,12 @@ KParts::ReadOnlyPart *KHTMLPart::createPart(QWidget *parentWidget,
     if (offers.isEmpty()) {
         int pos = mimetype.indexOf("-plugin");
         if (pos < 0) {
-            return 0L;
+            return nullptr;
         }
         QString stripped_mime = mimetype.left(pos);
         offers = KMimeTypeTrader::self()->query(stripped_mime, "KParts/ReadOnlyPart", constr);
         if (offers.isEmpty()) {
-            return 0L;
+            return nullptr;
         }
     }
 
@@ -4833,7 +4833,7 @@ KParts::ReadOnlyPart *KHTMLPart::createPart(QWidget *parentWidget,
                        .arg(service->name()).arg(loader.errorString());
         }
     }
-    return 0;
+    return nullptr;
 }
 
 KParts::PartManager *KHTMLPart::partManager()
@@ -4859,7 +4859,7 @@ void KHTMLPart::submitFormAgain()
     }
 
     delete d->m_submitForm;
-    d->m_submitForm = 0;
+    d->m_submitForm = nullptr;
 }
 
 void KHTMLPart::submitFormProxy(const char *action, const QString &url, const QByteArray &formData, const QString &_target, const QString &contentType, const QString &boundary)
@@ -4899,7 +4899,7 @@ void KHTMLPart::submitForm(const char *action, const QString &url, const QByteAr
     if (!d->m_submitForm) {
         if (u.scheme() != "https" && u.scheme() != "mailto") {
             if (d->m_ssl_in_use) {    // Going from SSL -> nonSSL
-                int rc = KMessageBox::warningContinueCancel(NULL, i18n("Warning:  This is a secure form but it is attempting to send your data back unencrypted."
+                int rc = KMessageBox::warningContinueCancel(nullptr, i18n("Warning:  This is a secure form but it is attempting to send your data back unencrypted."
                          "\nA third party may be able to intercept and view this information."
                          "\nAre you sure you wish to continue?"),
                          i18n("Network Transmission"), KGuiItem(i18n("&Send Unencrypted")));
@@ -4909,7 +4909,7 @@ void KHTMLPart::submitForm(const char *action, const QString &url, const QByteAr
             } else {                  // Going from nonSSL -> nonSSL
                 KSSLSettings kss(true);
                 if (kss.warnOnUnencrypted()) {
-                    int rc = KMessageBox::warningContinueCancel(NULL,
+                    int rc = KMessageBox::warningContinueCancel(nullptr,
                              i18n("Warning: Your data is about to be transmitted across the network unencrypted."
                                   "\nAre you sure you wish to continue?"),
                              i18n("Network Transmission"),
@@ -4934,7 +4934,7 @@ void KHTMLPart::submitForm(const char *action, const QString &url, const QByteAr
         }
 
         if (u.scheme() == "mailto") {
-            int rc = KMessageBox::warningContinueCancel(NULL,
+            int rc = KMessageBox::warningContinueCancel(nullptr,
                      i18n("This site is attempting to submit form data via email.\n"
                           "Do you want to continue?"),
                      i18n("Network Transmission"),
@@ -4978,7 +4978,7 @@ void KHTMLPart::submitForm(const char *action, const QString &url, const QByteAr
     args.metaData().insert("ssl_parent_ip", d->m_ssl_parent_ip);
     args.metaData().insert("ssl_parent_cert", d->m_ssl_parent_cert);
     args.metaData().insert("main_frame_request",
-                           parentPart() == 0 ? "TRUE" : "FALSE");
+                           parentPart() == nullptr ? "TRUE" : "FALSE");
     args.metaData().insert("ssl_was_in_use", d->m_ssl_in_use ? "TRUE" : "FALSE");
     args.metaData().insert("ssl_activate_warnings", "TRUE");
 //WABA: When we post a form we should treat it as the main url
@@ -5015,7 +5015,7 @@ void KHTMLPart::submitForm(const char *action, const QString &url, const QByteAr
         }
 
         if (triedToAttach) {
-            KMessageBox::information(NULL, i18n("This site attempted to attach a file from your computer in the form submission. The attachment was removed for your protection."), i18n("KDE"), "WarnTriedAttach");
+            KMessageBox::information(nullptr, i18n("This site attempted to attach a file from your computer in the form submission. The attachment was removed for your protection."), i18n("KDE"), "WarnTriedAttach");
         }
 
         // 2)  Append body=
@@ -5325,7 +5325,7 @@ khtml::ChildFrame *KHTMLPart::frame(const QObject *obj)
         }
     }
 
-    return 0L;
+    return nullptr;
 }
 
 //#define DEBUG_FINDFRAME
@@ -5376,11 +5376,11 @@ KHTMLPart *KHTMLPartPrivate::findFrameParent(KParts::ReadOnlyPart *callingPart,
     KHTMLPart *const callingHtmlPart = qobject_cast<KHTMLPart *>(callingPart);
 
     if (!callingHtmlPart) {
-        return 0;
+        return nullptr;
     }
 
     if (!checkForNavigation && !q->checkFrameAccess(callingHtmlPart)) {
-        return 0;
+        return nullptr;
     }
 
     if (!childFrame && !q->parentPart() && (q->objectName() == f)) {
@@ -5412,7 +5412,7 @@ KHTMLPart *KHTMLPartPrivate::findFrameParent(KParts::ReadOnlyPart *callingPart,
             }
         }
     }
-    return 0;
+    return nullptr;
 }
 
 KHTMLPart *KHTMLPartPrivate::top()
@@ -5471,13 +5471,13 @@ KHTMLPart *KHTMLPart::findFrame(const QString &f)
         return qobject_cast<KHTMLPart *>(childFrame->m_part.data());
     }
 
-    return 0;
+    return nullptr;
 }
 
 KParts::ReadOnlyPart *KHTMLPart::findFramePart(const QString &f)
 {
     khtml::ChildFrame *childFrame;
-    return findFrameParent(this, f, &childFrame) ? childFrame->m_part.data() : 0L;
+    return findFrameParent(this, f, &childFrame) ? childFrame->m_part.data() : nullptr;
 }
 
 KParts::ReadOnlyPart *KHTMLPart::currentFrame() const
@@ -5540,7 +5540,7 @@ KJSProxy *KHTMLPart::framejScript(KParts::ReadOnlyPart *framePart)
             return frame->m_jscript;
         }
     }
-    return 0L;
+    return nullptr;
 }
 
 KHTMLPart *KHTMLPart::parentPart()
@@ -5563,7 +5563,7 @@ khtml::ChildFrame *KHTMLPart::recursiveFrameRequest(KHTMLPart *callingHtmlPart, 
         }
 
         childPart->requestObject(childFrame, url, args, browserArgs);
-        return 0;
+        return nullptr;
     }
 
     if (parentPart() && callParent) {
@@ -5574,7 +5574,7 @@ khtml::ChildFrame *KHTMLPart::recursiveFrameRequest(KHTMLPart *callingHtmlPart, 
         }
     }
 
-    return 0L;
+    return nullptr;
 }
 
 #ifdef DEBUG_SAVESTATE
@@ -6616,7 +6616,7 @@ bool KHTMLPart::handleMouseMoveEventDrag(khtml::MouseMoveEvent *event)
         DOM::NodeImpl *innerNodeImpl = event->innerNode().handle();
 
         QPixmap pix;
-        HTMLImageElementImpl *img = 0L;
+        HTMLImageElementImpl *img = nullptr;
         QUrl u;
 
         // qDebug("****************** Event URL: %s", url.string().toLatin1().constData());
@@ -6831,7 +6831,7 @@ void KHTMLPart::guiActivateEvent(KParts::GUIActivateEvent *event)
 {
     if (event->activated()) {
         emitSelectionChanged();
-        emit d->m_extension->enableAction("print", d->m_doc != 0);
+        emit d->m_extension->enableAction("print", d->m_doc != nullptr);
 
         if (!d->m_settings->autoLoadImages() && d->m_paLoadImages) {
             QList<QAction *> lst;
@@ -7035,7 +7035,7 @@ bool KHTMLPart::checkLinkSecurity(const QUrl &linkURL, const KLocalizedString &m
         int response = KMessageBox::Cancel;
         if (!message.isEmpty()) {
             // Dangerous flag makes the Cancel button the default
-            response = KMessageBox::warningContinueCancel(0,
+            response = KMessageBox::warningContinueCancel(nullptr,
                        message.subs(Qt::escape(linkURL.toDisplayString())).toString(),
                        i18n("Security Warning"),
                        KGuiItem(button),
@@ -7043,7 +7043,7 @@ bool KHTMLPart::checkLinkSecurity(const QUrl &linkURL, const KLocalizedString &m
                        QString(), // no don't ask again info
                        KMessageBox::Notify | KMessageBox::Dangerous);
         } else {
-            KMessageBox::error(0,
+            KMessageBox::error(nullptr,
                                i18n("<qt>Access by untrusted page to<br /><b>%1</b><br /> denied.</qt>", Qt::escape(linkURL.toDisplayString())),
                                i18n("Security Alert"));
         }
@@ -7060,7 +7060,7 @@ void KHTMLPart::slotPartRemoved(KParts::Part *part)
 {
 //    qDebug() << part;
     if (part == d->m_activeFrame) {
-        d->m_activeFrame = 0L;
+        d->m_activeFrame = nullptr;
         if (!part->inherits("KHTMLPart")) {
             if (factory()) {
                 factory()->removeClient(part);
@@ -7136,7 +7136,7 @@ void KHTMLPart::setActiveNode(const DOM::Node &node)
 
 DOM::Node KHTMLPart::activeNode() const
 {
-    return DOM::Node(d->m_doc ? d->m_doc->focusNode() : 0);
+    return DOM::Node(d->m_doc ? d->m_doc->focusNode() : nullptr);
 }
 
 DOM::EventListener *KHTMLPart::createHTMLEventListener(QString code, QString name, NodeImpl *node, bool svg)
@@ -7144,7 +7144,7 @@ DOM::EventListener *KHTMLPart::createHTMLEventListener(QString code, QString nam
     KJSProxy *proxy = jScript();
 
     if (!proxy) {
-        return 0;
+        return nullptr;
     }
 
     return proxy->createHTMLEventHandler(url().toString(), name, code, node, svg);
@@ -7312,7 +7312,7 @@ void KHTMLPart::openWallet(DOM::HTMLFormElementImpl *form)
                 return;
             }
             d->m_wallet->deleteLater();
-            d->m_wallet = 0L;
+            d->m_wallet = nullptr;
             d->m_bWalletOpened = false;
         }
     }
@@ -7353,7 +7353,7 @@ void KHTMLPart::saveToWallet(const QString &key, const QMap<QString, QString> &d
                 return;
             }
             d->m_wallet->deleteLater();
-            d->m_wallet = 0L;
+            d->m_wallet = nullptr;
             d->m_bWalletOpened = false;
         }
     }
@@ -7395,7 +7395,7 @@ void KHTMLPart::walletOpened(KWallet::Wallet *wallet)
     assert(d->m_wq);
 
     d->m_wq->deleteLater(); // safe?
-    d->m_wq = 0L;
+    d->m_wq = nullptr;
 
     if (!wallet) {
         d->m_bWalletOpened = false;
@@ -7442,13 +7442,13 @@ void KHTMLPart::slotWalletClosed()
 #ifndef KHTML_NO_WALLET
     if (d->m_wallet) {
         d->m_wallet->deleteLater();
-        d->m_wallet = 0L;
+        d->m_wallet = nullptr;
     }
     d->m_bWalletOpened = false;
     if (d->m_statusBarWalletLabel) {
         d->m_statusBarExtension->removeStatusBarItem(d->m_statusBarWalletLabel);
         delete d->m_statusBarWalletLabel;
-        d->m_statusBarWalletLabel = 0L;
+        d->m_statusBarWalletLabel = nullptr;
     }
 #endif // KHTML_NO_WALLET
 }
@@ -7470,7 +7470,7 @@ void KHTMLPart::launchWalletManager()
 void KHTMLPart::walletMenu()
 {
 #ifndef KHTML_NO_WALLET
-    QMenu *menu = new QMenu(0L);
+    QMenu *menu = new QMenu(nullptr);
     QActionGroup *menuActionGroup = new QActionGroup(menu);
     connect(menuActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(removeStoredPasswordForm(QAction*)));
 
@@ -7601,7 +7601,7 @@ void KHTMLPart::setDebugScript(bool enable)
             actionCollection()->addAction("debugScript", d->m_paDebugScript);
             connect(d->m_paDebugScript, SIGNAL(triggered(bool)), this, SLOT(slotDebugScript()));
         }
-        d->m_paDebugScript->setEnabled(d->m_frame ? d->m_frame->m_jscript : 0L);
+        d->m_paDebugScript->setEnabled(d->m_frame ? d->m_frame->m_jscript : nullptr);
         QList<QAction *> lst;
         lst.append(d->m_paDebugScript);
         plugActionList("debugScriptList", lst);
@@ -7642,13 +7642,13 @@ void KHTMLPart::setSuppressedPopupIndicator(bool enable, KHTMLPart *originPart)
         d->m_statusBarPopupLabel->setToolTip("");
         d->m_statusBarExtension->removeStatusBarItem(d->m_statusBarPopupLabel);
         delete d->m_statusBarPopupLabel;
-        d->m_statusBarPopupLabel = 0L;
+        d->m_statusBarPopupLabel = nullptr;
     }
 }
 
 void KHTMLPart::suppressedPopupMenu()
 {
-    QMenu *m = new QMenu(0L);
+    QMenu *m = new QMenu(nullptr);
     if (d->m_openableSuppressedPopups) {
         m->addAction(i18np("&Show Blocked Popup Window", "&Show %1 Blocked Popup Windows", d->m_openableSuppressedPopups), this, SLOT(showSuppressedPopups()));
     }

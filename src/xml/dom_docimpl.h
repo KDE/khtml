@@ -137,10 +137,10 @@ public:
     static HTMLDocumentImpl *createHTMLDocument(const DOMString &title);
 
     // Other methods (not part of DOM)
-    static DocumentImpl *createDocument(KHTMLView *v = 0);
-    static XMLDocumentImpl *createXMLDocument(KHTMLView *v = 0);
-    static HTMLDocumentImpl *createHTMLDocument(KHTMLView *v = 0);
-    static WebCore::SVGDocument *createSVGDocument(KHTMLView *v = 0);
+    static DocumentImpl *createDocument(KHTMLView *v = nullptr);
+    static XMLDocumentImpl *createXMLDocument(KHTMLView *v = nullptr);
+    static HTMLDocumentImpl *createHTMLDocument(KHTMLView *v = nullptr);
+    static WebCore::SVGDocument *createSVGDocument(KHTMLView *v = nullptr);
 };
 
 /**
@@ -210,8 +210,8 @@ public:
     DOMImplementationImpl *implementation() const;
     ElementImpl *documentElement() const;
     void childrenChanged() Q_DECL_OVERRIDE;
-    virtual ElementImpl *createElement(const DOMString &tagName, int *pExceptioncode = 0);
-    virtual AttrImpl *createAttribute(const DOMString &tagName, int *pExceptioncode = 0);
+    virtual ElementImpl *createElement(const DOMString &tagName, int *pExceptioncode = nullptr);
+    virtual AttrImpl *createAttribute(const DOMString &tagName, int *pExceptioncode = nullptr);
     DocumentFragmentImpl *createDocumentFragment();
     TextImpl *createTextNode(DOMStringImpl *data)
     {
@@ -235,9 +235,9 @@ public:
     EntityReferenceImpl *createEntityReference(const DOMString &name, int &exceptioncode);
     NodeImpl *importNode(NodeImpl *importedNode, bool deep, int &exceptioncode);
     virtual ElementImpl *createElementNS(const DOMString &_namespaceURI, const DOMString &_qualifiedName,
-                                         int *pExceptioncode = 0);
+                                         int *pExceptioncode = nullptr);
     virtual AttrImpl *createAttributeNS(const DOMString &_namespaceURI, const DOMString &_qualifiedName,
-                                        int *pExceptioncode = 0);
+                                        int *pExceptioncode = nullptr);
     ElementImpl *getElementById(const DOMString &elementId) const;
 
     // DOM3 XPath, from XPathEvaluator interface
@@ -579,8 +579,8 @@ public:
         m_preferredStylesheetSet = s;
     }
 
-    void addStyleSheet(StyleSheetImpl *, int *exceptioncode = 0);
-    void removeStyleSheet(StyleSheetImpl *, int *exceptioncode = 0);
+    void addStyleSheet(StyleSheetImpl *, int *exceptioncode = nullptr);
+    void removeStyleSheet(StyleSheetImpl *, int *exceptioncode = nullptr);
 
     QStringList availableStyleSheets() const
     {

@@ -127,7 +127,7 @@ void KHTMLPartBrowserExtension::editableWidgetBlurred(QWidget * /*widget*/)
 {
     QWidget *oldWidget = m_editableFormWidget;
 
-    m_editableFormWidget = 0;
+    m_editableFormWidget = nullptr;
     enableAction("cut", false);
     enableAction("paste", false);
     m_part->emitSelectionChanged();
@@ -926,7 +926,7 @@ void KHTMLPopupGUIClient::saveURL(QWidget *parent, const QUrl &url, const QUrl &
                     if (cmd.isEmpty()) {
                         QString errMsg = i18n("The Download Manager (%1) could not be found in your $PATH ", downloadManger);
                         QString errMsgEx = i18n("Try to reinstall it  \n\nThe integration with Konqueror will be disabled.");
-                        KMessageBox::detailedSorry(0, errMsg, errMsgEx);
+                        KMessageBox::detailedSorry(nullptr, errMsg, errMsgEx);
                         cfg.writePathEntry("DownloadManager", QString());
                         cfg.sync();
                     } else {
@@ -976,11 +976,11 @@ bool KHTMLPartBrowserHostExtension::openUrlInFrame(const QUrl &url, const KParts
 KParts::BrowserHostExtension *KHTMLPartBrowserHostExtension::findFrameParent(KParts::ReadOnlyPart
         *callingPart, const QString &frame)
 {
-    KHTMLPart *parentPart = m_part->d->findFrameParent(callingPart, frame, 0, true /* navigation*/);
+    KHTMLPart *parentPart = m_part->d->findFrameParent(callingPart, frame, nullptr, true /* navigation*/);
     if (parentPart) {
         return parentPart->browserHostExtension();
     }
-    return 0;
+    return nullptr;
 }
 
 // defined in khtml_part.cpp
@@ -1037,7 +1037,7 @@ void KHTMLZoomFactorAction::slotTriggered(QAction *action)
     } else {
         m_part->setFontScaleFactor(fastZoomSizes[fastZoomSizeCount / 2 + (m_direction ? 1 : -1)*idx]);
     }
-    setCurrentAction(0L);
+    setCurrentAction(nullptr);
 }
 
 KHTMLTextExtension::KHTMLTextExtension(KHTMLPart *part)

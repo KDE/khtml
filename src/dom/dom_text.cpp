@@ -46,7 +46,7 @@ CharacterData &CharacterData::operator = (const Node &other)
             if (impl) {
                 impl->deref();
             }
-            impl = 0;
+            impl = nullptr;
         } else {
             Node::operator =(other);
         }
@@ -182,7 +182,7 @@ Comment &Comment::operator = (const Node &other)
             if (impl) {
                 impl->deref();
             }
-            impl = 0;
+            impl = nullptr;
         } else {
             Node::operator =(other);
         }
@@ -224,7 +224,7 @@ Text &Text::operator = (const Node &other)
             if (impl) {
                 impl->deref();
             }
-            impl = 0;
+            impl = nullptr;
         } else {
             Node::operator =(other);
         }
@@ -245,7 +245,7 @@ Text::~Text()
 Text Text::splitText(const unsigned long offset)
 {
     if (!impl) {
-        return 0;    // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
+        return nullptr;    // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
     }
 
     int exceptioncode = 0;

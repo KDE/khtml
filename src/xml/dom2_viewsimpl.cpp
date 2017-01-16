@@ -42,7 +42,7 @@ AbstractViewImpl::~AbstractViewImpl()
 CSSStyleDeclarationImpl *AbstractViewImpl::getComputedStyle(ElementImpl *elt, DOMStringImpl * /*pseudoElt*/)
 {
     if (!elt) {
-        return 0;
+        return nullptr;
     }
 
     CSSStyleDeclarationImpl *style = new RenderStyleDeclarationImpl(elt);

@@ -53,7 +53,7 @@ void RenderBody::paintBoxDecorations(PaintInfo &paintInfo, int _tx, int _ty)
 {
     //qDebug() << renderName() << "::paintDecorations()";
     QColor bgColor;
-    const BackgroundLayer *bgLayer = 0;
+    const BackgroundLayer *bgLayer = nullptr;
 
     if (parent()->style()->hasBackground()) {
         // the root element already has a non-transparent background of its own

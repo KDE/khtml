@@ -411,7 +411,7 @@ private Q_SLOTS:
 private:
     void resizeContentsToViewport();
 
-    void scheduleRelayout(khtml::RenderObject *clippedObj = 0);
+    void scheduleRelayout(khtml::RenderObject *clippedObj = nullptr);
     void unscheduleRelayout();
 
     bool hasLayoutPending();
@@ -440,7 +440,7 @@ private:
      * more, if nonzero will be set to true if the documents extends
      * beyond the rc or false if everything below yOff was painted.
      **/
-    void paint(QPainter *p, const QRect &rc, int yOff = 0, bool *more = 0);
+    void paint(QPainter *p, const QRect &rc, int yOff = 0, bool *more = nullptr);
 
     void render(QPainter *p, const QRect &r, const QPoint &off);
 
@@ -463,7 +463,7 @@ private:
 
     bool focusNextPrevNode(bool next);
     bool handleAccessKey(const QKeyEvent *ev);
-    bool focusNodeWithAccessKey(QChar c, KHTMLView *caller = NULL);
+    bool focusNodeWithAccessKey(QChar c, KHTMLView *caller = nullptr);
     QMap< DOM::ElementImpl *, QChar > buildFallbackAccessKeys() const;
     void displayAccessKeys(KHTMLView *caller, KHTMLView *origview, QVector< QChar > &taken, bool use_fallbacks);
     bool isScrollingFromMouseWheel() const;

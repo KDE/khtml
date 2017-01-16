@@ -181,7 +181,7 @@ KHTMLPart *TestKHTML::doc() const
         return m_part;
     }
 
-    return 0;
+    return nullptr;
 }
 
 void TestKHTML::openUrl(const QUrl &url, const KParts::OpenUrlArguments &args, const KParts::BrowserArguments &browserArgs)

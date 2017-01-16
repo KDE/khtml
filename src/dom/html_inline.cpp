@@ -391,7 +391,7 @@ HTMLModElement::HTMLModElement(HTMLElementImpl *_impl)
     if (_impl && (_impl->id() == ID_INS || _impl->id() == ID_DEL)) {
         impl = _impl;
     } else {
-        impl = 0;
+        impl = nullptr;
     }
     if (impl) {
         impl->ref();
@@ -406,7 +406,7 @@ HTMLModElement &HTMLModElement::operator = (const Node &other)
             if (impl) {
                 impl->deref();
             }
-            impl = 0;
+            impl = nullptr;
         } else {
             Node::operator = (other);
         }
@@ -470,7 +470,7 @@ HTMLQuoteElement::HTMLQuoteElement(HTMLGenericElementImpl *_impl)
     if (_impl && _impl->id() == ID_Q) {
         impl = _impl;
     } else {
-        impl = 0;
+        impl = nullptr;
     }
     if (impl) {
         impl->ref();

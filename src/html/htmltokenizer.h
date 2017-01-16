@@ -67,8 +67,8 @@ public:
     Token()
     {
         tid = 0;
-        attrs = 0;
-        text = 0;
+        attrs = nullptr;
+        text = nullptr;
         flat = false;
         //qDebug("new token, creating %08lx", attrs);
     }
@@ -94,7 +94,7 @@ public:
 
         if (value && localname.id()) {
             if (!attrs) {
-                attrs = new DOM::NamedAttrMapImpl(0);
+                attrs = new DOM::NamedAttrMapImpl(nullptr);
                 attrs->ref();
             }
             if (!attrs->getValue(makeId(emptyNamespace, localname.id()), prefixname))
@@ -108,12 +108,12 @@ public:
     {
         if (attrs) {
             attrs->deref();
-            attrs = 0;
+            attrs = nullptr;
         }
         tid = 0;
         if (text) {
             text->deref();
-            text = 0;
+            text = nullptr;
         }
         flat = false;
     }
@@ -169,7 +169,7 @@ class HTMLTokenizer : public Tokenizer, public CachedObjectClient
 {
     friend class KHTMLParser;
 public:
-    HTMLTokenizer(DOM::DocumentImpl *, KHTMLView * = 0);
+    HTMLTokenizer(DOM::DocumentImpl *, KHTMLView * = nullptr);
     HTMLTokenizer(DOM::DocumentImpl *, DOM::DocumentFragmentImpl *frag);
     virtual ~HTMLTokenizer();
 

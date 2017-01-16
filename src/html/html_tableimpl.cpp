@@ -207,12 +207,12 @@ static inline HTMLTableSectionElementImpl *processSection(HTMLTableSectionElemen
 {
     lastSection = section;
     if (index < 0) { //append/last mode
-        return 0;
+        return nullptr;
     }
 
     long rows   = section->numRows();
     if (index >= rows) {
-        section =  0;
+        section =  nullptr;
         index   -= rows;
     }
     return section;
@@ -225,8 +225,8 @@ bool HTMLTableElementImpl::findRowSection(long index,
     HTMLTableSectionElementImpl *foot = tFoot();
     HTMLTableSectionElementImpl *head = tHead();
 
-    HTMLTableSectionElementImpl *section = 0L;
-    HTMLTableSectionElementImpl *lastSection = 0L;
+    HTMLTableSectionElementImpl *section = nullptr;
+    HTMLTableSectionElementImpl *lastSection = nullptr;
 
     if (head) {
         section = processSection(head, lastSection, index);
@@ -283,7 +283,7 @@ HTMLElementImpl *HTMLTableElementImpl::insertRow(long index, int &exceptioncode)
 
     // The index is too big.
     exceptioncode = DOMException::INDEX_SIZE_ERR;
-    return 0L;
+    return nullptr;
 }
 
 void HTMLTableElementImpl::deleteRow(long index, int &exceptioncode)
@@ -754,7 +754,7 @@ NodeImpl::Id HTMLTableSectionElementImpl::id() const
 // the index... but they aren't used during usual HTML parsing anyway
 HTMLElementImpl *HTMLTableSectionElementImpl::insertRow(long index, int &exceptioncode)
 {
-    HTMLTableRowElementImpl *r = 0L;
+    HTMLTableRowElementImpl *r = nullptr;
     HTMLCollectionImpl rows(const_cast<HTMLTableSectionElementImpl *>(this), HTMLCollectionImpl::TSECTION_ROWS);
     int numRows = rows.length();
     //qDebug() << "index=" << index << " numRows=" << numRows;
@@ -880,7 +880,7 @@ long HTMLTableRowElementImpl::sectionRowIndex() const
 
 HTMLElementImpl *HTMLTableRowElementImpl::insertCell(long index, int &exceptioncode)
 {
-    HTMLTableCellElementImpl *c = 0L;
+    HTMLTableCellElementImpl *c = nullptr;
     HTMLCollectionImpl children(const_cast<HTMLTableRowElementImpl *>(this), HTMLCollectionImpl::TR_CELLS);
     int numCells = children.length();
     if (index < -1 || index > numCells) {
@@ -977,7 +977,7 @@ void HTMLTableCellElementImpl::parseAttribute(AttributeImpl *attr)
         break;
     }
     case ATTR_NOWRAP:
-        if (attr->val() != 0) {
+        if (attr->val() != nullptr) {
             addCSSProperty(CSS_PROP_WHITE_SPACE, CSS_VAL__KHTML_NOWRAP);
         } else {
             removeCSSProperty(CSS_PROP_WHITE_SPACE);

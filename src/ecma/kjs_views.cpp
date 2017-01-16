@@ -26,7 +26,7 @@ using namespace KJS;
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMAbstractView::info = { "AbstractView", 0, &DOMAbstractViewTable, 0 };
+const ClassInfo DOMAbstractView::info = { "AbstractView", nullptr, &DOMAbstractViewTable, nullptr };
 
 /*
 @begin DOMAbstractViewTable 2
@@ -90,7 +90,7 @@ DOM::AbstractViewImpl *KJS::toAbstractView(JSValue *val)
 {
     JSObject *obj = val->getObject();
     if (!obj) {
-        return 0;
+        return nullptr;
     }
 
     // the Window object is considered for all practical purposes as a descendant of AbstractView
@@ -102,5 +102,5 @@ DOM::AbstractViewImpl *KJS::toAbstractView(JSValue *val)
         return static_cast<const DOMAbstractView *>(obj)->impl();
     }
 
-    return 0;
+    return nullptr;
 }

@@ -233,16 +233,16 @@ CSSStyleSelector::CSSStyleSelector(DocumentImpl *doc, QString userStyleSheet, St
 
     m_fontSelector = new CSSFontSelector(doc);
 
-    init(part ? part->settings() : 0, doc);
+    init(part ? part->settings() : nullptr, doc);
 
     strictParsing = _strictParsing;
 
-    selectors = 0;
-    selectorCache = 0;
-    propertiesBuffer = 0;
-    nextPropertyIndexes = 0;
-    userStyle = 0;
-    userSheet = 0;
+    selectors = nullptr;
+    selectorCache = nullptr;
+    propertiesBuffer = nullptr;
+    nextPropertyIndexes = nullptr;
+    userStyle = nullptr;
+    userSheet = nullptr;
     logicalDpiY = doc->logicalDpiY();
 
     if (logicalDpiY) { // this may be null, not everyone uses khtmlview (Niko)
@@ -256,7 +256,7 @@ CSSStyleSelector::CSSStyleSelector(DocumentImpl *doc, QString userStyleSheet, St
     if (view) {
         m_medium = new MediaQueryEvaluator(view->mediaType(), view->part(), m_rootDefaultStyle);
     } else {
-        m_medium = new MediaQueryEvaluator("all", 0, m_rootDefaultStyle);
+        m_medium = new MediaQueryEvaluator("all", nullptr, m_rootDefaultStyle);
     }
 
     if (!userStyleSheet.isEmpty()) {
@@ -268,8 +268,8 @@ CSSStyleSelector::CSSStyleSelector(DocumentImpl *doc, QString userStyleSheet, St
     }
 
     // add stylesheets from document
-    authorStyle = 0;
-    implicitStyle = 0;
+    authorStyle = nullptr;
+    implicitStyle = nullptr;
 
     foreach (StyleSheetImpl *sh, styleSheets->styleSheets) {
         if (sh->isCSSStyleSheet()) {
@@ -313,7 +313,7 @@ CSSStyleSelector::CSSStyleSelector(CSSStyleSheetImpl *sheet)
 {
     m_fontSelector = new CSSFontSelector(sheet->doc());
 
-    init(0L, 0L);
+    init(nullptr, nullptr);
 
     KHTMLView *view = sheet->doc()->view();
 
@@ -322,7 +322,7 @@ CSSStyleSelector::CSSStyleSelector(CSSStyleSheetImpl *sheet)
     if (view) {
         m_medium = new MediaQueryEvaluator(view->mediaType(), view->part(), m_rootDefaultStyle);
     } else {
-        m_medium = new MediaQueryEvaluator("screen", 0, m_rootDefaultStyle);
+        m_medium = new MediaQueryEvaluator("screen", nullptr, m_rootDefaultStyle);
     }
 
     if (sheet->implicit()) {
@@ -336,7 +336,7 @@ CSSStyleSelector::CSSStyleSelector(CSSStyleSheetImpl *sheet)
 
 void CSSStyleSelector::init(const KHTMLSettings *_settings, DocumentImpl *doc)
 {
-    element = 0;
+    element = nullptr;
     settings = _settings;
     logicalDpiY = 0;
     if (!s_defaultStyle) {
@@ -347,8 +347,8 @@ void CSSStyleSelector::init(const KHTMLSettings *_settings, DocumentImpl *doc)
     defaultPrintStyle = s_defaultPrintStyle;
     defaultQuirksStyle = s_defaultQuirksStyle;
     defaultNonCSSHintsStyle = s_defaultNonCSSHintsStyle;
-    m_rootDefaultStyle = 0;
-    m_medium = 0;
+    m_rootDefaultStyle = nullptr;
+    m_medium = nullptr;
 }
 
 CSSStyleSelector::~CSSStyleSelector()
@@ -369,14 +369,14 @@ void CSSStyleSelector::addSheet(CSSStyleSheetImpl *sheet)
 
     setupDefaultRootStyle(sheet->doc());
 
-    delete m_medium; m_medium = 0;
-    delete authorStyle; authorStyle = 0;
-    delete implicitStyle; implicitStyle = 0;
+    delete m_medium; m_medium = nullptr;
+    delete authorStyle; authorStyle = nullptr;
+    delete implicitStyle; implicitStyle = nullptr;
 
     if (view) {
         m_medium = new MediaQueryEvaluator(view->mediaType(), view->part(), m_rootDefaultStyle);
     } else {
-        m_medium = new MediaQueryEvaluator("screen", 0, m_rootDefaultStyle);
+        m_medium = new MediaQueryEvaluator("screen", nullptr, m_rootDefaultStyle);
     }
 
     if (sheet->implicit()) {
@@ -489,23 +489,23 @@ void CSSStyleSelector::clear()
     delete s_defaultSheet;
     delete s_defaultNonCSSHintsSheet;
     delete styleNotYetAvailable;
-    s_defaultStyle = 0;
-    s_defaultQuirksStyle = 0;
-    s_defaultPrintStyle = 0;
-    s_defaultNonCSSHintsStyle = 0;
-    s_defaultSheet = 0;
-    s_defaultNonCSSHintsSheet = 0;
-    styleNotYetAvailable = 0;
+    s_defaultStyle = nullptr;
+    s_defaultQuirksStyle = nullptr;
+    s_defaultPrintStyle = nullptr;
+    s_defaultNonCSSHintsStyle = nullptr;
+    s_defaultSheet = nullptr;
+    s_defaultNonCSSHintsSheet = nullptr;
+    styleNotYetAvailable = nullptr;
 }
 
 void CSSStyleSelector::reparseConfiguration()
 {
     // nice leak, but best we can do right now. hopefully it is only rare.
-    s_defaultStyle = 0;
-    s_defaultQuirksStyle = 0;
-    s_defaultPrintStyle = 0;
-    s_defaultNonCSSHintsStyle = 0;
-    s_defaultSheet = 0;
+    s_defaultStyle = nullptr;
+    s_defaultQuirksStyle = nullptr;
+    s_defaultPrintStyle = nullptr;
+    s_defaultNonCSSHintsStyle = nullptr;
+    s_defaultSheet = nullptr;
 }
 
 #define MAXFONTSIZES 8
@@ -558,9 +558,9 @@ void CSSStyleSelector::computeFontSizesFor(int logicalDpiY, int zoomFactor, QVec
 
 RenderStyle *CSSStyleSelector::locateSimilarStyle()
 {
-    ElementImpl *s = 0, *t = 0, *c = 0;
+    ElementImpl *s = nullptr, *t = nullptr, *c = nullptr;
     if (!element) {
-        return 0;
+        return nullptr;
     }
     // Check previous siblings.
     unsigned count = 0;
@@ -617,7 +617,7 @@ RenderStyle *CSSStyleSelector::locateSimilarStyle()
         return p->renderer()->style();
     }
 
-    return 0;
+    return nullptr;
 }
 
 static inline void bubbleSort(CSSOrderedProperty **b, CSSOrderedProperty **e)
@@ -626,7 +626,7 @@ static inline void bubbleSort(CSSOrderedProperty **b, CSSOrderedProperty **e)
         bool swapped = false;
         CSSOrderedProperty **y = e + 1;
         CSSOrderedProperty **x = e;
-        CSSOrderedProperty **swappedPos = 0;
+        CSSOrderedProperty **swappedPos = nullptr;
         do {
             if (!((**(--x)) < (**(--y)))) {
                 swapped = true;
@@ -860,7 +860,7 @@ RenderStyle *CSSStyleSelector::styleForElement(ElementImpl *e, RenderStyle *fall
     // Now adjust all our pseudo-styles.
     RenderStyle *pseudoStyle = style->pseudoStyle;
     while (pseudoStyle) {
-        adjustRenderStyle(pseudoStyle, 0);
+        adjustRenderStyle(pseudoStyle, nullptr);
         pseudoStyle = pseudoStyle->pseudoStyle;
     }
 
@@ -1046,8 +1046,8 @@ void CSSStyleSelector::addInlineDeclarations(DOM::ElementImpl *e)
         return;
     }
 
-    QList<CSSProperty *> *values = inlineDecls ? inlineDecls->values() : 0;
-    QList<CSSProperty *> *nonCSSValues = nonCSSDecls ? nonCSSDecls->values() : 0;
+    QList<CSSProperty *> *values = inlineDecls ? inlineDecls->values() : nullptr;
+    QList<CSSProperty *> *nonCSSValues = nonCSSDecls ? nonCSSDecls->values() : nullptr;
     if (!values && !nonCSSValues) {
         return;
     }
@@ -2129,10 +2129,10 @@ void CSSStyleSelector::clearLists()
         delete[] propertiesBuffer;
         delete[] nextPropertyIndexes;
     }
-    selectors = 0;
-    propertiesBuffer = 0;
-    selectorCache = 0;
-    nextPropertyIndexes = 0;
+    selectors = nullptr;
+    propertiesBuffer = nullptr;
+    selectorCache = nullptr;
+    nextPropertyIndexes = nullptr;
 
     classSelector.clear();
     idSelector.clear();
@@ -2159,7 +2159,7 @@ void CSSStyleSelector::setupDefaultRootStyle(DOM::DocumentImpl *d)
             settings = part->settings();
         }
     }
-    parentNode = 0;
+    parentNode = nullptr;
     delete m_rootDefaultStyle;
     m_rootDefaultStyle = style = new RenderStyle();
     CSSInitialValueImpl i(true);
@@ -2448,7 +2448,7 @@ void CSSOrderedPropertyList::append(DOM::CSSStyleDeclarationImpl *decl, uint sel
 // -------------------------------------------------------------------------------------
 // this is mostly boring stuff on how to apply a certain rule to the renderstyle...
 
-static Length convertToLength(CSSPrimitiveValueImpl *primitiveValue, RenderStyle *style, RenderStyle *rootStyle, int logicalDpiY, bool *ok = 0)
+static Length convertToLength(CSSPrimitiveValueImpl *primitiveValue, RenderStyle *style, RenderStyle *rootStyle, int logicalDpiY, bool *ok = nullptr)
 {
     Length l;
     if (!primitiveValue) {
@@ -2513,7 +2513,7 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
 {
 //     qDebug() << "applying property " << getPropertyName(id);
 
-    CSSPrimitiveValueImpl *primitiveValue = 0;
+    CSSPrimitiveValueImpl *primitiveValue = nullptr;
     if (value->isPrimitiveValue()) {
         primitiveValue = static_cast<CSSPrimitiveValueImpl *>(value);
     }
@@ -4426,15 +4426,15 @@ void CSSStyleSelector::applyRule(int id, DOM::CSSValueImpl *value)
     }
     case CSS_PROP_TEXT_SHADOW: {
         if (isInherit) {
-            style->setTextShadow(parentStyle->textShadow() ? new ShadowData(*parentStyle->textShadow()) : 0);
+            style->setTextShadow(parentStyle->textShadow() ? new ShadowData(*parentStyle->textShadow()) : nullptr);
             return;
         } else if (isInitial) {
-            style->setTextShadow(0);
+            style->setTextShadow(nullptr);
             return;
         }
 
         if (primitiveValue) { // none
-            style->setTextShadow(0);
+            style->setTextShadow(nullptr);
             return;
         }
 

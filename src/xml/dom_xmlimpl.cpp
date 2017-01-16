@@ -33,17 +33,17 @@ using namespace DOM;
 
 EntityImpl::EntityImpl(DocumentImpl *doc) : NodeBaseImpl(doc)
 {
-    m_publicId = 0;
-    m_systemId = 0;
-    m_notationName = 0;
-    m_name = 0;
+    m_publicId = nullptr;
+    m_systemId = nullptr;
+    m_notationName = nullptr;
+    m_name = nullptr;
 }
 
 EntityImpl::EntityImpl(DocumentImpl *doc, DOMString _name) : NodeBaseImpl(doc)
 {
-    m_publicId = 0;
-    m_systemId = 0;
-    m_notationName = 0;
+    m_publicId = nullptr;
+    m_systemId = nullptr;
+    m_notationName = nullptr;
     m_name = _name.implementation();
     if (m_name) {
         m_name->ref();
@@ -64,7 +64,7 @@ EntityImpl::EntityImpl(DocumentImpl *doc, DOMString _publicId, DOMString _system
     if (m_notationName) {
         m_notationName->ref();
     }
-    m_name = 0;
+    m_name = nullptr;
 }
 
 EntityImpl::~EntityImpl()
@@ -112,7 +112,7 @@ WTF::PassRefPtr<NodeImpl> EntityImpl::cloneNode(bool /*deep*/)
 {
     // Spec says cloning Document nodes is "implementation dependent"
     // so we do not support it...
-    return 0;
+    return nullptr;
 }
 
 // DOM Section 1.1.1
@@ -167,7 +167,7 @@ DOMString EntityImpl::toString() const
 
 EntityReferenceImpl::EntityReferenceImpl(DocumentImpl *doc) : NodeBaseImpl(doc)
 {
-    m_entityName = 0;
+    m_entityName = nullptr;
 }
 
 EntityReferenceImpl::EntityReferenceImpl(DocumentImpl *doc, DOMStringImpl *_entityName) : NodeBaseImpl(doc)
@@ -236,9 +236,9 @@ DOMString EntityReferenceImpl::toString() const
 
 NotationImpl::NotationImpl(DocumentImpl *doc) : NodeBaseImpl(doc)
 {
-    m_publicId = 0;
-    m_systemId = 0;
-    m_name = 0;
+    m_publicId = nullptr;
+    m_systemId = nullptr;
+    m_name = nullptr;
 }
 
 NotationImpl::NotationImpl(DocumentImpl *doc, DOMString _name, DOMString _publicId, DOMString _systemId) : NodeBaseImpl(doc)
@@ -294,7 +294,7 @@ WTF::PassRefPtr<NodeImpl> NotationImpl::cloneNode(bool /*deep*/)
 {
     // Spec says cloning Document nodes is "implementation dependent"
     // so we do not support it...
-    return 0;
+    return nullptr;
 }
 
 // DOM Section 1.1.1
@@ -310,14 +310,14 @@ bool NotationImpl::childTypeAllowed(unsigned short /*type*/)
 
 ProcessingInstructionImpl::ProcessingInstructionImpl(DocumentImpl *doc) : NodeBaseImpl(doc)
 {
-    m_target = 0;
-    m_data = 0;
-    m_localHref = 0;
+    m_target = nullptr;
+    m_data = nullptr;
+    m_localHref = nullptr;
     m_alternate = false;
-    m_title = 0;
-    m_media = 0;
-    m_sheet = 0;
-    m_cachedSheet = 0;
+    m_title = nullptr;
+    m_media = nullptr;
+    m_sheet = nullptr;
+    m_cachedSheet = nullptr;
 }
 
 ProcessingInstructionImpl::ProcessingInstructionImpl(DocumentImpl *doc, DOMString _target, DOMString _data) : NodeBaseImpl(doc)
@@ -330,11 +330,11 @@ ProcessingInstructionImpl::ProcessingInstructionImpl(DocumentImpl *doc, DOMStrin
     if (m_data) {
         m_data->ref();
     }
-    m_sheet = 0;
-    m_cachedSheet = 0;
-    m_localHref = 0;
-    m_title = 0;
-    m_media = 0;
+    m_sheet = nullptr;
+    m_cachedSheet = nullptr;
+    m_localHref = nullptr;
+    m_title = nullptr;
+    m_media = nullptr;
     m_alternate = false;
 }
 
@@ -502,7 +502,7 @@ void ProcessingInstructionImpl::setStyleSheet(const DOM::DOMString &url, const D
     if (m_cachedSheet) {
         m_cachedSheet->deref(this);
     }
-    m_cachedSheet = 0;
+    m_cachedSheet = nullptr;
 
     document()->styleSheetLoaded();
 }

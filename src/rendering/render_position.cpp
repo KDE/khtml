@@ -77,7 +77,7 @@ InlineBox *RenderPosition::getInlineBoxAndOffset(int &offset) const
     offset = 0;
     if (!renderer()) {
         // qDebug() << "[EMPTY POSITION]" << endl;
-        return 0;
+        return nullptr;
     }
     // qDebug() << "[find inline box]" << m_position << endl;
 
@@ -113,7 +113,7 @@ InlineBox *RenderPosition::getInlineBoxAndOffset(int &offset) const
         // choose right box we're at
         // if we're not we should probably return 0, but set offset properly
     }
-    return 0;
+    return nullptr;
 }
 
 bool RenderPosition::rendersInDifferentPosition(const RenderPosition &self, const RenderPosition &other)
@@ -180,8 +180,8 @@ RenderPosition RenderPosition::previousLinePosition(int x)
     InlineBox *box = getInlineBoxAndOffset(rOffset);
     // qDebug() << "[box;offset]" << box << rOffset << endl;
 
-    RenderBlock *containingBlock = 0;
-    RootInlineBox *root = 0;
+    RenderBlock *containingBlock = nullptr;
+    RootInlineBox *root = nullptr;
     if (box) {
         root = box->root()->prevRootBox();
     }
@@ -247,8 +247,8 @@ RenderPosition RenderPosition::nextLinePosition(int x)
     InlineBox *box = getInlineBoxAndOffset(rOffset);
     // qDebug() << "[box;offset]" << box << rOffset << endl;
 
-    RenderBlock *containingBlock = 0;
-    RootInlineBox *root = 0;
+    RenderBlock *containingBlock = nullptr;
+    RootInlineBox *root = nullptr;
     if (box) {
         root = box->root()->nextRootBox();
     }

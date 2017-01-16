@@ -25,7 +25,7 @@ namespace khtml
 {
 
 // ### missing table info
-const KJS::ClassInfo JSHTMLElement::s_info = { "HTMLElement", &KJS::DOMElement::info, 0, 0 };
+const KJS::ClassInfo JSHTMLElement::s_info = { "HTMLElement", &KJS::DOMElement::info, nullptr, nullptr };
 
 }
 

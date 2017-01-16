@@ -228,7 +228,7 @@ static DOMString &styleSpanClassString()
 // EditCommandImpl
 
 EditCommandImpl::EditCommandImpl(DocumentImpl *document)
-    : SharedCommandImpl(), m_document(document), m_state(NotApplied), m_parent(0)
+    : SharedCommandImpl(), m_document(document), m_state(NotApplied), m_parent(nullptr)
 {
     assert(m_document);
     assert(m_document->part());
@@ -625,7 +625,7 @@ static bool isBlockLevelStyle(const CSSStyleDeclarationImpl *style)
 static void applyStyleChangeOnTheNode(ElementImpl *element, CSSStyleDeclarationImpl *style)
 {
     QScopedPointer<CSSStyleDeclarationImpl> computedStyle(
-            element->document()->defaultView()->getComputedStyle(element, 0));
+            element->document()->defaultView()->getComputedStyle(element, nullptr));
     assert(!computedStyle.isNull());
 #ifdef DEBUG_COMMANDS
     qDebug() << "[change style]" << element << endl;
@@ -894,7 +894,7 @@ void ApplyStyleCommandImpl::surroundNodeRangeWithElement(NodeImpl *startNode, No
 static bool /*ApplyStyleCommandImpl::*/checkIfNewStylingNeeded(ElementImpl *element, CSSStyleDeclarationImpl *style)
 {
     QScopedPointer<CSSStyleDeclarationImpl> computedStyle(
-            element->document()->defaultView()->getComputedStyle(element, 0));
+            element->document()->defaultView()->getComputedStyle(element, nullptr));
     assert(!computedStyle.isNull());
 #ifdef DEBUG_COMMANDS
     qDebug() << "[check styling]" << element << endl;
@@ -922,7 +922,7 @@ void ApplyStyleCommandImpl::applyStyleIfNeeded(DOM::NodeImpl *startNode, DOM::No
     if (!checkIfNewStylingNeeded(parent, style())) {
         return;
     }
-    ElementImpl *styleElement = 0;
+    ElementImpl *styleElement = nullptr;
     if (parent->id() == ID_SPAN && parent->firstChild() == startNode && parent->lastChild() == endNode) {
         styleElement = parent;
     } else {
@@ -938,7 +938,7 @@ bool ApplyStyleCommandImpl::currentlyHasStyle(const Position &pos, const CSSProp
 {
     assert(pos.notEmpty());
     qDebug() << pos << endl;
-    CSSStyleDeclarationImpl *decl = document()->defaultView()->getComputedStyle(pos.element(), 0);
+    CSSStyleDeclarationImpl *decl = document()->defaultView()->getComputedStyle(pos.element(), nullptr);
     assert(decl);
     CSSValueImpl *value = decl->getPropertyCSSValue(property->id());
     return strcasecmp(value->cssText(), property->value()->cssText()) == 0;
@@ -1731,7 +1731,7 @@ void InputNewlineCommandImpl::doApply()
                 // FIXME copy attributes, styles etc too
                 RefPtr<NodeImpl> newParent = parent->cloneNode(false);
                 insertNodeAfter(newParent.get(), parent);
-                for (NodeImpl *nextSibling = 0; node; node = nextSibling) {
+                for (NodeImpl *nextSibling = nullptr; node; node = nextSibling) {
 #ifdef DEBUG_COMMANDS
                     qDebug() << "[reattach sibling]" << node << endl;
 #endif
@@ -2410,7 +2410,7 @@ void RemoveNodeAttributeCommandImpl::doUnapply()
 // RemoveNodeCommandImpl
 
 RemoveNodeCommandImpl::RemoveNodeCommandImpl(DocumentImpl *document, NodeImpl *removeChild)
-    : EditCommandImpl(document), m_parent(0), m_removeChild(removeChild), m_refChild(0)
+    : EditCommandImpl(document), m_parent(nullptr), m_removeChild(removeChild), m_refChild(nullptr)
 {
     assert(m_removeChild);
     m_removeChild->ref();
@@ -2579,7 +2579,7 @@ void SetNodeAttributeCommandImpl::doUnapply()
 // SplitTextNodeCommandImpl
 
 SplitTextNodeCommandImpl::SplitTextNodeCommandImpl(DocumentImpl *document, TextImpl *text, long offset)
-    : EditCommandImpl(document), m_text1(0), m_text2(text), m_offset(offset)
+    : EditCommandImpl(document), m_text1(nullptr), m_text2(text), m_offset(offset)
 {
     assert(m_text2);
     assert(m_text2->length() > 0);
@@ -2977,7 +2977,7 @@ void IndentOutdentCommandImpl::indent()
 #endif
             RefPtr<NodeImpl> nestedList = startBlock->parent()->cloneNode(false);
             insertNodeBefore(nestedList.get(), startBlock);
-            NodeImpl *nextNode = 0;
+            NodeImpl *nextNode = nullptr;
             for (NodeImpl *node = startBlock;; node = nextNode) {
                 nextNode = node->nextSibling();
                 removeNode(node);
@@ -3044,7 +3044,7 @@ void IndentOutdentCommandImpl::outdent()
         if (!firstItemSelected && !lastItemSelected) {
             // split the list into 2 and reattach all the nodes before the first selected item to the second list
             RefPtr<NodeImpl> clonedList = listNode->cloneNode(false);
-            NodeImpl *nextNode = 0;
+            NodeImpl *nextNode = nullptr;
             for (NodeImpl *node = listNode->firstChild(); node != startBlock; node = nextNode) {
                 nextNode = node->nextSibling();
                 removeNode(node);
@@ -3055,7 +3055,7 @@ void IndentOutdentCommandImpl::outdent()
             firstItemSelected = true;
         }
 
-        NodeImpl *nextNode = 0;
+        NodeImpl *nextNode = nullptr;
         for (NodeImpl *node = firstItemSelected ? startBlock : endBlock;; node = nextNode) {
             nextNode = firstItemSelected ? node->nextSibling() : node->previousSibling();
             removeNode(node);

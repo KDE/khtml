@@ -32,7 +32,7 @@ namespace KJS
 {
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMRange::info = { "Range", 0, &DOMRangeTable, 0 };
+const ClassInfo DOMRange::info = { "Range", nullptr, &DOMRangeTable, nullptr };
 /*
 @begin DOMRangeTable 7
   startContainer    DOMRange::StartContainer    DontDelete|ReadOnly
@@ -191,7 +191,7 @@ JSValue *getDOMRange(ExecState *exec, DOM::RangeImpl *r)
 
 // -------------------------------------------------------------------------
 
-const ClassInfo RangeConstructor::info = { "RangeConstructor", 0, &RangeConstructorTable, 0 };
+const ClassInfo RangeConstructor::info = { "RangeConstructor", nullptr, &RangeConstructorTable, nullptr };
 /*
 @begin RangeConstructorTable 5
   START_TO_START    DOM::Range::START_TO_START  DontDelete|ReadOnly
@@ -226,7 +226,7 @@ DOM::RangeImpl *toRange(JSValue *val)
 {
     JSObject *obj = val->getObject();
     if (!obj || !obj->inherits(&DOMRange::info)) {
-        return 0;
+        return nullptr;
     }
 
     const DOMRange *dobj = static_cast<const DOMRange *>(obj);
@@ -251,11 +251,11 @@ RangeException::RangeException(ExecState *exec)
 {
 }
 
-const ClassInfo RangeException::info = { "RangeException", 0, 0, 0 };
+const ClassInfo RangeException::info = { "RangeException", nullptr, nullptr, nullptr };
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMSelection::info = { "Selection", 0, &DOMSelectionTable, 0 };
+const ClassInfo DOMSelection::info = { "Selection", nullptr, &DOMSelectionTable, nullptr };
 /*
 @begin DOMSelectionTable 7
   anchorNode            DOMSelection::AnchorNode        DontDelete|ReadOnly

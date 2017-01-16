@@ -425,7 +425,7 @@ Predicate::~Predicate()
 
 bool Predicate::evaluate() const
 {
-    Q_ASSERT(m_expr != 0);
+    Q_ASSERT(m_expr != nullptr);
 
     Value result(m_expr->evaluate());
 

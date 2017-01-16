@@ -46,7 +46,7 @@ public:
      *  Construct a keygen dialog.
      *  @param parent the parent widget
      */
-    explicit KSSLKeyGen(QWidget *parent = 0L);
+    explicit KSSLKeyGen(QWidget *parent = nullptr);
 
     /**
      *  Destroy this dialog.

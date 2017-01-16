@@ -198,7 +198,7 @@ public:
 
     void detach() Q_DECL_OVERRIDE;
 
-    void deleteInlineBoxes(RenderArena *arena = 0) Q_DECL_OVERRIDE;
+    void deleteInlineBoxes(RenderArena *arena = nullptr) Q_DECL_OVERRIDE;
     void dirtyInlineBoxes(bool fullLayout, bool) Q_DECL_OVERRIDE;
     void removeInlineBox(InlineBox *_box) Q_DECL_OVERRIDE;
 
@@ -240,7 +240,7 @@ public:
         if (str) {
             return str->s;
         } else {
-            return 0;
+            return nullptr;
         }
     }
     unsigned int stringLength() const

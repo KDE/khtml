@@ -61,12 +61,12 @@ public:
     void close() Q_DECL_OVERRIDE;
 
     InlineBox *createInlineBox(bool makePlaceHolderBox, bool isRootLineBox) Q_DECL_OVERRIDE;
-    void deleteInlineBoxes(RenderArena *arena = 0) Q_DECL_OVERRIDE;
+    void deleteInlineBoxes(RenderArena *arena = nullptr) Q_DECL_OVERRIDE;
     void dirtyInlineBoxes(bool fullLayout, bool isRootLineBox = false) Q_DECL_OVERRIDE;
     void removeInlineBox(InlineBox *_box) Q_DECL_OVERRIDE
     {
         if (m_placeHolderBox == _box) {
-            m_placeHolderBox = 0;
+            m_placeHolderBox = nullptr;
         }
     }
 
@@ -132,7 +132,7 @@ public:
 
     void repaintRectangle(int x, int y, int w, int h, Priority p = NormalPriority, bool f = false) Q_DECL_OVERRIDE;
 
-    short containingBlockWidth(RenderObject *providedCB = 0) const Q_DECL_OVERRIDE;
+    short containingBlockWidth(RenderObject *providedCB = nullptr) const Q_DECL_OVERRIDE;
     void relativePositionOffset(int &tx, int &ty) const;
 
     void calcWidth() Q_DECL_OVERRIDE;

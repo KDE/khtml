@@ -142,7 +142,7 @@ Vector<SVGGradientStop> SVGGradientElement::buildStops() const
     Vector<SVGGradientStop> stops;
 
     for (Node *n = firstChild(); n; n = n->nextSibling()) {
-        SVGElement *element = n->isSVGElement() ? static_cast<SVGElement *>(n) : 0;
+        SVGElement *element = n->isSVGElement() ? static_cast<SVGElement *>(n) : nullptr;
 
         if (element && element->isGradientStop()) {
             SVGStopElement *stop = static_cast<SVGStopElement *>(element);

@@ -293,7 +293,7 @@ HTMLObjectElement::~HTMLObjectElement()
 HTMLFormElement HTMLObjectElement::form() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return ((HTMLObjectElementImpl *)impl)->form();
 }

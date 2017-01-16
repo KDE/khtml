@@ -43,7 +43,7 @@ struct ResourceSet {
     ResourceSet()
     {
         for (int i = 0; i < _ResourceTypeCount; i++) {
-            resources[i] = 0;
+            resources[i] = nullptr;
         }
     }
     SVGResource *resources[_ResourceTypeCount];
@@ -71,7 +71,7 @@ SVGResource::~SVGResource()
                 continue;
             }
             type = i;
-            target->resources[i] = 0;
+            target->resources[i] = nullptr;
             break;
         }
     }
@@ -87,7 +87,7 @@ SVGResource::~SVGResource()
         }
 
         if (target->resources[type] == this) {
-            target->resources[type] = 0;
+            target->resources[type] = nullptr;
         }
     }
 }
@@ -174,11 +174,11 @@ void SVGResource::addClient(SVGStyledElement *item)
 SVGResource *getResourceById(Document *document, const AtomicString &id)
 {
     if (id.isEmpty()) {
-        return 0;
+        return nullptr;
     }
 
     Element *element = document->getElementById(id);
-    SVGElement *svgElement = 0;
+    SVGElement *svgElement = nullptr;
     if (element && element->isSVGElement()) {
         svgElement = static_cast<SVGElement *>(element);
     }
@@ -187,7 +187,7 @@ SVGResource *getResourceById(Document *document, const AtomicString &id)
         return static_cast<SVGStyledElement *>(svgElement)->canvasResource();
     }
 
-    return 0;
+    return nullptr;
 }
 
 /*TextStream& operator<<(TextStream& ts, const SVGResource& r)

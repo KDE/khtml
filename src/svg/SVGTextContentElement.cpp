@@ -341,7 +341,7 @@ static inline SVGRootInlineBox *rootInlineBoxForTextContentElement(const SVGText
     RenderObject *object = element->renderer();
 
     if (!object || !object->isSVGText() || object->isText()) {
-        return 0;
+        return nullptr;
     }
 
     RenderSVGText *svgText = static_cast<RenderSVGText *>(object);
@@ -363,7 +363,7 @@ static inline SVGInlineTextBoxQueryWalker executeTextQuery(const SVGTextContentE
 {
     SVGRootInlineBox *rootBox = rootInlineBoxForTextContentElement(element);
     if (!rootBox) {
-        return SVGInlineTextBoxQueryWalker(0, mode);
+        return SVGInlineTextBoxQueryWalker(nullptr, mode);
     }
 
     // Find all inline text box associated with our renderer

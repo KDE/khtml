@@ -58,7 +58,7 @@ SVGPaintServer *getPaintServerById(Document *document, const AtomicString &id)
         return static_cast<SVGPaintServer *>(resource);
     }
 
-    return 0;
+    return nullptr;
 }
 
 SVGPaintServerSolid *SVGPaintServer::sharedSolidPaintServer()
@@ -71,12 +71,12 @@ SVGPaintServerSolid *SVGPaintServer::sharedSolidPaintServer()
 SVGPaintServer *SVGPaintServer::fillPaintServer(const RenderStyle *style, const RenderObject *item)
 {
     if (!style->svgStyle()->hasFill()) {
-        return 0;
+        return nullptr;
     }
 
     SVGPaintImpl *fill = style->svgStyle()->fillPaint();
 
-    SVGPaintServer *fillPaintServer = 0;
+    SVGPaintServer *fillPaintServer = nullptr;
     SVGPaintImpl::SVGPaintType paintType = fill->paintType();
     if (paintType == SVGPaintImpl::SVG_PAINTTYPE_URI ||
             paintType == SVGPaintImpl::SVG_PAINTTYPE_URI_RGBCOLOR) {
@@ -101,7 +101,7 @@ SVGPaintServer *SVGPaintServer::fillPaintServer(const RenderStyle *style, const 
         }
         // FIXME: Ideally invalid colors would never get set on the RenderStyle and this could turn into an ASSERT
         if (!fillPaintServerSolid->color().isValid()) {
-            fillPaintServer = 0;
+            fillPaintServer = nullptr;
         }
     }
     if (!fillPaintServer) {
@@ -115,12 +115,12 @@ SVGPaintServer *SVGPaintServer::fillPaintServer(const RenderStyle *style, const 
 SVGPaintServer *SVGPaintServer::strokePaintServer(const RenderStyle *style, const RenderObject *item)
 {
     if (!style->svgStyle()->hasStroke()) {
-        return 0;
+        return nullptr;
     }
 
     SVGPaintImpl *stroke = style->svgStyle()->strokePaint();
 
-    SVGPaintServer *strokePaintServer = 0;
+    SVGPaintServer *strokePaintServer = nullptr;
     SVGPaintImpl::SVGPaintType paintType = stroke->paintType();
     if (paintType == SVGPaintImpl::SVG_PAINTTYPE_URI ||
             paintType == SVGPaintImpl::SVG_PAINTTYPE_URI_RGBCOLOR) {
@@ -146,7 +146,7 @@ SVGPaintServer *SVGPaintServer::strokePaintServer(const RenderStyle *style, cons
         }
         // FIXME: Ideally invalid colors would never get set on the RenderStyle and this could turn into an ASSERT
         if (!strokePaintServerSolid->color().isValid()) {
-            strokePaintServer = 0;
+            strokePaintServer = nullptr;
         }
     }
 

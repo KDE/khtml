@@ -44,7 +44,7 @@ static WTF::PassRefPtr<DOM::NodeListImpl>  querySelectorImp(bool justOne, DOM::N
 
     if (selectors.isEmpty()) {
         ec = DOMException::SYNTAX_ERR;
-        return 0;
+        return nullptr;
     }
 
     khtml::CSSStyleSelector *styleSelector = root->document()->styleSelector();
@@ -52,7 +52,7 @@ static WTF::PassRefPtr<DOM::NodeListImpl>  querySelectorImp(bool justOne, DOM::N
     // ### not in the spec.
     if (!styleSelector) {
         ec = DOMException::INVALID_STATE_ERR;
-        return 0;
+        return nullptr;
     }
 
     // Check for matches. We specialize some paths for common selectors.
@@ -78,7 +78,7 @@ static WTF::PassRefPtr<DOM::NodeListImpl>  querySelectorImp(bool justOne, DOM::N
             continue;
         }
 
-        DOM::ElementImpl *e = 0;
+        DOM::ElementImpl *e = nullptr;
         if (cur->isElementNode()) {
             e = static_cast<DOM::ElementImpl *>(cur);
         }
@@ -106,7 +106,7 @@ WTF::PassRefPtr<DOM::ElementImpl> querySelector(DOM::NodeImpl *root, const DOM::
         return static_cast<DOM::ElementImpl *>(nl->item(0));
     }
 
-    return 0;
+    return nullptr;
 }
 
 WTF::PassRefPtr<DOM::NodeListImpl> querySelectorAll(DOM::NodeImpl *root, const DOM::DOMString &query, int &ec)

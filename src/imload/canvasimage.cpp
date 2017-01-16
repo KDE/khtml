@@ -39,7 +39,7 @@ public:
     void imageDone(Image *) Q_DECL_OVERRIDE {};
 };
 
-ImageOwner *CanvasImage::s_trivialOwner = 0;
+ImageOwner *CanvasImage::s_trivialOwner = nullptr;
 
 ImageOwner *CanvasImage::trivialOwner()
 {

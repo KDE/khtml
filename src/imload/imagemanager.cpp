@@ -31,12 +31,12 @@
 namespace khtmlImLoad
 {
 
-TileCache      *ImageManager::imgCache   = 0;
-TileCache      *ImageManager::pixCache   = 0;
-Updater        *ImageManager::theUpdater = 0;
-LoaderDatabase *ImageManager::loaderDB   = 0;
-QPixmap        *ImageManager::emptyPix   = 0;
-AnimTimer      *ImageManager::anmTimer   = 0;
+TileCache      *ImageManager::imgCache   = nullptr;
+TileCache      *ImageManager::pixCache   = nullptr;
+Updater        *ImageManager::theUpdater = nullptr;
+LoaderDatabase *ImageManager::loaderDB   = nullptr;
+QPixmap        *ImageManager::emptyPix   = nullptr;
+AnimTimer      *ImageManager::anmTimer   = nullptr;
 
 //Each tile is 64x64 pixels, so normally
 //64x64x4 = 16K, so 1 megabyte = 64 tiles, roughly.

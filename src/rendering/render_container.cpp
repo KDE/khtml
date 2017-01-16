@@ -49,8 +49,8 @@ using namespace khtml;
 RenderContainer::RenderContainer(DOM::NodeImpl *node)
     : RenderObject(node)
 {
-    m_first = 0;
-    m_last = 0;
+    m_first = nullptr;
+    m_last = nullptr;
 }
 
 void RenderContainer::addChild(RenderObject *newChild, RenderObject *beforeChild)
@@ -131,7 +131,7 @@ void RenderContainer::addChild(RenderObject *newChild, RenderObject *beforeChild
             newStyle->setFlowAroundFloats(true);
             table->setParent(this);   // so it finds the arena
             table->setStyle(newStyle);
-            table->setParent(0);
+            table->setParent(nullptr);
             addChild(table, beforeChild);
         }
         table->addChild(newChild);
@@ -173,13 +173,13 @@ RenderObject *RenderContainer::removeChildNode(RenderObject *oldChild)
         InlineBox *ph = rb->placeHolderBox();
         if (ph) {
             ph->detach(rb->renderArena(), inCleanup /*NoRemove*/);
-            rb->setPlaceHolderBox(0);
+            rb->setPlaceHolderBox(nullptr);
         }
     }
 
     if (!inCleanup) {
         // if we remove visible child from an invisible parent, we don't know the layer visibility any more
-        RenderLayer *layer = 0;
+        RenderLayer *layer = nullptr;
         if (m_style->visibility() != VISIBLE && oldChild->style()->visibility() == VISIBLE && !oldChild->layer()) {
             layer = enclosingLayer();
             if (layer) {
@@ -272,9 +272,9 @@ RenderObject *RenderContainer::removeChildNode(RenderObject *oldChild)
         m_last = oldChild->previousSibling();
     }
 
-    oldChild->setPreviousSibling(0);
-    oldChild->setNextSibling(0);
-    oldChild->setParent(0);
+    oldChild->setPreviousSibling(nullptr);
+    oldChild->setNextSibling(nullptr);
+    oldChild->setParent(nullptr);
 
     return oldChild;
 }
@@ -291,7 +291,7 @@ void RenderContainer::setStyle(RenderStyle *_style)
         pseudoStyle->inheritFrom(style());
         pseudoStyle->ref();
         RenderObject *child = firstChild();
-        while (child != 0) {
+        while (child != nullptr) {
             child->setStyle(pseudoStyle);
             child = child->nextSibling();
         }
@@ -363,7 +363,7 @@ void RenderContainer::updatePseudoChild(RenderStyle::PseudoId type)
         // The child needs to be removed.
         oldContentPresent = false;
         child->detach();
-        child = 0;
+        child = nullptr;
     }
 
     // If we have no pseudo-style or if the pseudo's display type is NONE, then we
@@ -374,7 +374,7 @@ void RenderContainer::updatePseudoChild(RenderStyle::PseudoId type)
 
     // Generated content consists of a single container that houses multiple children (specified
     // by the content property).  This pseudo container gets the pseudo style set on it.
-    RenderContainer *pseudoContainer = 0;
+    RenderContainer *pseudoContainer = nullptr;
     pseudoContainer = RenderFlow::createFlow(element(), pseudo, renderArena());
     pseudoContainer->setIsAnonymous(true);
     pseudoContainer->createGeneratedContent();
@@ -398,7 +398,7 @@ void RenderContainer::createGeneratedContent()
     for (ContentData *contentData = pseudo->contentData();
             contentData; contentData = contentData->_nextContent) {
         if (contentData->_contentType == CONTENT_TEXT) {
-            RenderText *t = new(renderArena()) RenderText(node(), 0);
+            RenderText *t = new(renderArena()) RenderText(node(), nullptr);
             t->setIsAnonymous(true);
             t->setStyle(style);
             t->setText(contentData->contentText());
@@ -412,7 +412,7 @@ void RenderContainer::createGeneratedContent()
         } else if (contentData->_contentType == CONTENT_COUNTER) {
             // really a counter or just a glyph?
             EListStyleType type = (EListStyleType)contentData->contentCounter()->listStyle();
-            RenderObject *t = 0;
+            RenderObject *t = nullptr;
             if (isListStyleCounted(type)) {
                 t = new(renderArena()) RenderCounter(node(), contentData->contentCounter());
             } else {
@@ -433,7 +433,7 @@ void RenderContainer::createGeneratedContent()
 
 RenderContainer *RenderContainer::pseudoContainer(RenderStyle::PseudoId type) const
 {
-    RenderObject *child = 0;
+    RenderObject *child = nullptr;
     switch (type) {
     case RenderStyle::AFTER:
         child = lastChild();
@@ -448,7 +448,7 @@ RenderContainer *RenderContainer::pseudoContainer(RenderStyle::PseudoId type) co
         }
         break;
     default:
-        child = 0;
+        child = nullptr;
     }
 
     if (child && child->style()->styleType() == type) {
@@ -464,7 +464,7 @@ RenderContainer *RenderContainer::pseudoContainer(RenderStyle::PseudoId type) co
     if (child && child->isAnonymousBlock()) {
         return static_cast<RenderBlock *>(child)->pseudoContainer(type);
     }
-    return 0;
+    return nullptr;
 }
 
 void RenderContainer::addPseudoContainer(RenderObject *child)
@@ -479,9 +479,9 @@ void RenderContainer::addPseudoContainer(RenderObject *child)
 
         // Coalesce inlines
         if (child->style()->display() == INLINE && o->lastChild() && o->lastChild()->isAnonymousBlock()) {
-            o->lastChild()->addChild(child, 0);
+            o->lastChild()->addChild(child, nullptr);
         } else {
-            o->addChild(child, 0);
+            o->addChild(child, nullptr);
         }
         break;
     }
@@ -538,7 +538,7 @@ void RenderContainer::updateReplacedContent()
 
 void RenderContainer::appendChildNode(RenderObject *newChild)
 {
-    KHTMLAssert(newChild->parent() == 0);
+    KHTMLAssert(newChild->parent() == nullptr);
 
     newChild->setParent(this);
     RenderObject *lChild = lastChild();
@@ -554,7 +554,7 @@ void RenderContainer::appendChildNode(RenderObject *newChild)
 
     // Keep our layer hierarchy updated.  Optimize for the common case where we don't have any children
     // and don't have a layer attached to ourselves.
-    RenderLayer *layer = 0;
+    RenderLayer *layer = nullptr;
     if (newChild->firstChild() || newChild->layer()) {
         layer = enclosingLayer();
         newChild->addLayers(layer, newChild);
@@ -625,7 +625,7 @@ void RenderContainer::insertChildNode(RenderObject *child, RenderObject *beforeC
 
     // Keep our layer hierarchy updated.  Optimize for the common case where we don't have any children
     // and don't have a layer attached to ourselves.
-    RenderLayer *layer = 0;
+    RenderLayer *layer = nullptr;
     if (child->firstChild() || child->layer()) {
         layer = enclosingLayer();
         child->addLayers(layer, child);
@@ -736,13 +736,13 @@ void RenderContainer::removeSuperfluousAnonymousBlockChild(RenderObject *child)
             m_last = child->previousSibling();
         }
     }
-    child->setParent(0);
-    child->setPreviousSibling(0);
-    child->setNextSibling(0);
+    child->setParent(nullptr);
+    child->setPreviousSibling(nullptr);
+    child->setNextSibling(nullptr);
     if (!child->isText()) {
         RenderContainer *c = static_cast<RenderContainer *>(child);
-        c->m_first = 0;
-        c->m_next = 0;
+        c->m_first = nullptr;
+        c->m_next = nullptr;
     }
     child->detach();
 }

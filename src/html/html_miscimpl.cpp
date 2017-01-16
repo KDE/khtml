@@ -246,7 +246,7 @@ NodeImpl *HTMLCollectionImpl::item(unsigned long index) const
     long                          sectionIndex;
     HTMLTableSectionElementImpl  *section;
 
-    NodeImpl *found = 0;
+    NodeImpl *found = nullptr;
     if (table->findRowSection(index, section, sectionIndex)) {
         HTMLCollectionImpl rows(section, TSECTION_ROWS);
         found = rows.item(sectionIndex);
@@ -287,7 +287,7 @@ NodeImpl *HTMLCollectionImpl::nextItem() const
 NodeImpl *HTMLCollectionImpl::namedItem(const DOMString &name) const
 {
     if (name.isEmpty()) {
-        return 0;
+        return nullptr;
     }
 
     //Reset the position. The invariant is that nextNamedItem will start looking
@@ -300,7 +300,7 @@ NodeImpl *HTMLCollectionImpl::namedItem(const DOMString &name) const
 NodeImpl *HTMLCollectionImpl::nextNamedItem(const DOMString &name) const
 {
     if (name.isEmpty()) {
-        return 0;
+        return nullptr;
     }
 
     while (NodeImpl *candidate = m_cache->current.node) {
@@ -310,7 +310,7 @@ NodeImpl *HTMLCollectionImpl::nextNamedItem(const DOMString &name) const
             return candidate;
         }
     }
-    return 0;
+    return nullptr;
 }
 
 QList<NodeImpl *> HTMLCollectionImpl::namedItems(const DOMString &name) const
@@ -369,7 +369,7 @@ NodeImpl *HTMLFormCollectionImpl::item(unsigned long index) const
             }
         }
     }
-    return 0;
+    return nullptr;
 }
 
 unsigned long HTMLFormCollectionImpl::calcLength(NodeImpl *start) const
@@ -411,7 +411,7 @@ NodeImpl *HTMLFormCollectionImpl::nextNamedItem(const DOMString &name) const
     //If we got this far, we may need to start looking through the images,
     //but only if no input tags were matched
     if (foundInput) {
-        return 0;
+        return nullptr;
     }
 
     QList<HTMLImageElementImpl *> &il = static_cast<HTMLFormElementImpl *>(m_refNode)->imgElements;
@@ -424,7 +424,7 @@ NodeImpl *HTMLFormCollectionImpl::nextNamedItem(const DOMString &name) const
         }
     }
 
-    return 0;
+    return nullptr;
 }
 
 // -------------------------------------------------------------------------

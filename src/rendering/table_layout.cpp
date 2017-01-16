@@ -387,8 +387,8 @@ void AutoTableLayout::recalcColumn(int effCol)
     RenderObject *child = table->firstChild();
     // first we iterate over all rows.
 
-    RenderTableCell *fixedContributor = 0;
-    RenderTableCell *maxContributor = 0;
+    RenderTableCell *fixedContributor = nullptr;
+    RenderTableCell *maxContributor = nullptr;
 
     while (child) {
         if (child->isTableSection()) {
@@ -479,7 +479,7 @@ void AutoTableLayout::recalcColumn(int effCol)
         if (table->style()->htmlHacks()
                 && (l.maxWidth > l.width.value()) && (fixedContributor != maxContributor)) {
             l.width = Length();
-            fixedContributor = 0;
+            fixedContributor = nullptr;
         }
     }
 
@@ -499,7 +499,7 @@ void AutoTableLayout::fullRecalc()
     int nEffCols = table->numEffCols();
     layoutStruct.resize(nEffCols);
     layoutStruct.fill(Layout());
-    spanCells.fill(0);
+    spanCells.fill(nullptr);
 
     RenderObject *child = table->firstChild();
     Length grpWidth;
@@ -566,7 +566,7 @@ static bool shouldScaleColumns(RenderTable *table)
                 cb = cb->containingBlock();
             }
 
-            table = 0;
+            table = nullptr;
             if (cb && cb->isTableCell() &&
                     (cb->style()->width().isAuto() || cb->style()->width().isPercent())) {
                 if (tw.isPercent()) {
@@ -581,7 +581,7 @@ static bool shouldScaleColumns(RenderTable *table)
                 }
             }
         } else {
-            table = 0;
+            table = nullptr;
         }
     }
     return scale;
@@ -890,10 +890,10 @@ void AutoTableLayout::insertSpanCell(RenderTableCell *cell)
 
 //     qDebug("inserting span cell %p with span %d", cell, cell->colSpan() );
     int size = spanCells.size();
-    if (!size || spanCells[size - 1] != 0) {
+    if (!size || spanCells[size - 1] != nullptr) {
         spanCells.resize(size + 10);
         for (int i = 0; i < 10; i++) {
-            spanCells[size + i] = 0;
+            spanCells[size + i] = nullptr;
         }
         size += 10;
     }

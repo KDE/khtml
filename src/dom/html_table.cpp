@@ -94,7 +94,7 @@ HTMLTableCellElement &HTMLTableCellElement::operator = (const Node &other)
         if (impl) {
             impl->deref();
         }
-        impl = 0;
+        impl = nullptr;
     } else {
         Node::operator = (other);
     }
@@ -271,7 +271,7 @@ bool HTMLTableCellElement::noWrap() const
 void HTMLTableCellElement::setNoWrap(bool _noWrap)
 {
     if (impl) {
-        ((ElementImpl *)impl)->setAttribute(ATTR_NOWRAP, _noWrap ? "" : 0);
+        ((ElementImpl *)impl)->setAttribute(ATTR_NOWRAP, _noWrap ? "" : nullptr);
     }
 }
 
@@ -357,7 +357,7 @@ HTMLTableColElement &HTMLTableColElement::operator = (const Node &other)
         if (impl) {
             impl->deref();
         }
-        impl = 0;
+        impl = nullptr;
     } else {
         Node::operator = (other);
     }
@@ -498,7 +498,7 @@ HTMLTableElement::~HTMLTableElement()
 HTMLTableCaptionElement HTMLTableElement::caption() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return ((HTMLTableElementImpl *)impl)->caption();
 }
@@ -513,7 +513,7 @@ void HTMLTableElement::setCaption(const HTMLTableCaptionElement &_caption)
 HTMLTableSectionElement HTMLTableElement::tHead() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return ((HTMLTableElementImpl *)impl)->tHead();
 }
@@ -529,7 +529,7 @@ void HTMLTableElement::setTHead(const HTMLTableSectionElement &_tHead)
 HTMLTableSectionElement HTMLTableElement::tFoot() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return ((HTMLTableElementImpl *)impl)->tFoot();
 }
@@ -696,7 +696,7 @@ void HTMLTableElement::setWidth(const DOMString &value)
 HTMLElement HTMLTableElement::createTHead()
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return ((HTMLTableElementImpl *)impl)->createTHead();
 }
@@ -711,7 +711,7 @@ void HTMLTableElement::deleteTHead()
 HTMLElement HTMLTableElement::createTFoot()
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return ((HTMLTableElementImpl *)impl)->createTFoot();
 }
@@ -726,7 +726,7 @@ void HTMLTableElement::deleteTFoot()
 HTMLElement HTMLTableElement::createCaption()
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return ((HTMLTableElementImpl *)impl)->createCaption();
 }
@@ -741,7 +741,7 @@ void HTMLTableElement::deleteCaption()
 HTMLElement HTMLTableElement::insertRow(long index)
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     int exceptioncode = 0;
     HTMLElementImpl *ret = ((HTMLTableElementImpl *)impl)->insertRow(index, exceptioncode);
@@ -909,7 +909,7 @@ void HTMLTableRowElement::setVAlign(const DOMString &value)
 HTMLElement HTMLTableRowElement::insertCell(long index)
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     int exceptioncode = 0;
     HTMLElementImpl *ret = ((HTMLTableRowElementImpl *)impl)->insertCell(index, exceptioncode);
@@ -952,7 +952,7 @@ HTMLTableSectionElement &HTMLTableSectionElement::operator = (const Node &other)
         if (impl) {
             impl->deref();
         }
-        impl = 0;
+        impl = nullptr;
     } else {
         Node::operator = (other);
     }
@@ -1040,7 +1040,7 @@ HTMLCollection HTMLTableSectionElement::rows() const
 HTMLElement HTMLTableSectionElement::insertRow(long index)
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     int exceptioncode = 0;
     HTMLElementImpl *ret = ((HTMLTableSectionElementImpl *)impl)->insertRow(index, exceptioncode);

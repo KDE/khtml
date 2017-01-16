@@ -29,7 +29,7 @@ using namespace DOM;
 
 NodeIterator::NodeIterator()
 {
-    impl = 0;
+    impl = nullptr;
 }
 
 NodeIterator::NodeIterator(const NodeIterator &other)
@@ -74,7 +74,7 @@ Node NodeIterator::root()
     if (impl) {
         return impl->root();
     }
-    return 0;
+    return nullptr;
 }
 
 unsigned long NodeIterator::whatToShow()
@@ -90,7 +90,7 @@ NodeFilter NodeIterator::filter()
     if (impl) {
         return impl->filter();
     }
-    return 0;
+    return nullptr;
 }
 
 bool NodeIterator::expandEntityReferences()
@@ -152,14 +152,14 @@ NodeIteratorImpl *NodeIterator::handle() const
 
 bool NodeIterator::isNull() const
 {
-    return (impl == 0);
+    return (impl == nullptr);
 }
 
 // -----------------------------------------------------------
 
 NodeFilter::NodeFilter()
 {
-    impl = 0;
+    impl = nullptr;
 }
 
 NodeFilter::NodeFilter(const NodeFilter &other)
@@ -220,7 +220,7 @@ CustomNodeFilter *NodeFilter::customNodeFilter()
     if (impl) {
         return impl->customNodeFilter();
     }
-    return 0;
+    return nullptr;
 }
 
 NodeFilterImpl *NodeFilter::handle() const
@@ -230,7 +230,7 @@ NodeFilterImpl *NodeFilter::handle() const
 
 bool NodeFilter::isNull() const
 {
-    return (impl == 0);
+    return (impl == nullptr);
 }
 
 NodeFilter NodeFilter::createCustom(CustomNodeFilter *custom)
@@ -243,7 +243,7 @@ NodeFilter NodeFilter::createCustom(CustomNodeFilter *custom)
 // --------------------------------------------------------------
 CustomNodeFilter::CustomNodeFilter()
 {
-    impl = 0;
+    impl = nullptr;
 }
 
 CustomNodeFilter::~CustomNodeFilter()
@@ -269,7 +269,7 @@ DOMString CustomNodeFilter::customNodeFilterType()
 
 TreeWalker::TreeWalker()
 {
-    impl = 0;
+    impl = nullptr;
 }
 
 TreeWalker::TreeWalker(const TreeWalker &other)
@@ -315,7 +315,7 @@ Node TreeWalker::root()
     if (impl) {
         return impl->getRoot();
     }
-    return 0;
+    return nullptr;
 }
 
 unsigned long TreeWalker::whatToShow()
@@ -331,7 +331,7 @@ NodeFilter TreeWalker::filter()
     if (impl) {
         return impl->getFilter();
     }
-    return 0;
+    return nullptr;
 }
 
 bool TreeWalker::expandEntityReferences()
@@ -347,7 +347,7 @@ Node TreeWalker::currentNode()
     if (impl) {
         return impl->getCurrentNode();
     }
-    return 0;
+    return nullptr;
 }
 
 void TreeWalker::setCurrentNode(const Node &_currentNode)
@@ -367,7 +367,7 @@ Node TreeWalker::parentNode()
     if (impl) {
         return impl->parentNode(dummy);
     }
-    return 0;
+    return nullptr;
 }
 
 Node TreeWalker::firstChild()
@@ -376,7 +376,7 @@ Node TreeWalker::firstChild()
     if (impl) {
         return impl->firstChild(dummy);
     }
-    return 0;
+    return nullptr;
 }
 
 Node TreeWalker::lastChild()
@@ -385,7 +385,7 @@ Node TreeWalker::lastChild()
     if (impl) {
         return impl->lastChild(dummy);
     }
-    return 0;
+    return nullptr;
 }
 
 Node TreeWalker::previousSibling()
@@ -394,7 +394,7 @@ Node TreeWalker::previousSibling()
     if (impl) {
         return impl->previousSibling(dummy);
     }
-    return 0;
+    return nullptr;
 }
 
 Node TreeWalker::nextSibling()
@@ -403,7 +403,7 @@ Node TreeWalker::nextSibling()
     if (impl) {
         return impl->nextSibling(dummy);
     }
-    return 0;
+    return nullptr;
 }
 
 Node TreeWalker::previousNode()
@@ -412,7 +412,7 @@ Node TreeWalker::previousNode()
     if (impl) {
         return impl->previousNode(dummy);
     }
-    return 0;
+    return nullptr;
 }
 
 Node TreeWalker::nextNode()
@@ -421,7 +421,7 @@ Node TreeWalker::nextNode()
     if (impl) {
         return impl->nextNode(dummy);
     }
-    return 0;
+    return nullptr;
 }
 
 TreeWalkerImpl *TreeWalker::handle() const
@@ -431,6 +431,6 @@ TreeWalkerImpl *TreeWalker::handle() const
 
 bool TreeWalker::isNull() const
 {
-    return (impl == 0);
+    return (impl == nullptr);
 }
 

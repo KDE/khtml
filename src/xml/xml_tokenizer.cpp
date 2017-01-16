@@ -43,7 +43,7 @@ using namespace DOM;
 using namespace khtml;
 
 XMLIncrementalSource::XMLIncrementalSource()
-    : QXmlInputSource(), m_pos(0), m_unicode(0),
+    : QXmlInputSource(), m_pos(0), m_unicode(nullptr),
       m_finished(false), m_paused(false)
 {
 }
@@ -119,7 +119,7 @@ NodeImpl *XMLHandler::popNode()
 NodeImpl *XMLHandler::currentNode() const
 {
     if (m_nodes.isEmpty()) {
-        return 0;
+        return nullptr;
     } else {
         return m_nodes.top();
     }
@@ -447,7 +447,7 @@ XMLTokenizer::XMLTokenizer(DOM::DocumentImpl *_doc, KHTMLView *_view)
 {
     m_doc = _doc;
     m_view = _view;
-    m_cachedScript = 0;
+    m_cachedScript = nullptr;
     m_noErrors = true;
     m_executingScript = false;
     m_explicitFinishParsingNeeded = false;
@@ -566,10 +566,10 @@ void XMLTokenizer::finish()
         NodeImpl     *h1 = doc->createElementNS(XHTML_NAMESPACE, "h1");
         NodeImpl       *headingText = doc->createTextNode(i18n("XML parsing error"));
         NodeImpl     *errorText = doc->createTextNode(m_handler.errorProtocol());
-        NodeImpl     *hr = 0;
-        NodeImpl     *pre = 0;
-        NodeImpl     *lineText = 0;
-        NodeImpl     *errorLocText = 0;
+        NodeImpl     *hr = nullptr;
+        NodeImpl     *pre = nullptr;
+        NodeImpl     *lineText = nullptr;
+        NodeImpl     *errorLocText = nullptr;
         if (!line.isNull()) {
             hr = doc->createElementNS(XHTML_NAMESPACE, "hr");
             pre = doc->createElementNS(XHTML_NAMESPACE, "pre");
@@ -618,7 +618,7 @@ void XMLTokenizer::notifyFinished(CachedObject *finishedObj)
     if (finishedObj == m_cachedScript) {
         DOMString scriptSource = m_cachedScript->script();
         m_cachedScript->deref(this);
-        m_cachedScript = 0;
+        m_cachedScript = nullptr;
         if (m_view) {
             m_executingScript = true;
             m_view->part()->executeScript(DOM::Node(), scriptSource.string());
@@ -632,7 +632,7 @@ void XMLTokenizer::notifyFinished(CachedObject *finishedObj)
 
 bool XMLTokenizer::isWaitingForScripts() const
 {
-    return m_cachedScript != 0;
+    return m_cachedScript != nullptr;
 }
 
 void XMLTokenizer::executeScript(NodeImpl *node)

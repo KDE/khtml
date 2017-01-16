@@ -170,7 +170,7 @@ LinearGradientAttributes SVGLinearGradientElement::collectGradientProperties() c
 
             isLinear = current->gradientType() == LinearGradientPaintServer;
         } else {
-            current = 0;
+            current = nullptr;
         }
     }
 

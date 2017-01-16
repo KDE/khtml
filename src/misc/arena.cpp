@@ -71,7 +71,7 @@ static int i = 0;
 #define FREELIST_MAX 50
 #define LARGE_ALLOCATION_CEIL(pool) (pool)->arenasize * 256
 #define MAX_DISCRETE_ALLOCATION(pool) (pool)->arenasize * 64
-static Arena *arena_freelist = 0;
+static Arena *arena_freelist = nullptr;
 static int freelist_count = 0;
 
 #define ARENA_DEFAULT_ALIGN  sizeof(double)
@@ -108,7 +108,7 @@ void InitArenaPool(ArenaPool *pool, const char * /*name*/,
         align = ARENA_DEFAULT_ALIGN;
     }
     pool->mask = BITMASK(CeilingLog2(align));
-    pool->first.next = NULL;
+    pool->first.next = nullptr;
     pool->first.base = pool->first.avail = pool->first.limit =
             (uword)ARENA_ALIGN(pool, &pool->first + 1);
     pool->current = &pool->first;
@@ -158,14 +158,14 @@ void *ArenaAllocate(ArenaPool *pool, unsigned int nb)
                 VALGRIND_MEMPOOL_ALLOC(a->base, rp, nb);
                 return rp;
             }
-        } while (NULL != (a = a->next));
+        } while (nullptr != (a = a->next));
     }
 
     /* attempt to allocate from arena_freelist */
     {
         Arena *p; /* previous pointer, for unlinking from freelist */
 
-        for (a = p = arena_freelist; a != NULL; p = a, a = a->next) {
+        for (a = p = arena_freelist; a != nullptr; p = a, a = a->next) {
             if (a->base + nb <= a->limit)  {
                 if (p == arena_freelist) {
                     arena_freelist = a->next;
@@ -181,7 +181,7 @@ void *ArenaAllocate(ArenaPool *pool, unsigned int nb)
                 a->next = pool->current->next;
                 pool->current->next = a;
                 pool->current = a;
-                if (0 == pool->first.next) {
+                if (nullptr == pool->first.next) {
                     pool->first.next = a;
                 }
                 freelist_count--;
@@ -232,7 +232,7 @@ void *ArenaAllocate(ArenaPool *pool, unsigned int nb)
     }
 
     /* we got to here, and there's no memory to allocate */
-    return (0);
+    return (nullptr);
 } /* --- end ArenaAllocate() --- */
 
 /*
@@ -275,8 +275,8 @@ static void FreeArenaList(ArenaPool *pool, Arena *head, bool reallyFree)
                 printf("Free: %d\n", i);
             }
 #endif
-            free(a); a = 0;
-        } while ((a = *ap) != 0);
+            free(a); a = nullptr;
+        } while ((a = *ap) != nullptr);
     } else {
         /* Insert as much of the arena chain as we can hold at the front of the freelist. */
         do {
@@ -300,7 +300,7 @@ static void FreeArenaList(ArenaPool *pool, Arena *head, bool reallyFree)
         }
         *ap = arena_freelist;
         arena_freelist = a;
-        head->next = 0;
+        head->next = nullptr;
     }
     pool->current = head;
 }
@@ -336,10 +336,10 @@ void ArenaFinish()
 #endif
     for (a = arena_freelist; a; a = next) {
         next = a->next;
-        free(a); a = 0;
+        free(a); a = nullptr;
     }
     freelist_count = 0;
-    arena_freelist = NULL;
+    arena_freelist = nullptr;
 }
 
 } // namespace

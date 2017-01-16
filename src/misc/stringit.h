@@ -43,7 +43,7 @@ class DOMStringIt
 public:
     DOMStringIt()
     {
-        s = 0, l = 0;
+        s = nullptr, l = 0;
         lines = 0;
     }
     DOMStringIt(QChar *str, uint len)
@@ -116,14 +116,14 @@ class TokenizerSubstring
 {
     friend class TokenizerString;
 public:
-    TokenizerSubstring() : m_length(0), m_current(0) {}
-    TokenizerSubstring(const QString &str) : m_string(str), m_length(str.length()), m_current(m_length == 0 ? 0 : str.unicode()) {}
-    TokenizerSubstring(const QChar *str, int length) : m_length(length), m_current(length == 0 ? 0 : str) {}
+    TokenizerSubstring() : m_length(0), m_current(nullptr) {}
+    TokenizerSubstring(const QString &str) : m_string(str), m_length(str.length()), m_current(m_length == 0 ? nullptr : str.unicode()) {}
+    TokenizerSubstring(const QChar *str, int length) : m_length(length), m_current(length == 0 ? nullptr : str) {}
 
     void clear()
     {
         m_length = 0;
-        m_current = 0;
+        m_current = nullptr;
     }
 
     void appendTo(QString &str) const
@@ -148,7 +148,7 @@ class TokenizerString
 {
 
 public:
-    TokenizerString() : m_currentChar(0), m_lines(0), m_composite(false) {}
+    TokenizerString() : m_currentChar(nullptr), m_lines(0), m_composite(false) {}
     TokenizerString(const QChar *str, int length) : m_currentString(str, length), m_currentChar(m_currentString.m_current), m_lines(0), m_composite(false) {}
     TokenizerString(const QString &str) : m_currentString(str), m_currentChar(m_currentString.m_current), m_lines(0), m_composite(false) {}
     TokenizerString(const TokenizerString &o) : m_pushedChar1(o.m_pushedChar1), m_pushedChar2(o.m_pushedChar2),

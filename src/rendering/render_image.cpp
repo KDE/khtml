@@ -56,8 +56,8 @@ using namespace khtmlImLoad;
 RenderImage::RenderImage(NodeImpl *_element)
     : RenderReplaced(_element)
 {
-    m_cachedImage  = 0;
-    m_imagePainter = 0;
+    m_cachedImage  = nullptr;
+    m_imagePainter = nullptr;
 
     m_selectionState = SelectionNone;
     berrorPic = false;
@@ -398,7 +398,7 @@ bool RenderImage::nodeAtPoint(NodeInfo &info, int _x, int _y, int _tx, int _ty, 
         int tx = _tx + m_x;
         int ty = _ty + m_y;
 
-        HTMLImageElementImpl *i = element()->id() == ID_IMG ? static_cast<HTMLImageElementImpl *>(element()) : 0;
+        HTMLImageElementImpl *i = element()->id() == ID_IMG ? static_cast<HTMLImageElementImpl *>(element()) : nullptr;
         HTMLMapElementImpl *map;
         if (i && i->document()->isHTMLDocument() &&
                 (map = static_cast<HTMLDocumentImpl *>(i->document())->getMap(i->imageMap()))) {
@@ -417,7 +417,7 @@ void RenderImage::updateImage(CachedImage *newImage)
         return;
     }
 
-    delete m_imagePainter; m_imagePainter = 0;
+    delete m_imagePainter; m_imagePainter = nullptr;
 
     if (m_cachedImage) {
         m_cachedImage->deref(this);

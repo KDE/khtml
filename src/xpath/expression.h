@@ -50,7 +50,7 @@ namespace XPath
 struct EvaluationContext {
     EvaluationContext()
     {
-        reset(0, 0);
+        reset(nullptr, nullptr);
     }
 
     void reset(DOM::NodeImpl *ctx, XPathNSResolverImpl *res)

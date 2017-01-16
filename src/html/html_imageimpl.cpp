@@ -48,7 +48,7 @@ using namespace khtml;
 // -------------------------------------------------------------------------
 
 HTMLImageElementImpl::HTMLImageElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f)
-    : HTMLElementImpl(doc), ismap(false), loadEventSent(true), unsafe(false), m_image(0), m_form(f)
+    : HTMLElementImpl(doc), ismap(false), loadEventSent(true), unsafe(false), m_image(nullptr), m_form(f)
 {
     if (m_form) {
         m_form->registerImgElement(this);
@@ -160,7 +160,7 @@ void HTMLImageElementImpl::parseAttribute(AttributeImpl *attr)
             // the map is on the same html page....
             usemap = url;
         }
-        m_hasAnchor = attr->val() != 0;
+        m_hasAnchor = attr->val() != nullptr;
         break;
     case ATTR_ISMAP:
         ismap = true;
@@ -478,7 +478,7 @@ HTMLCollectionImpl *HTMLMapElementImpl::areas()
 HTMLAreaElementImpl::HTMLAreaElementImpl(DocumentImpl *doc)
     : HTMLAnchorElementImpl(doc)
 {
-    m_coords = 0;
+    m_coords = nullptr;
     m_coordsLen = 0;
     nohref = false;
     shape = Unknown;
@@ -514,10 +514,10 @@ void HTMLAreaElementImpl::parseAttribute(AttributeImpl *attr)
         m_coords = attr->val()->toCoordsArray(m_coordsLen);
         break;
     case ATTR_NOHREF:
-        nohref = attr->val() != 0;
+        nohref = attr->val() != nullptr;
         break;
     case ATTR_TARGET:
-        m_hasTarget = attr->val() != 0;
+        m_hasTarget = attr->val() != nullptr;
         break;
     case ATTR_ALT:
         break;
@@ -547,7 +547,7 @@ bool HTMLAreaElementImpl::mapMouseEvent(int x_, int y_, int width_, int height_,
 
 QRect HTMLAreaElementImpl::getRect() const
 {
-    if (parentNode()->renderer() == 0) {
+    if (parentNode()->renderer() == nullptr) {
         return QRect();
     }
     int dx, dy;

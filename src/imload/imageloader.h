@@ -44,7 +44,7 @@ protected:
 
     ImageLoader()
     {
-        image = 0;
+        image = nullptr;
     }
 
     /**

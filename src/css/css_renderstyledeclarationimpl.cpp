@@ -178,7 +178,7 @@ static CSSValueImpl *valueForBorderStyle(EBorderStyle style)
         return new CSSPrimitiveValueImpl(CSS_VAL_DOUBLE);
     }
     Q_ASSERT(0);
-    return 0;
+    return nullptr;
 }
 
 static CSSValueImpl *valueForBorderRadii(BorderRadii radii)
@@ -209,7 +209,7 @@ static CSSValueImpl *valueForTextAlign(ETextAlign align)
         return new CSSPrimitiveValueImpl(CSS_VAL__KHTML_CENTER);
     }
     Q_ASSERT(0);
-    return 0;
+    return nullptr;
 }
 
 DOMString khtml::stringForListStyleType(EListStyleType type)
@@ -320,12 +320,12 @@ static CSSValueImpl *valueForShadow(const ShadowData *shadow)
 static CSSValueImpl *getPositionOffsetValue(RenderObject *renderer, int propertyID)
 {
     if (!renderer) {
-        return 0;
+        return nullptr;
     }
 
     RenderStyle *style = renderer->style();
     if (!style) {
-        return 0;
+        return nullptr;
     }
 
     Length l;
@@ -343,7 +343,7 @@ static CSSValueImpl *getPositionOffsetValue(RenderObject *renderer, int property
         l = style->bottom();
         break;
     default:
-        return 0;
+        return nullptr;
     }
 
     if (renderer->isPositioned()) {
@@ -362,7 +362,7 @@ static CSSValueImpl *getPositionOffsetValue(RenderObject *renderer, int property
 }
 
 RenderStyleDeclarationImpl::RenderStyleDeclarationImpl(DOM::NodeImpl *node)
-    : CSSStyleDeclarationImpl(0), m_node(node)
+    : CSSStyleDeclarationImpl(nullptr), m_node(node)
 {
     //qDebug() << "Render Style Declaration created";
 }
@@ -398,7 +398,7 @@ CSSValueImpl *RenderStyleDeclarationImpl::getPropertyCSSValue(int propertyID) co
 {
     NodeImpl *node = m_node.get();
     if (!node) {
-        return 0;
+        return nullptr;
     }
 
     // Make sure our layout is up to date before we allow a query on these attributes.
@@ -409,7 +409,7 @@ CSSValueImpl *RenderStyleDeclarationImpl::getPropertyCSSValue(int propertyID) co
 
     RenderStyle *style = node->computedStyle();
     if (!style) {
-        return 0;
+        return nullptr;
     }
     RenderObject *renderer = node->renderer(); // can be NULL
 
@@ -893,7 +893,7 @@ CSSValueImpl *RenderStyleDeclarationImpl::getPropertyCSSValue(int propertyID) co
             return new CSSPrimitiveValueImpl(CSS_VAL_RIGHT);
         }
         Q_ASSERT(0);
-        return 0;
+        return nullptr;
     case CSS_PROP__KHTML_MARQUEE_INCREMENT:
         RETURN_NULL_ON_NULL(renderer);
         return valueForLength(style->marqueeIncrement(), renderer->contentWidth());
@@ -919,7 +919,7 @@ CSSValueImpl *RenderStyleDeclarationImpl::getPropertyCSSValue(int propertyID) co
             return new CSSPrimitiveValueImpl(CSS_VAL_UNFURL);
         }
         Q_ASSERT(0);
-        return 0;
+        return nullptr;
     case CSS_PROP_MAX_HEIGHT:
         RETURN_NULL_ON_NULL(renderer);
         return new CSSPrimitiveValueImpl(renderer->availableHeight(),
@@ -982,7 +982,7 @@ CSSValueImpl *RenderStyleDeclarationImpl::getPropertyCSSValue(int propertyID) co
             return new CSSPrimitiveValueImpl(CSS_VAL_MARQUEE);
         }
         Q_ASSERT(0);
-        return 0;
+        return nullptr;
     }
     case CSS_PROP_PADDING_TOP:
         if (renderer) {
@@ -1275,7 +1275,7 @@ CSSValueImpl *RenderStyleDeclarationImpl::getPropertyCSSValue(int propertyID) co
         //Q_ASSERT( 0 );
         break;
     }
-    return 0;
+    return nullptr;
 }
 
 #undef RETURN_NULL_ON_NULL

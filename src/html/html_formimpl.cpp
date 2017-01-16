@@ -95,11 +95,11 @@ HTMLFormElementImpl::~HTMLFormElementImpl()
     }
     QListIterator<HTMLGenericFormElementImpl *> it(formElements);
     while (it.hasNext()) {
-        it.next()->m_form = 0;
+        it.next()->m_form = nullptr;
     }
     QListIterator<HTMLImageElementImpl *> it2(imgElements);
     while (it2.hasNext()) {
-        it2.next()->m_form = 0;
+        it2.next()->m_form = nullptr;
     }
 }
 
@@ -273,7 +273,7 @@ QByteArray HTMLFormElementImpl::formData(bool &ok)
 
     // find out the QTextcodec to use
     QString str = m_acceptcharset.string();
-    QTextCodec *codec = 0;
+    QTextCodec *codec = nullptr;
     bool codecOk = false;
 
     if (str == "UNKNOWN") {
@@ -416,7 +416,7 @@ QByteArray HTMLFormElementImpl::formData(bool &ok)
     }
 
     if (fileNotUploads.count()) {
-        const int result = KMessageBox::warningContinueCancelList(0,
+        const int result = KMessageBox::warningContinueCancelList(nullptr,
                            i18n("The following files will not be uploaded"
                                 " because they could not be found.\n"
                                 "Do you want to continue?"),
@@ -430,7 +430,7 @@ QByteArray HTMLFormElementImpl::formData(bool &ok)
     }
 
     if (fileUploads.count()) {
-        const int result = KMessageBox::warningContinueCancelList(0,
+        const int result = KMessageBox::warningContinueCancelList(nullptr,
                            i18n("You are about to transfer the following files from "
                                 "your local computer to the Internet.\n"
                                 "Do you really want to continue?"),
@@ -873,7 +873,7 @@ HTMLGenericFormElementImpl::HTMLGenericFormElementImpl(DocumentImpl *doc, HTMLFo
     : HTMLElementImpl(doc)
 {
     m_disabled = m_readOnly = m_hasPastNames = false;
-    m_name = 0;
+    m_name = nullptr;
 
     if (f) {
         m_form = f;
@@ -906,7 +906,7 @@ void HTMLGenericFormElementImpl::removedFromDocument()
         m_form->removeFormElement(this);
     }
 
-    m_form = 0;
+    m_form = nullptr;
 }
 
 HTMLGenericFormElementImpl::~HTMLGenericFormElementImpl()
@@ -923,11 +923,11 @@ void HTMLGenericFormElementImpl::parseAttribute(AttributeImpl *attr)
 {
     switch (attr->id()) {
     case ATTR_DISABLED:
-        setDisabled(attr->val() != 0);
+        setDisabled(attr->val() != nullptr);
         break;
     case ATTR_READONLY: {
         const bool m_oldreadOnly = m_readOnly;
-        m_readOnly = attr->val() != 0;
+        m_readOnly = attr->val() != nullptr;
         if (m_oldreadOnly != m_readOnly) {
             setChanged();
         }
@@ -988,7 +988,7 @@ HTMLFormElementImpl *HTMLGenericFormElementImpl::getForm() const
 #ifdef FORMS_DEBUG
     qDebug() << "couldn't find form!";
 #endif
-    return 0;
+    return nullptr;
 }
 
 DOMString HTMLGenericFormElementImpl::name() const
@@ -1261,7 +1261,7 @@ void HTMLButtonElementImpl::activate()
 
 void HTMLButtonElementImpl::click()
 {
-    QMouseEvent me(QEvent::MouseButtonRelease, QPoint(0, 0), Qt::LeftButton, Qt::LeftButton, 0);
+    QMouseEvent me(QEvent::MouseButtonRelease, QPoint(0, 0), Qt::LeftButton, Qt::LeftButton, nullptr);
     dispatchMouseEvent(&me, EventImpl::CLICK_EVENT, 1);
 }
 
@@ -1491,7 +1491,7 @@ void HTMLInputElementImpl::select()
 
 void HTMLInputElementImpl::click()
 {
-    QMouseEvent me(QEvent::MouseButtonRelease, QPoint(0, 0), Qt::LeftButton, Qt::LeftButton, 0);
+    QMouseEvent me(QEvent::MouseButtonRelease, QPoint(0, 0), Qt::LeftButton, Qt::LeftButton, nullptr);
     dispatchMouseEvent(&me, 0, 1);
     dispatchMouseEvent(&me, EventImpl::CLICK_EVENT, 1);
 }
@@ -1614,7 +1614,7 @@ void HTMLInputElementImpl::attach()
                 }
             m_value = nvalue;
         }
-        m_defaultChecked = (getAttribute(ATTR_CHECKED) != 0);
+        m_defaultChecked = (getAttribute(ATTR_CHECKED) != nullptr);
         if (m_type == IMAGE) {
             addHTMLAlignment(getAttribute(ATTR_ALIGN));
         }
@@ -1773,7 +1773,7 @@ bool HTMLInputElementImpl::encoding(const QTextCodec *codec, khtml::encodingList
         }
 
         // can't submit file in www-url-form encoded
-        QWidget *const toplevel = document()->view() ? document()->view()->topLevelWidget() : 0;
+        QWidget *const toplevel = document()->view() ? document()->view()->topLevelWidget() : nullptr;
         if (multipart) {
             QByteArray filearray;
             KIO::StatJob *job = KIO::stat(fileurl);
@@ -2164,7 +2164,7 @@ bool HTMLLabelElementImpl::isFocusableImpl(FocusType ft) const
 NodeImpl *HTMLLabelElementImpl::getFormElement()
 {
     const DOMString formElementId = getAttribute(ATTR_FOR);
-    NodeImpl *newNode = 0L;
+    NodeImpl *newNode = nullptr;
     if (!formElementId.isEmpty()) {
         newNode = document()->getElementById(formElementId);
     }
@@ -2341,7 +2341,7 @@ void HTMLSelectElementImpl::add(HTMLElementImpl *element, HTMLElementImpl *befor
     //Fast path for appending an item. Can't be done if it is selected and
     //we're single-select, since we may need to drop an implicitly-selected item
     bool fastAppendLast = false;
-    if (before == 0 && (m_multiple || !option->selectedBit()) && !m_recalcListItems) {
+    if (before == nullptr && (m_multiple || !option->selectedBit()) && !m_recalcListItems) {
         fastAppendLast = true;
     }
 
@@ -2403,7 +2403,7 @@ HTMLOptionElementImpl *HTMLSelectElementImpl::firstSelectedItem() const
             return static_cast<HTMLOptionElementImpl *>(items[i]);
         }
     }
-    return 0;
+    return nullptr;
 }
 
 DOMString HTMLSelectElementImpl::value() const
@@ -2562,7 +2562,7 @@ void HTMLSelectElementImpl::parseAttribute(AttributeImpl *attr)
         m_minwidth = qMax(attr->value().toInt(), 0);
         break;
     case ATTR_MULTIPLE:
-        m_multiple = (attr->val() != 0);
+        m_multiple = (attr->val() != nullptr);
         break;
     case ATTR_ACCESSKEY:
         break;
@@ -2682,7 +2682,7 @@ void HTMLSelectElementImpl::recalcListItems() const
 {
     NodeImpl *current = firstChild();
     m_listItems.resize(0);
-    HTMLOptionElementImpl *foundSelected = 0;
+    HTMLOptionElementImpl *foundSelected = nullptr;
     m_length = 0;
     while (current) {
         if (current->id() == ID_OPTGROUP && current->firstChild()) {
@@ -2901,7 +2901,7 @@ void HTMLOptionElementImpl::parseAttribute(AttributeImpl *attr)
 {
     switch (attr->id()) {
     case ATTR_SELECTED:
-        m_selected = (attr->val() != 0);
+        m_selected = (attr->val() != nullptr);
         m_defaultSelected = m_selected;
         break;
     case ATTR_VALUE:
@@ -2950,7 +2950,7 @@ bool HTMLOptionElementImpl::selected() const
 
 void HTMLOptionElementImpl::setDefaultSelected(bool _defaultSelected)
 {
-    setAttribute(ATTR_SELECTED, _defaultSelected ? "" : 0);
+    setAttribute(ATTR_SELECTED, _defaultSelected ? "" : nullptr);
 }
 
 HTMLSelectElementImpl *HTMLOptionElementImpl::getSelect() const

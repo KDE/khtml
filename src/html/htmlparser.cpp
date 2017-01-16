@@ -160,8 +160,8 @@ KHTMLParser::KHTMLParser(KHTMLView *_parent, DocumentImpl *doc)
     HTMLWidget    = _parent;
     document      = doc;
 
-    blockStack = 0;
-    current = 0;
+    blockStack = nullptr;
+    current = nullptr;
 
     // ID_CLOSE_TAG == Num of tags
     forbiddenTag = new ushort[ID_CLOSE_TAG + 1];
@@ -171,13 +171,13 @@ KHTMLParser::KHTMLParser(KHTMLView *_parent, DocumentImpl *doc)
 
 KHTMLParser::KHTMLParser(DOM::DocumentFragmentImpl *i, DocumentImpl *doc)
 {
-    HTMLWidget = 0;
+    HTMLWidget = nullptr;
     document = doc;
 
     forbiddenTag = new ushort[ID_CLOSE_TAG + 1];
 
-    blockStack = 0;
-    current = 0;
+    blockStack = nullptr;
+    current = nullptr;
 
     reset();
 
@@ -220,10 +220,10 @@ void KHTMLParser::reset()
     inStrayTableContent = 0;
     m_inline = false;
 
-    form = 0;
-    map = 0;
+    form = nullptr;
+    map = nullptr;
     end = false;
-    isindex = 0;
+    isindex = nullptr;
 
     discard_until = 0;
 }
@@ -318,13 +318,13 @@ void KHTMLParser::parseToken(Token *t)
 #ifdef PARSER_DEBUG
             qDebug() << "  --> resetting map!";
 #endif
-            map = 0;
+            map = nullptr;
         }
         if (form == n) {
 #ifdef PARSER_DEBUG
             qDebug() << "   --> resetting form!";
 #endif
-            form = 0;
+            form = nullptr;
         }
         delete n;
     }
@@ -904,7 +904,7 @@ bool KHTMLParser::insertNode(NodeImpl *n, bool flat)
 
 NodeImpl *KHTMLParser::getElement(Token *t)
 {
-    NodeImpl *n = 0;
+    NodeImpl *n = nullptr;
 
     switch (t->tid) {
     case ID_HTML:
@@ -1000,7 +1000,7 @@ NodeImpl *KHTMLParser::getElement(Token *t)
                 !strcasecmp(t->attrs->getValue(ATTR_TYPE), "image")) {
             const QString url = doc()->completeURL(DOMString(t->attrs->getValue(ATTR_SRC)).trimSpaces().string());
             if (KHTMLGlobal::defaultHTMLSettings()->isAdFiltered(url)) {
-                return 0;
+                return nullptr;
             }
         }
         n = new HTMLInputElementImpl(document, form);
@@ -1009,7 +1009,7 @@ NodeImpl *KHTMLParser::getElement(Token *t)
         n = handleIsindex(t);
         if (!inBody) {
             isindex = n;
-            n = 0;
+            n = nullptr;
         } else {
             t->flat = true;
         }
@@ -1129,7 +1129,7 @@ NodeImpl *KHTMLParser::getElement(Token *t)
                 KHTMLGlobal::defaultHTMLSettings()->isHideAdsEnabled()) {
             const QString url = doc()->completeURL(DOMString(t->attrs->getValue(ATTR_SRC)).trimSpaces().string());
             if (KHTMLGlobal::defaultHTMLSettings()->isAdFiltered(url)) {
-                return 0;
+                return nullptr;
             }
         }
         n = new HTMLImageElementImpl(document, form);
@@ -1282,7 +1282,7 @@ NodeImpl *KHTMLParser::getElement(Token *t)
         return n;
     case ID_NOLAYER:
 //        discard_until = ID_NOLAYER + ID_CLOSE_TAG;
-        return 0;
+        return nullptr;
         break;
     case ID_MARQUEE:
         n = new HTMLMarqueeElementImpl(document);
@@ -1314,7 +1314,7 @@ void KHTMLParser::processCloseTag(Token *t)
         // them prematurely
         return;
     case ID_FORM+ID_CLOSE_TAG: // needs additional error checking. See spec.
-        form = 0;
+        form = nullptr;
         if (!isElementInScope(ID_FORM)) {
             // Parse error. Ignore.
             return;
@@ -1322,7 +1322,7 @@ void KHTMLParser::processCloseTag(Token *t)
         // this one is to get the right style on the body element
         break;
     case ID_MAP+ID_CLOSE_TAG:
-        map = 0;
+        map = nullptr;
         break;
     case ID_SELECT+ID_CLOSE_TAG:
         inSelect = false;
@@ -1498,10 +1498,10 @@ void KHTMLParser::handleResidualStyleCloseTagAcrossBlocks(HTMLStackElem *elem)
     // ### For now, if there is more than one, we will only make sure we close the residual style.
     int exceptionCode = 0;
     HTMLStackElem *curr = blockStack;
-    HTMLStackElem *maxElem = 0;
-    HTMLStackElem *endElem = 0;
-    HTMLStackElem *prev = 0;
-    HTMLStackElem *prevMaxElem = 0;
+    HTMLStackElem *maxElem = nullptr;
+    HTMLStackElem *endElem = nullptr;
+    HTMLStackElem *prev = nullptr;
+    HTMLStackElem *prevMaxElem = nullptr;
     bool advancedResidual = false; // ### if set we only close the residual style
     while (curr && curr != elem) {
         if (curr->level > elem->level) {
@@ -1564,8 +1564,8 @@ void KHTMLParser::handleResidualStyleCloseTagAcrossBlocks(HTMLStackElem *elem)
         // in the block stack.
         // This will also affect how we ultimately reparent the block, since we want it to end up
         // under the reopened residual tags (e.g., the <i> in the above example.)
-        RefPtr<NodeImpl> prevNode = 0;
-        RefPtr<NodeImpl> currNode = 0;
+        RefPtr<NodeImpl> prevNode = nullptr;
+        RefPtr<NodeImpl> currNode = nullptr;
         currElem = maxElem;
         while (currElem->node != residualElem) {
             if (isResidualStyleTag(currElem->node->id())) {
@@ -1642,7 +1642,7 @@ void KHTMLParser::handleResidualStyleCloseTagAcrossBlocks(HTMLStackElem *elem)
     // the node associated with the previous stack element so that when it gets popped,
     // it doesn't make the residual element the next current node.
     HTMLStackElem *currElem = maxElem;
-    HTMLStackElem *prevElem = 0;
+    HTMLStackElem *prevElem = nullptr;
     while (currElem != elem) {
         prevElem = currElem;
         currElem = currElem->next;
@@ -1654,7 +1654,7 @@ void KHTMLParser::handleResidualStyleCloseTagAcrossBlocks(HTMLStackElem *elem)
     // Step 7: Reopen intermediate inlines, e.g., <b><p><i>Foo</b>Goo</p>.
     // In the above example, Goo should stay italic.
     curr = blockStack;
-    HTMLStackElem *residualStyleStack = 0;
+    HTMLStackElem *residualStyleStack = nullptr;
     while (curr && curr != endElem) {
         // We will actually schedule this tag for reopening
         // after we complete the close of this entire block.
@@ -1679,7 +1679,7 @@ void KHTMLParser::handleResidualStyleCloseTagAcrossBlocks(HTMLStackElem *elem)
         curr = blockStack;
     }
 
-    reopenResidualStyleTags(residualStyleStack, 0); // FIXME: Deal with stray table content some day
+    reopenResidualStyleTags(residualStyleStack, nullptr); // FIXME: Deal with stray table content some day
     // if it becomes necessary to do so.
 }
 
@@ -1705,13 +1705,13 @@ void KHTMLParser::reopenResidualStyleTags(HTMLStackElem *elem, DOM::NodeImpl *ma
 
         // Set our strayTableContent boolean if needed, so that the reopened tag also knows
         // that it is inside a malformed table.
-        blockStack->strayTableContent = malformedTableParent != 0;
+        blockStack->strayTableContent = malformedTableParent != nullptr;
         if (blockStack->strayTableContent) {
             inStrayTableContent++;
         }
 
         // Clear our malformed table parent variable.
-        malformedTableParent = 0;
+        malformedTableParent = nullptr;
 
         // Update |current| manually to point to the new node.
         setCurrent(newNode.get());
@@ -1829,8 +1829,8 @@ void KHTMLParser::popBlock(int _id)
     }
 
     bool isAffectedByStyle = isAffectedByResidualStyle(Elem->id);
-    HTMLStackElem *residualStyleStack = 0;
-    NodeImpl *malformedTableParent = 0;
+    HTMLStackElem *residualStyleStack = nullptr;
+    NodeImpl *malformedTableParent = nullptr;
 
     Elem = blockStack;
 
@@ -1838,7 +1838,7 @@ void KHTMLParser::popBlock(int _id)
         if (Elem->id == _id) {
             int strayTable = inStrayTableContent;
             popOneBlock();
-            Elem = 0;
+            Elem = nullptr;
 
             // This element was the root of some malformed content just inside an implicit or
             // explicit <tbody> or <tr>.
@@ -1849,7 +1849,7 @@ void KHTMLParser::popBlock(int _id)
                 while (curr && curr->id() != ID_TABLE) {
                     curr = curr->parentNode();
                 }
-                malformedTableParent = curr ? curr->parentNode() : 0;
+                malformedTableParent = curr ? curr->parentNode() : nullptr;
             }
         } else {
             // Schedule this tag for reopening
@@ -1936,7 +1936,7 @@ void KHTMLParser::freeBlock()
     while (blockStack) {
         popOneBlock();
     }
-    blockStack = 0;
+    blockStack = nullptr;
 }
 
 void KHTMLParser::createHead()
@@ -1954,7 +1954,7 @@ void KHTMLParser::createHead()
         qDebug() << "creation of head failed!!!!:" << exceptioncode;
 #endif
         delete head.get();
-        head = 0;
+        head = nullptr;
     }
 
     // If the body does not exist yet, then the <head> should be pushed as the current block.
@@ -1976,7 +1976,7 @@ NodeImpl *KHTMLParser::handleIsindex(Token *t)
     }
     NodeImpl *child = new HTMLHRElementImpl(document);
     n->addChild(child);
-    DOMStringImpl *a = t->attrs ? t->attrs->getValue(ATTR_PROMPT) : 0;
+    DOMStringImpl *a = t->attrs ? t->attrs->getValue(ATTR_PROMPT) : nullptr;
     DOMString text = i18n("This is a searchable index. Enter search keywords: ");
     if (a) {
         text = a;
@@ -2002,6 +2002,6 @@ void KHTMLParser::startBody()
 
     if (isindex) {
         insertNode(isindex, true /* don't decend into this node */);
-        isindex = 0;
+        isindex = nullptr;
     }
 }

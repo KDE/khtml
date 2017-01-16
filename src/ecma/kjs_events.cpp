@@ -65,7 +65,7 @@ JSEventListener::~JSEventListener()
 void JSEventListener::handleEvent(DOM::Event &evt)
 {
     KHTMLPart *part = qobject_cast<KHTMLPart *>(static_cast<Window *>(win.get())->part());
-    KJSProxy *proxy = 0L;
+    KJSProxy *proxy = nullptr;
     if (part) {
         proxy = part->jScript();
     }
@@ -86,7 +86,7 @@ void JSEventListener::handleEvent(DOM::Event &evt)
         List args;
         args.append(getDOMEvent(exec, evt.handle()));
 
-        JSObject *thisObj = 0;
+        JSObject *thisObj = nullptr;
         // Check whether handler is a function or an object with handleEvent method
         if (listener == compareListenerImp) {
             // Set "this" to the event's current target
@@ -110,8 +110,8 @@ void JSEventListener::handleEvent(DOM::Event &evt)
         JSValue *retval = listener->call(exec, thisObj, args);
         interpreter->stopCPUGuard();
 
-        window->setCurrentEvent(0);
-        interpreter->setCurrentEvent(0);
+        window->setCurrentEvent(nullptr);
+        interpreter->setCurrentEvent(nullptr);
         if (exec->hadException()) {
             exec->clearException();
         } else if (html) {
@@ -141,7 +141,7 @@ JSObject *JSEventListener::listenerObj() const
 
 JSLazyEventListener::JSLazyEventListener(const QString &_code, const QString &_url, int _lineNum,
         const QString &_name, JSObject *_win, DOM::NodeImpl *_originalNode, bool _svg)
-    : JSEventListener(0, 0, _win, true), code(_code), url(_url), lineNum(_lineNum),
+    : JSEventListener(nullptr, nullptr, _win, true), code(_code), url(_url), lineNum(_lineNum),
       name(_name), parsed(false), svg(_svg)
 {
     // We don't retain the original node, because we assume it
@@ -175,7 +175,7 @@ void JSLazyEventListener::parseCode() const
 {
     if (!parsed) {
         KHTMLPart *part = qobject_cast<KHTMLPart *>(static_cast<Window *>(win.get())->part());
-        KJSProxy *proxy = 0L;
+        KJSProxy *proxy = nullptr;
         if (part) {
             proxy = part->jScript();
         }
@@ -203,9 +203,9 @@ void JSLazyEventListener::parseCode() const
                 exec->clearException();
 
                 // failed to parse, so let's just make this listener a no-op
-                listener = 0;
+                listener = nullptr;
             } else if (!listener->inherits(&DeclaredFunctionImp::info)) {
-                listener = 0;// Error creating function
+                listener = nullptr;// Error creating function
             } else {
                 DeclaredFunctionImp *declFunc = static_cast<DeclaredFunctionImp *>(listener.get());
 
@@ -238,7 +238,7 @@ void JSLazyEventListener::parseCode() const
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMEvent::info = { "Event", 0, &DOMEventTable, 0 };
+const ClassInfo DOMEvent::info = { "Event", nullptr, &DOMEventTable, nullptr };
 /*
 @begin DOMEventTable 7
   type      DOMEvent::Type      DontDelete|ReadOnly
@@ -314,7 +314,7 @@ JSValue *DOMEvent::getValueProperty(ExecState *exec, int token) const
         return jsBoolean(event.propagationStopped());
     default:
         // qDebug() << "WARNING: Unhandled token in DOMEvent::getValueProperty : " << token;
-        return 0;
+        return nullptr;
     }
 }
 
@@ -404,7 +404,7 @@ DOM::EventImpl *KJS::toEvent(JSValue *val)
 {
     JSObject *obj = val->getObject();
     if (!obj || !obj->inherits(&DOMEvent::info)) {
-        return 0;
+        return nullptr;
     }
 
     const DOMEvent *dobj = static_cast<const DOMEvent *>(obj);
@@ -442,7 +442,7 @@ IMPLEMENT_CONSTANT_TABLE(EventConstants, "EventConstants")
 IMPLEMENT_PSEUDO_CONSTRUCTOR_WITH_PARENT(EventConstructor, "EventConstructor", DOMEventProto, EventConstants)
 // -------------------------------------------------------------------------
 
-const ClassInfo EventExceptionConstructor::info = { "EventExceptionConstructor", 0, &EventExceptionConstructorTable, 0 };
+const ClassInfo EventExceptionConstructor::info = { "EventExceptionConstructor", nullptr, &EventExceptionConstructorTable, nullptr };
 /*
 @begin EventExceptionConstructorTable 1
   UNSPECIFIED_EVENT_TYPE_ERR    DOM::EventException::UNSPECIFIED_EVENT_TYPE_ERR DontDelete|ReadOnly
@@ -471,7 +471,7 @@ JSValue *KJS::getEventExceptionConstructor(ExecState *exec)
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMUIEvent::info = { "UIEvent", &DOMEvent::info, &DOMUIEventTable, 0 };
+const ClassInfo DOMUIEvent::info = { "UIEvent", &DOMEvent::info, &DOMUIEventTable, nullptr };
 /*
 @begin DOMUIEventTable 7
   view      DOMUIEvent::View    DontDelete|ReadOnly
@@ -562,7 +562,7 @@ JSValue *DOMUIEventProtoFunc::callAsFunction(ExecState *exec, JSObject *thisObj,
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMMouseEvent::info = { "MouseEvent", &DOMUIEvent::info, &DOMMouseEventTable, 0 };
+const ClassInfo DOMMouseEvent::info = { "MouseEvent", &DOMUIEvent::info, &DOMMouseEventTable, nullptr };
 
 /*
 @begin DOMMouseEventTable 2
@@ -628,7 +628,7 @@ JSValue *DOMMouseEvent::getValueProperty(ExecState *exec, int token) const
         }
 
         DOM::Node node = static_cast<NodeImpl *>(event.target());
-        khtml::RenderObject *rend = 0;
+        khtml::RenderObject *rend = nullptr;
         if (node.handle()) {
             node.handle()->document()->updateRendering();
             rend = node.handle()->renderer();
@@ -686,7 +686,7 @@ JSValue *DOMMouseEvent::getValueProperty(ExecState *exec, int token) const
         return getEventTarget(exec, event.relatedTarget());
     default:
         // qDebug() << "WARNING: Unhandled token in DOMMouseEvent::getValueProperty : " << token;
-        return 0;
+        return nullptr;
     }
 }
 
@@ -718,7 +718,7 @@ JSValue *DOMMouseEventProtoFunc::callAsFunction(ExecState *exec, JSObject *thisO
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMKeyEventBase::info = { "KeyEventBase", &DOMUIEvent::info, &DOMKeyEventBaseTable, 0 };
+const ClassInfo DOMKeyEventBase::info = { "KeyEventBase", &DOMUIEvent::info, &DOMKeyEventBaseTable, nullptr };
 
 /*
 @begin DOMKeyEventBaseTable 5
@@ -770,7 +770,7 @@ JSValue *DOMKeyEventBase::getValueProperty(ExecState *, int token) const
 }
 
 // -------------------------------------------------------------------------
-const ClassInfo DOMTextEvent::info = { "TextEvent", &DOMKeyEventBase::info, &DOMTextEventTable, 0 };
+const ClassInfo DOMTextEvent::info = { "TextEvent", &DOMKeyEventBase::info, &DOMTextEventTable, nullptr };
 
 /*
 @begin DOMTextEventTable 1
@@ -829,7 +829,7 @@ JSValue *DOMTextEventProtoFunc::callAsFunction(ExecState *exec, JSObject *thisOb
     return jsUndefined();
 }
 // -------------------------------------------------------------------------
-const ClassInfo DOMKeyboardEvent::info = { "KeyboardEvent", &DOMKeyEventBase::info, &DOMKeyboardEventTable, 0 };
+const ClassInfo DOMKeyboardEvent::info = { "KeyboardEvent", &DOMKeyEventBase::info, &DOMKeyboardEventTable, nullptr };
 
 /*
 @begin DOMKeyboardEventTable 2
@@ -895,7 +895,7 @@ JSValue *DOMKeyboardEventProtoFunc::callAsFunction(ExecState *exec, JSObject *th
 }
 
 // -------------------------------------------------------------------------
-const ClassInfo KeyboardEventConstructor::info = { "KeyboardEventConstructor", 0, &KeyboardEventConstructorTable, 0 };
+const ClassInfo KeyboardEventConstructor::info = { "KeyboardEventConstructor", nullptr, &KeyboardEventConstructorTable, nullptr };
 /*
 @begin KeyboardEventConstructorTable 4
   DOM_KEY_LOCATION_STANDARD  DOM::KeyboardEvent::DOM_KEY_LOCATION_STANDARD DontDelete|ReadOnly
@@ -928,7 +928,7 @@ JSValue *KJS::getKeyboardEventConstructor(ExecState *exec)
 }
 
 // -------------------------------------------------------------------------
-const ClassInfo MutationEventConstructor::info = { "MutationEventConstructor", 0, &MutationEventConstructorTable, 0 };
+const ClassInfo MutationEventConstructor::info = { "MutationEventConstructor", nullptr, &MutationEventConstructorTable, nullptr };
 /*
 @begin MutationEventConstructorTable 3
   MODIFICATION  DOM::MutationEvent::MODIFICATION    DontDelete|ReadOnly
@@ -959,7 +959,7 @@ JSValue *KJS::getMutationEventConstructor(ExecState *exec)
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMMutationEvent::info = { "MutationEvent", &DOMEvent::info, &DOMMutationEventTable, 0 };
+const ClassInfo DOMMutationEvent::info = { "MutationEvent", &DOMEvent::info, &DOMMutationEventTable, nullptr };
 /*
 @begin DOMMutationEventTable 5
   relatedNode   DOMMutationEvent::RelatedNode   DontDelete|ReadOnly
@@ -1006,7 +1006,7 @@ JSValue *DOMMutationEvent::getValueProperty(ExecState *exec, int token) const
         return jsNumber((unsigned int)event.attrChange());
     default:
         // qDebug() << "WARNING: Unhandled token in DOMMutationEvent::getValueProperty : " << token;
-        return 0;
+        return nullptr;
     }
 }
 
@@ -1030,7 +1030,7 @@ JSValue *DOMMutationEventProtoFunc::callAsFunction(ExecState *exec, JSObject *th
 }
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMMessageEvent::info = { "MessageEvent", &DOMEvent::info, &DOMMessageEventTable, 0 };
+const ClassInfo DOMMessageEvent::info = { "MessageEvent", &DOMEvent::info, &DOMMessageEventTable, nullptr };
 /*
 @begin DOMMessageEventTable 5
   data     DOMMessageEvent::Data     DontDelete|ReadOnly
@@ -1073,7 +1073,7 @@ JSValue *DOMMessageEvent::getValueProperty(ExecState *exec, int token) const
         }
     default:
         // qDebug() << "WARNING: Unhandled token in DOMMessageEvent::getValueProperty : " << token;
-        return 0;
+        return nullptr;
     }
 }
 
@@ -1085,12 +1085,12 @@ JSValue *DOMMessageEventProtoFunc::callAsFunction(ExecState *exec, JSObject *thi
     case DOMMessageEvent::InitMessageEvent: {
         JSObject *sourceObj = args[3]->getObject();
 
-        Window *sourceWin = 0;
+        Window *sourceWin = nullptr;
         if (sourceObj && sourceObj->inherits(&Window::info)) {
             sourceWin = static_cast<Window *>(sourceObj);
         }
 
-        KHTMLPart *part = 0;
+        KHTMLPart *part = nullptr;
         if (sourceWin) {
             part = qobject_cast<KHTMLPart *>(sourceWin->part());
         }
@@ -1116,7 +1116,7 @@ JSValue *DOMMessageEventProtoFunc::callAsFunction(ExecState *exec, JSObject *thi
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMHashChangeEvent::info = { "HashChangeEvent", &DOMEvent::info, &DOMHashChangeEventTable, 0 };
+const ClassInfo DOMHashChangeEvent::info = { "HashChangeEvent", &DOMEvent::info, &DOMHashChangeEventTable, nullptr };
 /*
 @begin DOMHashChangeEventTable 2
   oldURL   DOMHashChangeEvent::OldUrl DontDelete|ReadOnly

@@ -24,13 +24,13 @@ namespace khtml
 struct ThaiCache {
     ThaiCache()
     {
-        string = 0;
+        string = nullptr;
         allocated = 0x400;
         wbrpos = (int *) malloc(allocated * sizeof(int));
         numwbrpos = 0;
         numisbreakable = 0x400;
         isbreakable = (int *) malloc(numisbreakable * sizeof(int));
-        library = 0;
+        library = nullptr;
     }
     ~ThaiCache()
     {
@@ -48,14 +48,14 @@ struct ThaiCache {
     int numwbrpos, numisbreakable;
     QLibrary *library;
 };
-static ThaiCache *cache = 0;
+static ThaiCache *cache = nullptr;
 
 void cleanup_thaibreaks()
 {
     delete cache;
-    cache = 0;
+    cache = nullptr;
 #ifndef HAVE_LIBTHAI
-    th_brk = 0;
+    th_brk = nullptr;
 #endif
 }
 
@@ -77,7 +77,7 @@ bool isBreakableThai(const QChar *string, const int pos, const int len)
         if (!th_brk) {
             // indication that loading failed and we shouldn't try to load again
             printf("Error, can't load libthai...\n");
-            thaiCodec = 0;
+            thaiCodec = nullptr;
             if (lib->isLoaded()) {
                 lib->unload();
             }

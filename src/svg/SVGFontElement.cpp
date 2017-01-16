@@ -65,7 +65,7 @@ SVGMissingGlyphElement *SVGFontElement::firstMissingGlyphElement() const
         }
     }
 
-    return 0;
+    return nullptr;
 }
 
 void SVGFontElement::ensureGlyphCache() const

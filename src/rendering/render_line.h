@@ -43,9 +43,9 @@ public:
         : m_object(obj), m_x(0), m_width(0), m_y(0), m_height(0), m_baseline(0),
           m_firstLine(false), m_constructed(false), m_dirty(false), m_extracted(false), m_endsWithBreak(false)
     {
-        m_next = 0;
-        m_prev = 0;
-        m_parent = 0;
+        m_next = nullptr;
+        m_prev = nullptr;
+        m_parent = nullptr;
     }
 
     virtual ~InlineBox() {}
@@ -284,8 +284,8 @@ public:
     InlineRunBox(RenderObject *obj)
         : InlineBox(obj)
     {
-        m_prevLine = 0;
-        m_nextLine = 0;
+        m_prevLine = nullptr;
+        m_nextLine = nullptr;
     }
 
     InlineRunBox *prevLineBox() const
@@ -319,8 +319,8 @@ public:
     InlineFlowBox(RenderObject *obj)
         : InlineRunBox(obj)
     {
-        m_firstChild = 0;
-        m_lastChild = 0;
+        m_firstChild = nullptr;
+        m_lastChild = nullptr;
         m_includeLeftEdge = m_includeRightEdge = false;
         m_hasTextChildren = false;
         m_hasTextDescendant = false;
@@ -492,8 +492,8 @@ protected:
 class RootInlineBox : public InlineFlowBox
 {
 public:
-    RootInlineBox(RenderObject *obj) : InlineFlowBox(obj), m_lineBreakObj(0), m_lineBreakPos(0),
-        m_lineBreakContext(0), m_blockHeight(0), m_ellipsisBox(0)
+    RootInlineBox(RenderObject *obj) : InlineFlowBox(obj), m_lineBreakObj(nullptr), m_lineBreakPos(0),
+        m_lineBreakContext(nullptr), m_blockHeight(0), m_ellipsisBox(nullptr)
     {
         m_topOverflow = m_bottomOverflow = 0;
     }
@@ -529,7 +529,7 @@ public:
     }
 
     bool canAccommodateEllipsis(bool ltr, int blockEdge, int lineBoxEdge, int ellipsisWidth);
-    void placeEllipsis(const DOM::DOMString &ellipsisStr, bool ltr, int blockEdge, int ellipsisWidth, InlineBox *markupBox = 0);
+    void placeEllipsis(const DOM::DOMString &ellipsisStr, bool ltr, int blockEdge, int ellipsisWidth, InlineBox *markupBox = nullptr);
     int placeEllipsisBox(bool ltr, int blockEdge, int ellipsisWidth, bool &) Q_DECL_OVERRIDE;
 
     EllipsisBox *ellipsisBox() const

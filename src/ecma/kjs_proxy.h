@@ -65,7 +65,7 @@ public:
     ~KJSProxy();
 
     QVariant evaluate(QString filename, int baseLine, const QString &, const DOM::Node &n,
-                      KJS::Completion *completion = 0);
+                      KJS::Completion *completion = nullptr);
     void clear();
 
     DOM::EventListener *createHTMLEventHandler(QString sourceUrl, QString name, QString code, DOM::NodeImpl *node, bool svg = false);

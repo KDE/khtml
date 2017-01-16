@@ -888,14 +888,14 @@ bool KEncodingDetector::analyze(const char *data, int len)
             if ((nul_count_even == 0 && nul_count_odd == 5) || (nul_count_even == 5 && nul_count_odd == 0)) {
                 autoDetectedEncoding = "UTF-16";
             } else {
-                autoDetectedEncoding = 0;
+                autoDetectedEncoding = nullptr;
             }
         } else {
-            autoDetectedEncoding = 0;
+            autoDetectedEncoding = nullptr;
         }
 
         // If we found a BOM, use the encoding it implies.
-        if (autoDetectedEncoding != 0) {
+        if (autoDetectedEncoding != nullptr) {
             d->m_source = BOM;
             d->m_codec = QTextCodec::codecForName(autoDetectedEncoding);
             assert(d->m_codec);

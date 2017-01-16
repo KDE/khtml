@@ -239,7 +239,7 @@ public:
     {
         if (frame0->height == 0 || frame0->width == 0 ||
                 plane->height == 0 || plane->width == 0) {
-            return 0;
+            return nullptr;
         }
 
         float heightRatio = frame0->height / plane->height;
@@ -593,7 +593,7 @@ ImageLoader *GIFLoaderProvider::loaderFor(const QByteArray &prefix)
 {
     uchar *data = (uchar *)prefix.data();
     if (prefix.size() < 6) {
-        return 0;
+        return nullptr;
     }
 
     if (data[0] == 'G'  &&
@@ -605,7 +605,7 @@ ImageLoader *GIFLoaderProvider::loaderFor(const QByteArray &prefix)
         return new GIFLoader;
     }
 
-    return 0;
+    return nullptr;
 }
 
 }

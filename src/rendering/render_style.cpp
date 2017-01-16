@@ -113,7 +113,7 @@ BackgroundLayer::BackgroundLayer()
       m_bgOrigin(RenderStyle::initialBackgroundOrigin()),
       m_bgRepeat(RenderStyle::initialBackgroundRepeat()),
       m_backgroundSize(RenderStyle::initialBackgroundSize()),
-      m_next(0)
+      m_next(nullptr)
 {
     m_imageSet = m_attachmentSet = m_clipSet = m_originSet =
                                        m_repeatSet = m_xPosSet = m_yPosSet = m_backgroundSizeSet = false;
@@ -121,7 +121,7 @@ BackgroundLayer::BackgroundLayer()
 
 BackgroundLayer::BackgroundLayer(const BackgroundLayer &o)
 {
-    m_next = o.m_next ? new BackgroundLayer(*o.m_next) : 0;
+    m_next = o.m_next ? new BackgroundLayer(*o.m_next) : nullptr;
     m_image = o.m_image;
     m_xPosition = o.m_xPosition;
     m_yPosition = o.m_yPosition;
@@ -149,7 +149,7 @@ BackgroundLayer &BackgroundLayer::operator=(const BackgroundLayer &o)
 {
     if (m_next != o.m_next) {
         delete m_next;
-        m_next = o.m_next ? new BackgroundLayer(*o.m_next) : 0;
+        m_next = o.m_next ? new BackgroundLayer(*o.m_next) : nullptr;
     }
 
     m_image = o.m_image;
@@ -278,7 +278,7 @@ void BackgroundLayer::cullEmptyLayers()
         next = p->m_next;
         if (next && !next->isBackgroundImageSet()) {
             delete next;
-            p->m_next = 0;
+            p->m_next = nullptr;
             break;
         }
     }
@@ -296,7 +296,7 @@ bool StyleBackgroundData::operator==(const StyleBackgroundData &o) const
     return m_background == o.m_background && m_color == o.m_color && m_outline == o.m_outline;
 }
 
-StyleGeneratedData::StyleGeneratedData() : Shared<StyleGeneratedData>(), content(0), counter_reset(0), counter_increment(0) {}
+StyleGeneratedData::StyleGeneratedData() : Shared<StyleGeneratedData>(), content(nullptr), counter_reset(nullptr), counter_increment(nullptr) {}
 
 StyleGeneratedData::~StyleGeneratedData()
 {
@@ -310,7 +310,7 @@ StyleGeneratedData::~StyleGeneratedData()
 }
 
 StyleGeneratedData::StyleGeneratedData(const StyleGeneratedData &o)
-    : Shared<StyleGeneratedData>(), content(0),
+    : Shared<StyleGeneratedData>(), content(nullptr),
       counter_reset(o.counter_reset), counter_increment(o.counter_increment)
 {
     if (o.content) {
@@ -479,7 +479,7 @@ bool StyleCSS3NonInheritedData::operator==(const StyleCSS3NonInheritedData &o) c
 }
 
 StyleCSS3InheritedData::StyleCSS3InheritedData()
-    : Shared<StyleCSS3InheritedData>(), textShadow(0), wordWrap(RenderStyle::initialWordWrap())
+    : Shared<StyleCSS3InheritedData>(), textShadow(nullptr), wordWrap(RenderStyle::initialWordWrap())
 #ifdef APPLE_CHANGES
     , userModify(READ_ONLY), textSizeAdjust(RenderStyle::initialTextSizeAdjust())
 #endif
@@ -490,7 +490,7 @@ StyleCSS3InheritedData::StyleCSS3InheritedData()
 StyleCSS3InheritedData::StyleCSS3InheritedData(const StyleCSS3InheritedData &o)
     : Shared<StyleCSS3InheritedData>()
 {
-    textShadow = o.textShadow ? new ShadowData(*o.textShadow) : 0;
+    textShadow = o.textShadow ? new ShadowData(*o.textShadow) : nullptr;
     wordWrap = o.wordWrap;
 #ifdef APPLE_CHANGES
     userModify = o.userModify;
@@ -530,7 +530,7 @@ StyleInheritedData::StyleInheritedData()
       border_hspacing(RenderStyle::initialBorderHorizontalSpacing()),
       border_vspacing(RenderStyle::initialBorderVerticalSpacing()),
       widows(RenderStyle::initialWidows()), orphans(RenderStyle::initialOrphans()),
-      quotes(0)
+      quotes(nullptr)
 {
 }
 
@@ -596,7 +596,7 @@ RenderStyle::RenderStyle()
 
     setBitDefaults();
 
-    pseudoStyle = 0;
+    pseudoStyle = nullptr;
 }
 
 RenderStyle::RenderStyle(bool)
@@ -625,7 +625,7 @@ RenderStyle::RenderStyle(bool)
 
     m_svgStyle.init();
 
-    pseudoStyle = 0;
+    pseudoStyle = nullptr;
 }
 
 RenderStyle::RenderStyle(const RenderStyle &o)
@@ -633,7 +633,7 @@ RenderStyle::RenderStyle(const RenderStyle &o)
       inherited_flags(o.inherited_flags), noninherited_flags(o.noninherited_flags),
       box(o.box), visual(o.visual), background(o.background), surround(o.surround), generated(o.generated),
       css3NonInheritedData(o.css3NonInheritedData), css3InheritedData(o.css3InheritedData),
-      inherited(o.inherited), pseudoStyle(0), m_svgStyle(o.m_svgStyle)
+      inherited(o.inherited), pseudoStyle(nullptr), m_svgStyle(o.m_svgStyle)
 {}
 
 void RenderStyle::inheritFrom(const RenderStyle *inheritParent)
@@ -688,7 +688,7 @@ void RenderStyle::compactWith(const RenderStyle *similarStyle)
 RenderStyle::~RenderStyle()
 {
     RenderStyle *ps = pseudoStyle;
-    RenderStyle *prev = 0;
+    RenderStyle *prev = nullptr;
 
     while (ps) {
         prev = ps;
@@ -696,7 +696,7 @@ RenderStyle::~RenderStyle()
         // to prevent a double deletion.
         // this works only because the styles below aren't really shared
         // Dirk said we need another construct as soon as these are shared
-        prev->pseudoStyle = 0;
+        prev->pseudoStyle = nullptr;
         prev->deref();
     }
 }
@@ -762,10 +762,10 @@ void RenderStyle::setHasPseudoStyle(PseudoId pseudo, bool b)
 RenderStyle *RenderStyle::getPseudoStyle(PseudoId pid) const
 {
     if (!hasPseudoStyle(pid)) {
-        return 0;
+        return nullptr;
     }
 
-    RenderStyle *ps = 0;
+    RenderStyle *ps = nullptr;
     if (noninherited_flags.f._styleType == NOPSEUDO)
         for (ps = pseudoStyle; ps; ps = ps->pseudoStyle)
             if (ps->noninherited_flags.f._styleType == pid) {
@@ -780,7 +780,7 @@ RenderStyle *RenderStyle::addPseudoStyle(PseudoId pid)
         return getPseudoStyle(pid);
     }
 
-    RenderStyle *ps = 0;
+    RenderStyle *ps = nullptr;
 
     switch (pid) {
     case FIRST_LETTER:             // pseudo-elements (FIRST_LINE has a special handling)
@@ -998,12 +998,12 @@ RenderStyle::Diff RenderStyle::diff(const RenderStyle *other) const
     return ch;
 }
 
-RenderStyle *RenderStyle::_default = 0;
+RenderStyle *RenderStyle::_default = nullptr;
 
 void RenderStyle::cleanup()
 {
     delete _default;
-    _default = 0;
+    _default = nullptr;
 }
 
 void RenderStyle::setPaletteColor(QPalette::ColorGroup g, QPalette::ColorRole r, const QColor &c)
@@ -1186,9 +1186,9 @@ void RenderStyle::addContent(EQuoteContent q)
 // content: normal is the same as having no content at all
 void RenderStyle::setContentNormal()
 {
-    if (generated->content != 0) {
+    if (generated->content != nullptr) {
         delete generated->content;
-        generated.access()->content = 0;
+        generated.access()->content = nullptr;
     }
 }
 
@@ -1205,7 +1205,7 @@ void RenderStyle::setContentData(ContentData *data)
         if (data) {
             generated.access()->content = new ContentData(*data);
         } else {
-            generated.access()->content = 0;
+            generated.access()->content = nullptr;
         }
     }
 }
@@ -1232,7 +1232,7 @@ ContentData::ContentData(const ContentData &o) : _contentType(o._contentType)
         break;
     }
 
-    _nextContent = o._nextContent ? new ContentData(*o._nextContent) : 0;
+    _nextContent = o._nextContent ? new ContentData(*o._nextContent) : nullptr;
 }
 
 ContentData::~ContentData()
@@ -1243,19 +1243,19 @@ ContentData::~ContentData()
 void ContentData::clearContent()
 {
     delete _nextContent;
-    _nextContent = 0;
+    _nextContent = nullptr;
 
     switch (_contentType) {
     case CONTENT_OBJECT:
-        _content.object = 0;
+        _content.object = nullptr;
         break;
     case CONTENT_TEXT:
         _content.text->deref();
-        _content.text = 0;
+        _content.text = nullptr;
         break;
     case CONTENT_COUNTER:
         _content.counter->deref();
-        _content.counter = 0;
+        _content.counter = nullptr;
         break;
     case CONTENT_QUOTE:
         _content.quote = NO_QUOTE;
@@ -1284,7 +1284,7 @@ void RenderStyle::setTextShadow(ShadowData *val, bool add)
 ShadowData::ShadowData(const ShadowData &o)
     : x(o.x), y(o.y), blur(o.blur), color(o.color)
 {
-    next = o.next ? new ShadowData(*o.next) : 0;
+    next = o.next ? new ShadowData(*o.next) : nullptr;
 }
 
 bool ShadowData::operator==(const ShadowData &o) const
@@ -1302,7 +1302,7 @@ static bool hasCounter(const DOM::DOMString &c, CSSValueListImpl *l)
     int len = l->length();
     for (int i = 0; i < len; i++) {
         CounterActImpl *ca = static_cast<CounterActImpl *>(l->item(i));
-        Q_ASSERT(ca != 0);
+        Q_ASSERT(ca != nullptr);
         if (ca->m_counter == c) {
             return true;
         }
@@ -1336,7 +1336,7 @@ short RenderStyle::counterReset(const DOM::DOMString &c) const
         // Return the last matching counter-reset
         for (int i = 0; i < len; i++) {
             CounterActImpl *ca = static_cast<CounterActImpl *>(generated->counter_reset->item(i));
-            Q_ASSERT(ca != 0);
+            Q_ASSERT(ca != nullptr);
             if (ca->m_counter == c) {
                 value = ca->m_value;
             }
@@ -1355,7 +1355,7 @@ short RenderStyle::counterIncrement(const DOM::DOMString &c) const
         // Return the sum of matching counter-increments
         for (int i = 0; i < len; i++) {
             CounterActImpl *ca = static_cast<CounterActImpl *>(generated->counter_increment->item(i));
-            Q_ASSERT(ca != 0);
+            Q_ASSERT(ca != nullptr);
             if (ca->m_counter == c) {
                 value += ca->m_value;
             }
@@ -1437,7 +1437,7 @@ QString RenderStyle::createDiff(const RenderStyle &parent) const
 }
 #endif
 
-RenderPageStyle::RenderPageStyle() : next(0), m_pageType(ANY_PAGE)
+RenderPageStyle::RenderPageStyle() : next(nullptr), m_pageType(ANY_PAGE)
 {
 }
 
@@ -1448,7 +1448,7 @@ RenderPageStyle::~RenderPageStyle()
 
 RenderPageStyle *RenderPageStyle::getPageStyle(PageType type)
 {
-    RenderPageStyle *ps = 0;
+    RenderPageStyle *ps = nullptr;
     for (ps = this; ps; ps = ps->next)
         if (ps->m_pageType == type) {
             break;

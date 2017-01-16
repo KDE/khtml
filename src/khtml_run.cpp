@@ -32,7 +32,7 @@ KHTMLRun::KHTMLRun(KHTMLPart *part, khtml::ChildFrame *child, const QUrl &url,
                    const KParts::OpenUrlArguments &args,
                    const KParts::BrowserArguments &browserArgs,
                    bool hideErrorDialog)
-    : KParts::BrowserRun(url, args, browserArgs, part, part->widget() ? part->widget()->topLevelWidget() : 0,
+    : KParts::BrowserRun(url, args, browserArgs, part, part->widget() ? part->widget()->topLevelWidget() : nullptr,
                          false, false, hideErrorDialog),
     m_child(child)
 {
@@ -40,7 +40,7 @@ KHTMLRun::KHTMLRun(KHTMLPart *part, khtml::ChildFrame *child, const QUrl &url,
     setEnableExternalBrowser(false);
 
     // get the wheel to start spinning
-    part->started(0L);
+    part->started(nullptr);
 }
 
 //KHTMLPart *KHTMLRun::htmlPart() const
@@ -98,7 +98,7 @@ void KHTMLRun::handleError(KJob *)
 {
     // Tell KHTML that loading failed.
     static_cast<KHTMLPart *>(part())->processObjectRequest(m_child, QUrl(), QString());
-    setJob(0);
+    setJob(nullptr);
 }
 
 void KHTMLRun::save(const QUrl &url, const QString &suggestedFilename)

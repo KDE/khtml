@@ -39,7 +39,7 @@ public:
 
     // check if string matches at least one string from matching set,
     // optionally return the matching string or filter
-    bool isMatched(const QString &str, QString *by = 0) const;
+    bool isMatched(const QString &str, QString *by = nullptr) const;
 
     // add filter to matching set with wildcards (*,?) in it
     void addWildedString(const QString &prefix, const QRegExp &rx);

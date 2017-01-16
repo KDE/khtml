@@ -33,7 +33,7 @@ using namespace DOM;
 
 NamedNodeMap::NamedNodeMap()
 {
-    impl = 0;
+    impl = nullptr;
 }
 
 NamedNodeMap::NamedNodeMap(const NamedNodeMap &other)
@@ -76,7 +76,7 @@ NamedNodeMap::~NamedNodeMap()
 Node NamedNodeMap::getNamedItem(const DOMString &name) const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return impl->getNamedItem(name);
 }
@@ -111,7 +111,7 @@ Node NamedNodeMap::removeNamedItem(const DOMString &name)
 Node NamedNodeMap::item(unsigned long index) const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return impl->item(index);
 }
@@ -119,7 +119,7 @@ Node NamedNodeMap::item(unsigned long index) const
 Node NamedNodeMap::getNamedItemNS(const DOMString &namespaceURI, const DOMString &localName) const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return impl->getNamedItemNS(namespaceURI, localName);
 }
@@ -258,7 +258,7 @@ Node Node::parentNode() const
 NodeList Node::childNodes() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return impl->childNodes().get();
 }
@@ -298,7 +298,7 @@ Node Node::nextSibling() const
 NamedNodeMap Node::attributes() const
 {
     if (!impl || !impl->isElementNode()) {
-        return 0;
+        return nullptr;
     }
     return static_cast<ElementImpl *>(impl)->attributes();
 }
@@ -383,7 +383,7 @@ bool Node::hasChildNodes()
 Node Node::cloneNode(bool deep)
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return impl->cloneNode(deep).get();
 }
@@ -563,7 +563,7 @@ QRect Node::getRect()
 
 NodeList::NodeList()
 {
-    impl = 0;
+    impl = nullptr;
 }
 
 NodeList::NodeList(const NodeList &other)
@@ -606,7 +606,7 @@ NodeList::~NodeList()
 Node NodeList::item(unsigned long index) const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return impl->item(index);
 }

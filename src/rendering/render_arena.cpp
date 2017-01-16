@@ -85,7 +85,7 @@ void *RenderArena::allocate(size_t size)
     header->size = size;
     return header + 1;
 #else
-    void *result = 0;
+    void *result = nullptr;
 
     // Ensure we have correct alignment for pointers.  Important for Tru64
     size = KHTML_ROUNDUP(size, sizeof(void *));

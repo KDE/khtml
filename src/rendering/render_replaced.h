@@ -135,7 +135,7 @@ public:
         return m_needsMask;
     }
 
-    static void paintWidget(PaintInfo &pI, QWidget *widget, int tx, int ty, QPixmap *buffer[] = 0);
+    static void paintWidget(PaintInfo &pI, QWidget *widget, int tx, int ty, QPixmap *buffer[] = nullptr);
     bool handleEvent(const DOM::EventImpl &ev) Q_DECL_OVERRIDE;
     bool isRedirectedWidget() const;
     bool isDisabled() const
@@ -238,7 +238,7 @@ public:
 class KHTMLWidgetPrivate
 {
 public:
-    KHTMLWidgetPrivate(): m_rw(0), m_redirected(false) {}
+    KHTMLWidgetPrivate(): m_rw(nullptr), m_redirected(false) {}
     QPoint absolutePos();
     KHTMLView *rootViewPos(QPoint &pos);
     RenderWidget *renderWidget() const

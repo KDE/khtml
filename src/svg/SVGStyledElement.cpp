@@ -49,7 +49,7 @@ namespace WebCore
 using namespace SVGNames;
 using namespace DOM;
 
-static HashSet<const SVGStyledElement *> *gElementsWithInstanceUpdatesBlocked = 0;
+static HashSet<const SVGStyledElement *> *gElementsWithInstanceUpdatesBlocked = nullptr;
 
 SVGStyledElement::SVGStyledElement(const QualifiedName &tagName, Document *doc)
     : SVGElement(tagName, doc)
@@ -93,7 +93,7 @@ int SVGStyledElement::cssPropertyIdForSVGAttributeName(const QualifiedName &attr
     }
 
     // ### I think this is better redone as a switch.
-    static HashMap<DOMStringImpl *, int> *propertyNameToIdMap = 0;
+    static HashMap<DOMStringImpl *, int> *propertyNameToIdMap = nullptr;
     if (!propertyNameToIdMap) {
         propertyNameToIdMap = new HashMap<DOMStringImpl *, int>;
         // This is a list of all base CSS and SVG CSS properties which are exposed as SVG XML attributes
@@ -234,7 +234,7 @@ void SVGStyledElement::invalidateResourcesInAncestorChain() const
         }
 
         SVGElement *element = static_cast<SVGElement *>(node);
-        if (SVGStyledElement *styledElement = static_cast<SVGStyledElement *>(element->isStyled() ? element : 0)) {
+        if (SVGStyledElement *styledElement = static_cast<SVGStyledElement *>(element->isStyled() ? element : nullptr)) {
             /*if (SVGResource* resource = styledElement->canvasResource())
                 resource->invalidate();*/
         }

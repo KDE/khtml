@@ -220,7 +220,7 @@ inline const RenderStyle *retrieveSelectionPseudoStyle(const RenderObject *obj)
 
         obj = obj->parent();
     }/*wend*/
-    return 0;
+    return nullptr;
 }
 
 void InlineTextBox::paintSelection(const Font *f, RenderText *text, QPainter *p, RenderStyle *style, int tx, int ty, int startPos, int endPos, int deco)
@@ -733,7 +733,7 @@ RenderText::RenderText(DOM::NodeImpl *node, DOMStringImpl *_str)
     m_selectionState = SelectionNone;
     m_hasReturn = true;
     m_isSimpleText = false;
-    m_firstTextBox = m_lastTextBox = 0;
+    m_firstTextBox = m_lastTextBox = nullptr;
 
 #ifdef DEBUG_LAYOUT
     const QString cstr = QString::fromRawData(str->s, str->l);
@@ -795,12 +795,12 @@ void RenderText::extractTextBox(InlineTextBox *box)
 {
     m_lastTextBox = box->prevTextBox();
     if (box == m_firstTextBox) {
-        m_firstTextBox = 0;
+        m_firstTextBox = nullptr;
     }
     if (box->prevTextBox()) {
-        box->prevTextBox()->setNextLineBox(0);
+        box->prevTextBox()->setNextLineBox(nullptr);
     }
-    box->setPreviousLineBox(0);
+    box->setPreviousLineBox(nullptr);
     for (InlineRunBox *curr = box; curr; curr = curr->nextLineBox()) {
         curr->setExtracted();
     }
@@ -853,7 +853,7 @@ void RenderText::deleteInlineBoxes(RenderArena * /*arena*/)
             next = curr->nextTextBox();
             curr->detach(arena, true /*noRemove*/);
         }
-        m_firstTextBox = m_lastTextBox = 0;
+        m_firstTextBox = m_lastTextBox = nullptr;
     }
 }
 
@@ -875,7 +875,7 @@ bool RenderText::isTextFragment() const
 
 DOM::DOMStringImpl *RenderText::originalString() const
 {
-    return element() ? element()->string() : 0;
+    return element() ? element()->string() : nullptr;
 }
 
 const InlineTextBox *RenderText::findInlineTextBox(int offset, int &pos, bool checkFirstLetter) const
@@ -887,7 +887,7 @@ const InlineTextBox *RenderText::findInlineTextBox(int offset, int &pos, bool ch
     // and return pos, which is the position of the char in the run.
 
     if (!m_firstTextBox) {
-        return 0L;
+        return nullptr;
     }
 
     InlineTextBox *s = m_firstTextBox;
@@ -929,8 +929,8 @@ bool RenderText::nodeAtPoint(NodeInfo &info, int _x, int _y, int _tx, int _ty, H
             info.setInnerNode(element());
 
             // Clear everything else.
-            info.setInnerNonSharedNode(0);
-            info.setURLElement(0);
+            info.setInnerNonSharedNode(nullptr);
+            info.setURLElement(nullptr);
         }
 
         if (!info.innerNode()) {
@@ -951,7 +951,7 @@ FindSelectionResult RenderText::checkSelectionPoint(int _x, int _y, int _tx, int
 //                     << " _tx=" << _tx << " _ty=" << _ty << endl;
 //qDebug() << renderName() << "::checkSelectionPoint x=" << xPos() << " y=" << yPos() << " w=" << width() << " h=" << height();
 
-    NodeImpl *lastNode = 0;
+    NodeImpl *lastNode = nullptr;
     int lastOffset = 0;
     FindSelectionResult lastResult = SelectionPointAfter;
 
@@ -1251,7 +1251,7 @@ InlineBox *RenderText::inlineBox(long offset)
         }
     }
 
-    return 0;
+    return nullptr;
 }
 
 bool RenderText::absolutePosition(int &xPos, int &yPos, bool) const
@@ -1755,7 +1755,7 @@ const QFontMetrics &RenderText::metrics(bool firstLine) const
 
 const Font *RenderText::htmlFont(bool firstLine) const
 {
-    const Font *f = 0;
+    const Font *f = nullptr;
     if (firstLine && hasFirstLine()) {
         RenderStyle *pseudoStyle  = style()->getPseudoStyle(RenderStyle::FIRST_LINE);
         if (pseudoStyle) {
@@ -1937,11 +1937,11 @@ void RenderText::dump(QTextStream &stream, const QString &ind) const
 RenderTextFragment::RenderTextFragment(DOM::NodeImpl *_node, DOM::DOMStringImpl *_str,
                                        int startOffset, int endOffset)
     : RenderText(_node, _str->substring(startOffset, endOffset)),
-      m_start(startOffset), m_end(endOffset), m_generatedContentStr(0), m_firstLetter(0)
+      m_start(startOffset), m_end(endOffset), m_generatedContentStr(nullptr), m_firstLetter(nullptr)
 {}
 
 RenderTextFragment::RenderTextFragment(DOM::NodeImpl *_node, DOM::DOMStringImpl *_str)
-    : RenderText(_node, _str), m_start(0), m_firstLetter(0)
+    : RenderText(_node, _str), m_start(0), m_firstLetter(nullptr)
 {
     m_generatedContentStr = _str;
     if (_str) {
@@ -1975,7 +1975,7 @@ bool RenderTextFragment::isTextFragment() const
 
 DOM::DOMStringImpl *RenderTextFragment::originalString() const
 {
-    DOM::DOMStringImpl *result = 0;
+    DOM::DOMStringImpl *result = nullptr;
     if (element()) {
         result = element()->string();
     } else {
@@ -1991,7 +1991,7 @@ void RenderTextFragment::setTextInternal(DOM::DOMStringImpl *text)
 {
     if (m_firstLetter) {
         m_firstLetter->detach();
-        m_firstLetter = 0;
+        m_firstLetter = nullptr;
     }
     RenderText::setTextInternal(text);
 }

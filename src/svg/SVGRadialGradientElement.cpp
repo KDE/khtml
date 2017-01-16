@@ -185,7 +185,7 @@ RadialGradientAttributes SVGRadialGradientElement::collectGradientProperties() c
 
             isRadial = current->gradientType() == RadialGradientPaintServer;
         } else {
-            current = 0;
+            current = nullptr;
         }
     }
 

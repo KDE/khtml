@@ -114,7 +114,7 @@ KMultiPart::KMultiPart(QWidget *parentWidget,
                        QObject *parent, const QVariantList &)
     : KParts::ReadOnlyPart(parent)
 {
-    m_filter = 0L;
+    m_filter = nullptr;
 
     setComponentData(kmultipartAboutData());
 
@@ -124,11 +124,11 @@ KMultiPart::KMultiPart(QWidget *parentWidget,
 
     m_extension = new KParts::BrowserExtension(this);
 
-    m_part = 0L;
+    m_part = nullptr;
     m_isHTMLPart = false;
-    m_job = 0L;
+    m_job = nullptr;
     m_lineParser = new KLineParser;
-    m_tempFile = 0;
+    m_tempFile = nullptr;
 
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(slotProgressInfo()));
@@ -153,7 +153,7 @@ KMultiPart::~KMultiPart()
         delete m_tempFile;
     }
     delete m_filter;
-    m_filter = 0L;
+    m_filter = nullptr;
 }
 
 void KMultiPart::startHeader()
@@ -163,7 +163,7 @@ void KMultiPart::startHeader()
     m_gzip = false;
     // just to be sure for now
     delete m_filter;
-    m_filter = 0L;
+    m_filter = nullptr;
 }
 
 bool KMultiPart::openUrl(const QUrl &url)
@@ -181,7 +181,7 @@ bool KMultiPart::openUrl(const QUrl &url)
                      arguments().reload() ? KIO::Reload : KIO::NoReload,
                      KIO::HideProgressInfo);
 
-    emit started(0 /*m_job*/);   // don't pass the job, it would interfere with our own infoMessage
+    emit started(nullptr /*m_job*/);   // don't pass the job, it would interfere with our own infoMessage
 
     connect(m_job, SIGNAL(result(KJob*)),
             this, SLOT(slotJobFinished(KJob*)));
@@ -444,7 +444,7 @@ void KMultiPart::startOfData()
     if (m_tempFile) {
         m_tempFile->setAutoRemove(true);
         delete m_tempFile;
-        m_tempFile = 0;
+        m_tempFile = nullptr;
     }
     if (m_isHTMLPart) {
         KHTMLPart *htmlPart = static_cast<KHTMLPart *>(static_cast<KParts::ReadOnlyPart *>(m_part));
@@ -497,7 +497,7 @@ void KMultiPart::endOfData()
             (void) m_part->openUrl(url);
         }
         delete m_tempFile;
-        m_tempFile = 0L;
+        m_tempFile = nullptr;
     }
 }
 
@@ -548,7 +548,7 @@ void KMultiPart::slotJobFinished(KJob *job)
 
         //QTimer::singleShot( 0, this, SLOT(updateWindowCaption()) );
     }
-    m_job = 0L;
+    m_job = nullptr;
 }
 
 void KMultiPart::slotProgressInfo()

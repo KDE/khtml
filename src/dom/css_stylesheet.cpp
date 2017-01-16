@@ -37,7 +37,7 @@ using namespace DOM;
 
 StyleSheet::StyleSheet()
 {
-    impl = 0;
+    impl = nullptr;
 }
 
 StyleSheet::StyleSheet(const StyleSheet &other)
@@ -111,7 +111,7 @@ DOM::Node StyleSheet::ownerNode() const
 StyleSheet StyleSheet::parentStyleSheet() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return ((StyleSheetImpl *)impl)->parentStyleSheet();
 }
@@ -135,7 +135,7 @@ DOMString StyleSheet::title() const
 MediaList StyleSheet::media() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return ((StyleSheetImpl *)impl)->media();
 }
@@ -189,7 +189,7 @@ CSSStyleSheet::CSSStyleSheet(const CSSStyleSheet &other) : StyleSheet(other)
 CSSStyleSheet::CSSStyleSheet(const StyleSheet &other)
 {
     if (!other.isCSSStyleSheet()) {
-        impl = 0;
+        impl = nullptr;
     } else {
         operator=(other);
     }
@@ -211,7 +211,7 @@ CSSStyleSheet &CSSStyleSheet::operator = (const StyleSheet &other)
         if (impl) {
             impl->deref();
         }
-        impl = 0;
+        impl = nullptr;
     } else {
         StyleSheet::operator = (other);
     }
@@ -225,7 +225,7 @@ CSSStyleSheet::~CSSStyleSheet()
 CSSRule CSSStyleSheet::ownerRule() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return ((CSSStyleSheetImpl *)impl)->ownerRule();
 }
@@ -233,7 +233,7 @@ CSSRule CSSStyleSheet::ownerRule() const
 CSSRuleList CSSStyleSheet::cssRules() const
 {
     if (!impl) {
-        return (CSSRuleListImpl *)0;
+        return (CSSRuleListImpl *)nullptr;
     }
     return ((CSSStyleSheetImpl *)impl)->cssRules();
 }
@@ -278,7 +278,7 @@ DOM::DOMString CSSStyleSheet::charset() const
 
 StyleSheetList::StyleSheetList()
 {
-    impl = 0;
+    impl = nullptr;
 }
 
 StyleSheetList::StyleSheetList(const StyleSheetList &other)
@@ -341,14 +341,14 @@ StyleSheetListImpl *StyleSheetList::handle() const
 
 bool StyleSheetList::isNull() const
 {
-    return (impl == 0);
+    return (impl == nullptr);
 }
 
 // ----------------------------------------------------------
 
 MediaList::MediaList()
 {
-    impl = 0;
+    impl = nullptr;
 }
 
 MediaList::MediaList(const MediaList &other)
@@ -455,14 +455,14 @@ MediaListImpl *MediaList::handle() const
 
 bool MediaList::isNull() const
 {
-    return (impl == 0);
+    return (impl == nullptr);
 }
 
 // ----------------------------------------------------------
 
 LinkStyle::LinkStyle()
 {
-    node = 0;
+    node = nullptr;
 }
 
 LinkStyle::LinkStyle(const LinkStyle &other)
@@ -492,7 +492,7 @@ LinkStyle &LinkStyle::operator = (const Node &other)
     if (node) {
         node->deref();
     }
-    node = 0;
+    node = nullptr;
     // ### add processing instructions
     NodeImpl *n = other.handle();
 
@@ -528,14 +528,14 @@ StyleSheet LinkStyle::sheet()
 
 bool LinkStyle::isNull() const
 {
-    return (node == 0);
+    return (node == nullptr);
 }
 
 // ----------------------------------------------------------
 
 DocumentStyle::DocumentStyle()
 {
-    doc = 0;
+    doc = nullptr;
 }
 
 DocumentStyle::DocumentStyle(const DocumentStyle &other)

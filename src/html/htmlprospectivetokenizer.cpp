@@ -892,7 +892,7 @@ void ProspectiveTokenizer::emitTag()
         return;
     }
 
-    CachedObject *o = 0;
+    CachedObject *o = nullptr;
     if (tag == ID_SCRIPT) {
         o = m_document->docLoader()->requestScript(m_urlToLoad, m_document->part()->encoding());
     } else if (tag == ID_IMAGE || tag == ID_IMG) {

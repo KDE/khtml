@@ -53,7 +53,7 @@ public:
         return true;
     }
 
-    void addChild(RenderObject *newChild, RenderObject *beforeChild = 0) Q_DECL_OVERRIDE;
+    void addChild(RenderObject *newChild, RenderObject *beforeChild = nullptr) Q_DECL_OVERRIDE;
 
     RenderObject *removeChildNode(RenderObject *child) Q_DECL_OVERRIDE;
     void appendChildNode(RenderObject *child) Q_DECL_OVERRIDE;

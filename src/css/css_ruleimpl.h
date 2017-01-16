@@ -179,7 +179,7 @@ class MediaList;
 class CSSRuleListImpl : public khtml::Shared<CSSRuleListImpl>
 {
 public:
-    CSSRuleListImpl() : m_list(0) {}
+    CSSRuleListImpl() : m_list(nullptr) {}
     CSSRuleListImpl(StyleListImpl *const lst, bool omitCharsetRules = false);
 
     ~CSSRuleListImpl();

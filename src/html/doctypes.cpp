@@ -1176,5 +1176,5 @@ findDoctypeEntry (register const char *str, register unsigned int len)
             return &wordlist[key];
         }
     }
-  return 0;
+  return nullptr;
 }

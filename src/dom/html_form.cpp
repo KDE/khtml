@@ -91,7 +91,7 @@ bool HTMLButtonElement::disabled() const
 void HTMLButtonElement::setDisabled(bool _disabled)
 {
     if (impl) {
-        static_cast<ElementImpl *>(impl)->setAttribute(ATTR_DISABLED, _disabled ? "" : 0);
+        static_cast<ElementImpl *>(impl)->setAttribute(ATTR_DISABLED, _disabled ? "" : nullptr);
     }
 }
 
@@ -413,7 +413,7 @@ bool HTMLInputElement::defaultChecked() const
 void HTMLInputElement::setDefaultChecked(bool _defaultChecked)
 {
     if (impl) {
-        ((ElementImpl *)impl)->setAttribute(ATTR_CHECKED, _defaultChecked ? "" : 0);
+        ((ElementImpl *)impl)->setAttribute(ATTR_CHECKED, _defaultChecked ? "" : nullptr);
     }
 }
 
@@ -523,7 +523,7 @@ bool HTMLInputElement::disabled() const
 void HTMLInputElement::setDisabled(bool _disabled)
 {
     if (impl) {
-        ((ElementImpl *)impl)->setAttribute(ATTR_DISABLED, _disabled ? "" : 0);
+        ((ElementImpl *)impl)->setAttribute(ATTR_DISABLED, _disabled ? "" : nullptr);
     }
 }
 
@@ -569,7 +569,7 @@ bool HTMLInputElement::readOnly() const
 void HTMLInputElement::setReadOnly(bool _readOnly)
 {
     if (impl) {
-        static_cast<ElementImpl *>(impl)->setAttribute(ATTR_READONLY, _readOnly ? "" : 0);
+        static_cast<ElementImpl *>(impl)->setAttribute(ATTR_READONLY, _readOnly ? "" : nullptr);
     }
 }
 
@@ -918,7 +918,7 @@ bool HTMLOptGroupElement::disabled() const
 void HTMLOptGroupElement::setDisabled(bool _disabled)
 {
     if (impl) {
-        static_cast<ElementImpl *>(impl)->setAttribute(ATTR_DISABLED, _disabled ? "" : 0);
+        static_cast<ElementImpl *>(impl)->setAttribute(ATTR_DISABLED, _disabled ? "" : nullptr);
     }
 }
 
@@ -1038,7 +1038,7 @@ bool HTMLSelectElement::disabled() const
 void HTMLSelectElement::setDisabled(bool _disabled)
 {
     if (impl) {
-        static_cast<ElementImpl *>(impl)->setAttribute(ATTR_DISABLED, _disabled ? "" : 0);
+        static_cast<ElementImpl *>(impl)->setAttribute(ATTR_DISABLED, _disabled ? "" : nullptr);
     }
 }
 
@@ -1053,7 +1053,7 @@ bool HTMLSelectElement::multiple() const
 void HTMLSelectElement::setMultiple(bool _multiple)
 {
     if (impl) {
-        static_cast<ElementImpl *>(impl)->setAttribute(ATTR_MULTIPLE, _multiple ? "" : 0);
+        static_cast<ElementImpl *>(impl)->setAttribute(ATTR_MULTIPLE, _multiple ? "" : nullptr);
     }
 }
 
@@ -1234,7 +1234,7 @@ bool HTMLTextAreaElement::disabled() const
 void HTMLTextAreaElement::setDisabled(bool _disabled)
 {
     if (impl) {
-        static_cast<ElementImpl *>(impl)->setAttribute(ATTR_DISABLED, _disabled ? "" : 0);
+        static_cast<ElementImpl *>(impl)->setAttribute(ATTR_DISABLED, _disabled ? "" : nullptr);
     }
 }
 
@@ -1264,7 +1264,7 @@ bool HTMLTextAreaElement::readOnly() const
 void HTMLTextAreaElement::setReadOnly(bool _readOnly)
 {
     if (impl) {
-        static_cast<ElementImpl *>(impl)->setAttribute(ATTR_READONLY, _readOnly ? "" : 0);
+        static_cast<ElementImpl *>(impl)->setAttribute(ATTR_READONLY, _readOnly ? "" : nullptr);
     }
 }
 
@@ -1472,7 +1472,7 @@ bool HTMLOptionElement::disabled() const
 void HTMLOptionElement::setDisabled(bool _disabled)
 {
     if (impl) {
-        static_cast<ElementImpl *>(impl)->setAttribute(ATTR_DISABLED, _disabled ? "" : 0);
+        static_cast<ElementImpl *>(impl)->setAttribute(ATTR_DISABLED, _disabled ? "" : nullptr);
     }
 }
 

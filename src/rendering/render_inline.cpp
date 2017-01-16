@@ -48,7 +48,7 @@ void RenderInline::setStyle(RenderStyle *_style)
     while (currCont) {
         if (currCont->isInline()) {
             RenderFlow *nextCont = currCont->continuation();
-            currCont->setContinuation(0);
+            currCont->setContinuation(nullptr);
             currCont->setStyle(style());
             currCont->setContinuation(nextCont);
         }
@@ -125,7 +125,7 @@ void RenderInline::splitInlines(RenderBlock *fromBlock, RenderBlock *toBlock,
     while (o) {
         RenderObject *tmp = o;
         o = tmp->nextSibling();
-        clone->addChildToFlow(removeChildNode(tmp), 0);
+        clone->addChildToFlow(removeChildNode(tmp), nullptr);
         tmp->setNeedsLayoutAndMinMaxRecalc();
     }
 
@@ -143,7 +143,7 @@ void RenderInline::splitInlines(RenderBlock *fromBlock, RenderBlock *toBlock,
         clone = cloneInline(curr);
 
         // Insert our child clone as the first child.
-        clone->addChildToFlow(cloneChild, 0);
+        clone->addChildToFlow(cloneChild, nullptr);
 
         // Hook the clone up as a continuation of |curr|.
         RenderFlow *oldCont = curr->continuation();
@@ -181,7 +181,7 @@ void RenderInline::splitInlines(RenderBlock *fromBlock, RenderBlock *toBlock,
 void RenderInline::splitFlow(RenderObject *beforeChild, RenderBlock *newBlockBox,
                              RenderObject *newChild, RenderFlow *oldCont)
 {
-    RenderBlock *pre = 0;
+    RenderBlock *pre = nullptr;
     RenderBlock *block = containingBlock();
     bool madeNewBeforeBlock = false;
 
@@ -229,7 +229,7 @@ void RenderInline::splitFlow(RenderObject *beforeChild, RenderBlock *newBlockBox
     // adding the newChild until now so that the |newBlockBox| would be fully
     // connected, thus allowing newChild access to a renderArena should it need
     // to wrap itself in additional boxes (e.g., table construction).
-    newBlockBox->addChildToFlow(newChild, 0);
+    newBlockBox->addChildToFlow(newChild, nullptr);
 
     // XXXdwh is any of this even necessary? I don't think it is.
     pre->close();
@@ -501,9 +501,9 @@ inline static bool lineBoxesDisjoint(InlineRunBox *line, int offset, bool toBegi
  */
 static void collectVerticalBoxCoordinates(InlineRunBox *line,
         QVector<QPoint> &pointArray,
-        bool left, int offset, InlineRunBox **lastline = 0)
+        bool left, int offset, InlineRunBox **lastline = nullptr)
 {
-    InlineRunBox *last = 0;
+    InlineRunBox *last = nullptr;
     offset = left ? -offset : offset;
     for (InlineRunBox *curr = line; curr && !last; curr = left ? curr->prevLineBox() : curr->nextLineBox()) {
         InlineBox *root = curr;
@@ -919,8 +919,8 @@ bool RenderInline::nodeAtPoint(NodeInfo &info, int _x, int _y, int _tx, int _ty,
             info.setInnerNode(element());
 
             // Clear everything else.
-            info.setInnerNonSharedNode(0);
-            info.setURLElement(0);
+            info.setInnerNonSharedNode(nullptr);
+            info.setURLElement(nullptr);
         }
 
         if (!info.innerNode()) {

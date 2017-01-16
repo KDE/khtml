@@ -48,7 +48,7 @@ DOMString EventListener::eventListenerType()
 
 Event::Event()
 {
-    impl = 0;
+    impl = nullptr;
 }
 
 Event::Event(const Event &other)
@@ -106,7 +106,7 @@ Node Event::target() const
     if (impl->target()->eventTargetType() == EventTargetImpl::DOM_NODE) {
         return static_cast<DOM::NodeImpl *>(impl->target());
     }
-    return 0;
+    return nullptr;
 }
 
 Node Event::currentTarget() const
@@ -118,7 +118,7 @@ Node Event::currentTarget() const
     if (impl->currentTarget()->eventTargetType() == EventTargetImpl::DOM_NODE) {
         return static_cast<DOM::NodeImpl *>(impl->currentTarget());
     }
-    return 0;
+    return nullptr;
 }
 
 unsigned short Event::eventPhase() const
@@ -191,7 +191,7 @@ EventImpl *Event::handle() const
 
 bool Event::isNull() const
 {
-    return (impl == 0);
+    return (impl == nullptr);
 }
 
 // -----------------------------------------------------------------------------
@@ -269,7 +269,7 @@ UIEvent &UIEvent::operator = (const Event &other)
         if (impl) {
             impl->deref();
         }
-        impl = 0;
+        impl = nullptr;
     } else {
         Event::operator = (other);
     }
@@ -407,7 +407,7 @@ MouseEvent &MouseEvent::operator = (const Event &other)
         if (impl) {
             impl->deref();
         }
-        impl = 0;
+        impl = nullptr;
     } else {
         UIEvent::operator = (other);
     }
@@ -563,7 +563,7 @@ TextEvent &TextEvent::operator = (const Event &other)
         if (impl) {
             impl->deref();
         }
-        impl = 0;
+        impl = nullptr;
     } else {
         UIEvent::operator = (other);
     }
@@ -612,7 +612,7 @@ KeyboardEvent &KeyboardEvent::operator = (const Event &other)
         if (impl) {
             impl->deref();
         }
-        impl = 0;
+        impl = nullptr;
     } else {
         UIEvent::operator = (other);
     }
@@ -703,7 +703,7 @@ MutationEvent &MutationEvent::operator = (const Event &other)
         if (impl) {
             impl->deref();
         }
-        impl = 0;
+        impl = nullptr;
     } else {
         Event::operator = (other);
     }

@@ -85,13 +85,13 @@ public:
 
     SVG_RS_DEFINE_ATTRIBUTE_DATAREF_WITH_INITIAL(float, stroke, opacity, StrokeOpacity, strokeOpacity, 1.0f)
     SVG_RS_DEFINE_ATTRIBUTE_DATAREF_WITH_INITIAL_REFCOUNTED(SVGPaintImpl, stroke, paint, StrokePaint, strokePaint, SVGPaintImpl::defaultStroke())
-    SVG_RS_DEFINE_ATTRIBUTE_DATAREF_WITH_INITIAL_REFCOUNTED(CSSValueListImpl, stroke, dashArray, StrokeDashArray, strokeDashArray, 0)
+    SVG_RS_DEFINE_ATTRIBUTE_DATAREF_WITH_INITIAL_REFCOUNTED(CSSValueListImpl, stroke, dashArray, StrokeDashArray, strokeDashArray, nullptr)
     SVG_RS_DEFINE_ATTRIBUTE_DATAREF_WITH_INITIAL(float, stroke, miterLimit, StrokeMiterLimit, strokeMiterLimit, 4.0f)
 
-    SVG_RS_DEFINE_ATTRIBUTE_DATAREF_WITH_INITIAL_REFCOUNTED(CSSValueImpl, stroke, width, StrokeWidth, strokeWidth, 0)
-    SVG_RS_DEFINE_ATTRIBUTE_DATAREF_WITH_INITIAL_REFCOUNTED(CSSValueImpl, stroke, dashOffset, StrokeDashOffset, strokeDashOffset, 0);
+    SVG_RS_DEFINE_ATTRIBUTE_DATAREF_WITH_INITIAL_REFCOUNTED(CSSValueImpl, stroke, width, StrokeWidth, strokeWidth, nullptr)
+    SVG_RS_DEFINE_ATTRIBUTE_DATAREF_WITH_INITIAL_REFCOUNTED(CSSValueImpl, stroke, dashOffset, StrokeDashOffset, strokeDashOffset, nullptr);
 
-    SVG_RS_DEFINE_ATTRIBUTE_DATAREF_WITH_INITIAL_REFCOUNTED(CSSValueImpl, text, kerning, Kerning, kerning, 0)
+    SVG_RS_DEFINE_ATTRIBUTE_DATAREF_WITH_INITIAL_REFCOUNTED(CSSValueImpl, text, kerning, Kerning, kerning, nullptr)
 
     SVG_RS_DEFINE_ATTRIBUTE_DATAREF_WITH_INITIAL(float, stops, opacity, StopOpacity, stopOpacity, 1.0f)
     SVG_RS_DEFINE_ATTRIBUTE_DATAREF_WITH_INITIAL(QColor, stops, color, StopColor, stopColor, QColor(0, 0, 0))
@@ -106,7 +106,7 @@ public:
     SVG_RS_DEFINE_ATTRIBUTE_DATAREF_WITH_INITIAL(float, misc, floodOpacity, FloodOpacity, floodOpacity, 1.0f)
     SVG_RS_DEFINE_ATTRIBUTE_DATAREF_WITH_INITIAL(QColor, misc, floodColor, FloodColor, floodColor, QColor(0, 0, 0))
     SVG_RS_DEFINE_ATTRIBUTE_DATAREF_WITH_INITIAL(QColor, misc, lightingColor, LightingColor, lightingColor, QColor(255, 255, 255))
-    SVG_RS_DEFINE_ATTRIBUTE_DATAREF_WITH_INITIAL_REFCOUNTED(CSSValueImpl, misc, baselineShiftValue, BaselineShiftValue, baselineShiftValue, 0)
+    SVG_RS_DEFINE_ATTRIBUTE_DATAREF_WITH_INITIAL_REFCOUNTED(CSSValueImpl, misc, baselineShiftValue, BaselineShiftValue, baselineShiftValue, nullptr)
 
     // convenience
     bool hasStroke() const

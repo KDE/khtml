@@ -75,7 +75,7 @@ NodeImpl *RangeImpl::startContainer(int &exceptioncode) const
 {
     if (m_detached) {
         exceptioncode = DOMException::INVALID_STATE_ERR;
-        return 0;
+        return nullptr;
     }
 
     return m_startContainer;
@@ -95,7 +95,7 @@ NodeImpl *RangeImpl::endContainer(int &exceptioncode) const
 {
     if (m_detached) {
         exceptioncode = DOMException::INVALID_STATE_ERR;
-        return 0;
+        return nullptr;
     }
 
     return m_endContainer;
@@ -115,7 +115,7 @@ NodeImpl *RangeImpl::commonAncestorContainer(int &exceptioncode)
 {
     if (m_detached) {
         exceptioncode = DOMException::INVALID_STATE_ERR;
-        return 0;
+        return nullptr;
     }
 
     NodeImpl *com = commonAncestorContainer(m_startContainer, m_endContainer);
@@ -449,16 +449,16 @@ DocumentFragmentImpl *RangeImpl::processContents(ActionType action, int &excepti
         if (action == CLONE_CONTENTS || action == EXTRACT_CONTENTS) {
             return new DocumentFragmentImpl(m_ownerDocument);
         }
-        return 0;
+        return nullptr;
     }
 
     NodeImpl *cmnRoot = commonAncestorContainer(exceptioncode);
     if (exceptioncode) {
-        return 0;
+        return nullptr;
     }
 
     // what is the highest node that partially selects the start of the range?
-    NodeImpl *partialStart = 0;
+    NodeImpl *partialStart = nullptr;
     if (m_startContainer != cmnRoot) {
         partialStart = m_startContainer;
         while (partialStart->parentNode() != cmnRoot) {
@@ -467,7 +467,7 @@ DocumentFragmentImpl *RangeImpl::processContents(ActionType action, int &excepti
     }
 
     // what is the highest node that partially selects the end of the range?
-    NodeImpl *partialEnd = 0;
+    NodeImpl *partialEnd = nullptr;
     if (m_endContainer != cmnRoot) {
         partialEnd = m_endContainer;
         while (partialEnd->parentNode() != cmnRoot) {
@@ -475,7 +475,7 @@ DocumentFragmentImpl *RangeImpl::processContents(ActionType action, int &excepti
         }
     }
 
-    DocumentFragmentImpl *fragment = 0;
+    DocumentFragmentImpl *fragment = nullptr;
     if (action == EXTRACT_CONTENTS || action == CLONE_CONTENTS) {
         fragment = new DocumentFragmentImpl(m_ownerDocument);
     }
@@ -538,7 +538,7 @@ DocumentFragmentImpl *RangeImpl::processContents(ActionType action, int &excepti
     //
     // These are deleted, cloned, or extracted (i.e. both) depending on action.
 
-    RefPtr<NodeImpl> leftContents = 0;
+    RefPtr<NodeImpl> leftContents = nullptr;
     if (m_startContainer != cmnRoot) {
         // process the left-hand side of the range, up until the last ancestor of
         // m_startContainer before cmnRoot
@@ -602,7 +602,7 @@ DocumentFragmentImpl *RangeImpl::processContents(ActionType action, int &excepti
         }
     }
 
-    RefPtr<NodeImpl> rightContents = 0;
+    RefPtr<NodeImpl> rightContents = nullptr;
     if (m_endContainer != cmnRoot) {
         // delete the right-hand side of the range, up until the last ancestor of
         // m_endContainer before cmnRoot
@@ -752,12 +752,12 @@ DocumentFragmentImpl *RangeImpl::extractContents(int &exceptioncode)
 {
     if (m_detached) {
         exceptioncode = DOMException::INVALID_STATE_ERR;
-        return 0;
+        return nullptr;
     }
 
     checkDeleteExtract(exceptioncode);
     if (exceptioncode) {
-        return 0;
+        return nullptr;
     }
 
     return processContents(EXTRACT_CONTENTS, exceptioncode);
@@ -767,7 +767,7 @@ DocumentFragmentImpl *RangeImpl::cloneContents(int &exceptioncode)
 {
     if (m_detached) {
         exceptioncode = DOMException::INVALID_STATE_ERR;
-        return 0;
+        return nullptr;
     }
 
     return processContents(CLONE_CONTENTS, exceptioncode);
@@ -1321,11 +1321,11 @@ void RangeImpl::detach(int &exceptioncode)
     if (m_startContainer) {
         m_startContainer->deref();
     }
-    m_startContainer = 0;
+    m_startContainer = nullptr;
     if (m_endContainer) {
         m_endContainer->deref();
     }
-    m_endContainer = 0;
+    m_endContainer = nullptr;
     m_detached = true;
 }
 
@@ -1397,7 +1397,7 @@ RangeImpl *RangeImpl::cloneRange(int &exceptioncode)
 {
     if (m_detached) {
         exceptioncode = DOMException::INVALID_STATE_ERR;
-        return 0;
+        return nullptr;
     }
 
     return new RangeImpl(m_ownerDocument, m_startContainer, m_startOffset, m_endContainer, m_endOffset);

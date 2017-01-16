@@ -41,8 +41,8 @@ namespace DOM
 
 CSSFontFaceSource::CSSFontFaceSource(const DOMString &str, bool distant)
     : m_string(str)
-    , m_font(0)
-    , m_face(0)
+    , m_font(nullptr)
+    , m_face(nullptr)
     , m_refed(false)
     , m_distant(distant)
 #if 0
@@ -380,7 +380,7 @@ bool CSSFontSelector::isEmpty() const
 
 khtml::DocLoader *CSSFontSelector::docLoader() const
 {
-    return m_document ? m_document->docLoader() : 0;
+    return m_document ? m_document->docLoader() : nullptr;
 }
 
 void CSSFontSelector::addFontFaceRule(const CSSFontFaceRuleImpl *fontFaceRule)
@@ -531,7 +531,7 @@ void CSSFontSelector::addFontFaceRule(const CSSFontFaceRuleImpl *fontFaceRule)
     */
 
     // Each item in the src property's list is a single CSSFontFaceSource. Put them all into a CSSFontFace.
-    CSSFontFace *fontFace = 0;
+    CSSFontFace *fontFace = nullptr;
 
     const int srcLength = srcList->length();
 
@@ -542,7 +542,7 @@ void CSSFontSelector::addFontFaceRule(const CSSFontFaceRuleImpl *fontFaceRule)
     for (int i = 0; i < srcLength; i++) {
         // An item in the list either specifies a string (local font name) or a URL (remote font to download).
         CSSFontFaceSrcValueImpl *item = static_cast<CSSFontFaceSrcValueImpl *>(srcList->item(i));
-        CSSFontFaceSource *source = 0;
+        CSSFontFaceSource *source = nullptr;
 
 #if 0
         // ENABLE(SVG_FONTS)

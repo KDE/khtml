@@ -70,7 +70,7 @@ static InterpreterList *interpreterList;
 
 ScriptInterpreter::ScriptInterpreter(JSGlobalObject *global, khtml::ChildFrame *frame)
     : Interpreter(global), m_frame(frame),
-      m_evt(0L), m_inlineCode(false), m_timerCallback(false)
+      m_evt(nullptr), m_inlineCode(false), m_timerCallback(false)
 {
 #ifdef KJS_VERBOSE
     qDebug() << "ScriptInterpreter::ScriptInterpreter " << this << " for part=" << m_frame;
@@ -90,7 +90,7 @@ ScriptInterpreter::~ScriptInterpreter()
     interpreterList->removeAll(this);
     if (interpreterList->isEmpty()) {
         delete interpreterList;
-        interpreterList = 0;
+        interpreterList = nullptr;
     }
 }
 
@@ -193,7 +193,7 @@ bool ScriptInterpreter::shouldInterruptScript() const
 #endif
 
     // qDebug() << "alarmhandler";
-    return KMessageBox::warningYesNo(0L, i18n("A script on this page is causing KHTML to freeze. If it continues to run, other applications may become less responsive.\nDo you want to stop the script?"), i18n("JavaScript"), KGuiItem(i18n("&Stop Script")), KStandardGuiItem::cont(), "kjscupguard_alarmhandler") == KMessageBox::Yes;
+    return KMessageBox::warningYesNo(nullptr, i18n("A script on this page is causing KHTML to freeze. If it continues to run, other applications may become less responsive.\nDo you want to stop the script?"), i18n("JavaScript"), KGuiItem(i18n("&Stop Script")), KStandardGuiItem::cont(), "kjscupguard_alarmhandler") == KMessageBox::Yes;
 }
 
 UString::UString(const QString &d)
@@ -259,7 +259,7 @@ DOM::NodeImpl *toNode(JSValue *val)
 {
     JSObject *obj = val->getObject();
     if (!obj || !obj->inherits(&DOMNode::info)) {
-        return 0;
+        return nullptr;
     }
 
     const DOMNode *dobj = static_cast<const DOMNode *>(obj);
@@ -309,11 +309,11 @@ void setDOMException(ExecState *exec, int internalCode)
         return;
     }
 
-    const char *type = 0;
+    const char *type = nullptr;
 
     DOMString name;
     DOMString exceptionString;
-    JSObject *errorObject = 0;
+    JSObject *errorObject = nullptr;
     int code = -1; // this will get the public exception code,
     // as opposed to the internal one
 
@@ -405,7 +405,7 @@ QString exceptionToString(ExecState *exec, JSValue *exceptionObj)
     //### might be easier to export class info for ErrorInstance ---
 
     JSObject *valueObj = exceptionObj->getObject();
-    JSValue  *protoObj = valueObj ? valueObj->prototype() : 0;
+    JSValue  *protoObj = valueObj ? valueObj->prototype() : nullptr;
 
     bool exception   = false;
     bool syntaxError = false;

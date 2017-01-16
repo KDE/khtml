@@ -851,7 +851,7 @@ kde_findEntity (register const char *str, register unsigned int len)
             }
         }
     }
-  return 0;
+  return nullptr;
 }
 #line 323 "kentities.gperf"
 

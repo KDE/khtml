@@ -25,7 +25,7 @@
 static const char data1[] = "this should decode correctly";
 static const char data2[] = "this is an invalid utf-8 byte: \xBF and another one: \xBE";
 
-static KEncodingDetector *ed = 0;
+static KEncodingDetector *ed = nullptr;
 
 void KEncodingDetectorTest::initTestCase()
 {

@@ -36,14 +36,14 @@ namespace WebCore
 
 SVGElementInstance::SVGElementInstance(SVGUseElement *useElement, PassRefPtr<SVGElement> originalElement)
     : m_refCount(0)
-    , m_parent(0)
+    , m_parent(nullptr)
     , m_useElement(useElement)
     , m_element(originalElement)
-    , m_shadowTreeElement(0)
-    , m_previousSibling(0)
-    , m_nextSibling(0)
-    , m_firstChild(0)
-    , m_lastChild(0)
+    , m_shadowTreeElement(nullptr)
+    , m_previousSibling(nullptr)
+    , m_nextSibling(nullptr)
+    , m_firstChild(nullptr)
+    , m_lastChild(nullptr)
 {
     ASSERT(m_useElement);
     ASSERT(m_element);
@@ -55,7 +55,7 @@ SVGElementInstance::SVGElementInstance(SVGUseElement *useElement, PassRefPtr<SVG
 SVGElementInstance::~SVGElementInstance()
 {
     for (RefPtr<SVGElementInstance> child = m_firstChild; child; child = child->m_nextSibling) {
-        child->setParent(0);
+        child->setParent(nullptr);
     }
 
     // Deregister as instance for passed element.
@@ -169,7 +169,7 @@ void SVGElementInstance::updateInstance(SVGElement *element)
     // For all other nodes this logic is sufficient.
     WTF::PassRefPtr<Node> clone = m_element->cloneNode(true);
     SVGUseElement::removeDisallowedElementsFromSubtree(clone.get());
-    SVGElement *svgClone = 0;
+    SVGElement *svgClone = nullptr;
     if (clone && clone->isSVGElement()) {
         svgClone = static_cast<SVGElement *>(clone.get());
     }

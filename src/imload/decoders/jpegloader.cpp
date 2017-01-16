@@ -69,7 +69,7 @@ ImageLoader *JPEGLoaderProvider::loaderFor(const QByteArray &prefix)
 {
     uchar *data = (uchar *)prefix.data();
     if (prefix.size() < 3) {
-        return 0;
+        return nullptr;
     }
 
     if (data[0] == 0377 &&
@@ -78,7 +78,7 @@ ImageLoader *JPEGLoaderProvider::loaderFor(const QByteArray &prefix)
         return new JPEGLoader;
     }
 
-    return 0;
+    return nullptr;
 }
 
 // -----------------------------------------------------------------------------
@@ -235,7 +235,7 @@ private:
 
 JPEGLoader::Private::Private()
 {
-    scanline = 0;
+    scanline = nullptr;
     passNum  = 0;
 
     memset(&cinfo, 0, sizeof(cinfo));

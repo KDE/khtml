@@ -32,7 +32,7 @@ using namespace Enumerate;
 // -------------------------------------------------------------------------
 
 RenderCounterBase::RenderCounterBase(DOM::NodeImpl *node)
-    : RenderText(node, 0), m_counterNode(0)
+    : RenderText(node, nullptr), m_counterNode(nullptr)
 {
 }
 

@@ -51,7 +51,7 @@ namespace WebCore
 RenderPath::RenderPath(RenderStyle *style, SVGStyledTransformableElement *node)
     : RenderObject(node)
 {
-    ASSERT(style != 0); Q_UNUSED(style);
+    ASSERT(style != nullptr); Q_UNUSED(style);
     ASSERT(static_cast<SVGElement *>(node)->isStyledTransformable());
 }
 
@@ -212,7 +212,7 @@ void RenderPath::paint(PaintInfo &paintInfo, int, int)
 {
     paintInfo.p->save();
     paintInfo.p->setWorldMatrix(localTransform(), true);
-    SVGResourceFilter *filter = 0;
+    SVGResourceFilter *filter = nullptr;
     prepareToRenderSVGContent(this, paintInfo, FloatRect(), filter/*boundingBox, filter*/);
     if (paintInfo.phase == PaintActionForeground) {
         fillAndStrokePath(m_path, paintInfo.p, style(), this);

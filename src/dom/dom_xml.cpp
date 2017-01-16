@@ -43,7 +43,7 @@ CDATASection &CDATASection::operator = (const Node &other)
             if (impl) {
                 impl->deref();
             }
-            impl = 0;
+            impl = nullptr;
         } else {
             Node::operator =(other);
         }
@@ -82,7 +82,7 @@ Entity &Entity::operator = (const Node &other)
             if (impl) {
                 impl->deref();
             }
-            impl = 0;
+            impl = nullptr;
         } else {
             Node::operator =(other);
         }
@@ -149,7 +149,7 @@ EntityReference &EntityReference::operator = (const Node &other)
             if (impl) {
                 impl->deref();
             }
-            impl = 0;
+            impl = nullptr;
         } else {
             Node::operator =(other);
         }
@@ -189,7 +189,7 @@ Notation &Notation::operator = (const Node &other)
             if (impl) {
                 impl->deref();
             }
-            impl = 0;
+            impl = nullptr;
         } else {
             Node::operator =(other);
         }
@@ -248,7 +248,7 @@ ProcessingInstruction &ProcessingInstruction::operator = (const Node &other)
             if (impl) {
                 impl->deref();
             }
-            impl = 0;
+            impl = nullptr;
         } else {
             Node::operator =(other);
         }
@@ -306,6 +306,6 @@ StyleSheet ProcessingInstruction::sheet() const
     if (impl) {
         return ((ProcessingInstructionImpl *)impl)->sheet();
     }
-    return 0;
+    return nullptr;
 }
 

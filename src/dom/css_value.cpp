@@ -31,7 +31,7 @@ namespace DOM
 
 CSSStyleDeclaration::CSSStyleDeclaration()
 {
-    impl = 0;
+    impl = nullptr;
 }
 
 CSSStyleDeclaration::CSSStyleDeclaration(const CSSStyleDeclaration &other)
@@ -98,7 +98,7 @@ DOMString CSSStyleDeclaration::getPropertyValue(const DOMString &propertyName) c
 CSSValue CSSStyleDeclaration::getPropertyCSSValue(const DOMString &propertyName) const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return static_cast<CSSStyleDeclarationImpl *>(impl)->getPropertyCSSValue(propertyName);
 }
@@ -149,7 +149,7 @@ DOMString CSSStyleDeclaration::item(unsigned long index) const
 CSSRule CSSStyleDeclaration::parentRule() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return static_cast<CSSStyleDeclarationImpl *>(impl)->parentRule();
 }
@@ -161,14 +161,14 @@ CSSStyleDeclarationImpl *CSSStyleDeclaration::handle() const
 
 bool CSSStyleDeclaration::isNull() const
 {
-    return (impl == 0);
+    return (impl == nullptr);
 }
 
 // ----------------------------------------------------------
 
 CSSValue::CSSValue()
 {
-    impl = 0;
+    impl = nullptr;
 }
 
 CSSValue::CSSValue(const CSSValue &other)
@@ -255,7 +255,7 @@ CSSValueImpl *CSSValue::handle() const
 
 bool CSSValue::isNull() const
 {
-    return (impl == 0);
+    return (impl == nullptr);
 }
 
 // ----------------------------------------------------------
@@ -270,7 +270,7 @@ CSSValueList::CSSValueList(const CSSValueList &other) : CSSValue(other)
 
 CSSValueList::CSSValueList(const CSSValue &other)
 {
-    impl = 0;
+    impl = nullptr;
     operator=(other);
 }
 
@@ -300,7 +300,7 @@ CSSValueList &CSSValueList::operator = (const CSSValue &other)
             impl->deref();
         }
         if (!other.isNull() && !other.isCSSValueList()) {
-            impl = 0;
+            impl = nullptr;
         } else {
             impl = ohandle;
             if (impl) {
@@ -326,7 +326,7 @@ unsigned long CSSValueList::length() const
 CSSValue CSSValueList::item(unsigned long index)
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return ((CSSValueListImpl *)impl)->item(index);
 }
@@ -343,7 +343,7 @@ CSSPrimitiveValue::CSSPrimitiveValue(const CSSPrimitiveValue &other) : CSSValue(
 
 CSSPrimitiveValue::CSSPrimitiveValue(const CSSValue &other) : CSSValue(other)
 {
-    impl = 0;
+    impl = nullptr;
     operator=(other);
 }
 
@@ -373,7 +373,7 @@ CSSPrimitiveValue &CSSPrimitiveValue::operator = (const CSSValue &other)
             impl->deref();
         }
         if (!other.isNull() && !other.isCSSPrimitiveValue()) {
-            impl = 0;
+            impl = nullptr;
         } else {
             impl = ohandle;
             if (impl) {
@@ -478,7 +478,7 @@ Counter::Counter()
 
 Counter::Counter(const Counter &/*other*/)
 {
-    impl = 0;
+    impl = nullptr;
 }
 
 Counter &Counter::operator = (const Counter &other)
@@ -541,7 +541,7 @@ CounterImpl *Counter::handle() const
 
 bool Counter::isNull() const
 {
-    return (impl == 0);
+    return (impl == nullptr);
 }
 
 // --------------------------------------------------------------------
@@ -589,7 +589,7 @@ CSSPrimitiveValue RGBColor::blue() const
 
 Rect::Rect()
 {
-    impl = 0;
+    impl = nullptr;
 }
 
 Rect::Rect(const Rect &other)
@@ -632,7 +632,7 @@ Rect::~Rect()
 CSSPrimitiveValue Rect::top() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return impl->top();
 }
@@ -640,7 +640,7 @@ CSSPrimitiveValue Rect::top() const
 CSSPrimitiveValue Rect::right() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return impl->right();
 }
@@ -648,7 +648,7 @@ CSSPrimitiveValue Rect::right() const
 CSSPrimitiveValue Rect::bottom() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return impl->bottom();
 }
@@ -656,7 +656,7 @@ CSSPrimitiveValue Rect::bottom() const
 CSSPrimitiveValue Rect::left() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return impl->left();
 }
@@ -668,7 +668,7 @@ RectImpl *Rect::handle() const
 
 bool Rect::isNull() const
 {
-    return (impl == 0);
+    return (impl == nullptr);
 }
 
 } // namespace

@@ -47,7 +47,7 @@ public:
      * Creates a process object, the process is NOT invoked at this point.
      * You should first set the process's parameters, and then call startJava.
      */
-    KJavaProcess(QObject *parent = 0);
+    KJavaProcess(QObject *parent = nullptr);
     virtual ~KJavaProcess();
 
     /**

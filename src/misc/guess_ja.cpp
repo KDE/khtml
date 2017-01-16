@@ -305,7 +305,7 @@ guess_arc guess_utf8_ar[11] = {
 enum JapaneseCode::Type JapaneseCode::guess_jp(const char *buf, int buflen)
 {
     int i;
-    guess_dfa *top = 0;
+    guess_dfa *top = nullptr;
 
     for (i = 0; i < buflen; i++) {
         int c = (unsigned char)buf[i];

@@ -69,12 +69,12 @@ RenderCanvas::RenderCanvas(DOM::NodeImpl *node, KHTMLView *view)
     m_pageTop = 0;
     m_pageBottom = 0;
 
-    m_page = 0;
+    m_page = nullptr;
 
     m_maximalOutlineSize = 0;
 
-    m_selectionStart = 0;
-    m_selectionEnd = 0;
+    m_selectionStart = nullptr;
+    m_selectionEnd = nullptr;
     m_selectionStartPos = -1;
     m_selectionEndPos = -1;
 
@@ -343,7 +343,7 @@ QRegion RenderCanvas::staticRegion() const
             int d1, d2, d3, d4;
             const BackgroundLayer *bgLayer = ro->style()->backgroundLayers();
             while (bgLayer) {
-                CachedImage *bg = bgLayer->backgroundAttachment() == BGAFIXED ? bgLayer->backgroundImage() : 0;
+                CachedImage *bg = bgLayer->backgroundAttachment() == BGAFIXED ? bgLayer->backgroundImage() : nullptr;
                 if (bg && bg->isComplete() && !bg->isTransparent() && !bg->isErrorImage()) {
                     int xpos, ypos;
                     absolutePosition(xpos, ypos);
@@ -816,13 +816,13 @@ void RenderCanvas::clearSelection(bool doRepaint)
     if (m_selectionStart) {
         m_selectionStart->setIsSelectionBorder(false);
     }
-    m_selectionStart = 0;
+    m_selectionStart = nullptr;
     m_selectionStartPos = -1;
 
     if (m_selectionEnd) {
         m_selectionEnd->setIsSelectionBorder(false);
     }
-    m_selectionEnd = 0;
+    m_selectionEnd = nullptr;
     m_selectionEndPos = -1;
 }
 

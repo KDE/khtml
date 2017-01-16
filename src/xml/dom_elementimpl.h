@@ -174,7 +174,7 @@ struct AttributeImpl {
     }
     AttrImpl *attr() const
     {
-        return m_localName.id() ? 0 : m_data.attr;
+        return m_localName.id() ? nullptr : m_data.attr;
     }
     DOMString namespaceURI() const
     {
@@ -308,7 +308,7 @@ public:
 
     bool hasAttribute(NodeImpl::Id id, const PrefixName &prefix = emptyPrefixName, bool nsAware = false) const
     {
-        return getAttributeImpl(id, prefix, nsAware) != 0;
+        return getAttributeImpl(id, prefix, nsAware) != nullptr;
     }
     DOMString prefix() const Q_DECL_OVERRIDE
     {
@@ -375,7 +375,7 @@ public:
         aimpl.m_localName = LocalName::fromId(localNamePart(id));
         aimpl.m_namespace = NamespaceName::fromId(namespacePart(id));
         aimpl.m_prefix = prefix;
-        aimpl.m_data.value = 0;
+        aimpl.m_data.value = nullptr;
         parseAttribute(&aimpl);
     }
 
@@ -429,7 +429,7 @@ public:
     }
     DOM::CSSStyleDeclarationImpl *nonCSSStyleDecls() const
     {
-        return m_hasCombinedStyle ? m_style.combinedDecls->nonCSSDecls : 0;
+        return m_hasCombinedStyle ? m_style.combinedDecls->nonCSSDecls : nullptr;
     }
     DOM::CSSInlineStyleDeclarationImpl *getInlineStyleDecls();
 
@@ -697,7 +697,7 @@ inline DOMStringImpl *ElementImpl::getAttributeImpl(NodeImpl::Id id, const Prefi
     if (m_needsStyleAttributeUpdate && (id == ATTR_STYLE)) {
         synchronizeStyleAttribute();
     }
-    return namedAttrMap ? namedAttrMap->getValue(id, prefix, nsAware) : 0;
+    return namedAttrMap ? namedAttrMap->getValue(id, prefix, nsAware) : nullptr;
 }
 
 inline const ClassNames &ElementImpl::classNames() const
@@ -708,7 +708,7 @@ inline const ClassNames &ElementImpl::classNames() const
 
 inline DOMStringImpl *ElementImpl::getAttributeImplById(NodeImpl::Id id) const
 {
-    return namedAttrMap ? namedAttrMap->fastFind(id) : 0;
+    return namedAttrMap ? namedAttrMap->fastFind(id) : nullptr;
 }
 
 inline DOMStringImpl *NamedAttrMapImpl::fastFind(NodeImpl::Id id) const
@@ -723,7 +723,7 @@ inline DOMStringImpl *NamedAttrMapImpl::fastFind(NodeImpl::Id id) const
         if (id == (m_attrs[i].id() & mask)) {
             return m_attrs[i].val();
         }
-    return 0;
+    return nullptr;
 }
 
 } //namespace

@@ -45,7 +45,7 @@ public:
         patternOffset = offset;
     }
 
-    QPainterPath createStroke(qreal *nextOffset = 0) const;
+    QPainterPath createStroke(qreal *nextOffset = nullptr) const;
 
 private:
     QRectF rect;

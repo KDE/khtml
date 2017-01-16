@@ -51,7 +51,7 @@ HTMLElement &HTMLElement::operator = (const Node &other)
         if (impl) {
             impl->deref();
         }
-        impl = 0;
+        impl = nullptr;
         return *this;
     }
     Node::operator = (other);
@@ -215,7 +215,7 @@ void HTMLElement::assignOther(const Node &other, int elementId)
         if (impl) {
             impl->deref();
         }
-        impl = 0;
+        impl = nullptr;
     } else {
         Node::operator = (other);
     }

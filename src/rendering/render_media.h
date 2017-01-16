@@ -38,10 +38,10 @@ class MediaPlayer : public Phonon::VideoPlayer
 {
     Q_OBJECT
 public:
-    inline MediaPlayer(Phonon::Category category, QWidget *parent = 0) : Phonon::VideoPlayer(category, parent)
+    inline MediaPlayer(Phonon::Category category, QWidget *parent = nullptr) : Phonon::VideoPlayer(category, parent)
     {
     }
-    inline explicit MediaPlayer(QWidget *parent = 0) : Phonon::VideoPlayer(parent) {};
+    inline explicit MediaPlayer(QWidget *parent = nullptr) : Phonon::VideoPlayer(parent) {};
 };
 
 class RenderMedia : public RenderWidget

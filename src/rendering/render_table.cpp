@@ -53,10 +53,10 @@ RenderTable::RenderTable(DOM::NodeImpl *node)
     : RenderBlock(node)
 {
 
-    tCaption = 0;
-    head = foot = firstBody = 0;
-    tableLayout = 0;
-    m_currentBorder = 0;
+    tCaption = nullptr;
+    head = foot = firstBody = nullptr;
+    tableLayout = nullptr;
+    m_currentBorder = nullptr;
 
     has_col_elems = false;
     hspacing = vspacing = 0;
@@ -153,7 +153,7 @@ static inline void resetSectionPointerIfNotBefore(RenderTableSection *&ptr, Rend
         o = o->previousSibling();
     }
     if (!o) {
-        ptr = 0;
+        ptr = nullptr;
     }
 }
 
@@ -175,7 +175,7 @@ void RenderTable::addChild(RenderObject *child, RenderObject *beforeChild)
                     o = o->previousSibling();
                 }
                 if (!o) {
-                    tCaption = 0;
+                    tCaption = nullptr;
                 }
             }
             if (!tCaption) {
@@ -262,7 +262,7 @@ void RenderTable::addChild(RenderObject *child, RenderObject *beforeChild)
     }
 
     if (beforeChild && !beforeChild->isTableSection()) {
-        beforeChild = 0;
+        beforeChild = nullptr;
     }
     RenderTableSection *section = new(renderArena()) RenderTableSection(document() /* anonymous */);
     RenderStyle *newStyle = new RenderStyle();
@@ -583,7 +583,7 @@ void RenderTable::paint(PaintInfo &pI, int _tx, int _ty)
                 }
             }
         }
-        m_currentBorder = 0;
+        m_currentBorder = nullptr;
     }
 
     pI.phase = oldphase;
@@ -689,7 +689,7 @@ void RenderTable::splitColumn(int pos, int firstSpan)
                 RenderTableSection::Row &r = *section->grid[row].row;
                 memmove(r.data() + pos + 1, r.data() + pos, (oldSize - pos)*sizeof(RenderTableCell *));
 //      qDebug("moving from %d to %d, num=%d", pos, pos+1, (oldSize-pos-1) );
-                r[pos + 1] = r[pos] ? (RenderTableCell *) - 1 : 0;
+                r[pos + 1] = r[pos] ? (RenderTableCell *) - 1 : nullptr;
                 row++;
             }
         }
@@ -718,7 +718,7 @@ void RenderTable::appendColumn(int span)
             int row = 0;
             while (row < size) {
                 section->grid[row].row->resize(newSize);
-                section->cellAt(row, pos) = 0;
+                section->cellAt(row, pos) = nullptr;
                 row++;
             }
 
@@ -732,7 +732,7 @@ void RenderTable::appendColumn(int span)
 RenderTableCol *RenderTable::colElement(int col, bool *startEdge, bool *endEdge) const
 {
     if (!has_col_elems) {
-        return 0;
+        return nullptr;
     }
     RenderObject *child = firstChild();
     int cCol = 0;
@@ -769,13 +769,13 @@ RenderTableCol *RenderTable::colElement(int col, bool *startEdge, bool *endEdge)
             break;
         }
     }
-    return 0;
+    return nullptr;
 }
 
 void RenderTable::recalcSections()
 {
-    tCaption = 0;
-    head = foot = firstBody = 0;
+    tCaption = nullptr;
+    head = foot = firstBody = nullptr;
     has_col_elems = false;
 
     RenderObject *child = firstChild();
@@ -906,7 +906,7 @@ RenderTableSection *RenderTable::sectionAbove(const RenderTableSection *section,
     }
 
     if (section == head) {
-        return 0;
+        return nullptr;
     }
     RenderObject *prevSection = section == foot ? lastChild() : section->previousSibling();
     while (prevSection) {
@@ -928,7 +928,7 @@ RenderTableSection *RenderTable::sectionBelow(const RenderTableSection *section,
     }
 
     if (section == foot) {
-        return 0;
+        return nullptr;
     }
     RenderObject *nextSection = section == head ? firstChild() : section->nextSibling();
     while (nextSection) {
@@ -951,7 +951,7 @@ RenderTableCell *RenderTable::cellAbove(const RenderTableCell *cell)
 
     // Find the section and row to look in
     int r = cell->row();
-    RenderTableSection *section = 0;
+    RenderTableSection *section = nullptr;
     int rAbove = 0;
     if (r > 0) {
         // cell is not in the first row, so use the above row in its own section
@@ -973,9 +973,9 @@ RenderTableCell *RenderTable::cellAbove(const RenderTableCell *cell)
             aboveCell = section->cellAt(rAbove, effCol);
             effCol--;
         } while (aboveCell == (RenderTableCell *) - 1 && effCol >= 0);
-        return (aboveCell == (RenderTableCell *) - 1) ? 0 : aboveCell;
+        return (aboveCell == (RenderTableCell *) - 1) ? nullptr : aboveCell;
     } else {
-        return 0;
+        return nullptr;
     }
 }
 
@@ -987,7 +987,7 @@ RenderTableCell *RenderTable::cellBelow(const RenderTableCell *cell)
 
     // Find the section and row to look in
     int r = cell->row() + cell->rowSpan() - 1;
-    RenderTableSection *section = 0;
+    RenderTableSection *section = nullptr;
     int rBelow = 0;
     if (r < cell->section()->numRows() - 1) {
         // The cell is not in the last row, so use the next row in the section.
@@ -1009,9 +1009,9 @@ RenderTableCell *RenderTable::cellBelow(const RenderTableCell *cell)
             belowCell = section->cellAt(rBelow, effCol);
             effCol--;
         } while (belowCell == (RenderTableCell *) - 1 && effCol >= 0);
-        return (belowCell == (RenderTableCell *) - 1) ? 0 : belowCell;
+        return (belowCell == (RenderTableCell *) - 1) ? nullptr : belowCell;
     } else {
-        return 0;
+        return nullptr;
     }
 }
 
@@ -1024,7 +1024,7 @@ RenderTableCell *RenderTable::cellBefore(const RenderTableCell *cell)
     RenderTableSection *section = cell->section();
     int effCol = colToEffCol(cell->col());
     if (effCol == 0) {
-        return 0;
+        return nullptr;
     }
 
     // If we hit a colspan back up to a real cell.
@@ -1033,7 +1033,7 @@ RenderTableCell *RenderTable::cellBefore(const RenderTableCell *cell)
         prevCell = section->cellAt(cell->row(), effCol - 1);
         effCol--;
     } while (prevCell == (RenderTableCell *) - 1 && effCol >= 0);
-    return (prevCell == (RenderTableCell *) - 1) ? 0 : prevCell;
+    return (prevCell == (RenderTableCell *) - 1) ? nullptr : prevCell;
 }
 
 RenderTableCell *RenderTable::cellAfter(const RenderTableCell *cell)
@@ -1044,10 +1044,10 @@ RenderTableCell *RenderTable::cellAfter(const RenderTableCell *cell)
 
     int effCol = colToEffCol(cell->col() + cell->colSpan());
     if (effCol >= numEffCols()) {
-        return 0;
+        return nullptr;
     }
     RenderTableCell *result = cell->section()->cellAt(cell->row(), effCol);
-    return (result == (RenderTableCell *) - 1) ? 0 : result;
+    return (result == (RenderTableCell *) - 1) ? nullptr : result;
 }
 
 #ifdef ENABLE_DUMP
@@ -1244,8 +1244,8 @@ void RenderTableSection::ensureRows(int numRows)
         grid.resize(numRows);
         for (int r = nRows; r < numRows; r++) {
             grid[r].row = new Row(nCols);
-            grid[r].row->fill(0);
-            grid[r].rowRenderer = 0;
+            grid[r].row->fill(nullptr);
+            grid[r].rowRenderer = nullptr;
             grid[r].baseLine = 0;
             grid[r].height = Length();
         }
@@ -2041,7 +2041,7 @@ void RenderTableSection::paint(PaintInfo &pI, int tx, int ty)
 
             unsigned int c = startcol;
             Row *row = grid[r].row;
-            Row *nextrow = (r < endrow - 1) ? grid[r + 1].row : 0;
+            Row *nextrow = (r < endrow - 1) ? grid[r + 1].row : nullptr;
             // since a cell can be -1 (indicating a colspan) we might have to search backwards to include it
             while (c && (*row)[c] == (RenderTableCell *) - 1) {
                 c--;
@@ -2061,7 +2061,7 @@ void RenderTableSection::paint(PaintInfo &pI, int tx, int ty)
                     // We need to handle painting a stack of backgrounds.  This stack (from bottom to top) consists of
                     // the column group, column, row group, row, and then the cell.
                     RenderObject *col = table()->colElement(c);
-                    RenderObject *colGroup = 0;
+                    RenderObject *colGroup = nullptr;
                     if (col) {
                         RenderStyle *style = col->parent()->style();
                         if (style->display() == TABLE_COLUMN_GROUP) {
@@ -2214,7 +2214,7 @@ void RenderTableSection::dump(QTextStream &stream, const QString &ind) const
 static RenderTableCell *seekCell(RenderTableSection *section, int row, int col)
 {
     if (row < 0 || col < 0 || row >= section->numRows()) {
-        return 0;
+        return nullptr;
     }
     // since a cell can be -1 (indicating a colspan) we might have to search backwards to include it
     while (col && section->cellAt(row, col) == (RenderTableCell *) - 1) {
@@ -3029,7 +3029,7 @@ CollapsedBorderValue RenderTableCell::collapsedTopBorder() const
 
     // (4) The previous row's bottom border.
     if (prevCell) {
-        RenderObject *prevRow = 0;
+        RenderObject *prevRow = nullptr;
         if (prevCell->section() == section()) {
             prevRow = parent()->previousSibling();
         } else {
@@ -3316,7 +3316,7 @@ public:
             }
         }
 
-        return 0;
+        return nullptr;
     }
 
     CollapsedBorder borders[4];
@@ -3580,7 +3580,7 @@ TableSectionIterator &TableSectionIterator::operator ++()
         }
 
     } else if (sec == table->foot) {
-        sec = 0;
+        sec = nullptr;
         return *this;
 
     } else {
@@ -3613,7 +3613,7 @@ TableSectionIterator &TableSectionIterator::operator --()
         }
 
     } else if (sec == table->head) {
-        sec = 0;
+        sec = nullptr;
         return *this;
 
     } else {

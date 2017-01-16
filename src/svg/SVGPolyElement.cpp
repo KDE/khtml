@@ -61,7 +61,7 @@ SVGPointList *SVGPolyElement::points() const
 SVGPointList *SVGPolyElement::animatedPoints() const
 {
     // FIXME!
-    return 0;
+    return nullptr;
 }
 
 void SVGPolyElement::parseMappedAttribute(MappedAttribute *attr)

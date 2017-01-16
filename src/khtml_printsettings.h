@@ -28,7 +28,7 @@ class KHTMLPrintSettings : public QWidget
 {
     Q_OBJECT
 public:
-    KHTMLPrintSettings(QWidget *parent = 0);
+    KHTMLPrintSettings(QWidget *parent = nullptr);
     ~KHTMLPrintSettings();
 
     bool printFriendly();

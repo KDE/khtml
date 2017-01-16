@@ -135,7 +135,7 @@ public:
     static Window *retrieveActive(ExecState *exec);
     KParts::ReadOnlyPart *part() const
     {
-        return m_frame.isNull() ? 0L : m_frame->m_part.data();
+        return m_frame.isNull() ? nullptr : m_frame->m_part.data();
     }
 
     void mark() Q_DECL_OVERRIDE;

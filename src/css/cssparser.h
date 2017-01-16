@@ -106,7 +106,7 @@ public:
     }
     Value *current()
     {
-        return m_current < m_values.size() ? &m_values[m_current] : 0;
+        return m_current < m_values.size() ? &m_values[m_current] : nullptr;
     }
     Value *next()
     {

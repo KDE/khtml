@@ -54,7 +54,7 @@ JSObject *XMLSerializerConstructorImp::construct(ExecState *exec, const List &)
     return new XMLSerializer(exec);
 }
 
-const ClassInfo XMLSerializer::info = { "XMLSerializer", 0, 0, 0 };
+const ClassInfo XMLSerializer::info = { "XMLSerializer", nullptr, nullptr, nullptr };
 
 XMLSerializer::XMLSerializer(ExecState *exec)
 {

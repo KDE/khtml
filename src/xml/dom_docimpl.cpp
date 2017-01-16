@@ -184,23 +184,23 @@ DocumentTypeImpl *DOMImplementationImpl::createDocumentType(const DOMString &qua
     // Not mentioned in spec: throw NAMESPACE_ERR if no qualifiedName supplied
     if (qualifiedName.isNull()) {
         exceptioncode = DOMException::NAMESPACE_ERR;
-        return 0;
+        return nullptr;
     }
 
     // INVALID_CHARACTER_ERR: Raised if the specified qualified name contains an illegal character.
     if (!Element::khtmlValidQualifiedName(qualifiedName)) {
         exceptioncode = DOMException::INVALID_CHARACTER_ERR;
-        return 0;
+        return nullptr;
     }
 
     // NAMESPACE_ERR: Raised if the qualifiedName is malformed.
     // Added special case for the empty string, which seems to be a common pre-DOM2 misuse
     if (!qualifiedName.isEmpty() && Element::khtmlMalformedQualifiedName(qualifiedName)) {
         exceptioncode = DOMException::NAMESPACE_ERR;
-        return 0;
+        return nullptr;
     }
 
-    return new DocumentTypeImpl(this, 0, qualifiedName, publicId, systemId);
+    return new DocumentTypeImpl(this, nullptr, qualifiedName, publicId, systemId);
 }
 
 DocumentImpl *DOMImplementationImpl::createDocument(const DOMString &namespaceURI, const DOMString &qualifiedName,
@@ -210,9 +210,9 @@ DocumentImpl *DOMImplementationImpl::createDocument(const DOMString &namespaceUR
 {
     exceptioncode = 0;
 
-    if (!checkQualifiedName(qualifiedName, namespaceURI, 0, true/*nameCanBeNull*/,
+    if (!checkQualifiedName(qualifiedName, namespaceURI, nullptr, true/*nameCanBeNull*/,
                             true /*nameCanBeEmpty, see #61650*/, &exceptioncode)) {
-        return 0;
+        return nullptr;
     }
 
     // WRONG_DOCUMENT_ERR: Raised if doctype has already been used with a different document or was
@@ -222,7 +222,7 @@ DocumentImpl *DOMImplementationImpl::createDocument(const DOMString &namespaceUR
     // isolation  reasons
     if (dtype && dtype->document()) {
         exceptioncode = DOMException::WRONG_DOCUMENT_ERR;
-        return 0;
+        return nullptr;
     }
 
     // ### view can be 0 which can cause problems
@@ -246,7 +246,7 @@ DocumentImpl *DOMImplementationImpl::createDocument(const DOMString &namespaceUR
         if (exceptioncode) {
             delete element;
             delete doc;
-            return 0;
+            return nullptr;
         }
     }
     return doc;
@@ -257,7 +257,7 @@ CSSStyleSheetImpl *DOMImplementationImpl::createCSSStyleSheet(DOMStringImpl *tit
 {
     // ### TODO : media could have wrong syntax, in which case we should
     // generate an exception.
-    CSSStyleSheetImpl *parent = 0L;
+    CSSStyleSheetImpl *parent = nullptr;
     CSSStyleSheetImpl *sheet = new CSSStyleSheetImpl(parent, DOMString());
     sheet->setMedia(new MediaListImpl(sheet, media, true /*fallbackToDescriptor*/));
     sheet->setTitle(DOMString(title));
@@ -295,7 +295,7 @@ WebCore::SVGDocument *DOMImplementationImpl::createSVGDocument(KHTMLView *v)
 
 HTMLDocumentImpl *DOMImplementationImpl::createHTMLDocument(const DOMString &title)
 {
-    HTMLDocumentImpl *r = createHTMLDocument(0 /* ### create a view otherwise it doesn't work */);
+    HTMLDocumentImpl *r = createHTMLDocument(nullptr /* ### create a view otherwise it doesn't work */);
 
     r->open();
 
@@ -325,7 +325,7 @@ void ElementMappingCache::add(const DOMString &id, ElementImpl *nd)
     ItemInfo *info = m_dict.value(id);
     if (info) {
         info->ref++;
-        info->nd = 0; //Now ambigous
+        info->nd = nullptr; //Now ambigous
     } else {
         ItemInfo *info = new ItemInfo();
         info->ref = 1;
@@ -359,7 +359,7 @@ void ElementMappingCache::remove(const DOMString &id, ElementImpl *nd)
         delete info;
     } else {
         if (info->nd == nd) {
-            info->nd = 0;
+            info->nd = nullptr;
         }
     }
 }
@@ -375,7 +375,7 @@ bool ElementMappingCache::contains(const DOMString &id)
 ElementMappingCache::ItemInfo *ElementMappingCache::get(const DOMString &id)
 {
     if (id.isEmpty()) {
-        return 0;
+        return nullptr;
     }
     return m_dict.value(id);
 }
@@ -385,13 +385,13 @@ Q_GLOBAL_STATIC(ChangedDocuments, s_changedDocuments)
 
 // KHTMLView might be 0
 DocumentImpl::DocumentImpl(KHTMLView *v)
-    : NodeBaseImpl(0), m_svgExtensions(0), m_counterDict(),
+    : NodeBaseImpl(nullptr), m_svgExtensions(nullptr), m_counterDict(),
       m_imageLoadEventTimer(0)
 {
     m_document.resetSkippingRef(this); //Make document return us..
     m_selfOnlyRefCount = 0;
 
-    m_paintDevice = 0;
+    m_paintDevice = nullptr;
     //m_decoderMibEnum = 0;
     m_textColor = Qt::black;
 
@@ -404,33 +404,33 @@ DocumentImpl::DocumentImpl(KHTMLView *v)
         m_docLoader = new DocLoader(v->part(), this);
         setPaintDevice(m_view);
     } else {
-        m_docLoader = new DocLoader(0, this);
+        m_docLoader = new DocLoader(nullptr, this);
     }
 
     visuallyOrdered = false;
     m_bParsing = false;
     m_docChanged = false;
-    m_elemSheet = 0;
-    m_tokenizer = 0;
-    m_decoder = 0;
-    m_doctype = 0;
-    m_implementation = 0;
+    m_elemSheet = nullptr;
+    m_tokenizer = nullptr;
+    m_decoder = nullptr;
+    m_doctype = nullptr;
+    m_implementation = nullptr;
     pMode = Strict;
     hMode = XHtml;
     m_htmlCompat = false;
     m_textColor = "#000000";
-    m_focusNode = 0;
-    m_hoverNode = 0;
-    m_activeNode = 0;
+    m_focusNode = nullptr;
+    m_hoverNode = nullptr;
+    m_activeNode = nullptr;
     m_defaultView = new AbstractViewImpl(this);
     m_defaultView->ref();
     m_listenerTypes = 0;
     m_styleSheets = new StyleSheetListImpl(this);
     m_styleSheets->ref();
-    m_addedStyleSheets = 0;
+    m_addedStyleSheets = nullptr;
     m_inDocument = true;
     m_styleSelectorDirty = false;
-    m_styleSelector = 0;
+    m_styleSelector = nullptr;
     m_styleSheetListDirty = true;
 
     m_inStyleRecalc = false;
@@ -440,11 +440,11 @@ DocumentImpl::DocumentImpl(KHTMLView *v)
     m_hadLoadError = false;
     m_docLoading = false;
     m_bVariableLength = false;
-    m_inSyncLoad = 0;
-    m_loadingXMLDoc = 0;
-    m_documentElement = 0;
-    m_cssTarget = 0;
-    m_jsEditor = 0;
+    m_inSyncLoad = nullptr;
+    m_loadingXMLDoc = nullptr;
+    m_documentElement = nullptr;
+    m_cssTarget = nullptr;
+    m_jsEditor = nullptr;
     m_dynamicDomRestyler = new khtml::DynamicDomRestyler();
     m_stateRestorePos = 0;
     m_windowEventTarget = new WindowEventTargetImpl(this);
@@ -473,38 +473,38 @@ void DocumentImpl::removedLastRef()
         // these extra pointers or we will create a reference cycle
         if (m_doctype) {
             m_doctype->deref();
-            m_doctype = 0;
+            m_doctype = nullptr;
         }
 
         if (m_cssTarget) {
             m_cssTarget->deref();
-            m_cssTarget = 0;
+            m_cssTarget = nullptr;
         }
 
         if (m_focusNode) {
             m_focusNode->deref();
-            m_focusNode = 0;
+            m_focusNode = nullptr;
         }
 
         if (m_hoverNode) {
             m_hoverNode->deref();
-            m_hoverNode = 0;
+            m_hoverNode = nullptr;
         }
 
         if (m_activeNode) {
             m_activeNode->deref();
-            m_activeNode = 0;
+            m_activeNode = nullptr;
         }
 
         if (m_documentElement) {
             m_documentElement->deref();
-            m_documentElement = 0;
+            m_documentElement = nullptr;
         }
 
         removeChildren();
 
         delete m_tokenizer;
-        m_tokenizer = 0;
+        m_tokenizer = nullptr;
     } else {
         delete this;
     }
@@ -528,7 +528,7 @@ DocumentImpl::~DocumentImpl()
         s_changedDocuments()->removeAll(this);
     }
     delete m_tokenizer;
-    m_document.resetSkippingRef(0);
+    m_document.resetSkippingRef(nullptr);
     delete m_styleSelector;
     delete m_docLoader;
     if (m_elemSheet) {
@@ -585,13 +585,13 @@ void DocumentImpl::childrenChanged()
     if (m_documentElement) {
         m_documentElement->deref();
     }
-    m_documentElement = 0;
+    m_documentElement = nullptr;
 
     // same for m_docType
     if (m_doctype) {
         m_doctype->deref();
     }
-    m_doctype = 0;
+    m_doctype = nullptr;
 }
 
 ElementImpl *DocumentImpl::documentElement() const
@@ -628,7 +628,7 @@ ElementImpl *DocumentImpl::createElement(const DOMString &name, int *pExceptionc
 {
     if (pExceptioncode && !Element::khtmlValidQualifiedName(name)) {
         *pExceptioncode = DOMException::INVALID_CHARACTER_ERR;
-        return 0;
+        return nullptr;
     }
 
     PrefixName prefix;
@@ -644,7 +644,7 @@ AttrImpl *DocumentImpl::createAttribute(const DOMString &tagName, int *pExceptio
 {
     if (pExceptioncode && !Element::khtmlValidAttrName(tagName)) {
         *pExceptioncode = DOMException::INVALID_CHARACTER_ERR;
-        return 0;
+        return nullptr;
     }
 
     PrefixName prefix;
@@ -652,7 +652,7 @@ AttrImpl *DocumentImpl::createAttribute(const DOMString &tagName, int *pExceptio
     bool htmlCompat = (htmlMode() != XHtml);
     splitPrefixLocalName(tagName, prefix, localName, htmlCompat);
 
-    AttrImpl *attr = new AttrImpl(0, document(), NamespaceName::fromId(emptyNamespace),
+    AttrImpl *attr = new AttrImpl(nullptr, document(), NamespaceName::fromId(emptyNamespace),
                                   localName, prefix, DOMString("").implementation());
     attr->setHTMLCompat(htmlCompat);
     return attr;
@@ -672,7 +672,7 @@ CDATASectionImpl *DocumentImpl::createCDATASection(DOMStringImpl *data, int &exc
 {
     if (isHTMLDocument()) {
         exceptioncode = DOMException::NOT_SUPPORTED_ERR;
-        return 0;
+        return nullptr;
     }
     return new CDATASectionImpl(docPtr(), data);
 }
@@ -686,7 +686,7 @@ EntityReferenceImpl *DocumentImpl::createEntityReference(const DOMString &name, 
 {
     if (isHTMLDocument()) {
         exceptioncode = DOMException::NOT_SUPPORTED_ERR;
-        return 0;
+        return nullptr;
     }
     return new EntityReferenceImpl(docPtr(), name.implementation());
 }
@@ -698,12 +698,12 @@ EditingTextImpl *DocumentImpl::createEditingTextNode(const DOMString &text)
 
 NodeImpl *DocumentImpl::importNode(NodeImpl *importedNode, bool deep, int &exceptioncode)
 {
-    NodeImpl *result = 0;
+    NodeImpl *result = nullptr;
 
     // Not mentioned in spec: throw NOT_FOUND_ERR if evt is null
     if (!importedNode) {
         exceptioncode = DOMException::NOT_FOUND_ERR;
-        return 0;
+        return nullptr;
     }
 
     if (importedNode->nodeType() == Node::ELEMENT_NODE) {
@@ -763,13 +763,13 @@ NodeImpl *DocumentImpl::importNode(NodeImpl *importedNode, bool deep, int &excep
 
 ElementImpl *DocumentImpl::createElementNS(const DOMString &_namespaceURI, const DOMString &_qualifiedName, int *pExceptioncode)
 {
-    ElementImpl *e = 0;
+    ElementImpl *e = nullptr;
     int colonPos = -2;
     // check NAMESPACE_ERR/INVALID_CHARACTER_ERR
     if (pExceptioncode && !checkQualifiedName(_qualifiedName, _namespaceURI, &colonPos,
             false/*nameCanBeNull*/, false/*nameCanBeEmpty*/,
             pExceptioncode)) {
-        return 0;
+        return nullptr;
     }
     DOMString prefix, localName;
     splitPrefixLocalName(_qualifiedName.implementation(), prefix, localName, colonPos);
@@ -799,7 +799,7 @@ ElementImpl *DocumentImpl::createElementNS(const DOMString &_namespaceURI, const
                 *pExceptioncode = _exceptioncode;
             }
             delete e;
-            return 0;
+            return nullptr;
         }
     }
     if (!e) {
@@ -818,13 +818,13 @@ AttrImpl *DocumentImpl::createAttributeNS(const DOMString &_namespaceURI,
     if (pExceptioncode && !checkQualifiedName(_qualifiedName, _namespaceURI, &colonPos,
             false/*nameCanBeNull*/, false/*nameCanBeEmpty*/,
             pExceptioncode)) {
-        return 0;
+        return nullptr;
     }
     PrefixName prefix;
     LocalName  localName;
     bool htmlCompat =  _namespaceURI.isNull() && htmlMode() != XHtml;
     splitPrefixLocalName(_qualifiedName, prefix, localName, false, colonPos);
-    AttrImpl *attr = new AttrImpl(0, document(), NamespaceName::fromString(_namespaceURI),
+    AttrImpl *attr = new AttrImpl(nullptr, document(), NamespaceName::fromString(_namespaceURI),
                                   localName, prefix, DOMString("").implementation());
     attr->setHTMLCompat(htmlCompat);
     return attr;
@@ -835,7 +835,7 @@ ElementImpl *DocumentImpl::getElementById(const DOMString &elementId) const
     ElementMappingCache::ItemInfo *info = m_getElementByIdCache.get(elementId);
 
     if (!info) {
-        return 0;
+        return nullptr;
     }
 
     //See if cache has an unambiguous answer.
@@ -877,7 +877,7 @@ ElementImpl *DocumentImpl::getElementById(const DOMString &elementId) const
 
     //qDebug() << "WARNING: *DocumentImpl::getElementById not found " << elementId.string();
 
-    return 0;
+    return nullptr;
 }
 
 void DocumentImpl::setTitle(const DOMString &_title)
@@ -923,7 +923,7 @@ ElementImpl *DocumentImpl::createHTMLElement(const DOMString &name, bool caseIns
                           caseInsensitive ? IDS_NormalizeLower : IDS_CaseSensitive);
     uint id = localname.id();
 
-    ElementImpl *n = 0;
+    ElementImpl *n = nullptr;
     switch (id) {
     case ID_HTML:
         n = new HTMLHtmlElementImpl(docPtr());
@@ -1213,7 +1213,7 @@ ElementImpl *DocumentImpl::createSVGElement(const QualifiedName &name)
     // qDebug() << getPrintableName(name.id()) << endl;
     // qDebug() << "svg text:   " << getPrintableName(WebCore::SVGNames::textTag.id()) << endl;
 
-    ElementImpl *n = 0;
+    ElementImpl *n = nullptr;
     switch (id) {
     case ID_TEXTPATH:
         n = new WebCore::SVGTextPathElement(name, docPtr());
@@ -1397,7 +1397,7 @@ NodeIteratorImpl *DocumentImpl::createNodeIterator(NodeImpl *root, unsigned long
 {
     if (!root) {
         exceptioncode = DOMException::NOT_SUPPORTED_ERR;
-        return 0;
+        return nullptr;
     }
 
     return new NodeIteratorImpl(root, whatToShow, filter, entityReferenceExpansion);
@@ -1408,7 +1408,7 @@ TreeWalkerImpl *DocumentImpl::createTreeWalker(NodeImpl *root, unsigned long wha
 {
     if (!root) {
         exceptioncode = DOMException::NOT_SUPPORTED_ERR;
-        return 0;
+        return nullptr;
     }
 
     return new TreeWalkerImpl(root, whatToShow, filter, entityReferenceExpansion);
@@ -1570,7 +1570,7 @@ void DocumentImpl::attach()
     recalcStyle(Force);
 
     RenderObject *render = m_render;
-    m_render = 0;
+    m_render = nullptr;
 
     NodeBaseImpl::attach();
     m_render = render;
@@ -1581,10 +1581,10 @@ void DocumentImpl::detach()
     RenderObject *render = m_render;
 
     // indicate destruction mode,  i.e. attached() but m_render == 0
-    m_render = 0;
+    m_render = nullptr;
 
     delete m_tokenizer;
-    m_tokenizer = 0;
+    m_tokenizer = nullptr;
 
     // Empty out these lists as a performance optimization
     m_imageLoadEventDispatchSoonList.clear();
@@ -1595,7 +1595,7 @@ void DocumentImpl::detach()
         render->detach();
     }
 
-    m_view = 0;
+    m_view = nullptr;
 
     m_renderArena.reset();
 }
@@ -1633,8 +1633,8 @@ void DocumentImpl::updateSelection()
     if (s.isEmpty() || s.state() == Selection::CARET) {
         canvas->clearSelection();
     } else {
-        RenderObject *startRenderer = s.start().node() ? s.start().node()->renderer() : 0;
-        RenderObject *endRenderer = s.end().node() ? s.end().node()->renderer() : 0;
+        RenderObject *startRenderer = s.start().node() ? s.start().node()->renderer() : nullptr;
+        RenderObject *endRenderer = s.end().node() ? s.end().node()->renderer() : nullptr;
         RenderPosition renderedStart = RenderPosition::fromDOMPosition(s.start());
         RenderPosition renderedEnd   = RenderPosition::fromDOMPosition(s.end());
         static_cast<RenderCanvas *>(m_render)->setSelection(startRenderer, renderedStart.renderedOffset(), endRenderer, renderedEnd.renderedOffset());
@@ -1662,7 +1662,7 @@ void DocumentImpl::open(bool clearEventListeners)
     }
 
     delete m_tokenizer;
-    m_tokenizer = 0;
+    m_tokenizer = nullptr;
 
     KHTMLView *view = m_view;
     bool was_attached = attached();
@@ -1673,7 +1673,7 @@ void DocumentImpl::open(bool clearEventListeners)
     removeChildren();
     childrenChanged(); // Reset m_documentElement, m_doctype
     delete m_styleSelector;
-    m_styleSelector = 0;
+    m_styleSelector = nullptr;
     m_view = view;
     if (was_attached) {
         attach();
@@ -1693,11 +1693,11 @@ HTMLElementImpl *DocumentImpl::body() const
 {
     NodeImpl *de = documentElement();
     if (!de) {
-        return 0;
+        return nullptr;
     }
 
     // try to prefer a FRAMESET element over BODY
-    NodeImpl *body = 0;
+    NodeImpl *body = nullptr;
     for (NodeImpl *i = de->firstChild(); i; i = i->nextSibling()) {
         if (i->id() == ID_FRAMESET) {
             return static_cast<HTMLElementImpl *>(i);
@@ -1727,7 +1727,7 @@ void DocumentImpl::close()
     // scripts from getting processed.
     if (m_tokenizer && !m_tokenizer->isWaitingForScripts() && !m_tokenizer->isExecutingScript()) {
         delete m_tokenizer;
-        m_tokenizer = 0;
+        m_tokenizer = nullptr;
     }
 
     if (m_view) {
@@ -1815,7 +1815,7 @@ NodeImpl *DocumentImpl::nextFocusNode(NodeImpl *fromNode)
         NodeImpl *n;
 
         int lowestTabIndex = SHRT_MAX + 1;
-        for (n = this; n != 0; n = n->traverseNextNode()) {
+        for (n = this; n != nullptr; n = n->traverseNextNode()) {
             if (n->isTabFocusable()) {
                 if ((n->tabIndex() > 0) && (n->tabIndex() < lowestTabIndex)) {
                     lowestTabIndex = n->tabIndex();
@@ -1828,13 +1828,13 @@ NodeImpl *DocumentImpl::nextFocusNode(NodeImpl *fromNode)
         }
 
         // Go to the first node in the document that has the desired tab index
-        for (n = this; n != 0; n = n->traverseNextNode()) {
+        for (n = this; n != nullptr; n = n->traverseNextNode()) {
             if (n->isTabFocusable() && (n->tabIndex() == lowestTabIndex)) {
                 return n;
             }
         }
 
-        return 0;
+        return nullptr;
     } else {
         fromTabIndex = fromNode->tabIndex();
     }
@@ -1855,7 +1855,7 @@ NodeImpl *DocumentImpl::nextFocusNode(NodeImpl *fromNode)
         NodeImpl *n;
 
         bool reachedFromNode = false;
-        for (n = this; n != 0; n = n->traverseNextNode()) {
+        for (n = this; n != nullptr; n = n->traverseNextNode()) {
             if (n->isTabFocusable() &&
                     ((reachedFromNode && (n->tabIndex() >= fromTabIndex)) ||
                      (!reachedFromNode && (n->tabIndex() > fromTabIndex))) &&
@@ -1882,7 +1882,7 @@ NodeImpl *DocumentImpl::nextFocusNode(NodeImpl *fromNode)
         }
 
         // Search forwards from fromNode
-        for (n = fromNode->traverseNextNode(); n != 0; n = n->traverseNextNode()) {
+        for (n = fromNode->traverseNextNode(); n != nullptr; n = n->traverseNextNode()) {
             if (n->isTabFocusable() && (n->tabIndex() == lowestSuitableTabIndex)) {
                 return n;
             }
@@ -1896,7 +1896,7 @@ NodeImpl *DocumentImpl::nextFocusNode(NodeImpl *fromNode)
         }
 
         assert(false); // should never get here
-        return 0;
+        return nullptr;
     }
 }
 
@@ -1912,7 +1912,7 @@ NodeImpl *DocumentImpl::previousFocusNode(NodeImpl *fromNode)
         NodeImpl *n;
 
         int highestTabIndex = 0;
-        for (n = lastNode; n != 0; n = n->traversePreviousNode()) {
+        for (n = lastNode; n != nullptr; n = n->traversePreviousNode()) {
             if (n->isTabFocusable()) {
                 if (n->tabIndex() == 0) {
                     return n;
@@ -1923,13 +1923,13 @@ NodeImpl *DocumentImpl::previousFocusNode(NodeImpl *fromNode)
         }
 
         // No node with a tab index of 0; just go to the last node with the highest tab index
-        for (n = lastNode; n != 0; n = n->traversePreviousNode()) {
+        for (n = lastNode; n != nullptr; n = n->traversePreviousNode()) {
             if (n->isTabFocusable() && (n->tabIndex() == highestTabIndex)) {
                 return n;
             }
         }
 
-        return 0;
+        return nullptr;
     } else {
         short fromTabIndex = fromNode->tabIndex();
 
@@ -1945,24 +1945,24 @@ NodeImpl *DocumentImpl::previousFocusNode(NodeImpl *fromNode)
 
             // No previous nodes with a 0 tab index, go to the last node in the document that has the highest tab index
             int highestTabIndex = 0;
-            for (n = this; n != 0; n = n->traverseNextNode()) {
+            for (n = this; n != nullptr; n = n->traverseNextNode()) {
                 if (n->isTabFocusable() && (n->tabIndex() > highestTabIndex)) {
                     highestTabIndex = n->tabIndex();
                 }
             }
 
             if (highestTabIndex == 0) {
-                return 0;
+                return nullptr;
             }
 
-            for (n = lastNode; n != 0; n = n->traversePreviousNode()) {
+            for (n = lastNode; n != nullptr; n = n->traversePreviousNode()) {
                 if (n->isTabFocusable() && (n->tabIndex() == highestTabIndex)) {
                     return n;
                 }
             }
 
             assert(false); // should never get here
-            return 0;
+            return nullptr;
         } else {
             // Find the lowest tab index out of all the nodes except fromNode, that is less than or equal to fromNode's
             // tab index. For nodes with the same tab index as fromNode, we are only interested in those before
@@ -1972,7 +1972,7 @@ NodeImpl *DocumentImpl::previousFocusNode(NodeImpl *fromNode)
             NodeImpl *n;
 
             bool reachedFromNode = false;
-            for (n = this; n != 0; n = n->traverseNextNode()) {
+            for (n = this; n != nullptr; n = n->traverseNextNode()) {
                 if (n->isTabFocusable() &&
                         ((!reachedFromNode && (n->tabIndex() <= fromTabIndex)) ||
                          (reachedFromNode && (n->tabIndex() < fromTabIndex)))  &&
@@ -1992,11 +1992,11 @@ NodeImpl *DocumentImpl::previousFocusNode(NodeImpl *fromNode)
             if (highestSuitableTabIndex == 0) {
                 // No previous node with a tab index. Since the order specified by HTML is nodes with tab index > 0
                 // first, this means that there is no previous node.
-                return 0;
+                return nullptr;
             }
 
             // Search backwards from fromNode
-            for (n = fromNode->traversePreviousNode(); n != 0; n = n->traversePreviousNode()) {
+            for (n = fromNode->traversePreviousNode(); n != nullptr; n = n->traversePreviousNode()) {
                 if (n->isTabFocusable() && (n->tabIndex() == highestSuitableTabIndex)) {
                     return n;
                 }
@@ -2009,7 +2009,7 @@ NodeImpl *DocumentImpl::previousFocusNode(NodeImpl *fromNode)
             }
 
             assert(false); // should never get here
-            return 0;
+            return nullptr;
         }
     }
 }
@@ -2018,7 +2018,7 @@ ElementImpl *DocumentImpl::findAccessKeyElement(QChar c)
 {
     c = c.toUpper();
     for (NodeImpl *n = this;
-            n != NULL;
+            n != nullptr;
             n = n->traverseNextNode()) {
         if (n->isElementNode()) {
             ElementImpl *en = static_cast< ElementImpl * >(n);
@@ -2029,7 +2029,7 @@ ElementImpl *DocumentImpl::findAccessKeyElement(QChar c)
             }
         }
     }
-    return NULL;
+    return nullptr;
 }
 
 int DocumentImpl::nodeAbsIndex(NodeImpl *node)
@@ -2210,7 +2210,7 @@ WTF::PassRefPtr<NodeImpl> DocumentImpl::cloneNode(bool deep)
     int exceptioncode;
     WTF::RefPtr<NodeImpl> clone = DOMImplementationImpl::createDocument("",
                                   "",
-                                  0, 0,
+                                  nullptr, nullptr,
                                   exceptioncode);
     assert(exceptioncode == 0);
 
@@ -2293,7 +2293,7 @@ void DocumentImpl::removeStyleSheet(StyleSheetImpl *sheet, int *exceptioncode)
             bool reset = m_addedStyleSheets->hasOneRef();
             m_addedStyleSheets->deref();
             if (reset) {
-                m_addedStyleSheets = 0;
+                m_addedStyleSheets = nullptr;
             }
         }
 
@@ -2380,7 +2380,7 @@ void DocumentImpl::rebuildStyleSheetList(bool force)
 
         QString title;
         for (n = this; n; n = n->traverseNextNode()) {
-            StyleSheetImpl *sheet = 0;
+            StyleSheetImpl *sheet = nullptr;
 
             if (n->nodeType() == Node::PROCESSING_INSTRUCTION_NODE) {
                 // Processing instruction (XML documents only)
@@ -2410,7 +2410,7 @@ void DocumentImpl::rebuildStyleSheetList(bool force)
                 if (sheet) {
                     title = sheet->title().string();
                     if ((autoselect || title != sheetUsed) && sheet->disabled()) {
-                        sheet = 0;
+                        sheet = nullptr;
                     } else if (!title.isEmpty() && !pi->isAlternate() && sheetUsed.isEmpty()) {
                         sheetUsed = title;
                         sheet->setDisabled(false);
@@ -2427,7 +2427,7 @@ void DocumentImpl::rebuildStyleSheetList(bool force)
                         }
 
                         if ((autoselect || title != sheetUsed) && l->isDisabled()) {
-                            sheet = 0;
+                            sheet = nullptr;
                         } else if (!title.isEmpty() && !l->isAlternate() && sheetUsed.isEmpty()) {
                             sheetUsed = title;
                             l->setDisabled(false);
@@ -2454,7 +2454,7 @@ void DocumentImpl::rebuildStyleSheetList(bool force)
 
             if (!title.isEmpty()) {
                 if (title != sheetUsed) {
-                    sheet = 0;    // don't use it
+                    sheet = nullptr;    // don't use it
                 }
                 title = title.replace('&',  "&&");
                 if (!m_availableSheets.contains(title)) {
@@ -2567,13 +2567,13 @@ void DocumentImpl::quietResetFocus()
     assert(m_focusNode != this);
     if (m_focusNode) {
         if (m_focusNode->active()) {
-            setActiveNode(0);
+            setActiveNode(nullptr);
         }
 
         m_focusNode->setFocus(false);
         m_focusNode->deref();
     }
-    m_focusNode = 0;
+    m_focusNode = nullptr;
 
     //We're blurring. Better clear the Qt focus/give it to the view...
     if (view()) {
@@ -2604,7 +2604,7 @@ void DocumentImpl::setFocusNode(NodeImpl *newFocusNode)
 
         // We are blurring, so m_focusNode ATM is 0; this is observable to the
         // event handlers.
-        m_focusNode = 0;
+        m_focusNode = nullptr;
 
         // Remove focus from the existing focus node (if any)
         if (oldFocusNode) {
@@ -2779,13 +2779,13 @@ EventImpl *DocumentImpl::createEvent(const DOMString &eventType, int &exceptionc
         return new EventImpl();
     } else {
         exceptioncode = DOMException::NOT_SUPPORTED_ERR;
-        return 0;
+        return nullptr;
     }
 }
 
 CSSStyleDeclarationImpl *DocumentImpl::getOverrideStyle(ElementImpl * /*elt*/, DOMStringImpl * /*pseudoElt*/)
 {
-    return 0; // ###
+    return nullptr; // ###
 }
 
 void DocumentImpl::abort()
@@ -2798,7 +2798,7 @@ void DocumentImpl::abort()
     if (m_loadingXMLDoc) {
         m_loadingXMLDoc->deref(this);
     }
-    m_loadingXMLDoc = 0;
+    m_loadingXMLDoc = nullptr;
 }
 
 void DocumentImpl::load(const DOMString &uri)
@@ -2837,7 +2837,7 @@ void DocumentImpl::load(const DOMString &uri)
         // returning from event loop:
         assert(!m_inSyncLoad->isRunning());
         delete m_inSyncLoad;
-        m_inSyncLoad = 0;
+        m_inSyncLoad = nullptr;
     }
 }
 
@@ -2863,9 +2863,9 @@ void DocumentImpl::setStyleSheet(const DOM::DOMString &url, const DOM::DOMString
         m_inSyncLoad->exit();
     }
 
-    assert(m_loadingXMLDoc != 0);
+    assert(m_loadingXMLDoc != nullptr);
     m_loadingXMLDoc->deref(this);
-    m_loadingXMLDoc = 0;
+    m_loadingXMLDoc = nullptr;
 }
 
 void DocumentImpl::error(int err, const QString &text)
@@ -2889,9 +2889,9 @@ void DocumentImpl::error(int err, const QString &text)
     dispatchEvent(evt, exceptioncode, true);
     evt->deref();
 
-    assert(m_loadingXMLDoc != 0);
+    assert(m_loadingXMLDoc != nullptr);
     m_loadingXMLDoc->deref(this);
-    m_loadingXMLDoc = 0;
+    m_loadingXMLDoc = nullptr;
 }
 
 void DocumentImpl::defaultEventHandler(EventImpl *evt)
@@ -2938,7 +2938,7 @@ bool DocumentImpl::hasWindowEventListener(EventName id)
 
 EventListener *DocumentImpl::createHTMLEventListener(const QString &code, const QString &name, NodeImpl *node)
 {
-    return part() ? part()->createHTMLEventListener(code, name, node) : 0;
+    return part() ? part()->createHTMLEventListener(code, name, node) : nullptr;
 }
 
 void DocumentImpl::dispatchImageLoadEventSoon(HTMLImageElementImpl *image)
@@ -2998,11 +2998,11 @@ HTMLPartContainerElementImpl *DocumentImpl::ownerElement() const
 {
     KHTMLPart *childPart = part();
     if (!childPart) {
-        return 0;
+        return nullptr;
     }
     ChildFrame *childFrame = childPart->d->m_frame;
     if (!childFrame) {
-        return 0;
+        return nullptr;
     }
     return childFrame->m_partContainerElement.data();
 }
@@ -3058,7 +3058,7 @@ DOMString DocumentImpl::toString() const
 {
     DOMString result;
 
-    for (NodeImpl *child = firstChild(); child != NULL; child = child->nextSibling()) {
+    for (NodeImpl *child = firstChild(); child != nullptr; child = child->nextSibling()) {
         result += child->toString();
     }
 
@@ -3079,7 +3079,7 @@ KHTMLView *DOM::DocumentImpl::view() const
 KHTMLPart *DOM::DocumentImpl::part() const
 {
     // ### TODO: make this independent from a KHTMLView one day.
-    return view() ? view()->part() : 0;
+    return view() ? view()->part() : nullptr;
 }
 
 DynamicNodeListImpl::Cache *DOM::DocumentImpl::acquireCachedNodeListInfo(
@@ -3091,7 +3091,7 @@ DynamicNodeListImpl::Cache *DOM::DocumentImpl::acquireCachedNodeListInfo(
 
     //Check to see if we have this sort of item cached.
     DynamicNodeListImpl::Cache *cached =
-        (type == DynamicNodeListImpl::UNCACHEABLE) ? 0 : m_nodeListCache.value(key.hash());
+        (type == DynamicNodeListImpl::UNCACHEABLE) ? nullptr : m_nodeListCache.value(key.hash());
 
     if (cached) {
         if (cached->key == key) {
@@ -3193,7 +3193,7 @@ khtml::XPathExpressionImpl *DocumentImpl::createExpression(DOMString &expression
     XPathExpressionImpl *cand = new XPathExpressionImpl(expression, resolver);
     if ((exceptioncode = cand->parseExceptionCode())) {
         delete cand;
-        return 0;
+        return nullptr;
     }
 
     return cand;
@@ -3201,7 +3201,7 @@ khtml::XPathExpressionImpl *DocumentImpl::createExpression(DOMString &expression
 
 khtml::XPathNSResolverImpl *DocumentImpl::createNSResolver(NodeImpl *nodeResolver)
 {
-    return nodeResolver ? new DefaultXPathNSResolverImpl(nodeResolver) : 0;
+    return nodeResolver ? new DefaultXPathNSResolverImpl(nodeResolver) : nullptr;
 }
 
 khtml::XPathResultImpl *DocumentImpl::evaluate(DOMString &expression,
@@ -3214,15 +3214,15 @@ khtml::XPathResultImpl *DocumentImpl::evaluate(DOMString &expression,
     XPathExpressionImpl *expr = createExpression(expression, resolver, exceptioncode);
     if (exceptioncode) {
         delete expr;
-        return 0;
+        return nullptr;
     }
 
-    XPathResultImpl *res = expr->evaluate(contextNode, type, 0, exceptioncode);
+    XPathResultImpl *res = expr->evaluate(contextNode, type, nullptr, exceptioncode);
     delete expr;  // don't need it anymore.
 
     if (exceptioncode) {
         delete res;
-        return 0;
+        return nullptr;
     }
 
     return res;
@@ -3248,7 +3248,7 @@ KJS::Window *WindowEventTargetImpl::window()
     if (m_owner->part()) {
         return KJS::Window::retrieveWindow(m_owner->part());
     } else {
-        return 0;
+        return nullptr;
     }
 }
 // ----------------------------------------------------------------------------
@@ -3288,7 +3288,7 @@ DOMString DocumentFragmentImpl::toString() const
 {
     DOMString result;
 
-    for (NodeImpl *child = firstChild(); child != NULL; child = child->nextSibling()) {
+    for (NodeImpl *child = firstChild(); child != nullptr; child = child->nextSibling()) {
         if (child->nodeType() == Node::COMMENT_NODE || child->nodeType() == Node::PROCESSING_INSTRUCTION_NODE) {
             continue;
         }
@@ -3317,8 +3317,8 @@ DocumentTypeImpl::DocumentTypeImpl(DOMImplementationImpl *implementation, Docume
 {
     m_implementation->ref();
 
-    m_entities = 0;
-    m_notations = 0;
+    m_entities = nullptr;
+    m_notations = nullptr;
 
     // if doc is 0, it is not attached to a document and / or
     // therefore does not provide entities or notations. (DOM Level 3)
@@ -3381,7 +3381,7 @@ bool DocumentTypeImpl::childTypeAllowed(unsigned short /*type*/)
 WTF::PassRefPtr<NodeImpl> DocumentTypeImpl::cloneNode(bool /*deep*/)
 {
     DocumentTypeImpl *clone = new DocumentTypeImpl(implementation(),
-            0,
+            nullptr,
             name(), publicId(),
             systemId());
     // ### copy entities etc.

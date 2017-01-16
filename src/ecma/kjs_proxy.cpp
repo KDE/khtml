@@ -45,7 +45,7 @@ int KJSProxy::s_count = 0;
 
 KJSProxy::KJSProxy(khtml::ChildFrame *frame)
 {
-    m_script = 0;
+    m_script = nullptr;
     m_frame = frame;
     m_debugEnabled = false;
     m_running = 0;

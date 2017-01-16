@@ -45,7 +45,7 @@ class HTMLDocumentImpl : public DOM::DocumentImpl
 {
     Q_OBJECT
 public:
-    HTMLDocumentImpl(KHTMLView *v = 0);
+    HTMLDocumentImpl(KHTMLView *v = nullptr);
     ~HTMLDocumentImpl();
 
     bool isHTMLDocument() const Q_DECL_OVERRIDE
@@ -120,7 +120,7 @@ protected Q_SLOTS:
 class HTMLTextDocumentImpl: public HTMLDocumentImpl
 {
 public:
-    HTMLTextDocumentImpl(KHTMLView *v = 0);
+    HTMLTextDocumentImpl(KHTMLView *v = nullptr);
     khtml::Tokenizer *createTokenizer() Q_DECL_OVERRIDE;
 };
 

@@ -42,6 +42,6 @@ void EditorContext::reset()
     m_beganSelectingText = false;
 
     delete m_editor;
-    m_editor = 0;
+    m_editor = nullptr;
 
 }

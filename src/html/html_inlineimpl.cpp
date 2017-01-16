@@ -58,12 +58,12 @@ void HTMLAnchorElementImpl::defaultEventHandler(EventImpl *evt)
     if (((evt->id() == EventImpl::CLICK_EVENT && !static_cast<MouseEventImpl *>(evt)->isDoubleClick()) ||
             (keydown && m_focused)) && m_hasAnchor) {
 
-        MouseEventImpl *e = 0;
+        MouseEventImpl *e = nullptr;
         if (evt->id() == EventImpl::CLICK_EVENT) {
             e = static_cast<MouseEventImpl *>(evt);
         }
 
-        KeyEventBaseImpl *k = 0;
+        KeyEventBaseImpl *k = nullptr;
         if (keydown) {
             k = static_cast<KeyEventBaseImpl *>(evt);
         }
@@ -170,7 +170,7 @@ void HTMLAnchorElementImpl::defaultEventHandler(EventImpl *evt)
 
 void HTMLAnchorElementImpl::click()
 {
-    QMouseEvent me(QEvent::MouseButtonRelease, QPoint(0, 0), Qt::LeftButton, Qt::LeftButton, 0);
+    QMouseEvent me(QEvent::MouseButtonRelease, QPoint(0, 0), Qt::LeftButton, Qt::LeftButton, nullptr);
     dispatchMouseEvent(&me, EventImpl::CLICK_EVENT, 1);
 }
 
@@ -179,7 +179,7 @@ void HTMLAnchorElementImpl::parseAttribute(AttributeImpl *attr)
     switch (attr->id()) {
     case ATTR_HREF: {
         bool hadAnchor = m_hasAnchor;
-        m_hasAnchor = attr->val() != 0;
+        m_hasAnchor = attr->val() != nullptr;
         document()->incDOMTreeVersion(DocumentImpl::TV_IDNameHref);
         if (hadAnchor != m_hasAnchor) {
             setChanged();
@@ -193,7 +193,7 @@ void HTMLAnchorElementImpl::parseAttribute(AttributeImpl *attr)
     }
     break;
     case ATTR_TARGET:
-        m_hasTarget = attr->val() != 0;
+        m_hasTarget = attr->val() != nullptr;
         break;
     case ATTR_TITLE:
     case ATTR_REL:

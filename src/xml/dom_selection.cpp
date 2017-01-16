@@ -410,7 +410,7 @@ void Selection::setNeedsLayout(bool flag)
 void Selection::getRange(NodeImpl *&st, long &so, NodeImpl *&en, long &eo) const
 {
     if (isEmpty()) {
-        st = en = 0; so = eo = 0;
+        st = en = nullptr; so = eo = 0;
         return;
     }
 
@@ -891,8 +891,8 @@ static bool startAndEndLineNodesIncludingNode(NodeImpl *node, int offset, Select
             renderNode = renderNode->firstChild();
         }
 
-        NodeImpl *startNode = 0;
-        NodeImpl *endNode = 0;
+        NodeImpl *startNode = nullptr;
+        NodeImpl *endNode = nullptr;
         long startOffset;
         long endOffset;
 

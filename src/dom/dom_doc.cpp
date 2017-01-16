@@ -39,7 +39,7 @@ namespace DOM
 
 DOMImplementation::DOMImplementation()
 {
-    impl = 0;
+    impl = nullptr;
 }
 
 DOMImplementation::DOMImplementation(const DOMImplementation &other)
@@ -115,7 +115,7 @@ Document DOMImplementation::createDocument(const DOMString &namespaceURI,
     int exceptioncode = 0;
     DocumentImpl *r = impl->createDocument(namespaceURI, qualifiedName,
                                            (DocumentTypeImpl *)doctype.handle(),
-                                           0, exceptioncode);
+                                           nullptr, exceptioncode);
     if (exceptioncode) {
         throw DOMException(exceptioncode);
     }
@@ -162,7 +162,7 @@ DOMImplementationImpl *DOMImplementation::handle() const
 
 bool DOMImplementation::isNull() const
 {
-    return (impl == 0);
+    return (impl == nullptr);
 }
 
 // ----------------------------------------------------------------------------
@@ -182,7 +182,7 @@ Document::Document(bool create)
         impl = DOMImplementationImpl::createDocument();
         impl->ref();
     } else {
-        impl = 0;
+        impl = nullptr;
     }
 //    qDebug() << "Document::Document(bool)";
 }
@@ -205,7 +205,7 @@ Document &Document::operator = (const Node &other)
             if (impl) {
                 impl->deref();
             }
-            impl = 0;
+            impl = nullptr;
         } else {
             Node::operator =(other);
         }
@@ -229,7 +229,7 @@ DocumentType Document::doctype() const
     if (impl) {
         return ((DocumentImpl *)impl)->doctype();
     }
-    return 0;
+    return nullptr;
 }
 
 DOMImplementation Document::implementation() const
@@ -237,7 +237,7 @@ DOMImplementation Document::implementation() const
     if (impl) {
         return ((DocumentImpl *)impl)->implementation();
     }
-    return 0;
+    return nullptr;
 }
 
 Element Document::documentElement() const
@@ -245,7 +245,7 @@ Element Document::documentElement() const
     if (impl) {
         return ((DocumentImpl *)impl)->documentElement();
     }
-    return 0;
+    return nullptr;
 }
 
 Element Document::createElement(const DOMString &tagName)
@@ -281,7 +281,7 @@ DocumentFragment Document::createDocumentFragment()
     if (impl) {
         return ((DocumentImpl *)impl)->createDocumentFragment();
     }
-    return 0;
+    return nullptr;
 }
 
 Text Document::createTextNode(const DOMString &data)
@@ -289,7 +289,7 @@ Text Document::createTextNode(const DOMString &data)
     if (impl) {
         return ((DocumentImpl *)impl)->createTextNode(data.implementation());
     }
-    return 0;
+    return nullptr;
 }
 
 Comment Document::createComment(const DOMString &data)
@@ -297,13 +297,13 @@ Comment Document::createComment(const DOMString &data)
     if (impl) {
         return ((DocumentImpl *)impl)->createComment(data.implementation());
     }
-    return 0;
+    return nullptr;
 }
 
 CDATASection Document::createCDATASection(const DOMString &data)
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     int exceptioncode = 0;
     CDATASectionImpl *d = ((DocumentImpl *)impl)->createCDATASection(data.implementation(), exceptioncode);
@@ -318,7 +318,7 @@ ProcessingInstruction Document::createProcessingInstruction(const DOMString &tar
     if (impl) {
         return ((DocumentImpl *)impl)->createProcessingInstruction(target, data.implementation());
     }
-    return 0;
+    return nullptr;
 }
 
 Attr Document::createAttribute(const DOMString &name)
@@ -356,7 +356,7 @@ Attr Document::createAttributeNS(const DOMString &namespaceURI, const DOMString 
 EntityReference Document::createEntityReference(const DOMString &name)
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     int exceptioncode = 0;
     EntityReferenceImpl *er = ((DocumentImpl *)impl)->createEntityReference(name, exceptioncode);
@@ -371,13 +371,13 @@ Element Document::getElementById(const DOMString &elementId) const
     if (impl) {
         return ((DocumentImpl *)impl)->getElementById(elementId);
     }
-    return 0;
+    return nullptr;
 }
 
 NodeList Document::getElementsByTagName(const DOMString &tagName)
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return impl->getElementsByTagName(tagName);
 }
@@ -385,7 +385,7 @@ NodeList Document::getElementsByTagName(const DOMString &tagName)
 NodeList Document::getElementsByTagNameNS(const DOMString &namespaceURI, const DOMString &localName)
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return impl->getElementsByTagNameNS(namespaceURI, localName);
 }
@@ -393,7 +393,7 @@ NodeList Document::getElementsByTagNameNS(const DOMString &namespaceURI, const D
 NodeList Document::getElementsByClassName(const DOMString &className)
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return impl->getElementsByClassName(className);
 }
@@ -425,7 +425,7 @@ Range Document::createRange()
     if (impl) {
         return ((DocumentImpl *)impl)->createRange();
     }
-    return 0;
+    return nullptr;
 }
 
 NodeIterator Document::createNodeIterator(Node root, unsigned long whatToShow,
@@ -524,7 +524,7 @@ void Document::setSelectedStylesheetSet(const DOMString &s)
 KHTMLView *Document::view() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
 
     return static_cast<DocumentImpl *>(impl)->view();
@@ -752,7 +752,7 @@ DocumentFragment &DocumentFragment::operator = (const Node &other)
             if (impl) {
                 impl->deref();
             }
-            impl = 0;
+            impl = nullptr;
         } else {
             Node::operator =(other);
         }
@@ -824,7 +824,7 @@ DocumentType &DocumentType::operator = (const Node &other)
             if (impl) {
                 impl->deref();
             }
-            impl = 0;
+            impl = nullptr;
         } else {
             Node::operator =(other);
         }
@@ -854,7 +854,7 @@ DOMString DocumentType::name() const
 NamedNodeMap DocumentType::entities() const
 {
     if (!impl) {
-        return 0;    // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
+        return nullptr;    // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
     }
 
     return static_cast<DocumentTypeImpl *>(impl)->entities();
@@ -863,7 +863,7 @@ NamedNodeMap DocumentType::entities() const
 NamedNodeMap DocumentType::notations() const
 {
     if (!impl) {
-        return 0;    // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
+        return nullptr;    // ### enable throw DOMException(DOMException::NOT_FOUND_ERR);
     }
 
     return static_cast<DocumentTypeImpl *>(impl)->notations();

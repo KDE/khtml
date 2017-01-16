@@ -49,10 +49,10 @@ namespace khtml
 
 // an iterator which goes through a BidiParagraph
 struct BidiIterator {
-    BidiIterator() : par(0), obj(0), pos(0), endOfInline(false) {}
+    BidiIterator() : par(nullptr), obj(nullptr), pos(0), endOfInline(false) {}
     BidiIterator(RenderBlock *_par, RenderObject *_obj, unsigned int _pos, bool eoi = false) : par(_par), obj(_obj), pos(_pos), endOfInline(eoi) {}
 
-    void increment(BidiState *bidi = 0, bool skipInlines = true);
+    void increment(BidiState *bidi = nullptr, bool skipInlines = true);
 
     bool atEnd() const;
 
@@ -66,7 +66,7 @@ struct BidiIterator {
 };
 
 struct BidiState {
-    BidiState() : context(0) {}
+    BidiState() : context(nullptr) {}
 
     BidiIterator sor;
     BidiIterator eor;
@@ -169,8 +169,8 @@ static void deleteBidiRuns(RenderArena *arena)
         curr = s;
     }
 
-    sFirstBidiRun = 0;
-    sLastBidiRun = 0;
+    sFirstBidiRun = nullptr;
+    sLastBidiRun = nullptr;
     sBidiRunCount = 0;
 }
 
@@ -262,15 +262,15 @@ inline bool operator!=(const BidiStatus &status1, const BidiStatus &status2)
 }
 
 // when modifying this function, make sure you check InlineMinMaxIterator::next() as well.
-static inline RenderObject *Bidinext(RenderObject *par, RenderObject *current, BidiState *bidi = 0,
-                                     bool skipInlines = true, bool *endOfInline = 0)
+static inline RenderObject *Bidinext(RenderObject *par, RenderObject *current, BidiState *bidi = nullptr,
+                                     bool skipInlines = true, bool *endOfInline = nullptr)
 {
-    RenderObject *next = 0;
+    RenderObject *next = nullptr;
     bool oldEndOfInline = endOfInline ? *endOfInline : false;
     if (oldEndOfInline) {
         *endOfInline = false;
     }
-    while (current != 0) {
+    while (current != nullptr) {
         //qDebug() << "current = " << current;
         if (!oldEndOfInline && !current->isFloating() && !current->isReplaced() && !current->isPositioned()) {
             next = current->firstChild();
@@ -318,7 +318,7 @@ static inline RenderObject *Bidinext(RenderObject *par, RenderObject *current, B
             break;
         }
         current = next;
-        next    = 0;
+        next    = nullptr;
     }
     return next;
 }
@@ -326,7 +326,7 @@ static inline RenderObject *Bidinext(RenderObject *par, RenderObject *current, B
 static RenderObject *first(RenderObject *par, BidiState *bidi, bool skipInlines = true)
 {
     if (!par->firstChild()) {
-        return 0;
+        return nullptr;
     }
     RenderObject *o = par->firstChild();
 
@@ -437,7 +437,7 @@ static void reverseRuns(int start, int end)
     // Get the item before the start of the runs to reverse and put it in
     // |beforeStart|.  |curr| should point to the first run to reverse.
     BidiRun *curr = sFirstBidiRun;
-    BidiRun *beforeStart = 0;
+    BidiRun *beforeStart = nullptr;
     int i = 0;
     while (i < start) {
         i++;
@@ -739,10 +739,10 @@ InlineFlowBox *RenderBlock::createLineBoxes(RenderObject *obj)
 RootInlineBox *RenderBlock::constructLine(const BidiIterator &/*start*/, const BidiIterator &end)
 {
     if (!sFirstBidiRun) {
-        return 0;    // We had no runs. Don't make a root inline box at all. The line is empty.
+        return nullptr;    // We had no runs. Don't make a root inline box at all. The line is empty.
     }
 
-    InlineFlowBox *parentBox = 0;
+    InlineFlowBox *parentBox = nullptr;
     for (BidiRun *r = sFirstBidiRun; r; r = r->nextRun) {
         // Create a box for our object.
         r->box = r->obj->createInlineBox(r->obj->isPositioned(), false);
@@ -768,7 +768,7 @@ RootInlineBox *RenderBlock::constructLine(const BidiIterator &/*start*/, const B
     // paint borders/margins/padding.  This knowledge will ultimately be used when
     // we determine the horizontal positions and widths of all the inline boxes on
     // the line.
-    RenderObject *endObject = 0;
+    RenderObject *endObject = nullptr;
     bool lastLine = !end.obj;
     if (end.obj && end.pos == 0) {
         endObject = end.obj;
@@ -786,7 +786,7 @@ void RenderBlock::computeHorizontalPositionsForLine(InlineFlowBox *lineBox, Bidi
 {
     // First determine our total width.
     int totWidth = lineBox->getFlowSpacingWidth();
-    BidiRun *r = 0;
+    BidiRun *r = nullptr;
     for (r = sFirstBidiRun; r; r = r->nextRun) {
         if (r->obj->isPositioned()) {
             continue;    // Positioned objects are only participating to figure out their
@@ -1008,8 +1008,8 @@ void RenderBlock::bidiReorderLine(const BidiIterator &start, const BidiIterator 
     qDebug() << "reordering Line from " << start.obj << "/" << start.pos << " to " << end.obj << "/" << end.pos;
 #endif
 
-    sFirstBidiRun = 0;
-    sLastBidiRun = 0;
+    sFirstBidiRun = nullptr;
+    sLastBidiRun = nullptr;
     sBidiRunCount = 0;
 
     //    context->ref();
@@ -1471,7 +1471,7 @@ void RenderBlock::layoutInlineChildren(bool relayoutChildren, int breakBeforeLin
 
     if (firstChild()) {
         // layout replaced elements
-        RenderObject *o = first(this, 0, false);
+        RenderObject *o = first(this, nullptr, false);
         while (o) {
             invalidateVerticalPosition();
             if (!fullLayout && o->markedForRepaint()) {
@@ -1505,7 +1505,7 @@ void RenderBlock::layoutInlineChildren(bool relayoutChildren, int breakBeforeLin
                 }
                 o->setNeedsLayout(false);
             }
-            o = Bidinext(this, o, 0, false);
+            o = Bidinext(this, o, nullptr, false);
         }
 
         BidiContext *startEmbed;
@@ -1530,10 +1530,10 @@ void RenderBlock::layoutInlineChildren(bool relayoutChildren, int breakBeforeLin
         // Then look forward to see if we can find a clean area that is clean up to the end.
         BidiIterator cleanLineStart;
         BidiStatus cleanLineBidiStatus;
-        BidiContext *cleanLineBidiContext = 0;
+        BidiContext *cleanLineBidiContext = nullptr;
         int endLineYPos = 0;
         RootInlineBox *endLine = (fullLayout || !startLine) ?
-                                 0 : determineEndPosition(startLine, cleanLineStart, cleanLineBidiStatus, cleanLineBidiContext, endLineYPos);
+                                 nullptr : determineEndPosition(startLine, cleanLineStart, cleanLineBidiStatus, cleanLineBidiContext, endLineYPos);
 
         // Extract the clean area. We will add it back if we determine that we're able to
         // synchronize after relayouting the dirty area.
@@ -1551,7 +1551,7 @@ void RenderBlock::layoutInlineChildren(bool relayoutChildren, int breakBeforeLin
                 box->deleteLine(arena);
                 box = next;
             }
-            startLine = 0;
+            startLine = nullptr;
         }
         BidiIterator end = start;
         bool endLineMatched = false;
@@ -1563,7 +1563,7 @@ void RenderBlock::layoutInlineChildren(bool relayoutChildren, int breakBeforeLin
 
         sNumMidpoints = 0;
         sCurrMidpoint = 0;
-        sCompactFirstBidiRun = sCompactLastBidiRun = 0;
+        sCompactFirstBidiRun = sCompactLastBidiRun = nullptr;
         sCompactBidiRunCount = 0;
 
         previousLineBrokeAtBR = true;
@@ -1606,7 +1606,7 @@ void RenderBlock::layoutInlineChildren(bool relayoutChildren, int breakBeforeLin
                 // At the same time we figure out where border/padding/margin should be applied for
                 // inline flow boxes.
 
-                RootInlineBox *lineBox = 0;
+                RootInlineBox *lineBox = nullptr;
                 if (sBidiRunCount) {
                     lineBox = constructLine(start, end);
                     if (lineBox) {
@@ -1657,7 +1657,7 @@ void RenderBlock::layoutInlineChildren(bool relayoutChildren, int breakBeforeLin
 
             sNumMidpoints = 0;
             sCurrMidpoint = 0;
-            sCompactFirstBidiRun = sCompactLastBidiRun = 0;
+            sCompactFirstBidiRun = sCompactLastBidiRun = nullptr;
             sCompactBidiRunCount = 0;
         }
         startEmbed->deref();
@@ -1773,9 +1773,9 @@ no_break:
 
 RootInlineBox *RenderBlock::determineStartPosition(bool fullLayout, BidiIterator &start, BidiState &bidi)
 {
-    RootInlineBox *curr = 0;
-    RootInlineBox *last = 0;
-    RenderObject *startObj = 0;
+    RootInlineBox *curr = nullptr;
+    RootInlineBox *last = nullptr;
+    RenderObject *startObj = nullptr;
     int pos = 0;
 
     if (fullLayout) {
@@ -1839,13 +1839,13 @@ RootInlineBox *RenderBlock::determineStartPosition(bool fullLayout, BidiIterator
 
 RootInlineBox *RenderBlock::determineEndPosition(RootInlineBox *startLine, BidiIterator &cleanLineStart, BidiStatus &cleanLineBidiStatus, BidiContext *cleanLineBidiContext, int &yPos)
 {
-    RootInlineBox *last = 0;
+    RootInlineBox *last = nullptr;
     if (!startLine) {
-        last = 0;
+        last = nullptr;
     } else {
         for (RootInlineBox *curr = startLine->nextRootBox(); curr; curr = curr->nextRootBox()) {
             if (curr->isDirty()) {
-                last = 0;
+                last = nullptr;
             } else if (!last) {
                 last = curr;
             }
@@ -1853,7 +1853,7 @@ RootInlineBox *RenderBlock::determineEndPosition(RootInlineBox *startLine, BidiI
     }
 
     if (!last) {
-        return 0;
+        return nullptr;
     }
 
     RootInlineBox *prev = last->prevRootBox();
@@ -1906,7 +1906,7 @@ bool RenderBlock::matchedEndLine(const BidiIterator &start, const BidiStatus &st
     return false;
 }
 
-static void setStaticPosition(RenderBlock *p, RenderObject *o, bool *needToSetStaticX = 0, bool *needToSetStaticY = 0)
+static void setStaticPosition(RenderBlock *p, RenderObject *o, bool *needToSetStaticX = nullptr, bool *needToSetStaticY = nullptr)
 {
     // If our original display wasn't an inline type, then we can
     // determine our static x position now.
@@ -1967,7 +1967,7 @@ bool RenderBlock::inlineChildNeedsLineBox(RenderObject *inlineObj) // WC: genera
 
     BidiIterator it(this, inlineObj, 0);
     while (!it.atEnd() && !requiresLineBox(it)) {
-        it.increment(0, false /*skipInlines*/);
+        it.increment(nullptr, false /*skipInlines*/);
     }
 
     return !it.atEnd();
@@ -2030,11 +2030,11 @@ BidiIterator RenderBlock::findNextLineBreak(BidiIterator &start, BidiState &bidi
                     hadPosStart = true;
                     posStart = start;
                     // include this object then stop
-                    addMidpoint(BidiIterator(0, o, 0));
+                    addMidpoint(BidiIterator(nullptr, o, 0));
                 } else {
                     // start/stop
-                    addMidpoint(BidiIterator(0, o, 0));
-                    addMidpoint(BidiIterator(0, o, 0));
+                    addMidpoint(BidiIterator(nullptr, o, 0));
+                    addMidpoint(BidiIterator(nullptr, o, 0));
                 }
                 setStaticPosition(this, o);
             }
@@ -2074,7 +2074,7 @@ BidiIterator RenderBlock::findNextLineBreak(BidiIterator &start, BidiState &bidi
     // Once a floating object does not fit, we wait till next linebreak before positioning more floats.
     bool floatsFitOnLine = true;
 
-    RenderObject *trailingSpaceObject = 0;
+    RenderObject *trailingSpaceObject = nullptr;
 
     BidiIterator lBreak = start;
     InlineMinMaxIterator it(start.par, start.obj, start.endOfInline, false /*skipPositioned*/);
@@ -2103,7 +2103,7 @@ BidiIterator RenderBlock::findNextLineBreak(BidiIterator &start, BidiState &bidi
                 if (prevLineBrokeCleanly) {
                     isLineEmpty = false;
                 }
-                trailingSpaceObject = 0;
+                trailingSpaceObject = nullptr;
                 previousLineBrokeAtBR = true;
 
                 if (!isLineEmpty) {
@@ -2137,7 +2137,7 @@ BidiIterator RenderBlock::findNextLineBreak(BidiIterator &start, BidiState &bidi
                 // If we're ignoring spaces, we have to stop and include this object and
                 // then start ignoring spaces again.
                 if (needToSetStaticX || needToSetStaticY) {
-                    trailingSpaceObject = 0;
+                    trailingSpaceObject = nullptr;
                     ignoreStart.obj = o;
                     ignoreStart.pos = 0;
                     if (ignoringSpaces) {
@@ -2188,13 +2188,13 @@ BidiIterator RenderBlock::findNextLineBreak(BidiIterator &start, BidiState &bidi
 
             tmpW += o->width() + o->marginLeft() + o->marginRight();
             if (ignoringSpaces) {
-                BidiIterator startMid(0, o, 0);
+                BidiIterator startMid(nullptr, o, 0);
                 addMidpoint(startMid);
             }
             isLineEmpty = false;
             ignoringSpaces = false;
             currentCharacterIsSpace = false;
-            trailingSpaceObject = 0;
+            trailingSpaceObject = nullptr;
 
             if (o->isListMarker()) {
                 checkShouldIgnoreInitialWhitespace = true;
@@ -2235,7 +2235,7 @@ BidiIterator RenderBlock::findNextLineBreak(BidiIterator &start, BidiState &bidi
                     nextIsSoftBreakable = true;
                     if (!ignoringSpaces) {
                         // Ignore soft hyphens
-                        BidiIterator endMid(0, o, pos - 1);
+                        BidiIterator endMid(nullptr, o, pos - 1);
                         addMidpoint(endMid);
 
                         // Add the width up to but not including the hyphen.
@@ -2248,7 +2248,7 @@ BidiIterator RenderBlock::findNextLineBreak(BidiIterator &start, BidiState &bidi
                             tmpW += f->charWidth(&softHyphen, 1, 0, true);
                         }
 
-                        BidiIterator startMid(0, o, pos + 1);
+                        BidiIterator startMid(nullptr, o, pos + 1);
                         addMidpoint(startMid);
                     }
 
@@ -2268,7 +2268,7 @@ BidiIterator RenderBlock::findNextLineBreak(BidiIterator &start, BidiState &bidi
                         // new point.
                         ignoringSpaces = false;
                         lastSpace = pos; // e.g., "Foo    goo", don't add in any of the ignored spaces.
-                        BidiIterator startMid(0, o, pos);
+                        BidiIterator startMid(nullptr, o, pos);
                         addMidpoint(startMid);
                     } else {
                         // Just keep ignoring these spaces.
@@ -2355,7 +2355,7 @@ BidiIterator RenderBlock::findNextLineBreak(BidiIterator &start, BidiState &bidi
                 if (!preserveWS && currentCharacterIsSpace && !ignoringSpaces) {
                     trailingSpaceObject = o;
                 } else if (preserveWS || !currentCharacterIsSpace) {
-                    trailingSpaceObject = 0;
+                    trailingSpaceObject = nullptr;
                 }
 
                 pos++;
@@ -2404,7 +2404,7 @@ BidiIterator RenderBlock::findNextLineBreak(BidiIterator &start, BidiState &bidi
                 if (rt->stringLength() > 0 && (rt->text()[0].category() == QChar::Separator_Space || rt->text()[0] == '\n')) {
                     currentCharacterIsSpace = true;
                     ignoringSpaces = true;
-                    BidiIterator endMid(0, lastIt.current, 0);
+                    BidiIterator endMid(nullptr, lastIt.current, 0);
                     addMidpoint(endMid);
                 }
             }
@@ -2464,7 +2464,7 @@ BidiIterator RenderBlock::findNextLineBreak(BidiIterator &start, BidiState &bidi
             if (checkForBreak && (w + tmpW > width)) {
                 // if we have floats, try to get below them.
                 if (currentCharacterIsSpace && !ignoringSpaces && !lastIt.current->style()->preserveWS()) {
-                    trailingSpaceObject = 0;
+                    trailingSpaceObject = nullptr;
                 }
 
                 if (w) {
@@ -2505,7 +2505,7 @@ BidiIterator RenderBlock::findNextLineBreak(BidiIterator &start, BidiState &bidi
     qDebug() << "end of par, width = " << width << " linewidth = " << w + tmpW;
 #endif
     if (w + tmpW <= width || (lastIt.current && !lastIt.current->style()->autoWrap())) {
-        lBreak.obj = 0;
+        lBreak.obj = nullptr;
         lBreak.pos = 0;
         lBreak.endOfInline = false;
     }
@@ -2559,11 +2559,11 @@ end:
         }
         //else if (lBreak.pos > 0)
         //    lBreak.pos--;
-        else if (lBreak.obj == 0 && trailingSpaceObject->isText()) {
+        else if (lBreak.obj == nullptr && trailingSpaceObject->isText()) {
             // Add a new end midpoint that stops right at the very end.
             RenderText *text = static_cast<RenderText *>(trailingSpaceObject);
             unsigned pos = text->length() >= 2 ? text->length() - 2 : UINT_MAX;
-            BidiIterator endMid(0, trailingSpaceObject, pos);
+            BidiIterator endMid(nullptr, trailingSpaceObject, pos);
             addMidpoint(endMid);
         }
     }

@@ -50,7 +50,7 @@ public:
     bool getPropertyPriority(int propertyID) const Q_DECL_OVERRIDE;
     unsigned long length() const Q_DECL_OVERRIDE;
 
-    void removeProperty(int propertyID, DOM::DOMString *old = 0) Q_DECL_OVERRIDE;
+    void removeProperty(int propertyID, DOM::DOMString *old = nullptr) Q_DECL_OVERRIDE;
     bool removePropertiesInSet(const int *set, unsigned length) Q_DECL_OVERRIDE;
     bool isPropertyImplicit(int /*propertyID*/) const Q_DECL_OVERRIDE
     {

@@ -345,14 +345,14 @@ DOM::NodeListImpl *SVGSVGElement::getIntersectionList(const FloatRect &rect, SVG
 {
     Q_UNUSED(rect);
     // FIXME: Implement me (see bug 11274)
-    return 0;
+    return nullptr;
 }
 
 DOM::NodeListImpl *SVGSVGElement::getEnclosureList(const FloatRect &rect, SVGElement *)
 {
     Q_UNUSED(rect);
     // FIXME: Implement me (see bug 11274)
-    return 0;
+    return nullptr;
 }
 
 bool SVGSVGElement::checkIntersection(SVGElement *element, const FloatRect &rect)

@@ -39,8 +39,8 @@ namespace WebCore
 
 RenderSVGContainer::RenderSVGContainer(SVGStyledElement *node)
     : RenderObject(node)
-    , m_firstChild(0)
-    , m_lastChild(0)
+    , m_firstChild(nullptr)
+    , m_lastChild(nullptr)
     , m_width(0)
     , m_height(0)
     , m_drawsContents(true)
@@ -110,7 +110,7 @@ RenderObject *RenderSVGContainer::removeChildNode(RenderObject *oldChild)
         InlineBox *ph = rb->placeHolderBox();
         if (ph) {
             ph->detach(rb->renderArena(), inCleanup /*NoRemove*/);
-            rb->setPlaceHolderBox(0);
+            rb->setPlaceHolderBox(nullptr);
         }
     }
 
@@ -141,9 +141,9 @@ RenderObject *RenderSVGContainer::removeChildNode(RenderObject *oldChild)
         m_lastChild = oldChild->previousSibling();
     }
 
-    oldChild->setPreviousSibling(0);
-    oldChild->setNextSibling(0);
-    oldChild->setParent(0);
+    oldChild->setPreviousSibling(nullptr);
+    oldChild->setNextSibling(nullptr);
+    oldChild->setParent(nullptr);
 
     /*if (AXObjectCache::accessibilityEnabled())
         document()->axObjectCache()->childrenChanged(this);*/
@@ -364,7 +364,7 @@ void RenderSVGContainer::paint(PaintInfo &paintInfo, int parentX, int parentY)
     paintInfo.p->save();
     applyContentTransforms(paintInfo);
 
-    SVGResourceFilter *filter = 0;
+    SVGResourceFilter *filter = nullptr;
     /*PaintInfo savedInfo(paintInfo);*/
 
     FloatRect boundingBox = relativeBBox(true);
@@ -427,7 +427,7 @@ FloatRect RenderSVGContainer::relativeBBox(bool includeStroke) const
     FloatRect rect;
 
     RenderObject *current = firstChild();
-    for (; current != 0; current = current->nextSibling()) {
+    for (; current != nullptr; current = current->nextSibling()) {
         FloatRect childBBox = current->relativeBBox(includeStroke);
         FloatRect mappedBBox = current->localTransform().mapRect(childBBox);
 

@@ -43,7 +43,7 @@ bool CSSParser::parseSVGValue(int propId, bool important)
     int id = value->id;
 
     bool valid_primitive = false;
-    CSSValueImpl *parsedValue = 0;
+    CSSValueImpl *parsedValue = nullptr;
 
     switch (propId) {
     /* The comment to the right defines all valid value of these
@@ -349,7 +349,7 @@ CSSValueImpl *CSSParser::parseSVGStrokeDasharray()
     }
     if (!valid_primitive) {
         delete ret;
-        ret = 0;
+        ret = nullptr;
     }
 
     return ret;
@@ -372,7 +372,7 @@ CSSValueImpl *CSSParser::parseSVGColor()
 {
     CSSPrimitiveValueImpl *val;
     if (!(val = parseColorFromValue(valueList->current()/*, c, true*/))) {
-        return 0;
+        return nullptr;
     }
     SVGColorImpl *color = new SVGColorImpl(QColor(val->getRGBColorValue()));
     delete val;

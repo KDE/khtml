@@ -30,7 +30,7 @@
 KHTMLViewBar::KHTMLViewBar(Position position, KHTMLView *view, QWidget *parent) :
     QWidget(parent),
     m_view(view),
-    m_permanentBarWidget(0)
+    m_permanentBarWidget(nullptr)
 {
     const QBoxLayout::Direction direction = (position == Top ? QBoxLayout::TopToBottom : QBoxLayout::BottomToTop);
 
@@ -81,7 +81,7 @@ void KHTMLViewBar::removePermanentBarWidget(KHTMLViewBarWidget *barWidget)
 
     m_permanentBarWidget->hide();
     layout()->removeWidget(m_permanentBarWidget);
-    m_permanentBarWidget = 0;
+    m_permanentBarWidget = nullptr;
 }
 
 bool KHTMLViewBar::hasPermanentWidget(KHTMLViewBarWidget *barWidget) const

@@ -402,7 +402,7 @@ JSValue *ArrayBufferView<T, P>::getValueProperty(ExecState * /*exec*/, int token
         qWarning() << "ArrayBufferView<T>::getValueProperty unhandled token " << token;
         break;
     }
-    return 0;
+    return nullptr;
 }
 
 template <class T, class P>

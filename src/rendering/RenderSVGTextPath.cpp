@@ -83,8 +83,8 @@ void RenderSVGTextPath::absoluteRects(Vector<IntRect> &rects, int, int)
 {
     InlineRunBox *firstBox = firstLineBox();
 
-    SVGRootInlineBox *rootBox = firstBox ? static_cast<SVGInlineTextBox *>(firstBox)->svgRootInlineBox() : 0;
-    RenderObject *object = rootBox ? rootBox->object() : 0;
+    SVGRootInlineBox *rootBox = firstBox ? static_cast<SVGInlineTextBox *>(firstBox)->svgRootInlineBox() : nullptr;
+    RenderObject *object = rootBox ? rootBox->object() : nullptr;
 
     if (!object) {
         return;

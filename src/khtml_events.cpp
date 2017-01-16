@@ -37,7 +37,7 @@ khtml::MouseEvent::MouseEvent(const char *name, QMouseEvent *qmouseEvent, int x,
     : KParts::Event(name), m_qmouseEvent(qmouseEvent), m_x(x), m_y(y),
       m_url(url), m_target(target), m_innerNode(innerNode)
 {
-    d = 0;
+    d = nullptr;
     if (innerNode.handle() && innerNode.handle()->renderer()) {
         innerNode.handle()->renderer()->absolutePosition(m_nodeAbsX, m_nodeAbsY);
     }

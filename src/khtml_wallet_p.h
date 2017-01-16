@@ -43,13 +43,13 @@ class KHTMLWalletQueue : public QObject
 public:
     KHTMLWalletQueue(QObject *parent) : QObject(parent)
     {
-        wallet = 0L;
+        wallet = nullptr;
     }
 
     virtual ~KHTMLWalletQueue()
     {
         delete wallet;
-        wallet = 0L;
+        wallet = nullptr;
     }
 
     KWallet::Wallet *wallet;
@@ -66,7 +66,7 @@ public Q_SLOTS:
     {
         if (!success) {
             delete wallet;
-            wallet = 0L;
+            wallet = nullptr;
         }
         emit walletOpened(wallet);
         if (wallet) {
@@ -85,7 +85,7 @@ public Q_SLOTS:
         }
         callers.clear();
         savers.clear();
-        wallet = 0L; // gave it away
+        wallet = nullptr; // gave it away
     }
 };
 

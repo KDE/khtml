@@ -141,7 +141,7 @@ namespace KJS
 @end
 */
 
-const ClassInfo Screen::info = { "Screen", 0, &ScreenTable, 0 };
+const ClassInfo Screen::info = { "Screen", nullptr, &ScreenTable, nullptr };
 
 // We set the object prototype so that toString is implemented
 Screen::Screen(ExecState *exec)
@@ -223,7 +223,7 @@ JSValue *Screen::getValueProperty(ExecState *exec, int token) const
 
 KJS_IMPLEMENT_PROTOFUNC(ConsoleFunc)
 
-const ClassInfo Console::info = { "Console", 0, &ConsoleTable, 0 };
+const ClassInfo Console::info = { "Console", nullptr, &ConsoleTable, nullptr };
 
 // We set the object prototype so that toString is implemented
 Console::Console(ExecState *exec)
@@ -388,7 +388,7 @@ JSValue *ConsoleFunc::callAsFunction(ExecState *exec, JSObject * /*thisObj*/, co
 
 ////////////////////// Window Object ////////////////////////
 
-const ClassInfo Window::info = { "Window", &DOMAbstractView::info, &WindowTable, 0 };
+const ClassInfo Window::info = { "Window", &DOMAbstractView::info, &WindowTable, nullptr };
 
 /*
 @begin WindowTable 233
@@ -605,7 +605,7 @@ const ClassInfo Window::info = { "Window", &DOMAbstractView::info, &WindowTable,
 KJS_IMPLEMENT_PROTOFUNC(WindowFunc)
 
 Window::Window(khtml::ChildFrame *p)
-    : JSGlobalObject(/*no proto*/), m_frame(p), screen(0), console(0), history(0), external(0), loc(0), m_evt(0)
+    : JSGlobalObject(/*no proto*/), m_frame(p), screen(nullptr), console(nullptr), history(nullptr), external(nullptr), loc(nullptr), m_evt(nullptr)
 {
     winq = new WindowQObject(this);
     //qDebug() << "Window::Window this=" << this << " part=" << m_part << " " << m_part->name();
@@ -629,7 +629,7 @@ Window *Window::retrieveWindow(KParts::ReadOnlyPart *p)
     }
 #endif
     if (!obj) { // JS disabled
-        return 0;
+        return nullptr;
     }
     return static_cast<KJS::Window *>(obj);
 }
@@ -646,7 +646,7 @@ JSValue *Window::retrieve(KParts::ReadOnlyPart *p)
 {
     assert(p);
     KHTMLPart *part = qobject_cast<KHTMLPart *>(p);
-    KJSProxy *proxy = 0L;
+    KJSProxy *proxy = nullptr;
     if (!part) {
         part = qobject_cast<KHTMLPart *>(p->parent());
         if (part) {
@@ -880,7 +880,7 @@ KParts::ReadOnlyPart *Window::frameByIndex(unsigned i)
         KParts::ReadOnlyPart *frame = frames.at(i);
         return frame;
     }
-    return 0;
+    return nullptr;
 }
 
 JSValue *Window::indexGetter(ExecState *exec, unsigned index)
@@ -932,7 +932,7 @@ JSValue *Window::namedItemGetter(ExecState *exec, JSObject *, const Identifier &
 
 JSValue *Window::getValueProperty(ExecState *exec, int token)
 {
-    KHTMLPart *part = m_frame.isNull() ? 0 : qobject_cast<KHTMLPart *>(m_frame->m_part);
+    KHTMLPart *part = m_frame.isNull() ? nullptr : qobject_cast<KHTMLPart *>(m_frame->m_part);
     if (!part) {
         switch (token) {
         case Closed:
@@ -1558,7 +1558,7 @@ DOM::AbstractViewImpl *Window::toAbstractView() const
 {
     KHTMLPart *part = ::qobject_cast<KHTMLPart *>(m_frame->m_part);
     if (!part || !part->xmlDocImpl()) {
-        return 0;
+        return nullptr;
     }
     return part->xmlDocImpl()->defaultView();
 }
@@ -1583,7 +1583,7 @@ void Window::closeNow()
             // We want to make sure that window.open won't find this part by name.
             part->setObjectName(QString());
             part->deleteLater();
-            part = 0;
+            part = nullptr;
         }
     }
 }
@@ -1689,7 +1689,7 @@ JSEventListener *Window::getJSEventListener(JSValue *val, bool html)
     // This function is so hot that it's worth coding it directly with imps.
     KHTMLPart *part = qobject_cast<KHTMLPart *>(m_frame->m_part);
     if (!part || val->type() != ObjectType) {
-        return 0;
+        return nullptr;
     }
 
     // It's ObjectType, so it must be valid.
@@ -1733,16 +1733,16 @@ void Window::clear(ExecState *exec)
     qDeleteAll(m_delayed);
     m_delayed.clear();
 
-    winq = 0L;
+    winq = nullptr;
     // Get rid of everything, those user vars could hold references to DOM nodes
     clearProperties();
 
     // Ditto for the special subobjects.
-    screen   = 0;
-    console  = 0;
-    history  = 0;
-    external = 0;
-    loc      = 0;
+    screen   = nullptr;
+    console  = nullptr;
+    history  = nullptr;
+    external = nullptr;
+    loc      = nullptr;
     setPrototype(jsNull());
 
     // Break the dependency between the listeners and their object
@@ -1974,7 +1974,7 @@ JSValue *Window::openWindow(ExecState *exec, const List &args)
 
     if (policy != KHTMLSettings::KJSWindowOpenAllow) {
         if (url.isEmpty()) {
-            part->setSuppressedPopupIndicator(true, 0);
+            part->setSuppressedPopupIndicator(true, nullptr);
         } else {
             part->setSuppressedPopupIndicator(true, part);
             m_suppressedWindowInfo.append(SuppressedWindowInfo(url, frameName, features));
@@ -2097,7 +2097,7 @@ JSValue *Window::executeOpenWindow(ExecState *exec, const QUrl &url, const QStri
     args.setActionRequestedByUser(false);
 
     // request window (new or existing if framename is set)
-    KParts::ReadOnlyPart *newPart = 0;
+    KParts::ReadOnlyPart *newPart = nullptr;
     emit p->browserExtension()->createNewWindow(QUrl(), args, browserArgs, winargs, &newPart);
     if (newPart && qobject_cast<KHTMLPart *>(newPart)) {
         KHTMLPart *khtmlpart = static_cast<KHTMLPart *>(newPart);
@@ -2569,7 +2569,7 @@ ScheduledAction::ScheduledAction(const QString &_code, const DateTimeMS &_nextTi
     //qDebug() << "ScheduledAction::ScheduledAction(!isFunction) " << this;
     //func = 0;
     //args = 0;
-    func = 0;
+    func = nullptr;
     code = _code;
     isFunction = false;
     singleShot = _singleShot;
@@ -2687,7 +2687,7 @@ void WindowQObject::resumeTimers()
 
         // Dispatch any timers that may have been ignored if ::timerEvent fell in the middle
         // of a pause..
-        timerEvent(0);
+        timerEvent(nullptr);
     }
 
     --pauseLevel; // We do it afterwards so that timerEvent can know about us.
@@ -2916,7 +2916,7 @@ void WindowQObject::timeoutClose()
 
 ////////////////////// Location Object ////////////////////////
 
-const ClassInfo Location::info = { "Location", 0, &LocationTable, 0 };
+const ClassInfo Location::info = { "Location", nullptr, &LocationTable, nullptr };
 /*
 @begin LocationTable 11
   hash      Location::Hash      DontDelete
@@ -2947,7 +2947,7 @@ Location::~Location()
 
 KParts::ReadOnlyPart *Location::part() const
 {
-    return m_frame ? static_cast<KParts::ReadOnlyPart *>(m_frame->m_part) : 0L;
+    return m_frame ? static_cast<KParts::ReadOnlyPart *>(m_frame->m_part) : nullptr;
 }
 
 bool Location::getOwnPropertySlot(ExecState *exec, const Identifier &p, PropertySlot &slot)
@@ -3185,7 +3185,7 @@ JSValue *LocationFunc::callAsFunction(ExecState *exec, JSObject *thisObj, const 
 
 ////////////////////// External Object ////////////////////////
 
-const ClassInfo External::info = { "External", 0, 0, 0 };
+const ClassInfo External::info = { "External", nullptr, nullptr, nullptr };
 /*
 @begin ExternalTable 4
   addFavorite   External::AddFavorite   DontDelete|Function 1
@@ -3250,7 +3250,7 @@ JSValue *ExternalFunc::callAsFunction(ExecState *exec, JSObject *thisObj, const 
                     widget, question, caption,
                     KGuiItem(i18n("Insert")), KGuiItem(i18n("Disallow"))) == KMessageBox::Yes) {
             KBookmarkManager *mgr = KBookmarkManager::userBookmarksManager();
-            KBookmarkDialog dlg(mgr, 0);
+            KBookmarkDialog dlg(mgr, nullptr);
             dlg.addBookmark(title, QUrl(url), KIO::iconNameForUrl(QUrl(url)));
         }
 #else
@@ -3267,7 +3267,7 @@ JSValue *ExternalFunc::callAsFunction(ExecState *exec, JSObject *thisObj, const 
 
 ////////////////////// History Object ////////////////////////
 
-const ClassInfo History::info = { "History", 0, 0, 0 };
+const ClassInfo History::info = { "History", nullptr, nullptr, nullptr };
 /*
 @begin HistoryTable 4
   length    History::Length     DontDelete|ReadOnly

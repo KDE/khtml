@@ -121,7 +121,7 @@ public:
     bool mediaTypeMatchSpecific(const char *mediaTypeToMatch) const;
 
     /** Evaluates a list of media queries */
-    bool eval(const DOM::MediaListImpl *, CSSStyleSelector * = 0) const;
+    bool eval(const DOM::MediaListImpl *, CSSStyleSelector * = nullptr) const;
 
     /** Evaluates media query subexpression, ie "and (media-feature: value)" part */
     bool eval(const MediaQueryExp *) const;

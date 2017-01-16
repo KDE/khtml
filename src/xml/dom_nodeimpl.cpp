@@ -66,9 +66,9 @@ using namespace khtml;
 
 NodeImpl::NodeImpl(DocumentImpl *doc)
     : m_document(doc),
-      m_previous(0),
-      m_next(0),
-      m_render(0),
+      m_previous(nullptr),
+      m_next(nullptr),
+      m_render(nullptr),
       m_hasId(false),
       m_attached(false),
       m_closed(false),
@@ -96,10 +96,10 @@ NodeImpl::~NodeImpl()
         detach();
     }
     if (m_previous) {
-        m_previous->setNextSibling(0);
+        m_previous->setNextSibling(nullptr);
     }
     if (m_next) {
-        m_next->setPreviousSibling(0);
+        m_next->setPreviousSibling(nullptr);
     }
 }
 
@@ -133,18 +133,18 @@ WTF::PassRefPtr<DOM::NodeListImpl> NodeImpl::childNodes()
 
 NodeImpl *NodeImpl::firstChild() const
 {
-    return 0;
+    return nullptr;
 }
 
 NodeImpl *NodeImpl::lastChild() const
 {
-    return 0;
+    return nullptr;
 }
 
 NodeImpl *NodeImpl::insertBefore(NodeImpl *, NodeImpl *, int &exceptioncode)
 {
     exceptioncode = DOMException::HIERARCHY_REQUEST_ERR;
-    return 0;
+    return nullptr;
 }
 
 void NodeImpl::replaceChild(NodeImpl *, NodeImpl *, int &exceptioncode)
@@ -160,7 +160,7 @@ void NodeImpl::removeChild(NodeImpl *, int &exceptioncode)
 NodeImpl *NodeImpl::appendChild(NodeImpl *, int &exceptioncode)
 {
     exceptioncode = DOMException::HIERARCHY_REQUEST_ERR;
-    return 0;
+    return nullptr;
 }
 
 void NodeImpl::remove(int &exceptioncode)
@@ -318,13 +318,13 @@ void NodeImpl::setLastChild(NodeImpl *)
 
 NodeImpl *NodeImpl::addChild(NodeImpl *)
 {
-    return 0;
+    return nullptr;
 }
 
 void NodeImpl::getCaret(int /*offset*/, bool override, int &_x, int &_y, int &width, int &height)
 {
     if (m_render) {
-        RenderObject *r = 0;
+        RenderObject *r = nullptr;
         long r_ofs = 0;
         bool outside, outsideEnd;
 #if 0
@@ -473,8 +473,8 @@ void NodeImpl::dispatchGenericEvent(EventImpl *evt, int &/*exceptioncode */)
 
     // dispatch to the actual target node
     it.toBack();
-    EventTargetImpl *curn = it.hasPrevious() ? it.previous() : 0;
-    EventTargetImpl *propagationSentinel = 0;
+    EventTargetImpl *curn = it.hasPrevious() ? it.previous() : nullptr;
+    EventTargetImpl *propagationSentinel = nullptr;
     if (curn && !evt->propagationStopped()) {
         evt->setEventPhase(Event::AT_TARGET);
         evt->setCurrentTarget(curn);
@@ -486,7 +486,7 @@ void NodeImpl::dispatchGenericEvent(EventImpl *evt, int &/*exceptioncode */)
         }
     }
 
-    curn = it.hasPrevious() ? it.previous() : 0;
+    curn = it.hasPrevious() ? it.previous() : nullptr;
 
     if (evt->bubbles()) {
         evt->setEventPhase(Event::BUBBLING_PHASE);
@@ -496,11 +496,11 @@ void NodeImpl::dispatchGenericEvent(EventImpl *evt, int &/*exceptioncode */)
             }
             evt->setCurrentTarget(curn);
             curn->handleLocalEvents(evt, false);
-            curn = it.hasPrevious() ? it.previous() : 0;
+            curn = it.hasPrevious() ? it.previous() : nullptr;
         }
 
         // now we call all default event handlers (this is not part of DOM - it is internal to khtml)
-        evt->setCurrentTarget(0);
+        evt->setCurrentTarget(nullptr);
         evt->setEventPhase(0); // I guess this is correct, the spec does not seem to say
 
         it.toBack();
@@ -629,7 +629,7 @@ void NodeImpl::dispatchMouseEvent(QMouseEvent *_mouse, int overrideId, int overr
 
     EventImpl *const evt = new MouseEventImpl(evtId, true, cancelable, document()->defaultView(),
             detail, screenX, screenY, clientX, clientY, pageX, pageY, ctrlKey, altKey, shiftKey, metaKey,
-            button, 0);
+            button, nullptr);
     evt->ref();
     dispatchEvent(evt, exceptioncode, true);
     evt->deref();
@@ -664,7 +664,7 @@ void NodeImpl::dispatchSubtreeModifiedEvent()
     int exceptioncode = 0;
     ref();
     MutationEventImpl *const evt = new MutationEventImpl(EventImpl::DOMSUBTREEMODIFIED_EVENT, true,
-            false, 0, DOMString(), DOMString(), DOMString(), 0);
+            false, nullptr, DOMString(), DOMString(), DOMString(), 0);
     evt->ref();
     dispatchEvent(evt, exceptioncode, true);
     evt->deref();
@@ -695,7 +695,7 @@ unsigned long NodeImpl::childNodeCount()
 
 NodeImpl *NodeImpl::childNode(unsigned long /*index*/)
 {
-    return 0;
+    return nullptr;
 }
 
 NodeImpl *NodeImpl::traverseNextNode(NodeImpl *stayWithin) const
@@ -713,7 +713,7 @@ NodeImpl *NodeImpl::traverseNextNode(NodeImpl *stayWithin) const
             return n->nextSibling();
         }
     }
-    return 0;
+    return nullptr;
 }
 
 NodeImpl *NodeImpl::traversePreviousNode() const
@@ -727,7 +727,7 @@ NodeImpl *NodeImpl::traversePreviousNode() const
     } else if (parentNode()) {
         return parentNode();
     } else {
-        return 0;
+        return nullptr;
     }
 }
 
@@ -882,8 +882,8 @@ NodeImpl::StyleChange NodeImpl::diff(khtml::RenderStyle *s1, khtml::RenderStyle 
 
 bool NodeImpl::pseudoDiff(khtml::RenderStyle *s1, khtml::RenderStyle *s2, unsigned int pid)
 {
-    khtml::RenderStyle *ps1 = s1 ? s1->getPseudoStyle((khtml::RenderStyle::PseudoId)pid) : 0;
-    khtml::RenderStyle *ps2 = s2 ? s2->getPseudoStyle((khtml::RenderStyle::PseudoId)pid) : 0;
+    khtml::RenderStyle *ps1 = s1 ? s1->getPseudoStyle((khtml::RenderStyle::PseudoId)pid) : nullptr;
+    khtml::RenderStyle *ps2 = s2 ? s2->getPseudoStyle((khtml::RenderStyle::PseudoId)pid) : nullptr;
 
     if (ps1 == ps2) {
         return false;
@@ -939,7 +939,7 @@ void NodeImpl::detach()
         m_render->detach();
     }
 
-    m_render = 0;
+    m_render = nullptr;
     document()->incDOMTreeVersion(DocumentImpl::TV_Structural);
     m_attached = false;
 }
@@ -998,7 +998,7 @@ NodeImpl *NodeImpl::previousEditable() const
         }
         node = node->previousLeafNode();
     }
-    return 0;
+    return nullptr;
 }
 
 NodeImpl *NodeImpl::nextEditable() const
@@ -1010,7 +1010,7 @@ NodeImpl *NodeImpl::nextEditable() const
         }
         node = node->nextLeafNode();
     }
-    return 0;
+    return nullptr;
 }
 
 RenderObject *NodeImpl::previousRenderer()
@@ -1020,7 +1020,7 @@ RenderObject *NodeImpl::previousRenderer()
             return n->renderer();
         }
     }
-    return 0;
+    return nullptr;
 }
 
 RenderObject *NodeImpl::nextRenderer()
@@ -1030,7 +1030,7 @@ RenderObject *NodeImpl::nextRenderer()
             return n->renderer();
         }
     }
-    return 0;
+    return nullptr;
 }
 
 void NodeImpl::createRendererIfNeeded()
@@ -1072,12 +1072,12 @@ bool NodeImpl::rendererIsNeeded(RenderStyle *style)
 RenderObject *NodeImpl::createRenderer(RenderArena * /*arena*/, RenderStyle * /*style*/)
 {
     assert(false);
-    return 0;
+    return nullptr;
 }
 
 RenderStyle *NodeImpl::computedStyle()
 {
-    return parentNode() ? parentNode()->computedStyle() : 0;
+    return parentNode() ? parentNode()->computedStyle() : nullptr;
 }
 
 NodeImpl *NodeImpl::previousLeafNode() const
@@ -1089,7 +1089,7 @@ NodeImpl *NodeImpl::previousLeafNode() const
         }
         node = node->traversePreviousNode();
     }
-    return 0;
+    return nullptr;
 }
 
 NodeImpl *NodeImpl::nextLeafNode() const
@@ -1101,7 +1101,7 @@ NodeImpl *NodeImpl::nextLeafNode() const
         }
         node = node->traverseNextNode();
     }
-    return 0;
+    return nullptr;
 }
 
 long NodeImpl::maxOffset() const
@@ -1150,17 +1150,17 @@ ElementImpl *NodeImpl::enclosingBlockFlowElement() const
             return static_cast<ElementImpl *>(n);
         }
     }
-    return 0;
+    return nullptr;
 }
 
 ElementImpl *NodeImpl::rootEditableElement() const
 {
     if (!isContentEditable()) {
-        return 0;
+        return nullptr;
     }
 
     NodeImpl *n = const_cast<NodeImpl *>(this);
-    NodeImpl *result = n->isEditableBlock() ? n : 0;
+    NodeImpl *result = n->isEditableBlock() ? n : nullptr;
     while (1) {
         n = n->parentNode();
         if (!n || !n->isContentEditable()) {
@@ -1267,7 +1267,7 @@ DocumentImpl *NodeImpl::ownerDocument() const
     // for DOMy clients in one central place
     DocumentImpl *doc = document();
     if (doc == this) {
-        return 0;
+        return nullptr;
     } else {
         return doc;
     }
@@ -1291,7 +1291,7 @@ static const NodeImpl *logicalParentNode(const DOM::NodeImpl *node)
         return node->ownerDocument()->doctype();
 
     default:
-        return 0;
+        return nullptr;
     }
 }
 
@@ -1322,7 +1322,7 @@ unsigned NodeImpl::compareDocumentPosition(const DOM::NodeImpl *other)
     }
 
     // Now find our common container.
-    const NodeImpl *common = 0;
+    const NodeImpl *common = nullptr;
     int   diffPos = -1;
     for (int pos = 0; pos < thisPath.size() && pos < otherPath.size(); ++pos) {
         if (thisPath[pos] == otherPath[pos]) {
@@ -1346,8 +1346,8 @@ unsigned NodeImpl::compareDocumentPosition(const DOM::NodeImpl *other)
     const NodeImpl *thisAnc  = thisPath [diffPos];
     const NodeImpl *otherAnc = otherPath[diffPos];
 
-    bool thisAncLogical  = thisAnc->parentNode() == 0;
-    bool otherAncLogical = otherAnc->parentNode() == 0;
+    bool thisAncLogical  = thisAnc->parentNode() == nullptr;
+    bool otherAncLogical = otherAnc->parentNode() == nullptr;
     //qDebug() << thisAncLogical << otherAncLogical;
 
     if (thisAncLogical && otherAncLogical) {
@@ -1433,7 +1433,7 @@ void NodeImpl::setDocument(DocumentImpl *doc)
     }
 
 #if 1 // implemented for one special case only so far
-    assert(m_document == 0 && doc != 0 &&
+    assert(m_document == nullptr && doc != nullptr &&
            nodeType() == Node::DOCUMENT_TYPE_NODE);
     m_document = doc;
 #else // for general use do something like this
@@ -1533,7 +1533,7 @@ DOM::NodeImpl *DOM::NodeImpl::findNextElementAncestor(NodeImpl *node)
         }
         iterator = iterator->parentNode();
     }
-    return 0;
+    return nullptr;
 }
 
 //-------------------------------------------------------------------------
@@ -1545,11 +1545,11 @@ NodeBaseImpl::~NodeBaseImpl()
     NodeImpl *n;
     NodeImpl *next;
 
-    for (n = _first; n != 0; n = next) {
+    for (n = _first; n != nullptr; n = next) {
         next = n->nextSibling();
-        n->setPreviousSibling(0);
-        n->setNextSibling(0);
-        n->setParent(0);
+        n->setPreviousSibling(nullptr);
+        n->setNextSibling(nullptr);
+        n->setParent(nullptr);
         if (!n->refCount()) {
             delete n;
         }
@@ -1578,13 +1578,13 @@ NodeImpl *NodeBaseImpl::insertBefore(NodeImpl *newChild, NodeImpl *refChild, int
     // Make sure adding the new child is ok
     checkAddChild(newChild, exceptioncode);
     if (exceptioncode) {
-        return 0;
+        return nullptr;
     }
 
     // NOT_FOUND_ERR: Raised if refChild is not a child of this node
     if (refChild->parentNode() != this) {
         exceptioncode = DOMException::NOT_FOUND_ERR;
-        return 0;
+        return nullptr;
     }
 
     bool isFragment = newChild->nodeType() == Node::DOCUMENT_FRAGMENT_NODE;
@@ -1605,7 +1605,7 @@ NodeImpl *NodeBaseImpl::insertBefore(NodeImpl *newChild, NodeImpl *refChild, int
     }
 
     while (child) {
-        nextChild = isFragment ? child->nextSibling() : 0;
+        nextChild = isFragment ? child->nextSibling() : nullptr;
 
         // If child is already present in the tree, first remove it
         NodeImpl *newParent = child->parentNode();
@@ -1617,7 +1617,7 @@ NodeImpl *NodeBaseImpl::insertBefore(NodeImpl *newChild, NodeImpl *refChild, int
             newParent->removeChild(child, exceptioncode);
         }
         if (exceptioncode) {
-            return 0;
+            return nullptr;
         }
 
         // Add child in the correct position
@@ -1690,7 +1690,7 @@ void NodeBaseImpl::replaceChild(NodeImpl *newChild, NodeImpl *oldChild, int &exc
 
     // Add the new child(ren)
     while (child) {
-        nextChild = isFragment ? child->nextSibling() : 0;
+        nextChild = isFragment ? child->nextSibling() : nullptr;
 
         // If child is already present in the tree, first remove it
         NodeImpl *newParent = child->parentNode();
@@ -1796,9 +1796,9 @@ void NodeBaseImpl::removeChild(NodeImpl *oldChild, int &exceptioncode)
         _last = prev;
     }
 
-    oldChild->setPreviousSibling(0);
-    oldChild->setNextSibling(0);
-    oldChild->setParent(0);
+    oldChild->setPreviousSibling(nullptr);
+    oldChild->setNextSibling(nullptr);
+    oldChild->setParent(nullptr);
 
     structureChanged();
 
@@ -1820,14 +1820,14 @@ void NodeBaseImpl::removeChildren()
 {
     bool inDoc = inDocument();
     NodeImpl *n, *next;
-    for (n = _first, _first = 0; n; n = next) {
+    for (n = _first, _first = nullptr; n; n = next) {
         next = n->nextSibling();
         if (n->attached()) {
             n->detach();
         }
-        n->setPreviousSibling(0);
-        n->setNextSibling(0);
-        n->setParent(0);
+        n->setPreviousSibling(nullptr);
+        n->setNextSibling(nullptr);
+        n->setParent(nullptr);
 
         if (inDoc)
             for (NodeImpl *c = n; c; c = c->traverseNextNode(n)) {
@@ -1838,7 +1838,7 @@ void NodeBaseImpl::removeChildren()
             delete n;
         }
     }
-    _last = 0;
+    _last = nullptr;
 }
 
 NodeImpl *NodeBaseImpl::appendChild(NodeImpl *newChild, int &exceptioncode)
@@ -1848,7 +1848,7 @@ NodeImpl *NodeBaseImpl::appendChild(NodeImpl *newChild, int &exceptioncode)
     // Make sure adding the new child is ok
     checkAddChild(newChild, exceptioncode);
     if (exceptioncode) {
-        return 0;
+        return nullptr;
     }
 
     if (newChild == _last) { // nothing to do
@@ -1868,7 +1868,7 @@ NodeImpl *NodeBaseImpl::appendChild(NodeImpl *newChild, int &exceptioncode)
     NodeImpl *child = isFragment ? newChild->firstChild() : newChild;
 
     while (child) {
-        nextChild = isFragment ? child->nextSibling() : 0;
+        nextChild = isFragment ? child->nextSibling() : nullptr;
 
         // If child is already present in the tree, first remove it
         NodeImpl *oldParent = child->parentNode();
@@ -1876,7 +1876,7 @@ NodeImpl *NodeBaseImpl::appendChild(NodeImpl *newChild, int &exceptioncode)
         if (oldParent) {
             oldParent->removeChild(child, exceptioncode);
             if (exceptioncode) {
-                return 0;
+                return nullptr;
             }
         }
 
@@ -1916,7 +1916,7 @@ NodeImpl *NodeBaseImpl::appendChild(NodeImpl *newChild, int &exceptioncode)
 
 bool NodeBaseImpl::hasChildNodes() const
 {
-    return _first != 0;
+    return _first != nullptr;
 }
 
 // not part of the DOM
@@ -1961,7 +1961,7 @@ NodeImpl *NodeBaseImpl::addChild(NodeImpl *newChild)
     // short check for consistency with DTD
     if (document()->isHTMLDocument() && !childAllowed(newChild)) {
         //qDebug() << "AddChild failed! id=" << id() << ", child->id=" << newChild->id();
-        return 0;
+        return nullptr;
     }
 
     // just add it...
@@ -1989,7 +1989,7 @@ NodeImpl *NodeBaseImpl::addChild(NodeImpl *newChild)
 void NodeBaseImpl::attach()
 {
     NodeImpl *child = _first;
-    while (child != 0) {
+    while (child != nullptr) {
         child->attach();
         child = child->nextSibling();
     }
@@ -1999,7 +1999,7 @@ void NodeBaseImpl::attach()
 void NodeBaseImpl::detach()
 {
     NodeImpl *child = _first;
-    while (child != 0) {
+    while (child != nullptr) {
         NodeImpl *prev = child;
         child = child->nextSibling();
         prev->detach();
@@ -2037,7 +2037,7 @@ bool NodeBaseImpl::getUpperLeftCorner(int &xPos, int &yPos) const
         } else if (o->nextSibling()) {
             o = o->nextSibling();
         } else {
-            RenderObject *next = 0;
+            RenderObject *next = nullptr;
             while (!next) {
                 o = o->parent();
                 if (!o) {
@@ -2083,7 +2083,7 @@ bool NodeBaseImpl::getLowerRightCorner(int &xPos, int &yPos) const
         } else if (o->previousSibling()) {
             o = o->previousSibling();
         } else {
-            RenderObject *prev = 0;
+            RenderObject *prev = nullptr;
             while (!prev) {
                 o = o->parent();
                 if (!o) {
@@ -2199,7 +2199,7 @@ void NodeBaseImpl::dispatchChildInsertedEvents(NodeImpl *child, int &exceptionco
 
             if (hasInsertedListeners) {
                 ref();
-                MutationEventImpl *const evt = new MutationEventImpl(EventImpl::DOMNODEINSERTEDINTODOCUMENT_EVENT, false, false, 0, DOMString(), DOMString(), DOMString(), 0);
+                MutationEventImpl *const evt = new MutationEventImpl(EventImpl::DOMNODEINSERTEDINTODOCUMENT_EVENT, false, false, nullptr, DOMString(), DOMString(), DOMString(), 0);
                 evt->ref();
                 c->dispatchEvent(evt, exceptioncode, true);
                 evt->deref();
@@ -2239,7 +2239,7 @@ void NodeBaseImpl::dispatchChildRemovalEvents(NodeImpl *child, int &exceptioncod
         for (NodeImpl *c = child; c; c = c->traverseNextNode(child)) {
             if (hasRemovalListeners) {
                 ref();
-                MutationEventImpl *const evt = new MutationEventImpl(EventImpl::DOMNODEREMOVEDFROMDOCUMENT_EVENT, false, false, 0, DOMString(), DOMString(), DOMString(), 0);
+                MutationEventImpl *const evt = new MutationEventImpl(EventImpl::DOMNODEREMOVEDFROMDOCUMENT_EVENT, false, false, nullptr, DOMString(), DOMString(), DOMString(), 0);
                 evt->ref();
                 c->dispatchEvent(evt, exceptioncode, true);
                 evt->deref();
@@ -2275,7 +2275,7 @@ Node NamedNodeMapImpl::setNamedItem(const Node &arg, int &exceptioncode)
 {
     if (!arg.handle()) {
         exceptioncode = DOMException::NOT_FOUND_ERR;
-        return 0;
+        return nullptr;
     }
 
     Node r = setNamedItem(arg.handle(), emptyPrefixName, false, exceptioncode);
@@ -2337,7 +2337,7 @@ NodeImpl *GenericRONamedNodeMapImpl::getNamedItem(NodeImpl::Id id, const PrefixN
         if (it.next()->id() == id) {
             return it.peekPrevious();
         }
-    return 0;
+    return nullptr;
 }
 
 Node GenericRONamedNodeMapImpl::setNamedItem(NodeImpl * /*arg*/, const PrefixName & /*prefix*/, bool /*nsAware*/, int &exceptioncode)
@@ -2345,7 +2345,7 @@ Node GenericRONamedNodeMapImpl::setNamedItem(NodeImpl * /*arg*/, const PrefixNam
     // can't modify this list through standard DOM functions
     // NO_MODIFICATION_ALLOWED_ERR: Raised if this map is readonly
     exceptioncode = DOMException::NO_MODIFICATION_ALLOWED_ERR;
-    return 0;
+    return nullptr;
 }
 
 Node GenericRONamedNodeMapImpl::removeNamedItem(NodeImpl::Id /*id*/, const PrefixName & /*prefix*/, bool /*nsAware*/, int &exceptioncode)
@@ -2353,13 +2353,13 @@ Node GenericRONamedNodeMapImpl::removeNamedItem(NodeImpl::Id /*id*/, const Prefi
     // can't modify this list through standard DOM functions
     // NO_MODIFICATION_ALLOWED_ERR: Raised if this map is readonly
     exceptioncode = DOMException::NO_MODIFICATION_ALLOWED_ERR;
-    return 0;
+    return nullptr;
 }
 
 NodeImpl *GenericRONamedNodeMapImpl::item(unsigned index)
 {
     if (index >= (unsigned int) m_contents->count()) {
-        return 0;
+        return nullptr;
     }
 
     return m_contents->at(index);

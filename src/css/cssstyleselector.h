@@ -96,7 +96,7 @@ public:
     {
         priority = (!first << 30) | (source << 24) | specificity;
     }
-    CSSOrderedProperty(): prop(0), pseudoId(RenderStyle::NOPSEUDO), selector(0),
+    CSSOrderedProperty(): prop(nullptr), pseudoId(RenderStyle::NOPSEUDO), selector(0),
         position(0)
     {
 
@@ -191,7 +191,7 @@ public:
     static void loadDefaultStyle(const KHTMLSettings *s, DOM::DocumentImpl *doc);
 
     // fallbackParentStyle will be inheritted from if the parent doesn't have style info
-    RenderStyle *styleForElement(DOM::ElementImpl *e, RenderStyle *fallbackParentStyle = 0);
+    RenderStyle *styleForElement(DOM::ElementImpl *e, RenderStyle *fallbackParentStyle = nullptr);
 
     bool isMatchedByAnySelector(DOM::ElementImpl *e, const QList<DOM::CSSSelector *> &sels);
 
@@ -237,7 +237,7 @@ protected:
     void prepareToMatchElement(DOM::ElementImpl *e, bool withDeps);
 
     void addDependency(int dependencyType, DOM::ElementImpl *dependency);
-    void setupDefaultRootStyle(DOM::DocumentImpl *d = 0);
+    void setupDefaultRootStyle(DOM::DocumentImpl *d = nullptr);
 #ifdef APPLE_CHANGES
     /* This function fixes up the default font size if it detects that the
        current generic font family has changed. -dwh */

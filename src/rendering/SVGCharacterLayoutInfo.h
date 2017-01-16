@@ -250,7 +250,7 @@ struct SVGInlineBoxCharacterRange {
     SVGInlineBoxCharacterRange()
         : startOffset(INT_MIN)
         , endOffset(INT_MIN)
-        , box(0)
+        , box(nullptr)
     {
     }
 
@@ -280,8 +280,8 @@ struct SVGTextChunk {
         , ctm()
         , isVerticalText(false)
         , isTextPath(false)
-        , start(0)
-        , end(0)
+        , start(nullptr)
+        , end(nullptr)
     { }
 
     // text-anchor support
@@ -335,10 +335,10 @@ public:
 
     SVGTextChunkWalker(CallbackClass *object,
                        SVGTextChunkWalkerCallback walker,
-                       SVGTextChunkStartCallback start = 0,
-                       SVGTextChunkEndCallback end = 0,
-                       SVGTextChunkSetupFillCallback fill = 0,
-                       SVGTextChunkSetupStrokeCallback stroke = 0)
+                       SVGTextChunkStartCallback start = nullptr,
+                       SVGTextChunkEndCallback end = nullptr,
+                       SVGTextChunkSetupFillCallback fill = nullptr,
+                       SVGTextChunkSetupStrokeCallback stroke = nullptr)
         : m_object(object)
         , m_walkerCallback(walker)
         , m_startCallback(start)
@@ -409,7 +409,7 @@ struct SVGTextChunkLayoutInfo {
         : assignChunkProperties(true)
         , handlingTextPath(false)
         , svgTextChunks(textChunks)
-        , it(0)
+        , it(nullptr)
     {
     }
 

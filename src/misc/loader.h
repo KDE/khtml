@@ -116,12 +116,12 @@ public:
         m_status = Pending;
         m_accessCount = 0;
         m_cachePolicy = _cachePolicy;
-        m_request = 0;
+        m_request = nullptr;
         m_deleted = false;
         m_free = false;
         m_hadError = false;
         m_wasBlocked = false;
-        m_prev = m_next = 0;
+        m_prev = m_next = nullptr;
         m_preloadCount = 0;
         m_preloadResult = PreloadNotReferenced;
         m_prospectiveRequest = false;

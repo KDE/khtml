@@ -9,7 +9,7 @@ class KJSErrorDlg : public QDialog, public Ui_KJSErrorDlgBase
 {
     Q_OBJECT
 public:
-    KJSErrorDlg(QWidget *parent = 0);
+    KJSErrorDlg(QWidget *parent = nullptr);
 
     void addError(const QString &error);
     void setURL(const QString &url);

@@ -47,7 +47,7 @@ void TokenizerString::clear()
 {
     m_pushedChar1 = 0;
     m_pushedChar2 = 0;
-    m_currentChar = 0;
+    m_currentChar = nullptr;
     m_currentString.clear();
     m_substrings.clear();
     m_lines = 0;

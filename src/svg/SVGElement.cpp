@@ -98,7 +98,7 @@ SVGSVGElement *SVGElement::ownerSVGElement() const
         n = n->isShadowNode() ? n->shadowParentNode() : n->parentNode();
     }
 
-    return 0;
+    return nullptr;
 }
 
 SVGElement *SVGElement::viewportElement() const
@@ -113,7 +113,7 @@ SVGElement *SVGElement::viewportElement() const
         n = n->isShadowNode() ? n->shadowParentNode() : n->parentNode();
     }*/
 
-    return 0;
+    return nullptr;
 }
 
 void SVGElement::addSVGEventListener(/*const AtomicString& eventType*/const EventImpl::EventId &eventType, const Attribute *attr)
@@ -252,7 +252,7 @@ static Node *shadowTreeParentElementForShadowTreeElement(Node *node)
             return n->shadowParentNode();*/
     }
 
-    return 0;
+    return nullptr;
 }
 
 bool SVGElement::dispatchEvent(Event *e, ExceptionCode &ec, bool tempEvent)

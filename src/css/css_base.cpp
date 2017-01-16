@@ -132,7 +132,7 @@ StyleListImpl::~StyleListImpl()
     QListIterator<StyleBaseImpl *> it(*m_lstChildren);
     while (it.hasNext()) {
         n = it.next();
-        n->setParent(0);
+        n->setParent(nullptr);
         if (!n->refCount()) {
             delete n;
         }
@@ -369,7 +369,7 @@ DOMString CSSSelector::selectorText() const
         str = LocalName::fromId(tag).toString();
     }
 
-    const CSSSelector *op = 0;
+    const CSSSelector *op = nullptr;
     while (true) {
         if (makeId(cs->attrNamespace.id(), cs->attrLocalName.id()) == ATTR_ID && cs->match == CSSSelector::Id) {
             str += "#";
@@ -430,7 +430,7 @@ DOMString CSSSelector::selectorText() const
         }
         if (op && !cs->tagHistory) {
             cs = op;
-            op = 0;
+            op = nullptr;
             str += ")";
         }
 

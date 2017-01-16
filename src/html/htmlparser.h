@@ -113,7 +113,7 @@ public:
 
     DOM::HTMLScriptElementImpl *currentScriptElement() const
     {
-        return (current && current->id() == ID_SCRIPT) ? static_cast<DOM::HTMLScriptElementImpl *>(current) : 0;
+        return (current && current->id() == ID_SCRIPT) ? static_cast<DOM::HTMLScriptElementImpl *>(current) : nullptr;
     }
 
 protected:

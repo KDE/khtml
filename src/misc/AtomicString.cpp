@@ -77,7 +77,7 @@ bool operator==(const AtomicString &a, const char *b)
 DOMStringImpl *AtomicString::add(const char *c)
 {
     if (!c) {
-        return 0;
+        return nullptr;
     }
     if (!*c) {
         return DOMStringImpl::empty();
@@ -164,7 +164,7 @@ struct HashAndCharactersTranslator {
 DOMStringImpl *AtomicString::add(const QChar *s, int length)
 {
     if (!s) {
-        return 0;
+        return nullptr;
     }
 
     if (length == 0) {
@@ -183,7 +183,7 @@ DOMStringImpl *AtomicString::add(const QChar *s, int length)
 DOMStringImpl *AtomicString::add(const QChar *s)
 {
     if (!s) {
-        return 0;
+        return nullptr;
     }
 
     int length = 0;

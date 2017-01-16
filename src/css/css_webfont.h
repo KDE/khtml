@@ -258,7 +258,7 @@ public:
     void requestFamilyName(const DOMString &familyName);
     void clearDocument()
     {
-        m_document = 0;
+        m_document = nullptr;
     }
     void addFontFaceRule(const CSSFontFaceRuleImpl *);
     void fontLoaded();

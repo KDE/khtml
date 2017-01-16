@@ -78,7 +78,7 @@ public:
     TreeShared()
     {
         _ref = 0;
-        m_parent = 0; /*counter++;*/
+        m_parent = nullptr; /*counter++;*/
     }
     TreeShared(type *parent)
     {
@@ -209,7 +209,7 @@ public:
     typedef T *(DocPtr::*UnspecifiedBoolType)() const;
     operator UnspecifiedBoolType() const
     {
-        return m_ptr ? &DocPtr::get : 0;
+        return m_ptr ? &DocPtr::get : nullptr;
     }
 
     DocPtr &operator=(const DocPtr &);

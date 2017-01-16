@@ -137,7 +137,7 @@ static void woffDecodeToBufferInternal(const char *woffData, char *sfntData, int
        (b) all the WOFF table offset/length pairs are valid (within the data)
        (c) the sum of original sizes + header/directory matches totalSfntSize
        so we don't have to re-check those overflow conditions here */
-    tableOrderRec *tableOrder = NULL;
+    tableOrderRec *tableOrder = nullptr;
     const woffHeader *header;
     quint16 numTables;
     quint16 tableIndex;

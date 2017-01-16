@@ -58,14 +58,14 @@ HTMLDocument &HTMLDocument::operator = (const Node &other)
         if (impl) {
             impl->deref();
         }
-        impl = 0;
+        impl = nullptr;
     } else {
         DocumentImpl *d = static_cast<DocumentImpl *>(other.handle());
         if (!d->isHTMLDocument()) {
             if (impl) {
                 impl->deref();
             }
-            impl = 0;
+            impl = nullptr;
         } else {
             Node::operator =(other);
         }
@@ -141,7 +141,7 @@ DOMString HTMLDocument::URL() const
 HTMLElement HTMLDocument::body() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return ((HTMLDocumentImpl *)impl)->body();
 }
@@ -270,7 +270,7 @@ void HTMLDocument::writeln(const DOMString &text)
 NodeList HTMLDocument::getElementsByName(const DOMString &elementName)
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return ((HTMLDocumentImpl *)impl)->getElementsByName(elementName);
 }

@@ -96,7 +96,7 @@ private:
         if (value.isSet && value.m_value.set->isEmpty()) {
             delete value.m_value.set;
             value.isSet = false;
-            value.m_value.element = 0;
+            value.m_value.element = nullptr;
         }
         if (!value.isSet && !value.m_value.element && !value.parentDependency && !value.selfDependency) {
             map.remove(it);
@@ -123,7 +123,7 @@ public:
             value.isSet = false;
             value.parentDependency = false;
             value.selfDependency = false;
-            value.m_value.element = 0;
+            value.m_value.element = nullptr;
         }
         if (b == a) {
             value.selfDependency = true;
@@ -159,7 +159,7 @@ public:
             // it could be converted back into non-set storage but it's a minor optimization only
             value.m_value.set->remove(b);
         } else if (value.m_value.element == b) {
-            value.m_value.element = 0;
+            value.m_value.element = nullptr;
         }
         removeIfEmpty(it);
     }

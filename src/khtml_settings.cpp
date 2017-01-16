@@ -70,7 +70,7 @@ struct KPerDomainSettings {
 #endif
 };
 
-QString *KHTMLSettings::avFamilies = 0;
+QString *KHTMLSettings::avFamilies = nullptr;
 typedef QMap<QString, KPerDomainSettings> PolicyMap;
 
 // The "struct" that contains all the data. Must be copiable (no pointers).
@@ -856,7 +856,7 @@ QString KHTMLSettings::adFilteredBy(const QString &url, bool *isWhiteListed) con
 {
     QString m = d->adWhiteList.urlMatchedBy(url);
     if (!m.isEmpty()) {
-        if (isWhiteListed != 0) {
+        if (isWhiteListed != nullptr) {
             *isWhiteListed = true;
         }
         return (m);
@@ -864,7 +864,7 @@ QString KHTMLSettings::adFilteredBy(const QString &url, bool *isWhiteListed) con
 
     m = d->adBlackList.urlMatchedBy(url);
     if (!m.isEmpty()) {
-        if (isWhiteListed != 0) {
+        if (isWhiteListed != nullptr) {
             *isWhiteListed = false;
         }
         return (m);
@@ -901,7 +901,7 @@ void KHTMLSettings::addAdFilter(const QString &url)
             d->adBlackList.addFilter(url);
         }
     } else {
-        KMessageBox::error(0,
+        KMessageBox::error(nullptr,
                            rx.errorString(),
                            i18n("Filter error"));
     }

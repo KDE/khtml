@@ -1117,7 +1117,7 @@ findValue (register const char *str, register unsigned int len)
             }
         }
     }
-  return 0;
+  return nullptr;
 }
 #line 347 "cssvalues.gperf"
 
@@ -1456,7 +1456,7 @@ static const char * const valueList[] = {
 "lr", 
 "rl", 
 "tb", 
-    0
+    nullptr
 };
 DOMString getValueName(unsigned short id)
 {

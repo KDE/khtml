@@ -39,7 +39,7 @@ namespace XPath
 Expression *khtmlParseXPathStatement(const DOMString &statement, int &ec);
 
 ParsedStatement::ParsedStatement(const DOMString &statement, khtml::XPathNSResolverImpl *res)
-    : m_res(res), m_expr(0), m_ec(0)
+    : m_res(res), m_expr(nullptr), m_ec(0)
 {
     parse(statement);
 }
@@ -54,7 +54,7 @@ void ParsedStatement::parse(const DOMString &statement)
     // qDebug() << "parsing:" << statement.string();
     m_ec = 0;
     delete m_expr;
-    Expression::evaluationContext().reset(0, m_res.get());
+    Expression::evaluationContext().reset(nullptr, m_res.get());
 
     m_expr = khtmlParseXPathStatement(statement, m_ec);
 

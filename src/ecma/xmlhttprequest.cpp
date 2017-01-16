@@ -107,7 +107,7 @@ JSObject *XMLHttpRequestConstructorImp::construct(ExecState *exec, const List &)
     return new XMLHttpRequest(exec, doc.get());
 }
 
-const ClassInfo XMLHttpRequest::info = { "XMLHttpRequest", 0, &XMLHttpRequestTable, 0 };
+const ClassInfo XMLHttpRequest::info = { "XMLHttpRequest", nullptr, &XMLHttpRequestTable, nullptr };
 
 /* Source for XMLHttpRequestTable.
 @begin XMLHttpRequestTable 7
@@ -189,7 +189,7 @@ JSValue *XMLHttpRequest::getValueProperty(ExecState *exec, int token) const
         }
     default:
         qWarning() << "XMLHttpRequest::getValueProperty unhandled token " << token;
-        return 0;
+        return nullptr;
     }
 }
 
@@ -317,11 +317,11 @@ XMLHttpRequest::XMLHttpRequest(ExecState *exec, DOM::DocumentImpl *d)
       doc(d),
       async(true),
       contentType(QString()),
-      job(0),
+      job(nullptr),
       m_state(XHRS_Uninitialized),
-      onReadyStateChangeListener(0),
-      onLoadListener(0),
-      decoder(0),
+      onReadyStateChangeListener(nullptr),
+      onLoadListener(nullptr),
+      decoder(nullptr),
       binaryMode(false),
       response(QString::fromLatin1("")),
       createdDocument(false),
@@ -335,7 +335,7 @@ XMLHttpRequest::~XMLHttpRequest()
 {
     if (job && m_method != QLatin1String("POST")) {
         job->kill();
-        job = 0;
+        job = nullptr;
     }
     if (onLoadListener) {
         onLoadListener->deref();
@@ -344,9 +344,9 @@ XMLHttpRequest::~XMLHttpRequest()
         onReadyStateChangeListener->deref();
     }
     delete qObject;
-    qObject = 0;
+    qObject = nullptr;
     delete decoder;
-    decoder = 0;
+    decoder = nullptr;
 }
 
 void XMLHttpRequest::changeState(XMLHttpRequestState newState)
@@ -357,7 +357,7 @@ void XMLHttpRequest::changeState(XMLHttpRequestState newState)
     if (!doc) {
         if (job && m_method != QLatin1String("POST")) {
             job->kill();
-            job = 0;
+            job = nullptr;
         }
         return;
     }
@@ -366,7 +366,7 @@ void XMLHttpRequest::changeState(XMLHttpRequestState newState)
         m_state = newState;
         ProtectedPtr<JSObject> ref(this);
 
-        if (onReadyStateChangeListener != 0 && doc->view() && doc->view()->part()) {
+        if (onReadyStateChangeListener != nullptr && doc->view() && doc->view()->part()) {
             DOM::Event ev = doc->view()->part()->document().createEvent("HTMLEvents");
             ev.initEvent("readystatechange", true, true);
             ev.handle()->setTarget(this);
@@ -375,18 +375,18 @@ void XMLHttpRequest::changeState(XMLHttpRequestState newState)
 
             // Make sure the event doesn't point to us, since it can't prevent
             // us from being collecte.
-            ev.handle()->setTarget(0);
-            ev.handle()->setCurrentTarget(0);
+            ev.handle()->setTarget(nullptr);
+            ev.handle()->setCurrentTarget(nullptr);
         }
 
-        if (m_state == XHRS_Loaded && onLoadListener != 0 && doc->view() && doc->view()->part()) {
+        if (m_state == XHRS_Loaded && onLoadListener != nullptr && doc->view() && doc->view()->part()) {
             DOM::Event ev = doc->view()->part()->document().createEvent("HTMLEvents");
             ev.initEvent("load", true, true);
             ev.handle()->setTarget(this);
             ev.handle()->setCurrentTarget(this);
             onLoadListener->handleEvent(ev);
-            ev.handle()->setTarget(0);
-            ev.handle()->setCurrentTarget(0);
+            ev.handle()->setTarget(nullptr);
+            ev.handle()->setCurrentTarget(nullptr);
         }
     }
 }
@@ -427,7 +427,7 @@ static const IDTranslator<QByteArray, bool, const char *>::Info methodsTable[] =
     {"PUT", true},
     {"TRACE", false},
     {"TRACK", false},
-    {0, false}
+    {nullptr, false}
 };
 
 MAKE_TRANSLATOR(methodsLookup, QByteArray, bool, const char *, methodsTable)
@@ -442,7 +442,7 @@ void XMLHttpRequest::open(const QString &_method, const QUrl &_url, bool _async,
     responseHeaders.clear();
     response = QString::fromLatin1("");
     createdDocument = false;
-    responseXML = 0;
+    responseXML = nullptr;
 
     if (!urlMatchesDocumentDomain(_url)) {
         ec = DOMException::SECURITY_ERR;
@@ -562,7 +562,7 @@ void XMLHttpRequest::send(const QString &_body, int &ec)
             headers = metaData[ "HTTP-Headers" ];
         }
 #endif
-        job = 0;
+        job = nullptr;
         processSyncLoadResults(data, finalURL, headers);
         return;
     }
@@ -589,7 +589,7 @@ void XMLHttpRequest::send(const QString &_body, int &ec)
 void XMLHttpRequest::clearDecoder()
 {
     delete decoder;
-    decoder = 0;
+    decoder = nullptr;
     binaryMode = false;
 }
 
@@ -597,7 +597,7 @@ void XMLHttpRequest::abort()
 {
     if (job) {
         job->kill();
-        job = 0;
+        job = nullptr;
     }
     aborted = true;
     clearDecoder();
@@ -612,7 +612,7 @@ void XMLHttpRequest::overrideMIMEType(const QString &override)
 void XMLHttpRequest::setRequestHeader(const QString &_name, const QString &_value, int &ec)
 {
     // throw exception if connection is not open or the send flag is set
-    if (m_state != XHRS_Open || job != 0) {
+    if (m_state != XHRS_Open || job != nullptr) {
         ec = DOMException::INVALID_STATE_ERR;
         return;
     }
@@ -765,14 +765,14 @@ void XMLHttpRequest::processSyncLoadResults(const QByteArray &data, const QUrl &
 
     slotData(0, bytes, len);
 #else
-    slotData(0, data);
+    slotData(nullptr, data);
 #endif
 
     if (aborted) {
         return;
     }
 
-    slotFinished(0);
+    slotFinished(nullptr);
 }
 
 void XMLHttpRequest::slotFinished(KJob *)
@@ -783,7 +783,7 @@ void XMLHttpRequest::slotFinished(KJob *)
 
     // make sure to forget about the job before emitting completed,
     // since changeState triggers JS code, which might e.g. call abort.
-    job = 0;
+    job = nullptr;
     changeState(XHRS_Loaded);
 
     clearDecoder();

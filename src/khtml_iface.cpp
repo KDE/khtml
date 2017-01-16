@@ -151,7 +151,7 @@ void KHTMLPartIface::activateNode()
 {
     KParts::ReadOnlyPart *p = part->currentFrame();
     if (p && p->widget()) {
-        QKeyEvent ev(QKeyEvent::KeyPress, Qt::Key_Return, 0, "\n");
+        QKeyEvent ev(QKeyEvent::KeyPress, Qt::Key_Return, nullptr, "\n");
         QApplication::sendEvent(p->widget(), &ev);
     }
 }

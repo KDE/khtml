@@ -61,7 +61,7 @@ KJS_DEFINE_PROTOTYPE(ArrayBufferProto)
 KJS_IMPLEMENT_PROTOFUNC(ArrayBufferProtoFunc)
 KJS_IMPLEMENT_PROTOTYPE("ArrayBuffer", ArrayBufferProto, ArrayBufferProtoFunc, ObjectPrototype)
 
-const ClassInfo ArrayBuffer::info = { "ArrayBuffer", 0, &ArrayBufferTable, 0 };
+const ClassInfo ArrayBuffer::info = { "ArrayBuffer", nullptr, &ArrayBufferTable, nullptr };
 
 /* Source for ArrayBufferTable.
 
@@ -74,7 +74,7 @@ const ClassInfo ArrayBuffer::info = { "ArrayBuffer", 0, &ArrayBufferTable, 0 };
 ArrayBuffer::ArrayBuffer(size_t size)
     : JSObject(),
       m_size(size),
-      m_buffer(0)
+      m_buffer(nullptr)
 {
     if (m_size > 0) {
         m_buffer = new uint8_t[m_size];
@@ -85,7 +85,7 @@ ArrayBuffer::ArrayBuffer(size_t size)
 ArrayBuffer::ArrayBuffer(uint8_t *buffer, size_t size)
     : JSObject(),
       m_size(size),
-      m_buffer(0)
+      m_buffer(nullptr)
 {
     if (m_size > 0) {
         m_buffer = new uint8_t[m_size];

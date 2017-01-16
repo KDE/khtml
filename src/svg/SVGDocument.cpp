@@ -53,7 +53,7 @@ SVGSVGElement *SVGDocument::rootElement() const
         return static_cast<SVGSVGElement *>(elem);
     }
 
-    return 0;
+    return nullptr;
 }
 
 void SVGDocument::dispatchZoomEvent(float prevScale, float newScale)

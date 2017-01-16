@@ -41,7 +41,7 @@ class MediaControls : public QWidget
 {
     Q_OBJECT
 public:
-    MediaControls(MediaPlayer *mediaPlayer, QWidget *parent = 0);
+    MediaControls(MediaPlayer *mediaPlayer, QWidget *parent = nullptr);
 
 private Q_SLOTS:
     void slotStateChanged(Phonon::State state);

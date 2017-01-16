@@ -203,7 +203,7 @@ public:
      * or @c QString() if no filter matched.
      * @since 4.4
     */
-    QString adFilteredBy(const QString &url, bool *isWhiteListed = 0) const;
+    QString adFilteredBy(const QString &url, bool *isWhiteListed = nullptr) const;
 
     bool isAdFilterEnabled() const;
     bool isHideAdsEnabled() const;

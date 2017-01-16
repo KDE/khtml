@@ -50,7 +50,7 @@ class DocumentImpl;
 class RegisteredEventListener
 {
 public:
-    RegisteredEventListener() : useCapture(false), listener(0) {}
+    RegisteredEventListener() : useCapture(false), listener(nullptr) {}
 
     RegisteredEventListener(EventName _id, EventListener *_listener, bool _useCapture)
         : eventName(_id), useCapture(_useCapture), listener(_listener)
@@ -64,7 +64,7 @@ public:
     {
         if (listener) {
             listener->deref();
-        } listener = 0;
+        } listener = nullptr;
     }
 
     bool operator==(const RegisteredEventListener &other) const
@@ -101,7 +101,7 @@ public:
 };
 
 struct RegisteredListenerList {
-    RegisteredListenerList() : listeners(0)
+    RegisteredListenerList() : listeners(nullptr)
     {}
 
     ~RegisteredListenerList();
@@ -347,7 +347,7 @@ protected:
 class UIEventImpl : public EventImpl
 {
 public:
-    UIEventImpl() : m_view(0), m_detail(0) {}
+    UIEventImpl() : m_view(nullptr), m_detail(0) {}
     UIEventImpl(EventId _id,
                 bool canBubbleArg,
                 bool cancelableArg,
@@ -433,7 +433,7 @@ public:
                    bool metaKeyArg,
                    unsigned short buttonArg,
                    NodeImpl *relatedTargetArg,
-                   QMouseEvent *qe = 0,
+                   QMouseEvent *qe = nullptr,
                    bool isDoubleClick = false,
                    Orientation orient = ONone);
     virtual ~MouseEventImpl();
@@ -669,7 +669,7 @@ public:
         return m_synthetic;
     }
 protected:
-    KeyEventBaseImpl(): m_keyEvent(0), m_keyVal(0), m_virtKeyVal(0), m_modifier(0), m_synthetic(false)
+    KeyEventBaseImpl(): m_keyEvent(nullptr), m_keyVal(0), m_virtKeyVal(0), m_modifier(0), m_synthetic(false)
     {
         m_detail = 0;
     }

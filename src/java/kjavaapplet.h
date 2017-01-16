@@ -59,7 +59,7 @@ public:
         STOPPED      = 5,
         DESTROYED    = 6
     } AppletState;
-    KJavaApplet(KJavaAppletWidget *_parent, KJavaAppletContext *_context = 0);
+    KJavaApplet(KJavaAppletWidget *_parent, KJavaAppletContext *_context = nullptr);
     ~KJavaApplet();
 
     /**

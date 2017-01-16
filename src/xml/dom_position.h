@@ -43,7 +43,7 @@ void printRootEditableTree(NodeImpl *node);
 class Position
 {
 public:
-    Position() : m_node(0), m_offset(0) {};
+    Position() : m_node(nullptr), m_offset(0) {};
     Position(NodeImpl *node, long offset);
     Position(const Position &);
     ~Position();
@@ -63,11 +63,11 @@ public:
 
     bool isEmpty() const
     {
-        return m_node == 0;
+        return m_node == nullptr;
     }
     bool notEmpty() const
     {
-        return m_node != 0;
+        return m_node != nullptr;
     }
 
     Position equivalentLeafPosition() const;

@@ -45,29 +45,29 @@ using namespace DOM;
 
 KHTMLFind::KHTMLFind(KHTMLPart *part, KHTMLFind *parent) :
     m_part(part),
-    m_find(0),
+    m_find(nullptr),
     m_parent(parent),
-    m_findDialog(0)
+    m_findDialog(nullptr)
 {
     connect(part, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
 }
 
 KHTMLFind::~KHTMLFind()
 {
-    d->m_find = 0; // deleted by its parent, the view.
+    d->m_find = nullptr; // deleted by its parent, the view.
 }
 
 void KHTMLFind::findTextBegin()
 {
     d->m_findPos = -1;
-    d->m_findNode = 0;
+    d->m_findNode = nullptr;
     d->m_findPosEnd = -1;
-    d->m_findNodeEnd = 0;
+    d->m_findNodeEnd = nullptr;
     d->m_findPosStart = -1;
-    d->m_findNodeStart = 0;
-    d->m_findNodePrevious = 0;
+    d->m_findNodeStart = nullptr;
+    d->m_findNodePrevious = nullptr;
     delete d->m_find;
-    d->m_find = 0L;
+    d->m_find = nullptr;
 }
 
 bool KHTMLFind::initFindNode(bool selection, bool reverse, bool fromCursor)
@@ -76,7 +76,7 @@ bool KHTMLFind::initFindNode(bool selection, bool reverse, bool fromCursor)
         return false;
     }
 
-    DOM::NodeImpl *firstNode = 0L;
+    DOM::NodeImpl *firstNode = nullptr;
     if (m_part->document().isHTMLDocument()) {
         firstNode = m_part->htmlDocument().body().handle();
     } else {
@@ -105,14 +105,14 @@ bool KHTMLFind::initFindNode(bool selection, bool reverse, bool fromCursor)
             d->m_findNode = firstNode;
             d->m_findPos = reverse ? -1 : 0;
         }
-        d->m_findNodeEnd = reverse ? firstNode : 0;
+        d->m_findNodeEnd = reverse ? firstNode : nullptr;
         d->m_findPosEnd = reverse ? 0 : -1;
-        d->m_findNodeStart = !reverse ? firstNode : 0;
+        d->m_findNodeStart = !reverse ? firstNode : nullptr;
         d->m_findPosStart = !reverse ? 0 : -1;
         d->m_findNodePrevious = d->m_findNodeStart;
         if (reverse) {
             // Need to find out the really last object, to start from it
-            khtml::RenderObject *obj = d->m_findNode ? d->m_findNode->renderer() : 0;
+            khtml::RenderObject *obj = d->m_findNode ? d->m_findNode->renderer() : nullptr;
             if (obj) {
                 // find the last object in the render tree
                 while (obj->lastChild()) {
@@ -139,7 +139,7 @@ void KHTMLFind::deactivate()
         d->m_findDialog->disconnect();
         d->m_findDialog->deleteLater();
     }
-    d->m_findDialog = 0L;
+    d->m_findDialog = nullptr;
 
     // if the selection is limited to a single link, that link gets focus
     const DOM::Selection sel = m_part->caret();
@@ -164,7 +164,7 @@ void KHTMLFind::deactivate()
 
 void KHTMLFind::slotFindDestroyed()
 {
-    d->m_find = 0;
+    d->m_find = nullptr;
 }
 
 void KHTMLFind::activate()
@@ -191,7 +191,7 @@ void KHTMLFind::activate()
         // Now show the dialog in which the user can choose options.
         d->m_findDialog = new KHTMLFindBar(m_part->widget());
         d->m_findDialog->setHasSelection(m_part->hasSelection());
-        d->m_findDialog->setHasCursor(d->m_findNode != 0);
+        d->m_findDialog->setHasCursor(d->m_findNode != nullptr);
 #if 0
         if (d->m_findNode) { // has a cursor -> default to 'FromCursor'
             d->m_lastFindState.options |= KFind::FromCursor;
@@ -217,9 +217,9 @@ void KHTMLFind::activate()
     connect(qApp->clipboard(), SIGNAL(selectionChanged()), m_part, SLOT(slotClearSelection()));
 #endif
     if (m_findDialog) {
-        createNewKFind(m_findDialog->pattern(), 0 /*options*/, m_findDialog, 0);
+        createNewKFind(m_findDialog->pattern(), 0 /*options*/, m_findDialog, nullptr);
     } else if (m_parent && m_parent->find()) {
-        createNewKFind(m_parent->find()->pattern(), m_parent->find()->options(), static_cast<QWidget *>(m_parent->find()->parent()), 0);
+        createNewKFind(m_parent->find()->pattern(), m_parent->find()->options(), static_cast<QWidget *>(m_parent->find()->parent()), nullptr);
     }
 }
 
@@ -228,14 +228,14 @@ void KHTMLFind::activate()
 static inline KHTMLPart *innerPart(khtml::RenderObject *ro)
 {
     if (!ro || !ro->isWidget() || ro->isFormElement()) {
-        return 0;
+        return nullptr;
     }
     KHTMLView *v = qobject_cast<KHTMLView *>(static_cast<khtml::RenderWidget *>(ro)->widget());
-    return v ? v->part() : 0;
+    return v ? v->part() : nullptr;
 }
 static inline KHTMLPart *innerPartFromNode(DOM::NodeImpl *node)
 {
-    return (node && node->renderer() ? innerPart(node->renderer()) : 0);
+    return (node && node->renderer() ? innerPart(node->renderer()) : nullptr);
 }
 
 void KHTMLFind::createNewKFind(const QString &str, long options, QWidget *parent, KFindDialog *findDialog)
@@ -343,10 +343,10 @@ bool KHTMLFind::findTextNext(bool reverse)
         qSwap(d->m_findNode, d->m_findNodePrevious);
 
         // d->m_findNode now point at the end of the last searched line - advance one node
-        khtml::RenderObject *obj = d->m_findNode ? d->m_findNode->renderer() : 0;
-        khtml::RenderObject *end = d->m_findNodeEnd ? d->m_findNodeEnd->renderer() : 0;
+        khtml::RenderObject *obj = d->m_findNode ? d->m_findNode->renderer() : nullptr;
+        khtml::RenderObject *end = d->m_findNodeEnd ? d->m_findNodeEnd->renderer() : nullptr;
         if (obj == end) {
-            obj = 0L;
+            obj = nullptr;
         } else if (obj) {
             do {
                 obj = (options & KFind::FindBackwards) ? obj->objectAbove() : obj->objectBelow();
@@ -365,8 +365,8 @@ bool KHTMLFind::findTextNext(bool reverse)
 
     int numMatchesOld = m_find->numMatches();
     KFind::Result res = KFind::NoMatch;
-    khtml::RenderObject *obj = d->m_findNode ? d->m_findNode->renderer() : 0;
-    khtml::RenderObject *end = d->m_findNodeEnd ? d->m_findNodeEnd->renderer() : 0;
+    khtml::RenderObject *obj = d->m_findNode ? d->m_findNode->renderer() : nullptr;
+    khtml::RenderObject *end = d->m_findNodeEnd ? d->m_findNodeEnd->renderer() : nullptr;
     //qDebug() << "obj=" << obj << " end=" << end;
     while (res == KFind::NoMatch) {
         if (d->m_find->needData()) {
@@ -451,7 +451,7 @@ bool KHTMLFind::findTextNext(bool reverse)
                 }
                 // Compare obj and end _after_ we processed the 'end' node itself
                 if (obj == end) {
-                    obj = 0L;
+                    obj = nullptr;
                 } else {
                     // Move on to next object (note: if we found a \n already, then obj (and lastNode)
                     // will point to the _next_ object, i.e. they are in advance.
@@ -465,7 +465,7 @@ bool KHTMLFind::findTextNext(bool reverse)
                 if (obj) {
                     lastNode = obj->element();
                 } else {
-                    lastNode = 0;
+                    lastNode = nullptr;
                 }
             } // end while
 
@@ -500,7 +500,7 @@ bool KHTMLFind::findTextNext(bool reverse)
         // qDebug() << "Dialog closed.";
     }
 
-    if (m_findDialog != 0) {
+    if (m_findDialog != nullptr) {
         m_findDialog->setFoundMatch(res == KFind::Match);
         m_findDialog->setAtEnd(m_find->numMatches() < numMatchesOld);
     }
@@ -526,8 +526,8 @@ void KHTMLFind::slotHighlight(const QString & /*text*/, int index, int length)
     Selection sel(RenderPosition(node, index - (*prev).index).position());
 
     khtml::RenderObject *obj = node->renderer();
-    khtml::RenderTextArea *renderTextArea = 0L;
-    khtml::RenderLineEdit *renderLineEdit = 0L;
+    khtml::RenderTextArea *renderTextArea = nullptr;
+    khtml::RenderLineEdit *renderLineEdit = nullptr;
 
     Q_ASSERT(obj);
     if (obj) {
@@ -606,7 +606,7 @@ void KHTMLFind::slotSelectionChanged()
 
 void KHTMLFind::slotSearchChanged()
 {
-    createNewKFind(m_findDialog->pattern(), m_findDialog->options(), m_findDialog, 0);
+    createNewKFind(m_findDialog->pattern(), m_findDialog->options(), m_findDialog, nullptr);
     findTextNext();
 }
 

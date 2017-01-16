@@ -99,7 +99,7 @@ HTMLCanvasElementImpl::HTMLCanvasElementImpl(DocumentImpl *doc)
 HTMLCanvasElementImpl::~HTMLCanvasElementImpl()
 {
     if (context) {
-        context->canvasElement = 0;
+        context->canvasElement = nullptr;
     }
 }
 
@@ -211,7 +211,7 @@ QString HTMLCanvasElementImpl::toDataURL(int &exceptionCode)
 
 // -------------------------------------------------------------------------
 CanvasContext2DImpl::CanvasContext2DImpl(HTMLCanvasElementImpl *element, int width, int height):
-    canvasElement(element), canvasImage(0)
+    canvasElement(element), canvasImage(nullptr)
 {
     resetContext(width, height);
 }
@@ -506,7 +506,7 @@ static const IDTranslator<QString, QPainter::CompositionMode, const char *>::Inf
     {"lighter", QPainter::CompositionMode_Plus},
     {"copy",    QPainter::CompositionMode_Source},
     {"xor",     QPainter::CompositionMode_Xor},
-    {0, (QPainter::CompositionMode)0}
+    {nullptr, (QPainter::CompositionMode)0}
 };
 
 MAKE_TRANSLATOR(compModeTranslator, QString, QPainter::CompositionMode, const char *, compModeTranslatorTable)
@@ -532,7 +532,7 @@ void CanvasContext2DImpl::setGlobalCompositeOperation(const DOM::DOMString &op)
 static QColor colorFromString(DOM::DOMString domStr)
 {
     // We make a temporary CSS decl. object to parse the color using the CSS parser.
-    CSSStyleDeclarationImpl  tempStyle(0);
+    CSSStyleDeclarationImpl  tempStyle(nullptr);
     if (!tempStyle.setProperty(CSS_PROP_COLOR, domStr)) {
         return QColor();
     }
@@ -583,7 +583,7 @@ CanvasColorImpl *CanvasColorImpl::fromString(const DOM::DOMString &str)
 {
     QColor cl = colorFromString(str);
     if (!cl.isValid()) {
-        return 0;
+        return nullptr;
     }
     return new CanvasColorImpl(cl);
 }
@@ -821,7 +821,7 @@ CanvasGradientImpl *CanvasContext2DImpl::createRadialGradient(float x0, float y0
     //### fuzzy
     if (r0 < 0.0f || r1 < 0.0f) {
         exceptionCode = DOMException::INDEX_SIZE_ERR;
-        return 0;
+        return nullptr;
     }
 
     QPointF center, focalPoint;
@@ -874,13 +874,13 @@ CanvasPatternImpl *CanvasContext2DImpl::createPattern(ElementImpl *pat, const DO
         repeatY = false;
     } else {
         exceptionCode = DOMException::SYNTAX_ERR;
-        return 0;
+        return nullptr;
     }
 
     bool unsafe;
     QImage pic = extractImage(pat, exceptionCode, unsafe);
     if (exceptionCode) {
-        return 0;
+        return nullptr;
     }
 
     return new CanvasPatternImpl(pic, unsafe, repeatX, repeatY);
@@ -906,7 +906,7 @@ static const IDTranslator<QString, Qt::PenCapStyle, const char *>::Info penCapTr
     {"round", Qt::RoundCap},
     {"square", Qt::SquareCap},
     {"butt", Qt::FlatCap},
-    {0, (Qt::PenCapStyle)0}
+    {nullptr, (Qt::PenCapStyle)0}
 };
 
 MAKE_TRANSLATOR(penCapTranslator, QString, Qt::PenCapStyle, const char *, penCapTranslatorTable)
@@ -930,7 +930,7 @@ static const IDTranslator<QString, Qt::PenJoinStyle, const char *>::Info penJoin
     {"round", Qt::RoundJoin},
     {"miter", Qt::SvgMiterJoin},
     {"bevel", Qt::BevelJoin},
-    {0, (Qt::PenJoinStyle)0}
+    {nullptr, (Qt::PenJoinStyle)0}
 };
 
 MAKE_TRANSLATOR(penJoinTranslator, QString, Qt::PenJoinStyle, const char *, penJoinTranslatorTable)
@@ -1597,17 +1597,17 @@ CanvasImageDataImpl *CanvasContext2DImpl::getImageData(float sx, float sy, float
 
     if (canvas()->isUnsafe()) {
         exceptionCode = DOMException::INVALID_ACCESS_ERR;
-        return 0;
+        return nullptr;
     }
 
     if (w <= 0 || h <= 0) {
         exceptionCode = DOMException::INDEX_SIZE_ERR;
-        return 0;
+        return nullptr;
     }
 
     if (!khtmlImLoad::ImageManager::isAcceptableSize(unsigned(w), unsigned(h))) {
         exceptionCode = DOMException::INDEX_SIZE_ERR;
-        return 0;
+        return nullptr;
     }
 
     int x = qRound(sx);
@@ -1663,7 +1663,7 @@ CanvasImageDataImpl *CanvasContext2DImpl::createImageData(float sw, float sh, in
 
     if (w == 0 || h == 0) {
         exceptionCode = DOMException::INDEX_SIZE_ERR;
-        return 0;
+        return nullptr;
     }
 
     CanvasImageDataImpl *id = new CanvasImageDataImpl(w, h);

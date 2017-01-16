@@ -135,8 +135,8 @@ static const int sTokenizerYieldDelay = 450;
 HTMLTokenizer::HTMLTokenizer(DOM::DocumentImpl *_doc, KHTMLView *_view)
 {
     view = _view;
-    buffer = 0;
-    rawContent = 0;
+    buffer = nullptr;
+    rawContent = nullptr;
     rawContentSize = rawContentMaxSize = rawContentResync = rawContentSinceLastEntity = 0;
     charsets = KCharsets::charsets();
     parser = new KHTMLParser(_view, _doc);
@@ -144,7 +144,7 @@ HTMLTokenizer::HTMLTokenizer(DOM::DocumentImpl *_doc, KHTMLView *_view)
     m_externalScriptsTimerId = 0;
     m_tokenizerYieldDelay = sTokenizerFastYieldDelay;
     m_yieldTimer = 0;
-    m_prospectiveTokenizer = 0;
+    m_prospectiveTokenizer = nullptr;
     onHold = false;
     m_documentTokenizer = true;
     m_hasScriptsWaitingForStylesheets = false;
@@ -154,9 +154,9 @@ HTMLTokenizer::HTMLTokenizer(DOM::DocumentImpl *_doc, KHTMLView *_view)
 
 HTMLTokenizer::HTMLTokenizer(DOM::DocumentImpl *_doc, DOM::DocumentFragmentImpl *i)
 {
-    view = 0;
-    buffer = 0;
-    rawContent = 0;
+    view = nullptr;
+    buffer = nullptr;
+    rawContent = nullptr;
     rawContentSize = rawContentMaxSize = rawContentResync = rawContentSinceLastEntity = 0;
     charsets = KCharsets::charsets();
     parser = new KHTMLParser(i, _doc);
@@ -164,7 +164,7 @@ HTMLTokenizer::HTMLTokenizer(DOM::DocumentImpl *_doc, DOM::DocumentFragmentImpl 
     m_externalScriptsTimerId = 0;
     m_tokenizerYieldDelay = sTokenizerFastYieldDelay;
     m_yieldTimer = 0;
-    m_prospectiveTokenizer = 0;
+    m_prospectiveTokenizer = nullptr;
     onHold = false;
     m_documentTokenizer = false;
     m_hasScriptsWaitingForStylesheets = false;
@@ -190,13 +190,13 @@ void HTMLTokenizer::reset()
     if (buffer) {
         KHTML_DELETE_QCHAR_VEC(buffer);
     }
-    buffer = dest = 0;
+    buffer = dest = nullptr;
     size = 0;
 
     if (rawContent) {
         KHTML_DELETE_QCHAR_VEC(rawContent);
     }
-    rawContent = 0;
+    rawContent = nullptr;
     rawContentSize = rawContentMaxSize = rawContentResync = 0;
 
     if (m_yieldTimer > 0) {
@@ -448,7 +448,7 @@ void HTMLTokenizer::scriptHandler()
     bool deferredScript = false;
 
     if (effectiveScript) {
-        CachedScript *cs = 0;
+        CachedScript *cs = nullptr;
 
         // forget what we just got, load from src url instead
         if (!currentScriptSrc.isEmpty() && javascript) {
@@ -1480,13 +1480,13 @@ void HTMLTokenizer::parseTag(TokenizerString &src)
             }
 
             bool beginTag = !currToken.flat && (tagID < ID_CLOSE_TAG);
-            HTMLScriptElementImpl *prevScriptElem = 0;
+            HTMLScriptElementImpl *prevScriptElem = nullptr;
 
             if (tagID >= ID_CLOSE_TAG) {
                 tagID -= ID_CLOSE_TAG;
             } else if (tagID == ID_SCRIPT) {
                 prevScriptElem = parser->currentScriptElement();
-                DOMStringImpl *a = 0;
+                DOMStringImpl *a = nullptr;
                 scriptSrc.clear(); scriptSrcCharset.clear();
                 if (currToken.attrs &&  /* potentially have a ATTR_SRC ? */
                         view &&  /* are we a regular tokenizer or just for innerHTML ? */
@@ -1894,7 +1894,7 @@ void HTMLTokenizer::timerEvent(QTimerEvent *e)
         }
         killTimer(m_externalScriptsTimerId);
         m_externalScriptsTimerId = 0;
-        notifyFinished(0);
+        notifyFinished(nullptr);
     }
 }
 
@@ -1914,9 +1914,9 @@ void HTMLTokenizer::end()
             KHTML_DELETE_QCHAR_VEC(rawContent);
         }
 
-        rawContent = 0;
+        rawContent = nullptr;
         rawContentSize = rawContentMaxSize = rawContentResync = 0;
-        buffer = 0;
+        buffer = nullptr;
     }
     emit finishedParsing();
 }
@@ -1953,7 +1953,7 @@ void HTMLTokenizer::finish()
             food.setUnicode(rawContent + pos + 1, rawContentSize - pos - 1); // deep copy
         }
         KHTML_DELETE_QCHAR_VEC(rawContent);
-        rawContent = 0;
+        rawContent = nullptr;
         rawContentSize = rawContentMaxSize = rawContentResync = 0;
 
         comment = server = title = false;
@@ -1971,7 +1971,7 @@ void HTMLTokenizer::finish()
 
 void HTMLTokenizer::processToken()
 {
-    KJSProxy *jsProxy = view ? view->part()->jScript() : 0L;
+    KJSProxy *jsProxy = view ? view->part()->jScript() : nullptr;
     if (jsProxy) {
         jsProxy->setEventHandlerLineno(tagStartLineno);
     }
@@ -2154,7 +2154,7 @@ void HTMLTokenizer::executeScriptsWaitingForStylesheets()
 {
     assert(parser->doc()->haveStylesheetsLoaded());
     if (m_hasScriptsWaitingForStylesheets) {
-        notifyFinished(0);
+        notifyFinished(nullptr);
     }
 }
 

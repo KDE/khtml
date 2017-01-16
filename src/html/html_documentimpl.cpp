@@ -58,7 +58,7 @@ HTMLDocumentImpl::HTMLDocumentImpl(KHTMLView *v)
     : DocumentImpl(v)
 {
 //    qDebug() << "HTMLDocumentImpl constructor this = " << this;
-    htmlElement = 0;
+    htmlElement = nullptr;
 
     m_doAutoFill = false;
     m_determineParseMode = false;
@@ -165,7 +165,7 @@ ElementImpl *HTMLDocumentImpl::createElement(const DOMString &name, int *pExcept
 {
     if (pExceptioncode && !Element::khtmlValidQualifiedName(name)) {
         *pExceptioncode = DOMException::INVALID_CHARACTER_ERR;
-        return 0;
+        return nullptr;
     }
 
     return createHTMLElement(name, hMode != XHtml);
@@ -204,7 +204,7 @@ HTMLMapElementImpl *HTMLDocumentImpl::getMap(const DOMString &_url)
     if (it != mapMap.constEnd()) {
         return *it;
     } else {
-        return 0;
+        return nullptr;
     }
 }
 
@@ -254,7 +254,7 @@ void HTMLDocumentImpl::close()
 void HTMLDocumentImpl::determineParseMode()
 {
     m_determineParseMode = true;
-    if (m_doctype == 0) {
+    if (m_doctype == nullptr) {
         // Currently we haven't got any doctype, so default to quirks mode and Html4
         changeModes(Compat, Html4);
     }

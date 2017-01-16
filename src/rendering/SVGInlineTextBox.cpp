@@ -74,7 +74,7 @@ SVGRootInlineBox *SVGInlineTextBox::svgRootInlineBox() const
     ASSERT(parentBox->isRootInlineBox());
 
     if (!parentBox->isSVGRootInlineBox()) {
-        return 0;
+        return nullptr;
     }
 
     return static_cast<SVGRootInlineBox *>(parentBox);
@@ -134,7 +134,7 @@ FloatRect SVGInlineTextBox::calculateGlyphBoundaries(RenderStyle *style, int off
 // Helper class for closestCharacterToPosition()
 struct SVGInlineTextBoxClosestCharacterToPositionWalker {
     SVGInlineTextBoxClosestCharacterToPositionWalker(int x, int y)
-        : m_character(0)
+        : m_character(nullptr)
         , m_distance(FLT_MAX)
         , m_x(x)
         , m_y(y)
@@ -147,7 +147,7 @@ struct SVGInlineTextBoxClosestCharacterToPositionWalker {
     {
         RenderStyle *style = textBox->renderText()->style();
 
-        Vector<SVGChar>::iterator closestCharacter = 0;
+        Vector<SVGChar>::iterator closestCharacter = nullptr;
         unsigned int closestOffset = UINT_MAX;
 
         for (Vector<SVGChar>::iterator it = start; it != end; ++it) {
@@ -242,7 +242,7 @@ SVGChar *SVGInlineTextBox::closestCharacterToPosition(int x, int y, int &offset)
 {
     SVGRootInlineBox *rootBox = svgRootInlineBox();
     if (!rootBox) {
-        return 0;
+        return nullptr;
     }
 
     SVGInlineTextBoxClosestCharacterToPositionWalker walkerCallback(x, y);

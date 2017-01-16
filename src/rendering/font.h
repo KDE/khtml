@@ -140,9 +140,9 @@ class Font
 public:
     static void initDefault();
 
-    Font() : fontDef(), cfi(defaultCFI), scFont(0), letterSpacing(0), wordSpacing(0) {}
+    Font() : fontDef(), cfi(defaultCFI), scFont(nullptr), letterSpacing(0), wordSpacing(0) {}
     Font(const FontDef &fd)
-        :  fontDef(fd), cfi(defaultCFI), scFont(0), letterSpacing(0), wordSpacing(0)
+        :  fontDef(fd), cfi(defaultCFI), scFont(nullptr), letterSpacing(0), wordSpacing(0)
     {}
     Font(const Font &o)
         : fontDef(o.fontDef), cfi(o.cfi), scFont(o.scFont), letterSpacing(o.letterSpacing), wordSpacing(o.wordSpacing)

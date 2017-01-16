@@ -200,7 +200,7 @@ private:
 template<typename Wrapper>
 JSValue *getWrapper(ExecState *exec, typename Wrapper::wrappedType *g)
 {
-    DOMObject *ret = 0;
+    DOMObject *ret = nullptr;
     if (!g) {
         return jsNull();
     }

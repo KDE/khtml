@@ -32,7 +32,7 @@ class StorePassBar : public KHTMLViewBarWidget, private Ui::StorePassBarBase
 {
     Q_OBJECT
 public:
-    StorePassBar(QWidget *parent = 0);
+    StorePassBar(QWidget *parent = nullptr);
 
     void setHost(const QString &host);
 

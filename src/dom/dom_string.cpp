@@ -29,7 +29,7 @@ using namespace DOM;
 DOMString::DOMString(const QChar *str, uint len)
 {
     if (!str) {
-        impl = 0;
+        impl = nullptr;
         return;
     }
     impl = new DOMStringImpl(str, len);
@@ -39,7 +39,7 @@ DOMString::DOMString(const QChar *str, uint len)
 DOMString::DOMString(const QString &str)
 {
     if (str.isNull()) {
-        impl = 0;
+        impl = nullptr;
         return;
     }
 
@@ -50,7 +50,7 @@ DOMString::DOMString(const QString &str)
 DOMString::DOMString(const char *str)
 {
     if (!str) {
-        impl = 0;
+        impl = nullptr;
         return;
     }
 
@@ -61,7 +61,7 @@ DOMString::DOMString(const char *str)
 DOMString::DOMString(const char *str, uint len)
 {
     if (!str) {
-        impl = 0;
+        impl = nullptr;
         return;
     }
     impl = new DOMStringImpl(str, len);
@@ -262,7 +262,7 @@ bool DOMString::percentage(int &_percentage) const
 QChar *DOMString::unicode() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return impl->unicode();
 }

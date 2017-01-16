@@ -64,7 +64,7 @@
 using namespace DOM;
 using namespace khtml;
 
-ScrollBarWidget *RenderLayer::gScrollBar = 0;
+ScrollBarWidget *RenderLayer::gScrollBar = nullptr;
 
 #ifndef NDEBUG
 static bool inRenderLayerDetach;
@@ -86,11 +86,11 @@ RenderScrollMediator::slotValueChanged()
 
 RenderLayer::RenderLayer(RenderObject *object)
     : m_object(object),
-      m_parent(0),
-      m_previous(0),
-      m_next(0),
-      m_first(0),
-      m_last(0),
+      m_parent(nullptr),
+      m_previous(nullptr),
+      m_next(nullptr),
+      m_first(nullptr),
+      m_last(nullptr),
       m_x(0),
       m_y(0),
       m_scrollX(0),
@@ -98,12 +98,12 @@ RenderLayer::RenderLayer(RenderObject *object)
       m_scrollXOrigin(0),
       m_scrollWidth(0),
       m_scrollHeight(0),
-      m_hBar(0),
-      m_vBar(0),
-      m_scrollMediator(0),
-      m_posZOrderList(0),
-      m_negZOrderList(0),
-      m_overflowList(0),
+      m_hBar(nullptr),
+      m_vBar(nullptr),
+      m_scrollMediator(nullptr),
+      m_posZOrderList(nullptr),
+      m_negZOrderList(nullptr),
+      m_overflowList(nullptr),
       m_zOrderListsDirty(true),
       m_overflowListDirty(true),
       m_isOverflowOnly(shouldBeOverflowOnly()),
@@ -114,14 +114,14 @@ RenderLayer::RenderLayer(RenderObject *object)
       m_visibleDescendantStatusDirty(false),
       m_hasVisibleDescendant(false),
       m_inScrollbarRelayout(false),
-      m_marquee(0)
+      m_marquee(nullptr)
 {
     if (!object->firstChild() && object->style()) {
         m_visibleContentStatusDirty = false;
         m_hasVisibleContent = object->style()->visibility() == VISIBLE;
     }
-    m_buffer[0] = 0;
-    m_buffer[1] = 0;
+    m_buffer[0] = nullptr;
+    m_buffer[1] = nullptr;
     m_wasStackingContext = object->style() ? isStackingContext() : false;
 }
 
@@ -379,7 +379,7 @@ void RenderLayer::updateVisibilityStatus()
                     do {
                         r = r->parent();
                         if (r == m_object) {
-                            r = 0;
+                            r = nullptr;
                         }
                     } while (r && !r->nextSibling());
                     if (r) {
@@ -398,7 +398,7 @@ void RenderLayer::updateWidgetMasks(RenderLayer *rootLayer)
         updateZOrderLists();
         uint count = m_posZOrderList ? m_posZOrderList->count() : 0;
         bool needUpdate = false;
-        KHTMLView *sa = 0;
+        KHTMLView *sa = nullptr;
         if (count > 0) {
             sa = m_object->document()->view();
             m_region = QRect(0, 0, sa->contentsWidth(), sa->contentsHeight());
@@ -601,9 +601,9 @@ RenderLayer *RenderLayer::removeChild(RenderLayer *oldChild)
         }
     }
 
-    oldChild->setPreviousSibling(0);
-    oldChild->setNextSibling(0);
-    oldChild->setParent(0);
+    oldChild->setPreviousSibling(nullptr);
+    oldChild->setNextSibling(nullptr);
+    oldChild->setParent(nullptr);
 
     oldChild->updateVisibilityStatus();
     if (oldChild->m_hasVisibleContent || oldChild->m_hasVisibleDescendant) {
@@ -850,7 +850,7 @@ RenderLayer::showScrollbar(Qt::Orientation o, bool show)
         m_scrollMediator->connect(sb, SIGNAL(valueChanged(int)), SLOT(slotValueChanged()));
     } else if (!show && sb) {
         delete sb;
-        sb = 0;
+        sb = nullptr;
     }
 
     if (o == Qt::Horizontal) {
@@ -1148,7 +1148,7 @@ void RenderLayer::paintLayer(RenderLayer *rootLayer, QPainter *p,
     updateOverflowList();
 
     // Set our transparency if we need to.
-    khtml::BufferedPainter *bPainter = 0;
+    khtml::BufferedPainter *bPainter = nullptr;
     if (isTransparent()) {
         //### cache paintedRegion
         QRegion rr = paintedRegion(rootLayer) & damageRect;
@@ -1259,14 +1259,14 @@ void RenderLayer::paintLayer(RenderLayer *rootLayer, QPainter *p,
         KHTMLView *const v = m_object->canvas()->view();
         assert(v->clipHolder()->isEmpty());
         delete v->clipHolder();
-        v->setClipHolder(0);
+        v->setClipHolder(nullptr);
     }
 }
 
 bool RenderLayer::nodeAtPoint(RenderObject::NodeInfo &info, int x, int y)
 {
     // Clear our our scrollbar variable
-    RenderLayer::gScrollBar = 0;
+    RenderLayer::gScrollBar = nullptr;
 
     int stx = m_x;
     int sty = m_y;
@@ -1308,7 +1308,7 @@ RenderLayer *RenderLayer::nodeAtPointForLayer(RenderLayer *rootLayer, RenderObje
 
     // This variable tracks which layer the mouse ends up being inside.  The minute we find an insideLayer,
     // we are done and can return it.
-    RenderLayer *insideLayer = 0;
+    RenderLayer *insideLayer = nullptr;
 
     // Begin by walking our list of positive layers from highest z-index down to the lowest
     // z-index.
@@ -1368,7 +1368,7 @@ RenderLayer *RenderLayer::nodeAtPointForLayer(RenderLayer *rootLayer, RenderObje
     }
 
     // No luck.
-    return 0;
+    return nullptr;
 }
 
 void RenderLayer::calculateClipRects(const RenderLayer *rootLayer, QRect &overflowClipRect,
@@ -1481,7 +1481,7 @@ static RenderObject *hoverAncestor(RenderObject *obj)
 static RenderObject *commonAncestor(RenderObject *obj1, RenderObject *obj2)
 {
     if (!obj1 || !obj2) {
-        return 0;
+        return nullptr;
     }
 
     for (RenderObject *currObj1 = obj1; currObj1; currObj1 = hoverAncestor(currObj1))
@@ -1490,7 +1490,7 @@ static RenderObject *commonAncestor(RenderObject *obj1, RenderObject *obj2)
                 return currObj1;
             }
 
-    return 0;
+    return nullptr;
 }
 
 void RenderLayer::updateHoverActiveState(RenderObject::NodeInfo &info)
@@ -1501,7 +1501,7 @@ void RenderLayer::updateHoverActiveState(RenderObject::NodeInfo &info)
     }
 
     DOM::NodeImpl *e = m_object->element();
-    DOM::DocumentImpl *doc = e ? e->document() : 0;
+    DOM::DocumentImpl *doc = e ? e->document() : nullptr;
     if (!doc) {
         return;
     }
@@ -1520,12 +1520,12 @@ void RenderLayer::updateHoverActiveState(RenderObject::NodeInfo &info)
     if (info.active()) {
         doc->setActiveNode(newHoverNode);
     } else {
-        doc->setActiveNode(0);
+        doc->setActiveNode(nullptr);
     }
 
     // We have two different objects.  Fetch their renderers.
-    RenderObject *oldHoverObj = oldHoverNode ? oldHoverNode->renderer() : 0;
-    RenderObject *newHoverObj = newHoverNode ? newHoverNode->renderer() : 0;
+    RenderObject *oldHoverObj = oldHoverNode ? oldHoverNode->renderer() : nullptr;
+    RenderObject *newHoverObj = newHoverNode ? newHoverNode->renderer() : nullptr;
 
     // Locate the common ancestor render object for the two renderers.
     RenderObject *ancestor = commonAncestor(oldHoverObj, newHoverObj);
@@ -1826,9 +1826,9 @@ void RenderLayer::styleChanged()
     bool nowStackingContext = isStackingContext();
     if (!nowStackingContext && (m_posZOrderList || m_negZOrderList)) {
         delete m_posZOrderList;
-        m_posZOrderList = 0;
+        m_posZOrderList = nullptr;
         delete m_negZOrderList;
-        m_negZOrderList = 0;
+        m_negZOrderList = nullptr;
     }
 
     // If we stopped or started being a stacking context, dirty the parent, as
@@ -1859,7 +1859,7 @@ void RenderLayer::styleChanged()
         m_marquee->updateMarqueeStyle();
     } else if (m_marquee) {
         delete m_marquee;
-        m_marquee = 0;
+        m_marquee = nullptr;
     }
 }
 

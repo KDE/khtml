@@ -184,7 +184,7 @@ public:
 enum EBorderPrecedence { BOFF, BTABLE, BCOLGROUP, BCOL, BROWGROUP, BROW, BCELL };
 
 struct CollapsedBorderValue {
-    CollapsedBorderValue() : border(0), precedence(BOFF) {}
+    CollapsedBorderValue() : border(nullptr), precedence(BOFF) {}
     CollapsedBorderValue(const BorderValue *b, EBorderPrecedence p) : border(b), precedence(p) {}
 
     int width() const
@@ -684,7 +684,7 @@ enum ContentType {
 };
 
 struct ContentData {
-    ContentData() : _contentType(CONTENT_NONE), _nextContent(0) {}
+    ContentData() : _contentType(CONTENT_NONE), _nextContent(nullptr) {}
     ContentData(const ContentData &o);
     ~ContentData();
     void clearContent();
@@ -693,19 +693,19 @@ struct ContentData {
     {
         if (_contentType == CONTENT_TEXT) {
             return _content.text;
-        } return 0;
+        } return nullptr;
     }
     CachedObject *contentObject()
     {
         if (_contentType == CONTENT_OBJECT) {
             return _content.object;
-        } return 0;
+        } return nullptr;
     }
     DOM::CounterImpl *contentCounter()
     {
         if (_contentType == CONTENT_COUNTER) {
             return _content.counter;
-        } return 0;
+        } return nullptr;
     }
     EQuoteContent contentQuote()
     {
@@ -817,7 +817,7 @@ public:
 // This struct holds information about shadows for the text-shadow and box-shadow properties.
 struct ShadowData {
     ShadowData(int _x, int _y, int _blur, const QColor &_color)
-        : x(_x), y(_y), blur(_blur), color(_color), next(0) {}
+        : x(_x), y(_y), blur(_blur), color(_color), next(nullptr) {}
     ShadowData(const ShadowData &o);
 
     ~ShadowData()
@@ -2310,7 +2310,7 @@ public:
 
     bool useNormalContent() const
     {
-        return generated->content == 0;
+        return generated->content == nullptr;
     }
     ContentData *contentData() const
     {
@@ -2470,7 +2470,7 @@ public:
     }
     static DOM::QuotesValueImpl *initialQuotes()
     {
-        return 0;
+        return nullptr;
     }
     static EBoxSizing initialBoxSizing()
     {
@@ -2514,11 +2514,11 @@ public:
     }
     static CachedImage *initialBackgroundImage()
     {
-        return 0;
+        return nullptr;
     }
     static CachedImage *initialListStyleImage()
     {
-        return 0;
+        return nullptr;
     }
     static unsigned short initialBorderWidth()
     {

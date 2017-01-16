@@ -54,7 +54,7 @@ DOMString RangeException::codeAsString(int code)
 Range::Range()
 {
     // a range can't exist by itself - it must be associated with a document
-    impl = 0;
+    impl = nullptr;
 }
 
 Range::Range(const Document rootContainer)
@@ -63,7 +63,7 @@ Range::Range(const Document rootContainer)
         impl = new RangeImpl(rootContainer.handle()->docPtr());
         impl->ref();
     } else {
-        impl = 0;
+        impl = nullptr;
     }
 }
 
@@ -444,7 +444,7 @@ RangeImpl *Range::handle() const
 
 bool Range::isNull() const
 {
-    return (impl == 0);
+    return (impl == nullptr);
 }
 
 void Range::throwException(int exceptioncode) const

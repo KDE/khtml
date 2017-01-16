@@ -68,7 +68,7 @@ static DomNodeList compressTextNodes(const DomNodeList &nodes)
 
     for (unsigned long n = 0; n < nodes->length(); ++n) {
         NodeImpl *node = nodes->item(n);
-        NodeImpl *next = n + 1 < nodes->length() ? nodes->item(n + 1) : 0;
+        NodeImpl *next = n + 1 < nodes->length() ? nodes->item(n + 1) : nullptr;
 
         if (!next || !areAdjacentTextNodes(node, next)) {
             outNodes->append(node);

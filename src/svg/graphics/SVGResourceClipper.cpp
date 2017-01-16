@@ -94,7 +94,7 @@ SVGResourceClipper *getClipperById(Document *document, const AtomicString &id)
         return static_cast<SVGResourceClipper *>(resource);
     }
 
-    return 0;
+    return nullptr;
 }
 
 } // namespace WebCore

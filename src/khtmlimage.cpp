@@ -42,7 +42,7 @@
 
 KHTMLImage::KHTMLImage(QWidget *parentWidget,
                        QObject *parent, const QVariantList &args)
-    : KParts::ReadOnlyPart(parent), m_image(0)
+    : KParts::ReadOnlyPart(parent), m_image(nullptr)
 {
     KHTMLPart *parentPart = qobject_cast<KHTMLPart *>(parent);
 
@@ -128,7 +128,7 @@ bool KHTMLImage::openUrl(const QUrl &url)
 
     setUrl(url);
 
-    emit started(0);
+    emit started(nullptr);
 
     KParts::OpenUrlArguments args = arguments();
     m_mimeType = args.mimeType();
@@ -291,7 +291,7 @@ void KHTMLImage::disposeImage()
     }
 
     m_image->deref(this);
-    m_image = 0;
+    m_image = nullptr;
 }
 
 KHTMLImageBrowserExtension::KHTMLImageBrowserExtension(KHTMLImage *parent)

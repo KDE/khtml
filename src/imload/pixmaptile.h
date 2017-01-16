@@ -42,10 +42,10 @@ public:
     void discard() Q_DECL_OVERRIDE
     {
         delete pixmap;
-        pixmap = 0;
+        pixmap = nullptr;
     }
 
-    PixmapTile() : pixmap(0)
+    PixmapTile() : pixmap(nullptr)
     {}
 
     virtual ~PixmapTile()

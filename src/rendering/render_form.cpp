@@ -223,7 +223,7 @@ struct KHTMLProxyStyle : public QProxyStyle {
 RenderFormElement::RenderFormElement(HTMLGenericFormElementImpl *element)
     : RenderWidget(element)
 //     , m_state(0)
-    , m_proxyStyle(0)
+    , m_proxyStyle(nullptr)
     , m_exposeInternalPadding(false)
     , m_isOxygenStyle(false)
 {
@@ -303,7 +303,7 @@ void RenderFormElement::setQWidget(QWidget *w)
 {
     // Avoid dangling proxy pointer when we switch widgets.
     // the widget will cleanup the proxy, as it is its kid.
-    m_proxyStyle = 0;
+    m_proxyStyle = nullptr;
 
     // sets the Qt Object Name for the purposes
     // of setPadding() -- this is because QStyleSheet
@@ -375,7 +375,7 @@ int RenderFormElement::calcContentWidth(int w) const
 {
     if (!shouldDisableNativeBorders()) {
         if (style()->boxSizing() == CONTENT_BOX) {
-            int nativeBorderWidth = m_widget->style()->pixelMetric(QStyle::PM_DefaultFrameWidth, 0, m_widget);
+            int nativeBorderWidth = m_widget->style()->pixelMetric(QStyle::PM_DefaultFrameWidth, nullptr, m_widget);
             return RenderBox::calcContentWidth(w) + 2 * nativeBorderWidth;
         }
     }
@@ -387,7 +387,7 @@ int RenderFormElement::calcContentHeight(int h) const
 {
     if (!shouldDisableNativeBorders()) {
         if (style()->boxSizing() == CONTENT_BOX) {
-            int nativeBorderWidth = m_widget->style()->pixelMetric(QStyle::PM_DefaultFrameWidth, 0, m_widget);
+            int nativeBorderWidth = m_widget->style()->pixelMetric(QStyle::PM_DefaultFrameWidth, nullptr, m_widget);
             return RenderBox::calcContentHeight(h) + 2 * nativeBorderWidth;
         }
     }
@@ -784,7 +784,7 @@ namespace khtml
 class CompletionWidget: public KCompletionBox
 {
 public:
-    CompletionWidget(QWidget *parent = 0) : KCompletionBox(parent) {}
+    CompletionWidget(QWidget *parent = nullptr) : KCompletionBox(parent) {}
     QPoint globalPositionHint() const Q_DECL_OVERRIDE
     {
         QWidget *pw = parentWidget();
@@ -832,7 +832,7 @@ void LineEditWidget::slotCheckSpelling()
     if (text().isEmpty()) {
         return;
     }
-    Sonnet::Dialog *spellDialog = new Sonnet::Dialog(new Sonnet::BackgroundChecker(this), 0);
+    Sonnet::Dialog *spellDialog = new Sonnet::Dialog(new Sonnet::BackgroundChecker(this), nullptr);
     connect(spellDialog, SIGNAL(replace(QString,int,QString)), this, SLOT(spellCheckerCorrected(QString,int,QString)));
     connect(spellDialog, SIGNAL(misspelling(QString,int)), this, SLOT(spellCheckerMisspelling(QString,int)));
     connect(spellDialog, SIGNAL(done(QString)), this, SLOT(slotSpellCheckDone(QString)));
@@ -921,7 +921,7 @@ bool WebShortcutCreator::createWebShortcut(QString query)
                             break;
                         }
                         if (s == t) {
-                            KMessageBox::sorry(0, i18n("%1 is already assigned to %2", s, provider->name()), i18n("Error"));
+                            KMessageBox::sorry(nullptr, i18n("%1 is already assigned to %2", s, provider->name()), i18n("Error"));
                             isOk = false;
                         }
                     }
@@ -955,7 +955,7 @@ void WebShortcutCreator::createFile(QString query, QString name, QString keys)
     f.desktopGroup().writeEntry("Name", name);
     f.desktopGroup().writeEntry("Query", query);
     f.sync();
-    KBuildSycocaProgressDialog::rebuildKSycoca(0);
+    KBuildSycocaProgressDialog::rebuildKSycoca(nullptr);
 }
 
 bool WebShortcutCreator::askData(QString &name, QString &keys)
@@ -1403,7 +1403,7 @@ RenderObject *RenderFieldset::findLegend() const
             return legend;
         }
     }
-    return 0;
+    return nullptr;
 }
 
 void RenderFieldset::paintBoxDecorations(PaintInfo &pI, int _tx, int _ty)
@@ -1901,7 +1901,7 @@ void RenderSelect::updateFromElement()
                 QString text;
 
                 ElementImpl *parentOptGroup = optElem->parentNode()->id() == ID_OPTGROUP ?
-                                              static_cast<ElementImpl *>(optElem->parentNode()) : 0;
+                                              static_cast<ElementImpl *>(optElem->parentNode()) : nullptr;
 
                 if (parentOptGroup) {
                     text = QLatin1String("    ") + domText.string();
@@ -2055,7 +2055,7 @@ void RenderSelect::layout()
         int h = s.height();
 
         if (shouldDisableNativeBorders()) {
-            const int dfw = 2 * m_widget->style()->pixelMetric(QStyle::PM_DefaultFrameWidth, 0, m_widget);
+            const int dfw = 2 * m_widget->style()->pixelMetric(QStyle::PM_DefaultFrameWidth, nullptr, m_widget);
             w -= dfw;
             h -= dfw;
         }

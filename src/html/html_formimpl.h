@@ -160,7 +160,7 @@ class HTMLGenericFormElementImpl : public HTMLElementImpl
     friend class khtml::RenderFormElement;
 
 public:
-    HTMLGenericFormElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0);
+    HTMLGenericFormElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = nullptr);
     virtual ~HTMLGenericFormElementImpl();
 
     HTMLFormElementImpl *form() const
@@ -255,7 +255,7 @@ protected:
 class HTMLButtonElementImpl : public HTMLGenericFormElementImpl
 {
 public:
-    HTMLButtonElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0);
+    HTMLButtonElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = nullptr);
 
     virtual ~HTMLButtonElementImpl();
 
@@ -297,7 +297,7 @@ protected:
 class HTMLFieldSetElementImpl : public HTMLGenericFormElementImpl
 {
 public:
-    HTMLFieldSetElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0);
+    HTMLFieldSetElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = nullptr);
 
     virtual ~HTMLFieldSetElementImpl();
 
@@ -331,7 +331,7 @@ public:
         BUTTON
     };
 
-    HTMLInputElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0);
+    HTMLInputElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = nullptr);
     virtual ~HTMLInputElementImpl();
 
     Id id() const Q_DECL_OVERRIDE;
@@ -488,7 +488,7 @@ private:
 class HTMLLegendElementImpl : public HTMLGenericFormElementImpl
 {
 public:
-    HTMLLegendElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0);
+    HTMLLegendElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = nullptr);
     virtual ~HTMLLegendElementImpl();
 
     Id id() const Q_DECL_OVERRIDE;
@@ -503,7 +503,7 @@ class HTMLSelectElementImpl : public HTMLGenericFormElementImpl
     friend class khtml::RenderSelect;
 
 public:
-    HTMLSelectElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0);
+    HTMLSelectElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = nullptr);
     ~HTMLSelectElementImpl();
 
     Id id() const Q_DECL_OVERRIDE;
@@ -600,7 +600,7 @@ protected:
 class HTMLKeygenElementImpl : public HTMLSelectElementImpl
 {
 public:
-    HTMLKeygenElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0);
+    HTMLKeygenElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = nullptr);
 
     Id id() const Q_DECL_OVERRIDE;
 
@@ -625,7 +625,7 @@ public:
 class HTMLOptGroupElementImpl : public HTMLGenericFormElementImpl
 {
 public:
-    HTMLOptGroupElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0)
+    HTMLOptGroupElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = nullptr)
         : HTMLGenericFormElementImpl(doc, f) {}
 
     Id id() const Q_DECL_OVERRIDE;
@@ -639,7 +639,7 @@ class HTMLOptionElementImpl : public HTMLGenericFormElementImpl
     friend class DOM::HTMLSelectElementImpl;
 
 public:
-    HTMLOptionElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0);
+    HTMLOptionElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = nullptr);
 
     Id id() const Q_DECL_OVERRIDE;
 
@@ -688,7 +688,7 @@ public:
         ta_Physical
     };
 
-    HTMLTextAreaElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0);
+    HTMLTextAreaElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = nullptr);
     ~HTMLTextAreaElementImpl();
 
     Id id() const Q_DECL_OVERRIDE;
@@ -771,7 +771,7 @@ protected:
 class HTMLIsIndexElementImpl : public HTMLInputElementImpl
 {
 public:
-    HTMLIsIndexElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0);
+    HTMLIsIndexElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = nullptr);
     ~HTMLIsIndexElementImpl();
 
     Id id() const Q_DECL_OVERRIDE;

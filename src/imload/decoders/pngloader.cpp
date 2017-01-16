@@ -83,7 +83,7 @@ private:
         int bitDepth, colorType, interlaceType;
 
         png_get_IHDR(pngReadStruct, pngInfoStruct, &width, &height, &bitDepth,
-                     &colorType, &interlaceType, 0, 0);
+                     &colorType, &interlaceType, nullptr, nullptr);
 
         if (!ImageManager::isAcceptableSize(width, height)) {
             libPngError = true;
@@ -213,23 +213,23 @@ public:
         libPngError = false;
 
         interlaced  = false;
-        scanlineBuf = 0;
+        scanlineBuf = nullptr;
 
         //Setup the basic structures.
         //### I think I want to pass the handlers to shut it up?
-        pngReadStruct = png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
+        pngReadStruct = png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
 
         pngInfoStruct = png_create_info_struct(pngReadStruct);
 
         //Prepare for progressive loading
-        png_set_progressive_read_fn(pngReadStruct, 0, dispHaveInfo, dispHaveRow, dispHaveEnd);
+        png_set_progressive_read_fn(pngReadStruct, nullptr, dispHaveInfo, dispHaveRow, dispHaveEnd);
     }
 
     ~PNGLoader()
     {
         delete[] scanlineBuf;
 
-        png_destroy_read_struct(&pngReadStruct, &pngInfoStruct, 0);
+        png_destroy_read_struct(&pngReadStruct, &pngInfoStruct, nullptr);
         //### CHECKME!
     }
 
@@ -268,7 +268,7 @@ ImageLoader *PNGLoaderProvider::loaderFor(const QByteArray &prefix)
 {
     uchar *data = (uchar *)prefix.data();
     if (prefix.size() < 8) {
-        return 0;
+        return nullptr;
     }
 
     if (data[0] == 0x89 &&
@@ -282,7 +282,7 @@ ImageLoader *PNGLoaderProvider::loaderFor(const QByteArray &prefix)
         return new PNGLoader;
     }
 
-    return 0;
+    return nullptr;
 }
 
 }

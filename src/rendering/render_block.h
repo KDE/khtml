@@ -74,7 +74,7 @@ public:
     short baselinePosition(bool firstLine) const Q_DECL_OVERRIDE;
 
     int getBaselineOfLastLineBox() const;
-    void makeChildrenNonInline(RenderObject *insertionPoint = 0);
+    void makeChildrenNonInline(RenderObject *insertionPoint = nullptr);
 
     void makePageBreakAvoidBlocks();
 
@@ -175,7 +175,7 @@ public:
     // Called to lay out the legend for a fieldset.
     virtual RenderObject *layoutLegend(bool /*relayoutChildren*/)
     {
-        return 0;
+        return nullptr;
     }
 
     // the implementation of the following functions is in bidi.cpp
@@ -209,14 +209,14 @@ public:
     void positionNewFloats();
     void clearFloats();
     int getClearDelta(RenderObject *child, int yPos);
-    void markAllDescendantsWithFloatsForLayout(RenderObject *floatToRemove = 0) Q_DECL_OVERRIDE;
+    void markAllDescendantsWithFloatsForLayout(RenderObject *floatToRemove = nullptr) Q_DECL_OVERRIDE;
 
     // FIXME: containsFloats() should not return true if the floating objects list
     // is empty. However, layoutInlineChildren() relies on the current behavior.
     // http://bugzilla.opendarwin.org/show_bug.cgi?id=7395#c3
     bool hasFloats() const Q_DECL_OVERRIDE
     {
-        return m_floatingObjects != 0;
+        return m_floatingObjects != nullptr;
     }
     bool containsFloat(RenderObject *o) const Q_DECL_OVERRIDE;
 
@@ -231,7 +231,7 @@ public:
     inline int leftBottom();
     inline int rightBottom();
 
-    virtual unsigned short lineWidth(int y, bool *canClearLine = 0) const;
+    virtual unsigned short lineWidth(int y, bool *canClearLine = nullptr) const;
     int lowestPosition(bool includeOverflowInterior = true, bool includeSelf = true) const Q_DECL_OVERRIDE;
     int rightmostPosition(bool includeOverflowInterior = true, bool includeSelf = true) const Q_DECL_OVERRIDE;
     int leftmostPosition(bool includeOverflowInterior = true, bool includeSelf = true) const Q_DECL_OVERRIDE;
@@ -242,17 +242,17 @@ public:
     int highestAbsolutePosition() const;
 
     int rightOffset() const;
-    int rightRelOffset(int y, int fixedOffset, bool applyTextIndent = true, int *heightRemaining = 0, bool *canClearLine = 0) const;
-    int rightOffset(int y, bool *canClearLine = 0) const
+    int rightRelOffset(int y, int fixedOffset, bool applyTextIndent = true, int *heightRemaining = nullptr, bool *canClearLine = nullptr) const;
+    int rightOffset(int y, bool *canClearLine = nullptr) const
     {
-        return rightRelOffset(y, rightOffset(), true, 0, canClearLine);
+        return rightRelOffset(y, rightOffset(), true, nullptr, canClearLine);
     }
 
     int leftOffset() const;
-    int leftRelOffset(int y, int fixedOffset, bool applyTextIndent = true, int *heightRemaining = 0, bool *canClearLine = 0) const;
-    int leftOffset(int y, bool *canClearLine = 0) const
+    int leftRelOffset(int y, int fixedOffset, bool applyTextIndent = true, int *heightRemaining = nullptr, bool *canClearLine = nullptr) const;
+    int leftOffset(int y, bool *canClearLine = nullptr) const
     {
-        return leftRelOffset(y, leftOffset(), true, 0, canClearLine);
+        return leftRelOffset(y, leftOffset(), true, nullptr, canClearLine);
     }
 
     bool nodeAtPoint(NodeInfo &info, int x, int y, int _tx, int _ty, HitTestAction hitTestAction = HitTestAll, bool inside = false) Q_DECL_OVERRIDE;
@@ -304,7 +304,7 @@ protected:
 
         FloatingObject(Type _type)
         {
-            node = 0;
+            node = nullptr;
             startY = 0;
             endY = 0;
             type = _type;
@@ -358,7 +358,7 @@ protected:
 
         void clear()
         {
-            set(0, 0);
+            set(nullptr, nullptr);
         }
         void set(RenderObject *c, RenderObject *b)
         {

@@ -87,7 +87,7 @@ void EventTargetImpl::defaultEventHandler(EventImpl *)
 
 DocumentImpl *EventTargetImpl::eventTargetDocument()
 {
-    return 0;
+    return nullptr;
 }
 
 void EventTargetImpl::setDocListenerFlag(unsigned flag)
@@ -233,7 +233,7 @@ void RegisteredListenerList::setHTMLEventListener(EventName name, EventListener 
 EventListener *RegisteredListenerList::getHTMLEventListener(EventName name)
 {
     if (!listeners) {
-        return 0;
+        return nullptr;
     }
 
     QList<RegisteredEventListener>::iterator it;
@@ -241,7 +241,7 @@ EventListener *RegisteredListenerList::getHTMLEventListener(EventName name)
         if ((*it).eventName == name && isHTMLEventListener((*it).listener)) {
             return (*it).listener;
         }
-    return 0;
+    return nullptr;
 }
 
 bool RegisteredListenerList::hasEventListener(EventName name)
@@ -262,7 +262,7 @@ bool RegisteredListenerList::hasEventListener(EventName name)
 void RegisteredListenerList::clear()
 {
     delete listeners;
-    listeners = 0;
+    listeners = nullptr;
 }
 
 bool RegisteredListenerList::stillContainsListener(const RegisteredEventListener &listener)
@@ -275,7 +275,7 @@ bool RegisteredListenerList::stillContainsListener(const RegisteredEventListener
 
 RegisteredListenerList::~RegisteredListenerList()
 {
-    delete listeners; listeners = 0;
+    delete listeners; listeners = nullptr;
 }
 
 // -----------------------------------------------------------------------------
@@ -287,9 +287,9 @@ EventImpl::EventImpl()
 
     m_propagationStopped = false;
     m_defaultPrevented = false;
-    m_currentTarget = 0;
+    m_currentTarget = nullptr;
     m_eventPhase = 0;
-    m_target = 0;
+    m_target = nullptr;
     m_createTime = QDateTime::currentDateTime();
     m_defaultHandled = false;
 }
@@ -302,9 +302,9 @@ EventImpl::EventImpl(EventId _id, bool canBubbleArg, bool cancelableArg)
 
     m_propagationStopped = false;
     m_defaultPrevented = false;
-    m_currentTarget = 0;
+    m_currentTarget = nullptr;
     m_eventPhase = 0;
-    m_target = 0;
+    m_target = nullptr;
     m_createTime = QDateTime::currentDateTime();
     m_defaultHandled = false;
 }
@@ -495,8 +495,8 @@ MouseEventImpl::MouseEventImpl()
     m_shiftKey = false;
     m_metaKey = false;
     m_button = 0;
-    m_relatedTarget = 0;
-    m_qevent = 0;
+    m_relatedTarget = nullptr;
+    m_qevent = nullptr;
     m_isDoubleClick = false;
 }
 
@@ -555,7 +555,7 @@ void MouseEventImpl::computeLayerPos()
     m_layerX = m_pageX;
     m_layerY = m_pageY;
 
-    DocumentImpl *doc = view() ? view()->document() : 0;
+    DocumentImpl *doc = view() ? view()->document() : nullptr;
     if (doc && doc->renderer()) {
         khtml::RenderObject::NodeInfo renderInfo(true, false);
         doc->renderer()->layer()->nodeAtPoint(renderInfo, m_pageX, m_pageY);
@@ -627,7 +627,7 @@ void MouseEventImpl::initMouseEvent(const DOMString &typeArg,
 
     // ### make this on-demand. it is soo sloooow
     computeLayerPos();
-    m_qevent = 0;
+    m_qevent = nullptr;
 }
 
 bool MouseEventImpl::isMouseEvent() const
@@ -739,7 +739,7 @@ void KeyEventBaseImpl::initKeyBaseEvent(const DOMString &typeArg,
 {
     m_synthetic = true;
     delete m_keyEvent;
-    m_keyEvent = 0;
+    m_keyEvent = nullptr;
     initUIEvent(typeArg, canBubbleArg, cancelableArg, viewArg, 1);
     m_virtKeyVal = virtKeyValArg;
     m_keyVal     = keyValArg;
@@ -759,7 +759,7 @@ void KeyEventBaseImpl::buildQKeyEvent() const
     //IMPORTANT: we ignore modifers on purpose.
     //this is to prevent a website from synthesizing something
     //like Ctrl-V or Shift-Insert and stealing contents of the user's clipboard.
-    Qt::KeyboardModifiers modifiers = 0;
+    Qt::KeyboardModifiers modifiers = nullptr;
 
     if (m_modifier & Qt::KeypadModifier) {
         modifiers |= Qt::KeypadModifier;
@@ -835,7 +835,7 @@ static const IDTranslator<QByteArray, unsigned, const char *>::Info keyIdentifie
     {"F22", KeyEventBaseImpl::DOM_VK_F22},
     {"F23", KeyEventBaseImpl::DOM_VK_F23},
     {"F24", KeyEventBaseImpl::DOM_VK_F24},
-    {0, 0}
+    {nullptr, 0}
 };
 
 MAKE_TRANSLATOR(keyIdentifiersToVirtKeys, QByteArray, unsigned, const char *, keyIdentifiersToVirtKeysTable)
@@ -846,7 +846,7 @@ static const IDTranslator<QByteArray, unsigned, const char *>::Info keyModifiers
     {"Control",     Qt::ControlModifier},
     {"Shift",       Qt::ShiftModifier},
     {"Meta",        Qt::MetaModifier},
-    {0,             0}
+    {nullptr,             0}
 };
 
 MAKE_TRANSLATOR(keyModifiersToCode, QByteArray, unsigned, const char *, keyModifiersToCodeTable)
@@ -1032,10 +1032,10 @@ int TextEventImpl::charCode() const
 // -----------------------------------------------------------------------------
 MutationEventImpl::MutationEventImpl()
 {
-    m_relatedNode = 0;
-    m_prevValue = 0;
-    m_newValue = 0;
-    m_attrName = 0;
+    m_relatedNode = nullptr;
+    m_prevValue = nullptr;
+    m_newValue = nullptr;
+    m_attrName = nullptr;
     m_attrChange = 0;
 }
 

@@ -177,7 +177,7 @@ int KSSLKeyGen::generateCSR(const QString &name, const QString &pass, int bits, 
         return -4;
     }
 
-    RSA *rsakey = kossl->RSA_generate_key(bits, e, NULL, NULL);
+    RSA *rsakey = kossl->RSA_generate_key(bits, e, nullptr, nullptr);
     if (!rsakey) {
         kossl->X509_REQ_free(req);
         kossl->EVP_PKEY_free(pkey);
@@ -233,7 +233,7 @@ int KSSLKeyGen::generateCSR(const QString &name, const QString &pass, int bits, 
 
     kossl->i2d_PKCS8PrivateKey_fp(p8_fs, pkey,
                                   kossl->EVP_bf_cbc(), pass.toLocal8Bit().data(),
-                                  pass.length(), 0L, 0L);
+                                  pass.length(), nullptr, nullptr);
 
     // FIXME Write kconfig entry to store the filenames under the md5 hash
 

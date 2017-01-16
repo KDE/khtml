@@ -95,8 +95,8 @@ RenderBlock::RenderBlock(DOM::NodeImpl *node)
     : RenderFlow(node)
 {
     m_childrenInline = true;
-    m_floatingObjects = 0;
-    m_positionedObjects = 0;
+    m_floatingObjects = nullptr;
+    m_positionedObjects = nullptr;
     m_firstLine = false;
     m_avoidPageBreak = false;
     m_clearStatus = CNONE;
@@ -127,7 +127,7 @@ void RenderBlock::setStyle(RenderStyle *_style)
     // ### we could save this call when the change only affected
     // non inherited properties
     RenderObject *child = firstChild();
-    while (child != 0) {
+    while (child != nullptr) {
         if (child->isAnonymousBlock()) {
             RenderStyle *newStyle = new RenderStyle();
             newStyle->inheritFrom(style());
@@ -211,7 +211,7 @@ void RenderBlock::updateFirstLetter()
     }
 
     if (firstText && firstText->isText() && !firstText->isBR()) {
-        RenderObject *firstLetterObject = 0;
+        RenderObject *firstLetterObject = nullptr;
         // Find the old first-letter
         if (firstText->parent()->style()->styleType() == RenderStyle::FIRST_LETTER) {
             firstLetterObject = firstText->parent();
@@ -221,7 +221,7 @@ void RenderBlock::updateFirstLetter()
         pseudoStyle->setDisplay(pseudoStyle->isFloating() ? BLOCK : INLINE);
         pseudoStyle->setPosition(PSTATIC);   // CSS2 says first-letter can't be positioned.
 
-        if (firstLetterObject != 0) {
+        if (firstLetterObject != nullptr) {
             firstLetterObject->setStyle(pseudoStyle);
             RenderStyle *newStyle = new RenderStyle();
             newStyle->inheritFrom(pseudoStyle);
@@ -461,7 +461,7 @@ void RenderBlock::deleteLineBoxTree()
         line->deleteLine(renderArena());
         line = nextLine;
     }
-    m_firstLineBox = m_lastLineBox = 0;
+    m_firstLineBox = m_lastLineBox = nullptr;
 }
 
 short RenderBlock::baselinePosition(bool firstLine) const
@@ -558,9 +558,9 @@ void RenderBlock::makePageBreakAvoidBlocks()
     KHTMLAssert(canvas()->pagedMode());
 
     RenderObject *breakAfter = firstChild();
-    RenderObject *breakBefore = breakAfter ? breakAfter->nextSibling() : 0;
+    RenderObject *breakBefore = breakAfter ? breakAfter->nextSibling() : nullptr;
 
-    RenderBlock *pageRun = 0;
+    RenderBlock *pageRun = nullptr;
 
     // ### Should follow margin-collapsing rules, skipping self-collapsing blocks
     // and exporting page-breaks from first/last child when collapsing with parent margin.
@@ -584,11 +584,11 @@ void RenderBlock::makePageBreakAvoidBlocks()
                 pageRun->appendChildNode(removeChildNode(breakAfter));
                 pageRun->close();
                 insertChildNode(pageRun, breakBefore);
-                pageRun = 0;
+                pageRun = nullptr;
             }
         }
         breakAfter = breakBefore;
-        breakBefore = breakBefore ? breakBefore->nextSibling() : 0;
+        breakBefore = breakBefore ? breakBefore->nextSibling() : nullptr;
     }
 
     // recurse into positioned block children as well.
@@ -623,7 +623,7 @@ void RenderBlock::removeChild(RenderObject *oldChild)
     // fold the inline content back together.
     RenderObject *prev = oldChild->previousSibling();
     RenderObject *next = oldChild->nextSibling();
-    RenderObject *lc = 0;
+    RenderObject *lc = nullptr;
     bool mergedBlocks = false;
     bool checkContinuationMerge = false;
     if (!documentBeingDestroyed() && !isInline() && !oldChild->isInline() && !oldChild->continuation()) {
@@ -705,7 +705,7 @@ void RenderBlock::removeChild(RenderObject *oldChild)
                 prev->appendChildNode(next->removeChildNode(no));
             }
             prev->setContinuation(next->continuation());
-            next->setContinuation(0);
+            next->setContinuation(nullptr);
             if (next != this) {
                 next->detach();
                 prev = static_cast<RenderFlow *>(prev->parent());
@@ -1054,7 +1054,7 @@ RenderObject *RenderBlock::handlePositionedChild(RenderObject *child, const Marg
         adjustPositionedBlock(child, marginInfo);
         return child->nextSibling();
     }
-    return 0;
+    return nullptr;
 }
 
 RenderObject *RenderBlock::handleFloatingChild(RenderObject *child, const MarginInfo &marginInfo, bool &handled)
@@ -1065,7 +1065,7 @@ RenderObject *RenderBlock::handleFloatingChild(RenderObject *child, const Margin
         adjustFloatingBlock(marginInfo);
         return child->nextSibling();
     }
-    return 0;
+    return nullptr;
 }
 
 static inline bool isAnonymousWhitespace(RenderObject *o)
@@ -1081,7 +1081,7 @@ static inline bool isAnonymousWhitespace(RenderObject *o)
 RenderObject *RenderBlock::handleCompactChild(RenderObject *child, CompactInfo &compactInfo, const MarginInfo &marginInfo, bool &handled)
 {
     if (!child->isCompact()) {
-        return 0;
+        return nullptr;
     }
     // FIXME: We only deal with one compact at a time.  It is unclear what should be
     // done if multiple contiguous compacts are encountered.  For now we assume that
@@ -1121,7 +1121,7 @@ RenderObject *RenderBlock::handleCompactChild(RenderObject *child, CompactInfo &
     child->style()->setDisplay(BLOCK);
     child->layoutIfNeeded();
     child->style()->setDisplay(COMPACT);
-    return 0;
+    return nullptr;
 }
 
 void RenderBlock::adjustSizeForCompactIfNeeded(RenderObject *child, CompactInfo &compactInfo)
@@ -1180,7 +1180,7 @@ void RenderBlock::insertCompactIfNeeded(RenderObject *child, CompactInfo &compac
 RenderObject *RenderBlock::handleRunInChild(RenderObject *child, bool &handled)
 {
     if (!child->isRunIn()) {
-        return 0;
+        return nullptr;
     }
     // See if we have a run-in element with inline children.  If the
     // children aren't inline, then just treat the run-in as a normal
@@ -1207,7 +1207,7 @@ RenderObject *RenderBlock::handleRunInChild(RenderObject *child, bool &handled)
             return next;
         }
     }
-    return 0;
+    return nullptr;
 }
 
 int RenderBlock::collapseMargins(RenderObject *child, MarginInfo &marginInfo, int yPosEstimate)
@@ -1595,7 +1595,7 @@ void RenderBlock::layoutBlockChildren(bool relayoutChildren)
 
     int previousFloatBottom = 0;
     RenderObject *child = firstChild();
-    while (child != 0) {
+    while (child != nullptr) {
         if (legend == child) {
             child = child->nextSibling();
             continue; // Skip the legend, since it has already been positioned up in the fieldset's border.
@@ -1935,7 +1935,7 @@ void RenderBlock::paintObject(PaintInfo &pI, int _tx, int _ty, bool shouldPaintO
         KHTMLPart *part = document()->part();
         const Selection &s = part->caret();
         NodeImpl *baseNode = s.extent().node();
-        RenderObject *renderer = baseNode ? baseNode->renderer() : 0;
+        RenderObject *renderer = baseNode ? baseNode->renderer() : nullptr;
         if (renderer && renderer->containingBlock() == this && (part->isCaretMode() || baseNode->isContentEditable())) {
             part->paintCaret(pI.p, pI.r);
             part->paintDragCaret(pI.p, pI.r);
@@ -2044,7 +2044,7 @@ void RenderBlock::removePositionedObject(RenderObject *o)
         m_positionedObjects->removeAll(o);
         if (m_positionedObjects->isEmpty()) {
             delete m_positionedObjects;
-            m_positionedObjects = 0;
+            m_positionedObjects = nullptr;
         }
     }
     o->setInPosObjectList(false);
@@ -2087,7 +2087,7 @@ void RenderBlock::insertFloatingObject(RenderObject *o)
         // We should never get here, as insertFloatingObject() should only ever be called with floating
         // objects.
         KHTMLAssert(false);
-        newObj = 0; // keep gcc's uninitialized variable warnings happy
+        newObj = nullptr; // keep gcc's uninitialized variable warnings happy
     }
 
     newObj->node = o;
@@ -2120,7 +2120,7 @@ void RenderBlock::positionNewFloats()
     }
     FloatingObject *lastFloat;
     while (1) {
-        lastFloat = it.hasPrevious() ? it.previous() : 0;
+        lastFloat = it.hasPrevious() ? it.previous() : nullptr;
         if (!lastFloat || lastFloat->startY != -500000) {
             if (lastFloat) {
                 it.next();
@@ -2141,7 +2141,7 @@ void RenderBlock::positionNewFloats()
     while (f) {
         //skip elements copied from elsewhere and positioned elements
         if (f->node->containingBlock() != this) {
-            f = it.hasNext() ? it.next() : 0;
+            f = it.hasNext() ? it.next() : nullptr;
             continue;
         }
 
@@ -2239,7 +2239,7 @@ void RenderBlock::positionNewFloats()
 
         //qDebug() << "floatingObject x/y= (" << f->left << "/" << f->startY << "-" << f->width << "/" << f->endY - f->startY << ")";
 
-        f = it.hasNext() ? it.next() : 0;
+        f = it.hasNext() ? it.next() : nullptr;
     }
 }
 
@@ -3223,14 +3223,14 @@ void RenderBlock::calcInlineMinMaxWidth()
 
     bool isTcQuirk = isTableCell() && style()->htmlHacks() && style()->width().isAuto();
 
-    RenderObject *trailingSpaceChild = 0;
+    RenderObject *trailingSpaceChild = nullptr;
 
     bool autoWrap, oldAutoWrap;
     autoWrap = oldAutoWrap = style()->autoWrap();
 
     InlineMinMaxIterator childIterator(this, this);
     bool addedTextIndent = false; // Only gets added in once.
-    RenderObject *prevFloat = 0;
+    RenderObject *prevFloat = nullptr;
     while (RenderObject *child = childIterator.next()) {
         autoWrap = child->isReplaced() ? child->parent()->style()->autoWrap() : child->style()->autoWrap();
 
@@ -3365,7 +3365,7 @@ void RenderBlock::calcInlineMinMaxWidth()
                 // a line.
                 if (!child->isFloating()) {
                     stripFrontSpaces = false;
-                    trailingSpaceChild = 0;
+                    trailingSpaceChild = nullptr;
                 }
             } else if (child->isText()) {
                 // Case (3). Text.
@@ -3393,7 +3393,7 @@ void RenderBlock::calcInlineMinMaxWidth()
                 if (stripFrontSpaces) {
                     trailingSpaceChild = child;
                 } else {
-                    trailingSpaceChild = 0;
+                    trailingSpaceChild = nullptr;
                 }
 
                 // Add in text-indent.  This is added in only once.
@@ -3470,7 +3470,7 @@ void RenderBlock::calcInlineMinMaxWidth()
             }
             inlineMin = inlineMax = 0;
             stripFrontSpaces = true;
-            trailingSpaceChild = 0;
+            trailingSpaceChild = nullptr;
         }
 
         oldAutoWrap = autoWrap;
@@ -3498,7 +3498,7 @@ void RenderBlock::calcBlockMinMaxWidth()
     RenderObject *child = firstChild();
     int floatLeftWidth = 0, floatRightWidth = 0;
 
-    while (child != 0) {
+    while (child != nullptr) {
         // positioned children don't affect the minmaxwidth
         if (child->isPositioned()) {
             child = child->nextSibling();
@@ -3649,7 +3649,7 @@ InlineFlowBox *RenderBlock::getFirstLineBox()
     }
 
     if (isInline()) {
-        return 0;    // We're inline and had no line box, so we have no baseline we can return.
+        return nullptr;    // We're inline and had no line box, so we have no baseline we can return.
     }
 
     for (RenderObject *curr = firstChild(); curr; curr = curr->nextSibling()) {
@@ -3659,7 +3659,7 @@ InlineFlowBox *RenderBlock::getFirstLineBox()
         }
     }
 
-    return 0;
+    return nullptr;
 }
 
 bool RenderBlock::inRootBlockContext() const

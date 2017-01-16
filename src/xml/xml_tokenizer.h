@@ -174,7 +174,7 @@ private:
 class XMLTokenizer : public Tokenizer, public khtml::CachedObjectClient
 {
 public:
-    XMLTokenizer(DOM::DocumentImpl *, KHTMLView * = 0);
+    XMLTokenizer(DOM::DocumentImpl *, KHTMLView * = nullptr);
     virtual ~XMLTokenizer();
     void begin() Q_DECL_OVERRIDE;
     void write(const TokenizerString &str, bool) Q_DECL_OVERRIDE;

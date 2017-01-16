@@ -30,7 +30,7 @@ using namespace DOM;
 
 AbstractView::AbstractView()
 {
-    impl = 0;
+    impl = nullptr;
 }
 
 AbstractView::AbstractView(const AbstractView &other)
@@ -95,6 +95,6 @@ AbstractViewImpl *AbstractView::handle() const
 
 bool AbstractView::isNull() const
 {
-    return (impl == 0);
+    return (impl == nullptr);
 }
 

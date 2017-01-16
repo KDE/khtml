@@ -74,7 +74,7 @@ class HTMLLinkElementImpl : public khtml::CachedObjectClient, public HTMLElement
 {
 public:
     HTMLLinkElementImpl(DocumentImpl *doc)
-        : HTMLElementImpl(doc), m_cachedSheet(0), m_sheet(0), m_isDisabled(false),
+        : HTMLElementImpl(doc), m_cachedSheet(nullptr), m_sheet(nullptr), m_isDisabled(false),
           m_loading(false), m_alternate(false), m_isCSSSheet(false) {}
 
     ~HTMLLinkElementImpl();
@@ -214,7 +214,7 @@ class HTMLStyleElementImpl : public HTMLElementImpl
 {
 public:
     HTMLStyleElementImpl(DocumentImpl *doc)
-        : HTMLElementImpl(doc), m_sheet(0), m_loading(false) {}
+        : HTMLElementImpl(doc), m_sheet(nullptr), m_loading(false) {}
     ~HTMLStyleElementImpl();
 
     Id id() const Q_DECL_OVERRIDE;

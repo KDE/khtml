@@ -189,10 +189,10 @@ RenderPosition RenderReplaced::positionForCoordinates(int _x, int _y)
 RenderWidget::RenderWidget(DOM::NodeImpl *node)
     : RenderReplaced(node)
 {
-    m_widget = 0;
-    m_underMouse = 0;
-    m_buffer[0] = 0;
-    m_buffer[1] = 0;
+    m_widget = nullptr;
+    m_underMouse = nullptr;
+    m_buffer[0] = nullptr;
+    m_buffer[1] = nullptr;
     m_nativeFrameShape = QFrame::NoFrame;
     // a widget doesn't support being anonymous
     assert(!isAnonymous());
@@ -220,7 +220,7 @@ void RenderWidget::detach()
         }
         KHTMLWidget *k = dynamic_cast<KHTMLWidget *>(m_widget);
         if (k) {
-            k->m_kwp->setRenderWidget(0);
+            k->m_kwp->setRenderWidget(nullptr);
         }
         m_widget->removeEventFilter(this);
         m_widget->setMouseTracking(false);
@@ -228,7 +228,7 @@ void RenderWidget::detach()
 
     // make sure our DOM-node don't think we exist
     if (node() && node()->renderer() == this) {
-        node()->setRenderer(0);
+        node()->setRenderer(nullptr);
     }
 
     setDetached();
@@ -310,7 +310,7 @@ void RenderWidget::setQWidget(QWidget *widget)
             if (m_ownsWidget) {
                 m_widget->deleteLater();    //Might happen due to event on the widget, so be careful
             }
-            m_widget = 0;
+            m_widget = nullptr;
         }
         m_widget = widget;
         if (m_widget) {
@@ -555,7 +555,7 @@ void RenderWidget::slotWidgetDestructed()
     if (m_view) {
         m_view->setWidgetVisible(this, false);
     }
-    m_widget = 0;
+    m_widget = nullptr;
 }
 
 void RenderWidget::setStyle(RenderStyle *_style)
@@ -689,7 +689,7 @@ static void setInPaintEventFlag(QWidget *w, bool b = true, bool recurse = true)
     }
 }
 
-static void copyWidget(const QRect &r, QPainter *p, QWidget *widget, int tx, int ty, bool buffered = false, QPixmap *buffer = 0)
+static void copyWidget(const QRect &r, QPainter *p, QWidget *widget, int tx, int ty, bool buffered = false, QPixmap *buffer = nullptr)
 {
     if (r.isNull() || r.isEmpty()) {
         return;
@@ -702,7 +702,7 @@ static void copyWidget(const QRect &r, QPainter *p, QWidget *widget, int tx, int
         thePoint.setX(thePoint.x() + static_cast<int>(t.dx()));
         thePoint.setY(thePoint.y() + static_cast<int>(t.dy()));
     }
-    QPixmap *pm = 0;
+    QPixmap *pm = nullptr;
     QPaintDevice *d = p->device();
 #ifdef IN_PLACE_WIDGET_PAINTING
     QPaintDevice *x = d;
@@ -969,7 +969,7 @@ static bool bubblingSend(QWidget *target, QEvent *e, QWidget *stoppingParent)
         }
         // ### might want to shift Q*Event::pos() as we go up
         target = target->parentWidget();
-        assert(target != 0);
+        assert(target != nullptr);
     }
 }
 
@@ -1001,7 +1001,7 @@ bool RenderWidget::handleEvent(const DOM::EventImpl &ev)
         QMouseEvent::Type type;
         Qt::MouseButton button = Qt::NoButton;
         Qt::MouseButtons buttons = Qt::NoButton;
-        Qt::KeyboardModifiers state = 0;
+        Qt::KeyboardModifiers state = nullptr;
         Qt::Orientation orient = Qt::Vertical;
 
         if (qme) {
@@ -1176,7 +1176,7 @@ bool RenderWidget::handleEvent(const DOM::EventImpl &ev)
             QApplication::sendEvent(target, &he);
         }
         if (ev.id() == EventImpl::MOUSEUP_EVENT) {
-            view()->setMouseEventsTarget(0);
+            view()->setMouseEventsTarget(nullptr);
         }
         break;
     }
@@ -1241,7 +1241,7 @@ bool RenderWidget::handleEvent(const DOM::EventImpl &ev)
             QHoverEvent he(QEvent::HoverLeave, QPoint(-1, -1), QPoint(0, 0));
             QApplication::sendEvent(target, &he);
         }
-        m_underMouse = 0;
+        m_underMouse = nullptr;
         break;
     }
     case EventImpl::MOUSEOVER_EVENT: {
@@ -1310,11 +1310,11 @@ KHTMLView *KHTMLWidgetPrivate::rootViewPos(QPoint &pos)
 {
     if (!m_rw || !m_rw->widget()) {
         pos = QPoint();
-        return 0;
+        return nullptr;
     }
     pos = absolutePos();
     KHTMLView *v = m_rw->view();
-    KHTMLView *last = 0;
+    KHTMLView *last = nullptr;
     while (v) {
         last = v;
         int w, h = 0;
@@ -1324,7 +1324,7 @@ KHTMLView *KHTMLWidgetPrivate::rootViewPos(QPoint &pos)
             break;
         }
         pos += kw->m_kwp->absolutePos();
-        v = v->part()->parentPart() ? v->part()->parentPart()->view() : 0;
+        v = v->part()->parentPart() ? v->part()->parentPart()->view() : nullptr;
     }
     return last;
 }

@@ -283,7 +283,7 @@ class KHTML_EXPORT Node
     friend class StyleSheet;
 
 public:
-    Node() : impl(0) {}
+    Node() : impl(nullptr) {}
     Node(const Node &other);
 
     /**

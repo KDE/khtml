@@ -71,7 +71,7 @@ public:
         SVG_LENGTHTYPE_PC = LengthTypePC
     };
 
-    SVGLength(const SVGStyledElement *context = 0, SVGLengthMode mode = LengthModeOther, const String &valueAsString = String());
+    SVGLength(const SVGStyledElement *context = nullptr, SVGLengthMode mode = LengthModeOther, const String &valueAsString = String());
 
     // 'SVGLength' functions
     SVGLengthType unitType() const;

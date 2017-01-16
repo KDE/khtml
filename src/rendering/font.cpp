@@ -613,7 +613,7 @@ CachedFontInstance::CachedFontInstance(CachedFontFamily *p, int sz):
 
     // Prepare metrics caches
     for (int c = 0; c < 256; ++c) {
-        rows[c] = 0;
+        rows[c] = nullptr;
     }
 
     ascent  = fm.ascent();
@@ -643,7 +643,7 @@ void CachedFontInstance::invalidate()
     // Cleanup metrics caches
     for (int c = 0; c < 256; ++c) {
         delete rows[c];
-        rows[c] = 0;
+        rows[c] = nullptr;
     }
 
     ascent  = fm.ascent();
@@ -730,7 +730,7 @@ void Font::update(int logicalDpiY) const
 
     // small caps
     delete scFont;
-    scFont = 0;
+    scFont = nullptr;
 
     if (fontDef.smallCaps) {
         scFont = new QFont(cfi->f);

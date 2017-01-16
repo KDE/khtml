@@ -120,7 +120,7 @@ public:
     }
 
     // overrides
-    void addChild(RenderObject *child, RenderObject *beforeChild = 0) Q_DECL_OVERRIDE;
+    void addChild(RenderObject *child, RenderObject *beforeChild = nullptr) Q_DECL_OVERRIDE;
     void paint(PaintInfo &, int tx, int ty) Q_DECL_OVERRIDE;
     void paintBoxDecorations(PaintInfo &, int _tx, int _ty) Q_DECL_OVERRIDE;
     void layout() Q_DECL_OVERRIDE;
@@ -194,7 +194,7 @@ public:
                (collapseBorders() ? 0 : (paddingLeft() + paddingRight() + (numEffCols() + 1) * borderHSpacing()));
     }
 
-    RenderTableCol *colElement(int col, bool *startEdge = 0, bool *endEdge = 0) const;
+    RenderTableCol *colElement(int col, bool *startEdge = nullptr, bool *endEdge = nullptr) const;
 
     void setNeedSectionRecalc()
     {
@@ -268,7 +268,7 @@ public:
     }
 
     // overrides
-    void addChild(RenderObject *child, RenderObject *beforeChild = 0) Q_DECL_OVERRIDE;
+    void addChild(RenderObject *child, RenderObject *beforeChild = nullptr) Q_DECL_OVERRIDE;
     bool isTableSection() const Q_DECL_OVERRIDE
     {
         return true;
@@ -407,7 +407,7 @@ public:
     {
         return true;
     }
-    void addChild(RenderObject *child, RenderObject *beforeChild = 0) Q_DECL_OVERRIDE;
+    void addChild(RenderObject *child, RenderObject *beforeChild = nullptr) Q_DECL_OVERRIDE;
 
     short offsetWidth() const Q_DECL_OVERRIDE;
     int offsetHeight() const Q_DECL_OVERRIDE;

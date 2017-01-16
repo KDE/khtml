@@ -68,7 +68,7 @@ struct EditorContext {
           m_caretBlinks(true),
           m_caretPaint(true),
           m_beganSelectingText(false),
-          m_editor(0)
+          m_editor(nullptr)
     {
     }
 

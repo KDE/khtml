@@ -53,7 +53,7 @@ public:
 protected:
     friend class TileCache;
 
-    Tile(): cacheNode(0)
+    Tile(): cacheNode(nullptr)
     {
         std::memset(versions, 0, Tile::TileSize);
     }

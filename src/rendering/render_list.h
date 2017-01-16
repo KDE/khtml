@@ -78,7 +78,7 @@ protected:
     void updateMarkerLocation();
     void resetListMarker()
     {
-        m_marker = 0;
+        m_marker = nullptr;
     }
 
     RenderListMarker *m_marker;

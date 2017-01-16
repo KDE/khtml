@@ -99,7 +99,7 @@ public:
 // ==========================================================================
 
 Editor::Editor(KHTMLPart *part)
-    : d(new EditorPrivate), m_typingStyle(0), m_part(part)
+    : d(new EditorPrivate), m_typingStyle(nullptr), m_part(part)
 {
 }
 
@@ -378,15 +378,15 @@ DOMString Editor::selectionStartStylePropertyValue(int stylePropertyID) const
 
 CSSStyleDeclarationImpl *Editor::selectionComputedStyle(NodeImpl *&nodeToRemove) const
 {
-    nodeToRemove = 0;
+    nodeToRemove = nullptr;
 
     if (!m_part->xmlDocImpl()) {
-        return 0;
+        return nullptr;
     }
 
     EditorContext *ctx = m_part->editorContext();
     if (ctx->m_selection.state() == Selection::NONE) {
-        return 0;
+        return nullptr;
     }
 
     Range range(ctx->m_selection.toRange());
@@ -461,7 +461,7 @@ void Editor::unappliedEditing(EditCommandImpl *cmd)
     // ### only emit if caret pos changed
     m_part->emitCaretPositionChanged(cmd->startingSelection().caretPos());
 #endif
-    d->m_lastEditCommand = 0;
+    d->m_lastEditCommand = nullptr;
 }
 
 void Editor::reappliedEditing(EditCommandImpl *cmd)
@@ -478,7 +478,7 @@ void Editor::reappliedEditing(EditCommandImpl *cmd)
     // ### only emit if caret pos changed
     m_part->emitCaretPositionChanged(cmd->endingSelection().caretPos());
 #endif
-    d->m_lastEditCommand = 0;
+    d->m_lastEditCommand = nullptr;
 }
 
 CSSStyleDeclarationImpl *Editor::typingStyle() const
@@ -500,7 +500,7 @@ void Editor::setTypingStyle(CSSStyleDeclarationImpl *style)
 
 void Editor::clearTypingStyle()
 {
-    setTypingStyle(0);
+    setTypingStyle(nullptr);
 }
 
 void Editor::closeTyping()

@@ -48,7 +48,7 @@ class CSSSelector
 {
 public:
     CSSSelector()
-        : tagHistory(0), simpleSelector(0), relation(Descendant),
+        : tagHistory(nullptr), simpleSelector(nullptr), relation(Descendant),
           match(None), pseudoId(0), _pseudoType(PseudoNotParsed)
     {
         tagLocalName = LocalName::fromId(anyLocalName);
@@ -179,7 +179,7 @@ class StyleBaseImpl : public khtml::TreeShared<StyleBaseImpl>
 public:
     StyleBaseImpl()
     {
-        m_parent = 0;
+        m_parent = nullptr;
         hasInlinedDecl = false;
         strictParsing = true;
         multiLength = false;
@@ -313,11 +313,11 @@ class StyleListImpl : public StyleBaseImpl
 public:
     StyleListImpl() : StyleBaseImpl()
     {
-        m_lstChildren = 0;
+        m_lstChildren = nullptr;
     }
     StyleListImpl(StyleBaseImpl *parent) : StyleBaseImpl(parent)
     {
-        m_lstChildren = 0;
+        m_lstChildren = nullptr;
     }
     virtual ~StyleListImpl();
 
@@ -327,7 +327,7 @@ public:
     }
     StyleBaseImpl *item(unsigned long num) const
     {
-        return num < length() ? m_lstChildren->at(num) : 0;
+        return num < length() ? m_lstChildren->at(num) : nullptr;
     }
 
     void append(StyleBaseImpl *item)

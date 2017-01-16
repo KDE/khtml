@@ -77,7 +77,7 @@ bool PositionIterator::atStart() const
     }
 
     return m_current.offset() == 0 &&
-           m_current.node()->previousLeafNode() == 0;
+           m_current.node()->previousLeafNode() == nullptr;
 }
 
 bool PositionIterator::atEnd() const
@@ -87,7 +87,7 @@ bool PositionIterator::atEnd() const
     }
 
     return m_current.offset() == m_current.node()->maxOffset() &&
-           m_current.node()->nextLeafNode() == 0;
+           m_current.node()->nextLeafNode() == nullptr;
 }
 
 } // namespace DOM

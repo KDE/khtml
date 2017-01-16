@@ -42,7 +42,7 @@ class HTMLImageElementImpl
 {
     friend class HTMLFormElementImpl;
 public:
-    HTMLImageElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = 0);
+    HTMLImageElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = nullptr);
     ~HTMLImageElementImpl();
 
     Id id() const Q_DECL_OVERRIDE;

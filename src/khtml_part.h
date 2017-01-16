@@ -298,8 +298,8 @@ public:
      * @p parentWidget is used as parent for both objects, the part and
      * the view.
      */
-    KHTMLPart(QWidget *parentWidget = 0,
-              QObject *parent = 0, GUIProfile prof = DefaultGUI);
+    KHTMLPart(QWidget *parentWidget = nullptr,
+              QObject *parent = nullptr, GUIProfile prof = DefaultGUI);
     /**
      * Constructs a new KHTMLPart.
      *
@@ -318,7 +318,7 @@ public:
      *   KHTMLPart * p = KHTMLPart( v ); // p will be assigned to v, so that v->part() == p
      * \endcode
      */
-    KHTMLPart(KHTMLView *view, QObject *parent = 0, GUIProfile prof = DefaultGUI);
+    KHTMLPart(KHTMLView *view, QObject *parent = nullptr, GUIProfile prof = DefaultGUI);
 
     /**
      * Destructor.
@@ -696,7 +696,7 @@ public:
     /**
      * Paints the HTML page to a QPainter. See KHTMLView::paint for details
      */
-    void paint(QPainter *, const QRect &, int = 0, bool * = 0);
+    void paint(QPainter *, const QRect &, int = 0, bool * = nullptr);
 
     /**
      * Sets the encoding the page uses.
@@ -805,8 +805,8 @@ public:
      * @param parent Parent used for centering popups like "string not found".
      * @param findDialog Optionally, you can supply your own dialog.
      */
-    void findText(const QString &str, long options, QWidget *parent = 0,
-                  KFindDialog *findDialog = 0);
+    void findText(const QString &str, long options, QWidget *parent = nullptr,
+                  KFindDialog *findDialog = nullptr);
 
     /**
      * Initiates a text search.
@@ -1000,7 +1000,7 @@ public:
      * Returns parent part if a suitable frame was found and
      * frame info in @p *childFrame
      */
-    KHTMLPart *findFrameParent(KParts::ReadOnlyPart *callingPart, const QString &f, khtml::ChildFrame **childFrame = 0);
+    KHTMLPart *findFrameParent(KParts::ReadOnlyPart *callingPart, const QString &f, khtml::ChildFrame **childFrame = nullptr);
 
     /**
      * Return the current frame (the one that has focus)
@@ -1137,7 +1137,7 @@ public:
     /**
      * Shows or hides the suppressed popup indicator
      */
-    void setSuppressedPopupIndicator(bool enable, KHTMLPart *originPart = 0);
+    void setSuppressedPopupIndicator(bool enable, KHTMLPart *originPart = nullptr);
 
     /**
      * @internal

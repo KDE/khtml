@@ -117,7 +117,7 @@ void RenderFlow::addChildWithContinuation(RenderObject *newChild, RenderObject *
         if (childInline == bcpInline) {
             return beforeChildParent->addChildToFlow(newChild, beforeChild);
         } else if (flowInline == childInline) {
-            return flow->addChildToFlow(newChild, 0);    // Just treat like an append.
+            return flow->addChildToFlow(newChild, nullptr);    // Just treat like an append.
         } else {
             return beforeChildParent->addChildToFlow(newChild, beforeChild);
         }
@@ -142,12 +142,12 @@ void RenderFlow::extractLineBox(InlineFlowBox *box)
 {
     m_lastLineBox = box->prevFlowBox();
     if (box == m_firstLineBox) {
-        m_firstLineBox = 0;
+        m_firstLineBox = nullptr;
     }
     if (box->prevLineBox()) {
-        box->prevLineBox()->setNextLineBox(0);
+        box->prevLineBox()->setNextLineBox(nullptr);
     }
-    box->setPreviousLineBox(0);
+    box->setPreviousLineBox(nullptr);
     for (InlineRunBox *curr = box; curr; curr = curr->nextLineBox()) {
         curr->setExtracted();
     }
@@ -195,7 +195,7 @@ void RenderFlow::deleteInlineBoxes(RenderArena *arena)
         if (!arena) {
             arena = renderArena();
         }
-        InlineRunBox *curr = m_firstLineBox, *next = 0;
+        InlineRunBox *curr = m_firstLineBox, *next = nullptr;
         while (curr) {
             next = curr->nextLineBox();
             if (!curr->isPlaceHolderBox()) {
@@ -203,8 +203,8 @@ void RenderFlow::deleteInlineBoxes(RenderArena *arena)
             }
             curr = next;
         }
-        m_firstLineBox = 0;
-        m_lastLineBox = 0;
+        m_firstLineBox = nullptr;
+        m_lastLineBox = nullptr;
     }
 }
 
@@ -231,7 +231,7 @@ void RenderFlow::deleteLastLineBox(RenderArena *arena)
         }
         InlineRunBox *curr = m_lastLineBox, *prev = m_lastLineBox;
         if (m_firstLineBox == m_lastLineBox) {
-            m_firstLineBox = m_lastLineBox = 0;
+            m_firstLineBox = m_lastLineBox = nullptr;
         } else {
             prev = curr->prevLineBox();
             while (!prev->isInlineFlowBox()) {
@@ -239,7 +239,7 @@ void RenderFlow::deleteLastLineBox(RenderArena *arena)
                 prev->detach(arena);
             }
             m_lastLineBox = static_cast<InlineFlowBox *>(prev);
-            prev->setNextLineBox(0);
+            prev->setNextLineBox(nullptr);
         }
         if (curr->parent()) {
             curr->parent()->removeFromLine(curr);
@@ -255,7 +255,7 @@ InlineBox *RenderFlow::createInlineBox(bool makePlaceHolderBox, bool isRootLineB
         return RenderBox::createInlineBox(false, false);    // (or positioned element placeholders).
     }
 
-    InlineFlowBox *flowBox = 0;
+    InlineFlowBox *flowBox = nullptr;
     if (isInlineFlow()) {
         flowBox = new(renderArena()) InlineFlowBox(this);
     } else {
@@ -292,8 +292,8 @@ void RenderFlow::dirtyLinesFromChangedChild(RenderObject *child)
     // Try to figure out which line box we belong in.  First try to find a previous
     // line box by examining our siblings.  If we didn't find a line box, then use our
     // parent's first line box.
-    RootInlineBox *box = 0;
-    RenderObject *curr = 0;
+    RootInlineBox *box = nullptr;
+    RenderObject *curr = nullptr;
     for (curr = child->previousSibling(); curr; curr = curr->previousSibling()) {
         if (curr->isFloatingOrPositioned()) {
             continue;
@@ -386,7 +386,7 @@ void RenderFlow::detach()
     if (continuation()) {
         continuation()->detach();
     }
-    m_continuation = 0;
+    m_continuation = nullptr;
 
     // Make sure to destroy anonymous children first while they are still connected to the rest of the tree, so that they will
     // properly dirty line boxes that they are removed from.  Effects that do :before/:after only on hover could crash otherwise.
@@ -539,7 +539,7 @@ void RenderFlow::repaint(Priority prior)
             }
         }
 
-        RootInlineBox *lastRoot = lastLineBox() && !needsLayout() ? lastLineBox()->root() : 0;
+        RootInlineBox *lastRoot = lastLineBox() && !needsLayout() ? lastLineBox()->root() : nullptr;
         containingBlock()->repaintRectangle(-ow + left, -ow + top,
                                             width() + ow * 2,
                                             (lastRoot ? lastRoot->bottomOverflow() - top : height()) + ow * 2, prior);

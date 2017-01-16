@@ -80,12 +80,12 @@ using namespace khtml;
 static void *baseOfRenderObjectBeingDeleted;
 #endif
 
-QCache<quint64, QPixmap> *RenderObject::s_dashedLineCache = 0;
+QCache<quint64, QPixmap> *RenderObject::s_dashedLineCache = nullptr;
 
 void RenderObject::cleanup()
 {
     delete s_dashedLineCache;
-    s_dashedLineCache = 0;
+    s_dashedLineCache = nullptr;
 }
 
 //#define MASK_DEBUG
@@ -107,7 +107,7 @@ void RenderObject::operator delete(void *ptr, size_t sz)
 
 RenderObject *RenderObject::createObject(DOM::NodeImpl *node,  RenderStyle *style)
 {
-    RenderObject *o = 0;
+    RenderObject *o = nullptr;
     khtml::RenderArena *arena = node->document()->renderArena();
     switch (style->display()) {
     case NONE:
@@ -157,11 +157,11 @@ RenderObject *RenderObject::createObject(DOM::NodeImpl *node,  RenderStyle *styl
 
 RenderObject::RenderObject(DOM::NodeImpl *node)
     : CachedObjectClient(),
-      m_style(0),
+      m_style(nullptr),
       m_node(node),
-      m_parent(0),
-      m_previous(0),
-      m_next(0),
+      m_parent(nullptr),
+      m_previous(nullptr),
+      m_next(nullptr),
       m_verticalPosition(PositionUndefined),
       m_needsLayout(false),
       m_normalChildNeedsLayout(false),
@@ -271,7 +271,7 @@ void RenderObject::addChild(RenderObject *, RenderObject *)
 RenderObject *RenderObject::removeChildNode(RenderObject *)
 {
     KHTMLAssert(0);
-    return 0;
+    return nullptr;
 }
 
 void RenderObject::removeChild(RenderObject *)
@@ -304,7 +304,7 @@ RenderObject *RenderObject::nextRenderer() const
             return r->nextSibling();
         }
     }
-    return 0;
+    return nullptr;
 }
 
 RenderObject *RenderObject::previousRenderer() const
@@ -318,13 +318,13 @@ RenderObject *RenderObject::previousRenderer() const
     } else if (parent()) {
         return parent();
     } else {
-        return 0;
+        return nullptr;
     }
 }
 
 bool RenderObject::isEditable() const
 {
-    RenderText *textRenderer = 0;
+    RenderText *textRenderer = nullptr;
     if (isText()) {
         textRenderer = static_cast<RenderText *>(const_cast<RenderObject *>(this));
     }
@@ -384,7 +384,7 @@ RenderObject *RenderObject::nextEditable() const
         }
         n = r->parent();
     }
-    return 0;
+    return nullptr;
 }
 
 RenderObject *RenderObject::previousEditable() const
@@ -434,14 +434,14 @@ RenderObject *RenderObject::previousEditable() const
         }
         n = r->parent();
     }
-    return 0;
+    return nullptr;
 }
 
 RenderObject *RenderObject::firstLeafChild() const
 {
     RenderObject *r = firstChild();
     while (r) {
-        RenderObject *n = 0;
+        RenderObject *n = nullptr;
         n = r->firstChild();
         if (!n) {
             break;
@@ -455,7 +455,7 @@ RenderObject *RenderObject::lastLeafChild() const
 {
     RenderObject *r = lastChild();
     while (r) {
-        RenderObject *n = 0;
+        RenderObject *n = nullptr;
         n = r->lastChild();
         if (!n) {
             break;
@@ -474,7 +474,7 @@ static void addLayers(RenderObject *obj, RenderLayer *parentLayer, RenderObject 
             // this the first time we find a child layer, and then we update the
             // pointer values for newObject and beforeChild used by everyone else.
             beforeChild = newObject->parent()->findNextLayer(parentLayer, newObject);
-            newObject = 0;
+            newObject = nullptr;
         }
         parentLayer->addChild(obj->layer(), beforeChild);
         return;
@@ -492,7 +492,7 @@ void RenderObject::addLayers(RenderLayer *parentLayer, RenderObject *newObject)
     }
 
     RenderObject *object = newObject;
-    RenderLayer *beforeChild = 0;
+    RenderLayer *beforeChild = nullptr;
     ::addLayers(this, parentLayer, object, beforeChild);
 }
 
@@ -536,7 +536,7 @@ RenderLayer *RenderObject::findNextLayer(RenderLayer *parentLayer, RenderObject 
 {
     // Error check the parent layer passed in.  If it's null, we can't find anything.
     if (!parentLayer) {
-        return 0;
+        return nullptr;
     }
 
     // Step 1: If our layer is a child of the desired parent, then return our layer.
@@ -550,7 +550,7 @@ RenderLayer *RenderObject::findNextLayer(RenderLayer *parentLayer, RenderObject 
     if (!ourLayer || ourLayer == parentLayer) {
         for (RenderObject *curr = startPoint ? startPoint->nextSibling() : firstChild();
                 curr; curr = curr->nextSibling()) {
-            RenderLayer *nextLayer = curr->findNextLayer(parentLayer, 0, false);
+            RenderLayer *nextLayer = curr->findNextLayer(parentLayer, nullptr, false);
             if (nextLayer) {
                 return nextLayer;
             }
@@ -560,7 +560,7 @@ RenderLayer *RenderObject::findNextLayer(RenderLayer *parentLayer, RenderObject 
     // Step 3: If our layer is the desired parent layer, then we're finished.  We didn't
     // find anything.
     if (parentLayer == ourLayer) {
-        return 0;
+        return nullptr;
     }
 
     // Step 4: If |checkParent| is set, climb up to our parent and check its siblings that
@@ -569,7 +569,7 @@ RenderLayer *RenderObject::findNextLayer(RenderLayer *parentLayer, RenderObject 
         return parent()->findNextLayer(parentLayer, this, true);
     }
 
-    return 0;
+    return nullptr;
 }
 
 RenderLayer *RenderObject::enclosingLayer() const
@@ -582,7 +582,7 @@ RenderLayer *RenderObject::enclosingLayer() const
         }
         curr = curr->parent();
     }
-    return 0;
+    return nullptr;
 }
 
 RenderLayer *RenderObject::enclosingStackingContext() const
@@ -693,7 +693,7 @@ int RenderObject::offsetTop() const
 RenderObject *RenderObject::offsetParent() const
 {
     if (isBody() || style()->position() == PFIXED) {
-        return 0;
+        return nullptr;
     }
 
     // can't really use containing blocks here (#113280)
@@ -1996,7 +1996,7 @@ void RenderObject::printTree(int indent) const
     // qDebug() << (ind + information());
 
     RenderObject *child = firstChild();
-    while (child != 0) {
+    while (child != nullptr) {
         child->printTree(indent + 2);
         child = child->nextSibling();
     }
@@ -2251,7 +2251,7 @@ void RenderObject::setStyle(RenderStyle *style)
 
     setShouldPaintBackgroundOrBorder(m_style->hasBorder() || m_style->hasBackground());
 
-    m_hasFirstLine = (style->getPseudoStyle(RenderStyle::FIRST_LINE) != 0);
+    m_hasFirstLine = (style->getPseudoStyle(RenderStyle::FIRST_LINE) != nullptr);
     if (m_parent) {
         if (d == RenderStyle::Position && !attemptDirectLayerTranslation()) {
             d = RenderStyle::Layout;
@@ -2268,7 +2268,7 @@ void RenderObject::setStyle(RenderStyle *style)
             if (layer()) {
                 if (canvas() && canvas()->needsWidgetMasks()) {
                     // update our widget masks
-                    RenderLayer *p, *d = 0;
+                    RenderLayer *p, *d = nullptr;
                     for (p = layer()->parent(); p; p = p->parent())
                         if (p->hasOverlaidWidgets()) {
                             d = p;
@@ -2366,8 +2366,8 @@ void RenderObject::repaintDuringLayout()
 void RenderObject::updateBackgroundImages(RenderStyle *oldStyle)
 {
     // FIXME: This will be slow when a large number of images is used.  Fix by using a dict.
-    const BackgroundLayer *oldLayers = oldStyle ? oldStyle->backgroundLayers() : 0;
-    const BackgroundLayer *newLayers = m_style ? m_style->backgroundLayers() : 0;
+    const BackgroundLayer *oldLayers = oldStyle ? oldStyle->backgroundLayers() : nullptr;
+    const BackgroundLayer *newLayers = m_style ? m_style->backgroundLayers() : nullptr;
     for (const BackgroundLayer *currOld = oldLayers; currOld; currOld = currOld->next()) {
         if (currOld->backgroundImage() && (!newLayers || !newLayers->containsImage(currOld->backgroundImage()))) {
             currOld->backgroundImage()->deref(this);
@@ -2475,7 +2475,7 @@ RenderObject *RenderObject::container() const
     // the layout of the positioned object.  This does mean that calcAbsoluteHorizontal and
     // calcAbsoluteVertical have to use container().
     EPosition pos = m_style->position();
-    RenderObject *o = 0;
+    RenderObject *o = nullptr;
     if (pos == PFIXED) {
         // container() can be called on an object that is not in the
         // tree yet.  We don't call canvas() since it will assert if it
@@ -2558,7 +2558,7 @@ void RenderObject::detach()
 
     // make sure our DOM-node don't think we exist
     if (node() && node()->renderer() == this) {
-        node()->setRenderer(0);
+        node()->setRenderer(nullptr);
     }
 
     // by default no refcounting
@@ -2939,7 +2939,7 @@ void RenderObject::scheduleRelayout(RenderObject *clippedObj)
 InlineBox *RenderObject::createInlineBox(bool /*makePlaceHolderBox*/, bool /*isRootLineBox*/)
 {
     KHTMLAssert(false);
-    return 0;
+    return nullptr;
 }
 
 void RenderObject::getTextDecorationColors(int decorations, QColor &underline, QColor &overline,
@@ -3033,7 +3033,7 @@ InlineBox *RenderObject::inlineBox(long /*offset*/)
     if (isBox()) {
         return static_cast<RenderBox *>(this)->placeHolderBox();
     }
-    return 0;
+    return nullptr;
 }
 
 bool RenderObject::hasCounter(const DOMString &counter) const
@@ -3070,11 +3070,11 @@ CounterNode *RenderObject::getCounter(const DOMString &counter, bool view, bool 
 //     qDebug() << renderName() << " getCounter(" << counter << ")";
 
     if (!style()) {
-        return 0;
+        return nullptr;
     }
 
     if (isText() && !isCounter()) {
-        return 0;
+        return nullptr;
     }
 
     CounterNode *i = lookupCounter(counter);
@@ -3147,7 +3147,7 @@ CounterNode *RenderObject::getCounter(const DOMString &counter, bool view, bool 
     insertCounter(counter, i);
 
     if (!isRoot()) {
-        CounterNode *last = 0, *current = 0;
+        CounterNode *last = nullptr, *current = nullptr;
         RenderObject *n = previousSibling();
         while (n) {
             if (n->hasCounter(counter)) {
@@ -3184,7 +3184,7 @@ CounterNode *RenderObject::getCounter(const DOMString &counter, bool view, bool 
                 if (last != sibling) {
                     sibling->insertAfter(i, last);
                 } else {
-                    sibling->insertAfter(i, 0);
+                    sibling->insertAfter(i, nullptr);
                 }
             } else if (last->parent()) {
                 last->parent()->insertAfter(i, last);
@@ -3193,7 +3193,7 @@ CounterNode *RenderObject::getCounter(const DOMString &counter, bool view, bool 
             // Nothing found among siblings, let our parent search
             last = parent()->getCounter(counter, false);
             if (last->isReset()) {
-                last->insertAfter(i, 0);
+                last->insertAfter(i, nullptr);
             } else if (last->parent()) {
                 last->parent()->insertAfter(i, last);
             }
@@ -3206,7 +3206,7 @@ CounterNode *RenderObject::getCounter(const DOMString &counter, bool view, bool 
 CounterNode *RenderObject::lookupCounter(const DOMString &counter) const
 {
     QHash<DOMString, khtml::CounterNode *> *counters = document()->counters(this);
-    return counters ? counters->value(counter) : 0;
+    return counters ? counters->value(counter) : nullptr;
 }
 
 void RenderObject::detachCounters()

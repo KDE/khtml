@@ -54,7 +54,7 @@ public:
     }
     const RenderObject *renderer() const
     {
-        return m_position.isEmpty() ? 0 : m_position.node()->renderer();
+        return m_position.isEmpty() ? nullptr : m_position.node()->renderer();
     }
     NodeImpl *node() const
     {

@@ -31,10 +31,10 @@
 namespace khtml
 {
 
-ChildFrame::ChildFrame() : QObject(0)
+ChildFrame::ChildFrame() : QObject(nullptr)
 {
     setObjectName("khtml_child_frame");
-    m_jscript = 0L;
+    m_jscript = nullptr;
     m_bCompleted = false; m_bPreloaded = false; m_type = Frame; m_bNotify = false;
     m_bPendingRedirection = false;
 }

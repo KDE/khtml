@@ -128,7 +128,7 @@ private:
     //QValueList<QByteArray> java_requests;
 };
 
-static KJavaAppletServer *self = 0;
+static KJavaAppletServer *self = nullptr;
 
 KJavaAppletServer::KJavaAppletServer()
     : d(new KJavaAppletServerPrivate)
@@ -151,11 +151,11 @@ KJavaAppletServer::KJavaAppletServer()
 
 KJavaAppletServer::~KJavaAppletServer()
 {
-    disconnect(process, 0, 0, 0); // first disconnect from process.
+    disconnect(process, nullptr, nullptr, nullptr); // first disconnect from process.
     quit();
 
     delete process;
-    process = 0;
+    process = nullptr;
     delete d;
 }
 
@@ -175,7 +175,7 @@ QString KJavaAppletServer::appletLabel()
 
 KJavaAppletServer *KJavaAppletServer::allocateJavaServer()
 {
-    if (self == 0) {
+    if (self == nullptr) {
         self = new KJavaAppletServer();
         self->d->counter = 0;
     }
@@ -205,7 +205,7 @@ void KJavaAppletServer::checkShutdown()
 {
     if (self->d->counter == 0) {
         delete self;
-        self = 0;
+        self = nullptr;
     }
 }
 

@@ -47,7 +47,7 @@ class KHTMLFind : public QObject
 {
     Q_OBJECT
 public:
-    KHTMLFind(KHTMLPart *part, KHTMLFind *parent = 0);
+    KHTMLFind(KHTMLPart *part, KHTMLFind *parent = nullptr);
     ~KHTMLFind();
     void findTextBegin();
     bool initFindNode(bool selection, bool reverse, bool fromCursor);
@@ -90,8 +90,8 @@ private:
                 node->ref();
             }
         }
-        StringPortion() : index(0), node(0) {} // for QValueList
-        StringPortion(const StringPortion &other) : node(0)
+        StringPortion() : index(0), node(nullptr) {} // for QValueList
+        StringPortion(const StringPortion &other) : node(nullptr)
         {
             operator=(other);
         }

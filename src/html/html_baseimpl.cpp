@@ -53,7 +53,7 @@ HTMLBodyElementImpl::HTMLBodyElementImpl(DocumentImpl *doc)
     : HTMLElementImpl(doc),
       m_bgSet(false), m_fgSet(false)
 {
-    m_styleSheet = 0;
+    m_styleSheet = nullptr;
 }
 
 HTMLBodyElementImpl::~HTMLBodyElementImpl()
@@ -143,47 +143,47 @@ void HTMLBodyElementImpl::parseAttribute(AttributeImpl *attr)
     }
     case ATTR_ONLOAD:
         document()->setHTMLWindowEventListener(EventImpl::LOAD_EVENT,
-                                               document()->createHTMLEventListener(attr->value().string(), "onload", NULL));
+                                               document()->createHTMLEventListener(attr->value().string(), "onload", nullptr));
         break;
     case ATTR_ONUNLOAD:
         document()->setHTMLWindowEventListener(EventImpl::UNLOAD_EVENT,
-                                               document()->createHTMLEventListener(attr->value().string(), "onunload", NULL));
+                                               document()->createHTMLEventListener(attr->value().string(), "onunload", nullptr));
         break;
     case ATTR_ONBLUR:
         document()->setHTMLWindowEventListener(EventImpl::BLUR_EVENT,
-                                               document()->createHTMLEventListener(attr->value().string(), "onblur", NULL));
+                                               document()->createHTMLEventListener(attr->value().string(), "onblur", nullptr));
         break;
     case ATTR_ONFOCUS:
         document()->setHTMLWindowEventListener(EventImpl::FOCUS_EVENT,
-                                               document()->createHTMLEventListener(attr->value().string(), "onfocus", NULL));
+                                               document()->createHTMLEventListener(attr->value().string(), "onfocus", nullptr));
         break;
     case ATTR_ONRESIZE:
         document()->setHTMLWindowEventListener(EventImpl::RESIZE_EVENT,
-                                               document()->createHTMLEventListener(attr->value().string(), "onresize", NULL));
+                                               document()->createHTMLEventListener(attr->value().string(), "onresize", nullptr));
         break;
     case ATTR_ONKEYUP:
         document()->setHTMLWindowEventListener(EventImpl::KEYUP_EVENT,
-                                               document()->createHTMLEventListener(attr->value().string(), "onkeyup", NULL));
+                                               document()->createHTMLEventListener(attr->value().string(), "onkeyup", nullptr));
         break;
     case ATTR_ONKEYDOWN:
         document()->setHTMLWindowEventListener(EventImpl::KEYDOWN_EVENT,
-                                               document()->createHTMLEventListener(attr->value().string(), "onkeydown", NULL));
+                                               document()->createHTMLEventListener(attr->value().string(), "onkeydown", nullptr));
         break;
     case ATTR_ONKEYPRESS:
         document()->setHTMLWindowEventListener(EventImpl::KEYPRESS_EVENT,
-                                               document()->createHTMLEventListener(attr->value().string(), "onkeypress", NULL));
+                                               document()->createHTMLEventListener(attr->value().string(), "onkeypress", nullptr));
         break;
     case ATTR_ONSCROLL:
         document()->setHTMLWindowEventListener(EventImpl::SCROLL_EVENT,
-                                               document()->createHTMLEventListener(attr->value().string(), "onscroll", NULL));
+                                               document()->createHTMLEventListener(attr->value().string(), "onscroll", nullptr));
         break;
     case ATTR_ONMESSAGE:
         document()->setHTMLWindowEventListener(EventImpl::MESSAGE_EVENT,
-                                               document()->createHTMLEventListener(attr->value().string(), "onmessage", NULL));
+                                               document()->createHTMLEventListener(attr->value().string(), "onmessage", nullptr));
         break;
     case ATTR_ONHASHCHANGE:
         document()->setHTMLWindowEventListener(EventImpl::HASHCHANGE_EVENT,
-                                               document()->createHTMLEventListener(attr->value().string(), "onhashchange", NULL));
+                                               document()->createHTMLEventListener(attr->value().string(), "onhashchange", nullptr));
         break;
     case ATTR_NOSAVE:
         break;
@@ -343,7 +343,7 @@ void HTMLFrameElementImpl::parseAttribute(AttributeImpl *attr)
         break;
     case ATTR_FRAMEBORDER: {
         frameBorder = attr->value().toInt();
-        frameBorderSet = (attr->val() != 0);
+        frameBorderSet = (attr->val() != nullptr);
         // FIXME: when attached, has no effect
     }
     break;
@@ -479,7 +479,7 @@ void HTMLFrameElementImpl::setLocation(const QString &str)
 
 bool HTMLFrameElementImpl::isFocusableImpl(FocusType ft) const
 {
-    if (m_render != 0) {
+    if (m_render != nullptr) {
         return true;
     }
     return HTMLPartContainerElementImpl::isFocusableImpl(ft);
@@ -502,27 +502,27 @@ void HTMLFrameElementImpl::setFocus(bool received)
 DocumentImpl *HTMLFrameElementImpl::contentDocument() const
 {
     if (!childWidget()) {
-        return 0;
+        return nullptr;
     }
 
     if (::qobject_cast<KHTMLView *>(childWidget())) {
         return static_cast<KHTMLView *>(childWidget())->part()->xmlDocImpl();
     }
 
-    return 0;
+    return nullptr;
 }
 
 KHTMLPart   *HTMLFrameElementImpl::contentPart() const
 {
     if (!childWidget()) {
-        return 0;
+        return nullptr;
     }
 
     if (::qobject_cast<KHTMLView *>(childWidget())) {
         return static_cast<KHTMLView *>(childWidget())->part();
     }
 
-    return 0;
+    return nullptr;
 }
 
 // -------------------------------------------------------------------------
@@ -586,7 +586,7 @@ HTMLFrameSetElementImpl::HTMLFrameSetElementImpl(DocumentImpl *doc)
     m_totalRows = 1;
     m_totalCols = 1;
 
-    m_rows = m_cols = 0;
+    m_rows = m_cols = nullptr;
 
     frameborder = true;
     frameBorderSet = false;
@@ -645,15 +645,15 @@ void HTMLFrameSetElementImpl::parseAttribute(AttributeImpl *attr)
         break;
     case ATTR_ONLOAD:
         document()->setHTMLWindowEventListener(EventImpl::LOAD_EVENT,
-                                               document()->createHTMLEventListener(attr->value().string(), "onload", NULL));
+                                               document()->createHTMLEventListener(attr->value().string(), "onload", nullptr));
         break;
     case ATTR_ONUNLOAD:
         document()->setHTMLWindowEventListener(EventImpl::UNLOAD_EVENT,
-                                               document()->createHTMLEventListener(attr->value().string(), "onunload", NULL));
+                                               document()->createHTMLEventListener(attr->value().string(), "onunload", nullptr));
         break;
     case ATTR_ONMESSAGE:
         document()->setHTMLWindowEventListener(EventImpl::MESSAGE_EVENT,
-                                               document()->createHTMLEventListener(attr->value().string(), "onmessage", NULL));
+                                               document()->createHTMLEventListener(attr->value().string(), "onmessage", nullptr));
         break;
     default:
         HTMLElementImpl::parseAttribute(attr);

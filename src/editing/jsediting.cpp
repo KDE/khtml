@@ -115,7 +115,7 @@ bool JSEditor::queryCommandState(const CommandImp *cmd)
 
 bool JSEditor::queryCommandSupported(const CommandImp *cmd)
 {
-    return cmd != 0;
+    return cmd != nullptr;
 }
 
 DOMString JSEditor::queryCommandValue(const CommandImp *cmd)
@@ -137,7 +137,7 @@ DOMString JSEditor::queryCommandValue(const CommandImp *cmd)
 
 static bool execStyleChange(KHTMLPart *part, int propertyID, const DOMString &propertyValue)
 {
-    CSSStyleDeclarationImpl *style = new CSSStyleDeclarationImpl(0);
+    CSSStyleDeclarationImpl *style = new CSSStyleDeclarationImpl(nullptr);
     style->setProperty(propertyID, propertyValue);
     style->ref();
     part->editor()->applyStyle(style);
@@ -147,7 +147,7 @@ static bool execStyleChange(KHTMLPart *part, int propertyID, const DOMString &pr
 
 static bool execStyleChange(KHTMLPart *part, int propertyID, int propertyEnum)
 {
-    CSSStyleDeclarationImpl *style = new CSSStyleDeclarationImpl(0);
+    CSSStyleDeclarationImpl *style = new CSSStyleDeclarationImpl(nullptr);
     style->setProperty(propertyID, propertyEnum);
     style->ref();
     part->editor()->applyStyle(style);
@@ -162,7 +162,7 @@ static bool execStyleChange(KHTMLPart *part, int propertyID, const char *propert
 
 static Editor::TriState stateStyle(KHTMLPart *part, int propertyID, const char *desiredValue)
 {
-    CSSStyleDeclarationImpl *style = new CSSStyleDeclarationImpl(0);
+    CSSStyleDeclarationImpl *style = new CSSStyleDeclarationImpl(nullptr);
     style->setProperty(propertyID, desiredValue);
     style->ref();
     Editor::TriState state = part->editor()->selectionHasStyle(style);
@@ -172,7 +172,7 @@ static Editor::TriState stateStyle(KHTMLPart *part, int propertyID, const char *
 
 static bool selectionStartHasStyle(KHTMLPart *part, int propertyID, const char *desiredValue)
 {
-    CSSStyleDeclarationImpl *style = new CSSStyleDeclarationImpl(0);
+    CSSStyleDeclarationImpl *style = new CSSStyleDeclarationImpl(nullptr);
     style->setProperty(propertyID, desiredValue);
     style->ref();
     bool hasStyle = part->editor()->selectionStartHasStyle(style);
@@ -640,7 +640,7 @@ const CommandImp *JSEditor::commandImp(const DOMString &command)
 const CommandImp *JSEditor::commandImp(int command)
 {
     if (command < 0 || command >= int(sizeof commands / sizeof commands[0])) {
-        return 0;
+        return nullptr;
     }
     return &commands[command].imp;
 }

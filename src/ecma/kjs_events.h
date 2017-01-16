@@ -52,8 +52,8 @@ public:
     // all nodes we're listening to is quite difficult.
     void clear()
     {
-        listener = 0;
-        compareListenerImp = 0;
+        listener = nullptr;
+        compareListenerImp = nullptr;
     }
     bool isHTMLEventListener() const
     {

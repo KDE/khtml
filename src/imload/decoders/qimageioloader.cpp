@@ -135,7 +135,7 @@ public:
 };
 
 static const char *const positiveList[] = {
-    "BMP", "TIFF", "JP2", "PNM", "EXR", "XBM", "XPM", "ICO", 0
+    "BMP", "TIFF", "JP2", "PNM", "EXR", "XBM", "XPM", "ICO", nullptr
 };
 
 bool isSupportedFormat(QString format)
@@ -193,7 +193,7 @@ ImageLoader *QImageIOLoaderProvider::loaderFor(const QByteArray &prefix)
     QByteArray format = QImageReader::imageFormat(&prefixBuffer);
     prefixBuffer.close();
     if (format.isEmpty() || !isSupportedFormat(format)) {
-        return 0;
+        return nullptr;
     } else
         // qDebug() << "QImageIO - Format guessed: " << format << endl;
 

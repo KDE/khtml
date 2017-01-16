@@ -210,13 +210,13 @@ other  -- pointer to the child
 template<typename ChildType, int ChildId> class ChildHolder
 {
 public:
-    ChildHolder(): ptr(0) {}
+    ChildHolder(): ptr(nullptr) {}
 
     ChildType *get(const ElementImpl *parent) const
     {
         if (static_cast<const NodeImpl *>(ptr) == parent) {
             //Do lookup.
-            ptr = 0;
+            ptr = nullptr;
             for (NodeImpl *child = parent->firstChild(); child; child = child->nextSibling())
                 if (child->id() == ChildId) {
                     ptr = static_cast<ElementImpl *>(child);
@@ -252,7 +252,7 @@ public:
 
     void clear()
     {
-        ptr = 0;
+        ptr = nullptr;
     }
 
     void operator =(ChildType *child)

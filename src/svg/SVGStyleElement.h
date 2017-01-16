@@ -40,7 +40,7 @@ public:
     void insertedIntoDocument() Q_DECL_OVERRIDE;
     void removedFromDocument() Q_DECL_OVERRIDE;
     using DOM::NodeImpl::childrenChanged;
-    virtual void childrenChanged(bool changedByParser = false, Node *beforeChange = 0, Node *afterChange = 0, int childCountDelta = 0);
+    virtual void childrenChanged(bool changedByParser = false, Node *beforeChange = nullptr, Node *afterChange = nullptr, int childCountDelta = 0);
 
     void setCreatedByParser(bool createdByParser)
     {

@@ -149,7 +149,7 @@ void KJavaDownloader::slotResult(KJob *)
     } else {
         server->sendURLData(d->loaderID, FINISHED, d->file);
     }
-    d->job = 0L; // signal KIO::Job::result deletes itself
+    d->job = nullptr; // signal KIO::Job::result deletes itself
     server->removeDataJob(d->loaderID);   // will delete this
     KJavaAppletServer::freeJavaServer();
 }
@@ -163,7 +163,7 @@ void KJavaDownloader::jobCommand(int cmd)
     case KJAS_STOP: {
         // qDebug() << "jobCommand(" << d->loaderID << ") stop";
         d->job->kill();
-        d->job = 0L; // KIO::Job::kill deletes itself
+        d->job = nullptr; // KIO::Job::kill deletes itself
         KJavaAppletServer *server = KJavaAppletServer::allocateJavaServer();
         server->removeDataJob(d->loaderID);   // will delete this
         KJavaAppletServer::freeJavaServer();
@@ -207,7 +207,7 @@ KJavaUploader::KJavaUploader(int ID, const QString &url)
 
     d->loaderID = ID;
     d->url = new QUrl(url);
-    d->job = 0L;
+    d->job = nullptr;
     d->finished = false;
 }
 
@@ -238,7 +238,7 @@ void KJavaUploader::slotDataRequest(KIO::Job *, QByteArray &qb)
     qb.resize(d->file.size());
     KJavaAppletServer *server = KJavaAppletServer::allocateJavaServer();
     if (d->file.size() == 0) {
-        d->job = 0L; // eof, job deletes itself
+        d->job = nullptr; // eof, job deletes itself
         server->removeDataJob(d->loaderID);   // will delete this
     } else {
         memcpy(qb.data(), d->file.data(), d->file.size());
@@ -279,7 +279,7 @@ void KJavaUploader::slotResult(KJob *)
     } else { // shouldn't come here
         qCritical() << "slotResult(" << d->loaderID << ") job:" << d->job << endl;
     }
-    d->job = 0L; // signal KIO::Job::result deletes itself
+    d->job = nullptr; // signal KIO::Job::result deletes itself
     server->removeDataJob(d->loaderID);   // will delete this
     KJavaAppletServer::freeJavaServer();
 }

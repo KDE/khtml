@@ -127,7 +127,7 @@ bool HTMLLinkElement::disabled() const
 void HTMLLinkElement::setDisabled(bool _disabled)
 {
     if (impl) {
-        ((ElementImpl *)impl)->setAttribute(ATTR_DISABLED, _disabled ? "" : 0);
+        ((ElementImpl *)impl)->setAttribute(ATTR_DISABLED, _disabled ? "" : nullptr);
     }
 }
 
@@ -255,7 +255,7 @@ void HTMLLinkElement::setType(const DOMString &value)
 StyleSheet HTMLLinkElement::sheet() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return ((HTMLLinkElementImpl *)impl)->sheet();
 }
@@ -444,7 +444,7 @@ void HTMLScriptElement::setDefer(bool _defer)
 {
 
     if (impl) {
-        ((ElementImpl *)impl)->setAttribute(ATTR_DEFER, _defer ? "" : 0);
+        ((ElementImpl *)impl)->setAttribute(ATTR_DEFER, _defer ? "" : nullptr);
     }
 }
 
@@ -521,7 +521,7 @@ void HTMLStyleElement::setDisabled(bool _disabled)
 {
 
     if (impl) {
-        ((ElementImpl *)impl)->setAttribute(ATTR_DISABLED, _disabled ? "" : 0);
+        ((ElementImpl *)impl)->setAttribute(ATTR_DISABLED, _disabled ? "" : nullptr);
     }
 }
 
@@ -558,7 +558,7 @@ void HTMLStyleElement::setType(const DOMString &value)
 StyleSheet HTMLStyleElement::sheet() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return ((HTMLStyleElementImpl *)impl)->sheet();
 }

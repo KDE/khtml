@@ -75,7 +75,7 @@ unsigned short IDTableBase::grabId(DOMStringImpl *origName, CaseNormalizeMode cn
     // Nope. Allocate new ID. If there is normalization going on, we may now have to
     // update our case so the canonical mapping is of the expected case. We
     // may also have to deep-copy
-    DOMStringImpl *name = 0;
+    DOMStringImpl *name = nullptr;
     switch (cnm) {
     case IDS_CaseSensitive:
         if (origName->m_shallowCopy) {

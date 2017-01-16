@@ -169,7 +169,7 @@ public:
         return m_last;
     }
 
-    void addChild(RenderLayer *newChild, RenderLayer *beforeChild = 0);
+    void addChild(RenderLayer *newChild, RenderLayer *beforeChild = nullptr);
     RenderLayer *removeChild(RenderLayer *oldChild);
 
     void removeOnlyThisLayer();

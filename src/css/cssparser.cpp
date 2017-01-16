@@ -92,7 +92,7 @@ extern int cssyydebug;
 
 extern int cssyyparse(void *parser);
 
-CSSParser *CSSParser::currentParser = 0;
+CSSParser *CSSParser::currentParser = nullptr;
 
 CSSParser::CSSParser(bool strictParsing)
 {
@@ -105,9 +105,9 @@ CSSParser::CSSParser(bool strictParsing)
     numParsedProperties = 0;
     maxParsedProperties = 32;
 
-    data = 0;
-    valueList = 0;
-    rule = 0;
+    data = nullptr;
+    valueList = nullptr;
+    rule = nullptr;
     id = 0;
     important = false;
 
@@ -201,7 +201,7 @@ void CSSParser::setupParser(const char *prefix, const DOMString &string, const c
 void CSSParser::parseSheet(CSSStyleSheetImpl *sheet, const DOMString &string)
 {
     styleElement  = sheet;
-    styleDocument = 0;
+    styleDocument = nullptr;
 
     setupParser("", string, "");
 
@@ -214,19 +214,19 @@ void CSSParser::parseSheet(CSSStyleSheetImpl *sheet, const DOMString &string)
 #endif
 
     delete rule;
-    rule = 0;
+    rule = nullptr;
 }
 
 CSSRuleImpl *CSSParser::parseRule(DOM::CSSStyleSheetImpl *sheet, const DOM::DOMString &string)
 {
     styleElement  = sheet;
-    styleDocument = 0;
+    styleDocument = nullptr;
 
     setupParser("@-khtml-rule{", string, "} ");
     runParser();
 
     CSSRuleImpl *result = rule;
-    rule = 0;
+    rule = nullptr;
 
     return result;
 }
@@ -252,7 +252,7 @@ bool CSSParser::parseValue(DOM::CSSStyleDeclarationImpl *declaration, int _id, c
 #endif
 
     styleElement  = declaration->stylesheet();
-    styleDocument = 0;
+    styleDocument = nullptr;
 
     setupParser("@-khtml-value{", string, "} ");
 
@@ -262,7 +262,7 @@ bool CSSParser::parseValue(DOM::CSSStyleDeclarationImpl *declaration, int _id, c
     runParser();
 
     delete rule;
-    rule = 0;
+    rule = nullptr;
 
     bool ok = false;
     if (numParsedProperties) {
@@ -282,13 +282,13 @@ bool CSSParser::parseDeclaration(DOM::CSSStyleDeclarationImpl *declaration, cons
 #endif
 
     styleElement  = declaration->stylesheet();
-    styleDocument = 0;
+    styleDocument = nullptr;
 
     setupParser("@-khtml-decls{", string, "} ");
     runParser();
 
     delete rule;
-    rule = 0;
+    rule = nullptr;
 
     bool ok = false;
     if (numParsedProperties) {
@@ -306,7 +306,7 @@ bool CSSParser::parseMediaQuery(DOM::MediaListImpl *queries, const DOM::DOMStrin
         return true;
     }
 
-    mediaQuery = 0;
+    mediaQuery = nullptr;
     // can't use { because tokenizer state switches from mediaquery to initial state when it sees { token.
     // instead insert one " " (which is S in parser.y)
     setupParser("@-khtml-mediaquery ", string, "} ");
@@ -316,7 +316,7 @@ bool CSSParser::parseMediaQuery(DOM::MediaListImpl *queries, const DOM::DOMStrin
     if (mediaQuery) {
         ok = true;
         queries->appendMediaQuery(mediaQuery);
-        mediaQuery = 0;
+        mediaQuery = nullptr;
     }
 
     return ok;
@@ -324,7 +324,7 @@ bool CSSParser::parseMediaQuery(DOM::MediaListImpl *queries, const DOM::DOMStrin
 
 QList<DOM::CSSSelector *> CSSParser::parseSelectorList(DOM::DocumentImpl *doc, const DOM::DOMString &string)
 {
-    styleElement  = 0;
+    styleElement  = nullptr;
     styleDocument = doc;
     selectors.clear();
     setupParser("@-khtml-selectors{", string, "} ");
@@ -391,7 +391,7 @@ CSSStyleDeclarationImpl *CSSParser::createStyleDeclaration(CSSStyleRuleImpl *rul
 CSSStyleDeclarationImpl *CSSParser::createFontFaceStyleDeclaration(CSSFontFaceRuleImpl *rule)
 {
     QList<CSSProperty *> *propList = new QList<CSSProperty *>;
-    CSSProperty *overriddenSrcProperty = 0;
+    CSSProperty *overriddenSrcProperty = nullptr;
     for (int i = 0; i < numParsedProperties; i++) {
         CSSProperty *property = parsedProperties[i];
         int id = property->id();
@@ -523,7 +523,7 @@ bool CSSParser::parseValue(int propId, bool important)
     }
 
     bool valid_primitive = false;
-    CSSValueImpl *parsedValue = 0;
+    CSSValueImpl *parsedValue = nullptr;
 
     switch (propId) {
     /* The comment to the left defines all valid value of this properties as defined
@@ -885,7 +885,7 @@ bool CSSParser::parseValue(int propId, bool important)
     case CSS_PROP_BACKGROUND_POSITION_Y:
     case CSS_PROP_BACKGROUND_SIZE:
     case CSS_PROP_BACKGROUND_REPEAT: {
-        CSSValueImpl *val1 = 0, *val2 = 0;
+        CSSValueImpl *val1 = nullptr, *val2 = nullptr;
         int propId1, propId2;
         if (parseBackgroundProperty(propId, propId1, propId2, val1, val2)) {
             addProperty(propId1, val1, important);
@@ -1353,8 +1353,8 @@ bool CSSParser::parseBackgroundShorthand(bool important)
     ShorthandScope scope(this, CSS_PROP_BACKGROUND);
 
     bool parsedProperty[numProperties] = { false }; // compiler will repeat false as necessary
-    CSSValueImpl *values[numProperties] = { 0 }; // compiler will repeat 0 as necessary
-    CSSValueImpl *positionYValue = 0;
+    CSSValueImpl *values[numProperties] = { nullptr }; // compiler will repeat 0 as necessary
+    CSSValueImpl *positionYValue = nullptr;
     int parsedOriginIdent = 0;
     int i;
 
@@ -1392,7 +1392,7 @@ bool CSSParser::parseBackgroundShorthand(bool important)
         bool found = false;
         for (i = 0; !found && i < numProperties; ++i) {
             if (!parsedProperty[i]) {
-                CSSValueImpl *val1 = 0, *val2 = 0;
+                CSSValueImpl *val1 = nullptr, *val2 = nullptr;
                 int propId1, propId2;
                 if (parseBackgroundProperty(properties[i], propId1, propId2, val1, val2)) {
                     parsedProperty[i] = found = true;
@@ -1405,7 +1405,7 @@ bool CSSParser::parseBackgroundShorthand(bool important)
                             // next property _must_ be 'size'
                             valueList->next();
                             ++i; // 'size' is at the next position in properties[] array
-                            CSSValueImpl *retVal1 = 0, *retVal2 = 0;
+                            CSSValueImpl *retVal1 = nullptr, *retVal2 = nullptr;
                             if (parseBackgroundProperty(properties[i], propId1, propId2, retVal1, retVal2)) {
                                 parsedProperty[i] = true;
                                 addBackgroundValue(values[i], retVal1);
@@ -1488,8 +1488,8 @@ bool CSSParser::parseBorderRadius(bool important)
     SharedPtr<CSSPrimitiveValueImpl> horiz[4], vert[4];
 
     for (int c = 0; c < 4; ++c) {
-        horiz[c] = 0;
-        vert [c] = 0;
+        horiz[c] = nullptr;
+        vert [c] = nullptr;
     }
 
     Value *value;
@@ -1708,9 +1708,9 @@ bool CSSParser::parseContent(int propId, bool important)
 
     bool isValid = true;
     Value *val;
-    CSSValueImpl *parsedValue = 0;
+    CSSValueImpl *parsedValue = nullptr;
     while ((val = valueList->current())) {
-        parsedValue = 0;
+        parsedValue = nullptr;
         if (val->unit == CSSPrimitiveValue::CSS_URI) {
             if (styleElement) {
                 const DOMString uri = domString(val->string);
@@ -1788,7 +1788,7 @@ CSSValueImpl *CSSParser::parseCounterContent(ValueList *args, bool counters)
     const int argsSize = args->size();
     if (counters || (argsSize != 1 && argsSize != 3))
         if (!counters || (argsSize != 3 && argsSize != 5)) {
-            return 0;
+            return nullptr;
         }
 
     CounterImpl *counter = new CounterImpl;
@@ -1829,7 +1829,7 @@ CSSValueImpl *CSSParser::parseCounterContent(ValueList *args, bool counters)
     return new CSSPrimitiveValueImpl(counter);
 invalid:
     delete counter;
-    return 0;
+    return nullptr;
 }
 
 CSSValueImpl *CSSParser::parseBackgroundColor()
@@ -1855,11 +1855,11 @@ CSSValueImpl *CSSParser::parseBackgroundImage(bool &didParse)
             const DOMString uri = domString(v->string);
             return new CSSImageValueImpl(uri, styleElement);
         } else {
-            return 0;
+            return nullptr;
         }
     } else {
         didParse = false;
-        return 0;
+        return nullptr;
     }
 }
 
@@ -1892,12 +1892,12 @@ CSSValueImpl *CSSParser::parseBackgroundPositionXY(BackgroundPosKind &kindOut)
                                          (CSSPrimitiveValue::UnitTypes)valueList->current()->unit);
     }
 
-    return 0;
+    return nullptr;
 }
 
 void CSSParser::parseBackgroundPosition(CSSValueImpl *&value1, CSSValueImpl *&value2)
 {
-    value1 = value2 = 0;
+    value1 = value2 = nullptr;
 
     // Parse the first value.  We're just making sure that it is one of the valid keywords or a percentage/length.
     BackgroundPosKind value1pos;
@@ -1911,7 +1911,7 @@ void CSSParser::parseBackgroundPosition(CSSValueImpl *&value1, CSSValueImpl *&va
 
     // First check for the comma.  If so, we are finished parsing this value or value pair.
     if (value && value->unit == Value::Operator && value->iValue == ',') {
-        value = 0;
+        value = nullptr;
     }
 
     bool secondValueSpecifiedAndValid = false;
@@ -1923,7 +1923,7 @@ void CSSParser::parseBackgroundPosition(CSSValueImpl *&value1, CSSValueImpl *&va
         } else {
             if (!inShorthand()) {
                 delete value1;
-                value1 = 0;
+                value1 = nullptr;
                 return;
             }
         }
@@ -1962,8 +1962,8 @@ void CSSParser::parseBackgroundPosition(CSSValueImpl *&value1, CSSValueImpl *&va
     if (!ok) {
         delete value1;
         delete value2;
-        value1 = 0;
-        value2 = 0;
+        value1 = nullptr;
+        value2 = nullptr;
         return;
     }
 
@@ -1996,7 +1996,7 @@ CSSValueImpl *CSSParser::parseBackgroundSize()
     } else if (validUnit(value, FLength | FPercent | FNonNeg, strict)) {
         parsedValue1 = new CSSPrimitiveValueImpl(value->fValue, (CSSPrimitiveValue::UnitTypes)value->unit);
     } else {
-        return 0;
+        return nullptr;
     }
 
     // Parse the second value, if any.
@@ -2004,10 +2004,10 @@ CSSValueImpl *CSSParser::parseBackgroundSize()
 
     // First check for the comma.  If so, we are finished parsing this value or value pair.
     if (value && value->unit == Value::Operator && value->iValue == ',') {
-        value = 0;
+        value = nullptr;
     }
 
-    CSSPrimitiveValueImpl *parsedValue2 = 0;
+    CSSPrimitiveValueImpl *parsedValue2 = nullptr;
     if (value) {
         if (value->id == CSS_VAL_AUTO) {
             parsedValue2 = new CSSPrimitiveValueImpl(CSS_VAL_AUTO);
@@ -2015,7 +2015,7 @@ CSSValueImpl *CSSParser::parseBackgroundSize()
             parsedValue2 = new CSSPrimitiveValueImpl(value->fValue, (CSSPrimitiveValue::UnitTypes)value->unit);
         } else if (!inShorthand()) {
             delete parsedValue1;
-            return 0;
+            return nullptr;
         }
     }
 
@@ -2042,7 +2042,7 @@ bool CSSParser::parseBackgroundProperty(int propId, int &propId1, int &propId2,
     CSSValueListImpl *value2 = new CSSValueListImpl(CSSValueListImpl::Comma);
     bool expectComma = false;
 
-    retValue1 = retValue2 = 0;
+    retValue1 = retValue2 = nullptr;
     propId1 = propId;
     propId2 = propId;
     if (propId == CSS_PROP_BACKGROUND_POSITION) {
@@ -2051,7 +2051,7 @@ bool CSSParser::parseBackgroundProperty(int propId, int &propId1, int &propId2,
     }
 
     while ((val = valueList->current())) {
-        CSSValueImpl *currValue = 0, *currValue2 = 0;
+        CSSValueImpl *currValue = nullptr, *currValue2 = nullptr;
         if (expectComma) {
             if (val->unit != Value::Operator || val->iValue != ',') {
                 goto failed;
@@ -2097,7 +2097,7 @@ bool CSSParser::parseBackgroundProperty(int propId, int &propId1, int &propId2,
                 if (currValue) {
                     if (pos == BgPos_Y) {
                         delete currValue;
-                        currValue = 0;
+                        currValue = nullptr;
                     } else {
                         valueList->next();
                     }
@@ -2110,7 +2110,7 @@ bool CSSParser::parseBackgroundProperty(int propId, int &propId1, int &propId2,
                 if (currValue) {
                     if (pos == BgPos_X) {
                         delete currValue;
-                        currValue = 0;
+                        currValue = nullptr;
                     } else {
                         valueList->next();
                     }
@@ -2242,8 +2242,8 @@ bool CSSParser::parseFontShorthand(bool important)
         }
         return false;
     }
-    CSSValueListImpl *family = 0;
-    CSSPrimitiveValueImpl *style = 0, *variant = 0, *weight = 0, *size = 0, *lineHeight = 0;
+    CSSValueListImpl *family = nullptr;
+    CSSPrimitiveValueImpl *style = nullptr, *variant = nullptr, *weight = nullptr, *size = nullptr, *lineHeight = nullptr;
 
     ShorthandScope scope(this, CSS_PROP_FONT);
 
@@ -2407,7 +2407,7 @@ CSSValueListImpl *CSSParser::parseFontFamily()
         if (value->id == CSS_VAL_INHERIT && inShorthand() && currFace.isNull() && nextValBreaksFont) {
             // fail (#169610)
             delete list;
-            return 0;
+            return nullptr;
         }
 
         if (value->id >= CSS_VAL_SERIF && value->id <= CSS_VAL_MONOSPACE) {
@@ -2468,7 +2468,7 @@ CSSValueListImpl *CSSParser::parseFontFamily()
 
     if (!list->length()) {
         delete list;
-        list = 0;
+        list = nullptr;
     }
     return list;
 }
@@ -2480,9 +2480,9 @@ bool CSSParser::parseFontFaceSrc()
     bool expectComma = false;
     bool allowFormat = false;
     bool failed = false;
-    CSSFontFaceSrcValueImpl *uriValue = 0;
+    CSSFontFaceSrcValueImpl *uriValue = nullptr;
     while ((val = valueList->current())) {
-        CSSFontFaceSrcValueImpl *parsedValue = 0;
+        CSSFontFaceSrcValueImpl *parsedValue = nullptr;
         if (val->unit == CSSPrimitiveValue::CSS_URI && !expectComma && styleElement) {
             const DOMString uri = domString(val->string).trimSpaces();
             parsedValue = new CSSFontFaceSrcValueImpl(DOMString(QUrl(styleElement->baseURL()).resolved(QUrl(uri.string())).toString()), false /*local*/);
@@ -2500,13 +2500,13 @@ bool CSSParser::parseFontFaceSrc()
                     expectComma = true;
                     allowFormat = false;
                     Value *a = args->current();
-                    uriValue = 0;
+                    uriValue = nullptr;
                     parsedValue = new CSSFontFaceSrcValueImpl(domString(a->string), true /*local src*/);
                 } else if (!strcasecmp(domString(val->function->name), "format(") && allowFormat && uriValue) {
                     expectComma = true;
                     allowFormat = false;
                     uriValue->setFormat(domString(args->current()->string));
-                    uriValue = 0;
+                    uriValue = nullptr;
                     valueList->next();
                     continue;
                 }
@@ -2514,7 +2514,7 @@ bool CSSParser::parseFontFaceSrc()
         } else if (val->unit == Value::Operator && val->iValue == ',' && expectComma) {
             expectComma = false;
             allowFormat = false;
-            uriValue = 0;
+            uriValue = nullptr;
             valueList->next();
             continue;
         }
@@ -2547,9 +2547,9 @@ bool CSSParser::parseListStyleShorthand(bool important)
         return false;
     }
 
-    CSSValueImpl *type = 0;
-    CSSValueImpl *position = 0;
-    CSSValueImpl *image = 0;
+    CSSValueImpl *type = nullptr;
+    CSSValueImpl *position = nullptr;
+    CSSValueImpl *image = nullptr;
 
     int numberOfNone = 0;
     Value *value = valueList->current();
@@ -2790,58 +2790,58 @@ CSSPrimitiveValueImpl *CSSParser::parseColorFromValue(Value *value)
         QString str;
         str.sprintf("%06d", (int)(value->fValue + .5));
         if (!::parseColor(CSSPrimitiveValue::CSS_RGBCOLOR, str, c, strict)) {
-            return 0;
+            return nullptr;
         }
     } else if (value->unit == CSSPrimitiveValue::CSS_RGBCOLOR ||               // color: #ff0000
                value->unit == CSSPrimitiveValue::CSS_IDENT ||                    // color: red || color: ff0000 (quirk)
                (!strict && value->unit == CSSPrimitiveValue::CSS_DIMENSION)) {   // color: 00ffff (quirk)
         if (!::parseColor(value->unit, qString(value->string), c, strict)) {
-            return 0;
+            return nullptr;
         }
     } else if (value->unit == Value::Function &&
-               value->function->args != 0 &&
+               value->function->args != nullptr &&
                value->function->args->size() == 5 /* rgb + two commas */ &&
                qString(value->function->name).toLower() == "rgb(") {
         int colorValues[3];
         if (!parseColorParameters(value, colorValues, false)) {
-            return 0;
+            return nullptr;
         }
         colorValues[0] = qMax(0, qMin(255, colorValues[0]));
         colorValues[1] = qMax(0, qMin(255, colorValues[1]));
         colorValues[2] = qMax(0, qMin(255, colorValues[2]));
         c = qRgb(colorValues[0], colorValues[1], colorValues[2]);
     } else if (value->unit == Value::Function &&
-               value->function->args != 0 &&
+               value->function->args != nullptr &&
                value->function->args->size() == 7 /* rgba + three commas */ &&
                domString(value->function->name).lower() == "rgba(") {
         int colorValues[4];
         if (!parseColorParameters(value, colorValues, true)) {
-            return 0;
+            return nullptr;
         }
         colorValues[0] = qMax(0, qMin(255, colorValues[0]));
         colorValues[1] = qMax(0, qMin(255, colorValues[1]));
         colorValues[2] = qMax(0, qMin(255, colorValues[2]));
         c = qRgba(colorValues[0], colorValues[1], colorValues[2], colorValues[3]);
     } else if (value->unit == Value::Function &&
-               value->function->args != 0 &&
+               value->function->args != nullptr &&
                value->function->args->size() == 5 /* hsl + two commas */ &&
                domString(value->function->name).lower() == "hsl(") {
         double colorValues[3];
         if (!parseHSLParameters(value, colorValues, false)) {
-            return 0;
+            return nullptr;
         }
         c = khtml::qRgbaFromHsla(colorValues[0], colorValues[1], colorValues[2], 1.0);
     } else if (value->unit == Value::Function &&
-               value->function->args != 0 &&
+               value->function->args != nullptr &&
                value->function->args->size() == 7 /* hsla + three commas */ &&
                domString(value->function->name).lower() == "hsla(") {
         double colorValues[4];
         if (!parseHSLParameters(value, colorValues, true)) {
-            return 0;
+            return nullptr;
         }
         c = khtml::qRgbaFromHsla(colorValues[0], colorValues[1], colorValues[2], colorValues[3]);
     } else {
-        return 0;
+        return nullptr;
     }
 
     return new CSSPrimitiveValueImpl(c);
@@ -2851,7 +2851,7 @@ CSSPrimitiveValueImpl *CSSParser::parseColorFromValue(Value *value)
 // without the allowBreak bit being set, then it will clean up all of the objects and destroy them.
 struct ShadowParseContext {
     ShadowParseContext()
-        : values(0), x(0), y(0), blur(0), color(0),
+        : values(nullptr), x(nullptr), y(nullptr), blur(nullptr), color(nullptr),
           allowX(true), allowY(false), allowBlur(false), allowColor(true),
           allowBreak(true)
     {}
@@ -2890,7 +2890,7 @@ struct ShadowParseContext {
         }
 
         // Now reset for the next shadow value.
-        x = y = blur = color = 0;
+        x = y = blur = color = nullptr;
         allowX = allowColor = allowBreak = true;
         allowY = allowBlur = false;
     }
@@ -2965,7 +2965,7 @@ bool CSSParser::parseShadow(int propId, bool important)
             context.commitLength(val);
         } else {
             // The only other type of value that's ok is a color value.
-            CSSPrimitiveValueImpl *parsedColor = 0;
+            CSSPrimitiveValueImpl *parsedColor = nullptr;
             bool isColor = ((val->id >= CSS_VAL_AQUA && val->id <= CSS_VAL_WINDOWTEXT) ||
                             val->id == CSS_VAL_MENU ||
                             (val->id >= CSS_VAL_GREY && val->id <= CSS_VAL__KHTML_TEXT && !strict));
@@ -3225,7 +3225,7 @@ unsigned short *DOM::CSSParser::text(int *length)
 
     // process escapes
     unsigned short *out = start;
-    unsigned short *escape = 0;
+    unsigned short *escape = nullptr;
 
     for (int i = 0; i < l; i++) {
         unsigned short *current = start + i;
@@ -3239,19 +3239,19 @@ unsigned short *DOM::CSSParser::text(int *length)
                     (*current == '\n' || *current == '\r' || *current == '\f')) {
                 // ### handle \r\n case
                 if (*current != '\r') {
-                    escape = 0;
+                    escape = nullptr;
                 }
                 continue;
             }
             // in all other cases copy the char to output
             // ###
             *out++ = *current;
-            escape = 0;
+            escape = nullptr;
             continue;
         }
         if (escape == current - 2 && yyTok == STRING &&
                 *(current - 1) == '\r' && *current == '\n') {
-            escape = 0;
+            escape = nullptr;
             continue;
         }
         if (escape > current - 7 &&
@@ -3276,7 +3276,7 @@ unsigned short *DOM::CSSParser::text(int *length)
                 uc = 0xfffd;
             }
             *(out++) = (unsigned short)uc;
-            escape = 0;
+            escape = nullptr;
             if (*current == ' ' ||
                     *current == '\t' ||
                     *current == '\r' ||

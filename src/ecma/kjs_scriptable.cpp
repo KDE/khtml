@@ -84,12 +84,12 @@ bool pluginRootGet(ExecState *exec, ScriptableExtension *ext, const KJS::Identif
         return false;
     }
 
-    QVariant v = rootObj.owner->get(0 /* ### we don't expect leaves to check credentials*/,
+    QVariant v = rootObj.owner->get(nullptr /* ### we don't expect leaves to check credentials*/,
                                     rootObj.objId, i.qstring());
 
     bool ok = false;
     if (!isException(v)) {
-        getImmediateValueSlot(0, ScriptableOperations::importValue(exec, v, true), slot);
+        getImmediateValueSlot(nullptr, ScriptableOperations::importValue(exec, v, true), slot);
         ok = true;
     }
 
@@ -105,7 +105,7 @@ bool pluginRootPut(ExecState * /*exec*/, ScriptableExtension *ext, const KJS::Id
     }
 
     QVariant qv = ScriptableOperations::exportValue(v, true);
-    bool ok = rootObj.owner->put(0, rootObj.objId, i.qstring(), qv);
+    bool ok = rootObj.owner->put(nullptr, rootObj.objId, i.qstring(), qv);
     ScriptableExtension::releaseValue(qv);
 
     rootObj.owner->release(rootObj.objId);
@@ -115,7 +115,7 @@ bool pluginRootPut(ExecState * /*exec*/, ScriptableExtension *ext, const KJS::Id
 //------------------------------------------------------------------------------
 // KJS peer wrapping external objects
 
-const ClassInfo WrapScriptableObject::info = { " WrapScriptableObject", 0, 0, 0 };
+const ClassInfo WrapScriptableObject::info = { " WrapScriptableObject", nullptr, nullptr, nullptr };
 
 WrapScriptableObject::WrapScriptableObject(ExecState * /*exec*/, Type t,
         ScriptableExtension *owner, quint64 objId,
@@ -341,7 +341,7 @@ ScriptableExtension *WrapScriptableObject::principal(ExecState *exec)
     KJS::ScriptInterpreter *si = static_cast<KJS::ScriptInterpreter *>(exec->dynamicInterpreter());
     KParts::ReadOnlyPart   *part = si->part();
     if (!part) {
-        return 0;
+        return nullptr;
     }
 
     return ScriptableExtension::childObject(part);
@@ -506,10 +506,10 @@ QVariant ScriptableOperations::exportValue(JSValue *v, bool preRef)
 
 //-----------------------------------------------------------------------------
 // operations
-QHash<JSObject *, int> *ScriptableOperations::s_exportedObjects = 0;
-QHash<ScriptableExtension::Object, WrapScriptableObject *> *ScriptableOperations::s_importedObjects   = 0;
-QHash<ScriptableExtension::FunctionRef, WrapScriptableObject *> *ScriptableOperations::s_importedFunctions = 0;
-ScriptableOperations *ScriptableOperations::s_instance = 0;
+QHash<JSObject *, int> *ScriptableOperations::s_exportedObjects = nullptr;
+QHash<ScriptableExtension::Object, WrapScriptableObject *> *ScriptableOperations::s_importedObjects   = nullptr;
+QHash<ScriptableExtension::FunctionRef, WrapScriptableObject *> *ScriptableOperations::s_importedFunctions = nullptr;
+ScriptableOperations *ScriptableOperations::s_instance = nullptr;
 
 QHash<ScriptableExtension::Object, WrapScriptableObject *> *ScriptableOperations::importedObjects()
 {
@@ -557,7 +557,7 @@ ScriptableOperations *ScriptableOperations::self()
     return s_instance;
 }
 
-ScriptableOperations::ScriptableOperations(): ScriptableExtension(0)
+ScriptableOperations::ScriptableOperations(): ScriptableExtension(nullptr)
 {}
 
 ScriptableOperations::~ScriptableOperations()
@@ -570,7 +570,7 @@ JSObject *ScriptableOperations::tryGetNativeObject(const Object &sObj)
     if (ScriptableOperations *o = qobject_cast<ScriptableOperations *>(sObj.owner)) {
         return o->objectForId(sObj.objId);
     } else {
-        return 0;
+        return nullptr;
     }
 }
 
@@ -780,17 +780,17 @@ ExecState *ScriptableOperations::execStateForPrincipal(ScriptableExtension *call
     KHTMLPart *part = partForPrincipal(caller);
 
     if (!part) {
-        return 0;
+        return nullptr;
     }
 
     KJSProxy *proxy = KJSProxy::proxy(part);
     if (!proxy) {
-        return 0;
+        return nullptr;
     }
 
     KJS::Interpreter *i = proxy->interpreter();
     if (!i) {
-        return 0;
+        return nullptr;
     }
 
     return i->globalExec();
@@ -830,7 +830,7 @@ JSObject *ScriptableOperations::objectForId(quint64 objId)
         return ptr;
     } else {
         assert(false);
-        return 0;
+        return nullptr;
     }
 }
 
@@ -858,7 +858,7 @@ KJS::Interpreter *KHTMLPartScriptable::interpreter()
 {
     KJSProxy *proxy = KJSProxy::proxy(m_part);
     if (!proxy) {
-        return 0;
+        return nullptr;
     }
 
     return proxy->interpreter();

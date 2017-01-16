@@ -420,7 +420,7 @@ bool FunPosition::isConstant() const
 
 Value NodeFunction::doEvaluate() const
 {
-    NodeImpl *node = 0;
+    NodeImpl *node = nullptr;
     if (argCount() > 0) {
         Value a = arg(0)->evaluate();
         if (a.isNodeset() && a.toNodeset()->length()) {
@@ -882,13 +882,13 @@ Function *FunctionLibrary::getFunction(const DOM::DOMString &name,
     if (!m_functionDict.contains(name)) {
         qWarning() << "Function '" << name << "' not supported by this implementation.";
 
-        return 0;
+        return nullptr;
     }
 
     FunctionRec functionRec = m_functionDict[ name ];
     if (!functionRec.args.contains(args.count())) {
         qWarning() << "Function '" << name << "' requires " << functionRec.args.asString() << " arguments, but " << args.count() << " given.";
-        return 0;
+        return nullptr;
     }
 
     Function *function = functionRec.factoryFn();

@@ -81,7 +81,7 @@ public:
             }
         }
 
-        return 0;
+        return nullptr;
     }
 
     ~LoaderDatabase()

@@ -39,7 +39,7 @@ namespace WebCore
 SVGStyleElement::SVGStyleElement(const QualifiedName &tagName, Document *doc)
     : SVGElement(tagName, doc)
     , m_createdByParser(false)
-    , m_sheet(0)
+    , m_sheet(nullptr)
 {
 }
 

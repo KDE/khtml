@@ -70,7 +70,7 @@ public:
     // Used by SVGInlineTextBox
     const Vector<SVGTextChunk> &svgTextChunks() const;
 
-    void walkTextChunks(SVGTextChunkWalkerBase *, const SVGInlineTextBox *textBox = 0);
+    void walkTextChunks(SVGTextChunkWalkerBase *, const SVGInlineTextBox *textBox = nullptr);
 
 private:
     friend struct SVGRootInlineBoxPaintWalker;

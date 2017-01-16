@@ -26,7 +26,7 @@ class KHTMLViewBarWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit KHTMLViewBarWidget(bool addCloseButton, QWidget *parent = 0);
+    explicit KHTMLViewBarWidget(bool addCloseButton, QWidget *parent = nullptr);
 
 protected:
     /**

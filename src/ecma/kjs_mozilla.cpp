@@ -33,7 +33,7 @@ using namespace KJS;
 namespace KJS
 {
 
-const ClassInfo MozillaSidebarExtension::info = { "sidebar", 0, &MozillaSidebarExtensionTable, 0 };
+const ClassInfo MozillaSidebarExtension::info = { "sidebar", nullptr, &MozillaSidebarExtensionTable, nullptr };
 /*
 @begin MozillaSidebarExtensionTable 1
   addPanel  MozillaSidebarExtension::addPanel   DontDelete|Function 0

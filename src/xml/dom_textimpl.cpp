@@ -49,7 +49,7 @@ static DOMString escapeHTML(const DOMString &in)
 CharacterDataImpl::CharacterDataImpl(DocumentImpl *doc, DOMStringImpl *_text)
     : NodeImpl(doc)
 {
-    str = _text ? _text : new DOMStringImpl((QChar *)0, 0);
+    str = _text ? _text : new DOMStringImpl((QChar *)nullptr, 0);
     str->ref();
 }
 
@@ -74,7 +74,7 @@ void CharacterDataImpl::setData(const DOMString &_data, int &exceptioncode)
     DOMStringImpl *oldStr = str;
     str = _data.impl;
     if (!str) {
-        str = new DOMStringImpl((QChar *)0, 0);
+        str = new DOMStringImpl((QChar *)nullptr, 0);
     }
     str->ref();
     if (m_render) {
@@ -246,7 +246,7 @@ void CharacterDataImpl::dispatchModifiedEvent(DOMStringImpl *prevValue)
     DOMStringImpl *newValue = str->copy();
     newValue->ref();
     int exceptioncode = 0;
-    MutationEventImpl *const evt = new MutationEventImpl(EventImpl::DOMCHARACTERDATAMODIFIED_EVENT, true, false, 0, prevValue, newValue, DOMString(), 0);
+    MutationEventImpl *const evt = new MutationEventImpl(EventImpl::DOMCHARACTERDATAMODIFIED_EVENT, true, false, nullptr, prevValue, newValue, DOMString(), 0);
     evt->ref();
     dispatchEvent(evt, exceptioncode);
     evt->deref();
@@ -355,13 +355,13 @@ TextImpl *TextImpl::splitText(const unsigned long offset, int &exceptioncode)
     // kjs bindings)
     if (offset > str->l || (long)offset < 0) {
         exceptioncode = DOMException::INDEX_SIZE_ERR;
-        return 0;
+        return nullptr;
     }
 
     // NO_MODIFICATION_ALLOWED_ERR: Raised if this node is readonly.
     if (isReadOnly()) {
         exceptioncode = DOMException::NO_MODIFICATION_ALLOWED_ERR;
-        return 0;
+        return nullptr;
     }
 
     DOMStringImpl *oldStr = str;
@@ -377,7 +377,7 @@ TextImpl *TextImpl::splitText(const unsigned long offset, int &exceptioncode)
         parentNode()->insertBefore(newText, nextSibling(), exceptioncode);
     }
     if (exceptioncode) {
-        return 0;
+        return nullptr;
     }
 
     if (m_render) {
@@ -474,7 +474,7 @@ TextImpl *TextImpl::replaceWholeText(const DOMString &newText, int &ec)
         if (parent && parentNode() == parent) {
             parent->removeChild(this, ignored);
         }
-        return 0;
+        return nullptr;
     }
 
     setData(newText, ignored);

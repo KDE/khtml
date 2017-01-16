@@ -216,7 +216,7 @@ EvaluationContext &Expression::evaluationContext()
 }
 
 Expression::Expression()
-    : m_constantValue(0)
+    : m_constantValue(nullptr)
 {
 }
 

@@ -152,24 +152,24 @@ public:
     };
 
     KHTMLViewPrivate(KHTMLView *v)
-        : underMouse(0), underMouseNonShared(0), oldUnderMouse(0)
+        : underMouse(nullptr), underMouseNonShared(nullptr), oldUnderMouse(nullptr)
     {
-        postponed_autorepeat = NULL;
+        postponed_autorepeat = nullptr;
         scrollingFromWheelTimerId = 0;
         smoothScrollMode = KHTMLView::SSMWhenEfficient;
 
         reset();
         vpolicy = Qt::ScrollBarAsNeeded;
         hpolicy = Qt::ScrollBarAsNeeded;
-        formCompletions = 0;
+        formCompletions = nullptr;
         prevScrollbarVisible = true;
 
         possibleTripleClick = false;
         emitCompletedAfterRepaint = CSNone;
-        cursorIconWidget = 0;
+        cursorIconWidget = nullptr;
         cursorIconType   = KHTMLView::LINK_NORMAL;
-        m_mouseScrollTimer = 0;
-        m_mouseScrollIndicator = 0;
+        m_mouseScrollTimer = nullptr;
+        m_mouseScrollIndicator = nullptr;
         contentsX = 0;
         contentsY = 0;
         view = v;
@@ -197,15 +197,15 @@ public:
         if (underMouse) {
             underMouse->deref();
         }
-        underMouse = 0;
+        underMouse = nullptr;
         if (underMouseNonShared) {
             underMouseNonShared->deref();
         }
-        underMouseNonShared = 0;
+        underMouseNonShared = nullptr;
         if (oldUnderMouse) {
             oldUnderMouse->deref();
         }
-        oldUnderMouse = 0;
+        oldUnderMouse = nullptr;
         linkPressed = false;
         staticWidget = SBNone;
         fixedObjectsCount = 0;
@@ -238,7 +238,7 @@ public:
         isDoubleClick = false;
         scrollingSelf = false;
         delete postponed_autorepeat;
-        postponed_autorepeat = NULL;
+        postponed_autorepeat = nullptr;
         layoutTimerId = 0;
         repaintTimerId = 0;
         scrollTimerId = 0;
@@ -274,8 +274,8 @@ public:
         KHTMLGlobal::deref();
 
         emitCompletedAfterRepaint = CSNone;
-        m_mouseEventsTarget = 0;
-        m_clipHolder = 0;
+        m_mouseEventsTarget = nullptr;
+        m_clipHolder = nullptr;
     }
     void newScrollTimer(QWidget *view, int tid)
     {
@@ -992,8 +992,8 @@ void KHTMLView::layout()
         d->dirtyLayout = true;
 
         // the reference object for the overflow property on canvas
-        RenderObject *ref = 0;
-        RenderObject *root = document->documentElement() ? document->documentElement()->renderer() : 0;
+        RenderObject *ref = nullptr;
+        RenderObject *root = document->documentElement() ? document->documentElement()->renderer() : nullptr;
 
         if (document->isHTMLDocument()) {
             NodeImpl *body = static_cast<HTMLDocumentImpl *>(document)->body();
@@ -1247,7 +1247,7 @@ void KHTMLView::mousePressEvent(QMouseEvent *_mouse)
         return;
     } else if (d->m_mouseScrollTimer) {
         delete d->m_mouseScrollTimer;
-        d->m_mouseScrollTimer = 0;
+        d->m_mouseScrollTimer = nullptr;
 
         if (d->m_mouseScrollIndicator) {
             d->m_mouseScrollIndicator->hide();
@@ -1394,12 +1394,12 @@ void KHTMLView::mouseMoveEvent(QMouseEvent *_mouse)
         d->clickCount = 0;  // moving the mouse outside the threshold invalidates the click
     }
 
-    khtml::RenderObject *r = target ? target->renderer() : 0;
+    khtml::RenderObject *r = target ? target->renderer() : nullptr;
     bool setCursor = true;
     bool forceDefault = false;
     if (r && r->isWidget()) {
         RenderWidget *rw = static_cast<RenderWidget *>(r);
-        KHTMLWidget *kw = qobject_cast<KHTMLView *>(rw->widget()) ? dynamic_cast<KHTMLWidget *>(rw->widget()) : 0;
+        KHTMLWidget *kw = qobject_cast<KHTMLView *>(rw->widget()) ? dynamic_cast<KHTMLWidget *>(rw->widget()) : nullptr;
         if (kw && kw->m_kwp->isRedirected()) {
             setCursor = false;
         } else if (QLineEdit *le = qobject_cast<QLineEdit *>(rw->widget())) {
@@ -1417,7 +1417,7 @@ void KHTMLView::mouseMoveEvent(QMouseEvent *_mouse)
             }
         }
     }
-    khtml::RenderStyle *style = (r && r->style()) ? r->style() : 0;
+    khtml::RenderStyle *style = (r && r->style()) ? r->style() : nullptr;
     QCursor c;
     LinkCursor linkCursor = LINK_NORMAL;
     switch (!forceDefault ? (style ? style->cursor() : CURSOR_AUTO) : CURSOR_DEFAULT) {
@@ -1533,7 +1533,7 @@ void KHTMLView::mouseMoveEvent(QMouseEvent *_mouse)
 
         if (!d->cursorIconWidget) {
 #if HAVE_X11
-            d->cursorIconWidget = new QLabel(0, Qt::X11BypassWindowManagerHint);
+            d->cursorIconWidget = new QLabel(nullptr, Qt::X11BypassWindowManagerHint);
             XSetWindowAttributes attr;
             attr.save_under = True;
             XChangeWindowAttributes(QX11Info::display(), d->cursorIconWidget->winId(), CWSaveUnder, &attr);
@@ -1553,7 +1553,7 @@ void KHTMLView::mouseMoveEvent(QMouseEvent *_mouse)
             default:              cursorIcon = "dialog-error";     break;
             }
 
-            QPixmap icon_pixmap = KHTMLGlobal::iconLoader()->loadIcon(cursorIcon, KIconLoader::Small, 0, KIconLoader::DefaultState, QStringList(), 0, true);
+            QPixmap icon_pixmap = KHTMLGlobal::iconLoader()->loadIcon(cursorIcon, KIconLoader::Small, 0, KIconLoader::DefaultState, QStringList(), nullptr, true);
 
             d->cursorIconWidget->resize(icon_pixmap.width(), icon_pixmap.height());
             d->cursorIconWidget->setMask(icon_pixmap.createMaskFromColor(Qt::transparent));
@@ -1613,7 +1613,7 @@ void KHTMLView::mouseReleaseEvent(QMouseEvent *_mouse)
 
         // clear our sticky event target on any mouseRelease event
         if (d->m_mouseEventsTarget) {
-            d->m_mouseEventsTarget = 0;
+            d->m_mouseEventsTarget = nullptr;
         }
 
         if (d->clickCount > 0 &&
@@ -1624,7 +1624,7 @@ void KHTMLView::mouseReleaseEvent(QMouseEvent *_mouse)
                                d->clickCount, &me, true, DOM::NodeImpl::MouseRelease);
         }
 
-        khtml::RenderObject *r = target ? target->renderer() : 0;
+        khtml::RenderObject *r = target ? target->renderer() : nullptr;
         if (r && r->isWidget()) {
             _mouse->ignore();
         }
@@ -1680,14 +1680,14 @@ bool KHTMLView::dispatchKeyEvent(QKeyEvent *_ke)
                 keyPressEvent(d->postponed_autorepeat);
             }
             delete d->postponed_autorepeat;
-            d->postponed_autorepeat = NULL;
+            d->postponed_autorepeat = nullptr;
             return ret;
         }
     } else { // QEvent::KeyRelease
         // Discard postponed "autorepeat key-release" events that didn't see
         // a keypress after them (e.g. due to QAccel)
         delete d->postponed_autorepeat;
-        d->postponed_autorepeat = 0;
+        d->postponed_autorepeat = nullptr;
 
         if (!_ke->isAutoRepeat()) {
             return dispatchKeyEventHelper(_ke, false);   // keyup
@@ -2442,9 +2442,9 @@ bool KHTMLView::focusNextPrevNode(bool next)
 
         if (!toFocus && oldFocusNode) {
             if (next) {
-                toFocus = doc->nextFocusNode(NULL);
+                toFocus = doc->nextFocusNode(nullptr);
             } else {
-                toFocus = doc->previousFocusNode(NULL);
+                toFocus = doc->previousFocusNode(nullptr);
             }
         }
 
@@ -2477,9 +2477,9 @@ bool KHTMLView::focusNextPrevNode(bool next)
 
             if (!toFocus && oldFocusNode) {
                 if (next) {
-                    toFocus = doc->nextFocusNode(NULL);
+                    toFocus = doc->nextFocusNode(nullptr);
                 } else {
-                    toFocus = doc->previousFocusNode(NULL);
+                    toFocus = doc->previousFocusNode(nullptr);
                 }
             }
         }
@@ -2495,7 +2495,7 @@ bool KHTMLView::focusNextPrevNode(bool next)
         return true;
     }
 
-    NodeImpl *newFocusNode = NULL;
+    NodeImpl *newFocusNode = nullptr;
 
     if (d->tabMovePending && next != d->lastTabbingDirection) {
         //qDebug() << " tab move pending and tabbing direction changed!\n";
@@ -2560,8 +2560,8 @@ bool KHTMLView::focusNextPrevNode(bool next)
 void KHTMLView::displayAccessKeys()
 {
     QVector< QChar > taken;
-    displayAccessKeys(NULL, this, taken, false);
-    displayAccessKeys(NULL, this, taken, true);
+    displayAccessKeys(nullptr, this, taken, false);
+    displayAccessKeys(nullptr, this, taken, true);
 }
 
 void KHTMLView::displayAccessKeys(KHTMLView *caller, KHTMLView *origview, QVector< QChar > &taken, bool use_fallbacks)
@@ -2570,7 +2570,7 @@ void KHTMLView::displayAccessKeys(KHTMLView *caller, KHTMLView *origview, QVecto
     if (use_fallbacks) {
         fallbacks = buildFallbackAccessKeys();
     }
-    for (NodeImpl *n = m_part->xmlDocImpl(); n != NULL; n = n->traverseNextNode()) {
+    for (NodeImpl *n = m_part->xmlDocImpl(); n != nullptr; n = n->traverseNextNode()) {
         if (n->isElementNode()) {
             ElementImpl *en = static_cast< ElementImpl * >(n);
             DOMString s = en->getAttribute(ATTR_ACCESSKEY);
@@ -2692,7 +2692,7 @@ bool KHTMLView::focusNodeWithAccessKey(QChar c, KHTMLView *caller)
                 && m_part->parentPart()->view()->focusNodeWithAccessKey(c, this)) {
             return true;
         }
-        if (caller == NULL) {  // the active frame (where the accesskey was pressed)
+        if (caller == nullptr) {  // the active frame (where the accesskey was pressed)
             const QMap< ElementImpl *, QChar > fallbacks = buildFallbackAccessKeys();
             for (QMap< ElementImpl *, QChar >::ConstIterator it = fallbacks.begin();
                     it != fallbacks.end();
@@ -2702,7 +2702,7 @@ bool KHTMLView::focusNodeWithAccessKey(QChar c, KHTMLView *caller)
                     break;
                 }
         }
-        if (node == NULL) {
+        if (node == nullptr) {
             return false;
         }
     }
@@ -2726,11 +2726,11 @@ bool KHTMLView::focusNodeWithAccessKey(QChar c, KHTMLView *caller)
         // Set focus node on the document
         m_part->xmlDocImpl()->setFocusNode(node);
 
-        if (node != NULL && node->hasOneRef()) { // deleted, only held by guard
+        if (node != nullptr && node->hasOneRef()) { // deleted, only held by guard
             return true;
         }
         emit m_part->nodeActivated(Node(node));
-        if (node != NULL && node->hasOneRef()) {
+        if (node != nullptr && node->hasOneRef()) {
             return true;
         }
     }
@@ -2761,7 +2761,7 @@ static QString getElementText(NodeImpl *start, bool after)
 {
     QString ret;             // nextSibling(), to go after e.g. </select>
     for (NodeImpl *n = after ? start->nextSibling() : start->traversePreviousNode();
-            n != NULL;
+            n != nullptr;
             n = after ? n->traverseNextNode() : n->traversePreviousNode()) {
         if (n->isTextNode()) {
             if (after) {
@@ -2814,7 +2814,7 @@ static QMap< NodeImpl *, QString > buildLabels(NodeImpl *start)
 {
     QMap< NodeImpl *, QString > ret;
     for (NodeImpl *n = start;
-            n != NULL;
+            n != nullptr;
             n = n->traverseNextNode()) {
         if (n->id() == ID_LABEL) {
             HTMLLabelElementImpl *label = static_cast< HTMLLabelElementImpl * >(n);
@@ -2846,11 +2846,11 @@ QMap< ElementImpl *, QChar > KHTMLView::buildFallbackAccessKeys() const
     QMap< QString, QChar > hrefs;
 
     for (NodeImpl *n = m_part->xmlDocImpl();
-            n != NULL;
+            n != nullptr;
             n = n->traverseNextNode()) {
         if (n->isElementNode()) {
             ElementImpl *element = static_cast< ElementImpl * >(n);
-            if (element->renderer() == NULL) {
+            if (element->renderer() == nullptr) {
                 continue;    // not visible
             }
             QString text;
@@ -2989,7 +2989,7 @@ QMap< ElementImpl *, QChar > KHTMLView::buildFallbackAccessKeys() const
         keys << c;
     }
     for (NodeImpl *n = m_part->xmlDocImpl();
-            n != NULL;
+            n != nullptr;
             n = n->traverseNextNode()) {
         if (n->isElementNode()) {
             ElementImpl *en = static_cast< ElementImpl * >(n);
@@ -3310,7 +3310,7 @@ void KHTMLView::print(bool quick)
         root->setPagedMode(false);
         root->setStaticMode(false);
         d->paged = false;
-        khtml::setPrintPainter(0);
+        khtml::setPrintPainter(nullptr);
         setMediaType(oldMediaType);
         m_part->xmlDocImpl()->setPaintDevice(this);
         m_part->xmlDocImpl()->styleSelector()->computeFontSizes(m_part->xmlDocImpl()->logicalDpiY(), m_part->fontScaleFactor());
@@ -3669,7 +3669,7 @@ bool KHTMLView::dispatchMouseEvent(int eventId, DOM::NodeImpl *targetNode,
     if (setUnder && d->oldUnderMouse != targetNode) {
         if (d->oldUnderMouse && d->oldUnderMouse->document() != m_part->xmlDocImpl()) {
             d->oldUnderMouse->deref();
-            d->oldUnderMouse = 0;
+            d->oldUnderMouse = nullptr;
         }
         // send mouseout event to the old node
         if (d->oldUnderMouse) {
@@ -3720,7 +3720,7 @@ bool KHTMLView::dispatchMouseEvent(int eventId, DOM::NodeImpl *targetNode,
                                                 true, cancelable, m_part->xmlDocImpl()->defaultView(),
                                                 detail, screenX, screenY, clientX, clientY, pageX, pageY,
                                                 ctrlKey, altKey, shiftKey, metaKey,
-                                                button, 0, isWheelEvent ? 0 : _mouse, dblclick,
+                                                button, nullptr, isWheelEvent ? nullptr : _mouse, dblclick,
                                                 isWheelEvent ? static_cast<MouseEventImpl::Orientation>(orient) : MouseEventImpl::ONone);
         me->ref();
         if (!d->m_mouseEventsTarget && RenderLayer::gScrollBar && eventId == EventImpl::MOUSEDOWN_EVENT)
@@ -3739,7 +3739,7 @@ bool KHTMLView::dispatchMouseEvent(int eventId, DOM::NodeImpl *targetNode,
             if (_mouse->type() == QMouseEvent::MouseButtonPress && _mouse->button() == Qt::RightButton) {
                 QContextMenuEvent cme(QContextMenuEvent::Mouse, p);
                 static_cast<RenderWidget::EventPropagator *>(static_cast<QWidget *>(d->m_mouseEventsTarget))->sendEvent(&cme);
-                d->m_mouseEventsTarget = 0;
+                d->m_mouseEventsTarget = nullptr;
             }
             swallowEvent = true;
         } else {
@@ -3760,7 +3760,7 @@ bool KHTMLView::dispatchMouseEvent(int eventId, DOM::NodeImpl *targetNode,
             if (nodeImpl && nodeImpl->isMouseFocusable()) {
                 m_part->xmlDocImpl()->setFocusNode(nodeImpl);
             } else if (!nodeImpl || !nodeImpl->focused()) {
-                m_part->xmlDocImpl()->setFocusNode(0);
+                m_part->xmlDocImpl()->setFocusNode(nullptr);
             }
         }
         me->deref();
@@ -3871,7 +3871,7 @@ void KHTMLView::dropEvent(QDropEvent *ev)
 
 void KHTMLView::focusInEvent(QFocusEvent *e)
 {
-    DOM::NodeImpl *fn = m_part->xmlDocImpl() ? m_part->xmlDocImpl()->focusNode() : 0;
+    DOM::NodeImpl *fn = m_part->xmlDocImpl() ? m_part->xmlDocImpl()->focusNode() : nullptr;
     if (fn && fn->renderer() && fn->renderer()->isWidget() &&
             (e->reason() != Qt::MouseFocusReason) &&
             static_cast<khtml::RenderWidget *>(fn->renderer())->widget()) {

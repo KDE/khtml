@@ -26,7 +26,7 @@ using namespace DOM;
 
 CSSRule::CSSRule()
 {
-    impl = 0;
+    impl = nullptr;
 }
 
 CSSRule::CSSRule(const CSSRule &other)
@@ -101,7 +101,7 @@ CSSStyleSheet CSSRule::parentStyleSheet() const
 CSSRule CSSRule::parentRule() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return ((CSSRuleImpl *)impl)->parentRule();
 }
@@ -113,7 +113,7 @@ CSSRuleImpl *CSSRule::handle() const
 
 bool CSSRule::isNull() const
 {
-    return (impl == 0);
+    return (impl == nullptr);
 }
 
 void CSSRule::assignOther(const CSSRule &other, RuleType thisType)
@@ -122,7 +122,7 @@ void CSSRule::assignOther(const CSSRule &other, RuleType thisType)
         if (impl) {
             impl->deref();
         }
-        impl = 0;
+        impl = nullptr;
     } else {
         CSSRule::operator = (other);
     }
@@ -141,7 +141,7 @@ CSSCharsetRule::CSSCharsetRule(const CSSCharsetRule &other) : CSSRule(other)
 
 CSSCharsetRule::CSSCharsetRule(const CSSRule &other)
 {
-    impl = 0;
+    impl = nullptr;
     operator=(other);
 }
 
@@ -190,7 +190,7 @@ CSSFontFaceRule::CSSFontFaceRule(const CSSFontFaceRule &other) : CSSRule(other)
 
 CSSFontFaceRule::CSSFontFaceRule(const CSSRule &other)
 {
-    impl = 0;
+    impl = nullptr;
     operator=(other);
 }
 
@@ -234,7 +234,7 @@ CSSImportRule::CSSImportRule(const CSSImportRule &other) : CSSRule(other)
 
 CSSImportRule::CSSImportRule(const CSSRule &other)
 {
-    impl = 0;
+    impl = nullptr;
     operator=(other);
 }
 
@@ -294,7 +294,7 @@ CSSMediaRule::CSSMediaRule(const CSSMediaRule &other) : CSSRule(other)
 
 CSSMediaRule::CSSMediaRule(const CSSRule &other)
 {
-    impl = 0;
+    impl = nullptr;
     operator=(other);
 }
 
@@ -361,7 +361,7 @@ CSSPageRule::CSSPageRule(const CSSPageRule &other) : CSSRule(other)
 
 CSSPageRule::CSSPageRule(const CSSRule &other)
 {
-    impl = 0;
+    impl = nullptr;
     operator=(other);
 }
 
@@ -419,7 +419,7 @@ CSSStyleRule::CSSStyleRule(const CSSStyleRule &other)
 
 CSSStyleRule::CSSStyleRule(const CSSRule &other)
 {
-    impl = 0;
+    impl = nullptr;
     operator=(other);
 }
 
@@ -478,7 +478,7 @@ CSSNamespaceRule::CSSNamespaceRule(const CSSNamespaceRule &other)
 
 CSSNamespaceRule::CSSNamespaceRule(const CSSRule &other)
 {
-    impl = 0;
+    impl = nullptr;
     operator=(other);
 }
 
@@ -532,7 +532,7 @@ CSSUnknownRule::CSSUnknownRule(const CSSUnknownRule &other)
 
 CSSUnknownRule::CSSUnknownRule(const CSSRule &other)
 {
-    impl = 0;
+    impl = nullptr;
     operator=(other);
 }
 
@@ -561,7 +561,7 @@ CSSUnknownRule::~CSSUnknownRule()
 
 CSSRuleList::CSSRuleList()
 {
-    impl = 0;
+    impl = nullptr;
 }
 
 CSSRuleList::CSSRuleList(const CSSRuleList &other)
@@ -639,6 +639,6 @@ CSSRuleListImpl *CSSRuleList::handle() const
 
 bool CSSRuleList::isNull() const
 {
-    return (impl == 0);
+    return (impl == nullptr);
 }
 

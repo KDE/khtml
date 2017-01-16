@@ -280,7 +280,7 @@ public:
 
     virtual AffineTransform *supplementalTransform()
     {
-        return 0;
+        return nullptr;
     }
 
     // Forwarded properties (declared/defined anywhere else in the inheritance structure)
@@ -290,7 +290,7 @@ public:
 
     // -> For SVGFitToViewBox
     ANIMATED_PROPERTY_EMPTY_DECLARATIONS(FloatRect, FloatRect(), ViewBox, viewBox)
-    ANIMATED_PROPERTY_EMPTY_DECLARATIONS(SVGPreserveAspectRatio *, 0, PreserveAspectRatio, preserveAspectRatio)
+    ANIMATED_PROPERTY_EMPTY_DECLARATIONS(SVGPreserveAspectRatio *, nullptr, PreserveAspectRatio, preserveAspectRatio)
 
     // -> For SVGExternalResourcesRequired
     ANIMATED_PROPERTY_EMPTY_DECLARATIONS(bool, false, ExternalResourcesRequired, externalResourcesRequired)

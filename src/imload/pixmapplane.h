@@ -49,8 +49,8 @@ public:
     PixmapPlane(unsigned int _width, unsigned int _height, ImagePlane *_parent):
         Plane(_width, _height), parent(_parent), tiles(tilesWidth, tilesHeight)
     {
-        nextFrame    = 0;
-        animProvider = 0;
+        nextFrame    = nullptr;
+        animProvider = nullptr;
         refCount     = 0;
     }
 

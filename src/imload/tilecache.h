@@ -43,8 +43,8 @@ public:
     {
         cacheNext->cachePrev = cachePrev;
         cachePrev->cacheNext = cacheNext;
-        cacheNext = 0;
-        cachePrev = 0;
+        cacheNext = nullptr;
+        cachePrev = nullptr;
     }
 
     void linkBefore(TileCacheNode *node)
@@ -58,7 +58,7 @@ public:
 
     Tile *tile;
 
-    TileCacheNode(): cacheNext(0), cachePrev(0), tile(0)
+    TileCacheNode(): cacheNext(nullptr), cachePrev(nullptr), tile(nullptr)
     {}
 };
 
@@ -108,7 +108,7 @@ private:
     {
         assert(node->tile->cacheNode == node);
         node->tile->discard();
-        node->tile->cacheNode = 0;
+        node->tile->cacheNode = nullptr;
         node->unlink();
         --size;
         assert(size >= 0);
@@ -123,7 +123,7 @@ public:
         front->cacheNext = rear;
         rear ->cachePrev = front;
 
-        poolHead = 0;
+        poolHead = nullptr;
     }
 
     /**
@@ -131,7 +131,7 @@ public:
      */
     void addEntry(Tile *tile)
     {
-        assert(tile->cacheNode == 0);
+        assert(tile->cacheNode == nullptr);
 
         Node *node;
 

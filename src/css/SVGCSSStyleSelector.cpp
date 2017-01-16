@@ -82,26 +82,26 @@ using namespace WebCore;
 static SVGPaintImpl *toPaint(CSSValueImpl *val)
 {
     if (val->cssValueType() != DOM::CSSValue::CSS_SVG_VALUE) {
-        return 0;
+        return nullptr;
     }
     SVGCSSValueImpl *svgVal = static_cast<SVGCSSValueImpl *>(val);
     if (svgVal->isSVGPaint()) {
         return static_cast<SVGPaintImpl *>(svgVal);
     } else {
-        return 0;
+        return nullptr;
     }
 }
 
 static SVGColorImpl *toColor(CSSValueImpl *val)
 {
     if (val->cssValueType() != DOM::CSSValue::CSS_SVG_VALUE) {
-        return 0;
+        return nullptr;
     }
     SVGCSSValueImpl *svgVal = static_cast<SVGCSSValueImpl *>(val);
     if (svgVal->isSVGColor()) {
         return static_cast<SVGColorImpl *>(svgVal);
     } else {
-        return 0;
+        return nullptr;
     }
 }
 
@@ -156,7 +156,7 @@ static EColorInterpolation colorInterpolationForValue(DOM::CSSPrimitiveValueImpl
 
 void CSSStyleSelector::applySVGRule(int id, DOM::CSSValueImpl *value)
 {
-    CSSPrimitiveValueImpl *primitiveValue = 0;
+    CSSPrimitiveValueImpl *primitiveValue = nullptr;
     if (value->isPrimitiveValue()) {
         primitiveValue = static_cast<CSSPrimitiveValueImpl *>(value);
     }

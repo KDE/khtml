@@ -47,7 +47,7 @@ void KHTMLPartTest::initTestCase()
 class MyKHTMLPart : public KHTMLPart
 {
 public:
-    MyKHTMLPart() : KHTMLPart(new KHTMLView(this, 0)) {}
+    MyKHTMLPart() : KHTMLPart(new KHTMLView(this, nullptr)) {}
 };
 
 void KHTMLPartTest::testConstructKHTMLViewFromInitList()
@@ -62,7 +62,7 @@ void KHTMLPartTest::testConstructKHTMLViewFromInitList()
 void KHTMLPartTest::testConstructKHTMLViewBeforePart()
 {
     // test that a KHTMLView can be constructed before a KHTMLPart
-    KHTMLView *view = new KHTMLView(0, 0);
+    KHTMLView *view = new KHTMLView(nullptr, nullptr);
     KHTMLPart *part = new KHTMLPart(view);
     QVERIFY(true);
     QVERIFY(view->part() == part);

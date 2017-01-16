@@ -35,7 +35,7 @@ class InlineBox;
 class BidiContext
 {
 public:
-    BidiContext(unsigned char level, QChar::Direction embedding, BidiContext *parent = 0, bool override = false);
+    BidiContext(unsigned char level, QChar::Direction embedding, BidiContext *parent = nullptr, bool override = false);
     ~BidiContext();
 
     void ref() const;
@@ -54,7 +54,7 @@ public:
 
 struct BidiRun {
     BidiRun(int _start, int _stop, RenderObject *_obj, BidiContext *context, QChar::Direction dir)
-        :  start(_start), stop(_stop), obj(_obj), box(0), nextRun(0)
+        :  start(_start), stop(_stop), obj(_obj), box(nullptr), nextRun(nullptr)
     {
         if (dir == QChar::DirON) {
             dir = context->dir;
@@ -134,10 +134,10 @@ struct InlineMinMaxIterator {
 
 inline RenderObject *InlineMinMaxIterator::next()
 {
-    RenderObject *result = 0;
+    RenderObject *result = nullptr;
     bool oldEndOfInline = endOfInline;
     endOfInline = false;
-    while (current != 0 || (current == parent)) {
+    while (current != nullptr || (current == parent)) {
         //qDebug() << "current = " << current;
         if (!oldEndOfInline &&
                 (current == parent ||
@@ -175,7 +175,7 @@ inline RenderObject *InlineMinMaxIterator::next()
         }
 
         current = result;
-        result = 0;
+        result = nullptr;
     }
 
     // Update our position.

@@ -48,7 +48,7 @@ private:
 protected:
     DOMStringImpl()
     {
-        s = 0, l = 0;
+        s = nullptr, l = 0;
         m_hash = 0;
         m_inTable = 0;
         m_shallowCopy = 0;
@@ -125,8 +125,8 @@ public:
     bool containsOnlyWhitespace() const;
 
     // ignores trailing garbage, unlike QString
-    int toInt(bool *ok = 0) const;
-    float toFloat(bool *ok = 0) const;
+    int toInt(bool *ok = nullptr) const;
+    float toFloat(bool *ok = nullptr) const;
 
     khtml::Length *toLengthArray(int &len) const;
     khtml::Length *toCoordsArray(int &len) const;

@@ -61,7 +61,7 @@ JSObject *DOMParserConstructorImp::construct(ExecState *exec, const List &)
     return new DOMParser(exec, doc.get());
 }
 
-const ClassInfo DOMParser::info = { "DOMParser", 0, 0 /* &DOMParserTable*/, 0 };
+const ClassInfo DOMParser::info = { "DOMParser", nullptr, nullptr /* &DOMParserTable*/, nullptr };
 
 DOMParser::DOMParser(ExecState *exec, DOM::DocumentImpl *d)
     : doc(d)

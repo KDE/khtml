@@ -135,7 +135,7 @@ KJS_IMPLEMENT_PROTOTYPE("DOMCSSStyleDeclaration", DOMCSSStyleDeclarationProto, D
 
 IMPLEMENT_PSEUDO_CONSTRUCTOR(CSSStyleDeclarationPseudoCtor, "DOMCSSStyleDeclaration", DOMCSSStyleDeclarationProto)
 
-const ClassInfo DOMCSSStyleDeclaration::info = { "CSSStyleDeclaration", 0, &DOMCSSStyleDeclarationTable, 0 };
+const ClassInfo DOMCSSStyleDeclaration::info = { "CSSStyleDeclaration", nullptr, &DOMCSSStyleDeclarationTable, nullptr };
 
 DOMCSSStyleDeclaration::DOMCSSStyleDeclaration(ExecState *exec, DOM::CSSStyleDeclarationImpl *s)
     : DOMObject(), m_impl(s)
@@ -313,7 +313,7 @@ JSValue *getDOMCSSStyleDeclaration(ExecState *exec, CSSStyleDeclarationImpl *s)
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMStyleSheet::info = { "StyleSheet", 0, &DOMStyleSheetTable, 0 };
+const ClassInfo DOMStyleSheet::info = { "StyleSheet", nullptr, &DOMStyleSheetTable, nullptr };
 /*
 @begin DOMStyleSheetTable 7
   type      DOMStyleSheet::Type     DontDelete|ReadOnly
@@ -363,7 +363,7 @@ JSValue *DOMStyleSheet::getValueProperty(ExecState *exec, int token) const
     case Media:
         return getDOMMediaList(exec, styleSheet.media());
     }
-    return 0;
+    return nullptr;
 }
 
 void DOMStyleSheet::put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr)
@@ -400,7 +400,7 @@ JSValue *getDOMStyleSheet(ExecState *exec, DOM::StyleSheetImpl *ss)
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMStyleSheetList::info = { "StyleSheetList", 0, &DOMStyleSheetListTable, 0 };
+const ClassInfo DOMStyleSheetList::info = { "StyleSheetList", nullptr, &DOMStyleSheetListTable, nullptr };
 
 /*
 @begin DOMStyleSheetListTable 2
@@ -513,7 +513,7 @@ JSValue *DOMStyleSheetListFunc::callAsFunction(ExecState *exec, JSObject *thisOb
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMMediaList::info = { "MediaList", 0, &DOMMediaListTable, 0 };
+const ClassInfo DOMMediaList::info = { "MediaList", nullptr, &DOMMediaListTable, nullptr };
 
 /*
 @begin DOMMediaListTable 2
@@ -609,7 +609,7 @@ JSValue *DOMMediaListProtoFunc::callAsFunction(ExecState *exec, JSObject *thisOb
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMCSSStyleSheet::info = { "CSSStyleSheet", 0, &DOMCSSStyleSheetTable, 0 };
+const ClassInfo DOMCSSStyleSheet::info = { "CSSStyleSheet", nullptr, &DOMCSSStyleSheetTable, nullptr };
 
 /*
 @begin DOMCSSStyleSheetTable 2
@@ -702,7 +702,7 @@ JSValue *DOMCSSStyleSheetProtoFunc::callAsFunction(ExecState *exec, JSObject *th
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMCSSRuleList::info = { "CSSRuleList", 0, &DOMCSSRuleListTable, 0 };
+const ClassInfo DOMCSSRuleList::info = { "CSSRuleList", nullptr, &DOMCSSRuleListTable, nullptr };
 /*
 @begin DOMCSSRuleListTable 3
   length        DOMCSSRuleList::Length      DontDelete|ReadOnly
@@ -786,14 +786,14 @@ DOMCSSRule::~DOMCSSRule()
     ScriptInterpreter::forgetDOMObject(m_impl.get());
 }
 
-const ClassInfo DOMCSSRule::info = { "CSSRule", 0, &DOMCSSRuleTable, 0 };
-const ClassInfo DOMCSSRule::style_info = { "CSSStyleRule", &DOMCSSRule::info, &DOMCSSStyleRuleTable, 0 };
-const ClassInfo DOMCSSRule::media_info = { "CSSMediaRule", &DOMCSSRule::info, &DOMCSSMediaRuleTable, 0 };
-const ClassInfo DOMCSSRule::fontface_info = { "CSSFontFaceRule", &DOMCSSRule::info, &DOMCSSFontFaceRuleTable, 0 };
-const ClassInfo DOMCSSRule::page_info = { "CSSPageRule", &DOMCSSRule::info, &DOMCSSPageRuleTable, 0 };
-const ClassInfo DOMCSSRule::import_info = { "CSSImportRule", &DOMCSSRule::info, &DOMCSSImportRuleTable, 0 };
-const ClassInfo DOMCSSRule::charset_info = { "CSSCharsetRule", &DOMCSSRule::info, &DOMCSSCharsetRuleTable, 0 };
-const ClassInfo DOMCSSRule::namespace_info = { "CSSNamespaceRule", &DOMCSSRule::info, &DOMCSSNamespaceRuleTable, 0 };
+const ClassInfo DOMCSSRule::info = { "CSSRule", nullptr, &DOMCSSRuleTable, nullptr };
+const ClassInfo DOMCSSRule::style_info = { "CSSStyleRule", &DOMCSSRule::info, &DOMCSSStyleRuleTable, nullptr };
+const ClassInfo DOMCSSRule::media_info = { "CSSMediaRule", &DOMCSSRule::info, &DOMCSSMediaRuleTable, nullptr };
+const ClassInfo DOMCSSRule::fontface_info = { "CSSFontFaceRule", &DOMCSSRule::info, &DOMCSSFontFaceRuleTable, nullptr };
+const ClassInfo DOMCSSRule::page_info = { "CSSPageRule", &DOMCSSRule::info, &DOMCSSPageRuleTable, nullptr };
+const ClassInfo DOMCSSRule::import_info = { "CSSImportRule", &DOMCSSRule::info, &DOMCSSImportRuleTable, nullptr };
+const ClassInfo DOMCSSRule::charset_info = { "CSSCharsetRule", &DOMCSSRule::info, &DOMCSSCharsetRuleTable, nullptr };
+const ClassInfo DOMCSSRule::namespace_info = { "CSSNamespaceRule", &DOMCSSRule::info, &DOMCSSNamespaceRuleTable, nullptr };
 
 const ClassInfo *DOMCSSRule::classInfo() const
 {
@@ -991,7 +991,7 @@ JSValue *getDOMCSSRule(ExecState *exec, DOM::CSSRuleImpl *r)
 
 // -------------------------------------------------------------------------
 
-const ClassInfo CSSRuleConstructor::info = { "CSSRuleConstructor", 0, &CSSRuleConstructorTable, 0 };
+const ClassInfo CSSRuleConstructor::info = { "CSSRuleConstructor", nullptr, &CSSRuleConstructorTable, nullptr };
 /*
 @begin CSSRuleConstructorTable 7
   UNKNOWN_RULE  CSSRuleConstructor::UNKNOWN_RULE    DontDelete|ReadOnly
@@ -1032,7 +1032,7 @@ JSValue *CSSRuleConstructor::getValueProperty(ExecState *, int token) const
     case PAGE_RULE:
         return jsNumber(DOM::CSSRule::PAGE_RULE);
     }
-    return 0;
+    return nullptr;
 }
 
 JSValue *getCSSRuleConstructor(ExecState *exec)
@@ -1042,7 +1042,7 @@ JSValue *getCSSRuleConstructor(ExecState *exec)
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMCSSValue::info = { "CSSValue", 0, &DOMCSSValueTable, 0 };
+const ClassInfo DOMCSSValue::info = { "CSSValue", nullptr, &DOMCSSValueTable, nullptr };
 
 /*
 @begin DOMCSSValueTable 2
@@ -1115,7 +1115,7 @@ JSValue *getDOMCSSValue(ExecState *exec, DOM::CSSValueImpl *v)
 
 // -------------------------------------------------------------------------
 
-const ClassInfo CSSValueConstructor::info = { "CSSValueConstructor", 0, &CSSValueConstructorTable, 0 };
+const ClassInfo CSSValueConstructor::info = { "CSSValueConstructor", nullptr, &CSSValueConstructorTable, nullptr };
 /*
 @begin CSSValueConstructorTable 5
   CSS_INHERIT       CSSValueConstructor::CSS_INHERIT        DontDelete|ReadOnly
@@ -1147,7 +1147,7 @@ JSValue *CSSValueConstructor::getValueProperty(ExecState *, int token) const
     case CSS_CUSTOM:
         return jsNumber(DOM::CSSValue::CSS_CUSTOM);
     }
-    return 0;
+    return nullptr;
 }
 
 JSValue *getCSSValueConstructor(ExecState *exec)
@@ -1157,7 +1157,7 @@ JSValue *getCSSValueConstructor(ExecState *exec)
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMCSSPrimitiveValue::info = { "CSSPrimitiveValue", 0, &DOMCSSPrimitiveValueTable, 0 };
+const ClassInfo DOMCSSPrimitiveValue::info = { "CSSPrimitiveValue", nullptr, &DOMCSSPrimitiveValueTable, nullptr };
 /*
 @begin DOMCSSPrimitiveValueTable 1
   primitiveType     DOMCSSPrimitiveValue::PrimitiveType DontDelete|ReadOnly
@@ -1224,7 +1224,7 @@ JSValue *DOMCSSPrimitiveValueProtoFunc::callAsFunction(ExecState *exec, JSObject
 
 // -------------------------------------------------------------------------
 
-const ClassInfo CSSPrimitiveValueConstructor::info = { "CSSPrimitiveValueConstructor", 0, &CSSPrimitiveValueConstructorTable, 0 };
+const ClassInfo CSSPrimitiveValueConstructor::info = { "CSSPrimitiveValueConstructor", nullptr, &CSSPrimitiveValueConstructorTable, nullptr };
 
 /*
 @begin CSSPrimitiveValueConstructorTable 28
@@ -1277,7 +1277,7 @@ JSValue *getCSSPrimitiveValueConstructor(ExecState *exec)
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMCSSValueList::info = { "CSSValueList", 0, &DOMCSSValueListTable, 0 };
+const ClassInfo DOMCSSValueList::info = { "CSSValueList", nullptr, &DOMCSSValueListTable, nullptr };
 
 /*
 @begin DOMCSSValueListTable 3
@@ -1324,7 +1324,7 @@ JSValue *DOMCSSValueListFunc::callAsFunction(ExecState *exec, JSObject *thisObj,
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMRGBColor::info = { "RGBColor", 0, &DOMRGBColorTable, 0 };
+const ClassInfo DOMRGBColor::info = { "RGBColor", nullptr, &DOMRGBColorTable, nullptr };
 
 /*
 @begin DOMRGBColorTable 3
@@ -1371,7 +1371,7 @@ JSValue *getDOMRGBColor(ExecState *exec, unsigned color)
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMRect::info = { "Rect", 0, &DOMRectTable, 0 };
+const ClassInfo DOMRect::info = { "Rect", nullptr, &DOMRectTable, nullptr };
 /*
 @begin DOMRectTable 4
   top   DOMRect::Top    DontDelete|ReadOnly
@@ -1410,7 +1410,7 @@ JSValue *DOMRect::getValueProperty(ExecState *exec, int token) const
     case Left:
         return getDOMCSSValue(exec, rect.left());
     default:
-        return 0;
+        return nullptr;
     }
 }
 
@@ -1421,7 +1421,7 @@ JSValue *getDOMRect(ExecState *exec, DOM::RectImpl *r)
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMCounter::info = { "Counter", 0, &DOMCounterTable, 0 };
+const ClassInfo DOMCounter::info = { "Counter", nullptr, &DOMCounterTable, nullptr };
 /*
 @begin DOMCounterTable 3
   identifier    DOMCounter::identifier  DontDelete|ReadOnly
@@ -1456,7 +1456,7 @@ JSValue *DOMCounter::getValueProperty(ExecState *, int token) const
     case separator:
         return jsString(counter.separator());
     default:
-        return 0;
+        return nullptr;
     }
 }
 

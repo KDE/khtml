@@ -47,14 +47,14 @@
 // SVG
 #include "svg/SVGNames.h"
 
-KHTMLGlobal *KHTMLGlobal::s_self = 0;
+KHTMLGlobal *KHTMLGlobal::s_self = nullptr;
 unsigned long int KHTMLGlobal::s_refcnt = 0;
-KIconLoader *KHTMLGlobal::s_iconLoader = 0;
-KAboutData *KHTMLGlobal::s_about = 0;
-KHTMLSettings *KHTMLGlobal::s_settings = 0;
+KIconLoader *KHTMLGlobal::s_iconLoader = nullptr;
+KAboutData *KHTMLGlobal::s_about = nullptr;
+KHTMLSettings *KHTMLGlobal::s_settings = nullptr;
 
-static QLinkedList<KHTMLPart *> *s_parts = 0;
-static QLinkedList<DOM::DocumentImpl *> *s_docs = 0;
+static QLinkedList<KHTMLPart *> *s_parts = nullptr;
+static QLinkedList<DOM::DocumentImpl *> *s_docs = nullptr;
 
 KHTMLGlobal::KHTMLGlobal()
 {
@@ -91,12 +91,12 @@ KHTMLGlobal::~KHTMLGlobal()
             delete s_docs;
         }
 
-        s_iconLoader = 0;
-        s_about = 0;
-        s_settings = 0;
-        s_parts = 0;
-        s_docs = 0;
-        KHTMLSettings::avFamilies = 0;
+        s_iconLoader = nullptr;
+        s_about = nullptr;
+        s_settings = nullptr;
+        s_parts = nullptr;
+        s_docs = nullptr;
+        KHTMLSettings::avFamilies = nullptr;
 
         // clean up static data
         khtml::CSSStyleSelector::clear();
@@ -137,7 +137,7 @@ void KHTMLGlobal::deref()
     //qDebug() << "s_refcnt=" << s_refcnt - 1;
     if (!--s_refcnt && s_self) {
         delete s_self;
-        s_self = 0;
+        s_self = nullptr;
     }
 }
 
@@ -162,7 +162,7 @@ void KHTMLGlobal::deregisterPart(KHTMLPart *part)
     if (s_parts->removeAll(part)) {
         if (s_parts->isEmpty()) {
             delete s_parts;
-            s_parts = 0;
+            s_parts = nullptr;
         }
         deref();
     }
@@ -189,7 +189,7 @@ void KHTMLGlobal::deregisterDocumentImpl(DOM::DocumentImpl *doc)
     if (s_docs->removeAll(doc)) {
         if (s_docs->isEmpty()) {
             delete s_docs;
-            s_docs = 0;
+            s_docs = nullptr;
         }
         deref();
     }

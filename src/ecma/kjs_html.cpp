@@ -157,7 +157,7 @@ JSValue *KJS::HTMLDocFunction::callAsFunction(ExecState *exec, JSObject *thisObj
 }
 
 const ClassInfo KJS::HTMLDocument::info =
-{ "HTMLDocument", &DOMDocument::info, &HTMLDocumentTable, 0 };
+{ "HTMLDocument", &DOMDocument::info, &HTMLDocumentTable, nullptr };
 /* Source for HTMLDocumentTable.
 @begin HTMLDocumentTable 31
   referrer      HTMLDocument::Referrer      DontDelete|ReadOnly
@@ -231,7 +231,7 @@ bool KJS::HTMLDocument::getOwnPropertySlot(ExecState *exec, const Identifier &pr
     DOM::DocumentImpl *docImpl = impl();
     KHTMLPart *part = docImpl->part();
 
-    Window *win = part ? Window::retrieveWindow(part) : 0L;
+    Window *win = part ? Window::retrieveWindow(part) : nullptr;
     if (!win || !win->isSafeScript(exec)) {
         slot.setUndefined(this);
         return true;
@@ -253,7 +253,7 @@ bool KJS::HTMLDocument::getOwnPropertySlot(ExecState *exec, const Identifier &pr
         } else {
             //Can't tell it just like that, so better go through collection and count stuff. This is the slow path...
             DOM::HTMLMappedNameCollectionImpl coll(impl(), HTMLCollectionImpl::DOCUMENT_NAMED_ITEMS, propertyDOMString);
-            matched = coll.firstItem() != 0;
+            matched = coll.firstItem() != nullptr;
         }
 
         if (matched) {
@@ -347,7 +347,7 @@ JSValue *HTMLDocument::getValueProperty(ExecState *exec, int token)
     DOM::HTMLDocumentImpl &doc = *impl();
     KHTMLView *view = doc.view();
     KHTMLPart *part = doc.part();
-    Window *win = part ? Window::retrieveWindow(part) : 0L;
+    Window *win = part ? Window::retrieveWindow(part) : nullptr;
     DOM::HTMLElementImpl *body = doc.body();
 
     switch (token) {
@@ -421,7 +421,7 @@ JSValue *HTMLDocument::getValueProperty(ExecState *exec, int token)
         }
     }
     assert(0);
-    return 0;
+    return nullptr;
 }
 
 void KJS::HTMLDocument::put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr)
@@ -430,7 +430,7 @@ void KJS::HTMLDocument::put(ExecState *exec, const Identifier &propertyName, JSV
     qDebug() << "KJS::HTMLDocument::out " << propertyName.qstring();
 #endif
     KHTMLPart *part = impl()->part();
-    Window *win = part ? Window::retrieveWindow(part) : 0L;
+    Window *win = part ? Window::retrieveWindow(part) : nullptr;
     if (!win || !win->isSafeScript(exec)) {
         return;
     }
@@ -518,63 +518,63 @@ void KJS::HTMLDocument::putValueProperty(ExecState *exec, int token, JSValue *va
 
 // -------------------------------------------------------------------------
 
-const ClassInfo KJS::HTMLElement::info = { "HTMLElement", &DOMElement::info, &HTMLElementTable, 0 };
-const ClassInfo KJS::HTMLElement::html_info = { "HTMLHtmlElement", &KJS::HTMLElement::info, &HTMLHtmlElementTable, 0 };
-const ClassInfo KJS::HTMLElement::head_info = { "HTMLHeadElement", &KJS::HTMLElement::info, &HTMLHeadElementTable, 0 };
-const ClassInfo KJS::HTMLElement::link_info = { "HTMLLinkElement", &KJS::HTMLElement::info, &HTMLLinkElementTable, 0 };
-const ClassInfo KJS::HTMLElement::title_info = { "HTMLTitleElement", &KJS::HTMLElement::info, &HTMLTitleElementTable, 0 };
-const ClassInfo KJS::HTMLElement::meta_info = { "HTMLMetaElement", &KJS::HTMLElement::info, &HTMLMetaElementTable, 0 };
-const ClassInfo KJS::HTMLElement::base_info = { "HTMLBaseElement", &KJS::HTMLElement::info, &HTMLBaseElementTable, 0 };
-const ClassInfo KJS::HTMLElement::isIndex_info = { "HTMLIsIndexElement", &KJS::HTMLElement::info, &HTMLIsIndexElementTable, 0 };
-const ClassInfo KJS::HTMLElement::style_info = { "HTMLStyleElement", &KJS::HTMLElement::info, &HTMLStyleElementTable, 0 };
-const ClassInfo KJS::HTMLElement::body_info = { "HTMLBodyElement", &KJS::HTMLElement::info, &HTMLBodyElementTable, 0 };
-const ClassInfo KJS::HTMLElement::form_info = { "HTMLFormElement", &KJS::HTMLElement::info, &HTMLFormElementTable, 0 };
-const ClassInfo KJS::HTMLElement::select_info = { "HTMLSelectElement", &KJS::HTMLElement::info, &HTMLSelectElementTable, 0 };
-const ClassInfo KJS::HTMLElement::optGroup_info = { "HTMLOptGroupElement", &KJS::HTMLElement::info, &HTMLOptGroupElementTable, 0 };
-const ClassInfo KJS::HTMLElement::option_info = { "HTMLOptionElement", &KJS::HTMLElement::info, &HTMLOptionElementTable, 0 };
-const ClassInfo KJS::HTMLElement::input_info = { "HTMLInputElement", &KJS::HTMLElement::info, &HTMLInputElementTable, 0 };
-const ClassInfo KJS::HTMLElement::textArea_info = { "HTMLTextAreaElement", &KJS::HTMLElement::info, &HTMLTextAreaElementTable, 0 };
-const ClassInfo KJS::HTMLElement::button_info = { "HTMLButtonElement", &KJS::HTMLElement::info, &HTMLButtonElementTable, 0 };
-const ClassInfo KJS::HTMLElement::label_info = { "HTMLLabelElement", &KJS::HTMLElement::info, &HTMLLabelElementTable, 0 };
-const ClassInfo KJS::HTMLElement::fieldSet_info = { "HTMLFieldSetElement", &KJS::HTMLElement::info, &HTMLFieldSetElementTable, 0 };
-const ClassInfo KJS::HTMLElement::legend_info = { "HTMLLegendElement", &KJS::HTMLElement::info, &HTMLLegendElementTable, 0 };
-const ClassInfo KJS::HTMLElement::ul_info = { "HTMLUListElement", &KJS::HTMLElement::info, &HTMLUListElementTable, 0 };
-const ClassInfo KJS::HTMLElement::ol_info = { "HTMLOListElement", &KJS::HTMLElement::info, &HTMLOListElementTable, 0 };
-const ClassInfo KJS::HTMLElement::dl_info = { "HTMLDListElement", &KJS::HTMLElement::info, &HTMLDListElementTable, 0 };
-const ClassInfo KJS::HTMLElement::dir_info = { "HTMLDirectoryElement", &KJS::HTMLElement::info, &HTMLDirectoryElementTable, 0 };
-const ClassInfo KJS::HTMLElement::menu_info = { "HTMLMenuElement", &KJS::HTMLElement::info, &HTMLMenuElementTable, 0 };
-const ClassInfo KJS::HTMLElement::li_info = { "HTMLLIElement", &KJS::HTMLElement::info, &HTMLLIElementTable, 0 };
-const ClassInfo KJS::HTMLElement::div_info = { "HTMLDivElement", &KJS::HTMLElement::info, &HTMLDivElementTable, 0 };
-const ClassInfo KJS::HTMLElement::p_info = { "HTMLParagraphElement", &KJS::HTMLElement::info, &HTMLParagraphElementTable, 0 };
-const ClassInfo KJS::HTMLElement::heading_info = { "HTMLHeadingElement", &KJS::HTMLElement::info, &HTMLHeadingElementTable, 0 };
-const ClassInfo KJS::HTMLElement::blockQuote_info = { "HTMLBlockQuoteElement", &KJS::HTMLElement::info, &HTMLBlockQuoteElementTable, 0 };
-const ClassInfo KJS::HTMLElement::q_info = { "HTMLQuoteElement", &KJS::HTMLElement::info, &HTMLQuoteElementTable, 0 };
-const ClassInfo KJS::HTMLElement::pre_info = { "HTMLPreElement", &KJS::HTMLElement::info, &HTMLPreElementTable, 0 };
-const ClassInfo KJS::HTMLElement::br_info = { "HTMLBRElement", &KJS::HTMLElement::info, &HTMLBRElementTable, 0 };
-const ClassInfo KJS::HTMLElement::baseFont_info = { "HTMLBaseFontElement", &KJS::HTMLElement::info, &HTMLBaseFontElementTable, 0 };
-const ClassInfo KJS::HTMLElement::font_info = { "HTMLFontElement", &KJS::HTMLElement::info, &HTMLFontElementTable, 0 };
-const ClassInfo KJS::HTMLElement::hr_info = { "HTMLHRElement", &KJS::HTMLElement::info, &HTMLHRElementTable, 0 };
-const ClassInfo KJS::HTMLElement::mod_info = { "HTMLModElement", &KJS::HTMLElement::info, &HTMLModElementTable, 0 };
-const ClassInfo KJS::HTMLElement::a_info = { "HTMLAnchorElement", &KJS::HTMLElement::info, &HTMLAnchorElementTable, 0 };
-const ClassInfo KJS::HTMLElement::canvas_info = { "HTMLCanvasElement", &KJS::HTMLElement::info, &HTMLCanvasElementTable, 0 };
-const ClassInfo KJS::HTMLElement::img_info = { "HTMLImageElement", &KJS::HTMLElement::info, &HTMLImageElementTable, 0 };
-const ClassInfo KJS::HTMLElement::object_info = { "HTMLObjectElement", &KJS::HTMLElement::info, &HTMLObjectElementTable, 0 };
-const ClassInfo KJS::HTMLElement::param_info = { "HTMLParamElement", &KJS::HTMLElement::info, &HTMLParamElementTable, 0 };
-const ClassInfo KJS::HTMLElement::applet_info = { "HTMLAppletElement", &KJS::HTMLElement::info, &HTMLAppletElementTable, 0 };
-const ClassInfo KJS::HTMLElement::map_info = { "HTMLMapElement", &KJS::HTMLElement::info, &HTMLMapElementTable, 0 };
-const ClassInfo KJS::HTMLElement::area_info = { "HTMLAreaElement", &KJS::HTMLElement::info, &HTMLAreaElementTable, 0 };
-const ClassInfo KJS::HTMLElement::script_info = { "HTMLScriptElement", &KJS::HTMLElement::info, &HTMLScriptElementTable, 0 };
-const ClassInfo KJS::HTMLElement::table_info = { "HTMLTableElement", &KJS::HTMLElement::info, &HTMLTableElementTable, 0 };
-const ClassInfo KJS::HTMLElement::caption_info = { "HTMLTableCaptionElement", &KJS::HTMLElement::info, &HTMLTableCaptionElementTable, 0 };
-const ClassInfo KJS::HTMLElement::col_info = { "HTMLTableColElement", &KJS::HTMLElement::info, &HTMLTableColElementTable, 0 };
-const ClassInfo KJS::HTMLElement::tablesection_info = { "HTMLTableSectionElement", &KJS::HTMLElement::info, &HTMLTableSectionElementTable, 0 };
-const ClassInfo KJS::HTMLElement::tr_info = { "HTMLTableRowElement", &KJS::HTMLElement::info, &HTMLTableRowElementTable, 0 };
-const ClassInfo KJS::HTMLElement::tablecell_info = { "HTMLTableCellElement", &KJS::HTMLElement::info, &HTMLTableCellElementTable, 0 };
-const ClassInfo KJS::HTMLElement::frameSet_info = { "HTMLFrameSetElement", &KJS::HTMLElement::info, &HTMLFrameSetElementTable, 0 };
-const ClassInfo KJS::HTMLElement::frame_info = { "HTMLFrameElement", &KJS::HTMLElement::info, &HTMLFrameElementTable, 0 };
-const ClassInfo KJS::HTMLElement::iFrame_info = { "HTMLIFrameElement", &KJS::HTMLElement::info, &HTMLIFrameElementTable, 0 };
-const ClassInfo KJS::HTMLElement::marquee_info = { "HTMLMarqueeElement", &KJS::HTMLElement::info, 0, 0 };
-const ClassInfo KJS::HTMLElement::layer_info = { "HTMLLayerElement", &KJS::HTMLElement::info, &HTMLLayerElementTable, 0 };
+const ClassInfo KJS::HTMLElement::info = { "HTMLElement", &DOMElement::info, &HTMLElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::html_info = { "HTMLHtmlElement", &KJS::HTMLElement::info, &HTMLHtmlElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::head_info = { "HTMLHeadElement", &KJS::HTMLElement::info, &HTMLHeadElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::link_info = { "HTMLLinkElement", &KJS::HTMLElement::info, &HTMLLinkElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::title_info = { "HTMLTitleElement", &KJS::HTMLElement::info, &HTMLTitleElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::meta_info = { "HTMLMetaElement", &KJS::HTMLElement::info, &HTMLMetaElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::base_info = { "HTMLBaseElement", &KJS::HTMLElement::info, &HTMLBaseElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::isIndex_info = { "HTMLIsIndexElement", &KJS::HTMLElement::info, &HTMLIsIndexElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::style_info = { "HTMLStyleElement", &KJS::HTMLElement::info, &HTMLStyleElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::body_info = { "HTMLBodyElement", &KJS::HTMLElement::info, &HTMLBodyElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::form_info = { "HTMLFormElement", &KJS::HTMLElement::info, &HTMLFormElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::select_info = { "HTMLSelectElement", &KJS::HTMLElement::info, &HTMLSelectElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::optGroup_info = { "HTMLOptGroupElement", &KJS::HTMLElement::info, &HTMLOptGroupElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::option_info = { "HTMLOptionElement", &KJS::HTMLElement::info, &HTMLOptionElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::input_info = { "HTMLInputElement", &KJS::HTMLElement::info, &HTMLInputElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::textArea_info = { "HTMLTextAreaElement", &KJS::HTMLElement::info, &HTMLTextAreaElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::button_info = { "HTMLButtonElement", &KJS::HTMLElement::info, &HTMLButtonElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::label_info = { "HTMLLabelElement", &KJS::HTMLElement::info, &HTMLLabelElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::fieldSet_info = { "HTMLFieldSetElement", &KJS::HTMLElement::info, &HTMLFieldSetElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::legend_info = { "HTMLLegendElement", &KJS::HTMLElement::info, &HTMLLegendElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::ul_info = { "HTMLUListElement", &KJS::HTMLElement::info, &HTMLUListElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::ol_info = { "HTMLOListElement", &KJS::HTMLElement::info, &HTMLOListElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::dl_info = { "HTMLDListElement", &KJS::HTMLElement::info, &HTMLDListElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::dir_info = { "HTMLDirectoryElement", &KJS::HTMLElement::info, &HTMLDirectoryElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::menu_info = { "HTMLMenuElement", &KJS::HTMLElement::info, &HTMLMenuElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::li_info = { "HTMLLIElement", &KJS::HTMLElement::info, &HTMLLIElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::div_info = { "HTMLDivElement", &KJS::HTMLElement::info, &HTMLDivElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::p_info = { "HTMLParagraphElement", &KJS::HTMLElement::info, &HTMLParagraphElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::heading_info = { "HTMLHeadingElement", &KJS::HTMLElement::info, &HTMLHeadingElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::blockQuote_info = { "HTMLBlockQuoteElement", &KJS::HTMLElement::info, &HTMLBlockQuoteElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::q_info = { "HTMLQuoteElement", &KJS::HTMLElement::info, &HTMLQuoteElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::pre_info = { "HTMLPreElement", &KJS::HTMLElement::info, &HTMLPreElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::br_info = { "HTMLBRElement", &KJS::HTMLElement::info, &HTMLBRElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::baseFont_info = { "HTMLBaseFontElement", &KJS::HTMLElement::info, &HTMLBaseFontElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::font_info = { "HTMLFontElement", &KJS::HTMLElement::info, &HTMLFontElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::hr_info = { "HTMLHRElement", &KJS::HTMLElement::info, &HTMLHRElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::mod_info = { "HTMLModElement", &KJS::HTMLElement::info, &HTMLModElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::a_info = { "HTMLAnchorElement", &KJS::HTMLElement::info, &HTMLAnchorElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::canvas_info = { "HTMLCanvasElement", &KJS::HTMLElement::info, &HTMLCanvasElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::img_info = { "HTMLImageElement", &KJS::HTMLElement::info, &HTMLImageElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::object_info = { "HTMLObjectElement", &KJS::HTMLElement::info, &HTMLObjectElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::param_info = { "HTMLParamElement", &KJS::HTMLElement::info, &HTMLParamElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::applet_info = { "HTMLAppletElement", &KJS::HTMLElement::info, &HTMLAppletElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::map_info = { "HTMLMapElement", &KJS::HTMLElement::info, &HTMLMapElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::area_info = { "HTMLAreaElement", &KJS::HTMLElement::info, &HTMLAreaElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::script_info = { "HTMLScriptElement", &KJS::HTMLElement::info, &HTMLScriptElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::table_info = { "HTMLTableElement", &KJS::HTMLElement::info, &HTMLTableElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::caption_info = { "HTMLTableCaptionElement", &KJS::HTMLElement::info, &HTMLTableCaptionElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::col_info = { "HTMLTableColElement", &KJS::HTMLElement::info, &HTMLTableColElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::tablesection_info = { "HTMLTableSectionElement", &KJS::HTMLElement::info, &HTMLTableSectionElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::tr_info = { "HTMLTableRowElement", &KJS::HTMLElement::info, &HTMLTableRowElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::tablecell_info = { "HTMLTableCellElement", &KJS::HTMLElement::info, &HTMLTableCellElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::frameSet_info = { "HTMLFrameSetElement", &KJS::HTMLElement::info, &HTMLFrameSetElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::frame_info = { "HTMLFrameElement", &KJS::HTMLElement::info, &HTMLFrameElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::iFrame_info = { "HTMLIFrameElement", &KJS::HTMLElement::info, &HTMLIFrameElementTable, nullptr };
+const ClassInfo KJS::HTMLElement::marquee_info = { "HTMLMarqueeElement", &KJS::HTMLElement::info, nullptr, nullptr };
+const ClassInfo KJS::HTMLElement::layer_info = { "HTMLLayerElement", &KJS::HTMLElement::info, &HTMLLayerElementTable, nullptr };
 
 static JSObject *prototypeForID(ExecState *exec, DOM::NodeImpl::Id id);
 
@@ -1243,7 +1243,7 @@ KParts::ScriptableExtension *HTMLElement::getScriptableExtension(const DOM::HTML
     if (doc->part()) {
         return doc->part()->scriptableExtension(&element);
     }
-    return 0L;
+    return nullptr;
 }
 
 JSValue *HTMLElement::formNameGetter(ExecState *exec, JSObject *, const Identifier &propertyName, const PropertySlot &slot)
@@ -1600,7 +1600,7 @@ const KJS::HTMLElement::BoundPropInfo KJS::HTMLElement::bpTable[] = {
     {0,           0,                 T_Res,    0},
 };
 
-QHash<int, const HTMLElement::BoundPropInfo *> *HTMLElement::s_boundPropInfo = 0;
+QHash<int, const HTMLElement::BoundPropInfo *> *HTMLElement::s_boundPropInfo = nullptr;
 
 QHash<int, const HTMLElement::BoundPropInfo *> *HTMLElement::boundPropInfo()
 {
@@ -1625,7 +1625,7 @@ DOM::HTMLElementImpl *toHTMLElement(JSValue *val)
     if (e && e->isHTMLElement()) {
         return static_cast<HTMLElementImpl *>(e);
     }
-    return 0;
+    return nullptr;
 }
 
 DOM::HTMLTableCaptionElementImpl *toHTMLTableCaptionElement(JSValue *val)
@@ -1634,7 +1634,7 @@ DOM::HTMLTableCaptionElementImpl *toHTMLTableCaptionElement(JSValue *val)
     if (e && e->id() == ID_CAPTION) {
         return static_cast<HTMLTableCaptionElementImpl *>(e);
     }
-    return 0;
+    return nullptr;
 }
 
 HTMLTableSectionElementImpl *toHTMLTableSectionElement(JSValue *val)
@@ -1643,14 +1643,14 @@ HTMLTableSectionElementImpl *toHTMLTableSectionElement(JSValue *val)
     if (e && (e->id() == ID_THEAD || e->id() == ID_TBODY || e->id() == ID_TFOOT)) {
         return static_cast<HTMLTableSectionElementImpl *>(e);
     }
-    return 0;
+    return nullptr;
 }
 
 JSValue *KJS::HTMLElement::handleBoundRead(ExecState *exec, int token) const
 {
     const BoundPropInfo *prop = boundPropInfo()->value(token);
     if (!prop) {
-        return 0;
+        return nullptr;
     }
 
     assert(prop->elId == NotApplicable || prop->elId == impl()->id());
@@ -1672,7 +1672,7 @@ JSValue *KJS::HTMLElement::handleBoundRead(ExecState *exec, int token) const
         return getHTMLCollection(exec, new HTMLCollectionImpl(impl(), prop->attrId));
     }
     assert(0);
-    return 0;
+    return nullptr;
 }
 
 KJS::Window *KJS::HTMLElement::ourWindow() const
@@ -1681,7 +1681,7 @@ KJS::Window *KJS::HTMLElement::ourWindow() const
     if (part) {
         return Window::retrieveWindow(part);
     } else {
-        return 0;
+        return nullptr;
     }
 }
 
@@ -2148,7 +2148,7 @@ static DOM::HTMLFormElementImpl *getForm(const DOM::HTMLElementImpl *element)
         return oEl->form();
     }
     default:
-        return 0;
+        return nullptr;
     }
 }
 
@@ -2263,7 +2263,7 @@ JSValue *KJS::HTMLElementFunction::callAsFunction(ExecState *exec, JSObject *thi
     case ID_BODY: {
         if (id == KJS::HTMLElement::BodyFocus) {
             // Just blur everything. Not perfect, but good enough for now
-            element.document()->setFocusNode(0);
+            element.document()->setFocusNode(nullptr);
         }
     }
     break;
@@ -2479,7 +2479,7 @@ void KJS::HTMLElement::put(ExecState *exec, const Identifier &propertyName, JSVa
     }
 
     const HashTable *table = classInfo()->propHashTable; // get the right hashtable
-    const HashEntry *entry = table ? Lookup::findEntry(table, propertyName) : 0;
+    const HashEntry *entry = table ? Lookup::findEntry(table, propertyName) : nullptr;
     if (entry) {
         if (entry->attr & Function) { // function: put as override property
             JSObject::put(exec, propertyName, value, attr);
@@ -2517,7 +2517,7 @@ bool KJS::HTMLElement::handleBoundWrite(ExecState *exec, int token, JSValue *val
         impl()->setAttribute(prop->attrId, QString::number(value->toInteger(exec)));
         return true;
     case T_Bool:
-        impl()->setAttribute(prop->attrId, value->toBoolean(exec) ? "" : 0);
+        impl()->setAttribute(prop->attrId, value->toBoolean(exec) ? "" : nullptr);
         return true;
     case T_Res: //ignored
         return true;
@@ -3164,7 +3164,7 @@ KJS_IMPLEMENT_PROTOFUNC(HTMLCollectionProtoFunc)
 KJS_IMPLEMENT_PROTOTYPE("HTMLCollection", HTMLCollectionProto, HTMLCollectionProtoFunc, ObjectPrototype)
 IMPLEMENT_PSEUDO_CONSTRUCTOR(HTMLCollectionPseudoCtor, "HTMLCollection", HTMLCollectionProto)
 
-const ClassInfo KJS::HTMLCollection::info = { "HTMLCollection", 0, 0, 0 };
+const ClassInfo KJS::HTMLCollection::info = { "HTMLCollection", nullptr, nullptr, nullptr };
 
 KJS::HTMLCollection::HTMLCollection(ExecState *exec, DOM::HTMLCollectionImpl *c)
     : DOMObject(HTMLCollectionProto::self(exec)), m_impl(c), hidden(false) {}
@@ -3394,7 +3394,7 @@ KJS_DEFINE_PROTOTYPE(HTMLSelectCollectionProto)
 KJS_IMPLEMENT_PROTOFUNC(HTMLSelectCollectionProtoFunc)
 KJS_IMPLEMENT_PROTOTYPE("HTMLOptionsCollection", HTMLSelectCollectionProto, HTMLSelectCollectionProtoFunc, HTMLCollectionProto)
 
-const ClassInfo KJS::HTMLSelectCollection::info = { "HTMLOptionsCollection", &HTMLCollection::info, 0, 0 };
+const ClassInfo KJS::HTMLSelectCollection::info = { "HTMLOptionsCollection", &HTMLCollection::info, nullptr, nullptr };
 
 KJS::HTMLSelectCollection::HTMLSelectCollection(ExecState *exec, DOM::HTMLCollectionImpl *c,
         DOM::HTMLSelectElementImpl *e)
@@ -3459,7 +3459,7 @@ void KJS::HTMLSelectCollection::put(ExecState *exec, const Identifier &propertyN
                 if (exception.triggered()) {
                     return;
                 }
-                element->add(static_cast<HTMLElementImpl *>(option), 0, exception);
+                element->add(static_cast<HTMLElementImpl *>(option), nullptr, exception);
                 if (exception.triggered()) {
                     return;
                 }
@@ -3500,7 +3500,7 @@ void KJS::HTMLSelectCollection::put(ExecState *exec, const Identifier &propertyN
     }
 
     long diff = long(u) - element->length();
-    DOM::HTMLElementImpl *before = 0;
+    DOM::HTMLElementImpl *before = nullptr;
     // out of array bounds ? first insert empty dummies
     if (diff > 0) {
         while (diff--) {
@@ -3554,7 +3554,7 @@ JSValue *KJS::HTMLSelectCollectionProtoFunc::callAsFunction(ExecState *exec, JSO
         DOMExceptionTranslator exception(exec);
         if (pos >= element->length()) {
             //Append
-            element->add(option, 0, exception);
+            element->add(option, nullptr, exception);
         } else {
             //Find what to prepend before..
             QVector<HTMLGenericFormElementImpl *> items = element->listItems();

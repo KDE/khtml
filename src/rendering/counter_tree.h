@@ -56,11 +56,11 @@ public:
     }
     virtual CounterNode *firstChild() const
     {
-        return 0;
+        return nullptr;
     }
     virtual CounterNode *lastChild() const
     {
-        return 0;
+        return nullptr;
     }
     virtual void insertAfter(CounterNode *newChild, CounterNode *refChild);
     virtual void removeChild(CounterNode *oldChild);

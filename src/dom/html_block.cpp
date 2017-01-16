@@ -248,7 +248,7 @@ HTMLHeadingElement &HTMLHeadingElement::operator = (const Node &other)
         if (impl) {
             impl->deref();
         }
-        impl = 0;
+        impl = nullptr;
     } else {
         Node::operator = (other);
     }

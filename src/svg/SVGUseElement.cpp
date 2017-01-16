@@ -83,7 +83,7 @@ SVGElementInstance *SVGUseElement::instanceRoot() const
 SVGElementInstance *SVGUseElement::animatedInstanceRoot() const
 {
     // FIXME: Implement me.
-    return 0;
+    return nullptr;
 }
 
 void SVGUseElement::parseMappedAttribute(MappedAttribute *attr)
@@ -127,8 +127,8 @@ void SVGUseElement::insertedIntoDocument()
 
 void SVGUseElement::removedFromDocument()
 {
-    m_targetElementInstance = 0;
-    m_shadowTreeRootElement = 0;
+    m_targetElementInstance = nullptr;
+    m_shadowTreeRootElement = nullptr;
     SVGElement::removedFromDocument();
 }
 
@@ -192,7 +192,7 @@ void SVGUseElement::recalcStyle(StyleChange change)
     if (change >= Inherit || m_shadowTreeRootElement->changed()) {
         RenderStyle *newStyle = document()->styleSelector()->styleForElement(m_shadowTreeRootElement.get());
         newStyle->ref();
-        StyleChange ch = m_shadowTreeRootElement->diff((m_shadowTreeRootElement->renderer() ? m_shadowTreeRootElement->renderer()->style() : 0)/*renderStyle()*/, newStyle);
+        StyleChange ch = m_shadowTreeRootElement->diff((m_shadowTreeRootElement->renderer() ? m_shadowTreeRootElement->renderer()->style() : nullptr)/*renderStyle()*/, newStyle);
         if (ch == Detach) {
             ASSERT(m_shadowTreeRootElement->attached());
             m_shadowTreeRootElement->detach();
@@ -296,7 +296,7 @@ void SVGUseElement::buildPendingResource()
         parent = parent->parentNode();
     }
 
-    SVGElement *target = 0;
+    SVGElement *target = nullptr;
     if (targetElement && targetElement->isSVGElement()) {
         target = static_cast<SVGElement *>(targetElement);
     }
@@ -304,8 +304,8 @@ void SVGUseElement::buildPendingResource()
     // Do not allow self-referencing.
     // 'target' may be null, if it's a non SVG namespaced element.
     if (!target || target == this) {
-        m_targetElementInstance = 0;
-        m_shadowTreeRootElement = 0;
+        m_targetElementInstance = nullptr;
+        m_shadowTreeRootElement = nullptr;
         return;
     }
 
@@ -328,8 +328,8 @@ void SVGUseElement::buildPendingResource()
     // SVG specification does not say a word about <use> & cycles. My view on this is: just ignore it!
     // Non-appearing <use> content is easier to debug, then half-appearing content.
     if (foundProblem) {
-        m_targetElementInstance = 0;
-        m_shadowTreeRootElement = 0;
+        m_targetElementInstance = nullptr;
+        m_shadowTreeRootElement = nullptr;
         return;
     }
 
@@ -465,7 +465,7 @@ void SVGUseElement::buildInstanceTree(SVGElement *target, SVGElementInstance *ta
     // its correspondingElement that is an SVGRectElement object.
 
     for (Node *node = target->firstChild(); node; node = node->nextSibling()) {
-        SVGElement *element = 0;
+        SVGElement *element = nullptr;
         if (node->isSVGElement()) {
             element = static_cast<SVGElement *>(node);
         }
@@ -504,7 +504,7 @@ void SVGUseElement::handleDeepUseReferencing(SVGElement *use, SVGElementInstance
 {
     String id = SVGURIReference::getTarget(use->href());
     Element *targetElement = document()->getElementById(id);
-    SVGElement *target = 0;
+    SVGElement *target = nullptr;
     if (targetElement && targetElement->isSVGElement()) {
         target = static_cast<SVGElement *>(targetElement);
     }
@@ -591,7 +591,7 @@ void SVGUseElement::buildShadowTree(SVGElement *target, SVGElementInstance *targ
         removeDisallowedElementsFromSubtree(newChild.get());
     }
 
-    SVGElement *newChildPtr = 0;
+    SVGElement *newChildPtr = nullptr;
     if (newChild->isSVGElement()) {
         newChildPtr = static_cast<SVGElement *>(newChild.get());
     }
@@ -813,7 +813,7 @@ void SVGUseElement::associateInstancesWithShadowTreeElements(Node *target, SVGEl
         ASSERT(target->nodeName() == originalElement->nodeName());
     }
 
-    SVGElement *element = 0;
+    SVGElement *element = nullptr;
     if (target->isSVGElement()) {
         element = static_cast<SVGElement *>(target);
     }
@@ -855,7 +855,7 @@ SVGElementInstance *SVGUseElement::instanceForShadowTreeElement(Node *element, S
         }
     }
 
-    return 0;
+    return nullptr;
 }
 
 void SVGUseElement::transferUseAttributesToReplacedElement(SVGElement *from, SVGElement *to) const

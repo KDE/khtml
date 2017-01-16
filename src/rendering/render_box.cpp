@@ -70,8 +70,8 @@ RenderBox::RenderBox(DOM::NodeImpl *node)
     m_staticX = 0;
     m_staticY = 0;
 
-    m_placeHolderBox = 0;
-    m_layer = 0;
+    m_placeHolderBox = nullptr;
+    m_layer = nullptr;
 }
 
 RenderBlock *RenderBox::createAnonymousBlock()
@@ -199,7 +199,7 @@ void RenderBox::setStyle(RenderStyle *_style)
         }
     } else if (m_layer && !isCanvas()) {
         m_layer->removeOnlyThisLayer();
-        m_layer = 0;
+        m_layer = nullptr;
     }
 
     if (m_layer) {
@@ -243,7 +243,7 @@ void RenderBox::detachRemainingChildren()
         } else {
             // Destroy any (most likely anonymous) children remaining in the render tree
             if (firstChild()->element()) {
-                firstChild()->element()->setRenderer(0);
+                firstChild()->element()->setRenderer(nullptr);
             }
             firstChild()->detach();
         }
@@ -272,7 +272,7 @@ void RenderBox::deleteInlineBoxes(RenderArena * /*arena*/)
 {
     if (m_placeHolderBox) {
         m_placeHolderBox->detach(renderArena(), true /*noRemove*/);
-        m_placeHolderBox = 0;
+        m_placeHolderBox = nullptr;
     }
 }
 
@@ -281,7 +281,7 @@ void RenderBox::dirtyInlineBoxes(bool fullLayout, bool /*isRootLineBox*/)
     if (m_placeHolderBox) {
         if (fullLayout) {
             m_placeHolderBox->detach(renderArena(), true /*noRemove*/);
-            m_placeHolderBox = 0;
+            m_placeHolderBox = nullptr;
         } else {
             m_placeHolderBox->dirtyInlineBoxes();
         }
@@ -402,7 +402,7 @@ void RenderBox::paintRootBoxDecorations(PaintInfo &paintInfo, int _tx, int _ty)
         // anonymous blocks created by inline <body> tags etc.  We can locate the <body>
         // render object very easily via the DOM.
         HTMLElementImpl *body = document()->body();
-        RenderObject *bodyObject = (body && body->id() == ID_BODY) ? body->renderer() : 0;
+        RenderObject *bodyObject = (body && body->id() == ID_BODY) ? body->renderer() : nullptr;
 
         if (bodyObject) {
             bgLayer = bodyObject->style()->backgroundLayers();
@@ -2585,7 +2585,7 @@ bool RenderBox::handleEvent(const DOM::EventImpl &e)
 
         const MouseEventImpl &me = static_cast<const MouseEventImpl &>(e);
         Qt::MouseButtons buttons = Qt::NoButton;
-        Qt::KeyboardModifiers state = 0;
+        Qt::KeyboardModifiers state = nullptr;
         Qt::Orientation orient = Qt::Vertical;
 
         switch (me.button()) {

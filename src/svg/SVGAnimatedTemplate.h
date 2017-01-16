@@ -47,8 +47,8 @@ class SVGTransformList;
 struct SVGAnimatedTypeWrapperKey {
     // Empty value
     SVGAnimatedTypeWrapperKey()
-        : element(0)
-        , attributeName(0)
+        : element(nullptr)
+        , attributeName(nullptr)
     { }
 
     // Deleted value

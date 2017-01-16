@@ -247,7 +247,7 @@ bool StringsMatcher::isMatched(const QString &str, QString *by) const
     // check short strings first
     for (int i = 0; i < shortStringFilters.size(); ++i) {
         if (str.contains(shortStringFilters[i])) {
-            if (by != 0) {
+            if (by != nullptr) {
                 *by = shortStringFilters[i];
             }
             return true;
@@ -288,7 +288,7 @@ bool StringsMatcher::isMatched(const QString &str, QString *by) const
                 if (index >= 0) {
                     int flen = stringFilters[index].length();
                     if (k - flen + 1 >= 0 && stringFilters[index] == str.midRef(k - flen + 1, flen)) {
-                        if (by != 0) {
+                        if (by != nullptr) {
                             *by = stringFilters[index];
                         }
                         return true;
@@ -301,7 +301,7 @@ bool StringsMatcher::isMatched(const QString &str, QString *by) const
                         QString remainder = QString::fromRawData(str.unicode() + remStart,
                                             str.length() - remStart);
                         if (reFilters[index].exactMatch(remainder)) {
-                            if (by != 0) {
+                            if (by != nullptr) {
                                 *by = rePrefixes[index] + reFilters[index].pattern();
                             }
                             return true;

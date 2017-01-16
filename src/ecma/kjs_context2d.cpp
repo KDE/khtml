@@ -513,7 +513,7 @@ JSValue *KJS::Context2DFunction::callAsFunction(ExecState *exec, JSObject *thisO
     return jsUndefined();
 }
 
-const ClassInfo Context2D::info = { "CanvasRenderingContext2D", 0, &Context2DTable, 0 };
+const ClassInfo Context2D::info = { "CanvasRenderingContext2D", nullptr, &Context2DTable, nullptr };
 
 /*
    @begin Context2DTable 11
@@ -677,7 +677,7 @@ void Context2D::putValueProperty(ExecState *exec, int token, JSValue *value, int
 }
 
 ////////////////////// CanvasGradient Object ////////////////////////
-const ClassInfo KJS::CanvasGradient::info = { "CanvasGradient", 0, 0, 0 };
+const ClassInfo KJS::CanvasGradient::info = { "CanvasGradient", nullptr, nullptr, nullptr };
 
 KJS_DEFINE_PROTOTYPE(CanvasGradientProto)
 KJS_IMPLEMENT_PROTOFUNC(CanvasGradientFunction)
@@ -714,7 +714,7 @@ CanvasGradient::CanvasGradient(ExecState *exec, DOM::CanvasGradientImpl *impl) :
 
 ////////////////////// CanvasPattern Object ////////////////////////
 
-const ClassInfo CanvasPattern::info = { "CanvasPattern", 0, 0, 0 };
+const ClassInfo CanvasPattern::info = { "CanvasPattern", nullptr, nullptr, nullptr };
 
 // Provide an empty prototype in case people want to hack it
 KJS_DEFINE_PROTOTYPE(CanvasPatternProto)
@@ -732,7 +732,7 @@ JSValue *CanvasPatternFunction::callAsFunction(ExecState *exec, JSObject *thisOb
     Q_UNUSED(thisObj);
     Q_UNUSED(args);
     assert(0);
-    return NULL;
+    return nullptr;
 }
 
 CanvasPattern::CanvasPattern(ExecState *exec, DOM::CanvasPatternImpl *impl) :
@@ -741,7 +741,7 @@ CanvasPattern::CanvasPattern(ExecState *exec, DOM::CanvasPatternImpl *impl) :
 
 ////////////////////// CanvasImageData[Array] Object /////////////////
 
-const ClassInfo CanvasImageData::info = { "ImageData", 0, 0, 0 };
+const ClassInfo CanvasImageData::info = { "ImageData", nullptr, nullptr, nullptr };
 
 CanvasImageData::CanvasImageData(ExecState *exec, DOM::CanvasImageDataImpl *impl) :
     WrapperBase(exec->lexicalInterpreter()->builtinObjectPrototype(), impl)
@@ -766,7 +766,7 @@ JSObject *CanvasImageData::valueClone(Interpreter *targetCtx) const
     return static_cast<JSObject *>(getWrapper<CanvasImageData>(targetCtx->globalExec(), impl()->clone()));
 }
 
-const ClassInfo CanvasImageDataArray::info = { "ImageDataArray", 0, 0, 0 };
+const ClassInfo CanvasImageDataArray::info = { "ImageDataArray", nullptr, nullptr, nullptr };
 
 CanvasImageDataArray::CanvasImageDataArray(ExecState *exec, CanvasImageData *p) :
     JSObject(exec->lexicalInterpreter()->builtinArrayPrototype()), parent(p)
@@ -873,7 +873,7 @@ DOM::CanvasImageDataImpl *toCanvasImageData(ExecState *exec, JSValue *val)
 {
     JSObject *obj = val->getObject();
     if (!obj) {
-        return 0;
+        return nullptr;
     }
 
     if (obj->inherits(&CanvasImageData::info)) {
@@ -884,30 +884,30 @@ DOM::CanvasImageDataImpl *toCanvasImageData(ExecState *exec, JSValue *val)
     bool ok = true;
     uint32_t width  = obj->get(exec, "width")->toUInt32(exec, ok);
     if (!ok || !width || exec->hadException()) {
-        return 0;
+        return nullptr;
     }
     uint32_t height = obj->get(exec, "height")->toUInt32(exec, ok);
     if (!ok || !height || exec->hadException()) {
-        return 0;
+        return nullptr;
     }
 
     // Perform safety check on the size.
     if (!khtmlImLoad::ImageManager::isAcceptableSize(width, height)) {
-        return 0;
+        return nullptr;
     }
 
     JSObject *data = obj->get(exec, "data")->getObject();
     if (!data) {
-        return 0;
+        return nullptr;
     }
 
     uint32_t length = data->get(exec, "length")->toUInt32(exec, ok);
     if (!ok || !length || exec->hadException()) {
-        return 0;
+        return nullptr;
     }
 
     if (length != 4 * width * height) {
-        return 0;
+        return nullptr;
     }
 
     // Uff. Well, it sounds sane enough for us to decode..

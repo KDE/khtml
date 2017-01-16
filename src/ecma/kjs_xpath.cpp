@@ -70,7 +70,7 @@ IMPLEMENT_PSEUDO_CONSTRUCTOR_WITH_PARENT(XPathResultPseudoCtor, "XPathResult", X
     snapshotLength  XPathResult::SnapshotLength DontDelete|ReadOnly
 @end
 */
-const ClassInfo XPathResult::info = { "XPathResult", 0, &XPathResultTable, 0 };
+const ClassInfo XPathResult::info = { "XPathResult", nullptr, &XPathResultTable, nullptr };
 
 XPathResult::XPathResult(ExecState *exec, khtml::XPathResultImpl *impl):
     WrapperBase(XPathResultProto::self(exec), impl)
@@ -134,10 +134,10 @@ KJS_IMPLEMENT_PROTOFUNC(XPathExpressionProtoFunc)
 KJS_IMPLEMENT_PROTOTYPE("XPathExpression", XPathExpressionProto, XPathExpressionProtoFunc, ObjectPrototype)
 IMPLEMENT_PSEUDO_CONSTRUCTOR(XPathExpressionPseudoCtor, "XPathExpression", XPathExpressionProto)
 
-const ClassInfo XPathExpression::info = { "XPathExpression", 0, 0, 0 };
+const ClassInfo XPathExpression::info = { "XPathExpression", nullptr, nullptr, nullptr };
 
 XPathExpression::XPathExpression(ExecState *exec, khtml::XPathExpressionImpl *impl):
-    WrapperBase(XPathExpressionProto::self(exec), impl), jsResolver(0)
+    WrapperBase(XPathExpressionProto::self(exec), impl), jsResolver(nullptr)
 {}
 
 void XPathExpression::mark()
@@ -160,7 +160,7 @@ JSValue *XPathExpressionProtoFunc::callAsFunction(ExecState *exec, JSObject *thi
     case XPathExpression::Evaluate:
         return getWrapper<XPathResult>(exec, imp->evaluate(toNode(args[0]),
                                        args[1]->toInt32(exec),
-                                       0,
+                                       nullptr,
                                        exception));
     }
 
@@ -178,7 +178,7 @@ KJS_IMPLEMENT_PROTOFUNC(XPathNSResolverProtoFunc)
 KJS_IMPLEMENT_PROTOTYPE("XPathNSResolver", XPathNSResolverProto, XPathNSResolverProtoFunc, ObjectPrototype)
 IMPLEMENT_PSEUDO_CONSTRUCTOR(XPathNSResolverPseudoCtor, "XPathNSResolver", XPathNSResolverProto)
 
-const ClassInfo XPathNSResolver::info = { "XPathNSResolver", 0, 0, 0 };
+const ClassInfo XPathNSResolver::info = { "XPathNSResolver", nullptr, nullptr, nullptr };
 
 XPathNSResolver::XPathNSResolver(ExecState *exec, khtml::XPathNSResolverImpl *impl):
     WrapperBase(XPathNSResolverProto::self(exec), impl)
@@ -216,7 +216,7 @@ DOM::DOMString JSXPathNSResolver::lookupNamespaceURI(const DOM::DOMString &prefi
     // propagate exceptions, however --- should it?
     ExecState *exec = ctx->globalExec();
 
-    JSObject *function = 0;
+    JSObject *function = nullptr;
     if (impl->implementsCall()) {
         function = impl;
     } else {
@@ -252,7 +252,7 @@ khtml::XPathNSResolverImpl *toResolver(ExecState *exec, JSValue *impl)
 {
     JSObject *o = impl->getObject();
     if (!o) {
-        return 0;
+        return nullptr;
     }
 
     // Wrapped native object -> unwrap

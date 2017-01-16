@@ -222,7 +222,7 @@ void HTMLLinkElementImpl::process()
         khtml::MediaQueryEvaluator allEval(true);
         khtml::MediaQueryEvaluator screenEval("screen", true);
         khtml::MediaQueryEvaluator printEval("print", true);
-        MediaListImpl *media = new MediaListImpl((CSSStyleSheetImpl *)0, m_media, true);
+        MediaListImpl *media = new MediaListImpl((CSSStyleSheetImpl *)nullptr, m_media, true);
         media->ref();
         if (allEval.eval(media) || screenEval.eval(media) || printEval.eval(media)) {
             // Add ourselves as a pending sheet, but only if we aren't an alternate
@@ -259,7 +259,7 @@ void HTMLLinkElementImpl::process()
     } else if (m_sheet) {
         // we no longer contain a stylesheet, e.g. perhaps rel or type was changed
         m_sheet->deref();
-        m_sheet = 0;
+        m_sheet = nullptr;
         m_isCSSSheet = false;
         document()->updateStyleSelector();
     }
@@ -293,7 +293,7 @@ void HTMLLinkElementImpl::setStyleSheet(const DOM::DOMString &url, const DOM::DO
     m_sheet->parseString(sheet, strict);
     m_sheet->setTitle(getAttribute(ATTR_TITLE));
 
-    MediaListImpl *media = new MediaListImpl((CSSStyleSheetImpl *)0, m_media);
+    MediaListImpl *media = new MediaListImpl((CSSStyleSheetImpl *)nullptr, m_media);
     m_sheet->setMedia(media);
 
     finished();
@@ -393,7 +393,7 @@ void HTMLMetaElementImpl::process()
 // -------------------------------------------------------------------------
 
 HTMLScriptElementImpl::HTMLScriptElementImpl(DocumentImpl *doc)
-    : HTMLElementImpl(doc), m_cachedScript(0), m_createdByParser(false), m_evaluated(false), m_hasNonEmptyForAttribute(false)
+    : HTMLElementImpl(doc), m_cachedScript(nullptr), m_createdByParser(false), m_evaluated(false), m_hasNonEmptyForAttribute(false)
 {
 }
 
@@ -555,7 +555,7 @@ void HTMLScriptElementImpl::removedFromDocument()
 
     if (m_cachedScript) {
         m_cachedScript->deref(this);
-        m_cachedScript = 0;
+        m_cachedScript = nullptr;
     }
 }
 
@@ -568,7 +568,7 @@ void HTMLScriptElementImpl::notifyFinished(CachedObject *o)
     QString   URL    = cs->url().string();
     DOMString script = cs->script();
     cs->deref(this);
-    m_cachedScript = 0;
+    m_cachedScript = nullptr;
 
     ref(); // Pin so we don't destroy oursleves.
     if (!cs->hadError()) {
@@ -589,7 +589,7 @@ void HTMLScriptElementImpl::evaluateScript(const QString &URL, const DOMString &
         KJSProxy *proxy = KJSProxy::proxy(part);
         if (proxy) {
             m_evaluated = true;
-            proxy->evaluate(URL, 0, script.string(), 0);
+            proxy->evaluate(URL, 0, script.string(), nullptr);
             DocumentImpl::updateDocumentsRendering();
         }
     }
@@ -664,7 +664,7 @@ bool HTMLScriptElementImpl::defer() const
 
 void HTMLScriptElementImpl::setDefer(bool defer)
 {
-    setAttribute(ATTR_DEFER, defer ? "" : 0);
+    setAttribute(ATTR_DEFER, defer ? "" : nullptr);
 }
 
 DOMString HTMLScriptElementImpl::src() const
@@ -755,7 +755,7 @@ void HTMLStyleElementImpl::parseText()
 {
     DOMString text = "";
 
-    for (NodeImpl *c = firstChild(); c != 0; c = c->nextSibling()) {
+    for (NodeImpl *c = firstChild(); c != nullptr; c = c->nextSibling()) {
         if ((c->nodeType() == Node::TEXT_NODE) ||
                 (c->nodeType() == Node::CDATA_SECTION_NODE) ||
                 (c->nodeType() == Node::COMMENT_NODE)) {
@@ -765,12 +765,12 @@ void HTMLStyleElementImpl::parseText()
 
     if (m_sheet) {
         m_sheet->deref();
-        m_sheet = 0;
+        m_sheet = nullptr;
     }
 
     m_loading = false;
     if (m_type.isEmpty() || m_type == "text/css") { // Type must be empty or CSS
-        MediaListImpl *media = new MediaListImpl((CSSStyleSheetImpl *)0, m_media, true);
+        MediaListImpl *media = new MediaListImpl((CSSStyleSheetImpl *)nullptr, m_media, true);
         media->ref();
         khtml::MediaQueryEvaluator screenEval("screen", true);
         khtml::MediaQueryEvaluator printEval("print", true);
@@ -833,7 +833,7 @@ void HTMLTitleElementImpl::childrenChanged()
     HTMLElementImpl::childrenChanged();
 
     m_title = "";
-    for (NodeImpl *c = firstChild(); c != 0; c = c->nextSibling()) {
+    for (NodeImpl *c = firstChild(); c != nullptr; c = c->nextSibling()) {
         if ((c->nodeType() == Node::TEXT_NODE) || (c->nodeType() == Node::CDATA_SECTION_NODE)) {
             m_title += c->nodeValue();
         }

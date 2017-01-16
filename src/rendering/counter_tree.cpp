@@ -28,7 +28,7 @@ namespace khtml
 
 CounterNode::CounterNode(RenderObject *o)
     : m_hasCounters(false), m_isVisual(false),
-      m_value(0), m_count(0), m_parent(0), m_previous(0), m_next(0),
+      m_value(0), m_count(0), m_parent(nullptr), m_previous(nullptr), m_next(nullptr),
       m_renderer(o) {}
 
 CounterNode::~CounterNode()
@@ -57,7 +57,7 @@ void CounterNode::remove()
         // abandon our children
         CounterNode *n = firstChild();
         for (; n; n = n->m_next) {
-            n->m_parent = 0;
+            n->m_parent = nullptr;
         }
     }
 }
@@ -106,7 +106,7 @@ void CounterNode::setParentDirty()
     }
 }
 
-CounterReset::CounterReset(RenderObject *o) : CounterNode(o), m_total(0), m_first(0), m_last(0) {}
+CounterReset::CounterReset(RenderObject *o) : CounterNode(o), m_total(0), m_first(nullptr), m_last(nullptr) {}
 CounterReset::~CounterReset() {}
 
 void CounterReset::insertAfter(CounterNode *newChild, CounterNode *refChild)
@@ -190,9 +190,9 @@ void CounterReset::removeChild(CounterNode *oldChild)
         }
     }
 
-    oldChild->m_next = 0;
-    oldChild->m_previous = 0;
-    oldChild->m_parent = 0;
+    oldChild->m_next = nullptr;
+    oldChild->m_previous = nullptr;
+    oldChild->m_parent = nullptr;
 }
 
 void CounterReset::recount(bool first)

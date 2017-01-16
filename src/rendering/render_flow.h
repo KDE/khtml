@@ -47,9 +47,9 @@ public:
     RenderFlow(DOM::NodeImpl *node)
         : RenderBox(node)
     {
-        m_continuation = 0;
-        m_firstLineBox = 0;
-        m_lastLineBox = 0;
+        m_continuation = nullptr;
+        m_firstLineBox = nullptr;
+        m_lastLineBox = nullptr;
     }
 
     RenderFlow *continuation() const Q_DECL_OVERRIDE
@@ -64,7 +64,7 @@ public:
 
     void addChildWithContinuation(RenderObject *newChild, RenderObject *beforeChild);
     virtual void addChildToFlow(RenderObject *newChild, RenderObject *beforeChild) = 0;
-    void addChild(RenderObject *newChild, RenderObject *beforeChild = 0) Q_DECL_OVERRIDE;
+    void addChild(RenderObject *newChild, RenderObject *beforeChild = nullptr) Q_DECL_OVERRIDE;
 
     static RenderFlow *createFlow(DOM::NodeImpl *node, RenderStyle *style, RenderArena *arena);
 
@@ -73,8 +73,8 @@ public:
     void attachLineBox(InlineFlowBox *box);
     void extractLineBox(InlineFlowBox *box);
 
-    virtual void deleteLastLineBox(RenderArena *arena = 0);
-    void deleteInlineBoxes(RenderArena *arena = 0) Q_DECL_OVERRIDE;
+    virtual void deleteLastLineBox(RenderArena *arena = nullptr);
+    void deleteInlineBoxes(RenderArena *arena = nullptr) Q_DECL_OVERRIDE;
     void removeInlineBox(InlineBox *box) Q_DECL_OVERRIDE;
     void dirtyInlineBoxes(bool fullLayout, bool isRootLineBox = false) Q_DECL_OVERRIDE;
 

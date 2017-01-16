@@ -135,7 +135,7 @@ void HTMLLIElementImpl::attach()
 
     if (m_render && m_render->style()->display() == LIST_ITEM) {
         RenderListItem *render = static_cast<RenderListItem *>(renderer());
-        NodeImpl *listNode = 0;
+        NodeImpl *listNode = nullptr;
         NodeImpl *n = parentNode();
         while (!listNode && n) {
             switch (n->id()) {

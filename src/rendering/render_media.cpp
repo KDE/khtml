@@ -38,7 +38,7 @@ using namespace DOM;
 namespace khtml
 {
 
-RenderMedia::RenderMedia(HTMLMediaElement *element) : RenderWidget(element), m_player(0)
+RenderMedia::RenderMedia(HTMLMediaElement *element) : RenderWidget(element), m_player(nullptr)
 {
     setInline(true); // <video> is an inline element.
     QWidget *container = new QWidget();

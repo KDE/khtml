@@ -186,7 +186,7 @@ public:
     }
     virtual NodeImpl *shadowParentNode()
     {
-        return 0;
+        return nullptr;
     }
 
     DOMString textContent() const;
@@ -270,7 +270,7 @@ public:
     struct MouseEvent {
         MouseEvent(int _button, MouseEventType _type,
                    const DOMString &_url = DOMString(), const DOMString &_target = DOMString(),
-                   NodeImpl *_innerNode = 0, NodeImpl *_innerNonSharedNode = 0)
+                   NodeImpl *_innerNode = nullptr, NodeImpl *_innerNonSharedNode = nullptr)
         {
             button = _button; type = _type;
             url = _url; target = _target;
@@ -510,7 +510,7 @@ public:
      *
      * see traversePreviousNode()
      */
-    NodeImpl *traverseNextNode(NodeImpl *stayWithin = 0) const;
+    NodeImpl *traverseNextNode(NodeImpl *stayWithin = nullptr) const;
 
     /**
      * Does a reverse pre-order traversal to find the node that comes before the current one in document order
@@ -720,7 +720,7 @@ class NodeBaseImpl : public NodeImpl
 {
 public:
     NodeBaseImpl(DocumentImpl *doc)
-        : NodeImpl(doc), _first(0), _last(0) {}
+        : NodeImpl(doc), _first(nullptr), _last(nullptr) {}
     virtual ~NodeBaseImpl();
 
     // DOM methods overridden from  parent classes

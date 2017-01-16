@@ -35,7 +35,7 @@ namespace KJS
 class TraversalExceptionForwarder
 {
 public:
-    explicit TraversalExceptionForwarder(ExecState *exec) : m_exec(exec), m_code(0) { }
+    explicit TraversalExceptionForwarder(ExecState *exec) : m_exec(exec), m_code(nullptr) { }
     ~TraversalExceptionForwarder()
     {
         if (m_code) {
@@ -54,7 +54,7 @@ private:
 }
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMNodeIterator::info = { "NodeIterator", 0, &DOMNodeIteratorTable, 0 };
+const ClassInfo DOMNodeIterator::info = { "NodeIterator", nullptr, &DOMNodeIteratorTable, nullptr };
 /*
 @begin DOMNodeIteratorTable 5
   root              DOMNodeIterator::Root           DontDelete|ReadOnly
@@ -99,7 +99,7 @@ JSValue *DOMNodeIterator::getValueProperty(ExecState *exec, int token) const
         return jsBoolean(ni.expandEntityReferences());
     default:
         // qDebug() << "WARNING: Unhandled token in DOMNodeIterator::getValueProperty : " << token;
-        return 0;
+        return nullptr;
     }
 }
 
@@ -138,7 +138,7 @@ JSValue *KJS::getDOMNodeIterator(ExecState *exec, DOM::NodeIteratorImpl *ni)
 
 // -------------------------------------------------------------------------
 
-const ClassInfo NodeFilterConstructor::info = { "NodeFilterConstructor", 0, &NodeFilterConstructorTable, 0 };
+const ClassInfo NodeFilterConstructor::info = { "NodeFilterConstructor", nullptr, &NodeFilterConstructorTable, nullptr };
 /*
 @begin NodeFilterConstructorTable 17
   FILTER_ACCEPT     DOM::NodeFilter::FILTER_ACCEPT  DontDelete|ReadOnly
@@ -183,7 +183,7 @@ JSValue *KJS::getNodeFilterConstructor(ExecState *exec)
 
 // -------------------------------------------------------------------------
 
-const ClassInfo DOMTreeWalker::info = { "TreeWalker", 0, &DOMTreeWalkerTable, 0 };
+const ClassInfo DOMTreeWalker::info = { "TreeWalker", nullptr, &DOMTreeWalkerTable, nullptr };
 /*
 @begin DOMTreeWalkerTable 5
   root          DOMTreeWalker::Root     DontDelete|ReadOnly
@@ -247,7 +247,7 @@ JSValue *DOMTreeWalker::getValueProperty(ExecState *exec, int token) const
         return getDOMNode(exec, tw.getCurrentNode());
     default:
         // qDebug() << "WARNING: Unhandled token in DOMTreeWalker::getValueProperty : " << token;
-        return 0;
+        return nullptr;
     }
 }
 
@@ -297,7 +297,7 @@ DOM::NodeFilterImpl *KJS::toNodeFilter(JSValue *val)
 {
     JSObject *obj = val->getObject();
     if (!obj) {
-        return 0;
+        return nullptr;
     }
 
     return new JSNodeFilter(obj);
@@ -334,7 +334,7 @@ bool JSNodeFilter::isJSFilter() const
 JSNodeFilter *JSNodeFilter::fromDOMFilter(DOM::NodeFilterImpl *nf)
 {
     if (!nf || !nf->isJSFilter()) {
-        return 0;
+        return nullptr;
     }
 
     return static_cast<JSNodeFilter *>(nf);
@@ -350,7 +350,7 @@ short JSNodeFilter::acceptNode(const DOM::Node &n, void *&bindingsException)
     KJSProxy *proxy = part->jScript();
     if (proxy) {
         ExecState *exec = proxy->interpreter()->globalExec();
-        JSObject *fn = 0;
+        JSObject *fn = nullptr;
 
         // Use a function given directly, or extract it from the acceptNode field
         if (m_filter->implementsCall()) {

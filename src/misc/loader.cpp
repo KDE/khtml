@@ -100,7 +100,7 @@ struct LRUList {
     CachedObject *m_head;
     CachedObject *m_tail;
 
-    LRUList() : m_head(0), m_tail(0) {}
+    LRUList() : m_head(nullptr), m_tail(nullptr) {}
 };
 
 static LRUList m_LRULists[MAX_LRU_LISTS];
@@ -299,7 +299,7 @@ void CachedCSSStyleSheet::data(QBuffer &buffer, bool eof)
     setSize(buffer.buffer().size());
 
     m_charset = checkCharset(buffer.buffer());
-    QTextCodec *c = 0;
+    QTextCodec *c = nullptr;
     if (!m_charset.isEmpty()) {
         c = KCharsets::charsets()->codecForName(m_charset);
         if (c->mibEnum() == 11) {
@@ -356,7 +356,7 @@ QString CachedCSSStyleSheet::checkCharset(const QByteArray &buffer) const
     if (strncmp(d, "@charset \"", 10) == 0) {
         // the string until "; is the charset name
         const char *p = strchr(d + 10, '"');
-        if (p == 0) {
+        if (p == nullptr) {
             return m_charset;
         }
         QString charset = QString::fromLatin1(d + 10, p - (d + 10));
@@ -448,8 +448,8 @@ CachedImage::CachedImage(DocLoader *dl, const DOMString &url, KIO::CacheControl 
     i = new khtmlImLoad::Image(this);
     //p = 0;
     //pixPart = 0;
-    bg = 0;
-    scaled = 0;
+    bg = nullptr;
+    scaled = nullptr;
     bgColor = qRgba(0, 0, 0, 0);
     m_status = Unknown;
     setAccept(buildAcceptHeader());
@@ -529,7 +529,7 @@ QPixmap CachedImage::tiled_pixmap(const QColor &newc, int xWidth, int xHeight)
 
     if (((bgColor != bgTransparent) && (bgColor != newc.rgba())) ||
             (bgSize != QSize(xWidth, xHeight))) {
-        delete bg; bg = 0;
+        delete bg; bg = nullptr;
     }
 
     if (bg) {
@@ -716,7 +716,7 @@ void CachedImage::imageChange(khtmlImLoad::Image * /*img*/, QRect region)
     //### this is overly conservative -- I guess we need to also specify reason,
     //e.g. repaint vs. changed !!!
     delete bg;
-    bg = 0;
+    bg = nullptr;
 
     do_notify(region);
 }
@@ -730,7 +730,7 @@ void CachedImage::doNotifyFinished()
 
 void CachedImage::imageError(khtmlImLoad::Image * /*img*/)
 {
-    error(0, 0);
+    error(0, nullptr);
 }
 
 void CachedImage::imageDone(khtmlImLoad::Image * /*img*/)
@@ -769,9 +769,9 @@ void CachedImage::setShowAnimations(KHTMLSettings::KAnimationAdvice showAnimatio
 void CachedImage::clear()
 {
     delete i;   i = new khtmlImLoad::Image(this);
-    delete scaled;  scaled = 0;
+    delete scaled;  scaled = nullptr;
     bgColor = qRgba(0, 0, 0, 0xff);
-    delete bg;  bg = 0;
+    delete bg;  bg = nullptr;
     bgSize = QSize(-1, -1);
 
     setSize(0);
@@ -959,7 +959,7 @@ Request::Request(DocLoader *dl, CachedObject *_object, bool _incremental, int _p
 
 Request::~Request()
 {
-    object->setRequest(0);
+    object->setRequest(nullptr);
 }
 
 // ------------------------------------------------------------------------------------------
@@ -1151,7 +1151,7 @@ CachedImage *DocLoader::requestImage(const DOM::DOMString &url)
 {
     DOCLOADER_SECCHECK_IMG(true);
 
-    CachedImage *i = Cache::requestObject<CachedImage, CachedObject::Image>(this, fullURL, 0);
+    CachedImage *i = Cache::requestObject<CachedImage, CachedObject::Image>(this, fullURL, nullptr);
 
     if (i && i->status() == CachedObject::Unknown && autoloadImages()) {
         Cache::loader()->load(this, i, true /*incremental*/);
@@ -1177,10 +1177,10 @@ CachedScript *DocLoader::requestScript(const DOM::DOMString &url, const QString 
     DOCLOADER_SECCHECK(true);
     if (! KHTMLGlobal::defaultHTMLSettings()->isJavaScriptEnabled(fullURL.host()) ||
             KHTMLGlobal::defaultHTMLSettings()->isAdFiltered(fullURL.url())) {
-        return 0L;
+        return nullptr;
     }
 
-    CachedScript *s = Cache::requestObject<CachedScript, CachedObject::Script>(this, fullURL, 0);
+    CachedScript *s = Cache::requestObject<CachedScript, CachedObject::Script>(this, fullURL, nullptr);
     if (s && !charset.isEmpty()) {
         s->setCharset(charset);
     }
@@ -1190,14 +1190,14 @@ CachedScript *DocLoader::requestScript(const DOM::DOMString &url, const QString 
 CachedSound *DocLoader::requestSound(const DOM::DOMString &url)
 {
     DOCLOADER_SECCHECK(true);
-    CachedSound *s = Cache::requestObject<CachedSound, CachedObject::Sound>(this, fullURL, 0);
+    CachedSound *s = Cache::requestObject<CachedSound, CachedObject::Sound>(this, fullURL, nullptr);
     return s;
 }
 
 CachedFont *DocLoader::requestFont(const DOM::DOMString &url)
 {
     DOCLOADER_SECCHECK(true);
-    CachedFont *s = Cache::requestObject<CachedFont, CachedObject::Font>(this, fullURL, 0);
+    CachedFont *s = Cache::requestObject<CachedFont, CachedObject::Font>(this, fullURL, nullptr);
     return s;
 }
 
@@ -1447,7 +1447,7 @@ KIO::Job *Loader::jobForRequest(const DOM::DOMString &url) const
         }
     }
 
-    return 0;
+    return nullptr;
 }
 
 // ----------------------------------------------------------------------------
@@ -1537,14 +1537,14 @@ void Cache::clear()
     assert(!crash);
 #endif
     qDeleteAll(*cache);
-    delete cache; cache = 0;
-    delete nullPixmap; nullPixmap = 0;
-    delete brokenPixmap; brokenPixmap = 0;
-    delete blockedPixmap; blockedPixmap = 0;
-    delete m_loader;  m_loader = 0;
-    delete docloader; docloader = 0;
+    delete cache; cache = nullptr;
+    delete nullPixmap; nullPixmap = nullptr;
+    delete brokenPixmap; brokenPixmap = nullptr;
+    delete blockedPixmap; blockedPixmap = nullptr;
+    delete m_loader;  m_loader = nullptr;
+    delete docloader; docloader = nullptr;
     qDeleteAll(*freeList);
-    delete freeList; freeList = 0;
+    delete freeList; freeList = nullptr;
 }
 
 template<typename CachedObjectType, enum CachedObject::Type CachedType>
@@ -1557,11 +1557,11 @@ CachedObjectType *Cache::requestObject(DocLoader *dl, const QUrl &kurl, const ch
 
     if (o && o->type() != CachedType) {
         removeCacheEntry(o);
-        o = 0;
+        o = nullptr;
     }
 
     if (o && dl->needReload(o, url)) {
-        o = 0;
+        o = nullptr;
         assert(!cache->contains(url));
     }
 
@@ -1763,12 +1763,12 @@ void Cache::removeFromLRUList(CachedObject *object)
     LRUList *list = getLRUListFor(object);
     CachedObject *&head = getLRUListFor(object)->m_head;
 
-    if (next == 0 && prev == 0 && head != object) {
+    if (next == nullptr && prev == nullptr && head != object) {
         return;
     }
 
-    object->m_next = 0;
-    object->m_prev = 0;
+    object->m_next = nullptr;
+    object->m_prev = nullptr;
 
     if (next) {
         next->m_prev = prev;
@@ -1804,7 +1804,7 @@ void Cache::insertInLRUList(CachedObject *object)
     }
     head = object;
 
-    if (object->m_next == 0) {
+    if (object->m_next == nullptr) {
         list->m_tail = object;
     }
 

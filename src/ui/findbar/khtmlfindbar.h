@@ -30,7 +30,7 @@ class KHTMLFindBar : public KHTMLViewBarWidget, private Ui::KHTMLFindBarBase
 {
     Q_OBJECT
 public:
-    KHTMLFindBar(QWidget *parent = 0);
+    KHTMLFindBar(QWidget *parent = nullptr);
 
     /**
      * Provide the list of @p strings to be displayed as the history

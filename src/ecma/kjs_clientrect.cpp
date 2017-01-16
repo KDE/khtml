@@ -36,7 +36,7 @@ namespace KJS
 @end
 */
 
-const ClassInfo ClientRect::info = { "ClientRect", 0, &ClientRectTable, 0 };
+const ClassInfo ClientRect::info = { "ClientRect", nullptr, &ClientRectTable, nullptr };
 
 ClientRect::ClientRect(ExecState * /*exec*/, float left, float top, float width, float height)
     : JSObject(),
@@ -133,7 +133,7 @@ void ClientRect::setWidth(float width)
 @end
 */
 
-const ClassInfo ClientRectList::info = { "ClientRectList", 0, &ClientRectListTable, 0 };
+const ClassInfo ClientRectList::info = { "ClientRectList", nullptr, &ClientRectListTable, nullptr };
 
 ClientRectList::ClientRectList(ExecState * /*exec*/)
     : JSObject()

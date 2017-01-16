@@ -112,7 +112,7 @@ DOMString MediaQuery::cssText() const
 
 MediaQueryExp::MediaQueryExp(const DOMString &mediaFeature, ValueList *valueList)
     : m_mediaFeature(mediaFeature)
-    , m_value(0)
+    , m_value(nullptr)
 {
     m_viewportDependent = (m_mediaFeature == "width" ||
                            m_mediaFeature == "height" ||
@@ -146,7 +146,7 @@ MediaQueryExp::MediaQueryExp(const DOMString &mediaFeature, ValueList *valueList
             // currently accepts only <integer>/<integer>
 
             CSSValueListImpl *list = new CSSValueListImpl();
-            Value *value = 0;
+            Value *value = nullptr;
             bool isValid = true;
 
             while ((value = valueList->current()) && isValid) {
@@ -224,27 +224,27 @@ enum MediaFeaturePrefix { MinPrefix, MaxPrefix, NoPrefix };
 
 typedef bool (*EvalFunc)(CSSValueImpl *, RenderStyle *, KHTMLPart *,  MediaFeaturePrefix);
 typedef QHash<DOMString, EvalFunc> FunctionMap;
-static FunctionMap *gFunctionMap = 0;
+static FunctionMap *gFunctionMap = nullptr;
 
 MediaQueryEvaluator::MediaQueryEvaluator(bool mediaFeatureResult)
-    : m_part(0)
-    , m_style(0)
+    : m_part(nullptr)
+    , m_style(nullptr)
     , m_expResult(mediaFeatureResult)
 {
 }
 
 MediaQueryEvaluator:: MediaQueryEvaluator(const DOMString &acceptedMediaType, bool mediaFeatureResult)
     : m_mediaType(acceptedMediaType)
-    , m_part(0)
-    , m_style(0)
+    , m_part(nullptr)
+    , m_style(nullptr)
     , m_expResult(mediaFeatureResult)
 {
 }
 
 MediaQueryEvaluator:: MediaQueryEvaluator(const char *acceptedMediaType, bool mediaFeatureResult)
     : m_mediaType(acceptedMediaType)
-    , m_part(0)
-    , m_style(0)
+    , m_part(nullptr)
+    , m_style(nullptr)
     , m_expResult(mediaFeatureResult)
 {
 }
@@ -806,7 +806,7 @@ static void createFunctionMap()
 void MediaQueryEvaluator::cleanup() // static
 {
     delete gFunctionMap;
-    gFunctionMap = 0;
+    gFunctionMap = nullptr;
 }
 
 bool MediaQueryEvaluator::eval(const MediaQueryExp *expr) const

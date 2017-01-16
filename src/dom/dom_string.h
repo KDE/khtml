@@ -49,7 +49,7 @@ public:
     /**
      * default constructor. Gives an empty DOMString
      */
-    DOMString() : impl(0) {}
+    DOMString() : impl(nullptr) {}
 
     DOMString(const QChar *str, uint len);
     DOMString(const QString &);
@@ -115,7 +115,7 @@ public:
 
     int toInt() const;
     int toInt(bool *ok) const;
-    float toFloat(bool *ok = 0) const;
+    float toFloat(bool *ok = nullptr) const;
     bool percentage(int &_percentage) const;
 
     static DOMString number(float f);
@@ -124,7 +124,7 @@ public:
 
     bool isNull()  const
     {
-        return (impl == 0);
+        return (impl == nullptr);
     }
     bool isEmpty()  const;
 

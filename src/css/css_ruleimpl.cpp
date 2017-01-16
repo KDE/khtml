@@ -38,13 +38,13 @@ using namespace DOM;
 CSSStyleSheetImpl *CSSRuleImpl::parentStyleSheet() const
 {
     return (m_parent && m_parent->isCSSStyleSheet())  ?
-           static_cast<CSSStyleSheetImpl *>(m_parent) : 0;
+           static_cast<CSSStyleSheetImpl *>(m_parent) : nullptr;
 }
 
 CSSRuleImpl *CSSRuleImpl::parentRule() const
 {
     return (m_parent && m_parent->isRule())  ?
-           static_cast<CSSRuleImpl *>(m_parent) : 0;
+           static_cast<CSSRuleImpl *>(m_parent) : nullptr;
 }
 
 DOM::DOMString CSSRuleImpl::cssText() const
@@ -64,7 +64,7 @@ CSSFontFaceRuleImpl::CSSFontFaceRuleImpl(StyleBaseImpl *parent)
     : CSSRuleImpl(parent)
 {
     m_type = CSSRule::FONT_FACE_RULE;
-    m_style = 0;
+    m_style = nullptr;
 }
 
 CSSFontFaceRuleImpl::~CSSFontFaceRuleImpl()
@@ -111,9 +111,9 @@ CSSImportRuleImpl::CSSImportRuleImpl(StyleBaseImpl *parent,
     m_lstMedia->ref();
 
     m_strHref = href;
-    m_styleSheet = 0;
+    m_styleSheet = nullptr;
 
-    m_cachedSheet = 0;
+    m_cachedSheet = nullptr;
 
     init();
 }
@@ -128,9 +128,9 @@ CSSImportRuleImpl::CSSImportRuleImpl(StyleBaseImpl *parent,
     m_lstMedia->ref();
 
     m_strHref = href;
-    m_styleSheet = 0;
+    m_styleSheet = nullptr;
 
-    m_cachedSheet = 0;
+    m_cachedSheet = nullptr;
 
     init();
 }
@@ -138,11 +138,11 @@ CSSImportRuleImpl::CSSImportRuleImpl(StyleBaseImpl *parent,
 CSSImportRuleImpl::~CSSImportRuleImpl()
 {
     if (m_lstMedia) {
-        m_lstMedia->setParent(0);
+        m_lstMedia->setParent(nullptr);
         m_lstMedia->deref();
     }
     if (m_styleSheet) {
-        m_styleSheet->setParent(0);
+        m_styleSheet->setParent(nullptr);
         m_styleSheet->deref();
     }
 
@@ -162,7 +162,7 @@ void CSSImportRuleImpl::checkLoaded() const
 void CSSImportRuleImpl::setStyleSheet(const DOM::DOMString &url, const DOM::DOMString &sheetStr, const DOM::DOMString &charset, const DOM::DOMString &mimetype)
 {
     if (m_styleSheet) {
-        m_styleSheet->setParent(0);
+        m_styleSheet->setParent(nullptr);
         m_styleSheet->deref();
     }
     m_styleSheet = new CSSStyleSheetImpl(this, url);
@@ -185,10 +185,10 @@ void CSSImportRuleImpl::setStyleSheet(const DOM::DOMString &url, const DOM::DOMS
 void CSSImportRuleImpl::error(int /*err*/, const QString &/*text*/)
 {
     if (m_styleSheet) {
-        m_styleSheet->setParent(0);
+        m_styleSheet->setParent(nullptr);
         m_styleSheet->deref();
     }
-    m_styleSheet = 0;
+    m_styleSheet = nullptr;
 
     m_loading = false;
     m_done = true;
@@ -205,7 +205,7 @@ void CSSImportRuleImpl::init()
 {
     m_loading = 0;
     m_done = false;
-    khtml::DocLoader *docLoader = 0;
+    khtml::DocLoader *docLoader = nullptr;
     StyleBaseImpl *root = this;
     StyleBaseImpl *parent;
     while ((parent = root->parent())) {
@@ -282,7 +282,7 @@ CSSMediaRuleImpl::CSSMediaRuleImpl(StyleBaseImpl *parent)
     :   CSSRuleImpl(parent)
 {
     m_type = CSSRule::MEDIA_RULE;
-    m_lstMedia = 0;
+    m_lstMedia = nullptr;
     m_lstCSSRules = new CSSRuleListImpl();
     m_lstCSSRules->ref();
 }
@@ -300,11 +300,11 @@ CSSMediaRuleImpl::CSSMediaRuleImpl(StyleBaseImpl *parent, const DOM::DOMString &
 CSSMediaRuleImpl::~CSSMediaRuleImpl()
 {
     if (m_lstMedia) {
-        m_lstMedia->setParent(0);
+        m_lstMedia->setParent(nullptr);
         m_lstMedia->deref();
     }
     for (unsigned int i = 0; i < m_lstCSSRules->length(); ++i) {
-        m_lstCSSRules->item(i)->setParent(0);
+        m_lstCSSRules->item(i)->setParent(nullptr);
     }
     m_lstCSSRules->deref();
 }
@@ -351,7 +351,7 @@ CSSPageRuleImpl::CSSPageRuleImpl(StyleBaseImpl *parent)
     : CSSRuleImpl(parent)
 {
     m_type = CSSRule::PAGE_RULE;
-    m_style = 0;
+    m_style = nullptr;
 }
 
 CSSPageRuleImpl::~CSSPageRuleImpl()
@@ -378,14 +378,14 @@ CSSStyleRuleImpl::CSSStyleRuleImpl(StyleBaseImpl *parent)
     : CSSRuleImpl(parent)
 {
     m_type = CSSRule::STYLE_RULE;
-    m_style = 0;
-    m_selector = 0;
+    m_style = nullptr;
+    m_selector = nullptr;
 }
 
 CSSStyleRuleImpl::~CSSStyleRuleImpl()
 {
     if (m_style) {
-        m_style->setParent(0);
+        m_style->setParent(nullptr);
         m_style->deref();
     }
     qDeleteAll(*m_selector);
@@ -458,7 +458,7 @@ CSSRuleListImpl::CSSRuleListImpl(StyleListImpl *const list, bool omitCharsetRule
 {
     m_list = list;
     if (list && omitCharsetRules) {
-        m_list = 0;
+        m_list = nullptr;
         unsigned len = list->length();
         for (unsigned i = 0; i < len; ++i) {
             StyleBaseImpl *rule = list->item(i);
@@ -494,7 +494,7 @@ CSSRuleImpl *CSSRuleListImpl::item(unsigned long index)
         assert(!rule || rule->isRule());
         return static_cast<CSSRuleImpl *>(rule);
     }
-    return index < length() ? m_lstCSSRules.at(index) : 0;
+    return index < length() ? m_lstCSSRules.at(index) : nullptr;
 }
 
 void CSSRuleListImpl::deleteRule(unsigned long index)

@@ -510,7 +510,7 @@ static const char *const yytname[] = {
     "PredicateList", "Predicate", "DescendantOrSelf", "AbbreviatedStep",
     "PrimaryExpr", "FunctionCall", "ArgumentList", "Argument", "UnionExpr",
     "PathExpr", "FilterExpr", "OrExpr", "AndExpr", "EqualityExpr",
-    "RelationalExpr", "AdditiveExpr", "MultiplicativeExpr", "UnaryExpr", 0
+    "RelationalExpr", "AdditiveExpr", "MultiplicativeExpr", "UnaryExpr", nullptr
 };
 #endif
 
@@ -2153,7 +2153,7 @@ Expression *khtmlParseXPathStatement(const DOM::DOMString &statement, int &ec)
 {
 //  qDebug() << "Parsing " << statement;
     xpathParseException = 0;
-    _topExpr = 0;
+    _topExpr = nullptr;
     initTokenizer(statement);
     yyparse();
 

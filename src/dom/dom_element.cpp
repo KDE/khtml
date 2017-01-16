@@ -51,7 +51,7 @@ Attr &Attr::operator = (const Node &other)
             if (impl) {
                 impl->deref();
             }
-            impl = 0;
+            impl = nullptr;
         } else {
             Node::operator =(other);
         }
@@ -88,7 +88,7 @@ bool Attr::specified() const
 Element Attr::ownerElement() const
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return static_cast<AttrImpl *>(impl)->ownerElement();
 }
@@ -136,7 +136,7 @@ Element &Element::operator = (const Node &other)
             if (impl) {
                 impl->deref();
             }
-            impl = 0;
+            impl = nullptr;
         } else {
             Node::operator =(other);
         }
@@ -250,7 +250,7 @@ Attr Element::removeAttributeNode(const Attr &oldAttr)
 NodeList Element::getElementsByTagName(const DOMString &tagName)
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return static_cast<ElementImpl *>(impl)->getElementsByTagName(tagName);
 }
@@ -259,7 +259,7 @@ NodeList Element::getElementsByTagNameNS(const DOMString &namespaceURI,
         const DOMString &localName)
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return static_cast<ElementImpl *>(impl)->getElementsByTagNameNS(namespaceURI, localName);
 }
@@ -267,7 +267,7 @@ NodeList Element::getElementsByTagNameNS(const DOMString &namespaceURI,
 NodeList Element::getElementsByClassName(const DOMString &className)
 {
     if (!impl) {
-        return 0;
+        return nullptr;
     }
     return impl->getElementsByClassName(className);
 }
@@ -371,13 +371,13 @@ bool Element::isHTMLElement() const
 Element Element::form() const
 {
     if (!impl || !impl->isGenericFormElement()) {
-        return 0;
+        return nullptr;
     }
     return static_cast<HTMLGenericFormElementImpl *>(impl)->form();
     ElementImpl *f = static_cast<HTMLGenericFormElementImpl *>(impl)->form();
 
     if (f && f->implicitNode()) {
-        return 0;
+        return nullptr;
     }
     return f;
 }
@@ -387,7 +387,7 @@ CSSStyleDeclaration Element::style()
     if (impl) {
         return ((ElementImpl *)impl)->getInlineStyleDecls();
     }
-    return 0;
+    return nullptr;
 }
 
 Element Element::firstElementChild() const

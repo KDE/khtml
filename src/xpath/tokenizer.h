@@ -71,7 +71,7 @@ private:
 
     XMLCat charCat(QChar aChar);
 
-    bool isAxisName(QString name, Step::AxisType *type = 0);
+    bool isAxisName(QString name, Step::AxisType *type = nullptr);
     bool isNodeTypeName(QString name);
     bool isOperatorContext();
 

@@ -60,7 +60,7 @@ public:
 
     void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
     using DOM::NodeImpl::childrenChanged;
-    void childrenChanged(bool changedByParser = false, Node *beforeChange = 0, Node *afterChange = 0, int childCountDelta = 0) Q_DECL_OVERRIDE;
+    void childrenChanged(bool changedByParser = false, Node *beforeChange = nullptr, Node *afterChange = nullptr, int childCountDelta = 0) Q_DECL_OVERRIDE;
 
     void svgAttributeChanged(const QualifiedName &) Q_DECL_OVERRIDE;
     void recalcStyle(StyleChange = NoChange) Q_DECL_OVERRIDE;

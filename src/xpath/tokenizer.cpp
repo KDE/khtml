@@ -69,11 +69,11 @@ static const char *const nodeTypeNames[] = {
     "text",
     "processing-instruction",
     "node",
-    0
+    nullptr
 };
 
-QHash<QString, Step::AxisType> *Tokenizer::s_axisNamesDict     = 0;
-QSet<QString> *Tokenizer::s_nodeTypeNamesDict = 0;
+QHash<QString, Step::AxisType> *Tokenizer::s_axisNamesDict     = nullptr;
+QSet<QString> *Tokenizer::s_nodeTypeNamesDict = nullptr;
 
 Tokenizer &Tokenizer::self()
 {

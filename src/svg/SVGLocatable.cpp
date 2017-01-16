@@ -59,7 +59,7 @@ SVGElement *SVGLocatable::nearestViewportElement(const SVGStyledElement *e)
         n = n->parentNode();
     }*/
 
-    return 0;
+    return nullptr;
 }
 
 SVGElement *SVGLocatable::farthestViewportElement(const SVGStyledElement *e)
@@ -69,7 +69,7 @@ SVGElement *SVGLocatable::farthestViewportElement(const SVGStyledElement *e)
     // If we have a different implementation of documentElement(), one
     // that give the documentElement() of the svg fragment, it could be
     // used instead. This depends on cdf demands though(Rob.)
-    SVGElement *farthest = 0;
+    SVGElement *farthest = nullptr;
     /*Node* n = e->parentNode();
     while (n && !n->isDocumentNode()) {
         if (n->hasTagName(SVGNames::svgTag) || n->hasTagName(SVGNames::symbolTag) ||

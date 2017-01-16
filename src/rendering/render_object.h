@@ -169,11 +169,11 @@ public:
 
     virtual RenderObject *firstChild() const
     {
-        return 0;
+        return nullptr;
     }
     virtual RenderObject *lastChild() const
     {
-        return 0;
+        return nullptr;
     }
 
     RenderObject *nextRenderer() const;
@@ -200,7 +200,7 @@ public:
 
     virtual RenderLayer *layer() const
     {
-        return 0;
+        return nullptr;
     }
     RenderLayer *enclosingLayer() const;
     RenderLayer *enclosingStackingContext() const;
@@ -251,7 +251,7 @@ public:
     }
     virtual InlineFlowBox *getFirstLineBox()
     {
-        return 0;    // Tables and blocks implement this.
+        return nullptr;    // Tables and blocks implement this.
     }
 
     // Whether or not a positioned element requires normal flow x/y to be computed
@@ -288,7 +288,7 @@ protected:
 public:
     //////////////////////////////////////////
     // RenderObject tree manipulation
-    virtual void addChild(RenderObject *newChild, RenderObject *beforeChild = 0);
+    virtual void addChild(RenderObject *newChild, RenderObject *beforeChild = nullptr);
     virtual void removeChild(RenderObject *oldChild);
 
     // raw tree manipulation
@@ -342,7 +342,7 @@ public:
     RenderArena *renderArena() const;
     virtual RenderFlow *continuation() const
     {
-        return 0;
+        return nullptr;
     }
     virtual bool isInlineContinuation() const
     {
@@ -603,7 +603,7 @@ public:
     DOM::DocumentImpl *document() const;
     DOM::NodeImpl *element() const
     {
-        return isAnonymous() ? 0L : m_node;
+        return isAnonymous() ? nullptr : m_node;
     }
     DOM::NodeImpl *node() const
     {
@@ -683,7 +683,7 @@ public:
         m_isSelectionBorder = b;
     }
 
-    void scheduleRelayout(RenderObject *clippedObj = 0);
+    void scheduleRelayout(RenderObject *clippedObj = nullptr);
 
     void updateBackgroundImages(RenderStyle *oldStyle);
 
@@ -694,7 +694,7 @@ public:
     virtual short lineHeight(bool firstLine) const;
     virtual short verticalPositionHint(bool firstLine) const;
     virtual short baselinePosition(bool firstLine) const;
-    short getVerticalPosition(bool firstLine, RenderObject *ref = 0) const;
+    short getVerticalPosition(bool firstLine, RenderObject *ref = nullptr) const;
 
     /*
      * Print the object and its children, clipped by (x|y|w|h).
@@ -702,7 +702,7 @@ public:
      */
     struct PaintInfo {
         PaintInfo(QPainter *_p, const QRect &_r, PaintAction _phase)
-            : p(_p), r(_r), phase(_phase), outlineObjects(0) {}
+            : p(_p), r(_r), phase(_phase), outlineObjects(nullptr) {}
         ~PaintInfo()
         {
             delete outlineObjects;
@@ -718,7 +718,7 @@ public:
 
     void drawBorderArc(QPainter *p, int x, int y, float horThickness, float vertThickness,
                        const QPoint &radius, int angleStart, int angleSpan, const QBrush &brush,
-                       const QColor &textColor, EBorderStyle style, qreal *dashOffset = 0) const;
+                       const QColor &textColor, EBorderStyle style, qreal *dashOffset = nullptr) const;
 
     void paintBorder(QPainter *p, int _tx, int _ty, int w, int h, const RenderStyle *style, bool begin = true, bool end = true);
     void paintOutline(QPainter *p, int _tx, int _ty, int w, int h, const RenderStyle *style);
@@ -895,7 +895,7 @@ public:
         friend class DOM::HTMLAreaElementImpl;
     public:
         NodeInfo(bool readonly, bool active)
-            : m_innerNode(0), m_innerNonSharedNode(0), m_innerURLElement(0), m_readonly(readonly), m_active(active)
+            : m_innerNode(nullptr), m_innerNonSharedNode(nullptr), m_innerURLElement(nullptr), m_readonly(readonly), m_active(active)
         { }
 
         DOM::NodeImpl *innerNode() const
@@ -950,7 +950,7 @@ public:
         /** true when the last node had the result SelectionAfterInLine */
         bool m_afterInLine;
 
-        SelPointState() : m_lastNode(0), m_lastOffset(0), m_afterInLine(false)
+        SelPointState() : m_lastNode(nullptr), m_lastOffset(0), m_afterInLine(false)
         {}
     };
 
@@ -972,9 +972,9 @@ public:
     RenderBlock *containingBlock() const;
 
     // return just the width of the containing block
-    virtual short containingBlockWidth(RenderObject *providedCB = 0) const;
+    virtual short containingBlockWidth(RenderObject *providedCB = nullptr) const;
     // return just the height of the containing block
-    virtual int containingBlockHeight(RenderObject *providedCB = 0) const;
+    virtual int containingBlockHeight(RenderObject *providedCB = nullptr) const;
 
     // size of the content area (box size minus padding/border)
     virtual short contentWidth() const
@@ -1218,7 +1218,7 @@ public:
     };
     void drawBorder(QPainter *p, int x1, int y1, int x2, int y2, BorderSide s,
                     QColor c, const QColor &textcolor, EBorderStyle style,
-                    int adjbw1, int adjbw2, bool invalidisInvert = false, qreal *dashOffset = 0);
+                    int adjbw1, int adjbw2, bool invalidisInvert = false, qreal *dashOffset = nullptr);
 
     // Used by collapsed border tables.
     virtual void collectBorders(QList<CollapsedBorderValue> &borderStyles);
@@ -1259,7 +1259,7 @@ public:
     {
         return false;
     }
-    virtual void markAllDescendantsWithFloatsForLayout(RenderObject * /*floatToRemove*/ = 0) {}
+    virtual void markAllDescendantsWithFloatsForLayout(RenderObject * /*floatToRemove*/ = nullptr) {}
 
     bool flowAroundFloats() const;
     bool usesLineWidth() const;
@@ -1345,7 +1345,7 @@ public:
         return m_inPosObjectList;
     }
 
-    virtual void deleteInlineBoxes(RenderArena *arena = 0)
+    virtual void deleteInlineBoxes(RenderArena *arena = nullptr)
     {
         (void)arena;
     }

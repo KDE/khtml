@@ -96,21 +96,21 @@ class KHTMLPartPrivate
     KHTMLPartPrivate &operator=(const KHTMLPartPrivate &);
 public:
     KHTMLPartPrivate(KHTMLPart *part, QObject *parent) :
-        m_find(part, (part->parentPart() ? &part->parentPart()->d->m_find : 0)), m_storePass(part)
+        m_find(part, (part->parentPart() ? &part->parentPart()->d->m_find : nullptr)), m_storePass(part)
     {
         q     = part;
-        m_doc = 0L;
-        m_decoder = 0L;
+        m_doc = nullptr;
+        m_decoder = nullptr;
 #ifndef KHTML_NO_WALLET
-        m_wallet = 0L;
+        m_wallet = nullptr;
 #endif
         m_bWalletOpened = false;
         m_runningScripts = 0;
-        m_job = 0L;
+        m_job = nullptr;
         m_bComplete = true;
         m_bLoadEventEmitted = true;
         m_cachePolicy = KIO::CC_Verify;
-        m_manager = 0L;
+        m_manager = nullptr;
         m_settings = new KHTMLSettings(*KHTMLGlobal::defaultHTMLSettings());
         m_bClearing = false;
         m_bCleared = false;
@@ -122,9 +122,9 @@ public:
         m_totalObjectCount = 0;
         m_jobPercent = 0;
         m_haveEncoding = false;
-        m_activeFrame = 0L;
+        m_activeFrame = nullptr;
         m_ssl_in_use = false;
-        m_jsedlg = 0;
+        m_jsedlg = nullptr;
         m_formNotification = KHTMLPart::NoNotification;
 
         m_cacheId = 0;
@@ -158,7 +158,7 @@ public:
 
         m_bFirstData = true;
         m_bStrictModeQuirk = true;
-        m_submitForm = 0;
+        m_submitForm = nullptr;
         m_delayRedirect = 0;
         m_autoDetectLanguage = KEncodingProber::Universal;
 
@@ -190,15 +190,15 @@ public:
 
         m_focusNodeNumber = -1;
         m_focusNodeRestored = false;
-        m_opener = 0;
+        m_opener = nullptr;
         m_openedByJS = false;
         m_newJSInterpreterExists = false;
         m_jobspeed = 0;
-        m_statusBarWalletLabel = 0L;
-        m_statusBarUALabel = 0L;
-        m_statusBarJSErrorLabel = 0L;
+        m_statusBarWalletLabel = nullptr;
+        m_statusBarUALabel = nullptr;
+        m_statusBarJSErrorLabel = nullptr;
 #ifndef KHTML_NO_WALLET
-        m_wq = 0;
+        m_wq = nullptr;
 #endif
     }
     ~KHTMLPartPrivate()

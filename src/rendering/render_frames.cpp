@@ -51,8 +51,8 @@ RenderFrameSet::RenderFrameSet(HTMLFrameSetElementImpl *frameSet)
 
     for (int k = 0; k < 2; ++k) {
         m_gridLen[k] = -1;
-        m_gridDelta[k] = 0;
-        m_gridLayout[k] = 0;
+        m_gridDelta[k] = nullptr;
+        m_gridLayout[k] = nullptr;
     }
 
     m_resizing = m_clientresizing = false;
@@ -62,8 +62,8 @@ RenderFrameSet::RenderFrameSet(HTMLFrameSetElementImpl *frameSet)
     m_hSplit = -1;
     m_vSplit = -1;
 
-    m_hSplitVar = 0;
-    m_vSplitVar = 0;
+    m_hSplitVar = nullptr;
+    m_vSplitVar = nullptr;
 }
 
 RenderFrameSet::~RenderFrameSet()

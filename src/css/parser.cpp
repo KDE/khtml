@@ -1668,87 +1668,87 @@ yydestruct (yymsg, yytype, yyvaluep)
     {
       case 102: /* "maybe_media_value" */
 
-	{ delete (yyvaluep->valueList); (yyvaluep->valueList) = 0; };
+	{ delete (yyvaluep->valueList); (yyvaluep->valueList) = nullptr; };
 
 	break;
       case 104: /* "media_query_exp_list" */
 
-	{ delete (yyvaluep->mediaQueryExpList); (yyvaluep->mediaQueryExpList) = 0; };
+	{ delete (yyvaluep->mediaQueryExpList); (yyvaluep->mediaQueryExpList) = nullptr; };
 
 	break;
       case 105: /* "maybe_and_media_query_exp_list" */
 
-	{ delete (yyvaluep->mediaQueryExpList); (yyvaluep->mediaQueryExpList) = 0; };
+	{ delete (yyvaluep->mediaQueryExpList); (yyvaluep->mediaQueryExpList) = nullptr; };
 
 	break;
       case 108: /* "maybe_media_list" */
 
-	{ delete (yyvaluep->mediaList); (yyvaluep->mediaList) = 0; };
+	{ delete (yyvaluep->mediaList); (yyvaluep->mediaList) = nullptr; };
 
 	break;
       case 109: /* "media_list" */
 
-	{ delete (yyvaluep->mediaList); (yyvaluep->mediaList) = 0; };
+	{ delete (yyvaluep->mediaList); (yyvaluep->mediaList) = nullptr; };
 
 	break;
       case 111: /* "ruleset_list" */
 
-	{ delete (yyvaluep->ruleList); (yyvaluep->ruleList) = 0; };
+	{ delete (yyvaluep->ruleList); (yyvaluep->ruleList) = nullptr; };
 
 	break;
       case 118: /* "selector_list" */
 
-	{ if ((yyvaluep->selectorList)) qDeleteAll(*(yyvaluep->selectorList)); delete (yyvaluep->selectorList); (yyvaluep->selectorList) = 0; };
+	{ if ((yyvaluep->selectorList)) qDeleteAll(*(yyvaluep->selectorList)); delete (yyvaluep->selectorList); (yyvaluep->selectorList) = nullptr; };
 
 	break;
       case 119: /* "selector" */
 
-	{ delete (yyvaluep->selector); (yyvaluep->selector) = 0; };
+	{ delete (yyvaluep->selector); (yyvaluep->selector) = nullptr; };
 
 	break;
       case 121: /* "simple_selector" */
 
-	{ delete (yyvaluep->selector); (yyvaluep->selector) = 0; };
+	{ delete (yyvaluep->selector); (yyvaluep->selector) = nullptr; };
 
 	break;
       case 122: /* "simple_css3_selector" */
 
-	{ delete (yyvaluep->selector); (yyvaluep->selector) = 0; };
+	{ delete (yyvaluep->selector); (yyvaluep->selector) = nullptr; };
 
 	break;
       case 124: /* "specifier_list" */
 
-	{ delete (yyvaluep->selector); (yyvaluep->selector) = 0; };
+	{ delete (yyvaluep->selector); (yyvaluep->selector) = nullptr; };
 
 	break;
       case 125: /* "specifier" */
 
-	{ delete (yyvaluep->selector); (yyvaluep->selector) = 0; };
+	{ delete (yyvaluep->selector); (yyvaluep->selector) = nullptr; };
 
 	break;
       case 126: /* "class" */
 
-	{ delete (yyvaluep->selector); (yyvaluep->selector) = 0; };
+	{ delete (yyvaluep->selector); (yyvaluep->selector) = nullptr; };
 
 	break;
       case 128: /* "attrib" */
 
-	{ delete (yyvaluep->selector); (yyvaluep->selector) = 0; };
+	{ delete (yyvaluep->selector); (yyvaluep->selector) = nullptr; };
 
 	break;
       case 131: /* "pseudo" */
 
-	{ delete (yyvaluep->selector); (yyvaluep->selector) = 0; };
+	{ delete (yyvaluep->selector); (yyvaluep->selector) = nullptr; };
 
 	break;
       case 137: /* "expr" */
 
-	{ delete (yyvaluep->valueList); (yyvaluep->valueList) = 0; };
+	{ delete (yyvaluep->valueList); (yyvaluep->valueList) = nullptr; };
 
 	break;
       case 141: /* "function" */
 
-	{ if ((yyvaluep->value).function) delete (yyvaluep->value).function->args; delete (yyvaluep->value).function; (yyvaluep->value).function = 0; };
+	{ if ((yyvaluep->value).function) delete (yyvaluep->value).function->args; delete (yyvaluep->value).function; (yyvaluep->value).function = nullptr; };
 
 	break;
 
@@ -2085,7 +2085,7 @@ yyreduce:
 	    qDebug() << "     no value found!";
 #endif
 	delete p->valueList;
-	p->valueList = 0;
+	p->valueList = nullptr;
     }
     break;
 
@@ -2096,7 +2096,7 @@ yyreduce:
 		if ((yyvsp[(4) - (5)].selectorList)) {
 			p->selectors = *(yyvsp[(4) - (5)].selectorList);
 			delete (yyvsp[(4) - (5)].selectorList);
-			(yyvsp[(4) - (5)].selectorList) = 0;
+			(yyvsp[(4) - (5)].selectorList) = nullptr;
 		} else
 			p->selectors.clear(); // parse error
 	}
@@ -2157,21 +2157,21 @@ yyreduce:
 	if ( (yyvsp[(5) - (6)].mediaList) && p->styleElement && p->styleElement->isCSSStyleSheet() )
 	    (yyval.rule) = new CSSImportRuleImpl( p->styleElement, domString((yyvsp[(3) - (6)].string)), (yyvsp[(5) - (6)].mediaList) );
 	else
-	    (yyval.rule) = 0;
+	    (yyval.rule) = nullptr;
     }
     break;
 
   case 31:
 
     {
-        (yyval.rule) = 0;
+        (yyval.rule) = nullptr;
     }
     break;
 
   case 32:
 
     {
-        (yyval.rule) = 0;
+        (yyval.rule) = nullptr;
     }
     break;
 
@@ -2200,7 +2200,7 @@ yyreduce:
 
   case 39:
 
-    { (yyval.string).string = 0; }
+    { (yyval.string).string = nullptr; }
     break;
 
   case 40:
@@ -2222,12 +2222,12 @@ yyreduce:
 
   case 49:
 
-    { delete (yyvsp[(1) - (2)].rule); (yyval.rule) = 0; }
+    { delete (yyvsp[(1) - (2)].rule); (yyval.rule) = nullptr; }
     break;
 
   case 53:
 
-    { delete (yyvsp[(1) - (2)].rule); (yyval.rule) = 0; }
+    { delete (yyvsp[(1) - (2)].rule); (yyval.rule) = nullptr; }
     break;
 
   case 56:
@@ -2240,7 +2240,7 @@ yyreduce:
   case 57:
 
     {
-        (yyval.valueList) = 0;
+        (yyval.valueList) = nullptr;
     }
     break;
 
@@ -2351,7 +2351,7 @@ yyreduce:
 
     {
        delete (yyvsp[(1) - (2)].mediaList);
-       (yyval.mediaList) = 0;
+       (yyval.mediaList) = nullptr;
     }
     break;
 
@@ -2363,7 +2363,7 @@ yyreduce:
 	     p->styleElement && p->styleElement->isCSSStyleSheet() ) {
 	    (yyval.rule) = new CSSMediaRuleImpl( static_cast<CSSStyleSheetImpl*>(p->styleElement), (yyvsp[(3) - (7)].mediaList), (yyvsp[(6) - (7)].ruleList) );
 	} else {
-	    (yyval.rule) = 0;
+	    (yyval.rule) = nullptr;
 	    delete (yyvsp[(3) - (7)].mediaList);
 	    delete (yyvsp[(6) - (7)].ruleList);
 	}
@@ -2375,9 +2375,9 @@ yyreduce:
     {
         CSSParser *p = static_cast<CSSParser *>(parser);
         if ((yyvsp[(5) - (6)].ruleList) && p->styleElement && p->styleElement->isCSSStyleSheet() ) {
-            (yyval.rule) = new CSSMediaRuleImpl( static_cast<CSSStyleSheetImpl*>(p->styleElement), 0, (yyvsp[(5) - (6)].ruleList));
+            (yyval.rule) = new CSSMediaRuleImpl( static_cast<CSSStyleSheetImpl*>(p->styleElement), nullptr, (yyvsp[(5) - (6)].ruleList));
         } else {
-            (yyval.rule) = 0;
+            (yyval.rule) = nullptr;
             delete (yyvsp[(5) - (6)].ruleList);
         }
     }
@@ -2385,7 +2385,7 @@ yyreduce:
 
   case 76:
 
-    { (yyval.ruleList) = 0; }
+    { (yyval.ruleList) = nullptr; }
     break;
 
   case 77:
@@ -2409,14 +2409,14 @@ yyreduce:
   case 79:
 
     {
-      (yyval.rule) = 0;
+      (yyval.rule) = nullptr;
     }
     break;
 
   case 80:
 
     {
-      (yyval.rule) = 0;
+      (yyval.rule) = nullptr;
     }
     break;
 
@@ -2434,14 +2434,14 @@ yyreduce:
   case 82:
 
     {
-      (yyval.rule) = 0;
+      (yyval.rule) = nullptr;
     }
     break;
 
   case 83:
 
     {
-      (yyval.rule) = 0;
+      (yyval.rule) = nullptr;
     }
     break;
 
@@ -2484,10 +2484,10 @@ yyreduce:
 	    rule->setDeclaration(decl);
 	    (yyval.rule) = rule;
 	} else {
-	    (yyval.rule) = 0;
+	    (yyval.rule) = nullptr;
 	    if ((yyvsp[(1) - (2)].selectorList)) qDeleteAll(*(yyvsp[(1) - (2)].selectorList));
 	    delete (yyvsp[(1) - (2)].selectorList);
-	    (yyvsp[(1) - (2)].selectorList) = 0;
+	    (yyvsp[(1) - (2)].selectorList) = nullptr;
 	    p->clearProperties();
 	}
     }
@@ -2505,7 +2505,7 @@ yyreduce:
 	    (yyval.selectorList)->append( (yyvsp[(1) - (1)].selector) );
 	    khtml::CSSStyleSelector::precomputeAttributeDependencies(static_cast<CSSParser *>(parser)->document(), (yyvsp[(1) - (1)].selector));
 	} else {
-	    (yyval.selectorList) = 0;
+	    (yyval.selectorList) = nullptr;
 	}
     }
     break;
@@ -2524,10 +2524,10 @@ yyreduce:
 	} else {
             if ((yyvsp[(1) - (4)].selectorList)) qDeleteAll(*(yyvsp[(1) - (4)].selectorList));
 	    delete (yyvsp[(1) - (4)].selectorList);
-	    (yyvsp[(1) - (4)].selectorList)=0;
+	    (yyvsp[(1) - (4)].selectorList)=nullptr;
 
 	    delete (yyvsp[(4) - (4)].selector);
-	    (yyval.selectorList) = 0;
+	    (yyval.selectorList) = nullptr;
 	}
     }
     break;
@@ -2537,8 +2537,8 @@ yyreduce:
     {
         if ((yyvsp[(1) - (2)].selectorList)) qDeleteAll(*(yyvsp[(1) - (2)].selectorList));
 	delete (yyvsp[(1) - (2)].selectorList);
-	(yyvsp[(1) - (2)].selectorList) = 0;
-	(yyval.selectorList) = 0;
+	(yyvsp[(1) - (2)].selectorList) = nullptr;
+	(yyval.selectorList) = nullptr;
     }
     break;
 
@@ -2562,7 +2562,7 @@ yyreduce:
         if ( !(yyvsp[(1) - (3)].selector) || !(yyvsp[(3) - (3)].selector) ) {
 	    delete (yyvsp[(1) - (3)].selector);
 	    delete (yyvsp[(3) - (3)].selector);
-	    (yyval.selector) = 0;
+	    (yyval.selector) = nullptr;
         } else {
             (yyval.selector) = (yyvsp[(3) - (3)].selector);
             CSSSelector *end = (yyval.selector);
@@ -2580,7 +2580,7 @@ yyreduce:
 	if ( !(yyvsp[(1) - (3)].selector) || !(yyvsp[(3) - (3)].selector) ) {
 	    delete (yyvsp[(1) - (3)].selector);
 	    delete (yyvsp[(3) - (3)].selector);
-	    (yyval.selector) = 0;
+	    (yyval.selector) = nullptr;
 	} else {
 	    (yyval.selector) = (yyvsp[(3) - (3)].selector);
 	    CSSSelector *end = (yyvsp[(3) - (3)].selector);
@@ -2596,13 +2596,13 @@ yyreduce:
 
     {
 	delete (yyvsp[(1) - (2)].selector);
-	(yyval.selector) = 0;
+	(yyval.selector) = nullptr;
     }
     break;
 
   case 98:
 
-    { (yyval.string).string = 0; (yyval.string).length = 0; }
+    { (yyval.string).string = nullptr; (yyval.string).length = 0; }
     break;
 
   case 99:
@@ -2772,7 +2772,7 @@ yyreduce:
 
     {
 	delete (yyvsp[(1) - (2)].selector);
-	(yyval.selector) = 0;
+	(yyval.selector) = nullptr;
     }
     break;
 
@@ -3067,7 +3067,7 @@ yyreduce:
             delete (yyvsp[(4) - (5)].valueList);
         }
 	delete p->valueList;
-	p->valueList = 0;
+	p->valueList = nullptr;
     }
     break;
 
@@ -3326,7 +3326,7 @@ yyreduce:
     {
       Function *f = new Function;
       f->name = (yyvsp[(1) - (3)].string);
-      f->args = 0;
+      f->args = nullptr;
       (yyval.value).id = 0;
       (yyval.value).unit = Value::Function;
       (yyval.value).function = f;
@@ -3341,7 +3341,7 @@ yyreduce:
   case 195:
 
     {
-	(yyval.rule) = 0;
+	(yyval.rule) = nullptr;
 #ifdef CSS_DEBUG
 	qDebug() << "skipped invalid @-rule";
 #endif
@@ -3351,7 +3351,7 @@ yyreduce:
   case 196:
 
     {
-	(yyval.rule) = 0;
+	(yyval.rule) = nullptr;
 #ifdef CSS_DEBUG
 	qDebug() << "skipped invalid @-rule";
 #endif
@@ -3361,7 +3361,7 @@ yyreduce:
   case 197:
 
     {
-	(yyval.rule) = 0;
+	(yyval.rule) = nullptr;
 #ifdef CSS_DEBUG
 	qDebug() << "skipped invalid rule";
 #endif

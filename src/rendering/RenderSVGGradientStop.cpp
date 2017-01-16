@@ -67,7 +67,7 @@ SVGGradientElement *RenderSVGGradientStop::gradientElement() const
     if (parentNode->hasTagName(linearGradientTag) || parentNode->hasTagName(radialGradientTag)) {
         return static_cast<SVGGradientElement *>(parentNode);
     }
-    return 0;
+    return nullptr;
 }
 
 }

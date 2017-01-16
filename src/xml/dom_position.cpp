@@ -62,7 +62,7 @@ static NodeImpl *nextRenderedEditable(NodeImpl *node)
     while (1) {
         node = node->nextEditable();
         if (!node) {
-            return 0;
+            return nullptr;
         }
         if (!node->renderer()) {
             continue;
@@ -71,7 +71,7 @@ static NodeImpl *nextRenderedEditable(NodeImpl *node)
             return node;
         }
     }
-    return 0;
+    return nullptr;
 }
 
 static NodeImpl *previousRenderedEditable(NodeImpl *node)
@@ -79,7 +79,7 @@ static NodeImpl *previousRenderedEditable(NodeImpl *node)
     while (1) {
         node = node->previousEditable();
         if (!node) {
-            return 0;
+            return nullptr;
         }
         if (!node->renderer()) {
             continue;
@@ -88,7 +88,7 @@ static NodeImpl *previousRenderedEditable(NodeImpl *node)
             return node;
         }
     }
-    return 0;
+    return nullptr;
 }
 
 /*static*/ NodeImpl *rootNavigableElement(NodeImpl *node)
@@ -141,7 +141,7 @@ void printRootEditableTree(NodeImpl *node)
 }
 
 Position::Position(NodeImpl *node, long offset)
-    : m_node(0), m_offset(offset)
+    : m_node(nullptr), m_offset(offset)
 {
     if (node) {
         m_node = node;
@@ -150,7 +150,7 @@ Position::Position(NodeImpl *node, long offset)
 }
 
 Position::Position(const Position &o)
-    : m_node(0), m_offset(o.offset())
+    : m_node(nullptr), m_offset(o.offset())
 {
     if (o.node()) {
         m_node = o.node();
@@ -183,7 +183,7 @@ Position &Position::operator=(const Position &o)
 ElementImpl *Position::element() const
 {
     if (isEmpty()) {
-        return 0;
+        return nullptr;
     }
 
     NodeImpl *n = node();

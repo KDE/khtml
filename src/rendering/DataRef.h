@@ -35,7 +35,7 @@ class DataRef
 public:
     DataRef()
     {
-        data = 0;
+        data = nullptr;
     }
 
     DataRef(const DataRef<DATA> &d)

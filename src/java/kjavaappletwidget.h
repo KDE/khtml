@@ -84,7 +84,7 @@ class KJavaAppletWidget : public QX11EmbedContainer
 {
     Q_OBJECT
 public:
-    KJavaAppletWidget(QWidget *parent = 0);
+    KJavaAppletWidget(QWidget *parent = nullptr);
 
     ~KJavaAppletWidget();
 
