@@ -1,0 +1,1830 @@
+# translation of kdelibs4.po to
+# translation of kdelibs4.po to
+# translation of kdelibs4.po to
+# translation of kdelibs4.po to Xhosa
+# K Desktop Environment - kdelibs
+# Copyright (C) 2001 translate.org.za
+# Antoinette Dekeni <antoinette@transalate.org.za>, 2001.
+# Lwandle Mgidlana <lwandle@translate.org.za>, 2002
+# Thelma Lungcuzo <thelma@translate.org.za>, 2002
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2016-12-11 02:37+0100\n"
+"PO-Revision-Date: 2002-12-13 17:20SAST\n"
+"Last-Translator: Lwandle Mgidlana <lwandle@translate.org.za>\n"
+"Language-Team: Xhosa <xhosa@translate.org.za>\n"
+"Language: xh\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.0beta2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#, fuzzy, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Igama elitsha lenginginya."
+
+#, fuzzy, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "Igama elitsha lenginginya."
+
+#: ecma/debugger/callstackdock.cpp:35
+#, kde-format
+msgid "Call Stack"
+msgstr ""
+
+#: ecma/debugger/callstackdock.cpp:39
+#, fuzzy, kde-format
+msgid "Call"
+msgstr "Imizekelo"
+
+#: ecma/debugger/callstackdock.cpp:39
+#, fuzzy, kde-format
+#| msgid "Line up"
+msgid "Line"
+msgstr "Umgca ephezulu"
+
+#: ecma/debugger/consoledock.cpp:220
+#, fuzzy, kde-format
+#| msgid "Close"
+msgid "Console"
+msgstr "Vala"
+
+#: ecma/debugger/consoledock.cpp:243
+#, fuzzy, kde-format
+#| msgctxt "QAccel"
+#| msgid "Enter"
+msgid "Enter"
+msgstr "Ngena"
+
+#: ecma/debugger/debugdocument.cpp:206
+#, kde-format
+msgid ""
+"Unable to find the Kate editor component;\n"
+"please check your KDE installation."
+msgstr ""
+
+#: ecma/debugger/debugdocument.cpp:272
+#, kde-format
+msgid "Breakpoint"
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:101
+#, kde-format
+msgid "JavaScript Debugger"
+msgstr "Umkhuphi wegciwane we JavaScript"
+
+#: ecma/debugger/debugwindow.cpp:178
+#, fuzzy, kde-format
+msgid "&Break at Next Statement"
+msgstr "&Yaphula kwimeko Elandelayo"
+
+#: ecma/debugger/debugwindow.cpp:179
+#, fuzzy, kde-format
+msgid "Break at Next"
+msgstr "&Yaphula kwimeko Elandelayo"
+
+#: ecma/debugger/debugwindow.cpp:184
+#, kde-format
+msgid "Continue"
+msgstr "Qhubekeka"
+
+#: ecma/debugger/debugwindow.cpp:190
+#, fuzzy, kde-format
+msgid "Step Over"
+msgstr "&Inyathelo"
+
+#: ecma/debugger/debugwindow.cpp:196
+#, fuzzy, kde-format
+msgid "Step Into"
+msgstr "&Inyathelo"
+
+#: ecma/debugger/debugwindow.cpp:203
+#, fuzzy, kde-format
+msgid "Step Out"
+msgstr "&Inyathelo"
+
+#: ecma/debugger/debugwindow.cpp:209
+#, fuzzy, kde-format
+#| msgid "Resources"
+msgid "Reindent Sources"
+msgstr "Amacebo"
+
+#: ecma/debugger/debugwindow.cpp:214
+#, fuzzy, kde-format
+#| msgid "Action"
+msgid "Report Exceptions"
+msgstr "Intshukumo"
+
+#: ecma/debugger/debugwindow.cpp:222
+#, kde-format
+msgid "&Debug"
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:230
+#, kde-format
+msgid "&Settings"
+msgstr "&Izicwangciso"
+
+#: ecma/debugger/debugwindow.cpp:256
+#, fuzzy, kde-format
+msgid "Close source"
+msgstr "Gcina Uxwebhu?"
+
+#: ecma/debugger/debugwindow.cpp:262
+#, fuzzy, kde-format
+msgid "Ready"
+msgstr "Layisha kwakhona"
+
+#: ecma/debugger/debugwindow.cpp:587
+#, fuzzy, kde-format
+msgid ""
+"An error occurred while attempting to run a script on this page.\n"
+"\n"
+"%1 line %2:\n"
+"%3"
+msgstr ""
+"Impazamo yenzekile ngexesha uzama uku %1, %2.  Isishwakathelo sezizathu "
+"sanga phantsi.<ul>"
+
+#: ecma/debugger/debugwindow.cpp:780
+#, kde-format
+msgid ""
+"Do not know where to evaluate the expression. Please pause a script or open "
+"a source file."
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:814
+#, kde-format
+msgid "Evaluation threw an exception %1"
+msgstr ""
+
+#: ecma/debugger/errordlg.cpp:35
+#, fuzzy, kde-format
+msgid "JavaScript Error"
+msgstr "Imposiso ye KScript"
+
+#: ecma/debugger/errordlg.cpp:49
+#, kde-format
+msgid "&Do not show this message again"
+msgstr "&Sukubonisa lomyalezo kwakhona"
+
+#: ecma/debugger/localvariabledock.cpp:43
+#, kde-format
+msgid "Local Variables"
+msgstr ""
+
+#: ecma/debugger/localvariabledock.cpp:51
+#, fuzzy, kde-format
+#| msgid "Reference error"
+msgid "Reference"
+msgstr "Imposiso yokuthelekisa"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
+#: java/kjavaappletviewer.cpp:150
+#, kde-format
+msgid "Value"
+msgstr "Ixabiso"
+
+#: ecma/debugger/scriptsdock.cpp:37
+#, fuzzy, kde-format
+msgid "Loaded Scripts"
+msgstr "Oku&shicilelweyo"
+
+#: ecma/kjs_binding.cpp:196
+#, fuzzy, kde-format
+#| msgid ""
+#| "A script on this page is causing KHTML to freeze. If it continues to run, "
+#| "other applications may become less responsive.\n"
+#| "Do you want to abort the script?"
+msgid ""
+"A script on this page is causing KHTML to freeze. If it continues to run, "
+"other applications may become less responsive.\n"
+"Do you want to stop the script?"
+msgstr ""
+"Igama elishicilelwe phantsi elikweliphepha libangela i KHTML ingasebenzi."
+"Ukuba iyaqhubeka ukusebenza, ezinye izicelo zingaphendula ngokucothayo.\n"
+"Ufuna ukulahla eligama elishicilelwe phantsi?"
+
+#: ecma/kjs_binding.cpp:196
+#, kde-format
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: ecma/kjs_binding.cpp:196
+#, fuzzy, kde-format
+msgid "&Stop Script"
+msgstr "Oku&shicilelweyo"
+
+#: ecma/kjs_binding.cpp:446
+#, kde-format
+msgid "Parse error at %1 line %2"
+msgstr ""
+
+#: ecma/kjs_html.cpp:2233 ecma/kjs_window.cpp:1946
+#, fuzzy, kde-format
+msgid "Confirmation: JavaScript Popup"
+msgstr "Uqinisekiso: I-JavaScript Ezivelelayo"
+
+#: ecma/kjs_html.cpp:2235
+#, fuzzy, kde-format
+msgid ""
+"This site is submitting a form which will open up a new browser window via "
+"JavaScript.\n"
+"Do you want to allow the form to be submitted?"
+msgstr ""
+"Le ndawo izama ukuvula umkhangeli zincwadi omtsha we window usebenzisa i "
+"JavaScript.\n"
+"Ufuna ukuyivumela le nto?"
+
+#: ecma/kjs_html.cpp:2238
+#, fuzzy, kde-format
+msgid ""
+"<qt>This site is submitting a form which will open <p>%1</p> in a new "
+"browser window via JavaScript.<br />Do you want to allow the form to be "
+"submitted?</qt>"
+msgstr ""
+"Le ndawo izama ukuvula umkhangeli zincwadi omtsha we window usebenzisa i "
+"JavaScript.\n"
+"Ufuna ukuyivumela le nto?"
+
+#: ecma/kjs_html.cpp:2240 ecma/kjs_window.cpp:1954
+#, fuzzy, kde-format
+msgid "Allow"
+msgstr "Zonke"
+
+#: ecma/kjs_html.cpp:2240 ecma/kjs_window.cpp:1954
+#, fuzzy, kde-format
+msgid "Do Not Allow"
+msgstr "Rhweba ngaphakathi &Konke"
+
+#: ecma/kjs_window.cpp:1949
+#, fuzzy, kde-format
+msgid ""
+"This site is requesting to open up a new browser window via JavaScript.\n"
+"Do you want to allow this?"
+msgstr ""
+"Le ndawo izama ukuvula umkhangeli zincwadi omtsha we window usebenzisa i "
+"JavaScript.\n"
+"Ufuna ukuyivumela le nto?"
+
+#: ecma/kjs_window.cpp:1952
+#, fuzzy, kde-format
+msgid ""
+"<qt>This site is requesting to open<p>%1</p>in a new browser window via "
+"JavaScript.<br />Do you want to allow this?</qt>"
+msgstr ""
+"Le ndawo izama ukuvula umkhangeli zincwadi omtsha we window usebenzisa i "
+"JavaScript.\n"
+"Ufuna ukuyivumela le nto?"
+
+#: ecma/kjs_window.cpp:2285
+#, kde-format
+msgid "Close window?"
+msgstr "Vala i window? "
+
+#: ecma/kjs_window.cpp:2285
+#, kde-format
+msgid "Confirmation Required"
+msgstr "Uqinisekiso Luyafuneka"
+
+#: ecma/kjs_window.cpp:3235
+#, kde-format
+msgid ""
+"Do you want a bookmark pointing to the location \"%1\" to be added to your "
+"collection?"
+msgstr ""
+
+#: ecma/kjs_window.cpp:3238
+#, kde-format
+msgid ""
+"Do you want a bookmark pointing to the location \"%1\" titled \"%2\" to be "
+"added to your collection?"
+msgstr ""
+
+#: ecma/kjs_window.cpp:3247
+#, kde-format
+msgid "JavaScript Attempted Bookmark Insert"
+msgstr ""
+
+#: ecma/kjs_window.cpp:3251
+#, kde-format
+msgid "Insert"
+msgstr "Faka"
+
+#: ecma/kjs_window.cpp:3251
+#, fuzzy, kde-format
+msgid "Disallow"
+msgstr "Ikhubazekile"
+
+#: html/html_formimpl.cpp:420
+#, kde-format
+msgid ""
+"The following files will not be uploaded because they could not be found.\n"
+"Do you want to continue?"
+msgstr ""
+
+#: html/html_formimpl.cpp:424
+#, fuzzy, kde-format
+msgid "Submit Confirmation"
+msgstr "Uqinisekiso"
+
+#: html/html_formimpl.cpp:424
+#, fuzzy, kde-format
+msgid "&Submit Anyway"
+msgstr "Ngenisa"
+
+#: html/html_formimpl.cpp:434
+#, fuzzy, kde-format
+msgid ""
+"You are about to transfer the following files from your local computer to "
+"the Internet.\n"
+"Do you really want to continue?"
+msgstr ""
+"Umalunga nokuthumela ezi fayile zilandelayo ezisuka kwi khomputha yakho "
+"yobulali kwi Internet.\n"
+"Ufuna ukuqhubekeka?"
+
+#: html/html_formimpl.cpp:438
+#, fuzzy, kde-format
+msgid "Send Confirmation"
+msgstr "Uqinisekiso"
+
+#: html/html_formimpl.cpp:438
+#, fuzzy, kde-format
+msgid "&Send File"
+msgid_plural "&Send Files"
+msgstr[0] "Iifayile"
+msgstr[1] "Iifayile"
+
+#: html/html_formimpl.cpp:1687 html/html_formimpl.cpp:1908 khtml_part.cpp:4963
+#: khtmlview.cpp:2877 khtmlview.cpp:2921
+#, kde-format
+msgid "Submit"
+msgstr "Ngenisa"
+
+#: html/html_formimpl.cpp:1900 khtmlview.cpp:2892 khtmlview.cpp:2927
+#, kde-format
+msgid "Reset"
+msgstr "Cwangcisa kwakhona"
+
+#: html/html_formimpl.cpp:2824
+#, fuzzy, kde-format
+#| msgid "General"
+msgid "Key Generator"
+msgstr "Ngokubanzi"
+
+#: html/html_objectimpl.cpp:632
+#, kde-format
+msgid ""
+"No plugin found for '%1'.\n"
+"Do you want to download one from %2?"
+msgstr ""
+"Akukho plagi efakiweyo ifumanekileyo ye '%1'.\n"
+"Ufuna ukulayisha ezantsi enye evela kwi %2?"
+
+#: html/html_objectimpl.cpp:633
+#, kde-format
+msgid "Missing Plugin"
+msgstr "Elahlekileyo Iplagi efakiweyo"
+
+#: html/html_objectimpl.cpp:633
+#, fuzzy, kde-format
+msgid "Download"
+msgstr "Yehlela Ngezantsi"
+
+#: html/html_objectimpl.cpp:633
+#, fuzzy, kde-format
+msgid "Do Not Download"
+msgstr "Yehlela Ngezantsi"
+
+#: html/htmlparser.cpp:1980
+#, kde-format
+msgid "This is a searchable index. Enter search keywords: "
+msgstr "Esi sisalathisi esiphendlekayo. Ngenisa amagama ophendlo angundoqo:"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Repeat password:"
+msgstr "&Gcina igama lokugqitha"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Choose password:"
+msgstr "&Gcina igama lokugqitha"
+
+#: html/ksslkeygen.cpp:82
+#, fuzzy, kde-format
+#| msgid "KDE Certificate Part"
+msgid "KDE Certificate Request"
+msgstr "KDE Inxenye Yesiqinisekiso"
+
+#: html/ksslkeygen.cpp:89
+#, fuzzy, kde-format
+#| msgid "KDE Certificate Part"
+msgid "KDE Certificate Request - Password"
+msgstr "KDE Inxenye Yesiqinisekiso"
+
+#: html/ksslkeygen.cpp:126
+#, fuzzy, kde-format
+msgid "Unsupported key size."
+msgstr "Engenasihloko"
+
+#: html/ksslkeygen.cpp:126
+#, fuzzy, kde-format
+#| msgid "Information"
+msgid "KDE SSL Information"
+msgstr "Ulwazi"
+
+#: html/ksslkeygen.cpp:132 khtml_part.cpp:5018
+#, kde-format
+msgid "KDE"
+msgstr "KDE"
+
+#: html/ksslkeygen.cpp:133
+#, kde-format
+msgid "Please wait while the encryption keys are generated..."
+msgstr ""
+
+#: html/ksslkeygen.cpp:148
+#, fuzzy, kde-format
+msgid "Do you wish to store the passphrase in your wallet file?"
+msgstr "Ufuna ukuqala kwakhona uphendlo ekuqaleni?"
+
+#: html/ksslkeygen.cpp:148
+#, fuzzy, kde-format
+msgid "Store"
+msgstr "Isitalato"
+
+#: html/ksslkeygen.cpp:148
+#, fuzzy, kde-format
+msgid "Do Not Store"
+msgstr "&Sukugcina"
+
+#: html/ksslkeygen.cpp:257
+#, kde-format
+msgid "2048 (High Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:258
+#, kde-format
+msgid "1024 (Medium Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:259
+#, kde-format
+msgid "768  (Low Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:260
+#, kde-format
+msgid "512  (Low Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:262
+#, kde-format
+msgid "No SSL support."
+msgstr ""
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, fuzzy, kde-format
+msgid "Document Information"
+msgstr "Bona Ulwazi Loxwebhu"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, fuzzy, kde-format
+#| msgid "General"
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "Ngokubanzi"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "Iwonga:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "Uguqulo kancinci lokugqibela:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, fuzzy, kde-format
+msgid "Document encoding:"
+msgstr "Bona Ulwazi Loxwebhu"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, fuzzy, kde-format
+msgid "HTTP Headers"
+msgstr "Okubhaliwe okuphezulu kwephapha kwe HTTP:"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "Impahla"
+
+#: java/kjavaapplet.cpp:227
+#, fuzzy, kde-format
+msgid "Initializing Applet \"%1\"..."
+msgstr "Yenza umphathi wokuqala..."
+
+#: java/kjavaapplet.cpp:233
+#, fuzzy, kde-format
+msgid "Starting Applet \"%1\"..."
+msgstr "Yenza umphathi wokuqala..."
+
+#: java/kjavaapplet.cpp:240
+#, fuzzy, kde-format
+msgid "Applet \"%1\" started"
+msgstr "Bonke Abashicileli"
+
+#: java/kjavaapplet.cpp:246
+#, kde-format
+msgid "Applet \"%1\" stopped"
+msgstr ""
+
+#: java/kjavaappletserver.cpp:144
+#, kde-format
+msgid "Loading Applet"
+msgstr "llayisha i Applet"
+
+#: java/kjavaappletserver.cpp:147
+#, kde-format
+msgid "Error: java executable not found"
+msgstr "Imposiso: i java ephunyeziweyo ayifunyanwanga"
+
+#: java/kjavaappletserver.cpp:674
+#, fuzzy, kde-format
+msgid "Signed by (validation: %1)"
+msgstr "Isiqinisekiso sesigqeba selizwe:"
+
+#: java/kjavaappletserver.cpp:676
+#, fuzzy, kde-format
+msgid "Certificate (validation: %1)"
+msgstr "Isiqinisekiso sesigqeba selizwe:"
+
+#: java/kjavaappletserver.cpp:812 khtml_part.cpp:7048
+#, kde-format
+msgid "Security Alert"
+msgstr "Isilumkiso esiyingozi Sokhuseleko"
+
+#: java/kjavaappletserver.cpp:817
+#, kde-format
+msgid "Do you grant Java applet with certificate(s):"
+msgstr ""
+
+#: java/kjavaappletserver.cpp:819
+#, fuzzy, kde-format
+msgid "the following permission"
+msgstr ""
+"Ayinakutshintsha iimvumelwano ze\n"
+"%1"
+
+#: java/kjavaappletserver.cpp:828
+#, kde-format
+msgid "&No"
+msgstr "&Hayi"
+
+#: java/kjavaappletserver.cpp:833
+#, fuzzy, kde-format
+msgid "&Reject All"
+msgstr "&Khuphela ngaphandle"
+
+#: java/kjavaappletserver.cpp:837
+#, kde-format
+msgid "&Yes"
+msgstr "&Ewe"
+
+#: java/kjavaappletserver.cpp:841
+#, kde-format
+msgid "&Grant All"
+msgstr ""
+
+#: java/kjavaappletviewer.cpp:59
+#, kde-format
+msgid "KDE Java Applet Plugin"
+msgstr ""
+
+#: java/kjavaappletviewer.cpp:141
+#, fuzzy, kde-format
+msgid "Applet Parameters"
+msgstr "Bonke Abashicileli"
+
+#: java/kjavaappletviewer.cpp:149
+#, fuzzy, kde-format
+msgid "Parameter"
+msgstr "Ikhusi"
+
+#: java/kjavaappletviewer.cpp:153
+#, kde-format
+msgid "Class"
+msgstr "Udidi"
+
+#: java/kjavaappletviewer.cpp:159
+#, kde-format
+msgid "Base URL"
+msgstr ""
+
+#: java/kjavaappletviewer.cpp:165
+#, kde-format
+msgid "Archives"
+msgstr ""
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "&Hlela"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Ifayile"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "&Imboniselo"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, fuzzy, kde-format
+#| msgid "Main Toolbar"
+msgid "HTML Toolbar"
+msgstr "Isixhobo se bar Engundoqo"
+
+#: khtml_ext.cpp:413
+#, fuzzy, kde-format
+msgid "&Copy Text"
+msgstr "&Khuphela"
+
+#: khtml_ext.cpp:427
+#, fuzzy, kde-format
+msgid "Open '%1'"
+msgstr "Vula '%1'?"
+
+#: khtml_ext.cpp:444
+#, fuzzy, kde-format
+msgid "&Copy Email Address"
+msgstr "Idilesi ye Email"
+
+#: khtml_ext.cpp:449
+#, kde-format
+msgid "&Save Link As..."
+msgstr "&Gcina Ikhonkco Njenge..."
+
+#: khtml_ext.cpp:454
+#, fuzzy, kde-format
+msgid "&Copy Link Address"
+msgstr "Idilesi ye Email"
+
+#: khtml_ext.cpp:466
+#, fuzzy, kde-format
+msgctxt "@title:menu HTML frame/iframe"
+msgid "Frame"
+msgstr "Igama Lokuqala"
+
+#: khtml_ext.cpp:467
+#, fuzzy, kde-format
+msgid "Open in New &Window"
+msgstr "&Window Entsha"
+
+#: khtml_ext.cpp:473
+#, fuzzy, kde-format
+msgid "Open in &This Window"
+msgstr "&Window Entsha"
+
+#: khtml_ext.cpp:478
+#, kde-format
+msgid "Open in &New Tab"
+msgstr ""
+
+#: khtml_ext.cpp:488
+#, kde-format
+msgid "Reload Frame"
+msgstr "Layisha isakhelo kwakhona"
+
+#: khtml_ext.cpp:493 khtml_part.cpp:447
+#, kde-format
+msgid "Print Frame..."
+msgstr "Shicilela Isakhelo..."
+
+#: khtml_ext.cpp:499 khtml_part.cpp:299
+#, kde-format
+msgid "Save &Frame As..."
+msgstr "&Gcina Isakhelo Njenge..."
+
+#: khtml_ext.cpp:504 khtml_part.cpp:275
+#, kde-format
+msgid "View Frame Source"
+msgstr "Bona Isakhelo Semvelaphi"
+
+#: khtml_ext.cpp:509
+#, kde-format
+msgid "View Frame Information"
+msgstr "Bonisela Isakhelo Solwazi"
+
+#: khtml_ext.cpp:519
+#, fuzzy, kde-format
+msgid "Block IFrame..."
+msgstr "Umfanekiso we OCR"
+
+#: khtml_ext.cpp:543
+#, kde-format
+msgid "Save Image As..."
+msgstr "Gcina Umfanekiso Njenge..."
+
+#: khtml_ext.cpp:548
+#, fuzzy, kde-format
+msgid "Send Image..."
+msgstr "Gcina Umfanekiso Njenge"
+
+#: khtml_ext.cpp:554
+#, fuzzy, kde-format
+msgid "Copy Image"
+msgstr "Umfanekiso we OCR"
+
+#: khtml_ext.cpp:562
+#, kde-format
+msgid "Copy Image Location"
+msgstr "Khuphela Indawo okuwo Umfanekiso"
+
+#: khtml_ext.cpp:571
+#, kde-format
+msgid "View Image (%1)"
+msgstr "Imboniselo Yomfanekiso (%1)"
+
+#: khtml_ext.cpp:577
+#, fuzzy, kde-format
+msgid "Block Image..."
+msgstr "Umfanekiso we OCR"
+
+#: khtml_ext.cpp:584
+#, kde-format
+msgid "Block Images From %1"
+msgstr ""
+
+#: khtml_ext.cpp:596
+#, kde-format
+msgid "Stop Animations"
+msgstr "Misa Iimpiliso"
+
+#: khtml_ext.cpp:637
+#, fuzzy, kde-format
+msgid "Search for '%1' with %2"
+msgstr "Buyisela '%1' nge '%2'?"
+
+#: khtml_ext.cpp:647
+#, fuzzy, kde-format
+msgid "Search for '%1' with"
+msgstr "Buyisela '%1' nge '%2'?"
+
+#: khtml_ext.cpp:693
+#, kde-format
+msgid "Save Link As"
+msgstr "Gcina Ikhonkco Njenge"
+
+#: khtml_ext.cpp:712
+#, kde-format
+msgid "Save Image As"
+msgstr "Gcina Umfanekiso Njenge"
+
+#: khtml_ext.cpp:726 khtml_ext.cpp:738
+#, fuzzy, kde-format
+msgid "Add URL to Filter"
+msgstr "Yongeza isihluzi"
+
+#: khtml_ext.cpp:727 khtml_ext.cpp:739
+#, kde-format
+msgid "Enter the URL:"
+msgstr ""
+
+#: khtml_ext.cpp:875
+#, kde-format
+msgid ""
+"A file named \"%1\" already exists. Are you sure you want to overwrite it?"
+msgstr ""
+"Ifayile enikwe igama \"%1\" sele ikhona. Uqinisekile ukuba unqwenela "
+"ukuyibuyisela?"
+
+#: khtml_ext.cpp:875
+#, kde-format
+msgid "Overwrite File?"
+msgstr "Bhala ngaphezulu Kwefayile?"
+
+#: khtml_ext.cpp:927
+#, kde-format
+msgid "The Download Manager (%1) could not be found in your $PATH "
+msgstr "Umphathi Wolayisho ezantsi (%1) akafumanekanga kwi $KUMENDO wakho"
+
+#: khtml_ext.cpp:928
+#, fuzzy, kde-format
+msgid ""
+"Try to reinstall it  \n"
+"\n"
+"The integration with Konqueror will be disabled."
+msgstr ""
+"Zama ukuyifaka kwakhona  \n"
+"\n"
+"Udibaniso ne Konqueror lukhubaziwe!"
+
+#: khtml_ext.cpp:1007
+#, fuzzy, no-c-format, kde-format
+msgid "Default Font Size (100%)"
+msgstr "Ubungakanani Bamagama Endalo"
+
+#: khtml_ext.cpp:1021
+#, fuzzy, no-c-format, kde-format
+msgid "%1%"
+msgstr "%1"
+
+#: khtml_global.cpp:203
+#, kde-format
+msgid "KHTML"
+msgstr "KHTML"
+
+#: khtml_global.cpp:204
+#, kde-format
+msgid "Embeddable HTML component"
+msgstr "Ingxenye ye HTML elungiselelwayo"
+
+#: khtml_part.cpp:268
+#, fuzzy, kde-format
+msgid "View Do&cument Source"
+msgstr "Bona Imvelaphi Yoxwebhu"
+
+#: khtml_part.cpp:282
+#, kde-format
+msgid "View Document Information"
+msgstr "Bona Ulwazi Loxwebhu"
+
+#: khtml_part.cpp:289
+#, kde-format
+msgid "Save &Background Image As..."
+msgstr "Gcina Umfanekiso &Wendawo yangasemva Njenge..."
+
+#: khtml_part.cpp:311 khtml_part.cpp:4190
+#, kde-format
+msgid "SSL"
+msgstr "SSL"
+
+#: khtml_part.cpp:315
+#, kde-format
+msgid "Print Rendering Tree to STDOUT"
+msgstr ""
+
+#: khtml_part.cpp:319
+#, kde-format
+msgid "Print DOM Tree to STDOUT"
+msgstr ""
+
+#: khtml_part.cpp:323
+#, kde-format
+msgid "Print frame tree to STDOUT"
+msgstr ""
+
+#: khtml_part.cpp:327
+#, kde-format
+msgid "Stop Animated Images"
+msgstr "Misa Imifanekiso Ephilayo"
+
+#: khtml_part.cpp:331
+#, kde-format
+msgid "Set &Encoding"
+msgstr "Cwangcisa &Ukhowudo"
+
+#: khtml_part.cpp:377
+#, kde-format
+msgid "Use S&tylesheet"
+msgstr "Sebenzisa Uh&lobo lwekhasi"
+
+#: khtml_part.cpp:382
+#, fuzzy, kde-format
+msgid "Enlarge Font"
+msgstr "Yandisa Ubungakanani bamagama"
+
+#: khtml_part.cpp:385
+#, kde-format
+msgid ""
+"<qt>Enlarge Font<br /><br />Make the font in this window bigger. Click and "
+"hold down the mouse button for a menu with all available font sizes.</qt>"
+msgstr ""
+
+#: khtml_part.cpp:389
+#, fuzzy, kde-format
+msgid "Shrink Font"
+msgstr "Shicilela Ifomati"
+
+#: khtml_part.cpp:392
+#, kde-format
+msgid ""
+"<qt>Shrink Font<br /><br />Make the font in this window smaller. Click and "
+"hold down the mouse button for a menu with all available font sizes.</qt>"
+msgstr ""
+
+#: khtml_part.cpp:407
+#, kde-format
+msgid ""
+"<qt>Find text<br /><br />Shows a dialog that allows you to find text on the "
+"displayed page.</qt>"
+msgstr ""
+
+#: khtml_part.cpp:411
+#, kde-format
+msgid ""
+"<qt>Find next<br /><br />Find the next occurrence of the text that you have "
+"found using the <b>Find Text</b> function.</qt>"
+msgstr ""
+
+#: khtml_part.cpp:417
+#, kde-format
+msgid ""
+"<qt>Find previous<br /><br />Find the previous occurrence of the text that "
+"you have found using the <b>Find Text</b> function.</qt>"
+msgstr ""
+
+#: khtml_part.cpp:422
+#, fuzzy, kde-format
+msgid "Find Text as You Type"
+msgstr "Fumana Okubhaliweyo"
+
+#: khtml_part.cpp:425
+#, kde-format
+msgid ""
+"This shortcut shows the find bar, for finding text in the displayed page. It "
+"cancels the effect of \"Find Links as You Type\", which sets the \"Find "
+"links only\" option."
+msgstr ""
+
+#: khtml_part.cpp:429
+#, kde-format
+msgid "Find Links as You Type"
+msgstr ""
+
+#: khtml_part.cpp:435
+#, kde-format
+msgid ""
+"This shortcut shows the find bar, and sets the option \"Find links only\"."
+msgstr ""
+
+#: khtml_part.cpp:451
+#, kde-format
+msgid ""
+"<qt>Print Frame<br /><br />Some pages have several frames. To print only a "
+"single frame, click on it and then use this function.</qt>"
+msgstr ""
+
+#: khtml_part.cpp:466
+#, fuzzy, kde-format
+msgid "Toggle Caret Mode"
+msgstr "Qhobosha Imisebenzi Egqityiweyo"
+
+#: khtml_part.cpp:769
+#, kde-format
+msgid "The fake user-agent '%1' is in use."
+msgstr ""
+
+#: khtml_part.cpp:1273
+#, kde-format
+msgid "This web page contains coding errors."
+msgstr ""
+
+#: khtml_part.cpp:1314
+#, fuzzy, kde-format
+msgid "&Hide Errors"
+msgstr "Imposiso Yefayile"
+
+#: khtml_part.cpp:1315
+#, fuzzy, kde-format
+msgid "&Disable Error Reporting"
+msgstr "&Sukwenza Umsebenzi we Spooling"
+
+#: khtml_part.cpp:1358
+#, fuzzy, kde-format
+msgid "<qt><b>Error</b>: %1: %2</qt>"
+msgstr "<b>Uhlobo</b>: %1<br> "
+
+#: khtml_part.cpp:1407
+#, fuzzy, kde-format
+msgid "<qt><b>Error</b>: node %1: %2</qt>"
+msgstr "<b>Uhlobo</b>: %1<br> "
+
+#: khtml_part.cpp:1529
+#, kde-format
+msgid "Display Images on Page"
+msgstr "Bonisa Imifanekiso Ephepheni"
+
+#: khtml_part.cpp:1913
+#, fuzzy, kde-format
+msgid "Error: %1 - %2"
+msgstr "<b>Uhlobo</b>: %1<br> "
+
+#: khtml_part.cpp:1918
+#, kde-format
+msgid "The requested operation could not be completed"
+msgstr "Lomsebenzi oceliweyo akakwazanga ukugqitywa"
+
+#: khtml_part.cpp:1924
+#, kde-format
+msgid "Technical Reason: "
+msgstr "Isizathu Enzima:"
+
+#: khtml_part.cpp:1930
+#, kde-format
+msgid "Details of the Request:"
+msgstr "Iinkcukacha Zesicelo:"
+
+#: khtml_part.cpp:1932
+#, kde-format
+msgid "URL: %1"
+msgstr "URL: %1"
+
+#: khtml_part.cpp:1935
+#, fuzzy, kde-format
+msgid "Protocol: %1"
+msgstr "Shicilela"
+
+#: khtml_part.cpp:1938
+#, kde-format
+msgid "Date and Time: %1"
+msgstr "Imini Nexesha: %1 "
+
+#: khtml_part.cpp:1940
+#, kde-format
+msgid "Additional Information: %1"
+msgstr "Ulwazi Olongeziweyo: %1"
+
+#: khtml_part.cpp:1942
+#, kde-format
+msgid "Description:"
+msgstr "Uchazo:"
+
+#: khtml_part.cpp:1948
+#, kde-format
+msgid "Possible Causes:"
+msgstr "Izizathu Ezinokwenzeka:"
+
+#: khtml_part.cpp:1955
+#, kde-format
+msgid "Possible Solutions:"
+msgstr "Izizathu Ezinokwenzeka:"
+
+#: khtml_part.cpp:2403
+#, kde-format
+msgid "Page loaded."
+msgstr "Iphepha lilayishiwe."
+
+#: khtml_part.cpp:2405
+#, kde-format
+msgid "%1 Image of %2 loaded."
+msgid_plural "%1 Images of %2 loaded."
+msgstr[0] "%1 Umfanekiso woku %2 layishiweyo."
+msgstr[1] "%1 Imifanekiso yoku %2 layishiweyo."
+
+#: khtml_part.cpp:2583
+#, fuzzy, kde-format
+msgid "Automatic Detection"
+msgstr "&Imboniso ezenzekelayo"
+
+#: khtml_part.cpp:3713 khtml_part.cpp:3777 khtml_part.cpp:3787
+#, kde-format
+msgid " (In new window)"
+msgstr " (Kwi window entsha)"
+
+#: khtml_part.cpp:3741
+#, kde-format
+msgid "Symbolic Link"
+msgstr "Ikhonkco olunophawu"
+
+#: khtml_part.cpp:3743
+#, kde-format
+msgid "%1 (Link)"
+msgstr "%1 (Ikhonkco)"
+
+#: khtml_part.cpp:3759
+#, fuzzy, kde-format
+#| msgid "%2 (%1 bytes)"
+msgid "%2 (%1 byte)"
+msgid_plural "%2 (%1 bytes)"
+msgstr[0] "%2 (%1 bytes)"
+msgstr[1] "%2 (%1 bytes)"
+
+#: khtml_part.cpp:3762
+#, fuzzy, kde-format
+msgid "%2 (%1 K)"
+msgstr "%1 (%2 K)"
+
+#: khtml_part.cpp:3789
+#, kde-format
+msgid " (In other frame)"
+msgstr " (Kwesinye isakhelo)"
+
+#: khtml_part.cpp:3795
+#, kde-format
+msgid "Email to: "
+msgstr "Email ku: "
+
+#: khtml_part.cpp:3801
+#, kde-format
+msgid " - Subject: "
+msgstr " - Umxholo: "
+
+#: khtml_part.cpp:3803
+#, kde-format
+msgid " - CC: "
+msgstr " - CC: "
+
+#: khtml_part.cpp:3805
+#, kde-format
+msgid " - BCC: "
+msgstr " - BCC: "
+
+#: khtml_part.cpp:3886 khtml_part.cpp:4108 khtml_part.cpp:4544
+#: khtml_run.cpp:106
+#, kde-format
+msgid "Save As"
+msgstr "Gcina Njenge"
+
+#: khtml_part.cpp:3891
+#, fuzzy, kde-format
+msgid ""
+"<qt>This untrusted page links to<br /><b>%1</b>.<br />Do you want to follow "
+"the link?</qt>"
+msgstr ""
+"<qt>Eli phepha elingathembekanga liphethe ikhonkco <BR><B>%1</B><BR> "
+"kwindlela yefayile yakho yobulali."
+
+#: khtml_part.cpp:3892
+#, kde-format
+msgid "Follow"
+msgstr "Landela"
+
+#: khtml_part.cpp:3987
+#, kde-format
+msgid "Frame Information"
+msgstr "Ulwazi Lwesakhelo"
+
+#: khtml_part.cpp:3993
+#, kde-format
+msgid "   <a href=\"%1\">[Properties]</a>"
+msgstr "   <a href=\"%1\">[Iimpahla]</a>"
+
+#: khtml_part.cpp:4019
+#, fuzzy, kde-format
+#| msgid "Turkish"
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Quirks"
+msgstr "Turkish"
+
+#: khtml_part.cpp:4022
+#, fuzzy, kde-format
+#| msgid "&Use as Standard"
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Almost standards"
+msgstr "&Sebenzisa Njengesezantsi"
+
+#: khtml_part.cpp:4026
+#, fuzzy, kde-format
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Strict"
+msgstr "&Qala"
+
+#: khtml_part.cpp:4095
+#, fuzzy, kde-format
+msgid "Save Background Image As"
+msgstr "Gcina Umfanekiso &Wendawo yangasemva Njenge..."
+
+#: khtml_part.cpp:4188
+#, kde-format
+msgid "The peer SSL certificate chain appears to be corrupt."
+msgstr ""
+
+#: khtml_part.cpp:4209
+#, fuzzy, kde-format
+msgid "Save Frame As"
+msgstr "&Gcina Isakhelo Njenge..."
+
+#: khtml_part.cpp:4253
+#, kde-format
+msgid "&Find in Frame..."
+msgstr "&Fumana Kwisakhelo..."
+
+#: khtml_part.cpp:4255
+#, kde-format
+msgid "&Find..."
+msgstr "&Fumana..."
+
+#: khtml_part.cpp:4902
+#, kde-format
+msgid ""
+"Warning:  This is a secure form but it is attempting to send your data back "
+"unencrypted.\n"
+"A third party may be able to intercept and view this information.\n"
+"Are you sure you wish to continue?"
+msgstr ""
+"Isilumkiso:  Olu luhlobo olukhuselekileyo kodwa izama ukuthumela i data "
+"yakho emva ingafihlwanga.\n"
+"Umntu wesithathu angakwazi ukukhusela nokubonisela olu lwazi.\n"
+"Uqinisekile unqwenela ukuqhubeka?"
+
+#: khtml_part.cpp:4905 khtml_part.cpp:4915 khtml_part.cpp:4940
+#, fuzzy, kde-format
+msgid "Network Transmission"
+msgstr "Umshicileli womsebenzi womnatha"
+
+#: khtml_part.cpp:4905 khtml_part.cpp:4916
+#, kde-format
+msgid "&Send Unencrypted"
+msgstr ""
+
+#: khtml_part.cpp:4913
+#, kde-format
+msgid ""
+"Warning: Your data is about to be transmitted across the network "
+"unencrypted.\n"
+"Are you sure you wish to continue?"
+msgstr ""
+"Isilumkiso: Idata yakho imalunga nokunikezelwa ngapha komsebenzi womnatha "
+"ongafihlwanga.\n"
+"Uqinisekile unqwenela ukuqhubekeka?"
+
+#: khtml_part.cpp:4938
+#, kde-format
+msgid ""
+"This site is attempting to submit form data via email.\n"
+"Do you want to continue?"
+msgstr ""
+"Lendawo izama ukungenisa i data ye fomu nge email.\n"
+"Ufuna ukuqhubeka?"
+
+#: khtml_part.cpp:4941
+#, fuzzy, kde-format
+msgid "&Send Email"
+msgstr "Gcina Umfanekiso Njenge"
+
+#: khtml_part.cpp:4962
+#, fuzzy, kde-format
+#| msgid ""
+#| "<qt>The form will be submitted to <BR><B>%1</B><BR>on your local "
+#| "filesystem.<BR>Do you want to submit the form?"
+msgid ""
+"<qt>The form will be submitted to <br /><b>%1</b><br />on your local "
+"filesystem.<br />Do you want to submit the form?</qt>"
+msgstr ""
+"<qt>Ifomu izakungeniswa ku<BR><B>%1</B><BR> kwindlela yefayile yakho "
+"yobulali.<BR>Ufuna ukuyingenisa ifomu na?"
+
+#: khtml_part.cpp:5018
+#, kde-format
+msgid ""
+"This site attempted to attach a file from your computer in the form "
+"submission. The attachment was removed for your protection."
+msgstr ""
+"Lendawo izame ukufakelela ifayile ukusuka kwi komphuta kungeniso. Ufakelelo "
+"lususiwe ukukukhusela lwakho."
+
+#: khtml_part.cpp:6112
+#, kde-format
+msgid "(%1/s)"
+msgstr "(%1/s)"
+
+#: khtml_part.cpp:7040
+#, kde-format
+msgid "Security Warning"
+msgstr "Isilumkiso Sokhuseleko"
+
+#: khtml_part.cpp:7047
+#, fuzzy, kde-format
+msgid "<qt>Access by untrusted page to<br /><b>%1</b><br /> denied.</qt>"
+msgstr ""
+"<qt>Eli phepha elingathembekanga liphethe ikhonkco <BR><B>%1</B><BR> "
+"kwindlela yefayile yakho yobulali."
+
+#: khtml_part.cpp:7418
+#, kde-format
+msgid "The wallet '%1' is open and being used for form data and passwords."
+msgstr ""
+
+#: khtml_part.cpp:7477
+#, fuzzy, kde-format
+msgid "&Close Wallet"
+msgstr "Cacisa zonke"
+
+#: khtml_part.cpp:7480
+#, kde-format
+msgid "&Allow storing passwords for this site"
+msgstr ""
+
+#: khtml_part.cpp:7485
+#, kde-format
+msgid "Remove password for form %1"
+msgstr ""
+
+#: khtml_part.cpp:7600
+#, fuzzy, kde-format
+msgid "JavaScript &Debugger"
+msgstr "Umkhuphi wegciwane we JavaScript"
+
+#: khtml_part.cpp:7633
+#, fuzzy, kde-format
+msgid "This page was prevented from opening a new window via JavaScript."
+msgstr ""
+"Le ndawo izama ukuvula umkhangeli zincwadi omtsha we window usebenzisa i "
+"JavaScript.\n"
+"Ufuna ukuyivumela le nto?"
+
+#: khtml_part.cpp:7639
+#, kde-format
+msgid "Popup Window Blocked"
+msgstr ""
+
+#: khtml_part.cpp:7639
+#, kde-format
+msgid ""
+"This page has attempted to open a popup window but was blocked.\n"
+"You can click on this icon in the status bar to control this behavior\n"
+"or to open the popup."
+msgstr ""
+
+#: khtml_part.cpp:7653
+#, kde-format
+msgid "&Show Blocked Popup Window"
+msgid_plural "&Show %1 Blocked Popup Windows"
+msgstr[0] ""
+msgstr[1] ""
+
+#: khtml_part.cpp:7655
+#, kde-format
+msgid "Show Blocked Window Passive Popup &Notification"
+msgstr ""
+
+#: khtml_part.cpp:7657
+#, kde-format
+msgid "&Configure JavaScript New Window Policies..."
+msgstr ""
+
+#: khtml_printsettings.cpp:30
+#, kde-format
+msgid ""
+"<qt><p><strong>'Print images'</strong></p><p>If this checkbox is enabled, "
+"images contained in the HTML page will be printed. Printing may take longer "
+"and use more ink or toner.</p><p>If this checkbox is disabled, only the text "
+"of the HTML page will be printed, without the included images. Printing will "
+"be faster and use less ink or toner.</p> </qt>"
+msgstr ""
+
+#: khtml_printsettings.cpp:42
+#, kde-format
+msgid ""
+"<qt><p><strong>'Print header'</strong></p><p>If this checkbox is enabled, "
+"the printout of the HTML document will contain a header line at the top of "
+"each page. This header contains the current date, the location URL of the "
+"printed page and the page number.</p><p>If this checkbox is disabled, the "
+"printout of the HTML document will not contain such a header line.</p> </qt>"
+msgstr ""
+
+#: khtml_printsettings.cpp:55
+#, kde-format
+msgid ""
+"<qt><p><strong>'Printerfriendly mode'</strong></p><p>If this checkbox is "
+"enabled, the printout of the HTML document will be black and white only, and "
+"all colored background will be converted into white. Printout will be faster "
+"and use less ink or toner.</p><p>If this checkbox is disabled, the printout "
+"of the HTML document will happen in the original color settings as you see "
+"in your application. This may result in areas of full-page color (or "
+"grayscale, if you use a black+white printer). Printout will possibly happen "
+"more slowly and will probably use more toner or ink.</p> </qt>"
+msgstr ""
+
+#: khtml_printsettings.cpp:70
+#, kde-format
+msgid "HTML Settings"
+msgstr "Izicwangciso ze HTML"
+
+#: khtml_printsettings.cpp:72
+#, kde-format
+msgid "Printer friendly mode (black text, no background)"
+msgstr ""
+"Umshiceleli wendlela enobuntu (umbhalo omnyama, akukho ndawo yangasemva)"
+
+#: khtml_printsettings.cpp:75
+#, kde-format
+msgid "Print images"
+msgstr "Shicilela imifanekiso"
+
+#: khtml_printsettings.cpp:78
+#, kde-format
+msgid "Print header"
+msgstr "Shicilela okubhaliwe okuphezulu kwephepha"
+
+#: khtml_settings.cpp:906
+#, fuzzy, kde-format
+msgid "Filter error"
+msgstr "Imposiso Yefayile"
+
+#: khtmladaptorpart.cpp:29
+#, fuzzy, kde-format
+msgid "Inactive"
+msgstr "yadalwa"
+
+#: khtmlimage.cpp:49
+#, fuzzy, kde-format
+#| msgid "KHTML"
+msgid "KHTML Image"
+msgstr "KHTML"
+
+#: khtmlimage.cpp:195
+#, fuzzy, kde-format
+msgid "%1 (%2 - %3x%4 Pixels)"
+msgstr "%1 - %2x%3 Amachaphaza omfanekiso"
+
+#: khtmlimage.cpp:197
+#, kde-format
+msgid "%1 - %2x%3 Pixels"
+msgstr "%1 - %2x%3 Amachaphaza omfanekiso"
+
+#: khtmlimage.cpp:202
+#, fuzzy, kde-format
+msgid "%1 (%2x%3 Pixels)"
+msgstr "%1 - %2x%3 Amachaphaza omfanekiso"
+
+#: khtmlimage.cpp:204
+#, fuzzy, kde-format
+msgid "Image - %1x%2 Pixels"
+msgstr "Umfanekiso - %2x%3 Amachaphaza omfanekiso"
+
+#: khtmlimage.cpp:210
+#, kde-format
+msgid "Done."
+msgstr "Yenzekile."
+
+#: khtmlview.cpp:1900
+#, fuzzy, kde-format
+msgid "Access Keys activated"
+msgstr "Unikezelo Alwamkelekanga"
+
+#: kjserrordlg.cpp:9
+#, kde-format
+msgid "C&lear"
+msgstr "C&ima"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, fuzzy, kde-format
+msgid "JavaScript Errors"
+msgstr "Imposiso ye KScript"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, kde-format
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at http://bugs.kde.org/.  A test case "
+"which illustrates the problem will be appreciated."
+msgstr ""
+
+#: kmultipart/httpfiltergzip.cpp:89
+#, kde-format
+msgid "Receiving corrupt data."
+msgstr ""
+
+#: kmultipart/kmultipart.cpp:39
+#, kde-format
+msgid "KMultiPart"
+msgstr "KMultiPart"
+
+#: kmultipart/kmultipart.cpp:41
+#, kde-format
+msgid "Embeddable component for multipart/mixed"
+msgstr "Ingxenye elungiselekayo ye multipart/mixed"
+
+#: kmultipart/kmultipart.cpp:43
+#, kde-format
+msgid "Copyright 2001-2011, David Faure <faure@kde.org>"
+msgstr ""
+
+#: kmultipart/kmultipart.cpp:336
+#, fuzzy, kde-format
+msgid "No handler found for %1."
+msgstr "Akukho mphathi ufumanekayo we %1"
+
+#: misc/kencodingdetector.cpp:1123 misc/kencodingdetector.cpp:1224
+#, fuzzy, kde-format
+#| msgid "Unicode"
+msgctxt "@item Text character set"
+msgid "Unicode"
+msgstr "Ikhowudi enye"
+
+#: misc/kencodingdetector.cpp:1125 misc/kencodingdetector.cpp:1194
+#, fuzzy, kde-format
+#| msgid "Cyrillic"
+msgctxt "@item Text character set"
+msgid "Cyrillic"
+msgstr "Cyrillic"
+
+#: misc/kencodingdetector.cpp:1127 misc/kencodingdetector.cpp:1209
+#, fuzzy, kde-format
+#| msgid "Western European"
+msgctxt "@item Text character set"
+msgid "Western European"
+msgstr "Western European"
+
+#: misc/kencodingdetector.cpp:1129 misc/kencodingdetector.cpp:1191
+#, fuzzy, kde-format
+#| msgid "Central European"
+msgctxt "@item Text character set"
+msgid "Central European"
+msgstr "Central European"
+
+#: misc/kencodingdetector.cpp:1131 misc/kencodingdetector.cpp:1197
+#, fuzzy, kde-format
+#| msgid "Greek"
+msgctxt "@item Text character set"
+msgid "Greek"
+msgstr "Greek"
+
+#: misc/kencodingdetector.cpp:1133 misc/kencodingdetector.cpp:1200
+#, fuzzy, kde-format
+#| msgid "Hebrew"
+msgctxt "@item Text character set"
+msgid "Hebrew"
+msgstr "Hebrew"
+
+#: misc/kencodingdetector.cpp:1135 misc/kencodingdetector.cpp:1206
+#, fuzzy, kde-format
+#| msgid "Turkish"
+msgctxt "@item Text character set"
+msgid "Turkish"
+msgstr "Turkish"
+
+#: misc/kencodingdetector.cpp:1137 misc/kencodingdetector.cpp:1203
+#, fuzzy, kde-format
+#| msgid "Japanese"
+msgctxt "@item Text character set"
+msgid "Japanese"
+msgstr "Japanese"
+
+#: misc/kencodingdetector.cpp:1139 misc/kencodingdetector.cpp:1188
+#, fuzzy, kde-format
+#| msgid "Baltic"
+msgctxt "@item Text character set"
+msgid "Baltic"
+msgstr "Baltic"
+
+#: misc/kencodingdetector.cpp:1141 misc/kencodingdetector.cpp:1185
+#, fuzzy, kde-format
+#| msgid "Arabic"
+msgctxt "@item Text character set"
+msgid "Arabic"
+msgstr "Arabic"
+
+#: misc/kencodingdetector.cpp:1212
+#, fuzzy, kde-format
+#| msgid "Chinese Traditional"
+msgctxt "@item Text character set"
+msgid "Chinese Traditional"
+msgstr "Ezakwantu Zamatshayina"
+
+#: misc/kencodingdetector.cpp:1215
+#, fuzzy, kde-format
+#| msgid "Chinese Simplified"
+msgctxt "@item Text character set"
+msgid "Chinese Simplified"
+msgstr "Ingcaciso elula Yamatshayina"
+
+#: misc/kencodingdetector.cpp:1218
+#, fuzzy, kde-format
+#| msgid "Korean"
+msgctxt "@item Text character set"
+msgid "Korean"
+msgstr "Korean"
+
+#: misc/kencodingdetector.cpp:1221
+#, fuzzy, kde-format
+#| msgid "Thai"
+msgctxt "@item Text character set"
+msgid "Thai"
+msgstr "Thai"
+
+#: rendering/media_controls.cpp:46
+#, kde-format
+msgid "Play"
+msgstr ""
+
+#: rendering/media_controls.cpp:49
+#, fuzzy, kde-format
+msgid "Pause"
+msgstr "Phumla"
+
+#: rendering/render_form.cpp:903
+#, fuzzy, kde-format
+#| msgid "Shortcut"
+msgid "New Web Shortcut"
+msgstr "Indlela emfutshane"
+
+#: rendering/render_form.cpp:924
+#, kde-format
+msgid "%1 is already assigned to %2"
+msgstr ""
+
+#: rendering/render_form.cpp:924
+#, kde-format
+msgid "Error"
+msgstr "Imposiso"
+
+#: rendering/render_form.cpp:970
+#, kde-format
+msgid "Search &provider name:"
+msgstr ""
+
+#: rendering/render_form.cpp:972
+#, kde-format
+msgid "New search provider"
+msgstr ""
+
+#: rendering/render_form.cpp:977
+#, fuzzy, kde-format
+#| msgid "Shortcuts"
+msgid "UR&I shortcuts:"
+msgstr "Ezimfutshane"
+
+#: rendering/render_form.cpp:1056
+#, fuzzy, kde-format
+msgid "Clear &History"
+msgstr "Cima indlela emfutshane"
+
+#: rendering/render_form.cpp:1071
+#, fuzzy, kde-format
+#| msgid "Clear shortcut"
+msgid "Create Web Shortcut"
+msgstr "Cima indlela emfutshane"
+
+#: ui/findbar/khtmlfindbar.cpp:49
+#, kde-format
+msgid "C&ase sensitive"
+msgstr "U&mzekelo onovakalelo"
+
+#: ui/findbar/khtmlfindbar.cpp:51
+#, kde-format
+msgid "&Whole words only"
+msgstr "&Amagama apheleleyo kuphela"
+
+#: ui/findbar/khtmlfindbar.cpp:53
+#, fuzzy, kde-format
+msgid "From c&ursor"
+msgstr "&Ukusuka kwisikhombisi"
+
+#: ui/findbar/khtmlfindbar.cpp:55
+#, kde-format
+msgid "&Selected text"
+msgstr "&Okubhaliweyo okukhethiweyo"
+
+#: ui/findbar/khtmlfindbar.cpp:57
+#, fuzzy, kde-format
+msgid "Regular e&xpression"
+msgstr "&Inkcazo eqhelekileyo"
+
+#: ui/findbar/khtmlfindbar.cpp:59
+#, kde-format
+msgid "Find &links only"
+msgstr ""
+
+#: ui/findbar/khtmlfindbar.cpp:224
+#, fuzzy, kde-format
+msgid "Not found"
+msgstr "utelekiso olunye olufumanekileyo"
+
+#: ui/findbar/khtmlfindbar.cpp:239
+#, kde-format
+msgid "No more matches for this search direction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, fuzzy, kde-format
+#| msgid "Find:"
+msgid "F&ind:"
+msgstr "Fumana:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&Elandelayo"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "&Edlulileyo"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, fuzzy, kde-format
+#| msgid "Options"
+msgid "Opt&ions"
+msgstr "Iinketho"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
+#, fuzzy, kde-format
+#| msgid "Do you really want to execute '%1'? "
+msgid "Do you want to store this password?"
+msgstr "Ufuna ngokwenene ukuphumeza i '%1'?"
+
+#: ui/passwordbar/storepassbar.cpp:61
+#, fuzzy, kde-format
+msgid "Do you want to store this password for %1?"
+msgstr "Ufuna ukuqala kwakhona uphendlo ekuqaleni?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, fuzzy, kde-format
+msgid "&Store"
+msgstr "Isitalato"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, fuzzy, kde-format
+#| msgid "Do not show this message again"
+msgid "Ne&ver store for this site"
+msgstr "Sukubonisa lomyalezo kwakhona"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, fuzzy, kde-format
+#| msgid "Do not show this message again"
+msgid "Do &not store this time"
+msgstr "Sukubonisa lomyalezo kwakhona"
+
+#: xml/dom_docimpl.cpp:2378
+#, kde-format
+msgid "Basic Page Style"
+msgstr ""
+
+#: xml/xml_tokenizer.cpp:347
+#, kde-format
+msgid "the document is not in the correct file format"
+msgstr "oluxwebhu aliyiyo uhlobo lwe fayili fomati"
+
+#: xml/xml_tokenizer.cpp:352
+#, kde-format
+msgid "fatal parsing error: %1 in line %2, column %3"
+msgstr "imposiso enobungozi yocukucezo lwesivakalisi: %1 kumgca %2,umhlathi %3"
+
+#: xml/xml_tokenizer.cpp:567
+#, kde-format
+msgid "XML parsing error"
+msgstr "XML imposiso ekucukucezweni lwesivakalisi"
