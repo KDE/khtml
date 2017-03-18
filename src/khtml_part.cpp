@@ -1912,7 +1912,7 @@ void KHTMLPart::htmlError(int errorCode, const QString &text, const QUrl &reqUrl
 
     html.replace(QLatin1String("TITLE"), i18n("Error: %1 - %2", errorName, url));
     html.replace(QLatin1String("DIRECTION"), QApplication::isRightToLeft() ? "rtl" : "ltr");
-    html.replace(QLatin1String("ICON_PATH"), KIconLoader::global()->iconPath("dialog-warning", -KIconLoader::SizeHuge));
+    html.replace(QLatin1String("ICON_PATH"), QUrl::fromLocalFile(KIconLoader::global()->iconPath("dialog-warning", -KIconLoader::SizeHuge)).url());
 
     QString doc = QLatin1String("<h1>");
     doc += i18n("The requested operation could not be completed");
