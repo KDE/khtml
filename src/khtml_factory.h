@@ -28,7 +28,7 @@
 class KHTMLFactory : public KPluginFactory
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.kde.KPluginFactory" FILE "")
+    Q_PLUGIN_METADATA(IID "org.kde.KPluginFactory")
     Q_INTERFACES(KPluginFactory)
 public:
     KHTMLFactory();
