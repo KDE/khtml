@@ -64,7 +64,7 @@
 // Turn off gnu90 inlining to avoid linker errors
 #undef __GNUC_STDC_INLINE__
 #undef __GNUC_GNU_INLINE__
-#include "doctypes.cpp"
+#include <doctypes.h>
 
 #undef OPTIONAL  // for win32, MinGW
 

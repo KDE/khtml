@@ -91,6 +91,8 @@ if(NOT WIN32 AND NOT APPLE AND X11_FOUND)
     find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED X11Extras)
 endif()
 
+find_package(Gperf REQUIRED)
+
 remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 remove_definitions(-DQT_NO_CAST_FROM_BYTEARRAY)
 
