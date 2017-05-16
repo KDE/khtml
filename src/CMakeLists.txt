@@ -257,7 +257,7 @@ set(khtmlhtml_STAT_SRCS
   html/kopenssl.cpp
 )
 ecm_gperf_generate(html/doctypes.gperf ${CMAKE_CURRENT_BINARY_DIR}/doctypes.h khtmlhtml_STAT_SRCS
-                   GENERATION_FLAGS "-k *")
+                   GENERATION_FLAGS "--key-positions=*")
 
 # khtml/ecma/Makefile.am: kjs_html
 
