@@ -255,9 +255,12 @@ set(khtmlhtml_STAT_SRCS
   html/TimeRanges.cpp
   html/ksslkeygen.cpp
   html/kopenssl.cpp
+  html/kentities.cpp
 )
 ecm_gperf_generate(html/doctypes.gperf ${CMAKE_CURRENT_BINARY_DIR}/doctypes.h khtmlhtml_STAT_SRCS
                    GENERATION_FLAGS "--key-positions=*")
+ecm_gperf_generate(html/kentities.gperf ${CMAKE_CURRENT_BINARY_DIR}/kentities-gperf.h khtmlhtml_STAT_SRCS
+                   GENERATION_FLAGS "--key-positions=* -D -s 2")
 
 # khtml/ecma/Makefile.am: kjs_html
 
