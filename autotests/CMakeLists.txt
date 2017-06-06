@@ -1,4 +1,5 @@
 include(ECMMarkAsTest)
+include(ECMAddTests)
 
 find_package(Qt5Test "${REQUIRED_QT_VERSION}" CONFIG REQUIRED)
 set_package_properties(Qt5Test PROPERTIES PURPOSE "Required for autotests")
@@ -23,17 +24,20 @@ include_directories(
   ${KHTML_SOURCE_DIR}/css
 )
 
-add_executable(khtmlparttest khtmlparttest.cpp)
-add_test(khtml-parttest khtmlparttest)
-target_link_libraries(khtmlparttest Qt5::Test KF5::KHtml Qt5::Widgets KF5::XmlGui KF5::TextWidgets KF5::Parts)
-ecm_mark_as_test(khtmlparttest)
+ecm_add_test(khtmlparttest.cpp
+    LINK_LIBRARIES Qt5::Test KF5::KHtml Qt5::Widgets KF5::XmlGui KF5::TextWidgets KF5::Parts
+    TEST_NAME parttest
+    NAME_PREFIX "khtml-"
+    GUI
+)
 
 set(kencodingdetector_SRCS
     ${KHTML_SOURCE_DIR}/misc/kencodingdetector.cpp
     ${KHTML_SOURCE_DIR}/misc/guess_ja.cpp
 )
-
-add_executable(kencodingdetectortest kencodingdetectortest.cpp ${kencodingdetector_SRCS})
-add_test(khtml-kencodingdetectortest kencodingdetectortest)
-target_link_libraries(kencodingdetectortest KF5::Codecs KF5::I18n KF5::KHtml Qt5::Test)
-ecm_mark_as_test(kencodingdetectortest)
+ecm_add_test(${kencodingdetector_SRCS}
+    LINK_LIBRARIES KF5::Codecs KF5::I18n KF5::KHtml Qt5::Test
+    TEST_NAME kencodingdetectortest
+    NAME_PREFIX "khtml-"
+    GUI
+)
