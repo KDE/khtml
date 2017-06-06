@@ -35,7 +35,7 @@ set(kencodingdetector_SRCS
     ${KHTML_SOURCE_DIR}/misc/kencodingdetector.cpp
     ${KHTML_SOURCE_DIR}/misc/guess_ja.cpp
 )
-ecm_add_test(${kencodingdetector_SRCS}
+ecm_add_test(kencodingdetectortest.cpp ${kencodingdetector_SRCS}
     LINK_LIBRARIES KF5::Codecs KF5::I18n KF5::KHtml Qt5::Test
     TEST_NAME kencodingdetectortest
     NAME_PREFIX "khtml-"
