@@ -135,7 +135,7 @@ public:
 };
 
 static const char *const positiveList[] = {
-    "BMP", "TIFF", "JP2", "PNM", "EXR", "XBM", "XPM", "ICO", nullptr
+    "BMP", "TIFF", "JP2", "PNM", "EXR", "XBM", "XPM", "ICO", "SVG", "SVGZ", nullptr
 };
 
 bool isSupportedFormat(QString format)
