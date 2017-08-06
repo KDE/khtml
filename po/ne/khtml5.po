@@ -1,0 +1,1910 @@
+# translation of kdelibs4.po to Nepali
+# Mahesh Subedi <submanesh@gmail.com>, 2006, 2007.
+# Shiva Prasad Pokharel <pokharelshiva@hotmail.com>, 2006, 2007.
+# shyam krishna ball <shyam@mpp.org.np>, 2006.
+# shyam krishna bal <shyamkrishna_bal@yahoo.com>, 2006, 2007.
+# Shiva Pokharel <shiva@mpp.org.np>, 2007.
+# Nabin Gautam <nabin@mpp.org.np>, 2007.
+# Shiva Prasad Pokharel <pokharelshiv@gmail.com>, 2007.
+# Shyam Krishna Bal <shyamkrishna_bal@yahoo.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2016-12-11 02:37+0100\n"
+"PO-Revision-Date: 2007-11-05 15:41+0545\n"
+"Last-Translator: Shyam Krishna Bal <shyamkrishna_bal@yahoo.com>\n"
+"Language-Team: Nepali <info@mpp.org.np>\n"
+"Language: ne\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n !=1\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Mahesh Subedi, श्यामकृष्ण बल, Nabin Gautam"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "submanesh@gmail.com, shyamkrishna_bal@yahoo.com, Nabin@mpp.org.np"
+
+#: ecma/debugger/callstackdock.cpp:35
+#, fuzzy, kde-format
+#| msgid "Call stack"
+msgid "Call Stack"
+msgstr "कल स्ट्याक"
+
+#: ecma/debugger/callstackdock.cpp:39
+#, fuzzy, kde-format
+#| msgctxt "dictionary variant"
+#| msgid "small"
+msgid "Call"
+msgstr "सानो"
+
+#: ecma/debugger/callstackdock.cpp:39
+#, fuzzy, kde-format
+#| msgid "License:"
+msgid "Line"
+msgstr "इजाजतपत्र:"
+
+#: ecma/debugger/consoledock.cpp:220
+#, fuzzy, kde-format
+#| msgid "Close"
+msgid "Console"
+msgstr "बन्द गर्नुहोस्"
+
+#: ecma/debugger/consoledock.cpp:243
+#, kde-format
+msgid "Enter"
+msgstr ""
+
+#: ecma/debugger/debugdocument.cpp:206
+#, fuzzy, kde-format
+#| msgid ""
+#| "A KDE text-editor component could not be found;\n"
+#| "please check your KDE installation."
+msgid ""
+"Unable to find the Kate editor component;\n"
+"please check your KDE installation."
+msgstr ""
+"केडीई पाठ सम्पादक फेला पार्न सक्दैन;\n"
+"कृपया तपाईँको केडीई स्थापना जाँच गर्नुहोस् ।"
+
+#: ecma/debugger/debugdocument.cpp:272
+#, fuzzy, kde-format
+#| msgid "Run to breakpoint..."
+msgid "Breakpoint"
+msgstr "विच्छेद बिन्दुमा चलाउनुहोस्..."
+
+#: ecma/debugger/debugwindow.cpp:101
+#, kde-format
+msgid "JavaScript Debugger"
+msgstr "जाभास्क्रिप्ट त्रुटिमोचक"
+
+#: ecma/debugger/debugwindow.cpp:178
+#, kde-format
+msgid "&Break at Next Statement"
+msgstr "पछिल्लो कथनमा विच्छेद गर्नुहोस्"
+
+#: ecma/debugger/debugwindow.cpp:179
+#, fuzzy, kde-format
+#| msgid "&Break at Next Statement"
+msgid "Break at Next"
+msgstr "पछिल्लो कथनमा विच्छेद गर्नुहोस्"
+
+#: ecma/debugger/debugwindow.cpp:184
+#, kde-format
+msgid "Continue"
+msgstr "जारी राख्नुहोस्"
+
+#: ecma/debugger/debugwindow.cpp:190
+#, kde-format
+msgid "Step Over"
+msgstr "माथिल्लो चरणमा जानुहोस्"
+
+#: ecma/debugger/debugwindow.cpp:196
+#, kde-format
+msgid "Step Into"
+msgstr "चरणमा जानुहोस्"
+
+#: ecma/debugger/debugwindow.cpp:203
+#, kde-format
+msgid "Step Out"
+msgstr "चरणबाट बाहिरनुहोस्"
+
+#: ecma/debugger/debugwindow.cpp:209
+#, kde-format
+msgid "Reindent Sources"
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:214
+#, fuzzy, kde-format
+#| msgid "Action"
+msgid "Report Exceptions"
+msgstr "कार्य"
+
+#: ecma/debugger/debugwindow.cpp:222
+#, kde-format
+msgid "&Debug"
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:230
+#, kde-format
+msgid "&Settings"
+msgstr "सेटिङ"
+
+#: ecma/debugger/debugwindow.cpp:256
+#, fuzzy, kde-format
+#| msgid "Close Document"
+msgid "Close source"
+msgstr "कागजात बन्द गर्नुहोस्"
+
+#: ecma/debugger/debugwindow.cpp:262
+#, kde-format
+msgid "Ready"
+msgstr "तयार"
+
+#: ecma/debugger/debugwindow.cpp:587
+#, kde-format
+msgid ""
+"An error occurred while attempting to run a script on this page.\n"
+"\n"
+"%1 line %2:\n"
+"%3"
+msgstr ""
+"यो पृष्ठमा स्क्रिप्ट चलाउने प्रयास गर्दा त्रुटि भयो ।\n"
+"\n"
+"%1 रेखा %2:\n"
+"%3"
+
+#: ecma/debugger/debugwindow.cpp:780
+#, kde-format
+msgid ""
+"Do not know where to evaluate the expression. Please pause a script or open "
+"a source file."
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:814
+#, kde-format
+msgid "Evaluation threw an exception %1"
+msgstr ""
+
+#: ecma/debugger/errordlg.cpp:35
+#, kde-format
+msgid "JavaScript Error"
+msgstr "जाभास्क्रिप्ट त्रुटि"
+
+#: ecma/debugger/errordlg.cpp:49
+#, kde-format
+msgid "&Do not show this message again"
+msgstr "यो सन्देश फेरि नदेखाउनुहोस्"
+
+#: ecma/debugger/localvariabledock.cpp:43
+#, kde-format
+msgid "Local Variables"
+msgstr ""
+
+#: ecma/debugger/localvariabledock.cpp:51
+#, fuzzy, kde-format
+#| msgid "Reference error"
+msgid "Reference"
+msgstr "सन्दर्भ त्रुटि"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
+#: java/kjavaappletviewer.cpp:150
+#, kde-format
+msgid "Value"
+msgstr "मान"
+
+#: ecma/debugger/scriptsdock.cpp:37
+#, fuzzy, kde-format
+#| msgid "Close Script"
+msgid "Loaded Scripts"
+msgstr "स्क्रिप्ट बन्द गर्नुहोस्"
+
+#: ecma/kjs_binding.cpp:196
+#, fuzzy, kde-format
+#| msgid ""
+#| "A script on this page is causing KHTML to freeze. If it continues to run, "
+#| "other applications may become less responsive.\n"
+#| "Do you want to abort the script?"
+msgid ""
+"A script on this page is causing KHTML to freeze. If it continues to run, "
+"other applications may become less responsive.\n"
+"Do you want to stop the script?"
+msgstr ""
+"यो पृष्ठको स्क्रिप्टका कारणले KHTML फ्रिज भयो । यदि यो चली रह्यो भने, अन्य कार्यक्रम कम "
+"प्रतिक्रियात्मक हुन सक्दछन् ।\n"
+"तपाईँ स्क्रिप्ट परित्याग गर्न चाहनुहुन्छ ?"
+
+#: ecma/kjs_binding.cpp:196
+#, kde-format
+msgid "JavaScript"
+msgstr "जाभास्क्रिप्ट"
+
+#: ecma/kjs_binding.cpp:196
+#, fuzzy, kde-format
+#| msgid "Open Script"
+msgid "&Stop Script"
+msgstr "स्क्रिप्ट खोल्नुहोस्"
+
+#: ecma/kjs_binding.cpp:446
+#, kde-format
+msgid "Parse error at %1 line %2"
+msgstr "%2 को %1 रेखामा पद वर्णन त्रुटि"
+
+#: ecma/kjs_html.cpp:2233 ecma/kjs_window.cpp:1946
+#, kde-format
+msgid "Confirmation: JavaScript Popup"
+msgstr "यकीन: जाभास्क्रिप्ट पपअप"
+
+#: ecma/kjs_html.cpp:2235
+#, kde-format
+msgid ""
+"This site is submitting a form which will open up a new browser window via "
+"JavaScript.\n"
+"Do you want to allow the form to be submitted?"
+msgstr ""
+"यो साइटले जाभास्क्रिप्ट मार्फत नयाँ ब्राउजर सञ्झ्याल खोल्ने एउटा फारम पेश गरेकोछ ।\n"
+"तपाईँ पेश गरिने सो फारमलाई अनुमति दिन चाहनुहुन्छ ?"
+
+#: ecma/kjs_html.cpp:2238
+#, kde-format
+msgid ""
+"<qt>This site is submitting a form which will open <p>%1</p> in a new "
+"browser window via JavaScript.<br />Do you want to allow the form to be "
+"submitted?</qt>"
+msgstr ""
+"<qt>यो साइटले एउटा फारम पेश गरेकोछ जसले जाभास्क्रिप्ट मार्फत नयाँ ब्राउजर सञ्झ्यालमा <p>"
+"%1</p> खोल्नेछ ।<br /> तपाईँ पेश गरिने सो फारमलाई अनुमति दिन चाहनुहुन्छ ?</qt>"
+
+#: ecma/kjs_html.cpp:2240 ecma/kjs_window.cpp:1954
+#, kde-format
+msgid "Allow"
+msgstr "अनुमति दिनुहोस्"
+
+#: ecma/kjs_html.cpp:2240 ecma/kjs_window.cpp:1954
+#, kde-format
+msgid "Do Not Allow"
+msgstr "अनुमति नदिनुहोस्"
+
+#: ecma/kjs_window.cpp:1949
+#, kde-format
+msgid ""
+"This site is requesting to open up a new browser window via JavaScript.\n"
+"Do you want to allow this?"
+msgstr ""
+"यो साइटलाई जाभास्क्रिप्ट मार्फत नयाँ ब्राउजर खोल्न अनुरोध गरिन्छ ।\n"
+"तपाईँ यसलाई अनुमति दिन चाहनुहुन्छ ?"
+
+#: ecma/kjs_window.cpp:1952
+#, kde-format
+msgid ""
+"<qt>This site is requesting to open<p>%1</p>in a new browser window via "
+"JavaScript.<br />Do you want to allow this?</qt>"
+msgstr ""
+"<qt>यो साइटलाई जाभास्क्रिप्ट मार्फत नयाँ ब्राउजर सञ्झ्यालमा <p>%1</p> खोल्न अनुरोध "
+"गरिन्छ ।<br />तपाईँ यसलाई अनुमति दिन चाहनुहुन्छ ?</qt>"
+
+#: ecma/kjs_window.cpp:2285
+#, kde-format
+msgid "Close window?"
+msgstr "सञ्झ्याल बन्द गर्नुहुन्छ ?"
+
+#: ecma/kjs_window.cpp:2285
+#, kde-format
+msgid "Confirmation Required"
+msgstr "स्वीकृति आवश्यक"
+
+#: ecma/kjs_window.cpp:3235
+#, kde-format
+msgid ""
+"Do you want a bookmark pointing to the location \"%1\" to be added to your "
+"collection?"
+msgstr "तपाईँ आफ्नो सङ्कलनमा थपिने \"%1\" स्थानलाई सूचीत गर्ने पुस्तकचिनो चाहनुहुन्छ ?"
+
+#: ecma/kjs_window.cpp:3238
+#, kde-format
+msgid ""
+"Do you want a bookmark pointing to the location \"%1\" titled \"%2\" to be "
+"added to your collection?"
+msgstr ""
+"तपाईँ आफ्नो सङ्कलनमा थपिने \"%1\" स्थानलाई सूचीत गर्ने \"%2\" शीर्षक दिइएको पुस्तकचिनो "
+"चाहनुहुन्छ ?"
+
+#: ecma/kjs_window.cpp:3247
+#, kde-format
+msgid "JavaScript Attempted Bookmark Insert"
+msgstr "जाभास्क्रिप्टले पुस्तकचिनो घुसाउन प्रयास गर्यो"
+
+#: ecma/kjs_window.cpp:3251
+#, kde-format
+msgid "Insert"
+msgstr "घुसाउनुहोस्"
+
+#: ecma/kjs_window.cpp:3251
+#, kde-format
+msgid "Disallow"
+msgstr "अनुमति नदिनुहोस्"
+
+#: html/html_formimpl.cpp:420
+#, kde-format
+msgid ""
+"The following files will not be uploaded because they could not be found.\n"
+"Do you want to continue?"
+msgstr ""
+"निम्न फाइल अपलोड गर्न सकिँदैन किनभने तिनीहरू फेला पार्न सकिँदैन ।\n"
+"तपाईँ निरन्तरता दिन चाहनुहुन्छ ?"
+
+#: html/html_formimpl.cpp:424
+#, kde-format
+msgid "Submit Confirmation"
+msgstr "स्वीकृति पेश गर्नुहोस्"
+
+#: html/html_formimpl.cpp:424
+#, kde-format
+msgid "&Submit Anyway"
+msgstr "जसरी पनि पेश गर्नुहोस्"
+
+#: html/html_formimpl.cpp:434
+#, kde-format
+msgid ""
+"You are about to transfer the following files from your local computer to "
+"the Internet.\n"
+"Do you really want to continue?"
+msgstr ""
+"तपाईँले स्थानीय कम्प्युटरबाट निम्न फाइल इन्टरनेटमा स्थानान्तरण गर्नुहुदैँछ ।\n"
+"तपाईँ साच्चिकै निरन्तरता दिन चाहनुहुन्छ ?"
+
+#: html/html_formimpl.cpp:438
+#, kde-format
+msgid "Send Confirmation"
+msgstr "स्वीकृति पठाउनुहोस्"
+
+#: html/html_formimpl.cpp:438
+#, fuzzy, kde-format
+#| msgid "&Send Files"
+msgid "&Send File"
+msgid_plural "&Send Files"
+msgstr[0] "फाइल पठाउनुहोस्"
+msgstr[1] "फाइल पठाउनुहोस्"
+
+#: html/html_formimpl.cpp:1687 html/html_formimpl.cpp:1908 khtml_part.cpp:4963
+#: khtmlview.cpp:2877 khtmlview.cpp:2921
+#, kde-format
+msgid "Submit"
+msgstr "पेश गर्नुहोस्"
+
+#: html/html_formimpl.cpp:1900 khtmlview.cpp:2892 khtmlview.cpp:2927
+#, kde-format
+msgid "Reset"
+msgstr "फेरि सेट गर्नुहोस्"
+
+#: html/html_formimpl.cpp:2824
+#, fuzzy, kde-format
+#| msgid "General"
+msgid "Key Generator"
+msgstr "साधारण"
+
+#: html/html_objectimpl.cpp:632
+#, kde-format
+msgid ""
+"No plugin found for '%1'.\n"
+"Do you want to download one from %2?"
+msgstr ""
+"'%1' का लागि प्लगइन फेला परेन ।\n"
+"तपाईँ %2 बाट एउटा डाउनलोड गर्न चाहनुहुन्छ ?"
+
+#: html/html_objectimpl.cpp:633
+#, kde-format
+msgid "Missing Plugin"
+msgstr "हराइरहेको प्लगइन"
+
+#: html/html_objectimpl.cpp:633
+#, kde-format
+msgid "Download"
+msgstr "डाउनलोड गर्नुहोस्"
+
+#: html/html_objectimpl.cpp:633
+#, kde-format
+msgid "Do Not Download"
+msgstr "डाउनलोड नगर्नुहोस्"
+
+#: html/htmlparser.cpp:1980
+#, kde-format
+msgid "This is a searchable index. Enter search keywords: "
+msgstr "यो खोजीयोग्य अनुक्रमणिका हो । खोजी शब्दकुञ्जी प्रविष्ट गर्नुहोस्: "
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Repeat password:"
+msgstr "पासवर्ड राख्नुहोस्"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Choose password:"
+msgstr "पासवर्ड राख्नुहोस्"
+
+#: html/ksslkeygen.cpp:82
+#, fuzzy, kde-format
+#| msgid "Details of the Request:"
+msgid "KDE Certificate Request"
+msgstr "अनुरोधको विवरण:"
+
+#: html/ksslkeygen.cpp:89
+#, kde-format
+msgid "KDE Certificate Request - Password"
+msgstr ""
+
+#: html/ksslkeygen.cpp:126
+#, fuzzy, kde-format
+#| msgid "Unsorted"
+msgid "Unsupported key size."
+msgstr "क्रमबद्ध नगरिएका"
+
+#: html/ksslkeygen.cpp:126
+#, fuzzy, kde-format
+#| msgid "Information"
+msgid "KDE SSL Information"
+msgstr "सूचना"
+
+#: html/ksslkeygen.cpp:132 khtml_part.cpp:5018
+#, kde-format
+msgid "KDE"
+msgstr "केडीई"
+
+#: html/ksslkeygen.cpp:133
+#, kde-format
+msgid "Please wait while the encryption keys are generated..."
+msgstr ""
+
+#: html/ksslkeygen.cpp:148
+#, fuzzy, kde-format
+#| msgid "Do you want to restart search from the end?"
+msgid "Do you wish to store the passphrase in your wallet file?"
+msgstr "तपाईँ अन्त्यबाट खोजी फेरि सुरु गर्न चाहनुहुन्छ ?"
+
+#: html/ksslkeygen.cpp:148
+#, fuzzy, kde-format
+#| msgid "Store"
+msgid "Store"
+msgstr "भण्डारण गर्नुहोस्"
+
+#: html/ksslkeygen.cpp:148
+#, fuzzy, kde-format
+#| msgid "Do Not Store"
+msgid "Do Not Store"
+msgstr "भण्डारण नगर्नुहोस्"
+
+#: html/ksslkeygen.cpp:257
+#, kde-format
+msgid "2048 (High Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:258
+#, kde-format
+msgid "1024 (Medium Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:259
+#, kde-format
+msgid "768  (Low Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:260
+#, kde-format
+msgid "512  (Low Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:262
+#, fuzzy, kde-format
+#| msgid "Enable SOCKS support"
+msgid "No SSL support."
+msgstr "SOCKS समर्थन सक्षम पार्नुहोस्"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "कागजात सूचना"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, fuzzy, kde-format
+#| msgid "General"
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "साधारण"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "यूआरएल:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "शीर्षक:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "अन्तिम परिमार्जन:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "कागजात सङ्केतन:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "एचटीटीपी हेडर"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "गुण"
+
+#: java/kjavaapplet.cpp:227
+#, kde-format
+msgid "Initializing Applet \"%1\"..."
+msgstr "\"%1\" एप्लेट सुरुआत गर्दैछ..."
+
+#: java/kjavaapplet.cpp:233
+#, kde-format
+msgid "Starting Applet \"%1\"..."
+msgstr "\"%1\" एप्लेट सुरुआत हुदैँछ..."
+
+#: java/kjavaapplet.cpp:240
+#, kde-format
+msgid "Applet \"%1\" started"
+msgstr "\"%1\" एप्लेट सुरुआत गरियो"
+
+#: java/kjavaapplet.cpp:246
+#, kde-format
+msgid "Applet \"%1\" stopped"
+msgstr "\"%1\" एप्लेट रोकियो"
+
+#: java/kjavaappletserver.cpp:144
+#, kde-format
+msgid "Loading Applet"
+msgstr "एप्लेट लोड गर्दै"
+
+#: java/kjavaappletserver.cpp:147
+#, kde-format
+msgid "Error: java executable not found"
+msgstr "त्रुटि: कार्यान्वयनयोग्य जाभा फेला परेन"
+
+#: java/kjavaappletserver.cpp:674
+#, fuzzy, kde-format
+#| msgid "Signed by (validation: "
+msgid "Signed by (validation: %1)"
+msgstr "Signed by (validation: "
+
+#: java/kjavaappletserver.cpp:676
+#, fuzzy, kde-format
+#| msgid "Certificate (validation: "
+msgid "Certificate (validation: %1)"
+msgstr "Certificate (validation: "
+
+#: java/kjavaappletserver.cpp:812 khtml_part.cpp:7048
+#, kde-format
+msgid "Security Alert"
+msgstr "सुरक्षा सावधानी"
+
+#: java/kjavaappletserver.cpp:817
+#, kde-format
+msgid "Do you grant Java applet with certificate(s):"
+msgstr "तपाईँ प्रमाणपत्र(हरू) सँग जाभा एप्लेट स्वीकार गर्नुहुन्छ:"
+
+#: java/kjavaappletserver.cpp:819
+#, kde-format
+msgid "the following permission"
+msgstr "निम्न अनुमति"
+
+#: java/kjavaappletserver.cpp:828
+#, kde-format
+msgid "&No"
+msgstr "होइन"
+
+#: java/kjavaappletserver.cpp:833
+#, kde-format
+msgid "&Reject All"
+msgstr "सबै अस्वीकार गर्नुहोस्"
+
+#: java/kjavaappletserver.cpp:837
+#, kde-format
+msgid "&Yes"
+msgstr "हो"
+
+#: java/kjavaappletserver.cpp:841
+#, kde-format
+msgid "&Grant All"
+msgstr "सबै स्वीकार गर्नुहोस्"
+
+#: java/kjavaappletviewer.cpp:59
+#, kde-format
+msgid "KDE Java Applet Plugin"
+msgstr "केडीई जाभा एप्लेट प्लगइन"
+
+#: java/kjavaappletviewer.cpp:141
+#, kde-format
+msgid "Applet Parameters"
+msgstr "एप्लेट परिमिति"
+
+#: java/kjavaappletviewer.cpp:149
+#, kde-format
+msgid "Parameter"
+msgstr "परिमिति"
+
+#: java/kjavaappletviewer.cpp:153
+#, kde-format
+msgid "Class"
+msgstr "वर्ग"
+
+#: java/kjavaappletviewer.cpp:159
+#, kde-format
+msgid "Base URL"
+msgstr "आधार यूआरएल"
+
+#: java/kjavaappletviewer.cpp:165
+#, kde-format
+msgid "Archives"
+msgstr "सङ्ग्रह"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "सम्पादन"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "फाइल"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "दृश्य"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, fuzzy, kde-format
+#| msgid "Main Toolbar"
+msgid "HTML Toolbar"
+msgstr "मुख्य उपकरणपट्टी"
+
+#: khtml_ext.cpp:413
+#, kde-format
+msgid "&Copy Text"
+msgstr "पाठको प्रतिलिपि बनाउनुहोस्"
+
+#: khtml_ext.cpp:427
+#, kde-format
+msgid "Open '%1'"
+msgstr "'%1' खोल्नुहोस्"
+
+#: khtml_ext.cpp:444
+#, fuzzy, kde-format
+#| msgid "Copy Email Address"
+msgid "&Copy Email Address"
+msgstr "इमेल ठेगानाको प्रतिलिपि बनाउनुहोस्"
+
+#: khtml_ext.cpp:449
+#, kde-format
+msgid "&Save Link As..."
+msgstr "यस रूपमा लिङ्क बचत गर्नुहोस्..."
+
+#: khtml_ext.cpp:454
+#, fuzzy, kde-format
+#| msgid "Copy &Link Address"
+msgid "&Copy Link Address"
+msgstr "लिङ्क ठेगानाको प्रतिलिपि बनाउनुहोस्"
+
+#: khtml_ext.cpp:466
+#, fuzzy, kde-format
+#| msgid "Name"
+msgctxt "@title:menu HTML frame/iframe"
+msgid "Frame"
+msgstr "नाम"
+
+#: khtml_ext.cpp:467
+#, kde-format
+msgid "Open in New &Window"
+msgstr "नयाँ सञ्झ्यालमा खोल्नुहोस्"
+
+#: khtml_ext.cpp:473
+#, kde-format
+msgid "Open in &This Window"
+msgstr "यो सञ्झ्यालमा खोल्नुहोस्"
+
+#: khtml_ext.cpp:478
+#, kde-format
+msgid "Open in &New Tab"
+msgstr "नयाँ ट्याबमा खोल्नुहोस्"
+
+#: khtml_ext.cpp:488
+#, kde-format
+msgid "Reload Frame"
+msgstr "फ्रेम फेरि लोड गर्नुहोस्"
+
+#: khtml_ext.cpp:493 khtml_part.cpp:447
+#, kde-format
+msgid "Print Frame..."
+msgstr "फ्रेम मुद्रण गर्नुहोस्..."
+
+#: khtml_ext.cpp:499 khtml_part.cpp:299
+#, kde-format
+msgid "Save &Frame As..."
+msgstr "यस रूपमा फ्रेम बचत गर्नुहोस्..."
+
+#: khtml_ext.cpp:504 khtml_part.cpp:275
+#, kde-format
+msgid "View Frame Source"
+msgstr "फ्रेम स्रोत हेर्नुहोस्"
+
+#: khtml_ext.cpp:509
+#, kde-format
+msgid "View Frame Information"
+msgstr "फ्रेम सूचना हेर्नुहोस्"
+
+#: khtml_ext.cpp:519
+#, kde-format
+msgid "Block IFrame..."
+msgstr "आइफ्रेम रोक्नुहोस्..."
+
+#: khtml_ext.cpp:543
+#, kde-format
+msgid "Save Image As..."
+msgstr "यस रूपमा छवि बचत गर्नुहोस्..."
+
+#: khtml_ext.cpp:548
+#, kde-format
+msgid "Send Image..."
+msgstr "छवि पठाउनुहोस्..."
+
+#: khtml_ext.cpp:554
+#, kde-format
+msgid "Copy Image"
+msgstr "छविको प्रतिलिपि बनाउनुहोस्"
+
+#: khtml_ext.cpp:562
+#, kde-format
+msgid "Copy Image Location"
+msgstr "छविको स्थान प्रतिलिपि बनाउनुहोस्"
+
+#: khtml_ext.cpp:571
+#, kde-format
+msgid "View Image (%1)"
+msgstr "छवि (%1) हेर्नुहोस्"
+
+#: khtml_ext.cpp:577
+#, kde-format
+msgid "Block Image..."
+msgstr "छवि रोक्नुहोस्..."
+
+#: khtml_ext.cpp:584
+#, kde-format
+msgid "Block Images From %1"
+msgstr "%1 बाट आएका छवि रोक्नुहोस्"
+
+#: khtml_ext.cpp:596
+#, kde-format
+msgid "Stop Animations"
+msgstr "एनिमेसन रोक्नुहोस्"
+
+#: khtml_ext.cpp:637
+#, kde-format
+msgid "Search for '%1' with %2"
+msgstr "%2 सँग '%1' खोजी गर्नुहोस्"
+
+#: khtml_ext.cpp:647
+#, kde-format
+msgid "Search for '%1' with"
+msgstr "यसमा '%1' खोजी गर्नुहोस्"
+
+#: khtml_ext.cpp:693
+#, kde-format
+msgid "Save Link As"
+msgstr "यस रूपमा लिङ्क बचत गर्नुहोस्"
+
+#: khtml_ext.cpp:712
+#, kde-format
+msgid "Save Image As"
+msgstr "यस रूपमा छवि बचत गर्नुहोस्"
+
+#: khtml_ext.cpp:726 khtml_ext.cpp:738
+#, kde-format
+msgid "Add URL to Filter"
+msgstr "फिल्टरमा URL थप्नुहोस्"
+
+#: khtml_ext.cpp:727 khtml_ext.cpp:739
+#, kde-format
+msgid "Enter the URL:"
+msgstr "यूआरएल प्रविष्ट गर्नुहोस्:"
+
+#: khtml_ext.cpp:875
+#, kde-format
+msgid ""
+"A file named \"%1\" already exists. Are you sure you want to overwrite it?"
+msgstr "\"%1\" नामको फाइल पहिल्यै अवस्थित छ । तपाईँ यसलाई अधिलेखन गर्न यकीन हुनुहुन्छ ?"
+
+#: khtml_ext.cpp:875
+#, kde-format
+msgid "Overwrite File?"
+msgstr "फाइल अधिलेखन गर्नुहुन्छ ?"
+
+#: khtml_ext.cpp:927
+#, kde-format
+msgid "The Download Manager (%1) could not be found in your $PATH "
+msgstr "(%1) डाउनलोड प्रबन्धक तपाईँको $PATH मा फेला पार्न सक्दैन"
+
+#: khtml_ext.cpp:928
+#, kde-format
+msgid ""
+"Try to reinstall it  \n"
+"\n"
+"The integration with Konqueror will be disabled."
+msgstr ""
+"यसलाई फेरि स्थापना गर्ने प्रयास गर्नुहोस्  \n"
+"\n"
+"कन्क्वेररसँगको एकिकरण अक्षम पारिनेछ ।"
+
+#: khtml_ext.cpp:1007
+#, no-c-format, kde-format
+msgid "Default Font Size (100%)"
+msgstr "पूर्वनिर्धारित फन्ट साइज (100%)"
+
+#: khtml_ext.cpp:1021
+#, no-c-format, kde-format
+msgid "%1%"
+msgstr "%1%"
+
+#: khtml_global.cpp:203
+#, kde-format
+msgid "KHTML"
+msgstr "KHTML"
+
+#: khtml_global.cpp:204
+#, kde-format
+msgid "Embeddable HTML component"
+msgstr "सम्मिलित एचटीएमएल अवयव"
+
+#: khtml_part.cpp:268
+#, kde-format
+msgid "View Do&cument Source"
+msgstr "कागजातको स्रोत हेर्नुहोस्"
+
+#: khtml_part.cpp:282
+#, kde-format
+msgid "View Document Information"
+msgstr "कागजात सूचना हेर्नुहोस्"
+
+#: khtml_part.cpp:289
+#, kde-format
+msgid "Save &Background Image As..."
+msgstr "यस रूपमा पृष्ठभूमि छवि बचत गर्नुहोस्..."
+
+#: khtml_part.cpp:311 khtml_part.cpp:4190
+#, kde-format
+msgid "SSL"
+msgstr ""
+
+#: khtml_part.cpp:315
+#, kde-format
+msgid "Print Rendering Tree to STDOUT"
+msgstr "STDOUT मा रेन्डरिङ ट्री मुद्रण गर्नुहोस्"
+
+#: khtml_part.cpp:319
+#, kde-format
+msgid "Print DOM Tree to STDOUT"
+msgstr "STDOUT मा DOM ट्री मुद्रण गर्नुहोस्"
+
+#: khtml_part.cpp:323
+#, fuzzy, kde-format
+#| msgid "Print DOM Tree to STDOUT"
+msgid "Print frame tree to STDOUT"
+msgstr "STDOUT मा DOM ट्री मुद्रण गर्नुहोस्"
+
+#: khtml_part.cpp:327
+#, kde-format
+msgid "Stop Animated Images"
+msgstr "एनिमेसन गरिएको छवि रोक्नुहोस्"
+
+#: khtml_part.cpp:331
+#, kde-format
+msgid "Set &Encoding"
+msgstr "सङ्केतन सेट गर्नुहोस्"
+
+#: khtml_part.cpp:377
+#, kde-format
+msgid "Use S&tylesheet"
+msgstr "शैलीपाना प्रयोग गर्नुहोस्"
+
+#: khtml_part.cpp:382
+#, kde-format
+msgid "Enlarge Font"
+msgstr "फन्ट ठूलो बनाउनुहोस्"
+
+#: khtml_part.cpp:385
+#, fuzzy, kde-format
+#| msgid ""
+#| "Enlarge Font<br /><br />Make the font in this window bigger. Click and "
+#| "hold down the mouse button for a menu with all available font sizes."
+msgid ""
+"<qt>Enlarge Font<br /><br />Make the font in this window bigger. Click and "
+"hold down the mouse button for a menu with all available font sizes.</qt>"
+msgstr ""
+"फन्ट ठूलो पार्नुहोस्<br /><br />यो सझ्ञ्यालमा फन्ट ठूलो बनाउनुहोस् । सबै उपलब्ध फन्ट "
+"साइजमा मेनुका लागि माउस बटन क्लिक गरेर होल्ड गर्नुहोस् ।"
+
+#: khtml_part.cpp:389
+#, kde-format
+msgid "Shrink Font"
+msgstr "फन्ट सानो बनाउनुहोस्"
+
+#: khtml_part.cpp:392
+#, fuzzy, kde-format
+#| msgid ""
+#| "Shrink Font<br /><br />Make the font in this window smaller. Click and "
+#| "hold down the mouse button for a menu with all available font sizes."
+msgid ""
+"<qt>Shrink Font<br /><br />Make the font in this window smaller. Click and "
+"hold down the mouse button for a menu with all available font sizes.</qt>"
+msgstr ""
+"फन्ट सानो पार्नुहोस् <br /><br />यो सञ्झ्यालमा फन्ट सानो बनाउनुहोस् । सबै उपलब्ध फन्ट "
+"साइजका मेनुका लागि माउस बटन क्लिक गरेर होल्ड गर्नुहोस् ।"
+
+#: khtml_part.cpp:407
+#, fuzzy, kde-format
+#| msgid ""
+#| "Find text<br /><br />Shows a dialog that allows you to find text on the "
+#| "displayed page."
+msgid ""
+"<qt>Find text<br /><br />Shows a dialog that allows you to find text on the "
+"displayed page.</qt>"
+msgstr ""
+"पाठ फेला पार्नुहोस्<br /><br />प्रदर्शित पृष्ठमा तपाईँलाई पाठ फेला पार्न अनुमति दिने संवाद "
+"देखाउँदछ ।"
+
+#: khtml_part.cpp:411
+#, fuzzy, kde-format
+#| msgid ""
+#| "Find next<br /><br />Find the next occurrence of the text that you have "
+#| "found using the <b>Find Text</b> function"
+msgid ""
+"<qt>Find next<br /><br />Find the next occurrence of the text that you have "
+"found using the <b>Find Text</b> function.</qt>"
+msgstr ""
+"पछिल्लो फेला पार्नुहोस्<br /><br />तपाईँले <b>पाठ फेला पार्नुहोस्</b> प्रकार्य प्रयोग गरेर "
+"फेला पार्नु भएको पाठको पछिल्लो घटना फेला पार्नुहोस्"
+
+#: khtml_part.cpp:417
+#, fuzzy, kde-format
+#| msgid ""
+#| "Find previous<br /><br />Find the previous occurrence of the text that "
+#| "you have found using the <b>Find Text</b> function"
+msgid ""
+"<qt>Find previous<br /><br />Find the previous occurrence of the text that "
+"you have found using the <b>Find Text</b> function.</qt>"
+msgstr ""
+"अघिल्लो फेला पार्नुहोस्<br /><br />तपाईँले <b>पाठ फेला पार्नुहोस्</b> प्रकार्य प्रयोग गरेर "
+"फेला पार्नुभएको पाठको अघिल्लो घटना फेला पार्नुहोस्"
+
+#: khtml_part.cpp:422
+#, kde-format
+msgid "Find Text as You Type"
+msgstr "तपाईँले टाइप गरे जस्तै पाठ फेला पार्नुहोस्"
+
+#: khtml_part.cpp:425
+#, kde-format
+msgid ""
+"This shortcut shows the find bar, for finding text in the displayed page. It "
+"cancels the effect of \"Find Links as You Type\", which sets the \"Find "
+"links only\" option."
+msgstr ""
+
+#: khtml_part.cpp:429
+#, kde-format
+msgid "Find Links as You Type"
+msgstr "तपाईँले टाइप गरे जस्तै लिङ्क फेला पार्नुहोस्"
+
+#: khtml_part.cpp:435
+#, kde-format
+msgid ""
+"This shortcut shows the find bar, and sets the option \"Find links only\"."
+msgstr ""
+
+#: khtml_part.cpp:451
+#, fuzzy, kde-format
+#| msgid ""
+#| "Print Frame<br /><br />Some pages have several frames. To print only a "
+#| "single frame, click on it and then use this function."
+msgid ""
+"<qt>Print Frame<br /><br />Some pages have several frames. To print only a "
+"single frame, click on it and then use this function.</qt>"
+msgstr ""
+"फ्रेम मुद्रण गर्नुहोस्<br /><br />केही पृष्ठमा धेरै फ्रेम हुन्छन् । केबल एउटा फ्रेम मुद्रण गर्न, "
+"यसमा क्लिक गर्नुहोस् र त्यसपछि यो प्रकार्य प्रयोग गर्नुहोस् ।"
+
+#: khtml_part.cpp:466
+#, kde-format
+msgid "Toggle Caret Mode"
+msgstr "क्यारेट मोड टगल गर्नुहोस्"
+
+#: khtml_part.cpp:769
+#, kde-format
+msgid "The fake user-agent '%1' is in use."
+msgstr "झुटा प्रयोगकर्ता अभिकर्ता '%1' प्रयोगमा छ ।"
+
+#: khtml_part.cpp:1273
+#, kde-format
+msgid "This web page contains coding errors."
+msgstr "यो वेब पृष्ठले सङ्केतन त्रुटि समावेश गर्दछ ।"
+
+#: khtml_part.cpp:1314
+#, kde-format
+msgid "&Hide Errors"
+msgstr "त्रुटि लुकाउनुहोस्"
+
+#: khtml_part.cpp:1315
+#, kde-format
+msgid "&Disable Error Reporting"
+msgstr "त्रुटि प्रतिवेदन अक्षम पार्नुहोस्"
+
+#: khtml_part.cpp:1358
+#, fuzzy, kde-format
+#| msgid "<b>Error</b>: %1: %2"
+msgid "<qt><b>Error</b>: %1: %2</qt>"
+msgstr "<b>त्रुटि</b>: %1: %2"
+
+#: khtml_part.cpp:1407
+#, fuzzy, kde-format
+#| msgid "<b>Error</b>: node %1: %2"
+msgid "<qt><b>Error</b>: node %1: %2</qt>"
+msgstr "<b>त्रुटि</b>: नोड %1: %2"
+
+#: khtml_part.cpp:1529
+#, kde-format
+msgid "Display Images on Page"
+msgstr "पृष्ठमा छवि प्रर्दशन गर्नुहोस्"
+
+#: khtml_part.cpp:1913
+#, fuzzy, kde-format
+#| msgid "<b>Error</b>: %1: %2"
+msgid "Error: %1 - %2"
+msgstr "<b>त्रुटि</b>: %1: %2"
+
+#: khtml_part.cpp:1918
+#, kde-format
+msgid "The requested operation could not be completed"
+msgstr "अनुरोध गरिएको सञ्चालन सम्पन्न गर्न सक्दैन"
+
+#: khtml_part.cpp:1924
+#, kde-format
+msgid "Technical Reason: "
+msgstr "प्राविधिक कारण: "
+
+#: khtml_part.cpp:1930
+#, kde-format
+msgid "Details of the Request:"
+msgstr "अनुरोधको विवरण:"
+
+#: khtml_part.cpp:1932
+#, kde-format
+msgid "URL: %1"
+msgstr "URL: %1"
+
+#: khtml_part.cpp:1935
+#, kde-format
+msgid "Protocol: %1"
+msgstr ""
+
+#: khtml_part.cpp:1938
+#, kde-format
+msgid "Date and Time: %1"
+msgstr "मिति र समय: %1"
+
+#: khtml_part.cpp:1940
+#, kde-format
+msgid "Additional Information: %1"
+msgstr "थप जानकारी: %1"
+
+#: khtml_part.cpp:1942
+#, kde-format
+msgid "Description:"
+msgstr "वर्णन:"
+
+#: khtml_part.cpp:1948
+#, kde-format
+msgid "Possible Causes:"
+msgstr "सम्भावित कारण:"
+
+#: khtml_part.cpp:1955
+#, kde-format
+msgid "Possible Solutions:"
+msgstr "सम्भावित समाधान:"
+
+#: khtml_part.cpp:2403
+#, kde-format
+msgid "Page loaded."
+msgstr "पृष्ठ लोड गरियो ।"
+
+#: khtml_part.cpp:2405
+#, kde-format
+msgid "%1 Image of %2 loaded."
+msgid_plural "%1 Images of %2 loaded."
+msgstr[0] "%1 छवि %2 बाट लोड गरियो ।"
+msgstr[1] "%1 छवि %2 बाट लोड गरियो ।"
+
+#: khtml_part.cpp:2583
+#, kde-format
+msgid "Automatic Detection"
+msgstr "स्वचालित खोज"
+
+#: khtml_part.cpp:3713 khtml_part.cpp:3777 khtml_part.cpp:3787
+#, kde-format
+msgid " (In new window)"
+msgstr " (नयाँ सञ्झ्यालमा)"
+
+#: khtml_part.cpp:3741
+#, kde-format
+msgid "Symbolic Link"
+msgstr "साङ्केतिक लिङ्क"
+
+#: khtml_part.cpp:3743
+#, kde-format
+msgid "%1 (Link)"
+msgstr "%1 (लिङ्क)"
+
+#: khtml_part.cpp:3759
+#, fuzzy, kde-format
+#| msgid "%2 (%1 bytes)"
+msgid "%2 (%1 byte)"
+msgid_plural "%2 (%1 bytes)"
+msgstr[0] "%2 (%1 बाइट)"
+msgstr[1] "%2 (%1 बाइट)"
+
+#: khtml_part.cpp:3762
+#, kde-format
+msgid "%2 (%1 K)"
+msgstr "%2 (%1 K)"
+
+#: khtml_part.cpp:3789
+#, kde-format
+msgid " (In other frame)"
+msgstr " (अन्य फ्रेममा)"
+
+#: khtml_part.cpp:3795
+#, kde-format
+msgid "Email to: "
+msgstr "यसलाई इमेल: "
+
+#: khtml_part.cpp:3801
+#, kde-format
+msgid " - Subject: "
+msgstr "विषय: "
+
+#: khtml_part.cpp:3803
+#, kde-format
+msgid " - CC: "
+msgstr "बोधार्थ प्रतिलिपि: "
+
+#: khtml_part.cpp:3805
+#, kde-format
+msgid " - BCC: "
+msgstr "गुप्त बोधार्थ प्रतिलिपि: "
+
+#: khtml_part.cpp:3886 khtml_part.cpp:4108 khtml_part.cpp:4544
+#: khtml_run.cpp:106
+#, kde-format
+msgid "Save As"
+msgstr "यस रूपमा बचत गर्नुहोस्"
+
+#: khtml_part.cpp:3891
+#, kde-format
+msgid ""
+"<qt>This untrusted page links to<br /><b>%1</b>.<br />Do you want to follow "
+"the link?</qt>"
+msgstr ""
+"<qt>यो अविश्वास गरिएको पृष्ठ <br /><b>%1</b> मा लिङ्क हुन्छ ।<br />तपाईँ लिङ्क अनुगमन "
+"गर्न चाहनुहुन्छ ?</qt>"
+
+#: khtml_part.cpp:3892
+#, kde-format
+msgid "Follow"
+msgstr "अनुगमन गर्नुहोस्"
+
+#: khtml_part.cpp:3987
+#, kde-format
+msgid "Frame Information"
+msgstr "फ्रेम सूचना"
+
+#: khtml_part.cpp:3993
+#, kde-format
+msgid "   <a href=\"%1\">[Properties]</a>"
+msgstr "   <a href=\"%1\">[Properties]</a>"
+
+#: khtml_part.cpp:4019
+#, fuzzy, kde-format
+#| msgctxt "@item Text character set"
+#| msgid "Turkish"
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Quirks"
+msgstr "टर्कीस"
+
+#: khtml_part.cpp:4022
+#, kde-format
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Almost standards"
+msgstr ""
+
+#: khtml_part.cpp:4026
+#, fuzzy, kde-format
+#| msgid "Start"
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Strict"
+msgstr "सुरु गर्नुहोस्"
+
+#: khtml_part.cpp:4095
+#, kde-format
+msgid "Save Background Image As"
+msgstr "यस रूपमा छवि पृष्ठभूमी बचत गर्नुहोस्"
+
+#: khtml_part.cpp:4188
+#, kde-format
+msgid "The peer SSL certificate chain appears to be corrupt."
+msgstr ""
+
+#: khtml_part.cpp:4209
+#, kde-format
+msgid "Save Frame As"
+msgstr "यसरूपमा फ्रेम बचत गर्नुहोस्"
+
+#: khtml_part.cpp:4253
+#, kde-format
+msgid "&Find in Frame..."
+msgstr "ढाँचामा फेला पार्नुहोस्..."
+
+#: khtml_part.cpp:4255
+#, kde-format
+msgid "&Find..."
+msgstr "फेला पार्नुहोस्..."
+
+#: khtml_part.cpp:4902
+#, kde-format
+msgid ""
+"Warning:  This is a secure form but it is attempting to send your data back "
+"unencrypted.\n"
+"A third party may be able to intercept and view this information.\n"
+"Are you sure you wish to continue?"
+msgstr ""
+"चेतावनी:  यो सुरक्षित फारम हो तर यसले तपाईँको डेटा गुप्तिकरण नगरिकन पछाडि फर्काउने "
+"प्रयास गर्दैछ ।\n"
+"तेर्स्रो पक्षले काट्न र सो जानकारी हेर्न सक्षम हुनसक्छ ।\n"
+"तपाईँ निरन्तरता दिन यकीन हुनुहुन्छ ?"
+
+#: khtml_part.cpp:4905 khtml_part.cpp:4915 khtml_part.cpp:4940
+#, kde-format
+msgid "Network Transmission"
+msgstr "सञ्जाल प्रसारण"
+
+#: khtml_part.cpp:4905 khtml_part.cpp:4916
+#, kde-format
+msgid "&Send Unencrypted"
+msgstr "गुप्तिकरण नगरिएको पठाउनुहोस्"
+
+#: khtml_part.cpp:4913
+#, kde-format
+msgid ""
+"Warning: Your data is about to be transmitted across the network "
+"unencrypted.\n"
+"Are you sure you wish to continue?"
+msgstr ""
+"चेतावनी: तपाईँको डेटा गुप्तिकरण नगरिएको सञ्जाल भरी प्रसारण गर्न लागिएको छ ।\n"
+"तपाईँ निरन्तरता दिन चाहनुहुन्छ ?"
+
+#: khtml_part.cpp:4938
+#, kde-format
+msgid ""
+"This site is attempting to submit form data via email.\n"
+"Do you want to continue?"
+msgstr ""
+"यो साइटले इमेल मार्फत फारम डेटा पेश गर्ने प्रयास गर्दैछ ।\n"
+"तपाईँ निरन्तरता दिन चाहनुहुन्छ ?"
+
+#: khtml_part.cpp:4941
+#, kde-format
+msgid "&Send Email"
+msgstr "इमेल पठाउनुहोस्"
+
+#: khtml_part.cpp:4962
+#, kde-format
+msgid ""
+"<qt>The form will be submitted to <br /><b>%1</b><br />on your local "
+"filesystem.<br />Do you want to submit the form?</qt>"
+msgstr ""
+"<qt>फारम तपाईँको स्थानीय फाइल प्रणालीको <br /><b>%1</b><br />मा पेश गरिन्छ ।<br /"
+">तपाईँ फारम पेश गर्न चाहनुहुन्छ ?</qt>"
+
+#: khtml_part.cpp:5018
+#, kde-format
+msgid ""
+"This site attempted to attach a file from your computer in the form "
+"submission. The attachment was removed for your protection."
+msgstr ""
+"यो साइटले फारम पेश गरेर तपाईँको कम्प्युटरबाट फाइल सङ्लग्न गर्ने प्रयास गर्यो । तपाईँको "
+"सुरक्षाका लागि सङ्लग्नता हटाइयो ।"
+
+#: khtml_part.cpp:6112
+#, kde-format
+msgid "(%1/s)"
+msgstr "(%1/s)"
+
+#: khtml_part.cpp:7040
+#, kde-format
+msgid "Security Warning"
+msgstr "सुरक्षा चेतावनी"
+
+#: khtml_part.cpp:7047
+#, kde-format
+msgid "<qt>Access by untrusted page to<br /><b>%1</b><br /> denied.</qt>"
+msgstr "<qt>अविश्वासिलो पृष्ठबाट<br /><b>%1</b><br /> मा पहुँच अस्वीकार गरियो ।</qt>"
+
+#: khtml_part.cpp:7418
+#, kde-format
+msgid "The wallet '%1' is open and being used for form data and passwords."
+msgstr "फारम डेटा र पासवर्डका लागि '%1' वालेट खोलिन्छ र प्रयोग गरिन्छ ।"
+
+#: khtml_part.cpp:7477
+#, kde-format
+msgid "&Close Wallet"
+msgstr "वालेट बन्द गर्नुहोस्"
+
+#: khtml_part.cpp:7480
+#, kde-format
+msgid "&Allow storing passwords for this site"
+msgstr ""
+
+#: khtml_part.cpp:7485
+#, kde-format
+msgid "Remove password for form %1"
+msgstr ""
+
+#: khtml_part.cpp:7600
+#, kde-format
+msgid "JavaScript &Debugger"
+msgstr "जाभास्क्रिप्ट त्रुटिमोचक"
+
+#: khtml_part.cpp:7633
+#, kde-format
+msgid "This page was prevented from opening a new window via JavaScript."
+msgstr "यो पृष्ठलाई जाभास्क्रिप्टबाट नयाँ सञ्झ्याल खोल्न निषेध गरिएकोछ ।"
+
+#: khtml_part.cpp:7639
+#, kde-format
+msgid "Popup Window Blocked"
+msgstr "पपअप सञ्झ्याल रोकियो"
+
+#: khtml_part.cpp:7639
+#, kde-format
+msgid ""
+"This page has attempted to open a popup window but was blocked.\n"
+"You can click on this icon in the status bar to control this behavior\n"
+"or to open the popup."
+msgstr ""
+"यो पृष्ठले पपअप सञ्झ्याल खोल्न प्रयास गर्दछ तर रोकिएको छ ।\n"
+"तपाईँले यो व्यवहार नियन्त्रण गर्न वा पपअप खोल्न स्थितिपट्टीको यो प्रतिमामा\n"
+"क्लिक गर्न सक्नुहुन्छ ।"
+
+#: khtml_part.cpp:7653
+#, fuzzy, kde-format
+#| msgid "&Show Blocked Popup Window"
+#| msgid_plural "Show %1 Blocked Popup Windows"
+msgid "&Show Blocked Popup Window"
+msgid_plural "&Show %1 Blocked Popup Windows"
+msgstr[0] "रोकिएको पपअप सञ्झ्याल देखाउनुहोस्"
+msgstr[1] " %1 रोकिएको पपअप सञ्झ्याल देखाउनुहोस्"
+
+#: khtml_part.cpp:7655
+#, kde-format
+msgid "Show Blocked Window Passive Popup &Notification"
+msgstr "रोकिएको सञ्झ्यालको निस्क्रिय पपअप सूचना देखाउनुहोस्"
+
+#: khtml_part.cpp:7657
+#, kde-format
+msgid "&Configure JavaScript New Window Policies..."
+msgstr "जाभास्क्रिप्ट नयाँ सञ्झ्याल नीति कन्फिगर गर्नुहोस्..."
+
+#: khtml_printsettings.cpp:30
+#, kde-format
+msgid ""
+"<qt><p><strong>'Print images'</strong></p><p>If this checkbox is enabled, "
+"images contained in the HTML page will be printed. Printing may take longer "
+"and use more ink or toner.</p><p>If this checkbox is disabled, only the text "
+"of the HTML page will be printed, without the included images. Printing will "
+"be faster and use less ink or toner.</p> </qt>"
+msgstr ""
+"<qt><p><strong>'छवि मुद्रण गर्नुहोस्'</strong></p><p>यदि यो जाँच बाकस सक्षम "
+"पारिएमा, एचटीएमएल पृष्ठमा समाविष्ट छवि मुद्रण गरिन्छ । मुद्रणमा धेरै मसि, टोनर वा लामो "
+"समय लिन सक्दछ ।</p><p>यदि सो जाँच बाकस अक्षम पारिएमा, समाविष्ट छवि बिना, केबल "
+"एचटीएमएल पृष्ठ मात्र मुद्रण गरिन्छ । यसो गर्दा मुद्रण छिटो हुन्छ र मसि वा टोनर कम प्रयोग "
+"गर्दछ ।</p> </qt>"
+
+#: khtml_printsettings.cpp:42
+#, kde-format
+msgid ""
+"<qt><p><strong>'Print header'</strong></p><p>If this checkbox is enabled, "
+"the printout of the HTML document will contain a header line at the top of "
+"each page. This header contains the current date, the location URL of the "
+"printed page and the page number.</p><p>If this checkbox is disabled, the "
+"printout of the HTML document will not contain such a header line.</p> </qt>"
+msgstr ""
+"<qt><p><strong>'हेडर मुद्रण गर्नुहोस्'</strong></p><p>यदि यो जाँच बाकस सक्षम "
+"पारिएमा, एचटीएमएल कागजातको मुद्रण पानामा प्रत्येक पानाको माथि हेडर लाइन समावेश हुन्छ "
+"। यो हेडरले हालको मिति, मुद्रण गरिएको पृष्ठको यूआरएल स्थान र पृष्ठ सङ्ख्या समावेश गर्दछ ।</"
+"p><p>यदि सो जाँच बाकस अक्षम पारिएमा, HTML कागजातको मुद्रण गरिएको पानाले त्यस्तो हेडर "
+"लाइन समावेश गर्दैन ।</p> </qt>"
+
+#: khtml_printsettings.cpp:55
+#, fuzzy, kde-format
+#| msgid ""
+#| "<qt><p><strong>'Printerfriendly mode'</strong></p><p>If this checkbox is "
+#| "enabled, the printout of the HTML document will be black and white only, "
+#| "and all colored background will be converted into white. Printout will be "
+#| "faster and use less ink or toner.</p><p>If this checkbox is disabled, the "
+#| "printout of the HTML document will happen in the original color settings "
+#| "as you see in your application. This may result in areas of full-page "
+#| "color (or grayscale, if you use a black+white printer). Printout will "
+#| "possibly happen slower and will certainly use much more toner or ink.</p> "
+#| "</qt>"
+msgid ""
+"<qt><p><strong>'Printerfriendly mode'</strong></p><p>If this checkbox is "
+"enabled, the printout of the HTML document will be black and white only, and "
+"all colored background will be converted into white. Printout will be faster "
+"and use less ink or toner.</p><p>If this checkbox is disabled, the printout "
+"of the HTML document will happen in the original color settings as you see "
+"in your application. This may result in areas of full-page color (or "
+"grayscale, if you use a black+white printer). Printout will possibly happen "
+"more slowly and will probably use more toner or ink.</p> </qt>"
+msgstr ""
+"<qt><p><strong>'मुद्रण उपयुक्त मोड'</strong></p><p>यदि यो जाँच बाकस सक्षम पारिएमा, "
+"एचटीएमएल कागजातको मुद्रण पाना श्यामश्वेत हुन्छ, र सबै रङ सेतो रङमा परिवर्तन हुन्छ । मुद्रण "
+"कार्य छिटो हुन्छ र कम मसि वा टोनर प्रयोग गर्दछ ।</p><p>यदि यो जाँच बाकस अक्षम "
+"पारिएमा, एचटीएमएल कागजातको मुद्रण पाना तपाईँको अनुप्रयोगमा देखिएको जस्तै मौलिक रङमा "
+"मुद्रण हुन्छ । यसले पूरा-पृष्ठ रङको क्षेत्रमा प्रभाव पार्दछ ( वा ग्रस्केल, यदि तपाईँले कालो"
+"+सेतो मुद्रक प्रयोग गर्नु भएमा) । मुद्रण कार्य सम्भवत ढिलो हुनेछ र निश्चित रूपमा धेरै मसि र "
+"टोनर प्रयोग गर्नेछ ।</p> </qt>"
+
+#: khtml_printsettings.cpp:70
+#, kde-format
+msgid "HTML Settings"
+msgstr "एचटीएमएल सेटिङ"
+
+#: khtml_printsettings.cpp:72
+#, kde-format
+msgid "Printer friendly mode (black text, no background)"
+msgstr "मुद्रक उपयुक्त मोड (कालो पाठ, पृष्ठभूमि विहिन)"
+
+#: khtml_printsettings.cpp:75
+#, kde-format
+msgid "Print images"
+msgstr "छवि मुद्रण गर्नुहोस्"
+
+#: khtml_printsettings.cpp:78
+#, kde-format
+msgid "Print header"
+msgstr "हेडर मुद्रण गर्नुहोस्"
+
+#: khtml_settings.cpp:906
+#, kde-format
+msgid "Filter error"
+msgstr "फिल्टर त्रुटि"
+
+#: khtmladaptorpart.cpp:29
+#, fuzzy, kde-format
+#| msgctxt "@item font size"
+#| msgid "Relative"
+msgid "Inactive"
+msgstr "सापेक्षिक"
+
+#: khtmlimage.cpp:49
+#, fuzzy, kde-format
+#| msgid "KHTML"
+msgid "KHTML Image"
+msgstr "KHTML"
+
+#: khtmlimage.cpp:195
+#, kde-format
+msgid "%1 (%2 - %3x%4 Pixels)"
+msgstr "%1 (%2 - %3x%4 पिक्सेल)"
+
+#: khtmlimage.cpp:197
+#, kde-format
+msgid "%1 - %2x%3 Pixels"
+msgstr "%1 - %2x%3 पिक्सेल"
+
+#: khtmlimage.cpp:202
+#, kde-format
+msgid "%1 (%2x%3 Pixels)"
+msgstr "%1 (%2x%3 पिक्सेल)"
+
+#: khtmlimage.cpp:204
+#, kde-format
+msgid "Image - %1x%2 Pixels"
+msgstr "छवि - %1x%2 पिक्सेल"
+
+#: khtmlimage.cpp:210
+#, kde-format
+msgid "Done."
+msgstr "पुरा भयो ।"
+
+#: khtmlview.cpp:1900
+#, kde-format
+msgid "Access Keys activated"
+msgstr "पहुँच कुञ्जी सक्रिय पारियो"
+
+#: kjserrordlg.cpp:9
+#, kde-format
+msgid "C&lear"
+msgstr "खाली गर्नुहोस्"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "जाभास्क्रिप्ट त्रुटि"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, kde-format
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at http://bugs.kde.org/.  A test case "
+"which illustrates the problem will be appreciated."
+msgstr ""
+"यो संवादले तपाईँलाई वेब पृष्ठमा उत्पन्न स्क्रिप्ट गर्दाका त्रुटिको विवरण र सूचना प्रदान गर्दछ "
+"।  धेरै जसो वेब साइट लेखकको डिजाइन त्रुटिका कारणले यस्तो हुन्छ । अन्य अवस्थामा यो "
+"कन्क्वेरमा प्रोगामिङ त्रुटिको परिणाम हो । यदि तपाईँलाई पहिलोमा शङ्का लागेमा, कृपया "
+"प्रश्न गरेर साइटको वेबमास्टरसँग सम्पर्क गर्नुहोस् ।  त्यसको विपरित यदि तपाईँलाई कन्क्वेरमा "
+"त्रुटि शङ्खा लागेमा, कृपया http://bugs.kde.org/ मा वग प्रतिवेन फाइल गर्नुहोस् । समस्या "
+"दर्शाउने परीक्षण घटनालाई मान्यता दिइन्छ ।"
+
+#: kmultipart/httpfiltergzip.cpp:89
+#, kde-format
+msgid "Receiving corrupt data."
+msgstr ""
+
+#: kmultipart/kmultipart.cpp:39
+#, kde-format
+msgid "KMultiPart"
+msgstr "KMultiPart"
+
+#: kmultipart/kmultipart.cpp:41
+#, kde-format
+msgid "Embeddable component for multipart/mixed"
+msgstr "बहुभाग/मिश्रणका लागि सम्मिलित अवयव"
+
+#: kmultipart/kmultipart.cpp:43
+#, fuzzy, kde-format
+#| msgid "Copyright 2001, David Faure <email>david@mandrakesoft.com</email>"
+msgid "Copyright 2001-2011, David Faure <faure@kde.org>"
+msgstr ""
+"प्रतिलिपि अधिकार (c) २००१, डेभिड फाउर <email>david@mandrakesoft.com</email>"
+
+#: kmultipart/kmultipart.cpp:336
+#, kde-format
+msgid "No handler found for %1."
+msgstr "%1 का लागि ह्यान्डलर फेला परेन ।"
+
+#: misc/kencodingdetector.cpp:1123 misc/kencodingdetector.cpp:1224
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Unicode"
+msgstr "युनिकोड"
+
+#: misc/kencodingdetector.cpp:1125 misc/kencodingdetector.cpp:1194
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Cyrillic"
+msgstr "सिरिलिक"
+
+#: misc/kencodingdetector.cpp:1127 misc/kencodingdetector.cpp:1209
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Western European"
+msgstr "पश्चिम युरोपेली"
+
+#: misc/kencodingdetector.cpp:1129 misc/kencodingdetector.cpp:1191
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Central European"
+msgstr "मध्य युरोपेली"
+
+#: misc/kencodingdetector.cpp:1131 misc/kencodingdetector.cpp:1197
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Greek"
+msgstr "ग्रिक"
+
+#: misc/kencodingdetector.cpp:1133 misc/kencodingdetector.cpp:1200
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Hebrew"
+msgstr "हिब्रु"
+
+#: misc/kencodingdetector.cpp:1135 misc/kencodingdetector.cpp:1206
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Turkish"
+msgstr "टर्कीस"
+
+#: misc/kencodingdetector.cpp:1137 misc/kencodingdetector.cpp:1203
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Japanese"
+msgstr "जापानी"
+
+#: misc/kencodingdetector.cpp:1139 misc/kencodingdetector.cpp:1188
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Baltic"
+msgstr "बाल्टिक"
+
+#: misc/kencodingdetector.cpp:1141 misc/kencodingdetector.cpp:1185
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Arabic"
+msgstr "अरबी"
+
+#: misc/kencodingdetector.cpp:1212
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Chinese Traditional"
+msgstr "परम्परागत चिनियाँ"
+
+#: misc/kencodingdetector.cpp:1215
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Chinese Simplified"
+msgstr "सरलीकृत चिनियाँ"
+
+#: misc/kencodingdetector.cpp:1218
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Korean"
+msgstr "कोरियाली"
+
+#: misc/kencodingdetector.cpp:1221
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Thai"
+msgstr "थाइ"
+
+#: rendering/media_controls.cpp:46
+#, kde-format
+msgid "Play"
+msgstr ""
+
+#: rendering/media_controls.cpp:49
+#, kde-format
+msgid "Pause"
+msgstr "पज गर्नुहोस्"
+
+#: rendering/render_form.cpp:903
+#, fuzzy, kde-format
+#| msgid "Shortcut"
+msgid "New Web Shortcut"
+msgstr "सर्टकट"
+
+#: rendering/render_form.cpp:924
+#, fuzzy, kde-format
+#| msgctxt "Socket error code AlreadyCreated"
+#| msgid "socket is already created"
+msgid "%1 is already assigned to %2"
+msgstr "सकेट पहिल्यै सिर्जना गरिएको छ"
+
+#: rendering/render_form.cpp:924
+#, kde-format
+msgid "Error"
+msgstr "त्रुटि"
+
+#: rendering/render_form.cpp:970
+#, kde-format
+msgid "Search &provider name:"
+msgstr ""
+
+#: rendering/render_form.cpp:972
+#, fuzzy, kde-format
+#| msgid "Enter a search term here"
+msgid "New search provider"
+msgstr "खोजी शब्द यहाँ प्रविष्ट गर्नुहोस्"
+
+#: rendering/render_form.cpp:977
+#, fuzzy, kde-format
+#| msgid "Shortcuts"
+msgid "UR&I shortcuts:"
+msgstr "सर्टकट"
+
+#: rendering/render_form.cpp:1056
+#, kde-format
+msgid "Clear &History"
+msgstr "इतिहास खाली गर्नुहोस्"
+
+#: rendering/render_form.cpp:1071
+#, fuzzy, kde-format
+#| msgid "Configure Shortcut"
+msgid "Create Web Shortcut"
+msgstr "सर्टकट कन्फिगर गर्नुहोस्"
+
+#: ui/findbar/khtmlfindbar.cpp:49
+#, kde-format
+msgid "C&ase sensitive"
+msgstr "केस संवेदनशील"
+
+#: ui/findbar/khtmlfindbar.cpp:51
+#, kde-format
+msgid "&Whole words only"
+msgstr "पूरा शब्द मात्र"
+
+#: ui/findbar/khtmlfindbar.cpp:53
+#, kde-format
+msgid "From c&ursor"
+msgstr "कर्सरबाट"
+
+#: ui/findbar/khtmlfindbar.cpp:55
+#, kde-format
+msgid "&Selected text"
+msgstr "चयन गरिएका पाठ"
+
+#: ui/findbar/khtmlfindbar.cpp:57
+#, kde-format
+msgid "Regular e&xpression"
+msgstr "नियमित अभिव्यक्ति"
+
+#: ui/findbar/khtmlfindbar.cpp:59
+#, fuzzy, kde-format
+#| msgid "Find Links as You Type"
+msgid "Find &links only"
+msgstr "तपाईँले टाइप गरे जस्तै लिङ्क फेला पार्नुहोस्"
+
+#: ui/findbar/khtmlfindbar.cpp:224
+#, fuzzy, kde-format
+#| msgid "1 match found."
+#| msgid_plural "%1 matches found."
+msgid "Not found"
+msgstr "१ जोडा फेला पर्यो ।"
+
+#: ui/findbar/khtmlfindbar.cpp:239
+#, kde-format
+msgid "No more matches for this search direction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, fuzzy, kde-format
+#| msgid "Find"
+msgid "F&ind:"
+msgstr "फेला पार्नुहोस्"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, fuzzy, kde-format
+#| msgctxt "Opposite to Previous"
+#| msgid "&Next"
+msgid "&Next"
+msgstr "पछिल्लो"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "अघिल्लो"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, fuzzy, kde-format
+#| msgid "Options"
+msgid "Opt&ions"
+msgstr "विकल्प"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
+#, fuzzy, kde-format
+#| msgid "Do you really want to delete this item?"
+#| msgid_plural "Do you really want to delete these %1 items?"
+msgid "Do you want to store this password?"
+msgstr "तपाईँ साँच्चीकै यो सामाग्री मेट्न चाहनुहुन्छ ?"
+
+#: ui/passwordbar/storepassbar.cpp:61
+#, fuzzy, kde-format
+#| msgid "Do you want to restart search from the end?"
+msgid "Do you want to store this password for %1?"
+msgstr "तपाईँ अन्त्यबाट खोजी फेरि सुरु गर्न चाहनुहुन्छ ?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, fuzzy, kde-format
+#| msgid "Store"
+msgid "&Store"
+msgstr "भण्डारण गर्नुहोस्"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, fuzzy, kde-format
+#| msgid "Ne&ver for This Site"
+msgid "Ne&ver store for this site"
+msgstr "यो साइटका लागि कहिल्यै पनि होइन"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, fuzzy, kde-format
+#| msgid "Do not show this message again"
+msgid "Do &not store this time"
+msgstr "यो सन्देश फेरि नदेखाउनुहोस्"
+
+#: xml/dom_docimpl.cpp:2378
+#, kde-format
+msgid "Basic Page Style"
+msgstr "आधारभूत पृष्ठ शैली"
+
+#: xml/xml_tokenizer.cpp:347
+#, kde-format
+msgid "the document is not in the correct file format"
+msgstr "कागजात शुद्ध फाइल ढाँचामा छैन"
+
+#: xml/xml_tokenizer.cpp:352
+#, kde-format
+msgid "fatal parsing error: %1 in line %2, column %3"
+msgstr "घातक पदवर्णन त्रुटि: %1 लाइन %2, स्तम्भ %3 मा"
+
+#: xml/xml_tokenizer.cpp:567
+#, kde-format
+msgid "XML parsing error"
+msgstr "XML पद वर्णन त्रुटि"
