@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 
 set(KF5_VERSION "5.38.0") # handled by release scripts
-set(KF5_DEP_VERSION "5.37.0") # handled by release scripts
+set(KF5_DEP_VERSION "5.38.0") # handled by release scripts
 project(KHtml VERSION ${KF5_VERSION})
 
 include(FeatureSummary)
