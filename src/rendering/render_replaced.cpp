@@ -102,7 +102,7 @@ FindSelectionResult RenderReplaced::checkSelectionPoint(int _x, int _y, int _tx,
 #if 0
     // qDebug() << "RenderReplaced::checkSelectionPoint(_x="<<_x<<",_y="<<_y<<",_tx="<<_tx<<",_ty="<<_ty<<")" << endl
             << "xPos: " << xPos() << " yPos: " << yPos() << " width: " << width() << " height: " << height() << endl
-            << "_ty + yPos: " << (_ty + yPos()) << " + height: " << (_ty + yPos() + height()) << "; _tx + xPos: " << (_tx + xPos()) << " + width: " << (_tx + xPos() + width()) << endl;
+            << "_ty + yPos: " << (_ty + yPos()) << " + height: " << (_ty + yPos() + height()) << "; _tx + xPos: " << (_tx + xPos()) << " + width: " << (_tx + xPos() + width());
 #endif
     node = element();
     offset = 0;

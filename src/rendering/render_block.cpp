@@ -826,7 +826,7 @@ void RenderBlock::layoutBlock(bool relayoutChildren)
 
     //     qDebug() << floatingObjects << "," << oldWidth << ","
     //                     << m_width << ","<< needsLayout() << "," << isAnonymousBox() << ","
-    //                     << isPositioned() << endl;
+    //                     << isPositioned();
 
 #ifdef DEBUG_LAYOUT
     qDebug() << renderName() << "(RenderBlock) " << this << " ::layout() width=" << m_width << ", needsLayout=" << needsLayout();
@@ -3485,7 +3485,7 @@ void RenderBlock::calcInlineMinMaxWidth()
         m_maxWidth = inlineMax;
     }
     //         qDebug() << "m_minWidth=" << m_minWidth
-    //          << " m_maxWidth=" << m_maxWidth << endl;
+    //          << " m_maxWidth=" << m_maxWidth;
 }
 
 // Use a very large value (in effect infinite).
@@ -3717,8 +3717,7 @@ void RenderBlock::printTree(int indent) const
             s.fill(' ', indent);
             qDebug() << s << renderName() << ":  " <<
                      (r->type == FloatingObject::FloatLeft ? "FloatLeft" : "FloatRight")  <<
-                     "[" << r->node->renderName() << ": " << (void *)r->node << "] (" << r->startY << " - " << r->endY << ")" << "width: " << r->width <<
-                     endl;
+                     "[" << r->node->renderName() << ": " << (void *)r->node << "] (" << r->startY << " - " << r->endY << ")" << "width: " << r->width;
         }
     }
 }

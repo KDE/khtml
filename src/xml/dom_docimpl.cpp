@@ -1210,8 +1210,8 @@ ElementImpl *DocumentImpl::createHTMLElement(const DOMString &name, bool caseIns
 ElementImpl *DocumentImpl::createSVGElement(const QualifiedName &name)
 {
     uint id = name.localNameId().id();
-    // qDebug() << getPrintableName(name.id()) << endl;
-    // qDebug() << "svg text:   " << getPrintableName(WebCore::SVGNames::textTag.id()) << endl;
+    // qDebug() << getPrintableName(name.id());
+    // qDebug() << "svg text:   " << getPrintableName(WebCore::SVGNames::textTag.id());
 
     ElementImpl *n = nullptr;
     switch (id) {
@@ -3153,7 +3153,7 @@ JSEditor *DocumentImpl::jsEditor()
 
 bool DocumentImpl::execCommand(const DOMString &command, bool userInterface, const DOMString &value)
 {
-    // qDebug() << "[execute command]" << command << userInterface << value << endl;
+    // qDebug() << "[execute command]" << command << userInterface << value;
     return jsEditor()->execCommand(jsEditor()->commandImp(command), userInterface, value);
 }
 
@@ -3174,7 +3174,7 @@ bool DocumentImpl::queryCommandState(const DOMString &command)
 
 bool DocumentImpl::queryCommandSupported(const DOMString &command)
 {
-    // qDebug() << "[query command supported]" << command << endl;
+    // qDebug() << "[query command supported]" << command;
     return jsEditor()->queryCommandSupported(jsEditor()->commandImp(command));
 }
 

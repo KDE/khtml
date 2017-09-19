@@ -460,7 +460,7 @@ static inline int justifyWidth(int &numSpaces, int &toAdd)
 FindSelectionResult InlineTextBox::checkSelectionPoint(int _x, int _y, int _tx, int _ty, int &offset)
 {
 //       qDebug() << "InlineTextBox::checkSelectionPoint " << this << " _x=" << _x << " _y=" << _y
-//                     << " _tx+m_x=" << _tx+m_x << " _ty+m_y=" << _ty+m_y << endl;
+//                     << " _tx+m_x=" << _tx+m_x << " _ty+m_y=" << _ty+m_y;
     offset = 0;
 
     if (_y < _ty + m_y) {
@@ -584,7 +584,7 @@ int InlineTextBox::offsetForPoint(int _x, int &ax) const
 int InlineTextBox::widthFromStart(int pos) const
 {
     // gasp! sometimes pos is i < 0 which crashes Font::width
-    // qDebug() << this << pos << endl;
+    // qDebug() << this << pos;
     pos = qMax(pos, 0);
 
     const RenderText *t = renderText();
@@ -643,7 +643,7 @@ int InlineTextBox::widthFromStart(int pos) const
 
     //qDebug() << "default";
     // else use existing width function
-    // qDebug() << "result width:" << f->width(t->str->s + m_start, m_len, 0, pos, false) << endl;
+    // qDebug() << "result width:" << f->width(t->str->s + m_start, m_len, 0, pos, false);
     return f->width(t->str->s + m_start, m_len, 0, pos, false);
 
 }
@@ -948,7 +948,7 @@ bool RenderText::nodeAtPoint(NodeInfo &info, int _x, int _y, int _tx, int _ty, H
 FindSelectionResult RenderText::checkSelectionPoint(int _x, int _y, int _tx, int _ty, DOM::NodeImpl *&node, int &offset, SelPointState &)
 {
 //        qDebug() << "RenderText::checkSelectionPoint " << this << " _x=" << _x << " _y=" << _y
-//                     << " _tx=" << _tx << " _ty=" << _ty << endl;
+//                     << " _tx=" << _tx << " _ty=" << _ty;
 //qDebug() << renderName() << "::checkSelectionPoint x=" << xPos() << " y=" << yPos() << " w=" << width() << " h=" << height();
 
     NodeImpl *lastNode = nullptr;
@@ -1024,12 +1024,12 @@ unsigned RenderText::convertToDOMPosition(unsigned position) const
     /*const */DOMStringImpl *domString = originalString();
     /*const */DOMStringImpl *renderedString = string();
     if (domString == renderedString) {
-        // qDebug() << "[rendered == dom]" << position << endl;
+        // qDebug() << "[rendered == dom]" << position;
         return position;
     }
     /* // qDebug() << "[convert]" << position << endl
         << DOMString(domString) << endl
-        << DOMString(renderedString) << endl;*/
+        << DOMString(renderedString);*/
 
     if (!domString || !renderedString) {
         return position;
@@ -1056,7 +1056,7 @@ unsigned RenderText::convertToDOMPosition(unsigned position) const
         ++i;
         ++j;
     }
-    // qDebug() << "[result]" << i << endl;
+    // qDebug() << "[result]" << i;
     return i;
 }
 
@@ -1068,12 +1068,12 @@ unsigned RenderText::convertToRenderedPosition(unsigned position) const
     /*const */DOMStringImpl *domString = originalString();
     /*const */DOMStringImpl *renderedString = string();
     if (domString == renderedString) {
-        // qDebug() << "[rendered == dom]" << position << endl;
+        // qDebug() << "[rendered == dom]" << position;
         return position;
     }
     /* // qDebug() << "[convert]" << position << endl
         << DOMString(domString) << endl
-        << DOMString(renderedString) << endl;*/
+        << DOMString(renderedString);*/
 
     if (!domString || !renderedString) {
         return position;
@@ -1100,20 +1100,20 @@ unsigned RenderText::convertToRenderedPosition(unsigned position) const
         ++i;
         ++j;
     }
-    // qDebug() << "[result]" << j << endl;
+    // qDebug() << "[result]" << j;
     return j;
 }
 
 RenderPosition RenderText::positionForCoordinates(int _x, int _y)
 {
-    // qDebug() << this << _x << _y << endl;
+    // qDebug() << this << _x << _y;
     if (!firstTextBox() || stringLength() == 0) {
         return Position(element(), 0);
     }
 
     int absx, absy;
     containingBlock()->absolutePosition(absx, absy);
-    // qDebug() << "absolute(" << absx << absy << ")" << endl;
+    // qDebug() << "absolute(" << absx << absy << ")";
 
     if (_y < absy + firstTextBox()->root()->bottomOverflow() && _x < absx + firstTextBox()->m_x) {
         // at the y coordinate of the first line or above
@@ -1128,16 +1128,16 @@ RenderPosition RenderText::positionForCoordinates(int _x, int _y)
     }
 
     for (InlineTextBox *box = firstTextBox(); box; box = box->nextTextBox()) {
-        // qDebug() << "[check box]" << box << endl;
+        // qDebug() << "[check box]" << box;
         if (_y >= absy + box->root()->topOverflow() && _y < absy + box->root()->bottomOverflow()) {
             if (_x < absx + box->m_x + box->m_width) {
                 // and the x coordinate is to the left of the right edge of this box
                 // check to see if position goes in this box
                 int offset;
                 box->checkSelectionPoint(_x, absy + box->yPos(), absx, absy, offset);
-                // qDebug() << "offset" << offset << endl;
+                // qDebug() << "offset" << offset;
                 if (offset != -1) {
-                    // qDebug() << "return" << Position(element(), convertToDOMPosition(offset + box->m_start)) << endl;
+                    // qDebug() << "return" << Position(element(), convertToDOMPosition(offset + box->m_start));
                     return RenderPosition(element(), offset + box->m_start);
                 }
             } else if (!box->prevOnLine() && _x < absx + box->m_x)
@@ -1158,7 +1158,7 @@ RenderPosition RenderText::positionForCoordinates(int _x, int _y)
 
 void RenderText::caretPos(int offset, int flags, int &_x, int &_y, int &width, int &height) const
 {
-    // qDebug() << offset << flags << endl;
+    // qDebug() << offset << flags;
     if (!m_firstTextBox) {
         _x = _y = height = -1;
         width = 1;
@@ -1175,16 +1175,16 @@ void RenderText::caretPos(int offset, int flags, int &_x, int &_y, int &width, i
 
     _x = s->m_x + s->widthFromStart(pos);
     _y = s->m_y + s->baseline() - fm.ascent();
-    // qDebug() << "(" << _x << _y << ")" << endl;
+    // qDebug() << "(" << _x << _y << ")";
     width = 1;
     if (flags & CFOverride) {
         width = offset < caretMaxOffset() ? fm.width(str->s[offset]) : 1;
-        // qDebug() << "CFOverride" << width << endl;
+        // qDebug() << "CFOverride" << width;
     }/*end if*/
 #if 0
     // qDebug() << "_x="<<_x << " s->m_x="<<s->m_x
             << " s->m_start" << s->m_start
-            << " s->m_len" << s->m_len << " _y=" << _y << endl;
+            << " s->m_len" << s->m_len << " _y=" << _y;
 #endif
 
     int absx, absy;

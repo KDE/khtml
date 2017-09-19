@@ -128,7 +128,7 @@ LinearGradientAttributes SVGLinearGradientElement::collectGradientProperties() c
 
         if (!attributes.hasStops()) {
             const Vector<SVGGradientStop> &stops(current->buildStops());
-            // qDebug() << "stops.isEmpty()" << stops.isEmpty() << endl;
+            // qDebug() << "stops.isEmpty()" << stops.isEmpty();
             if (!stops.isEmpty()) {
                 attributes.setStops(stops);
             }
@@ -161,7 +161,7 @@ LinearGradientAttributes SVGLinearGradientElement::collectGradientProperties() c
         if (refNode && (refNode->hasTagName(SVGNames::linearGradientTag) || refNode->hasTagName(SVGNames::radialGradientTag))) {
             current = static_cast<const SVGGradientElement *>(const_cast<const Node *>(refNode));
             // int ec;
-            // qDebug() << "take attributes from" << current->getAttributeNS("", "id", ec) << endl;
+            // qDebug() << "take attributes from" << current->getAttributeNS("", "id", ec);
 
             // Cycle detection
             if (processedGradients.contains(current)) {

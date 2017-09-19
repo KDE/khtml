@@ -888,7 +888,7 @@ bool CSSStyleDeclarationImpl::setProperty(int id, const DOMString &value, bool i
     bool success = parser.parseValue(this, id, value, important);
     if (!success) {
         // qDebug() << "CSSStyleDeclarationImpl::setProperty invalid property: [" << getPropertyName(id).string()
-        //<< "] value: [" << value.string() << "]"<< endl;
+        //<< "] value: [" << value.string() << "]";
     } else {
         setChanged();
     }

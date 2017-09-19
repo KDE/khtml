@@ -574,7 +574,7 @@ void KHTMLFind::slotHighlight(const QString & /*text*/, int index, int length)
 
 #if 0
     // qDebug() << "slotHighlight: " << d->m_selectionStart.handle() << "," << d->m_startOffset << " - " <<
-    d->m_selectionEnd.handle() << "," << d->m_endOffset << endl;
+    d->m_selectionEnd.handle() << "," << d->m_endOffset;
     it = d->m_stringPortions.begin();
     for (; it != d->m_stringPortions.end(); ++it)
         // qDebug() << "  StringPortion: from index=" << (*it).index << " -> node=" << (*it).node;

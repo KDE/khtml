@@ -161,7 +161,7 @@ void RenderTable::addChild(RenderObject *child, RenderObject *beforeChild)
 {
 #ifdef DEBUG_LAYOUT
     qDebug() << renderName() << "(Table)::addChild( " << child->renderName() << ", " <<
-             (beforeChild ? beforeChild->renderName() : "0") << " )" << endl;
+             (beforeChild ? beforeChild->renderName() : "0") << " )";
 #endif
     bool wrapInAnonymousSection = false;
 
@@ -1096,7 +1096,7 @@ FindSelectionResult RenderTable::checkSelectionPoint(int _x, int _y, int _tx, in
                 node = state.m_lastNode;
                 offset = state.m_lastOffset;
                 //qDebug() << "RenderTable::checkSelectionPoint " << this << " before this child "
-                //              << node << "-> returning SelectionPointInside, offset=" << offset << endl;
+                //              << node << "-> returning SelectionPointInside, offset=" << offset;
                 return SelectionPointInside;
             } else {
                 node = nod;
@@ -1175,7 +1175,7 @@ void RenderTableSection::addChild(RenderObject *child, RenderObject *beforeChild
 {
 #ifdef DEBUG_LAYOUT
     qDebug() << renderName() << "(TableSection)::addChild( " << child->renderName()  << ", beforeChild=" <<
-             (beforeChild ? beforeChild->renderName() : "0") << " )" << endl;
+             (beforeChild ? beforeChild->renderName() : "0") << " )";
 #endif
     if (!child->isTableRow()) {
         // TBODY > FORM quirk (???)
@@ -1770,7 +1770,7 @@ int RenderTableSection::layoutRows(int toAdd)
             {
 #ifdef DEBUG_LAYOUT
                 qDebug() << "setting position " << r << "/" << c << ": "
-                         << table()->columnPos[c] /*+ padding */ << "/" << rowPos[rindx] << " height=" << rHeight << endl;
+                         << table()->columnPos[c] /*+ padding */ << "/" << rowPos[rindx] << " height=" << rHeight;
 #endif
 
                 EVerticalAlign va = cell->style()->verticalAlign();
@@ -2410,7 +2410,7 @@ void RenderTableRow::addChild(RenderObject *child, RenderObject *beforeChild)
 {
 #ifdef DEBUG_LAYOUT
     qDebug() << renderName() << "(TableRow)::addChild( " << child->renderName() << " )"  << ", " <<
-             (beforeChild ? beforeChild->renderName() : "0") << " )" << endl;
+             (beforeChild ? beforeChild->renderName() : "0") << " )";
 #endif
 
     if (!child->isTableCell()) {

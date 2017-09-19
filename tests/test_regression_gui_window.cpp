@@ -564,7 +564,7 @@ void TestRegressionWindow::saveLogButtonClicked()
         // Remove file if already existent...
         QFile file(fileName);
         if (!file.remove()) {
-            kError() << " Can't remove " << fileName << endl;
+            kError() << " Can't remove " << fileName;
             exit(1);
         }
     }
@@ -863,7 +863,7 @@ void TestRegressionWindow::processQueue()
 
         if (result != Unknown) { // Yes, we're dealing with a test result...
             if (cacheName.isEmpty()) { // Make sure everything is alright!
-                kError() << "Couldn't extract cacheName from data=\"" << data << "\"! Ignoring!" << endl;
+                kError() << "Couldn't extract cacheName from data=\"" << data << "\"! Ignoring!";
                 continue;
             }
         }
@@ -1123,7 +1123,7 @@ void TestRegressionWindow::updateLogOutput(const QString &data)
 
         QFile file(fileName);
         if (!file.open(fileFlags)) {
-            kError() << " Can't open " << fileName << endl;
+            kError() << " Can't open " << fileName;
             exit(1);
         }
 
@@ -1162,7 +1162,7 @@ QStringList TestRegressionWindow::readListFile(const QString &fileName) const
     if (fileInfo.exists()) {
         QFile file(fileName);
         if (!file.open(QIODevice::ReadOnly)) {
-            kError() << " Can't open " << fileName << endl;
+            kError() << " Can't open " << fileName;
             exit(1);
         }
 
@@ -1183,7 +1183,7 @@ void TestRegressionWindow::writeListFile(const QString &fileName, const QStringL
 {
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-        kError() << " Can't open " << fileName << endl;
+        kError() << " Can't open " << fileName;
         exit(1);
     }
 

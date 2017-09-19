@@ -92,7 +92,7 @@ void KJavaAppletWidget::setWindow(WId w)
             m_swallowTitle == w_info.visibleName()) {
         KWindowSystem::setState(w, NET::Hidden | NET::SkipTaskbar | NET::SkipPager);
         // qDebug() << "swallowing our window: " << m_swallowTitle
-                << ", window id = " << w << endl;
+                << ", window id = " << w;
         delete d->tmplabel;
         d->tmplabel = 0;
 

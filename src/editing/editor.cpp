@@ -253,7 +253,7 @@ void Editor::applyStyle(CSSStyleDeclarationImpl *style)
     case Selection::RANGE:
         if (m_part->xmlDocImpl() && style) {
 #ifdef DEBUG_COMMANDS
-            // qDebug() << "[create ApplyStyleCommand]" << endl;
+            // qDebug() << "[create ApplyStyleCommand]";
 #endif
             // FIXME
             (new ApplyStyleCommandImpl(m_part->xmlDocImpl(), style))->apply();
@@ -424,7 +424,7 @@ PassRefPtr<EditCommandImpl> Editor::lastEditCommand() const
 void Editor::appliedEditing(EditCommandImpl *cmd)
 {
 #ifdef DEBUG_COMMANDS
-    // qDebug() << "[Applied editing]" << endl;
+    // qDebug() << "[Applied editing]";
 #endif
     // make sure we have all the changes in rendering tree applied with relayout if needed before setting caret
     // in particular that could be required for inline boxes recomputation when inserting text
@@ -543,17 +543,17 @@ bool Editor::handleKeyEvent(QKeyEvent *_ke)
     case Qt::Key_Delete: {
         Selection selectionToDelete = m_part->caret();
 #ifdef DEBUG_COMMANDS
-        // qDebug() << "========== KEY_DELETE ==========" << endl;
+        // qDebug() << "========== KEY_DELETE ==========";
 #endif
         if (selectionToDelete.state() == Selection::CARET) {
             Position pos(selectionToDelete.start());
 #ifdef DEBUG_COMMANDS
-            // qDebug() << "pos.inLastEditableInRootEditableElement " << pos.inLastEditableInRootEditableElement() << " pos.offset " << pos.offset() << " pos.max " << pos.node()->caretMaxRenderedOffset() << endl;
+            // qDebug() << "pos.inLastEditableInRootEditableElement " << pos.inLastEditableInRootEditableElement() << " pos.offset " << pos.offset() << " pos.max " << pos.node()->caretMaxRenderedOffset();
 #endif
             if (pos.nextCharacterPosition() == pos) {
                 // we're at the end of a root editable block...do nothing
 #ifdef DEBUG_COMMANDS
-                // qDebug() << "no delete!!!!!!!!!!" << endl;
+                // qDebug() << "no delete!!!!!!!!!!";
 #endif
                 break;
             }

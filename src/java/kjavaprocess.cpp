@@ -241,7 +241,7 @@ void KJavaProcess::slotReceivedData()
     char length[9] = { 0 };
     const int num_bytes = read(length, 8);
     if (num_bytes == -1) {
-        qCritical() << "could not read 8 characters for the message length!!!!" << endl;
+        qCritical() << "could not read 8 characters for the message length!!!!";
         return;
     }
 
@@ -249,7 +249,7 @@ void KJavaProcess::slotReceivedData()
     bool ok;
     const int num_len = lengthstr.toInt(&ok);
     if (!ok) {
-        qCritical() << "could not parse length out of: " << lengthstr << endl;
+        qCritical() << "could not parse length out of: " << lengthstr;
         return;
     }
 
@@ -257,7 +257,7 @@ void KJavaProcess::slotReceivedData()
     char *const msg = new char[num_len];
     const int num_bytes_msg = read(msg, num_len);
     if (num_bytes_msg == -1 || num_bytes_msg != num_len) {
-        qCritical() << "could not read the msg, num_bytes_msg = " << num_bytes_msg << endl;
+        qCritical() << "could not read the msg, num_bytes_msg = " << num_bytes_msg;
         delete[] msg;
         return;
     }

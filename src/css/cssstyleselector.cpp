@@ -2331,7 +2331,7 @@ void CSSStyleSelectorList::append(CSSStyleSheetImpl *sheet,
             CSSImportRuleImpl *import = static_cast<CSSImportRuleImpl *>(item);
 
             //qDebug() << "@import: Media: "
-            //                << import->media()->mediaText().string() << endl;
+            //                << import->media()->mediaText().string();
 
             if (!import->media() || medium->eval(import->media(), styleSelector)) {
                 CSSStyleSheetImpl *importedSheet = import->styleSheet();
@@ -2342,7 +2342,7 @@ void CSSStyleSelectorList::append(CSSStyleSheetImpl *sheet,
             CSSRuleListImpl *rules = r->cssRules();
 
             //qDebug() << "@media: Media: "
-            //                << r->media()->mediaText().string() << endl;
+            //                << r->media()->mediaText().string();
 
             if ((!r->media() || medium->eval(r->media(), styleSelector)) && rules) {
                 // Traverse child elements of the @import rule. Since
@@ -2368,13 +2368,13 @@ void CSSStyleSelectorList::append(CSSStyleSheetImpl *sheet,
                         styleSelector->fontSelector()->addFontFaceRule(fontFaceRule);
                     } else {
                         //qDebug() << "Ignoring child rule of "
-                        //    "ImportRule: rule is not a StyleRule!" << endl;
+                        //    "ImportRule: rule is not a StyleRule!";
                     }
                 }   // for rules
             }   // if rules
             else {
                 //qDebug() << "CSSMediaRule not rendered: "
-                //                << "rule empty or wrong medium!" << endl;
+                //                << "rule empty or wrong medium!";
             }
         } else if (item->isFontFaceRule() && styleSelector) {
             const CSSFontFaceRuleImpl *fontFaceRule = static_cast<CSSFontFaceRuleImpl *>(item);

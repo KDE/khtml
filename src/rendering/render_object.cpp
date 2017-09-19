@@ -2664,7 +2664,7 @@ FindSelectionResult RenderObject::checkSelectionPoint(int _x, int _y, int _tx, i
                 node = state.m_lastNode;
                 offset = state.m_lastOffset;
                 //qDebug() << "RenderObject::checkSelectionPoint " << this << " before this child "
-                //              << node << "-> returning SelectionPointInside, offset=" << offset << endl;
+                //              << node << "-> returning SelectionPointInside, offset=" << offset;
                 return SelectionPointInside;
             } else {
                 node = nod;

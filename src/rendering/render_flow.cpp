@@ -128,7 +128,7 @@ void RenderFlow::addChild(RenderObject *newChild, RenderObject *beforeChild)
 {
 #ifdef DEBUG_LAYOUT
     // qDebug() << renderName() << "(RenderFlow)::addChild( " << newChild->renderName() <<
-    ", " << (beforeChild ? beforeChild->renderName() : "0") << " )" << endl;
+    // ", " << (beforeChild ? beforeChild->renderName() : "0") << " )";
     // qDebug() << "current height = " << m_height;
 #endif
 

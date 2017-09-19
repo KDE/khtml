@@ -6476,7 +6476,7 @@ void KHTMLPart::handleMousePressEventSingleClick(khtml::MousePressEvent *event)
             if (pos.isEmpty()) {
                 pos = Position(innerNode.handle(), innerNode.handle()->caretMinOffset());
             }
-            // qDebug() << event->x() << event->y() << pos << endl;
+            // qDebug() << event->x() << event->y() << pos;
 
             sel = caret();
             if (extendSelection && sel.notEmpty()) {

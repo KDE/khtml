@@ -247,7 +247,7 @@ void KHTMLParser::parseToken(Token *t)
 
 #ifdef PARSER_DEBUG
     qDebug() << "\n\n==> parser: processing token " << getParserPrintableName(t->tid) << "(" << t->tid << ")"
-             << " current = " << getParserPrintableName(current->id()) << "(" << current->id() << ")" << endl;
+             << " current = " << getParserPrintableName(current->id()) << "(" << current->id() << ")";
     qDebug() << "inline=" << m_inline << " inBody=" << inBody << " haveFrameSet=" << haveFrameSet << " haveContent=" << haveContent;
 #endif
 

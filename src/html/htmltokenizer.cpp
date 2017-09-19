@@ -2023,7 +2023,7 @@ void HTMLTokenizer::processToken()
             NodeImpl::Id tid = currToken.attrs->idAt(i);
             DOMString value = currToken.attrs->valueAt(i);
             qDebug() << "    " << tid << " " << LocalName::fromId(localNamePart(tid)).toString()
-                     << "=\"" << value.string() << "\"" << endl;
+                     << "=\"" << value.string() << "\"";
         }
     }
 #endif

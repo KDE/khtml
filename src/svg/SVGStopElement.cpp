@@ -49,7 +49,7 @@ void SVGStopElement::parseMappedAttribute(MappedAttribute *attr)
 {
     if (attr->name() == SVGNames::offsetAttr) {
         const String &value = attr->value();
-        // qDebug() << "parse offset:" << value << endl;
+        // qDebug() << "parse offset:" << value;
         if (value.endsWith("%")) {
             setOffsetBaseValue(value.substring(0, value.length() - 1).toFloat() / 100.0f);
         } else {

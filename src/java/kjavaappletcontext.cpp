@@ -162,7 +162,7 @@ void KJavaAppletContext::received(const QString &cmd, const QStringList &arg)
         const int height = arg[2].toInt(&ok);
 
         if (!ok) {
-            qCritical() << "could not parse out parameters for resize" << endl;
+            qCritical() << "could not parse out parameters for resize";
         } else {
             KJavaApplet *const tmp = d->applets[appletID];
             if (tmp) {
@@ -181,7 +181,7 @@ void KJavaAppletContext::received(const QString &cmd, const QStringList &arg)
             js_args.pop_front();
             applet->jsData(js_args);
         } else {
-            qCritical() << "parse JS event " << arg[0] << " " << arg[1] << endl;
+            qCritical() << "parse JS event " << arg[0] << " " << arg[1];
         }
     } else if (cmd == QLatin1String("AppletStateNotification")) {
         bool ok;
@@ -197,13 +197,13 @@ void KJavaAppletContext::received(const QString &cmd, const QStringList &arg)
                         emit appletLoaded();
                     }
                 } else {
-                    qCritical() << "AppletStateNotification: status is not numerical" << endl;
+                    qCritical() << "AppletStateNotification: status is not numerical";
                 }
             } else {
                 qWarning() << "AppletStateNotification:  No such Applet with ID=" << arg[0];
             }
         } else {
-            qCritical() << "AppletStateNotification: Applet ID is not numerical" << endl;
+            qCritical() << "AppletStateNotification: Applet ID is not numerical";
         }
     } else if (cmd == QLatin1String("AppletFailed")) {
         bool ok;

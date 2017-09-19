@@ -515,7 +515,7 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
             }
             // qDebug() << "PutData(" << ID_num << ") size=" << qb.size() - index;
         } else {
-            qCritical() << "PutData error " << ok << endl;
+            qCritical() << "PutData error " << ok;
         }
         return;
     }
@@ -523,7 +523,7 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
     while (index < qb_size) {
         int sep_pos = qb.indexOf((char) 0, index);
         if (sep_pos < 0) {
-            qCritical() << "Missing separation byte" << endl;
+            qCritical() << "Missing separation byte";
             sep_pos = qb_size;
         }
         //qDebug() << "KJavaAppletServer::slotJavaRequest: "<< QString::fromLocal8Bit( qb.data() + index, sep_pos - index );
@@ -554,7 +554,7 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
             d->kiojobs.insert(ID_num, new KJavaDownloader(ID_num, args.first()));
             // qDebug() << "GetURLData(" << ID_num << ") url=" << args.first();
         } else {
-            qCritical() << "GetURLData error " << ok << " args:" << args.size() << endl;
+            qCritical() << "GetURLData error " << ok << " args:" << args.size();
         }
         return;
     case KJAS_PUT_URLDATA:
@@ -564,7 +564,7 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
             job->start();
             // qDebug() << "PutURLData(" << ID_num << ") url=" << args.first();
         } else {
-            qCritical() << "PutURLData error " << ok << " args:" << args.size() << endl;
+            qCritical() << "PutURLData error " << ok << " args:" << args.size();
         }
         return;
     case KJAS_DATA_COMMAND:
@@ -576,7 +576,7 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
             }
             // qDebug() << "KIO Data command: " << ID_num << " " << args.first();
         } else {
-            qCritical() << "KIO Data command error " << ok << " args:" << args.size() << endl;
+            qCritical() << "KIO Data command error " << ok << " args:" << args.size();
         }
         return;
     case KJAS_JAVASCRIPT_EVENT:
@@ -586,7 +586,7 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
             // qDebug() << "Javascript request: "<< contextID
             //             << " code: " << args[0] << endl;
         } else {
-            qCritical() << "Expected args not to be empty!" << endl;
+            qCritical() << "Expected args not to be empty!";
         }
 
         break;
@@ -606,7 +606,7 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
                 // qDebug() << "Error: Missed return member data";
             }
         } else {
-            qCritical() << "Expected args not to be empty!" << endl;
+            qCritical() << "Expected args not to be empty!";
         }
         return;
     }
@@ -615,7 +615,7 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
         if (!args.empty()) {
             // qDebug() << "Audio Play: url=" << args[0];
         } else {
-            qCritical() << "Expected args not to be empty!" << endl;
+            qCritical() << "Expected args not to be empty!";
         }
 
         break;
@@ -624,7 +624,7 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
         if (!args.empty()) {
             // qDebug() << "Audio Loop: url=" << args[0];
         } else {
-            qCritical() << "Expected args not to be empty!" << endl;
+            qCritical() << "Expected args not to be empty!";
         }
 
         break;
@@ -633,7 +633,7 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
         if (!args.empty()) {
             // qDebug() << "Audio Stop: url=" << args[0];
         } else {
-            qCritical() << "Expected args not to be empty!" << endl;
+            qCritical() << "Expected args not to be empty!";
         }
 
         break;
@@ -641,7 +641,7 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
         if (args.size() > 1) {
             // qDebug() << "Applet State Notification for Applet " << args[0] << ". New state=" << args[1];
         } else {
-            qCritical() << "Expected args not to be empty!" << endl;
+            qCritical() << "Expected args not to be empty!";
         }
 
         cmd = QLatin1String("AppletStateNotification");
@@ -650,7 +650,7 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
         if (args.size() > 1) {
             // qDebug() << "Applet " << args[0] << " Failed: " << args[1];
         } else {
-            qCritical() << "Expected args not to be empty!" << endl;
+            qCritical() << "Expected args not to be empty!";
         }
 
         cmd = QLatin1String("AppletFailed");
@@ -704,7 +704,7 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
     }
 
     if (!ok) {
-        qCritical() << "could not parse out contextID to call command on" << endl;
+        qCritical() << "could not parse out contextID to call command on";
         return;
     }
 
@@ -712,7 +712,7 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
     if (context) {
         context->processCmd(cmd, args);
     } else if (cmd != "AppletStateNotification") {
-        qCritical() << "no context object for this id" << endl;
+        qCritical() << "no context object for this id";
     }
 }
 

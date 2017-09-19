@@ -525,7 +525,7 @@ void /*KHTML_NO_EXPORT*/ mapDOMPosToRenderPos(NodeImpl *node, long offset,
     } else {
         r = 0;
         qWarning() << "Mapping from nodes of type " << node->nodeType()
-                   << " not supported!" << endl;
+                   << " not supported!";
     }
 }
 
@@ -584,7 +584,7 @@ void /*KHTML_NO_EXPORT*/ mapRenderPosToDOMPos(RenderObject *r, long r_ofs,
     } else {
         offset = 0;
         qWarning() << "Mapping to nodes of type " << node->nodeType()
-                   << " not supported!" << endl;
+                   << " not supported!";
     }
 }
 
@@ -1766,8 +1766,7 @@ void EditableCaretBoxIterator::advance(bool toBegin)
                         // ### Can inline elements have top/bottom margins? Couldn't find
                         // it in the CSS 2 spec, but Mozilla ignores them, so we do, too.
                         << " marl " << s->marginLeft().value()
-                        << " marr " << s->marginRight().value()
-                        << endl;
+                        << " marr " << s->marginRight().value();
 #endif
 #endif
                 break;
@@ -2589,7 +2588,7 @@ void ErgonomicEditableLineIterator::determineTopologicalElement(
         }/*wend*/
 
     } else {
-        kError(6201) << "Neither common cell nor section! " << commonAncestor->renderName() << endl;
+        kError(6201) << "Neither common cell nor section! " << commonAncestor->renderName();
         // will crash on uninitialized table row iterator
     }/*end if*/
 

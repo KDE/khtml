@@ -1376,7 +1376,7 @@ void KHTMLView::mouseMoveEvent(QMouseEvent *_mouse)
 
     // qDebug() << "mouse move: " << _mouse->pos()
     //        << " button " << _mouse->button()
-    //        << " state " << _mouse->state() << endl;
+    //        << " state " << _mouse->state();
 
     DOM::NodeImpl *target = mev.innerNode.handle();
     DOM::NodeImpl *fn = m_part->xmlDocImpl()->focusNode();
@@ -1924,7 +1924,7 @@ bool KHTMLView::focusNextPrevChild(bool next)
     if (m_part->xmlDocImpl() && focusNextPrevNode(next)) {
         //if (m_part->xmlDocImpl()->focusNode())
         // qDebug() << "focusNode.name: "
-        //      << m_part->xmlDocImpl()->focusNode()->nodeName().string() << endl;
+        //      << m_part->xmlDocImpl()->focusNode()->nodeName().string();
         return true; // focus node found
     }
 
@@ -2520,13 +2520,13 @@ bool KHTMLView::focusNextPrevNode(bool next)
     } else {
         // if it's an editable element, activate the caret
         if (!m_part->isCaretMode() && newFocusNode->isContentEditable()) {
-            // qDebug() << "show caret! fn: " << newFocusNode->nodeName().string() << endl;
+            // qDebug() << "show caret! fn: " << newFocusNode->nodeName().string();
             m_part->clearCaretRectIfNeeded();
             m_part->d->editor_context.m_selection.moveTo(Position(newFocusNode, 0L));
             m_part->setCaretVisible(true);
         } else {
             m_part->setCaretVisible(false);
-            // qDebug() << "hide caret! fn: " << newFocusNode->nodeName().string() << endl;
+            // qDebug() << "hide caret! fn: " << newFocusNode->nodeName().string();
         }
         m_part->notifySelectionChanged();
 
@@ -3175,7 +3175,7 @@ void KHTMLView::print(bool quick)
                                                 );
 
         // qDebug() << "printing: physical page width = " << printer.width()
-        //              << " height = " << printer.height() << endl;
+        //              << " height = " << printer.height();
         root->setStaticMode(true);
         root->setPagedMode(true);
         root->setWidth(printer.width());
@@ -3210,11 +3210,11 @@ void KHTMLView::print(bool quick)
 
         // ok. now print the pages.
         // qDebug() << "printing: html page width = " << root->docWidth()
-        //              << " height = " << root->docHeight() << endl;
+        //              << " height = " << root->docHeight();
         // qDebug() << "printing: margins left = " << printer.pageRect().left() - printer.paperRect().left()
-        //              << " top = " << printer.pageRect().top() - printer.paperRect().top() << endl;
+        //              << " top = " << printer.pageRect().top() - printer.paperRect().top();
         // qDebug() << "printing: paper width = " << printer.width()
-        //              << " height = " << printer.height() << endl;
+        //              << " height = " << printer.height();
         // if the width is too large to fit on the paper we just scale
         // the whole thing.
         int pageWidth = printer.width();
@@ -3235,7 +3235,7 @@ void KHTMLView::print(bool quick)
         }
 #endif
         // qDebug() << "printing: scaled html width = " << pageWidth
-        //              << " height = " << pageHeight << endl;
+        //              << " height = " << pageHeight;
 
         root->setHeight(pageHeight);
         root->setPageBottom(pageHeight);

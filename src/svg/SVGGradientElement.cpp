@@ -125,7 +125,7 @@ RenderObject *SVGGradientElement::createRenderer(RenderArena *arena, RenderStyle
 
 SVGResource *SVGGradientElement::canvasResource()
 {
-    // qDebug() << "request gradient paint server" << endl;
+    // qDebug() << "request gradient paint server";
     if (!m_resource) {
         if (gradientType() == LinearGradientPaintServer) {
             m_resource = SVGPaintServerLinearGradient::create(this);

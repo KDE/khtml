@@ -146,7 +146,7 @@ void CSSSelector::print(void)
 {
     // qDebug() << "[Selector: tag = " <<       QString::number(makeId(tagNamespace.id(), tagLocalName.id()),16) << ", attr = \"" << makeId(attrNamespace.id(), attrLocalName.id()) << "\", match = \"" << match
     //    << "\" value = \"" << value.string().string().toLatin1().constData() << "\" relation = " << (int)relation
-    //    << "]" << endl;
+    //    << "]";
     if (tagHistory) {
         tagHistory->print();
     }

@@ -628,7 +628,7 @@ static void applyStyleChangeOnTheNode(ElementImpl *element, CSSStyleDeclarationI
             element->document()->defaultView()->getComputedStyle(element, nullptr));
     assert(!computedStyle.isNull());
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[change style]" << element << endl;
+    qDebug() << "[change style]" << element;
 #endif
 
     QListIterator<CSSProperty *> it(*(style->values()));
@@ -637,8 +637,8 @@ static void applyStyleChangeOnTheNode(ElementImpl *element, CSSStyleDeclarationI
         CSSValueImpl *computedValue = computedStyle->getPropertyCSSValue(property->id());
         DOMString newValue = property->value()->cssText();
 #ifdef DEBUG_COMMANDS
-        qDebug() << "[new value]:" << property->cssText() << endl;
-        qDebug() << "[computedValue]:" << computedValue->cssText() << endl;
+        qDebug() << "[new value]:" << property->cssText();
+        qDebug() << "[computedValue]:" << computedValue->cssText();
 #endif
         if (strcasecmp(computedValue->cssText(), newValue)) {
             // we can do better and avoid parsing property
@@ -657,28 +657,28 @@ void ApplyStyleCommandImpl::doApply()
     Position start(endingSelection().start().equivalentDownstreamPosition().equivalentRangeCompliantPosition());
     Position end(endingSelection().end().equivalentUpstreamPosition());
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[APPLY STYLE]" << start << end << endl;
+    qDebug() << "[APPLY STYLE]" << start << end;
     printEnclosingBlockTree(start.node()->enclosingBlockFlowElement());
 #endif
 
     if (isBlockLevelStyle(m_style)) {
 #ifdef DEBUG_COMMANDS
-        qDebug() << "[APPLY BLOCK LEVEL STYLE]" << endl;
+        qDebug() << "[APPLY BLOCK LEVEL STYLE]";
 #endif
         ElementImpl *startBlock = start.node()->enclosingBlockFlowElement();
         ElementImpl *endBlock   = end.node()->enclosingBlockFlowElement();
 #ifdef DEBUG_COMMANDS
-        qDebug() << startBlock << startBlock->nodeName() << endl;
+        qDebug() << startBlock << startBlock->nodeName();
 #endif
         if (startBlock == endBlock && startBlock == start.node()->rootEditableElement()) {
             ElementImpl *block = document()->createHTMLElement("DIV");
 #ifdef DEBUG_COMMANDS
-            qDebug() << "[Create DIV with Style:]" << m_style->cssText() << endl;
+            qDebug() << "[Create DIV with Style:]" << m_style->cssText();
 #endif
             block->setAttribute(ATTR_STYLE, m_style->cssText());
             for (NodeImpl *node = startBlock->firstChild(); node; node = startBlock->firstChild()) {
 #ifdef DEBUG_COMMANDS
-                qDebug() << "[reparent node]" << node << node->nodeName() << endl;
+                qDebug() << "[reparent node]" << node << node->nodeName();
 #endif
                 removeNode(node);
                 appendNode(block, node);
@@ -686,7 +686,7 @@ void ApplyStyleCommandImpl::doApply()
             appendNode(startBlock, block);
         } else if (startBlock == endBlock) {
             // StyleChange styleChange = computeStyleChange(Position(startBlock, 0), m_style);
-            //qDebug() << "[Modify block with style change:]" << styleChange.cssStyle << endl;
+            //qDebug() << "[Modify block with style change:]" << styleChange.cssStyle;
             applyStyleChangeOnTheNode(startBlock, m_style);
             // startBlock->setAttribute(ATTR_STYLE, styleChange.cssStyle);
         }
@@ -705,7 +705,7 @@ void ApplyStyleCommandImpl::doApply()
     end = endingSelection().end();
 
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[start;end]" << start << end << endl;
+    qDebug() << "[start;end]" << start << end;
 #endif
     if (start.node() == end.node()) {
         // simple case...start and end are the same node
@@ -842,7 +842,7 @@ bool ApplyStyleCommandImpl::splitTextAtStartIfNeeded(const Position &start, cons
 {
     if (start.node()->isTextNode() && start.offset() > start.node()->caretMinOffset() && start.offset() < start.node()->caretMaxOffset()) {
 #ifdef DEBUG_COMMANDS
-        qDebug() << "[split start]" << start.offset() << start.node()->caretMinOffset() << start.node()->caretMaxOffset() << endl;
+        qDebug() << "[split start]" << start.offset() << start.node()->caretMinOffset() << start.node()->caretMaxOffset();
 #endif
         long endOffsetAdjustment = start.node() == end.node() ? start.offset() : 0;
         TextImpl *text = static_cast<TextImpl *>(start.node());
@@ -858,7 +858,7 @@ NodeImpl *ApplyStyleCommandImpl::splitTextAtEndIfNeeded(const Position &start, c
 {
     if (end.node()->isTextNode() && end.offset() > end.node()->caretMinOffset() && end.offset() < end.node()->caretMaxOffset()) {
 #ifdef DEBUG_COMMANDS
-        qDebug() << "[split end]" << end.offset() << end.node()->caretMinOffset() << end.node()->caretMaxOffset() << endl;
+        qDebug() << "[split end]" << end.offset() << end.node()->caretMinOffset() << end.node()->caretMaxOffset();
 #endif
         TextImpl *text = static_cast<TextImpl *>(end.node());
         RefPtr<SplitTextNodeCommandImpl> cmd = new SplitTextNodeCommandImpl(document(), text, end.offset());
@@ -897,7 +897,7 @@ static bool /*ApplyStyleCommandImpl::*/checkIfNewStylingNeeded(ElementImpl *elem
             element->document()->defaultView()->getComputedStyle(element, nullptr));
     assert(!computedStyle.isNull());
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[check styling]" << element << endl;
+    qDebug() << "[check styling]" << element;
 #endif
 
     QListIterator<CSSProperty *> it(*(style->values()));
@@ -906,8 +906,8 @@ static bool /*ApplyStyleCommandImpl::*/checkIfNewStylingNeeded(ElementImpl *elem
         CSSValueImpl *computedValue = computedStyle->getPropertyCSSValue(property->id());
         DOMString newValue = property->value()->cssText();
 #ifdef DEBUG_COMMANDS
-        qDebug() << "[new value]:" << property->cssText() << endl;
-        qDebug() << "[computedValue]:" << computedValue->cssText() << endl;
+        qDebug() << "[new value]:" << property->cssText();
+        qDebug() << "[computedValue]:" << computedValue->cssText();
 #endif
         if (strcasecmp(computedValue->cssText(), newValue)) {
             return true;
@@ -937,7 +937,7 @@ void ApplyStyleCommandImpl::applyStyleIfNeeded(DOM::NodeImpl *startNode, DOM::No
 bool ApplyStyleCommandImpl::currentlyHasStyle(const Position &pos, const CSSProperty *property) const
 {
     assert(pos.notEmpty());
-    qDebug() << pos << endl;
+    qDebug() << pos;
     CSSStyleDeclarationImpl *decl = document()->defaultView()->getComputedStyle(pos.element(), nullptr);
     assert(decl);
     CSSValueImpl *value = decl->getPropertyCSSValue(property->id());
@@ -955,11 +955,11 @@ ApplyStyleCommandImpl::StyleChange ApplyStyleCommandImpl::computeStyleChange(con
     while (it.hasNext()) {
         CSSProperty *property = it.next();
 #ifdef DEBUG_COMMANDS
-        qDebug() << "[CSS property]:" << property->cssText() << endl;
+        qDebug() << "[CSS property]:" << property->cssText();
 #endif
         if (!currentlyHasStyle(insertionPoint, property)) {
 #ifdef DEBUG_COMMANDS
-            qDebug() << "[Add to style change]" << endl;
+            qDebug() << "[Add to style change]";
 #endif
             switch (property->id()) {
             case CSS_PROP_FONT_WEIGHT:
@@ -1090,14 +1090,14 @@ Position DeleteCollapsibleWhitespaceCommandImpl::deleteWhitespace(const Position
     Position upstream = pos.equivalentUpstreamPosition();
     Position downstream = pos.equivalentDownstreamPosition();
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[pos]" << pos << endl;
-    qDebug() << "[upstream:downstream]" << upstream << downstream << endl;
+    qDebug() << "[pos]" << pos;
+    qDebug() << "[upstream:downstream]" << upstream << downstream;
     printEnclosingBlockTree(pos.node());
 #endif
 
     bool del = shouldDeleteUpstreamPosition(upstream);
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[delete upstream]" << del << endl;
+    qDebug() << "[delete upstream]" << del;
 #endif
 
     if (upstream == downstream) {
@@ -1106,11 +1106,11 @@ Position DeleteCollapsibleWhitespaceCommandImpl::deleteWhitespace(const Position
 
 #ifdef DEBUG_COMMANDS
     PositionIterator iter(upstream);
-    qDebug() << "[before print]" << endl;
+    qDebug() << "[before print]";
     for (iter.next(); iter.current() != downstream; iter.next()) {
-        qDebug() << "[iterate]" << iter.current() << endl;
+        qDebug() << "[iterate]" << iter.current();
     }
-    qDebug() << "[after print]" << endl;
+    qDebug() << "[after print]";
 #endif
 
     PositionIterator it(upstream);
@@ -1127,7 +1127,7 @@ Position DeleteCollapsibleWhitespaceCommandImpl::deleteWhitespace(const Position
     while (it.current() != downstream) {
         Position next = it.peekNext();
 #ifdef DEBUG_COMMANDS
-        qDebug() << "[iterate and delete]" << next << endl;
+        qDebug() << "[iterate and delete]" << next;
 #endif
         if (next.node() != deleteStart.node()) {
             // TODO assert(deleteStart.node()->isTextNode());
@@ -1150,7 +1150,7 @@ Position DeleteCollapsibleWhitespaceCommandImpl::deleteWhitespace(const Position
                 }
             } else {
 #ifdef DEBUG_COMMANDS
-                qDebug() << "[not text node is not supported yet]" << endl;
+                qDebug() << "[not text node is not supported yet]";
 #endif
             }
             deleteStart = next;
@@ -1311,7 +1311,7 @@ bool DeleteSelectionCommandImpl::containsOnlyWhitespace(const Position &start, c
 void DeleteSelectionCommandImpl::deleteContentInsideNode(NodeImpl *node, int startOffset, int endOffset)
 {
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[Delete content inside node]" << node << startOffset << endOffset << endl;
+    qDebug() << "[Delete content inside node]" << node << startOffset << endOffset;
 #endif
     if (node->isTextNode()) {
         // check if nothing to delete
@@ -1328,7 +1328,7 @@ void DeleteSelectionCommandImpl::deleteContentInsideNode(NodeImpl *node, int sta
         return;
     }
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[non-text node] not supported" << endl;
+    qDebug() << "[non-text node] not supported";
 #endif
 }
 
@@ -1368,8 +1368,8 @@ void DeleteSelectionCommandImpl::doApply()
     NodeImpl *endBlock = downstreamEnd.node()->enclosingBlockFlowElement();
 
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[Delete:Start]" << upstreamStart << downstreamStart << endl;
-    qDebug() << "[Delete:End]" << upstreamEnd << downstreamEnd << endl;
+    qDebug() << "[Delete:Start]" << upstreamStart << downstreamStart;
+    qDebug() << "[Delete:End]" << upstreamEnd << downstreamEnd;
     printEnclosingBlockTree(upstreamStart.node());
 #endif
     if (startBlock != endBlock) {
@@ -1387,7 +1387,7 @@ void DeleteSelectionCommandImpl::doApply()
         NodeImpl *node, *next;
         for (node = upstreamStart.node()->traverseNextNode(); node && node != downstreamEnd.node(); node = next) {
 #ifdef DEBUG_COMMANDS
-            qDebug() << "[traverse and delete]" << node << (node->renderer() && node->renderer()->isEditable()) << endl;
+            qDebug() << "[traverse and delete]" << node << (node->renderer() && node->renderer()->isEditable());
 #endif
             next = node->traverseNextNode();
             if (node->renderer() && node->renderer()->isEditable()) {
@@ -1420,7 +1420,7 @@ void DeleteSelectionCommandImpl::doApply()
     bool adjustEndingPositionDownstream = false;
 
     bool onlyWhitespace = containsOnlyWhitespace(upstreamStart, downstreamEnd);
-    qDebug() << "[OnlyWhitespace]" << onlyWhitespace << endl;
+    qDebug() << "[OnlyWhitespace]" << onlyWhitespace;
 
     bool startCompletelySelected = !onlyWhitespace &&
                                    (downstreamStart.offset() <= downstreamStart.node()->caretMinOffset() &&
@@ -1432,7 +1432,7 @@ void DeleteSelectionCommandImpl::doApply()
                                   ((downstreamStart.node() != upstreamEnd.node()) ||
                                    (downstreamStart.offset() <= downstreamStart.node()->caretMinOffset())));
 
-    qDebug() << "[{start:end}CompletelySelected]" << startCompletelySelected << endCompletelySelected << endl;
+    qDebug() << "[{start:end}CompletelySelected]" << startCompletelySelected << endCompletelySelected;
 
     unsigned long startRenderedOffset = downstreamStart.renderedOffset();
 
@@ -1441,15 +1441,15 @@ void DeleteSelectionCommandImpl::doApply()
                                (startRenderedOffset == 0 && downstreamStart.inFirstEditableInContainingEditableBlock());
     bool endAtEndOfBlock = downstreamEnd.isLastRenderedPositionInEditableBlock();
 
-    qDebug() << "[startAtStartOfRootEditableElement]" << startAtStartOfRootEditableElement << endl;
-    qDebug() << "[startAtStartOfBlock]" << startAtStartOfBlock << endl;
-    qDebug() << "[endAtEndOfBlock]" << endAtEndOfBlock << endl;
+    qDebug() << "[startAtStartOfRootEditableElement]" << startAtStartOfRootEditableElement;
+    qDebug() << "[startAtStartOfBlock]" << startAtStartOfBlock;
+    qDebug() << "[endAtEndOfBlock]" << endAtEndOfBlock;
 
     NodeImpl *startBlock = upstreamStart.node()->enclosingBlockFlowElement();
     NodeImpl *endBlock = downstreamEnd.node()->enclosingBlockFlowElement();
     bool startBlockEndBlockAreSiblings = startBlock->parentNode() == endBlock->parentNode();
 
-    qDebug() << "[startBlockEndBlockAreSiblings]" << startBlockEndBlockAreSiblings << startBlock << endBlock << endl;
+    qDebug() << "[startBlockEndBlockAreSiblings]" << startBlockEndBlockAreSiblings << startBlock << endBlock;
 
     debugPosition("upstreamStart:       ", upstreamStart);
     debugPosition("downstreamStart:     ", downstreamStart);
@@ -1518,7 +1518,7 @@ void DeleteSelectionCommandImpl::doApply()
     // Do the delete
     //
     NodeImpl *n = downstreamStart.node()->traverseNextNode();
-    qDebug() << "[n]" << n << endl;
+    qDebug() << "[n]" << n;
 
     // work on start node
     if (startCompletelySelected) {
@@ -1698,14 +1698,14 @@ void InputNewlineCommandImpl::doApply()
     int exceptionCode = 0;
 
     NodeImpl *enclosingBlock = selection.start().node()->enclosingBlockFlowElement();
-    qDebug() << enclosingBlock->nodeName() << endl;
+    qDebug() << enclosingBlock->nodeName();
     if (enclosingBlock->id() == ID_LI) {
         // need to insert new list item or split existing one into 2
         // consider example: <li>x<u>x<b>x|x</b>x</u>x</li> (| - caret position)
         // result should look like: <li>x<u>x<b>x</b></u></li><li><u>|x<b>x</b></u></li>
         // idea is to walk up to the li item and split and reattach correspondent nodes
 #ifdef DEBUG_COMMANDS
-        qDebug() << "[insert new list item]" << selection << endl;
+        qDebug() << "[insert new list item]" << selection;
         printEnclosingBlockTree(selection.start().node());
 #endif
         Position pos(selection.start().equivalentDownstreamPosition());
@@ -1724,7 +1724,7 @@ void InputNewlineCommandImpl::doApply()
             // walk up and reattach
             while (true) {
 #ifdef DEBUG_COMMANDS
-                qDebug() << "[handle node]" << node << endl;
+                qDebug() << "[handle node]" << node;
                 printEnclosingBlockTree(enclosingBlock->parent());
 #endif
                 NodeImpl *parent = node->parent();
@@ -1733,7 +1733,7 @@ void InputNewlineCommandImpl::doApply()
                 insertNodeAfter(newParent.get(), parent);
                 for (NodeImpl *nextSibling = nullptr; node; node = nextSibling) {
 #ifdef DEBUG_COMMANDS
-                    qDebug() << "[reattach sibling]" << node << endl;
+                    qDebug() << "[reattach sibling]" << node;
 #endif
                     nextSibling = node->nextSibling();
                     removeNode(node);
@@ -1756,7 +1756,7 @@ void InputNewlineCommandImpl::doApply()
         }
 
 #ifdef DEBUG_COMMANDS
-        qDebug() << "[result]" << endl;
+        qDebug() << "[result]";
         printEnclosingBlockTree(enclosingBlock->parent());
 #endif
         // FIXME set selection after operation
@@ -1767,7 +1767,7 @@ void InputNewlineCommandImpl::doApply()
     // assert(exceptionCode == 0);
 
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[insert break]" << selection << endl;
+    qDebug() << "[insert break]" << selection;
     printEnclosingBlockTree(enclosingBlock);
 #endif
 
@@ -1786,7 +1786,7 @@ void InputNewlineCommandImpl::doApply()
     bool atEndOfBlock = pos.isLastRenderedPositionInEditableBlock();
 
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[pos]" << pos << atStart << atEndOfBlock << endl;
+    qDebug() << "[pos]" << pos << atStart << atEndOfBlock;
 #endif
 
     if (atEndOfBlock) {
@@ -1879,7 +1879,7 @@ Position InputTextCommandImpl::prepareForTextInsertion(bool adjustDownstream)
     assert(selection.state() == Selection::CARET);
 
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[prepare selection]" << selection << endl;
+    qDebug() << "[prepare selection]" << selection;
 #endif
 
     Position pos = selection.start();
@@ -1890,7 +1890,7 @@ Position InputTextCommandImpl::prepareForTextInsertion(bool adjustDownstream)
     }
 
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[prepare position]" << pos << endl;
+    qDebug() << "[prepare position]" << pos;
 #endif
 
     if (!pos.node()->isTextNode()) {
@@ -1955,15 +1955,15 @@ Position InputTextCommandImpl::prepareForTextInsertion(bool adjustDownstream)
 void InputTextCommandImpl::execute(const DOMString &text)
 {
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[execute command]" << text << endl;
+    qDebug() << "[execute command]" << text;
 #endif
     Selection selection = endingSelection();
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[ending selection]" << selection << endl;
+    qDebug() << "[ending selection]" << selection;
 #endif
     bool adjustDownstream = selection.start().isFirstRenderedPositionOnLine();
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[adjust]" << adjustDownstream << endl;
+    qDebug() << "[adjust]" << adjustDownstream;
 #endif
 
 #ifdef DEBUG_COMMANDS
@@ -1978,7 +1978,7 @@ void InputTextCommandImpl::execute(const DOMString &text)
     }
 
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[after collapsible whitespace deletion]" << endl;
+    qDebug() << "[after collapsible whitespace deletion]";
     printEnclosingBlockTree(selection.start().node());
 #endif
 
@@ -1987,14 +1987,14 @@ void InputTextCommandImpl::execute(const DOMString &text)
     // Make sure the document is set up to receive text
     Position pos = prepareForTextInsertion(adjustDownstream);
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[after prepare]" << pos << endl;
+    qDebug() << "[after prepare]" << pos;
 #endif
 
     TextImpl *textNode = static_cast<TextImpl *>(pos.node());
     long offset = pos.offset();
 
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[insert at]" << textNode << offset << endl;
+    qDebug() << "[insert at]" << textNode << offset;
 #endif
 
     // This is a temporary implementation for inserting adjoining spaces
@@ -2699,11 +2699,11 @@ void TypingCommandImpl::issueCommandForDeleteKey()
     assert(selectionToDelete.state() != Selection::NONE);
 
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[selection]" << selectionToDelete << endl;
+    qDebug() << "[selection]" << selectionToDelete;
 #endif
     if (selectionToDelete.state() == Selection::CARET) {
 #ifdef DEBUG_COMMANDS
-        qDebug() << "[caret selection]" << endl;
+        qDebug() << "[caret selection]";
 #endif
         Position pos(selectionToDelete.start());
         if (pos.inFirstEditableInRootEditableElement() && pos.offset() <= pos.node()->caretMinOffset()) {
@@ -2712,7 +2712,7 @@ void TypingCommandImpl::issueCommandForDeleteKey()
         }
         selectionToDelete = Selection(pos.previousCharacterPosition(), pos);
 #ifdef DEBUG_COMMANDS
-        qDebug() << "[modified selection]" << selectionToDelete << endl;
+        qDebug() << "[modified selection]" << selectionToDelete;
 #endif
     }
     deleteSelection(selectionToDelete);
@@ -2803,7 +2803,7 @@ void TypingCommandImpl::insertNewline0(DocumentImpl *document)
 void TypingCommandImpl::insertText0(DocumentImpl *document, const DOMString &text)
 {
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[insert text]" << text << endl;
+    qDebug() << "[insert text]" << text;
 #endif
     assert(document);
     Editor *ed = document->part()->editor();
@@ -2833,21 +2833,21 @@ InsertListCommandImpl::~InsertListCommandImpl()
 void InsertListCommandImpl::doApply()
 {
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[make current selection/paragraph a list]" << endingSelection() << endl;
+    qDebug() << "[make current selection/paragraph a list]" << endingSelection();
 #endif
     Position start = endingSelection().start();
     Position end = endingSelection().end();
     ElementImpl *startBlock = start.node()->enclosingBlockFlowElement();
     ElementImpl *endBlock = end.node()->enclosingBlockFlowElement();
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[start:end blocks]" << startBlock << endBlock << endl;
+    qDebug() << "[start:end blocks]" << startBlock << endBlock;
     printEnclosingBlockTree(start.node());
 #endif
     if (startBlock == endBlock) {
         if (startBlock->id() == ID_LI) {
             // we already have a list item, remove it then
 #ifdef DEBUG_COMMANDS
-            qDebug() << "[remove list item]" << endl;
+            qDebug() << "[remove list item]";
 #endif
             NodeImpl *listBlock = startBlock->parent(); // it's either <ol> or <ul>
             // we need to properly split or even remove the list leaving 2 lists:
@@ -2855,7 +2855,7 @@ void InsertListCommandImpl::doApply()
             if (listBlock->firstChild() == listBlock->lastChild() && listBlock->firstChild() == startBlock) {
                 // get rid of list completely
 #ifdef DEBUG_COMMANDS
-                qDebug() << "[remove list completely]" << endl;
+                qDebug() << "[remove list completely]";
 #endif
                 removeNodePreservingChildren(listBlock);
                 removeNodePreservingChildren(startBlock);
@@ -2901,7 +2901,7 @@ void InsertListCommandImpl::doApply()
             NodeImpl *nextNode;
             for (NodeImpl *node = startBlock->firstChild(); node; node = nextNode) {
 #ifdef DEBUG_COMMANDS
-                qDebug() << "[reattach node]" << node << endl;
+                qDebug() << "[reattach node]" << node;
 #endif
                 nextNode = node->nextSibling();
                 removeNode(node);
@@ -2911,7 +2911,7 @@ void InsertListCommandImpl::doApply()
         }
     } else {
 #ifdef DEBUG_COMMANDS
-        qDebug() << "[different blocks are not supported yet]" << endl;
+        qDebug() << "[different blocks are not supported yet]";
 #endif
     }
 }
@@ -2940,7 +2940,7 @@ void IndentOutdentCommandImpl::indent()
 {
     Selection selection = endingSelection();
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[indent selection]" << selection << endl;
+    qDebug() << "[indent selection]" << selection;
 #endif
     NodeImpl *startBlock = selection.start().node()->enclosingBlockFlowElement();
     NodeImpl *endBlock = selection.end().node()->enclosingBlockFlowElement();
@@ -2949,7 +2949,7 @@ void IndentOutdentCommandImpl::indent()
         // check if selection is the list, but not fully covered
         if (startBlock->id() == ID_LI && (startBlock->previousSibling() || startBlock->nextSibling())) {
 #ifdef DEBUG_COMMANDS
-            qDebug() << "[modify list]" << endl;
+            qDebug() << "[modify list]";
 #endif
             RefPtr<NodeImpl> newList = startBlock->parent()->cloneNode(false);
             insertNodeAfter(newList.get(), startBlock);
@@ -2973,7 +2973,7 @@ void IndentOutdentCommandImpl::indent()
     } else {
         if (startBlock->id() == ID_LI && endBlock->id() == ID_LI && startBlock->parent() == endBlock->parent()) {
 #ifdef DEBUG_COMMANDS
-            qDebug() << "[indent some items inside list]" << endl;
+            qDebug() << "[indent some items inside list]";
 #endif
             RefPtr<NodeImpl> nestedList = startBlock->parent()->cloneNode(false);
             insertNodeBefore(nestedList.get(), startBlock);
@@ -2988,7 +2988,7 @@ void IndentOutdentCommandImpl::indent()
             }
         } else {
 #ifdef DEBUG_COMMANDS
-            qDebug() << "[blocks not from one list are not supported yet]" << endl;
+            qDebug() << "[blocks not from one list are not supported yet]";
 #endif
         }
     }
@@ -3020,21 +3020,21 @@ void IndentOutdentCommandImpl::outdent()
 {
     Selection selection = endingSelection();
 #ifdef DEBUG_COMMANDS
-    qDebug() << "[indent selection]" << selection << endl;
+    qDebug() << "[indent selection]" << selection;
 #endif
     NodeImpl *startBlock = selection.start().node()->enclosingBlockFlowElement();
     NodeImpl *endBlock = selection.end().node()->enclosingBlockFlowElement();
 
     if (startBlock->id() == ID_LI && endBlock->id() == ID_LI && startBlock->parent() == endBlock->parent()) {
 #ifdef DEBUG_COMMANDS
-        qDebug() << "[list items selected]" << endl;
+        qDebug() << "[list items selected]";
 #endif
         bool firstItemSelected = !hasPreviousListItem(startBlock);
         bool lastItemSelected = !hasNextListItem(endBlock);
         bool listFullySelected = firstItemSelected && lastItemSelected;
 
 #ifdef DEBUG_COMMANDS
-        qDebug() << "[first/last item selected]" << firstItemSelected << lastItemSelected << endl;
+        qDebug() << "[first/last item selected]" << firstItemSelected << lastItemSelected;
 #endif
 
         NodeImpl *listNode = startBlock->parent();
@@ -3083,12 +3083,12 @@ void IndentOutdentCommandImpl::outdent()
             removeNodePreservingChildren(startBlock);
         } else {
 #ifdef DEBUG_COMMANDS
-            qDebug() << "[not the list or blockquote]" << endl;
+            qDebug() << "[not the list or blockquote]";
 #endif
         }
     } else {
 #ifdef DEBUG_COMMANDS
-        qDebug() << "[blocks not from one list are not supported yet]" << endl;
+        qDebug() << "[blocks not from one list are not supported yet]";
 #endif
     }
 }

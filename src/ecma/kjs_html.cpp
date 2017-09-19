@@ -2098,7 +2098,7 @@ JSValue *KJS::HTMLElement::getValueProperty(ExecState *exec, int token) const
     case ElementIsContentEditable:
         return jsBoolean(element.isContentEditable());
     }
-    qCritical() << "HTMLElement::getValueProperty unhandled token " << token << endl;
+    qCritical() << "HTMLElement::getValueProperty unhandled token " << token;
     return jsUndefined();
 }
 
@@ -2445,7 +2445,7 @@ void KJS::HTMLElement::put(ExecState *exec, const Identifier &propertyName, JSVa
 #ifdef KJS_VERBOSE
     qDebug() << "KJS::HTMLElement::tryPut " << propertyName.qstring()
              << " thisTag=" << element.tagName().string()
-             << " str=" << str.string() << endl;
+             << " str=" << str.string();
 #endif
     //
 
@@ -2539,7 +2539,7 @@ void KJS::HTMLElement::putValueProperty(ExecState *exec, int token, JSValue *val
 #ifdef KJS_VERBOSE
     qDebug() << "KJS::HTMLElement::putValueProperty "
              << " thisTag=" << element.tagName().string()
-             << " token=" << token << endl;
+             << " token=" << token;
 #endif
 
     switch (element.id()) {

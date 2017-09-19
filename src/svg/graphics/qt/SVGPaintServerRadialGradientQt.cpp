@@ -89,7 +89,7 @@ QGradient SVGPaintServerRadialGradient::setupGradient(QPainter *painter, QPainte
         fy = int(sin(angle) * r) - 1;
     }
 
-    // qDebug() << "cx:" << cx << "cy:" << cy << "radius:" << gradientRadius() << "fx:" << fx + cx << "fy:" << fy + cy << endl;
+    // qDebug() << "cx:" << cx << "cy:" << cy << "radius:" << gradientRadius() << "fx:" << fx + cx << "fy:" << fy + cy;
     QRadialGradient gradient(QPointF(cx, cy), gradientRadius(), QPointF(fx + cx, fy + cy));
 
     return gradient;

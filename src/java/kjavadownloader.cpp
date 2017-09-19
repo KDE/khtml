@@ -45,7 +45,7 @@ KJavaKIOJob::~KJavaKIOJob() {}
 
 void KJavaKIOJob::data(const QByteArray &)
 {
-    qCritical() << "Job id mixup" << endl;
+    qCritical() << "Job id mixup";
 }
 
 //-----------------------------------------------------------------------------
@@ -277,7 +277,7 @@ void KJavaUploader::slotResult(KJob *)
         server->sendURLData(d->loaderID, ERRORCODE, d->file);
         d->file.resize(0);
     } else { // shouldn't come here
-        qCritical() << "slotResult(" << d->loaderID << ") job:" << d->job << endl;
+        qCritical() << "slotResult(" << d->loaderID << ") job:" << d->job;
     }
     d->job = nullptr; // signal KIO::Job::result deletes itself
     server->removeDataJob(d->loaderID);   // will delete this

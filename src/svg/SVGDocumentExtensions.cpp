@@ -64,7 +64,7 @@ EventListener *SVGDocumentExtensions::createSVGEventListener(const DOMString &fu
     if (!m_doc || !m_doc->part()) {
         return nullptr;
     }
-    // qDebug() << "create listener: (" << code << functionName << node << ")" << endl;
+    // qDebug() << "create listener: (" << code << functionName << node << ")";
     return m_doc->part()->createHTMLEventListener(code.string(), functionName.string(), node, true/*svg*/);
 }
 

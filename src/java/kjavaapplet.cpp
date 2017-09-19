@@ -256,7 +256,7 @@ void KJavaApplet::stateChange(const int newStateInt)
         d->state = newState;
     } else {
         qCritical() << "KJavaApplet::stateChange : don't want to switch from state "
-                    << d->state << " to " << newState << endl;
+                    << d->state << " to " << newState;
     }
 }
 

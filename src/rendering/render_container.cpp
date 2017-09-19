@@ -57,7 +57,7 @@ void RenderContainer::addChild(RenderObject *newChild, RenderObject *beforeChild
 {
 #ifdef DEBUG_LAYOUT
     // qDebug() << this << ": " <<  renderName() << "(RenderObject)::addChild( " << newChild << ": " <<
-    newChild->renderName() << ", " << (beforeChild ? beforeChild->renderName() : "0") << " )" << endl;
+    // newChild->renderName() << ", " << (beforeChild ? beforeChild->renderName() : "0") << " )";
 #endif
     // protect ourselves from deletion
     setDoNotDelete(true);

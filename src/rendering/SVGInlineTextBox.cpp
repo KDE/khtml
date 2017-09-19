@@ -62,7 +62,7 @@ int SVGInlineTextBox::selectionHeight()
 
 SVGRootInlineBox *SVGInlineTextBox::svgRootInlineBox() const
 {
-    // qDebug() << "find inline box" << endl;
+    // qDebug() << "find inline box";
     // Find associated root inline box
     InlineFlowBox *parentBox = parent();
 
@@ -358,7 +358,7 @@ void SVGInlineTextBox::paintCharacters(RenderObject::PaintInfo &paintInfo, int t
     Q_UNUSED(chars);
     Q_UNUSED(length);
     Q_UNUSED(activePaintServer);
-    // qDebug() << "paint character" << endl;
+    // qDebug() << "paint character";
     /*FIXME khtml if (object()->style()->visibility() != VISIBLE || paintInfo.phase == PaintPhaseOutline)
         return;
 
@@ -426,7 +426,7 @@ void SVGInlineTextBox::paintCharacters(RenderObject::PaintInfo &paintInfo, int t
     }
 
     IntPoint origin((int) svgChar.x, (int) svgChar.y);
-    // qDebug() << "origin: " << svgChar.x << svgChar.y << endl;
+    // qDebug() << "origin: " << svgChar.x << svgChar.y;
     //TextRun run = svgTextRunForInlineTextBox(chars, length, styleToUse, this, svgChar.x);
 
 #if ENABLE(SVG_FONTS)

@@ -248,7 +248,7 @@ bool CSSParser::parseValue(DOM::CSSStyleDeclarationImpl *declaration, int _id, c
 {
 #ifdef CSS_DEBUG
     qDebug() << "CSSParser::parseValue: id=" << _id << " important=" << _important
-             << " value='" << string.string() << "'" << endl;
+             << " value='" << string.string() << "'";
 #endif
 
     styleElement  = declaration->stylesheet();
@@ -278,7 +278,7 @@ bool CSSParser::parseDeclaration(DOM::CSSStyleDeclarationImpl *declaration, cons
 {
 #ifdef CSS_DEBUG
     qDebug() << "CSSParser::parseDeclaration:"
-             << " value='" << string.string() << "'" << endl;
+             << " value='" << string.string() << "'";
 #endif
 
     styleElement  = declaration->stylesheet();
@@ -2395,8 +2395,7 @@ CSSValueListImpl *CSSParser::parseFontFamily()
     while (value) {
 //         qDebug() << "got value " << value->id << " / "
 //                         << (value->unit == CSSPrimitiveValue::CSS_STRING ||
-//                             value->unit == CSSPrimitiveValue::CSS_IDENT ? qString( value->string ) : QString() )
-//                         << endl;
+//                             value->unit == CSSPrimitiveValue::CSS_IDENT ? qString( value->string ) : QString() );
         Value *nextValue = valueList->next();
         bool nextValBreaksFont = !nextValue || (nextValue->unit == Value::Operator && nextValue->iValue == ',');
         bool nextValIsFontName = nextValue &&

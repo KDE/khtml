@@ -1367,7 +1367,7 @@ void RenderBlock::bidiReorderLine(const BidiIterator &start, const BidiIterator 
 
 #if BIDI_DEBUG > 0
     qDebug() << "reached end of line current=" << bidi.current.obj << "/" << bidi.current.pos
-             << ", eor=" << bidi.eor.obj << "/" << bidi.eor.pos << endl;
+             << ", eor=" << bidi.eor.obj << "/" << bidi.eor.pos;
 #endif
     if (!emptyRun && bidi.sor != bidi.current) {
         bidi.eor = bidi.last;
@@ -1623,7 +1623,7 @@ void RenderBlock::layoutInlineChildren(bool relayoutChildren, int breakBeforeLin
 
                         // SVG
                         if (lineBox->isSVGRootInlineBox()) {
-                            //qDebug() << "svgrootinline box:" << endl;
+                            //qDebug() << "svgrootinline box:";
                             WebCore::SVGRootInlineBox *svgLineBox = static_cast<WebCore::SVGRootInlineBox *>(lineBox);
                             svgLineBox->computePerCharacterLayoutInformation();
                         }

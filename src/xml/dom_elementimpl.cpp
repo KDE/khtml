@@ -1162,7 +1162,7 @@ void ElementImpl::setContentEditable(bool enabled)
         // FIXME: reset caret if it is in this node or a child
     }/*end if*/
     // FIXME: use addCSSProperty when I get permission to move it here
-//    qDebug() << "CSS_PROP__KHTML_USER_INPUT: "<< value << endl;
+//    qDebug() << "CSS_PROP__KHTML_USER_INPUT: "<< value;
     getInlineStyleDecls()->setProperty(CSS_PROP__KHTML_USER_INPUT, value, false);
     setChanged();
 }
@@ -1801,20 +1801,20 @@ void NamedAttrMapImpl::copyAttributes(NamedAttrMapImpl *other)
 
 int NamedAttrMapImpl::find(NodeImpl::Id id, const PrefixName &prefix, bool nsAware) const
 {
-    //qDebug() << "In find:" << getPrintableName(id) << "[" << prefix.toString() << prefix.id() << "]" << nsAware << endl;
-    //qDebug() << "m_attrs.size()" << m_attrs.size() << endl;
+    //qDebug() << "In find:" << getPrintableName(id) << "[" << prefix.toString() << prefix.id() << "]" << nsAware;
+    //qDebug() << "m_attrs.size()" << m_attrs.size();
     unsigned len = m_attrs.size();
     for (unsigned i = 0; i < len; ++i) {
-        //qDebug() << "check attr[" << i << "]" << getPrintableName(m_attrs[i].id()) << "prefix:" << m_attrs[i].prefix() << endl;
+        //qDebug() << "check attr[" << i << "]" << getPrintableName(m_attrs[i].id()) << "prefix:" << m_attrs[i].prefix();
         if (nsAware && namespacePart(id) == anyNamespace && localNamePart(id) == localNamePart(m_attrs[i].id())) {
             return i;
         }
         if ((nsAware && id == m_attrs[i].id()) || (!nsAware && localNamePart(id) == localNamePart(m_attrs[i].id()) && prefix == m_attrs[i].prefixName())) {
-            //qDebug() << "attribute matched: exiting..." << endl;
+            //qDebug() << "attribute matched: exiting...";
             return i;
         }
     }
-    //qDebug() << "attribute doesn't match: exiting... with -1" << endl;
+    //qDebug() << "attribute doesn't match: exiting... with -1";
     return -1;
 }
 

@@ -790,7 +790,7 @@ public:
         QWidget *pw = parentWidget();
         KHTMLWidget *kwp = dynamic_cast<KHTMLWidget *>(pw);
         if (!kwp) {
-            qDebug() << "CompletionWidget has no KHTMLWidget parent" << endl;
+            qDebug() << "CompletionWidget has no KHTMLWidget parent";
             return KCompletionBox::globalPositionHint();
         }
         QPoint dest;
