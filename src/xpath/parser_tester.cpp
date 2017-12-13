@@ -38,11 +38,11 @@ void check(const QString &statement, const QString &expected)
 {
     QString result = ParsedStatement(statement).dump();
     if (indentedTree(result) != indentedTree(expected)) {
-        qDebug() << "ERROR! Failed to parse '" << statement << "' as expected!";
-        qDebug() << "Expected:";
-        qDebug() << indentedTree(expected);
-        qDebug() << "Got:";
-        qDebug() << indentedTree(result);
+        qCDebug(KHTML_LOG) << "ERROR! Failed to parse '" << statement << "' as expected!";
+        qCDebug(KHTML_LOG) << "Expected:";
+        qCDebug(KHTML_LOG) << indentedTree(expected);
+        qCDebug(KHTML_LOG) << "Got:";
+        qCDebug(KHTML_LOG) << indentedTree(result);
         exit(1);
     }
 }

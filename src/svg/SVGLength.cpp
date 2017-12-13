@@ -256,7 +256,7 @@ bool SVGLength::setValueAsString(const String &s)
         return false;
     }
 
-    // qDebug() << convertedNumber << type;
+    // qCDebug(KHTML_LOG) << convertedNumber << type;
 
     m_unit = storeUnit(extractMode(m_unit), type);
     m_valueInSpecifiedUnits = convertedNumber;

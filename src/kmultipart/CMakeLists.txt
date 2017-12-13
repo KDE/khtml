@@ -7,6 +7,7 @@ include_directories(${ZLIB_INCLUDE_DIR})
 ########### next target ###############
 
 set(kmultipart_PART_SRCS kmultipart.cpp httpfiltergzip.cpp)
+ecm_qt_declare_logging_category(kmultipart_PART_SRCS HEADER kmultipart_debug.h IDENTIFIER KMULTIPART_LOG CATEGORY_NAME kf5.khtml.multipart)
 add_library(kmultipart MODULE ${kmultipart_PART_SRCS})
 
 target_link_libraries(kmultipart

@@ -25,7 +25,7 @@
 #include "kjavaapplet.h"
 #include <klocalizedstring.h>
 #include <kmessagebox.h>
-#include <QDebug>
+#include "kjavaappletviewer_debug.h"
 #include <QtCore/QMap>
 #include <QtCore/QPointer>
 #include <QtCore/QStringList>
@@ -134,22 +134,22 @@ void KJavaAppletContext::processCmd(QString cmd, QStringList args)
 
 void KJavaAppletContext::received(const QString &cmd, const QStringList &arg)
 {
-    // qDebug() << "KJavaAppletContext::received, cmd = >>" << cmd << "<<";
-    // qDebug() << "arg count = " << arg.count();
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "KJavaAppletContext::received, cmd = >>" << cmd << "<<";
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "arg count = " << arg.count();
 
     if (cmd == QLatin1String("showstatus")
             && !arg.empty()) {
         QString tmp = arg.first();
         tmp.remove(QRegExp("[\n\r]"));
-        // qDebug() << "status message = " << tmp;
+        // qCDebug(KJAVAAPPLETVIEWER_LOG) << "status message = " << tmp;
         emit showStatus(tmp);
     } else if (cmd == QLatin1String("showurlinframe")
                && arg.count() > 1) {
-        // qDebug() << "url = " << arg[0] << ", frame = " << arg[1];
+        // qCDebug(KJAVAAPPLETVIEWER_LOG) << "url = " << arg[0] << ", frame = " << arg[1];
         emit showDocument(arg[0], arg[1]);
     } else if (cmd == QLatin1String("showdocument")
                && !arg.empty()) {
-        // qDebug() << "url = " << arg.first();
+        // qCDebug(KJAVAAPPLETVIEWER_LOG) << "url = " << arg.first();
         emit showDocument(arg.first(), "_top");
     } else if (cmd == QLatin1String("resizeapplet")
                && arg.count() > 2) {
@@ -162,7 +162,7 @@ void KJavaAppletContext::received(const QString &cmd, const QStringList &arg)
         const int height = arg[2].toInt(&ok);
 
         if (!ok) {
-            qCritical() << "could not parse out parameters for resize";
+            qCCritical(KJAVAAPPLETVIEWER_LOG) << "could not parse out parameters for resize";
         } else {
             KJavaApplet *const tmp = d->applets[appletID];
             if (tmp) {
@@ -170,7 +170,7 @@ void KJavaAppletContext::received(const QString &cmd, const QStringList &arg)
             }
         }
     } else if (cmd.startsWith(QLatin1String("audioclip_"))) {
-        // qDebug() << "process Audio command (not yet implemented): " << cmd  << " " << arg[0];
+        // qCDebug(KJAVAAPPLETVIEWER_LOG) << "process Audio command (not yet implemented): " << cmd  << " " << arg[0];
     } else if (cmd == QLatin1String("JS_Event")
                && arg.count() > 2) {
         bool ok;
@@ -181,7 +181,7 @@ void KJavaAppletContext::received(const QString &cmd, const QStringList &arg)
             js_args.pop_front();
             applet->jsData(js_args);
         } else {
-            qCritical() << "parse JS event " << arg[0] << " " << arg[1];
+            qCCritical(KJAVAAPPLETVIEWER_LOG) << "parse JS event " << arg[0] << " " << arg[1];
         }
     } else if (cmd == QLatin1String("AppletStateNotification")) {
         bool ok;
@@ -193,17 +193,17 @@ void KJavaAppletContext::received(const QString &cmd, const QStringList &arg)
                 if (ok) {
                     applet->stateChange(newState);
                     if (newState == KJavaApplet::INITIALIZED) {
-                        // qDebug() << "emit appletLoaded";
+                        // qCDebug(KJAVAAPPLETVIEWER_LOG) << "emit appletLoaded";
                         emit appletLoaded();
                     }
                 } else {
-                    qCritical() << "AppletStateNotification: status is not numerical";
+                    qCCritical(KJAVAAPPLETVIEWER_LOG) << "AppletStateNotification: status is not numerical";
                 }
             } else {
-                qWarning() << "AppletStateNotification:  No such Applet with ID=" << arg[0];
+                qCWarning(KJAVAAPPLETVIEWER_LOG) << "AppletStateNotification:  No such Applet with ID=" << arg[0];
             }
         } else {
-            qCritical() << "AppletStateNotification: Applet ID is not numerical";
+            qCCritical(KJAVAAPPLETVIEWER_LOG) << "AppletStateNotification: Applet ID is not numerical";
         }
     } else if (cmd == QLatin1String("AppletFailed")) {
         bool ok;

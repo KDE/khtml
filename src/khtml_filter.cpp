@@ -21,7 +21,7 @@
 */
 
 #include "khtml_filter_p.h"
-#include <QDebug>
+#include "khtml_debug.h"
 
 // rolling hash parameters
 #define HASH_P (1997)
@@ -98,7 +98,7 @@ void FilterSet::addFilter(const QString &filterStr)
         QString inside = filter.mid(1, filter.length() - 2);
         QRegExp rx(inside);
         reFilters.append(rx);
-        //qDebug() << "R:" << inside;
+        //qCDebug(KHTML_LOG) << "R:" << inside;
         return;
     }
     // Nope, a wildcard one.

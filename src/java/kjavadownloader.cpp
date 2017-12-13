@@ -24,7 +24,7 @@
 
 #include <kio/job.h>
 #include <kio/jobclasses.h>
-#include <QDebug>
+#include "kjavaappletviewer_debug.h"
 #include <QtCore/QFile>
 #include <QUrl>
 
@@ -45,7 +45,7 @@ KJavaKIOJob::~KJavaKIOJob() {}
 
 void KJavaKIOJob::data(const QByteArray &)
 {
-    qCritical() << "Job id mixup";
+    qCCritical(KJAVAAPPLETVIEWER_LOG) << "Job id mixup";
 }
 
 //-----------------------------------------------------------------------------
@@ -74,7 +74,7 @@ private:
 KJavaDownloader::KJavaDownloader(int ID, const QString &url)
     : d(new KJavaDownloaderPrivate)
 {
-    // qDebug() << "KJavaDownloader(" << ID << ") = " << url;
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "KJavaDownloader(" << ID << ") = " << url;
 
     d->loaderID = ID;
     d->url = new QUrl(url);
@@ -98,7 +98,7 @@ KJavaDownloader::~KJavaDownloader()
 
 void KJavaDownloader::slotData(KIO::Job *, const QByteArray &qb)
 {
-    //qDebug() << "slotData(" << d->loaderID << ")";
+    //qCDebug(KJAVAAPPLETVIEWER_LOG) << "slotData(" << d->loaderID << ")";
 
     KJavaAppletServer *server = KJavaAppletServer::allocateJavaServer();
     if (d->isfirstdata) {
@@ -119,22 +119,22 @@ void KJavaDownloader::slotData(KIO::Job *, const QByteArray &qb)
 
 void KJavaDownloader::slotConnected(KIO::Job *)
 {
-    // qDebug() << "slave connected";
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "slave connected";
     d->responseCode = d->job->error();
 }
 
 void KJavaDownloader::slotMimetype(KIO::Job *, const QString &type)
 {
-    // qDebug() << "slave mimetype " << type;
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "slave mimetype " << type;
 }
 
 void KJavaDownloader::slotResult(KJob *)
 {
-    // qDebug() << "slotResult(" << d->loaderID << ")";
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "slotResult(" << d->loaderID << ")";
 
     KJavaAppletServer *server = KJavaAppletServer::allocateJavaServer();
     if (d->job->error()) {
-        // qDebug() << "slave had an error = " << d->job->errorString();
+        // qCDebug(KJAVAAPPLETVIEWER_LOG) << "slave had an error = " << d->job->errorString();
         int code = d->job->error();
         if (!code) {
             code = 404;
@@ -142,7 +142,7 @@ void KJavaDownloader::slotResult(KJob *)
         QString codestr = QString::number(code);
         d->file.resize(codestr.length());
         memcpy(d->file.data(), codestr.toLatin1().constData(), codestr.length());
-        // qDebug() << "slave had an error = " << code;
+        // qCDebug(KJAVAAPPLETVIEWER_LOG) << "slave had an error = " << code;
 
         server->sendURLData(d->loaderID, ERRORCODE, d->file);
         d->file.resize(0);
@@ -161,7 +161,7 @@ void KJavaDownloader::jobCommand(int cmd)
     }
     switch (cmd) {
     case KJAS_STOP: {
-        // qDebug() << "jobCommand(" << d->loaderID << ") stop";
+        // qCDebug(KJAVAAPPLETVIEWER_LOG) << "jobCommand(" << d->loaderID << ") stop";
         d->job->kill();
         d->job = nullptr; // KIO::Job::kill deletes itself
         KJavaAppletServer *server = KJavaAppletServer::allocateJavaServer();
@@ -170,11 +170,11 @@ void KJavaDownloader::jobCommand(int cmd)
         break;
     }
     case KJAS_HOLD:
-        // qDebug() << "jobCommand(" << d->loaderID << ") hold";
+        // qCDebug(KJAVAAPPLETVIEWER_LOG) << "jobCommand(" << d->loaderID << ") hold";
         d->job->suspend();
         break;
     case KJAS_RESUME:
-        // qDebug() << "jobCommand(" << d->loaderID << ") resume";
+        // qCDebug(KJAVAAPPLETVIEWER_LOG) << "jobCommand(" << d->loaderID << ") resume";
         d->job->resume();
         break;
     }
@@ -203,7 +203,7 @@ public:
 KJavaUploader::KJavaUploader(int ID, const QString &url)
     : d(new KJavaUploaderPrivate)
 {
-    // qDebug() << "KJavaUploader(" << ID << ") = " << url;
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "KJavaUploader(" << ID << ") = " << url;
 
     d->loaderID = ID;
     d->url = new QUrl(url);
@@ -213,7 +213,7 @@ KJavaUploader::KJavaUploader(int ID, const QString &url)
 
 void KJavaUploader::start()
 {
-    // qDebug() << "KJavaUploader::start(" << d->loaderID << ")";
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "KJavaUploader::start(" << d->loaderID << ")";
     KJavaAppletServer *server = KJavaAppletServer::allocateJavaServer();
     // create a suspended job
     d->job = KIO::put(*d->url, -1, KIO::HideProgressInfo);
@@ -234,7 +234,7 @@ KJavaUploader::~KJavaUploader()
 void KJavaUploader::slotDataRequest(KIO::Job *, QByteArray &qb)
 {
     // send our data and suspend
-    // qDebug() << "slotDataRequest(" << d->loaderID << ") finished:" << d->finished;
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "slotDataRequest(" << d->loaderID << ") finished:" << d->finished;
     qb.resize(d->file.size());
     KJavaAppletServer *server = KJavaAppletServer::allocateJavaServer();
     if (d->file.size() == 0) {
@@ -253,7 +253,7 @@ void KJavaUploader::slotDataRequest(KIO::Job *, QByteArray &qb)
 
 void KJavaUploader::data(const QByteArray &qb)
 {
-    // qDebug() << "KJavaUploader::data(" << d->loaderID << ")";
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "KJavaUploader::data(" << d->loaderID << ")";
     d->file.resize(qb.size());
     memcpy(d->file.data(), qb.data(), qb.size());
     d->job->resume();
@@ -261,7 +261,7 @@ void KJavaUploader::data(const QByteArray &qb)
 
 void KJavaUploader::slotResult(KJob *)
 {
-    // qDebug() << "slotResult(" << d->loaderID << ") job:" << d->job;
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "slotResult(" << d->loaderID << ") job:" << d->job;
 
     if (!d->job) {
         return;
@@ -272,12 +272,12 @@ void KJavaUploader::slotResult(KJob *)
         QString codestr = QString::number(code);
         d->file.resize(codestr.length());
         memcpy(d->file.data(), codestr.toLatin1().constData(), codestr.length());
-        // qDebug() << "slave had an error " << code <<  ": " << d->job->errorString();
+        // qCDebug(KJAVAAPPLETVIEWER_LOG) << "slave had an error " << code <<  ": " << d->job->errorString();
 
         server->sendURLData(d->loaderID, ERRORCODE, d->file);
         d->file.resize(0);
     } else { // shouldn't come here
-        qCritical() << "slotResult(" << d->loaderID << ") job:" << d->job;
+        qCCritical(KJAVAAPPLETVIEWER_LOG) << "slotResult(" << d->loaderID << ") job:" << d->job;
     }
     d->job = nullptr; // signal KIO::Job::result deletes itself
     server->removeDataJob(d->loaderID);   // will delete this
@@ -291,7 +291,7 @@ void KJavaUploader::jobCommand(int cmd)
     }
     switch (cmd) {
     case KJAS_STOP: {
-        // qDebug() << "jobCommand(" << d->loaderID << ") stop";
+        // qCDebug(KJAVAAPPLETVIEWER_LOG) << "jobCommand(" << d->loaderID << ") stop";
         d->finished = true;
         if (d->job->isSuspended()) {
             d->job->resume();

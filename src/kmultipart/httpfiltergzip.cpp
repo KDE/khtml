@@ -22,7 +22,7 @@
 #include <kcompressiondevice.h>
 #include <kfilterbase.h>
 #include <KLocalizedString>
-#include <QDebug>
+#include "kmultipart_debug.h"
 
 HTTPFilterGZip::HTTPFilterGZip()
     : m_firstData(true),
@@ -56,7 +56,7 @@ HTTPFilterGZip::slotInput(const QByteArray &d)
         return;
     }
 
-    //qDebug() << "Got" << d.size() << "bytes as input";
+    //qCDebug(KHTML_LOG) << "Got" << d.size() << "bytes as input";
     if (m_firstData) {
         m_gzipFilter->setFilterFlags(KFilterBase::WithHeaders);
         m_gzipFilter->init(QIODevice::ReadOnly);
@@ -69,7 +69,7 @@ HTTPFilterGZip::slotInput(const QByteArray &d)
         char buf[8192];
         m_gzipFilter->setOutBuffer(buf, sizeof(buf));
         KFilterBase::Result result = m_gzipFilter->uncompress();
-        //qDebug() << "uncompress returned" << result;
+        //qCDebug(KMULTIPART_LOG) << "uncompress returned" << result;
         switch (result) {
         case KFilterBase::Ok:
         case KFilterBase::End: {
@@ -78,14 +78,14 @@ HTTPFilterGZip::slotInput(const QByteArray &d)
                 emit output(QByteArray(buf, bytesOut));
             }
             if (result == KFilterBase::End) {
-                //qDebug() << "done, bHasFinished=true";
+                //qCDebug(KMULTIPART_LOG) << "done, bHasFinished=true";
                 emit output(QByteArray());
                 m_finished = true;
             }
             break;
         }
         case KFilterBase::Error:
-            qDebug() << "Error from KGZipFilter";
+            qCDebug(KMULTIPART_LOG) << "Error from KGZipFilter";
             emit error(i18n("Receiving corrupt data."));
             m_finished = true; // exit this while loop
             break;

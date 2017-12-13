@@ -892,7 +892,7 @@ void CSSStyleSelector::applySVGRule(int id, DOM::CSSValueImpl *value)
     default:
         // If you crash here, it's because you added a css property and are not handling it
         // in either this switch statement or the one in CSSStyleSelector::applyProperty
-        qWarning() << "unimplemented property" << id << getPropertyName(id).string();
+        qCWarning(KHTML_LOG) << "unimplemented property" << id << getPropertyName(id).string();
         return;
     }
 }

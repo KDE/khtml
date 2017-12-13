@@ -32,7 +32,7 @@
 #include "xml/dom_docimpl.h"
 #include "xml/dom_elementimpl.h"
 
-#include <QDebug>
+#include "khtml_debug.h"
 
 namespace DOM
 {
@@ -184,17 +184,17 @@ Document::Document(bool create)
     } else {
         impl = nullptr;
     }
-//    qDebug() << "Document::Document(bool)";
+//    qCDebug(KHTML_LOG) << "Document::Document(bool)";
 }
 
 Document::Document(const Document &other) : Node(other)
 {
-//    qDebug() << "Document::Document(Document &)";
+//    qCDebug(KHTML_LOG) << "Document::Document(Document &)";
 }
 
 Document::Document(DocumentImpl *i) : Node(i)
 {
-//    qDebug() << "Document::Document(DocumentImpl)";
+//    qCDebug(KHTML_LOG) << "Document::Document(DocumentImpl)";
 }
 
 Document &Document::operator = (const Node &other)
@@ -221,7 +221,7 @@ Document &Document::operator = (const Document &other)
 
 Document::~Document()
 {
-//    qDebug() << "Document::~Document\n";
+//    qCDebug(KHTML_LOG) << "Document::~Document\n";
 }
 
 DocumentType Document::doctype() const

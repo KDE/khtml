@@ -13,6 +13,7 @@ set(testserver_SRCS testkjavaappletserver.cpp
     ${KHTML_SOURCE_DIR}/java/kjavadownloader.cpp
     ${KHTML_SOURCE_DIR}/java/kjavaappletserver.cpp)
 
+ecm_qt_declare_logging_category(testserver_SRCS HEADER kjavaappletviewer_debug.h IDENTIFIER KJAVAAPPLETVIEWER_LOG CATEGORY_NAME kf5.khtml.javaappletviewer)
 add_executable(testserver ${testserver_SRCS})
 ecm_mark_as_test(testserver)
 

@@ -28,7 +28,7 @@
 #include <QPainter>
 #include <QLineEdit>
 #include <QListWidget>
-#include <QDebug>
+#include "khtml_debug.h"
 #include <QAbstractItemDelegate>
 #include <QTextLayout>
 

@@ -84,7 +84,7 @@ using namespace DOM;
 #include <kio/pixmaploader.h>
 #include <kio/hostinfo.h>
 #include <kprotocolmanager.h>
-#include <QDebug>
+#include "khtml_debug.h"
 #include <kjobwidgets.h>
 #include <kmessagebox.h>
 #include <kstandardaction.h>
@@ -341,7 +341,7 @@ void KHTMLPart::init(KHTMLView *view, GUIProfile prof)
         d->m_autoDetectLanguage = static_cast<KEncodingProber::ProberType>(config.readEntry("AutomaticDetectionLanguage", /*static_cast<int>(language) */0));
         if (d->m_autoDetectLanguage == KEncodingProber::None) {
             const QByteArray name = QTextCodec::codecForLocale()->name().toLower();
-//       qWarning() << "00000000 ";
+//       qCWarning(KHTML_LOG) << "00000000 ";
             if (name.endsWith("1251") || name.startsWith("koi") || name == "iso-8859-5") {
                 d->m_autoDetectLanguage = KEncodingProber::Cyrillic;
             } else if (name.endsWith("1256") || name == "iso-8859-6") {
@@ -369,7 +369,7 @@ void KHTMLPart::init(KHTMLView *view, GUIProfile prof)
             } else {
                 d->m_autoDetectLanguage = KEncodingProber::Universal;
             }
-//         qWarning() << "0000000end " << d->m_autoDetectLanguage << " " << QTextCodec::codecForLocale()->mibEnum();
+//         qCWarning(KHTML_LOG) << "0000000end " << d->m_autoDetectLanguage << " " << QTextCodec::codecForLocale()->mibEnum();
         }
         d->m_paSetEncoding->setCurrentProberType(d->m_autoDetectLanguage);
     }
@@ -557,7 +557,7 @@ void KHTMLPart::init(KHTMLView *view, GUIProfile prof)
 
 KHTMLPart::~KHTMLPart()
 {
-    // qDebug() << this;
+    // qCDebug(KHTML_LOG) << this;
     KConfigGroup config(KSharedConfig::openConfig(), "HTML Settings");
     config.writeEntry("AutomaticDetectionLanguage", int(d->m_autoDetectLanguage));
 
@@ -607,7 +607,7 @@ KHTMLPart::~KHTMLPart()
 
 bool KHTMLPart::restoreURL(const QUrl &url)
 {
-    // qDebug() << url;
+    // qCDebug(KHTML_LOG) << url;
 
     d->m_redirectionTimer.stop();
 
@@ -617,7 +617,7 @@ bool KHTMLPart::restoreURL(const QUrl &url)
      * method gets called from restoreState() in case of a full frameset
      * restoral, and restoreState() calls closeUrl() before restoring
      * anyway.
-    // qDebug() << "closing old URL";
+    // qCDebug(KHTML_LOG) << "closing old URL";
     closeUrl();
     */
 
@@ -707,7 +707,7 @@ void KHTMLPartPrivate::executeAnchorJump(const QUrl &url, bool lockHistory)
 
 bool KHTMLPart::openUrl(const QUrl &url)
 {
-    // qDebug() << this << "opening" << url;
+    // qCDebug(KHTML_LOG) << this << "opening" << url;
 
 #ifndef KHTML_NO_WALLET
     // Wallet forms are per page, so clear it when loading a different page if we
@@ -735,7 +735,7 @@ bool KHTMLPart::openUrl(const QUrl &url)
          * and the URL where the error happened is passed as a sub URL.
          */
         const QUrl mainURL(url.fragment());
-        //qDebug() << "Handling error URL. URL count:" << urls.count();
+        //qCDebug(KHTML_LOG) << "Handling error URL. URL count:" << urls.count();
 
         if (mainURL.isValid()) {
             QString query = url.query(QUrl::FullyDecoded);
@@ -748,7 +748,7 @@ bool KHTMLPart::openUrl(const QUrl &url)
             }
             const QString errorText = match.captured(2);
             d->m_workingURL = mainURL;
-            //qDebug() << "Emitting fixed URL " << d->m_workingURL;
+            //qCDebug(KHTML_LOG) << "Emitting fixed URL " << d->m_workingURL;
             emit d->m_extension->setLocationBarUrl(d->m_workingURL.toDisplayString());
             htmlError(error, errorText, d->m_workingURL);
             return true;
@@ -811,7 +811,7 @@ bool KHTMLPart::openUrl(const QUrl &url)
     if (url.hasFragment() && !isFrameSet) {
         bool noReloadForced = !args.reload() && !browserArgs.redirectedRequest() && !browserArgs.doPost();
         if (noReloadForced &&  d->isLocalAnchorJump(url)) {
-            // qDebug() << "jumping to anchor. m_url = " << url;
+            // qCDebug(KHTML_LOG) << "jumping to anchor. m_url = " << url;
             setUrl(url);
             emit started(nullptr);
 
@@ -824,7 +824,7 @@ bool KHTMLPart::openUrl(const QUrl &url)
                 d->m_doc->setParsing(false);
             }
 
-            // qDebug() << "completed...";
+            // qCDebug(KHTML_LOG) << "completed...";
             emit completed();
             return true;
         }
@@ -990,14 +990,14 @@ bool KHTMLPart::closeUrl()
 
     KHTMLPageCache::self()->cancelFetch(this);
     if (d->m_doc && d->m_doc->parsing()) {
-        // qDebug() << " was still parsing... calling end ";
+        // qCDebug(KHTML_LOG) << " was still parsing... calling end ";
         slotFinishedParsing();
         d->m_doc->setParsing(false);
     }
 
     if (!d->m_workingURL.isEmpty()) {
         // Aborted before starting to render
-        // qDebug() << "Aborted before starting to render, reverting location bar to " << url();
+        // qCDebug(KHTML_LOG) << "Aborted before starting to render, reverting location bar to " << url();
         emit d->m_extension->setLocationBarUrl(url().toDisplayString());
     }
 
@@ -1336,7 +1336,7 @@ QVariant KHTMLPart::executeScript(const QString &filename, int baseLine, const D
 {
 #ifdef KJS_VERBOSE
     // The script is now printed by KJS's Parser::parse
-    qDebug() << "executeScript: caller='" << objectName() << "' filename=" << filename << " baseLine=" << baseLine /*<< " script=" << script*/;
+    qCDebug(KHTML_LOG) << "executeScript: caller='" << objectName() << "' filename=" << filename << " baseLine=" << baseLine /*<< " script=" << script*/;
 #endif
     KJSProxy *proxy = jScript();
 
@@ -1362,7 +1362,7 @@ QVariant KHTMLPart::executeScript(const QString &filename, int baseLine, const D
 
     // Handle immediate redirects now (e.g. location='foo')
     if (!d->m_redirectURL.isEmpty() && d->m_delayRedirect == -1) {
-        // qDebug() << "executeScript done, handling immediate redirection NOW";
+        // qCDebug(KHTML_LOG) << "executeScript done, handling immediate redirection NOW";
         // Must abort tokenizer, no further script must execute.
         khtml::Tokenizer *t = d->m_doc->tokenizer();
         if (t) {
@@ -1383,7 +1383,7 @@ QVariant KHTMLPart::executeScript(const QString &script)
 QVariant KHTMLPart::executeScript(const DOM::Node &n, const QString &script)
 {
 #ifdef KJS_VERBOSE
-    qDebug() << "caller=" << objectName() << "node=" << n.nodeName().string().toLatin1().constData() << "(" << (n.isNull() ? 0 : n.nodeType()) << ") " /* << script */;
+    qCDebug(KHTML_LOG) << "caller=" << objectName() << "node=" << n.nodeName().string().toLatin1().constData() << "(" << (n.isNull() ? 0 : n.nodeType()) << ") " /* << script */;
 #endif
     KJSProxy *proxy = jScript();
 
@@ -1414,7 +1414,7 @@ QVariant KHTMLPart::executeScript(const DOM::Node &n, const QString &script)
     }
 
 #ifdef KJS_VERBOSE
-    qDebug() << "done";
+    qCDebug(KHTML_LOG) << "done";
 #endif
     return ret;
 }
@@ -1472,7 +1472,7 @@ void KHTMLPart::slotDebugDOMTree()
     for (; it != end; ++it)
         if (!(*it)->m_part.isNull() && (*it)->m_part.data()->inherits("KHTMLPart")) {
             KParts::ReadOnlyPart *const p = (*it)->m_part.data();
-            // qDebug() << QString().leftJustified(s_DOMTreeIndentLevel*4,' ') << "FRAME " << p->objectName() << " ";
+            // qCDebug(KHTML_LOG) << QString().leftJustified(s_DOMTreeIndentLevel*4,' ') << "FRAME " << p->objectName() << " ";
             static_cast<KHTMLPart *>(p)->slotDebugDOMTree();
         }
     s_DOMTreeIndentLevel = indentLevel;
@@ -1494,7 +1494,7 @@ void KHTMLPart::slotDebugRenderTree()
 //    QString dumps;
 //    QTextStream outputStream(&dumps,QIODevice::WriteOnly);
 //    d->m_doc->renderer()->layer()->dump( outputStream );
-//    qDebug() << "dump output:" << "\n" + dumps;
+//    qCDebug(KHTML_LOG) << "dump output:" << "\n" + dumps;
 //    d->m_doc->renderer()->printLineBoxTree();
     }
 #endif
@@ -1734,10 +1734,10 @@ void KHTMLPart::slotData(KIO::Job *kio_job, const QByteArray &data)
     Q_ASSERT(kio_job);
     Q_UNUSED(kio_job);
 
-    //qDebug() << "slotData: " << data.size();
+    //qCDebug(KHTML_LOG) << "slotData: " << data.size();
     // The first data ?
     if (!d->m_workingURL.isEmpty()) {
-        //qDebug() << "begin!";
+        //qCDebug(KHTML_LOG) << "begin!";
 
         // We must suspend KIO while we're inside begin() because it can cause
         // crashes if a window (such as kjsdebugger) goes back into the event loop,
@@ -1846,11 +1846,11 @@ void KHTMLPart::slotRestoreData(const QByteArray &data)
         d->m_workingURL = QUrl();
     }
 
-    //qDebug() << data.size();
+    //qCDebug(KHTML_LOG) << data.size();
     write(data.data(), data.size());
 
     if (data.size() == 0) {
-        //qDebug() << "<<end of data>>";
+        //qCDebug(KHTML_LOG) << "<<end of data>>";
         // End of data.
         if (d->m_doc && d->m_doc->parsing()) {
             end();    //will emit completed()
@@ -1860,7 +1860,7 @@ void KHTMLPart::slotRestoreData(const QByteArray &data)
 
 void KHTMLPart::showError(KJob *job)
 {
-    // qDebug() << "d->m_bParsing=" << (d->m_doc && d->m_doc->parsing()) << " d->m_bComplete=" << d->m_bComplete
+    // qCDebug(KHTML_LOG) << "d->m_bParsing=" << (d->m_doc && d->m_doc->parsing()) << " d->m_bComplete=" << d->m_bComplete
     //              << " d->m_bCleared=" << d->m_bCleared;
 
     if (job->error() == KIO::ERR_NO_CONTENT) {
@@ -1877,7 +1877,7 @@ void KHTMLPart::showError(KJob *job)
 // This is a protected method, placed here because of it's relevance to showError
 void KHTMLPart::htmlError(int errorCode, const QString &text, const QUrl &reqUrl)
 {
-    // qDebug() << "errorCode" << errorCode << "text" << text;
+    // qCDebug(KHTML_LOG) << "errorCode" << errorCode << "text" << text;
     // make sure we're not executing any embedded JS
     bool bJSFO = d->m_bJScriptForce;
     bool bJSOO = d->m_bJScriptOverride;
@@ -1905,7 +1905,7 @@ void KHTMLPart::htmlError(int errorCode, const QString &text, const QUrl &reqUrl
     QFile file(filename);
     bool isOpened = file.open(QIODevice::ReadOnly);
     if (!isOpened) {
-        qWarning() << "Could not open error html template:" << filename;
+        qCWarning(KHTML_LOG) << "Could not open error html template:" << filename;
     }
 
     QString html = QString(QLatin1String(file.readAll()));
@@ -2016,7 +2016,7 @@ void KHTMLPart::slotFinished(KJob *job)
         }
     }
 
-    //qDebug() << "slotFinished";
+    //qCDebug(KHTML_LOG) << "slotFinished";
 
     KHTMLPageCache::self()->endData(d->m_cacheId);
 
@@ -2470,7 +2470,7 @@ bool KHTMLPartPrivate::isFullyLoaded(bool *pendingRedirections) const
     const ConstFrameIt end = m_frames.constEnd();
     for (; it != end; ++it) {
         if (!(*it)->m_bCompleted || (*it)->m_run) {
-            //qDebug() << this << " is waiting for " << (*it)->m_part;
+            //qCDebug(KHTML_LOG) << this << " is waiting for " << (*it)->m_part;
             return false;
         }
         // Check for frames with pending redirections
@@ -2502,7 +2502,7 @@ bool KHTMLPartPrivate::isFullyLoaded(bool *pendingRedirections) const
     }
 
     if (requests > 0) {
-        //qDebug() << "still waiting for images/scripts from the loader - requests:" << requests;
+        //qCDebug(KHTML_LOG) << "still waiting for images/scripts from the loader - requests:" << requests;
         return false;
     }
 
@@ -2511,9 +2511,9 @@ bool KHTMLPartPrivate::isFullyLoaded(bool *pendingRedirections) const
 
 void KHTMLPart::checkCompleted()
 {
-//   qDebug() << this;
-//   qDebug() << "   parsing: " << (d->m_doc && d->m_doc->parsing());
-//   qDebug() << "   complete: " << d->m_bComplete;
+//   qCDebug(KHTML_LOG) << this;
+//   qCDebug(KHTML_LOG) << "   parsing: " << (d->m_doc && d->m_doc->parsing());
+//   qCDebug(KHTML_LOG) << "   complete: " << d->m_bComplete;
 
     // restore the cursor position
     if (d->m_doc && !d->m_doc->parsing() && !d->m_focusNodeRestored) {
@@ -2557,11 +2557,11 @@ void KHTMLPart::checkCompleted()
         // DA: Do not start redirection for frames here! That action is
         // deferred until the parent emits a completed signal.
         if (parentPart() == nullptr) {
-            //qDebug() << this << " starting redirection timer";
+            //qCDebug(KHTML_LOG) << this << " starting redirection timer";
             d->m_redirectionTimer.setSingleShot(true);
             d->m_redirectionTimer.start(qMax(0, 1000 * d->m_delayRedirect));
         } else {
-            //qDebug() << this << " not toplevel -> not starting redirection timer. Waiting for slotParentCompleted.";
+            //qCDebug(KHTML_LOG) << this << " not toplevel -> not starting redirection timer. Waiting for slotParentCompleted.";
         }
 
         pendingAction = true;
@@ -2572,7 +2572,7 @@ void KHTMLPart::checkCompleted()
     // the view will emit completed on our behalf,
     // either now or at next repaint if one is pending
 
-    //qDebug() << this << " asks the view to emit completed. pendingAction=" << pendingAction;
+    //qCDebug(KHTML_LOG) << this << " asks the view to emit completed. pendingAction=" << pendingAction;
     d->m_view->complete(pendingAction);
 
     // find the alternate stylesheets
@@ -2593,7 +2593,7 @@ void KHTMLPart::checkCompleted()
 
 #ifdef SPEED_DEBUG
     if (!parentPart()) {
-        qDebug() << "DONE:" << d->m_parsetime.elapsed();
+        qCDebug(KHTML_LOG) << "DONE:" << d->m_parsetime.elapsed();
     }
 #endif
 }
@@ -2653,7 +2653,7 @@ QString KHTMLPartPrivate::codeForJavaScriptURL(const QString &u)
 void KHTMLPartPrivate::executeJavascriptURL(const QString &u)
 {
     QString script = codeForJavaScriptURL(u);
-    // qDebug() << "script=" << script;
+    // qCDebug(KHTML_LOG) << "script=" << script;
     QVariant res = q->executeScript(DOM::Node(), script);
     if (res.type() == QVariant::String) {
         q->begin(q->url());
@@ -2673,8 +2673,8 @@ bool KHTMLPartPrivate::isJavaScriptURL(const QString &url)
 // and by xml/dom_docimpl.cpp in case of http-equiv meta refresh.
 void KHTMLPart::scheduleRedirection(int delay, const QString &url, bool doLockHistory)
 {
-    // qDebug() << "delay=" << delay << " url=" << url << " from=" << this->url() << "parent=" << parentPart();
-    // qDebug() << "current redirectURL=" << d->m_redirectURL << " with delay " << d->m_delayRedirect;
+    // qCDebug(KHTML_LOG) << "delay=" << delay << " url=" << url << " from=" << this->url() << "parent=" << parentPart();
+    // qCDebug(KHTML_LOG) << "current redirectURL=" << d->m_redirectURL << " with delay " << d->m_delayRedirect;
 
     // In case of JS redirections, some, such as jump to anchors, and javascript:
     // evaluation should actually be handled immediately, and not waiting until
@@ -2689,7 +2689,7 @@ void KHTMLPart::scheduleRedirection(int delay, const QString &url, bool doLockHi
         d->m_delayRedirect = delay;
         d->m_redirectURL = url;
         d->m_redirectLockHistory = doLockHistory;
-        // qDebug() << " d->m_bComplete=" << d->m_bComplete;
+        // qCDebug(KHTML_LOG) << " d->m_bComplete=" << d->m_bComplete;
 
         if (d->m_bComplete) {
             d->m_redirectionTimer.stop();
@@ -2708,7 +2708,7 @@ void KHTMLPartPrivate::clearRedirection()
 
 void KHTMLPart::slotRedirect()
 {
-    // qDebug() << this;
+    // qCDebug(KHTML_LOG) << this;
     QString u = d->m_redirectURL;
     QUrl url(u);
     d->clearRedirection();
@@ -2727,7 +2727,7 @@ void KHTMLPart::slotRedirect()
     }
 
     if (!KUrlAuthorized::authorizeUrlAction("redirect", cUrl, url)) {
-        qWarning() << "KHTMLPart::scheduleRedirection: Redirection from " << cUrl << " to " << url << " REJECTED!";
+        qCWarning(KHTML_LOG) << "KHTMLPart::scheduleRedirection: Redirection from " << cUrl << " to " << url << " REJECTED!";
         emit completed();
         return;
     }
@@ -2758,7 +2758,7 @@ void KHTMLPart::slotRedirect()
 void KHTMLPart::slotRedirection(KIO::Job *, const QUrl &url)
 {
     // the slave told us that we got redirected
-    //qDebug() << "redirection by KIO to" << url;
+    //qCDebug(KHTML_LOG) << "redirection by KIO to" << url;
     emit d->m_extension->setLocationBarUrl(url.toDisplayString());
     d->m_workingURL = url;
 }
@@ -2847,7 +2847,7 @@ bool KHTMLPart::gotoAnchor(const QString &name)
         d->m_view->setContentsPos(d->m_view->contentsX(), 0);
         return true;
     } else if (!n) {
-        // qDebug() << name << "not found";
+        // qCDebug(KHTML_LOG) << name << "not found";
         return false;
     }
 
@@ -2993,7 +2993,7 @@ static void setCaretInvisibleIfNeeded(KHTMLPart *part)
 
 void KHTMLPart::setCaretMode(bool enable)
 {
-    // qDebug() << enable;
+    // qCDebug(KHTML_LOG) << enable;
     if (isCaretMode() == enable) {
         return;
     }
@@ -3050,7 +3050,7 @@ void KHTMLPart::setCaretPosition(DOM::Node node, long offset, bool extendSelecti
     Q_UNUSED(extendSelection);
 #ifndef KHTML_NO_CARET
 #if 0
-    qDebug() << "node: " << node.handle() << " nodeName: "
+    qCDebug(KHTML_LOG) << "node: " << node.handle() << " nodeName: "
              << node.nodeName().string() << " offset: " << offset
              << " extendSelection " << extendSelection;
     if (view()->moveCaretTo(node.handle(), offset, !extendSelection)) {
@@ -3118,7 +3118,7 @@ void KHTMLPart::slotFind()
         return;
     }
     if (!part->inherits("KHTMLPart")) {
-        qCritical() << "part is a" << part->metaObject()->className() << ", can't do a search into it";
+        qCCritical(KHTML_LOG) << "part is a" << part->metaObject()->className() << ", can't do a search into it";
         return;
     }
     static_cast<KHTMLPart *>(part)->findText();
@@ -3131,7 +3131,7 @@ void KHTMLPart::slotFindNext()
         return;
     }
     if (!part->inherits("KHTMLPart")) {
-        qCritical() << "part is a" << part->metaObject()->className() << ", can't do a search into it";
+        qCCritical(KHTML_LOG) << "part is a" << part->metaObject()->className() << ", can't do a search into it";
         return;
     }
     static_cast<KHTMLPart *>(part)->findTextNext();
@@ -3144,7 +3144,7 @@ void KHTMLPart::slotFindPrev()
         return;
     }
     if (!part->inherits("KHTMLPart")) {
-        qCritical() << "part is a" << part->metaObject()->className() << ", can't do a search into it";
+        qCCritical(KHTML_LOG) << "part is a" << part->metaObject()->className() << ", can't do a search into it";
         return;
     }
     static_cast<KHTMLPart *>(part)->findTextNext(true);     // reverse
@@ -3221,11 +3221,11 @@ QString KHTMLPart::selectedTextAsHTML() const
 {
     const Selection &sel = d->editor_context.m_selection;
     if (!hasSelection()) {
-        // qDebug() << "Selection is not valid. Returning empty selection";
+        // qCDebug(KHTML_LOG) << "Selection is not valid. Returning empty selection";
         return QString();
     }
     if (sel.start().offset() < 0 || sel.end().offset() < 0) {
-        // qDebug() << "invalid values for end/startOffset " << sel.start().offset() << " " << sel.end().offset();
+        // qCDebug(KHTML_LOG) << "invalid values for end/startOffset " << sel.start().offset() << " " << sel.end().offset();
         return QString();
     }
     DOM::Range r = selection();
@@ -3607,7 +3607,7 @@ void KHTMLPart::timerEvent(QTimerEvent *e)
             d->editor_context.m_selection.needsCaretRepaint();
         }
     } else if (e->timerId() == d->m_DNSPrefetchTimer) {
-        // qDebug() << "will lookup " << d->m_DNSPrefetchQueue.head() << d->m_numDNSPrefetchedNames;
+        // qCDebug(KHTML_LOG) << "will lookup " << d->m_DNSPrefetchQueue.head() << d->m_numDNSPrefetchedNames;
         KIO::HostInfo::prefetchHost(d->m_DNSPrefetchQueue.dequeue());
         if (d->m_DNSPrefetchQueue.isEmpty()) {
             killTimer(d->m_DNSPrefetchTimer);
@@ -3873,7 +3873,7 @@ bool KHTMLPart::urlSelected(const QString &url, int button, int state, const QSt
         return false;
     }
 
-    // qDebug() << this << "complete URL:" << cURL << "target=" << target;
+    // qCDebug(KHTML_LOG) << this << "complete URL:" << cURL << "target=" << target;
 
     if (state & Qt::ControlModifier) {
         emit d->m_extension->createNewWindow(cURL, args, browserArgs);
@@ -4110,7 +4110,7 @@ void KHTMLPart::slotSaveDocument()
 
 void KHTMLPart::slotSecurity()
 {
-//   qDebug() << "Meta Data:" << endl
+//   qCDebug(KHTML_LOG) << "Meta Data:" << endl
 //                   << d->m_ssl_peer_cert_subject
 //                   << endl
 //                   << d->m_ssl_peer_cert_issuer
@@ -4181,9 +4181,9 @@ void KHTMLPart::slotSecurity()
                         d->m_ssl_cipher_used_bits.toInt(),
                         d->m_ssl_cipher_bits.toInt(),
                         KSslInfoDialog::errorsFromString(d->m_ssl_cert_errors));
-        // qDebug() << "Showing SSL Info dialog";
+        // qCDebug(KHTML_LOG) << "Showing SSL Info dialog";
         kid->exec();
-        // qDebug() << "SSL Info dialog closed";
+        // qCDebug(KHTML_LOG) << "SSL Info dialog closed";
     } else {
         KMessageBox::information(nullptr, i18n("The peer SSL certificate chain "
                                          "appears to be corrupt."),
@@ -4310,13 +4310,13 @@ KParts::ScriptableExtension *KHTMLPart::scriptableExtension(const DOM::NodeImpl 
 void KHTMLPart::loadFrameElement(DOM::HTMLPartContainerElementImpl *frame, const QString &url,
                                  const QString &frameName, const QStringList &params, bool isIFrame)
 {
-    //qDebug() << this << " requestFrame( ..., " << url << ", " << frameName << " )";
+    //qCDebug(KHTML_LOG) << this << " requestFrame( ..., " << url << ", " << frameName << " )";
     khtml::ChildFrame *child;
 
     FrameIt it = d->m_frames.find(frameName);
     if (it == d->m_frames.end()) {
         child = new khtml::ChildFrame;
-        //qDebug() << "inserting new frame into frame map " << frameName;
+        //qCDebug(KHTML_LOG) << "inserting new frame into frame map " << frameName;
         child->m_name = frameName;
         d->m_frames.insert(d->m_frames.end(), child);
     } else {
@@ -4363,7 +4363,7 @@ QString KHTMLPart::requestFrameName()
 bool KHTMLPart::loadObjectElement(DOM::HTMLPartContainerElementImpl *frame, const QString &url,
                                   const QString &serviceType, const QStringList &params)
 {
-    //qDebug() << this << "frame=" << frame;
+    //qCDebug(KHTML_LOG) << this << "frame=" << frame;
     khtml::ChildFrame *child = new khtml::ChildFrame;
     FrameIt it = d->m_objects.insert(d->m_objects.end(), child);
     (*it)->m_partContainerElement = frame;
@@ -4385,7 +4385,7 @@ bool KHTMLPart::requestObject(khtml::ChildFrame *child, const QUrl &url, const K
     // we always permit javascript: URLs here since they're basically just
     // empty pages (and checkLinkSecurity/KAuthorized doesn't know what to do with them)
     if (!d->isJavaScriptURL(url.toString()) && !checkLinkSecurity(url)) {
-        // qDebug() << this << "checkLinkSecurity refused";
+        // qCDebug(KHTML_LOG) << this << "checkLinkSecurity refused";
         return false;
     }
 
@@ -4402,12 +4402,12 @@ bool KHTMLPart::requestObject(khtml::ChildFrame *child, const QUrl &url, const K
         return true;
     }
 
-    //qDebug() << "child=" << child << "child->m_part=" << child->m_part;
+    //qCDebug(KHTML_LOG) << "child=" << child << "child->m_part=" << child->m_part;
 
     KParts::OpenUrlArguments args(_args);
 
     if (child->m_run) {
-        // qDebug() << "navigating ChildFrame while mimetype resolution was in progress...";
+        // qCDebug(KHTML_LOG) << "navigating ChildFrame while mimetype resolution was in progress...";
         child->m_run.data()->abort();
     }
 
@@ -4446,7 +4446,7 @@ bool KHTMLPart::requestObject(khtml::ChildFrame *child, const QUrl &url, const K
     }
 
     if (args.mimeType().isEmpty()) {
-        // qDebug() << "Running new KHTMLRun for" << this << "and child=" << child;
+        // qCDebug(KHTML_LOG) << "Running new KHTMLRun for" << this << "and child=" << child;
         child->m_run = new KHTMLRun(this, child, url, child->m_args, child->m_browserArgs, true);
         d->m_bComplete = false; // ensures we stop it in checkCompleted...
         return false;
@@ -4467,7 +4467,7 @@ void KHTMLPart::childLoadFailure(khtml::ChildFrame *child)
 
 bool KHTMLPart::processObjectRequest(khtml::ChildFrame *child, const QUrl &_url, const QString &mimetype)
 {
-    // qDebug() << "trying to create part for" << mimetype << _url;
+    // qCDebug(KHTML_LOG) << "trying to create part for" << mimetype << _url;
 
     // IMPORTANT: create a copy of the url here, because it is just a reference, which was likely to be given
     // by an emitting frame part (emit openUrlRequest( blahurl, ... ) . A few lines below we delete the part
@@ -4666,7 +4666,7 @@ bool KHTMLPart::navigateChild(khtml::ChildFrame *child, const QUrl &url)
     if (url.scheme() == "javascript" || url.toString() == "about:blank") {
         return navigateLocalProtocol(child, child->m_part.data(), url);
     } else if (!url.isEmpty()) {
-        // qDebug() << "opening" << url << "in frame" << child->m_part;
+        // qCDebug(KHTML_LOG) << "opening" << url << "in frame" << child->m_part;
         bool b = child->m_part.data()->openUrl(url);
         if (child->m_bCompleted) {
             checkCompleted();
@@ -4683,7 +4683,7 @@ bool KHTMLPart::navigateChild(khtml::ChildFrame *child, const QUrl &url)
 void KHTMLPart::connectToChildPart(khtml::ChildFrame *child, KParts::ReadOnlyPart *part,
                                    const QString &mimetype)
 {
-    // qDebug() << "we:" << this << "kid:" << child << part << mimetype;
+    // qCDebug(KHTML_LOG) << "we:" << this << "kid:" << child << part << mimetype;
 
     part->setObjectName(child->m_name);
 
@@ -4708,7 +4708,7 @@ void KHTMLPart::connectToChildPart(khtml::ChildFrame *child, KParts::ReadOnlyPar
         partManager()->addPart(part, false);
     }
 //  else
-//      qDebug() << "AH! NO FRAME!!!!!";
+//      qCDebug(KHTML_LOG) << "AH! NO FRAME!!!!!";
 
     if (qobject_cast<KHTMLPart *>(part)) {
         static_cast<KHTMLPart *>(part)->d->m_frame = child;
@@ -4829,7 +4829,7 @@ KParts::ReadOnlyPart *KHTMLPart::createPart(QWidget *parentWidget,
             }
         } else {
             // TODO KMessageBox::error and i18n, like in KonqFactory::createView?
-            qWarning() << QString("There was an error loading the module %1.\nThe diagnostics is:\n%2")
+            qCWarning(KHTML_LOG) << QString("There was an error loading the module %1.\nThe diagnostics is:\n%2")
                        .arg(service->name()).arg(loader.errorString());
         }
     }
@@ -4869,7 +4869,7 @@ void KHTMLPart::submitFormProxy(const char *action, const QString &url, const QB
 
 void KHTMLPart::submitForm(const char *action, const QString &url, const QByteArray &formData, const QString &_target, const QString &contentType, const QString &boundary)
 {
-    // qDebug() << this << "target=" << _target << "url=" << url;
+    // qCDebug(KHTML_LOG) << this << "target=" << _target << "url=" << url;
     if (d->m_formNotification == KHTMLPart::Only) {
         emit formSubmitNotification(action, url, formData, _target, contentType, boundary);
         return;
@@ -5061,7 +5061,7 @@ void KHTMLPart::submitForm(const char *action, const QString &url, const QByteAr
 
     if (d->m_doc->parsing() || d->m_runningScripts > 0) {
         if (d->m_submitForm) {
-            // qDebug() << "ABORTING!";
+            // qCDebug(KHTML_LOG) << "ABORTING!";
             return;
         }
         d->m_submitForm = new KHTMLPartPrivate::SubmitForm;
@@ -5173,9 +5173,9 @@ void KHTMLPart::popupMenu(const QString &linkUrl)
 
 void KHTMLPart::slotParentCompleted()
 {
-    //qDebug() << this;
+    //qCDebug(KHTML_LOG) << this;
     if (!d->m_redirectURL.isEmpty() && !d->m_redirectionTimer.isActive()) {
-        //qDebug() << this << ": starting timer for child redirection -> " << d->m_redirectURL;
+        //qCDebug(KHTML_LOG) << this << ": starting timer for child redirection -> " << d->m_redirectURL;
         d->m_redirectionTimer.setSingleShot(true);
         d->m_redirectionTimer.start(qMax(0, 1000 * d->m_delayRedirect));
     }
@@ -5211,7 +5211,7 @@ void KHTMLPart::slotChildCompleted(bool pendingAction)
     khtml::ChildFrame *child = frame(sender());
 
     if (child) {
-        // qDebug() << this << "child=" << child << "m_partContainerElement=" << child->m_partContainerElement;
+        // qCDebug(KHTML_LOG) << this << "child=" << child << "m_partContainerElement=" << child->m_partContainerElement;
         child->m_bCompleted = true;
         child->m_bPendingRedirection = pendingAction;
         child->m_args = KParts::OpenUrlArguments();
@@ -5338,7 +5338,7 @@ bool KHTMLPart::checkFrameAccess(KHTMLPart *callingHtmlPart)
 
     if (!xmlDocImpl()) {
 #ifdef DEBUG_FINDFRAME
-        qDebug() << "Empty part" << this << "URL = " << url();
+        qCDebug(KHTML_LOG) << "Empty part" << this << "URL = " << url();
 #endif
         return false; // we are empty?
     }
@@ -5354,7 +5354,7 @@ bool KHTMLPart::checkFrameAccess(KHTMLPart *callingHtmlPart)
     }
 #ifdef DEBUG_FINDFRAME
     else {
-        qDebug() << "Unknown part/domain" << callingHtmlPart << "tries to access part" << this;
+        qCDebug(KHTML_LOG) << "Unknown part/domain" << callingHtmlPart << "tries to access part" << this;
     }
 #endif
     return false;
@@ -5370,7 +5370,7 @@ KHTMLPart *KHTMLPartPrivate::findFrameParent(KParts::ReadOnlyPart *callingPart,
         const QString &f, khtml::ChildFrame **childFrame, bool checkForNavigation)
 {
 #ifdef DEBUG_FINDFRAME
-    qDebug() << q << "URL =" << q->url() << "name =" << q->objectName() << "findFrameParent(" << f << ")";
+    qCDebug(KHTML_LOG) << q << "URL =" << q->url() << "name =" << q->objectName() << "findFrameParent(" << f << ")";
 #endif
     // Check access
     KHTMLPart *const callingHtmlPart = qobject_cast<KHTMLPart *>(callingPart);
@@ -5393,7 +5393,7 @@ KHTMLPart *KHTMLPartPrivate::findFrameParent(KParts::ReadOnlyPart *callingPart,
     const FrameIt end = m_frames.end();
     if (it != end) {
 #ifdef DEBUG_FINDFRAME
-        qDebug() << "FOUND!";
+        qCDebug(KHTML_LOG) << "FOUND!";
 #endif
         if (!checkForNavigation || callingHtmlPart->d->canNavigate((*it)->m_part.data())) {
             if (childFrame) {
@@ -5553,7 +5553,7 @@ khtml::ChildFrame *KHTMLPart::recursiveFrameRequest(KHTMLPart *callingHtmlPart, 
         const KParts::BrowserArguments &browserArgs, bool callParent)
 {
 #ifdef DEBUG_FINDFRAME
-    qDebug() << this << "frame = " << browserArgs.frameName << "url = " << url;
+    qCDebug(KHTML_LOG) << this << "frame = " << browserArgs.frameName << "url = " << url;
 #endif
     khtml::ChildFrame *childFrame;
     KHTMLPart *childPart = findFrameParent(callingHtmlPart, browserArgs.frameName, &childFrame);
@@ -5586,7 +5586,7 @@ void KHTMLPart::saveState(QDataStream &stream)
 #ifdef DEBUG_SAVESTATE
     QString indent = QString().leftJustified(s_saveStateIndentLevel * 4, ' ');
     const int indentLevel = s_saveStateIndentLevel++;
-    qDebug() << indent << "saveState this=" << this << " '" << objectName() << "' saving URL " << url();
+    qCDebug(KHTML_LOG) << indent << "saveState this=" << this << " '" << objectName() << "' saving URL " << url();
 #endif
 
     stream << url() << (qint32)d->m_view->contentsX() << (qint32)d->m_view->contentsY()
@@ -5731,9 +5731,9 @@ void KHTMLPart::restoreState(QDataStream &stream)
     d->m_bComplete = false;
     d->m_bLoadEventEmitted = false;
 
-//   qDebug() << "docState.count() = " << docState.count();
-//   qDebug() << "m_url " << url() << " <-> " << u;
-//   qDebug() << "m_frames.count() " << d->m_frames.count() << " <-> " << frameCount;
+//   qCDebug(KHTML_LOG) << "docState.count() = " << docState.count();
+//   qCDebug(KHTML_LOG) << "m_url " << url() << " <-> " << u;
+//   qCDebug(KHTML_LOG) << "m_frames.count() " << d->m_frames.count() << " <-> " << frameCount;
 
     if (d->m_cacheId == old_cacheId && signed(frameCount) == d->m_frames.count()) {
         // Partial restore
@@ -5758,7 +5758,7 @@ void KHTMLPart::restoreState(QDataStream &stream)
         for (; fIt != fEnd; ++fIt, ++fNameIt, ++fServiceTypeIt, ++fServiceNameIt, ++fURLIt, ++fBufferIt, ++fFrameTypeIt) {
             khtml::ChildFrame *const child = *fIt;
 
-//      qDebug() <<  *fNameIt  << " ---- " <<  *fServiceTypeIt;
+//      qCDebug(KHTML_LOG) <<  *fNameIt  << " ---- " <<  *fServiceTypeIt;
 
             if (child->m_name != *fNameIt || child->m_serviceType != *fServiceTypeIt) {
                 child->m_bPreloaded = true;
@@ -5817,7 +5817,7 @@ void KHTMLPart::restoreState(QDataStream &stream)
             newChild->m_serviceName = *fServiceNameIt;
             newChild->m_type = static_cast<khtml::ChildFrame::Type>(*fFrameTypeIt);
 
-//      qDebug() << *fNameIt << " ---- " << *fServiceTypeIt;
+//      qCDebug(KHTML_LOG) << *fNameIt << " ---- " << *fServiceTypeIt;
 
             const FrameIt childFrame = d->m_frames.insert(d->m_frames.end(), newChild);
 
@@ -6169,7 +6169,7 @@ QString KHTMLPart::lastModified() const
         QDateTime lastModif = QFileInfo(url().toLocalFile()).lastModified();
         d->m_lastModified = lastModif.toString(Qt::LocalDate);
     }
-    //qDebug() << d->m_lastModified;
+    //qCDebug(KHTML_LOG) << d->m_lastModified;
     return d->m_lastModified;
 }
 
@@ -6263,7 +6263,7 @@ QList<KParts::ReadOnlyPart *> KHTMLPart::frames() const
 
 bool KHTMLPart::openUrlInFrame(const QUrl &url, const KParts::OpenUrlArguments &args, const KParts::BrowserArguments &browserArgs)
 {
-    // qDebug() << this << url;
+    // qCDebug(KHTML_LOG) << this << url;
     FrameIt it = d->m_frames.find(browserArgs.frameName);
 
     if (it == d->m_frames.end()) {
@@ -6476,7 +6476,7 @@ void KHTMLPart::handleMousePressEventSingleClick(khtml::MousePressEvent *event)
             if (pos.isEmpty()) {
                 pos = Position(innerNode.handle(), innerNode.handle()->caretMinOffset());
             }
-            // qDebug() << event->x() << event->y() << pos;
+            // qCDebug(KHTML_LOG) << event->x() << event->y() << pos;
 
             sel = caret();
             if (extendSelection && sel.notEmpty()) {
@@ -6777,7 +6777,7 @@ void KHTMLPart::khtmlMouseReleaseEvent(khtml::MouseReleaseEvent *event)
 #ifndef QT_NO_CLIPBOARD
     QMouseEvent *_mouse = event->qmouseEvent();
     if ((d->m_guiProfile == BrowserViewGUI) && (_mouse->button() == Qt::MidButton) && (event->url().isNull())) {
-        // qDebug() << "MMB shouldOpen=" << d->m_bOpenMiddleClick;
+        // qCDebug(KHTML_LOG) << "MMB shouldOpen=" << d->m_bOpenMiddleClick;
 
         if (d->m_bOpenMiddleClick) {
             KHTMLPart *p = this;
@@ -6816,9 +6816,9 @@ void KHTMLPart::khtmlMouseReleaseEvent(khtml::MouseReleaseEvent *event)
             connect(qApp->clipboard(), SIGNAL(selectionChanged()), SLOT(slotClearSelection()));
         }
 #endif
-        //qDebug() << "selectedText = " << text;
+        //qCDebug(KHTML_LOG) << "selectedText = " << text;
         emitSelectionChanged();
-//qDebug() << "rel2: startBefEnd " << d->m_startBeforeEnd << " extAtEnd " << d->m_extendAtEnd << " (" << d->m_startOffset << ") - (" << d->m_endOffset << "), caretOfs " << d->caretOffset();
+//qCDebug(KHTML_LOG) << "rel2: startBefEnd " << d->m_startBeforeEnd << " extAtEnd " << d->m_extendAtEnd << " (" << d->m_startOffset << ") - (" << d->m_endOffset << "), caretOfs " << d->caretOffset();
     }
 #endif
 }
@@ -7058,7 +7058,7 @@ bool KHTMLPart::checkLinkSecurity(const QUrl &linkURL, const KLocalizedString &m
 
 void KHTMLPart::slotPartRemoved(KParts::Part *part)
 {
-//    qDebug() << part;
+//    qCDebug(KHTML_LOG) << part;
     if (part == d->m_activeFrame) {
         d->m_activeFrame = nullptr;
         if (!part->inherits("KHTMLPart")) {
@@ -7074,13 +7074,13 @@ void KHTMLPart::slotPartRemoved(KParts::Part *part)
 
 void KHTMLPart::slotActiveFrameChanged(KParts::Part *part)
 {
-//    qDebug() << this << "part=" << part;
+//    qCDebug(KHTML_LOG) << this << "part=" << part;
     if (part == this) {
-        qCritical() << "strange error! we activated ourselves";
+        qCCritical(KHTML_LOG) << "strange error! we activated ourselves";
         assert(false);
         return;
     }
-//    qDebug() << "d->m_activeFrame=" << d->m_activeFrame;
+//    qCDebug(KHTML_LOG) << "d->m_activeFrame=" << d->m_activeFrame;
     if (d->m_activeFrame && d->m_activeFrame->widget() && d->m_activeFrame->widget()->inherits("QFrame")) {
         QFrame *frame = static_cast<QFrame *>(d->m_activeFrame->widget());
         if (frame->frameStyle() != QFrame::NoFrame) {
@@ -7110,7 +7110,7 @@ void KHTMLPart::slotActiveFrameChanged(KParts::Part *part)
             frame->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
             frame->repaint();
         }
-        // qDebug() << "new active frame " << d->m_activeFrame;
+        // qCDebug(KHTML_LOG) << "new active frame " << d->m_activeFrame;
     }
 
     updateActions();

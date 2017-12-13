@@ -47,7 +47,7 @@
 
 #include <QWheelEvent>
 #include <khtmlview.h>
-#include <QDebug>
+#include "khtml_debug.h"
 #include <assert.h>
 
 using namespace DOM;
@@ -216,7 +216,7 @@ void RenderBox::setStyle(RenderStyle *_style)
 
 RenderBox::~RenderBox()
 {
-    //qDebug() << "Element destructor: this=" << nodeName().string();
+    //qCDebug(KHTML_LOG) << "Element destructor: this=" << nodeName().string();
 }
 
 void RenderBox::detach()
@@ -297,7 +297,7 @@ short RenderBox::contentWidth() const
         w -= m_layer->verticalScrollbarWidth();
     }
 
-    //qDebug() << "RenderBox::contentWidth(2) = " << w;
+    //qCDebug(KHTML_LOG) << "RenderBox::contentWidth(2) = " << w;
     return w;
 }
 
@@ -393,7 +393,7 @@ void RenderBox::paint(PaintInfo &i, int _tx, int _ty)
 
 void RenderBox::paintRootBoxDecorations(PaintInfo &paintInfo, int _tx, int _ty)
 {
-    //qDebug() << renderName() << "::paintRootBoxDecorations()" << _tx << "/" << _ty;
+    //qCDebug(KHTML_LOG) << renderName() << "::paintRootBoxDecorations()" << _tx << "/" << _ty;
     const BackgroundLayer *bgLayer = style()->backgroundLayers();
     QColor bgColor = style()->backgroundColor();
     if (document()->isHTMLDocument() && !style()->hasBackground()) {
@@ -417,7 +417,7 @@ void RenderBox::paintRootBoxDecorations(PaintInfo &paintInfo, int _tx, int _ty)
     int w = width();
     int h = height();
 
-    //    qDebug() << "width = " << w;
+    //    qCDebug(KHTML_LOG) << "width = " << w;
 
     int rw, rh;
     if (canvas()->view()) {
@@ -428,7 +428,7 @@ void RenderBox::paintRootBoxDecorations(PaintInfo &paintInfo, int _tx, int _ty)
         rh = canvas()->docHeight();
     }
 
-    //    qDebug() << "rw = " << rw;
+    //    qCDebug(KHTML_LOG) << "rw = " << rw;
 
     int bx = _tx - marginLeft();
     int by = _ty - marginTop();
@@ -449,7 +449,7 @@ void RenderBox::paintRootBoxDecorations(PaintInfo &paintInfo, int _tx, int _ty)
 
 void RenderBox::paintBoxDecorations(PaintInfo &paintInfo, int _tx, int _ty)
 {
-    //qDebug() << renderName() << "::paintDecorations()";
+    //qCDebug(KHTML_LOG) << renderName() << "::paintDecorations()";
 
     if (isRoot()) {
         return paintRootBoxDecorations(paintInfo, _tx, _ty);
@@ -748,7 +748,7 @@ void RenderBox::paintBackgroundExtended(QPainter *p, const QColor &c, const Back
             QRect ele(_tx, _ty, w, h);
             QRect b = fix.intersect(ele);
 
-            //qDebug() <<" ele is " << ele << " b is " << b << " fix is " << fix;
+            //qCDebug(KHTML_LOG) <<" ele is " << ele << " b is " << b << " fix is " << fix;
             sx += b.x() - fix.x();
             sy += b.y() - fix.y();
             cx = b.x(); cy = b.y(); cw = b.width(); ch = b.height();
@@ -771,7 +771,7 @@ void RenderBox::paintBackgroundExtended(QPainter *p, const QColor &c, const Back
         ch = qMin(ch, clipr.height());
         cw = qMin(cw, clipr.width());
 
-//         qDebug() << " drawTiledPixmap(" << cx << ", " << cy << ", " << cw << ", " << ch << ", " << sx << ", " << sy << ")";
+//         qCDebug(KHTML_LOG) << " drawTiledPixmap(" << cx << ", " << cy << ", " << cw << ", " << ch << ", " << sx << ", " << sy << ")";
         if (cw > 0 && ch > 0) {
             // Note that the reason we don't simply set the path as the clip path here before calling
             // p->drawTiledPixmap() is that QX11PaintEngine doesn't support anti-aliased clipping.
@@ -989,7 +989,7 @@ QRect RenderBox::clipRect(int tx, int ty)
     clipw = clipright - clipleft;
     cliph = clipbottom - cliptop;
 
-    //qDebug() << "setting clip("<<clipx<<","<<clipy<<","<<clipw<<","<<cliph<<")";
+    //qCDebug(KHTML_LOG) << "setting clip("<<clipx<<","<<clipy<<","<<clipw<<","<<cliph<<")";
 
     return QRect(clipx, clipy, clipw, cliph);
 }
@@ -1134,7 +1134,7 @@ void RenderBox::repaintRectangle(int x, int y, int w, int h, Priority p, bool f)
         f = true;
     }
 
-    // qDebug() << "RenderBox(" <<this << ", " << renderName() << ")::repaintRectangle (" << x << "/" << y << ") (" << w << "/" << h << ")";
+    // qCDebug(KHTML_LOG) << "RenderBox(" <<this << ", " << renderName() << ")::repaintRectangle (" << x << "/" << y << ") (" << w << "/" << h << ")";
     RenderObject *o = container();
     if (o) {
         if (o->layer()) {
@@ -1188,7 +1188,7 @@ void RenderBox::relativePositionOffset(int &tx, int &ty) const
 void RenderBox::calcWidth()
 {
 #ifdef DEBUG_LAYOUT
-    qDebug() << "RenderBox(" << renderName() << ")::calcWidth()";
+    qCDebug(KHTML_LOG) << "RenderBox(" << renderName() << ")::calcWidth()";
 #endif
     if (isPositioned()) {
         calcAbsoluteHorizontal();
@@ -1251,11 +1251,11 @@ void RenderBox::calcWidth()
             }
 
             if (widthType == Auto) {
-                //          qDebug() << "variable";
+                //          qCDebug(KHTML_LOG) << "variable";
                 m_marginLeft = ml.minWidth(cw);
                 m_marginRight = mr.minWidth(cw);
             } else {
-//              qDebug() << "non-variable " << w.type << ","<< w.value;
+//              qCDebug(KHTML_LOG) << "non-variable " << w.type << ","<< w.value;
                 calcHorizontalMargins(ml, mr, cw);
             }
         }
@@ -1270,8 +1270,8 @@ void RenderBox::calcWidth()
     }
 
 #ifdef DEBUG_LAYOUT
-    qDebug() << "RenderBox::calcWidth(): m_width=" << m_width << " containingBlockWidth()=" << containingBlockWidth();
-    qDebug() << "m_marginLeft=" << m_marginLeft << " m_marginRight=" << m_marginRight;
+    qCDebug(KHTML_LOG) << "RenderBox::calcWidth(): m_width=" << m_width << " containingBlockWidth()=" << containingBlockWidth();
+    qCDebug(KHTML_LOG) << "m_marginLeft=" << m_marginLeft << " m_marginRight=" << m_marginRight;
 #endif
 }
 
@@ -1344,7 +1344,7 @@ void RenderBox::calcHeight()
 {
 
 #ifdef DEBUG_LAYOUT
-    qDebug() << "RenderBox::calcHeight()";
+    qCDebug(KHTML_LOG) << "RenderBox::calcHeight()";
 #endif
 
     //cell height is managed by table, inline elements do not have a height property.
@@ -2708,7 +2708,7 @@ void RenderBox::caretPos(int /*offset*/, int flags, int &_x, int &_y, int &width
 
     // propagate it downwards to its children, someone will feel responsible
     RenderObject *child = firstChild();
-//    if (child) qDebug() << "delegating caretPos to " << child->renderName();
+//    if (child) qCDebug(KHTML_LOG) << "delegating caretPos to " << child->renderName();
     if (child) {
         child->caretPos(offset, override, _x, _y, width, height);
     }
@@ -2716,7 +2716,7 @@ void RenderBox::caretPos(int /*offset*/, int flags, int &_x, int &_y, int &width
     // if not, use the extents of this box. offset 0 means left, offset 1 means
     // right
     if (_x == -1) {
-        //qDebug() << "no delegation";
+        //qCDebug(KHTML_LOG) << "no delegation";
         _x = xPos() + (offset == 0 ? 0 : m_width);
         _y = yPos();
         height = m_height;
@@ -2735,7 +2735,7 @@ void RenderBox::caretPos(int /*offset*/, int flags, int &_x, int &_y, int &width
         RenderObject *cb = containingBlock();
 
         if (cb && cb != this && cb->absolutePosition(absx, absy)) {
-            //qDebug() << "absx=" << absx << " absy=" << absy;
+            //qCDebug(KHTML_LOG) << "absx=" << absx << " absy=" << absy;
             _x += absx;
             _y += absy;
         } else {
@@ -2748,7 +2748,7 @@ void RenderBox::caretPos(int /*offset*/, int flags, int &_x, int &_y, int &width
 
     _x = xPos();
     _y = yPos();
-//     qDebug() << "_x " << _x << " _y " << _y;
+//     qCDebug(KHTML_LOG) << "_x " << _x << " _y " << _y;
     width = 1;      // no override is indicated in boxes
 
     RenderBlock *cb = containingBlock();
@@ -2814,7 +2814,7 @@ void RenderBox::caretPos(int /*offset*/, int flags, int &_x, int &_y, int &width
 
     int absx, absy;
     if (cb && cb != this && cb->absolutePosition(absx, absy)) {
-//         qDebug() << "absx=" << absx << " absy=" << absy;
+//         qCDebug(KHTML_LOG) << "absx=" << absx << " absy=" << absy;
         _x += absx;
         _y += absy;
     } else {

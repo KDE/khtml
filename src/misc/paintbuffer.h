@@ -35,7 +35,7 @@
 #include <QStack>
 #include <QPainter>
 #include <QPaintEngine>
-#include <QDebug>
+#include "khtml_debug.h"
 #include <assert.h>
 
 namespace khtml
@@ -104,7 +104,7 @@ public:
         m_painter.translate(-m_off);
         m_painter.setClipRegion(m_region = rr);
         //foreach(QRect rrr, m_region.rects())
-        //    qDebug() << rrr;
+        //    qCDebug(KHTML_LOG) << rrr;
 
         if (!doFill) {
             m_painter.setCompositionMode(QPainter::CompositionMode_Source);

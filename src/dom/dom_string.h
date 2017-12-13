@@ -23,7 +23,7 @@
 #define _DOM_DOMString_h_
 
 #include <khtml_export.h>
-#include <QDebug>
+#include "khtml_debug.h"
 #include <QtCore/QString>
 #include <limits.h>
 

@@ -43,7 +43,7 @@
 #include <QApplication>
 #include <QStyle>
 
-#include <QDebug>
+#include "khtml_debug.h"
 #include <assert.h>
 
 using namespace khtml;
@@ -108,7 +108,7 @@ void RenderTable::setStyle(RenderStyle *_style)
         if (style()->tableLayout() == TFIXED && !style()->width().isAuto()) {
             tableLayout = new FixedTableLayout(this);
 #ifdef DEBUG_LAYOUT
-            qDebug() << "using fixed table layout";
+            qCDebug(KHTML_LOG) << "using fixed table layout";
 #endif
         } else {
             tableLayout = new AutoTableLayout(this);
@@ -160,7 +160,7 @@ static inline void resetSectionPointerIfNotBefore(RenderTableSection *&ptr, Rend
 void RenderTable::addChild(RenderObject *child, RenderObject *beforeChild)
 {
 #ifdef DEBUG_LAYOUT
-    qDebug() << renderName() << "(Table)::addChild( " << child->renderName() << ", " <<
+    qCDebug(KHTML_LOG) << renderName() << "(Table)::addChild( " << child->renderName() << ", " <<
              (beforeChild ? beforeChild->renderName() : "0") << " )";
 #endif
     bool wrapInAnonymousSection = false;
@@ -375,7 +375,7 @@ void RenderTable::layout()
     tableLayout->layout();
 
 #ifdef DEBUG_LAYOUT
-    qDebug() << renderName() << "(Table)::layout1() width=" << width() << ", marginLeft=" << marginLeft() << " marginRight=" << marginRight();
+    qCDebug(KHTML_LOG) << renderName() << "(Table)::layout1() width=" << width() << ", marginLeft=" << marginLeft() << " marginRight=" << marginRight();
 #endif
 
     setCellWidths();
@@ -482,7 +482,7 @@ void RenderTable::layout()
         }
     }
 
-    //qDebug() << "table height: " << m_height;
+    //qCDebug(KHTML_LOG) << "table height: " << m_height;
 
     // table can be containing block of positioned elements.
     // ### only pass true if width or height changed.
@@ -496,7 +496,7 @@ void RenderTable::layout()
 void RenderTable::setCellWidths()
 {
 #ifdef DEBUG_LAYOUT
-    qDebug() << renderName() << "(Table, this=0x" << this << ")::setCellWidths()";
+    qCDebug(KHTML_LOG) << renderName() << "(Table, this=0x" << this << ")::setCellWidths()";
 #endif
 
     RenderObject *child = firstChild();
@@ -518,7 +518,7 @@ void RenderTable::paint(PaintInfo &pI, int _tx, int _ty)
     _ty += yPos();
 
 #ifdef TABLE_PRINT
-    qDebug() << "RenderTable::paint() w/h = (" << width() << "/" << height() << ")";
+    qCDebug(KHTML_LOG) << "RenderTable::paint() w/h = (" << width() << "/" << height() << ")";
 #endif
     if (!isRelPositioned() && !isPositioned()) {
         int os = 2 * maximalOutlineSize(pI.phase);
@@ -531,7 +531,7 @@ void RenderTable::paint(PaintInfo &pI, int _tx, int _ty)
     }
 
 #ifdef TABLE_PRINT
-    qDebug() << "RenderTable::paint(2) " << _tx << "/" << _ty << " (" << _y << "/" << _h << ")";
+    qCDebug(KHTML_LOG) << "RenderTable::paint(2) " << _tx << "/" << _ty << " (" << _y << "/" << _h << ")";
 #endif
 
     if (pI.phase == PaintActionOutline) {
@@ -571,7 +571,7 @@ void RenderTable::paint(PaintInfo &pI, int _tx, int _ty)
         for (uint i = 0; i < borderStyles.count(); i++) {
             m += QString("%1 ").arg((*borderStyles.at(i)).width());
         }
-        // qDebug() << m;
+        // qCDebug(KHTML_LOG) << m;
 #endif
         QList<CollapsedBorderValue>::Iterator it = borderStyles.begin();
         QList<CollapsedBorderValue>::Iterator end = borderStyles.end();
@@ -638,7 +638,7 @@ void RenderTable::calcMinMaxWidth()
     }
 
 #ifdef DEBUG_LAYOUT
-    qDebug() << renderName() << "(Table " << this << ")::calcMinMaxWidth()";
+    qCDebug(KHTML_LOG) << renderName() << "(Table " << this << ")::calcMinMaxWidth()";
 #endif
 
     tableLayout->calcMinMaxWidth();
@@ -652,13 +652,13 @@ void RenderTable::calcMinMaxWidth()
 
     setMinMaxKnown();
 #ifdef DEBUG_LAYOUT
-    qDebug() << renderName() << " END: (Table " << this << ")::calcMinMaxWidth() min = " << m_minWidth << " max = " << m_maxWidth;
+    qCDebug(KHTML_LOG) << renderName() << " END: (Table " << this << ")::calcMinMaxWidth() min = " << m_minWidth << " max = " << m_maxWidth;
 #endif
 }
 
 void RenderTable::close()
 {
-//    qDebug() << "RenderTable::close()";
+//    qCDebug(KHTML_LOG) << "RenderTable::close()";
     setNeedsLayoutAndMinMaxRecalc();
 }
 
@@ -1086,7 +1086,7 @@ FindSelectionResult RenderTable::checkSelectionPoint(int _x, int _y, int _tx, in
         switch (pos) {
         case SelectionPointBeforeInLine:
         case SelectionPointInside:
-            //qDebug() << "RenderTable::checkSelectionPoint " << this << " returning SelectionPointInside offset=" << offset;
+            //qCDebug(KHTML_LOG) << "RenderTable::checkSelectionPoint " << this << " returning SelectionPointInside offset=" << offset;
             node = nod;
             offset = off;
             return SelectionPointInside;
@@ -1095,13 +1095,13 @@ FindSelectionResult RenderTable::checkSelectionPoint(int _x, int _y, int _tx, in
             if (state.m_lastNode) {
                 node = state.m_lastNode;
                 offset = state.m_lastOffset;
-                //qDebug() << "RenderTable::checkSelectionPoint " << this << " before this child "
+                //qCDebug(KHTML_LOG) << "RenderTable::checkSelectionPoint " << this << " before this child "
                 //              << node << "-> returning SelectionPointInside, offset=" << offset;
                 return SelectionPointInside;
             } else {
                 node = nod;
                 offset = off;
-                //qDebug() << "RenderTable::checkSelectionPoint " << this << " before us -> returning SelectionPointBefore " << node << "/" << offset;
+                //qCDebug(KHTML_LOG) << "RenderTable::checkSelectionPoint " << this << " before us -> returning SelectionPointBefore " << node << "/" << offset;
                 return SelectionPointBefore;
             }
             break;
@@ -1114,7 +1114,7 @@ FindSelectionResult RenderTable::checkSelectionPoint(int _x, int _y, int _tx, in
             if (pos == SelectionPointAfterInLine) {
                 state.m_afterInLine = true;
             }
-            //qDebug() << "RenderTable::checkSelectionPoint: selection after: " << nod << " offset: " << off << " afterInLine: " << state.m_afterInLine;
+            //qCDebug(KHTML_LOG) << "RenderTable::checkSelectionPoint: selection after: " << nod << " offset: " << off << " afterInLine: " << state.m_afterInLine;
             state.m_lastNode = nod;
             state.m_lastOffset = off;
             // No "return" here, obviously. We must keep looking into the children.
@@ -1174,7 +1174,7 @@ void RenderTableSection::setStyle(RenderStyle *_style)
 void RenderTableSection::addChild(RenderObject *child, RenderObject *beforeChild)
 {
 #ifdef DEBUG_LAYOUT
-    qDebug() << renderName() << "(TableSection)::addChild( " << child->renderName()  << ", beforeChild=" <<
+    qCDebug(KHTML_LOG) << renderName() << "(TableSection)::addChild( " << child->renderName()  << ", beforeChild=" <<
              (beforeChild ? beforeChild->renderName() : "0") << " )";
 #endif
     if (!child->isTableRow()) {
@@ -1323,8 +1323,8 @@ void RenderTableSection::addCell(RenderTableCell *cell, RenderTableRow *row)
     int col = cCol;
     // tell the cell where it is
     RenderTableCell *set = cell;
-//     qDebug()<<"row"<<cRow<<"col"<<cCol;
-//     qDebug()<<"cSpan"<<cSpan<<"rSpan"<<rSpan;
+//     qCDebug(KHTML_LOG)<<"row"<<cRow<<"col"<<cCol;
+//     qCDebug(KHTML_LOG)<<"cSpan"<<cSpan<<"rSpan"<<rSpan;
 
     //check whether we need to update any of the cells with span = 0
     QList< int > columnsToAvoid;
@@ -1463,7 +1463,7 @@ void RenderTableSection::addCell(RenderTableCell *cell, RenderTableRow *row)
 void RenderTableSection::setCellWidths()
 {
 #ifdef DEBUG_LAYOUT
-    qDebug() << renderName() << "(Table, this=0x" << this << ")::setCellWidths()";
+    qCDebug(KHTML_LOG) << renderName() << "(Table, this=0x" << this << ")::setCellWidths()";
 #endif
     const QVector<int> &columnPos = table()->columnPos;
 
@@ -1485,7 +1485,7 @@ void RenderTableSection::setCellWidths()
             }
             int w = columnPos[endCol] - columnPos[j] - table()->borderHSpacing();
 #ifdef DEBUG_LAYOUT
-            qDebug() << "setting width of cell " << cell << " " << cell->row() << "/" << cell->col() << " to " << w << " colspan=" << cell->colSpan() << " start=" << j << " end=" << endCol;
+            qCDebug(KHTML_LOG) << "setting width of cell " << cell << " " << cell->row() << "/" << cell->col() << " to " << w << " colspan=" << cell->colSpan() << " start=" << j << " end=" << endCol;
 #endif
             int oldWidth = cell->width();
             if (w != oldWidth) {
@@ -1769,7 +1769,7 @@ int RenderTableSection::layoutRows(int toAdd)
             }
             {
 #ifdef DEBUG_LAYOUT
-                qDebug() << "setting position " << r << "/" << c << ": "
+                qCDebug(KHTML_LOG) << "setting position " << r << "/" << c << ": "
                          << table()->columnPos[c] /*+ padding */ << "/" << rowPos[rindx] << " height=" << rHeight;
 #endif
 
@@ -1797,7 +1797,7 @@ int RenderTableSection::layoutRows(int toAdd)
                 }
                 te = qMax(0, te);
 #ifdef DEBUG_LAYOUT
-                qDebug() << "CELL " << cell << " te=" << te << ", be=" << rHeight - cell->height() - te << ", rHeight=" << rHeight << ", valign=" << va;
+                qCDebug(KHTML_LOG) << "CELL " << cell << " te=" << te << ", be=" << rHeight - cell->height() - te << ", rHeight=" << rHeight << ", valign=" << va;
 #endif
                 cell->setCellTopExtra(te);
                 cell->setCellBottomExtra(rHeight - cell->height() - te);
@@ -2055,7 +2055,7 @@ void RenderTableSection::paint(PaintInfo &pI, int tx, int ty)
                 int rtx = tx + rowr->xPos();
                 int rty = ty + rowr->yPos();
 #ifdef TABLE_PRINT
-                qDebug() << "painting cell " << r << "/" << c;
+                qCDebug(KHTML_LOG) << "painting cell " << r << "/" << c;
 #endif
                 if (pI.phase == PaintActionElementBackground || pI.phase == PaintActionChildBackground) {
                     // We need to handle painting a stack of backgrounds.  This stack (from bottom to top) consists of
@@ -2409,7 +2409,7 @@ void RenderTableRow::setStyle(RenderStyle *newStyle)
 void RenderTableRow::addChild(RenderObject *child, RenderObject *beforeChild)
 {
 #ifdef DEBUG_LAYOUT
-    qDebug() << renderName() << "(TableRow)::addChild( " << child->renderName() << " )"  << ", " <<
+    qCDebug(KHTML_LOG) << renderName() << "(TableRow)::addChild( " << child->renderName() << " )"  << ", " <<
              (beforeChild ? beforeChild->renderName() : "0") << " )";
 #endif
 
@@ -2680,7 +2680,7 @@ void RenderTableCell::calcMinMaxWidth()
 {
     KHTMLAssert(!minMaxKnown());
 #ifdef DEBUG_LAYOUT
-    qDebug() << renderName() << "(TableCell)::calcMinMaxWidth() known=" << minMaxKnown();
+    qCDebug(KHTML_LOG) << renderName() << "(TableCell)::calcMinMaxWidth() known=" << minMaxKnown();
 #endif
 
     if (section()->needCellRecalc) {
@@ -2730,7 +2730,7 @@ void RenderTableCell::close()
     RenderBlock::close();
 
 #ifdef DEBUG_LAYOUT
-    qDebug() << renderName() << "(RenderTableCell)::close() total height =" << m_height;
+    qCDebug(KHTML_LOG) << renderName() << "(RenderTableCell)::close() total height =" << m_height;
 #endif
 }
 
@@ -3226,7 +3226,7 @@ void RenderTableCell::paint(PaintInfo &pI, int _tx, int _ty)
 {
 
 #ifdef TABLE_PRINT
-    qDebug() << renderName() << "(RenderTableCell)::paint() w/h = (" << width() << "/" << height() << ")" << " _y/_h=" << pI.r.y() << "/" << pI.r.height();
+    qCDebug(KHTML_LOG) << renderName() << "(RenderTableCell)::paint() w/h = (" << width() << "/" << height() << ")" << " _y/_h=" << pI.r.y() << "/" << pI.r.height();
 #endif
 
     if (needsLayout()) {

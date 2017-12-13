@@ -1597,7 +1597,7 @@ yyreduce:
                 DOMString prefix((yyvsp[(1) - (1)].str)->substring(0, colon));
                 XPathNSResolverImpl *resolver = Expression::evaluationContext().resolver;
                 if (!resolver || resolver->lookupNamespaceURI(prefix).isNull()) {
-                    qWarning() << "Found unknown namespace prefix " << prefix.string();
+                    qCWarning(KHTML_LOG) << "Found unknown namespace prefix " << prefix.string();
                     xpathParseException = DOMException::NAMESPACE_ERR;
                     YYABORT;
                 }
@@ -2151,7 +2151,7 @@ namespace XPath
 
 Expression *khtmlParseXPathStatement(const DOM::DOMString &statement, int &ec)
 {
-//  qDebug() << "Parsing " << statement;
+//  qCDebug(KHTML_LOG) << "Parsing " << statement;
     xpathParseException = 0;
     _topExpr = nullptr;
     initTokenizer(statement);

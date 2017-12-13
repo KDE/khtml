@@ -31,7 +31,7 @@
 #include <assert.h>
 #include <QList>
 
-#include <QDebug>
+#include "khtml_debug.h"
 
 #include "xml/dom_docimpl.h"
 #include "misc/khtmllayout.h"

@@ -62,7 +62,7 @@ int SVGInlineTextBox::selectionHeight()
 
 SVGRootInlineBox *SVGInlineTextBox::svgRootInlineBox() const
 {
-    // qDebug() << "find inline box";
+    // qCDebug(KHTML_LOG) << "find inline box";
     // Find associated root inline box
     InlineFlowBox *parentBox = parent();
 
@@ -358,7 +358,7 @@ void SVGInlineTextBox::paintCharacters(RenderObject::PaintInfo &paintInfo, int t
     Q_UNUSED(chars);
     Q_UNUSED(length);
     Q_UNUSED(activePaintServer);
-    // qDebug() << "paint character";
+    // qCDebug(KHTML_LOG) << "paint character";
     /*FIXME khtml if (object()->style()->visibility() != VISIBLE || paintInfo.phase == PaintPhaseOutline)
         return;
 
@@ -426,7 +426,7 @@ void SVGInlineTextBox::paintCharacters(RenderObject::PaintInfo &paintInfo, int t
     }
 
     IntPoint origin((int) svgChar.x, (int) svgChar.y);
-    // qDebug() << "origin: " << svgChar.x << svgChar.y;
+    // qCDebug(KHTML_LOG) << "origin: " << svgChar.x << svgChar.y;
     //TextRun run = svgTextRunForInlineTextBox(chars, length, styleToUse, this, svgChar.x);
 
 #if ENABLE(SVG_FONTS)
@@ -436,8 +436,8 @@ void SVGInlineTextBox::paintCharacters(RenderObject::PaintInfo &paintInfo, int t
 #endif
 
     //FIXME khtml paintInfo.context->drawText(run, origin);
-    // qDebug() << "font size:" << font->getFontDef().size;
-    // qDebug() << "text:" << QString::fromRawData(renderText()->string()->s + m_start, m_len);
+    // qCDebug(KHTML_LOG) << "font size:" << font->getFontDef().size;
+    // qCDebug(KHTML_LOG) << "text:" << QString::fromRawData(renderText()->string()->s + m_start, m_len);
 
     font->drawText(paintInfo.p, svgChar.x, svgChar.y, renderText()->string()->s, renderText()->string()->l, m_start, m_len,
                    m_toAdd, m_reversed ? Qt::RightToLeft : Qt::LeftToRight);

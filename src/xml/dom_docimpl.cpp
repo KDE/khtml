@@ -48,7 +48,7 @@
 //Added by qt3to4:
 #include <QTimerEvent>
 #include <QtCore/QList>
-#include <QDebug>
+#include "khtml_debug.h"
 #include <klocalizedstring.h>
 
 #include <rendering/counter_tree.h>
@@ -780,7 +780,7 @@ ElementImpl *DocumentImpl::createElementNS(const DOMString &_namespaceURI, const
             return e;
         }
         if (!e) {
-            qWarning() << "svg element" << localName << "either is not supported by khtml or it's not a proper svg element";
+            qCWarning(KHTML_LOG) << "svg element" << localName << "either is not supported by khtml or it's not a proper svg element";
         }
     }
 
@@ -875,7 +875,7 @@ ElementImpl *DocumentImpl::getElementById(const DOMString &elementId) const
 
     assert(0); //If there is no item with such an ID, we should never get here
 
-    //qDebug() << "WARNING: *DocumentImpl::getElementById not found " << elementId.string();
+    //qCDebug(KHTML_LOG) << "WARNING: *DocumentImpl::getElementById not found " << elementId.string();
 
     return nullptr;
 }
@@ -1195,7 +1195,7 @@ ElementImpl *DocumentImpl::createHTMLElement(const DOMString &name, bool caseIns
         break;
 // text
     case ID_TEXT:
-        // qDebug() << "Use document->createTextNode()";
+        // qCDebug(KHTML_LOG) << "Use document->createTextNode()";
         break;
 
     default:
@@ -1210,8 +1210,8 @@ ElementImpl *DocumentImpl::createHTMLElement(const DOMString &name, bool caseIns
 ElementImpl *DocumentImpl::createSVGElement(const QualifiedName &name)
 {
     uint id = name.localNameId().id();
-    // qDebug() << getPrintableName(name.id());
-    // qDebug() << "svg text:   " << getPrintableName(WebCore::SVGNames::textTag.id());
+    // qCDebug(KHTML_LOG) << getPrintableName(name.id());
+    // qCDebug(KHTML_LOG) << "svg text:   " << getPrintableName(WebCore::SVGNames::textTag.id());
 
     ElementImpl *n = nullptr;
     switch (id) {
@@ -1476,7 +1476,7 @@ void DocumentImpl::recalcStyle(StyleChange change)
         if (change >= Inherit || n->hasChangedChild() || n->changed()) {
             n->recalcStyle(change);
         }
-    //qDebug() << "TIME: recalcStyle() dt=" << qt.elapsed();
+    //qCDebug(KHTML_LOG) << "TIME: recalcStyle() dt=" << qt.elapsed();
 
     if (changed() && m_view) {
         m_view->layout();
@@ -1498,7 +1498,7 @@ void DocumentImpl::updateRendering()
 
 //     QTime time;
 //     time.start();
-//     qDebug() << "UPDATERENDERING: ";
+//     qCDebug(KHTML_LOG) << "UPDATERENDERING: ";
 
     StyleChange change = NoChange;
 #if 0
@@ -1509,7 +1509,7 @@ void DocumentImpl::updateRendering()
 #endif
     recalcStyle(change);
 
-//    qDebug() << "UPDATERENDERING time used="<<time.elapsed();
+//    qCDebug(KHTML_LOG) << "UPDATERENDERING time used="<<time.elapsed();
 }
 
 void DocumentImpl::updateDocumentsRendering()
@@ -1803,7 +1803,7 @@ void DocumentImpl::determineParseMode()
     pMode = Strict;
     hMode = XHtml;
     m_htmlCompat = false;
-    // qDebug() << " using strict parseMode";
+    // qCDebug(KHTML_LOG) << " using strict parseMode";
 }
 
 NodeImpl *DocumentImpl::nextFocusNode(NodeImpl *fromNode)
@@ -2318,7 +2318,7 @@ void DocumentImpl::removeStyleSheet(StyleSheetImpl *sheet, int *exceptioncode)
 
 void DocumentImpl::updateStyleSelector(bool shallow)
 {
-//    qDebug() << "PENDING " << m_pendingStylesheets;
+//    qCDebug(KHTML_LOG) << "PENDING " << m_pendingStylesheets;
 
     // Don't bother updating, since we haven't loaded all our style info yet.
     if (m_pendingStylesheets > 0) {
@@ -3153,7 +3153,7 @@ JSEditor *DocumentImpl::jsEditor()
 
 bool DocumentImpl::execCommand(const DOMString &command, bool userInterface, const DOMString &value)
 {
-    // qDebug() << "[execute command]" << command << userInterface << value;
+    // qCDebug(KHTML_LOG) << "[execute command]" << command << userInterface << value;
     return jsEditor()->execCommand(jsEditor()->commandImp(command), userInterface, value);
 }
 
@@ -3174,7 +3174,7 @@ bool DocumentImpl::queryCommandState(const DOMString &command)
 
 bool DocumentImpl::queryCommandSupported(const DOMString &command)
 {
-    // qDebug() << "[query command supported]" << command;
+    // qCDebug(KHTML_LOG) << "[query command supported]" << command;
     return jsEditor()->queryCommandSupported(jsEditor()->commandImp(command));
 }
 

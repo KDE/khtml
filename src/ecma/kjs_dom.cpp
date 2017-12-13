@@ -36,7 +36,7 @@
 #include "HTMLVideoElement.h"
 #include "JSHTMLAudioElement.h"
 #include "JSHTMLVideoElement.h"
-#include <QDebug>
+#include "khtml_debug.h"
 #include <khtml_part.h>
 #include <QtCore/QList>
 
@@ -215,7 +215,7 @@ bool DOMNode::toBoolean(ExecState *) const
 bool DOMNode::getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot)
 {
 #ifdef KJS_VERBOSE
-    qDebug() << "DOMNode::getOwnPropertySlot " << propertyName.qstring();
+    qCDebug(KHTML_LOG) << "DOMNode::getOwnPropertySlot " << propertyName.qstring();
 #endif
     return getStaticValueSlot<DOMNode, DOMObject>(exec, &DOMNodeTable, this, propertyName, slot);
 }
@@ -431,7 +431,7 @@ JSValue *DOMNode::getValueProperty(ExecState *exec, int token) const
             }
             return jsNumber(0);
         default:
-            // qDebug() << "WARNING: Unhandled token in DOMNode::getValueProperty : " << token;
+            // qCDebug(KHTML_LOG) << "WARNING: Unhandled token in DOMNode::getValueProperty : " << token;
             break;
         }
     }
@@ -441,7 +441,7 @@ JSValue *DOMNode::getValueProperty(ExecState *exec, int token) const
 void DOMNode::put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr)
 {
 #ifdef KJS_VERBOSE
-    qDebug() << "DOMNode::tryPut " << propertyName.qstring();
+    qCDebug(KHTML_LOG) << "DOMNode::tryPut " << propertyName.qstring();
 #endif
     lookupPut<DOMNode, DOMObject>(exec, propertyName, value, attr,
                                   &DOMNodeTable, this);
@@ -572,7 +572,7 @@ void DOMNode::putValueProperty(ExecState *exec, int token, JSValue *value, int /
             }
             break;
         default:
-            // qDebug() << "WARNING: DOMNode::putValueProperty unhandled token " << token;
+            // qCDebug(KHTML_LOG) << "WARNING: DOMNode::putValueProperty unhandled token " << token;
             break;
         }
     }
@@ -881,7 +881,7 @@ const ClassInfo DOMAttr::info = { "Attr", &DOMNode::info, &DOMAttrTable, nullptr
 bool DOMAttr::getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot)
 {
 #ifdef KJS_VERBOSE
-    qDebug() << "DOMAttr::tryGet " << propertyName.qstring();
+    qCDebug(KHTML_LOG) << "DOMAttr::tryGet " << propertyName.qstring();
 #endif
     return getStaticValueSlot<DOMAttr, DOMNode>(exec, &DOMAttrTable, this, propertyName, slot);
 }
@@ -905,7 +905,7 @@ JSValue *DOMAttr::getValueProperty(ExecState *exec, int token) const
 void DOMAttr::put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr)
 {
 #ifdef KJS_VERBOSE
-    qDebug() << "DOMAttr::tryPut " << propertyName.qstring();
+    qCDebug(KHTML_LOG) << "DOMAttr::tryPut " << propertyName.qstring();
 #endif
     lookupPut<DOMAttr, DOMNode>(exec, propertyName, value, attr,
                                 &DOMAttrTable, this);
@@ -919,7 +919,7 @@ void DOMAttr::putValueProperty(ExecState *exec, int token, JSValue *value, int /
         static_cast<AttrImpl *>(impl())->setValue(value->toString(exec).domString(), exception);
         return;
     default:
-        qWarning() << "DOMAttr::putValueProperty unhandled token " << token;
+        qCWarning(KHTML_LOG) << "DOMAttr::putValueProperty unhandled token " << token;
     }
 }
 
@@ -1008,7 +1008,7 @@ DOMDocument::DOMDocument(JSObject *proto, DOM::DocumentImpl *d)
 bool DOMDocument::getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot)
 {
 #ifdef KJS_VERBOSE
-    qDebug() << "DOMDocument::tryGet " << propertyName.qstring();
+    qCDebug(KHTML_LOG) << "DOMDocument::tryGet " << propertyName.qstring();
 #endif
     return getStaticValueSlot<DOMDocument, DOMNode>(
                exec, &DOMDocumentTable, this, propertyName, slot);
@@ -1033,7 +1033,7 @@ JSValue *DOMDocument::getValueProperty(ExecState *exec, int token) const
         }
     }
     case StyleSheets:
-        //qDebug() << "DOMDocument::StyleSheets, returning " << doc.styleSheets().length() << " stylesheets";
+        //qCDebug(KHTML_LOG) << "DOMDocument::StyleSheets, returning " << doc.styleSheets().length() << " stylesheets";
         return getDOMStyleSheetList(exec, doc.styleSheets(), &doc);
     case DOMDocument::DefaultView: { // DOM2
         KHTMLPart *part = doc.part();
@@ -1065,7 +1065,7 @@ JSValue *DOMDocument::getValueProperty(ExecState *exec, int token) const
     case Title:
         return jsString(doc.title());
     default:
-        // qDebug() << "WARNING: DOMDocument::getValueProperty unhandled token " << token;
+        // qCDebug(KHTML_LOG) << "WARNING: DOMDocument::getValueProperty unhandled token " << token;
         return jsNull();
     }
 }
@@ -1073,7 +1073,7 @@ JSValue *DOMDocument::getValueProperty(ExecState *exec, int token) const
 void DOMDocument::put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr)
 {
 #ifdef KJS_VERBOSE
-    qDebug() << "DOMDocument::tryPut " << propertyName.qstring();
+    qCDebug(KHTML_LOG) << "DOMDocument::tryPut " << propertyName.qstring();
 #endif
     lookupPut<DOMDocument, DOMNode>(exec, propertyName, value, attr, &DOMDocumentTable, this);
 }
@@ -1112,7 +1112,7 @@ JSValue *DOMDocumentProtoFunc::callAsFunction(ExecState *exec, JSObject *thisObj
     // we can do it fast, without copying the data
     if (id == DOMDocument::GetElementById) {
 #ifdef KJS_VERBOSE
-        qDebug() << "DOMDocument::GetElementById looking for " << args[0]->toString(exec).qstring();
+        qCDebug(KHTML_LOG) << "DOMDocument::GetElementById looking for " << args[0]->toString(exec).qstring();
 #endif
         // create DOMStringImpl without copying
         DOMStringImpl shallowCopy(DOMStringImpl::ShallowCopy, (QChar *)str.data(), str.size());
@@ -1183,10 +1183,10 @@ JSValue *DOMDocumentProtoFunc::callAsFunction(ExecState *exec, JSObject *thisObj
             QString dstUrl = khtmlpart->htmlDocument().completeURL(s).string();
             KParts::ReadOnlyPart *part = static_cast<KJS::ScriptInterpreter *>(exec->dynamicInterpreter())->part();
             if (part->url().host() == QUrl(dstUrl).host()) {
-                // qDebug() << "JavaScript: access granted for document.load() of " << dstUrl;
+                // qCDebug(KHTML_LOG) << "JavaScript: access granted for document.load() of " << dstUrl;
                 doc.load(dstUrl);
             } else {
-                // qDebug() << "JavaScript: access denied for document.load() of " << dstUrl;
+                // qCDebug(KHTML_LOG) << "JavaScript: access denied for document.load() of " << dstUrl;
             }
         }
         break;
@@ -1337,7 +1337,7 @@ JSValue *DOMElement::getValueProperty(ExecState *exec, int token) const
     case ChildElementCount:
         return jsNumber((unsigned int)element.childElementCount());
     default:
-        // qDebug() << "WARNING: Unhandled token in DOMElement::getValueProperty : " << token;
+        // qCDebug(KHTML_LOG) << "WARNING: Unhandled token in DOMElement::getValueProperty : " << token;
         return jsUndefined();
     }
 }
@@ -1345,7 +1345,7 @@ JSValue *DOMElement::getValueProperty(ExecState *exec, int token) const
 bool DOMElement::getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot)
 {
 #ifdef KJS_VERBOSE
-    qDebug() << "DOMElement::getOwnPropertySlot " << propertyName.qstring();
+    qCDebug(KHTML_LOG) << "DOMElement::getOwnPropertySlot " << propertyName.qstring();
 #endif
 
     //DOM::Element element = static_cast<DOM::Element>(node);
@@ -1599,7 +1599,7 @@ DOMDocumentType::DOMDocumentType(ExecState *exec, DOM::DocumentTypeImpl *dt)
 bool DOMDocumentType::getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, KJS::PropertySlot &slot)
 {
 #ifdef KJS_VERBOSE
-    qDebug() << "DOMDocumentType::getOwnPropertySlot " << propertyName.qstring();
+    qCDebug(KHTML_LOG) << "DOMDocumentType::getOwnPropertySlot " << propertyName.qstring();
 #endif
     return getStaticValueSlot<DOMDocumentType, DOMNode>(exec, &DOMDocumentTypeTable, this, propertyName, slot);
 }
@@ -1621,7 +1621,7 @@ JSValue *DOMDocumentType::getValueProperty(ExecState *exec, int token) const
     case InternalSubset: // DOM2
         return ::getStringOrNull(type.internalSubset()); // can be null, see domts/level2/core/internalSubset01.html
     default:
-        // qDebug() << "WARNING: DOMDocumentType::getValueProperty unhandled token " << token;
+        // qCDebug(KHTML_LOG) << "WARNING: DOMDocumentType::getValueProperty unhandled token " << token;
         return jsNull();
     }
 }
@@ -1754,7 +1754,7 @@ JSValue *DOMProcessingInstruction::getValueProperty(ExecState *exec, int token) 
     case Sheet:
         return getDOMStyleSheet(exec, pi.sheet());
     default:
-        // qDebug() << "WARNING: DOMProcessingInstruction::getValueProperty unhandled token " << token;
+        // qCDebug(KHTML_LOG) << "WARNING: DOMProcessingInstruction::getValueProperty unhandled token " << token;
         return jsNull();
     }
 }
@@ -1795,7 +1795,7 @@ JSValue *DOMNotation::getValueProperty(ExecState *, int token) const
     case SystemId:
         return jsString(nota.systemId());
     default:
-        // qDebug() << "WARNING: DOMNotation::getValueProperty unhandled token " << token;
+        // qCDebug(KHTML_LOG) << "WARNING: DOMNotation::getValueProperty unhandled token " << token;
         return jsNull();
     }
 }
@@ -1827,7 +1827,7 @@ JSValue *DOMEntity::getValueProperty(ExecState *, int token) const
     case NotationName:
         return jsString(entity.notationName());
     default:
-        // qDebug() << "WARNING: DOMEntity::getValueProperty unhandled token " << token;
+        // qCDebug(KHTML_LOG) << "WARNING: DOMEntity::getValueProperty unhandled token " << token;
         return jsNull();
     }
 }
@@ -2047,7 +2047,7 @@ JSValue *DOMNamedNodesCollection::lengthGetter(ExecState *, JSObject *, const Id
 
 bool DOMNamedNodesCollection::getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot)
 {
-    // qDebug() << propertyName.ascii();
+    // qCDebug(KHTML_LOG) << propertyName.ascii();
 
     if (propertyName == exec->propertyNames().length) {
         slot.setCustom(this, lengthGetter);
@@ -2093,7 +2093,7 @@ DOMCharacterData::DOMCharacterData(ExecState *exec, DOM::CharacterDataImpl *d)
 bool DOMCharacterData::getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot)
 {
 #ifdef KJS_VERBOSE
-    qDebug() << "DOMCharacterData::tryGet " << propertyName.qstring();
+    qCDebug(KHTML_LOG) << "DOMCharacterData::tryGet " << propertyName.qstring();
 #endif
     return getStaticValueSlot<DOMCharacterData, DOMNode>(exec, &DOMCharacterDataTable, this, propertyName, slot);
 }
@@ -2107,7 +2107,7 @@ JSValue *DOMCharacterData::getValueProperty(ExecState *, int token) const
     case Length:
         return jsNumber(data.length());
     default:
-        // qDebug() << "WARNING: Unhandled token in DOMCharacterData::getValueProperty : " << token;
+        // qCDebug(KHTML_LOG) << "WARNING: Unhandled token in DOMCharacterData::getValueProperty : " << token;
         return jsNull();
     }
 }

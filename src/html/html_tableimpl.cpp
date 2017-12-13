@@ -41,7 +41,7 @@
 
 #include <rendering/render_table.h>
 
-#include <QDebug>
+#include "khtml_debug.h"
 
 using namespace khtml;
 using namespace DOM;
@@ -271,7 +271,7 @@ HTMLElementImpl *HTMLTableElementImpl::insertRow(long index, int &exceptioncode)
         setTBody(new HTMLTableSectionElementImpl(docPtr(), ID_TBODY, true /* implicit */));
     }
 
-    //qDebug() << index;
+    //qCDebug(KHTML_LOG) << index;
 
     long sectionIndex;
     HTMLTableSectionElementImpl *section;
@@ -374,7 +374,7 @@ void HTMLTableElementImpl::handleChildRemove(NodeImpl *child)
 NodeImpl *HTMLTableElementImpl::addChild(NodeImpl *child)
 {
 #ifdef DEBUG_LAYOUT
-    // qDebug() << nodeName().string() << "(Table)::addChild( " << child->nodeName().string() << " )";
+    // qCDebug(KHTML_LOG) << nodeName().string() << "(Table)::addChild( " << child->nodeName().string() << " )";
 #endif
 
     NodeImpl *retval = HTMLElementImpl::addChild(child);
@@ -757,7 +757,7 @@ HTMLElementImpl *HTMLTableSectionElementImpl::insertRow(long index, int &excepti
     HTMLTableRowElementImpl *r = nullptr;
     HTMLCollectionImpl rows(const_cast<HTMLTableSectionElementImpl *>(this), HTMLCollectionImpl::TSECTION_ROWS);
     int numRows = rows.length();
-    //qDebug() << "index=" << index << " numRows=" << numRows;
+    //qCDebug(KHTML_LOG) << "index=" << index << " numRows=" << numRows;
     if (index < -1 || index > numRows) {
         exceptioncode = DOMException::INDEX_SIZE_ERR; // per the DOM
     } else {

@@ -15,6 +15,8 @@ include(GenerateExportHeader)
 include(CMakePackageConfigHelpers)
 include(ECMSetupVersion)
 include(ECMGenerateHeaders)
+include(ECMQtDeclareLoggingCategory)
+
 
 set(REQUIRED_QT_VERSION 5.7.0)
 find_package(Qt5 "${REQUIRED_QT_VERSION}" CONFIG REQUIRED Widgets Network DBus PrintSupport Xml)
@@ -139,5 +141,7 @@ install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/khtml_version.h
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5} COMPONENT Devel
 )
+
+install(FILES khtml.categories DESTINATION ${KDE_INSTALL_CONFDIR})
 
 feature_summary(WHAT ALL   FATAL_ON_MISSING_REQUIRED_PACKAGES)

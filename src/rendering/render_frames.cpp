@@ -35,7 +35,7 @@
 #include "khtmlview.h"
 #include "khtml_part.h"
 
-#include <QDebug>
+#include "khtml_debug.h"
 #include <QPainter>
 #include <QCursor>
 #include <QApplication>
@@ -102,7 +102,7 @@ void RenderFrameSet::layout()
     }
 
 #ifdef DEBUG_LAYOUT
-    // qDebug() << renderName() << "(FrameSet)::layout( ) width=" << width() << ", height=" << height();
+    // qCDebug(KHTML_LOG) << renderName() << "(FrameSet)::layout( ) width=" << width() << ", height=" << height();
 #endif
 
     int remainingLen[2];
@@ -332,7 +332,7 @@ void RenderFrameSet::layout()
 
     if (!m_hSplitVar && !m_vSplitVar) {
 #ifdef DEBUG_LAYOUT
-        // qDebug() << "calculationg fixed Splitters";
+        // qCDebug(KHTML_LOG) << "calculationg fixed Splitters";
 #endif
         if (!m_vSplitVar && element()->totalCols() > 1) {
             m_vSplitVar = new bool[element()->totalCols()];
@@ -359,7 +359,7 @@ void RenderFrameSet::layout()
 
                 if (fixed) {
 #ifdef DEBUG_LAYOUT
-                    // qDebug() << "found fixed cell " << r << "/" << c << "!";
+                    // qCDebug(KHTML_LOG) << "found fixed cell " << r << "/" << c << "!";
 #endif
                     if (element()->totalCols() > 1) {
                         if (c > 0) {
@@ -380,7 +380,7 @@ void RenderFrameSet::layout()
                 }
 #ifdef DEBUG_LAYOUT
                 else
-                    // qDebug() << "not fixed: " << r << "/" << c << "!";
+                    // qCDebug(KHTML_LOG) << "not fixed: " << r << "/" << c << "!";
 #endif
                 }
         }
@@ -411,7 +411,7 @@ void RenderFrameSet::positionFrames()
         for (c = 0; c < element()->totalCols(); c++) {
             child->setPos(xPos, yPos);
 #ifdef DEBUG_LAYOUT
-            // qDebug() << "child frame at (" << xPos << "/" << yPos << ") size (" << m_gridLayout[1][c] << "/" << m_gridLayout[0][r] << ")";
+            // qCDebug(KHTML_LOG) << "child frame at (" << xPos << "/" << yPos << ") size (" << m_gridLayout[1][c] << "/" << m_gridLayout[0][r] << ")";
 #endif
             // has to be resized and itself resize its contents
             if ((m_gridLayout[1][c] != child->width()) || (m_gridLayout[0][r] != child->height())) {
@@ -456,7 +456,7 @@ bool RenderFrameSet::userResize(MouseEventImpl *evt)
 
     if ((!m_resizing && evt->id() == EventImpl::MOUSEMOVE_EVENT) || evt->id() == EventImpl::MOUSEDOWN_EVENT) {
 #ifdef DEBUG_LAYOUT
-        // qDebug() << "mouseEvent:check";
+        // qCDebug(KHTML_LOG) << "mouseEvent:check";
 #endif
 
         m_hSplit = -1;
@@ -470,7 +470,7 @@ bool RenderFrameSet::userResize(MouseEventImpl *evt)
                     m_vSplit = c - 1;
                 }
 #ifdef DEBUG_LAYOUT
-                // qDebug() << "vsplit!";
+                // qCDebug(KHTML_LOG) << "vsplit!";
 #endif
                 res = true;
                 break;
@@ -485,8 +485,8 @@ bool RenderFrameSet::userResize(MouseEventImpl *evt)
                     m_hSplit = r - 1;
                 }
 #ifdef DEBUG_LAYOUT
-                // qDebug() << "hsplitvar = " << m_hSplitVar;
-                // qDebug() << "hsplit!";
+                // qCDebug(KHTML_LOG) << "hsplitvar = " << m_hSplitVar;
+                // qCDebug(KHTML_LOG) << "hsplit!";
 #endif
                 res = true;
                 break;
@@ -494,7 +494,7 @@ bool RenderFrameSet::userResize(MouseEventImpl *evt)
             pos += m_gridLayout[0][r] + element()->border();
         }
 #ifdef DEBUG_LAYOUT
-        // qDebug() << m_hSplit << "/" << m_vSplit;
+        // qCDebug(KHTML_LOG) << m_hSplit << "/" << m_vSplit;
 #endif
     }
 
@@ -524,7 +524,7 @@ bool RenderFrameSet::userResize(MouseEventImpl *evt)
 
         if (m_vSplit != -1) {
 #ifdef DEBUG_LAYOUT
-            // qDebug() << "split xpos=" << _x;
+            // qCDebug(KHTML_LOG) << "split xpos=" << _x;
 #endif
             int delta = m_vSplitPos - _x;
             m_gridDelta[1][m_vSplit] -= delta;
@@ -533,7 +533,7 @@ bool RenderFrameSet::userResize(MouseEventImpl *evt)
         }
         if (m_hSplit != -1) {
 #ifdef DEBUG_LAYOUT
-            // qDebug() << "split ypos=" << _y;
+            // qCDebug(KHTML_LOG) << "split ypos=" << _y;
 #endif
             int delta = m_hSplitPos - _y;
             m_gridDelta[0][m_hSplit] -= delta;
@@ -660,7 +660,7 @@ RenderPart::RenderPart(DOM::HTMLElementImpl *node)
 void RenderPart::setWidget(QWidget *widget)
 {
 #ifdef DEBUG_LAYOUT
-    // qDebug() << "RenderPart::setWidget()";
+    // qCDebug(KHTML_LOG) << "RenderPart::setWidget()";
 #endif
 
     setQWidget(widget);
@@ -704,14 +704,14 @@ void RenderFrame::slotViewCleared()
 {
     if (QScrollArea *view = qobject_cast<QScrollArea *>(m_widget)) {
 #ifdef DEBUG_LAYOUT
-        // qDebug() << "frame is a scrollarea!";
+        // qCDebug(KHTML_LOG) << "frame is a scrollarea!";
 #endif
         if (!element()->frameBorder || !((static_cast<HTMLFrameSetElementImpl *>(element()->parentNode()))->frameBorder())) {
             view->setFrameStyle(QFrame::NoFrame);
         }
         if (KHTMLView *htmlView = qobject_cast<KHTMLView *>(view)) {
 #ifdef DEBUG_LAYOUT
-            // qDebug() << "frame is a KHTMLview!";
+            // qCDebug(KHTML_LOG) << "frame is a KHTMLview!";
 #endif
             htmlView->setVerticalScrollBarPolicy(element()->scrolling);
             htmlView->setHorizontalScrollBarPolicy(element()->scrolling);
@@ -756,7 +756,7 @@ void RenderPartObject::slotViewCleared()
 {
     if (QScrollArea *view = qobject_cast<QScrollArea *>(m_widget)) {
 #ifdef DEBUG_LAYOUT
-        // qDebug() << "iframe is a scrollview!";
+        // qCDebug(KHTML_LOG) << "iframe is a scrollview!";
 #endif
         int frameStyle = QFrame::NoFrame;
         Qt::ScrollBarPolicy scroll = Qt::ScrollBarAsNeeded;
@@ -774,7 +774,7 @@ void RenderPartObject::slotViewCleared()
         view->setFrameStyle(frameStyle);
         if (KHTMLView *htmlView = qobject_cast<KHTMLView *>(view)) {
 #ifdef DEBUG_LAYOUT
-            // qDebug() << "frame is a KHTMLview!";
+            // qCDebug(KHTML_LOG) << "frame is a KHTMLview!";
 #endif
             htmlView->setIgnoreWheelEvents(element()->id() == ID_IFRAME);
             htmlView->setVerticalScrollBarPolicy(scroll);

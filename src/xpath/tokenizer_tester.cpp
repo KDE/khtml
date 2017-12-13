@@ -78,9 +78,9 @@ void check(const QString &statement, const QString &expected)
 {
     QString result = getTokenString(statement);
     if (result != expected) {
-        qDebug() << "ERROR: failed to tokenizer " << statement << " as expected";
-        qDebug() << "Expected: " << expected;
-        qDebug() << "Got     : " << result;
+        qCDebug(KHTML_LOG) << "ERROR: failed to tokenizer " << statement << " as expected";
+        qCDebug(KHTML_LOG) << "Expected: " << expected;
+        qCDebug(KHTML_LOG) << "Got     : " << result;
         exit(1);
     }
 }

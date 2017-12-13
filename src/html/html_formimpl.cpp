@@ -45,7 +45,7 @@
 #include "rendering/render_form.h"
 
 #include <kcharsets.h>
-#include <QDebug>
+#include "khtml_debug.h"
 #include <kmessagebox.h>
 #include <krandom.h>
 #include <klocalizedstring.h>
@@ -263,7 +263,7 @@ Vector<HTMLGenericFormElementImpl *> HTMLFormElementImpl::gatherInTreeOrder(Node
 QByteArray HTMLFormElementImpl::formData(bool &ok)
 {
 #ifdef FORMS_DEBUG
-    qDebug() << "form: formData()";
+    qCDebug(KHTML_LOG) << "form: formData()";
 #endif
 
     QByteArray form_data;
@@ -336,7 +336,7 @@ QByteArray HTMLFormElementImpl::formData(bool &ok)
         khtml::encodingList lst;
 
         if (!current->disabled() && current->encoding(codec, lst, useMultipart)) {
-            //qDebug() << "adding name '" << current->name().string() << "'";
+            //qCDebug(KHTML_LOG) << "adding name '" << current->name().string() << "'";
             khtml::encodingList::ConstIterator it = lst.constBegin();
             const khtml::encodingList::ConstIterator itEnd = lst.constEnd();
             for (; it != itEnd; ++it) {
@@ -636,7 +636,7 @@ void HTMLFormElementImpl::submit()
     m_insubmit = true;
 
 #ifdef FORMS_DEBUG
-    qDebug() << "submitting!";
+    qCDebug(KHTML_LOG) << "submitting!";
 #endif
 
     bool ok;
@@ -714,7 +714,7 @@ void HTMLFormElementImpl::reset()
     m_inreset = true;
 
 #ifdef FORMS_DEBUG
-    qDebug() << "reset pressed!";
+    qCDebug(KHTML_LOG) << "reset pressed!";
 #endif
 
     // ### DOM2 labels this event as not cancelable, however
@@ -986,7 +986,7 @@ HTMLFormElementImpl *HTMLGenericFormElementImpl::getForm() const
         p = p->parentNode();
     }
 #ifdef FORMS_DEBUG
-    qDebug() << "couldn't find form!";
+    qCDebug(KHTML_LOG) << "couldn't find form!";
 #endif
     return nullptr;
 }
@@ -2887,13 +2887,13 @@ long HTMLOptionElementImpl::index() const
             ++optionIndex;
         }
     }
-    qWarning() << "HTMLOptionElementImpl::index(): option not found!";
+    qCWarning(KHTML_LOG) << "HTMLOptionElementImpl::index(): option not found!";
     return 0;
 }
 
 void HTMLOptionElementImpl::setIndex(long)
 {
-    qWarning() << "Unimplemented HTMLOptionElementImpl::setIndex(long) called";
+    qCWarning(KHTML_LOG) << "Unimplemented HTMLOptionElementImpl::setIndex(long) called";
     // ###
 }
 

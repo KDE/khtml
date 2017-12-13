@@ -113,7 +113,7 @@
 
 
 #include <assert.h>
-#include <QDebug>
+#include "khtml_debug.h"
 
 //#define CSS_DEBUG
 
@@ -2070,19 +2070,19 @@ yyreduce:
 	if ( (yyvsp[(4) - (5)].valueList) ) {
 	    p->valueList = (yyvsp[(4) - (5)].valueList);
 #ifdef CSS_DEBUG
-	    qDebug() << "   got property for " << p->id <<
+	    qCDebug(KHTML_LOG) << "   got property for " << p->id <<
 		(p->important?" important":"");
 	    bool ok =
 #endif
 		p->parseValue( p->id, p->important );
 #ifdef CSS_DEBUG
 	    if ( !ok )
-		qDebug() << "     couldn't parse value!";
+		qCDebug(KHTML_LOG) << "     couldn't parse value!";
 #endif
 	}
 #ifdef CSS_DEBUG
 	else
-	    qDebug() << "     no value found!";
+	    qCDebug(KHTML_LOG) << "     no value found!";
 #endif
 	delete p->valueList;
 	p->valueList = nullptr;
@@ -2114,7 +2114,7 @@ yyreduce:
 
     {
 #ifdef CSS_DEBUG
-     qDebug() << "charset rule: " << qString((yyvsp[(3) - (5)].string));
+     qCDebug(KHTML_LOG) << "charset rule: " << qString((yyvsp[(3) - (5)].string));
 #endif
      CSSParser* p = static_cast<CSSParser*>(parser);
      if (p->styleElement && p->styleElement->isCSSStyleSheet()) {
@@ -2151,7 +2151,7 @@ yyreduce:
 
     {
 #ifdef CSS_DEBUG
-	qDebug() << "@import: " << qString((yyvsp[(3) - (6)].string));
+	qCDebug(KHTML_LOG) << "@import: " << qString((yyvsp[(3) - (6)].string));
 #endif
 	CSSParser *p = static_cast<CSSParser *>(parser);
 	if ( (yyvsp[(5) - (6)].mediaList) && p->styleElement && p->styleElement->isCSSStyleSheet() )
@@ -2179,7 +2179,7 @@ yyreduce:
 
     {
 #ifdef CSS_DEBUG
-    qDebug() << "@namespace: " << qString((yyvsp[(3) - (4)].string)) << qString((yyvsp[(4) - (4)].string));
+    qCDebug(KHTML_LOG) << "@namespace: " << qString((yyvsp[(3) - (4)].string)) << qString((yyvsp[(4) - (4)].string));
 #endif
     CSSParser *p = static_cast<CSSParser *>(parser);
     (yyval.rule) = new CSSNamespaceRuleImpl(p->styleElement, domString((yyvsp[(3) - (4)].string)), domString((yyvsp[(4) - (4)].string)));
@@ -2474,7 +2474,7 @@ yyreduce:
 
     {
 #ifdef CSS_DEBUG
-	qDebug() << "got ruleset" << endl << "  selector:";
+	qCDebug(KHTML_LOG) << "got ruleset" << endl << "  selector:";
 #endif
 	CSSParser *p = static_cast<CSSParser *>(parser);
 	if ( (yyvsp[(1) - (2)].selectorList)  ) {
@@ -2499,7 +2499,7 @@ yyreduce:
 	if ( (yyvsp[(1) - (1)].selector) ) {
 	    (yyval.selectorList) = new QList<CSSSelector*>;
 #ifdef CSS_DEBUG
-	    qDebug() << "   got simple selector:";
+	    qCDebug(KHTML_LOG) << "   got simple selector:";
 	    (yyvsp[(1) - (1)].selector)->print();
 #endif
 	    (yyval.selectorList)->append( (yyvsp[(1) - (1)].selector) );
@@ -2518,7 +2518,7 @@ yyreduce:
 	    (yyval.selectorList)->append( (yyvsp[(4) - (4)].selector) );
 	    khtml::CSSStyleSelector::precomputeAttributeDependencies(static_cast<CSSParser *>(parser)->document(), (yyvsp[(4) - (4)].selector));
 #ifdef CSS_DEBUG
-	    qDebug() << "   got simple selector:";
+	    qCDebug(KHTML_LOG) << "   got simple selector:";
 	    (yyvsp[(4) - (4)].selector)->print();
 #endif
 	} else {
@@ -3053,7 +3053,7 @@ yyreduce:
 	if ( (yyvsp[(1) - (5)].prop_id) && (yyvsp[(4) - (5)].valueList) ) {
 	    p->valueList = (yyvsp[(4) - (5)].valueList);
 #ifdef CSS_DEBUG
-	    qDebug() << "   got property: " << (yyvsp[(1) - (5)].prop_id) <<
+	    qCDebug(KHTML_LOG) << "   got property: " << (yyvsp[(1) - (5)].prop_id) <<
 		((yyvsp[(5) - (5)].b)?" important":"");
 #endif
 	        bool ok = p->parseValue( (yyvsp[(1) - (5)].prop_id), (yyvsp[(5) - (5)].b) );
@@ -3061,7 +3061,7 @@ yyreduce:
 		    (yyval.ok) = ok;
 #ifdef CSS_DEBUG
 	        else
-		    qDebug() << "     couldn't parse value!";
+		    qCDebug(KHTML_LOG) << "     couldn't parse value!";
 #endif
 	} else {
             delete (yyvsp[(4) - (5)].valueList);
@@ -3343,7 +3343,7 @@ yyreduce:
     {
 	(yyval.rule) = nullptr;
 #ifdef CSS_DEBUG
-	qDebug() << "skipped invalid @-rule";
+	qCDebug(KHTML_LOG) << "skipped invalid @-rule";
 #endif
     }
     break;
@@ -3353,7 +3353,7 @@ yyreduce:
     {
 	(yyval.rule) = nullptr;
 #ifdef CSS_DEBUG
-	qDebug() << "skipped invalid @-rule";
+	qCDebug(KHTML_LOG) << "skipped invalid @-rule";
 #endif
     }
     break;
@@ -3363,7 +3363,7 @@ yyreduce:
     {
 	(yyval.rule) = nullptr;
 #ifdef CSS_DEBUG
-	qDebug() << "skipped invalid rule";
+	qCDebug(KHTML_LOG) << "skipped invalid rule";
 #endif
     }
     break;

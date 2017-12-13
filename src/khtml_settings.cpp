@@ -23,7 +23,7 @@
 #include <kparts/htmlsettingsinterface.h>
 #include <kconfig.h>
 #include <kconfiggroup.h>
-#include <QDebug>
+#include "khtml_debug.h"
 #include <klocalizedstring.h>
 #include <kmessagebox.h>
 #include <khtml_filter_p.h>
@@ -57,15 +57,15 @@ struct KPerDomainSettings {
 #ifdef DEBUG_SETTINGS
     void dump(const QString &infix = QString()) const
     {
-        // qDebug() << "KPerDomainSettings " << infix << " @" << this << ":";
-        // qDebug() << "  m_bEnableJava: " << m_bEnableJava;
-        // qDebug() << "  m_bEnableJavaScript: " << m_bEnableJavaScript;
-        // qDebug() << "  m_bEnablePlugins: " << m_bEnablePlugins;
-        // qDebug() << "  m_windowOpenPolicy: " << m_windowOpenPolicy;
-        // qDebug() << "  m_windowStatusPolicy: " << m_windowStatusPolicy;
-        // qDebug() << "  m_windowFocusPolicy: " << m_windowFocusPolicy;
-        // qDebug() << "  m_windowMovePolicy: " << m_windowMovePolicy;
-        // qDebug() << "  m_windowResizePolicy: " << m_windowResizePolicy;
+        // qCDebug(KHTML_LOG) << "KPerDomainSettings " << infix << " @" << this << ":";
+        // qCDebug(KHTML_LOG) << "  m_bEnableJava: " << m_bEnableJava;
+        // qCDebug(KHTML_LOG) << "  m_bEnableJavaScript: " << m_bEnableJavaScript;
+        // qCDebug(KHTML_LOG) << "  m_bEnablePlugins: " << m_bEnablePlugins;
+        // qCDebug(KHTML_LOG) << "  m_windowOpenPolicy: " << m_windowOpenPolicy;
+        // qCDebug(KHTML_LOG) << "  m_windowStatusPolicy: " << m_windowStatusPolicy;
+        // qCDebug(KHTML_LOG) << "  m_windowFocusPolicy: " << m_windowFocusPolicy;
+        // qCDebug(KHTML_LOG) << "  m_windowMovePolicy: " << m_windowMovePolicy;
+        // qCDebug(KHTML_LOG) << "  m_windowResizePolicy: " << m_windowResizePolicy;
     }
 #endif
 };
@@ -131,7 +131,7 @@ public:
 
     void adblockFilterLoadList(const QString &filename)
     {
-        // qDebug() << "Loading filter list from" << filename;
+        // qCDebug(KHTML_LOG) << "Loading filter list from" << filename;
         /** load list file and process each line */
         QFile file(filename);
         if (file.open(QIODevice::ReadOnly)) {
@@ -159,7 +159,7 @@ public:
             file.close();
 
 #ifndef NDEBUG
-            // qDebug() << "Filter list loaded" << whiteCounter << "white list entries and" << blackCounter << "black list entries";
+            // qCDebug(KHTML_LOG) << "Filter list loaded" << whiteCounter << "white list entries and" << blackCounter << "black list entries";
 #endif // NDEBUG
         }
     }
@@ -171,9 +171,9 @@ public Q_SLOTS:
         Q_ASSERT(tJob);
 
         if (tJob->error()) {
-            // qDebug() << "Failed to download" << tJob->url() << "with message:" << tJob->errorText();
+            // qCDebug(KHTML_LOG) << "Failed to download" << tJob->url() << "with message:" << tJob->errorText();
         } else if (tJob->isErrorPage()) { // 4XX error code
-            // qDebug() << "Failed to fetch filter list" << tJob->url();
+            // qCDebug(KHTML_LOG) << "Failed to fetch filter list" << tJob->url();
         } else {
             const QByteArray byteArray = tJob->data();
             const QString localFileName = tJob->property("khtmlsettings_adBlock_filename").toString();
@@ -185,10 +185,10 @@ public Q_SLOTS:
                 if (success) {
                     adblockFilterLoadList(localFileName);
                 } else {
-                    // qDebug() << "Could not write" << byteArray.size() << "to file" << localFileName;
+                    // qCDebug(KHTML_LOG) << "Could not write" << byteArray.size() << "to file" << localFileName;
                 }
             } else {
-                // qDebug() << "Cannot open file" << localFileName << "for filter list";
+                // qCDebug(KHTML_LOG) << "Cannot open file" << localFileName << "for filter list";
             }
         }
 
@@ -203,7 +203,7 @@ static KPerDomainSettings &setup_per_domain_policy(
     const QString &domain)
 {
     if (domain.isEmpty()) {
-        qWarning() << "setup_per_domain_policy: domain is empty";
+        qCWarning(KHTML_LOG) << "setup_per_domain_policy: domain is empty";
     }
     const QString ldomain = domain.toLower();
     PolicyMap::iterator it = d->domainPolicy.find(ldomain);
@@ -424,7 +424,7 @@ void KHTMLSettings::init(KConfig *config, bool reset)
                         /** if no cache list file exists or if it is too old ... */
                         if (!fileInfo.exists() || fileInfo.lastModified().daysTo(QDateTime::currentDateTime()) > htmlFilterListMaxAgeDays) {
                             /** ... in this case, refetch list asynchronously */
-                            // qDebug() << "Asynchronously fetching filter list from" << url << "to" << localFile;
+                            // qCDebug(KHTML_LOG) << "Asynchronously fetching filter list from" << url << "to" << localFile;
 
                             KIO::StoredTransferJob *job = KIO::storedGet(url, KIO::Reload, KIO::HideProgressInfo);
                             QObject::connect(job, SIGNAL(result(KJob*)), d, SLOT(adblockFilterResult(KJob*)));
@@ -472,7 +472,7 @@ void KHTMLSettings::init(KConfig *config, bool reset)
             const QString fontFamily = d->fonts.at(i);
             if (!fontFamily.isEmpty()) {
                 d->fonts[i] = QFontInfo(QFont(fontFamily)).family();
-                //qWarning() << "Font family name:" << fontFamily << "resolved to:" << d->fonts.at(i);
+                //qCWarning(KHTML_LOG) << "Font family name:" << fontFamily << "resolved to:" << d->fonts.at(i);
             }
         }
 
@@ -767,7 +767,7 @@ static const KPerDomainSettings &lookup_hostname_policy(
     const QString &hostname)
 {
 #ifdef DEBUG_SETTINGS
-    // qDebug() << "lookup_hostname_policy(" << hostname << ")";
+    // qCDebug(KHTML_LOG) << "lookup_hostname_policy(" << hostname << ")";
 #endif
     if (hostname.isEmpty()) {
 #ifdef DEBUG_SETTINGS
@@ -782,7 +782,7 @@ static const KPerDomainSettings &lookup_hostname_policy(
     PolicyMap::const_iterator it = d->domainPolicy.find(hostname);
     if (it != notfound) {
 #ifdef DEBUG_SETTINGS
-        // qDebug() << "perfect match";
+        // qCDebug(KHTML_LOG) << "perfect match";
         (*it).dump(hostname);
 #endif
         // yes, use it (unless dunno)
@@ -799,7 +799,7 @@ static const KPerDomainSettings &lookup_hostname_policy(
         Q_ASSERT(notfound == d->domainPolicy.end());
         if (it != notfound) {
 #ifdef DEBUG_SETTINGS
-            // qDebug() << "partial match";
+            // qCDebug(KHTML_LOG) << "partial match";
             (*it).dump(host_part);
 #endif
             return *it;
@@ -810,7 +810,7 @@ static const KPerDomainSettings &lookup_hostname_policy(
 
     // No domain-specific entry: use global domain
 #ifdef DEBUG_SETTINGS
-    // qDebug() << "no match";
+    // qCDebug(KHTML_LOG) << "no match";
     d->global.dump("global");
 #endif
     return d->global;

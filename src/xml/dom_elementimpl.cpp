@@ -56,7 +56,7 @@
 
 #include <QtCore/QTextStream>
 #include <QTextDocument>
-#include <QDebug>
+#include "khtml_debug.h"
 #include <stdlib.h>
 
 #include <wtf/HashMap.h>
@@ -1162,7 +1162,7 @@ void ElementImpl::setContentEditable(bool enabled)
         // FIXME: reset caret if it is in this node or a child
     }/*end if*/
     // FIXME: use addCSSProperty when I get permission to move it here
-//    qDebug() << "CSS_PROP__KHTML_USER_INPUT: "<< value;
+//    qCDebug(KHTML_LOG) << "CSS_PROP__KHTML_USER_INPUT: "<< value;
     getInlineStyleDecls()->setProperty(CSS_PROP__KHTML_USER_INPUT, value, false);
     setChanged();
 }
@@ -1204,7 +1204,7 @@ bool ElementImpl::childTypeAllowed(unsigned short type)
 void ElementImpl::scrollIntoView(bool /*alignToTop*/)
 {
     // ###
-    qWarning() << "non-standard scrollIntoView() not implemented";
+    qCWarning(KHTML_LOG) << "non-standard scrollIntoView() not implemented";
 }
 
 void ElementImpl::createNonCSSDecl()
@@ -1356,7 +1356,7 @@ DOMString ElementImpl::openTagStartToString(bool expandurls) const
                             safeURL.setPassword(QString());
                             result += Qt::escape(safeURL.toDisplayString());
                         } else {
-                            qWarning() << "document() returned false";
+                            qCWarning(KHTML_LOG) << "document() returned false";
                             result += attribute.value();
                         }
                     else {
@@ -1801,20 +1801,20 @@ void NamedAttrMapImpl::copyAttributes(NamedAttrMapImpl *other)
 
 int NamedAttrMapImpl::find(NodeImpl::Id id, const PrefixName &prefix, bool nsAware) const
 {
-    //qDebug() << "In find:" << getPrintableName(id) << "[" << prefix.toString() << prefix.id() << "]" << nsAware;
-    //qDebug() << "m_attrs.size()" << m_attrs.size();
+    //qCDebug(KHTML_LOG) << "In find:" << getPrintableName(id) << "[" << prefix.toString() << prefix.id() << "]" << nsAware;
+    //qCDebug(KHTML_LOG) << "m_attrs.size()" << m_attrs.size();
     unsigned len = m_attrs.size();
     for (unsigned i = 0; i < len; ++i) {
-        //qDebug() << "check attr[" << i << "]" << getPrintableName(m_attrs[i].id()) << "prefix:" << m_attrs[i].prefix();
+        //qCDebug(KHTML_LOG) << "check attr[" << i << "]" << getPrintableName(m_attrs[i].id()) << "prefix:" << m_attrs[i].prefix();
         if (nsAware && namespacePart(id) == anyNamespace && localNamePart(id) == localNamePart(m_attrs[i].id())) {
             return i;
         }
         if ((nsAware && id == m_attrs[i].id()) || (!nsAware && localNamePart(id) == localNamePart(m_attrs[i].id()) && prefix == m_attrs[i].prefixName())) {
-            //qDebug() << "attribute matched: exiting...";
+            //qCDebug(KHTML_LOG) << "attribute matched: exiting...";
             return i;
         }
     }
-    //qDebug() << "attribute doesn't match: exiting... with -1";
+    //qCDebug(KHTML_LOG) << "attribute doesn't match: exiting... with -1";
     return -1;
 }
 

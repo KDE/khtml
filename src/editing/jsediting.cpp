@@ -631,7 +631,7 @@ const CommandImp *JSEditor::commandImp(const DOMString &command)
     const CommandImp *result = commandDictionary.value(command.string().toLower());
 #ifdef DEBUG_COMMANDS
     if (!result) {
-        qDebug() << "[Command is not supported yet]" << command;
+        qCDebug(KHTML_LOG) << "[Command is not supported yet]" << command;
     }
 #endif
     return result;

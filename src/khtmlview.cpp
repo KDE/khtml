@@ -60,7 +60,7 @@
 #include "khtmlpart_p.h"
 
 #include <kcursor.h>
-#include <QDebug>
+#include "khtml_debug.h"
 #include <kiconloader.h>
 #include <knotification.h>
 #include <kconfig.h>
@@ -279,7 +279,7 @@ public:
     }
     void newScrollTimer(QWidget *view, int tid)
     {
-        //qDebug() << "newScrollTimer timer " << tid;
+        //qCDebug(KHTML_LOG) << "newScrollTimer timer " << tid;
         view->killTimer(scrollTimerId);
         scrollTimerId = tid;
         scrollSuspended = false;
@@ -933,7 +933,7 @@ void KHTMLView::paintEvent(QPaintEvent *e)
     }
 
     if (d->painting) {
-        // qDebug() << "WARNING: paintEvent reentered! ";
+        // qCDebug(KHTML_LOG) << "WARNING: paintEvent reentered! ";
         return;
     }
     d->painting = true;
@@ -959,7 +959,7 @@ void KHTMLView::paintEvent(QPaintEvent *e)
     }
 #ifdef SPEED_DEBUG
     if (d->firstRepaintPending && !m_part->parentPart()) {
-        qDebug() << "FIRST PAINT:" << m_part->d->m_parsetime.elapsed();
+        qCDebug(KHTML_LOG) << "FIRST PAINT:" << m_part->d->m_parsetime.elapsed();
     }
     d->firstRepaintPending = false;
 #endif
@@ -1072,7 +1072,7 @@ void KHTMLView::closeChildDialogs()
     QList<QDialog *> dlgs = findChildren<QDialog *>();
     foreach (QDialog *dlg, dlgs) {
         if (dlg->testAttribute(Qt::WA_ShowModal)) {
-            // qDebug() << "closeChildDialogs: closing dialog " << dlg;
+            // qCDebug(KHTML_LOG) << "closeChildDialogs: closing dialog " << dlg;
             // close() ends up calling QButton::animateClick, which isn't immediate
             // we need something the exits the event loop immediately (#49068)
             dlg->reject();
@@ -1160,14 +1160,14 @@ void KHTMLView::mousePressEvent(QMouseEvent *_mouse)
     int ym = _mouse->y();
     revertTransforms(xm, ym);
 
-    // qDebug() << "mousePressEvent: viewport=("<<_mouse->x()-contentsX()<<"/"<<_mouse->y()-contentsY()<<"), contents=(" << xm << "/" << ym << ")\n";
+    // qCDebug(KHTML_LOG) << "mousePressEvent: viewport=("<<_mouse->x()-contentsX()<<"/"<<_mouse->y()-contentsY()<<"), contents=(" << xm << "/" << ym << ")\n";
 
     d->isDoubleClick = false;
 
     DOM::NodeImpl::MouseEvent mev(_mouse->buttons(), DOM::NodeImpl::MousePress);
     m_part->xmlDocImpl()->prepareMouseEvent(false, xm, ym, &mev);
 
-    //qDebug() << "innerNode="<<mev.innerNode.nodeName().string();
+    //qCDebug(KHTML_LOG) << "innerNode="<<mev.innerNode.nodeName().string();
 
     if ((_mouse->button() == Qt::MidButton) &&
             !m_part->d->m_bOpenMiddleClick && !d->m_mouseScrollTimer &&
@@ -1285,7 +1285,7 @@ void KHTMLView::mouseDoubleClickEvent(QMouseEvent *_mouse)
     int ym = _mouse->y();
     revertTransforms(xm, ym);
 
-    // qDebug() << "mouseDblClickEvent: x=" << xm << ", y=" << ym;
+    // qCDebug(KHTML_LOG) << "mouseDblClickEvent: x=" << xm << ", y=" << ym;
 
     d->isDoubleClick = true;
 
@@ -1374,7 +1374,7 @@ void KHTMLView::mouseMoveEvent(QMouseEvent *_mouse)
     // Do not modify :hover/:active state while mouse is pressed.
     m_part->xmlDocImpl()->prepareMouseEvent(_mouse->buttons() /*readonly ?*/, xm, ym, &mev);
 
-    // qDebug() << "mouse move: " << _mouse->pos()
+    // qCDebug(KHTML_LOG) << "mouse move: " << _mouse->pos()
     //        << " button " << _mouse->button()
     //        << " state " << _mouse->state();
 
@@ -1923,7 +1923,7 @@ bool KHTMLView::focusNextPrevChild(bool next)
     // Now try to find the next child
     if (m_part->xmlDocImpl() && focusNextPrevNode(next)) {
         //if (m_part->xmlDocImpl()->focusNode())
-        // qDebug() << "focusNode.name: "
+        // qCDebug(KHTML_LOG) << "focusNode.name: "
         //      << m_part->xmlDocImpl()->focusNode()->nodeName().string();
         return true; // focus node found
     }
@@ -2256,7 +2256,7 @@ bool KHTMLView::eventFilter(QObject *o, QEvent *e)
         }
     }
 
-//    qDebug() <<"passing event on to sv event filter object=" << o->className() << " event=" << e->type();
+//    qCDebug(KHTML_LOG) <<"passing event on to sv event filter object=" << o->className() << " event=" << e->type();
     return QScrollArea::eventFilter(o, e);
 }
 
@@ -2333,7 +2333,7 @@ bool KHTMLView::scrollTo(const QRect &bounds)
     xe = bounds.right();
     ye = bounds.bottom();
 
-    //qDebug()<<"scrolling coords: x="<<x<<" y="<<y<<" width="<<xe-x<<" height="<<ye-y;
+    //qCDebug(KHTML_LOG)<<"scrolling coords: x="<<x<<" y="<<y<<" width="<<xe-x<<" height="<<ye-y;
 
     int deltax;
     int deltay;
@@ -2498,7 +2498,7 @@ bool KHTMLView::focusNextPrevNode(bool next)
     NodeImpl *newFocusNode = nullptr;
 
     if (d->tabMovePending && next != d->lastTabbingDirection) {
-        //qDebug() << " tab move pending and tabbing direction changed!\n";
+        //qCDebug(KHTML_LOG) << " tab move pending and tabbing direction changed!\n";
         newFocusNode = oldFocusNode;
     } else if (next) {
         if (oldFocusNode || d->pseudoFocusNode == KHTMLViewPrivate::PFTop) {
@@ -2520,13 +2520,13 @@ bool KHTMLView::focusNextPrevNode(bool next)
     } else {
         // if it's an editable element, activate the caret
         if (!m_part->isCaretMode() && newFocusNode->isContentEditable()) {
-            // qDebug() << "show caret! fn: " << newFocusNode->nodeName().string();
+            // qCDebug(KHTML_LOG) << "show caret! fn: " << newFocusNode->nodeName().string();
             m_part->clearCaretRectIfNeeded();
             m_part->d->editor_context.m_selection.moveTo(Position(newFocusNode, 0L));
             m_part->setCaretVisible(true);
         } else {
             m_part->setCaretVisible(false);
-            // qDebug() << "hide caret! fn: " << newFocusNode->nodeName().string();
+            // qCDebug(KHTML_LOG) << "hide caret! fn: " << newFocusNode->nodeName().string();
         }
         m_part->notifySelectionChanged();
 
@@ -2534,7 +2534,7 @@ bool KHTMLView::focusNextPrevNode(bool next)
     }
 
     if (targetVisible) {
-        //qDebug() << " target reached.\n";
+        //qCDebug(KHTML_LOG) << " target reached.\n";
         d->tabMovePending = false;
 
         m_part->xmlDocImpl()->setFocusNode(newFocusNode);
@@ -3174,7 +3174,7 @@ void KHTMLView::print(bool quick)
                 "html { margin: 0px !important; }"
                                                 );
 
-        // qDebug() << "printing: physical page width = " << printer.width()
+        // qCDebug(KHTML_LOG) << "printing: physical page width = " << printer.width()
         //              << " height = " << printer.height();
         root->setStaticMode(true);
         root->setPagedMode(true);
@@ -3209,11 +3209,11 @@ void KHTMLView::print(bool quick)
         }
 
         // ok. now print the pages.
-        // qDebug() << "printing: html page width = " << root->docWidth()
+        // qCDebug(KHTML_LOG) << "printing: html page width = " << root->docWidth()
         //              << " height = " << root->docHeight();
-        // qDebug() << "printing: margins left = " << printer.pageRect().left() - printer.paperRect().left()
+        // qCDebug(KHTML_LOG) << "printing: margins left = " << printer.pageRect().left() - printer.paperRect().left()
         //              << " top = " << printer.pageRect().top() - printer.paperRect().top();
-        // qDebug() << "printing: paper width = " << printer.width()
+        // qCDebug(KHTML_LOG) << "printing: paper width = " << printer.width()
         //              << " height = " << printer.height();
         // if the width is too large to fit on the paper we just scale
         // the whole thing.
@@ -3234,7 +3234,7 @@ void KHTMLView::print(bool quick)
             headerHeight = (int)(headerHeight / scale);
         }
 #endif
-        // qDebug() << "printing: scaled html width = " << pageWidth
+        // qCDebug(KHTML_LOG) << "printing: scaled html width = " << pageWidth
         //              << " height = " << pageHeight;
 
         root->setHeight(pageHeight);
@@ -3296,7 +3296,7 @@ void KHTMLView::print(bool quick)
             root->setPageNumber(page);
 
             root->layer()->paint(p, QRect(0, top, pageWidth, pageHeight));
-            // qDebug() << "printed: page " << page <<" bottom At = " << bottom;
+            // qCDebug(KHTML_LOG) << "printed: page " << page <<" bottom At = " << bottom;
 
             top = bottom;
             p->resetTransform();
@@ -3960,7 +3960,7 @@ void KHTMLView::scrollContentsBy(int dx, int dy)
         d->contentsY -= dy;
     }
     if (widget()->pos() != QPoint(0, 0)) {
-        // qDebug() << "Static widget wasn't positioned at (0,0). This should NOT happen. Please report this event to developers.";
+        // qCDebug(KHTML_LOG) << "Static widget wasn't positioned at (0,0). This should NOT happen. Please report this event to developers.";
         widget()->move(0, 0);
     }
 
@@ -4133,7 +4133,7 @@ void KHTMLView::addChild(QWidget *child, int x, int y)
 
 void KHTMLView::timerEvent(QTimerEvent *e)
 {
-//    qDebug() << "timer event " << e->timerId();
+//    qCDebug(KHTML_LOG) << "timer event " << e->timerId();
     if (e->timerId() == d->scrollTimerId) {
         if (d->scrollSuspended) {
             return;
@@ -4322,8 +4322,8 @@ void KHTMLView::scheduleRepaint(int x, int y, int w, int h, bool asap)
 {
     bool parsing = !m_part->xmlDocImpl() || m_part->xmlDocImpl()->parsing();
 
-//     qDebug() << "parsing " << parsing;
-//     qDebug() << "complete " << d->complete;
+//     qCDebug(KHTML_LOG) << "parsing " << parsing;
+//     qCDebug(KHTML_LOG) << "complete " << d->complete;
 
     int time = parsing && !d->firstLayoutPending ? 150 : (!asap ? (!d->complete ? 80 : 20) : 0);
 
@@ -4347,18 +4347,18 @@ void KHTMLView::scheduleRepaint(int x, int y, int w, int h, bool asap)
         d->repaintTimerId = startTimer(time);
     }
 
-//     qDebug() << "starting timer " << time;
+//     qCDebug(KHTML_LOG) << "starting timer " << time;
 }
 
 void KHTMLView::complete(bool pendingAction)
 {
-//     qDebug() << "KHTMLView::complete()";
+//     qCDebug(KHTML_LOG) << "KHTMLView::complete()";
 
     d->complete = true;
 
     // is there a relayout pending?
     if (d->layoutTimerId) {
-//         qDebug() << "requesting relayout now";
+//         qCDebug(KHTML_LOG) << "requesting relayout now";
         // do it now
         killTimer(d->layoutTimerId);
         d->layoutTimerId = startTimer(0);
@@ -4368,7 +4368,7 @@ void KHTMLView::complete(bool pendingAction)
 
     // is there a repaint pending?
     if (d->repaintTimerId) {
-//         qDebug() << "requesting repaint now";
+//         qCDebug(KHTML_LOG) << "requesting repaint now";
         // do it now
         killTimer(d->repaintTimerId);
         d->repaintTimerId = startTimer(0);

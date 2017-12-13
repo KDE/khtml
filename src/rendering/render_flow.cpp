@@ -26,7 +26,7 @@
 
 #include "render_flow.h"
 
-#include <QDebug>
+#include "khtml_debug.h"
 #include <assert.h>
 #include <QPainter>
 
@@ -127,9 +127,9 @@ void RenderFlow::addChildWithContinuation(RenderObject *newChild, RenderObject *
 void RenderFlow::addChild(RenderObject *newChild, RenderObject *beforeChild)
 {
 #ifdef DEBUG_LAYOUT
-    // qDebug() << renderName() << "(RenderFlow)::addChild( " << newChild->renderName() <<
+    // qCDebug(KHTML_LOG) << renderName() << "(RenderFlow)::addChild( " << newChild->renderName() <<
     // ", " << (beforeChild ? beforeChild->renderName() : "0") << " )";
-    // qDebug() << "current height = " << m_height;
+    // qCDebug(KHTML_LOG) << "current height = " << m_height;
 #endif
 
     if (continuation()) {

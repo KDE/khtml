@@ -23,12 +23,12 @@
 #include "debugwindow.h"
 
 #include <QSharedData>
-#include <QDebug>
+#include "khtml_debug.h"
 #include <QtAlgorithms>
 
 #include <ktoolbar.h>
 #include <klocalizedstring.h>
-#include <QDebug>
+#include "khtml_debug.h"
 #include <kactioncollection.h>
 #include <ktoggleaction.h>
 #include <kconfig.h>
@@ -498,7 +498,7 @@ bool DebugWindow::sourceParsed(ExecState *exec, int sourceId, const UString &jsS
 {
     Q_UNUSED(exec);
 
-    // qDebug() << "sourceId: " << sourceId
+    // qCDebug(KHTML_LOG) << "sourceId: " << sourceId
             << "sourceURL: " << jsSourceURL.qstring()
             << "startingLineNumber: " << startingLineNumber
             << "errorLine: " << errorLine;
@@ -908,7 +908,7 @@ void DebugWindow::markSet(KTextEditor::Document *document, KTextEditor::Mark mar
     int lineNumber = mark.line + debugDocument->baseLine();
     switch (action) {
     case KTextEditor::MarkInterface::MarkAdded:
-        // qDebug() << lineNumber;
+        // qCDebug(KHTML_LOG) << lineNumber;
         debugDocument->setBreakpoint(lineNumber);
         break;
     case KTextEditor::MarkInterface::MarkRemoved:
@@ -916,7 +916,7 @@ void DebugWindow::markSet(KTextEditor::Document *document, KTextEditor::Mark mar
         break;
     }
 
-    // qDebug() << "breakpoint set for: " << endl
+    // qCDebug(KHTML_LOG) << "breakpoint set for: " << endl
             << "document: " << document->documentName() << endl
             << "line: " << lineNumber;
 }

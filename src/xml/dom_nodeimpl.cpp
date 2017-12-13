@@ -38,7 +38,7 @@
 #include "dom_restyler.h"
 #include "html/html_objectimpl.h"
 
-#include <QDebug>
+#include "khtml_debug.h"
 
 #include <rendering/render_text.h>
 #include <rendering/render_flow.h>
@@ -328,13 +328,13 @@ void NodeImpl::getCaret(int /*offset*/, bool override, int &_x, int &_y, int &wi
         long r_ofs = 0;
         bool outside, outsideEnd;
 #if 0
-// qDebug() << "getCaret: node " << this << " " << nodeName().string() << " offset: " << offset;
+// qCDebug(KHTML_LOG) << "getCaret: node " << this << " " << nodeName().string() << " offset: " << offset;
 #endif
 //         mapDOMPosToRenderPos(this, offset, r, r_ofs, outside, outsideEnd);
         outside = false;
         outsideEnd = false;
 #if 0
-// qDebug() << "getCaret: r " << r << " " << (r?r->renderName():QString()) << " r_ofs: " << r_ofs << " outside " << outside << " outsideEnd " << outsideEnd;
+// qCDebug(KHTML_LOG) << "getCaret: r " << r << " " << (r?r->renderName():QString()) << " r_ofs: " << r_ofs << " outside " << outside << " outsideEnd " << outsideEnd;
 #endif
         if (r) {
             r->caretPos(r_ofs, override * RenderObject::CFOverride
@@ -674,7 +674,7 @@ void NodeImpl::dispatchSubtreeModifiedEvent()
 bool NodeImpl::dispatchKeyEvent(QKeyEvent *key, bool keypress)
 {
     int exceptioncode = 0;
-    //qDebug() << "DOM::NodeImpl: dispatching keyboard event";
+    //qCDebug(KHTML_LOG) << "DOM::NodeImpl: dispatching keyboard event";
     EventImpl *keyEventImpl;
     if (keypress) {
         keyEventImpl = new TextEventImpl(key, document()->defaultView());
@@ -1348,7 +1348,7 @@ unsigned NodeImpl::compareDocumentPosition(const DOM::NodeImpl *other)
 
     bool thisAncLogical  = thisAnc->parentNode() == nullptr;
     bool otherAncLogical = otherAnc->parentNode() == nullptr;
-    //qDebug() << thisAncLogical << otherAncLogical;
+    //qCDebug(KHTML_LOG) << thisAncLogical << otherAncLogical;
 
     if (thisAncLogical && otherAncLogical) {
         // First, try to order by nodeType.
@@ -1540,7 +1540,7 @@ DOM::NodeImpl *DOM::NodeImpl::findNextElementAncestor(NodeImpl *node)
 
 NodeBaseImpl::~NodeBaseImpl()
 {
-    //qDebug() << "NodeBaseImpl destructor";
+    //qCDebug(KHTML_LOG) << "NodeBaseImpl destructor";
     // we have to tell all children, that the parent has died...
     NodeImpl *n;
     NodeImpl *next;
@@ -1937,7 +1937,7 @@ bool NodeBaseImpl::checkSameDocument(NodeImpl *newChild, int &exceptioncode)
     DocumentImpl *ownerDocThis = document();
     DocumentImpl *ownerDocNew = newChild->document();
     if (ownerDocThis != ownerDocNew) {
-        // qDebug()<< "not same document, newChild = " << newChild << "document = " << document();
+        // qCDebug(KHTML_LOG)<< "not same document, newChild = " << newChild << "document = " << document();
         exceptioncode = DOMException::WRONG_DOCUMENT_ERR;
         return true;
     }
@@ -1960,7 +1960,7 @@ NodeImpl *NodeBaseImpl::addChild(NodeImpl *newChild)
 
     // short check for consistency with DTD
     if (document()->isHTMLDocument() && !childAllowed(newChild)) {
-        //qDebug() << "AddChild failed! id=" << id() << ", child->id=" << newChild->id();
+        //qCDebug(KHTML_LOG) << "AddChild failed! id=" << id() << ", child->id=" << newChild->id();
         return nullptr;
     }
 

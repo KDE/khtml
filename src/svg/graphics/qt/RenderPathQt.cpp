@@ -25,7 +25,7 @@
 #include "SVGRenderStyle.h"
 #include "SVGPaintServer.h"
 
-#include <QDebug>
+#include "khtml_debug.h"
 #include <QPainterPathStroker>
 
 namespace WebCore

@@ -40,7 +40,7 @@
 #include <html/html_documentimpl.h>
 #include <misc/loader.h>
 
-#include <QDebug>
+#include "khtml_debug.h"
 
 using namespace DOM;
 using namespace khtml;
@@ -333,7 +333,7 @@ void CSSStyleSheetImpl::determineNamespace(NamespaceName &namespacename, const D
 bool CSSStyleSheetImpl::parseString(const DOMString &string, bool strict)
 {
 #ifdef CSS_STYLESHEET_DEBUG
-    qDebug() << "parsing sheet, len=" << string.length() << ", sheet is " << string.string();
+    qCDebug(KHTML_LOG) << "parsing sheet, len=" << string.length() << ", sheet is " << string.string();
 #endif
 
     strictParsing = strict;
@@ -351,11 +351,11 @@ bool CSSStyleSheetImpl::isLoading() const
         if (rule->isImportRule()) {
             CSSImportRuleImpl *import = static_cast<CSSImportRuleImpl *>(rule);
 #ifdef CSS_STYLESHEET_DEBUG
-            qDebug() << "found import";
+            qCDebug(KHTML_LOG) << "found import";
 #endif
             if (import->isLoading()) {
 #ifdef CSS_STYLESHEET_DEBUG
-                qDebug() << "--> not loaded";
+                qCDebug(KHTML_LOG) << "--> not loaded";
 #endif
                 m_loadedHint = false;
                 return true;

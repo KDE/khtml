@@ -21,7 +21,7 @@
 
 #include "kjavaprocess.h"
 
-#include <QDebug>
+#include "kjavaappletviewer_debug.h"
 #include <kshell.h>
 #include <kprotocolmanager.h>
 
@@ -59,7 +59,7 @@ KJavaProcess::KJavaProcess(QObject *parent)
 KJavaProcess::~KJavaProcess()
 {
     if (state() != NotRunning) {
-        // qDebug() << "stopping java process";
+        // qCDebug(KJAVAAPPLETVIEWER_LOG) << "stopping java process";
         stopJava();
     }
     delete d;
@@ -147,7 +147,7 @@ void KJavaProcess::storeSize(QByteArray *buff)
 {
     const int size = buff->size() - 8;  //subtract out the length of the size_str
     const QString size_str = QString("%1").arg(size, 8);
-    // qDebug() << "KJavaProcess::storeSize, size = " << size_str;
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "KJavaProcess::storeSize, size = " << size_str;
 
     for (int i = 0; i < 8; ++i) {
         buff->data()[ i ] = size_str[i].toLatin1();
@@ -159,7 +159,7 @@ void KJavaProcess::send(char cmd_code, const QStringList &args)
     if (isRunning()) {
         QByteArray buff = addArgs(cmd_code, args);
         storeSize(&buff);
-        // qDebug() << "<KJavaProcess::send " << (int)cmd_code;
+        // qCDebug(KJAVAAPPLETVIEWER_LOG) << "<KJavaProcess::send " << (int)cmd_code;
         write(buff);
     }
 }
@@ -168,7 +168,7 @@ void KJavaProcess::send(char cmd_code, const QStringList &args,
                         const QByteArray &data)
 {
     if (isRunning()) {
-        // qDebug() << "KJavaProcess::send, qbytearray is size = " << data.size();
+        // qCDebug(KJAVAAPPLETVIEWER_LOG) << "KJavaProcess::send, qbytearray is size = " << data.size();
 
         QByteArray buff = addArgs(cmd_code, args);
         buff += data;
@@ -206,7 +206,7 @@ bool KJavaProcess::invokeJVM()
         KShell::Errors err;
         args += KShell::splitArgs(d->extraArgs, KShell::AbortOnMeta, &err);
         if (err != KShell::NoError) {
-            qWarning() << "Extra args for JVM cannot be parsed, arguments = " << d->extraArgs;
+            qCWarning(KJAVAAPPLETVIEWER_LOG) << "Extra args for JVM cannot be parsed, arguments = " << d->extraArgs;
         }
 
     }
@@ -217,7 +217,7 @@ bool KJavaProcess::invokeJVM()
         args << d->classArgs;
     }
 
-    // qDebug() << "Invoking JVM" << d->jvmPath << "now...with arguments = " << KShell::joinArgs(args);
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "Invoking JVM" << d->jvmPath << "now...with arguments = " << KShell::joinArgs(args);
 
     setProcessChannelMode(QProcess::SeparateChannels);
     start(d->jvmPath, args);
@@ -241,7 +241,7 @@ void KJavaProcess::slotReceivedData()
     char length[9] = { 0 };
     const int num_bytes = read(length, 8);
     if (num_bytes == -1) {
-        qCritical() << "could not read 8 characters for the message length!!!!";
+        qCCritical(KJAVAAPPLETVIEWER_LOG) << "could not read 8 characters for the message length!!!!";
         return;
     }
 
@@ -249,7 +249,7 @@ void KJavaProcess::slotReceivedData()
     bool ok;
     const int num_len = lengthstr.toInt(&ok);
     if (!ok) {
-        qCritical() << "could not parse length out of: " << lengthstr;
+        qCCritical(KJAVAAPPLETVIEWER_LOG) << "could not parse length out of: " << lengthstr;
         return;
     }
 
@@ -257,7 +257,7 @@ void KJavaProcess::slotReceivedData()
     char *const msg = new char[num_len];
     const int num_bytes_msg = read(msg, num_len);
     if (num_bytes_msg == -1 || num_bytes_msg != num_len) {
-        qCritical() << "could not read the msg, num_bytes_msg = " << num_bytes_msg;
+        qCCritical(KJAVAAPPLETVIEWER_LOG) << "could not read the msg, num_bytes_msg = " << num_bytes_msg;
         delete[] msg;
         return;
     }
@@ -272,7 +272,7 @@ void KJavaProcess::slotExited()
     if (exitStatus() == NormalExit) {
         status = exitCode();
     }
-    // qDebug() << "jvm exited with status " << status;
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "jvm exited with status " << status;
     emit exited(status);
 }
 

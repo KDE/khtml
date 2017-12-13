@@ -118,7 +118,7 @@ SVGElement *SVGElement::viewportElement() const
 
 void SVGElement::addSVGEventListener(/*const AtomicString& eventType*/const EventImpl::EventId &eventType, const Attribute *attr)
 {
-    // qDebug() << "add listener for: " << EventName::fromId(eventType).toString();
+    // qCDebug(KHTML_LOG) << "add listener for: " << EventName::fromId(eventType).toString();
     Element::setHTMLEventListener(EventName::fromId(eventType), document()->accessSVGExtensions()->
                                   createSVGEventListener(attr->localName().string(), attr->value(), this));
 }
@@ -189,15 +189,15 @@ static bool hasLoadListener(SVGElement *node)
 
 void SVGElement::sendSVGLoadEventIfPossible(bool sendParentLoadEvents)
 {
-    // qDebug() << "send svg load event";
+    // qCDebug(KHTML_LOG) << "send svg load event";
     RefPtr<SVGElement> currentTarget = this;
-    // qDebug() << currentTarget << currentTarget->haveLoadedRequiredResources();
+    // qCDebug(KHTML_LOG) << currentTarget << currentTarget->haveLoadedRequiredResources();
     while (currentTarget && currentTarget->haveLoadedRequiredResources()) {
         RefPtr<Node> parent;
         if (sendParentLoadEvents) {
             parent = currentTarget->parentNode();    // save the next parent to dispatch too incase dispatching the event changes the tree
         }
-        // qDebug() << hasLoadListener(currentTarget.get());
+        // qCDebug(KHTML_LOG) << hasLoadListener(currentTarget.get());
         if (hasLoadListener(currentTarget.get())) {
             //Event* event = new Event(EventImpl::LOAD_EVENT, true/*false*/, false);
             //event->setTarget(currentTarget.get());
@@ -260,7 +260,7 @@ bool SVGElement::dispatchEvent(Event *e, ExceptionCode &ec, bool tempEvent)
     Q_UNUSED(e);
     Q_UNUSED(ec);
     Q_UNUSED(tempEvent);
-    // qDebug() << "dispatch event";
+    // qCDebug(KHTML_LOG) << "dispatch event";
     // TODO: This function will be removed in a follow-up patch!
 
     /*EventTarget* target = this;
@@ -301,7 +301,7 @@ void SVGElement::attributeChanged(Attribute *attr, bool preserveDecls)
 void SVGElement::addCSSProperty(Attribute *attr, int id, const String &value)
 {
     Q_UNUSED(attr);
-    // qDebug() << "called with: " << id << " " << value;
+    // qCDebug(KHTML_LOG) << "called with: " << id << " " << value;
     /* WARNING: copy&past'ed from HTMLElementImpl class */
     if (!m_hasCombinedStyle) {
         createNonCSSDecl();
@@ -313,7 +313,7 @@ void SVGElement::addCSSProperty(Attribute *attr, int id, const String &value)
 void SVGElement::addCSSProperty(Attribute *attr, int id, int value)
 {
     Q_UNUSED(attr);
-    // qDebug() << "called with: " << id << " " << value;
+    // qCDebug(KHTML_LOG) << "called with: " << id << " " << value;
     /* WARNING: copy&past'ed from HTMLElementImpl class */
     if (!m_hasCombinedStyle) {
         createNonCSSDecl();

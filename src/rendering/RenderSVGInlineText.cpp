@@ -131,7 +131,7 @@ IntRect RenderSVGInlineText::computeAbsoluteRectForRange(int startPos, int endPo
 
 InlineTextBox *RenderSVGInlineText::createInlineTextBox()
 {
-    // qDebug() << "allocate";
+    // qCDebug(KHTML_LOG) << "allocate";
     return new(renderArena()) SVGInlineTextBox(this);
 }
 

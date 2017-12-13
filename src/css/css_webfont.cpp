@@ -32,7 +32,7 @@
 #include "rendering/font.h"
 #include "rendering/render_object.h"
 #include "rendering/render_canvas.h"
-#include <QDebug>
+#include "khtml_debug.h"
 #include <QFontDatabase>
 #include <QFont>
 
@@ -100,7 +100,7 @@ void CSSFontFaceSource::notifyFinished(khtml::CachedObject *finishedObj)
     m_id = QFontDatabase::addApplicationFontFromData(m_font->font());
 
     if (m_id == -1) {
-        // qDebug() << "WARNING: downloaded web font" << (size?names[0].string():QString()) << "was rejected by the font subsystem.";
+        // qCDebug(KHTML_LOG) << "WARNING: downloaded web font" << (size?names[0].string():QString()) << "was rejected by the font subsystem.";
         return;
     }
 

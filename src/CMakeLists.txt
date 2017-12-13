@@ -539,6 +539,7 @@ set(khtml_LIB_SRCS
 
 qt5_add_dbus_interface(khtml_LIB_SRCS ${KCookieServer_DBUS_INTERFACE} kcookiejar_interface)
 
+ecm_qt_declare_logging_category(khtml_LIB_SRCS HEADER khtml_debug.h IDENTIFIER KHTML_LOG CATEGORY_NAME kf5.khtml)
 
 ki18n_wrap_ui(khtml_LIB_SRCS
    kjserrordlgbase.ui

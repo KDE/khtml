@@ -399,7 +399,7 @@ JSValue *ArrayBufferView<T, P>::getValueProperty(ExecState * /*exec*/, int token
         return jsNumber(m_length);
     default:
         ASSERT_NOT_REACHED();
-        qWarning() << "ArrayBufferView<T>::getValueProperty unhandled token " << token;
+        qCWarning(KHTML_LOG) << "ArrayBufferView<T>::getValueProperty unhandled token " << token;
         break;
     }
     return nullptr;

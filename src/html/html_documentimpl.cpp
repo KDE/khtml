@@ -42,7 +42,7 @@
 #include "rendering/render_object.h"
 #include "dom/dom_exception.h"
 
-#include <QDebug>
+#include "khtml_debug.h"
 #include <QDBusConnection>
 #include <kcookiejar_interface.h>
 
@@ -57,7 +57,7 @@ using namespace khtml;
 HTMLDocumentImpl::HTMLDocumentImpl(KHTMLView *v)
     : DocumentImpl(v)
 {
-//    qDebug() << "HTMLDocumentImpl constructor this = " << this;
+//    qCDebug(KHTML_LOG) << "HTMLDocumentImpl constructor this = " << this;
     htmlElement = nullptr;
 
     m_doAutoFill = false;
@@ -106,7 +106,7 @@ DOMString HTMLDocumentImpl::cookie() const
     QDBusReply<QString> reply = kcookiejar.findDOMCookies(URL().url(), qlonglong(windowId));
 
     if (!reply.isValid()) {
-        qWarning() << "Can't communicate with cookiejar!";
+        qCWarning(KHTML_LOG) << "Can't communicate with cookiejar!";
         return DOMString();
     }
 
@@ -196,7 +196,7 @@ HTMLMapElementImpl *HTMLDocumentImpl::getMap(const DOMString &_url)
     QString url = _url.string();
     QString s;
     int pos = url.indexOf('#');
-    //qDebug() << "map pos of #:" << pos;
+    //qCDebug(KHTML_LOG) << "map pos of #:" << pos;
     s = QString(_url.unicode() + pos + 1, _url.length() - pos - 1);
 
     QMap<QString, HTMLMapElementImpl *>::const_iterator it = mapMap.constFind(s);
@@ -237,7 +237,7 @@ void HTMLDocumentImpl::close()
         // the first(IE)/last(Moz/Konq) registered onload on a <frame> and the
         // first(IE)/last(Moz/Konq) registered onload on a <frameset>.
 
-        //qDebug() << "dispatching LOAD_EVENT on document " << document() << " " << (view()?view()->part()->name():0);
+        //qCDebug(KHTML_LOG) << "dispatching LOAD_EVENT on document " << document() << " " << (view()?view()->part()->name():0);
 
         //Make sure to flush any pending image events now, as we want them out before the document's load event
         dispatchImageLoadEventsNow();
@@ -279,14 +279,14 @@ void HTMLDocumentImpl::changeModes(ParseMode newPMode, HTMLMode newHMode)
     m_styleSelector->strictParsing = !inCompatMode();
 
 #if 0
-    qDebug() << "DocumentImpl::determineParseMode: publicId =" << publicID << " systemId = " << systemID;
-    qDebug() << "DocumentImpl::determineParseMode: htmlMode = " << hMode;
+    qCDebug(KHTML_LOG) << "DocumentImpl::determineParseMode: publicId =" << publicID << " systemId = " << systemID;
+    qCDebug(KHTML_LOG) << "DocumentImpl::determineParseMode: htmlMode = " << hMode;
     if (pMode == Strict) {
-        qDebug() << " using strict parseMode";
+        qCDebug(KHTML_LOG) << " using strict parseMode";
     } else if (pMode == Compat) {
-        qDebug() << " using compatibility parseMode";
+        qCDebug(KHTML_LOG) << " using compatibility parseMode";
     } else {
-        qDebug() << " using transitional parseMode";
+        qCDebug(KHTML_LOG) << " using transitional parseMode";
     }
 #endif
 

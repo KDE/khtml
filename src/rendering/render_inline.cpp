@@ -261,8 +261,8 @@ void RenderInline::paint(PaintInfo &i, int _tx, int _ty)
  */
 inline static bool appendIfNew(QVector<QPoint> &pointArray, const QPoint &pnt)
 {
-//   if (!pointArray.isEmpty()) qDebug() << "appifnew: " << pointArray.back() << " == " << pnt << ": " << (pointArray.back() == pnt);
-//   else qDebug() << "appifnew: " << pnt << " (unconditional)";
+//   if (!pointArray.isEmpty()) qCDebug(KHTML_LOG) << "appifnew: " << pointArray.back() << " == " << pnt << ": " << (pointArray.back() == pnt);
+//   else qCDebug(KHTML_LOG) << "appifnew: " << pnt << " (unconditional)";
     if (!pointArray.isEmpty() && pointArray.back() == pnt) {
         return false;
     }
@@ -324,7 +324,7 @@ inline static bool reduceSpike(QVector<QPoint> &pointArray)
                     || (p0.x() < p2.x() && p2.x() < p1.x())
                     || (elide = p2.x() == p0.x() && p0.x() < p1.x())
                     || (elide = p1.x() < p0.x() && p0.x() == p2.x())))) {
-//     qDebug() << "spikered p2" << (elide ? " (elide)" : "") << ": " << p2 << " p1: " << p1 << " p0: " << p0;
+//     qCDebug(KHTML_LOG) << "spikered p2" << (elide ? " (elide)" : "") << ": " << p2 << " p1: " << p1 << " p0: " << p0;
         pointArray.pop_back(); pointArray.pop_back();
         if (!elide) {
             pointArray.push_back(p0);
@@ -375,7 +375,7 @@ inline static bool reduceSegmentSeparator(QVector<QPoint> &pointArray)
     QPoint p0 = *--it;
     QPoint p1 = *--it;
     QPoint p2 = *--it;
-//     qDebug() << "checking p2: " << p2 << " p1: " << p1 << " p0: " << p0;
+//     qCDebug(KHTML_LOG) << "checking p2: " << p2 << " p1: " << p1 << " p0: " << p0;
 
     if ((p0.x() == p1.x() && p1.x() == p2.x()
             && ((p2.y() < p1.y() && p1.y() < p0.y())
@@ -383,7 +383,7 @@ inline static bool reduceSegmentSeparator(QVector<QPoint> &pointArray)
             || (p0.y() == p1.y() && p1.y() == p2.y()
                 && ((p2.x() < p1.x() && p1.x() < p0.x())
                     || (p0.x() < p1.x() && p1.x() < p2.x())))) {
-//     qDebug() << "segred p2: " << p2 << " p1: " << p1 << " p0: " << p0;
+//     qCDebug(KHTML_LOG) << "segred p2: " << p2 << " p1: " << p1 << " p0: " << p0;
         pointArray.pop_back(); pointArray.pop_back();
         pointArray.push_back(p0);
         return true;
@@ -400,7 +400,7 @@ static void appendPoint(QVector<QPoint> &pointArray, const QPoint &pnt)
     if (!appendIfNew(pointArray, pnt)) {
         return;
     }
-//   qDebug() << "appendPoint: appended " << pnt;
+//   qCDebug(KHTML_LOG) << "appendPoint: appended " << pnt;
     reduceSegmentSeparator(pointArray)
     || reduceSpike(pointArray);
 }
@@ -420,7 +420,7 @@ static void collectHorizontalBoxCoordinates(InlineBox *box,
         QVector<QPoint> &pointArray,
         bool bottom, int offset, int limit = -500000)
 {
-//   qDebug() << "collectHorizontalBoxCoordinates: ";
+//   qCDebug(KHTML_LOG) << "collectHorizontalBoxCoordinates: ";
     offset = bottom ? offset : -offset;
     int y = box->yPos() + bottom * box->height() + offset;
     if (limit != -500000 && (bottom ? y < limit : y > limit)) {
@@ -437,7 +437,7 @@ static void collectHorizontalBoxCoordinates(InlineBox *box,
             insPnt.rx() = lastPnt.x();
             insPnt.ry() = y;
         }
-//         qDebug() << "left: " << lastPnt << " == " << insPnt << ": " << (insPnt == lastPnt);
+//         qCDebug(KHTML_LOG) << "left: " << lastPnt << " == " << insPnt << ": " << (insPnt == lastPnt);
         appendPoint(pointArray, insPnt);
     }
     // Insert starting point of box
@@ -464,7 +464,7 @@ static void collectHorizontalBoxCoordinates(InlineBox *box,
         if (flowBox->firstChild()) {
             QPoint lastPnt = pointArray.back();
             QPoint insPnt(lastPnt.x(), newPnt.y());
-//             qDebug() << "right: " << lastPnt << " == " << insPnt << ": " << (insPnt == lastPnt);
+//             qCDebug(KHTML_LOG) << "right: " << lastPnt << " == " << insPnt << ": " << (insPnt == lastPnt);
             appendPoint(pointArray, insPnt);
         }
     }
@@ -472,7 +472,7 @@ static void collectHorizontalBoxCoordinates(InlineBox *box,
     // Insert ending point of box
     appendPoint(pointArray, newPnt);
 
-//     qDebug() << "collectHorizontalBoxCoordinates: " << "ende";
+//     qCDebug(KHTML_LOG) << "collectHorizontalBoxCoordinates: " << "ende";
 }
 
 /**
@@ -527,7 +527,7 @@ static void collectVerticalBoxCoordinates(InlineRunBox *line,
                 pointArray.back().setY(qMax(lastPnt.y(), root->bottomOverflow() + offset));
             }
             QPoint insPnt(newPnt.x(), pointArray.back().y());
-//         qDebug() << "left: " << lastPnt << " == " << insPnt << ": " << (insPnt == lastPnt);
+//         qCDebug(KHTML_LOG) << "left: " << lastPnt << " == " << insPnt << ": " << (insPnt == lastPnt);
             appendPoint(pointArray, insPnt);
         }
         appendPoint(pointArray, newPnt);
@@ -584,7 +584,7 @@ static QPoint *linkEndToBegin(QVector<QPoint> &pointArray)
     QPoint pfirst = *it;
     QPoint pnext = *++it;
     QPoint plast = pointArray.back();
-//     qDebug() << "linkcheck plast: " << plast << " pfirst: " << pfirst << " pnext: " << pnext;
+//     qCDebug(KHTML_LOG) << "linkcheck plast: " << plast << " pfirst: " << pfirst << " pnext: " << pnext;
 
     if ((plast.x() == pfirst.x() && pfirst.x() == pnext.x())
             || (plast.y() == pfirst.y() && pfirst.y() == pnext.y())) {
@@ -750,7 +750,7 @@ static void paintOutlineSegment(RenderObject *o, QPainter *p, int tx, int ty,
         }
     }
 
-//     qDebug() << "segment(" << x1 << "," << y1 << ") - (" << x2 << "," << y2 << ")";
+//     qCDebug(KHTML_LOG) << "segment(" << x1 << "," << y1 << ") - (" << x2 << "," << y2 << ")";
     /*    p->setPen(Qt::gray);
         p->drawLine(x1,y1,x2,y2);*/
     switch (curBS) {
@@ -777,7 +777,7 @@ static void paintOutlineSegment(RenderObject *o, QPainter *p, int tx, int ty,
         break;
     case RenderObject::BSBottom:
     case RenderObject::BSTop:
-//       qDebug() << "BSTop/BSBottom: prevBS " << prevBS << " curBS " << curBS << " nextBS " << nextBS;
+//       qCDebug(KHTML_LOG) << "BSTop/BSBottom: prevBS " << prevBS << " curBS " << curBS << " nextBS " << nextBS;
         o->drawBorder(p,
                       x1 - (prevBS == RenderObject::BSLeft ? ow : 0),
                       y1 - (curBS == RenderObject::BSTop ? ow : 0),
@@ -805,20 +805,20 @@ void RenderInline::paintOutlinePath(QPainter *p, int tx, int ty, const QPoint *b
     Q_ASSERT(begin != end);
     ++begin;
 
-//     qDebug() << "last: " << last;
+//     qCDebug(KHTML_LOG) << "last: " << last;
 
     bs = newBorderSide(bs, direction, last, *begin);
-//     qDebug() << "newBorderSide: " << lastBS << " " << direction << "d " << last << " - " << *begin << " => " << bs;
+//     qCDebug(KHTML_LOG) << "newBorderSide: " << lastBS << " " << direction << "d " << last << " - " << *begin << " => " << bs;
 
     for (const QPoint *it = begin; it != end; ++it) {
         QPoint cur = *it;
-//         qDebug() << "cur: " << cur;
+//         qCDebug(KHTML_LOG) << "cur: " << cur;
         BorderSide nextBS;
         if (it + 1 != end) {
             QPoint diff = cur - last;
             direction = diff.x() + diff.y();
             nextBS = newBorderSide(bs, direction, cur, *(it + 1));
-//             qDebug() << "newBorderSide*: " << bs << " " << direction << "d " << cur << " - " << *(it + 1) << " => " << nextBS;
+//             qCDebug(KHTML_LOG) << "newBorderSide*: " << bs << " " << direction << "d " << cur << " - " << *(it + 1) << " => " << nextBS;
         } else {
             nextBS = endingBS;
         }
@@ -838,7 +838,7 @@ void RenderInline::calcMinMaxWidth()
     KHTMLAssert(!minMaxKnown());
 
 #ifdef DEBUG_LAYOUT
-    // qDebug() << renderName() << "(RenderInline)::calcMinMaxWidth() this=" << this;
+    // qCDebug(KHTML_LOG) << renderName() << "(RenderInline)::calcMinMaxWidth() this=" << this;
 #endif
 
     // Irrelevant, since some enclosing block will actually measure us and our children.
@@ -993,7 +993,7 @@ void RenderInline::caretPos(int offset, int flags, int &_x, int &_y, int &width,
 
     int absx, absy;
     if (cb && cb->absolutePosition(absx, absy)) {
-        //qDebug() << "absx=" << absx << " absy=" << absy;
+        //qCDebug(KHTML_LOG) << "absx=" << absx << " absy=" << absy;
         _x += absx;
         _y += absy;
     } else {

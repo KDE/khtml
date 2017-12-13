@@ -23,7 +23,7 @@
 #include "kjavaappletcontext.h"
 
 #include <klocalizedstring.h>
-#include <QDebug>
+#include "kjavaappletviewer_debug.h"
 #include <kparts/browserextension.h>
 #include <kparts/liveconnectextension.h>
 
@@ -147,7 +147,7 @@ QString &KJavaApplet::archives()
 
 void KJavaApplet::resizeAppletWidget(int width, int height)
 {
-    // qDebug() << "KJavaApplet, id = " << id << ", ::resizeAppletWidget to " << width << ", " << height;
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "KJavaApplet, id = " << id << ", ::resizeAppletWidget to " << width << ", " << height;
 
     QStringList sl;
     sl.push_back(QString::number(0));     // applet itself has id 0
@@ -255,7 +255,7 @@ void KJavaApplet::stateChange(const int newStateInt)
     if (ok) {
         d->state = newState;
     } else {
-        qCritical() << "KJavaApplet::stateChange : don't want to switch from state "
+        qCCritical(KJAVAAPPLETVIEWER_LOG) << "KJavaApplet::stateChange : don't want to switch from state "
                     << d->state << " to " << newState;
     }
 }

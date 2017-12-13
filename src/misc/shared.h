@@ -53,7 +53,7 @@ public:
             delete static_cast<type *>(this);
         }
     }
-    bool hasOneRef()   //qDebug() << "ref=" << _ref;
+    bool hasOneRef()   //qCDebug(KHTML_LOG) << "ref=" << _ref;
     {
         return _ref == 1;
     }
@@ -117,7 +117,7 @@ public:
         _ref--;
     }
 
-    bool hasOneRef()   //qDebug() << "ref=" << _ref;
+    bool hasOneRef()   //qCDebug(KHTML_LOG) << "ref=" << _ref;
     {
         return _ref == 1;
     }

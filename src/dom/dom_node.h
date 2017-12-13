@@ -922,7 +922,7 @@ public:
      * // try to convert into an Element:
      * Element e = n;
      * if( e.isNull() )
-     *   kDebug() << "node isn't an element node";
+     *   qCDebug(KHTML_LOG) << "node isn't an element node";
      * \endcode
      */
     bool isNull() const

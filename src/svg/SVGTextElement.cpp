@@ -111,7 +111,7 @@ AffineTransform *SVGTextElement::supplementalTransform()
 RenderObject *SVGTextElement::createRenderer(RenderArena *arena, RenderStyle *style)
 {
     Q_UNUSED(style);
-    // qDebug() << "create renderer for <text>";
+    // qCDebug(KHTML_LOG) << "create renderer for <text>";
     return new(arena) RenderSVGText(this);
 }
 

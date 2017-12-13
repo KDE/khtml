@@ -51,14 +51,14 @@ ParsedStatement::~ParsedStatement()
 
 void ParsedStatement::parse(const DOMString &statement)
 {
-    // qDebug() << "parsing:" << statement.string();
+    // qCDebug(KHTML_LOG) << "parsing:" << statement.string();
     m_ec = 0;
     delete m_expr;
     Expression::evaluationContext().reset(nullptr, m_res.get());
 
     m_expr = khtmlParseXPathStatement(statement, m_ec);
 
-    // qDebug() << "AST:" << (m_expr ? m_expr->dump() : QString::fromLatin1("*** parse error ***"));
+    // qCDebug(KHTML_LOG) << "AST:" << (m_expr ? m_expr->dump() : QString::fromLatin1("*** parse error ***"));
 }
 
 void ParsedStatement::optimize()

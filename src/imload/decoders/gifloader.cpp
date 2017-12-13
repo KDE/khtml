@@ -36,7 +36,7 @@
 #include <QByteArray>
 #include <QPainter>
 #include <QVector>
-#include <QDebug>
+#include "khtml_debug.h"
 
 #include <stdlib.h>
 
@@ -341,7 +341,7 @@ public:
     static void printColorMap(ColorMapObject *map)
     {
         for (int c = 0; c < map->ColorCount; ++c)
-            qDebug() << "  " << map << c << map->Colors[c].Red
+            qCDebug(KHTML_LOG) << "  " << map << c << map->Colors[c].Red
                      << map->Colors[c].Green
                      << map->Colors[c].Blue;
     }

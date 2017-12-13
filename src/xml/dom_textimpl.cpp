@@ -33,7 +33,7 @@
 #include <wtf/PassRefPtr.h>
 #include <wtf/RefPtr.h>
 
-#include <QDebug>
+#include "khtml_debug.h"
 
 // for SVG
 #include <rendering/RenderSVGInlineText.h>

@@ -56,7 +56,7 @@
 #include "css/cssvalues.h"
 
 #include <kcolorscheme.h>
-#include <QDebug>
+#include "khtml_debug.h"
 
 //#define IN_PLACE_WIDGET_PAINTING
 
@@ -80,7 +80,7 @@ void RenderReplaced::calcMinMaxWidth()
     KHTMLAssert(!minMaxKnown());
 
 #ifdef DEBUG_LAYOUT
-    // qDebug() << "RenderReplaced::calcMinMaxWidth() known=" << minMaxKnown();
+    // qCDebug(KHTML_LOG) << "RenderReplaced::calcMinMaxWidth() known=" << minMaxKnown();
 #endif
 
     m_width = calcReplacedWidth() + borderLeft() + borderRight() + paddingLeft() + paddingRight();
@@ -100,7 +100,7 @@ void RenderReplaced::calcMinMaxWidth()
 FindSelectionResult RenderReplaced::checkSelectionPoint(int _x, int _y, int _tx, int _ty, DOM::NodeImpl *&node, int &offset, SelPointState &)
 {
 #if 0
-    // qDebug() << "RenderReplaced::checkSelectionPoint(_x="<<_x<<",_y="<<_y<<",_tx="<<_tx<<",_ty="<<_ty<<")" << endl
+    // qCDebug(KHTML_LOG) << "RenderReplaced::checkSelectionPoint(_x="<<_x<<",_y="<<_y<<",_tx="<<_tx<<",_ty="<<_ty<<")" << endl
             << "xPos: " << xPos() << " yPos: " << yPos() << " width: " << width() << " height: " << height() << endl
             << "_ty + yPos: " << (_ty + yPos()) << " + height: " << (_ty + yPos() + height()) << "; _tx + xPos: " << (_tx + xPos()) << " + width: " << (_tx + xPos() + width());
 #endif
@@ -842,7 +842,7 @@ bool RenderWidget::eventFilter(QObject * /*o*/, QEvent *e)
 
     bool filtered = false;
 
-    //qDebug() << "RenderWidget::eventFilter type=" << e->type();
+    //qCDebug(KHTML_LOG) << "RenderWidget::eventFilter type=" << e->type();
     switch (e->type()) {
     case QEvent::FocusOut:
         // First, forward it to the widget, so that Qt gets a precise
@@ -865,7 +865,7 @@ bool RenderWidget::eventFilter(QObject * /*o*/, QEvent *e)
         directToWidget = false;
         filtered       = true; //We already delivered it!
 
-        //qDebug() << "RenderWidget::eventFilter captures FocusIn";
+        //qCDebug(KHTML_LOG) << "RenderWidget::eventFilter captures FocusIn";
         document()->setFocusNode(element());
 //         if ( isEditable() ) {
 //             KHTMLPartBrowserExtension *ext = static_cast<KHTMLPartBrowserExtension *>( element()->view->part()->browserExtension() );
@@ -1093,7 +1093,7 @@ bool RenderWidget::handleEvent(const DOM::EventImpl &ev)
             if (m_underMouse) {
                 QEvent moe(QEvent::Leave);
                 QApplication::sendEvent(m_underMouse, &moe);
-//                qDebug() << "sending LEAVE to"<< m_underMouse;
+//                qCDebug(KHTML_LOG) << "sending LEAVE to"<< m_underMouse;
                 if (m_underMouse->testAttribute(Qt::WA_Hover)) {
                     QHoverEvent he(QEvent::HoverLeave, QPoint(-1, -1), QPoint(0, 0));
                     QApplication::sendEvent(m_underMouse, &he);
@@ -1102,7 +1102,7 @@ bool RenderWidget::handleEvent(const DOM::EventImpl &ev)
             if (target) {
                 QEvent moe(QEvent::Enter);
                 QApplication::sendEvent(target, &moe);
-//                qDebug() << "sending ENTER to" << target;
+//                qCDebug(KHTML_LOG) << "sending ENTER to" << target;
                 if (target->testAttribute(Qt::WA_Hover)) {
                     QHoverEvent he(QEvent::HoverEnter, QPoint(0, 0), QPoint(-1, -1));
                     QApplication::sendEvent(target, &he);
@@ -1236,7 +1236,7 @@ bool RenderWidget::handleEvent(const DOM::EventImpl &ev)
         QWidget *target = m_underMouse ? (QWidget *) m_underMouse : m_widget;
         QEvent moe(QEvent::Leave);
         QApplication::sendEvent(target, &moe);
-//        qDebug() << "received MOUSEOUT, forwarding to" << target ;
+//        qCDebug(KHTML_LOG) << "received MOUSEOUT, forwarding to" << target ;
         if (target->testAttribute(Qt::WA_Hover)) {
             QHoverEvent he(QEvent::HoverLeave, QPoint(-1, -1), QPoint(0, 0));
             QApplication::sendEvent(target, &he);
@@ -1247,7 +1247,7 @@ bool RenderWidget::handleEvent(const DOM::EventImpl &ev)
     case EventImpl::MOUSEOVER_EVENT: {
         QEvent moe(QEvent::Enter);
         QApplication::sendEvent(m_widget, &moe);
-//        qDebug() << "received MOUSEOVER, forwarding to" << m_widget;
+//        qCDebug(KHTML_LOG) << "received MOUSEOVER, forwarding to" << m_widget;
         if (m_widget->testAttribute(Qt::WA_Hover)) {
             QHoverEvent he(QEvent::HoverEnter, QPoint(0, 0), QPoint(-1, -1));
             QApplication::sendEvent(m_widget, &he);

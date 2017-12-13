@@ -36,7 +36,7 @@
 #include <khtml_part.h>
 
 #include <QActionEvent>
-#include <QDebug>
+#include "khtml_debug.h"
 
 using namespace DOM;
 using namespace khtml;
@@ -962,7 +962,7 @@ int KeyboardEventImpl::keyCode() const
             case '(': return '9';
             case ')': return '0';
             default:
-                qWarning() << "Don't know how resolve conflict of code:" << code
+                qCWarning(KHTML_LOG) << "Don't know how resolve conflict of code:" << code
                            << " with a virtKey";
             }
         }

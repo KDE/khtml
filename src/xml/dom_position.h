@@ -26,7 +26,7 @@
 #ifndef __dom_position_h__
 #define __dom_position_h__
 
-#include <QDebug>
+#include "khtml_debug.h"
 
 namespace DOM
 {

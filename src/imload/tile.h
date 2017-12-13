@@ -27,7 +27,7 @@
 
 #include <cstring>
 
-#include <QDebug>
+#include "khtml_debug.h"
 
 namespace khtmlImLoad
 {

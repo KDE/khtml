@@ -31,7 +31,7 @@
 #include <kjs/scope_chain.h>
 #include <kjs/JSVariableObject.h>
 #include <kjs/object.h>
-#include <QDebug>
+#include "khtml_debug.h"
 #include <klocalizedstring.h>
 
 #include "value2string.h"

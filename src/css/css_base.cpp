@@ -29,7 +29,7 @@
 #include "css_base.h"
 
 #include <assert.h>
-#include <QDebug>
+#include "khtml_debug.h"
 
 #ifdef CSS_DEBUG
 #include "cssproperties.h"
@@ -113,7 +113,7 @@ void StyleBaseImpl::setParsedValue(int propId, const CSSValueImpl *parsedValue,
 
     propList->append(prop);
 #ifdef CSS_DEBUG
-    qDebug() << "added property: " << getPropertyName(propId).string()
+    qCDebug(KHTML_LOG) << "added property: " << getPropertyName(propId).string()
              // non implemented yet << ", value: " << parsedValue->cssText().string()
              << " important: " << prop->m_important;
 #endif
@@ -144,13 +144,13 @@ StyleListImpl::~StyleListImpl()
 
 void CSSSelector::print(void)
 {
-    // qDebug() << "[Selector: tag = " <<       QString::number(makeId(tagNamespace.id(), tagLocalName.id()),16) << ", attr = \"" << makeId(attrNamespace.id(), attrLocalName.id()) << "\", match = \"" << match
+    // qCDebug(KHTML_LOG) << "[Selector: tag = " <<       QString::number(makeId(tagNamespace.id(), tagLocalName.id()),16) << ", attr = \"" << makeId(attrNamespace.id(), attrLocalName.id()) << "\", match = \"" << match
     //    << "\" value = \"" << value.string().string().toLatin1().constData() << "\" relation = " << (int)relation
     //    << "]";
     if (tagHistory) {
         tagHistory->print();
     }
-    // qDebug() << "    specificity = " << specificity();
+    // qCDebug(KHTML_LOG) << "    specificity = " << specificity();
 }
 
 unsigned int CSSSelector::specificity() const
@@ -419,7 +419,7 @@ DOMString CSSSelector::selectorText() const
                 str += "*=";
                 break;
             default:
-                qWarning() << "Unhandled case in CSSStyleRuleImpl::selectorText : match=" << cs->match;
+                qCWarning(KHTML_LOG) << "Unhandled case in CSSStyleRuleImpl::selectorText : match=" << cs->match;
             }
             if (cs->match != CSSSelector::Set) {
                 str += "\"";

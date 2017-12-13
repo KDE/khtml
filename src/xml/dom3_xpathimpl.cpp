@@ -90,7 +90,7 @@ void XPathResultImpl::convertTo(unsigned short type, int &exceptioncode)
         m_resultType = type;
         break;
     default:
-        // qDebug() << "Cannot convert XPathResultImpl to unknown type" << type;
+        // qCDebug(KHTML_LOG) << "Cannot convert XPathResultImpl to unknown type" << type;
         exceptioncode = XPathException::toCode(XPathException::TYPE_ERR);
     }
 }
@@ -239,7 +239,7 @@ XPathResultImpl *XPathExpressionImpl::evaluate(NodeImpl *contextNode,
     if (type != ANY_TYPE) {
         result->convertTo(type, exceptioncode);
         if (exceptioncode) {
-            // qDebug() << "couldn't convert XPathResult to" <<  type << "from" << xpathRes.type();
+            // qCDebug(KHTML_LOG) << "couldn't convert XPathResult to" <<  type << "from" << xpathRes.type();
             delete result;
             return nullptr;
         }

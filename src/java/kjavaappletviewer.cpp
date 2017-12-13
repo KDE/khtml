@@ -43,7 +43,7 @@
 #include <kaboutdata.h>
 #include <klocalizedstring.h>
 #include <kiconloader.h>
-#include <QDebug>
+#include "kjavaappletviewer_debug.h"
 #include <kconfig.h>
 #include <kio/authinfo.h>
 #include <kio/global.h>
@@ -119,7 +119,7 @@ void KJavaServerMaintainer::releaseContext(QObject *w, const QString &doc)
 {
     ContextMap::iterator it = m_contextmap.find(qMakePair(w, doc));
     if (it != m_contextmap.end() && --(*it).second <= 0) {
-        // qDebug() << "KJavaServerMaintainer::releaseContext";
+        // qCDebug(KJAVAAPPLETVIEWER_LOG) << "KJavaServerMaintainer::releaseContext";
         (*it).first->deleteLater();
         m_contextmap.erase(it);
     }
@@ -284,7 +284,7 @@ KJavaAppletViewer::KJavaAppletViewer(QWidget *wparent,
             if (value.at(value.length() - 1) == '\"') {
                 value.truncate(value.length() - 1);
             }
-            // qDebug() << "name=" << name << " value=" << value;
+            // qCDebug(KJAVAAPPLETVIEWER_LOG) << "name=" << name << " value=" << value;
             if (!name.isEmpty()) {
                 const QString name_lower = name.toLower();
                 if (name == "__KHTML__PLUGINBASEURL" ||
@@ -325,7 +325,7 @@ KJavaAppletViewer::KJavaAppletViewer(QWidget *wparent,
     }
     if (!classid.isEmpty()) {
         applet->setParameter("CLSID", classid);
-        // qDebug() << "classid=" << classid << classid.startsWith("clsid:");
+        // qCDebug(KJAVAAPPLETVIEWER_LOG) << "classid=" << classid << classid.startsWith("clsid:");
         if (classid.startsWith(QLatin1String("clsid:")))
             // codeBase contains the URL to the plugin page
         {
@@ -389,7 +389,7 @@ KJavaAppletViewer::KJavaAppletViewer(QWidget *wparent,
         QDBusReply<QByteArray> reply = kpasswdserver.call("checkAuthInfo", params, qlonglong(m_view->topLevelWidget()->winId()), qlonglong(KUserTimestamp::userTimestamp()));
 
         if (!reply.isValid()) {
-            qWarning() << "checkAuthInfo DBUS call failed: " << reply.error().message();
+            qCWarning(KJAVAAPPLETVIEWER_LOG) << "checkAuthInfo DBUS call failed: " << reply.error().message();
         } else {
             KIO::AuthInfo authResult;
             QDataStream stream2(reply.value());
@@ -488,7 +488,7 @@ bool KJavaAppletViewer::openUrl(const QUrl &url)
 
 bool KJavaAppletViewer::closeUrl()
 {
-    // qDebug() << "closeUrl";
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "closeUrl";
     m_closed = true;
     KJavaApplet *const applet = m_view->appletWidget()->applet();
     if (applet->isCreated()) {
@@ -588,7 +588,7 @@ void KJavaAppletViewerBrowserExtension::restoreState(QDataStream &stream)
         stream >> key;
         stream >> val;
         applet->setParameter(key, val);
-        // qDebug() << "restoreState key:" << key << " val:" << val;
+        // qCDebug(KJAVAAPPLETVIEWER_LOG) << "restoreState key:" << key << " val:" << val;
     }
     applet->setSize(w->sizeHint());
     if (w->isVisible()) {

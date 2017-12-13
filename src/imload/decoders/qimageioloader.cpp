@@ -179,7 +179,7 @@ const QStringList &QImageIOLoaderProvider::mimeTypes()
         }
         if (!mimetype.isEmpty()) {
             s_formats.append(mimetype);
-            // qDebug() << "QImageIO - Format supported: " << mimetype;
+            // qCDebug(KHTML_LOG) << "QImageIO - Format supported: " << mimetype;
         }
     }
     return s_formats;
@@ -195,7 +195,7 @@ ImageLoader *QImageIOLoaderProvider::loaderFor(const QByteArray &prefix)
     if (format.isEmpty() || !isSupportedFormat(format)) {
         return nullptr;
     } else
-        // qDebug() << "QImageIO - Format guessed: " << format;
+        // qCDebug(KHTML_LOG) << "QImageIO - Format guessed: " << format;
 
     {
         return new QImageIOLoader;

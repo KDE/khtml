@@ -24,7 +24,7 @@
 #include "khtml_part.h"
 #include "dom/dom_exception.h"
 #include "dom/dom2_range.h"
-#include <QDebug>
+#include "khtml_debug.h"
 
 using DOM::DOMException;
 
@@ -105,7 +105,7 @@ JSValue *DOMRange::getValueProperty(ExecState *exec, int token) const
         return getDOMNode(exec, range.commonAncestorContainer(exception));
     }
     default:
-        // qDebug() << "WARNING: Unhandled token in DOMRange::getValueProperty : " << token;
+        // qCDebug(KHTML_LOG) << "WARNING: Unhandled token in DOMRange::getValueProperty : " << token;
         return jsNull();
     }
 }
@@ -288,13 +288,13 @@ DOMSelection::DOMSelection(ExecState *exec, DOM::DocumentImpl *parentDocument):
 
 bool DOMSelection::getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot)
 {
-    // qDebug() << propertyName.ustring().qstring();
+    // qCDebug(KHTML_LOG) << propertyName.ustring().qstring();
     return getStaticValueSlot<DOMSelection, JSObject>(exec, &DOMSelectionTable, this, propertyName, slot);
 }
 
 JSValue *DOMSelection::getValueProperty(ExecState *exec, int token) const
 {
-    // qDebug() << token;
+    // qCDebug(KHTML_LOG) << token;
     DOMExceptionTranslator exception(exec);
     DOM::Selection sel = currentSelection();
     // ### TODO: below doesn't really distinguish anchor and focus properly.

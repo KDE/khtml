@@ -156,7 +156,7 @@ QPixmap *PaintBuffer::grab(QSize s)
 
     s_grabbed->push(s_avail->count() ? s_avail->pop() : new PaintBuffer);
     QPixmap *ret = s_grabbed->top()->getBuf(s);
-    //qDebug() << "requested size:" << s << "real size:" << ret->size();
+    //qCDebug(KHTML_LOG) << "requested size:" << s << "real size:" << ret->size();
     return ret;
 }
 

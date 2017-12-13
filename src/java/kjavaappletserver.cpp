@@ -25,7 +25,7 @@
 #include "kjavaprocess.h"
 #include "kjavadownloader.h"
 
-#include <QDebug>
+#include "kjavaappletviewer_debug.h"
 #include <kconfig.h>
 #include <kconfiggroup.h>
 #include <klocalizedstring.h>
@@ -239,17 +239,17 @@ void KJavaAppletServer::setupJava(KJavaProcess *p)
 
     // Prepare classpath variable
     QString kjava_class = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kf5/kjava/kjava.jar");
-    // qDebug() << "kjava_class = " << kjava_class;
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "kjava_class = " << kjava_class;
     if (kjava_class.isNull()) { // Should not happen
         return;
     }
 
     QDir dir(kjava_class);
     dir.cdUp();
-    // qDebug() << "dir = " << dir.absolutePath();
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "dir = " << dir.absolutePath();
 
     const QStringList entries = dir.entryList(QDir::nameFiltersFromString("*.jar"));
-    // qDebug() << "entries = " << entries.join( ":" );
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "entries = " << entries.join( ":" );
 
     QString classes;
     {
@@ -289,7 +289,7 @@ void KJavaAppletServer::setupJava(KJavaProcess *p)
         // FIXME
         const QUrl dummyURL("http://www.kde.org/");
         const QString httpProxy = KProtocolManager::proxyForUrl(dummyURL);
-        // qDebug() << "httpProxy is " << httpProxy;
+        // qCDebug(KJAVAAPPLETVIEWER_LOG) << "httpProxy is " << httpProxy;
 
         const QUrl url(httpProxy);
         p->setSystemProperty("http.proxyHost", url.host());
@@ -302,7 +302,7 @@ void KJavaAppletServer::setupJava(KJavaProcess *p)
 
 void KJavaAppletServer::createContext(int contextId, KJavaAppletContext *context)
 {
-//    qDebug() << "createContext: " << contextId;
+//    qCDebug(KJAVAAPPLETVIEWER_LOG) << "createContext: " << contextId;
     if (d->javaProcessFailed) {
         return;
     }
@@ -316,7 +316,7 @@ void KJavaAppletServer::createContext(int contextId, KJavaAppletContext *context
 
 void KJavaAppletServer::destroyContext(int contextId)
 {
-//    qDebug() << "destroyContext: " << contextId;
+//    qCDebug(KJAVAAPPLETVIEWER_LOG) << "destroyContext: " << contextId;
     if (d->javaProcessFailed) {
         return;
     }
@@ -335,7 +335,7 @@ bool KJavaAppletServer::createApplet(int contextId, int appletId,
                                      QSize size, const QMap<QString, QString> &params,
                                      const QString &windowTitle)
 {
-//    qDebug() << "createApplet: contextId = " << contextId     << endl
+//    qCDebug(KJAVAAPPLETVIEWER_LOG) << "createApplet: contextId = " << contextId     << endl
 //              << "              appletId  = " << appletId      << endl
 //              << "              name      = " << name          << endl
 //              << "              clazzName = " << clazzName     << endl
@@ -513,9 +513,9 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
                 it.value()->data(qba);
                 qba = QByteArray::fromRawData(qb.data() + index, qb.size() - index - 1);
             }
-            // qDebug() << "PutData(" << ID_num << ") size=" << qb.size() - index;
+            // qCDebug(KJAVAAPPLETVIEWER_LOG) << "PutData(" << ID_num << ") size=" << qb.size() - index;
         } else {
-            qCritical() << "PutData error " << ok;
+            qCCritical(KJAVAAPPLETVIEWER_LOG) << "PutData error " << ok;
         }
         return;
     }
@@ -523,10 +523,10 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
     while (index < qb_size) {
         int sep_pos = qb.indexOf((char) 0, index);
         if (sep_pos < 0) {
-            qCritical() << "Missing separation byte";
+            qCCritical(KJAVAAPPLETVIEWER_LOG) << "Missing separation byte";
             sep_pos = qb_size;
         }
-        //qDebug() << "KJavaAppletServer::slotJavaRequest: "<< QString::fromLocal8Bit( qb.data() + index, sep_pos - index );
+        //qCDebug(KJAVAAPPLETVIEWER_LOG) << "KJavaAppletServer::slotJavaRequest: "<< QString::fromLocal8Bit( qb.data() + index, sep_pos - index );
         args.append(QString::fromLocal8Bit(qb.data() + index, sep_pos - index));
         index = sep_pos + 1; //skip the sep
     }
@@ -552,9 +552,9 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
     case KJAS_GET_URLDATA:
         if (ok && !args.empty()) {
             d->kiojobs.insert(ID_num, new KJavaDownloader(ID_num, args.first()));
-            // qDebug() << "GetURLData(" << ID_num << ") url=" << args.first();
+            // qCDebug(KJAVAAPPLETVIEWER_LOG) << "GetURLData(" << ID_num << ") url=" << args.first();
         } else {
-            qCritical() << "GetURLData error " << ok << " args:" << args.size();
+            qCCritical(KJAVAAPPLETVIEWER_LOG) << "GetURLData error " << ok << " args:" << args.size();
         }
         return;
     case KJAS_PUT_URLDATA:
@@ -562,9 +562,9 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
             KJavaUploader *const job = new KJavaUploader(ID_num, args.first());
             d->kiojobs.insert(ID_num, job);
             job->start();
-            // qDebug() << "PutURLData(" << ID_num << ") url=" << args.first();
+            // qCDebug(KJAVAAPPLETVIEWER_LOG) << "PutURLData(" << ID_num << ") url=" << args.first();
         } else {
-            qCritical() << "PutURLData error " << ok << " args:" << args.size();
+            qCCritical(KJAVAAPPLETVIEWER_LOG) << "PutURLData error " << ok << " args:" << args.size();
         }
         return;
     case KJAS_DATA_COMMAND:
@@ -574,19 +574,19 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
             if (ok && it != d->kiojobs.end()) {
                 it.value()->jobCommand(cmd);
             }
-            // qDebug() << "KIO Data command: " << ID_num << " " << args.first();
+            // qCDebug(KJAVAAPPLETVIEWER_LOG) << "KIO Data command: " << ID_num << " " << args.first();
         } else {
-            qCritical() << "KIO Data command error " << ok << " args:" << args.size();
+            qCCritical(KJAVAAPPLETVIEWER_LOG) << "KIO Data command error " << ok << " args:" << args.size();
         }
         return;
     case KJAS_JAVASCRIPT_EVENT:
         cmd = QLatin1String("JS_Event");
 
         if (!args.empty()) {
-            // qDebug() << "Javascript request: "<< contextID
+            // qCDebug(KJAVAAPPLETVIEWER_LOG) << "Javascript request: "<< contextID
             //             << " code: " << args[0] << endl;
         } else {
-            qCritical() << "Expected args not to be empty!";
+            qCCritical(KJAVAAPPLETVIEWER_LOG) << "Expected args not to be empty!";
         }
 
         break;
@@ -597,60 +597,60 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
             const int ticket = args[0].toInt();
             JSStack::iterator it = d->jsstack.find(ticket);
             if (it != d->jsstack.end()) {
-                // qDebug() << "slotJavaRequest: " << ticket;
+                // qCDebug(KJAVAAPPLETVIEWER_LOG) << "slotJavaRequest: " << ticket;
                 args.pop_front();
                 it.value()->args.operator = (args); // just in case ..
                 it.value()->ready = true;
                 it.value()->exit = true;
             } else {
-                // qDebug() << "Error: Missed return member data";
+                // qCDebug(KJAVAAPPLETVIEWER_LOG) << "Error: Missed return member data";
             }
         } else {
-            qCritical() << "Expected args not to be empty!";
+            qCCritical(KJAVAAPPLETVIEWER_LOG) << "Expected args not to be empty!";
         }
         return;
     }
     case KJAS_AUDIOCLIP_PLAY:
         cmd = QLatin1String("audioclip_play");
         if (!args.empty()) {
-            // qDebug() << "Audio Play: url=" << args[0];
+            // qCDebug(KJAVAAPPLETVIEWER_LOG) << "Audio Play: url=" << args[0];
         } else {
-            qCritical() << "Expected args not to be empty!";
+            qCCritical(KJAVAAPPLETVIEWER_LOG) << "Expected args not to be empty!";
         }
 
         break;
     case KJAS_AUDIOCLIP_LOOP:
         cmd = QLatin1String("audioclip_loop");
         if (!args.empty()) {
-            // qDebug() << "Audio Loop: url=" << args[0];
+            // qCDebug(KJAVAAPPLETVIEWER_LOG) << "Audio Loop: url=" << args[0];
         } else {
-            qCritical() << "Expected args not to be empty!";
+            qCCritical(KJAVAAPPLETVIEWER_LOG) << "Expected args not to be empty!";
         }
 
         break;
     case KJAS_AUDIOCLIP_STOP:
         cmd = QLatin1String("audioclip_stop");
         if (!args.empty()) {
-            // qDebug() << "Audio Stop: url=" << args[0];
+            // qCDebug(KJAVAAPPLETVIEWER_LOG) << "Audio Stop: url=" << args[0];
         } else {
-            qCritical() << "Expected args not to be empty!";
+            qCCritical(KJAVAAPPLETVIEWER_LOG) << "Expected args not to be empty!";
         }
 
         break;
     case KJAS_APPLET_STATE:
         if (args.size() > 1) {
-            // qDebug() << "Applet State Notification for Applet " << args[0] << ". New state=" << args[1];
+            // qCDebug(KJAVAAPPLETVIEWER_LOG) << "Applet State Notification for Applet " << args[0] << ". New state=" << args[1];
         } else {
-            qCritical() << "Expected args not to be empty!";
+            qCCritical(KJAVAAPPLETVIEWER_LOG) << "Expected args not to be empty!";
         }
 
         cmd = QLatin1String("AppletStateNotification");
         break;
     case KJAS_APPLET_FAILED:
         if (args.size() > 1) {
-            // qDebug() << "Applet " << args[0] << " Failed: " << args[1];
+            // qCDebug(KJAVAAPPLETVIEWER_LOG) << "Applet " << args[0] << " Failed: " << args[1];
         } else {
-            qCritical() << "Expected args not to be empty!";
+            qCCritical(KJAVAAPPLETVIEWER_LOG) << "Expected args not to be empty!";
         }
 
         cmd = QLatin1String("AppletFailed");
@@ -688,7 +688,7 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
 #endif
                 }
             }
-            // qDebug() << "Security confirm " << args.first() << certs.count();
+            // qCDebug(KJAVAAPPLETVIEWER_LOG) << "Security confirm " << args.first() << certs.count();
             if (!text.isEmpty()) {
                 answer = PermissionDialog(qApp->activeWindow()).exec(text, args[0]);
             }
@@ -704,7 +704,7 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
     }
 
     if (!ok) {
-        qCritical() << "could not parse out contextID to call command on";
+        qCCritical(KJAVAAPPLETVIEWER_LOG) << "could not parse out contextID to call command on";
         return;
     }
 
@@ -712,7 +712,7 @@ void KJavaAppletServer::slotJavaRequest(const QByteArray &qb)
     if (context) {
         context->processCmd(cmd, args);
     } else if (cmd != "AppletStateNotification") {
-        qCritical() << "no context object for this id";
+        qCCritical(KJAVAAPPLETVIEWER_LOG) << "no context object for this id";
     }
 }
 
@@ -723,7 +723,7 @@ void KJavaAppletServer::killTimers()
 
 void KJavaAppletServer::endWaitForReturnData()
 {
-    // qDebug() << "KJavaAppletServer::endWaitForReturnData";
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "KJavaAppletServer::endWaitForReturnData";
     killTimers();
     JSStack::iterator it = d->jsstack.begin();
     JSStack::iterator itEnd = d->jsstack.end();
@@ -735,12 +735,12 @@ void KJavaAppletServer::endWaitForReturnData()
 void KJavaAppletServer::timerEvent(QTimerEvent *)
 {
     endWaitForReturnData();
-    // qDebug() << "KJavaAppletServer::timerEvent timeout";
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "KJavaAppletServer::timerEvent timeout";
 }
 
 void KJavaAppletServer::waitForReturnData(JSStackFrame *frame)
 {
-    // qDebug() << ">KJavaAppletServer::waitForReturnData";
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << ">KJavaAppletServer::waitForReturnData";
     killTimers();
     startTimer(15000);
     while (!frame->exit) {
@@ -749,7 +749,7 @@ void KJavaAppletServer::waitForReturnData(JSStackFrame *frame)
     if (d->jsstack.size() <= 1) {
         killTimers();
     }
-    // qDebug() << "<KJavaAppletServer::waitForReturnData stacksize:" << d->jsstack.size();
+    // qCDebug(KJAVAAPPLETVIEWER_LOG) << "<KJavaAppletServer::waitForReturnData stacksize:" << d->jsstack.size();
 }
 
 bool KJavaAppletServer::getMember(QStringList &args, QStringList &ret_args)

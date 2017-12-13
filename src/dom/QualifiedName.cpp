@@ -65,8 +65,8 @@ const QualifiedName &QualifiedName::operator=(const QualifiedName &name)
 
 bool QualifiedName::operator==(const QualifiedName &other) const
 {
-    /*// qDebug() << m_prefix.id() << other.prefixId().id() << ((m_prefix == other.prefixId()));
-    // qDebug() << (m_prefix == other.prefixId()) << (m_localName == other.localNameId()) << (m_namespace == other.namespaceNameId());*/
+    /*// qCDebug(KHTML_LOG) << m_prefix.id() << other.prefixId().id() << ((m_prefix == other.prefixId()));
+    // qCDebug(KHTML_LOG) << (m_prefix == other.prefixId()) << (m_localName == other.localNameId()) << (m_namespace == other.namespaceNameId());*/
     return (m_prefix == other.prefixId() && m_localName == other.localNameId() && m_namespace == other.namespaceNameId());
 }
 

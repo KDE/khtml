@@ -25,7 +25,7 @@
 
 using namespace DOM;
 
-#include <QDebug>
+#include "khtml_debug.h"
 
 // priority of tags. Closing tags of higher priority close tags of lower
 // priority.
@@ -464,7 +464,7 @@ bool DOM::checkIsScopeBoundary(ushort tagID)
 
 bool DOM::checkChild(ushort tagID, ushort childID, bool strict)
 {
-    //qDebug() << "checkChild: " << tagID << "/" << childID;
+    //qCDebug(KHTML_LOG) << "checkChild: " << tagID << "/" << childID;
 
     if (childID == ID_COMMENT) {
         return true;
@@ -695,7 +695,7 @@ bool DOM::checkChild(ushort tagID, ushort childID, bool strict)
             return false;
         }
     default:
-        // qDebug() << "unhandled tag in dtd.cpp:checkChild(): tagID=" << tagID << "!";
+        // qCDebug(KHTML_LOG) << "unhandled tag in dtd.cpp:checkChild(): tagID=" << tagID << "!";
         return false;
     }
 }

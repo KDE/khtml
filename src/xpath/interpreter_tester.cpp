@@ -128,9 +128,9 @@ void check(DocumentImpl *doc, const QString &statement,
     }
 
     if (failure) {
-        qDebug() << "ERROR: Failed to interprete '" << statement << "' correctly!";
-        qDebug() << "Expected to match: " << idsOfExpectedMatches.join(",");
-        qDebug() << "Got matches      : " << idsOfResultMatches.join(",");
+        qCDebug(KHTML_LOG) << "ERROR: Failed to interprete '" << statement << "' correctly!";
+        qCDebug(KHTML_LOG) << "Expected to match: " << idsOfExpectedMatches.join(",");
+        qCDebug(KHTML_LOG) << "Got matches      : " << idsOfResultMatches.join(",");
         exit(1);
     }
 }

@@ -47,7 +47,7 @@
 #include <xml/dom2_eventsimpl.h>
 #include <dom/dom_doc.h>
 
-#include <QDebug>
+#include "khtml_debug.h"
 
 #undef FOCUS_EVENT  // for win32, MinGW
 
@@ -227,7 +227,7 @@ void HTMLElementImpl::parseAttribute(AttributeImpl *attr)
 // other misc attributes
     default:
 #ifdef UNSUPPORTED_ATTR
-        qDebug() << "UATTR: <" << this->nodeName().string() << "> ["
+        qCDebug(KHTML_LOG) << "UATTR: <" << this->nodeName().string() << "> ["
                  << attr->name().string() << "]=[" << attr->value().string() << "]";
 #endif
         break;

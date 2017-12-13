@@ -29,7 +29,7 @@
 
 #include "khtmlview.h"
 #include "khtml_part.h"
-#include <QDebug>
+#include "khtml_debug.h"
 #include <QScrollBar>
 
 using namespace khtml;
@@ -182,7 +182,7 @@ void RenderCanvas::layout()
     }
 
 #ifdef SPEED_DEBUG
-    qDebug() << "RenderCanvas::calcMinMax time used=" << qt.elapsed();
+    qCDebug(KHTML_LOG) << "RenderCanvas::calcMinMax time used=" << qt.elapsed();
     qt.start();
 #endif
 
@@ -191,7 +191,7 @@ void RenderCanvas::layout()
     RenderBlock::layoutBlock(relayoutChildren);
 
 #ifdef SPEED_DEBUG
-    qDebug() << "RenderCanvas::layout time used=" << qt.elapsed();
+    qCDebug(KHTML_LOG) << "RenderCanvas::layout time used=" << qt.elapsed();
     qt.start();
 #endif
 
@@ -208,7 +208,7 @@ void RenderCanvas::layout()
 
     m_isPerformingLayout = false;
 #ifdef SPEED_DEBUG
-    qDebug() << "RenderCanvas::end time used=" << qt.elapsed();
+    qCDebug(KHTML_LOG) << "RenderCanvas::end time used=" << qt.elapsed();
 #endif
 }
 
@@ -314,7 +314,7 @@ void RenderCanvas::updateDocSizeAfterLayerTranslation(RenderObject *o, bool posX
     } else {
         setCachedDocHeight(-1);
     }
-//    qDebug() << " posXOffset: " << posXOffset << " posYOffset " << posYOffset << " m_cachedDocWidth  " <<  m_cachedDocWidth << " m_cachedDocHeight  " << m_cachedDocHeight;
+//    qCDebug(KHTML_LOG) << " posXOffset: " << posXOffset << " posYOffset " << posYOffset << " m_cachedDocWidth  " <<  m_cachedDocWidth << " m_cachedDocHeight  " << m_cachedDocHeight;
     updateDocumentSize();
 }
 
@@ -385,7 +385,7 @@ bool RenderCanvas::absolutePosition(int &xPos, int &yPos, bool f) const
 void RenderCanvas::paint(PaintInfo &paintInfo, int _tx, int _ty)
 {
 #ifdef DEBUG_LAYOUT
-    qDebug() << renderName() << this << " ::paintObject() w/h = (" << width() << "/" << height() << ")";
+    qCDebug(KHTML_LOG) << renderName() << this << " ::paintObject() w/h = (" << width() << "/" << height() << ")";
 #endif
 
     // 1. paint background, borders etc
@@ -430,7 +430,7 @@ void RenderCanvas::repaintRectangle(int x, int y, int w, int h, Priority p, bool
     if (m_staticMode) {
         return;
     }
-//    qDebug() << "updating views contents (" << x << "/" << y << ") (" << w << "/" << h << ")";
+//    qCDebug(KHTML_LOG) << "updating views contents (" << x << "/" << y << ") (" << w << "/" << h << ")";
 
     if (f && m_pagedMode) {
         y += m_pageTop;
@@ -467,7 +467,7 @@ void RenderCanvas::scheduleDeferredRepaints()
             (*it)->repaint();
         }
     }
-    //qDebug() << "scheduled deferred repaints: " << m_dirtyChildren.count() << " needed full repaint: " << needsFullRepaint();
+    //qCDebug(KHTML_LOG) << "scheduled deferred repaints: " << m_dirtyChildren.count() << " needed full repaint: " << needsFullRepaint();
     m_dirtyChildren.clear();
 }
 
@@ -572,10 +572,10 @@ void RenderCanvas::setSelection(RenderObject *s, int sp, RenderObject *e, int ep
     // Check we got valid renderobjects. www.msnbc.com and clicking
     // around, to find the case where this happened.
     if (!s || !e) {
-        qWarning() << "RenderCanvas::setSelection() called with start=" << s << " end=" << e;
+        qCWarning(KHTML_LOG) << "RenderCanvas::setSelection() called with start=" << s << " end=" << e;
         return;
     }
-//     qDebug() << "RenderCanvas::setSelection(" << s << "," << sp << "," << e << "," << ep << ")";
+//     qCDebug(KHTML_LOG) << "RenderCanvas::setSelection(" << s << "," << sp << "," << e << "," << ep << ")";
 
     bool changedSelectionBorder = (s != m_selectionStart || e != m_selectionEnd);
 
@@ -654,8 +654,8 @@ void RenderCanvas::setSelection(RenderObject *s, int sp, RenderObject *e, int ep
     m_selectionEndPos = ep;
 
 #if 0
-    // qDebug() << "old selection (" << oldStart << "," << oldStartPos << "," << oldEnd << "," << oldEndPos << ")";
-    // qDebug() << "new selection (" << s << "," << sp << "," << e << "," << ep << ")";
+    // qCDebug(KHTML_LOG) << "old selection (" << oldStart << "," << oldStartPos << "," << oldEnd << "," << oldEndPos << ")";
+    // qCDebug(KHTML_LOG) << "new selection (" << s << "," << sp << "," << e << "," << ep << ")";
 #endif
 
     // update selection status of all objects between m_selectionStart and m_selectionEnd
@@ -663,7 +663,7 @@ void RenderCanvas::setSelection(RenderObject *s, int sp, RenderObject *e, int ep
 
     while (o && o != e) {
         o->setSelectionState(SelectionInside);
-//      qDebug() << "setting selected " << o << ", " << o->isText();
+//      qCDebug(KHTML_LOG) << "setting selected " << o << ", " << o->isText();
         RenderObject *no;
         if (!(no = o->firstChild()))
             if (!(no = o->nextSibling())) {
@@ -836,10 +836,10 @@ QRect RenderCanvas::viewRect() const
 {
     if (m_pagedMode)
         if (m_pageTop == m_pageBottom) {
-            // qDebug() << "viewRect: " << QRect(0, m_pageTop, m_width, m_height);
+            // qCDebug(KHTML_LOG) << "viewRect: " << QRect(0, m_pageTop, m_width, m_height);
             return QRect(0, m_pageTop, m_width, m_height);
         } else {
-            // qDebug() << "viewRect: " << QRect(0, m_pageTop, m_width, m_pageBottom - m_pageTop);
+            // qCDebug(KHTML_LOG) << "viewRect: " << QRect(0, m_pageTop, m_width, m_pageBottom - m_pageTop);
             return QRect(0, m_pageTop, m_width, m_pageBottom - m_pageTop);
         }
     else if (m_view) {
@@ -868,7 +868,7 @@ int RenderCanvas::docHeight() const
     if (fc) {
         int dh = fc->overflowHeight() + fc->marginTop() + fc->marginBottom();
         int lowestPos = fc->lowestPosition(false);
-// qDebug() << "h " << h << " lowestPos " << lowestPos << " dh " << dh << " fc->rh " << fc->effectiveHeight() << " fc->height() " << fc->height();
+// qCDebug(KHTML_LOG) << "h " << h << " lowestPos " << lowestPos << " dh " << dh << " fc->rh " << fc->effectiveHeight() << " fc->height() " << fc->height();
         if (lowestPos > dh) {
             dh = lowestPos;
         }
@@ -883,7 +883,7 @@ int RenderCanvas::docHeight() const
 
     RenderLayer *layer = m_layer;
     h = qMax(h, layer->yPos() + layer->height());
-// qDebug() << "h " << h << " layer(" << layer->renderer()->renderName() << "@" << layer->renderer() << ")->height " << layer->height() << " lp " << (layer->yPos() + layer->height()) << " height() " << layer->renderer()->height() << " rh " << layer->renderer()->effectiveHeight();
+// qCDebug(KHTML_LOG) << "h " << h << " layer(" << layer->renderer()->renderName() << "@" << layer->renderer() << ")->height " << layer->height() << " lp " << (layer->yPos() + layer->height()) << " height() " << layer->renderer()->height() << " rh " << layer->renderer()->effectiveHeight();
     return h;
 }
 
@@ -906,7 +906,7 @@ int RenderCanvas::docWidth() const
         const int ow = fc->hasOverflowClip() ? fc->width() : fc->overflowWidth();
         int dw = ow + fc->marginLeft() + fc->marginRight();
         int rightmostPos = fc->rightmostPosition(false);
-// qDebug() << "w " << w << " rightmostPos " << rightmostPos << " dw " << dw << " fc->rw " << fc->effectiveWidth() << " fc->width() " << fc->width();
+// qCDebug(KHTML_LOG) << "w " << w << " rightmostPos " << rightmostPos << " dw " << dw << " fc->rw " << fc->effectiveWidth() << " fc->width() " << fc->width();
         if (rightmostPos > dw) {
             dw = rightmostPos;
         }
@@ -921,7 +921,7 @@ int RenderCanvas::docWidth() const
 
     RenderLayer *layer = m_layer;
     w = qMax(w, layer->xPos() + layer->width());
-// qDebug() << "w " << w << " layer(" << layer->renderer()->renderName() << ")->width " << layer->width() << " rm " << (layer->xPos() + layer->width()) << " width() " << layer->renderer()->width() << " rw " << layer->renderer()->effectiveWidth();
+// qCDebug(KHTML_LOG) << "w " << w << " layer(" << layer->renderer()->renderName() << ")->width " << layer->width() << " rm " << (layer->xPos() + layer->width()) << " width() " << layer->renderer()->width() << " rw " << layer->renderer()->effectiveWidth();
     return w;
 }
 
@@ -938,7 +938,7 @@ void RenderCanvas::updateInvalidatedFonts()
     for (RenderObject *o = firstChild(); o; o = o->nextRenderer()) {
         if (o->style()->htmlFont().isInvalidated()) {
             o->setNeedsLayoutAndMinMaxRecalc();
-//          qDebug() << "updating object using invalid font" << o->style()->htmlFont().getFontDef().family << o->information();
+//          qCDebug(KHTML_LOG) << "updating object using invalid font" << o->style()->htmlFont().getFontDef().family << o->information();
         }
     }
 }

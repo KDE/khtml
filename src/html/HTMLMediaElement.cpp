@@ -135,7 +135,7 @@ void HTMLMediaElement::attributeChanged(NodeImpl::Id attrId)
 
 void HTMLMediaElement::scheduleLoad()
 {
-    // qDebug() << "not implemented";
+    // qCDebug(KHTML_LOG) << "not implemented";
 }
 
 String serializeTimeOffset(float time)

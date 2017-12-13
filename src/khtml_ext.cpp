@@ -50,7 +50,7 @@
 
 #include <kconfiggroup.h>
 #include <ksharedconfig.h>
-#include <QDebug>
+#include "khtml_debug.h"
 #include <klocalizedstring.h>
 #include <kjobuidelegate.h>
 #include <kio/job.h>
@@ -95,13 +95,13 @@ int KHTMLPartBrowserExtension::yOffset()
 
 void KHTMLPartBrowserExtension::saveState(QDataStream &stream)
 {
-    //qDebug() << "saveState!";
+    //qCDebug(KHTML_LOG) << "saveState!";
     m_part->saveState(stream);
 }
 
 void KHTMLPartBrowserExtension::restoreState(QDataStream &stream)
 {
-    //qDebug() << "restoreState!";
+    //qCDebug(KHTML_LOG) << "restoreState!";
     m_part->restoreState(stream);
 }
 
@@ -213,7 +213,7 @@ void KHTMLPartBrowserExtension::copy()
         // get selected text and paste to the clipboard
         QString text = m_part->selectedText();
         text.replace(QChar(0xa0), ' ');
-        //qDebug() << text;
+        //qCDebug(KHTML_LOG) << text;
 
         QClipboard *cb = QApplication::clipboard();
         disconnect(cb, SIGNAL(selectionChanged()), m_part, SLOT(slotClearSelection()));
@@ -785,7 +785,7 @@ void KHTMLPopupGUIClient::slotCopyImage()
     mimeData->setUrls(QList<QUrl>() << safeURL);
     QApplication::clipboard()->setMimeData(mimeData, QClipboard::Selection);
 #else
-    // qDebug() << "slotCopyImage called when the clipboard does not support this.  This should not be possible.";
+    // qCDebug(KHTML_LOG) << "slotCopyImage called when the clipboard does not support this.  This should not be possible.";
 #endif
 }
 
@@ -921,7 +921,7 @@ void KHTMLPopupGUIClient::saveURL(QWidget *parent, const QUrl &url, const QUrl &
                 QString downloadManger = cfg.readPathEntry("DownloadManager", QString());
                 if (!downloadManger.isEmpty()) {
                     // then find the download manager location
-                    // qDebug() << "Using: "<<downloadManger <<" as Download Manager";
+                    // qCDebug(KHTML_LOG) << "Using: "<<downloadManger <<" as Download Manager";
                     QString cmd = QStandardPaths::findExecutable(downloadManger);
                     if (cmd.isEmpty()) {
                         QString errMsg = i18n("The Download Manager (%1) could not be found in your $PATH ", downloadManger);
@@ -935,7 +935,7 @@ void KHTMLPopupGUIClient::saveURL(QWidget *parent, const QUrl &url, const QUrl &
                         cleanDest.setPassword(QString());   // don't put password into commandline
                         cmd += ' ' + KShell::quoteArg(url.url()) + ' ' +
                                KShell::quoteArg(cleanDest.url());
-                        // qDebug() << "Calling command  "<<cmd;
+                        // qCDebug(KHTML_LOG) << "Calling command  "<<cmd;
                         KRun::runCommand(cmd, parent->topLevelWidget());
                     }
                 }

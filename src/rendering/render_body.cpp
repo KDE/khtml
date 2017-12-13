@@ -25,7 +25,7 @@
 #include "xml/dom_docimpl.h"
 #include "khtmlview.h"
 
-#include <QDebug>
+#include "khtml_debug.h"
 
 #include <QScrollBar>
 
@@ -51,7 +51,7 @@ void RenderBody::setStyle(RenderStyle *style)
 
 void RenderBody::paintBoxDecorations(PaintInfo &paintInfo, int _tx, int _ty)
 {
-    //qDebug() << renderName() << "::paintDecorations()";
+    //qCDebug(KHTML_LOG) << renderName() << "::paintDecorations()";
     QColor bgColor;
     const BackgroundLayer *bgLayer = nullptr;
 

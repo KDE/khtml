@@ -30,7 +30,7 @@
 
 #include <kcompletionbox.h>
 #include <kcursor.h>
-#include <QDebug>
+#include "khtml_debug.h"
 #include <kfind.h>
 #include <kfinddialog.h>
 #include <klocalizedstring.h>
@@ -790,7 +790,7 @@ public:
         QWidget *pw = parentWidget();
         KHTMLWidget *kwp = dynamic_cast<KHTMLWidget *>(pw);
         if (!kwp) {
-            qDebug() << "CompletionWidget has no KHTMLWidget parent";
+            qCDebug(KHTML_LOG) << "CompletionWidget has no KHTMLWidget parent";
             return KCompletionBox::globalPositionHint();
         }
         QPoint dest;
@@ -1408,7 +1408,7 @@ RenderObject *RenderFieldset::findLegend() const
 
 void RenderFieldset::paintBoxDecorations(PaintInfo &pI, int _tx, int _ty)
 {
-    //qDebug() << renderName() << "::paintDecorations()";
+    //qCDebug(KHTML_LOG) << renderName() << "::paintDecorations()";
 
     RenderObject *legend = findLegend();
     if (!legend) {

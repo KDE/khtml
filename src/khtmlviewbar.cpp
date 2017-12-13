@@ -22,7 +22,7 @@
 #include "khtmlview.h"
 #include "khtmlviewbarwidget.h"
 
-#include <QDebug>
+#include "khtml_debug.h"
 
 #include <QBoxLayout>
 #include <QKeyEvent>
@@ -42,7 +42,7 @@ KHTMLViewBar::KHTMLViewBar(Position position, KHTMLView *view, QWidget *parent) 
 void KHTMLViewBar::addBarWidget(KHTMLViewBarWidget *newBarWidget)
 {
     if (hasWidget(newBarWidget)) {
-        // qDebug() << "this bar widget is already added";
+        // qCDebug(KHTML_LOG) << "this bar widget is already added";
         return;
     }
     // add new widget, invisible...
@@ -50,7 +50,7 @@ void KHTMLViewBar::addBarWidget(KHTMLViewBarWidget *newBarWidget)
     layout()->addWidget(newBarWidget);
     connect(newBarWidget, SIGNAL(hideMe()), SLOT(hideCurrentBarWidget()));
 
-    // qDebug() << "add barwidget " << newBarWidget;
+    // qCDebug(KHTML_LOG) << "add barwidget " << newBarWidget;
 }
 
 void KHTMLViewBar::addPermanentBarWidget(KHTMLViewBarWidget *barWidget)
@@ -71,7 +71,7 @@ void KHTMLViewBar::addPermanentBarWidget(KHTMLViewBarWidget *barWidget)
 void KHTMLViewBar::removePermanentBarWidget(KHTMLViewBarWidget *barWidget)
 {
     if (m_permanentBarWidget != barWidget) {
-        // qDebug() << "no such permanent widget exists in bar";
+        // qCDebug(KHTML_LOG) << "no such permanent widget exists in bar";
         return;
     }
 
@@ -119,7 +119,7 @@ void KHTMLViewBar::hideCurrentBarWidget()
     }
 
     m_view->setFocus();
-    // qDebug()<<"hide barwidget";
+    // qCDebug(KHTML_LOG)<<"hide barwidget";
 }
 
 void KHTMLViewBar::setViewBarVisible(bool visible)

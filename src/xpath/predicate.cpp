@@ -393,7 +393,7 @@ Value Union::doEvaluate() const
     Value lhs = subExpr(0)->evaluate();
     Value rhs = subExpr(1)->evaluate();
     if (!lhs.isNodeset() || !rhs.isNodeset()) {
-        qWarning() << "Union operator '|' works only with nodesets.";
+        qCWarning(KHTML_LOG) << "Union operator '|' works only with nodesets.";
         Expression::reportInvalidExpressionErr();
         return Value(new StaticNodeListImpl);
     }

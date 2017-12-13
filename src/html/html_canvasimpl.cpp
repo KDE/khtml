@@ -73,7 +73,7 @@
 #include <QtCore/QLocale>
 #include <QRegion>
 #include <QImage>
-#include <QDebug>
+#include "khtml_debug.h"
 #include <cmath>
 #include <limits>
 

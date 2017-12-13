@@ -36,7 +36,7 @@
 #  endif
 #endif
 
-#include <QDebug>
+#include "khtml_debug.h"
 
 #include <QtCore/QHash>
 #include <QPainter>
@@ -692,7 +692,7 @@ void Font::update(int logicalDpiY) const
         const QList<int> pointSizes = family->sizes;
         // lets see if we find a nice looking font, which is not too far away
         // from the requested one.
-        // qDebug() << "khtml::setFontSize family = " << f.family() << " size requested=" << size;
+        // qCDebug(KHTML_LOG) << "khtml::setFontSize family = " << f.family() << " size requested=" << size;
         const float toPix = qMax(logicalDpiY, 96) / 72.0f;
 
         float diff = 1; // ### 100% deviation
@@ -703,7 +703,7 @@ void Font::update(int logicalDpiY) const
 
         for (; it != itEnd; ++it) {
             float newDiff = (((*it) * toPix) - float(size)) / float(size);
-            //qDebug() << "smooth font size: " << *it << " diff=" << newDiff;
+            //qCDebug(KHTML_LOG) << "smooth font size: " << *it << " diff=" << newDiff;
             if (newDiff < 0) {
                 newDiff = -newDiff;
             }
@@ -712,7 +712,7 @@ void Font::update(int logicalDpiY) const
                 bestSize = *it;
             }
         }
-        //qDebug() << "best smooth font size: " << bestSize << " diff=" << diff;
+        //qCDebug(KHTML_LOG) << "best smooth font size: " << bestSize << " diff=" << diff;
         if (bestSize != 0 && diff < 0.2) { // 20% deviation, otherwise we use a scaled font...
             size = static_cast<int>(bestSize * toPix);
         }

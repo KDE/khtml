@@ -59,7 +59,7 @@ Value Filter::doEvaluate() const
     Value v = m_expr->evaluate();
     if (!v.isNodeset()) {
         if (!m_predicates.empty()) {
-            // qDebug() << "Ignoring predicates for filter since expression does not evaluate to a nodeset!";
+            // qCDebug(KHTML_LOG) << "Ignoring predicates for filter since expression does not evaluate to a nodeset!";
         }
         return v;
     }
@@ -87,7 +87,7 @@ Value Filter::doEvaluate() const
         outNodes->setKnownNormalization(StaticNodeListImpl::DocumentOrder);
 
 #ifdef XPATH_VERBOSE
-        qDebug() << "Predicate within filter trims to:" << outNodes->length();
+        qCDebug(KHTML_LOG) << "Predicate within filter trims to:" << outNodes->length();
 #endif
     }
 
@@ -115,9 +115,9 @@ Value LocationPath::doEvaluate() const
 {
 #ifdef XPATH_VERBOSE
     if (m_absolute) {
-        qDebug() << "Evaluating absolute path expression, steps:" << m_steps.count();
+        qCDebug(KHTML_LOG) << "Evaluating absolute path expression, steps:" << m_steps.count();
     } else {
-        qDebug() << "Evaluating relative path expression, steps:" << m_steps.count();
+        qCDebug(KHTML_LOG) << "Evaluating relative path expression, steps:" << m_steps.count();
     }
 #endif
 
@@ -143,8 +143,8 @@ Value LocationPath::doEvaluate() const
     int s = 0;
     foreach (Step *step, m_steps) {
 #ifdef XPATH_VERBOSE
-        qDebug() << "-------------------------------------";
-        qDebug() << "Step " << s << "insize " << inDomNodes->length();
+        qCDebug(KHTML_LOG) << "-------------------------------------";
+        qCDebug(KHTML_LOG) << "Step " << s << "insize " << inDomNodes->length();
 #endif
 
         outDomNodes = new StaticNodeListImpl;
@@ -160,9 +160,9 @@ Value LocationPath::doEvaluate() const
     }
 
 #ifdef XPATH_VERBOSE
-    qDebug() << "-------------------------------------";
-    qDebug() << "output:" << outDomNodes->length();
-    qDebug() << "=====================================";
+    qCDebug(KHTML_LOG) << "-------------------------------------";
+    qCDebug(KHTML_LOG) << "output:" << outDomNodes->length();
+    qCDebug(KHTML_LOG) << "=====================================";
 #endif
 
     return Value(outDomNodes);

@@ -31,7 +31,7 @@
 #include <QPainter>
 #include <QApplication>
 
-#include <QDebug>
+#include "khtml_debug.h"
 
 #include "misc/loader.h"
 #include "html/html_formimpl.h"
@@ -261,7 +261,7 @@ void RenderImage::paint(PaintInfo &paintInfo, int _tx, int _ty)
 
     CachedImage *i = m_cachedImage;
 
-    //qDebug() << "    contents (" << contentWidth << "/" << contentHeight << ") border=" << borderLeft() << " padding=" << paddingLeft();
+    //qCDebug(KHTML_LOG) << "    contents (" << contentWidth << "/" << contentHeight << ") border=" << borderLeft() << " padding=" << paddingLeft();
     if (!i || berrorPic) {
         if (cWidth > 2 && cHeight > 2) {
             if (!berrorPic) {
@@ -349,7 +349,7 @@ void RenderImage::paint(PaintInfo &paintInfo, int _tx, int _ty)
 
     }
     if (m_selectionState != SelectionNone) {
-//    qDebug() << "_tx " << _tx << " _ty " << _ty << " _x " << _x << " _y " << _y;
+//    qCDebug(KHTML_LOG) << "_tx " << _tx << " _ty " << _ty << " _x " << _x << " _y " << _y;
         // Draw in any case if inside selection. For selection borders, the
         // offset will decide whether to draw selection or not
         bool draw = true;

@@ -57,13 +57,13 @@ RenderPosition RenderPosition::fromDOMPosition(const Position &position)
     }
     // return renderObject->inlineBox(0) ? RenderPosition(position) : RenderPosition();
 
-    // qDebug() << "[text position]" << position;
+    // qCDebug(KHTML_LOG) << "[text position]" << position;
     const RenderText *renderText = static_cast<const RenderText *>(renderObject);
     int domOffset = position.offset();
     int renderOffset = renderText->convertToRenderedPosition(domOffset);
     domOffset = renderText->convertToDOMPosition(renderOffset);
     // now we need to modify original position
-    // qDebug() << "[equivalent offset]" << domOffset;
+    // qCDebug(KHTML_LOG) << "[equivalent offset]" << domOffset;
     RenderPosition result(Position(node, domOffset));
     if (!result.getInlineBoxAndOffset(renderOffset)) {
         return RenderPosition();
@@ -76,10 +76,10 @@ InlineBox *RenderPosition::getInlineBoxAndOffset(int &offset) const
     // default value
     offset = 0;
     if (!renderer()) {
-        // qDebug() << "[EMPTY POSITION]";
+        // qCDebug(KHTML_LOG) << "[EMPTY POSITION]";
         return nullptr;
     }
-    // qDebug() << "[find inline box]" << m_position;
+    // qCDebug(KHTML_LOG) << "[find inline box]" << m_position;
 
     const NodeImpl *node = m_position.node();
     /*const*/ RenderObject *renderObject = node->renderer();
@@ -99,15 +99,15 @@ InlineBox *RenderPosition::getInlineBoxAndOffset(int &offset) const
     for (textBox = renderText->firstTextBox(); textBox; textBox = textBox->nextTextBox()) {
         if (renderOffset >= textBox->start() && renderOffset <= textBox->end()) {
             offset = renderOffset; // - textBox->start();
-            // qDebug() << "[result]" << offset << textBox;
+            // qCDebug(KHTML_LOG) << "[result]" << offset << textBox;
             return textBox;
         } else if (renderOffset < textBox->start()) {
             offset = textBox->start();
-            // qDebug() << "[result]" << offset << textBox;
+            // qCDebug(KHTML_LOG) << "[result]" << offset << textBox;
             return textBox;
         } else if (!textBox->nextTextBox()) {
             offset = textBox->start() + textBox->len();
-            // qDebug() << "[result]" << offset << textBox;
+            // qCDebug(KHTML_LOG) << "[result]" << offset << textBox;
             return textBox;
         }
         // choose right box we're at
@@ -118,7 +118,7 @@ InlineBox *RenderPosition::getInlineBoxAndOffset(int &offset) const
 
 bool RenderPosition::rendersInDifferentPosition(const RenderPosition &self, const RenderPosition &other)
 {
-    // qDebug() << "[compare]" << self.position() << other.position();
+    // qCDebug(KHTML_LOG) << "[compare]" << self.position() << other.position();
     if (self == other) {
         return false;
     }
@@ -170,7 +170,7 @@ bool RenderPosition::rendersOnSameLine(const RenderPosition &self, const RenderP
 
 RenderPosition RenderPosition::previousLinePosition(int x)
 {
-    // qDebug() << "[Previous line at x]" << x;
+    // qCDebug(KHTML_LOG) << "[Previous line at x]" << x;
     if (!renderer()) {
         return *this;
     }
@@ -178,14 +178,14 @@ RenderPosition RenderPosition::previousLinePosition(int x)
     int rOffset;
     NodeImpl *node = m_position.node();
     InlineBox *box = getInlineBoxAndOffset(rOffset);
-    // qDebug() << "[box;offset]" << box << rOffset;
+    // qCDebug(KHTML_LOG) << "[box;offset]" << box << rOffset;
 
     RenderBlock *containingBlock = nullptr;
     RootInlineBox *root = nullptr;
     if (box) {
         root = box->root()->prevRootBox();
     }
-    // qDebug() << "[root]" << root;
+    // qCDebug(KHTML_LOG) << "[root]" << root;
     if (root) {
         containingBlock = node->renderer()->containingBlock();
     } else {
@@ -194,29 +194,29 @@ RenderPosition RenderPosition::previousLinePosition(int x)
         // block and find the last root line box in that block.
         NodeImpl *startBlock = node->enclosingBlockFlowElement();
         NodeImpl *n = node->previousEditable();
-        // qDebug() << "[StartBlock]" << startBlock << (startBlock ? startBlock->renderer() : 0);
+        // qCDebug(KHTML_LOG) << "[StartBlock]" << startBlock << (startBlock ? startBlock->renderer() : 0);
         while (n && startBlock == n->enclosingBlockFlowElement()) {
             n = n->previousEditable();
         }
-        // qDebug() << "[n]" << n << (n ? n->renderer() : 0) << (n ? n->nodeName() : "");
+        // qCDebug(KHTML_LOG) << "[n]" << n << (n ? n->renderer() : 0) << (n ? n->nodeName() : "");
         printEnclosingBlockTree(n);
         if (n) {
             while (n && !Position(n, n->caretMaxOffset()).inRenderedContent()) {
-                // qDebug() << "[previous]" << n;
+                // qCDebug(KHTML_LOG) << "[previous]" << n;
                 n = n->previousEditable();
             }
-            // qDebug() << "[n]" << n << (n ? n->renderer() : 0);
+            // qCDebug(KHTML_LOG) << "[n]" << n << (n ? n->renderer() : 0);
             if (n && inSameRootNavigableElement(n, node)) {
                 assert(n->renderer());
                 // box = n->renderer()->inlineBox(n->caretMaxOffset());
                 int offset;
                 box = RenderPosition::fromDOMPosition(Position(n, n->caretMaxOffset())).getInlineBoxAndOffset(offset);
-                // qDebug() << "[box]" << box << offset;
+                // qCDebug(KHTML_LOG) << "[box]" << box << offset;
                 // previous root line box found
                 if (box) {
                     root = box->root();
                     containingBlock = n->renderer()->containingBlock();
-                    // qDebug() << "[root,block]" << root << containingBlock;
+                    // qCDebug(KHTML_LOG) << "[root,block]" << root << containingBlock;
                 }
                 return RenderPosition::fromDOMPosition(Position(n, n->caretMaxOffset())).position();
             }
@@ -226,9 +226,9 @@ RenderPosition RenderPosition::previousLinePosition(int x)
     if (root) {
         int absx, absy;
         containingBlock->absolutePosition(absx, absy);
-        // qDebug() << "[cb]" << containingBlock << absx << absy;
+        // qCDebug(KHTML_LOG) << "[cb]" << containingBlock << absx << absy;
         RenderObject *renderer = root->closestLeafChildForXPos(x, absx)->object();
-        // qDebug() << "[renderer]" << renderer;
+        // qCDebug(KHTML_LOG) << "[renderer]" << renderer;
         return renderer->positionForCoordinates(x, absy + root->topOverflow());
     }
 
@@ -237,7 +237,7 @@ RenderPosition RenderPosition::previousLinePosition(int x)
 
 RenderPosition RenderPosition::nextLinePosition(int x)
 {
-    // qDebug() << "[Next line at x]" << x;
+    // qCDebug(KHTML_LOG) << "[Next line at x]" << x;
     if (!renderer()) {
         return *this;
     }
@@ -245,7 +245,7 @@ RenderPosition RenderPosition::nextLinePosition(int x)
     int rOffset;
     NodeImpl *node = m_position.node();
     InlineBox *box = getInlineBoxAndOffset(rOffset);
-    // qDebug() << "[box;offset]" << box << rOffset;
+    // qCDebug(KHTML_LOG) << "[box;offset]" << box << rOffset;
 
     RenderBlock *containingBlock = nullptr;
     RootInlineBox *root = nullptr;
@@ -292,7 +292,7 @@ RenderPosition RenderPosition::nextLinePosition(int x)
 
 /*bool RenderPosition::haveRenderPosition()
 {
-    // qDebug() << *this;
+    // qCDebug(KHTML_LOG) << *this;
     if (isEmpty())
         return false;
 
@@ -308,10 +308,10 @@ RenderPosition RenderPosition::nextLinePosition(int x)
     }
     else if (renderer->isText()) {
         RenderText *textRenderer = static_cast<RenderText *>(renderer);
-        // qDebug() << "text" << textRenderer;
+        // qCDebug(KHTML_LOG) << "text" << textRenderer;
         unsigned rOffset = textRenderer->convertToRenderedPosition(offset());
         for (InlineTextBox *box = textRenderer->firstTextBox(); box; box = box->nextTextBox()) {
-            // qDebug() << "box" << box << box->m_start << box->m_start + box->m_len;
+            // qCDebug(KHTML_LOG) << "box" << box << box->m_start << box->m_start + box->m_len;
             if (rOffset >= box->m_start && rOffset <= box->m_start + box->m_len) {
                 return true;
             }

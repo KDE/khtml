@@ -106,7 +106,7 @@ bool Value::isString() const
 DomNodeList &Value::toNodeset()
 {
     if (m_type != Nodeset) {
-        qWarning() << "Cannot convert anything to a nodeset.";
+        qCWarning(KHTML_LOG) << "Cannot convert anything to a nodeset.";
     }
     return m_nodeset;
 }
@@ -114,7 +114,7 @@ DomNodeList &Value::toNodeset()
 const DomNodeList &Value::toNodeset() const
 {
     if (m_type != Nodeset) {
-        qWarning() << "Cannot convert anything to a nodeset.";
+        qCWarning(KHTML_LOG) << "Cannot convert anything to a nodeset.";
     }
     return m_nodeset;
 }

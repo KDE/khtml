@@ -138,7 +138,7 @@ inline RenderObject *InlineMinMaxIterator::next()
     bool oldEndOfInline = endOfInline;
     endOfInline = false;
     while (current != nullptr || (current == parent)) {
-        //qDebug() << "current = " << current;
+        //qCDebug(KHTML_LOG) << "current = " << current;
         if (!oldEndOfInline &&
                 (current == parent ||
                  (!current->isFloating() && !current->isReplaced() && !current->isPositioned()))) {

@@ -112,7 +112,7 @@ static inline RenderObject *renderObjectBelow(RenderObject *obj, ObjectTraversal
     while (r && trav != OutsideDescending) {
         r = traverseRenderObjects(r, trav, false, base, state);
 #if DEBUG_CARETMODE > 3
-        // qDebug() << "renderObjectBelow: r " << r << " trav " << trav;
+        // qCDebug(KHTML_LOG) << "renderObjectBelow: r " << r << " trav " << trav;
 #endif
     }
     trav = InsideDescending;
@@ -132,7 +132,7 @@ static inline RenderObject *renderObjectAbove(RenderObject *obj, ObjectTraversal
     while (r && trav != InsideAscending) {
         r = traverseRenderObjects(r, trav, true, base, state);
 #if DEBUG_CARETMODE > 3
-        // qDebug() << "renderObjectAbove: r " << r << " trav " << trav;
+        // qCDebug(KHTML_LOG) << "renderObjectAbove: r " << r << " trav " << trav;
 #endif
     }
     trav = InsideAscending;
@@ -205,11 +205,11 @@ static RenderObject *advanceObject(RenderObject *r,
 
     while (a) {
 #if DEBUG_CARETMODE > 5
-// qDebug() << "a " << a << " trav " << trav;
+// qCDebug(KHTML_LOG) << "a " << a << " trav " << trav;
 #endif
         if (a->element()) {
 #if DEBUG_CARETMODE > 4
-// qDebug() << "a " << a << " trav " << trav << " origtrav " << origtrav << " ignoreOD " << ignoreOutsideDesc;
+// qCDebug(KHTML_LOG) << "a " << a << " trav " << trav << " origtrav " << origtrav << " ignoreOD " << ignoreOutsideDesc;
 #endif
             if (toBegin) {
 
@@ -339,7 +339,7 @@ static inline RenderObject *advanceSuitableObject(RenderObject *r,
     do {
         r = advanceObject(r, trav, toBegin, base, state);
 #if DEBUG_CARETMODE > 2
-        // qDebug() << "after advanceSWP: r " << r << " trav " << trav << " toBegin " << toBegin;
+        // qCDebug(KHTML_LOG) << "after advanceSWP: r " << r << " trav " << trav << " toBegin " << toBegin;
 #endif
     } while (isUnsuitable(r, trav));
     return r;
@@ -484,7 +484,7 @@ void /*KHTML_NO_EXPORT*/ mapDOMPosToRenderPos(NodeImpl *node, long offset,
             // index was child count or out of bounds
             bool atEnd = !child;
 #if DEBUG_CARETMODE > 5
-            // qDebug() << "mapDTR: child " << child << "@" << (child ? child->nodeName().string() : QString()) << " atEnd " << atEnd;
+            // qCDebug(KHTML_LOG) << "mapDTR: child " << child << "@" << (child ? child->nodeName().string() : QString()) << " atEnd " << atEnd;
 #endif
             if (atEnd) {
                 child = node->lastChild();
@@ -524,7 +524,7 @@ void /*KHTML_NO_EXPORT*/ mapDOMPosToRenderPos(NodeImpl *node, long offset,
 
     } else {
         r = 0;
-        qWarning() << "Mapping from nodes of type " << node->nodeType()
+        qCWarning(KHTML_LOG) << "Mapping from nodes of type " << node->nodeType()
                    << " not supported!";
     }
 }
@@ -545,7 +545,7 @@ void /*KHTML_NO_EXPORT*/ mapRenderPosToDOMPos(RenderObject *r, long r_ofs,
     node = r->element();
     Q_ASSERT(node);
 #if DEBUG_CARETMODE > 5
-    // qDebug() << "mapRTD: r " << r << '@' << (r ? r->renderName() : QString()) << (r && r->element() ? QString(".node ") + QString::number((unsigned)r->element(),16) + '@' + r->element()->nodeName().string() : QString()) << " outside " << outside << " outsideEnd " << outsideEnd;
+    // qCDebug(KHTML_LOG) << "mapRTD: r " << r << '@' << (r ? r->renderName() : QString()) << (r && r->element() ? QString(".node ") + QString::number((unsigned)r->element(),16) + '@' + r->element()->nodeName().string() : QString()) << " outside " << outside << " outsideEnd " << outsideEnd;
 #endif
     if (node->nodeType() == Node::ELEMENT_NODE || node->nodeType() == Node::TEXT_NODE) {
 
@@ -574,7 +574,7 @@ void /*KHTML_NO_EXPORT*/ mapRenderPosToDOMPos(RenderObject *r, long r_ofs,
             offset = (long)node->nodeIndex() + outsideEnd;
             node = parent;
 #if DEBUG_CARETMODE > 5
-            // qDebug() << node << "@" << (node ? node->nodeName().string() : QString()) << " offset " << offset;
+            // qCDebug(KHTML_LOG) << node << "@" << (node ? node->nodeName().string() : QString()) << " offset " << offset;
 #endif
         } else {    // !outside
         inside:
@@ -583,7 +583,7 @@ void /*KHTML_NO_EXPORT*/ mapRenderPosToDOMPos(RenderObject *r, long r_ofs,
 
     } else {
         offset = 0;
-        qWarning() << "Mapping to nodes of type " << node->nodeType()
+        qCWarning(KHTML_LOG) << "Mapping to nodes of type " << node->nodeType()
                    << " not supported!";
     }
 }
@@ -658,7 +658,7 @@ static RenderObject *findRenderer(NodeImpl *&node, long offset,
     RenderObject *r;
     mapDOMPosToRenderPos(node, offset, r, r_ofs, outside, outsideEnd);
 #if DEBUG_CARETMODE > 2
-    // qDebug() << "findRenderer: node " << node << " " << (node ? node->nodeName().string() : QString()) << " offset " << offset << " r " << r << "[" << (r ? r->renderName() : QString()) << "] r_ofs " << r_ofs << " outside " << outside << " outsideEnd " << outsideEnd;
+    // qCDebug(KHTML_LOG) << "findRenderer: node " << node << " " << (node ? node->nodeName().string() : QString()) << " offset " << offset << " r " << r << "[" << (r ? r->renderName() : QString()) << "] r_ofs " << r_ofs << " outside " << outside << " outsideEnd " << outsideEnd;
 #endif
     if (r) {
         return r;
@@ -675,7 +675,7 @@ static RenderObject *findRenderer(NodeImpl *&node, long offset,
         }
     }
 #if DEBUG_CARETMODE > 3
-    // qDebug() << "1r " << r;
+    // qCDebug(KHTML_LOG) << "1r " << r;
 #endif
     ObjectTraversalState trav;
     int state;        // not used
@@ -688,7 +688,7 @@ static RenderObject *findRenderer(NodeImpl *&node, long offset,
         }
     }
 #if DEBUG_CARETMODE > 3
-    // qDebug() << "2r " << r;
+    // qCDebug(KHTML_LOG) << "2r " << r;
 #endif
     return r;
 }
@@ -751,9 +751,9 @@ void CaretBoxLine::addConvertedInlineBox(InlineBox *box, SeekBoxParams &sbp) /*K
     CaretBoxIterator lastCoalescedBox;
     for (; box; box = box->nextOnLine()) {
 #if DEBUG_ACIB
-// qDebug() << "box " << box;
-// qDebug() << "box->object " << box->object();
-// qDebug() << "x " << box->m_x << " y " << box->m_y << " w " << box->m_width << " h " << box->m_height << " baseline " << box->m_baseline << " ifb " << box->isInlineFlowBox() << " itb " << box->isInlineTextBox() << " rlb " << box->isRootInlineBox();
+// qCDebug(KHTML_LOG) << "box " << box;
+// qCDebug(KHTML_LOG) << "box->object " << box->object();
+// qCDebug(KHTML_LOG) << "x " << box->m_x << " y " << box->m_y << " w " << box->m_width << " h " << box->m_height << " baseline " << box->m_baseline << " ifb " << box->isInlineFlowBox() << " itb " << box->isInlineTextBox() << " rlb " << box->isRootInlineBox();
 #endif
         // ### Why the hell can object() ever be 0?!
         if (!box->object()) {
@@ -768,7 +768,7 @@ void CaretBoxLine::addConvertedInlineBox(InlineBox *box, SeekBoxParams &sbp) /*K
 
         if (box->isInlineFlowBox()) {
 #if DEBUG_ACIB
-// qDebug() << "isinlineflowbox " << box;
+// qCDebug(KHTML_LOG) << "isinlineflowbox " << box;
 #endif
             InlineFlowBox *flowBox = static_cast<InlineFlowBox *>(box);
             bool rtl = ps->direction() == RTL;
@@ -792,12 +792,12 @@ void CaretBoxLine::addConvertedInlineBox(InlineBox *box, SeekBoxParams &sbp) /*K
 
             if (flowBox->firstChild()) {
 #if DEBUG_ACIB
-// qDebug() << "this " << this << " flowBox " << flowBox << " firstChild " << flowBox->firstChild();
-// qDebug() << "== recursive invocation";
+// qCDebug(KHTML_LOG) << "this " << this << " flowBox " << flowBox << " firstChild " << flowBox->firstChild();
+// qCDebug(KHTML_LOG) << "== recursive invocation";
 #endif
                 addConvertedInlineBox(flowBox->firstChild(), sbp);
 #if DEBUG_ACIB
-// qDebug() << "== recursive invocation end";
+// qCDebug(KHTML_LOG) << "== recursive invocation end";
 #endif
             } else {
                 addCreatedFlowBoxInside(flowBox, s->fontMetrics());
@@ -813,7 +813,7 @@ void CaretBoxLine::addConvertedInlineBox(InlineBox *box, SeekBoxParams &sbp) /*K
 
         } else if (box->isInlineTextBox()) {
 #if DEBUG_ACIB
-// qDebug() << "isinlinetextbox " << box << (box->object() ? QString(" contains \"%1\"").arg(QConstString(static_cast<RenderText *>(box->object())->str->s+box->minOffset(), qMin(box->maxOffset() - box->minOffset(), 15L)).string()) : QString());
+// qCDebug(KHTML_LOG) << "isinlinetextbox " << box << (box->object() ? QString(" contains \"%1\"").arg(QConstString(static_cast<RenderText *>(box->object())->str->s+box->minOffset(), qMin(box->maxOffset() - box->minOffset(), 15L)).string()) : QString());
 #endif
             caret_boxes.append(new CaretBox(box, false, false));
             sbp.check(preEnd());
@@ -822,7 +822,7 @@ void CaretBoxLine::addConvertedInlineBox(InlineBox *box, SeekBoxParams &sbp) /*K
 
         } else {
 #if DEBUG_ACIB
-// qDebug() << "some replaced or what " << box;
+// qCDebug(KHTML_LOG) << "some replaced or what " << box;
 #endif
             // must be an inline-block, inline-table, or any RenderReplaced
             bool rtl = ps->direction() == RTL;
@@ -1065,8 +1065,8 @@ static CaretBoxLine *findCaretBoxLine(DOM::NodeImpl *node, long offset,
         return 0;
     }
 #if DEBUG_CARETMODE > 0
-    // qDebug() << "=================== findCaretBoxLine";
-    // qDebug() << "node " << node << " offset: " << offset << " r " << r->renderName() << "[" << r << "].node " << r->element()->nodeName().string() << "[" << r->element() << "]" << " r_ofs " << r_ofs << " outside " << outside << " outsideEnd " << outsideEnd;
+    // qCDebug(KHTML_LOG) << "=================== findCaretBoxLine";
+    // qCDebug(KHTML_LOG) << "node " << node << " offset: " << offset << " r " << r->renderName() << "[" << r << "].node " << r->element()->nodeName().string() << "[" << r->element() << "]" << " r_ofs " << r_ofs << " outside " << outside << " outsideEnd " << outsideEnd;
 #endif
 
     // There are two strategies to find the correct line box. (The third is failsafe)
@@ -1096,7 +1096,7 @@ static CaretBoxLine *findCaretBoxLine(DOM::NodeImpl *node, long offset,
             outside = false;    // text boxes cannot have outside positions
             InlineFlowBox *baseFlowBox = seekBaseFlowBox(b, base);
 #if DEBUG_CARETMODE > 2
-            // qDebug() << "text-box b: " << b << " baseFlowBox: " << baseFlowBox << (b && b->object() ? QString(" contains \"%1\"").arg(QConstString(static_cast<RenderText *>(b->object())->str->s+b->minOffset(), qMin(b->maxOffset() - b->minOffset(), 15L)).string()) : QString());
+            // qCDebug(KHTML_LOG) << "text-box b: " << b << " baseFlowBox: " << baseFlowBox << (b && b->object() ? QString(" contains \"%1\"").arg(QConstString(static_cast<RenderText *>(b->object())->str->s+b->minOffset(), qMin(b->maxOffset() - b->minOffset(), 15L)).string()) : QString());
 #endif
 #if 0
             if (t->containingBlock()->isListItem()) {
@@ -1104,7 +1104,7 @@ static CaretBoxLine *findCaretBoxLine(DOM::NodeImpl *node, long offset,
             }
 #endif
 #if DEBUG_CARETMODE > 0
-            // qDebug() << "=================== end findCaretBoxLine (renderText)";
+            // qCDebug(KHTML_LOG) << "=================== end findCaretBoxLine (renderText)";
 #endif
             return CaretBoxLine::constructCaretBoxLine(cblDeleter, baseFlowBox,
                     b, outside, outsideEnd, caretBoxIt);
@@ -1122,14 +1122,14 @@ static CaretBoxLine *findCaretBoxLine(DOM::NodeImpl *node, long offset,
         if (isrepl || r->isRenderBlock() && (outside || !firstLineBox)
                 || r->isRenderInline() && !firstLineBox) {
 #if DEBUG_CARETMODE > 0
-            // qDebug() << "=================== end findCaretBoxLine (box " << (outside ? (outsideEnd ? "outside end" : "outside begin") : "inside") << ")";
+            // qCDebug(KHTML_LOG) << "=================== end findCaretBoxLine (box " << (outside ? (outsideEnd ? "outside end" : "outside begin") : "inside") << ")";
 #endif
             Q_ASSERT(r->isBox());
             return CaretBoxLine::constructCaretBoxLine(cblDeleter,
                     static_cast<RenderBox *>(r), outside, outsideEnd, caretBoxIt);
         }/*end if*/
 
-        // qDebug() << "firstlinebox " << firstLineBox;
+        // qCDebug(KHTML_LOG) << "firstlinebox " << firstLineBox;
         InlineFlowBox *baseFlowBox = seekBaseFlowBox(firstLineBox, base);
         return CaretBoxLine::constructCaretBoxLine(cblDeleter, baseFlowBox,
                 firstLineBox, outside, outsideEnd, caretBoxIt);
@@ -1142,7 +1142,7 @@ static CaretBoxLine *findCaretBoxLine(DOM::NodeImpl *node, long offset,
     // ### which element doesn't have a block as its containing block?
     // Is it still possible after the RenderBlock/RenderInline merge?
     if (!cb->isRenderBlock()) {
-        qWarning() << "containing block is no render block!!! crash imminent";
+        qCWarning(KHTML_LOG) << "containing block is no render block!!! crash imminent";
     }/*end if*/
 
     InlineFlowBox *flowBox = cb->firstLineBox();
@@ -1154,9 +1154,9 @@ static CaretBoxLine *findCaretBoxLine(DOM::NodeImpl *node, long offset,
 //    if (ibox) *ibox = flowBox->firstChild();
 //    outside = outside_end = true;
 
-//    qWarning() << "containing block contains no inline flow boxes!!! crash imminent";
+//    qCWarning(KHTML_LOG) << "containing block contains no inline flow boxes!!! crash imminent";
 #if DEBUG_CARETMODE > 0
-        // qDebug() << "=================== end findCaretBoxLine (2)";
+        // qCDebug(KHTML_LOG) << "=================== end findCaretBoxLine (2)";
 #endif
         return CaretBoxLine::constructCaretBoxLine(cblDeleter, cb,
                 outside, outsideEnd, caretBoxIt);
@@ -1167,7 +1167,7 @@ static CaretBoxLine *findCaretBoxLine(DOM::NodeImpl *node, long offset,
     // painfully slow for really large blocks.
     for (; flowBox; flowBox = static_cast<InlineFlowBox *>(flowBox->nextLineBox())) {
 #if DEBUG_CARETMODE > 0
-        // qDebug() << "[scan line]";
+        // qCDebug(KHTML_LOG) << "[scan line]";
 #endif
 
         // construct a caret line box and stop when the element is contained within
@@ -1175,11 +1175,11 @@ static CaretBoxLine *findCaretBoxLine(DOM::NodeImpl *node, long offset,
         CaretBoxLine *cbl = CaretBoxLine::constructCaretBoxLine(cblDeleter,
                             baseFlowBox, 0, outside, outsideEnd, caretBoxIt, r);
 #if DEBUG_CARETMODE > 5
-        // qDebug() << cbl->information();
+        // qCDebug(KHTML_LOG) << cbl->information();
 #endif
         if (caretBoxIt != cbl->end()) {
 #if DEBUG_CARETMODE > 0
-            // qDebug() << "=================== end findCaretBoxLine (3)";
+            // qCDebug(KHTML_LOG) << "=================== end findCaretBoxLine (3)";
 #endif
             return cbl;
         }
@@ -1191,7 +1191,7 @@ static CaretBoxLine *findCaretBoxLine(DOM::NodeImpl *node, long offset,
     Q_ASSERT(!flowBox);
     CaretBoxLine *cbl = findCaretBoxLine(nextLeafNode(node, base ? base->element() : 0), 0, cblDeleter, base, r_ofs, caretBoxIt);
 #if DEBUG_CARETMODE > 0
-    // qDebug() << "=================== end findCaretBoxLine";
+    // qCDebug(KHTML_LOG) << "=================== end findCaretBoxLine";
 #endif
     return cbl;
 }
@@ -1260,14 +1260,14 @@ static bool containsEditableElement(KHTMLPart *part, RenderBlock *cb,
         }
 
 #if DEBUG_CARETMODE > 1
-        // qDebug() << "cee: r " << (r ? r->renderName() : QString()) << "@" << r << " cb " << cb << " withinCb " << withinCb << " modWithinCb " << modWithinCb << " tempTable " << tempTable;
+        // qCDebug(KHTML_LOG) << "cee: r " << (r ? r->renderName() : QString()) << "@" << r << " cb " << cb << " withinCb " << withinCb << " modWithinCb " << modWithinCb << " tempTable " << tempTable;
 #endif
         if (r && modWithinCb && r->element() && !isUnsuitable(r, trav)
                 && (part->isCaretMode() || part->isEditable()
                     || r->style()->userInput() == UI_ENABLED)) {
             table = tempTable;
 #if DEBUG_CARETMODE > 1
-            // qDebug() << "cee: editable";
+            // qCDebug(KHTML_LOG) << "cee: editable";
 #endif
             return true;
         }/*end if*/
@@ -1297,12 +1297,12 @@ static bool containsEditableChildElement(KHTMLPart *part, RenderBlock *cb,
 {
     int state = 0;
     ObjectTraversalState trav = OutsideAscending;
-// qDebug() << "start: " << start;
+// qCDebug(KHTML_LOG) << "start: " << start;
     RenderObject *r = start;
     do {
         r = traverseRenderObjects(r, trav, fromEnd, cb->parent(), state);
     } while (r && !(state & AdvancedToSibling));
-// qDebug() << "r: " << r;
+// qCDebug(KHTML_LOG) << "r: " << r;
     //advanceObject(start, trav, fromEnd, cb->parent(), state);
 //     RenderObject *oldr = r;
 //     while (r && r == oldr)
@@ -1318,7 +1318,7 @@ static bool containsEditableChildElement(KHTMLPart *part, RenderBlock *cb,
         while (r->lastChild()) {
             r = r->lastChild();
         }
-// qDebug() << "child r: " << r;
+// qCDebug(KHTML_LOG) << "child r: " << r;
     if (!r) {
         return false;
     }
@@ -1339,14 +1339,14 @@ static bool containsEditableChildElement(KHTMLPart *part, RenderBlock *cb,
         }
 
 #if DEBUG_CARETMODE > 1
-        // qDebug() << "cece: r " << (r ? r->renderName() : QString()) << "@" << r << " cb " << cb << " withinCb " << withinCb << " modWithinCb " << modWithinCb << " tempTable " << tempTable;
+        // qCDebug(KHTML_LOG) << "cece: r " << (r ? r->renderName() : QString()) << "@" << r << " cb " << cb << " withinCb " << withinCb << " modWithinCb " << modWithinCb << " tempTable " << tempTable;
 #endif
         if (r && withinCb && r->element() && !isUnsuitable(r, trav)
                 && (part->isCaretMode() || part->isEditable()
                     || r->style()->userInput() == UI_ENABLED)) {
             table = tempTable;
 #if DEBUG_CARETMODE > 1
-            // qDebug() << "cece: editable";
+            // qCDebug(KHTML_LOG) << "cece: editable";
 #endif
             return true;
         }/*end if*/
@@ -1455,7 +1455,7 @@ long LineIterator::currentOffset /*KHTML_NO_EXPORT*/;
 LineIterator::LineIterator(LinearDocument *l, DOM::NodeImpl *node, long offset)
     : lines(l)
 {
-//  qDebug() << "LineIterator: node " << node << " offset " << offset;
+//  qCDebug(KHTML_LOG) << "LineIterator: node " << node << " offset " << offset;
     if (!node) {
         cbl = 0;
         return;
@@ -1464,20 +1464,20 @@ LineIterator::LineIterator(LinearDocument *l, DOM::NodeImpl *node, long offset)
                            l->baseObject(), currentOffset, currentBox);
     // can happen on partially loaded documents
 #if DEBUG_CARETMODE > 0
-    if (!cbl) // qDebug() << "no render object found!";
+    if (!cbl) // qCDebug(KHTML_LOG) << "no render object found!";
 #endif
         if (!cbl) {
             return;
         }
 #if DEBUG_CARETMODE > 1
-    // qDebug() << "LineIterator: offset " << offset << " outside " << cbl->isOutside();
+    // qCDebug(KHTML_LOG) << "LineIterator: offset " << offset << " outside " << cbl->isOutside();
 #endif
 #if DEBUG_CARETMODE > 3
-    // qDebug() << cbl->information();
+    // qCDebug(KHTML_LOG) << cbl->information();
 #endif
     if (currentBox == cbl->end()) {
 #if DEBUG_CARETMODE > 0
-        // qDebug() << "LineIterator: findCaretBoxLine failed";
+        // qCDebug(KHTML_LOG) << "LineIterator: findCaretBoxLine failed";
 #endif
         cbl = 0;
     }/*end if*/
@@ -1497,7 +1497,7 @@ void LineIterator::nextBlock()
         int state;      // not used
         mapRenderPosToTraversalState(cb_outside, cb_outside_end, false, trav);
 #if DEBUG_CARETMODE > 1
-        // qDebug() << "nextBlock: before adv r" << r << ' ' << (r ? r->renderName() : QString()) << (r && r->isText() ? " contains \"" + QString(((RenderText *)r)->str->s, qMin(((RenderText *)r)->str->l,15)) + "\"" : QString()) << " trav " << trav << " cb_outside " << cb_outside << " cb_outside_end " << cb_outside_end;
+        // qCDebug(KHTML_LOG) << "nextBlock: before adv r" << r << ' ' << (r ? r->renderName() : QString()) << (r && r->isText() ? " contains \"" + QString(((RenderText *)r)->str->s, qMin(((RenderText *)r)->str->l,15)) + "\"" : QString()) << " trav " << trav << " cb_outside " << cb_outside << " cb_outside_end " << cb_outside_end;
 #endif
         r = advanceSuitableObject(r, trav, false, base, state);
         if (!r) {
@@ -1507,10 +1507,10 @@ void LineIterator::nextBlock()
 
         mapTraversalStateToRenderPos(trav, false, cb_outside, cb_outside_end);
 #if DEBUG_CARETMODE > 1
-        // qDebug() << "nextBlock: after r" << r << " trav " << trav << " cb_outside " << cb_outside << " cb_outside_end " << cb_outside_end;
+        // qCDebug(KHTML_LOG) << "nextBlock: after r" << r << " trav " << trav << " cb_outside " << cb_outside << " cb_outside_end " << cb_outside_end;
 #endif
 #if DEBUG_CARETMODE > 0
-        // qDebug() << "++: r " << r << "[" << (r?r->renderName():QString()) << "]";
+        // qCDebug(KHTML_LOG) << "++: r " << r << "[" << (r?r->renderName():QString()) << "]";
 #endif
 
         RenderBlock *cb;
@@ -1524,7 +1524,7 @@ void LineIterator::nextBlock()
                     cb_outside, cb_outside_end, currentBox);
 
 #if DEBUG_CARETMODE > 0
-            // qDebug() << "r->isFlow is cb. continuation @" << cb->continuation();
+            // qCDebug(KHTML_LOG) << "r->isFlow is cb. continuation @" << cb->continuation();
 #endif
             return;
         } else {
@@ -1533,7 +1533,7 @@ void LineIterator::nextBlock()
         }/*end if*/
         InlineFlowBox *flowBox = cb->firstLineBox();
 #if DEBUG_CARETMODE > 0
-        // qDebug() << "++: flowBox " << flowBox << " cb " << cb << '[' << (cb?cb->renderName()+QString(".node ")+QString::number((unsigned)cb->element(),16)+(cb->element()?'@'+cb->element()->nodeName().string():QString()):QString()) << ']';
+        // qCDebug(KHTML_LOG) << "++: flowBox " << flowBox << " cb " << cb << '[' << (cb?cb->renderName()+QString(".node ")+QString::number((unsigned)cb->element(),16)+(cb->element()?'@'+cb->element()->nodeName().string():QString()):QString()) << ']';
 #endif
         Q_ASSERT(flowBox);
         if (!flowBox) { // ### utter emergency (why is this possible at all?)
@@ -1567,7 +1567,7 @@ void LineIterator::prevBlock()
         int state;      // not used
         mapRenderPosToTraversalState(cb_outside, cb_outside_end, true, trav);
 #if DEBUG_CARETMODE > 1
-        // qDebug() << "prevBlock: before adv r" << r << " " << (r ? r->renderName() : QString()) << (r && r->isText() ? " contains \"" + QString(((RenderText *)r)->str->s, qMin(((RenderText *)r)->str->l,15)) + "\"" : QString()) << " trav " << trav << " cb_outside " << cb_outside << " cb_outside_end " << cb_outside_end;
+        // qCDebug(KHTML_LOG) << "prevBlock: before adv r" << r << " " << (r ? r->renderName() : QString()) << (r && r->isText() ? " contains \"" + QString(((RenderText *)r)->str->s, qMin(((RenderText *)r)->str->l,15)) + "\"" : QString()) << " trav " << trav << " cb_outside " << cb_outside << " cb_outside_end " << cb_outside_end;
 #endif
         r = advanceSuitableObject(r, trav, true, base, state);
         if (!r) {
@@ -1577,17 +1577,17 @@ void LineIterator::prevBlock()
 
         mapTraversalStateToRenderPos(trav, true, cb_outside, cb_outside_end);
 #if DEBUG_CARETMODE > 1
-        // qDebug() << "prevBlock: after r" << r << " trav " << trav << " cb_outside " << cb_outside << " cb_outside_end " << cb_outside_end;
+        // qCDebug(KHTML_LOG) << "prevBlock: after r" << r << " trav " << trav << " cb_outside " << cb_outside << " cb_outside_end " << cb_outside_end;
 #endif
 #if DEBUG_CARETMODE > 0
-        // qDebug() << "--: r " << r << "[" << (r?r->renderName():QString()) << "]";
+        // qCDebug(KHTML_LOG) << "--: r " << r << "[" << (r?r->renderName():QString()) << "]";
 #endif
 
         RenderBlock *cb;
 
         // If we hit a block, use this as its enclosing object
         bool isrepl = isBlockRenderReplaced(r);
-//    qDebug() << "isrepl " << isrepl << " isblock " << r->isRenderBlock();
+//    qCDebug(KHTML_LOG) << "isrepl " << isrepl << " isblock " << r->isRenderBlock();
         if (r->isRenderBlock() || isrepl) {
             RenderBox *cb = static_cast<RenderBox *>(r);
 
@@ -1595,7 +1595,7 @@ void LineIterator::prevBlock()
                     cb_outside, cb_outside_end, currentBox);
 
 #if DEBUG_CARETMODE > 0
-            // qDebug() << "r->isFlow is cb. continuation @" << cb->continuation();
+            // qCDebug(KHTML_LOG) << "r->isFlow is cb. continuation @" << cb->continuation();
 #endif
             return;
         } else {
@@ -1604,7 +1604,7 @@ void LineIterator::prevBlock()
         }/*end if*/
         InlineFlowBox *flowBox = cb->lastLineBox();
 #if DEBUG_CARETMODE > 0
-        // qDebug() << "--: flowBox " << flowBox << " cb " << cb << "[" << (cb?cb->renderName()+QString(".node ")+QString::number((unsigned)cb->element(),16)+(cb->element()?"@"+cb->element()->nodeName().string():QString()):QString()) << "]";
+        // qCDebug(KHTML_LOG) << "--: flowBox " << flowBox << " cb " << cb << "[" << (cb?cb->renderName()+QString(".node ")+QString::number((unsigned)cb->element(),16)+(cb->element()?"@"+cb->element()->nodeName().string():QString()):QString()) << "]";
 #endif
         Q_ASSERT(flowBox);
         if (!flowBox) { // ### utter emergency (why is this possible at all?)
@@ -1644,7 +1644,7 @@ void LineIterator::advance(bool toBegin)
     }
 
 #if DEBUG_CARETMODE > 3
-    if (cbl) // qDebug() << cbl->information();
+    if (cbl) // qCDebug(KHTML_LOG) << cbl->information();
 #endif
     }
 
@@ -1653,7 +1653,7 @@ void LineIterator::advance(bool toBegin)
 void EditableCaretBoxIterator::advance(bool toBegin)
 {
 #if DEBUG_CARETMODE > 3
-    // qDebug() << "---------------" << "toBegin " << toBegin;
+    // qCDebug(KHTML_LOG) << "---------------" << "toBegin " << toBegin;
 #endif
     const CaretBoxIterator preBegin = cbl->preBegin();
     const CaretBoxIterator end = cbl->end();
@@ -1665,7 +1665,7 @@ void EditableCaretBoxIterator::advance(bool toBegin)
     adjacent = true;
 
 #if DEBUG_CARETMODE > 4
-//       qDebug() << "ebit::advance: before: " << (**this)->object() << "@" << (**this)->object()->renderName() << ".node " << (**this)->object()->element() << "[" << ((**this)->object()->element() ? (**this)->object()->element()->nodeName().string() : QString()) << "] inline " << (**this)->isInline() << " outside " << (**this)->isOutside() << " outsideEnd " << (**this)->isOutsideEnd();
+//       qCDebug(KHTML_LOG) << "ebit::advance: before: " << (**this)->object() << "@" << (**this)->object()->renderName() << ".node " << (**this)->object()->element() << "[" << ((**this)->object()->element() ? (**this)->object()->element()->nodeName().string() : QString()) << "] inline " << (**this)->isInline() << " outside " << (**this)->isOutside() << " outsideEnd " << (**this)->isOutsideEnd();
 #endif
 
     if (toBegin) {
@@ -1695,7 +1695,7 @@ void EditableCaretBoxIterator::advance(bool toBegin)
         }
         if (iscuruseable) {
 #if DEBUG_CARETMODE > 3
-            // qDebug() << "ebit::advance: " << (*curbox)->object() << "@" << (*curbox)->object()->renderName() << ".node " << (*curbox)->object()->element() << "[" << ((*curbox)->object()->element() ? (*curbox)->object()->element()->nodeName().string() : QString()) << "] inline " << (*curbox)->isInline() << " outside " << (*curbox)->isOutside() << " outsideEnd " << (*curbox)->isOutsideEnd();
+            // qCDebug(KHTML_LOG) << "ebit::advance: " << (*curbox)->object() << "@" << (*curbox)->object()->renderName() << ".node " << (*curbox)->object()->element() << "[" << ((*curbox)->object()->element() ? (*curbox)->object()->element()->nodeName().string() : QString()) << "] inline " << (*curbox)->isInline() << " outside " << (*curbox)->isOutside() << " outsideEnd " << (*curbox)->isOutsideEnd();
 #endif
 
             CaretBox *box = *curbox;
@@ -1734,13 +1734,13 @@ void EditableCaretBoxIterator::advance(bool toBegin)
                                             // ### this code is so broken.
                                             /*|| toBegin && prev && prev->isInlineTextBox() && isnextindicated*/;
 #if DEBUG_CARETMODE > 5
-                // qDebug() << "prev " << prev << " haslast " << haslast << " islastuseable " << islastuseable << " left " << left << " next " << next << " hascoming " << hascoming << " iscominguseable " << iscominguseable << " right " << right << " text2indicated " << text2indicated << " indicated2text " << indicated2text;
+                // qCDebug(KHTML_LOG) << "prev " << prev << " haslast " << haslast << " islastuseable " << islastuseable << " left " << left << " next " << next << " hascoming " << hascoming << " iscominguseable " << iscominguseable << " right " << right << " text2indicated " << text2indicated << " indicated2text " << indicated2text;
 #endif
 
                 if (left && right && !text2indicated || indicated2text) {
                     adjacent = false;
 #if DEBUG_CARETMODE > 4
-                    // qDebug() << "left && right && !text2indicated || indicated2text";
+                    // qCDebug(KHTML_LOG) << "left && right && !text2indicated || indicated2text";
 #endif
                     break;
                 }
@@ -1750,11 +1750,11 @@ void EditableCaretBoxIterator::advance(bool toBegin)
 #if DEBUG_CARETMODE > 4
                 if (box->isInline()) {
                     InlineBox *ibox = box->inlineBox();
-                    // qDebug() << "inside " << (!ibox->isInlineFlowBox() || static_cast<InlineFlowBox *>(ibox)->firstChild() ? "non-empty" : "empty") << (isIndicatedInlineBox(ibox) ? " indicated" : "") << " adjacent=" << adjacent;
+                    // qCDebug(KHTML_LOG) << "inside " << (!ibox->isInlineFlowBox() || static_cast<InlineFlowBox *>(ibox)->firstChild() ? "non-empty" : "empty") << (isIndicatedInlineBox(ibox) ? " indicated" : "") << " adjacent=" << adjacent;
                 }
 #if 0
                 RenderStyle *s = ibox->object()->style();
-                // qDebug()   << "bordls " << s->borderLeftStyle()
+                // qCDebug(KHTML_LOG)   << "bordls " << s->borderLeftStyle()
                         << " bordl " << (s->borderLeftStyle() != BNONE)
                         << " bordr " << (s->borderRightStyle() != BNONE)
                         << " bordt " << (s->borderTopStyle() != BNONE)
@@ -1797,10 +1797,10 @@ void EditableCaretBoxIterator::advance(bool toBegin)
 
     *static_cast<CaretBoxIterator *>(this) = curbox;
 #if DEBUG_CARETMODE > 4
-//  qDebug() << "still valid? " << (*this != preBegin && *this != end);
+//  qCDebug(KHTML_LOG) << "still valid? " << (*this != preBegin && *this != end);
 #endif
 #if DEBUG_CARETMODE > 3
-    // qDebug() << "---------------" << "end ";
+    // qCDebug(KHTML_LOG) << "---------------" << "end ";
 #endif
 }
 
@@ -1810,8 +1810,8 @@ bool EditableCaretBoxIterator::isEditable(const CaretBoxIterator &boxit, bool fr
     CaretBox *b = *boxit;
     RenderObject *r = b->object();
 #if DEBUG_CARETMODE > 0
-//  if (b->isInlineFlowBox()) qDebug() << "b is inline flow box" << (outside ? " (outside)" : "");
-    // qDebug() << "isEditable r" << r << ": " << (r ? r->renderName() : QString()) << (r && r->isText() ? " contains \"" + QString(((RenderText *)r)->str->s, qMin(((RenderText *)r)->str->l,15)) + "\"" : QString());
+//  if (b->isInlineFlowBox()) qCDebug(KHTML_LOG) << "b is inline flow box" << (outside ? " (outside)" : "");
+    // qCDebug(KHTML_LOG) << "isEditable r" << r << ": " << (r ? r->renderName() : QString()) << (r && r->isText() ? " contains \"" + QString(((RenderText *)r)->str->s, qMin(((RenderText *)r)->str->l,15)) + "\"" : QString());
 #endif
     // Must check caret mode or design mode *after* r->element(), otherwise
     // lines without a backing DOM node get regarded, leading to a crash.
@@ -1846,7 +1846,7 @@ bool EditableCaretBoxIterator::isEditable(const CaretBoxIterator &boxit, bool fr
 
     bool result = globallyNavigable || eff_r->style()->userInput() == UI_ENABLED;
 #if DEBUG_CARETMODE > 0
-    // qDebug() << result;
+    // qCDebug(KHTML_LOG) << result;
 #endif
     return result;
 }
@@ -1865,7 +1865,7 @@ void EditableLineIterator::advance(bool toBegin)
     while (cbl) {
         if (isEditable(*this)) {
 #if DEBUG_CARETMODE > 3
-            // qDebug() << "advance: " << cbl->enclosingObject() << "@" << cbl->enclosingObject()->renderName() << ".node " << cbl->enclosingObject()->element() << "[" << (cbl->enclosingObject()->element() ? cbl->enclosingObject()->element()->nodeName().string() : QString()) << "]";
+            // qCDebug(KHTML_LOG) << "advance: " << cbl->enclosingObject() << "@" << cbl->enclosingObject()->renderName() << ".node " << cbl->enclosingObject()->element() << "[" << (cbl->enclosingObject()->element() ? cbl->enclosingObject()->element()->nodeName().string() : QString()) << "]";
 #endif
 
             bool hasindicated = isIndicatedFlow(cbl->enclosingObject());
@@ -1892,7 +1892,7 @@ void EditableLineIterator::advance(bool toBegin)
             lasteditable = *this;
             haslasteditable = true;
 #if DEBUG_CARETMODE > 4
-            // qDebug() << "remembered lasteditable " << *lasteditable;
+            // qCDebug(KHTML_LOG) << "remembered lasteditable " << *lasteditable;
 #endif
         } else {
 
@@ -1955,39 +1955,39 @@ EditableCharacterIterator &EditableCharacterIterator::operator ++()
     InlineBox *b = box->inlineBox();
     long maxofs = box->maxOffset();
 #if DEBUG_CARETMODE > 0
-    // qDebug() << "box->maxOffset() " << box->maxOffset() << " box->minOffset() " << box->minOffset();
+    // qCDebug(KHTML_LOG) << "box->maxOffset() " << box->maxOffset() << " box->minOffset() " << box->minOffset();
 #endif
     if (_offset == maxofs) {
 #if DEBUG_CARETMODE > 2
-// qDebug() << "_offset == maxofs: " << _offset << " == " << maxofs;
+// qCDebug(KHTML_LOG) << "_offset == maxofs: " << _offset << " == " << maxofs;
 #endif
         peekNext();
     } else if (_offset > maxofs) {
 #if DEBUG_CARETMODE > 2
-// qDebug() << "_offset > maxofs: " << _offset << " > " << maxofs /*<< " _peekNext: " << _peekNext*/;
+// qCDebug(KHTML_LOG) << "_offset > maxofs: " << _offset << " > " << maxofs /*<< " _peekNext: " << _peekNext*/;
 #endif
         if (/*!_peekNext*/true) {
             ++ebit;
             if (ebit == (*_it)->end()) {  // end of line reached, go to next line
                 ++_it;
 #if DEBUG_CARETMODE > 3
-// qDebug() << "++_it";
+// qCDebug(KHTML_LOG) << "++_it";
 #endif
                 if (_it != _it.lines->end()) {
                     ebit = _it;
                     box = *ebit;
                     b = box->inlineBox();
 #if DEBUG_CARETMODE > 3
-// qDebug() << "box " << box << " b " << b << " isText " << box->isInlineTextBox();
+// qCDebug(KHTML_LOG) << "box " << box << " b " << b << " isText " << box->isInlineTextBox();
 #endif
 
 #if DEBUG_CARETMODE > 3
                     RenderObject *_r = box->object();
-// qDebug() << "_r " << _r << ":" << _r->element()->nodeName().string();
+// qCDebug(KHTML_LOG) << "_r " << _r << ":" << _r->element()->nodeName().string();
 #endif
                     _offset = box->minOffset();
 #if DEBUG_CARETMODE > 3
-// qDebug() << "_offset " << _offset;
+// qCDebug(KHTML_LOG) << "_offset " << _offset;
 #endif
                 } else {
                     b = 0;
@@ -2044,14 +2044,14 @@ EditableCharacterIterator &EditableCharacterIterator::operator ++()
         }
     }/*end if*/
 #if DEBUG_CARETMODE > 2
-// qDebug() << "_offset: " << _offset /*<< " _peekNext: " << _peekNext*/ << " char '" << (char)_char << "'";
+// qCDebug(KHTML_LOG) << "_offset: " << _offset /*<< " _peekNext: " << _peekNext*/ << " char '" << (char)_char << "'";
 #endif
 
 #if DEBUG_CARETMODE > 0
     if (!_end && ebit != (*_it)->end()) {
         CaretBox *box = *ebit;
         RenderObject *_r = box->object();
-        // qDebug() << "echit++(1): box " << box << (box && box->isInlineTextBox() ? QString(" contains \"%1\"").arg(QConstString(static_cast<RenderText *>(box->object())->str->s+box->minOffset(), box->maxOffset() - box->minOffset()).string()) : QString()) << " _r " << (_r ? _r->element()->nodeName().string() : QString("<nil>"));
+        // qCDebug(KHTML_LOG) << "echit++(1): box " << box << (box && box->isInlineTextBox() ? QString(" contains \"%1\"").arg(QConstString(static_cast<RenderText *>(box->object())->str->s+box->minOffset(), box->maxOffset() - box->minOffset()).string()) : QString()) << " _r " << (_r ? _r->element()->nodeName().string() : QString("<nil>"));
     }
 #endif
     return *this;
@@ -2060,7 +2060,7 @@ EditableCharacterIterator &EditableCharacterIterator::operator ++()
 EditableCharacterIterator &EditableCharacterIterator::operator --()
 {
     _offset--;
-    //qDebug() << "--: _offset=" << _offset;
+    //qCDebug(KHTML_LOG) << "--: _offset=" << _offset;
 
     CaretBox *box = *ebit;
     CaretBox *_peekPrev = 0;
@@ -2068,11 +2068,11 @@ EditableCharacterIterator &EditableCharacterIterator::operator --()
     InlineBox *b = box->inlineBox();
     long minofs = box->minOffset();
 #if DEBUG_CARETMODE > 0
-    // qDebug() << "box->maxOffset() " << box->maxOffset() << " box->minOffset() " << box->minOffset();
+    // qCDebug(KHTML_LOG) << "box->maxOffset() " << box->maxOffset() << " box->minOffset() " << box->minOffset();
 #endif
     if (_offset == minofs) {
 #if DEBUG_CARETMODE > 2
-// qDebug() << "_offset == minofs: " << _offset << " == " << minofs;
+// qCDebug(KHTML_LOG) << "_offset == minofs: " << _offset << " == " << minofs;
 #endif
 //     _peekNext = b;
         // get character
@@ -2109,7 +2109,7 @@ EditableCharacterIterator &EditableCharacterIterator::operator --()
     } else if (_offset < minofs) {
     prev:
 #if DEBUG_CARETMODE > 2
-// qDebug() << "_offset < minofs: " << _offset << " < " << minofs /*<< " _peekNext: " << _peekNext*/;
+// qCDebug(KHTML_LOG) << "_offset < minofs: " << _offset << " < " << minofs /*<< " _peekNext: " << _peekNext*/;
 #endif
         if (!_peekPrev) {
             _peekNext = *ebit;
@@ -2117,21 +2117,21 @@ EditableCharacterIterator &EditableCharacterIterator::operator --()
             if (ebit == (*_it)->preBegin()) { // end of line reached, go to previous line
                 --_it;
 #if DEBUG_CARETMODE > 3
-// qDebug() << "--_it";
+// qCDebug(KHTML_LOG) << "--_it";
 #endif
                 if (_it != _it.lines->preBegin()) {
-//    qDebug() << "begin from end!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+//    qCDebug(KHTML_LOG) << "begin from end!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
                     ebit = EditableCaretBoxIterator(_it, true);
                     box = *ebit;
 //    RenderObject *r = box->object();
 #if DEBUG_CARETMODE > 3
-// qDebug() << "box " << box << " b " << box->inlineBox() << " isText " << box->isInlineTextBox();
+// qCDebug(KHTML_LOG) << "box " << box << " b " << box->inlineBox() << " isText " << box->isInlineTextBox();
 #endif
                     _offset = box->maxOffset();
 //    if (!_it.outside) _offset = r->isBR() ? (*ebit)->minOffset() : (*ebit)->maxOffset();
                     _char = -1;
 #if DEBUG_CARETMODE > 0
-                    // qDebug() << "echit--(2): box " << box << " b " << box->inlineBox() << (box->isInlineTextBox() ? QString(" contains \"%1\"").arg(QConstString(static_cast<RenderText *>(box->object())->str->s+box->minOffset(), box->maxOffset() - box->minOffset()).string()) : QString());
+                    // qCDebug(KHTML_LOG) << "echit--(2): box " << box << " b " << box->inlineBox() << (box->isInlineTextBox() ? QString(" contains \"%1\"").arg(QConstString(static_cast<RenderText *>(box->object())->str->s+box->minOffset(), box->maxOffset() - box->minOffset()).string()) : QString());
 #endif
                 } else {
                     _end = true;
@@ -2142,7 +2142,7 @@ EditableCharacterIterator &EditableCharacterIterator::operator --()
 
 #if DEBUG_CARETMODE > 0
         bool adjacent = ebit.isAdjacent();
-        // qDebug() << "adjacent " << adjacent << " _peekNext " << _peekNext << " _peekNext->isInlineTextBox: " << (_peekNext ? _peekNext->isInlineTextBox() : false) << " !((*ebit)->isInlineTextBox): " << (*ebit ? !(*ebit)->isInlineTextBox() : true);
+        // qCDebug(KHTML_LOG) << "adjacent " << adjacent << " _peekNext " << _peekNext << " _peekNext->isInlineTextBox: " << (_peekNext ? _peekNext->isInlineTextBox() : false) << " !((*ebit)->isInlineTextBox): " << (*ebit ? !(*ebit)->isInlineTextBox() : true);
 #endif
 #if 0
         // Ignore this box if it isn't a text box, but the previous box was
@@ -2178,21 +2178,21 @@ EditableCharacterIterator &EditableCharacterIterator::operator --()
         }/*end if*/
 #endif
 #if DEBUG_CARETMODE > 0
-        // qDebug() << "(*ebit)->obj " << (*ebit)->object()->renderName() << "[" << (*ebit)->object() << "]" << " minOffset: " << (*ebit)->minOffset() << " maxOffset: " << (*ebit)->maxOffset();
+        // qCDebug(KHTML_LOG) << "(*ebit)->obj " << (*ebit)->object()->renderName() << "[" << (*ebit)->object() << "]" << " minOffset: " << (*ebit)->minOffset() << " maxOffset: " << (*ebit)->maxOffset();
 #endif
 #if DEBUG_CARETMODE > 3
         RenderObject *_r = (*ebit)->object();
-// qDebug() << "_r " << _r << ":" << _r->element()->nodeName().string();
+// qCDebug(KHTML_LOG) << "_r " << _r << ":" << _r->element()->nodeName().string();
 #endif
         _offset = (*ebit)->maxOffset();
 //     if (!_it.outside) _offset = (*ebit)->maxOffset()/* - adjacent*/;
 #if DEBUG_CARETMODE > 3
-// qDebug() << "_offset " << _offset;
+// qCDebug(KHTML_LOG) << "_offset " << _offset;
 #endif
         _peekPrev = 0;
     } else {
 #if DEBUG_CARETMODE > 0
-// qDebug() << "_offset: " << _offset << " _peekNext: " << _peekNext;
+// qCDebug(KHTML_LOG) << "_offset: " << _offset << " _peekNext: " << _peekNext;
 #endif
         // get character
         if (_peekNext && _offset >= box->maxOffset() && _peekNext->isInlineTextBox()) {
@@ -2207,7 +2207,7 @@ EditableCharacterIterator &EditableCharacterIterator::operator --()
 #if DEBUG_CARETMODE > 0
     if (!_end && ebit != (*_it)->preBegin()) {
         CaretBox *box = *ebit;
-        // qDebug() << "echit--(1): box " << box << " b " << box->inlineBox() << (box->isInlineTextBox() ? QString(" contains \"%1\"").arg(QConstString(static_cast<RenderText *>(box->object())->str->s+box->minOffset(), box->maxOffset() - box->minOffset()).string()) : QString());
+        // qCDebug(KHTML_LOG) << "echit--(1): box " << box << " b " << box->inlineBox() << (box->isInlineTextBox() ? QString(" contains \"%1\"").arg(QConstString(static_cast<RenderText *>(box->object())->str->s+box->minOffset(), box->maxOffset() - box->minOffset()).string()) : QString());
     }
 #endif
     return *this;
@@ -2335,13 +2335,13 @@ static RenderTableCell *findNearestTableCellInRow(KHTMLPart *part, int x,
         int absx, absy;
         cell->absolutePosition(absx, absy, false); // ### position: fixed?
 #if DEBUG_CARETMODE > 1
-        // qDebug() << "i/n " << i << "/" << n << " absx " << absx << " absy " << absy;
+        // qCDebug(KHTML_LOG) << "i/n " << i << "/" << n << " absx " << absx << " absy " << absy;
 #endif
 
         // I rely on the assumption that all cells are in ascending visual order
         // ### maybe this assumption is wrong for bidi?
 #if DEBUG_CARETMODE > 1
-        // qDebug() << "x " << x << " < " << (absx + cell->width()) << "?";
+        // qCDebug(KHTML_LOG) << "x " << x << " < " << (absx + cell->width()) << "?";
 #endif
         if (x < absx + cell->width()) {
             break;
@@ -2365,7 +2365,7 @@ static RenderTableCell *findNearestTableCellInRow(KHTMLPart *part, int x,
         }
 
 #if DEBUG_CARETMODE > 1
-        // qDebug() << "index " << index << " cell " << cell;
+        // qCDebug(KHTML_LOG) << "index " << index << " cell " << cell;
 #endif
         RenderTable *nestedTable;
         if (containsEditableElement(part, cell, nestedTable, fromEnd)) {
@@ -2373,7 +2373,7 @@ static RenderTableCell *findNearestTableCellInRow(KHTMLPart *part, int x,
             if (nestedTable) {
                 TableRowIterator it(nestedTable, fromEnd);
                 while (*it) {
-// qDebug() << "=== recursive invocation";
+// qCDebug(KHTML_LOG) << "=== recursive invocation";
                     cell = findNearestTableCell(part, x, it, fromEnd);
                     if (cell) {
                         break;
@@ -2522,7 +2522,7 @@ inline void ErgonomicEditableLineIterator::calcAndStoreNewLine(
     cbl = CaretBoxLine::constructCaretBoxLine(&lines->cblDeleter,
             newBlock, true, toBegin, it);
 #if DEBUG_CARETMODE > 3
-    // qDebug() << cbl->information();
+    // qCDebug(KHTML_LOG) << cbl->information();
 #endif
 //  if (toBegin) prevBlock(); else nextBlock();
 
@@ -2545,7 +2545,7 @@ void ErgonomicEditableLineIterator::determineTopologicalElement(
 
     RenderObject *commonAncestor = commonAncestorTableSectionOrCell(oldCell, newObject);
 #if DEBUG_CARETMODE > 1
-    // qDebug() << " ancestor " << commonAncestor;
+    // qCDebug(KHTML_LOG) << " ancestor " << commonAncestor;
 #endif
 
     // The whole document is treated as a table cell.
@@ -2555,7 +2555,7 @@ void ErgonomicEditableLineIterator::determineTopologicalElement(
         RenderTable *table = findFirstDescendantTable(newObject, cell);
 
 #if DEBUG_CARETMODE > 0
-        // qDebug() << "table cell: " << cell;
+        // qCDebug(KHTML_LOG) << "table cell: " << cell;
 #endif
 
         // if there is no table, we fell out of the previous table, and are now
@@ -2572,7 +2572,7 @@ void ErgonomicEditableLineIterator::determineTopologicalElement(
         RenderTableSection::RowStruct *row;
         int idx = findRowInSection(section, oldCell, row, oldCell);
 #if DEBUG_CARETMODE > 1
-        // qDebug() << "table section: row idx " << idx;
+        // qCDebug(KHTML_LOG) << "table section: row idx " << idx;
 #endif
 
         it = TableRowIterator(section, idx);
@@ -2594,7 +2594,7 @@ void ErgonomicEditableLineIterator::determineTopologicalElement(
 
     RenderTableCell *cell = findNearestTableCell(lines->m_part, xCoor, it, toBegin);
 #if DEBUG_CARETMODE > 1
-    // qDebug() << "findNearestTableCell result: " << cell;
+    // qCDebug(KHTML_LOG) << "findNearestTableCell result: " << cell;
 #endif
 
     RenderBlock *newBlock = cell;
@@ -2603,7 +2603,7 @@ void ErgonomicEditableLineIterator::determineTopologicalElement(
         RenderTableSection *section = static_cast<RenderTableSection *>(commonAncestor);
         cell = containingTableCell(section);
 #if DEBUG_CARETMODE > 1
-        // qDebug() << "containing cell: " << cell;
+        // qCDebug(KHTML_LOG) << "containing cell: " << cell;
 #endif
 
         RenderTable *nestedTable;
@@ -2612,27 +2612,27 @@ void ErgonomicEditableLineIterator::determineTopologicalElement(
 
         if (cell && !editableChild) {
 #if DEBUG_CARETMODE > 1
-            // qDebug() << "========= recursive invocation outer =========";
+            // qCDebug(KHTML_LOG) << "========= recursive invocation outer =========";
 #endif
             determineTopologicalElement(cell, cell->section(), toBegin);
 #if DEBUG_CARETMODE > 1
-            // qDebug() << "========= end recursive invocation outer =========";
+            // qCDebug(KHTML_LOG) << "========= end recursive invocation outer =========";
 #endif
             return;
 
         } else if (cell && nestedTable) {
 #if DEBUG_CARETMODE > 1
-            // qDebug() << "========= recursive invocation inner =========";
+            // qCDebug(KHTML_LOG) << "========= recursive invocation inner =========";
 #endif
             determineTopologicalElement(cell, nestedTable, toBegin);
 #if DEBUG_CARETMODE > 1
-            // qDebug() << "========= end recursive invocation inner =========";
+            // qCDebug(KHTML_LOG) << "========= end recursive invocation inner =========";
 #endif
             return;
 
         } else {
 #if DEBUG_CARETMODE > 1
-            // qDebug() << "newBlock is table: " << section->table();
+            // qCDebug(KHTML_LOG) << "newBlock is table: " << section->table();
 #endif
             RenderObject *r = section->table();
             int state;        // not used
@@ -2721,7 +2721,7 @@ static CaretBox *nearestCaretBox(LineIterator &it, CaretViewContext *cv,
     // Find containing block
     RenderObject *cb = (*it)->containingBlock();
 #if DEBUG_CARETMODE > 4
-    // qDebug() << "nearestCB: cb " << cb << "@" << (cb ? cb->renderName() : "");
+    // qCDebug(KHTML_LOG) << "nearestCB: cb " << cb << "@" << (cb ? cb->renderName() : "");
 #endif
 
     if (cb) {
@@ -2741,8 +2741,8 @@ static CaretBox *nearestCaretBox(LineIterator &it, CaretViewContext *cv,
     EditableCaretBoxIterator fbit = it;
 #if DEBUG_CARETMODE > 0
     /*  if (it.linearDocument()->advancePolicy() != LeafsOnly)
-        qWarning() << "nearestInlineBox is only prepared to handle the LeafsOnly advance policy";*/
-//   qDebug() << "*fbit = " << *fbit;
+        qCWarning(KHTML_LOG) << "nearestInlineBox is only prepared to handle the LeafsOnly advance policy";*/
+//   qCDebug(KHTML_LOG) << "*fbit = " << *fbit;
 #endif
     // Iterate through all children
     for (CaretBox * b; fbit != (*it)->end(); ++fbit) {
@@ -2750,8 +2750,8 @@ static CaretBox *nearestCaretBox(LineIterator &it, CaretViewContext *cv,
 
 #if DEBUG_CARETMODE > 0
 //    RenderObject *r = b->object();
-//  if (b->isInlineFlowBox()) qDebug() << "b is inline flow box";
-//  qDebug() << "approximate r" << r << ": " << (r ? r->renderName() : QString()) << (r && r->isText() ? " contains \"" + QString(((RenderText *)r)->str->s, ((RenderText *)r)->str->l) + "\"" : QString());
+//  if (b->isInlineFlowBox()) qCDebug(KHTML_LOG) << "b is inline flow box";
+//  qCDebug(KHTML_LOG) << "approximate r" << r << ": " << (r ? r->renderName() : QString()) << (r && r->isText() ? " contains \"" + QString(((RenderText *)r)->str->s, ((RenderText *)r)->str->l) + "\"" : QString());
 #endif
         xPos = b->xPos();
 
@@ -2787,12 +2787,12 @@ static CaretBox *nearestCaretBox(LineIterator &it, CaretViewContext *cv,
 static void moveItToNextWord(EditableCharacterIterator &it)
 {
 #if DEBUG_CARETMODE > 0
-    // qDebug() << "%%%%%%%%%%%%%%%%%%%%% moveItToNextWord";
+    // qCDebug(KHTML_LOG) << "%%%%%%%%%%%%%%%%%%%%% moveItToNextWord";
 #endif
     EditableCharacterIterator copy;
     while (!it.isEnd() && !(*it).isSpace() && !(*it).isPunct()) {
 #if DEBUG_CARETMODE > 2
-        // qDebug() << "reading1 '" << (*it).toLatin1().constData() << "'";
+        // qCDebug(KHTML_LOG) << "reading1 '" << (*it).toLatin1().constData() << "'";
 #endif
         copy = it;
         ++it;
@@ -2805,7 +2805,7 @@ static void moveItToNextWord(EditableCharacterIterator &it)
 
     while (!it.isEnd() && ((*it).isSpace() || (*it).isPunct())) {
 #if DEBUG_CARETMODE > 2
-        // qDebug() << "reading2 '" << (*it).toLatin1().constData() << "'";
+        // qCDebug(KHTML_LOG) << "reading2 '" << (*it).toLatin1().constData() << "'";
 #endif
         copy = it;
         ++it;
@@ -2828,7 +2828,7 @@ static void moveItToPrevWord(EditableCharacterIterator &it)
     }
 
 #if DEBUG_CARETMODE > 0
-    // qDebug() << "%%%%%%%%%%%%%%%%%%%%% moveItToPrevWord";
+    // qCDebug(KHTML_LOG) << "%%%%%%%%%%%%%%%%%%%%% moveItToPrevWord";
 #endif
     EditableCharacterIterator copy;
 
@@ -2837,7 +2837,7 @@ static void moveItToPrevWord(EditableCharacterIterator &it)
         copy = it;
         --it;
 #if DEBUG_CARETMODE > 2
-        if (!it.isEnd()) // qDebug() << "reading1 '" << (*it).toLatin1().constData() << "'";
+        if (!it.isEnd()) // qCDebug(KHTML_LOG) << "reading1 '" << (*it).toLatin1().constData() << "'";
 #endif
         } while (!it.isEnd() && ((*it).isSpace() || (*it).isPunct()));
 
@@ -2850,13 +2850,13 @@ static void moveItToPrevWord(EditableCharacterIterator &it)
         copy = it;
         --it;
 #if DEBUG_CARETMODE > 0
-        if (!it.isEnd()) // qDebug() << "reading2 '" << (*it).toLatin1().constData() << "' (" << (int)(*it).toLatin1().constData() << ") box " << it.caretBox();
+        if (!it.isEnd()) // qCDebug(KHTML_LOG) << "reading2 '" << (*it).toLatin1().constData() << "' (" << (int)(*it).toLatin1().constData() << ") box " << it.caretBox();
 #endif
         } while (!it.isEnd() && !(*it).isSpace() && !(*it).isPunct());
 
     it = copy;
 #if DEBUG_CARETMODE > 1
-    if (!it.isEnd()) // qDebug() << "effective '" << (*it).toLatin1().constData() << "' (" << (int)(*it).toLatin1().constData() << ") box " << it.caretBox();
+    if (!it.isEnd()) // qCDebug(KHTML_LOG) << "effective '" << (*it).toLatin1().constData() << "' (" << (int)(*it).toLatin1().constData() << ") box " << it.caretBox();
 #endif
     }
 
@@ -2878,7 +2878,7 @@ static void moveIteratorByPage(LinearDocument &ld,
 
     ErgonomicEditableLineIterator copy = it;
 #if DEBUG_CARETMODE > 0
-    // qDebug() << " mindist: " << mindist;
+    // qCDebug(KHTML_LOG) << " mindist: " << mindist;
 #endif
 
     CaretBoxLine *cbl = *copy;
@@ -2921,13 +2921,13 @@ static void moveIteratorByPage(LinearDocument &ld,
                 lastfby = fby - lastheight;
             }/*end if*/
 #if DEBUG_CARETMODE > 2
-            // qDebug() << "absdiff " << diff;
+            // qCDebug(KHTML_LOG) << "absdiff " << diff;
 #endif
         } else {
             diff = qAbs(fby - lastfby);
         }/*end if*/
 #if DEBUG_CARETMODE > 2
-        // qDebug() << "cbl->begin().data()->yPos(): " << fby << " diff " << diff;
+        // qCDebug(KHTML_LOG) << "cbl->begin().data()->yPos(): " << fby << " diff " << diff;
 #endif
 
         mindist -= diff;
@@ -2937,7 +2937,7 @@ static void moveIteratorByPage(LinearDocument &ld,
         lastcb = cb;
         it = copy;
 #if DEBUG_CARETMODE > 0
-        // qDebug() << " mindist: " << mindist;
+        // qCDebug(KHTML_LOG) << " mindist: " << mindist;
 #endif
         // trick: actually the distance is always one line short, but we cannot
         // calculate the height of the first line (### WebCore will make it better)

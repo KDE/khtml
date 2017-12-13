@@ -40,7 +40,7 @@
 #include "ecma/kjs_proxy.h"
 
 #include <QUrl>
-#include <QDebug>
+#include "khtml_debug.h"
 
 using namespace khtml;
 using namespace DOM;
@@ -323,7 +323,7 @@ void HTMLLinkElementImpl::error(int, const QString &)
 
 bool HTMLLinkElementImpl::isLoading() const
 {
-//    qDebug() << "link: checking if loading!";
+//    qCDebug(KHTML_LOG) << "link: checking if loading!";
     if (m_loading) {
         return true;
     }

@@ -362,7 +362,7 @@ public:
 #if DEBUG_CARETMODE > 3
     ~CaretBoxLine()
     {
-        qDebug() << "called";
+        qCDebug(KHTML_LOG) << "called";
     }
 #endif
 

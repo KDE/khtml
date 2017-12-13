@@ -502,7 +502,7 @@ struct SVGRootInlineBoxPaintWalker {
                               const Vector<SVGChar>::iterator &start, const Vector<SVGChar>::iterator &end)
     {
         Q_UNUSED(chunkCtm);
-        //qDebug() << "text chunk rendering code here";
+        //qCDebug(KHTML_LOG) << "text chunk rendering code here";
         RenderText *text = textBox->/*textObject()*/renderText();
         ASSERT(text);
 
@@ -610,9 +610,9 @@ void SVGRootInlineBox::paint(RenderObject::PaintInfo &paintInfo, int tx, int ty)
     prepareToRenderSVGContent(object(), paintInfo, boundingBox, filter);
     paintInfo.p->setWorldMatrix(object()->localTransform().inverse(), true);
 
-    //qDebug() << "paint at" << tx << ty;
-    //qDebug() << "pos: (" << (tx + xPos()) << "," << (ty + yPos()) << ")";
-    //qDebug() << "size: " << width() << "x" << height();
+    //qCDebug(KHTML_LOG) << "paint at" << tx << ty;
+    //qCDebug(KHTML_LOG) << "pos: (" << (tx + xPos()) << "," << (ty + yPos()) << ")";
+    //qCDebug(KHTML_LOG) << "size: " << width() << "x" << height();
 
     // Render text, chunk-by-chunk
     SVGRootInlineBoxPaintWalker walkerCallback(this, filter, paintInfo, tx, ty);
@@ -697,7 +697,7 @@ static float cummulatedWidthOrHeightOfTextChunk(SVGTextChunk &chunk, bool calcWi
 
     for (; it != end; ++it) {
         SVGInlineBoxCharacterRange &range = *it;
-        // qDebug() << "box range:" << range.startOffset << range.endOffset;
+        // qCDebug(KHTML_LOG) << "box range:" << range.startOffset << range.endOffset;
 
         SVGInlineTextBox *box = static_cast<SVGInlineTextBox *>(range.box);
         RenderStyle *style = box->object()->style();
@@ -726,7 +726,7 @@ static float cummulatedWidthOrHeightOfTextChunk(SVGTextChunk &chunk, bool calcWi
             subRange.box = range.box;
             subRange.startOffset = i;
             subRange.endOffset = i + positionOffset;
-            // qDebug() << "got subrange:" << subRange.startOffset << subRange.endOffset;
+            // qCDebug(KHTML_LOG) << "got subrange:" << subRange.startOffset << subRange.endOffset;
 
             if (calcWidthOnly) {
                 length += cummulatedWidthOfInlineBoxCharacterRange(subRange);
@@ -785,7 +785,7 @@ static float calculateTextAnchorShiftForTextChunk(SVGTextChunk &chunk, ETextAnch
         shift = cummulatedWidthOfTextChunk(chunk);
     }
 
-    // qDebug() << anchor << shift << TA_MIDDLE;
+    // qCDebug(KHTML_LOG) << anchor << shift << TA_MIDDLE;
 
     if (anchor == TA_MIDDLE) {
         shift *= -0.5f;
@@ -841,7 +841,7 @@ static void applyTextAnchorToTextChunk(SVGTextChunk &chunk)
 
 static float calculateTextLengthCorrectionForTextChunk(SVGTextChunk &chunk, ELengthAdjust lengthAdjust, float &computedLength)
 {
-    //qDebug() << "text length";
+    //qCDebug(KHTML_LOG) << "text length";
     if (chunk.textLength <= 0.0f) {
         return 0.0f;
     }
@@ -912,27 +912,27 @@ static void applyTextLengthCorrectionToTextChunk(SVGTextChunk &chunk)
 
 void SVGRootInlineBox::computePerCharacterLayoutInformation()
 {
-    //qDebug() << "computePerCharacterLayoutInformation()";
+    //qCDebug(KHTML_LOG) << "computePerCharacterLayoutInformation()";
     // Clean up any previous layout information
     m_svgChars.clear();
     m_svgTextChunks.clear();
 
     // Build layout information for all contained render objects
     SVGCharacterLayoutInfo info(m_svgChars);
-    //qDebug() << "before build layout info";
+    //qCDebug(KHTML_LOG) << "before build layout info";
     buildLayoutInformation(this, info);
-    //qDebug() << "after build layout info";
+    //qCDebug(KHTML_LOG) << "after build layout info";
 
     // Now all layout information are available for every character
     // contained in any of our child inline/flow boxes. Build list
     // of text chunks now, to be able to apply text-anchor shifts.
     buildTextChunks(m_svgChars, m_svgTextChunks, this);
-    //qDebug() << "after build text chunks";
+    //qCDebug(KHTML_LOG) << "after build text chunks";
 
     // Layout all text chunks
     // text-anchor needs to be applied to individual chunks.
     layoutTextChunks();
-    //qDebug() << "after layout text chunks";
+    //qCDebug(KHTML_LOG) << "after layout text chunks";
 
     // Finally the top left position of our box is known.
     // Propagate this knownledge to our RenderSVGText parent.
@@ -941,9 +941,9 @@ void SVGRootInlineBox::computePerCharacterLayoutInformation()
 
     // Layout all InlineText/Flow boxes
     // BEWARE: This requires the root top/left position to be set correctly before!
-    //qDebug() << "before layout inline boxes";
+    //qCDebug(KHTML_LOG) << "before layout inline boxes";
     layoutInlineBoxes();
-    //qDebug() << "at the end";
+    //qCDebug(KHTML_LOG) << "at the end";
 }
 
 void SVGRootInlineBox::buildLayoutInformation(InlineFlowBox *start, SVGCharacterLayoutInfo &info)

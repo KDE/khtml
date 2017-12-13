@@ -42,7 +42,7 @@
 #include "xml/dom2_eventsimpl.h"
 
 #include <QUrl>
-#include <QDebug>
+#include "khtml_debug.h"
 
 #undef FOCUS_EVENT  // for win32, MinGW
 
@@ -887,7 +887,7 @@ void HTMLIFrameElementImpl::computeContent()
         effectiveURL = aboutBlank;
     }
 
-    // qDebug() << "-> requesting:" << name.string() << effectiveURL << contentPart();
+    // qCDebug(KHTML_LOG) << "-> requesting:" << name.string() << effectiveURL << contentPart();
 
     parentPart->loadFrameElement(this, effectiveURL, name.string(), QStringList(), true);
 }
