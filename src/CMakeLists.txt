@@ -264,6 +264,23 @@ ecm_gperf_generate(html/kentities.gperf ${CMAKE_CURRENT_BINARY_DIR}/kentities-gp
 
 # khtml/ecma/Makefile.am: kjs_html
 
+set(EXCLUDE_SRCS_FILES
+${CMAKE_CURRENT_BINARY_DIR}/doctypes.h
+${CMAKE_CURRENT_BINARY_DIR}/kentities-gperf.h
+${CMAKE_CURRENT_BINARY_DIR}/JSTimeRanges.h
+${CMAKE_CURRENT_BINARY_DIR}/JSMediaError.h
+${CMAKE_CURRENT_BINARY_DIR}/JSHTMLMediaElement.h
+${CMAKE_CURRENT_BINARY_DIR}/JSHTMLAudioElement.h
+${CMAKE_CURRENT_BINARY_DIR}/JSHTMLVideoElement.h
+${CMAKE_CURRENT_BINARY_DIR}/JSTimeRanges.cpp
+${CMAKE_CURRENT_BINARY_DIR}/JSMediaError.cpp
+${CMAKE_CURRENT_BINARY_DIR}/JSHTMLMediaElement.cpp
+${CMAKE_CURRENT_BINARY_DIR}/JSHTMLAudioElement.cpp
+${CMAKE_CURRENT_BINARY_DIR}/JSHTMLVideoElement.cpp
+)
+
+set_property(SOURCE ${EXCLUDE_SRCS_FILES} PROPERTY SKIP_AUTOMOC TRUE) # don't run automoc on this file
+
 set(kjs_html_STAT_SRCS
   ecma/kjs_binding.cpp
   ecma/kjs_dom.cpp
