@@ -26,7 +26,7 @@
 #ifndef __dom_position_h__
 #define __dom_position_h__
 
-#include "khtml_debug.h"
+#include <QDebug>
 
 namespace DOM
 {
@@ -43,7 +43,7 @@ void printRootEditableTree(NodeImpl *node);
 class Position
 {
 public:
-    Position() : m_node(nullptr), m_offset(0) {};
+    Position() : m_node(nullptr), m_offset(0) {}
     Position(NodeImpl *node, long offset);
     Position(const Position &);
     ~Position();

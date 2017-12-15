@@ -27,7 +27,6 @@
 
 #include <cstring>
 
-#include "khtml_debug.h"
 
 namespace khtmlImLoad
 {

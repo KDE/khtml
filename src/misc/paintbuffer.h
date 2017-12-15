@@ -35,7 +35,6 @@
 #include <QStack>
 #include <QPainter>
 #include <QPaintEngine>
-#include "khtml_debug.h"
 #include <assert.h>
 
 namespace khtml
