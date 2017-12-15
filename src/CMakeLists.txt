@@ -770,6 +770,7 @@ install(TARGETS KF5KHtml EXPORT KF5KHtmlTargets ${KF5_INSTALL_TARGETS_DEFAULT_AR
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/khtml_export.h
+  ${CMAKE_CURRENT_BINARY_DIR}/khtml_debug.h
   khtml_part.h
   khtml_events.h
   khtml_settings.h
