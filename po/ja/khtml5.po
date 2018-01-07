@@ -1,0 +1,1835 @@
+# Translation of kdelibs4 into Japanese.
+# This file is distributed under the same license as the kdelibs package.
+# Taiki Komoda <kom@kde.gr.jp>, 2002, 2004, 2006, 2010.
+# Noboru Sinohara <shinobo@leo.bekkoame.ne.jp>, 2004.
+# Toyohiro Asukai <toyohiro@ksmplus.com>, 2004.
+# Kurose Shushi <md81@bird.email.ne.jp>, 2004.
+# AWASHIRO Ikuya <ikuya@oooug.jp>, 2004.
+# Shinichi Tsunoda <tsuno@ngy.1st.ne.jp>, 2005.
+# Yukiko Bando <ybando@k6.dion.ne.jp>, 2006, 2007, 2008, 2009, 2010.
+# Fumiaki Okushi <fumiaki.okushi@gmail.com>, 2006, 2007, 2008, 2010, 2011, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2016-12-11 02:37+0100\n"
+"PO-Revision-Date: 2015-04-19 15:57-0700\n"
+"Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
+"Language-Team: Japanese <kde-jp@kde.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+"X-Generator: Lokalize 1.1\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr ""
+"Taiki Komoda,Noboru Sinohara,Toyohiro Asukai,Kurose Shushi,Shinichi Tsunoda"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr ""
+"kom@kde.gr.jp,shinobo@leo.bekkoame.ne.jp,toyohiro@ksmplus.com,md81@bird."
+"email.ne.jp,tsuno@ngy.1st.ne.jp"
+
+#: ecma/debugger/callstackdock.cpp:35
+#, kde-format
+msgid "Call Stack"
+msgstr "コールスタック"
+
+#: ecma/debugger/callstackdock.cpp:39
+#, kde-format
+msgid "Call"
+msgstr "コール"
+
+#: ecma/debugger/callstackdock.cpp:39
+#, kde-format
+msgid "Line"
+msgstr "行"
+
+#: ecma/debugger/consoledock.cpp:220
+#, kde-format
+msgid "Console"
+msgstr "コンソール"
+
+#: ecma/debugger/consoledock.cpp:243
+#, kde-format
+msgid "Enter"
+msgstr "Enter"
+
+#: ecma/debugger/debugdocument.cpp:206
+#, kde-format
+msgid ""
+"Unable to find the Kate editor component;\n"
+"please check your KDE installation."
+msgstr ""
+"Kate エディタコンポーネントが見つかりませんでした。\n"
+"KDE のインストールを確認してください。"
+
+#: ecma/debugger/debugdocument.cpp:272
+#, kde-format
+msgid "Breakpoint"
+msgstr "ブレークポイント"
+
+#: ecma/debugger/debugwindow.cpp:101
+#, kde-format
+msgid "JavaScript Debugger"
+msgstr "JavaScript デバッガ"
+
+#: ecma/debugger/debugwindow.cpp:178
+#, kde-format
+msgid "&Break at Next Statement"
+msgstr "次のステートメントでブレーク(&B)"
+
+#: ecma/debugger/debugwindow.cpp:179
+#, kde-format
+msgid "Break at Next"
+msgstr "次でブレーク"
+
+#: ecma/debugger/debugwindow.cpp:184
+#, kde-format
+msgid "Continue"
+msgstr "続行"
+
+#: ecma/debugger/debugwindow.cpp:190
+#, kde-format
+msgid "Step Over"
+msgstr "ステップオーバー"
+
+#: ecma/debugger/debugwindow.cpp:196
+#, kde-format
+msgid "Step Into"
+msgstr "ステップイントゥ"
+
+#: ecma/debugger/debugwindow.cpp:203
+#, kde-format
+msgid "Step Out"
+msgstr "ステップアウト"
+
+#: ecma/debugger/debugwindow.cpp:209
+#, kde-format
+msgid "Reindent Sources"
+msgstr "ソースを再インデント"
+
+#: ecma/debugger/debugwindow.cpp:214
+#, kde-format
+msgid "Report Exceptions"
+msgstr "例外を報告"
+
+#: ecma/debugger/debugwindow.cpp:222
+#, kde-format
+msgid "&Debug"
+msgstr "デバッグ(&D)"
+
+#: ecma/debugger/debugwindow.cpp:230
+#, kde-format
+msgid "&Settings"
+msgstr "設定(&S)"
+
+#: ecma/debugger/debugwindow.cpp:256
+#, kde-format
+msgid "Close source"
+msgstr "ソースを閉じる"
+
+#: ecma/debugger/debugwindow.cpp:262
+#, kde-format
+msgid "Ready"
+msgstr "準備完了"
+
+#: ecma/debugger/debugwindow.cpp:587
+#, kde-format
+msgid ""
+"An error occurred while attempting to run a script on this page.\n"
+"\n"
+"%1 line %2:\n"
+"%3"
+msgstr ""
+"このページのスクリプトを実行中にエラーが発生しました。\n"
+"\n"
+"%1 行 %2:\n"
+"%3"
+
+#: ecma/debugger/debugwindow.cpp:780
+#, kde-format
+msgid ""
+"Do not know where to evaluate the expression. Please pause a script or open "
+"a source file."
+msgstr ""
+
+#: ecma/debugger/debugwindow.cpp:814
+#, kde-format
+msgid "Evaluation threw an exception %1"
+msgstr "評価が例外 %1 を投げました"
+
+#: ecma/debugger/errordlg.cpp:35
+#, kde-format
+msgid "JavaScript Error"
+msgstr "JavaScript エラー"
+
+#: ecma/debugger/errordlg.cpp:49
+#, kde-format
+msgid "&Do not show this message again"
+msgstr "次回からこのメッセージを表示しない(&D)"
+
+#: ecma/debugger/localvariabledock.cpp:43
+#, kde-format
+msgid "Local Variables"
+msgstr "ローカル変数"
+
+#: ecma/debugger/localvariabledock.cpp:51
+#, kde-format
+msgid "Reference"
+msgstr "参照"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
+#: java/kjavaappletviewer.cpp:150
+#, kde-format
+msgid "Value"
+msgstr "値"
+
+#: ecma/debugger/scriptsdock.cpp:37
+#, kde-format
+msgid "Loaded Scripts"
+msgstr "ロードされたスクリプト"
+
+#: ecma/kjs_binding.cpp:196
+#, kde-format
+msgid ""
+"A script on this page is causing KHTML to freeze. If it continues to run, "
+"other applications may become less responsive.\n"
+"Do you want to stop the script?"
+msgstr ""
+"このページのスクリプトによって KHTML はフリーズしました。\n"
+"実行を続けると、他のアプリケーションの反応が悪くなります。\n"
+"スクリプトを停止しますか？"
+
+#: ecma/kjs_binding.cpp:196
+#, kde-format
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: ecma/kjs_binding.cpp:196
+#, kde-format
+msgid "&Stop Script"
+msgstr "スクリプトを停止(&S)"
+
+#: ecma/kjs_binding.cpp:446
+#, kde-format
+msgid "Parse error at %1 line %2"
+msgstr "%2 行 %1 桁でスクリプト解析エラー"
+
+#: ecma/kjs_html.cpp:2233 ecma/kjs_window.cpp:1946
+#, kde-format
+msgid "Confirmation: JavaScript Popup"
+msgstr "確認: JavaScript ポップアップ"
+
+#: ecma/kjs_html.cpp:2235
+#, kde-format
+msgid ""
+"This site is submitting a form which will open up a new browser window via "
+"JavaScript.\n"
+"Do you want to allow the form to be submitted?"
+msgstr ""
+"<qt>このサイトは JavaScript を使用して新しいブラウザウィンドウを開くフォーム"
+"を送信しようとしています。<br/>フォームの送信を許可しますか？</qt>"
+
+#: ecma/kjs_html.cpp:2238
+#, kde-format
+msgid ""
+"<qt>This site is submitting a form which will open <p>%1</p> in a new "
+"browser window via JavaScript.<br />Do you want to allow the form to be "
+"submitted?</qt>"
+msgstr ""
+"<qt>このサイトは JavaScript を使用して新しいブラウザウィンドウに<p>%1</p>を開"
+"くフォームを送信しようとしています。<br />フォームの送信を許可しますか？</qt>"
+
+#: ecma/kjs_html.cpp:2240 ecma/kjs_window.cpp:1954
+#, kde-format
+msgid "Allow"
+msgstr "許可"
+
+#: ecma/kjs_html.cpp:2240 ecma/kjs_window.cpp:1954
+#, kde-format
+msgid "Do Not Allow"
+msgstr "許可しない"
+
+#: ecma/kjs_window.cpp:1949
+#, kde-format
+msgid ""
+"This site is requesting to open up a new browser window via JavaScript.\n"
+"Do you want to allow this?"
+msgstr ""
+"<qt>このページは JavaScript を使用して新しいブラウザウィンドウを開こうとして"
+"います。<br/>これを許可しますか？</qt>"
+
+#: ecma/kjs_window.cpp:1952
+#, kde-format
+msgid ""
+"<qt>This site is requesting to open<p>%1</p>in a new browser window via "
+"JavaScript.<br />Do you want to allow this?</qt>"
+msgstr ""
+"<qt>このサイトは JavaScript により新しいブラウザウィンドウで <p>%1</p> を開こ"
+"うとしています。<br />これを許可しますか？</qt>"
+
+#: ecma/kjs_window.cpp:2285
+#, kde-format
+msgid "Close window?"
+msgstr "ウィンドウを閉じますか？"
+
+#: ecma/kjs_window.cpp:2285
+#, kde-format
+msgid "Confirmation Required"
+msgstr "確認が必要です"
+
+#: ecma/kjs_window.cpp:3235
+#, kde-format
+msgid ""
+"Do you want a bookmark pointing to the location \"%1\" to be added to your "
+"collection?"
+msgstr "“%1” へのブックマークをコレクションに追加しますか？"
+
+#: ecma/kjs_window.cpp:3238
+#, kde-format
+msgid ""
+"Do you want a bookmark pointing to the location \"%1\" titled \"%2\" to be "
+"added to your collection?"
+msgstr ""
+"タイトル “%2” である “%1” へのブックマークをコレクションに追加しますか？"
+
+#: ecma/kjs_window.cpp:3247
+#, kde-format
+msgid "JavaScript Attempted Bookmark Insert"
+msgstr "JavaScript がブックマークを追加しようとしました"
+
+#: ecma/kjs_window.cpp:3251
+#, kde-format
+msgid "Insert"
+msgstr "挿入"
+
+#: ecma/kjs_window.cpp:3251
+#, kde-format
+msgid "Disallow"
+msgstr "許可しない"
+
+#: html/html_formimpl.cpp:420
+#, kde-format
+msgid ""
+"The following files will not be uploaded because they could not be found.\n"
+"Do you want to continue?"
+msgstr ""
+"以下のファイルは見つからなかったのでアップロードできません。\n"
+"それでも続けますか？"
+
+#: html/html_formimpl.cpp:424
+#, kde-format
+msgid "Submit Confirmation"
+msgstr "送信の確認"
+
+#: html/html_formimpl.cpp:424
+#, kde-format
+msgid "&Submit Anyway"
+msgstr "とにかく送信(&S)"
+
+#: html/html_formimpl.cpp:434
+#, kde-format
+msgid ""
+"You are about to transfer the following files from your local computer to "
+"the Internet.\n"
+"Do you really want to continue?"
+msgstr ""
+"以下のファイルをローカルコンピュータからインターネットへ転送しようとしていま"
+"す。\n"
+"本当に続行しますか？"
+
+#: html/html_formimpl.cpp:438
+#, kde-format
+msgid "Send Confirmation"
+msgstr "送信の確認"
+
+#: html/html_formimpl.cpp:438
+#, kde-format
+msgid "&Send File"
+msgid_plural "&Send Files"
+msgstr[0] "ファイルを送信(&S)"
+msgstr[1] "ファイルを送信(&S)"
+
+#: html/html_formimpl.cpp:1687 html/html_formimpl.cpp:1908 khtml_part.cpp:4963
+#: khtmlview.cpp:2877 khtmlview.cpp:2921
+#, kde-format
+msgid "Submit"
+msgstr "送信"
+
+#: html/html_formimpl.cpp:1900 khtmlview.cpp:2892 khtmlview.cpp:2927
+#, kde-format
+msgid "Reset"
+msgstr "リセット"
+
+#: html/html_formimpl.cpp:2824
+#, kde-format
+msgid "Key Generator"
+msgstr "キージェネレータ"
+
+#: html/html_objectimpl.cpp:632
+#, kde-format
+msgid ""
+"No plugin found for '%1'.\n"
+"Do you want to download one from %2?"
+msgstr ""
+"%1 のためのプラグインが見つかりません。\n"
+"%2 からダウンロードしますか？"
+
+#: html/html_objectimpl.cpp:633
+#, kde-format
+msgid "Missing Plugin"
+msgstr "プラグインがありません"
+
+#: html/html_objectimpl.cpp:633
+#, kde-format
+msgid "Download"
+msgstr "ダウンロード"
+
+#: html/html_objectimpl.cpp:633
+#, kde-format
+msgid "Do Not Download"
+msgstr "ダウンロードしない"
+
+#: html/htmlparser.cpp:1980
+#, kde-format
+msgid "This is a searchable index. Enter search keywords: "
+msgstr "これは検索インデックスです。検索するキーワードを入力してください:"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, kde-format
+msgid "&Repeat password:"
+msgstr "パスワードを繰り返す(&R):"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, kde-format
+msgid "&Choose password:"
+msgstr "パスワードを選択する(&C):"
+
+#: html/ksslkeygen.cpp:82
+#, fuzzy, kde-format
+#| msgid "Details of the Request:"
+msgid "KDE Certificate Request"
+msgstr "要求の詳細:"
+
+#: html/ksslkeygen.cpp:89
+#, kde-format
+msgid "KDE Certificate Request - Password"
+msgstr ""
+
+#: html/ksslkeygen.cpp:126
+#, fuzzy, kde-format
+#| msgid "Unsupported Key"
+msgid "Unsupported key size."
+msgstr "サポートされていないキー"
+
+#: html/ksslkeygen.cpp:126
+#, kde-format
+msgid "KDE SSL Information"
+msgstr "KDE SSL 情報"
+
+#: html/ksslkeygen.cpp:132 khtml_part.cpp:5018
+#, kde-format
+msgid "KDE"
+msgstr "KDE"
+
+#: html/ksslkeygen.cpp:133
+#, kde-format
+msgid "Please wait while the encryption keys are generated..."
+msgstr ""
+
+#: html/ksslkeygen.cpp:148
+#, fuzzy, kde-format
+#| msgid "Do you want to store this password for %1?"
+msgid "Do you wish to store the passphrase in your wallet file?"
+msgstr "このパスワードを %1 のために保存しますか？"
+
+#: html/ksslkeygen.cpp:148
+#, kde-format
+msgid "Store"
+msgstr "保存する"
+
+#: html/ksslkeygen.cpp:148
+#, kde-format
+msgid "Do Not Store"
+msgstr "保存しない"
+
+#: html/ksslkeygen.cpp:257
+#, kde-format
+msgid "2048 (High Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:258
+#, kde-format
+msgid "1024 (Medium Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:259
+#, kde-format
+msgid "768  (Low Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:260
+#, kde-format
+msgid "512  (Low Grade)"
+msgstr ""
+
+#: html/ksslkeygen.cpp:262
+#, fuzzy, kde-format
+#| msgid "Enable SOCKS support"
+msgid "No SSL support."
+msgstr "SOCKS サポートを有効にする"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "文書情報"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "一般"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "タイトル:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "最終更新:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "文書のエンコーディング:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "レンダーモード:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "HTTP ヘッダ"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "プロパティ"
+
+#: java/kjavaapplet.cpp:227
+#, kde-format
+msgid "Initializing Applet \"%1\"..."
+msgstr "アプレット “%1” を初期化中..."
+
+#: java/kjavaapplet.cpp:233
+#, kde-format
+msgid "Starting Applet \"%1\"..."
+msgstr "アプレット “%1” を起動中..."
+
+#: java/kjavaapplet.cpp:240
+#, kde-format
+msgid "Applet \"%1\" started"
+msgstr "アプレット “%1” が起動しました"
+
+#: java/kjavaapplet.cpp:246
+#, kde-format
+msgid "Applet \"%1\" stopped"
+msgstr "アプレット “%1” が停止しました"
+
+#: java/kjavaappletserver.cpp:144
+#, kde-format
+msgid "Loading Applet"
+msgstr "アプレットをロード中"
+
+#: java/kjavaappletserver.cpp:147
+#, kde-format
+msgid "Error: java executable not found"
+msgstr "エラー: java 実行ファイル見つかりません"
+
+#: java/kjavaappletserver.cpp:674
+#, kde-format
+msgid "Signed by (validation: %1)"
+msgstr "署名者 (検証: %1)"
+
+#: java/kjavaappletserver.cpp:676
+#, kde-format
+msgid "Certificate (validation: %1)"
+msgstr "証明書 (検証: %1)"
+
+#: java/kjavaappletserver.cpp:812 khtml_part.cpp:7048
+#, kde-format
+msgid "Security Alert"
+msgstr "セキュリティの注意"
+
+#: java/kjavaappletserver.cpp:817
+#, kde-format
+msgid "Do you grant Java applet with certificate(s):"
+msgstr "証明書付きの Java アプレットを許可:"
+
+#: java/kjavaappletserver.cpp:819
+#, kde-format
+msgid "the following permission"
+msgstr "以下のパーミッション"
+
+#: java/kjavaappletserver.cpp:828
+#, kde-format
+msgid "&No"
+msgstr "いいえ(&N)"
+
+#: java/kjavaappletserver.cpp:833
+#, kde-format
+msgid "&Reject All"
+msgstr "すべて拒否(&R)"
+
+#: java/kjavaappletserver.cpp:837
+#, kde-format
+msgid "&Yes"
+msgstr "はい(&Y)"
+
+#: java/kjavaappletserver.cpp:841
+#, kde-format
+msgid "&Grant All"
+msgstr "すべて許可(&G)"
+
+#: java/kjavaappletviewer.cpp:59
+#, kde-format
+msgid "KDE Java Applet Plugin"
+msgstr "KDE Java アプレットプラグイン"
+
+#: java/kjavaappletviewer.cpp:141
+#, kde-format
+msgid "Applet Parameters"
+msgstr "アプレットのパラメータ"
+
+#: java/kjavaappletviewer.cpp:149
+#, kde-format
+msgid "Parameter"
+msgstr "パラメータ"
+
+#: java/kjavaappletviewer.cpp:153
+#, kde-format
+msgid "Class"
+msgstr "クラス"
+
+#: java/kjavaappletviewer.cpp:159
+#, kde-format
+msgid "Base URL"
+msgstr "ベース URL"
+
+#: java/kjavaappletviewer.cpp:165
+#, kde-format
+msgid "Archives"
+msgstr "アーカイブ"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "編集(&E)"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "ファイル(&F)"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "表示(&V)"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "HTML ツールバー"
+
+#: khtml_ext.cpp:413
+#, kde-format
+msgid "&Copy Text"
+msgstr "テキストをコピー(&C)"
+
+#: khtml_ext.cpp:427
+#, kde-format
+msgid "Open '%1'"
+msgstr "“%1” を開く"
+
+#: khtml_ext.cpp:444
+#, kde-format
+msgid "&Copy Email Address"
+msgstr "メールアドレスをコピー(&C)"
+
+#: khtml_ext.cpp:449
+#, kde-format
+msgid "&Save Link As..."
+msgstr "名前を付けてリンクを保存(&S)..."
+
+#: khtml_ext.cpp:454
+#, kde-format
+msgid "&Copy Link Address"
+msgstr "リンクアドレスをコピー(&C)"
+
+# ACCELERATOR added by translator
+#: khtml_ext.cpp:466
+#, kde-format
+msgctxt "@title:menu HTML frame/iframe"
+msgid "Frame"
+msgstr "フレーム(&M)"
+
+#: khtml_ext.cpp:467
+#, kde-format
+msgid "Open in New &Window"
+msgstr "新しいウィンドウで開く(&W)"
+
+#: khtml_ext.cpp:473
+#, kde-format
+msgid "Open in &This Window"
+msgstr "このウィンドウで開く(&T)"
+
+#: khtml_ext.cpp:478
+#, kde-format
+msgid "Open in &New Tab"
+msgstr "新しいタブで開く(&N)"
+
+# ACCELERATOR added by translator
+#: khtml_ext.cpp:488
+#, kde-format
+msgid "Reload Frame"
+msgstr "フレームを再読み込み(&L)"
+
+# ACCELERATOR added by translator
+#: khtml_ext.cpp:493 khtml_part.cpp:447
+#, kde-format
+msgid "Print Frame..."
+msgstr "フレームを印刷(&R)..."
+
+#: khtml_ext.cpp:499 khtml_part.cpp:299
+#, kde-format
+msgid "Save &Frame As..."
+msgstr "名前を付けてフレームを保存(&F)..."
+
+# ACCELERATOR added by translator
+#: khtml_ext.cpp:504 khtml_part.cpp:275
+#, kde-format
+msgid "View Frame Source"
+msgstr "フレームのソースを表示(&C)"
+
+#: khtml_ext.cpp:509
+#, kde-format
+msgid "View Frame Information"
+msgstr "フレーム情報を表示"
+
+#: khtml_ext.cpp:519
+#, kde-format
+msgid "Block IFrame..."
+msgstr "IFrame をブロック..."
+
+#: khtml_ext.cpp:543
+#, kde-format
+msgid "Save Image As..."
+msgstr "名前を付けて画像を保存..."
+
+#: khtml_ext.cpp:548
+#, kde-format
+msgid "Send Image..."
+msgstr "画像を送る..."
+
+#: khtml_ext.cpp:554
+#, kde-format
+msgid "Copy Image"
+msgstr "画像をコピー"
+
+#: khtml_ext.cpp:562
+#, kde-format
+msgid "Copy Image Location"
+msgstr "画像の場所をコピー"
+
+#: khtml_ext.cpp:571
+#, kde-format
+msgid "View Image (%1)"
+msgstr "画像を表示 (%1)"
+
+#: khtml_ext.cpp:577
+#, kde-format
+msgid "Block Image..."
+msgstr "画像をブロック..."
+
+#: khtml_ext.cpp:584
+#, kde-format
+msgid "Block Images From %1"
+msgstr "%1 から画像をブロック"
+
+# ACCELERATOR added by translator
+#: khtml_ext.cpp:596
+#, kde-format
+msgid "Stop Animations"
+msgstr "アニメーションを停止(&S)"
+
+#: khtml_ext.cpp:637
+#, kde-format
+msgid "Search for '%1' with %2"
+msgstr "%2 で “%1” を検索"
+
+#: khtml_ext.cpp:647
+#, kde-format
+msgid "Search for '%1' with"
+msgstr "“%1” を検索"
+
+#: khtml_ext.cpp:693
+#, kde-format
+msgid "Save Link As"
+msgstr "名前を付けてリンクを保存"
+
+#: khtml_ext.cpp:712
+#, kde-format
+msgid "Save Image As"
+msgstr "名前を付けて画像を保存"
+
+#: khtml_ext.cpp:726 khtml_ext.cpp:738
+#, kde-format
+msgid "Add URL to Filter"
+msgstr "URL をフィルタに追加"
+
+#: khtml_ext.cpp:727 khtml_ext.cpp:739
+#, kde-format
+msgid "Enter the URL:"
+msgstr "URL を入力:"
+
+#: khtml_ext.cpp:875
+#, kde-format
+msgid ""
+"A file named \"%1\" already exists. Are you sure you want to overwrite it?"
+msgstr "‘%1’ という名前のファイルは既に存在します。本当に上書きしますか？"
+
+#: khtml_ext.cpp:875
+#, kde-format
+msgid "Overwrite File?"
+msgstr "ファイルを上書きしますか？"
+
+#: khtml_ext.cpp:927
+#, kde-format
+msgid "The Download Manager (%1) could not be found in your $PATH "
+msgstr "ダウンロードマネージャ (%1) が $PATH に見つかりませんでした。"
+
+#: khtml_ext.cpp:928
+#, kde-format
+msgid ""
+"Try to reinstall it  \n"
+"\n"
+"The integration with Konqueror will be disabled."
+msgstr ""
+"再インストールしてみてください。\n"
+"\n"
+"Konqueror への統合は無効にします。"
+
+#: khtml_ext.cpp:1007
+#, no-c-format, kde-format
+msgid "Default Font Size (100%)"
+msgstr "標準フォントサイズ (100%)"
+
+#: khtml_ext.cpp:1021
+#, no-c-format, kde-format
+msgid "%1%"
+msgstr "%1%"
+
+#: khtml_global.cpp:203
+#, kde-format
+msgid "KHTML"
+msgstr "KHTML"
+
+#: khtml_global.cpp:204
+#, kde-format
+msgid "Embeddable HTML component"
+msgstr "埋め込み可能な HTML コンポーネント"
+
+#: khtml_part.cpp:268
+#, kde-format
+msgid "View Do&cument Source"
+msgstr "文書のソースを表示(&C)"
+
+# ACCELERATOR added by translator
+#: khtml_part.cpp:282
+#, kde-format
+msgid "View Document Information"
+msgstr "文書情報を表示(&D)"
+
+#: khtml_part.cpp:289
+#, kde-format
+msgid "Save &Background Image As..."
+msgstr "名前を付けて背景画像を保存(&B)..."
+
+#: khtml_part.cpp:311 khtml_part.cpp:4190
+#, kde-format
+msgid "SSL"
+msgstr "SSL"
+
+#: khtml_part.cpp:315
+#, kde-format
+msgid "Print Rendering Tree to STDOUT"
+msgstr "レンダリングツリーを標準出力に"
+
+#: khtml_part.cpp:319
+#, kde-format
+msgid "Print DOM Tree to STDOUT"
+msgstr "DOM ツリーを標準出力に"
+
+#: khtml_part.cpp:323
+#, kde-format
+msgid "Print frame tree to STDOUT"
+msgstr "フレームツリーを標準出力に"
+
+#: khtml_part.cpp:327
+#, kde-format
+msgid "Stop Animated Images"
+msgstr "アニメーション画像を停止"
+
+#: khtml_part.cpp:331
+#, kde-format
+msgid "Set &Encoding"
+msgstr "エンコーディング(&E)"
+
+#: khtml_part.cpp:377
+#, kde-format
+msgid "Use S&tylesheet"
+msgstr "スタイルシート(&T)"
+
+#: khtml_part.cpp:382
+#, kde-format
+msgid "Enlarge Font"
+msgstr "フォントサイズを大きく"
+
+#: khtml_part.cpp:385
+#, kde-format
+msgid ""
+"<qt>Enlarge Font<br /><br />Make the font in this window bigger. Click and "
+"hold down the mouse button for a menu with all available font sizes.</qt>"
+msgstr ""
+"<qt>フォントサイズを大きく<br /><br />このウィンドウのフォントを大きくしま"
+"す。クリックして保持すると、利用可能なフォントサイズの一覧メニューが開きま"
+"す。</qt>"
+
+#: khtml_part.cpp:389
+#, kde-format
+msgid "Shrink Font"
+msgstr "フォントサイズを小さく"
+
+#: khtml_part.cpp:392
+#, kde-format
+msgid ""
+"<qt>Shrink Font<br /><br />Make the font in this window smaller. Click and "
+"hold down the mouse button for a menu with all available font sizes.</qt>"
+msgstr ""
+"<qt>フォントサイズを小さく<br /><br />このウィンドウのフォントを小さくしま"
+"す。クリックして保持すると、利用可能なフォントサイズの一覧メニューが開きま"
+"す。</qt>"
+
+#: khtml_part.cpp:407
+#, kde-format
+msgid ""
+"<qt>Find text<br /><br />Shows a dialog that allows you to find text on the "
+"displayed page.</qt>"
+msgstr ""
+"<qt>検索<br /><br />表示されているページでテキストを検索するためのダイアログ"
+"を表示します。</qt>"
+
+#: khtml_part.cpp:411
+#, kde-format
+msgid ""
+"<qt>Find next<br /><br />Find the next occurrence of the text that you have "
+"found using the <b>Find Text</b> function.</qt>"
+msgstr ""
+"<qt>次を検索<br/><br/>「検索」機能で見つけたテキストの次の出現を探します。</"
+"qt>"
+
+#: khtml_part.cpp:417
+#, kde-format
+msgid ""
+"<qt>Find previous<br /><br />Find the previous occurrence of the text that "
+"you have found using the <b>Find Text</b> function.</qt>"
+msgstr ""
+"<qt>前を検索<br/><br/>「検索」機能で見つけたテキストの前の出現を探します。</"
+"qt>"
+
+#: khtml_part.cpp:422
+#, kde-format
+msgid "Find Text as You Type"
+msgstr "入力と同時にテキストを検索"
+
+#: khtml_part.cpp:425
+#, kde-format
+msgid ""
+"This shortcut shows the find bar, for finding text in the displayed page. It "
+"cancels the effect of \"Find Links as You Type\", which sets the \"Find "
+"links only\" option."
+msgstr ""
+
+#: khtml_part.cpp:429
+#, kde-format
+msgid "Find Links as You Type"
+msgstr "入力と同時にリンクを検索"
+
+#: khtml_part.cpp:435
+#, kde-format
+msgid ""
+"This shortcut shows the find bar, and sets the option \"Find links only\"."
+msgstr ""
+
+#: khtml_part.cpp:451
+#, kde-format
+msgid ""
+"<qt>Print Frame<br /><br />Some pages have several frames. To print only a "
+"single frame, click on it and then use this function.</qt>"
+msgstr ""
+"<qt>フレームの印刷<br /><br />ページによっては複数のフレームが含まれていま"
+"す。そのうちの特定のフレームのみを印刷するときは、そのフレームをクリックして"
+"から、この機能を使ってください。</qt>"
+
+#: khtml_part.cpp:466
+#, kde-format
+msgid "Toggle Caret Mode"
+msgstr "キャレットモードの切り替え"
+
+#: khtml_part.cpp:769
+#, kde-format
+msgid "The fake user-agent '%1' is in use."
+msgstr "偽のユーザエージェント %1 を使用中です。"
+
+#: khtml_part.cpp:1273
+#, kde-format
+msgid "This web page contains coding errors."
+msgstr "このウェブページにはコーディングエラーがあります。"
+
+#: khtml_part.cpp:1314
+#, kde-format
+msgid "&Hide Errors"
+msgstr "エラーを表示しない(&H)"
+
+#: khtml_part.cpp:1315
+#, kde-format
+msgid "&Disable Error Reporting"
+msgstr "エラーレポート出力を無効に(&D)"
+
+#: khtml_part.cpp:1358
+#, kde-format
+msgid "<qt><b>Error</b>: %1: %2</qt>"
+msgstr "<qt><b>エラー</b>: %1: %2</qt>"
+
+#: khtml_part.cpp:1407
+#, kde-format
+msgid "<qt><b>Error</b>: node %1: %2</qt>"
+msgstr "<qt><b>エラー</b>: ノード %1: %2</qt>"
+
+#: khtml_part.cpp:1529
+#, kde-format
+msgid "Display Images on Page"
+msgstr "ページの画像を表示"
+
+#: khtml_part.cpp:1913
+#, kde-format
+msgid "Error: %1 - %2"
+msgstr "エラー: %1 - %2"
+
+#: khtml_part.cpp:1918
+#, kde-format
+msgid "The requested operation could not be completed"
+msgstr "要求された操作は完了できませんでした"
+
+#: khtml_part.cpp:1924
+#, kde-format
+msgid "Technical Reason: "
+msgstr "技術的理由: "
+
+#: khtml_part.cpp:1930
+#, kde-format
+msgid "Details of the Request:"
+msgstr "要求の詳細:"
+
+#: khtml_part.cpp:1932
+#, kde-format
+msgid "URL: %1"
+msgstr "URL: %1"
+
+#: khtml_part.cpp:1935
+#, kde-format
+msgid "Protocol: %1"
+msgstr "プロトコル: %1"
+
+#: khtml_part.cpp:1938
+#, kde-format
+msgid "Date and Time: %1"
+msgstr "日付と時間: %1"
+
+#: khtml_part.cpp:1940
+#, kde-format
+msgid "Additional Information: %1"
+msgstr "追加情報: %1"
+
+#: khtml_part.cpp:1942
+#, kde-format
+msgid "Description:"
+msgstr "説明:"
+
+#: khtml_part.cpp:1948
+#, kde-format
+msgid "Possible Causes:"
+msgstr "考えられる原因:"
+
+#: khtml_part.cpp:1955
+#, kde-format
+msgid "Possible Solutions:"
+msgstr "考えられる解決法:"
+
+#: khtml_part.cpp:2403
+#, kde-format
+msgid "Page loaded."
+msgstr "ページを読み込みました。"
+
+#: khtml_part.cpp:2405
+#, kde-format
+msgid "%1 Image of %2 loaded."
+msgid_plural "%1 Images of %2 loaded."
+msgstr[0] "%1 / %2 画像を読み込みました。"
+msgstr[1] "%1 / %2 画像を読み込みました。"
+
+#: khtml_part.cpp:2583
+#, kde-format
+msgid "Automatic Detection"
+msgstr "自動検出"
+
+#: khtml_part.cpp:3713 khtml_part.cpp:3777 khtml_part.cpp:3787
+#, kde-format
+msgid " (In new window)"
+msgstr " (新しいウィンドウで)"
+
+#: khtml_part.cpp:3741
+#, kde-format
+msgid "Symbolic Link"
+msgstr "シンボリックリンク"
+
+#: khtml_part.cpp:3743
+#, kde-format
+msgid "%1 (Link)"
+msgstr "%1 (リンク)"
+
+#: khtml_part.cpp:3759
+#, kde-format
+msgid "%2 (%1 byte)"
+msgid_plural "%2 (%1 bytes)"
+msgstr[0] "%2 (%1 バイト)"
+msgstr[1] "%2 (%1 バイト)"
+
+#: khtml_part.cpp:3762
+#, kde-format
+msgid "%2 (%1 K)"
+msgstr "%2 (%1 K)"
+
+#: khtml_part.cpp:3789
+#, kde-format
+msgid " (In other frame)"
+msgstr " (他のフレームで)"
+
+#: khtml_part.cpp:3795
+#, kde-format
+msgid "Email to: "
+msgstr "メール宛先:"
+
+#: khtml_part.cpp:3801
+#, kde-format
+msgid " - Subject: "
+msgstr " - 件名:"
+
+#: khtml_part.cpp:3803
+#, kde-format
+msgid " - CC: "
+msgstr " - CC: "
+
+#: khtml_part.cpp:3805
+#, kde-format
+msgid " - BCC: "
+msgstr " - BCC: "
+
+#: khtml_part.cpp:3886 khtml_part.cpp:4108 khtml_part.cpp:4544
+#: khtml_run.cpp:106
+#, kde-format
+msgid "Save As"
+msgstr "名前を付けて保存"
+
+#: khtml_part.cpp:3891
+#, kde-format
+msgid ""
+"<qt>This untrusted page links to<br /><b>%1</b>.<br />Do you want to follow "
+"the link?</qt>"
+msgstr ""
+"<qt>この信用できないページは以下にリンクしています。<br /><b>%1</b><br />この"
+"リンクをたどりますか？</qt>"
+
+#: khtml_part.cpp:3892
+#, kde-format
+msgid "Follow"
+msgstr "たどる"
+
+#: khtml_part.cpp:3987
+#, kde-format
+msgid "Frame Information"
+msgstr "フレーム情報"
+
+#: khtml_part.cpp:3993
+#, kde-format
+msgid "   <a href=\"%1\">[Properties]</a>"
+msgstr "   <a href=\"%1\">[プロパティ]</a>"
+
+#: khtml_part.cpp:4019
+#, kde-format
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Quirks"
+msgstr "互換"
+
+#: khtml_part.cpp:4022
+#, kde-format
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Almost standards"
+msgstr "ほぼ標準"
+
+#: khtml_part.cpp:4026
+#, kde-format
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Strict"
+msgstr "厳密"
+
+#: khtml_part.cpp:4095
+#, kde-format
+msgid "Save Background Image As"
+msgstr "名前を付けて背景画像を保存"
+
+#: khtml_part.cpp:4188
+#, kde-format
+msgid "The peer SSL certificate chain appears to be corrupt."
+msgstr "ピアの SSL 証明書チェーンが壊れているようです。"
+
+#: khtml_part.cpp:4209
+#, kde-format
+msgid "Save Frame As"
+msgstr "名前を付けてフレームを保存"
+
+#: khtml_part.cpp:4253
+#, kde-format
+msgid "&Find in Frame..."
+msgstr "フレーム内を検索(&F)..."
+
+#: khtml_part.cpp:4255
+#, kde-format
+msgid "&Find..."
+msgstr "検索(&F)..."
+
+#: khtml_part.cpp:4902
+#, kde-format
+msgid ""
+"Warning:  This is a secure form but it is attempting to send your data back "
+"unencrypted.\n"
+"A third party may be able to intercept and view this information.\n"
+"Are you sure you wish to continue?"
+msgstr ""
+"【警告】 これは安全なフォームですがデータを暗号化せずに返信しようとしていま"
+"す。\n"
+"第三者が傍受し、この情報を見る可能性があります。\n"
+"本当に続行しますか？"
+
+#: khtml_part.cpp:4905 khtml_part.cpp:4915 khtml_part.cpp:4940
+#, kde-format
+msgid "Network Transmission"
+msgstr "ネットワーク転送"
+
+#: khtml_part.cpp:4905 khtml_part.cpp:4916
+#, kde-format
+msgid "&Send Unencrypted"
+msgstr "暗号化せずに送信(&S)"
+
+#: khtml_part.cpp:4913
+#, kde-format
+msgid ""
+"Warning: Your data is about to be transmitted across the network "
+"unencrypted.\n"
+"Are you sure you wish to continue?"
+msgstr ""
+"【警告】 データを暗号化せずにネットワークに送ろうとしています。\n"
+"本当に続行しますか？"
+
+#: khtml_part.cpp:4938
+#, kde-format
+msgid ""
+"This site is attempting to submit form data via email.\n"
+"Do you want to continue?"
+msgstr ""
+"このサイトはフォームデータをメールで送信しようとしています。\n"
+"続行しますか？"
+
+#: khtml_part.cpp:4941
+#, kde-format
+msgid "&Send Email"
+msgstr "メールを送信(&S)"
+
+#: khtml_part.cpp:4962
+#, kde-format
+msgid ""
+"<qt>The form will be submitted to <br /><b>%1</b><br />on your local "
+"filesystem.<br />Do you want to submit the form?</qt>"
+msgstr ""
+"<qt>フォームはあなたのローカルファイルシステムの<br/>‘%1’ へ送信されます。"
+"<br/>フォームを送信しますか？</qt>"
+
+#: khtml_part.cpp:5018
+#, kde-format
+msgid ""
+"This site attempted to attach a file from your computer in the form "
+"submission. The attachment was removed for your protection."
+msgstr ""
+"このサイトはあなたのコンピュータのファイルをフォームの送信に添付しようとしま"
+"した。あなたを保護するために添付ファイルを削除しました。"
+
+#: khtml_part.cpp:6112
+#, kde-format
+msgid "(%1/s)"
+msgstr "(%1/秒)"
+
+#: khtml_part.cpp:7040
+#, kde-format
+msgid "Security Warning"
+msgstr "セキュリティの警告"
+
+#: khtml_part.cpp:7047
+#, kde-format
+msgid "<qt>Access by untrusted page to<br /><b>%1</b><br /> denied.</qt>"
+msgstr ""
+"<qt>信用できないページによる<br /><b>%1</b><br />へのアクセスを拒否しました。"
+"</qt>"
+
+#: khtml_part.cpp:7418
+#, kde-format
+msgid "The wallet '%1' is open and being used for form data and passwords."
+msgstr ""
+"ウォレット “%1” は開かれていて、フォームのデータとパスワードのために使用中で"
+"す。"
+
+#: khtml_part.cpp:7477
+#, kde-format
+msgid "&Close Wallet"
+msgstr "ウォレットを閉じる(&C)"
+
+#: khtml_part.cpp:7480
+#, kde-format
+msgid "&Allow storing passwords for this site"
+msgstr "このサイトのためのパスワードの保存を許可する(&A)"
+
+#: khtml_part.cpp:7485
+#, kde-format
+msgid "Remove password for form %1"
+msgstr "フォーム %1 のためのパスワードを削除"
+
+#: khtml_part.cpp:7600
+#, kde-format
+msgid "JavaScript &Debugger"
+msgstr "JavaScript デバッガ(&D)"
+
+#: khtml_part.cpp:7633
+#, kde-format
+msgid "This page was prevented from opening a new window via JavaScript."
+msgstr ""
+"このページが JavaScript を使用して新しいウィンドウ開くのを阻止しました。"
+
+#: khtml_part.cpp:7639
+#, kde-format
+msgid "Popup Window Blocked"
+msgstr "ポップアップウィンドウをブロックしました"
+
+#: khtml_part.cpp:7639
+#, kde-format
+msgid ""
+"This page has attempted to open a popup window but was blocked.\n"
+"You can click on this icon in the status bar to control this behavior\n"
+"or to open the popup."
+msgstr ""
+"このページはポップアップウィンドウを開こうとしましたがブロックしました。\n"
+"ステータスバーのアイコンをクリックすると、この挙動を制御したり、\n"
+"ブロックされたポップアップを開くことができます。"
+
+#: khtml_part.cpp:7653
+#, kde-format
+msgid "&Show Blocked Popup Window"
+msgid_plural "&Show %1 Blocked Popup Windows"
+msgstr[0] "ブロックされたポップアップウィンドウを表示(&S)"
+msgstr[1] "%1 個のブロックされたポップアップウィンドウを表示(&S)"
+
+#: khtml_part.cpp:7655
+#, kde-format
+msgid "Show Blocked Window Passive Popup &Notification"
+msgstr "ブロックされたウィンドウの受動的ポップアップ通知を表示(&N)"
+
+#: khtml_part.cpp:7657
+#, kde-format
+msgid "&Configure JavaScript New Window Policies..."
+msgstr "JavaScript の新しいウィンドウポリシーを設定(&C)..."
+
+#: khtml_printsettings.cpp:30
+#, kde-format
+msgid ""
+"<qt><p><strong>'Print images'</strong></p><p>If this checkbox is enabled, "
+"images contained in the HTML page will be printed. Printing may take longer "
+"and use more ink or toner.</p><p>If this checkbox is disabled, only the text "
+"of the HTML page will be printed, without the included images. Printing will "
+"be faster and use less ink or toner.</p> </qt>"
+msgstr ""
+"<qt><p><font size='+2'>画像を印刷</font></p><p>このオプションを有効にすると、"
+"HTML ページに含まれる画像が印刷されます。印刷には時間がかかり、インクやトナー"
+"の消費量が多くなります。</p><p>有効にしなかった場合は、HTML ページのテキスト"
+"だけが印刷され、画像は印刷されません。印刷は早く済み、インクやトナーの消費量"
+"も少なくなります。</p> </qt>"
+
+#: khtml_printsettings.cpp:42
+#, kde-format
+msgid ""
+"<qt><p><strong>'Print header'</strong></p><p>If this checkbox is enabled, "
+"the printout of the HTML document will contain a header line at the top of "
+"each page. This header contains the current date, the location URL of the "
+"printed page and the page number.</p><p>If this checkbox is disabled, the "
+"printout of the HTML document will not contain such a header line.</p> </qt>"
+msgstr ""
+"<qt><p><font size='+2'>ヘッダを印刷</font></p><p>このオプションを有効にする"
+"と、印刷する HTML 文書のすべてのページの上部にヘッダが挿入されます。ヘッダに"
+"は現在の時刻、印刷したページの URL とページ番号が入ります。</p><p>有効にしな"
+"かった場合は、ヘッダは挿入されません。</p> </qt>"
+
+#: khtml_printsettings.cpp:55
+#, kde-format
+msgid ""
+"<qt><p><strong>'Printerfriendly mode'</strong></p><p>If this checkbox is "
+"enabled, the printout of the HTML document will be black and white only, and "
+"all colored background will be converted into white. Printout will be faster "
+"and use less ink or toner.</p><p>If this checkbox is disabled, the printout "
+"of the HTML document will happen in the original color settings as you see "
+"in your application. This may result in areas of full-page color (or "
+"grayscale, if you use a black+white printer). Printout will possibly happen "
+"more slowly and will probably use more toner or ink.</p> </qt>"
+msgstr ""
+"<qt><p><font size='+2'>プリンタフレンドリーモード</font></p><p>このオプション"
+"を有効にすると、HTML 文書は白黒で印刷され、すべての背景色が白に変換されます。"
+"印刷は早く済み、インクやトナーの消費量も少なくなります。</p><p>有効にしなかっ"
+"た場合は、HTML 文書はアプリケーションで表示されているとおりの色で印刷されま"
+"す。すなわち、すべてのページがカラーで印刷されます。ただし、プリンタが白黒に"
+"しか対応していない場合は、グレースケールになります。印刷には時間がかかり、ト"
+"ナーやインクの消費量が多くなります。</p> </qt>"
+
+#: khtml_printsettings.cpp:70
+#, kde-format
+msgid "HTML Settings"
+msgstr "HTML 設定"
+
+#: khtml_printsettings.cpp:72
+#, kde-format
+msgid "Printer friendly mode (black text, no background)"
+msgstr "プリンタフレンドリーモード (テキスト黒色、背景なし)"
+
+#: khtml_printsettings.cpp:75
+#, kde-format
+msgid "Print images"
+msgstr "画像を印刷"
+
+#: khtml_printsettings.cpp:78
+#, kde-format
+msgid "Print header"
+msgstr "ヘッダを印刷"
+
+#: khtml_settings.cpp:906
+#, kde-format
+msgid "Filter error"
+msgstr "フィルタエラー"
+
+#: khtmladaptorpart.cpp:29
+#, kde-format
+msgid "Inactive"
+msgstr "非アクティブ"
+
+#: khtmlimage.cpp:49
+#, kde-format
+msgid "KHTML Image"
+msgstr "KHTML 画像"
+
+#: khtmlimage.cpp:195
+#, kde-format
+msgid "%1 (%2 - %3x%4 Pixels)"
+msgstr "%1 (%2 - %3x%4 ピクセル)"
+
+#: khtmlimage.cpp:197
+#, kde-format
+msgid "%1 - %2x%3 Pixels"
+msgstr "%1 - %2x%3 ピクセル"
+
+#: khtmlimage.cpp:202
+#, kde-format
+msgid "%1 (%2x%3 Pixels)"
+msgstr "%1 (%2x%3 ピクセル)"
+
+#: khtmlimage.cpp:204
+#, kde-format
+msgid "Image - %1x%2 Pixels"
+msgstr "画像 - %1x%2 ピクセル"
+
+#: khtmlimage.cpp:210
+#, kde-format
+msgid "Done."
+msgstr "完了。"
+
+#: khtmlview.cpp:1900
+#, kde-format
+msgid "Access Keys activated"
+msgstr "アクセスキーが有効になりました"
+
+#: kjserrordlg.cpp:9
+#, kde-format
+msgid "C&lear"
+msgstr "クリア(&L)"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "JavaScript エラー"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, kde-format
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at http://bugs.kde.org/.  A test case "
+"which illustrates the problem will be appreciated."
+msgstr ""
+"このダイアログはウェブページ上で発生したスクリプトエラーを通知し、その詳細を"
+"表示します。ほとんどの場合ウェブサイトの作者による誤りがエラーの原因ですが、"
+"Konqueror のプログラムの誤りが原因の場合もあります。前者だと思われる場合は、"
+"そのウェブサイトのウェブマスターに連絡してください。Konqueror の問題だと思わ"
+"れる場合は、http://bugs.kde.org/ にバグを報告してください。問題を再現できるテ"
+"ストケースも添えていただけると助かります。"
+
+#: kmultipart/httpfiltergzip.cpp:89
+#, kde-format
+msgid "Receiving corrupt data."
+msgstr ""
+
+#: kmultipart/kmultipart.cpp:39
+#, kde-format
+msgid "KMultiPart"
+msgstr "KMultiPart"
+
+#: kmultipart/kmultipart.cpp:41
+#, kde-format
+msgid "Embeddable component for multipart/mixed"
+msgstr "multipart/mixed 用の埋め込み可能なコンポーネント"
+
+#: kmultipart/kmultipart.cpp:43
+#, kde-format
+msgid "Copyright 2001-2011, David Faure <faure@kde.org>"
+msgstr "Copyright 2001-2011, David Faure <faure@kde.org>"
+
+#: kmultipart/kmultipart.cpp:336
+#, kde-format
+msgid "No handler found for %1."
+msgstr "%1 のハンドラが見つかりません。"
+
+#: misc/kencodingdetector.cpp:1123 misc/kencodingdetector.cpp:1224
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Unicode"
+msgstr "Unicode"
+
+#: misc/kencodingdetector.cpp:1125 misc/kencodingdetector.cpp:1194
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Cyrillic"
+msgstr "キリル文字"
+
+#: misc/kencodingdetector.cpp:1127 misc/kencodingdetector.cpp:1209
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Western European"
+msgstr "西ヨーロッパ諸語"
+
+#: misc/kencodingdetector.cpp:1129 misc/kencodingdetector.cpp:1191
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Central European"
+msgstr "中央ヨーロッパ諸語"
+
+#: misc/kencodingdetector.cpp:1131 misc/kencodingdetector.cpp:1197
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Greek"
+msgstr "ギリシャ語"
+
+#: misc/kencodingdetector.cpp:1133 misc/kencodingdetector.cpp:1200
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Hebrew"
+msgstr "ヘブライ語"
+
+#: misc/kencodingdetector.cpp:1135 misc/kencodingdetector.cpp:1206
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Turkish"
+msgstr "トルコ語"
+
+#: misc/kencodingdetector.cpp:1137 misc/kencodingdetector.cpp:1203
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Japanese"
+msgstr "日本語"
+
+#: misc/kencodingdetector.cpp:1139 misc/kencodingdetector.cpp:1188
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Baltic"
+msgstr "バルト諸語"
+
+#: misc/kencodingdetector.cpp:1141 misc/kencodingdetector.cpp:1185
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Arabic"
+msgstr "アラビア語"
+
+#: misc/kencodingdetector.cpp:1212
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Chinese Traditional"
+msgstr "中国語繁体字"
+
+#: misc/kencodingdetector.cpp:1215
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Chinese Simplified"
+msgstr "中国語簡体字"
+
+#: misc/kencodingdetector.cpp:1218
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Korean"
+msgstr "韓国語・朝鮮語"
+
+#: misc/kencodingdetector.cpp:1221
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Thai"
+msgstr "タイ語"
+
+#: rendering/media_controls.cpp:46
+#, kde-format
+msgid "Play"
+msgstr "再生"
+
+#: rendering/media_controls.cpp:49
+#, kde-format
+msgid "Pause"
+msgstr "一時停止"
+
+#: rendering/render_form.cpp:903
+#, kde-format
+msgid "New Web Shortcut"
+msgstr "新しいウェブショートカット"
+
+#: rendering/render_form.cpp:924
+#, kde-format
+msgid "%1 is already assigned to %2"
+msgstr "%1 は既に “%2” に割り当てられています"
+
+#: rendering/render_form.cpp:924
+#, kde-format
+msgid "Error"
+msgstr "エラー"
+
+#: rendering/render_form.cpp:970
+#, kde-format
+msgid "Search &provider name:"
+msgstr "検索プロバイダの名前(&P):"
+
+#: rendering/render_form.cpp:972
+#, kde-format
+msgid "New search provider"
+msgstr "新しい検索プロバイダ"
+
+#: rendering/render_form.cpp:977
+#, kde-format
+msgid "UR&I shortcuts:"
+msgstr "URI ショートカット(&I):"
+
+#: rendering/render_form.cpp:1056
+#, kde-format
+msgid "Clear &History"
+msgstr "履歴をクリア(&H)"
+
+#: rendering/render_form.cpp:1071
+#, kde-format
+msgid "Create Web Shortcut"
+msgstr "ウェブショートカットを作成"
+
+#: ui/findbar/khtmlfindbar.cpp:49
+#, kde-format
+msgid "C&ase sensitive"
+msgstr "大文字と小文字を区別する(&A)"
+
+#: ui/findbar/khtmlfindbar.cpp:51
+#, kde-format
+msgid "&Whole words only"
+msgstr "単語単位(&W)"
+
+#: ui/findbar/khtmlfindbar.cpp:53
+#, kde-format
+msgid "From c&ursor"
+msgstr "カーソル位置から(&U)"
+
+#: ui/findbar/khtmlfindbar.cpp:55
+#, kde-format
+msgid "&Selected text"
+msgstr "選択範囲のみ(&S)"
+
+#: ui/findbar/khtmlfindbar.cpp:57
+#, kde-format
+msgid "Regular e&xpression"
+msgstr "正規表現(&X)"
+
+#: ui/findbar/khtmlfindbar.cpp:59
+#, kde-format
+msgid "Find &links only"
+msgstr "リンクのみを検索(&L)"
+
+#: ui/findbar/khtmlfindbar.cpp:224
+#, kde-format
+msgid "Not found"
+msgstr "見つかりません"
+
+#: ui/findbar/khtmlfindbar.cpp:239
+#, kde-format
+msgid "No more matches for this search direction."
+msgstr "この検索方向でマッチするものはもうありません。"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "検索(&I):"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "次へ(&N)"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "前へ(&P)"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "オプション(&I)"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
+#, kde-format
+msgid "Do you want to store this password?"
+msgstr "このパスワードを保存しますか？"
+
+#: ui/passwordbar/storepassbar.cpp:61
+#, kde-format
+msgid "Do you want to store this password for %1?"
+msgstr "このパスワードを %1 のために保存しますか？"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "保存する(&S)"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "このサイトに対しては保存しない(&V)"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "今回は保存しない(&N)"
+
+#: xml/dom_docimpl.cpp:2378
+#, kde-format
+msgid "Basic Page Style"
+msgstr "基本ページスタイル"
+
+#: xml/xml_tokenizer.cpp:347
+#, kde-format
+msgid "the document is not in the correct file format"
+msgstr "文書は正しいファイルフォーマットではありません。"
+
+#: xml/xml_tokenizer.cpp:352
+#, kde-format
+msgid "fatal parsing error: %1 in line %2, column %3"
+msgstr "致命的な解析エラー: %1 行 %2, 列 %3"
+
+#: xml/xml_tokenizer.cpp:567
+#, kde-format
+msgid "XML parsing error"
+msgstr "XML 解析エラー"

@@ -1,0 +1,1848 @@
+# Translation of khtml5.po into Serbian.
+# Marko Rosic <roske@kde.org.yu>, 2003.
+# Toplica Tanaskovic <toptan@kde.org.yu>, 2003, 2004, 2005.
+# Chusslove Illich <caslav.ilic@gmx.net>, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017.
+# Dalibor Djuric <daliborddjuric@gmail.com>, 2009, 2010, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: khtml5\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2016-12-11 02:37+0100\n"
+"PO-Revision-Date: 2017-09-28 17:57+0200\n"
+"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+"X-Environment: kde\n"
+"X-Wrapping: fine\n"
+"X-Associated-UI-Catalogs: ktextwidgets5\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Топлица Танасковић,Часлав Илић"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "toptan@kde.org.yu,caslav.ilic@gmx.net"
+
+#: ecma/debugger/callstackdock.cpp:35
+#, kde-format
+msgid "Call Stack"
+msgstr "Стек позива"
+
+# >> @title:column
+#: ecma/debugger/callstackdock.cpp:39
+#, kde-format
+msgid "Call"
+msgstr "позив"
+
+# >> @title:column
+#: ecma/debugger/callstackdock.cpp:39
+#, kde-format
+msgid "Line"
+msgstr "ред"
+
+#: ecma/debugger/consoledock.cpp:220
+#, kde-format
+msgid "Console"
+msgstr "Конзола"
+
+# >> @action:button
+#: ecma/debugger/consoledock.cpp:243
+#, kde-format
+msgid "Enter"
+msgstr "Унеси"
+
+#: ecma/debugger/debugdocument.cpp:206
+#, kde-format
+msgid ""
+"Unable to find the Kate editor component;\n"
+"please check your KDE installation."
+msgstr ""
+"Не могу да нађем компоненту уређивача Кејт;\n"
+"проверите инсталацију КДЕ‑а."
+
+#: ecma/debugger/debugdocument.cpp:272
+#, kde-format
+msgid "Breakpoint"
+msgstr "Преломна тачка"
+
+#: ecma/debugger/debugwindow.cpp:101
+#, kde-format
+msgid "JavaScript Debugger"
+msgstr "Исправљач јаваскрипта"
+
+#: ecma/debugger/debugwindow.cpp:178
+#, kde-format
+msgid "&Break at Next Statement"
+msgstr "&Прелом на следећем исказу"
+
+#: ecma/debugger/debugwindow.cpp:179
+#, kde-format
+msgid "Break at Next"
+msgstr "Прелом на следећем"
+
+#: ecma/debugger/debugwindow.cpp:184
+#, kde-format
+msgid "Continue"
+msgstr "Настави"
+
+#: ecma/debugger/debugwindow.cpp:190
+#, kde-format
+msgid "Step Over"
+msgstr "Прекорачи"
+
+#: ecma/debugger/debugwindow.cpp:196
+#, kde-format
+msgid "Step Into"
+msgstr "Укорачи"
+
+#: ecma/debugger/debugwindow.cpp:203
+#, kde-format
+msgid "Step Out"
+msgstr "Искорачи"
+
+#: ecma/debugger/debugwindow.cpp:209
+#, kde-format
+msgid "Reindent Sources"
+msgstr "Поново увуци изворе"
+
+# >> @title:column
+#: ecma/debugger/debugwindow.cpp:214
+#, kde-format
+msgid "Report Exceptions"
+msgstr "Пријави изузетке"
+
+# >> @title:menu
+#: ecma/debugger/debugwindow.cpp:222
+#, kde-format
+msgid "&Debug"
+msgstr "&Исправљање"
+
+# >! ctxt: @title:menu standard application menu
+#: ecma/debugger/debugwindow.cpp:230
+#, kde-format
+msgid "&Settings"
+msgstr "П&одешавање"
+
+#: ecma/debugger/debugwindow.cpp:256
+#, kde-format
+msgid "Close source"
+msgstr "Затвори извор"
+
+#: ecma/debugger/debugwindow.cpp:262
+#, kde-format
+msgid "Ready"
+msgstr "Спреман"
+
+#: ecma/debugger/debugwindow.cpp:587
+#, kde-format
+msgid ""
+"An error occurred while attempting to run a script on this page.\n"
+"\n"
+"%1 line %2:\n"
+"%3"
+msgstr ""
+"Грешка при покушају покретања скрипте на овој страници.\n"
+"\n"
+"%1 ред %2:\n"
+"%3"
+
+#: ecma/debugger/debugwindow.cpp:780
+#, kde-format
+msgid ""
+"Do not know where to evaluate the expression. Please pause a script or open "
+"a source file."
+msgstr ""
+"Не знам где да израчунам израз. Паузирајте скрипту или отворите изворни фајл."
+
+#: ecma/debugger/debugwindow.cpp:814
+#, kde-format
+msgid "Evaluation threw an exception %1"
+msgstr "Израчунавање баци изузетак %1"
+
+#: ecma/debugger/errordlg.cpp:35
+#, kde-format
+msgid "JavaScript Error"
+msgstr "Јаваскриптна грешка"
+
+#: ecma/debugger/errordlg.cpp:49
+#, kde-format
+msgid "&Do not show this message again"
+msgstr "&Не приказуј више ову поруку"
+
+#: ecma/debugger/localvariabledock.cpp:43
+#, kde-format
+msgid "Local Variables"
+msgstr "Локалне променљиве"
+
+#: ecma/debugger/localvariabledock.cpp:51
+#, kde-format
+msgid "Reference"
+msgstr "упућивач"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
+#: java/kjavaappletviewer.cpp:150
+#, kde-format
+msgid "Value"
+msgstr "вредност"
+
+#: ecma/debugger/scriptsdock.cpp:37
+#, kde-format
+msgid "Loaded Scripts"
+msgstr "Учитане скрипте"
+
+#: ecma/kjs_binding.cpp:196
+#, kde-format
+msgid ""
+"A script on this page is causing KHTML to freeze. If it continues to run, "
+"other applications may become less responsive.\n"
+"Do you want to stop the script?"
+msgstr ""
+"Скрипта на овој страници изазива замрзавање КХТМЛ‑а. Ако настави са "
+"извршавањем, може довести до споријег одзива других програма.\n"
+"Желите ли да зауставите скрипту?"
+
+#: ecma/kjs_binding.cpp:196
+#, kde-format
+msgid "JavaScript"
+msgstr "Јаваскрипт"
+
+#: ecma/kjs_binding.cpp:196
+#, kde-format
+msgid "&Stop Script"
+msgstr "&Заустави скрипту"
+
+#: ecma/kjs_binding.cpp:446
+#, kde-format
+msgid "Parse error at %1 line %2"
+msgstr "Грешка рашчлањивања у %1 ред %2"
+
+#: ecma/kjs_html.cpp:2233 ecma/kjs_window.cpp:1946
+#, kde-format
+msgid "Confirmation: JavaScript Popup"
+msgstr "Потврда: јаваскриптно искакање"
+
+#: ecma/kjs_html.cpp:2235
+#, kde-format
+msgid ""
+"This site is submitting a form which will open up a new browser window via "
+"JavaScript.\n"
+"Do you want to allow the form to be submitted?"
+msgstr ""
+"Овај сајт предаје формулар који ће јаваскриптом отворити нови прозор "
+"прегледача.\n"
+"Желите ли то да дозволите?"
+
+#: ecma/kjs_html.cpp:2238
+#, kde-format
+msgid ""
+"<qt>This site is submitting a form which will open <p>%1</p> in a new "
+"browser window via JavaScript.<br />Do you want to allow the form to be "
+"submitted?</qt>"
+msgstr ""
+"<qt>Овај сајт покушава да преда формулар који ће отворити <p>%1</"
+"p>јаваскриптом у новом прозору прегледача.\n"
+"Желите ли то да дозволите?</qt>"
+
+#: ecma/kjs_html.cpp:2240 ecma/kjs_window.cpp:1954
+#, kde-format
+msgid "Allow"
+msgstr "Дозволи"
+
+#: ecma/kjs_html.cpp:2240 ecma/kjs_window.cpp:1954
+#, kde-format
+msgid "Do Not Allow"
+msgstr "Одбиј"
+
+#: ecma/kjs_window.cpp:1949
+#, kde-format
+msgid ""
+"This site is requesting to open up a new browser window via JavaScript.\n"
+"Do you want to allow this?"
+msgstr ""
+"Овај сајт покушава да отвори јаваскриптом нови прозор прегледача.\n"
+"Желите ли то да дозволите?"
+
+#: ecma/kjs_window.cpp:1952
+#, kde-format
+msgid ""
+"<qt>This site is requesting to open<p>%1</p>in a new browser window via "
+"JavaScript.<br />Do you want to allow this?</qt>"
+msgstr ""
+"<qt>Овај сајт покушава да отвори <p>%1</p>јаваскриптом у новом прозору "
+"прегледача.\n"
+"Желите ли то да дозволите?</qt>"
+
+#: ecma/kjs_window.cpp:2285
+#, kde-format
+msgid "Close window?"
+msgstr "Затворити прозор?"
+
+#: ecma/kjs_window.cpp:2285
+#, kde-format
+msgid "Confirmation Required"
+msgstr "Потребна је потврда"
+
+#: ecma/kjs_window.cpp:3235
+#, kde-format
+msgid ""
+"Do you want a bookmark pointing to the location \"%1\" to be added to your "
+"collection?"
+msgstr ""
+"Желите ли да додате у своју збирку обележивач који указује на локацију „%1“?"
+
+#: ecma/kjs_window.cpp:3238
+#, kde-format
+msgid ""
+"Do you want a bookmark pointing to the location \"%1\" titled \"%2\" to be "
+"added to your collection?"
+msgstr ""
+"Желите ли да додате у своју збирку обележивач који указује на локацију „%1“, "
+"по имену „%2“?"
+
+#: ecma/kjs_window.cpp:3247
+#, kde-format
+msgid "JavaScript Attempted Bookmark Insert"
+msgstr "Покушано убацивање обележивача јаваскриптом"
+
+#: ecma/kjs_window.cpp:3251
+#, kde-format
+msgid "Insert"
+msgstr "Уметни"
+
+#: ecma/kjs_window.cpp:3251
+#, kde-format
+msgid "Disallow"
+msgstr "Одбиј"
+
+#: html/html_formimpl.cpp:420
+#, kde-format
+msgid ""
+"The following files will not be uploaded because they could not be found.\n"
+"Do you want to continue?"
+msgstr ""
+"Следећи фајлови неће бити отпремљени зато што не могу бити пронађени.\n"
+"Желите ли да наставите?"
+
+#: html/html_formimpl.cpp:424
+#, kde-format
+msgid "Submit Confirmation"
+msgstr "Потврда предаје"
+
+#: html/html_formimpl.cpp:424
+#, kde-format
+msgid "&Submit Anyway"
+msgstr "&Свеједно предај"
+
+#: html/html_formimpl.cpp:434
+#, kde-format
+msgid ""
+"You are about to transfer the following files from your local computer to "
+"the Internet.\n"
+"Do you really want to continue?"
+msgstr ""
+"Спремате се да пренесете следеће фајлове са вашег рачунара на Интернет.\n"
+"Желите ли заиста да наставите?"
+
+#: html/html_formimpl.cpp:438
+#, kde-format
+msgid "Send Confirmation"
+msgstr "Потврда слања"
+
+#: html/html_formimpl.cpp:438
+#, kde-format
+msgid "&Send File"
+msgid_plural "&Send Files"
+msgstr[0] "&Пошаљи фајлове"
+msgstr[1] "&Пошаљи фајлове"
+msgstr[2] "&Пошаљи фајлове"
+msgstr[3] "&Пошаљи фајл"
+
+#: html/html_formimpl.cpp:1687 html/html_formimpl.cpp:1908 khtml_part.cpp:4963
+#: khtmlview.cpp:2877 khtmlview.cpp:2921
+#, kde-format
+msgid "Submit"
+msgstr "Предај"
+
+#: html/html_formimpl.cpp:1900 khtmlview.cpp:2892 khtmlview.cpp:2927
+#, kde-format
+msgid "Reset"
+msgstr "Ресетуј"
+
+#: html/html_formimpl.cpp:2824
+#, kde-format
+msgid "Key Generator"
+msgstr "Генератор кључева"
+
+#: html/html_objectimpl.cpp:632
+#, kde-format
+msgid ""
+"No plugin found for '%1'.\n"
+"Do you want to download one from %2?"
+msgstr ""
+"Није нађен прикључак за „%1“,\n"
+"Желите ли да га преузмете са %2?"
+
+#: html/html_objectimpl.cpp:633
+#, kde-format
+msgid "Missing Plugin"
+msgstr "Недостаје прикључак"
+
+#: html/html_objectimpl.cpp:633
+#, kde-format
+msgid "Download"
+msgstr "Преузми"
+
+#: html/html_objectimpl.cpp:633
+#, kde-format
+msgid "Do Not Download"
+msgstr "Не преузимај"
+
+#: html/htmlparser.cpp:1980
+#, kde-format
+msgid "This is a searchable index. Enter search keywords: "
+msgstr "Ово је претраживи индекс. Унесите кључне речи за претрагу: "
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+"Навели сте да желите да набавите или купите безбедни сертификат. Овај "
+"чаробњак ће вас провести кроз тај поступак. Можете одустати у сваком "
+"тренутку, чиме ћете обуставити трансакцију."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+"Сада треба да задате лозинку за захтев за сертификат. Молимо вас да "
+"изаберете врло безбедну лозинку, јер ће бити употребљена за шифровање вашег "
+"приватног кључа."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, kde-format
+msgid "&Repeat password:"
+msgstr "&Поновите лозинку:"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, kde-format
+msgid "&Choose password:"
+msgstr "&Изаберите лозинку:"
+
+#: html/ksslkeygen.cpp:82
+#, kde-format
+msgid "KDE Certificate Request"
+msgstr "КДЕ захтев за сертификат"
+
+#: html/ksslkeygen.cpp:89
+#, kde-format
+msgid "KDE Certificate Request - Password"
+msgstr "КДЕ захтев за сертификат — лозинка"
+
+#: html/ksslkeygen.cpp:126
+#, kde-format
+msgid "Unsupported key size."
+msgstr "Неподржана величина кључа."
+
+#: html/ksslkeygen.cpp:126
+#, kde-format
+msgid "KDE SSL Information"
+msgstr "КДЕ подаци о ССЛ‑у"
+
+#: html/ksslkeygen.cpp:132 khtml_part.cpp:5018
+#, kde-format
+msgid "KDE"
+msgstr "КДЕ"
+
+#: html/ksslkeygen.cpp:133
+#, kde-format
+msgid "Please wait while the encryption keys are generated..."
+msgstr "Сачекајте док се стварају кључеви за шифровање..."
+
+#: html/ksslkeygen.cpp:148
+#, kde-format
+msgid "Do you wish to store the passphrase in your wallet file?"
+msgstr "Желите ли да складиштите лозинку у свом фајлу новчаника?"
+
+#: html/ksslkeygen.cpp:148
+#, kde-format
+msgid "Store"
+msgstr "Складишти"
+
+#: html/ksslkeygen.cpp:148
+#, kde-format
+msgid "Do Not Store"
+msgstr "Не складишти"
+
+#: html/ksslkeygen.cpp:257
+#, kde-format
+msgid "2048 (High Grade)"
+msgstr "2048 (висок степен)"
+
+#: html/ksslkeygen.cpp:258
+#, kde-format
+msgid "1024 (Medium Grade)"
+msgstr "1024 (средњи степен)"
+
+#: html/ksslkeygen.cpp:259
+#, kde-format
+msgid "768  (Low Grade)"
+msgstr "768  (низак степен)"
+
+#: html/ksslkeygen.cpp:260
+#, kde-format
+msgid "512  (Low Grade)"
+msgstr "512  (низак степен)"
+
+#: html/ksslkeygen.cpp:262
+#, kde-format
+msgid "No SSL support."
+msgstr "Нема подршке за ССЛ."
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "Подаци о документу"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "Опште"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "УРЛ:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "Наслов:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "Последња измена:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "Кодирање документа:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "Режим рендеровања:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "ХТТП заглавља"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "својство"
+
+#: java/kjavaapplet.cpp:227
+#, kde-format
+msgid "Initializing Applet \"%1\"..."
+msgstr "Припремам аплет „%1“..."
+
+#: java/kjavaapplet.cpp:233
+#, kde-format
+msgid "Starting Applet \"%1\"..."
+msgstr "Покрећем аплет „%1“..."
+
+#: java/kjavaapplet.cpp:240
+#, kde-format
+msgid "Applet \"%1\" started"
+msgstr "Аплет „%1“ покренут"
+
+#: java/kjavaapplet.cpp:246
+#, kde-format
+msgid "Applet \"%1\" stopped"
+msgstr "Аплет „%1“ заустављен"
+
+#: java/kjavaappletserver.cpp:144
+#, kde-format
+msgid "Loading Applet"
+msgstr "Учитавам аплет"
+
+#: java/kjavaappletserver.cpp:147
+#, kde-format
+msgid "Error: java executable not found"
+msgstr "Грешка: извршни јаве није пронађен"
+
+#: java/kjavaappletserver.cpp:674
+#, kde-format
+msgid "Signed by (validation: %1)"
+msgstr "Потписао (овера: %1)"
+
+#: java/kjavaappletserver.cpp:676
+#, kde-format
+msgid "Certificate (validation: %1)"
+msgstr "Сертификат (овера: %1)"
+
+#: java/kjavaappletserver.cpp:812 khtml_part.cpp:7048
+#, kde-format
+msgid "Security Alert"
+msgstr "Безбедносна узбуна"
+
+#: java/kjavaappletserver.cpp:817
+#, kde-format
+msgid "Do you grant Java applet with certificate(s):"
+msgstr "Дајете ли јаванском аплету сертификате:"
+
+#: java/kjavaappletserver.cpp:819
+#, kde-format
+msgid "the following permission"
+msgstr "следеће дозволе"
+
+#: java/kjavaappletserver.cpp:828
+#, kde-format
+msgid "&No"
+msgstr "&Не"
+
+#: java/kjavaappletserver.cpp:833
+#, kde-format
+msgid "&Reject All"
+msgstr "&Одбаци све"
+
+#: java/kjavaappletserver.cpp:837
+#, kde-format
+msgid "&Yes"
+msgstr "&Да"
+
+#: java/kjavaappletserver.cpp:841
+#, kde-format
+msgid "&Grant All"
+msgstr "&Дај све"
+
+#: java/kjavaappletviewer.cpp:59
+#, kde-format
+msgid "KDE Java Applet Plugin"
+msgstr "КДЕ‑ов прикључак за јаванске аплете"
+
+#: java/kjavaappletviewer.cpp:141
+#, kde-format
+msgid "Applet Parameters"
+msgstr "Параметри аплета"
+
+#: java/kjavaappletviewer.cpp:149
+#, kde-format
+msgid "Parameter"
+msgstr "Параметар"
+
+#: java/kjavaappletviewer.cpp:153
+#, kde-format
+msgid "Class"
+msgstr "Класа"
+
+#: java/kjavaappletviewer.cpp:159
+#, kde-format
+msgid "Base URL"
+msgstr "Основни УРЛ"
+
+#: java/kjavaappletviewer.cpp:165
+#, kde-format
+msgid "Archives"
+msgstr "Архиве"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "&Уређивање"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Фајл"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "&Приказ"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "ХТМЛ трака"
+
+#: khtml_ext.cpp:413
+#, kde-format
+msgid "&Copy Text"
+msgstr "&Копирај текст"
+
+#: khtml_ext.cpp:427
+#, kde-format
+msgid "Open '%1'"
+msgstr "Отвори „%1“"
+
+#: khtml_ext.cpp:444
+#, kde-format
+msgid "&Copy Email Address"
+msgstr "&Копирај адресу е‑поште"
+
+#: khtml_ext.cpp:449
+#, kde-format
+msgid "&Save Link As..."
+msgstr "&Сачувај везу као..."
+
+#: khtml_ext.cpp:454
+#, kde-format
+msgid "&Copy Link Address"
+msgstr "&Копирај адресу везе"
+
+#: khtml_ext.cpp:466
+#, kde-format
+msgctxt "@title:menu HTML frame/iframe"
+msgid "Frame"
+msgstr "Оквир"
+
+#: khtml_ext.cpp:467
+#, kde-format
+msgid "Open in New &Window"
+msgstr "Отвори у &новом прозору"
+
+#: khtml_ext.cpp:473
+#, kde-format
+msgid "Open in &This Window"
+msgstr "Отвори у &овом прозору"
+
+#: khtml_ext.cpp:478
+#, kde-format
+msgid "Open in &New Tab"
+msgstr "Отвори у &новом језичку"
+
+#: khtml_ext.cpp:488
+#, kde-format
+msgid "Reload Frame"
+msgstr "Учитај поново оквир"
+
+#: khtml_ext.cpp:493 khtml_part.cpp:447
+#, kde-format
+msgid "Print Frame..."
+msgstr "Штампај оквир..."
+
+#: khtml_ext.cpp:499 khtml_part.cpp:299
+#, kde-format
+msgid "Save &Frame As..."
+msgstr "Сачувај &оквир као..."
+
+#: khtml_ext.cpp:504 khtml_part.cpp:275
+#, kde-format
+msgid "View Frame Source"
+msgstr "Прикажи извор оквира"
+
+#: khtml_ext.cpp:509
+#, kde-format
+msgid "View Frame Information"
+msgstr "Прикажи податке о оквиру"
+
+#: khtml_ext.cpp:519
+#, kde-format
+msgid "Block IFrame..."
+msgstr "Блокирај и‑оквир..."
+
+#: khtml_ext.cpp:543
+#, kde-format
+msgid "Save Image As..."
+msgstr "Сачувај слику као..."
+
+#: khtml_ext.cpp:548
+#, kde-format
+msgid "Send Image..."
+msgstr "Пошаљи слику..."
+
+#: khtml_ext.cpp:554
+#, kde-format
+msgid "Copy Image"
+msgstr "Копирај слику"
+
+#: khtml_ext.cpp:562
+#, kde-format
+msgid "Copy Image Location"
+msgstr "Копирај локацију слике"
+
+#: khtml_ext.cpp:571
+#, kde-format
+msgid "View Image (%1)"
+msgstr "Прикажи слику (%1)"
+
+#: khtml_ext.cpp:577
+#, kde-format
+msgid "Block Image..."
+msgstr "Блокирај слику..."
+
+#: khtml_ext.cpp:584
+#, kde-format
+msgid "Block Images From %1"
+msgstr "Блокирај слике са %1"
+
+#: khtml_ext.cpp:596
+#, kde-format
+msgid "Stop Animations"
+msgstr "Заустави анимације"
+
+#: khtml_ext.cpp:637
+#, kde-format
+msgid "Search for '%1' with %2"
+msgstr "Потражи „%1“ помоћу %2|/|Потражи „%1“ $[инс-п %2]"
+
+#: khtml_ext.cpp:647
+#, kde-format
+msgid "Search for '%1' with"
+msgstr "Тражи „%1“ помоћу"
+
+#: khtml_ext.cpp:693
+#, kde-format
+msgid "Save Link As"
+msgstr "Сачувај везу као"
+
+#: khtml_ext.cpp:712
+#, kde-format
+msgid "Save Image As"
+msgstr "Сачувај слику као"
+
+#: khtml_ext.cpp:726 khtml_ext.cpp:738
+#, kde-format
+msgid "Add URL to Filter"
+msgstr "Додај УРЛ у филтер"
+
+#: khtml_ext.cpp:727 khtml_ext.cpp:739
+#, kde-format
+msgid "Enter the URL:"
+msgstr "Унесите УРЛ:"
+
+#: khtml_ext.cpp:875
+#, kde-format
+msgid ""
+"A file named \"%1\" already exists. Are you sure you want to overwrite it?"
+msgstr "Фајл по имену „%1“ већ постоји. Желите ли заиста да га пребришете?"
+
+#: khtml_ext.cpp:875
+#, kde-format
+msgid "Overwrite File?"
+msgstr "Пребрисати фајл?"
+
+#: khtml_ext.cpp:927
+#, kde-format
+msgid "The Download Manager (%1) could not be found in your $PATH "
+msgstr "Менаџер преузимања (%1) није пронађен у путањи ($PATH) "
+
+#: khtml_ext.cpp:928
+#, kde-format
+msgid ""
+"Try to reinstall it  \n"
+"\n"
+"The integration with Konqueror will be disabled."
+msgstr ""
+"Покушајте да га реинсталирате. \n"
+"\n"
+"Интеграција са К‑освајачем ће бити искључена."
+
+#: khtml_ext.cpp:1007
+#, no-c-format, kde-format
+msgid "Default Font Size (100%)"
+msgstr "Подразумевана величина фонта (100%)"
+
+#: khtml_ext.cpp:1021
+#, no-c-format, kde-format
+msgid "%1%"
+msgstr "%1%"
+
+#: khtml_global.cpp:203
+#, kde-format
+msgid "KHTML"
+msgstr "КХТМЛ"
+
+#: khtml_global.cpp:204
+#, kde-format
+msgid "Embeddable HTML component"
+msgstr "Угнездива ХТМЛ компонента"
+
+#: khtml_part.cpp:268
+#, kde-format
+msgid "View Do&cument Source"
+msgstr "Прикажи извор &документа"
+
+#: khtml_part.cpp:282
+#, kde-format
+msgid "View Document Information"
+msgstr "Прикажи податке о документу"
+
+#: khtml_part.cpp:289
+#, kde-format
+msgid "Save &Background Image As..."
+msgstr "Сачувај &позадинску слику као..."
+
+#: khtml_part.cpp:311 khtml_part.cpp:4190
+#, kde-format
+msgid "SSL"
+msgstr "ССЛ"
+
+#: khtml_part.cpp:315
+#, kde-format
+msgid "Print Rendering Tree to STDOUT"
+msgstr "Испиши стабло рендеровања на стдиз."
+
+#: khtml_part.cpp:319
+#, kde-format
+msgid "Print DOM Tree to STDOUT"
+msgstr "Испиши стабло ДОМ‑а на стдиз."
+
+#: khtml_part.cpp:323
+#, kde-format
+msgid "Print frame tree to STDOUT"
+msgstr "Штампај стабло оквира на стдиз."
+
+#: khtml_part.cpp:327
+#, kde-format
+msgid "Stop Animated Images"
+msgstr "Заустави анимиране слике"
+
+#: khtml_part.cpp:331
+#, kde-format
+msgid "Set &Encoding"
+msgstr "Постави &кодирање"
+
+#: khtml_part.cpp:377
+#, kde-format
+msgid "Use S&tylesheet"
+msgstr "Користи опис &стила"
+
+#: khtml_part.cpp:382
+#, kde-format
+msgid "Enlarge Font"
+msgstr "Повећај фонт"
+
+#: khtml_part.cpp:385
+#, kde-format
+msgid ""
+"<qt>Enlarge Font<br /><br />Make the font in this window bigger. Click and "
+"hold down the mouse button for a menu with all available font sizes.</qt>"
+msgstr ""
+"<qt>Повећај фонт<br /><br />Увећава фонт у овом прозору. Кликните и држите "
+"притиснуто дугме миша за мени са свим доступним величинама фонта.</qt>"
+
+#: khtml_part.cpp:389
+#, kde-format
+msgid "Shrink Font"
+msgstr "Смањи фонт"
+
+#: khtml_part.cpp:392
+#, kde-format
+msgid ""
+"<qt>Shrink Font<br /><br />Make the font in this window smaller. Click and "
+"hold down the mouse button for a menu with all available font sizes.</qt>"
+msgstr ""
+"<qt>Смањи фонт<br /><br />Смањује фонт у овом прозору. Кликните и држите "
+"притиснуто дугме миша за мени са свим доступним величинама фонта.</qt>"
+
+#: khtml_part.cpp:407
+#, kde-format
+msgid ""
+"<qt>Find text<br /><br />Shows a dialog that allows you to find text on the "
+"displayed page.</qt>"
+msgstr ""
+"<qt>Нађи текст<br /><br />Приказује дијалог помоћу којег можете тражити "
+"текст на приказаној страници.</qt>"
+
+#: khtml_part.cpp:411
+#, kde-format
+msgid ""
+"<qt>Find next<br /><br />Find the next occurrence of the text that you have "
+"found using the <b>Find Text</b> function.</qt>"
+msgstr ""
+"<qt>Нађи следеће<br /><br />Тражи следеће појављивање текста који сте нашли "
+"помоћу <i>Тражење текста</i>.</qt>"
+
+#: khtml_part.cpp:417
+#, kde-format
+msgid ""
+"<qt>Find previous<br /><br />Find the previous occurrence of the text that "
+"you have found using the <b>Find Text</b> function.</qt>"
+msgstr ""
+"<qt>Нађи претходно<br /><br />Тражи претходно појављивање текста који сте "
+"нашли помоћу <i>Тражење текста</i>.</qt>"
+
+#: khtml_part.cpp:422
+#, kde-format
+msgid "Find Text as You Type"
+msgstr "Тражи текст док куцам"
+
+#: khtml_part.cpp:425
+#, kde-format
+msgid ""
+"This shortcut shows the find bar, for finding text in the displayed page. It "
+"cancels the effect of \"Find Links as You Type\", which sets the \"Find "
+"links only\" option."
+msgstr ""
+"Ова пречица приказује траку за тражење текста на приказаној страници. "
+"Поништава ефекат „Тражи везе док куцам“, која поставља опцију „Тражи само "
+"везе“."
+
+#: khtml_part.cpp:429
+#, kde-format
+msgid "Find Links as You Type"
+msgstr "Тражи везе док куцам"
+
+#: khtml_part.cpp:435
+#, kde-format
+msgid ""
+"This shortcut shows the find bar, and sets the option \"Find links only\"."
+msgstr ""
+"Ова пречица приказу траку за тражење и поставља опцију „Тражи само везе“."
+
+#: khtml_part.cpp:451
+#, kde-format
+msgid ""
+"<qt>Print Frame<br /><br />Some pages have several frames. To print only a "
+"single frame, click on it and then use this function.</qt>"
+msgstr ""
+"<qt>Штампај оквир<br /><br />Неке странице имају по неколико оквира. Да "
+"бисте штампали само један од њих, кликните на њега и употребите ову функцију."
+"</qt>"
+
+#: khtml_part.cpp:466
+#, kde-format
+msgid "Toggle Caret Mode"
+msgstr "Пребаци курсорски режим"
+
+#: khtml_part.cpp:769
+#, kde-format
+msgid "The fake user-agent '%1' is in use."
+msgstr "Користи се лажни кориснички-агент „%1“."
+
+#: khtml_part.cpp:1273
+#, kde-format
+msgid "This web page contains coding errors."
+msgstr "Ова веб страница садржи грешке у кодирању."
+
+#: khtml_part.cpp:1314
+#, kde-format
+msgid "&Hide Errors"
+msgstr "&Сакриј грешке"
+
+#: khtml_part.cpp:1315
+#, kde-format
+msgid "&Disable Error Reporting"
+msgstr "&Искључи пријављивање грешака"
+
+#: khtml_part.cpp:1358
+#, kde-format
+msgid "<qt><b>Error</b>: %1: %2</qt>"
+msgstr "<qt><b>Грешка</b>: %1: %2</qt>"
+
+#: khtml_part.cpp:1407
+#, kde-format
+msgid "<qt><b>Error</b>: node %1: %2</qt>"
+msgstr "<qt><b>Грешка</b>: чвор %1: %2</qt>"
+
+#: khtml_part.cpp:1529
+#, kde-format
+msgid "Display Images on Page"
+msgstr "Прикажи слике на страници"
+
+#: khtml_part.cpp:1913
+#, kde-format
+msgid "Error: %1 - %2"
+msgstr "Грешка: %1 — %2"
+
+#: khtml_part.cpp:1918
+#, kde-format
+msgid "The requested operation could not be completed"
+msgstr "Тражени поступак није могао да се доврши"
+
+#: khtml_part.cpp:1924
+#, kde-format
+msgid "Technical Reason: "
+msgstr "Технички разлог: "
+
+#: khtml_part.cpp:1930
+#, kde-format
+msgid "Details of the Request:"
+msgstr "Детаљи захтева:"
+
+#: khtml_part.cpp:1932
+#, kde-format
+msgid "URL: %1"
+msgstr "УРЛ: %1"
+
+#: khtml_part.cpp:1935
+#, kde-format
+msgid "Protocol: %1"
+msgstr "Протокол: %1"
+
+#: khtml_part.cpp:1938
+#, kde-format
+msgid "Date and Time: %1"
+msgstr "Датум и време: %1"
+
+#: khtml_part.cpp:1940
+#, kde-format
+msgid "Additional Information: %1"
+msgstr "Додатне информације: %1"
+
+#: khtml_part.cpp:1942
+#, kde-format
+msgid "Description:"
+msgstr "Опис:"
+
+#: khtml_part.cpp:1948
+#, kde-format
+msgid "Possible Causes:"
+msgstr "Могући узроци:"
+
+#: khtml_part.cpp:1955
+#, kde-format
+msgid "Possible Solutions:"
+msgstr "Могућа решења:"
+
+# @info:status
+#: khtml_part.cpp:2403
+#, kde-format
+msgid "Page loaded."
+msgstr "Страница је учитана."
+
+# @info:status
+#: khtml_part.cpp:2405
+#, kde-format
+msgid "%1 Image of %2 loaded."
+msgid_plural "%1 Images of %2 loaded."
+msgstr[0] "Учитана %1 слика од %2."
+msgstr[1] "Учитане %1 слике од %2."
+msgstr[2] "Учитано %1 слика од %2."
+msgstr[3] "Учитана %1 слика од %2."
+
+#: khtml_part.cpp:2583
+#, kde-format
+msgid "Automatic Detection"
+msgstr "Аутоматско откривање"
+
+#: khtml_part.cpp:3713 khtml_part.cpp:3777 khtml_part.cpp:3787
+#, kde-format
+msgid " (In new window)"
+msgstr " (у новом прозору)"
+
+#: khtml_part.cpp:3741
+#, kde-format
+msgid "Symbolic Link"
+msgstr "Симболичка веза"
+
+#: khtml_part.cpp:3743
+#, kde-format
+msgid "%1 (Link)"
+msgstr "%1 (веза)"
+
+#: khtml_part.cpp:3759
+#, kde-format
+msgid "%2 (%1 byte)"
+msgid_plural "%2 (%1 bytes)"
+msgstr[0] "%2 (%1 бајт)"
+msgstr[1] "%2 (%1 бајта)"
+msgstr[2] "%2 (%1 бајтова)"
+msgstr[3] "%2 (%1 бајт)"
+
+#: khtml_part.cpp:3762
+#, kde-format
+msgid "%2 (%1 K)"
+msgstr "%2 (%1 kB)"
+
+#: khtml_part.cpp:3789
+#, kde-format
+msgid " (In other frame)"
+msgstr " (у другом оквиру)"
+
+#: khtml_part.cpp:3795
+#, kde-format
+msgid "Email to: "
+msgstr "Е‑пошта за: "
+
+#: khtml_part.cpp:3801
+#, kde-format
+msgid " - Subject: "
+msgstr " - Тема: "
+
+#: khtml_part.cpp:3803
+#, kde-format
+msgid " - CC: "
+msgstr " - ЦЦ: "
+
+#: khtml_part.cpp:3805
+#, kde-format
+msgid " - BCC: "
+msgstr " - БЦЦ: "
+
+#: khtml_part.cpp:3886 khtml_part.cpp:4108 khtml_part.cpp:4544
+#: khtml_run.cpp:106
+#, kde-format
+msgid "Save As"
+msgstr "Сачувај као"
+
+#: khtml_part.cpp:3891
+#, kde-format
+msgid ""
+"<qt>This untrusted page links to<br /><b>%1</b>.<br />Do you want to follow "
+"the link?</qt>"
+msgstr ""
+"<qt>Ова непоуздана страница даје везу ка<br /><b>%1</b>.<br />Желите ли да "
+"испратите везу?</qt>"
+
+#: khtml_part.cpp:3892
+#, kde-format
+msgid "Follow"
+msgstr "Испрати"
+
+#: khtml_part.cpp:3987
+#, kde-format
+msgid "Frame Information"
+msgstr "Подаци о оквиру"
+
+#: khtml_part.cpp:3993
+#, kde-format
+msgid "   <a href=\"%1\">[Properties]</a>"
+msgstr "   <a href=\"%1\">[својства]</a>"
+
+#: khtml_part.cpp:4019
+#, kde-format
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Quirks"
+msgstr "са зачкољицама"
+
+#: khtml_part.cpp:4022
+#, kde-format
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Almost standards"
+msgstr "скоро стандардно"
+
+#: khtml_part.cpp:4026
+#, kde-format
+msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Strict"
+msgstr "строго"
+
+#: khtml_part.cpp:4095
+#, kde-format
+msgid "Save Background Image As"
+msgstr "Уписивање позадинске слике као"
+
+#: khtml_part.cpp:4188
+#, kde-format
+msgid "The peer SSL certificate chain appears to be corrupt."
+msgstr "Ланац парњака за ССЛ сертификате делује искварено."
+
+#: khtml_part.cpp:4209
+#, kde-format
+msgid "Save Frame As"
+msgstr "Уписивање оквира као"
+
+#: khtml_part.cpp:4253
+#, kde-format
+msgid "&Find in Frame..."
+msgstr "&Нађи у оквиру..."
+
+#: khtml_part.cpp:4255
+#, kde-format
+msgid "&Find..."
+msgstr "&Нађи..."
+
+#: khtml_part.cpp:4902
+#, kde-format
+msgid ""
+"Warning:  This is a secure form but it is attempting to send your data back "
+"unencrypted.\n"
+"A third party may be able to intercept and view this information.\n"
+"Are you sure you wish to continue?"
+msgstr ""
+"Упозорење: Ово је безбедан формулар, али покушава да вам пошаље ваше податке "
+"натраг нешифроване.\n"
+"Неко са стране може бити у прилици да их пресретне и прочита.\n"
+"Желите ли заиста да наставите?"
+
+#: khtml_part.cpp:4905 khtml_part.cpp:4915 khtml_part.cpp:4940
+#, kde-format
+msgid "Network Transmission"
+msgstr "Мрежни пренос"
+
+#: khtml_part.cpp:4905 khtml_part.cpp:4916
+#, kde-format
+msgid "&Send Unencrypted"
+msgstr "Пошаљи &нешифровано"
+
+#: khtml_part.cpp:4913
+#, kde-format
+msgid ""
+"Warning: Your data is about to be transmitted across the network "
+"unencrypted.\n"
+"Are you sure you wish to continue?"
+msgstr ""
+"Упозорење: Ваши подаци ће бити послати нешифровани преко мреже.\n"
+"Желите ли заиста да наставите?"
+
+#: khtml_part.cpp:4938
+#, kde-format
+msgid ""
+"This site is attempting to submit form data via email.\n"
+"Do you want to continue?"
+msgstr ""
+"Овај сајт покушава да пошаље податке из формулара путем е‑поште.\n"
+"Желите ли да наставите?"
+
+#: khtml_part.cpp:4941
+#, kde-format
+msgid "&Send Email"
+msgstr "Пошаљи &е‑пошту"
+
+#: khtml_part.cpp:4962
+#, kde-format
+msgid ""
+"<qt>The form will be submitted to <br /><b>%1</b><br />on your local "
+"filesystem.<br />Do you want to submit the form?</qt>"
+msgstr ""
+"<qt>Формулар ће бити предат у <br /><tt>%1</tt><br />на вашем локалном фајл "
+"систему.<br />Желите ли да предате образац?</qt>"
+
+#: khtml_part.cpp:5018
+#, kde-format
+msgid ""
+"This site attempted to attach a file from your computer in the form "
+"submission. The attachment was removed for your protection."
+msgstr ""
+"Овај сајт је покушао да приложи фајл са вашег рачунара при предаји "
+"формулара. Прилог уклоњен ради ваше заштите."
+
+#: khtml_part.cpp:6112
+#, kde-format
+msgid "(%1/s)"
+msgstr "(%1/s)"
+
+#: khtml_part.cpp:7040
+#, kde-format
+msgid "Security Warning"
+msgstr "Безбедносно упозорење"
+
+#: khtml_part.cpp:7047
+#, kde-format
+msgid "<qt>Access by untrusted page to<br /><b>%1</b><br /> denied.</qt>"
+msgstr "<qt>Приступ непоузданој страници ка<br /><b>%1</b><br /> одбијен.</qt>"
+
+#: khtml_part.cpp:7418
+#, kde-format
+msgid "The wallet '%1' is open and being used for form data and passwords."
+msgstr ""
+"Новчаник „%1“ је отворен и користи се за податке из формулара и лозинке."
+
+#: khtml_part.cpp:7477
+#, kde-format
+msgid "&Close Wallet"
+msgstr "&Затвори новчаник"
+
+#: khtml_part.cpp:7480
+#, kde-format
+msgid "&Allow storing passwords for this site"
+msgstr "&Дозволи складиштење лозинки за овај сајт"
+
+#: khtml_part.cpp:7485
+#, kde-format
+msgid "Remove password for form %1"
+msgstr "Уклони лозинку за формулар %1"
+
+#: khtml_part.cpp:7600
+#, kde-format
+msgid "JavaScript &Debugger"
+msgstr "&Исправљач јаваскрипта"
+
+#: khtml_part.cpp:7633
+#, kde-format
+msgid "This page was prevented from opening a new window via JavaScript."
+msgstr "Ова страница је спречена да отвори нови прозор јаваскриптом."
+
+#: khtml_part.cpp:7639
+#, kde-format
+msgid "Popup Window Blocked"
+msgstr "Искачући прозор блокиран"
+
+#: khtml_part.cpp:7639
+#, kde-format
+msgid ""
+"This page has attempted to open a popup window but was blocked.\n"
+"You can click on this icon in the status bar to control this behavior\n"
+"or to open the popup."
+msgstr ""
+"Ова страница је покушала да отвори искачући прозор, који је блокиран.\n"
+"Кликом на иконицу у траци стања можете контролисати ово понашање\n"
+"или отворити искакач."
+
+#: khtml_part.cpp:7653
+#, kde-format
+msgid "&Show Blocked Popup Window"
+msgid_plural "&Show %1 Blocked Popup Windows"
+msgstr[0] "Прикажи %1 блокирани искачући прозор"
+msgstr[1] "Прикажи %1 блокирана искачућа прозора"
+msgstr[2] "Прикажи %1 блокираних искачућих прозора"
+msgstr[3] "Прикажи &блокирани искачући прозор"
+
+#: khtml_part.cpp:7655
+#, kde-format
+msgid "Show Blocked Window Passive Popup &Notification"
+msgstr "Прикажи обавештење о блокирању пасивног &искачућег прозора"
+
+#: khtml_part.cpp:7657
+#, kde-format
+msgid "&Configure JavaScript New Window Policies..."
+msgstr "Подеси политику &отварања нових прозора јаваскриптом..."
+
+#: khtml_printsettings.cpp:30
+#, kde-format
+msgid ""
+"<qt><p><strong>'Print images'</strong></p><p>If this checkbox is enabled, "
+"images contained in the HTML page will be printed. Printing may take longer "
+"and use more ink or toner.</p><p>If this checkbox is disabled, only the text "
+"of the HTML page will be printed, without the included images. Printing will "
+"be faster and use less ink or toner.</p> </qt>"
+msgstr ""
+"<qt><p><strong>„Штампај слике“</strong></p><p>Ако кућица попуњена, слике на "
+"ХТМЛ страници ће се штампати. Штампање ће можда бити дуже и користиће више "
+"мастила или тонера.</p><p>Ако је искључено, штампаће се само текст ХТМЛ "
+"странице без укључених слика. Штампање ће бити брже и користиће мање мастила "
+"или тонера.</p> </qt>"
+
+#: khtml_printsettings.cpp:42
+#, kde-format
+msgid ""
+"<qt><p><strong>'Print header'</strong></p><p>If this checkbox is enabled, "
+"the printout of the HTML document will contain a header line at the top of "
+"each page. This header contains the current date, the location URL of the "
+"printed page and the page number.</p><p>If this checkbox is disabled, the "
+"printout of the HTML document will not contain such a header line.</p> </qt>"
+msgstr ""
+"<qt><p><strong>„Штампај заглавље“</strong></p><p>Ако је кућица попуњена, "
+"штампани ХТМЛ документ ће садржати ред заглавља на врху сваке странице. Оно "
+"садржи текући датум, УРЛ одштампане странице и број странице.</p><p>Ако је "
+"искључено, штампани ХТМЛ документ неће садржати заглавља.</p> </qt>"
+
+#: khtml_printsettings.cpp:55
+#, kde-format
+msgid ""
+"<qt><p><strong>'Printerfriendly mode'</strong></p><p>If this checkbox is "
+"enabled, the printout of the HTML document will be black and white only, and "
+"all colored background will be converted into white. Printout will be faster "
+"and use less ink or toner.</p><p>If this checkbox is disabled, the printout "
+"of the HTML document will happen in the original color settings as you see "
+"in your application. This may result in areas of full-page color (or "
+"grayscale, if you use a black+white printer). Printout will possibly happen "
+"more slowly and will probably use more toner or ink.</p> </qt>"
+msgstr ""
+"<qt><p><strong>„Наклоњено штампачу“</strong></p><p>Ако је кућица попуњена, "
+"ХТМЛ документ ће бити штампан црно‑бело, и све обојене позадине ће бити "
+"претворене у бело. Штампање ће бити брже и користиће мање мастила или тонера."
+"</p><p>Ако је искључено, ХТМЛ документ ће бити штампан према поставкама боја "
+"каквим их видите у програму. Ово може дати делове целе странице у боји (или "
+"у тоновима сиве, ако користите црно‑бели штампач). Штампање може бити "
+"спорије и вероватно ће користити више мастила или тонера.</p> </qt>"
+
+#: khtml_printsettings.cpp:70
+#, kde-format
+msgid "HTML Settings"
+msgstr "ХТМЛ поставке"
+
+#: khtml_printsettings.cpp:72
+#, kde-format
+msgid "Printer friendly mode (black text, no background)"
+msgstr "Наклоњено штампачу (црн текст, без позадине)"
+
+#: khtml_printsettings.cpp:75
+#, kde-format
+msgid "Print images"
+msgstr "Штампај слике"
+
+#: khtml_printsettings.cpp:78
+#, kde-format
+msgid "Print header"
+msgstr "Штампај заглавље"
+
+#: khtml_settings.cpp:906
+#, kde-format
+msgid "Filter error"
+msgstr "Грешка филтера"
+
+# >! Inactive what?
+#: khtmladaptorpart.cpp:29
+#, kde-format
+msgid "Inactive"
+msgstr "Неактиван"
+
+#: khtmlimage.cpp:49
+#, kde-format
+msgid "KHTML Image"
+msgstr "Слика у КХТМЛ‑у"
+
+#: khtmlimage.cpp:195
+#, kde-format
+msgid "%1 (%2 - %3x%4 Pixels)"
+msgstr "%1 (%2 — %3×%4 пиксела)"
+
+#: khtmlimage.cpp:197
+#, kde-format
+msgid "%1 - %2x%3 Pixels"
+msgstr "%1 — %2×%3 пиксела"
+
+#: khtmlimage.cpp:202
+#, kde-format
+msgid "%1 (%2x%3 Pixels)"
+msgstr "%1 (%2×%3 пиксела)"
+
+#: khtmlimage.cpp:204
+#, kde-format
+msgid "Image - %1x%2 Pixels"
+msgstr "Слика — %1×%2 пиксела"
+
+#: khtmlimage.cpp:210
+#, kde-format
+msgid "Done."
+msgstr "Готово."
+
+#: khtmlview.cpp:1900
+#, kde-format
+msgid "Access Keys activated"
+msgstr "Приступни тастери активирани"
+
+#: kjserrordlg.cpp:9
+#, kde-format
+msgid "C&lear"
+msgstr "&Очисти"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "Грешке у јаваскрипту"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, kde-format
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at http://bugs.kde.org/.  A test case "
+"which illustrates the problem will be appreciated."
+msgstr ""
+"Овај дијалог пружа обавештења и детаље о грешкама у скриптама које се "
+"јављају на веб страницама. У већини случајева, грешка је до самог веб сајта, "
+"односно његових аутора. Понекад, међутим, грешка може бити и у програмирању "
+"К‑освајача. Ако сумњате на сајт, разговарајте са његовим вебмастером. Ако "
+"сумњате на грешку у К‑освајачу, пошаљите извештај на http://bugs.kde.org/; "
+"врло пожељно ако тада можете тачно описати поступак којим се грешка исказује."
+
+#: kmultipart/httpfiltergzip.cpp:89
+#, kde-format
+msgid "Receiving corrupt data."
+msgstr "Примљени искварени подаци."
+
+#: kmultipart/kmultipart.cpp:39
+#, kde-format
+msgid "KMultiPart"
+msgstr "К‑мултидео"
+
+#: kmultipart/kmultipart.cpp:41
+#, kde-format
+msgid "Embeddable component for multipart/mixed"
+msgstr "Угнездива компонента за МИМЕ „multipart/mixed“"
+
+# |, no-check-markup
+#: kmultipart/kmultipart.cpp:43
+#, kde-format
+msgid "Copyright 2001-2011, David Faure <faure@kde.org>"
+msgstr "© 2001–2011, Давид Фор <faure@kde.org>"
+
+#: kmultipart/kmultipart.cpp:336
+#, kde-format
+msgid "No handler found for %1."
+msgstr "Није нађен руковалац за %1."
+
+#: misc/kencodingdetector.cpp:1123 misc/kencodingdetector.cpp:1224
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Unicode"
+msgstr "уникод"
+
+#: misc/kencodingdetector.cpp:1125 misc/kencodingdetector.cpp:1194
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Cyrillic"
+msgstr "ћирилички"
+
+#: misc/kencodingdetector.cpp:1127 misc/kencodingdetector.cpp:1209
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Western European"
+msgstr "западноевропски"
+
+#: misc/kencodingdetector.cpp:1129 misc/kencodingdetector.cpp:1191
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Central European"
+msgstr "средњеевропски"
+
+#: misc/kencodingdetector.cpp:1131 misc/kencodingdetector.cpp:1197
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Greek"
+msgstr "грчки"
+
+#: misc/kencodingdetector.cpp:1133 misc/kencodingdetector.cpp:1200
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Hebrew"
+msgstr "хебрејски"
+
+#: misc/kencodingdetector.cpp:1135 misc/kencodingdetector.cpp:1206
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Turkish"
+msgstr "турски"
+
+#: misc/kencodingdetector.cpp:1137 misc/kencodingdetector.cpp:1203
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Japanese"
+msgstr "јапански"
+
+#: misc/kencodingdetector.cpp:1139 misc/kencodingdetector.cpp:1188
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Baltic"
+msgstr "балтички"
+
+#: misc/kencodingdetector.cpp:1141 misc/kencodingdetector.cpp:1185
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Arabic"
+msgstr "арапски"
+
+#: misc/kencodingdetector.cpp:1212
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Chinese Traditional"
+msgstr "кинески традиционални"
+
+#: misc/kencodingdetector.cpp:1215
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Chinese Simplified"
+msgstr "кинески поједностављени"
+
+#: misc/kencodingdetector.cpp:1218
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Korean"
+msgstr "корејски"
+
+#: misc/kencodingdetector.cpp:1221
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Thai"
+msgstr "тајландски"
+
+#: rendering/media_controls.cpp:46
+#, kde-format
+msgid "Play"
+msgstr "Пусти"
+
+#: rendering/media_controls.cpp:49
+#, kde-format
+msgid "Pause"
+msgstr "Паузирај"
+
+#: rendering/render_form.cpp:903
+#, kde-format
+msgid "New Web Shortcut"
+msgstr "Нова веб пречица"
+
+# >> %1 is a web shortcut keyword, %2 search provider (e.g. "gg", "Google")
+#: rendering/render_form.cpp:924
+#, kde-format
+msgid "%1 is already assigned to %2"
+msgstr "%1 је већ додељено за %2|/|%1 је већ додељено $[дат %2]"
+
+#: rendering/render_form.cpp:924
+#, kde-format
+msgid "Error"
+msgstr "Грешка"
+
+#: rendering/render_form.cpp:970
+#, kde-format
+msgid "Search &provider name:"
+msgstr "Име &претраживача:"
+
+#: rendering/render_form.cpp:972
+#, kde-format
+msgid "New search provider"
+msgstr "Нови претраживач"
+
+#: rendering/render_form.cpp:977
+#, kde-format
+msgid "UR&I shortcuts:"
+msgstr "Пречице УРИ‑ја:"
+
+#: rendering/render_form.cpp:1056
+#, kde-format
+msgid "Clear &History"
+msgstr "Очисти &историјат"
+
+#: rendering/render_form.cpp:1071
+#, kde-format
+msgid "Create Web Shortcut"
+msgstr "Направи веб пречицу"
+
+#: ui/findbar/khtmlfindbar.cpp:49
+#, kde-format
+msgid "C&ase sensitive"
+msgstr "Разликуј &величину слова"
+
+#: ui/findbar/khtmlfindbar.cpp:51
+#, kde-format
+msgid "&Whole words only"
+msgstr "Само &целе речи"
+
+# skip-rule: t-pointer
+#: ui/findbar/khtmlfindbar.cpp:53
+#, kde-format
+msgid "From c&ursor"
+msgstr "&Од курсора"
+
+#: ui/findbar/khtmlfindbar.cpp:55
+#, kde-format
+msgid "&Selected text"
+msgstr "Означени т&екст"
+
+#: ui/findbar/khtmlfindbar.cpp:57
+#, kde-format
+msgid "Regular e&xpression"
+msgstr "&Регуларни израз"
+
+#: ui/findbar/khtmlfindbar.cpp:59
+#, kde-format
+msgid "Find &links only"
+msgstr "Тражи само &везе"
+
+#: ui/findbar/khtmlfindbar.cpp:224
+#, kde-format
+msgid "Not found"
+msgstr "Није нађено"
+
+#: ui/findbar/khtmlfindbar.cpp:239
+#, kde-format
+msgid "No more matches for this search direction."
+msgstr "Нема више поклапања у овом смеру тражења."
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "&Нађи:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&Следеће"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "&Претходно"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "&Опције"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
+#, kde-format
+msgid "Do you want to store this password?"
+msgstr "Желите ли да складиштите ову лозинку?"
+
+#: ui/passwordbar/storepassbar.cpp:61
+#, kde-format
+msgid "Do you want to store this password for %1?"
+msgstr "Желите ли да складиштите ову лозинку за %1?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "&Складишти"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "&Никада за овај сајт"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "Не &овај пут"
+
+#: xml/dom_docimpl.cpp:2378
+#, kde-format
+msgid "Basic Page Style"
+msgstr "Основни стил странице"
+
+#: xml/xml_tokenizer.cpp:347
+#, kde-format
+msgid "the document is not in the correct file format"
+msgstr "документ није у исправном формату фајла"
+
+#: xml/xml_tokenizer.cpp:352
+#, kde-format
+msgid "fatal parsing error: %1 in line %2, column %3"
+msgstr "кобна грешка у рашчлањивању: %1 у реду %2, колона %3"
+
+#: xml/xml_tokenizer.cpp:567
+#, kde-format
+msgid "XML parsing error"
+msgstr "грешка рашчлањивања ИксМЛ‑а"
