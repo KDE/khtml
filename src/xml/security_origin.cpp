@@ -54,7 +54,7 @@ SecurityOrigin::SecurityOrigin(const QUrl &url) :
     }
 
     // For edge case URLs that were probably misparsed, make sure that the origin is unique.
-    if (m_host.isEmpty() && KProtocolInfo::protocolClass(m_protocol) == QLatin1String(":internet")) {
+    if (m_host.isEmpty() && !m_protocol.isEmpty() && KProtocolInfo::protocolClass(m_protocol) == QLatin1String(":internet")) {
         m_isUnique = true;
     }
 
