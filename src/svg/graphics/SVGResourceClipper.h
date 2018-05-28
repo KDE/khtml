@@ -89,7 +89,7 @@ public:
 
     const ClipDataList &clipData() const;
 
-    SVGResourceType resourceType() const Q_DECL_OVERRIDE
+    SVGResourceType resourceType() const override
     {
         return ClipperResourceType;
     }

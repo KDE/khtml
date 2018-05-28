@@ -45,13 +45,13 @@ public:
              const KParts::BrowserArguments &browserArgs,
              bool hideErrorDialog);
 
-    void foundMimeType(const QString &mimetype) Q_DECL_OVERRIDE;
-    void handleError(KJob *job) Q_DECL_OVERRIDE;
+    void foundMimeType(const QString &mimetype) override;
+    void handleError(KJob *job) override;
 
     //KHTMLPart *htmlPart() const;
 
 protected:
-    void save(const QUrl &url, const QString &suggestedFilename) Q_DECL_OVERRIDE;
+    void save(const QUrl &url, const QString &suggestedFilename) override;
 
 private:
     khtml::ChildFrame *m_child;

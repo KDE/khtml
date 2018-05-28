@@ -112,10 +112,10 @@ public:
     SVGGlyphElement(const QualifiedName &, Document *);
     virtual ~SVGGlyphElement();
 
-    void insertedIntoDocument() Q_DECL_OVERRIDE;
-    void removedFromDocument() Q_DECL_OVERRIDE;
+    void insertedIntoDocument() override;
+    void removedFromDocument() override;
 
-    bool rendererIsNeeded(RenderStyle *) Q_DECL_OVERRIDE
+    bool rendererIsNeeded(RenderStyle *) override
     {
         return false;
     }

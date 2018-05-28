@@ -47,14 +47,14 @@ class RenderCanvasImage : public RenderReplaced
 public:
     RenderCanvasImage(DOM::HTMLCanvasElementImpl *);
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderCanvasImage";
     }
 
-    void paint(PaintInfo &i, int tx, int ty) Q_DECL_OVERRIDE;
-    void layout() Q_DECL_OVERRIDE;
-    void updateFromElement() Q_DECL_OVERRIDE;
+    void paint(PaintInfo &i, int tx, int ty) override;
+    void layout() override;
+    void updateFromElement() override;
 
     // don't even think about making this method virtual!
     DOM::HTMLCanvasElementImpl *element() const

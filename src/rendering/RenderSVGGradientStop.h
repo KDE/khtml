@@ -39,13 +39,13 @@ public:
     RenderSVGGradientStop(SVGStopElement *);
     virtual ~RenderSVGGradientStop();
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderSVGGradientStop";
     }
 
-    void layout() Q_DECL_OVERRIDE;
-    void setStyle(khtml::RenderStyle *) Q_DECL_OVERRIDE;
+    void layout() override;
+    void setStyle(khtml::RenderStyle *) override;
 
 private:
     SVGGradientElement *gradientElement() const;

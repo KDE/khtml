@@ -39,15 +39,15 @@ public:
     }
     virtual ~SVGPathSegLinetoHorizontalAbs();
 
-    unsigned short pathSegType() const Q_DECL_OVERRIDE
+    unsigned short pathSegType() const override
     {
         return PATHSEG_LINETO_HORIZONTAL_ABS;
     }
-    String pathSegTypeAsLetter() const Q_DECL_OVERRIDE
+    String pathSegTypeAsLetter() const override
     {
         return "H";
     }
-    String toString() const Q_DECL_OVERRIDE
+    String toString() const override
     {
         return String::format("H %.6lg", m_x);
     }
@@ -69,15 +69,15 @@ public:
     }
     virtual ~SVGPathSegLinetoHorizontalRel();
 
-    unsigned short pathSegType() const Q_DECL_OVERRIDE
+    unsigned short pathSegType() const override
     {
         return PATHSEG_LINETO_HORIZONTAL_REL;
     }
-    String pathSegTypeAsLetter() const Q_DECL_OVERRIDE
+    String pathSegTypeAsLetter() const override
     {
         return "h";
     }
-    String toString() const Q_DECL_OVERRIDE
+    String toString() const override
     {
         return String::format("h %.6lg", m_x);
     }

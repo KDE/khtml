@@ -54,8 +54,8 @@ public:
     FixedTableLayout(RenderTable *table);
     ~FixedTableLayout();
 
-    void calcMinMaxWidth() Q_DECL_OVERRIDE;
-    void layout() Q_DECL_OVERRIDE;
+    void calcMinMaxWidth() override;
+    void layout() override;
 
 protected:
     int calcWidthArray();
@@ -71,8 +71,8 @@ public:
     AutoTableLayout(RenderTable *table);
     ~AutoTableLayout();
 
-    void calcMinMaxWidth() Q_DECL_OVERRIDE;
-    void layout() Q_DECL_OVERRIDE;
+    void calcMinMaxWidth() override;
+    void layout() override;
 
 protected:
     void fullRecalc();

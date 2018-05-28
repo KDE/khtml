@@ -41,14 +41,14 @@ public:
     SVGDefsElement(const QualifiedName &, Document *);
     virtual ~SVGDefsElement();
 
-    bool isValid() const Q_DECL_OVERRIDE;
+    bool isValid() const override;
 
-    RenderObject *createRenderer(RenderArena *, RenderStyle *) Q_DECL_OVERRIDE;
+    RenderObject *createRenderer(RenderArena *, RenderStyle *) override;
 
     // KHTML ElementImpl pure virtual method
-    quint32 id() const Q_DECL_OVERRIDE;
+    quint32 id() const override;
 protected:
-    const SVGElement *contextElement() const Q_DECL_OVERRIDE
+    const SVGElement *contextElement() const override
     {
         return this;
     }

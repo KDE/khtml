@@ -173,22 +173,22 @@ public:
     HTMLTokenizer(DOM::DocumentImpl *, DOM::DocumentFragmentImpl *frag);
     virtual ~HTMLTokenizer();
 
-    void begin() Q_DECL_OVERRIDE;
-    void write(const khtml::TokenizerString &str, bool appendData) Q_DECL_OVERRIDE;
-    void end() Q_DECL_OVERRIDE;
-    void finish() Q_DECL_OVERRIDE;
-    void timerEvent(QTimerEvent *e) Q_DECL_OVERRIDE;
+    void begin() override;
+    void write(const khtml::TokenizerString &str, bool appendData) override;
+    void end() override;
+    void finish() override;
+    void timerEvent(QTimerEvent *e) override;
     bool continueProcessing(int &);
-    void setNormalYieldDelay() Q_DECL_OVERRIDE;
-    void setOnHold(bool _onHold) Q_DECL_OVERRIDE;
-    void abort() Q_DECL_OVERRIDE
+    void setNormalYieldDelay() override;
+    void setOnHold(bool _onHold) override;
+    void abort() override
     {
         m_abort = true;
     }
-    bool isWaitingForScripts() const Q_DECL_OVERRIDE;
-    bool isExecutingScript() const Q_DECL_OVERRIDE;
+    bool isWaitingForScripts() const override;
+    bool isExecutingScript() const override;
 
-    void executeScriptsWaitingForStylesheets() Q_DECL_OVERRIDE;
+    void executeScriptsWaitingForStylesheets() override;
 
 protected:
     void reset();
@@ -230,7 +230,7 @@ protected:
     void enlargeRawContentBuffer(int len);
 
     // from CachedObjectClient
-    void notifyFinished(khtml::CachedObject *finishedObj) Q_DECL_OVERRIDE;
+    void notifyFinished(khtml::CachedObject *finishedObj) override;
 
     bool continueProcessingScripts();
 protected:

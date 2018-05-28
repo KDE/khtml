@@ -30,7 +30,7 @@ class SVGMissingGlyphElement : public SVGStyledElement
 public:
     SVGMissingGlyphElement(const QualifiedName &, Document *);
 
-    bool rendererIsNeeded(RenderStyle *) Q_DECL_OVERRIDE
+    bool rendererIsNeeded(RenderStyle *) override
     {
         return false;
     }

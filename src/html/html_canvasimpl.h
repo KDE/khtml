@@ -72,10 +72,10 @@ public:
     HTMLCanvasElementImpl(DocumentImpl *doc);
     ~HTMLCanvasElementImpl();
 
-    void parseAttribute(AttributeImpl *) Q_DECL_OVERRIDE;
-    Id id() const Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *) override;
+    Id id() const override;
 
-    void attach() Q_DECL_OVERRIDE;
+    void attach() override;
 
     int width() const
     {
@@ -134,12 +134,12 @@ public:
     CanvasColorImpl(const QColor &newColor) : color(newColor)
     {}
 
-    Type type() const Q_DECL_OVERRIDE
+    Type type() const override
     {
         return Color;
     }
 
-    QBrush toBrush() const Q_DECL_OVERRIDE
+    QBrush toBrush() const override
     {
         return QBrush(color);
     }
@@ -155,11 +155,11 @@ class CanvasPatternImpl : public CanvasStyleBaseImpl
 public:
     CanvasPatternImpl(const QImage &inImg, bool unsafe, bool rx, bool ry);
 
-    Type type() const Q_DECL_OVERRIDE
+    Type type() const override
     {
         return Pattern;
     }
-    QBrush toBrush() const Q_DECL_OVERRIDE;
+    QBrush toBrush() const override;
 
     // Returns the rect that a pattern fill or stroke should be clipped to, given
     // the repeat setting and the indicated brush origin and bounding rect.
@@ -167,7 +167,7 @@ public:
     // in the repeating dimension(s).
     QRectF clipForRepeat(const QPointF &origin, const QRectF &bounds) const;
 
-    bool isUnsafe() const Q_DECL_OVERRIDE
+    bool isUnsafe() const override
     {
         return unsafe;
     }
@@ -184,11 +184,11 @@ public:
     ~CanvasGradientImpl();
 
     // Our internal interface..
-    Type type() const Q_DECL_OVERRIDE
+    Type type() const override
     {
         return Gradient;
     }
-    QBrush toBrush() const Q_DECL_OVERRIDE;
+    QBrush toBrush() const override;
 
     // DOM API
     void addColorStop(float offset, const DOM::DOMString &color, int &exceptionCode);

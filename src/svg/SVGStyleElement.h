@@ -36,9 +36,9 @@ public:
     SVGStyleElement(const QualifiedName &, Document *);
 
     // Derived from: 'Element'
-    void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
-    void insertedIntoDocument() Q_DECL_OVERRIDE;
-    void removedFromDocument() Q_DECL_OVERRIDE;
+    void parseMappedAttribute(MappedAttribute *) override;
+    void insertedIntoDocument() override;
+    void removedFromDocument() override;
     using DOM::NodeImpl::childrenChanged;
     virtual void childrenChanged(bool changedByParser = false, Node *beforeChange = nullptr, Node *afterChange = nullptr, int childCountDelta = 0);
 
@@ -46,7 +46,7 @@ public:
     {
         m_createdByParser = createdByParser;
     }
-    void finishParsingChildren() Q_DECL_OVERRIDE;
+    void finishParsingChildren() override;
 
     // 'SVGStyleElement' functions
     DOMString xmlspace() const;
@@ -66,7 +66,7 @@ public:
     StyleSheet *sheet();
 
     //khtml compatibility methods
-    quint32 id() const Q_DECL_OVERRIDE;
+    quint32 id() const override;
 protected:
     bool m_createdByParser;
     StyleSheet *m_sheet;

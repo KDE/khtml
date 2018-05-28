@@ -40,27 +40,27 @@ class RenderReplaced : public RenderBox
 public:
     RenderReplaced(DOM::NodeImpl *node);
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderReplaced";
     }
-    bool isRenderReplaced() const Q_DECL_OVERRIDE
+    bool isRenderReplaced() const override
     {
         return true;
     }
 
-    bool childAllowed() const Q_DECL_OVERRIDE
+    bool childAllowed() const override
     {
         return false;
     }
 
-    void calcMinMaxWidth() Q_DECL_OVERRIDE;
+    void calcMinMaxWidth() override;
 
-    short intrinsicWidth() const Q_DECL_OVERRIDE
+    short intrinsicWidth() const override
     {
         return m_intrinsicWidth;
     }
-    int intrinsicHeight() const Q_DECL_OVERRIDE
+    int intrinsicHeight() const override
     {
         return m_intrinsicHeight;
     }
@@ -80,10 +80,10 @@ public:
             DOM::NodeImpl *&node, int &offset,
             SelPointState &);
 
-    long caretMinOffset() const Q_DECL_OVERRIDE;
-    long caretMaxOffset() const Q_DECL_OVERRIDE;
-    unsigned long caretMaxRenderedOffset() const Q_DECL_OVERRIDE;
-    RenderPosition positionForCoordinates(int x, int y) Q_DECL_OVERRIDE;
+    long caretMinOffset() const override;
+    long caretMaxOffset() const override;
+    unsigned long caretMaxRenderedOffset() const override;
+    RenderPosition positionForCoordinates(int x, int y) override;
     virtual bool forceTransparentText() const
     {
         return false;
@@ -101,9 +101,9 @@ public:
     RenderWidget(DOM::NodeImpl *node);
     virtual ~RenderWidget();
 
-    void setStyle(RenderStyle *style) Q_DECL_OVERRIDE;
-    void paint(PaintInfo &i, int tx, int ty) Q_DECL_OVERRIDE;
-    bool isWidget() const Q_DECL_OVERRIDE
+    void setStyle(RenderStyle *style) override;
+    void paint(PaintInfo &i, int tx, int ty) override;
+    bool isWidget() const override
     {
         return true;
     }
@@ -113,10 +113,10 @@ public:
         return false;
     }
 
-    void detach() Q_DECL_OVERRIDE;
-    void layout() Q_DECL_OVERRIDE;
+    void detach() override;
+    void layout() override;
 
-    void updateFromElement() Q_DECL_OVERRIDE;
+    void updateFromElement() override;
     virtual void handleFocusOut() {}
 
     QWidget *widget() const
@@ -136,7 +136,7 @@ public:
     }
 
     static void paintWidget(PaintInfo &pI, QWidget *widget, int tx, int ty, QPixmap *buffer[] = nullptr);
-    bool handleEvent(const DOM::EventImpl &ev) Q_DECL_OVERRIDE;
+    bool handleEvent(const DOM::EventImpl &ev) override;
     bool isRedirectedWidget() const;
     bool isDisabled() const
     {
@@ -144,7 +144,7 @@ public:
     }
 
 #ifdef ENABLE_DUMP
-    void dump(QTextStream &stream, const QString &ind) const Q_DECL_OVERRIDE;
+    void dump(QTextStream &stream, const QString &ind) const override;
 #endif
 
 public Q_SLOTS:
@@ -157,7 +157,7 @@ protected:
         m_ownsWidget = false;
     }
 
-    void paintBoxDecorations(PaintInfo &paintInfo, int _tx, int _ty) Q_DECL_OVERRIDE;
+    void paintBoxDecorations(PaintInfo &paintInfo, int _tx, int _ty) override;
 
     virtual bool canHaveBorder() const
     {
@@ -189,9 +189,9 @@ protected:
         return true;
     }
 
-    bool event(QEvent *e) Q_DECL_OVERRIDE;
+    bool event(QEvent *e) override;
 
-    bool eventFilter(QObject * /*o*/, QEvent *e) Q_DECL_OVERRIDE;
+    bool eventFilter(QObject * /*o*/, QEvent *e) override;
     void setQWidget(QWidget *widget);
     void resizeWidget(int w, int h);
 
@@ -211,19 +211,19 @@ protected:
     bool m_ownsWidget;
 
 public:
-    int borderTop() const Q_DECL_OVERRIDE
+    int borderTop() const override
     {
         return canHaveBorder() ? RenderReplaced::borderTop() : 0;
     }
-    int borderBottom() const Q_DECL_OVERRIDE
+    int borderBottom() const override
     {
         return canHaveBorder() ? RenderReplaced::borderBottom() : 0;
     }
-    int borderLeft() const Q_DECL_OVERRIDE
+    int borderLeft() const override
     {
         return canHaveBorder() ? RenderReplaced::borderLeft() : 0;
     }
-    int borderRight() const Q_DECL_OVERRIDE
+    int borderRight() const override
     {
         return canHaveBorder() ? RenderReplaced::borderRight() : 0;
     }

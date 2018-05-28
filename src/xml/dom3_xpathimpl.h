@@ -106,8 +106,8 @@ class DefaultXPathNSResolverImpl : public XPathNSResolverImpl
 public:
     DefaultXPathNSResolverImpl(DOM::NodeImpl *node);
 
-    DOM::DOMString lookupNamespaceURI(const DOM::DOMString &prefix) Q_DECL_OVERRIDE;
-    Type type() Q_DECL_OVERRIDE
+    DOM::DOMString lookupNamespaceURI(const DOM::DOMString &prefix) override;
+    Type type() override
     {
         return Default;
     }

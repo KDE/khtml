@@ -38,9 +38,9 @@ class HTMLVideoElement : public HTMLMediaElement
 public:
     HTMLVideoElement(Document *);
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 
-    bool isVideo() const Q_DECL_OVERRIDE
+    bool isVideo() const override
     {
         return true;
     }

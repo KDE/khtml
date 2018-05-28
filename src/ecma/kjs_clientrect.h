@@ -41,7 +41,7 @@ public:
     JSValue *getValueProperty(ExecState *exec, int token) const;
 
     using KJS::JSObject::getOwnPropertySlot;
-    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) override;
 
     float top() const;
     float left() const;
@@ -56,7 +56,7 @@ public:
     void setHeight(float height);
 
 private:
-    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
+    const ClassInfo *classInfo() const override
     {
         return &info;
     }
@@ -75,15 +75,15 @@ public:
     };
 
     JSValue *getValueProperty(ExecState *exec, int token) const;
-    bool getOwnPropertySlot(ExecState *exec, unsigned int index, PropertySlot &slot) Q_DECL_OVERRIDE;
-    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
+    bool getOwnPropertySlot(ExecState *exec, unsigned int index, PropertySlot &slot) override;
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) override;
 
     unsigned length() const;
     ClientRect *item(unsigned index);
     void append(ClientRect *item);
 
 private:
-    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
+    const ClassInfo *classInfo() const override
     {
         return &info;
     }

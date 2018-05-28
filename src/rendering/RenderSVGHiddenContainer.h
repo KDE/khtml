@@ -40,35 +40,35 @@ public:
     RenderSVGHiddenContainer(SVGStyledElement *);
     virtual ~RenderSVGHiddenContainer();
 
-    bool isSVGContainer() const Q_DECL_OVERRIDE
+    bool isSVGContainer() const override
     {
         return true;
     }
-    bool isSVGHiddenContainer() const Q_DECL_OVERRIDE
+    bool isSVGHiddenContainer() const override
     {
         return true;
     }
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderSVGHiddenContainer";
     }
 
-    bool requiresLayer() const Q_DECL_OVERRIDE;
+    bool requiresLayer() const override;
 
-    short lineHeight(bool b) const Q_DECL_OVERRIDE;
-    short baselinePosition(bool b) const Q_DECL_OVERRIDE;
+    short lineHeight(bool b) const override;
+    short baselinePosition(bool b) const override;
 
-    void layout() Q_DECL_OVERRIDE;
-    void paint(PaintInfo &, int parentX, int parentY) Q_DECL_OVERRIDE;
+    void layout() override;
+    void paint(PaintInfo &, int parentX, int parentY) override;
 
-    IntRect absoluteClippedOverflowRect() Q_DECL_OVERRIDE;
-    void absoluteRects(Vector<IntRect> &rects, int tx, int ty, bool topLevel = true) Q_DECL_OVERRIDE;
+    IntRect absoluteClippedOverflowRect() override;
+    void absoluteRects(Vector<IntRect> &rects, int tx, int ty, bool topLevel = true) override;
 
-    AffineTransform absoluteTransform() const Q_DECL_OVERRIDE;
-    AffineTransform localTransform() const Q_DECL_OVERRIDE;
+    AffineTransform absoluteTransform() const override;
+    AffineTransform localTransform() const override;
 
-    FloatRect relativeBBox(bool includeStroke = true) const Q_DECL_OVERRIDE;
+    FloatRect relativeBBox(bool includeStroke = true) const override;
     /*virtual bool nodeAtPoint(const HitTestRequest&, HitTestResult&, int x, int y, int tx, int ty, HitTestAction);*/
 };
 }

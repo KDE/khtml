@@ -49,37 +49,37 @@ public:
     SVGElementInstance *instanceRoot() const;
     SVGElementInstance *animatedInstanceRoot() const;
 
-    bool isValid() const Q_DECL_OVERRIDE
+    bool isValid() const override
     {
         return SVGTests::isValid();
     }
 
-    void insertedIntoDocument() Q_DECL_OVERRIDE;
-    void removedFromDocument() Q_DECL_OVERRIDE;
-    void buildPendingResource() Q_DECL_OVERRIDE;
+    void insertedIntoDocument() override;
+    void removedFromDocument() override;
+    void buildPendingResource() override;
 
-    void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
+    void parseMappedAttribute(MappedAttribute *) override;
     using DOM::NodeImpl::childrenChanged;
-    void childrenChanged(bool changedByParser = false, Node *beforeChange = nullptr, Node *afterChange = nullptr, int childCountDelta = 0) Q_DECL_OVERRIDE;
+    void childrenChanged(bool changedByParser = false, Node *beforeChange = nullptr, Node *afterChange = nullptr, int childCountDelta = 0) override;
 
-    void svgAttributeChanged(const QualifiedName &) Q_DECL_OVERRIDE;
-    void recalcStyle(StyleChange = NoChange) Q_DECL_OVERRIDE;
+    void svgAttributeChanged(const QualifiedName &) override;
+    void recalcStyle(StyleChange = NoChange) override;
 
-    RenderObject *createRenderer(RenderArena *, RenderStyle *) Q_DECL_OVERRIDE;
-    void attach() Q_DECL_OVERRIDE;
-    void detach() Q_DECL_OVERRIDE;
+    RenderObject *createRenderer(RenderArena *, RenderStyle *) override;
+    void attach() override;
+    void detach() override;
 
-    Path toClipPath() const Q_DECL_OVERRIDE;
+    Path toClipPath() const override;
 
     static void removeDisallowedElementsFromSubtree(Node *element);
 
     // KHTML ElementImpl pure virtual method
-    quint32 id() const Q_DECL_OVERRIDE
+    quint32 id() const override
     {
         return SVGNames::useTag.id();
     }
 protected:
-    const SVGElement *contextElement() const Q_DECL_OVERRIDE
+    const SVGElement *contextElement() const override
     {
         return this;
     }

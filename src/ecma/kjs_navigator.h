@@ -33,9 +33,9 @@ class Navigator : public JSObject
 public:
     Navigator(ExecState *exec, KHTMLPart *p);
     using KJS::JSObject::getOwnPropertySlot;
-    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) override;
     JSValue *getValueProperty(ExecState *exec, int token) const;
-    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
+    const ClassInfo *classInfo() const override
     {
         return &info;
     }

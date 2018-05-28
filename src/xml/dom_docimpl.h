@@ -209,7 +209,7 @@ public:
 
     DOMImplementationImpl *implementation() const;
     ElementImpl *documentElement() const;
-    void childrenChanged() Q_DECL_OVERRIDE;
+    void childrenChanged() override;
     virtual ElementImpl *createElement(const DOMString &tagName, int *pExceptioncode = nullptr);
     virtual AttrImpl *createAttribute(const DOMString &tagName, int *pExceptioncode = nullptr);
     DocumentFragmentImpl *createDocumentFragment();
@@ -261,11 +261,11 @@ public:
 
     // DOM methods overridden from  parent classes
 
-    DOMString nodeName() const Q_DECL_OVERRIDE;
-    unsigned short nodeType() const Q_DECL_OVERRIDE;
+    DOMString nodeName() const override;
+    unsigned short nodeType() const override;
 
     // Other methods (not part of DOM)
-    bool isDocumentNode() const Q_DECL_OVERRIDE
+    bool isDocumentNode() const override
     {
         return true;
     }
@@ -382,7 +382,7 @@ public:
 
     EditingTextImpl *createEditingTextNode(const DOMString &text);
 
-    void recalcStyle(StyleChange = NoChange) Q_DECL_OVERRIDE;
+    void recalcStyle(StyleChange = NoChange) override;
     virtual void updateRendering();
     void updateLayout();
     static void updateDocumentsRendering();
@@ -391,8 +391,8 @@ public:
         return m_docLoader;
     }
 
-    void attach() Q_DECL_OVERRIDE;
-    void detach() Q_DECL_OVERRIDE;
+    void attach() override;
+    void detach() override;
 
     khtml::RenderArena *renderArena()
     {
@@ -410,7 +410,7 @@ public:
     void updateSelection();
 
     void open(bool clearEventListeners = true);
-    void close() Q_DECL_OVERRIDE;
+    void close() override;
     virtual void contentLoaded() {}
     void write(const DOMString &text);
     void write(const QString &text);
@@ -560,8 +560,8 @@ public:
     // internal
     bool prepareMouseEvent(bool readonly, int x, int y, MouseEvent *ev);
 
-    bool childTypeAllowed(unsigned short nodeType) Q_DECL_OVERRIDE;
-    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) Q_DECL_OVERRIDE;
+    bool childTypeAllowed(unsigned short nodeType) override;
+    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) override;
 
     StyleSheetListImpl *styleSheets()
     {
@@ -660,8 +660,8 @@ public:
     void load(const DOMString &uri);
     void loadXML(const DOMString &source);
     // from cachedObjectClient
-    void setStyleSheet(const DOM::DOMString &url, const DOM::DOMString &sheet, const DOM::DOMString &charset, const DOM::DOMString &mimetype) Q_DECL_OVERRIDE;
-    void error(int err, const QString &text) Q_DECL_OVERRIDE;
+    void setStyleSheet(const DOM::DOMString &url, const DOM::DOMString &sheet, const DOM::DOMString &charset, const DOM::DOMString &mimetype) override;
+    void error(int err, const QString &text) override;
 
     typedef QMap<QString, ProcessingInstructionImpl *> LocalStyleRefs;
     LocalStyleRefs *localStyleRefs()
@@ -669,7 +669,7 @@ public:
         return &m_localStyleRefs;
     }
 
-    void defaultEventHandler(EventImpl *evt) Q_DECL_OVERRIDE;
+    void defaultEventHandler(EventImpl *evt) override;
 
     void setHTMLWindowEventListener(EventName id, EventListener *listener);
     void setHTMLWindowEventListener(unsigned id, EventListener *listener);
@@ -730,7 +730,7 @@ public:
     void dispatchImageLoadEventSoon(HTMLImageElementImpl *);
     void dispatchImageLoadEventsNow();
     void removeImage(HTMLImageElementImpl *);
-    void timerEvent(QTimerEvent *) Q_DECL_OVERRIDE;
+    void timerEvent(QTimerEvent *) override;
 
     // Returns the owning element in the parent document.
     // Returns 0 if this is the top level document.
@@ -748,7 +748,7 @@ public:
 
     HTMLElementImpl *body() const;
 
-    DOMString toString() const Q_DECL_OVERRIDE;
+    DOMString toString() const override;
 
     bool execCommand(const DOMString &command, bool userInterface, const DOMString &value);
     bool queryCommandEnabled(const DOMString &command);
@@ -954,7 +954,7 @@ public:
     }
 
     // This is called when our last outside reference dies
-    void removedLastRef() Q_DECL_OVERRIDE;
+    void removedLastRef() override;
 };
 
 /*
@@ -967,8 +967,8 @@ class WindowEventTargetImpl : public EventTargetImpl
 public:
     WindowEventTargetImpl(DOM::DocumentImpl *owner);
 
-    Type eventTargetType() const Q_DECL_OVERRIDE;
-    DocumentImpl *eventTargetDocument() Q_DECL_OVERRIDE;
+    Type eventTargetType() const override;
+    DocumentImpl *eventTargetDocument() override;
     KJS::Window *window();
 private:
     DOM::DocumentImpl *m_owner;
@@ -980,14 +980,14 @@ public:
     DocumentFragmentImpl(DocumentImpl *doc);
 
     // DOM methods overridden from  parent classes
-    DOMString nodeName() const Q_DECL_OVERRIDE;
-    unsigned short nodeType() const Q_DECL_OVERRIDE;
-    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) Q_DECL_OVERRIDE;
+    DOMString nodeName() const override;
+    unsigned short nodeType() const override;
+    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) override;
 
     // Other methods (not part of DOM)
-    bool childTypeAllowed(unsigned short type) Q_DECL_OVERRIDE;
+    bool childTypeAllowed(unsigned short type) override;
 
-    DOMString toString() const Q_DECL_OVERRIDE;
+    DOMString toString() const override;
 };
 
 class DocumentTypeImpl : public NodeImpl
@@ -1020,10 +1020,10 @@ public:
     }
 
     // DOM methods overridden from  parent classes
-    DOMString nodeName() const Q_DECL_OVERRIDE;
-    unsigned short nodeType() const Q_DECL_OVERRIDE;
-    bool childTypeAllowed(unsigned short type) Q_DECL_OVERRIDE;
-    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) Q_DECL_OVERRIDE;
+    DOMString nodeName() const override;
+    unsigned short nodeType() const override;
+    bool childTypeAllowed(unsigned short type) override;
+    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) override;
 
     // Other methods (not part of DOM)
     void setName(const DOMString &n)
@@ -1047,7 +1047,7 @@ public:
         return m_implementation;
     }
 
-    DOMString toString() const Q_DECL_OVERRIDE;
+    DOMString toString() const override;
 
 protected:
     DOMImplementationImpl *m_implementation;
@@ -1065,7 +1065,7 @@ class XMLDocumentImpl : public DocumentImpl
 public:
     XMLDocumentImpl(KHTMLView *v) : DocumentImpl(v) { }
 
-    void close() Q_DECL_OVERRIDE;
+    void close() override;
 };
 
 } //namespace

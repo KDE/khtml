@@ -39,7 +39,7 @@ class PixmapTile: public Tile
 public:
     QPixmap       *pixmap;
 
-    void discard() Q_DECL_OVERRIDE
+    void discard() override
     {
         delete pixmap;
         pixmap = nullptr;

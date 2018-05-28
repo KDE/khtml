@@ -46,16 +46,16 @@ public:
 
     virtual ~RenderFrameSet();
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderFrameSet";
     }
-    bool isFrameSet() const Q_DECL_OVERRIDE
+    bool isFrameSet() const override
     {
         return true;
     }
 
-    void layout() Q_DECL_OVERRIDE;
+    void layout() override;
 
     void positionFrames();
     void paintFrameSetRules(QPainter *paint, const QRect &damageRect);
@@ -78,7 +78,7 @@ public:
         return m_cursor;
     }
 
-    bool nodeAtPoint(NodeInfo &info, int x, int y, int tx, int ty, HitTestAction hitTestAction, bool inside) Q_DECL_OVERRIDE;
+    bool nodeAtPoint(NodeInfo &info, int x, int y, int tx, int ty, HitTestAction hitTestAction, bool inside) override;
 
     DOM::HTMLFrameSetElementImpl *element() const
     {
@@ -86,7 +86,7 @@ public:
     }
 
 #ifdef ENABLE_DUMP
-    void dump(QTextStream &stream, const QString &ind) const Q_DECL_OVERRIDE;
+    void dump(QTextStream &stream, const QString &ind) const override;
 #endif
 
 private:
@@ -115,15 +115,15 @@ class RenderPart : public khtml::RenderWidget
 public:
     RenderPart(DOM::HTMLElementImpl *node);
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderPart";
     }
 
     virtual void setWidget(QWidget *widget);
 
-    short intrinsicWidth() const Q_DECL_OVERRIDE;
-    int intrinsicHeight() const Q_DECL_OVERRIDE;
+    short intrinsicWidth() const override;
+    int intrinsicHeight() const override;
 
 public Q_SLOTS:
     virtual void slotViewCleared();
@@ -135,29 +135,29 @@ class RenderFrame : public khtml::RenderPart
 public:
     RenderFrame(DOM::HTMLFrameElementImpl *frame);
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderFrame";
     }
-    bool isFrame() const Q_DECL_OVERRIDE
+    bool isFrame() const override
     {
         return true;
     }
 
     // frames never have padding
-    int paddingTop() const Q_DECL_OVERRIDE
+    int paddingTop() const override
     {
         return 0;
     }
-    int paddingBottom() const Q_DECL_OVERRIDE
+    int paddingBottom() const override
     {
         return 0;
     }
-    int paddingLeft() const Q_DECL_OVERRIDE
+    int paddingLeft() const override
     {
         return 0;
     }
-    int paddingRight() const Q_DECL_OVERRIDE
+    int paddingRight() const override
     {
         return 0;
     }
@@ -168,7 +168,7 @@ public:
     }
 
 public Q_SLOTS:
-    void slotViewCleared() Q_DECL_OVERRIDE;
+    void slotViewCleared() override;
 };
 
 // I can hardly call the class RenderObject ;-)
@@ -178,20 +178,20 @@ class RenderPartObject : public khtml::RenderPart
 public:
     RenderPartObject(DOM::HTMLElementImpl *);
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderPartObject";
     }
 
-    void layout() Q_DECL_OVERRIDE;
+    void layout() override;
 
-    bool canHaveBorder() const Q_DECL_OVERRIDE
+    bool canHaveBorder() const override
     {
         return true;
     }
 
 public Q_SLOTS:
-    void slotViewCleared() Q_DECL_OVERRIDE;
+    void slotViewCleared() override;
 };
 
 }

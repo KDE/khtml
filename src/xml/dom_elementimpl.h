@@ -91,34 +91,34 @@ public:
     void setValue(const DOMString &v, int &exceptioncode);
 
     // DOM methods overridden from  parent classes
-    DOMString nodeName() const Q_DECL_OVERRIDE;
-    unsigned short nodeType() const Q_DECL_OVERRIDE;
-    DOMString prefix() const Q_DECL_OVERRIDE;
-    void setPrefix(const DOMString &refix, int &exceptioncode) Q_DECL_OVERRIDE;
-    DOMString namespaceURI() const Q_DECL_OVERRIDE;
-    DOMString localName() const Q_DECL_OVERRIDE;
+    DOMString nodeName() const override;
+    unsigned short nodeType() const override;
+    DOMString prefix() const override;
+    void setPrefix(const DOMString &refix, int &exceptioncode) override;
+    DOMString namespaceURI() const override;
+    DOMString localName() const override;
 
     inline const PrefixName &prefixName() const
     {
         return m_prefix;
     }
 
-    DOMString nodeValue() const Q_DECL_OVERRIDE;
-    void setNodeValue(const DOMString &, int &exceptioncode) Q_DECL_OVERRIDE;
-    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) Q_DECL_OVERRIDE;
+    DOMString nodeValue() const override;
+    void setNodeValue(const DOMString &, int &exceptioncode) override;
+    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) override;
 
     // Other methods (not part of DOM)
-    bool isAttributeNode() const Q_DECL_OVERRIDE
+    bool isAttributeNode() const override
     {
         return true;
     }
-    bool childAllowed(NodeImpl *newChild) Q_DECL_OVERRIDE;
-    bool childTypeAllowed(unsigned short type) Q_DECL_OVERRIDE;
-    NodeImpl::Id id() const Q_DECL_OVERRIDE
+    bool childAllowed(NodeImpl *newChild) override;
+    bool childTypeAllowed(unsigned short type) override;
+    NodeImpl::Id id() const override
     {
         return makeId(m_namespace.id(), m_localName.id());
     }
-    void childrenChanged() Q_DECL_OVERRIDE;
+    void childrenChanged() override;
 
     // non-virtual id, for faster attribute look-ups
     inline NodeImpl::Id fastId() const
@@ -131,7 +131,7 @@ public:
     // Doesn't work for ATTR_ID!
     void rewriteValue(const DOMString &newValue);
 
-    DOMString toString() const Q_DECL_OVERRIDE;
+    DOMString toString() const override;
 
     void setElement(ElementImpl *element);
     DOMStringImpl *val() const
@@ -232,7 +232,7 @@ public:
     ~ElementImpl();
 
     // stuff for WebCore DOM & SVG api compatibility
-    bool hasTagName(const QualifiedName &name) const Q_DECL_OVERRIDE
+    bool hasTagName(const QualifiedName &name) const override
     {
         return qualifiedName() == name;/*should be matches here*/
     }
@@ -268,7 +268,7 @@ public:
     // enf of WC api compatibility stuff
 
     //Higher-level DOM stuff
-    bool hasAttributes() const Q_DECL_OVERRIDE;
+    bool hasAttributes() const override;
     bool hasAttribute(const DOMString &name) const;
     bool hasAttributeNS(const DOMString &namespaceURI, const DOMString &localName) const;
     DOMString getAttribute(const DOMString &name);
@@ -310,40 +310,40 @@ public:
     {
         return getAttributeImpl(id, prefix, nsAware) != nullptr;
     }
-    DOMString prefix() const Q_DECL_OVERRIDE
+    DOMString prefix() const override
     {
         return m_prefix.toString();
     }
-    void setPrefix(const DOMString &_prefix, int &exceptioncode) Q_DECL_OVERRIDE;
-    DOMString namespaceURI() const Q_DECL_OVERRIDE;
+    void setPrefix(const DOMString &_prefix, int &exceptioncode) override;
+    DOMString namespaceURI() const override;
     inline const PrefixName &prefixName() const
     {
         return m_prefix;
     }
 
-    short tabIndex() const Q_DECL_OVERRIDE;
+    short tabIndex() const override;
     void setTabIndex(short _tabIndex);
     void setNoTabIndex();
     bool hasTabIndex() const;
 
     // DOM methods overridden from  parent classes
     virtual DOMString tagName() const;
-    DOMString localName() const Q_DECL_OVERRIDE;
+    DOMString localName() const override;
 
     // Internal version of tagName for elements that doesn't
     // do case normalization
     DOMString nonCaseFoldedTagName() const;
 
-    unsigned short nodeType() const Q_DECL_OVERRIDE;
-    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) Q_DECL_OVERRIDE;
-    DOMString nodeName() const Q_DECL_OVERRIDE;
-    NodeImpl::Id id() const Q_DECL_OVERRIDE = 0;
-    bool isElementNode() const Q_DECL_OVERRIDE
+    unsigned short nodeType() const override;
+    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) override;
+    DOMString nodeName() const override;
+    NodeImpl::Id id() const override = 0;
+    bool isElementNode() const override
     {
         return true;
     }
-    void insertedIntoDocument() Q_DECL_OVERRIDE;
-    void removedFromDocument() Q_DECL_OVERRIDE;
+    void insertedIntoDocument() override;
+    void removedFromDocument() override;
 
     // ElementTraversal API
     ElementImpl *firstElementChild() const;
@@ -393,18 +393,18 @@ public:
     void setAttributeMap(NamedAttrMapImpl *list);
 
     // State of the element.
-    QString state() Q_DECL_OVERRIDE
+    QString state() override
     {
         return QString();
     }
 
     virtual void copyNonAttributeProperties(const ElementImpl * /*source*/) {}
 
-    void attach() Q_DECL_OVERRIDE;
-    void close() Q_DECL_OVERRIDE;
-    void detach() Q_DECL_OVERRIDE;
-    void structureChanged() Q_DECL_OVERRIDE;
-    void backwardsStructureChanged() Q_DECL_OVERRIDE;
+    void attach() override;
+    void close() override;
+    void detach() override;
+    void structureChanged() override;
+    void backwardsStructureChanged() override;
     virtual void attributeChanged(NodeImpl::Id attrId);
     // for WebCore API compatibility
     virtual void attributeChanged(AttributeImpl *attribute, bool /*preserveDecls*/)
@@ -412,17 +412,17 @@ public:
         attributeChanged(attribute->id());
     }
 
-    void defaultEventHandler(EventImpl *evt) Q_DECL_OVERRIDE;
+    void defaultEventHandler(EventImpl *evt) override;
 
-    khtml::RenderStyle *styleForRenderer(khtml::RenderObject *parent) Q_DECL_OVERRIDE;
-    khtml::RenderObject *createRenderer(khtml::RenderArena *, khtml::RenderStyle *) Q_DECL_OVERRIDE;
-    void recalcStyle(StyleChange = NoChange) Q_DECL_OVERRIDE;
-    khtml::RenderStyle *computedStyle() Q_DECL_OVERRIDE;
+    khtml::RenderStyle *styleForRenderer(khtml::RenderObject *parent) override;
+    khtml::RenderObject *createRenderer(khtml::RenderArena *, khtml::RenderStyle *) override;
+    void recalcStyle(StyleChange = NoChange) override;
+    khtml::RenderStyle *computedStyle() override;
 
     virtual void mouseEventHandler(MouseEvent * /*ev*/, bool /*inside*/) {}
 
-    bool childAllowed(NodeImpl *newChild) Q_DECL_OVERRIDE;
-    bool childTypeAllowed(unsigned short type) Q_DECL_OVERRIDE;
+    bool childAllowed(NodeImpl *newChild) override;
+    bool childTypeAllowed(unsigned short type) override;
     DOM::CSSInlineStyleDeclarationImpl *inlineStyleDecls() const
     {
         return m_hasCombinedStyle ? m_style.combinedDecls->inlineDecls : m_style.inlineDecls;
@@ -436,11 +436,11 @@ public:
     void dispatchAttrRemovalEvent(NodeImpl::Id id, DOMStringImpl *value);
     void dispatchAttrAdditionEvent(NodeImpl::Id id, DOMStringImpl *value);
 
-    DOMString toString() const Q_DECL_OVERRIDE;
-    DOMString selectionToString(NodeImpl *selectionStart, NodeImpl *selectionEnd, int startOffset, int endOffset, bool &found) const Q_DECL_OVERRIDE;
+    DOMString toString() const override;
+    DOMString selectionToString(NodeImpl *selectionStart, NodeImpl *selectionEnd, int startOffset, int endOffset, bool &found) const override;
 
-    bool isFocusableImpl(FocusType ft) const Q_DECL_OVERRIDE;
-    bool isContentEditable() const Q_DECL_OVERRIDE;
+    bool isFocusableImpl(FocusType ft) const override;
+    bool isContentEditable() const override;
     void setContentEditable(bool enabled);
 
     void scrollIntoView(bool alignToTop);
@@ -499,16 +499,16 @@ public:
     XMLElementImpl(DocumentImpl *doc, NamespaceName namespacename, LocalName localName, PrefixName prefix);
     ~XMLElementImpl();
 
-    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *attr) override;
 
-    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) Q_DECL_OVERRIDE;
+    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) override;
 
     // Other methods (not part of DOM)
-    bool isXMLElementNode() const Q_DECL_OVERRIDE
+    bool isXMLElementNode() const override
     {
         return true;
     }
-    Id id() const Q_DECL_OVERRIDE
+    Id id() const override
     {
         return makeId(m_namespace.id(), m_localName.id());
     }
@@ -527,9 +527,9 @@ public:
     virtual ~NamedAttrMapImpl();
 
     // DOM methods & attributes for NamedNodeMap
-    NodeImpl *getNamedItem(NodeImpl::Id id, const PrefixName &prefix = emptyPrefixName, bool nsAware = false) Q_DECL_OVERRIDE;
-    Node removeNamedItem(NodeImpl::Id id, const PrefixName &prefix, bool nsAware, int &exceptioncode) Q_DECL_OVERRIDE;
-    Node setNamedItem(NodeImpl *arg, const PrefixName &prefix, bool nsAware, int &exceptioncode) Q_DECL_OVERRIDE;
+    NodeImpl *getNamedItem(NodeImpl::Id id, const PrefixName &prefix = emptyPrefixName, bool nsAware = false) override;
+    Node removeNamedItem(NodeImpl::Id id, const PrefixName &prefix, bool nsAware, int &exceptioncode) override;
+    Node setNamedItem(NodeImpl *arg, const PrefixName &prefix, bool nsAware, int &exceptioncode) override;
 
     // for WebCore api compat
     virtual NodeImpl *getNamedItem(const QualifiedName &name)
@@ -537,18 +537,18 @@ public:
         return getNamedItem(name.id(), name.prefixId(), true);
     }
 
-    NodeImpl *item(unsigned index) Q_DECL_OVERRIDE;
-    unsigned length() const Q_DECL_OVERRIDE
+    NodeImpl *item(unsigned index) override;
+    unsigned length() const override
     {
         return m_attrs.size();
     }
 
     // Other methods (not part of DOM)
-    bool isReadOnly() Q_DECL_OVERRIDE
+    bool isReadOnly() override
     {
         return false;
     }
-    bool htmlCompat() Q_DECL_OVERRIDE
+    bool htmlCompat() override
     {
         return m_element ? m_element->m_htmlCompat : false;
     }

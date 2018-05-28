@@ -36,24 +36,24 @@ class RenderInline : public RenderFlow
 public:
     RenderInline(DOM::NodeImpl *node) : RenderFlow(node), m_isContinuation(false) {}
 
-    const char *renderName() const Q_DECL_OVERRIDE;
+    const char *renderName() const override;
 
-    bool isRenderInline() const Q_DECL_OVERRIDE
+    bool isRenderInline() const override
     {
         return true;
     }
-    bool isInlineFlow() const Q_DECL_OVERRIDE
+    bool isInlineFlow() const override
     {
         return true;
     }
-    bool childrenInline() const Q_DECL_OVERRIDE
+    bool childrenInline() const override
     {
         return true;
     }
 
-    bool isInlineContinuation() const Q_DECL_OVERRIDE;
+    bool isInlineContinuation() const override;
 
-    void addChildToFlow(RenderObject *newChild, RenderObject *beforeChild) Q_DECL_OVERRIDE;
+    void addChildToFlow(RenderObject *newChild, RenderObject *beforeChild) override;
 
     void splitInlines(RenderBlock *fromBlock, RenderBlock *toBlock, RenderBlock *middleBlock,
                       RenderObject *beforeChild, RenderFlow *oldCont);
@@ -61,40 +61,40 @@ public:
     void splitFlow(RenderObject *beforeChild, RenderBlock *newBlockBox,
                    RenderObject *newChild, RenderFlow *oldCont);
 
-    void setStyle(RenderStyle *_style) Q_DECL_OVERRIDE;
-    void attach() Q_DECL_OVERRIDE;
+    void setStyle(RenderStyle *_style) override;
+    void attach() override;
 
-    void layout() Q_DECL_OVERRIDE
+    void layout() override
     {
         setNeedsLayout(false);    // Do nothing for layout()
     }
 
-    void paint(PaintInfo &, int tx, int ty) Q_DECL_OVERRIDE;
+    void paint(PaintInfo &, int tx, int ty) override;
 
-    bool nodeAtPoint(NodeInfo &info, int _x, int _y, int _tx, int _ty, HitTestAction hitTestAction, bool inside) Q_DECL_OVERRIDE;
+    bool nodeAtPoint(NodeInfo &info, int _x, int _y, int _tx, int _ty, HitTestAction hitTestAction, bool inside) override;
 
-    void calcMinMaxWidth() Q_DECL_OVERRIDE;
+    void calcMinMaxWidth() override;
 
     // overrides RenderObject
-    bool requiresLayer() const Q_DECL_OVERRIDE
+    bool requiresLayer() const override
     {
         return isRelPositioned();
     }
 
-    short width() const Q_DECL_OVERRIDE;
-    int height() const Q_DECL_OVERRIDE;
+    short width() const override;
+    int height() const override;
 
-    int inlineXPos() const Q_DECL_OVERRIDE;
-    int inlineYPos() const Q_DECL_OVERRIDE;
+    int inlineXPos() const override;
+    int inlineYPos() const override;
 
     // used to calculate offsetWidth/Height.  Overridden by inlines (render_flow) to return
     // the remaining width on a given line (and the height of a single line).
-    int offsetLeft() const Q_DECL_OVERRIDE;
-    int offsetTop() const Q_DECL_OVERRIDE;
+    int offsetLeft() const override;
+    int offsetTop() const override;
 
-    RenderPosition positionForCoordinates(int x, int y) Q_DECL_OVERRIDE;
+    RenderPosition positionForCoordinates(int x, int y) override;
 
-    void caretPos(int offset, int flags, int &_x, int &_y, int &width, int &height) const Q_DECL_OVERRIDE;
+    void caretPos(int offset, int flags, int &_x, int &_y, int &width, int &height) const override;
     void paintOutlines(QPainter *p, int tx, int ty);
 
 protected:

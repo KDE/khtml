@@ -11,9 +11,9 @@ class ImageLoader;
 class JPEGLoaderProvider: public ImageLoaderProvider
 {
 public:
-    Type type() Q_DECL_OVERRIDE;
+    Type type() override;
 
-    ImageLoader *loaderFor(const QByteArray &prefix) Q_DECL_OVERRIDE;
+    ImageLoader *loaderFor(const QByteArray &prefix) override;
 };
 
 }

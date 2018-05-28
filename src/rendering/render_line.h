@@ -272,7 +272,7 @@ class PlaceHolderBox: public InlineBox
 {
 public:
     PlaceHolderBox(RenderObject *obj): InlineBox(obj) {}
-    bool isPlaceHolderBox() const Q_DECL_OVERRIDE
+    bool isPlaceHolderBox() const override
     {
         return true;
     }
@@ -329,7 +329,7 @@ public:
 
     ~InlineFlowBox();
 
-    bool isInlineFlowBox() const Q_DECL_OVERRIDE
+    bool isInlineFlowBox() const override
     {
         return true;
     }
@@ -352,11 +352,11 @@ public:
         return m_lastChild;
     }
 
-    InlineBox *firstLeafChild() Q_DECL_OVERRIDE;
-    InlineBox *lastLeafChild() Q_DECL_OVERRIDE;
+    InlineBox *firstLeafChild() override;
+    InlineBox *lastLeafChild() override;
     InlineBox *closestChildForXPos(int _x, int _tx);
 
-    void setConstructed() Q_DECL_OVERRIDE
+    void setConstructed() override
     {
         InlineBox::setConstructed();
         if (m_firstChild) {
@@ -382,17 +382,17 @@ public:
         }
     }
 
-    void clearTruncation() Q_DECL_OVERRIDE;
+    void clearTruncation() override;
 
     void removeFromLine(InlineBox *child);
-    void paintBackgroundAndBorder(RenderObject::PaintInfo &, int _tx, int _ty) Q_DECL_OVERRIDE;
+    void paintBackgroundAndBorder(RenderObject::PaintInfo &, int _tx, int _ty) override;
     void paintAllBackgrounds(QPainter *p, const QColor &c, const BackgroundLayer *bgLayer,
                              QRect clipr, int _tx, int _ty, int w, int h);
     void paintOneBackground(QPainter *p, const QColor &c, const BackgroundLayer *bgLayer,
                             QRect clipr, int _tx, int _ty, int w, int h);
-    void paint(RenderObject::PaintInfo &i, int _tx, int _ty) Q_DECL_OVERRIDE;
-    void paintDecorations(RenderObject::PaintInfo &, int _tx, int _ty, bool paintedChildren = false) Q_DECL_OVERRIDE;
-    bool nodeAtPoint(RenderObject::NodeInfo &i, int x, int y, int tx, int ty) Q_DECL_OVERRIDE;
+    void paint(RenderObject::PaintInfo &i, int _tx, int _ty) override;
+    void paintDecorations(RenderObject::PaintInfo &, int _tx, int _ty, bool paintedChildren = false) override;
+    bool nodeAtPoint(RenderObject::NodeInfo &i, int x, int y, int tx, int ty) override;
 
     int marginBorderPaddingLeft() const;
     int marginBorderPaddingRight() const;
@@ -436,11 +436,11 @@ public:
         m_includeLeftEdge = includeLeft;
         m_includeRightEdge = includeRight;
     }
-    bool hasTextChildren() const Q_DECL_OVERRIDE
+    bool hasTextChildren() const override
     {
         return m_hasTextChildren;
     }
-    bool hasTextDescendant() const Q_DECL_OVERRIDE
+    bool hasTextDescendant() const override
     {
         return m_hasTextDescendant;
     }
@@ -472,12 +472,12 @@ public:
         return m_afterPageBreak;
     }
 
-    bool canAccommodateEllipsisBox(bool ltr, int blockEdge, int ellipsisWidth) Q_DECL_OVERRIDE;
-    int placeEllipsisBox(bool ltr, int blockEdge, int ellipsisWidth, bool &) Q_DECL_OVERRIDE;
+    bool canAccommodateEllipsisBox(bool ltr, int blockEdge, int ellipsisWidth) override;
+    int placeEllipsisBox(bool ltr, int blockEdge, int ellipsisWidth, bool &) override;
 
-    void deleteLine(RenderArena *arena) Q_DECL_OVERRIDE;
-    void extractLine() Q_DECL_OVERRIDE;
-    void attachLine() Q_DECL_OVERRIDE;
+    void deleteLine(RenderArena *arena) override;
+    void extractLine() override;
+    void attachLine() override;
 
 protected:
     InlineBox *m_firstChild;
@@ -498,7 +498,7 @@ public:
         m_topOverflow = m_bottomOverflow = 0;
     }
 
-    void detach(RenderArena *renderArena, bool noRemove = false) Q_DECL_OVERRIDE;
+    void detach(RenderArena *renderArena, bool noRemove = false) override;
     void detachEllipsisBox(RenderArena *renderArena);
 
     RootInlineBox *nextRootBox() const
@@ -510,19 +510,19 @@ public:
         return static_cast<RootInlineBox *>(m_prevLine);
     }
 
-    bool isRootInlineBox() const Q_DECL_OVERRIDE
+    bool isRootInlineBox() const override
     {
         return true;
     }
-    int topOverflow() const Q_DECL_OVERRIDE
+    int topOverflow() const override
     {
         return m_topOverflow;
     }
-    int bottomOverflow() const Q_DECL_OVERRIDE
+    int bottomOverflow() const override
     {
         return m_bottomOverflow;
     }
-    void setOverflowPositions(int top, int bottom) Q_DECL_OVERRIDE
+    void setOverflowPositions(int top, int bottom) override
     {
         m_topOverflow = top;
         m_bottomOverflow = bottom;
@@ -530,7 +530,7 @@ public:
 
     bool canAccommodateEllipsis(bool ltr, int blockEdge, int lineBoxEdge, int ellipsisWidth);
     void placeEllipsis(const DOM::DOMString &ellipsisStr, bool ltr, int blockEdge, int ellipsisWidth, InlineBox *markupBox = nullptr);
-    int placeEllipsisBox(bool ltr, int blockEdge, int ellipsisWidth, bool &) Q_DECL_OVERRIDE;
+    int placeEllipsisBox(bool ltr, int blockEdge, int ellipsisWidth, bool &) override;
 
     EllipsisBox *ellipsisBox() const
     {
@@ -539,10 +539,10 @@ public:
     void paintEllipsisBox(RenderObject::PaintInfo &i, int _tx, int _ty) const;
     bool hitTestEllipsisBox(RenderObject::NodeInfo &info, int _x, int _y, int _tx, int _ty);
 
-    void clearTruncation() Q_DECL_OVERRIDE;
+    void clearTruncation() override;
 
-    void paint(RenderObject::PaintInfo &i, int _tx, int _ty) Q_DECL_OVERRIDE;
-    bool nodeAtPoint(RenderObject::NodeInfo &i, int x, int y, int tx, int ty) Q_DECL_OVERRIDE;
+    void paint(RenderObject::PaintInfo &i, int _tx, int _ty) override;
+    bool nodeAtPoint(RenderObject::NodeInfo &i, int x, int y, int tx, int ty) override;
 
     RenderObject *lineBreakObj() const
     {

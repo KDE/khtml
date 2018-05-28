@@ -38,7 +38,7 @@ class RenderSVGBlock : public RenderBlock
 {
 public:
     RenderSVGBlock(SVGElement *);
-    void setStyle(RenderStyle *) Q_DECL_OVERRIDE;
+    void setStyle(RenderStyle *) override;
 };
 
 }

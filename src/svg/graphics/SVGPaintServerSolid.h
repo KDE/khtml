@@ -42,7 +42,7 @@ public:
     }
     virtual ~SVGPaintServerSolid();
 
-    SVGPaintServerType type() const Q_DECL_OVERRIDE
+    SVGPaintServerType type() const override
     {
         return SolidPaintServer;
     }
@@ -53,7 +53,7 @@ public:
     /*virtual TextStream& externalRepresentation(TextStream&) const;*/
 
 #if PLATFORM(CG) || PLATFORM(QT) || PLATFORM(CAIRO)
-    bool setup(QPainter *painter, QPainterPath *painterPath, const RenderObject *, SVGPaintTargetType, bool isPaintingText) const Q_DECL_OVERRIDE;
+    bool setup(QPainter *painter, QPainterPath *painterPath, const RenderObject *, SVGPaintTargetType, bool isPaintingText) const override;
 #endif
 
 private:

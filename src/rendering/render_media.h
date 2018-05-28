@@ -48,11 +48,11 @@ class RenderMedia : public RenderWidget
 {
     Q_OBJECT
 public:
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderMedia";
     }
-    bool isMedia() const Q_DECL_OVERRIDE
+    bool isMedia() const override
     {
         return true;
     }
@@ -76,15 +76,15 @@ public:
     }
 
 protected:
-    bool eventFilter(QObject *, QEvent *) Q_DECL_OVERRIDE;
+    bool eventFilter(QObject *, QEvent *) override;
 
 private Q_SLOTS:
     void slotMetaDataChanged();
 
 private:
     RenderMedia(HTMLMediaElement *element);
-    void layout() Q_DECL_OVERRIDE;
-    void updateFromElement() Q_DECL_OVERRIDE;
+    void layout() override;
+    void updateFromElement() override;
     MediaPlayer *m_player;
     friend class HTMLMediaElement;
 };

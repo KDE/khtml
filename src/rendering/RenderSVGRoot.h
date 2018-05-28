@@ -40,33 +40,33 @@ public:
     RenderSVGRoot(SVGStyledElement *);
     ~RenderSVGRoot();
 
-    bool isSVGRoot() const Q_DECL_OVERRIDE
+    bool isSVGRoot() const override
     {
         return true;
     }
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderSVGRoot";
     }
 
-    short lineHeight(bool b) const Q_DECL_OVERRIDE;
-    short baselinePosition(bool b) const Q_DECL_OVERRIDE;
-    void calcMinMaxWidth() Q_DECL_OVERRIDE;
+    short lineHeight(bool b) const override;
+    short baselinePosition(bool b) const override;
+    void calcMinMaxWidth() override;
 
-    void layout() Q_DECL_OVERRIDE;
-    void paint(PaintInfo &, int parentX, int parentY) Q_DECL_OVERRIDE;
+    void layout() override;
+    void paint(PaintInfo &, int parentX, int parentY) override;
 
     virtual IntRect absoluteClippedOverflowRect();
     virtual void absoluteRects(Vector<IntRect> &rects, int tx, int ty);
     //virtual void addFocusRingRects(GraphicsContext*, int tx, int ty);
 
-    AffineTransform absoluteTransform() const Q_DECL_OVERRIDE;
+    AffineTransform absoluteTransform() const override;
 
     bool fillContains(const FloatPoint &) const;
     bool strokeContains(const FloatPoint &) const;
-    FloatRect relativeBBox(bool includeStroke = true) const Q_DECL_OVERRIDE;
+    FloatRect relativeBBox(bool includeStroke = true) const override;
 
-    AffineTransform localTransform() const Q_DECL_OVERRIDE;
+    AffineTransform localTransform() const override;
 
     FloatRect viewport() const;
 

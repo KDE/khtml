@@ -48,11 +48,11 @@ public:
     SVGTextContentElement(const QualifiedName &, Document *);
     virtual ~SVGTextContentElement();
 
-    bool isValid() const Q_DECL_OVERRIDE
+    bool isValid() const override
     {
         return SVGTests::isValid();
     }
-    bool isTextContent() const Q_DECL_OVERRIDE
+    bool isTextContent() const override
     {
         return true;
     }
@@ -67,7 +67,7 @@ public:
     long getCharNumAtPosition(const FloatPoint &) const;
     void selectSubString(long charnum, long nchars, ExceptionCode &) const;
 
-    void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
+    void parseMappedAttribute(MappedAttribute *) override;
 
     bool isKnownAttribute(const QualifiedName &);
 

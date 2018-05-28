@@ -38,7 +38,7 @@ public:
                             QWidget *parentWidget,
                             QObject *parent,
                             const QVariantList &args,
-                            const QString &keyword) Q_DECL_OVERRIDE;
+                            const QString &keyword) override;
 };
 
 #endif

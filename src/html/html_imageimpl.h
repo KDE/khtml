@@ -45,15 +45,15 @@ public:
     HTMLImageElementImpl(DocumentImpl *doc, HTMLFormElementImpl *f = nullptr);
     ~HTMLImageElementImpl();
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 
-    void parseAttribute(AttributeImpl *) Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *) override;
 
-    void attach() Q_DECL_OVERRIDE;
-    void removedFromDocument() Q_DECL_OVERRIDE;
-    void insertedIntoDocument() Q_DECL_OVERRIDE;
-    void addId(const DOMString &id) Q_DECL_OVERRIDE;
-    void removeId(const DOMString &id) Q_DECL_OVERRIDE;
+    void attach() override;
+    void removedFromDocument() override;
+    void insertedIntoDocument() override;
+    void addId(const DOMString &id) override;
+    void removeId(const DOMString &id) override;
 
     long width() const;
     long height() const;
@@ -87,7 +87,7 @@ public:
      * @return True if and only if the image is completely downloaded yet*/
     bool complete() const;
 
-    void notifyFinished(khtml::CachedObject *finishedObj) Q_DECL_OVERRIDE;
+    void notifyFinished(khtml::CachedObject *finishedObj) override;
     void dispatchLoadEvent();
 
     khtml::CachedImage *image()
@@ -122,9 +122,9 @@ public:
     HTMLAreaElementImpl(DocumentImpl *doc);
     ~HTMLAreaElementImpl();
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 
-    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *attr) override;
 
     bool isDefault() const
     {
@@ -134,7 +134,7 @@ public:
     bool mapMouseEvent(int x_, int y_, int width_, int height_,
                        khtml::RenderObject::NodeInfo &info);
 
-    QRect getRect() const Q_DECL_OVERRIDE;
+    QRect getRect() const override;
 
     QRegion cachedRegion() const
     {
@@ -160,14 +160,14 @@ public:
 
     ~HTMLMapElementImpl();
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 
     virtual DOMString getName() const
     {
         return name;
     }
 
-    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *attr) override;
 
     bool mapMouseEvent(int x_, int y_, int width_, int height_,
                        khtml::RenderObject::NodeInfo &info);

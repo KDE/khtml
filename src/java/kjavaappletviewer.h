@@ -53,9 +53,9 @@ public:
     void urlChanged(const QString &url);
     void setLoadingProgress(int percentage);
 
-    void setBrowserArguments(const KParts::BrowserArguments &args) Q_DECL_OVERRIDE;
-    void saveState(QDataStream &stream) Q_DECL_OVERRIDE;
-    void restoreState(QDataStream &stream) Q_DECL_OVERRIDE;
+    void setBrowserArguments(const KParts::BrowserArguments &args) override;
+    void saveState(QDataStream &stream) override;
+    void restoreState(QDataStream &stream) override;
 public Q_SLOTS:
     void showDocument(const QString &doc, const QString &frame);
 };
@@ -66,10 +66,10 @@ class KJavaAppletViewerLiveConnectExtension : public KParts::LiveConnectExtensio
 public:
     KJavaAppletViewerLiveConnectExtension(KJavaAppletViewer *parent);
 
-    bool get(const unsigned long objid, const QString &field, KParts::LiveConnectExtension::Type &type, unsigned long &retobjid, QString &value) Q_DECL_OVERRIDE;
-    bool put(const unsigned long, const QString &field, const QString &value) Q_DECL_OVERRIDE;
-    bool call(const unsigned long, const QString &func, const QStringList &args, KParts::LiveConnectExtension::Type &type, unsigned long &retobjid, QString &value) Q_DECL_OVERRIDE;
-    void unregister(const unsigned long objid) Q_DECL_OVERRIDE;
+    bool get(const unsigned long objid, const QString &field, KParts::LiveConnectExtension::Type &type, unsigned long &retobjid, QString &value) override;
+    bool put(const unsigned long, const QString &field, const QString &value) override;
+    bool call(const unsigned long, const QString &func, const QStringList &args, KParts::LiveConnectExtension::Type &type, unsigned long &retobjid, QString &value) override;
+    void unregister(const unsigned long objid) override;
 
     int jsSessions() const
     {
@@ -102,16 +102,16 @@ public:
         return m_liveconnect;
     }
 
-    bool eventFilter(QObject *o, QEvent *e) Q_DECL_OVERRIDE;
+    bool eventFilter(QObject *o, QEvent *e) override;
 
     bool appletAlive() const;
 public Q_SLOTS:
-    bool openUrl(const QUrl &url) Q_DECL_OVERRIDE;
-    bool closeUrl() Q_DECL_OVERRIDE;
+    bool openUrl(const QUrl &url) override;
+    bool closeUrl() override;
     void appletLoaded();
     void infoMessage(const QString &);
 protected:
-    bool openFile() Q_DECL_OVERRIDE;
+    bool openFile() override;
 private Q_SLOTS:
     void delayedCreateTimeOut();
 private:
@@ -133,7 +133,7 @@ public:
     KJavaAppletViewerFactory();
     virtual ~KJavaAppletViewerFactory();
     virtual QObject *create(const char *, QWidget *wparent, QObject *parent,
-                            const QVariantList &args, const QString &) Q_DECL_OVERRIDE;
+                            const QVariantList &args, const QString &) override;
     static const KAboutData &componentData()
     {
         return *s_aboutData;

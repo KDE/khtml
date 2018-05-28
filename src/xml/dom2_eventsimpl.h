@@ -367,7 +367,7 @@ public:
                      bool cancelableArg,
                      AbstractViewImpl *viewArg,
                      long detailArg);
-    bool isUIEvent() const Q_DECL_OVERRIDE;
+    bool isUIEvent() const override;
 
     //Compat stuff
     virtual int keyCode() const
@@ -453,23 +453,23 @@ public:
     {
         return m_clientY;
     }
-    long layerX() const Q_DECL_OVERRIDE
+    long layerX() const override
     {
         return m_layerX;    // non-DOM extension
     }
-    long layerY() const Q_DECL_OVERRIDE
+    long layerY() const override
     {
         return m_layerY;    // non-DOM extension
     }
-    long pageX() const Q_DECL_OVERRIDE
+    long pageX() const override
     {
         return m_pageX;    // non-DOM extension
     }
-    long pageY() const Q_DECL_OVERRIDE
+    long pageY() const override
     {
         return m_pageY;    // non-DOM extension
     }
-    int which() const Q_DECL_OVERRIDE
+    int which() const override
     {
         return button() + 1;    // non-DOM extension
     }
@@ -524,7 +524,7 @@ public:
                         unsigned short buttonArg,
                         const Node &relatedTargetArg,
                         Orientation orient = ONone);
-    bool isMouseEvent() const Q_DECL_OVERRIDE;
+    bool isMouseEvent() const override;
 
     QMouseEvent *qEvent() const
     {
@@ -658,7 +658,7 @@ public:
 
     bool checkModifier(unsigned long modifierArg);
 
-    int which() const Q_DECL_OVERRIDE
+    int which() const override
     {
         return keyCode();    // non-DOM extension
     }
@@ -705,11 +705,11 @@ public:
                        AbstractViewImpl *viewArg,
                        const DOMString &text);
 
-    bool isTextInputEvent() const Q_DECL_OVERRIDE;
+    bool isTextInputEvent() const override;
 
     //Legacy key stuff...
-    int keyCode() const Q_DECL_OVERRIDE;
-    int charCode() const Q_DECL_OVERRIDE;
+    int keyCode() const override;
+    int charCode() const override;
 
     DOMString data() const
     {
@@ -725,11 +725,11 @@ public:
     KeyboardEventImpl();
     KeyboardEventImpl(QKeyEvent *key, DOM::AbstractViewImpl *view);
 
-    bool isKeyboardEvent() const Q_DECL_OVERRIDE;
+    bool isKeyboardEvent() const override;
 
     //Legacy key stuff...
-    int keyCode() const Q_DECL_OVERRIDE;
-    int charCode() const Q_DECL_OVERRIDE;
+    int keyCode() const override;
+    int charCode() const override;
 
     DOMString     keyIdentifier() const;
     unsigned long keyLocation() const
@@ -794,7 +794,7 @@ public:
                            const DOMString &newValueArg,
                            const DOMString &attrNameArg,
                            unsigned short attrChangeArg);
-    bool isMutationEvent() const Q_DECL_OVERRIDE;
+    bool isMutationEvent() const override;
 protected:
     NodeImpl *m_relatedNode;
     DOMStringImpl *m_prevValue;
@@ -843,7 +843,7 @@ public:
                           const DOMString &originArg,
                           const DOMString &lastEventIdArg,
                           KHTMLPart *sourceArg); // no message ports yet.
-    bool isMessageEvent() const Q_DECL_OVERRIDE;
+    bool isMessageEvent() const override;
 private:
     RefPtr<Data> m_data;
     DOMString    m_origin;
@@ -871,7 +871,7 @@ public:
                              const DOMString &oldUrl,
                              const DOMString &newUrl
                             );
-    bool isHashChangeEvent() const Q_DECL_OVERRIDE;
+    bool isHashChangeEvent() const override;
 private:
     DOMString    m_oldUrl;
     DOMString    m_newUrl;

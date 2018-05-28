@@ -78,7 +78,7 @@ public:
 
     /*virtual TextStream& externalRepresentation(TextStream&) const;*/
 
-    bool setup(QPainter *painter, QPainterPath *path, const RenderObject *, SVGPaintTargetType, bool isPaintingText) const Q_DECL_OVERRIDE;
+    bool setup(QPainter *painter, QPainterPath *path, const RenderObject *, SVGPaintTargetType, bool isPaintingText) const override;
 #if PLATFORM(CG)
     virtual void teardown(GraphicsContext *&, const RenderObject *, SVGPaintTargetType, bool isPaintingText) const;
     virtual void renderPath(GraphicsContext *&, const RenderObject *, SVGPaintTargetType) const;

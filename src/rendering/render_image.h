@@ -47,15 +47,15 @@ public:
     RenderImage(DOM::NodeImpl *_element);
     virtual ~RenderImage();
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderImage";
     }
-    void paint(PaintInfo &i, int tx, int ty) Q_DECL_OVERRIDE;
+    void paint(PaintInfo &i, int tx, int ty) override;
 
-    void layout() Q_DECL_OVERRIDE;
+    void layout() override;
 
-    void updatePixmap(const QRect &, CachedImage *) Q_DECL_OVERRIDE;
+    void updatePixmap(const QRect &, CachedImage *) override;
 
     // don't even think about making these methods virtual!
     //QPixmap pixmap() const;
@@ -73,10 +73,10 @@ public:
     void setContentObject(CachedObject *);
 
     // hook to keep RendeObject::m_inline() up to date
-    void setStyle(RenderStyle *style) Q_DECL_OVERRIDE;
-    void updateFromElement() Q_DECL_OVERRIDE;
+    void setStyle(RenderStyle *style) override;
+    void updateFromElement() override;
 
-    bool nodeAtPoint(NodeInfo &info, int x, int y, int tx, int ty, HitTestAction hitTestAction, bool inside) Q_DECL_OVERRIDE;
+    bool nodeAtPoint(NodeInfo &info, int x, int y, int tx, int ty, HitTestAction hitTestAction, bool inside) override;
 
     bool isWidthSpecified() const;
     bool isHeightSpecified() const;
@@ -84,14 +84,14 @@ public:
     short calcAspectRatioWidth() const;
     int   calcAspectRatioHeight() const;
 
-    short calcReplacedWidth() const Q_DECL_OVERRIDE;
-    int   calcReplacedHeight() const Q_DECL_OVERRIDE;
+    short calcReplacedWidth() const override;
+    int   calcReplacedHeight() const override;
 
-    SelectionState selectionState() const Q_DECL_OVERRIDE
+    SelectionState selectionState() const override
     {
         return KDE_CAST_BF_ENUM(SelectionState, m_selectionState);
     }
-    void setSelectionState(SelectionState s) Q_DECL_OVERRIDE
+    void setSelectionState(SelectionState s) override
     {
         m_selectionState = s;
     }

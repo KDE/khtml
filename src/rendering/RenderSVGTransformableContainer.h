@@ -32,7 +32,7 @@ class RenderSVGTransformableContainer : public RenderSVGContainer
 public:
     RenderSVGTransformableContainer(SVGStyledTransformableElement *);
 
-    bool calculateLocalTransform() Q_DECL_OVERRIDE;
+    bool calculateLocalTransform() override;
 };
 }
 

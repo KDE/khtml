@@ -44,10 +44,10 @@ public:
            const QList<Predicate *> &predicates = QList<Predicate *>());
     virtual ~Filter();
 
-    QString dump() const Q_DECL_OVERRIDE;
+    QString dump() const override;
 
 private:
-    Value doEvaluate() const Q_DECL_OVERRIDE;
+    Value doEvaluate() const override;
 
     Expression *m_expr;
     QList<Predicate *> m_predicates;
@@ -61,10 +61,10 @@ public:
     virtual ~LocationPath();
 
     void optimize();
-    QString dump() const Q_DECL_OVERRIDE;
+    QString dump() const override;
 
 private:
-    Value doEvaluate() const Q_DECL_OVERRIDE;
+    Value doEvaluate() const override;
 
     QList<Step *> m_steps;
     bool m_absolute;
@@ -76,10 +76,10 @@ public:
     Path(Filter *filter, LocationPath *path);
     virtual ~Path();
 
-    QString dump() const Q_DECL_OVERRIDE;
+    QString dump() const override;
 
 private:
-    Value doEvaluate() const Q_DECL_OVERRIDE;
+    Value doEvaluate() const override;
 
     Filter *m_filter;
     LocationPath *m_path;

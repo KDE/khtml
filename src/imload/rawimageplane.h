@@ -51,7 +51,7 @@ public:
         delete[] versions;
     }
 
-    void flushCache() Q_DECL_OVERRIDE
+    void flushCache() override
     {} // Nothing caches
 
     /**
@@ -61,13 +61,13 @@ public:
      with the state of the image proper. (Which might not even be in memory)
     */
     virtual bool isUpToDate(unsigned int tileX, unsigned int tileY,
-                            PixmapTile *tile) Q_DECL_OVERRIDE;
+                            PixmapTile *tile) override;
 
     /**
      Ensures that the given pixmap tile is up-to-date.
     */
     virtual void ensureUpToDate(unsigned int tileX, unsigned int tileY,
-                                PixmapTile *tile) Q_DECL_OVERRIDE;
+                                PixmapTile *tile) override;
 
 };
 

@@ -41,7 +41,7 @@ public:
 
     ~HTMLBaseFontElementImpl();
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 };
 
 // -------------------------------------------------------------------------
@@ -79,7 +79,7 @@ public:
 
     HTMLCollectionImpl(NodeImpl *_base, int _tagId);
 
-    NodeImpl *item(unsigned long index) const Q_DECL_OVERRIDE;
+    NodeImpl *item(unsigned long index) const override;
 
     // obsolete and not domtree changes save
     virtual NodeImpl *firstItem() const;
@@ -101,13 +101,13 @@ public:
         return m_refNode;
     }
 protected:
-    unsigned long calcLength(NodeImpl *start) const Q_DECL_OVERRIDE;
+    unsigned long calcLength(NodeImpl *start) const override;
 
     // The collection list the following elements
     int type: 8;
 
     // Reimplemented from DynamicNodeListImpl
-    bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const Q_DECL_OVERRIDE;
+    bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const override;
 
     // Helper for name iteration: checks whether ID matches,
     // and inserts any name-matching things into namedItemsWithName
@@ -124,13 +124,13 @@ public:
     HTMLFormCollectionImpl(NodeImpl *_base);
     ~HTMLFormCollectionImpl() { }
 
-    NodeImpl *item(unsigned long index) const Q_DECL_OVERRIDE;
+    NodeImpl *item(unsigned long index) const override;
 
-    NodeImpl *namedItem(const DOMString &name) const Q_DECL_OVERRIDE;
+    NodeImpl *namedItem(const DOMString &name) const override;
     // In case of multiple items named the same way
-    NodeImpl *nextNamedItem(const DOMString &name) const Q_DECL_OVERRIDE;
+    NodeImpl *nextNamedItem(const DOMString &name) const override;
 protected:
-    unsigned long calcLength(NodeImpl *start) const Q_DECL_OVERRIDE;
+    unsigned long calcLength(NodeImpl *start) const override;
 
 private:
     mutable unsigned currentNamePos;
@@ -146,7 +146,7 @@ class HTMLMappedNameCollectionImpl : public HTMLCollectionImpl
 {
 public:
     HTMLMappedNameCollectionImpl(NodeImpl *_base, int type, const DOMString &name);
-    bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const Q_DECL_OVERRIDE;
+    bool nodeMatches(NodeImpl *testNode, bool &doRecurse) const override;
 
     static bool matchesName(ElementImpl *el, int type, const DOMString &name);
 private:

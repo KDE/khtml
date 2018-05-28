@@ -44,7 +44,7 @@ public:
     SVGStyledElement(const QualifiedName &, Document *);
     virtual ~SVGStyledElement();
 
-    bool isStyled() const Q_DECL_OVERRIDE
+    bool isStyled() const override
     {
         return true;
     }
@@ -53,24 +53,24 @@ public:
         return false;
     }
 
-    PassRefPtr<DOM::CSSValueImpl> getPresentationAttribute(const DOMString &name) Q_DECL_OVERRIDE;
-    DOM::CSSStyleDeclarationImpl *style() Q_DECL_OVERRIDE
+    PassRefPtr<DOM::CSSValueImpl> getPresentationAttribute(const DOMString &name) override;
+    DOM::CSSStyleDeclarationImpl *style() override
     {
         return StyledElement::style();
     }
 
     bool isKnownAttribute(const QualifiedName &);
 
-    bool rendererIsNeeded(RenderStyle *) Q_DECL_OVERRIDE;
+    bool rendererIsNeeded(RenderStyle *) override;
     virtual SVGResource *canvasResource()
     {
         return nullptr;
     }
 
     /*virtual bool mapToEntry(const QualifiedName&, MappedAttributeEntry&) const;*/
-    void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
+    void parseMappedAttribute(MappedAttribute *) override;
 
-    void svgAttributeChanged(const QualifiedName &) Q_DECL_OVERRIDE;
+    void svgAttributeChanged(const QualifiedName &) override;
 
     using DOM::NodeImpl::childrenChanged;
     virtual void childrenChanged(bool changedByParser = false, Node *beforeChange = nullptr, Node *afterChange = nullptr, int childCountDelta = 0);
@@ -79,7 +79,7 @@ public:
     RenderStyle *resolveStyle(RenderStyle *parentStyle);
 
     void invalidateResourcesInAncestorChain() const;
-    void detach() Q_DECL_OVERRIDE;
+    void detach() override;
 
     void setInstanceUpdatesBlocked(bool);
 

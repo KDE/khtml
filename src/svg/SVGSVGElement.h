@@ -54,12 +54,12 @@ public:
     SVGSVGElement(const QualifiedName &, Document *);
     virtual ~SVGSVGElement();
 
-    bool isSVG() const Q_DECL_OVERRIDE
+    bool isSVG() const override
     {
         return true;
     }
 
-    bool isValid() const Q_DECL_OVERRIDE
+    bool isValid() const override
     {
         return SVGTests::isValid();
     }
@@ -123,31 +123,31 @@ public:
     static SVGTransform createSVGTransform();
     static SVGTransform createSVGTransformFromMatrix(const AffineTransform &);
 
-    void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
+    void parseMappedAttribute(MappedAttribute *) override;
 
     // 'virtual SVGLocatable' functions
-    AffineTransform getCTM() const Q_DECL_OVERRIDE;
-    AffineTransform getScreenCTM() const Q_DECL_OVERRIDE;
+    AffineTransform getCTM() const override;
+    AffineTransform getScreenCTM() const override;
 
-    bool rendererIsNeeded(RenderStyle *style) Q_DECL_OVERRIDE
+    bool rendererIsNeeded(RenderStyle *style) override
     {
         return StyledElement::rendererIsNeeded(style);
     }
-    RenderObject *createRenderer(RenderArena *, RenderStyle *) Q_DECL_OVERRIDE;
+    RenderObject *createRenderer(RenderArena *, RenderStyle *) override;
 
-    void insertedIntoDocument() Q_DECL_OVERRIDE;
-    void removedFromDocument() Q_DECL_OVERRIDE;
+    void insertedIntoDocument() override;
+    void removedFromDocument() override;
 
-    void svgAttributeChanged(const QualifiedName &) Q_DECL_OVERRIDE;
+    void svgAttributeChanged(const QualifiedName &) override;
 
-    AffineTransform viewBoxToViewTransform(float viewWidth, float viewHeight) const Q_DECL_OVERRIDE;
+    AffineTransform viewBoxToViewTransform(float viewWidth, float viewHeight) const override;
 
     //void inheritViewAttributes(SVGViewElement*);
 
     // KHTML ElementImpl pure virtual method
-    quint32 id() const Q_DECL_OVERRIDE;
+    quint32 id() const override;
 protected:
-    const SVGElement *contextElement() const Q_DECL_OVERRIDE
+    const SVGElement *contextElement() const override
     {
         return this;
     }
@@ -155,7 +155,7 @@ protected:
     friend class RenderSVGRoot;
     /*friend class RenderSVGViewportContainer;*/
 
-    bool hasRelativeValues() const Q_DECL_OVERRIDE;
+    bool hasRelativeValues() const override;
 
     bool isOutermostSVG() const;
 

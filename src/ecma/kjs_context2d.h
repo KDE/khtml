@@ -49,13 +49,13 @@ public:
     Context2D(ExecState *exec, DOM::CanvasContext2DImpl *ctx);
 
     using KJS::JSObject::getOwnPropertySlot;
-    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) Q_DECL_OVERRIDE;
+    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) override;
     JSValue *getValueProperty(ExecState *exec, int token) const;
     using KJS::JSObject::put;
-    void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None) Q_DECL_OVERRIDE;
+    void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr = None) override;
     void putValueProperty(ExecState *exec, int token, JSValue *value, int /*attr*/);
 
-    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
+    const ClassInfo *classInfo() const override
     {
         return &info;
     }
@@ -82,7 +82,7 @@ class CanvasGradient : public DOMWrapperObject<DOM::CanvasGradientImpl>
 public:
     CanvasGradient(ExecState *exec, DOM::CanvasGradientImpl *impl);
 
-    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
+    const ClassInfo *classInfo() const override
     {
         return &info;
     }
@@ -98,7 +98,7 @@ class CanvasPattern : public DOMWrapperObject<DOM::CanvasPatternImpl>
 public:
     CanvasPattern(ExecState *exec, DOM::CanvasPatternImpl *i);
 
-    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
+    const ClassInfo *classInfo() const override
     {
         return &info;
     }
@@ -114,15 +114,15 @@ class CanvasImageData : public DOMWrapperObject<DOM::CanvasImageDataImpl>
 public:
     CanvasImageData(ExecState *exec, DOM::CanvasImageDataImpl *i);
 
-    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
+    const ClassInfo *classInfo() const override
     {
         return &info;
     }
     static const ClassInfo info;
 
-    JSObject *valueClone(Interpreter *targetCtx) const Q_DECL_OVERRIDE;
+    JSObject *valueClone(Interpreter *targetCtx) const override;
 
-    void mark() Q_DECL_OVERRIDE;
+    void mark() override;
 private:
     CanvasImageDataArray *data;
 };
@@ -132,21 +132,21 @@ class CanvasImageDataArray : public JSObject
 public:
     CanvasImageDataArray(ExecState *exec, CanvasImageData *p);
 
-    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
+    const ClassInfo *classInfo() const override
     {
         return &info;
     }
     static const ClassInfo info;
 
-    void mark() Q_DECL_OVERRIDE;
+    void mark() override;
 
     // Performs conversion/claming/rounding of color components as specified in HTML5 spec.
     static unsigned char decodeComponent(ExecState *exec, JSValue *val);
 
-    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
-    bool getOwnPropertySlot(ExecState *exec, unsigned index, PropertySlot &slot) Q_DECL_OVERRIDE;
-    void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr) Q_DECL_OVERRIDE;
-    void put(ExecState *exec, unsigned index, JSValue *value, int attr) Q_DECL_OVERRIDE;
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) override;
+    bool getOwnPropertySlot(ExecState *exec, unsigned index, PropertySlot &slot) override;
+    void put(ExecState *exec, const Identifier &propertyName, JSValue *value, int attr) override;
+    void put(ExecState *exec, unsigned index, JSValue *value, int attr) override;
 
     JSValue *indexGetter(ExecState *exec, unsigned index);
 private:

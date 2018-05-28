@@ -55,7 +55,7 @@ public:
         : HTMLElementImpl(doc)
     { }
 
-    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *attr) override;
 };
 
 // -------------------------------------------------------------------------
@@ -67,7 +67,7 @@ public:
 
     ~HTMLTableSectionElementImpl();
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 
     HTMLElementImpl *insertRow(long index, int &exceptioncode);
     void deleteRow(long index, int &exceptioncode);
@@ -86,7 +86,7 @@ public:
     HTMLTableRowElementImpl(DocumentImpl *doc)
         : HTMLTablePartElementImpl(doc) {}
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 
     long rowIndex() const;
     long sectionRowIndex() const;
@@ -134,12 +134,12 @@ public:
         return rSpan;
     }
 
-    Id id() const Q_DECL_OVERRIDE
+    Id id() const override
     {
         return _id;
     }
-    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
-    void attach() Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *attr) override;
+    void attach() override;
 
 protected:
     int _row;
@@ -159,7 +159,7 @@ class HTMLTableColElementImpl : public HTMLTablePartElementImpl
 public:
     HTMLTableColElementImpl(DocumentImpl *doc, ushort i);
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 
     void setTable(HTMLTableElementImpl *t)
     {
@@ -167,7 +167,7 @@ public:
     }
 
     // overrides
-    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *attr) override;
 
     int span() const
     {
@@ -191,8 +191,8 @@ public:
     HTMLTableCaptionElementImpl(DocumentImpl *doc)
         : HTMLTablePartElementImpl(doc) {}
 
-    Id id() const Q_DECL_OVERRIDE;
-    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
+    Id id() const override;
+    void parseAttribute(AttributeImpl *attr) override;
 };
 
 // -------------------------------------------------------------------------
@@ -290,7 +290,7 @@ public:
     HTMLTableElementImpl(DocumentImpl *doc);
     ~HTMLTableElementImpl();
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 
     HTMLTableCaptionElementImpl *caption() const
     {
@@ -322,16 +322,16 @@ public:
     void deleteRow(long index, int &exceptioncode);
 
     // overrides
-    NodeImpl *addChild(NodeImpl *child) Q_DECL_OVERRIDE;
-    NodeImpl *insertBefore(NodeImpl *newChild, NodeImpl *refChild, int &exceptioncode) Q_DECL_OVERRIDE;
-    void      replaceChild(NodeImpl *newChild, NodeImpl *oldChild, int &exceptioncode) Q_DECL_OVERRIDE;
-    void      removeChild(NodeImpl *oldChild, int &exceptioncode) Q_DECL_OVERRIDE;
-    void      removeChildren() Q_DECL_OVERRIDE;
-    NodeImpl *appendChild(NodeImpl *newChild, int &exceptioncode) Q_DECL_OVERRIDE;
+    NodeImpl *addChild(NodeImpl *child) override;
+    NodeImpl *insertBefore(NodeImpl *newChild, NodeImpl *refChild, int &exceptioncode) override;
+    void      replaceChild(NodeImpl *newChild, NodeImpl *oldChild, int &exceptioncode) override;
+    void      removeChild(NodeImpl *oldChild, int &exceptioncode) override;
+    void      removeChildren() override;
+    NodeImpl *appendChild(NodeImpl *newChild, int &exceptioncode) override;
 
-    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
-    void attach() Q_DECL_OVERRIDE;
-    void close() Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *attr) override;
+    void attach() override;
+    void close() override;
 
     /* Tries to find the section containing row number outIndex.
        Returns whether it succeeded or not. negative outIndex values

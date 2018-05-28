@@ -29,11 +29,11 @@ class XPathResult: public DOMWrapperObject<khtml::XPathResultImpl>
 public:
     XPathResult(ExecState *exec, khtml::XPathResultImpl *impl);
 
-    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) Q_DECL_OVERRIDE;
+    bool getOwnPropertySlot(ExecState *, const Identifier &, PropertySlot &) override;
     using JSObject::getOwnPropertySlot;
     JSValue *getValueProperty(ExecState *exec, int token) const;
 
-    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
+    const ClassInfo *classInfo() const override
     {
         return &info;
     }
@@ -56,7 +56,7 @@ class XPathExpression: public DOMWrapperObject<khtml::XPathExpressionImpl>
 public:
     XPathExpression(ExecState *exec, khtml::XPathExpressionImpl *impl);
 
-    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
+    const ClassInfo *classInfo() const override
     {
         return &info;
     }
@@ -67,7 +67,7 @@ public:
         Evaluate
     };
 
-    void mark() Q_DECL_OVERRIDE;
+    void mark() override;
 
     void setAssociatedResolver(JSObject *res)
     {
@@ -96,7 +96,7 @@ class XPathNSResolver: public DOMWrapperObject<khtml::XPathNSResolverImpl>
 public:
     XPathNSResolver(ExecState *exec, khtml::XPathNSResolverImpl *impl);
 
-    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
+    const ClassInfo *classInfo() const override
     {
         return &info;
     }
@@ -112,8 +112,8 @@ class JSXPathNSResolver: public khtml::XPathNSResolverImpl
 {
 public:
     JSXPathNSResolver(Interpreter *ctx, JSObject *impl);
-    Type type() Q_DECL_OVERRIDE;
-    DOM::DOMString lookupNamespaceURI(const DOM::DOMString &prefix) Q_DECL_OVERRIDE;
+    Type type() override;
+    DOM::DOMString lookupNamespaceURI(const DOM::DOMString &prefix) override;
 
     JSObject *resolverObject()
     {

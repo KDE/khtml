@@ -58,24 +58,24 @@ public:
     SVGTextPathElement(const QualifiedName &, Document *);
     virtual ~SVGTextPathElement();
 
-    void insertedIntoDocument() Q_DECL_OVERRIDE;
+    void insertedIntoDocument() override;
 
-    void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
-    bool rendererIsNeeded(RenderStyle *style) Q_DECL_OVERRIDE
+    void parseMappedAttribute(MappedAttribute *) override;
+    bool rendererIsNeeded(RenderStyle *style) override
     {
         return StyledElement::rendererIsNeeded(style);
     }
-    RenderObject *createRenderer(RenderArena *, RenderStyle *) Q_DECL_OVERRIDE;
+    RenderObject *createRenderer(RenderArena *, RenderStyle *) override;
 
-    bool childShouldCreateRenderer(Node *) const Q_DECL_OVERRIDE;
+    bool childShouldCreateRenderer(Node *) const override;
 
     // KHTML ElementImpl pure virtual method
-    quint32 id() const Q_DECL_OVERRIDE
+    quint32 id() const override
     {
         return SVGNames::textPathTag.id();
     }
 protected:
-    const SVGElement *contextElement() const Q_DECL_OVERRIDE
+    const SVGElement *contextElement() const override
     {
         return this;
     }

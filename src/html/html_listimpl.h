@@ -37,9 +37,9 @@ class HTMLUListElementImpl : public HTMLElementImpl
 public:
     HTMLUListElementImpl(DocumentImpl *doc) : HTMLElementImpl(doc) {}
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 
-    void parseAttribute(AttributeImpl *) Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *) override;
 
     virtual int start() const
     {
@@ -54,7 +54,7 @@ class HTMLDirectoryElementImpl : public HTMLElementImpl
 public:
     HTMLDirectoryElementImpl(DocumentImpl *doc) : HTMLElementImpl(doc) {}
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 };
 
 // -------------------------------------------------------------------------
@@ -65,7 +65,7 @@ public:
     HTMLMenuElementImpl(DocumentImpl *doc) : HTMLElementImpl(doc) {}
     virtual ~HTMLMenuElementImpl() {}
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 };
 
 // -------------------------------------------------------------------------
@@ -76,10 +76,10 @@ public:
     HTMLOListElementImpl(DocumentImpl *doc)
         : HTMLUListElementImpl(doc), _start(1) {}
 
-    Id id() const Q_DECL_OVERRIDE;
-    void parseAttribute(AttributeImpl *) Q_DECL_OVERRIDE;
+    Id id() const override;
+    void parseAttribute(AttributeImpl *) override;
 
-    int start() const Q_DECL_OVERRIDE
+    int start() const override
     {
         return _start;
     }
@@ -95,9 +95,9 @@ public:
     HTMLLIElementImpl(DocumentImpl *doc)
         : HTMLElementImpl(doc) {}
 
-    Id id() const Q_DECL_OVERRIDE;
-    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
-    void attach() Q_DECL_OVERRIDE;
+    Id id() const override;
+    void parseAttribute(AttributeImpl *attr) override;
+    void attach() override;
 };
 
 // -------------------------------------------------------------------------
@@ -108,7 +108,7 @@ public:
     HTMLDListElementImpl(DocumentImpl *doc) : HTMLElementImpl(doc) {}
     virtual ~HTMLDListElementImpl() {}
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 };
 
 } //namespace

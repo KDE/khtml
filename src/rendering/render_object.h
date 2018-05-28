@@ -1392,7 +1392,7 @@ public:
     virtual long caretMaxOffset() const;
     virtual unsigned long caretMaxRenderedOffset() const;
 
-    void updatePixmap(const QRect &, CachedImage *) Q_DECL_OVERRIDE;
+    void updatePixmap(const QRect &, CachedImage *) override;
 
     QRegion visibleFlowRegion(int x, int y) const;
 

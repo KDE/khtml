@@ -39,13 +39,13 @@ public:
 
     String description() const;
 
-    bool rendererIsNeeded(RenderStyle *) Q_DECL_OVERRIDE
+    bool rendererIsNeeded(RenderStyle *) override
     {
         return false;
     }
 
     // KHTML ElementImpl pure virtual method
-    quint32 id() const Q_DECL_OVERRIDE
+    quint32 id() const override
     {
         return SVGNames::descTag.id();
     }

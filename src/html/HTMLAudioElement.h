@@ -36,7 +36,7 @@ class HTMLAudioElement : public HTMLMediaElement
 public:
     HTMLAudioElement(Document *);
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 };
 
 } //namespace

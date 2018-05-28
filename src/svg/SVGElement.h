@@ -188,7 +188,7 @@ class SVGElement : public StyledElement
 public:
     SVGElement(const QualifiedName &, Document *);
     virtual ~SVGElement();
-    bool isSVGElement() const Q_DECL_OVERRIDE
+    bool isSVGElement() const override
     {
         return true;
     }
@@ -233,11 +233,11 @@ public:
         return false;
     }
 
-    bool isShadowNode() const Q_DECL_OVERRIDE
+    bool isShadowNode() const override
     {
         return false; /*FIXME khtml return m_shadowParent;*/
     }
-    Node *shadowParentNode() Q_DECL_OVERRIDE
+    Node *shadowParentNode() override
     {
         return m_shadowParent;
     }
@@ -258,23 +258,23 @@ public:
 
     virtual void finishParsingChildren();
     // KHTML compatibility
-    void close() Q_DECL_OVERRIDE
+    void close() override
     {
         finishParsingChildren();
         Element::close();
     }
-    bool rendererIsNeeded(RenderStyle *) Q_DECL_OVERRIDE
+    bool rendererIsNeeded(RenderStyle *) override
     {
         return false;
     }
     virtual bool childShouldCreateRenderer(Node *) const;
 
-    void insertedIntoDocument() Q_DECL_OVERRIDE;
+    void insertedIntoDocument() override;
     virtual void buildPendingResource() { }
 
     virtual void svgAttributeChanged(const QualifiedName &) { }
     using DOM::ElementImpl::attributeChanged;
-    void attributeChanged(Attribute *, bool preserveDecls = false) Q_DECL_OVERRIDE;
+    void attributeChanged(Attribute *, bool preserveDecls = false) override;
 
     void sendSVGLoadEventIfPossible(bool sendParentLoadEvents = false);
 
@@ -298,7 +298,7 @@ public:
     virtual bool dispatchEvent(Event *e, ExceptionCode &ec, bool tempEvent = false);
 
     // for KHTML compatibility
-    void parseAttribute(Attribute *attr) Q_DECL_OVERRIDE
+    void parseAttribute(Attribute *attr) override
     {
         parseMappedAttribute(attr);
     }

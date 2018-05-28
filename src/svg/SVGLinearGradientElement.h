@@ -38,14 +38,14 @@ public:
     SVGLinearGradientElement(const QualifiedName &, Document *);
     virtual ~SVGLinearGradientElement();
 
-    void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
-    void svgAttributeChanged(const QualifiedName &) Q_DECL_OVERRIDE;
+    void parseMappedAttribute(MappedAttribute *) override;
+    void svgAttributeChanged(const QualifiedName &) override;
 
     // KHTML ElementImpl pure virtual method
-    quint32 id() const Q_DECL_OVERRIDE;
+    quint32 id() const override;
 protected:
-    void buildGradient() const Q_DECL_OVERRIDE;
-    SVGPaintServerType gradientType() const Q_DECL_OVERRIDE
+    void buildGradient() const override;
+    SVGPaintServerType gradientType() const override
     {
         return LinearGradientPaintServer;
     }
@@ -53,7 +53,7 @@ protected:
     LinearGradientAttributes collectGradientProperties() const;
 
 protected:
-    const SVGElement *contextElement() const Q_DECL_OVERRIDE
+    const SVGElement *contextElement() const override
     {
         return this;
     }

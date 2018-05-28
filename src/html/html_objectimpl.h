@@ -55,8 +55,8 @@ public:
     void computeContentIfNeeded();
     void setNeedComputeContent();
 
-    void recalcStyle(StyleChange ch) Q_DECL_OVERRIDE;
-    void close() Q_DECL_OVERRIDE;
+    void recalcStyle(StyleChange ch) override;
+    void close() override;
 
     // These methods will be called to notify the element of
     // any progress in loading of the document: setWidgetNotify if the
@@ -73,7 +73,7 @@ public:
     // if KHTMLPart should not make a kpart for it, but rather let it be handled directly.
     virtual bool mimetypeHandledInternally(const QString &mime);
 
-    bool event(QEvent *e) Q_DECL_OVERRIDE;
+    bool event(QEvent *e) override;
 
     // IMPORTANT: you should call this when requesting a URL, to make sure
     // that we don't get stale references to iframes or such.
@@ -105,9 +105,9 @@ class HTMLObjectBaseElementImpl : public HTMLPartContainerElementImpl
 public:
     HTMLObjectBaseElementImpl(DocumentImpl *doc);
 
-    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
-    void attach() Q_DECL_OVERRIDE;
-    void defaultEventHandler(EventImpl *e) Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *attr) override;
+    void attach() override;
+    void defaultEventHandler(EventImpl *e) override;
 
     void setServiceType(const QString &);
 
@@ -121,20 +121,20 @@ public:
     bool m_renderAlternative;
     bool m_imageLike;
 
-    void insertedIntoDocument() Q_DECL_OVERRIDE;
-    void removedFromDocument() Q_DECL_OVERRIDE;
-    void addId(const DOMString &id) Q_DECL_OVERRIDE;
-    void removeId(const DOMString &id) Q_DECL_OVERRIDE;
+    void insertedIntoDocument() override;
+    void removedFromDocument() override;
+    void addId(const DOMString &id) override;
+    void removeId(const DOMString &id) override;
 
     HTMLEmbedElementImpl *relevantEmbed();
 
-    void setWidgetNotify(QWidget *widget) Q_DECL_OVERRIDE;
-    void partLoadingErrorNotify() Q_DECL_OVERRIDE;
-    bool mimetypeHandledInternally(const QString &mime) Q_DECL_OVERRIDE;
+    void setWidgetNotify(QWidget *widget) override;
+    void partLoadingErrorNotify() override;
+    bool mimetypeHandledInternally(const QString &mime) override;
 
     // This method figures out what to render -- perhaps KPart, perhaps an image, perhaps
     // alternative content, and forces a reattach if need be.
-    void computeContent() Q_DECL_OVERRIDE;
+    void computeContent() override;
 
     // Ask for a reattach, since we may need a different renderer..
     void requestRerender();
@@ -156,10 +156,10 @@ public:
 
     ~HTMLAppletElementImpl();
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 
-    void parseAttribute(AttributeImpl *token) Q_DECL_OVERRIDE;
-    void computeContent() Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *token) override;
+    void computeContent() override;
 protected:
     khtml::VAlign valign;
 };
@@ -172,11 +172,11 @@ public:
     HTMLEmbedElementImpl(DocumentImpl *doc);
     ~HTMLEmbedElementImpl();
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 
-    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
-    void attach() Q_DECL_OVERRIDE;
-    void computeContent() Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *attr) override;
+    void attach() override;
+    void computeContent() override;
 
     virtual HTMLEmbedElementImpl *relevantEmbed();
 
@@ -193,13 +193,13 @@ public:
 
     ~HTMLObjectElementImpl();
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 
     HTMLFormElementImpl *form() const;
 
-    void parseAttribute(AttributeImpl *token) Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *token) override;
 
-    void attach() Q_DECL_OVERRIDE;
+    void attach() override;
 
     DocumentImpl *contentDocument() const;
 };
@@ -212,9 +212,9 @@ class HTMLParamElementImpl : public HTMLElementImpl
 public:
     HTMLParamElementImpl(DocumentImpl *_doc) : HTMLElementImpl(_doc) {}
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 
-    void parseAttribute(AttributeImpl *token) Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *token) override;
 
     QString name() const
     {

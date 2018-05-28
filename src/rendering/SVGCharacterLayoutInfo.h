@@ -351,13 +351,13 @@ public:
     }
 
     virtual void operator()(SVGInlineTextBox *textBox, int startOffset, const AffineTransform &chunkCtm,
-                            const Vector<SVGChar>::iterator &start, const Vector<SVGChar>::iterator &end) Q_DECL_OVERRIDE
+                            const Vector<SVGChar>::iterator &start, const Vector<SVGChar>::iterator &end) override
     {
         (*m_object.*m_walkerCallback)(textBox, startOffset, chunkCtm, start, end);
     }
 
     // Followings methods are only used for painting text chunks
-    void start(InlineBox *box) Q_DECL_OVERRIDE
+    void start(InlineBox *box) override
     {
         if (m_startCallback) {
             (*m_object.*m_startCallback)(box);
@@ -366,7 +366,7 @@ public:
         }
     }
 
-    void end(InlineBox *box) Q_DECL_OVERRIDE
+    void end(InlineBox *box) override
     {
         if (m_endCallback) {
             (*m_object.*m_endCallback)(box);
@@ -375,7 +375,7 @@ public:
         }
     }
 
-    bool setupFill(InlineBox *box) Q_DECL_OVERRIDE
+    bool setupFill(InlineBox *box) override
     {
         if (m_setupFillCallback) {
             return (*m_object.*m_setupFillCallback)(box);
@@ -385,7 +385,7 @@ public:
         return false;
     }
 
-    bool setupStroke(InlineBox *box) Q_DECL_OVERRIDE
+    bool setupStroke(InlineBox *box) override
     {
         if (m_setupStrokeCallback) {
             return (*m_object.*m_setupStrokeCallback)(box);

@@ -52,12 +52,12 @@ public:
     virtual void deleteData(const unsigned long offset, const unsigned long count, int &exceptioncode);
     virtual void replaceData(const unsigned long offset, const unsigned long count, const DOMString &arg, int &exceptioncode);
 
-    bool containsOnlyWhitespace() const Q_DECL_OVERRIDE;
+    bool containsOnlyWhitespace() const override;
 
     // DOM methods overridden from  parent classes
 
-    DOMString nodeValue() const Q_DECL_OVERRIDE;
-    void setNodeValue(const DOMString &_nodeValue, int &exceptioncode) Q_DECL_OVERRIDE;
+    DOMString nodeValue() const override;
+    void setNodeValue(const DOMString &_nodeValue, int &exceptioncode) override;
 
     // Other methods (not part of DOM)
 
@@ -72,21 +72,21 @@ public:
 
     virtual void checkCharDataOperation(const unsigned long offset, int &exceptioncode);
 
-    bool offsetInCharacters() const Q_DECL_OVERRIDE
+    bool offsetInCharacters() const override
     {
         return true;
     }
-    int maxCharacterOffset() const Q_DECL_OVERRIDE
+    int maxCharacterOffset() const override
     {
         return static_cast<int>(length());
     }
 
-    long maxOffset() const Q_DECL_OVERRIDE;
-    long caretMinOffset() const Q_DECL_OVERRIDE;
-    long caretMaxOffset() const Q_DECL_OVERRIDE;
-    unsigned long caretMaxRenderedOffset() const Q_DECL_OVERRIDE;
+    long maxOffset() const override;
+    long caretMinOffset() const override;
+    long caretMaxOffset() const override;
+    unsigned long caretMaxRenderedOffset() const override;
 
-    bool rendererIsNeeded(khtml::RenderStyle *) Q_DECL_OVERRIDE;
+    bool rendererIsNeeded(khtml::RenderStyle *) override;
 
 protected:
     // note: since DOMStrings are shared, str should always be copied when making
@@ -106,16 +106,16 @@ public:
     CommentImpl(DocumentImpl *doc)
         : CharacterDataImpl(doc, nullptr) {}
     // DOM methods overridden from  parent classes
-    DOMString nodeName() const Q_DECL_OVERRIDE;
-    unsigned short nodeType() const Q_DECL_OVERRIDE;
-    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) Q_DECL_OVERRIDE;
+    DOMString nodeName() const override;
+    unsigned short nodeType() const override;
+    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) override;
 
     // Other methods (not part of DOM)
 
-    Id id() const Q_DECL_OVERRIDE;
-    bool childTypeAllowed(unsigned short type) Q_DECL_OVERRIDE;
+    Id id() const override;
+    bool childTypeAllowed(unsigned short type) override;
 
-    DOMString toString() const Q_DECL_OVERRIDE;
+    DOMString toString() const override;
 };
 
 // ----------------------------------------------------------------------------
@@ -137,30 +137,30 @@ public:
     TextImpl *replaceWholeText(const DOMString &newText, int &ec);
 
     // DOM methods overridden from  parent classes
-    DOMString nodeName() const Q_DECL_OVERRIDE;
-    unsigned short nodeType() const Q_DECL_OVERRIDE;
-    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) Q_DECL_OVERRIDE;
+    DOMString nodeName() const override;
+    unsigned short nodeType() const override;
+    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) override;
 
     // Other methods (not part of DOM)
 
-    bool isTextNode() const Q_DECL_OVERRIDE
+    bool isTextNode() const override
     {
         return true;
     }
-    Id id() const Q_DECL_OVERRIDE;
-    void attach() Q_DECL_OVERRIDE;
-    bool rendererIsNeeded(khtml::RenderStyle *) Q_DECL_OVERRIDE;
-    khtml::RenderObject *createRenderer(khtml::RenderArena *, khtml::RenderStyle *) Q_DECL_OVERRIDE;
-    void recalcStyle(StyleChange = NoChange) Q_DECL_OVERRIDE;
-    bool affectedByNoInherit() const Q_DECL_OVERRIDE
+    Id id() const override;
+    void attach() override;
+    bool rendererIsNeeded(khtml::RenderStyle *) override;
+    khtml::RenderObject *createRenderer(khtml::RenderArena *, khtml::RenderStyle *) override;
+    void recalcStyle(StyleChange = NoChange) override;
+    bool affectedByNoInherit() const override
     {
         return true;
     }
-    bool childTypeAllowed(unsigned short type) Q_DECL_OVERRIDE;
+    bool childTypeAllowed(unsigned short type) override;
 
     DOMStringImpl *renderString() const;
 
-    DOMString toString() const Q_DECL_OVERRIDE;
+    DOMString toString() const override;
     /** Return the text for the node, with < replaced with &lt; and so on.
      *  @param startOffset The number of characters counted from the left, zero indexed, counting "<" as one character, to start from.  Use -1 to start from 0.
      *  @param endOffset The number of characters counted from the left, zero indexed, counting "<" as one character, to end on.  Use -1 to end at the end of the string.
@@ -182,18 +182,18 @@ public:
         : TextImpl(impl) {}
 
     // DOM methods overridden from  parent classes
-    DOMString nodeName() const Q_DECL_OVERRIDE;
-    unsigned short nodeType() const Q_DECL_OVERRIDE;
-    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) Q_DECL_OVERRIDE;
+    DOMString nodeName() const override;
+    unsigned short nodeType() const override;
+    WTF::PassRefPtr<NodeImpl> cloneNode(bool deep) override;
 
     // Other methods (not part of DOM)
 
-    bool childTypeAllowed(unsigned short type) Q_DECL_OVERRIDE;
+    bool childTypeAllowed(unsigned short type) override;
 
-    DOMString toString() const Q_DECL_OVERRIDE;
+    DOMString toString() const override;
 
 protected:
-    TextImpl *createNew(DOMStringImpl *_str) Q_DECL_OVERRIDE;
+    TextImpl *createNew(DOMStringImpl *_str) override;
 };
 
 // ----------------------------------------------------------------------------
@@ -205,7 +205,7 @@ public:
     EditingTextImpl(DocumentImpl *impl);
     virtual ~EditingTextImpl();
 
-    bool rendererIsNeeded(khtml::RenderStyle *) Q_DECL_OVERRIDE;
+    bool rendererIsNeeded(khtml::RenderStyle *) override;
 };
 
 } //namespace

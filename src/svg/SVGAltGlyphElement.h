@@ -37,8 +37,8 @@ public:
     SVGAltGlyphElement(const QualifiedName &, Document *);
     virtual ~SVGAltGlyphElement();
 
-    RenderObject *createRenderer(RenderArena *, RenderStyle *) Q_DECL_OVERRIDE;
-    bool childShouldCreateRenderer(Node *) const Q_DECL_OVERRIDE;
+    RenderObject *createRenderer(RenderArena *, RenderStyle *) override;
+    bool childShouldCreateRenderer(Node *) const override;
 
     DOMString glyphRef() const;
     void setGlyphRef(const DOMString &, ExceptionCode &);
@@ -48,13 +48,13 @@ public:
     SVGGlyphElement *glyphElement() const;
 
     // KHTML ElementImpl pure virtual method
-    quint32 id() const Q_DECL_OVERRIDE
+    quint32 id() const override
     {
         return SVGNames::textTag.id();
     }
 
 protected:
-    const SVGElement *contextElement() const Q_DECL_OVERRIDE
+    const SVGElement *contextElement() const override
     {
         return this;
     }

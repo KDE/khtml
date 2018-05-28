@@ -51,7 +51,7 @@ public:
     CSSRuleImpl(StyleBaseImpl *parent)
         : StyleBaseImpl(parent), m_type(CSSRule::UNKNOWN_RULE) {}
 
-    bool isRule() const Q_DECL_OVERRIDE
+    bool isRule() const override
     {
         return true;
     }
@@ -85,7 +85,7 @@ public:
         m_type = CSSRule::CHARSET_RULE;
     }
 
-    bool isCharsetRule() const Q_DECL_OVERRIDE
+    bool isCharsetRule() const override
     {
         return true;
     }
@@ -98,7 +98,7 @@ public:
     {
         m_encoding = _encoding;
     }
-    DOM::DOMString cssText() const Q_DECL_OVERRIDE
+    DOM::DOMString cssText() const override
     {
         return DOMString("@charset \"") + m_encoding + DOMString("\";");
     }
@@ -113,7 +113,7 @@ public:
 
     virtual ~CSSFontFaceRuleImpl();
 
-    bool isFontFaceRule() const Q_DECL_OVERRIDE
+    bool isFontFaceRule() const override
     {
         return true;
     }
@@ -123,7 +123,7 @@ public:
         return m_style;
     }
     void setDeclaration(CSSStyleDeclarationImpl *decl);
-    DOMString cssText() const Q_DECL_OVERRIDE;
+    DOMString cssText() const override;
 protected:
     CSSStyleDeclarationImpl *m_style;
 };
@@ -151,19 +151,19 @@ public:
         return m_styleSheet;
     }
 
-    bool isImportRule() const Q_DECL_OVERRIDE
+    bool isImportRule() const override
     {
         return true;
     }
-    DOM::DOMString cssText() const Q_DECL_OVERRIDE;
-    void checkLoaded() const Q_DECL_OVERRIDE;
+    DOM::DOMString cssText() const override;
+    void checkLoaded() const override;
 
     // from CachedObjectClient
-    void setStyleSheet(const DOM::DOMString &url, const DOM::DOMString &sheet, const DOM::DOMString &charset, const DOM::DOMString &mimetype) Q_DECL_OVERRIDE;
-    void error(int err, const QString &text) Q_DECL_OVERRIDE;
+    void setStyleSheet(const DOM::DOMString &url, const DOM::DOMString &sheet, const DOM::DOMString &charset, const DOM::DOMString &mimetype) override;
+    void error(int err, const QString &text) override;
 
     bool isLoading() const;
-    void init() Q_DECL_OVERRIDE;
+    void init() override;
 
 protected:
     DOMString m_strHref;
@@ -222,11 +222,11 @@ public:
         m_lstCSSRules->deleteRule(index);
     }
 
-    bool isMediaRule() const Q_DECL_OVERRIDE
+    bool isMediaRule() const override
     {
         return true;
     }
-    DOM::DOMString cssText() const Q_DECL_OVERRIDE;
+    DOM::DOMString cssText() const override;
 
     /* Not part of the DOM */
     unsigned long append(CSSRuleImpl *rule);
@@ -247,7 +247,7 @@ public:
         return m_style;
     }
 
-    bool isPageRule() const Q_DECL_OVERRIDE
+    bool isPageRule() const override
     {
         return true;
     }
@@ -271,16 +271,16 @@ public:
         return m_style;
     }
 
-    bool isStyleRule() const Q_DECL_OVERRIDE
+    bool isStyleRule() const override
     {
         return true;
     }
-    DOM::DOMString cssText() const Q_DECL_OVERRIDE;
+    DOM::DOMString cssText() const override;
 
     DOM::DOMString selectorText() const;
     void setSelectorText(DOM::DOMString str);
 
-    bool parseString(const DOMString &string, bool = false) Q_DECL_OVERRIDE;
+    bool parseString(const DOMString &string, bool = false) override;
 
     void setSelector(QList<CSSSelector *> *selector)
     {
@@ -329,7 +329,7 @@ class CSSUnknownRuleImpl : public CSSRuleImpl
 public:
     CSSUnknownRuleImpl(StyleBaseImpl *parent) : CSSRuleImpl(parent) {}
 
-    bool isUnknownRule() const Q_DECL_OVERRIDE
+    bool isUnknownRule() const override
     {
         return true;
     }

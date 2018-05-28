@@ -36,22 +36,22 @@ class RenderSVGInlineText : public RenderText
 {
 public:
     RenderSVGInlineText(DOM::NodeImpl *, DOM::DOMStringImpl *);
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderSVGInlineText";
     }
     virtual void absoluteRects(Vector<IntRect> &rects, int tx, int ty, bool topLevel = true);
-    bool requiresLayer() const Q_DECL_OVERRIDE
+    bool requiresLayer() const override
     {
         return false;
     }
     virtual IntRect selectionRect(bool clipToVisibleContent = true);
-    bool isSVGText() const Q_DECL_OVERRIDE
+    bool isSVGText() const override
     {
         return true;
     }
     virtual InlineTextBox *createInlineTextBox();
-    InlineBox *createInlineBox(bool, bool) Q_DECL_OVERRIDE
+    InlineBox *createInlineBox(bool, bool) override
     {
         return createInlineTextBox();
     }

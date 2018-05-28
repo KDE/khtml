@@ -43,28 +43,28 @@ public:
     SVGPolyElement(const QualifiedName &, Document *);
     virtual ~SVGPolyElement();
 
-    bool isValid() const Q_DECL_OVERRIDE
+    bool isValid() const override
     {
         return SVGTests::isValid();
     }
 
-    SVGPointList *points() const Q_DECL_OVERRIDE;
-    SVGPointList *animatedPoints() const Q_DECL_OVERRIDE;
+    SVGPointList *points() const override;
+    SVGPointList *animatedPoints() const override;
 
-    void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
-    void svgAttributeChanged(const QualifiedName &) Q_DECL_OVERRIDE;
+    void parseMappedAttribute(MappedAttribute *) override;
+    void svgAttributeChanged(const QualifiedName &) override;
 
-    bool rendererIsNeeded(RenderStyle *style) Q_DECL_OVERRIDE
+    bool rendererIsNeeded(RenderStyle *style) override
     {
         return StyledElement::rendererIsNeeded(style);
     }
-    bool supportsMarkers() const Q_DECL_OVERRIDE
+    bool supportsMarkers() const override
     {
         return true;
     }
 
 protected:
-    const SVGElement *contextElement() const Q_DECL_OVERRIDE
+    const SVGElement *contextElement() const override
     {
         return this;
     }

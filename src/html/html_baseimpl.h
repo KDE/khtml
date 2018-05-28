@@ -56,7 +56,7 @@ public:
     HTMLBodyElementImpl(DocumentImpl *doc);
     ~HTMLBodyElementImpl();
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 
     DOMString aLink() const;
     void setALink(const DOMString &value);
@@ -69,11 +69,11 @@ public:
     DOMString vLink() const;
     void setVLink(const DOMString &value);
 
-    void parseAttribute(AttributeImpl *) Q_DECL_OVERRIDE;
-    void attach() Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *) override;
+    void attach() override;
 
-    void insertedIntoDocument() Q_DECL_OVERRIDE;
-    void removedFromDocument() Q_DECL_OVERRIDE;
+    void insertedIntoDocument() override;
+    void removedFromDocument() override;
 
     CSSStyleSheetImpl *sheet() const
     {
@@ -98,11 +98,11 @@ public:
 
     ~HTMLFrameElementImpl();
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 
-    void parseAttribute(AttributeImpl *) Q_DECL_OVERRIDE;
-    void attach() Q_DECL_OVERRIDE;
-    void defaultEventHandler(EventImpl *evt) Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *) override;
+    void attach() override;
+    void defaultEventHandler(EventImpl *evt) override;
 
     bool noResize()
     {
@@ -110,8 +110,8 @@ public:
     }
     void setLocation(const QString &str);
 
-    bool isFocusableImpl(FocusType ft) const Q_DECL_OVERRIDE;
-    void setFocus(bool) Q_DECL_OVERRIDE;
+    bool isFocusableImpl(FocusType ft) const override;
+    void setFocus(bool) override;
 
     DocumentImpl *contentDocument() const;
     KHTMLPart    *contentPart() const;
@@ -128,8 +128,8 @@ public:
     bool noresize : 1;
 
     void ensureUniqueName();
-    void computeContent() Q_DECL_OVERRIDE;
-    void setWidgetNotify(QWidget *widget) Q_DECL_OVERRIDE;
+    void computeContent() override;
+    void setWidgetNotify(QWidget *widget) override;
 };
 
 // -------------------------------------------------------------------------
@@ -142,12 +142,12 @@ public:
 
     ~HTMLFrameSetElementImpl();
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 
-    void parseAttribute(AttributeImpl *) Q_DECL_OVERRIDE;
-    void attach() Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *) override;
+    void attach() override;
 
-    void defaultEventHandler(EventImpl *evt) Q_DECL_OVERRIDE;
+    void defaultEventHandler(EventImpl *evt) override;
 
     bool frameBorder()
     {
@@ -170,9 +170,9 @@ public:
     {
         return frameborder ? m_border : 0;
     }
-    void detach() Q_DECL_OVERRIDE;
+    void detach() override;
 
-    void recalcStyle(StyleChange ch) Q_DECL_OVERRIDE;
+    void recalcStyle(StyleChange ch) override;
 
 protected:
     khtml::Length *m_rows;
@@ -196,7 +196,7 @@ public:
     HTMLHeadElementImpl(DocumentImpl *doc)
         : HTMLElementImpl(doc) {}
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 };
 
 // -------------------------------------------------------------------------
@@ -207,7 +207,7 @@ public:
     HTMLHtmlElementImpl(DocumentImpl *doc)
         : HTMLElementImpl(doc) {}
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 };
 
 // -------------------------------------------------------------------------
@@ -219,16 +219,16 @@ public:
 
     ~HTMLIFrameElementImpl();
 
-    Id id() const Q_DECL_OVERRIDE;
+    Id id() const override;
 
-    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
-    void attach() Q_DECL_OVERRIDE;
+    void parseAttribute(AttributeImpl *attr) override;
+    void attach() override;
 
-    void computeContent() Q_DECL_OVERRIDE;
-    void setWidgetNotify(QWidget *widget) Q_DECL_OVERRIDE;
+    void computeContent() override;
+    void setWidgetNotify(QWidget *widget) override;
 
-    void insertedIntoDocument() Q_DECL_OVERRIDE;
-    void removedFromDocument() Q_DECL_OVERRIDE;
+    void insertedIntoDocument() override;
+    void removedFromDocument() override;
 protected:
 
     void updateFrame();

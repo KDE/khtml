@@ -46,107 +46,107 @@ public:
     RenderBox(DOM::NodeImpl *node);
     virtual ~RenderBox();
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderBox";
     }
-    bool isBox() const Q_DECL_OVERRIDE
+    bool isBox() const override
     {
         return true;
     }
 
-    void setStyle(RenderStyle *style) Q_DECL_OVERRIDE;
-    void paint(PaintInfo &i, int _tx, int _ty) Q_DECL_OVERRIDE;
+    void setStyle(RenderStyle *style) override;
+    void paint(PaintInfo &i, int _tx, int _ty) override;
 
-    void close() Q_DECL_OVERRIDE;
+    void close() override;
 
-    InlineBox *createInlineBox(bool makePlaceHolderBox, bool isRootLineBox) Q_DECL_OVERRIDE;
-    void deleteInlineBoxes(RenderArena *arena = nullptr) Q_DECL_OVERRIDE;
-    void dirtyInlineBoxes(bool fullLayout, bool isRootLineBox = false) Q_DECL_OVERRIDE;
-    void removeInlineBox(InlineBox *_box) Q_DECL_OVERRIDE
+    InlineBox *createInlineBox(bool makePlaceHolderBox, bool isRootLineBox) override;
+    void deleteInlineBoxes(RenderArena *arena = nullptr) override;
+    void dirtyInlineBoxes(bool fullLayout, bool isRootLineBox = false) override;
+    void removeInlineBox(InlineBox *_box) override
     {
         if (m_placeHolderBox == _box) {
             m_placeHolderBox = nullptr;
         }
     }
 
-    void removeChild(RenderObject *) Q_DECL_OVERRIDE;
+    void removeChild(RenderObject *) override;
 
-    void detach() Q_DECL_OVERRIDE;
+    void detach() override;
 
-    short minWidth() const Q_DECL_OVERRIDE
+    short minWidth() const override
     {
         return m_minWidth;
     }
-    int maxWidth() const Q_DECL_OVERRIDE
+    int maxWidth() const override
     {
         return m_maxWidth;
     }
 
-    short contentWidth() const Q_DECL_OVERRIDE;
-    int contentHeight() const Q_DECL_OVERRIDE;
+    short contentWidth() const override;
+    int contentHeight() const override;
 
-    bool absolutePosition(int &xPos, int &yPos, bool f = false) const Q_DECL_OVERRIDE;
+    bool absolutePosition(int &xPos, int &yPos, bool f = false) const override;
 
-    void setPos(int xPos, int yPos) Q_DECL_OVERRIDE;
+    void setPos(int xPos, int yPos) override;
 
-    int xPos() const Q_DECL_OVERRIDE
+    int xPos() const override
     {
         return m_x;
     }
-    int yPos() const Q_DECL_OVERRIDE
+    int yPos() const override
     {
         return m_y;
     }
-    short width() const Q_DECL_OVERRIDE;
-    int height() const Q_DECL_OVERRIDE;
+    short width() const override;
+    int height() const override;
 
-    short marginTop() const Q_DECL_OVERRIDE
+    short marginTop() const override
     {
         return m_marginTop;
     }
-    short marginBottom() const Q_DECL_OVERRIDE
+    short marginBottom() const override
     {
         return m_marginBottom;
     }
-    short marginLeft() const Q_DECL_OVERRIDE
+    short marginLeft() const override
     {
         return m_marginLeft;
     }
-    short marginRight() const Q_DECL_OVERRIDE
+    short marginRight() const override
     {
         return m_marginRight;
     }
 
-    void setWidth(int width) Q_DECL_OVERRIDE;
-    void setHeight(int height) Q_DECL_OVERRIDE;
+    void setWidth(int width) override;
+    void setHeight(int height) override;
 
-    void position(InlineBox *box, int from, int len, bool reverse) Q_DECL_OVERRIDE;
+    void position(InlineBox *box, int from, int len, bool reverse) override;
 
-    int highestPosition(bool includeOverflowInterior = true, bool includeSelf = true) const Q_DECL_OVERRIDE;
-    int lowestPosition(bool includeOverflowInterior = true, bool includeSelf = true) const Q_DECL_OVERRIDE;
-    int rightmostPosition(bool includeOverflowInterior = true, bool includeSelf = true) const Q_DECL_OVERRIDE;
-    int leftmostPosition(bool includeOverflowInterior = true, bool includeSelf = true) const Q_DECL_OVERRIDE;
+    int highestPosition(bool includeOverflowInterior = true, bool includeSelf = true) const override;
+    int lowestPosition(bool includeOverflowInterior = true, bool includeSelf = true) const override;
+    int rightmostPosition(bool includeOverflowInterior = true, bool includeSelf = true) const override;
+    int leftmostPosition(bool includeOverflowInterior = true, bool includeSelf = true) const override;
 
-    void repaint(Priority p = NormalPriority) Q_DECL_OVERRIDE;
+    void repaint(Priority p = NormalPriority) override;
 
-    void repaintRectangle(int x, int y, int w, int h, Priority p = NormalPriority, bool f = false) Q_DECL_OVERRIDE;
+    void repaintRectangle(int x, int y, int w, int h, Priority p = NormalPriority, bool f = false) override;
 
-    short containingBlockWidth(RenderObject *providedCB = nullptr) const Q_DECL_OVERRIDE;
+    short containingBlockWidth(RenderObject *providedCB = nullptr) const override;
     void relativePositionOffset(int &tx, int &ty) const;
 
-    void calcWidth() Q_DECL_OVERRIDE;
-    void calcHeight() Q_DECL_OVERRIDE;
+    void calcWidth() override;
+    void calcHeight() override;
 
     virtual short calcReplacedWidth() const;
     virtual int   calcReplacedHeight() const;
 
-    int availableHeight() const Q_DECL_OVERRIDE;
+    int availableHeight() const override;
     virtual int availableWidth() const;
 
-    void calcVerticalMargins() Q_DECL_OVERRIDE;
+    void calcVerticalMargins() override;
 
-    RenderLayer *layer() const Q_DECL_OVERRIDE
+    RenderLayer *layer() const override
     {
         return m_layer;
     }
@@ -162,15 +162,15 @@ public:
         return m_staticY;
     }
 
-    void caretPos(int offset, int flags, int &_x, int &_y, int &width, int &height) const Q_DECL_OVERRIDE;
+    void caretPos(int offset, int flags, int &_x, int &_y, int &width, int &height) const override;
 
     void calcHorizontalMargins(const Length &ml, const Length &mr, int cw);
     RenderBlock *createAnonymousBlock();
 
-    int pageTopAfter(int y) const Q_DECL_OVERRIDE;
-    int crossesPageBreak(int t, int b) const Q_DECL_OVERRIDE;
+    int pageTopAfter(int y) const override;
+    int crossesPageBreak(int t, int b) const override;
 
-    bool handleEvent(const DOM::EventImpl &ev) Q_DECL_OVERRIDE;
+    bool handleEvent(const DOM::EventImpl &ev) override;
 
     int calcBoxWidth(int w) const;
     int calcBoxHeight(int h) const;
@@ -202,7 +202,7 @@ protected:
     }
 
 protected:
-    void paintBoxDecorations(PaintInfo &paintInfo, int _tx, int _ty) Q_DECL_OVERRIDE;
+    void paintBoxDecorations(PaintInfo &paintInfo, int _tx, int _ty) override;
     void paintRootBoxDecorations(PaintInfo &paintInfo, int _tx, int _ty);
 
     void paintAllBackgrounds(QPainter *p, const QColor &c, const BackgroundLayer *bgLayer, QRect clipr, int _tx, int _ty, int w, int h);
@@ -210,7 +210,7 @@ protected:
     virtual void paintBackgroundExtended(QPainter * /*p*/, const QColor & /*c*/, const BackgroundLayer * /*bgLayer*/,
                                          QRect clipr, int /*_tx*/, int /*_ty*/,
                                          int /*w*/, int /*height*/, int /*bleft*/, int /*bright*/, int /*pleft*/, int /*pright*/,
-                                         int /*btop*/, int /*bbottom*/, int /*ptop*/, int /*pbottom*/) Q_DECL_OVERRIDE;
+                                         int /*btop*/, int /*bbottom*/, int /*ptop*/, int /*pbottom*/) override;
     void outlineBox(QPainter *p, int _tx, int _ty, const char *color = "red");
 
     void calcAbsoluteHorizontal();
@@ -230,8 +230,8 @@ protected:
     QPainterPath borderRadiusClipPath(const BackgroundLayer *bgLayer, int _tx, int _ty, int w, int h,
                                       int borderLeft, int borderRight, int borderTop, int borderBottom,
                                       int paddingLeft, int paddingRight, int paddingTop, int paddingBottom) const;
-    QRect overflowClipRect(int tx, int ty) Q_DECL_OVERRIDE;
-    QRect clipRect(int tx, int ty) Q_DECL_OVERRIDE;
+    QRect overflowClipRect(int tx, int ty) override;
+    QRect clipRect(int tx, int ty) override;
 
     void restructureParentFlow();
     void detachRemainingChildren();

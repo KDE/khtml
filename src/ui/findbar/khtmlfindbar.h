@@ -99,10 +99,10 @@ public:
 
     void setFoundMatch(bool match);
     void setAtEnd(bool atEnd);
-    void setVisible(bool visible) Q_DECL_OVERRIDE;
+    void setVisible(bool visible) override;
 
 protected:
-    bool event(QEvent *e) Q_DECL_OVERRIDE;
+    bool event(QEvent *e) override;
 
 private Q_SLOTS:
     void slotSelectedTextToggled(bool selec);

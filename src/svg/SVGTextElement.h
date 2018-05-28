@@ -39,29 +39,29 @@ public:
     SVGTextElement(const QualifiedName &, Document *);
     virtual ~SVGTextElement();
 
-    void parseMappedAttribute(MappedAttribute *) Q_DECL_OVERRIDE;
+    void parseMappedAttribute(MappedAttribute *) override;
 
-    SVGElement *nearestViewportElement() const Q_DECL_OVERRIDE;
-    SVGElement *farthestViewportElement() const Q_DECL_OVERRIDE;
+    SVGElement *nearestViewportElement() const override;
+    SVGElement *farthestViewportElement() const override;
 
-    FloatRect getBBox() const Q_DECL_OVERRIDE;
-    AffineTransform getCTM() const Q_DECL_OVERRIDE;
-    AffineTransform getScreenCTM() const Q_DECL_OVERRIDE;
-    AffineTransform animatedLocalTransform() const Q_DECL_OVERRIDE;
-    AffineTransform *supplementalTransform() Q_DECL_OVERRIDE;
+    FloatRect getBBox() const override;
+    AffineTransform getCTM() const override;
+    AffineTransform getScreenCTM() const override;
+    AffineTransform animatedLocalTransform() const override;
+    AffineTransform *supplementalTransform() override;
 
-    RenderObject *createRenderer(RenderArena *, RenderStyle *) Q_DECL_OVERRIDE;
-    bool childShouldCreateRenderer(Node *) const Q_DECL_OVERRIDE;
+    RenderObject *createRenderer(RenderArena *, RenderStyle *) override;
+    bool childShouldCreateRenderer(Node *) const override;
 
-    void svgAttributeChanged(const QualifiedName &) Q_DECL_OVERRIDE;
+    void svgAttributeChanged(const QualifiedName &) override;
 
     // KHTML ElementImpl pure virtual method
-    quint32 id() const Q_DECL_OVERRIDE
+    quint32 id() const override
     {
         return SVGNames::textTag.id();
     }
 protected:
-    const SVGElement *contextElement() const Q_DECL_OVERRIDE
+    const SVGElement *contextElement() const override
     {
         return this;
     }

@@ -31,9 +31,9 @@ class ArrayBufferConstructorImp : public JSObject
 {
 public:
     ArrayBufferConstructorImp(ExecState *exec, DOM::DocumentImpl *d);
-    bool implementsConstruct() const Q_DECL_OVERRIDE;
+    bool implementsConstruct() const override;
     using KJS::JSObject::construct;
-    JSObject *construct(ExecState *exec, const List &args) Q_DECL_OVERRIDE;
+    JSObject *construct(ExecState *exec, const List &args) override;
 private:
     SharedPtr<DOM::DocumentImpl> doc;
 };
@@ -51,10 +51,10 @@ public:
     };
 
     using KJS::JSObject::getOwnPropertySlot;
-    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) override;
     JSValue *getValueProperty(ExecState *exec, int token) const;
 
-    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
+    const ClassInfo *classInfo() const override
     {
         return &info;
     }

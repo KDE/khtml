@@ -38,24 +38,24 @@ public:
     RenderBody(DOM::HTMLBodyElementImpl *node);
     virtual ~RenderBody();
 
-    bool isBody() const Q_DECL_OVERRIDE
+    bool isBody() const override
     {
         return true;
     }
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderBody";
     }
-    void repaint(Priority p = NormalPriority) Q_DECL_OVERRIDE;
+    void repaint(Priority p = NormalPriority) override;
 
-    void layout() Q_DECL_OVERRIDE;
-    void setStyle(RenderStyle *style) Q_DECL_OVERRIDE;
+    void layout() override;
+    void setStyle(RenderStyle *style) override;
 
-    int availableHeight() const Q_DECL_OVERRIDE;
+    int availableHeight() const override;
 
 protected:
-    void paintBoxDecorations(PaintInfo &, int _tx, int _ty) Q_DECL_OVERRIDE;
+    void paintBoxDecorations(PaintInfo &, int _tx, int _ty) override;
     bool scrollbarsStyled;
 };
 

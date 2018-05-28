@@ -45,14 +45,14 @@ class RenderListItem : public RenderBlock
 public:
     RenderListItem(DOM::NodeImpl *);
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderListItem";
     }
 
-    void setStyle(RenderStyle *style) Q_DECL_OVERRIDE;
+    void setStyle(RenderStyle *style) override;
 
-    bool isListItem() const Q_DECL_OVERRIDE
+    bool isListItem() const override
     {
         return true;
     }
@@ -62,9 +62,9 @@ public:
         predefVal = v;
     }
 
-    void layout() Q_DECL_OVERRIDE;
-    void detach() Q_DECL_OVERRIDE;
-    void calcMinMaxWidth() Q_DECL_OVERRIDE;
+    void layout() override;
+    void detach() override;
+    void calcMinMaxWidth() override;
     //virtual short marginLeft() const;
     //virtual short marginRight() const;
 
@@ -96,27 +96,27 @@ public:
     RenderListMarker(DOM::NodeImpl *node);
     ~RenderListMarker();
 
-    void setStyle(RenderStyle *style) Q_DECL_OVERRIDE;
+    void setStyle(RenderStyle *style) override;
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderListMarker";
     }
     // so the marker gets to layout itself. Only needed for
     // list-style-position: inside
 
-    void paint(PaintInfo &i, int xoff, int yoff) Q_DECL_OVERRIDE;
-    void layout() Q_DECL_OVERRIDE;
-    void calcMinMaxWidth() Q_DECL_OVERRIDE;
+    void paint(PaintInfo &i, int xoff, int yoff) override;
+    void layout() override;
+    void calcMinMaxWidth() override;
 
-    short lineHeight(bool firstLine) const Q_DECL_OVERRIDE;
-    short baselinePosition(bool firstLine) const Q_DECL_OVERRIDE;
+    short lineHeight(bool firstLine) const override;
+    short baselinePosition(bool firstLine) const override;
 
-    void updatePixmap(const QRect &, CachedImage *) Q_DECL_OVERRIDE;
+    void updatePixmap(const QRect &, CachedImage *) override;
 
-    void calcWidth() Q_DECL_OVERRIDE;
+    void calcWidth() override;
 
-    bool isListMarker() const Q_DECL_OVERRIDE
+    bool isListMarker() const override
     {
         return true;
     }

@@ -54,14 +54,14 @@ public:
     RenderTable(DOM::NodeImpl *node);
     ~RenderTable();
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderTable";
     }
 
-    void setStyle(RenderStyle *style) Q_DECL_OVERRIDE;
+    void setStyle(RenderStyle *style) override;
 
-    bool isTable() const Q_DECL_OVERRIDE
+    bool isTable() const override
     {
         return true;
     }
@@ -84,23 +84,23 @@ public:
     {
         return style()->borderCollapse();
     }
-    int borderLeft() const Q_DECL_OVERRIDE;
-    int borderRight() const Q_DECL_OVERRIDE;
-    int borderTop() const Q_DECL_OVERRIDE;
-    int borderBottom() const Q_DECL_OVERRIDE;
-    int paddingLeft() const Q_DECL_OVERRIDE
+    int borderLeft() const override;
+    int borderRight() const override;
+    int borderTop() const override;
+    int borderBottom() const override;
+    int paddingLeft() const override
     {
         return collapseBorders() ? 0 : RenderBlock::paddingLeft();
     }
-    int paddingRight() const Q_DECL_OVERRIDE
+    int paddingRight() const override
     {
         return collapseBorders() ? 0 : RenderBlock::paddingRight();
     }
-    int paddingTop() const Q_DECL_OVERRIDE
+    int paddingTop() const override
     {
         return collapseBorders() ? 0 : RenderBlock::paddingTop();
     }
-    int paddingBottom() const Q_DECL_OVERRIDE
+    int paddingBottom() const override
     {
         return collapseBorders() ? 0 : RenderBlock::paddingBottom();
     }
@@ -120,28 +120,28 @@ public:
     }
 
     // overrides
-    void addChild(RenderObject *child, RenderObject *beforeChild = nullptr) Q_DECL_OVERRIDE;
-    void paint(PaintInfo &, int tx, int ty) Q_DECL_OVERRIDE;
-    void paintBoxDecorations(PaintInfo &, int _tx, int _ty) Q_DECL_OVERRIDE;
-    void layout() Q_DECL_OVERRIDE;
-    void calcMinMaxWidth() Q_DECL_OVERRIDE;
-    void close() Q_DECL_OVERRIDE;
+    void addChild(RenderObject *child, RenderObject *beforeChild = nullptr) override;
+    void paint(PaintInfo &, int tx, int ty) override;
+    void paintBoxDecorations(PaintInfo &, int _tx, int _ty) override;
+    void layout() override;
+    void calcMinMaxWidth() override;
+    void close() override;
 
-    short lineHeight(bool b) const Q_DECL_OVERRIDE;
-    short baselinePosition(bool b) const Q_DECL_OVERRIDE;
+    short lineHeight(bool b) const override;
+    short baselinePosition(bool b) const override;
 
     virtual void setCellWidths();
 
-    void calcWidth() Q_DECL_OVERRIDE;
+    void calcWidth() override;
 
-    QList< QRectF > getClientRects() Q_DECL_OVERRIDE;
+    QList< QRectF > getClientRects() override;
 
     virtual FindSelectionResult checkSelectionPoint(int _x, int _y, int _tx, int _ty,
             DOM::NodeImpl *&node, int &offset,
             SelPointState &);
 
 #ifdef ENABLE_DUMP
-    void dump(QTextStream &stream, const QString &ind) const Q_DECL_OVERRIDE;
+    void dump(QTextStream &stream, const QString &ind) const override;
 #endif
     struct ColumnStruct {
         enum {
@@ -201,7 +201,7 @@ public:
         needSectionRecalc = true;
     }
 
-    RenderObject *removeChildNode(RenderObject *child) Q_DECL_OVERRIDE;
+    RenderObject *removeChildNode(RenderObject *child) override;
 
     RenderTableSection *sectionAbove(const RenderTableSection *, bool skipEmptySections = false);
     RenderTableSection *sectionBelow(const RenderTableSection *, bool skipEmptySections = false);
@@ -258,34 +258,34 @@ class RenderTableSection : public RenderBox
 public:
     RenderTableSection(DOM::NodeImpl *node);
     ~RenderTableSection();
-    void detach() Q_DECL_OVERRIDE;
+    void detach() override;
 
-    void setStyle(RenderStyle *style) Q_DECL_OVERRIDE;
+    void setStyle(RenderStyle *style) override;
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderTableSection";
     }
 
     // overrides
-    void addChild(RenderObject *child, RenderObject *beforeChild = nullptr) Q_DECL_OVERRIDE;
-    bool isTableSection() const Q_DECL_OVERRIDE
+    void addChild(RenderObject *child, RenderObject *beforeChild = nullptr) override;
+    bool isTableSection() const override
     {
         return true;
     }
 
-    short lineHeight(bool) const Q_DECL_OVERRIDE
+    short lineHeight(bool) const override
     {
         return 0;
     }
-    void position(InlineBox *, int, int, bool) Q_DECL_OVERRIDE {}
+    void position(InlineBox *, int, int, bool) override {}
 
     virtual FindSelectionResult checkSelectionPoint(int _x, int _y, int _tx, int _ty,
             DOM::NodeImpl *&node, int &offset,
             SelPointState &);
 
 #ifdef ENABLE_DUMP
-    void dump(QTextStream &stream, const QString &ind) const Q_DECL_OVERRIDE;
+    void dump(QTextStream &stream, const QString &ind) const override;
 #endif
 
     void addCell(RenderTableCell *cell, RenderTableRow *row);
@@ -317,29 +317,29 @@ public:
         return (*(grid[row].row))[col];
     }
 
-    int lowestPosition(bool includeOverflowInterior, bool includeSelf) const Q_DECL_OVERRIDE;
-    int rightmostPosition(bool includeOverflowInterior, bool includeSelf) const Q_DECL_OVERRIDE;
-    int leftmostPosition(bool includeOverflowInterior, bool includeSelf) const Q_DECL_OVERRIDE;
-    int highestPosition(bool includeOverflowInterior, bool includeSelf) const Q_DECL_OVERRIDE;
+    int lowestPosition(bool includeOverflowInterior, bool includeSelf) const override;
+    int rightmostPosition(bool includeOverflowInterior, bool includeSelf) const override;
+    int leftmostPosition(bool includeOverflowInterior, bool includeSelf) const override;
+    int highestPosition(bool includeOverflowInterior, bool includeSelf) const override;
 
-    int borderLeft() const Q_DECL_OVERRIDE
+    int borderLeft() const override
     {
         return table()->collapseBorders() ? 0 : RenderBox::borderLeft();
     }
-    int borderRight() const Q_DECL_OVERRIDE
+    int borderRight() const override
     {
         return table()->collapseBorders() ? 0 : RenderBox::borderRight();
     }
-    int borderTop() const Q_DECL_OVERRIDE
+    int borderTop() const override
     {
         return table()->collapseBorders() ? 0 : RenderBox::borderTop();
     }
-    int borderBottom() const Q_DECL_OVERRIDE
+    int borderBottom() const override
     {
         return table()->collapseBorders() ? 0 : RenderBox::borderBottom();
     }
 
-    void paint(PaintInfo &i, int tx, int ty) Q_DECL_OVERRIDE;
+    void paint(PaintInfo &i, int tx, int ty) override;
 
     int numRows() const
     {
@@ -356,12 +356,12 @@ public:
         table()->setNeedSectionRecalc();
     }
 
-    RenderObject *removeChildNode(RenderObject *child) Q_DECL_OVERRIDE;
+    RenderObject *removeChildNode(RenderObject *child) override;
 
-    bool canClear(RenderObject *child, PageBreakLevel level) Q_DECL_OVERRIDE;
+    bool canClear(RenderObject *child, PageBreakLevel level) override;
     void addSpaceAt(int pos, int dy);
 
-    bool nodeAtPoint(NodeInfo &info, int x, int y, int tx, int ty, HitTestAction action, bool inside) Q_DECL_OVERRIDE;
+    bool nodeAtPoint(NodeInfo &info, int x, int y, int tx, int ty, HitTestAction action, bool inside) override;
 
     // this gets a cell grid data structure. changing the number of
     // columns is done by the table
@@ -396,42 +396,42 @@ class RenderTableRow : public RenderBox
 public:
     RenderTableRow(DOM::NodeImpl *node);
 
-    void detach() Q_DECL_OVERRIDE;
+    void detach() override;
 
-    void setStyle(RenderStyle *) Q_DECL_OVERRIDE;
-    const char *renderName() const Q_DECL_OVERRIDE
+    void setStyle(RenderStyle *) override;
+    const char *renderName() const override
     {
         return "RenderTableRow";
     }
-    bool isTableRow() const Q_DECL_OVERRIDE
+    bool isTableRow() const override
     {
         return true;
     }
-    void addChild(RenderObject *child, RenderObject *beforeChild = nullptr) Q_DECL_OVERRIDE;
+    void addChild(RenderObject *child, RenderObject *beforeChild = nullptr) override;
 
-    short offsetWidth() const Q_DECL_OVERRIDE;
-    int offsetHeight() const Q_DECL_OVERRIDE;
-    int offsetLeft() const Q_DECL_OVERRIDE;
-    int offsetTop() const Q_DECL_OVERRIDE;
+    short offsetWidth() const override;
+    int offsetHeight() const override;
+    int offsetLeft() const override;
+    int offsetTop() const override;
 
-    short lineHeight(bool) const Q_DECL_OVERRIDE
+    short lineHeight(bool) const override
     {
         return 0;
     }
-    void position(InlineBox *, int, int, bool) Q_DECL_OVERRIDE {}
+    void position(InlineBox *, int, int, bool) override {}
 
-    bool nodeAtPoint(NodeInfo &info, int x, int y, int tx, int ty, HitTestAction action, bool inside) Q_DECL_OVERRIDE;
+    bool nodeAtPoint(NodeInfo &info, int x, int y, int tx, int ty, HitTestAction action, bool inside) override;
 
-    void layout() Q_DECL_OVERRIDE;
+    void layout() override;
 
-    RenderObject *removeChildNode(RenderObject *child) Q_DECL_OVERRIDE;
+    RenderObject *removeChildNode(RenderObject *child) override;
 
     // The only time rows get a layer is when they have transparency.
-    bool requiresLayer() const Q_DECL_OVERRIDE
+    bool requiresLayer() const override
     {
         return style()->opacity() < 1.0f;
     }
-    void paint(PaintInfo &i, int tx, int ty) Q_DECL_OVERRIDE;
+    void paint(PaintInfo &i, int tx, int ty) override;
 
     void paintRow(PaintInfo &i, int tx, int ty, int w, int h);
 
@@ -452,14 +452,14 @@ class RenderTableCell : public RenderBlock
 public:
     RenderTableCell(DOM::NodeImpl *node);
 
-    void layout() Q_DECL_OVERRIDE;
-    void detach() Q_DECL_OVERRIDE;
+    void layout() override;
+    void detach() override;
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderTableCell";
     }
-    bool isTableCell() const Q_DECL_OVERRIDE
+    bool isTableCell() const override
     {
         return true;
     }
@@ -509,24 +509,24 @@ public:
     Length styleOrColWidth();
 
     // overrides
-    void calcMinMaxWidth() Q_DECL_OVERRIDE;
-    void calcWidth() Q_DECL_OVERRIDE;
-    void setWidth(int width) Q_DECL_OVERRIDE;
-    void setStyle(RenderStyle *style) Q_DECL_OVERRIDE;
-    bool requiresLayer() const Q_DECL_OVERRIDE;
+    void calcMinMaxWidth() override;
+    void calcWidth() override;
+    void setWidth(int width) override;
+    void setStyle(RenderStyle *style) override;
+    bool requiresLayer() const override;
 
-    int borderLeft() const Q_DECL_OVERRIDE;
-    int borderRight() const Q_DECL_OVERRIDE;
-    int borderTop() const Q_DECL_OVERRIDE;
-    int borderBottom() const Q_DECL_OVERRIDE;
+    int borderLeft() const override;
+    int borderRight() const override;
+    int borderTop() const override;
+    int borderBottom() const override;
 
     CollapsedBorderValue collapsedLeftBorder(bool rtl) const;
     CollapsedBorderValue collapsedRightBorder(bool rtl) const;
     CollapsedBorderValue collapsedTopBorder() const;
     CollapsedBorderValue collapsedBottomBorder() const;
-    void collectBorders(QList<CollapsedBorderValue> &borderStyles) Q_DECL_OVERRIDE;
+    void collectBorders(QList<CollapsedBorderValue> &borderStyles) override;
 
-    void updateFromElement() Q_DECL_OVERRIDE;
+    void updateFromElement() override;
 
     void setCellTopExtra(int p)
     {
@@ -545,26 +545,26 @@ public:
         return _bottomExtra;
     }
 
-    int pageTopAfter(int x) const Q_DECL_OVERRIDE;
+    int pageTopAfter(int x) const override;
 
-    void paint(PaintInfo &i, int tx, int ty) Q_DECL_OVERRIDE;
+    void paint(PaintInfo &i, int tx, int ty) override;
 
     void paintCollapsedBorder(QPainter *p, int x, int y, int w, int h);
     void paintBackgroundsBehindCell(PaintInfo &i, int _tx, int _ty, RenderObject *backgroundObject);
 
-    void close() Q_DECL_OVERRIDE;
+    void close() override;
 
     // lie position to outside observers
-    int yPos() const Q_DECL_OVERRIDE
+    int yPos() const override
     {
         return m_y + _topExtra;
     }
 
-    void repaintRectangle(int x, int y, int w, int h, Priority p = NormalPriority, bool f = false) Q_DECL_OVERRIDE;
+    void repaintRectangle(int x, int y, int w, int h, Priority p = NormalPriority, bool f = false) override;
 
-    short baselinePosition(bool = false) const Q_DECL_OVERRIDE;
+    short baselinePosition(bool = false) const override;
 
-    bool nodeAtPoint(NodeInfo &info, int _x, int _y, int _tx, int _ty, HitTestAction hitTestAction, bool inside) Q_DECL_OVERRIDE;
+    bool nodeAtPoint(NodeInfo &info, int _x, int _y, int _tx, int _ty, HitTestAction hitTestAction, bool inside) override;
 
     RenderTable *table() const
     {
@@ -576,7 +576,7 @@ public:
     }
 
 #ifdef ENABLE_DUMP
-    void dump(QTextStream &stream, const QString &ind) const Q_DECL_OVERRIDE;
+    void dump(QTextStream &stream, const QString &ind) const override;
 #endif
 
     bool widthChanged()
@@ -604,12 +604,12 @@ public:
     }
 
 protected:
-    void paintBoxDecorations(PaintInfo &p, int _tx, int _ty) Q_DECL_OVERRIDE;
-    int borderTopExtra() const Q_DECL_OVERRIDE
+    void paintBoxDecorations(PaintInfo &p, int _tx, int _ty) override;
+    int borderTopExtra() const override
     {
         return _topExtra;
     }
-    int borderBottomExtra() const Q_DECL_OVERRIDE
+    int borderBottomExtra() const override
     {
         return _bottomExtra;
     }
@@ -632,31 +632,31 @@ class RenderTableCol : public RenderBox
 public:
     RenderTableCol(DOM::NodeImpl *node);
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderTableCol";
     }
 
-    bool isTableCol() const Q_DECL_OVERRIDE
+    bool isTableCol() const override
     {
         return true;
     }
 
-    short lineHeight(bool) const Q_DECL_OVERRIDE
+    short lineHeight(bool) const override
     {
         return 0;
     }
-    void position(InlineBox *, int, int, bool) Q_DECL_OVERRIDE {}
-    void layout() Q_DECL_OVERRIDE {}
-    bool requiresLayer() const Q_DECL_OVERRIDE
+    void position(InlineBox *, int, int, bool) override {}
+    void layout() override {}
+    bool requiresLayer() const override
     {
         return false;
     }
 
-    void updateFromElement() Q_DECL_OVERRIDE;
+    void updateFromElement() override;
 
 #ifdef ENABLE_DUMP
-    void dump(QTextStream &stream, const QString &ind) const Q_DECL_OVERRIDE;
+    void dump(QTextStream &stream, const QString &ind) const override;
 #endif
 
     int span() const

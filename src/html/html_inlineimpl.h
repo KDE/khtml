@@ -35,10 +35,10 @@ public:
     HTMLAnchorElementImpl(DocumentImpl *doc)
         : HTMLElementImpl(doc), m_hasTarget(false) {}
 
-    bool isFocusableImpl(FocusType ft) const Q_DECL_OVERRIDE;
-    Id id() const Q_DECL_OVERRIDE;
-    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
-    void defaultEventHandler(EventImpl *evt) Q_DECL_OVERRIDE;
+    bool isFocusableImpl(FocusType ft) const override;
+    Id id() const override;
+    void parseAttribute(AttributeImpl *attr) override;
+    void defaultEventHandler(EventImpl *evt) override;
     void click();
 protected:
     bool m_hasTarget : 1;
@@ -52,9 +52,9 @@ public:
     HTMLBRElementImpl(DocumentImpl *doc)
         : HTMLElementImpl(doc) {}
 
-    Id id() const Q_DECL_OVERRIDE;
-    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
-    void attach() Q_DECL_OVERRIDE;
+    Id id() const override;
+    void parseAttribute(AttributeImpl *attr) override;
+    void attach() override;
 };
 
 // -------------------------------------------------------------------------
@@ -65,8 +65,8 @@ public:
     HTMLWBRElementImpl(DocumentImpl *doc)
         : HTMLElementImpl(doc) {}
 
-    Id id() const Q_DECL_OVERRIDE;
-    void attach() Q_DECL_OVERRIDE;
+    Id id() const override;
+    void attach() override;
 };
 
 // -------------------------------------------------------------------------
@@ -77,8 +77,8 @@ public:
     HTMLFontElementImpl(DocumentImpl *doc)
         : HTMLElementImpl(doc) {}
 
-    Id id() const Q_DECL_OVERRIDE;
-    void parseAttribute(AttributeImpl *attr) Q_DECL_OVERRIDE;
+    Id id() const override;
+    void parseAttribute(AttributeImpl *attr) override;
 };
 
 } //namespace

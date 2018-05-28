@@ -81,7 +81,7 @@ class Marquee: public QObject
 public:
     Marquee(RenderLayer *l);
 
-    void timerEvent(QTimerEvent *) Q_DECL_OVERRIDE;
+    void timerEvent(QTimerEvent *) override;
 
     int speed() const
     {

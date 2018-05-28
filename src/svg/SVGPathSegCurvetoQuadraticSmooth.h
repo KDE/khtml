@@ -39,15 +39,15 @@ public:
     }
     virtual ~SVGPathSegCurvetoQuadraticSmoothAbs();
 
-    unsigned short pathSegType() const Q_DECL_OVERRIDE
+    unsigned short pathSegType() const override
     {
         return PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS;
     }
-    String pathSegTypeAsLetter() const Q_DECL_OVERRIDE
+    String pathSegTypeAsLetter() const override
     {
         return "T";
     }
-    String toString() const Q_DECL_OVERRIDE
+    String toString() const override
     {
         return String::format("T %.6lg %.6lg", m_x, m_y);
     }
@@ -74,15 +74,15 @@ public:
     }
     virtual ~SVGPathSegCurvetoQuadraticSmoothRel();
 
-    unsigned short pathSegType() const Q_DECL_OVERRIDE
+    unsigned short pathSegType() const override
     {
         return PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL;
     }
-    String pathSegTypeAsLetter() const Q_DECL_OVERRIDE
+    String pathSegTypeAsLetter() const override
     {
         return "t";
     }
-    String toString() const Q_DECL_OVERRIDE
+    String toString() const override
     {
         return String::format("t %.6lg %.6lg", m_x, m_y);
     }

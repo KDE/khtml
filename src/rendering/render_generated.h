@@ -41,14 +41,14 @@ class RenderCounterBase : public RenderText
 public:
     RenderCounterBase(DOM::NodeImpl *node);
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderCounterBase";
     }
 
-    void layout() Q_DECL_OVERRIDE;
-    void calcMinMaxWidth() Q_DECL_OVERRIDE;
-    bool isCounter() const Q_DECL_OVERRIDE
+    void layout() override;
+    void calcMinMaxWidth() override;
+    bool isCounter() const override
     {
         return true;
     }
@@ -69,12 +69,12 @@ public:
     RenderCounter(DOM::NodeImpl *node, const DOM::CounterImpl *counter);
     virtual ~RenderCounter() {}
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderCounter";
     }
 
-    void generateContent() Q_DECL_OVERRIDE;
+    void generateContent() override;
 
 protected:
     QString toListStyleType(int value, int total, EListStyleType type);
@@ -90,18 +90,18 @@ public:
     RenderQuote(DOM::NodeImpl *node, EQuoteContent type);
     virtual ~RenderQuote() {}
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderQuote";
     }
 
-    bool isQuote() const Q_DECL_OVERRIDE
+    bool isQuote() const override
     {
         return true;
     }
     virtual int quoteCount() const;
 
-    void generateContent() Q_DECL_OVERRIDE;
+    void generateContent() override;
 
 protected:
     EQuoteContent m_quoteType;
@@ -117,25 +117,25 @@ public:
     RenderGlyph(DOM::NodeImpl *node, EListStyleType type);
     virtual ~RenderGlyph() {}
 
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderGlyph";
     }
 
-    void paint(PaintInfo &paintInfo, int _tx, int _ty) Q_DECL_OVERRIDE;
-    void calcMinMaxWidth() Q_DECL_OVERRIDE;
+    void paint(PaintInfo &paintInfo, int _tx, int _ty) override;
+    void calcMinMaxWidth() override;
 
-    void setStyle(RenderStyle *_style) Q_DECL_OVERRIDE;
+    void setStyle(RenderStyle *_style) override;
 
-    short lineHeight(bool firstLine) const Q_DECL_OVERRIDE;
-    short baselinePosition(bool firstLine) const Q_DECL_OVERRIDE;
+    short lineHeight(bool firstLine) const override;
+    short baselinePosition(bool firstLine) const override;
 
-    bool isGlyph() const Q_DECL_OVERRIDE
+    bool isGlyph() const override
     {
         return true;
     }
 
-    void position(InlineBox *box, int /*from*/, int /*len*/, bool /*reverse*/) Q_DECL_OVERRIDE
+    void position(InlineBox *box, int /*from*/, int /*len*/, bool /*reverse*/) override
     {
         setPos(box->xPos(), box->yPos());
     }

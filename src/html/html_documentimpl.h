@@ -48,7 +48,7 @@ public:
     HTMLDocumentImpl(KHTMLView *v = nullptr);
     ~HTMLDocumentImpl();
 
-    bool isHTMLDocument() const Q_DECL_OVERRIDE
+    bool isHTMLDocument() const override
     {
         return true;
     }
@@ -70,20 +70,20 @@ public:
 
     void setBody(HTMLElementImpl *_body, int &exceptioncode);
 
-    khtml::Tokenizer *createTokenizer() Q_DECL_OVERRIDE;
+    khtml::Tokenizer *createTokenizer() override;
 
-    bool childAllowed(NodeImpl *newChild) Q_DECL_OVERRIDE;
+    bool childAllowed(NodeImpl *newChild) override;
 
-    ElementImpl *createElement(const DOMString &tagName, int *pExceptioncode) Q_DECL_OVERRIDE;
+    ElementImpl *createElement(const DOMString &tagName, int *pExceptioncode) override;
 
     // HTML5
     ElementImpl *activeElement() const;
 
     HTMLMapElementImpl *getMap(const DOMString &url_);
 
-    void determineParseMode() Q_DECL_OVERRIDE;
-    void close() Q_DECL_OVERRIDE;
-    void contentLoaded() Q_DECL_OVERRIDE;
+    void determineParseMode() override;
+    void close() override;
+    void contentLoaded() override;
 
     void setAutoFill()
     {
@@ -121,7 +121,7 @@ class HTMLTextDocumentImpl: public HTMLDocumentImpl
 {
 public:
     HTMLTextDocumentImpl(KHTMLView *v = nullptr);
-    khtml::Tokenizer *createTokenizer() Q_DECL_OVERRIDE;
+    khtml::Tokenizer *createTokenizer() override;
 };
 
 } //namespace

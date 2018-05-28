@@ -12,9 +12,9 @@ class GIFLoaderProvider: public ImageLoaderProvider
 {
 public:
     virtual ~GIFLoaderProvider() {}
-    Type type() Q_DECL_OVERRIDE;
+    Type type() override;
 
-    ImageLoader *loaderFor(const QByteArray &prefix) Q_DECL_OVERRIDE;
+    ImageLoader *loaderFor(const QByteArray &prefix) override;
 };
 
 }

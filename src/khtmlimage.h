@@ -47,24 +47,24 @@ public:
                QObject *parent, const QVariantList &args);
     virtual ~KHTMLImage();
 
-    bool openFile() Q_DECL_OVERRIDE
+    bool openFile() override
     {
         return true;    // grmbl, should be non-pure in part.h, IMHO
     }
 
-    bool openUrl(const QUrl &url) Q_DECL_OVERRIDE;
+    bool openUrl(const QUrl &url) override;
 
-    bool closeUrl() Q_DECL_OVERRIDE;
+    bool closeUrl() override;
 
     KHTMLPart *doc() const
     {
         return m_khtml;
     }
 
-    void notifyFinished(khtml::CachedObject *o) Q_DECL_OVERRIDE;
+    void notifyFinished(khtml::CachedObject *o) override;
 
 protected:
-    void guiActivateEvent(KParts::GUIActivateEvent *e) Q_DECL_OVERRIDE;
+    void guiActivateEvent(KParts::GUIActivateEvent *e) override;
 
 private Q_SLOTS:
     void restoreScrollPosition();
@@ -99,8 +99,8 @@ class KHTMLImageBrowserExtension : public KParts::BrowserExtension
 public:
     KHTMLImageBrowserExtension(KHTMLImage *parent);
 
-    int xOffset() Q_DECL_OVERRIDE;
-    int yOffset() Q_DECL_OVERRIDE;
+    int xOffset() override;
+    int yOffset() override;
 
 protected Q_SLOTS:
     void print();

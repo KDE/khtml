@@ -47,12 +47,12 @@ public:
     HTMLMediaElement(Document *);
     virtual ~HTMLMediaElement();
 
-    void attach() Q_DECL_OVERRIDE;
-    void close() Q_DECL_OVERRIDE;
+    void attach() override;
+    void close() override;
 
 //    virtual void parseAttribute(AttributeImpl *token);
     using DOM::ElementImpl::attributeChanged;
-    void attributeChanged(NodeImpl::Id attrId) Q_DECL_OVERRIDE;
+    void attributeChanged(NodeImpl::Id attrId) override;
 
     virtual bool isVideo() const
     {

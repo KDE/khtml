@@ -52,7 +52,7 @@ public:
         m_lastLineBox = nullptr;
     }
 
-    RenderFlow *continuation() const Q_DECL_OVERRIDE
+    RenderFlow *continuation() const override
     {
         return m_continuation;
     }
@@ -64,21 +64,21 @@ public:
 
     void addChildWithContinuation(RenderObject *newChild, RenderObject *beforeChild);
     virtual void addChildToFlow(RenderObject *newChild, RenderObject *beforeChild) = 0;
-    void addChild(RenderObject *newChild, RenderObject *beforeChild = nullptr) Q_DECL_OVERRIDE;
+    void addChild(RenderObject *newChild, RenderObject *beforeChild = nullptr) override;
 
     static RenderFlow *createFlow(DOM::NodeImpl *node, RenderStyle *style, RenderArena *arena);
 
-    void detach() Q_DECL_OVERRIDE;
+    void detach() override;
 
     void attachLineBox(InlineFlowBox *box);
     void extractLineBox(InlineFlowBox *box);
 
     virtual void deleteLastLineBox(RenderArena *arena = nullptr);
-    void deleteInlineBoxes(RenderArena *arena = nullptr) Q_DECL_OVERRIDE;
-    void removeInlineBox(InlineBox *box) Q_DECL_OVERRIDE;
-    void dirtyInlineBoxes(bool fullLayout, bool isRootLineBox = false) Q_DECL_OVERRIDE;
+    void deleteInlineBoxes(RenderArena *arena = nullptr) override;
+    void removeInlineBox(InlineBox *box) override;
+    void dirtyInlineBoxes(bool fullLayout, bool isRootLineBox = false) override;
 
-    void dirtyLinesFromChangedChild(RenderObject *child) Q_DECL_OVERRIDE;
+    void dirtyLinesFromChangedChild(RenderObject *child) override;
 
     InlineFlowBox *firstLineBox() const
     {
@@ -89,19 +89,19 @@ public:
         return m_lastLineBox;
     }
 
-    QList< QRectF > getClientRects() Q_DECL_OVERRIDE;
+    QList< QRectF > getClientRects() override;
 
-    InlineBox *createInlineBox(bool makePlaceHolderBox, bool isRootLineBox) Q_DECL_OVERRIDE;
+    InlineBox *createInlineBox(bool makePlaceHolderBox, bool isRootLineBox) override;
 
     void paintLines(PaintInfo &i, int _tx, int _ty);
     bool hitTestLines(NodeInfo &i, int x, int y, int tx, int ty, HitTestAction hitTestAction);
 
-    void repaint(Priority p = NormalPriority) Q_DECL_OVERRIDE;
+    void repaint(Priority p = NormalPriority) override;
 
-    int highestPosition(bool includeOverflowInterior = true, bool includeSelf = true) const Q_DECL_OVERRIDE;
-    int lowestPosition(bool includeOverflowInterior = true, bool includeSelf = true) const Q_DECL_OVERRIDE;
-    int rightmostPosition(bool includeOverflowInterior = true, bool includeSelf = true) const Q_DECL_OVERRIDE;
-    int leftmostPosition(bool includeOverflowInterior = true, bool includeSelf = true) const Q_DECL_OVERRIDE;
+    int highestPosition(bool includeOverflowInterior = true, bool includeSelf = true) const override;
+    int lowestPosition(bool includeOverflowInterior = true, bool includeSelf = true) const override;
+    int rightmostPosition(bool includeOverflowInterior = true, bool includeSelf = true) const override;
+    int leftmostPosition(bool includeOverflowInterior = true, bool includeSelf = true) const override;
 
 protected:
     // An inline can be split with blocks occurring in between the inline content.

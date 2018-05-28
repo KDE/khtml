@@ -33,10 +33,10 @@ public:
     DOMNodeIterator(ExecState *exec, DOM::NodeIteratorImpl *ni);
     ~DOMNodeIterator();
     using KJS::JSObject::getOwnPropertySlot;
-    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) override;
     JSValue *getValueProperty(ExecState *exec, int token) const;
     // no put - all read-only
-    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
+    const ClassInfo *classInfo() const override
     {
         return &info;
     }
@@ -58,10 +58,10 @@ class NodeFilterConstructor : public DOMObject
 public:
     NodeFilterConstructor(ExecState *);
     using KJS::JSObject::getOwnPropertySlot;
-    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) override;
     JSValue *getValueProperty(ExecState *exec, int token) const;
     // no put - all read-only
-    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
+    const ClassInfo *classInfo() const override
     {
         return &info;
     }
@@ -74,13 +74,13 @@ public:
     DOMTreeWalker(ExecState *exec, DOM::TreeWalkerImpl *tw);
     ~DOMTreeWalker();
     using KJS::JSObject::getOwnPropertySlot;
-    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) Q_DECL_OVERRIDE;
+    bool getOwnPropertySlot(ExecState *exec, const Identifier &propertyName, PropertySlot &slot) override;
     JSValue *getValueProperty(ExecState *exec, int token) const;
-    void mark() Q_DECL_OVERRIDE;
+    void mark() override;
     using KJS::JSObject::put;
     virtual void put(ExecState *exec, const Identifier &propertyName,
-                     JSValue *value, int attr = None) Q_DECL_OVERRIDE;
-    const ClassInfo *classInfo() const Q_DECL_OVERRIDE
+                     JSValue *value, int attr = None) override;
+    const ClassInfo *classInfo() const override
     {
         return &info;
     }
@@ -113,8 +113,8 @@ public:
     JSNodeFilter(JSObject *_filter);
     virtual ~JSNodeFilter();
 
-    bool  isJSFilter() const Q_DECL_OVERRIDE;
-    short acceptNode(const DOM::Node &n, void *&bindingsException) Q_DECL_OVERRIDE;
+    bool  isJSFilter() const override;
+    short acceptNode(const DOM::Node &n, void *&bindingsException) override;
 
     void mark();
 

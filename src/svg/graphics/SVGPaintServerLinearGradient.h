@@ -43,7 +43,7 @@ public:
     }
     virtual ~SVGPaintServerLinearGradient();
 
-    SVGPaintServerType type() const Q_DECL_OVERRIDE
+    SVGPaintServerType type() const override
     {
         return LinearGradientPaintServer;
     }
@@ -57,7 +57,7 @@ public:
     /*virtual TextStream& externalRepresentation(TextStream&) const;*/
 
 #if PLATFORM(QT)
-    QGradient setupGradient(QPainter *painter, QPainterPath *painterPath, const RenderObject *) const Q_DECL_OVERRIDE;
+    QGradient setupGradient(QPainter *painter, QPainterPath *painterPath, const RenderObject *) const override;
 #endif
 
 private:

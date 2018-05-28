@@ -37,11 +37,11 @@ class VariableReference : public Expression
 public:
     VariableReference(const DOM::DOMString &name);
 
-    bool isConstant() const Q_DECL_OVERRIDE;
-    QString dump() const Q_DECL_OVERRIDE;
+    bool isConstant() const override;
+    QString dump() const override;
 
 private:
-    Value doEvaluate() const Q_DECL_OVERRIDE;
+    Value doEvaluate() const override;
 
     DOM::DOMString m_name;
 };

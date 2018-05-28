@@ -50,11 +50,11 @@ class KHTMLPartBrowserExtension : public KParts::BrowserExtension
 public:
     KHTMLPartBrowserExtension(KHTMLPart *parent);
 
-    int xOffset() Q_DECL_OVERRIDE;
-    int yOffset() Q_DECL_OVERRIDE;
+    int xOffset() override;
+    int yOffset() override;
 
-    void saveState(QDataStream &stream) Q_DECL_OVERRIDE;
-    void restoreState(QDataStream &stream) Q_DECL_OVERRIDE;
+    void saveState(QDataStream &stream) override;
+    void restoreState(QDataStream &stream) override;
 
     // internal
     void editableWidgetFocused(QWidget *widget);
@@ -99,13 +99,13 @@ public:
     KHTMLPartBrowserHostExtension(KHTMLPart *part);
     virtual ~KHTMLPartBrowserHostExtension();
 
-    QStringList frameNames() const Q_DECL_OVERRIDE;
+    QStringList frameNames() const override;
 
-    const QList<KParts::ReadOnlyPart *> frames() const Q_DECL_OVERRIDE;
+    const QList<KParts::ReadOnlyPart *> frames() const override;
 
-    BrowserHostExtension *findFrameParent(KParts::ReadOnlyPart *callingPart, const QString &frame) Q_DECL_OVERRIDE;
+    BrowserHostExtension *findFrameParent(KParts::ReadOnlyPart *callingPart, const QString &frame) override;
 
-    bool openUrlInFrame(const QUrl &url, const KParts::OpenUrlArguments &arguments, const KParts::BrowserArguments &browserArguments) Q_DECL_OVERRIDE;
+    bool openUrlInFrame(const QUrl &url, const KParts::OpenUrlArguments &arguments, const KParts::BrowserArguments &browserArguments) override;
 
 private:
     KHTMLPart *m_part;
@@ -186,9 +186,9 @@ class KHTMLTextExtension : public KParts::TextExtension
 public:
     KHTMLTextExtension(KHTMLPart *part);
 
-    bool hasSelection() const Q_DECL_OVERRIDE;
-    QString selectedText(Format format) const Q_DECL_OVERRIDE;
-    QString completeText(Format format) const Q_DECL_OVERRIDE;
+    bool hasSelection() const override;
+    QString selectedText(Format format) const override;
+    QString completeText(Format format) const override;
 
     KHTMLPart *part() const;
 };
@@ -209,17 +209,17 @@ public:
     KHTMLHtmlExtension(KHTMLPart *part);
 
     // HtmlExtension
-    QUrl baseUrl() const Q_DECL_OVERRIDE;
-    bool hasSelection() const Q_DECL_OVERRIDE;
+    QUrl baseUrl() const override;
+    bool hasSelection() const override;
 
     // SelectorInterface
-    QueryMethods supportedQueryMethods() const Q_DECL_OVERRIDE;
-    Element querySelector(const QString &query, QueryMethod method) const Q_DECL_OVERRIDE;
-    QList<Element> querySelectorAll(const QString &query, QueryMethod method) const Q_DECL_OVERRIDE;
+    QueryMethods supportedQueryMethods() const override;
+    Element querySelector(const QString &query, QueryMethod method) const override;
+    QList<Element> querySelectorAll(const QString &query, QueryMethod method) const override;
 
     // SettingsInterface
-    QVariant htmlSettingsProperty(HtmlSettingsType type) const Q_DECL_OVERRIDE;
-    bool setHtmlSettingsProperty(HtmlSettingsType type, const QVariant &value) Q_DECL_OVERRIDE;
+    QVariant htmlSettingsProperty(HtmlSettingsType type) const override;
+    bool setHtmlSettingsProperty(HtmlSettingsType type, const QVariant &value) override;
 
     KHTMLPart *part() const;
 };

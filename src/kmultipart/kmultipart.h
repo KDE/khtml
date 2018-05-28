@@ -42,16 +42,16 @@ public:
                QObject *parent, const QVariantList &);
     virtual ~KMultiPart();
 
-    bool openFile() Q_DECL_OVERRIDE
+    bool openFile() override
     {
         return false;
     }
-    bool openUrl(const QUrl &url) Q_DECL_OVERRIDE;
+    bool openUrl(const QUrl &url) override;
 
-    bool closeUrl() Q_DECL_OVERRIDE;
+    bool closeUrl() override;
 
 protected:
-    void guiActivateEvent(KParts::GUIActivateEvent *e) Q_DECL_OVERRIDE;
+    void guiActivateEvent(KParts::GUIActivateEvent *e) override;
     void setPart(const QString &mimeType);
 
     void startOfData();

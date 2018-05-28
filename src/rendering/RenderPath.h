@@ -55,29 +55,29 @@ public:
     /*virtual bool strokeContains(const FloatPoint&, bool requiresStroke = true) const;*/
 
     // Returns an unscaled bounding box (not even including localTransform()) for this vector path
-    FloatRect relativeBBox(bool includeStroke = true) const Q_DECL_OVERRIDE;
+    FloatRect relativeBBox(bool includeStroke = true) const override;
 
     const khtml::Path &path() const;
     void setPath(const khtml::Path &newPath);
 
-    bool isRenderPath() const Q_DECL_OVERRIDE
+    bool isRenderPath() const override
     {
         return true;
     }
-    const char *renderName() const Q_DECL_OVERRIDE
+    const char *renderName() const override
     {
         return "RenderPath";
     }
 
     bool calculateLocalTransform();
-    AffineTransform localTransform() const Q_DECL_OVERRIDE;
+    AffineTransform localTransform() const override;
 
-    void layout() Q_DECL_OVERRIDE;
+    void layout() override;
     virtual IntRect absoluteClippedOverflowRect();
-    bool requiresLayer() const Q_DECL_OVERRIDE;
-    short lineHeight(bool b) const Q_DECL_OVERRIDE;
-    short baselinePosition(bool b) const Q_DECL_OVERRIDE;
-    void paint(PaintInfo &, int parentX, int parentY) Q_DECL_OVERRIDE;
+    bool requiresLayer() const override;
+    short lineHeight(bool b) const override;
+    short baselinePosition(bool b) const override;
+    void paint(PaintInfo &, int parentX, int parentY) override;
 
     virtual void absoluteRects(Vector<IntRect> &, int tx, int ty, bool topLevel = true);
     /*virtual void addFocusRingRects(GraphicsContext*, int tx, int ty);

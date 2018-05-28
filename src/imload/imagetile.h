@@ -40,7 +40,7 @@ public:
     //### consider making this a pointer, seems quite heavy
     QImage        image;
 
-    void discard() Q_DECL_OVERRIDE
+    void discard() override
     {
         //Set the image to be null
         image = QImage();
