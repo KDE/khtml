@@ -50,7 +50,7 @@ public:
     {
     }
 
-    int processData(uchar *data, int length) Q_DECL_OVERRIDE
+    int processData(uchar *data, int length) override
     {
         //Collect data in the buffer
         int pos = array.size();
@@ -59,7 +59,7 @@ public:
         return length;
     }
 
-    int processEOF() Q_DECL_OVERRIDE
+    int processEOF() override
     {
         QBuffer buffer(&array);
         buffer.open(QIODevice::ReadOnly);

@@ -33,10 +33,10 @@ namespace khtmlImLoad
 class TrivialImageOwner : public ImageOwner
 {
 public:
-    void imageHasGeometry(Image *, int, int) Q_DECL_OVERRIDE {}
-    void imageChange(Image *, QRect) Q_DECL_OVERRIDE {}
-    void imageError(Image *) Q_DECL_OVERRIDE {};
-    void imageDone(Image *) Q_DECL_OVERRIDE {};
+    void imageHasGeometry(Image *, int, int) override {}
+    void imageChange(Image *, QRect) override {}
+    void imageError(Image *) override {};
+    void imageDone(Image *) override {};
 };
 
 ImageOwner *CanvasImage::s_trivialOwner = nullptr;

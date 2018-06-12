@@ -105,7 +105,7 @@ JSValue *cloneData(ExecState *exec, JSValue *data)
 class JSMessageData : public DOM::MessageEventImpl::Data
 {
 public:
-    DOM::MessageEventImpl::DataType messageDataType() const Q_DECL_OVERRIDE
+    DOM::MessageEventImpl::DataType messageDataType() const override
     {
         return DOM::MessageEventImpl::JS_VALUE;
     }

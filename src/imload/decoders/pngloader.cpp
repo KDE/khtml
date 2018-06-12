@@ -233,7 +233,7 @@ public:
         //### CHECKME!
     }
 
-    int processData(uchar *data, int length) Q_DECL_OVERRIDE
+    int processData(uchar *data, int length) override
     {
         if (done) {
             return Done;

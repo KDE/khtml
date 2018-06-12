@@ -57,7 +57,7 @@ class JPEGLoader: public ImageLoader
 public:
     JPEGLoader();
     ~JPEGLoader();
-    int processData(uchar *data, int length) Q_DECL_OVERRIDE;
+    int processData(uchar *data, int length) override;
 };
 
 ImageLoaderProvider::Type JPEGLoaderProvider::type()

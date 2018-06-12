@@ -350,28 +350,28 @@ public:
     HTMLTextTokenizer(DOM::HTMLDocumentImpl *doc): m_doc(doc)
     {}
 
-    void begin() Q_DECL_OVERRIDE;
-    void write(const TokenizerString &str, bool appendData) Q_DECL_OVERRIDE;
+    void begin() override;
+    void write(const TokenizerString &str, bool appendData) override;
 
-    void end() Q_DECL_OVERRIDE
+    void end() override
     {
         emit finishedParsing();
     };
-    void finish() Q_DECL_OVERRIDE
+    void finish() override
     {
         end();
     };
 
     // We don't support any inline scripts here
-    bool isWaitingForScripts() const Q_DECL_OVERRIDE
+    bool isWaitingForScripts() const override
     {
         return false;
     }
-    bool isExecutingScript() const Q_DECL_OVERRIDE
+    bool isExecutingScript() const override
     {
         return false;
     }
-    void executeScriptsWaitingForStylesheets() Q_DECL_OVERRIDE {};
+    void executeScriptsWaitingForStylesheets() override {};
 private:
     DOM::HTMLDocumentImpl *m_doc;
 };

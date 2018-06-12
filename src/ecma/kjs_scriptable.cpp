@@ -532,7 +532,7 @@ QHash<ScriptableExtension::FunctionRef, WrapScriptableObject *> *ScriptableOpera
 class ScriptableOperationsMarker: public JSObject
 {
 public:
-    void mark() Q_DECL_OVERRIDE
+    void mark() override
     {
         JSObject::mark();
         ScriptableOperations::self()->mark();

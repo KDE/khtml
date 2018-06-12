@@ -162,11 +162,11 @@ class TestFunctionImp : public JSObject
 {
 public:
     TestFunctionImp() : JSObject() {}
-    bool implementsCall() const Q_DECL_OVERRIDE
+    bool implementsCall() const override
     {
         return true;
     }
-    JSValue *callAsFunction(ExecState *exec, JSObject *thisObj, const List &args) Q_DECL_OVERRIDE;
+    JSValue *callAsFunction(ExecState *exec, JSObject *thisObj, const List &args) override;
 };
 
 JSValue *TestFunctionImp::callAsFunction(ExecState *exec, JSObject * /*thisObj*/, const List &args)

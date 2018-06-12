@@ -748,7 +748,7 @@ public:
     }
 
 private:
-    void svgMoveTo(double x1, double y1, bool closed, bool abs = true) Q_DECL_OVERRIDE
+    void svgMoveTo(double x1, double y1, bool closed, bool abs = true) override
     {
         current.setX(narrowPrecisionToFloat(abs ? x1 : current.x() + x1));
         current.setY(narrowPrecisionToFloat(abs ? y1 : current.y() + y1));
@@ -757,13 +757,13 @@ private:
         }
         m_path->moveTo(current);
     }
-    void svgLineTo(double x1, double y1, bool abs = true) Q_DECL_OVERRIDE
+    void svgLineTo(double x1, double y1, bool abs = true) override
     {
         current.setX(narrowPrecisionToFloat(abs ? x1 : current.x() + x1));
         current.setY(narrowPrecisionToFloat(abs ? y1 : current.y() + y1));
         m_path->addLineTo(current);
     }
-    void svgCurveToCubic(double x1, double y1, double x2, double y2, double x, double y, bool abs = true) Q_DECL_OVERRIDE
+    void svgCurveToCubic(double x1, double y1, double x2, double y2, double x, double y, bool abs = true) override
     {
         if (!abs) {
             x1 += current.x();
@@ -775,7 +775,7 @@ private:
         current.setY(narrowPrecisionToFloat(abs ? y : current.y() + y));
         m_path->addBezierCurveTo(FloatPoint::narrowPrecision(x1, y1), FloatPoint::narrowPrecision(x2, y2), current);
     }
-    void svgClosePath() Q_DECL_OVERRIDE
+    void svgClosePath() override
     {
         m_path->closeSubpath();
     }
@@ -799,7 +799,7 @@ public:
     }
 
 private:
-    void svgMoveTo(double x1, double y1, bool, bool abs = true) Q_DECL_OVERRIDE
+    void svgMoveTo(double x1, double y1, bool, bool abs = true) override
     {
         ExceptionCode ec = 0;
 
@@ -809,7 +809,7 @@ private:
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegMovetoRel(narrowPrecisionToFloat(x1), narrowPrecisionToFloat(y1)), ec);
         }
     }
-    void svgLineTo(double x1, double y1, bool abs = true) Q_DECL_OVERRIDE
+    void svgLineTo(double x1, double y1, bool abs = true) override
     {
         ExceptionCode ec = 0;
 
@@ -819,7 +819,7 @@ private:
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegLinetoRel(narrowPrecisionToFloat(x1), narrowPrecisionToFloat(y1)), ec);
         }
     }
-    void svgLineToHorizontal(double x, bool abs) Q_DECL_OVERRIDE
+    void svgLineToHorizontal(double x, bool abs) override
     {
         ExceptionCode ec = 0;
 
@@ -829,7 +829,7 @@ private:
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegLinetoHorizontalRel(narrowPrecisionToFloat(x)), ec);
         }
     }
-    void svgLineToVertical(double y, bool abs) Q_DECL_OVERRIDE
+    void svgLineToVertical(double y, bool abs) override
     {
         ExceptionCode ec = 0;
 
@@ -839,7 +839,7 @@ private:
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegLinetoVerticalRel(narrowPrecisionToFloat(y)), ec);
         }
     }
-    void svgCurveToCubic(double x1, double y1, double x2, double y2, double x, double y, bool abs = true) Q_DECL_OVERRIDE
+    void svgCurveToCubic(double x1, double y1, double x2, double y2, double x, double y, bool abs = true) override
     {
         ExceptionCode ec = 0;
 
@@ -852,7 +852,7 @@ private:
                                       narrowPrecisionToFloat(x1), narrowPrecisionToFloat(y1),
                                       narrowPrecisionToFloat(x2), narrowPrecisionToFloat(y2)), ec);
     }
-    void svgCurveToCubicSmooth(double x, double y, double x2, double y2, bool abs) Q_DECL_OVERRIDE
+    void svgCurveToCubicSmooth(double x, double y, double x2, double y2, bool abs) override
     {
         ExceptionCode ec = 0;
 
@@ -863,7 +863,7 @@ private:
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegCurvetoCubicSmoothRel(narrowPrecisionToFloat(x2), narrowPrecisionToFloat(y2),
                                       narrowPrecisionToFloat(x), narrowPrecisionToFloat(y)), ec);
     }
-    void svgCurveToQuadratic(double x, double y, double x1, double y1, bool abs) Q_DECL_OVERRIDE
+    void svgCurveToQuadratic(double x, double y, double x1, double y1, bool abs) override
     {
         ExceptionCode ec = 0;
 
@@ -874,7 +874,7 @@ private:
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegCurvetoQuadraticRel(narrowPrecisionToFloat(x1), narrowPrecisionToFloat(y1),
                                       narrowPrecisionToFloat(x), narrowPrecisionToFloat(y)), ec);
     }
-    void svgCurveToQuadraticSmooth(double x, double y, bool abs) Q_DECL_OVERRIDE
+    void svgCurveToQuadraticSmooth(double x, double y, bool abs) override
     {
         ExceptionCode ec = 0;
 
@@ -884,7 +884,7 @@ private:
             m_pathSegList->appendItem(SVGPathElement::createSVGPathSegCurvetoQuadraticSmoothRel(narrowPrecisionToFloat(x), narrowPrecisionToFloat(y)), ec);
         }
     }
-    void svgArcTo(double x, double y, double r1, double r2, double angle, bool largeArcFlag, bool sweepFlag, bool abs) Q_DECL_OVERRIDE
+    void svgArcTo(double x, double y, double r1, double r2, double angle, bool largeArcFlag, bool sweepFlag, bool abs) override
     {
         ExceptionCode ec = 0;
 
@@ -897,7 +897,7 @@ private:
                                       narrowPrecisionToFloat(r1), narrowPrecisionToFloat(r2),
                                       narrowPrecisionToFloat(angle), largeArcFlag, sweepFlag), ec);
     }
-    void svgClosePath() Q_DECL_OVERRIDE
+    void svgClosePath() override
     {
         ExceptionCode ec = 0;
         m_pathSegList->appendItem(SVGPathElement::createSVGPathSegClosePath(), ec);
