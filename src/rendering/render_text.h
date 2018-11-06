@@ -30,7 +30,7 @@
 #include "rendering/render_object.h"
 #include "rendering/render_line.h"
 
-#include <QtCore/QMutableVectorIterator>
+#include <QMutableVectorIterator>
 #include <assert.h>
 
 class QPainter;

@@ -24,7 +24,7 @@
 #ifndef KJAVAPROCESS_H
 #define KJAVAPROCESS_H
 
-#include <QtCore/QProcess>
+#include <QProcess>
 
 /**
  * @short A class for invoking a Java VM

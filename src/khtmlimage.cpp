@@ -26,7 +26,7 @@
 #include "rendering/render_image.h"
 #include "misc/loader.h"
 
-#include <QtCore/QTimer>
+#include <QTimer>
 #include <QVBoxLayout>
 
 #include <kparts/guiactivateevent.h>

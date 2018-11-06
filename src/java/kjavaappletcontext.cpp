@@ -26,10 +26,10 @@
 #include <klocalizedstring.h>
 #include <kmessagebox.h>
 #include "kjavaappletviewer_debug.h"
-#include <QtCore/QMap>
-#include <QtCore/QPointer>
-#include <QtCore/QStringList>
-#include <QtCore/QRegExp>
+#include <QMap>
+#include <QPointer>
+#include <QStringList>
+#include <QRegExp>
 
 // This file was using 6002, but kdebug.areas didn't know about that number
 #define DEBUGAREA 6100

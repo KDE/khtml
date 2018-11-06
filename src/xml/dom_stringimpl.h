@@ -23,7 +23,7 @@
 #ifndef _DOM_DOMStringImpl_h_
 #define _DOM_DOMStringImpl_h_
 
-#include <QtCore/QString>
+#include <QString>
 
 #include <limits.h>
 

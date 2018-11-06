@@ -22,7 +22,7 @@
 #ifndef KHTML_MISC_TRANSLATOR_H
 #define KHTML_MISC_TRANSLATOR_H
 
-#include <QtCore/QMap>
+#include <QMap>
 
 //---------------------------------------------------------------------------------------------
 /* This class is used to do remapping between different encodings reasonably compactly.

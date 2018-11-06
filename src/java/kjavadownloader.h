@@ -21,7 +21,7 @@
 #ifndef KJAVADOWNLOADER_H
 #define KJAVADOWNLOADER_H
 
-#include <QtCore/QObject>
+#include <QObject>
 
 /**
  * @short A class for handling downloads from KIO

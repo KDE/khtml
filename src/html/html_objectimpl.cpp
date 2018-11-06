@@ -27,10 +27,10 @@
 #include "dom/dom_string.h"
 #include "imload/imagemanager.h"
 #include "khtmlview.h"
-#include <QtCore/QCharRef>
-#include <QtCore/QVariant>
-#include <QtCore/QMap>
-#include <QtCore/QTimer>
+#include <QCharRef>
+#include <QVariant>
+#include <QMap>
+#include <QTimer>
 #include <QImageReader>
 
 #include "khtml_debug.h"

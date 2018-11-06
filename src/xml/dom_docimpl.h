@@ -36,11 +36,11 @@
 #include "misc/loader.h"
 #include "misc/seed.h"
 
-#include <QtCore/QStringList>
-#include <QtCore/QObject>
-#include <QtCore/QList>
-#include <QtCore/QHash>
-#include <QtCore/QMap>
+#include <QStringList>
+#include <QObject>
+#include <QList>
+#include <QHash>
+#include <QMap>
 #include <QUrl>
 
 //Added by qt3to4:

@@ -28,7 +28,7 @@
 #include "rendering/render_replaced.h"
 #include "dom/dom_string.h"
 
-#include <QtCore/QMap>
+#include <QMap>
 #include <QPixmap>
 
 namespace khtmlImLoad

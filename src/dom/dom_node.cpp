@@ -27,7 +27,7 @@
 #include "xml/dom_elementimpl.h"
 #include "xml/dom2_eventsimpl.h"
 
-#include <QtCore/QRect>
+#include <QRect>
 
 using namespace DOM;
 

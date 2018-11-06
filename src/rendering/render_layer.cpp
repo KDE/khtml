@@ -59,7 +59,7 @@
 #include "xml/dom_restyler.h"
 
 #include <QStyle>
-#include <QtCore/QStack>
+#include <QStack>
 
 using namespace DOM;
 using namespace khtml;

@@ -23,14 +23,14 @@
 #include <klocalizedstring.h>
 #include <kjobuidelegate.h>
 #include <kio/job.h>
-#include <QtCore/QFile>
+#include <QFile>
 #include <qtemporaryfile.h>
 #include <kmessagebox.h>
 #include <kmimetypetrader.h>
 #include <kpluginfactory.h>
 #include <khtml_part.h>
 #include <kxmlguifactory.h>
-#include <QtCore/QTimer>
+#include <QTimer>
 #include <QVBoxLayout>
 #include <kaboutdata.h>
 

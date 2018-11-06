@@ -64,7 +64,7 @@ using DOM::StyleSheetImpl;
 using DOM::StyleSheetListImpl;
 
 #include "khtml_debug.h"
-#include <QtCore/QList>
+#include <QList>
 
 namespace KJS
 {

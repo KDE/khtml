@@ -27,7 +27,7 @@
 #define render_object_h
 
 #include <QColor>
-#include <QtCore/QRect>
+#include <QRect>
 #include <assert.h>
 #include <QList>
 
@@ -39,7 +39,7 @@
 #include "misc/helper.h"
 #include "rendering/render_style.h"
 #include "rendering/render_position.h"
-#include <QtCore/QTextStream>
+#include <QTextStream>
 
 // svg
 #include "FloatRect.h"

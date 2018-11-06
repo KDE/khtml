@@ -46,7 +46,7 @@
 #include <kcharsets.h>
 #include <ctype.h>
 #include <assert.h>
-#include <QtCore/QVariant>
+#include <QVariant>
 #include "khtml_debug.h"
 #include <stdlib.h>
 

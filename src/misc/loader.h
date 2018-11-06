@@ -29,14 +29,14 @@
 #include "loader_client.h"
 
 #include <stdlib.h>
-#include <QtCore/QObject>
+#include <QObject>
 #include <QPixmap>
-#include <QtCore/QBuffer>
-#include <QtCore/QStringList>
-#include <QtCore/QTextCodec>
-#include <QtCore/QTimer>
-#include <QtCore/QSet>
-#include <QtCore/QDateTime>
+#include <QBuffer>
+#include <QStringList>
+#include <QTextCodec>
+#include <QTimer>
+#include <QSet>
+#include <QDateTime>
 #include <QLinkedList>
 #include <QUrl>
 

@@ -38,7 +38,7 @@
 #include "JSHTMLVideoElement.h"
 #include "khtml_debug.h"
 #include <khtml_part.h>
-#include <QtCore/QList>
+#include <QList>
 
 #include "kjs_html.h"
 #include "kjs_css.h"

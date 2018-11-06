@@ -1,7 +1,7 @@
 #ifndef BREAK_LINES_H
 #define BREAK_LINES_H
 
-#include <QtCore/QString>
+#include <QString>
 
 namespace khtml
 {

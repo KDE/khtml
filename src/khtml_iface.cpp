@@ -24,7 +24,7 @@
 #include "khtml_ext.h"
 #include <kio/global.h>
 #include <QApplication>
-#include <QtCore/QVariant>
+#include <QVariant>
 #include <QKeyEvent>
 
 KHTMLPartIface::KHTMLPartIface(KHTMLPart *_part)

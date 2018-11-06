@@ -63,7 +63,7 @@
 #include <QBitmap>
 #include <QMovie>
 #include <QWidget>
-#include <QtCore/QDebug>
+#include <QDebug>
 #include <kurlauthorized.h>
 #include <kio/job.h>
 #include <kio/jobuidelegate.h>

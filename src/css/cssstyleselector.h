@@ -26,8 +26,8 @@
 #include "rendering/render_style.h"
 #include "dom/dom_string.h"
 #include "css/css_mediaquery.h"
-#include <QtCore/QVarLengthArray>
-#include <QtCore/QList>
+#include <QVarLengthArray>
+#include <QList>
 #include <wtf/HashMap.h>
 #include <wtf/Vector.h>
 #include <wtf/HashSet.h>

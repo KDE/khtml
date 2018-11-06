@@ -31,7 +31,7 @@
 #include "render_canvas.h"
 
 #include <QPainter>
-#include <QtCore/QDebug>
+#include <QDebug>
 
 #include <css/csshelper.h>
 #include <misc/helper.h>

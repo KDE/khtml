@@ -119,10 +119,10 @@ using namespace DOM;
 #include <QToolTip>
 #include <QDrag>
 #include <QMouseEvent>
-#include <QtCore/QFile>
-#include <QtCore/QMetaEnum>
+#include <QFile>
+#include <QMetaEnum>
 #include <QTextDocument>
-#include <QtCore/QDate>
+#include <QDate>
 #include <QtNetwork/QSslCertificate>
 #include <QStatusBar>
 #include <QStyle>

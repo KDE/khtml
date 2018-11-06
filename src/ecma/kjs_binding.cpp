@@ -48,7 +48,7 @@
 #include "debugger/debugwindow.h"
 #endif
 
-#include <QtCore/QList>
+#include <QList>
 
 #include <assert.h>
 #include <stdlib.h>

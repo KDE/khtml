@@ -19,7 +19,7 @@
 #ifndef KENCODINGDETECTORTEST_H
 #define KENCODINGDETECTORTEST_H
 
-#include <QtCore/QObject>
+#include <QObject>
 
 class KEncodingDetectorTest : public QObject
 {

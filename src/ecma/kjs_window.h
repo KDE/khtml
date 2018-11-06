@@ -21,11 +21,11 @@
 #ifndef _KJS_WINDOW_H_
 #define _KJS_WINDOW_H_
 
-#include <QtCore/QObject>
-#include <QtCore/QPointer>
-#include <QtCore/QMap>
-#include <QtCore/QList>
-#include <QtCore/QDate>
+#include <QObject>
+#include <QPointer>
+#include <QMap>
+#include <QList>
+#include <QDate>
 
 #include "khtmlpart_p.h"
 #include "kjs_binding.h"

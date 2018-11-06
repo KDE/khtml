@@ -31,7 +31,7 @@
 
 #include "khtmlview.h"
 #include "khtml_part.h"
-#include <QtCore/QVariant>
+#include <QVariant>
 #include <klocalizedstring.h>
 #include <kencodingdetector.h>
 

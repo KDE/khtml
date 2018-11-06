@@ -42,7 +42,7 @@
 #include <ecma/kjs_proxy.h>
 #include <ctype.h>
 #include <assert.h>
-#include <QtCore/QVariant>
+#include <QVariant>
 #include <stdlib.h>
 
 #include "kentities_p.h"

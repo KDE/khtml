@@ -36,9 +36,9 @@
 #include "css/cssvalues.h"
 #include "xml/dom2_eventsimpl.h"
 
-#include <QtCore/QCharRef>
-#include <QtCore/QPoint>
-#include <QtCore/QStack>
+#include <QCharRef>
+#include <QPoint>
+#include <QStack>
 #include <QRegion>
 #include <QImage>
 

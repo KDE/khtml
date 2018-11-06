@@ -33,9 +33,9 @@
 #include <kparts/browserextension.h>
 #include <kwallet.h>
 
-#include <QtCore/QPointer>
-#include <QtCore/QMap>
-#include <QtCore/QTimer>
+#include <QPointer>
+#include <QMap>
+#include <QTimer>
 
 class KHTMLWalletQueue : public QObject
 {

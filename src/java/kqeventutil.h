@@ -23,7 +23,7 @@
 #ifndef KQEVENTUTIL_H
 #define KQEVENTUTIL_H
 
-#include <QtCore/QString>
+#include <QString>
 
 class QEvent;
 

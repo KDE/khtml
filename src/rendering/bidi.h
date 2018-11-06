@@ -23,7 +23,7 @@
 #ifndef BIDI_H
 #define BIDI_H
 
-#include <QtCore/QString>
+#include <QString>
 #include "rendering/render_object.h"
 
 namespace khtml

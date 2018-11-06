@@ -50,9 +50,9 @@
 #include "rendering/render_object.h"
 
 #include <QRegion>
-#include <QtCore/QMap>
-#include <QtCore/QList>
-#include <QtCore/QStack>
+#include <QMap>
+#include <QList>
+#include <QStack>
 #include <QPixmap>
 #include <QGradient>
 

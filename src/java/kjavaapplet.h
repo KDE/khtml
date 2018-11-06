@@ -23,9 +23,9 @@
 #ifndef KJAVAAPPLET_H
 #define KJAVAAPPLET_H
 
-#include <QtCore/QObject>
-#include <QtCore/QStringList>
-#include <QtCore/QMap>
+#include <QObject>
+#include <QStringList>
+#include <QMap>
 
 /**
  * @short A Java applet

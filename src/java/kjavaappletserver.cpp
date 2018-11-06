@@ -35,21 +35,21 @@
 #include <kprotocolmanager.h>
 #include <qsslcertificate.h>
 
-#include <QtCore/QTimer>
-#include <QtCore/QPointer>
-#include <QtCore/QDir>
-#include <QtCore/QEventLoop>
+#include <QTimer>
+#include <QPointer>
+#include <QDir>
+#include <QEventLoop>
 #include <QSslSocket>
 #include <QApplication>
 #include <QLabel>
 #include <QDialog>
 #include <QPushButton>
 #include <QLayout>
-#include <QtCore/QRegExp>
+#include <QRegExp>
 
 #include <stdlib.h>
 #include <assert.h>
-#include <QtCore/QAbstractEventDispatcher>
+#include <QAbstractEventDispatcher>
 #include <qstandardpaths.h>
 
 #define KJAS_CREATE_CONTEXT    (char)1

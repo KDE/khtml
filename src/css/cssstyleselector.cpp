@@ -58,9 +58,9 @@ using namespace DOM;
 #include "khtml_part.h"
 
 #include <kconfig.h>
-#include <QtCore/QFile>
-#include <QtCore/QString>
-#include <QtCore/QFileInfo>
+#include <QFile>
+#include <QString>
+#include <QFileInfo>
 #include <QUrl>
 #include <QFontDatabase>
 #include <qstandardpaths.h>

@@ -44,10 +44,10 @@
 #include <ecma/kjs_proxy.h>
 #include <ecma/kjs_binding.h>
 
-#include <QtCore/QStack>
+#include <QStack>
 //Added by qt3to4:
 #include <QTimerEvent>
-#include <QtCore/QList>
+#include <QList>
 #include "khtml_debug.h"
 #include <klocalizedstring.h>
 

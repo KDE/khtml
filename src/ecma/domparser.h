@@ -24,7 +24,7 @@
 #include <kjs/object.h>
 #include <kjs/interpreter.h>
 #include <misc/shared.h>
-#include <QtCore/QPointer>
+#include <QPointer>
 
 #include "kjs_dom.h"
 

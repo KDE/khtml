@@ -24,7 +24,7 @@
 
 #include <khtml_export.h>
 #include "khtml_debug.h"
-#include <QtCore/QString>
+#include <QString>
 #include <limits.h>
 
 namespace DOM

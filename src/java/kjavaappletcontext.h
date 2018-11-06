@@ -24,7 +24,7 @@
 #ifndef KJAVAAPPLETCONTEXT_H
 #define KJAVAAPPLETCONTEXT_H
 
-#include <QtCore/QObject>
+#include <QObject>
 
 /**
  * @short Provides a context for KJavaAppletWidgets

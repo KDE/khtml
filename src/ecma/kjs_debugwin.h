@@ -27,7 +27,7 @@
 #include <q3multilineedit.h>
 #include <qpixmap.h>
 #include <q3ptrlist.h>
-#include <QtCore/QStack>
+#include <QStack>
 #include <qcheckbox.h>
 #include <kdialog.h>
 #include <kcomponentdata.h>

@@ -22,9 +22,9 @@
 #ifndef _CSS_cssparser_h_
 #define _CSS_cssparser_h_
 
-#include <QtCore/QString>
+#include <QString>
 #include <QColor>
-#include <QtCore/QVector>
+#include <QVector>
 #include <dom/dom_string.h>
 #include <misc/htmlnames.h>
 #include <wtf/Vector.h>

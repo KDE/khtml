@@ -28,7 +28,7 @@
 #include <wtf/HashMap.h>
 #include <wtf/HashSet.h>
 #include "xml/dom_elementimpl.h"
-#include <QtCore/QVarLengthArray>
+#include <QVarLengthArray>
 
 /*namespace DOM {
     class ElementImpl;

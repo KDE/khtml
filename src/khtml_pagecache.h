@@ -20,7 +20,7 @@
 #ifndef __khtml_pagecache_h__
 #define __khtml_pagecache_h__
 
-#include <QtCore/QObject>
+#include <QObject>
 
 class KHTMLPageCachePrivate;
 

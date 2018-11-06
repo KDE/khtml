@@ -26,9 +26,9 @@
 
 #include "html_elementimpl.h"
 #include "xml/dom_stringimpl.h"
-#include <QtCore/QObject>
-#include <QtCore/QPointer>
-#include <QtCore/QStringList>
+#include <QObject>
+#include <QPointer>
+#include <QStringList>
 #include <QWidget>
 
 // -------------------------------------------------------------------------

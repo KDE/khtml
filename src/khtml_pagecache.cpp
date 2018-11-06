@@ -27,10 +27,10 @@
 #include <QQueue>
 #include <QHash>
 #include <QList>
-#include <QtCore/QTimer>
-#include <QtCore/QFile>
-#include <QtCore/QDir>
-#include <QtCore/QDataStream>
+#include <QTimer>
+#include <QFile>
+#include <QDir>
+#include <QDataStream>
 #include <assert.h>
 
 // We keep 12 pages in memory.

@@ -43,7 +43,7 @@
 #include <wtf/ASCIICType.h>
 
 #include "khtml_debug.h"
-#include <QtCore/QRegExp>
+#include <QRegExp>
 #include <QPaintDevice>
 
 // Hack for debugging purposes

@@ -37,8 +37,8 @@
 #include <kconfiggroup.h>
 
 #include <QImage>
-#include <QtCore/QFile>
-#include <QtCore/QEventLoop>
+#include <QFile>
+#include <QEventLoop>
 #include <stdio.h>
 
 #include "css/cssstyleselector.h"
@@ -46,7 +46,7 @@
 #include "rendering/render_style.h"
 #include "rendering/render_layer.h"
 #include "khtmldefaults.h"
-#include <QtCore/QProcess>
+#include <QProcess>
 #include <QCommonStyle>
 #include <QStyleOption>
 
@@ -216,13 +216,13 @@ const char *imageMissingIcon =
 
 #include <QColor>
 #include <QCursor>
-#include <QtCore/QDir>
-#include <QtCore/QObject>
+#include <QDir>
+#include <QObject>
 #include <QPushButton>
-#include <QtCore/QString>
-#include <QtCore/QTextStream>
-#include <QtCore/QFileInfo>
-#include <QtCore/QTimer>
+#include <QString>
+#include <QTextStream>
+#include <QFileInfo>
+#include <QTimer>
 #include <QStatusBar>
 
 #include "dom/dom2_range.h"

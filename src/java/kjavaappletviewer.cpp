@@ -26,10 +26,10 @@
 #include <stdio.h>
 
 #include <QDialogButtonBox>
-#include <QtCore/QDir>
-#include <QtCore/QPair>
-#include <QtCore/QTimer>
-#include <QtCore/QPointer>
+#include <QDir>
+#include <QPair>
+#include <QTimer>
+#include <QPointer>
 #include <QLabel>
 #include <QStatusBar>
 #include <QTableWidget>

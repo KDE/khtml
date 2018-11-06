@@ -40,7 +40,7 @@
 #include <QCheckBox>
 #include <QRadioButton>
 #include <kurlrequester.h>
-#include <QtCore/QObject>
+#include <QObject>
 #include <QVector>
 #include <QMatrix>
 #include <QPaintEngine>

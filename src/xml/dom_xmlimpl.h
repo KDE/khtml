@@ -26,7 +26,7 @@
 #include "xml/dom_nodeimpl.h"
 #include "misc/loader_client.h"
 
-#include <QtXml/qxml.h>
+#include <qxml.h>
 
 namespace khtml
 {

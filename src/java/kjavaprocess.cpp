@@ -25,8 +25,8 @@
 #include <kshell.h>
 #include <kprotocolmanager.h>
 
-#include <QtCore/QTextStream>
-#include <QtCore/QMap>
+#include <QTextStream>
+#include <QMap>
 
 class KJavaProcessPrivate
 {

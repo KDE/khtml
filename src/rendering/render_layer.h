@@ -45,7 +45,7 @@
 #define render_layer_h
 
 #include <QColor>
-#include <QtCore/QRect>
+#include <QRect>
 #include <assert.h>
 
 #include "render_object.h"

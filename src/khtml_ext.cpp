@@ -38,12 +38,12 @@
 #include "dom/dom_element.h"
 #include "xml/dom_elementimpl.h"
 #include <QClipboard>
-#include <QtCore/QFileInfo>
+#include <QFileInfo>
 #include <QFileDialog>
 #include <QMenu>
-#include <QtCore/QUrl>
-#include <QtCore/QMetaEnum>
-#include <QtCore/QMimeData>
+#include <QUrl>
+#include <QMetaEnum>
+#include <QMimeData>
 #include <qstandardpaths.h>
 #include <qinputdialog.h>
 #include <assert.h>

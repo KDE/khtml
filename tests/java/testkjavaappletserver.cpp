@@ -1,8 +1,8 @@
-#include <QtCore/QDebug>
+#include <QDebug>
 #include <QApplication>
 #include <klocalizedstring.h>
 
-#include <QtCore/QString>
+#include <QString>
 #include <QUrl>
 
 #include "java/kjavaappletserver.h"

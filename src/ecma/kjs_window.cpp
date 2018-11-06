@@ -35,7 +35,7 @@
 
 #include <config-khtml.h>
 
-#include <QtCore/QTimer>
+#include <QTimer>
 #include <QApplication>
 #include <QDesktopWidget>
 #include <qinputdialog.h>
@@ -51,7 +51,7 @@
 #endif
 #include <assert.h>
 #include <QStyle>
-#include <QtCore/QObject>
+#include <QObject>
 #include <QTextDocument>
 #include <kstringhandler.h>
 

@@ -24,7 +24,7 @@
  */
 #include "parsedstatement.h"
 
-#include <QtXml/QDomDocument>
+#include <QDomDocument>
 #include <QtDebug>
 
 QString indentedTree(const QString &markup)

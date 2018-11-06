@@ -26,10 +26,10 @@
 
 #include <kconfig.h>
 #include <kconfiggroup.h>
-#include <QtCore/QCoreApplication>
-#include <QtCore/QFile>
-#include <QtCore/QLibrary>
-#include <QtCore/QRegExp>
+#include <QCoreApplication>
+#include <QFile>
+#include <QLibrary>
+#include <QRegExp>
 
 extern "C" {
 #if KSSL_HAVE_SSL
@@ -233,9 +233,9 @@ void KOpenSSLProxy::destroy()
 }
 
 #ifdef __OpenBSD__
-#include <QtCore/QDir>
-#include <QtCore/QString>
-#include <QtCore/QStringList>
+#include <QDir>
+#include <QString>
+#include <QStringList>
 
 static QString findMostRecentLib(QString dir, QString name)
 {

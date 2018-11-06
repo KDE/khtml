@@ -61,8 +61,8 @@
 #include <klocalizedstring.h>
 
 #include "khtml_debug.h"
-#include <QtCore/QList>
-#include <QtCore/QHash>
+#include <QList>
+#include <QHash>
 
 #undef FOCUS_EVENT  // for win32, MinGW
 

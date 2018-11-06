@@ -25,9 +25,9 @@
 #ifndef ANIM_TIMER_H
 #define ANIM_TIMER_H
 
-#include <QtCore/QDate>
-#include <QtCore/QObject>
-#include <QtCore/QMap>
+#include <QDate>
+#include <QObject>
+#include <QMap>
 
 class QTimer;
 

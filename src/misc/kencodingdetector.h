@@ -23,7 +23,7 @@
 #ifndef KENCODINGDETECTOR_H
 #define KENCODINGDETECTOR_H
 
-#include <QtCore/QString>
+#include <QString>
 
 class QTextCodec;
 class QTextDecoder;

@@ -21,8 +21,8 @@
 #ifndef _KJS_PROXY_H_
 #define _KJS_PROXY_H_
 
-#include <QtCore/QVariant>
-#include <QtCore/QString>
+#include <QVariant>
+#include <QString>
 #include <wtf/RefPtr.h>
 
 class KHTMLPart;

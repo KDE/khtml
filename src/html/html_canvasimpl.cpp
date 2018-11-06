@@ -68,9 +68,9 @@
 #include <kjs/operations.h> //uglyyy: needs for inf/NaN tests
 
 #include <QtAlgorithms>
-#include <QtCore/QCharRef>
-#include <QtCore/QPoint>
-#include <QtCore/QLocale>
+#include <QCharRef>
+#include <QPoint>
+#include <QLocale>
 #include <QRegion>
 #include <QImage>
 #include "khtml_debug.h"

@@ -24,7 +24,7 @@
 
 #include <kparts/part.h>
 #include <kparts/browserextension.h>
-#include <QtCore/QDate>
+#include <QDate>
 
 class HTTPFilterGZip;
 class QTemporaryFile;

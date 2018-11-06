@@ -31,7 +31,7 @@
 #include "misc/shared.h"
 #include "misc/enum.h"
 
-#include <QtCore/QDate>
+#include <QDate>
 
 namespace DOM
 {

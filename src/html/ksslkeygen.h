@@ -23,7 +23,7 @@
 
 #include <khtml_export.h>
 
-#include <QtCore/QStringList>
+#include <QStringList>
 #include <QWizard>
 
 class KSSLKeyGenPrivate;

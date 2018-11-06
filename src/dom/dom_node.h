@@ -30,7 +30,7 @@
 #define _DOM_Node_h_
 
 #include <khtml_export.h>
-#include <QtCore/QString>
+#include <QString>
 
 class QRect;
 

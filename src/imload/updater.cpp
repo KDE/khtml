@@ -26,7 +26,7 @@
 
 #include <assert.h>
 
-#include <QtCore/QTimer>
+#include <QTimer>
 #include "image.h"
 
 namespace khtmlImLoad

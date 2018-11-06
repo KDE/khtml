@@ -28,9 +28,9 @@ class KConfigGroup;
 
 #include <QColor>
 #include <QFont> // ### KDE 5: remove
-#include <QtCore/QMap> // ### KDE 5: remove
-#include <QtCore/QStringList>
-#include <QtCore/QPair>
+#include <QMap> // ### KDE 5: remove
+#include <QStringList>
+#include <QPair>
 
 struct KPerDomainSettings;
 class KHTMLSettingsPrivate;

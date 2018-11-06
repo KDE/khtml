@@ -26,7 +26,7 @@
 #include "dom_stringimpl.h"
 
 #include <string.h>
-#include <QtCore/QMutableStringListIterator>
+#include <QMutableStringListIterator>
 #include "misc/AtomicString.h"
 
 using namespace DOM;

@@ -25,7 +25,7 @@
 #include <kio/job.h>
 #include <kio/jobclasses.h>
 #include "kjavaappletviewer_debug.h"
-#include <QtCore/QFile>
+#include <QFile>
 #include <QUrl>
 
 static const int DATA = 0;

@@ -30,9 +30,9 @@
 #include <kpluginfactory.h>
 #include <QDialog>
 #include <QUrl>
-#include <QtCore/QObject>
-#include <QtCore/QStringList>
-#include <QtCore/QPointer>
+#include <QObject>
+#include <QStringList>
+#include <QPointer>
 
 #include "kjavaappletwidget.h"
 

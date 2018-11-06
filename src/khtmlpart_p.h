@@ -34,12 +34,12 @@
 #include <kparts/scriptableextension.h>
 
 #include <QAction>
-#include <QtCore/QDate>
-#include <QtCore/QPointer>
-#include <QtCore/QMap>
-#include <QtCore/QTimer>
-#include <QtCore/QList>
-#include <QtCore/QQueue>
+#include <QDate>
+#include <QPointer>
+#include <QMap>
+#include <QTimer>
+#include <QList>
+#include <QQueue>
 
 #include "html/html_formimpl.h"
 #include "html/html_objectimpl.h"

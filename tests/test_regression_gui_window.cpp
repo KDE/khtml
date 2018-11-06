@@ -23,11 +23,11 @@
 #include <assert.h>
 #include <signal.h>
 
-#include <QtCore/QFile>
-#include <QtCore/QTimer>
-#include <QtCore/QProcess>
-#include <QtCore/QFileInfo>
-#include <QtCore/QTextStream>
+#include <QFile>
+#include <QTimer>
+#include <QProcess>
+#include <QFileInfo>
+#include <QTextStream>
 #include <QFileDialog>
 #include <QMainWindow>
 

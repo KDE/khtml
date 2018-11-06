@@ -36,7 +36,7 @@
 #include <klocalizedstring.h>
 #include <kencodingdetector.h>
 #include <kencodingprober.h>
-#include <QtCore/QRegExp>
+#include <QRegExp>
 #include <QUrl>
 
 class KHTMLPartPrivate;

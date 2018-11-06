@@ -24,7 +24,7 @@
 #define render_replaced_h
 
 #include "rendering/render_block.h"
-#include <QtCore/QObject>
+#include <QObject>
 #include <QAbstractScrollArea>
 #include <QScrollBar>
 #include <QPointer>

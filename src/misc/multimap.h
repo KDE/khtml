@@ -26,9 +26,9 @@
 #include <assert.h>
 #include <stdlib.h>
 
-#include <QtCore/QHash>
-#include <QtCore/QList>
-#include <QtCore/QSet>
+#include <QHash>
+#include <QList>
+#include <QSet>
 
 template<class T> class MultiMapPtrList;
 

@@ -22,7 +22,7 @@
  */
 #include "helper.h"
 #include "khtmllayout.h"
-#include <QtCore/QMap>
+#include <QMap>
 #include <QPainter>
 #include <dom/dom_string.h>
 #include <xml/dom_stringimpl.h>

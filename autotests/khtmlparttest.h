@@ -18,7 +18,7 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include <QtCore/QObject>
+#include <QObject>
 
 class KHTMLPart;
 class KHTMLView;

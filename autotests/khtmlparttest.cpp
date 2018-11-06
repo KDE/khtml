@@ -23,7 +23,7 @@
 // TODO: include <QTestWidgets> with Qt 5 instead of the above defines
 
 #include <khtml_part.h>
-#include <QtTest/QtTest>
+#include <QtTest>
 #include <khtmlview.h>
 #include "khtmlparttest.h"
 #include <csignal>

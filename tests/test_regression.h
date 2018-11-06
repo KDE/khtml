@@ -24,8 +24,8 @@
 #define TEST_REGRESSION_H
 
 #include <khtml_part.h>
-#include <QtCore/QObject>
-#include <QtCore/QStack>
+#include <QObject>
+#include <QStack>
 #include <QUrl>
 #include <kjs/ustring.h>
 #include <kjs/object.h>

@@ -25,8 +25,8 @@
 
 #include <kio/job.h>
 
-#include <QtCore/QQueue>
-#include <QtCore/QProcess>
+#include <QQueue>
+#include <QProcess>
 #include <QUrl>
 
 #include "khtml_part.h"

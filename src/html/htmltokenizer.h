@@ -28,10 +28,10 @@
 #ifndef HTMLTOKENIZER_H
 #define HTMLTOKENIZER_H
 
-#include <QtCore/QString>
-#include <QtCore/QObject>
-#include <QtCore/QQueue>
-#include <QtCore/QTime>
+#include <QString>
+#include <QObject>
+#include <QQueue>
+#include <QTime>
 
 #include "misc/loader_client.h"
 #include "misc/stringit.h"

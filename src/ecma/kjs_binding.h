@@ -28,9 +28,9 @@
 #include <wtf/HashMap.h>
 
 #include <dom/dom_node.h>
-#include <QtCore/QVariant>
-#include <QtCore/QHash>
-#include <QtCore/QString>
+#include <QVariant>
+#include <QHash>
+#include <QString>
 #include <kjs/lookup.h>
 #include <kjs/function.h>
 #include <kjs/JSVariableObject.h>

@@ -56,9 +56,9 @@
 #include <kjobwidgets.h>
 #include <kfileitem.h>
 #include <qmimedatabase.h>
-#include <QtCore/QFile>
-#include <QtCore/QDir>
-#include <QtCore/QTextCodec>
+#include <QFile>
+#include <QDir>
+#include <QTextCodec>
 #include <QStandardPaths>
 #include <QTemporaryFile>
 #include <QKeyEvent>

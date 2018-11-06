@@ -1,6 +1,6 @@
 #include <break_lines.h>
-#include <QtCore/QLibrary>
-#include <QtCore/QTextCodec>
+#include <QLibrary>
+#include <QTextCodec>
 #include <stdio.h>
 #include <stdlib.h>
 

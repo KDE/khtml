@@ -28,8 +28,8 @@
 
 #include "dom/dom_string.h"
 
-#include <QtCore/QList>
-#include <QtCore/QString>
+#include <QList>
+#include <QString>
 
 #include <assert.h>
 
