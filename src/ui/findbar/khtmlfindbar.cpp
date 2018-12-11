@@ -44,7 +44,7 @@ KHTMLFindBar::KHTMLFindBar(QWidget *parent) :
     m_previous->setDisabled(true);
 
     // Fill options menu
-    m_incMenu = new QMenu();
+    m_incMenu = new QMenu(this);
     m_options->setMenu(m_incMenu);
     m_caseSensitive = m_incMenu->addAction(i18n("C&ase sensitive"));
     m_caseSensitive->setCheckable(true);
