@@ -20,7 +20,7 @@
  *
  * This file includes excerpts from the Document Object Model (DOM)
  * Level 1 Specification (Recommendation)
- * http://www.w3.org/TR/REC-DOM-Level-1/
+ * https://www.w3.org/TR/REC-DOM-Level-1/
  * Copyright © World Wide Web Consortium , (Massachusetts Institute of
  * Technology , Institut National de Recherche en Informatique et en
  * Automatique , Keio University ). All Rights Reserved.
@@ -41,7 +41,7 @@ class DOMString;
 
 /**
  * Table caption See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/tables.html#edef-CAPTION">
+ * href="https://www.w3.org/TR/REC-html40/struct/tables.html#edef-CAPTION">
  * CAPTION element definition </a> in HTML 4.0.
  *
  */
@@ -67,7 +67,7 @@ public:
 
     /**
      * Caption alignment with respect to the table. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-align-CAPTION">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-align-CAPTION">
      * align attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -87,7 +87,7 @@ class HTMLTableCellElementImpl;
 /**
  * The object used to represent the \c TH and \c TD
  * elements. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/tables.html#edef-TD">
+ * href="https://www.w3.org/TR/REC-html40/struct/tables.html#edef-TD">
  * TD element definition </a> in HTML 4.0.
  *
  */
@@ -121,13 +121,13 @@ public:
      * see cellIndex
      *
      * This function is obsolete - the cellIndex property is actually supposed to be read-only
-     * (http://www.w3.org/DOM/updates/REC-DOM-Level-1-19981001-errata.html)
+     * (https://www.w3.org/DOM/updates/REC-DOM-Level-1-19981001-errata.html)
      */
     void setCellIndex(long);
 
     /**
      * Abbreviation for header cells. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-abbr">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-abbr">
      * abbr attribute definition </a> in HTML 4.0.
      *
      */
@@ -140,7 +140,7 @@ public:
 
     /**
      * Horizontal alignment of data in cell. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-align-TD">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-align-TD">
      * align attribute definition </a> in HTML 4.0.
      *
      */
@@ -153,7 +153,7 @@ public:
 
     /**
      * Names group of related headers. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-axis">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-axis">
      * axis attribute definition </a> in HTML 4.0.
      *
      */
@@ -166,7 +166,7 @@ public:
 
     /**
      * Cell background color. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/graphics.html#adef-bgcolor">
+     * href="https://www.w3.org/TR/REC-html40/present/graphics.html#adef-bgcolor">
      * bgcolor attribute definition </a> in HTML 4.0. This attribute
      * is deprecated in HTML 4.0.
      *
@@ -180,7 +180,7 @@ public:
 
     /**
      * Alignment character for cells in a column. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-char">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-char">
      * char attribute definition </a> in HTML 4.0.
      *
      */
@@ -193,7 +193,7 @@ public:
 
     /**
      * Offset of alignment character. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-charoff">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-charoff">
      * charoff attribute definition </a> in HTML 4.0.
      *
      */
@@ -206,7 +206,7 @@ public:
 
     /**
      * Number of columns spanned by cell. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-colspan">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-colspan">
      * colspan attribute definition </a> in HTML 4.0.
      *
      */
@@ -220,7 +220,7 @@ public:
     /**
      * List of \c id attribute values for header cells.
      * See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-headers">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-headers">
      * headers attribute definition </a> in HTML 4.0.
      *
      */
@@ -233,7 +233,7 @@ public:
 
     /**
      * Cell height. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-height-TH">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-height-TH">
      * height attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -247,7 +247,7 @@ public:
 
     /**
      * Suppress word wrapping. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-nowrap">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-nowrap">
      * nowrap attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -261,7 +261,7 @@ public:
 
     /**
      * Number of rows spanned by cell. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-rowspan">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-rowspan">
      * rowspan attribute definition </a> in HTML 4.0.
      *
      */
@@ -274,7 +274,7 @@ public:
 
     /**
      * Scope covered by header cells. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-scope">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-scope">
      * scope attribute definition </a> in HTML 4.0.
      *
      */
@@ -287,7 +287,7 @@ public:
 
     /**
      * Vertical alignment of data in cell. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-valign">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-valign">
      * valign attribute definition </a> in HTML 4.0.
      *
      */
@@ -300,7 +300,7 @@ public:
 
     /**
      * Cell width. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-width-TH">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-width-TH">
      * width attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -320,7 +320,7 @@ class HTMLTableColElementImpl;
 /**
  * Regroups the \c COL and \c COLGROUP
  * elements. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/tables.html#edef-COL">
+ * href="https://www.w3.org/TR/REC-html40/struct/tables.html#edef-COL">
  * COL element definition </a> in HTML 4.0.
  *
  */
@@ -346,7 +346,7 @@ public:
 
     /**
      * Horizontal alignment of cell data in column. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-align-TD">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-align-TD">
      * align attribute definition </a> in HTML 4.0.
      *
      */
@@ -359,7 +359,7 @@ public:
 
     /**
      * Alignment character for cells in a column. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-char">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-char">
      * char attribute definition </a> in HTML 4.0.
      *
      */
@@ -372,7 +372,7 @@ public:
 
     /**
      * Offset of alignment character. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-charoff">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-charoff">
      * charoff attribute definition </a> in HTML 4.0.
      *
      */
@@ -386,7 +386,7 @@ public:
     /**
      * Indicates the number of columns in a group or affected by a
      * grouping. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-span-COL">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-span-COL">
      * span attribute definition </a> in HTML 4.0.
      *
      */
@@ -399,7 +399,7 @@ public:
 
     /**
      * Vertical alignment of cell data in column. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-valign">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-valign">
      * valign attribute definition </a> in HTML 4.0.
      *
      */
@@ -412,7 +412,7 @@ public:
 
     /**
      * Default column width. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-width-COL">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-width-COL">
      * width attribute definition </a> in HTML 4.0.
      *
      */
@@ -441,7 +441,7 @@ class DOMString;
  * one exists, and the createTHead() or createTFoot() method is
  * called, the method returns the existing THead or TFoot element. See
  * the <a
- * href="http://www.w3.org/TR/REC-html40/struct/tables.html#edef-TABLE">
+ * href="https://www.w3.org/TR/REC-html40/struct/tables.html#edef-TABLE">
  * TABLE element definition </a> in HTML 4.0.
  *
  */
@@ -517,7 +517,7 @@ public:
     /**
      * Specifies the table's position with respect to the rest of the
      * document. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-align-TABLE">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-align-TABLE">
      * align attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -531,7 +531,7 @@ public:
 
     /**
      * Cell background color. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/graphics.html#adef-bgcolor">
+     * href="https://www.w3.org/TR/REC-html40/present/graphics.html#adef-bgcolor">
      * bgcolor attribute definition </a> in HTML 4.0. This attribute
      * is deprecated in HTML 4.0.
      *
@@ -545,7 +545,7 @@ public:
 
     /**
      * The width of the border around the table. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-border-TABLE">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-border-TABLE">
      * border attribute definition </a> in HTML 4.0.
      *
      */
@@ -559,7 +559,7 @@ public:
     /**
      * Specifies the horizontal and vertical space between cell
      * content and cell borders. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-cellpadding">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-cellpadding">
      * cellpadding attribute definition </a> in HTML 4.0.
      *
      */
@@ -573,7 +573,7 @@ public:
     /**
      * Specifies the horizontal and vertical separation between cells.
      * See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-cellspacing">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-cellspacing">
      * cellspacing attribute definition </a> in HTML 4.0.
      *
      */
@@ -586,7 +586,7 @@ public:
 
     /**
      * Specifies which external table borders to render. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-frame">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-frame">
      * frame attribute definition </a> in HTML 4.0.
      *
      */
@@ -599,7 +599,7 @@ public:
 
     /**
      * Specifies which internal table borders to render. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-rules">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-rules">
      * rules attribute definition </a> in HTML 4.0.
      *
      */
@@ -613,7 +613,7 @@ public:
     /**
      * Supplementary description about the purpose or structure of a
      * table. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-summary">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-summary">
      * summary attribute definition </a> in HTML 4.0.
      *
      */
@@ -626,7 +626,7 @@ public:
 
     /**
      * Specifies the desired table width. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-width-TABLE">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-width-TABLE">
      * width attribute definition </a> in HTML 4.0.
      *
      */
@@ -727,7 +727,7 @@ class DOMString;
 
 /**
  * A row in a table. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/tables.html#edef-TR">
+ * href="https://www.w3.org/TR/REC-html40/struct/tables.html#edef-TR">
  * TR element definition </a> in HTML 4.0.
  *
  */
@@ -766,7 +766,7 @@ public:
      * see rowIndex
      *
      * This function is obsolete - the rowIndex property is actually supposed to be read-only
-     * (http://www.w3.org/DOM/updates/REC-DOM-Level-1-19981001-errata.html)
+     * (https://www.w3.org/DOM/updates/REC-DOM-Level-1-19981001-errata.html)
      */
     void setRowIndex(long);
 
@@ -782,7 +782,7 @@ public:
      * see sectionRowIndex
      *
      * This function is obsolete - the sectionRowIndex property is actually supposed to be read-only
-     * (http://www.w3.org/DOM/updates/REC-DOM-Level-1-19981001-errata.html)
+     * (https://www.w3.org/DOM/updates/REC-DOM-Level-1-19981001-errata.html)
      */
     void setSectionRowIndex(long);
 
@@ -796,14 +796,14 @@ public:
      * see cells
      *
      * This function is obsolete - the cells property is actually supposed to be read-only
-     * (http://www.w3.org/DOM/updates/REC-DOM-Level-1-19981001-errata.html)
+     * (https://www.w3.org/DOM/updates/REC-DOM-Level-1-19981001-errata.html)
      */
     void setCells(const HTMLCollection &);
 
     /**
      * Horizontal alignment of data within cells of this row. See the
      * <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-align-TD">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-align-TD">
      * align attribute definition </a> in HTML 4.0.
      *
      */
@@ -816,7 +816,7 @@ public:
 
     /**
      * Background color for rows. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/graphics.html#adef-bgcolor">
+     * href="https://www.w3.org/TR/REC-html40/present/graphics.html#adef-bgcolor">
      * bgcolor attribute definition </a> in HTML 4.0. This attribute
      * is deprecated in HTML 4.0.
      *
@@ -830,7 +830,7 @@ public:
 
     /**
      * Alignment character for cells in a column. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-char">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-char">
      * char attribute definition </a> in HTML 4.0.
      *
      */
@@ -843,7 +843,7 @@ public:
 
     /**
      * Offset of alignment character. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-charoff">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-charoff">
      * charoff attribute definition </a> in HTML 4.0.
      *
      */
@@ -856,7 +856,7 @@ public:
 
     /**
      * Vertical alignment of data within cells of this row. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-valign">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-valign">
      * valign attribute definition </a> in HTML 4.0.
      *
      */
@@ -938,7 +938,7 @@ public:
 
     /**
      * Alignment character for cells in a column. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-char">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-char">
      * char attribute definition </a> in HTML 4.0.
      *
      */
@@ -951,7 +951,7 @@ public:
 
     /**
      * Offset of alignment character. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/tables.html#adef-charoff">
+     * href="https://www.w3.org/TR/REC-html40/struct/tables.html#adef-charoff">
      * charoff attribute definition </a> in HTML 4.0.
      *
      */

@@ -21,7 +21,7 @@
  *
  * This file includes excerpts from the Document Object Model (DOM)
  * Level 3 Events Specification (Working Group Note 07 November 2003)
- * http://www.w3.org/TR/DOM-Level-3-Events/
+ * https://www.w3.org/TR/DOM-Level-3-Events/
  * Copyright © 2003 World Wide Web Consortium , (Massachusetts Institute of
  * Technology, European Research Consortium for Informatics and Mathematics,
  * Keio University ). All Rights Reserved.
@@ -675,7 +675,7 @@ public:
      *
      * keyIdentifier holds the identifier of the key. The key identifiers
      * are defined in Appendix A.2 "Key identifiers set"
-     * (http://www.w3.org/TR/DOM-Level-3-Events/keyset.html#KeySet-Set)
+     * (https://www.w3.org/TR/DOM-Level-3-Events/keyset.html#KeySet-Set)
      */
     DOMString       keyIdentifier() const;
 

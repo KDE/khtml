@@ -20,7 +20,7 @@
  *
  * This file includes excerpts from the Document Object Model (DOM)
  * Level 2 Specification (Candidate Recommendation)
- * http://www.w3.org/TR/2000/CR-DOM-Level-2-20000510/
+ * https://www.w3.org/TR/2000/CR-DOM-Level-2-20000510/
  * Copyright © 2000 W3C® (MIT, INRIA, Keio), All Rights Reserved.
  *
  */
@@ -39,11 +39,11 @@ class CSSRuleImpl;
 /**
  * The \c CSSRule interface is the abstract base interface
  * for any type of CSS <a
- * href="http://www.w3.org/TR/REC-CSS2/syndata.html#q5"> statement
+ * href="https://www.w3.org/TR/CSS2/syndata.html#q5"> statement
  * </a> . This includes both <a
- * href="http://www.w3.org/TR/REC-CSS2/syndata.html#q8"> rule sets
+ * href="https://www.w3.org/TR/CSS2/syndata.html#q8"> rule sets
  * </a> and <a
- * href="http://www.w3.org/TR/REC-CSS2/syndata.html#at-rules">
+ * href="https://www.w3.org/TR/CSS2/syndata.html#at-rules">
  * at-rules </a> . An implementation is expected to preserve all rules
  * specified in a CSS style sheet, even if it is not recognized.
  * Unrecognized rules are represented using the \c CSSUnknownRule
@@ -186,7 +186,7 @@ public:
 class CSSFontFaceRuleImpl;
 /**
  * The \c CSSFontFaceRule interface represents a <a
- * href="http://www.w3.org/TR/REC-CSS2/fonts.html#font-descriptions">
+ * href="https://www.w3.org/TR/CSS2/fonts.html#font-descriptions">
  * \c \@font-face rule </a> in a CSS style sheet. The \c \@font-face
  * rule is used to hold a set of font descriptions.
  *
@@ -206,7 +206,7 @@ public:
     ~CSSFontFaceRule();
 
     /**
-     * The <a href="http://www.w3.org/TR/REC-CSS2/syndata.html#q8">
+     * The <a href="https://www.w3.org/TR/CSS2/syndata.html#q8">
      * declaration-block </a> of this rule.
      *
      */
@@ -216,7 +216,7 @@ public:
 class CSSImportRuleImpl;
 /**
  * The \c CSSImportRule interface represents a <a
- * href="http://www.w3.org/TR/REC-CSS2/cascade.html#at-import">
+ * href="https://www.w3.org/TR/CSS2/cascade.html#at-import">
  * \c \@import rule </a> within a CSS style sheet. The \c \@import
  * rule is used to import style rules from other style sheets.
  *
@@ -263,7 +263,7 @@ public:
 class CSSMediaRuleImpl;
 /**
  * The \c CSSMediaRule interface represents a <a
- * href="http://www.w3.org/TR/REC-CSS2/media.html#at-media-rule">
+ * href="https://www.w3.org/TR/CSS2/media.html#at-media-rule">
  * \@media rule </a> in a CSS style sheet. A \c \@media rule
  * can be used to delimit style rules for specific media types.
  *
@@ -284,7 +284,7 @@ public:
 
     /**
      * A list of <a
-     * href="http://www.w3.org/TR/REC-CSS2/media.html#media-types">
+     * href="https://www.w3.org/TR/CSS2/media.html#media-types">
      * media types </a> for this rule.
      *
      */
@@ -353,7 +353,7 @@ public:
 class CSSPageRuleImpl;
 /**
  * The \c CSSPageRule interface represents a <a
- * href="http://www.w3.org/TR/REC-CSS2/page.html#page-box"> page rule
+ * href="https://www.w3.org/TR/CSS2/page.html#page-box"> page rule
  * </a> within a CSS style sheet. The \c @page rule is
  * used to specify the dimensions, orientation, margins, etc. of a
  * page box for paged media.
@@ -394,7 +394,7 @@ public:
     void setSelectorText(const DOM::DOMString &);
 
     /**
-     * The <a href="http://www.w3.org/TR/REC-CSS2/syndata.html#q8">
+     * The <a href="https://www.w3.org/TR/CSS2/syndata.html#q8">
      * declaration-block </a> of this rule.
      *
      */
@@ -404,7 +404,7 @@ public:
 class CSSStyleRuleImpl;
 /**
  * The \c CSSStyleRule interface represents a single <a
- * href="http://www.w3.org/TR/REC-CSS2/syndata.html#q8"> rule set </a>
+ * href="https://www.w3.org/TR/CSS2/syndata.html#q8"> rule set </a>
  * in a CSS style sheet.
  *
  */
@@ -424,7 +424,7 @@ public:
 
     /**
      * The textual representation of the <a
-     * href="http://www.w3.org/TR/REC-CSS2/selector.html"> selector
+     * href="https://www.w3.org/TR/CSS2/selector.html"> selector
      * </a> for the rule set. The implementation may have stripped out
      * insignificant whitespace while parsing the selector.
      *
@@ -445,7 +445,7 @@ public:
     void setSelectorText(const DOM::DOMString &);
 
     /**
-     * The <a href="http://www.w3.org/TR/REC-CSS2/syndata.html#q8">
+     * The <a href="https://www.w3.org/TR/CSS2/syndata.html#q8">
      * declaration-block </a> of this rule set.
      *
      */

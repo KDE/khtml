@@ -65,7 +65,7 @@ ANIMATED_PROPERTY_DEFINITIONS(SVGStyledElement, String, String, string, ClassNam
 
 bool SVGStyledElement::rendererIsNeeded(RenderStyle *style)
 {
-    // http://www.w3.org/TR/SVG/extend.html#PrivateData
+    // https://www.w3.org/TR/SVG/extend.html#PrivateData
     // Prevent anything other than SVG renderers from appearing in our render tree
     // Spec: SVG allows inclusion of elements from foreign namespaces anywhere
     // with the SVG content. In general, the SVG user agent will include the unknown
@@ -217,7 +217,7 @@ void SVGStyledElement::svgAttributeChanged(const QualifiedName &attrName)
         return;
     }
 
-    // TODO: Fix bug http://bugs.webkit.org/show_bug.cgi?id=15430 (SVGElementInstances should rebuild themselves lazily)
+    // TODO: Fix bug https://bugs.webkit.org/show_bug.cgi?id=15430 (SVGElementInstances should rebuild themselves lazily)
 
     // In case we're referenced by a <use> element, we have element instances registered
     // to us in the SVGDocumentExtensions. If notifyAttributeChange() is called, we need
@@ -258,7 +258,7 @@ void SVGStyledElement::childrenChanged(bool changedByParser, Node *beforeChange,
     if (!extensions)
         return;
 
-    // TODO: Fix bug http://bugs.webkit.org/show_bug.cgi?id=15430 (SVGElementInstances should rebuild themselves lazily)
+    // TODO: Fix bug https://bugs.webkit.org/show_bug.cgi?id=15430 (SVGElementInstances should rebuild themselves lazily)
 
     // In case we're referenced by a <use> element, we have element instances registered
     // to us in the SVGDocumentExtensions. If childrenChanged() is called, we need

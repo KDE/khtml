@@ -226,8 +226,8 @@ double calcHue(double temp1, double temp2, double hueVal)
 }
 
 // Explanation of this algorithm can be found in the CSS3 Color Module
-// specification at http://www.w3.org/TR/css3-color/#hsl-color with further
-// explanation available at http://en.wikipedia.org/wiki/HSL_color_space
+// specification at https://www.w3.org/TR/css3-color/#hsl-color with further
+// explanation available at https://en.wikipedia.org/wiki/HSL_and_HSV
 
 // all values are in the range of 0 to 1.0
 QRgb khtml::qRgbaFromHsla(double h, double s, double l, double a)

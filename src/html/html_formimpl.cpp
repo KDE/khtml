@@ -137,7 +137,7 @@ long HTMLFormElementImpl::length() const
 
 static QByteArray encodeCString(const QByteArray &e)
 {
-    // http://www.w3.org/TR/html4/interact/forms.html#h-17.13.4.1
+    // https://www.w3.org/TR/html4/interact/forms.html#h-17.13.4.1
     // safe characters like NS handles them for compatibility
     static const char safe[] = "-._*";
     QByteArray encoded((e.length() + e.count('\n')) * 3
@@ -1672,7 +1672,7 @@ void HTMLInputElementImpl::attach()
 
 DOMString HTMLInputElementImpl::altText() const
 {
-    // http://www.w3.org/TR/1998/REC-html40-19980424/appendix/notes.html#altgen
+    // https://www.w3.org/TR/1998/REC-html40-19980424/appendix/notes.html#altgen
     // also heavily discussed by Hixie on bugzilla
     // note this is intentionally different to HTMLImageElementImpl::altText()
     DOMString alt = getAttribute(ATTR_ALT);

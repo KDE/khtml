@@ -213,7 +213,7 @@ void HTMLImageElementImpl::dispatchLoadEvent()
 DOMString HTMLImageElementImpl::altText() const
 {
     // lets figure out the alt text.. magic stuff
-    // http://www.w3.org/TR/1998/REC-html40-19980424/appendix/notes.html#altgen
+    // https://www.w3.org/TR/1998/REC-html40-19980424/appendix/notes.html#altgen
     // also heavily discussed by Hixie on bugzilla
     DOMString alt(getAttribute(ATTR_ALT));
     // fall back to title attribute

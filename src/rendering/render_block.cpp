@@ -1012,7 +1012,7 @@ void RenderBlock::adjustFloatingBlock(const MarginInfo &marginInfo)
     // our block.  If this is the case, then we do not add the margin in to our
     // height when computing the position of the float.   This condition can be tested
     // for by simply calling canCollapseWithTop.  See
-    // http://www.hixie.ch/tests/adhoc/css/box/block/margin-collapse/046.html for
+    // https://www.hixie.ch/tests/adhoc/css/box/block/margin-collapse/046.html for
     // an example of this scenario.
     int marginOffset = marginInfo.canCollapseWithTop() ? 0 : marginInfo.margin();
     m_height += marginOffset;

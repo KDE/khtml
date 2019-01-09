@@ -50,7 +50,7 @@ bool ScaledImagePlane::isUpToDate(unsigned int tileX, unsigned int tileY,
     return true;
 }
 
-// Trick from here: http://www.compuphase.com/graphic/scale3.htm
+// Trick from here: https://www.compuphase.com/graphic/scale3.htm
 #define AVG(a,b)  ( ((((a)^(b)) & 0xfefefefeUL) >> 1) + ((a)&(b)) )
 static void scaleLoop32bit(QImage *dst, const QImage &src, int tileX, int tileY,
                            int height, int width, unsigned char *versions, unsigned char *parentVersions)

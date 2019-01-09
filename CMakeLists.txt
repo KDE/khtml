@@ -6,7 +6,7 @@ project(KHtml VERSION ${KF5_VERSION})
 
 include(FeatureSummary)
 find_package(ECM 5.54.0  NO_MODULE)
-set_package_properties(ECM PROPERTIES TYPE REQUIRED DESCRIPTION "Extra CMake Modules." URL "https://projects.kde.org/projects/kdesupport/extra-cmake-modules")
+set_package_properties(ECM PROPERTIES TYPE REQUIRED DESCRIPTION "Extra CMake Modules." URL "https://commits.kde.org/extra-cmake-modules")
 feature_summary(WHAT REQUIRED_PACKAGES_NOT_FOUND FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
@@ -50,7 +50,7 @@ ecm_setup_version(PROJECT VARIABLE_PREFIX KHTML
 
 find_package(Perl)
 set_package_properties(Perl PROPERTIES
-                       URL "http://www.perl.org"
+                       URL "https://www.perl.org/"
                        TYPE REQUIRED
                        PURPOSE "Required for generating JS bindings for elements"
                       )
@@ -63,21 +63,21 @@ endif()
 find_package(Phonon4Qt5 4.6.60)
 set_package_properties(Phonon4Qt5 PROPERTIES
                       DESCRIPTION "Qt Multimedia Library"
-                      URL "http://phonon.kde.org"
+                      URL "https://phonon.kde.org/"
                       TYPE REQUIRED
                       PURPOSE "Required for HTML5 multimedia elements"
                      )
 
 find_package(JPEG)
 set_package_properties(JPEG PROPERTIES DESCRIPTION "JPEG decoding library"
-                       URL "http://www.ijg.org"
+                       URL "https://www.ijg.org"
                        TYPE REQUIRED
                        PURPOSE "Required for decoding and displaying JPEG images"
                       )
 
 find_package(GIF)
 set_package_properties(GIF PROPERTIES DESCRIPTION "GIF decoding library"
-                       URL "http://sourceforge.net/projects/giflib"
+                       URL "https://sourceforge.net/projects/giflib"
                        TYPE REQUIRED
                        PURPOSE "Required for decoding and displaying GIF images"
                       )

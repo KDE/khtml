@@ -20,7 +20,7 @@
  *
  * This file includes excerpts from the Document Object Model (DOM)
  * Level 2 Specification (Candidate Recommendation)
- * http://www.w3.org/TR/2000/CR-DOM-Level-2-20000510/
+ * https://www.w3.org/TR/2000/CR-DOM-Level-2-20000510/
  * Copyright © 2000 W3C® (MIT, INRIA, Keio), All Rights Reserved.
  *
  */
@@ -35,7 +35,7 @@ namespace DOM
 
 /**
  * The \c CSS2Azimuth interface represents the <a
- * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-azimuth">
+ * href="https://www.w3.org/TR/CSS2/aural.html#propdef-azimuth">
  * azimuth </a> CSS Level 2 property.
  *
  */
@@ -138,7 +138,7 @@ class CSS2BackgroundPositionImpl;
 /**
  * The \c CSS2BackgroundPosition interface represents the
  * <a
- * href="http://www.w3.org/TR/REC-CSS2/colors.html#propdef-background-position">
+ * href="https://www.w3.org/TR/CSS2/colors.html#propdef-background-position">
  * background-position </a> CSS Level 2 property.
  *
  */
@@ -309,7 +309,7 @@ class CSS2BorderSpacingImpl;
 
 /**
  * The \c CSS2BorderSpacing interface represents the <a
- * href="http://www.w3.org/TR/REC-CSS2/tables.html#propdef-border-spacing">
+ * href="https://www.w3.org/TR/CSS2/tables.html#propdef-border-spacing">
  * border-spacing </a> CSS Level 2 property.
  *
  */
@@ -438,7 +438,7 @@ class CSS2CounterIncrementImpl;
 /**
  * The \c CSS2CounterIncrement interface represents a
  * imple value for the <a
- * href="http://www.w3.org/TR/REC-CSS2/generate.html#propdef-counter-increment">
+ * href="https://www.w3.org/TR/CSS2/generate.html#propdef-counter-increment">
  * counter-increment </a> CSS Level 2 property.
  *
  */
@@ -493,7 +493,7 @@ class CSS2CounterResetImpl;
 /**
  * The \c CSS2CounterReset interface represents a simple
  * value for the <a
- * href="http://www.w3.org/TR/REC-CSS2/generate.html#propdef-counter-reset">
+ * href="https://www.w3.org/TR/CSS2/generate.html#propdef-counter-reset">
  * counter-reset </a> CSS Level 2 property.
  *
  */
@@ -548,7 +548,7 @@ class CSSValueList;
 
 /**
  * The \c CSS2Cursor interface represents the <a
- * href="http://www.w3.org/TR/REC-CSS2/ui.html#propdef-cursor"> cursor
+ * href="https://www.w3.org/TR/CSS2/ui.html#propdef-cursor"> cursor
  * </a> CSS Level 2 property.
  *
  */
@@ -614,7 +614,7 @@ class CSSValueList;
 
 /**
  * The \c CSS2Cursor interface represents the <a
- * href="http://www.w3.org/TR/REC-CSS2/fonts.html#descdef-src"> src
+ * href="https://www.w3.org/TR/CSS2/fonts.html#descdef-src"> src
  * </a> CSS Level 2 descriptor.
  *
  */
@@ -680,7 +680,7 @@ class CSSValueList;
 /**
  * The \c CSS2Cursor interface represents a simple value
  * for the <a
- * href="http://www.w3.org/TR/REC-CSS2/fonts.html#descdef-widths">
+ * href="https://www.w3.org/TR/CSS2/fonts.html#descdef-widths">
  * widths </a> CSS Level 2 descriptor.
  *
  */
@@ -725,7 +725,7 @@ class CSS2PageSizeImpl;
 
 /**
  * The \c CSS2Cursor interface represents the <a
- * href="http://www.w3.org/TR/REC-CSS2/page.html#propdef-size"> size
+ * href="https://www.w3.org/TR/CSS2/page.html#propdef-size"> size
  * </a> CSS Level 2 descriptor.
  *
  */
@@ -873,7 +873,7 @@ class CSS2PlayDuringImpl;
 
 /**
  * The \c CSS2PlayDuring interface represents the <a
- * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-play-during">
+ * href="https://www.w3.org/TR/CSS2/aural.html#propdef-play-during">
  * play-during </a> CSS Level 2 property.
  *
  */
@@ -979,7 +979,7 @@ class CSS2PropertiesImpl;
  * convenience mechanism for retrieving and setting properties within
  * a \c CSSStyleDeclaration . The attributes of this
  * interface correspond to all the <a
- * href="http://www.w3.org/TR/REC-CSS2/propidx.html"> properties
+ * href="https://www.w3.org/TR/CSS2/propidx.html"> properties
  * specified in CSS2 </a> . Getting an attribute of this interface is
  * equivalent to calling the \c getPropertyValue method of
  * the \c CSSStyleDeclaration interface. Setting an
@@ -1050,7 +1050,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-azimuth">
+     * href="https://www.w3.org/TR/CSS2/aural.html#propdef-azimuth">
      * azimuth property definition </a> in CSS2.
      *
      */
@@ -1063,7 +1063,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/colors.html#propdef-background">
+     * href="https://www.w3.org/TR/CSS2/colors.html#propdef-background">
      * background property definition </a> in CSS2.
      *
      */
@@ -1076,7 +1076,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/colors.html#propdef-background-attachment">
+     * href="https://www.w3.org/TR/CSS2/colors.html#propdef-background-attachment">
      * background-attachment property definition </a> in CSS2.
      *
      */
@@ -1089,7 +1089,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/colors.html#propdef-background-color">
+     * href="https://www.w3.org/TR/CSS2/colors.html#propdef-background-color">
      * background-color property definition </a> in CSS2.
      *
      */
@@ -1102,7 +1102,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/colors.html#propdef-background-image">
+     * href="https://www.w3.org/TR/CSS2/colors.html#propdef-background-image">
      * background-image property definition </a> in CSS2.
      *
      */
@@ -1115,7 +1115,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/colors.html#propdef-background-position">
+     * href="https://www.w3.org/TR/CSS2/colors.html#propdef-background-position">
      * background-position property definition </a> in CSS2.
      *
      */
@@ -1128,7 +1128,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/colors.html#propdef-background-repeat">
+     * href="https://www.w3.org/TR/CSS2/colors.html#propdef-background-repeat">
      * background-repeat property definition </a> in CSS2.
      *
      */
@@ -1141,7 +1141,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-border">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-border">
      * border property definition </a> in CSS2.
      *
      */
@@ -1154,7 +1154,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/tables.html#propdef-border-collapse">
+     * href="https://www.w3.org/TR/CSS2/tables.html#propdef-border-collapse">
      * border-collapse property definition </a> in CSS2.
      *
      */
@@ -1167,7 +1167,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-border-color">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-border-color">
      * border-color property definition </a> in CSS2.
      *
      */
@@ -1180,7 +1180,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/tables.html#propdef-border-spacing">
+     * href="https://www.w3.org/TR/CSS2/tables.html#propdef-border-spacing">
      * border-spacing property definition </a> in CSS2.
      *
      */
@@ -1193,7 +1193,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-border-style">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-border-style">
      * border-style property definition </a> in CSS2.
      *
      */
@@ -1206,7 +1206,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-border-top">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-border-top">
      * border-top property definition </a> in CSS2.
      *
      */
@@ -1219,7 +1219,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-border-right">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-border-right">
      * border-right property definition </a> in CSS2.
      *
      */
@@ -1232,7 +1232,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-border-bottom">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-border-bottom">
      * border-bottom property definition </a> in CSS2.
      *
      */
@@ -1245,7 +1245,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-border-left">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-border-left">
      * border-left property definition </a> in CSS2.
      *
      */
@@ -1258,7 +1258,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-border-top-color">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-border-top-color">
      * border-top-color property definition </a> in CSS2.
      *
      */
@@ -1271,7 +1271,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-border-right-color">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-border-right-color">
      * border-right-color property definition </a> in CSS2.
      *
      */
@@ -1284,7 +1284,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/#propdef-border-bottom-color">
+     * href="https://www.w3.org/TR/CSS2/#propdef-border-bottom-color">
      * border-bottom-color property definition </a> in CSS2.
      *
      */
@@ -1297,7 +1297,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-border-left-color">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-border-left-color">
      * border-left-color property definition </a> in CSS2.
      *
      */
@@ -1310,7 +1310,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-border-top-style">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-border-top-style">
      * border-top-style property definition </a> in CSS2.
      *
      */
@@ -1323,7 +1323,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-border-right-style">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-border-right-style">
      * border-right-style property definition </a> in CSS2.
      *
      */
@@ -1336,7 +1336,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-border-bottom-style">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-border-bottom-style">
      * border-bottom-style property definition </a> in CSS2.
      *
      */
@@ -1349,7 +1349,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-border-left-style">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-border-left-style">
      * border-left-style property definition </a> in CSS2.
      *
      */
@@ -1362,7 +1362,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-border-top-width">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-border-top-width">
      * border-top-width property definition </a> in CSS2.
      *
      */
@@ -1375,7 +1375,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-border-right-width">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-border-right-width">
      * border-right-width property definition </a> in CSS2.
      *
      */
@@ -1388,7 +1388,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-border-bottom-width">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-border-bottom-width">
      * border-bottom-width property definition </a> in CSS2.
      *
      */
@@ -1401,7 +1401,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-border-left-width">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-border-left-width">
      * border-left-width property definition </a> in CSS2.
      *
      */
@@ -1414,7 +1414,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-border-width">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-border-width">
      * border-width property definition </a> in CSS2.
      *
      */
@@ -1427,7 +1427,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visuren.html#propdef-bottom">
+     * href="https://www.w3.org/TR/CSS2/visuren.html#propdef-bottom">
      * bottom property definition </a> in CSS2.
      *
      */
@@ -1440,7 +1440,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/tables.html#propdef-caption-side">
+     * href="https://www.w3.org/TR/CSS2/tables.html#propdef-caption-side">
      * caption-side property definition </a> in CSS2.
      *
      */
@@ -1453,7 +1453,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visuren.html#propdef-clear">
+     * href="https://www.w3.org/TR/CSS2/visuren.html#propdef-clear">
      * clear property definition </a> in CSS2.
      *
      */
@@ -1466,7 +1466,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visufx#propdef-clip"> clip
+     * href="https://www.w3.org/TR/CSS2/visufx#propdef-clip"> clip
      * property definition </a> in CSS2.
      *
      */
@@ -1479,7 +1479,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/colors.html#propdef-color">
+     * href="https://www.w3.org/TR/CSS2/colors.html#propdef-color">
      * color property definition </a> in CSS2.
      *
      */
@@ -1492,7 +1492,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/generate.html#propdef-content">
+     * href="https://www.w3.org/TR/CSS2/generate.html#propdef-content">
      * content property definition </a> in CSS2.
      *
      */
@@ -1505,7 +1505,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/generate.html#propdef-counter-increment">
+     * href="https://www.w3.org/TR/CSS2/generate.html#propdef-counter-increment">
      * counter-increment property definition </a> in CSS2.
      *
      */
@@ -1518,7 +1518,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/generate.html#propdef-counter-reset">
+     * href="https://www.w3.org/TR/CSS2/generate.html#propdef-counter-reset">
      * counter-reset property definition </a> in CSS2.
      *
      */
@@ -1531,7 +1531,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-cue">
+     * href="https://www.w3.org/TR/CSS2/aural.html#propdef-cue">
      * cue property definition </a> in CSS2.
      *
      */
@@ -1544,7 +1544,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-cue-fter">
+     * href="https://www.w3.org/TR/CSS2/aural.html#propdef-cue-fter">
      * cue-after property definition </a> in CSS2.
      *
      */
@@ -1557,7 +1557,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-cue-before">
+     * href="https://www.w3.org/TR/CSS2/aural.html#propdef-cue-before">
      * cue-before property definition </a> in CSS2.
      *
      */
@@ -1570,7 +1570,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/ui.html#propdef-cursor">
+     * href="https://www.w3.org/TR/CSS2/ui.html#propdef-cursor">
      * cursor property definition </a> in CSS2.
      *
      */
@@ -1583,7 +1583,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visuren.html#propdef-direction">
+     * href="https://www.w3.org/TR/CSS2/visuren.html#propdef-direction">
      * direction property definition </a> in CSS2.
      *
      */
@@ -1596,7 +1596,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visuren.html#propdef-display">
+     * href="https://www.w3.org/TR/CSS2/visuren.html#propdef-display">
      * display property definition </a> in CSS2.
      *
      */
@@ -1609,7 +1609,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-elevation">
+     * href="https://www.w3.org/TR/CSS2/aural.html#propdef-elevation">
      * elevation property definition </a> in CSS2.
      *
      */
@@ -1622,7 +1622,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/tables.html#propdef-empty-cells">
+     * href="https://www.w3.org/TR/CSS2/tables.html#propdef-empty-cells">
      * empty-cells property definition </a> in CSS2.
      *
      */
@@ -1635,7 +1635,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visuren.html#propdef-float">
+     * href="https://www.w3.org/TR/CSS2/visuren.html#propdef-float">
      * float property definition </a> in CSS2.
      *
      */
@@ -1648,7 +1648,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/fonts.html#propdef-font">
+     * href="https://www.w3.org/TR/CSS2/fonts.html#propdef-font">
      * font property definition </a> in CSS2.
      *
      */
@@ -1661,7 +1661,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/fonts.html#propdef-font-family">
+     * href="https://www.w3.org/TR/CSS2/fonts.html#propdef-font-family">
      * font-family property definition </a> in CSS2.
      *
      */
@@ -1674,7 +1674,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/fonts.html#propdef-font-size">
+     * href="https://www.w3.org/TR/CSS2/fonts.html#propdef-font-size">
      * font-size property definition </a> in CSS2.
      *
      */
@@ -1687,7 +1687,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/fonts.html#propdef-font-size-adjust">
+     * href="https://www.w3.org/TR/CSS2/fonts.html#propdef-font-size-adjust">
      * font-size-adjust property definition </a> in CSS2.
      *
      */
@@ -1700,7 +1700,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/fonts.html#propdef-font-stretch">
+     * href="https://www.w3.org/TR/CSS2/fonts.html#propdef-font-stretch">
      * font-stretch property definition </a> in CSS2.
      *
      */
@@ -1713,7 +1713,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/fonts.html#propdef-font-style">
+     * href="https://www.w3.org/TR/CSS2/fonts.html#propdef-font-style">
      * font-style property definition </a> in CSS2.
      *
      */
@@ -1726,7 +1726,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/fonts.html#propdef-font-variant">
+     * href="https://www.w3.org/TR/CSS2/fonts.html#propdef-font-variant">
      * font-variant property definition </a> in CSS2.
      *
      */
@@ -1739,7 +1739,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/fonts.html#propdef-font-weight">
+     * href="https://www.w3.org/TR/CSS2/fonts.html#propdef-font-weight">
      * font-weight property definition </a> in CSS2.
      *
      */
@@ -1752,7 +1752,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visudet.html#propdef-height">
+     * href="https://www.w3.org/TR/CSS2/visudet.html#propdef-height">
      * height property definition </a> in CSS2.
      *
      */
@@ -1765,7 +1765,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visuren.html#propdef-left">
+     * href="https://www.w3.org/TR/CSS2/visuren.html#propdef-left">
      * left property definition </a> in CSS2.
      *
      */
@@ -1778,7 +1778,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/text.html#propdef-letter-spacing">
+     * href="https://www.w3.org/TR/CSS2/text.html#propdef-letter-spacing">
      * letter-spacing property definition </a> in CSS2.
      *
      */
@@ -1791,7 +1791,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visudet.html#propdef-line-height">
+     * href="https://www.w3.org/TR/CSS2/visudet.html#propdef-line-height">
      * line-height property definition </a> in CSS2.
      *
      */
@@ -1804,7 +1804,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/generate.html#propdef-list-style">
+     * href="https://www.w3.org/TR/CSS2/generate.html#propdef-list-style">
      * list-style property definition </a> in CSS2.
      *
      */
@@ -1817,7 +1817,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/generate.html#propdef-list-style-image">
+     * href="https://www.w3.org/TR/CSS2/generate.html#propdef-list-style-image">
      * list-style-image property definition </a> in CSS2.
      *
      */
@@ -1830,7 +1830,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/generate.html#propdef-list-style-position">
+     * href="https://www.w3.org/TR/CSS2/generate.html#propdef-list-style-position">
      * list-style-position property definition </a> in CSS2.
      *
      */
@@ -1843,7 +1843,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/generate.html#propdef-list-style-type">
+     * href="https://www.w3.org/TR/CSS2/generate.html#propdef-list-style-type">
      * list-style-type property definition </a> in CSS2.
      *
      */
@@ -1856,7 +1856,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-margin">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-margin">
      * margin property definition </a> in CSS2.
      *
      */
@@ -1869,7 +1869,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-margin-top">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-margin-top">
      * margin-top property definition </a> in CSS2.
      *
      */
@@ -1882,7 +1882,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-margin-right">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-margin-right">
      * margin-right property definition </a> in CSS2.
      *
      */
@@ -1895,7 +1895,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-margin-bottom">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-margin-bottom">
      * margin-bottom property definition </a> in CSS2.
      *
      */
@@ -1908,7 +1908,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-margin-left">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-margin-left">
      * margin-left property definition </a> in CSS2.
      *
      */
@@ -1921,7 +1921,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/generate.html#propdef-marker-offset">
+     * href="https://www.w3.org/TR/CSS2/generate.html#propdef-marker-offset">
      * marker-offset property definition </a> in CSS2.
      *
      */
@@ -1934,7 +1934,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/page.html#propdef-marks">
+     * href="https://www.w3.org/TR/CSS2/page.html#propdef-marks">
      * marks property definition </a> in CSS2.
      *
      */
@@ -1947,7 +1947,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visudet.html#propdef-max-height">
+     * href="https://www.w3.org/TR/CSS2/visudet.html#propdef-max-height">
      * max-height property definition </a> in CSS2.
      *
      */
@@ -1960,7 +1960,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visudet.html#propdef-max-width">
+     * href="https://www.w3.org/TR/CSS2/visudet.html#propdef-max-width">
      * max-width property definition </a> in CSS2.
      *
      */
@@ -1973,7 +1973,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visudet.html#propdef-min-height">
+     * href="https://www.w3.org/TR/CSS2/visudet.html#propdef-min-height">
      * min-height property definition </a> in CSS2.
      *
      */
@@ -1986,7 +1986,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visudet.html#propdef-min-width">
+     * href="https://www.w3.org/TR/CSS2/visudet.html#propdef-min-width">
      * min-width property definition </a> in CSS2.
      *
      */
@@ -1999,7 +1999,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/page.html#propdef-orphans">
+     * href="https://www.w3.org/TR/CSS2/page.html#propdef-orphans">
      * orphans property definition </a> in CSS2.
      *
      */
@@ -2012,7 +2012,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/ui.html#propdef-outline">
+     * href="https://www.w3.org/TR/CSS2/ui.html#propdef-outline">
      * outline property definition </a> in CSS2.
      *
      */
@@ -2025,7 +2025,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/ui.html#propdef-outline-color">
+     * href="https://www.w3.org/TR/CSS2/ui.html#propdef-outline-color">
      * outline-color property definition </a> in CSS2.
      *
      */
@@ -2038,7 +2038,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/ui.html#propdef-outline-style">
+     * href="https://www.w3.org/TR/CSS2/ui.html#propdef-outline-style">
      * outline-style property definition </a> in CSS2.
      *
      */
@@ -2051,7 +2051,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/ui.html#propdef-outline-width">
+     * href="https://www.w3.org/TR/CSS2/ui.html#propdef-outline-width">
      * outline-width property definition </a> in CSS2.
      *
      */
@@ -2064,7 +2064,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visufx.html#propdef-overflow">
+     * href="https://www.w3.org/TR/CSS2/visufx.html#propdef-overflow">
      * overflow property definition </a> in CSS2.
      *
      */
@@ -2077,7 +2077,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-padding">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-padding">
      * padding property definition </a> in CSS2.
      *
      */
@@ -2090,7 +2090,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-padding-top">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-padding-top">
      * padding-top property definition </a> in CSS2.
      *
      */
@@ -2103,7 +2103,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-padding-right">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-padding-right">
      * padding-right property definition </a> in CSS2.
      *
      */
@@ -2116,7 +2116,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-padding-bottom">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-padding-bottom">
      * padding-bottom property definition </a> in CSS2.
      *
      */
@@ -2129,7 +2129,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/box.html#propdef-padding-left">
+     * href="https://www.w3.org/TR/CSS2/box.html#propdef-padding-left">
      * padding-left property definition </a> in CSS2.
      *
      */
@@ -2142,7 +2142,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/page.html#propdef-page">
+     * href="https://www.w3.org/TR/CSS2/page.html#propdef-page">
      * page property definition </a> in CSS2.
      *
      */
@@ -2155,7 +2155,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/page.html#propdef-page-break-after">
+     * href="https://www.w3.org/TR/CSS2/page.html#propdef-page-break-after">
      * page-break-after property definition </a> in CSS2.
      *
      */
@@ -2168,7 +2168,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/page.html#propdef-page-break-before">
+     * href="https://www.w3.org/TR/CSS2/page.html#propdef-page-break-before">
      * page-break-before property definition </a> in CSS2.
      *
      */
@@ -2181,7 +2181,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/page.html#propdef-page-break-inside">
+     * href="https://www.w3.org/TR/CSS2/page.html#propdef-page-break-inside">
      * page-break-inside property definition </a> in CSS2.
      *
      */
@@ -2194,7 +2194,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-pause">
+     * href="https://www.w3.org/TR/CSS2/aural.html#propdef-pause">
      * pause property definition </a> in CSS2.
      *
      */
@@ -2207,7 +2207,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-pause-after">
+     * href="https://www.w3.org/TR/CSS2/aural.html#propdef-pause-after">
      * pause-after property definition </a> in CSS2.
      *
      */
@@ -2220,7 +2220,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-pause-before">
+     * href="https://www.w3.org/TR/CSS2/aural.html#propdef-pause-before">
      * pause-before property definition </a> in CSS2.
      *
      */
@@ -2233,7 +2233,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-pitch">
+     * href="https://www.w3.org/TR/CSS2/aural.html#propdef-pitch">
      * pitch property definition </a> in CSS2.
      *
      */
@@ -2246,7 +2246,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-pitch-range">
+     * href="https://www.w3.org/TR/CSS2/aural.html#propdef-pitch-range">
      * pitch-range property definition </a> in CSS2.
      *
      */
@@ -2259,7 +2259,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-play-during">
+     * href="https://www.w3.org/TR/CSS2/aural.html#propdef-play-during">
      * play-during property definition </a> in CSS2.
      *
      */
@@ -2272,7 +2272,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visuren.html#propdef-position">
+     * href="https://www.w3.org/TR/CSS2/visuren.html#propdef-position">
      * position property definition </a> in CSS2.
      *
      */
@@ -2285,7 +2285,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/generate.html#propdef-quotes">
+     * href="https://www.w3.org/TR/CSS2/generate.html#propdef-quotes">
      * quotes property definition </a> in CSS2.
      *
      */
@@ -2298,7 +2298,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-richness">
+     * href="https://www.w3.org/TR/CSS2/aural.html#propdef-richness">
      * richness property definition </a> in CSS2.
      *
      */
@@ -2311,7 +2311,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visuren.html#propdef-right">
+     * href="https://www.w3.org/TR/CSS2/visuren.html#propdef-right">
      * right property definition </a> in CSS2.
      *
      */
@@ -2324,7 +2324,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/page.html#propdef-size">
+     * href="https://www.w3.org/TR/CSS2/page.html#propdef-size">
      * size property definition </a> in CSS2.
      *
      */
@@ -2337,7 +2337,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-speak">
+     * href="https://www.w3.org/TR/CSS2/aural.html#propdef-speak">
      * speak property definition </a> in CSS2.
      *
      */
@@ -2350,7 +2350,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/tables.html#propdef-speak-header">
+     * href="https://www.w3.org/TR/CSS2/tables.html#propdef-speak-header">
      * speak-header property definition </a> in CSS2.
      *
      */
@@ -2363,7 +2363,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-speak-numeral">
+     * href="https://www.w3.org/TR/CSS2/aural.html#propdef-speak-numeral">
      * speak-numeral property definition </a> in CSS2.
      *
      */
@@ -2376,7 +2376,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-speak-punctuation">
+     * href="https://www.w3.org/TR/CSS2/aural.html#propdef-speak-punctuation">
      * speak-punctuation property definition </a> in CSS2.
      *
      */
@@ -2389,7 +2389,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-speech-rate">
+     * href="https://www.w3.org/TR/CSS2/aural.html#propdef-speech-rate">
      * speech-rate property definition </a> in CSS2.
      *
      */
@@ -2402,7 +2402,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-stress">
+     * href="https://www.w3.org/TR/CSS2/aural.html#propdef-stress">
      * stress property definition </a> in CSS2.
      *
      */
@@ -2415,7 +2415,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/tables.html#propdef-table-layout">
+     * href="https://www.w3.org/TR/CSS2/tables.html#propdef-table-layout">
      * table-layout property definition </a> in CSS2.
      *
      */
@@ -2428,7 +2428,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/text.html#propdef-text-align">
+     * href="https://www.w3.org/TR/CSS2/text.html#propdef-text-align">
      * text-align property definition </a> in CSS2.
      *
      */
@@ -2441,7 +2441,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/text.html#propdef-text-decoration">
+     * href="https://www.w3.org/TR/CSS2/text.html#propdef-text-decoration">
      * text-decoration property definition </a> in CSS2.
      *
      */
@@ -2454,7 +2454,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/text.html#propdef-text-indent">
+     * href="https://www.w3.org/TR/CSS2/text.html#propdef-text-indent">
      * text-indent property definition </a> in CSS2.
      *
      */
@@ -2467,7 +2467,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/text.html#propdef-text-shadow">
+     * href="https://www.w3.org/TR/CSS2/text.html#propdef-text-shadow">
      * text-shadow property definition </a> in CSS2.
      *
      */
@@ -2480,7 +2480,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/text.html#propdef-text-transform">
+     * href="https://www.w3.org/TR/CSS2/text.html#propdef-text-transform">
      * text-transform property definition </a> in CSS2.
      *
      */
@@ -2493,7 +2493,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visuren.html#propdef-top">
+     * href="https://www.w3.org/TR/CSS2/visuren.html#propdef-top">
      * top property definition </a> in CSS2.
      *
      */
@@ -2506,7 +2506,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visuren.html#propdef-unicode-bidi">
+     * href="https://www.w3.org/TR/CSS2/visuren.html#propdef-unicode-bidi">
      * unicode-bidi property definition </a> in CSS2.
      *
      */
@@ -2519,7 +2519,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visudet.html#propdef-vertical-align">
+     * href="https://www.w3.org/TR/CSS2/visudet.html#propdef-vertical-align">
      * vertical-align property definition </a> in CSS2.
      *
      */
@@ -2532,7 +2532,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visufx.html#propdef-visibility">
+     * href="https://www.w3.org/TR/CSS2/visufx.html#propdef-visibility">
      * visibility property definition </a> in CSS2.
      *
      */
@@ -2545,7 +2545,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-voice-family">
+     * href="https://www.w3.org/TR/CSS2/aural.html#propdef-voice-family">
      * voice-family property definition </a> in CSS2.
      *
      */
@@ -2558,7 +2558,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/aural.html#propdef-volume">
+     * href="https://www.w3.org/TR/CSS2/aural.html#propdef-volume">
      * volume property definition </a> in CSS2.
      *
      */
@@ -2571,7 +2571,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/text.html#propdef-white-space">
+     * href="https://www.w3.org/TR/CSS2/text.html#propdef-white-space">
      * white-space property definition </a> in CSS2.
      *
      */
@@ -2584,7 +2584,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/page.html#propdef-widows">
+     * href="https://www.w3.org/TR/CSS2/page.html#propdef-widows">
      * widows property definition </a> in CSS2.
      *
      */
@@ -2597,7 +2597,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visudet.html#propdef-width">
+     * href="https://www.w3.org/TR/CSS2/visudet.html#propdef-width">
      * width property definition </a> in CSS2.
      *
      */
@@ -2610,7 +2610,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/text.html#propdef-word-spacing">
+     * href="https://www.w3.org/TR/CSS2/text.html#propdef-word-spacing">
      * word-spacing property definition </a> in CSS2.
      *
      */
@@ -2623,7 +2623,7 @@ public:
 
     /**
      * See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/visufx.html#propdef-z-index">
+     * href="https://www.w3.org/TR/CSS2/visufx.html#propdef-z-index">
      * z-index property definition </a> in CSS2.
      *
      */
@@ -2641,7 +2641,7 @@ class CSSValue;
 /**
  * The \c CSS2TextShadow interface represents a simple
  * value for the <a
- * href="http://www.w3.org/TR/REC-CSS2/text.html#propdef-text-shadow">
+ * href="https://www.w3.org/TR/CSS2/text.html#propdef-text-shadow">
  * text-shadow </a> CSS Level 2 property.
  *
  */

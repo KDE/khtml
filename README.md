@@ -19,7 +19,7 @@ To use KHTML in your application, create an instance of KHTMLPart, embed it in
 your application like any other KPart, and call methods to control what it
 displays:
 
-    QUrl url("http://www.kde.org");
+    QUrl url("https://www.kde.org");
     KHTMLPart *w = new KHTMLPart();
     w->openUrl(url);
     w->view()->resize(500, 400);

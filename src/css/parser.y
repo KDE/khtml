@@ -1260,7 +1260,7 @@ invalid_rule:
     }
 /*
   Seems like the two rules below are trying too much and violating
-  http://www.hixie.ch/tests/evil/mixed/csserrorhandling.html
+  https://www.hixie.ch/tests/evil/mixed/csserrorhandling.html
 
   | error ';' {
 	$$ = 0;

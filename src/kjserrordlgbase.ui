@@ -15,7 +15,7 @@
    <string>JavaScript Errors</string>
   </property>
   <property name="whatsThis">
-   <string>This dialog provides you with notification and details of scripting errors that occur on web pages.  In many cases it is due to an error in the web site as designed by its author.  In other cases it is the result of a programming error in Konqueror.  If you suspect the former, please contact the webmaster of the site in question.  Conversely if you suspect an error in Konqueror, please file a bug report at http://bugs.kde.org/.  A test case which illustrates the problem will be appreciated.</string>
+   <string>This dialog provides you with notification and details of scripting errors that occur on web pages.  In many cases it is due to an error in the web site as designed by its author.  In other cases it is the result of a programming error in Konqueror.  If you suspect the former, please contact the webmaster of the site in question.  Conversely if you suspect an error in Konqueror, please file a bug report at https://bugs.kde.org/.  A test case which illustrates the problem will be appreciated.</string>
   </property>
   <layout class="QGridLayout">
    <property name="leftMargin">

@@ -21,7 +21,7 @@
  *
  * This file includes excerpts from the Document Object Model (DOM)
  * Level 1 Specification (Recommendation)
- * http://www.w3.org/TR/REC-DOM-Level-1/
+ * https://www.w3.org/TR/REC-DOM-Level-1/
  * Copyright © World Wide Web Consortium , (Massachusetts Institute of
  * Technology , Institut National de Recherche en Informatique et en
  * Automatique , Keio University ). All Rights Reserved.
@@ -43,7 +43,7 @@ class DOMString;
 
 /**
  * ??? See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/text.html#edef-BLOCKQUOTE">
+ * href="https://www.w3.org/TR/REC-html40/struct/text.html#edef-BLOCKQUOTE">
  * BLOCKQUOTE element definition </a> in HTML 4.0.
  *
  */
@@ -67,7 +67,7 @@ public:
 
     /**
      * A URI designating a document that describes the reason for the
-     * change. See the <a href="http://www.w3.org/TR/REC-html40/">
+     * change. See the <a href="https://www.w3.org/TR/REC-html40/">
      * cite attribute definition </a> in HTML 4.0.
      *
      */
@@ -86,7 +86,7 @@ class DOMString;
 
 /**
  * Generic block container. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/global.html#edef-DIV">
+ * href="https://www.w3.org/TR/REC-html40/struct/global.html#edef-DIV">
  * DIV element definition </a> in HTML 4.0.
  *
  */
@@ -110,7 +110,7 @@ public:
 
     /**
      * Horizontal text alignment. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/graphics.html#adef-align">
+     * href="https://www.w3.org/TR/REC-html40/present/graphics.html#adef-align">
      * align attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -130,7 +130,7 @@ class DOMString;
 
 /**
  * Create a horizontal rule. See the <a
- * href="http://www.w3.org/TR/REC-html40/present/graphics.html#edef-HR">
+ * href="https://www.w3.org/TR/REC-html40/present/graphics.html#edef-HR">
  * HR element definition </a> in HTML 4.0.
  *
  */
@@ -154,7 +154,7 @@ public:
 
     /**
      * Align the rule on the page. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/graphics.html#adef-align-HR">
+     * href="https://www.w3.org/TR/REC-html40/present/graphics.html#adef-align-HR">
      * align attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -169,7 +169,7 @@ public:
     /**
      * Indicates to the user agent that there should be no shading in
      * the rendering of this element. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/graphics.html#adef-noshade">
+     * href="https://www.w3.org/TR/REC-html40/present/graphics.html#adef-noshade">
      * noshade attribute definition </a> in HTML 4.0. This attribute
      * is deprecated in HTML 4.0.
      *
@@ -183,7 +183,7 @@ public:
 
     /**
      * The height of the rule. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/graphics.html#adef-size-HR">
+     * href="https://www.w3.org/TR/REC-html40/present/graphics.html#adef-size-HR">
      * size attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -197,7 +197,7 @@ public:
 
     /**
      * The width of the rule. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/graphics.html#adef-width-HR">
+     * href="https://www.w3.org/TR/REC-html40/present/graphics.html#adef-width-HR">
      * width attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -216,7 +216,7 @@ class DOMString;
 
 /**
  * For the \c H1 to \c H6 elements. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/global.html#edef-H1">
+ * href="https://www.w3.org/TR/REC-html40/struct/global.html#edef-H1">
  * H1 element definition </a> in HTML 4.0.
  *
  */
@@ -240,7 +240,7 @@ public:
 
     /**
      * Horizontal text alignment. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/graphics.html#adef-align">
+     * href="https://www.w3.org/TR/REC-html40/present/graphics.html#adef-align">
      * align attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -259,7 +259,7 @@ class DOMString;
 
 /**
  * Paragraphs. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/text.html#edef-P"> P
+ * href="https://www.w3.org/TR/REC-html40/struct/text.html#edef-P"> P
  * element definition </a> in HTML 4.0.
  *
  */
@@ -283,7 +283,7 @@ public:
 
     /**
      * Horizontal text alignment. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/graphics.html#adef-align">
+     * href="https://www.w3.org/TR/REC-html40/present/graphics.html#adef-align">
      * align attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -302,7 +302,7 @@ class HTMLPreElementImpl;
 
 /**
  * Preformatted text. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/text.html#edef-PRE">
+ * href="https://www.w3.org/TR/REC-html40/struct/text.html#edef-PRE">
  * PRE element definition </a> in HTML 4.0.
  *
  */
@@ -326,7 +326,7 @@ public:
 
     /**
      * Fixed width for content. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/text.html#adef-width-PRE">
+     * href="https://www.w3.org/TR/REC-html40/struct/text.html#adef-width-PRE">
      * width attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *

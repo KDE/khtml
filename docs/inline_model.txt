@@ -3,7 +3,7 @@ with its associated HTML code, will map to 2 different trees:
 
 -a tree of render objects, mirroring the corresponding DOM tree.
 -a tree of lineboxes reflecting how inline-level render objects are laid out in distinct lines inside
- block-level elements. (cf. http://www.w3.org/TR/CSS2/visuren.html#inline-formatting and http://www.w3.org/TR/CSS2/visudet.html#line-height)
+ block-level elements. (cf. https://www.w3.org/TR/CSS2/visuren.html#inline-formatting and https://www.w3.org/TR/CSS2/visudet.html#line-height)
 
 Rendering:
 =========

@@ -20,7 +20,7 @@
  *
  * This file includes excerpts from the Document Object Model (DOM)
  * Level 1 Specification (Recommendation)
- * http://www.w3.org/TR/REC-DOM-Level-1/
+ * https://www.w3.org/TR/REC-DOM-Level-1/
  * Copyright © World Wide Web Consortium , (Massachusetts Institute of
  * Technology , Institut National de Recherche en Informatique et en
  * Automatique , Keio University ). All Rights Reserved.
@@ -41,7 +41,7 @@ class HTMLCollectionImpl;
 
 /**
  * Base font. See the <a
- * href="http://www.w3.org/TR/REC-html40/present/graphics.html#edef-BASEFONT">
+ * href="https://www.w3.org/TR/REC-html40/present/graphics.html#edef-BASEFONT">
  * BASEFONT element definition </a> in HTML 4.0. This element is
  * deprecated in HTML 4.0.
  *
@@ -65,7 +65,7 @@ public:
     ~HTMLBaseFontElement();
 
     /**
-     * Font color. See the <a href="http://www.w3.org/TR/REC-html40/">
+     * Font color. See the <a href="https://www.w3.org/TR/REC-html40/">
      * color attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -79,7 +79,7 @@ public:
 
     /**
      * Font face identifier. See the <a
-     * href="http://www.w3.org/TR/REC-html40/"> face attribute
+     * href="https://www.w3.org/TR/REC-html40/"> face attribute
      * definition </a> in HTML 4.0. This attribute is deprecated in
      * HTML 4.0.
      *
@@ -93,7 +93,7 @@ public:
 
     /**
      * Computed Font size. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/graphics.html#adef-size-BASEFONT">
+     * href="https://www.w3.org/TR/REC-html40/present/graphics.html#adef-size-BASEFONT">
      * size attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *

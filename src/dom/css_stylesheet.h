@@ -20,7 +20,7 @@
  *
  * This file includes excerpts from the Document Object Model (DOM)
  * Level 2 Specification (Candidate Recommendation)
- * http://www.w3.org/TR/2000/CR-DOM-Level-2-20000510/
+ * https://www.w3.org/TR/2000/CR-DOM-Level-2-20000510/
  * Copyright © 2000 W3C® (MIT, INRIA, Keio), All Rights Reserved.
  *
  */
@@ -47,12 +47,12 @@ class DocumentImpl;
  * sheet associated with a structured document. In HTML, the
  * StyleSheet interface represents either an external style sheet,
  * included via the HTML <a
- * href="http://www.w3.org/TR/REC-html40/struct/links.html#h-12.3">
+ * href="https://www.w3.org/TR/REC-html40/struct/links.html#h-12.3">
  * LINK </a> element, or an inline <a
- * href="http://www.w3.org/TR/REC-html40/present/styles.html#h-14.2.3">
+ * href="https://www.w3.org/TR/REC-html40/present/styles.html#h-14.2.3">
  * STYLE </a> element. In XML, this interface represents an external
  * style sheet, included via a <a
- * href="http://www.w3.org/TR/xml-stylesheet"> style sheet processing
+ * href="https://www.w3.org/TR/xml-stylesheet"> style sheet processing
  * instruction </a> .
  *
  */
@@ -77,10 +77,10 @@ public:
      * href="ftp://ftp.isi.edu/in-notes/iana/assignments/media-types/">
      * ftp://ftp.isi.edu/in-notes/iana/assignments/media-types/ </a> .
      * Also see the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/links.html#adef-type-A">
+     * href="https://www.w3.org/TR/REC-html40/struct/links.html#adef-type-A">
      * type attribute definition </a> for the \c LINK
      * element in HTML 4.0, and the type pseudo-attribute for the XML
-     * <a href="http://www.w3.org/TR/xml-stylesheet"> style sheet
+     * <a href="https://www.w3.org/TR/xml-stylesheet"> style sheet
      * processing instruction </a> .
      *
      */
@@ -123,10 +123,10 @@ public:
      * If the style sheet is a linked style sheet, the value of its
      * attribute is its location. For inline style sheets, the value
      * of this attribute is null. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/links.html#adef-href">
+     * href="https://www.w3.org/TR/REC-html40/struct/links.html#adef-href">
      * href attribute definition </a> for the \c LINK
      * element in HTML 4.0, and the href pseudo-attribute for the XML
-     * <a href="http://www.w3.org/TR/xml-stylesheet"> style sheet
+     * <a href="https://www.w3.org/TR/xml-stylesheet"> style sheet
      * processing instruction </a> .
      *
      */
@@ -135,10 +135,10 @@ public:
     /**
      * The advisory title. The title is often specified in the
      * \c ownerNode . See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/global.html#adef-title">
+     * href="https://www.w3.org/TR/REC-html40/struct/global.html#adef-title">
      * title attribute definition </a> for the \c LINK
      * element in HTML 4.0, and the title pseudo-attribute for the XML
-     * <a href="http://www.w3.org/TR/xml-stylesheet"> style sheet
+     * <a href="https://www.w3.org/TR/xml-stylesheet"> style sheet
      * processing instruction </a> .
      *
      */
@@ -147,10 +147,10 @@ public:
     /**
      * The intended destination media for style information. The media
      * is often specified in the \c ownerNode . See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/styles.html#adef-media">
+     * href="https://www.w3.org/TR/REC-html40/present/styles.html#adef-media">
      * media attribute definition </a> for the \c LINK
      * element in HTML 4.0, and the media pseudo-attribute for the XML
-     * <a href="http://www.w3.org/TR/WD-xml-stylesheet"> style sheet
+     * <a href="https://www.w3.org/TR/WD-xml-stylesheet"> style sheet
      * processing instruction </a> .
      *
      */
@@ -259,9 +259,9 @@ public:
     /**
      * The list of all CSS rules contained within the style sheet.
      * This includes both <a
-     * href="http://www.w3.org/TR/REC-CSS2/syndata.html#q8"> rule sets
+     * href="https://www.w3.org/TR/CSS2/syndata.html#q8"> rule sets
      * </a> and <a
-     * href="http://www.w3.org/TR/REC-CSS2/syndata.html#at-rules">
+     * href="https://www.w3.org/TR/CSS2/syndata.html#at-rules">
      * at-rules </a> .
      *
      */

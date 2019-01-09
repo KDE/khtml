@@ -94,7 +94,7 @@ public:
     bool isEmpty() const;
 
     // The origin is a globally unique identifier assigned when the Document is
-    // created. http://www.whatwg.org/specs/web-apps/current-work/#sandboxOrigin
+    // created. https://html.spec.whatwg.org/#sandboxOrigin
     bool isUnique() const
     {
         return m_isUnique;

@@ -20,7 +20,7 @@
  *
  * This file includes excerpts from the Document Object Model (DOM)
  * Level 1 Specification (Recommendation)
- * http://www.w3.org/TR/REC-DOM-Level-1/
+ * https://www.w3.org/TR/REC-DOM-Level-1/
  * Copyright © World Wide Web Consortium , (Massachusetts Institute of
  * Technology , Institut National de Recherche en Informatique et en
  * Automatique , Keio University ). All Rights Reserved.
@@ -42,7 +42,7 @@ class DOMString;
 
 /**
  * Push button. See the <a
- * href="http://www.w3.org/TR/REC-html40/interact/forms.html#edef-BUTTON">
+ * href="https://www.w3.org/TR/REC-html40/interact/forms.html#edef-BUTTON">
  * BUTTON element definition </a> in HTML 4.0.
  *
  */
@@ -75,7 +75,7 @@ public:
     /**
      * A single character access key to give access to the form
      * control. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-accesskey">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-accesskey">
      * accesskey attribute definition </a> in HTML 4.0.
      *
      */
@@ -88,7 +88,7 @@ public:
 
     /**
      * The control is unavailable in this context. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-disabled">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-disabled">
      * disabled attribute definition </a> in HTML 4.0.
      *
      */
@@ -102,7 +102,7 @@ public:
     /**
      * Form control or object name when submitted with a form. See the
      * <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-name-BUTTON">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-name-BUTTON">
      * name attribute definition </a> in HTML 4.0.
      *
      */
@@ -116,7 +116,7 @@ public:
     /**
      * Index that represents the element's position in the tabbing
      * order. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-tabindex">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-tabindex">
      * tabindex attribute definition </a> in HTML 4.0.
      *
      */
@@ -129,7 +129,7 @@ public:
 
     /**
      * The type of button. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-type-BUTTON">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-type-BUTTON">
      * type attribute definition </a> in HTML 4.0.
      *
      */
@@ -137,7 +137,7 @@ public:
 
     /**
      * The current form control value. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-value-BUTTON">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-value-BUTTON">
      * value attribute definition </a> in HTML 4.0.
      *
      */
@@ -166,7 +166,7 @@ public:
 class HTMLFieldSetElementImpl;
 /**
  * Organizes form controls into logical groups. See the <a
- * href="http://www.w3.org/TR/REC-html40/interact/forms.html#edef-FIELDSET">
+ * href="https://www.w3.org/TR/REC-html40/interact/forms.html#edef-FIELDSET">
  * FIELDSET element definition </a> in HTML 4.0.
  *
  */
@@ -200,7 +200,7 @@ class HTMLFormElementImpl;
  * collection and an element. It provides direct access to the
  * contained input elements as well as the attributes of the form
  * element. See the <a
- * href="http://www.w3.org/TR/REC-html40/interact/forms.html#edef-FORM">
+ * href="https://www.w3.org/TR/REC-html40/interact/forms.html#edef-FORM">
  * FORM element definition </a> in HTML 4.0.
  *
  */
@@ -258,7 +258,7 @@ public:
 
     /**
      * List of character sets supported by the server. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-accept-charset">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-accept-charset">
      * accept-charset attribute definition </a> in HTML 4.0.
      *
      */
@@ -271,7 +271,7 @@ public:
 
     /**
      * Server-side form handler. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-action">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-action">
      * action attribute definition </a> in HTML 4.0.
      *
      */
@@ -285,7 +285,7 @@ public:
     /**
      * The content type of the submitted form, generally
      * "application/x-www-form-urlencoded". See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-enctype">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-enctype">
      * enctype attribute definition </a> in HTML 4.0.
      *
      */
@@ -298,7 +298,7 @@ public:
 
     /**
      * HTTP method used to submit form. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-method">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-method">
      * method attribute definition </a> in HTML 4.0.
      *
      */
@@ -311,7 +311,7 @@ public:
 
     /**
      * Frame to render the resource in. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-target">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-target">
      * target attribute definition </a> in HTML 4.0.
      *
      */
@@ -345,7 +345,7 @@ class HTMLInputElementImpl;
  * being viewed, the value property may be read-only for the file
  * upload input type. For the "password" input type, the actual value
  * returned may be masked to prevent unauthorized use. See the <a
- * href="http://www.w3.org/TR/REC-html40/interact/forms.html#edef-INPUT">
+ * href="https://www.w3.org/TR/REC-html40/interact/forms.html#edef-INPUT">
  * INPUT element definition </a> in HTML 4.0.
  *
  */
@@ -398,7 +398,7 @@ public:
     /**
      * A comma-separated list of content types that a server
      * processing this form will handle correctly. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-accept">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-accept">
      * accept attribute definition </a> in HTML 4.0.
      *
      */
@@ -412,7 +412,7 @@ public:
     /**
      * A single character access key to give access to the form
      * control. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-accesskey">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-accesskey">
      * accesskey attribute definition </a> in HTML 4.0.
      *
      */
@@ -426,7 +426,7 @@ public:
     /**
      * Aligns this object (vertically or horizontally) with respect to
      * its surrounding text. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-align-IMG">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-align-IMG">
      * align attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -441,7 +441,7 @@ public:
     /**
      * Alternate text for user agents not rendering the normal content
      * of this element. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-alt">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-alt">
      * alt attribute definition </a> in HTML 4.0.
      *
      */
@@ -457,7 +457,7 @@ public:
      * \c type has the value "Radio" or "Checkbox". The value is
      * true if explicitly set. Represents the current state of the
      * checkbox or radio button. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-checked">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-checked">
      * checked attribute definition </a> in HTML 4.0.
      *
      */
@@ -480,7 +480,7 @@ public:
 
     /**
      * The control is unavailable in this context. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-disabled">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-disabled">
      * disabled attribute definition </a> in HTML 4.0.
      *
      */
@@ -494,7 +494,7 @@ public:
     /**
      * Maximum number of characters for text fields, when \c type
      * has the value "Text" or "Password". See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-maxlength">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-maxlength">
      * maxlength attribute definition </a> in HTML 4.0.
      *
      */
@@ -508,7 +508,7 @@ public:
     /**
      * Form control or object name when submitted with a form. See the
      * <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-name-INPUT">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-name-INPUT">
      * name attribute definition </a> in HTML 4.0.
      *
      */
@@ -522,7 +522,7 @@ public:
     /**
      * This control is read-only. When \c type has the
      * value "text" or "password" only. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-readonly">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-readonly">
      * readonly attribute definition </a> in HTML 4.0.
      *
      */
@@ -551,7 +551,7 @@ public:
     /**
      * Size information. The precise meaning is specific to each type
      * of field. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-size-INPUT">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-size-INPUT">
      * size attribute definition </a> in HTML 4.0.
      *
      */
@@ -566,7 +566,7 @@ public:
      * When the \c type attribute has the value "Image",
      * this attribute specifies the location of the image to be used
      * to decorate the graphical submit button. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-src">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-src">
      * src attribute definition </a> in HTML 4.0.
      *
      */
@@ -580,7 +580,7 @@ public:
     /**
      * Index that represents the element's position in the tabbing
      * order. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-tabindex">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-tabindex">
      * tabindex attribute definition </a> in HTML 4.0.
      *
      */
@@ -593,7 +593,7 @@ public:
 
     /**
      * The type of control created. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-type-INPUT">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-type-INPUT">
      * type attribute definition </a> in HTML 4.0.
      *
      */
@@ -606,7 +606,7 @@ public:
 
     /**
      * Use client-side image map. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-usemap">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-usemap">
      * usemap attribute definition </a> in HTML 4.0.
      *
      */
@@ -620,7 +620,7 @@ public:
     /**
      * The current form control value. Used for radio buttons and
      * check boxes. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-value-INPUT">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-value-INPUT">
      * value attribute definition </a> in HTML 4.0.
      *
      */
@@ -704,7 +704,7 @@ public:
 class HTMLLabelElementImpl;
 /**
  * Form field label text. See the <a
- * href="http://www.w3.org/TR/REC-html40/interact/forms.html#edef-LABEL">
+ * href="https://www.w3.org/TR/REC-html40/interact/forms.html#edef-LABEL">
  * LABEL element definition </a> in HTML 4.0.
  *
  */
@@ -729,7 +729,7 @@ public:
     /**
      * A single character access key to give access to the form
      * control. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-accesskey">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-accesskey">
      * accesskey attribute definition </a> in HTML 4.0.
      *
      */
@@ -743,7 +743,7 @@ public:
     /**
      * This attribute links this label with another form control by
      * \c id attribute. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-for">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-for">
      * for attribute definition </a> in HTML 4.0.
      *
      */
@@ -761,7 +761,7 @@ class HTMLLegendElementImpl;
 /**
  * Provides a caption for a \c FIELDSET grouping. See the
  * <a
- * href="http://www.w3.org/TR/REC-html40/interact/forms.html#edef-LEGEND">
+ * href="https://www.w3.org/TR/REC-html40/interact/forms.html#edef-LEGEND">
  * LEGEND element definition </a> in HTML 4.0.
  *
  */
@@ -789,7 +789,7 @@ public:
     /**
      * A single character access key to give access to the form
      * control. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-accesskey">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-accesskey">
      * accesskey attribute definition </a> in HTML 4.0.
      *
      */
@@ -802,7 +802,7 @@ public:
 
     /**
      * Text alignment relative to \c FIELDSET . See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-align-LEGEND">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-align-LEGEND">
      * align attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -820,7 +820,7 @@ public:
 class HTMLOptGroupElementImpl;
 /**
  * Group options together in logical subdivisions. See the <a
- * href="http://www.w3.org/TR/REC-html40/interact/forms.html#edef-OPTGROUP">
+ * href="https://www.w3.org/TR/REC-html40/interact/forms.html#edef-OPTGROUP">
  * OPTGROUP element definition </a> in HTML 4.0.
  *
  */
@@ -844,7 +844,7 @@ public:
 
     /**
      * The control is unavailable in this context. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-disabled">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-disabled">
      * disabled attribute definition </a> in HTML 4.0.
      *
      */
@@ -857,7 +857,7 @@ public:
 
     /**
      * Assigns a label to this option group. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-label-OPTGROUP">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-label-OPTGROUP">
      * label attribute definition </a> in HTML 4.0.
      *
      */
@@ -876,7 +876,7 @@ class HTMLSelectElementImpl;
  * The select element allows the selection of an option. The contained
  * options can be directly accessed through the select element as a
  * collection. See the <a
- * href="http://www.w3.org/TR/REC-html40/interact/forms.html#edef-SELECT">
+ * href="https://www.w3.org/TR/REC-html40/interact/forms.html#edef-SELECT">
  * SELECT element definition </a> in HTML 4.0.
  *
  */
@@ -946,7 +946,7 @@ public:
 
     /**
      * The control is unavailable in this context. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-disabled">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-disabled">
      * disabled attribute definition </a> in HTML 4.0.
      *
      */
@@ -960,7 +960,7 @@ public:
     /**
      * If true, multiple \c OPTION elements may be
      * selected in this \c SELECT . See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-multiple">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-multiple">
      * multiple attribute definition </a> in HTML 4.0.
      *
      */
@@ -974,7 +974,7 @@ public:
     /**
      * Form control or object name when submitted with a form. See the
      * <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-name-SELECT">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-name-SELECT">
      * name attribute definition </a> in HTML 4.0.
      *
      */
@@ -987,7 +987,7 @@ public:
 
     /**
      * Number of visible rows. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-size-SELECT">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-size-SELECT">
      * size attribute definition </a> in HTML 4.0.
      *
      */
@@ -1001,7 +1001,7 @@ public:
     /**
      * Index that represents the element's position in the tabbing
      * order. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-tabindex">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-tabindex">
      * tabindex attribute definition </a> in HTML 4.0.
      *
      */
@@ -1052,7 +1052,7 @@ public:
 class HTMLTextAreaElementImpl;
 /**
  * Multi-line text field. See the <a
- * href="http://www.w3.org/TR/REC-html40/interact/forms.html#edef-TEXTAREA">
+ * href="https://www.w3.org/TR/REC-html40/interact/forms.html#edef-TEXTAREA">
  * TEXTAREA element definition </a> in HTML 4.0.
  *
  */
@@ -1092,7 +1092,7 @@ public:
     /**
      * A single character access key to give access to the form
      * control. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-accesskey">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-accesskey">
      * accesskey attribute definition </a> in HTML 4.0.
      *
      */
@@ -1105,7 +1105,7 @@ public:
 
     /**
      * Width of control (in characters). See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-cols-TEXTAREA">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-cols-TEXTAREA">
      * cols attribute definition </a> in HTML 4.0.
      *
      */
@@ -1118,7 +1118,7 @@ public:
 
     /**
      * The control is unavailable in this context. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-disabled">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-disabled">
      * disabled attribute definition </a> in HTML 4.0.
      *
      */
@@ -1132,7 +1132,7 @@ public:
     /**
      * Form control or object name when submitted with a form. See the
      * <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-name-TEXTAREA">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-name-TEXTAREA">
      * name attribute definition </a> in HTML 4.0.
      *
      */
@@ -1145,7 +1145,7 @@ public:
 
     /**
      * This control is read-only. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-readonly">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-readonly">
      * readonly attribute definition </a> in HTML 4.0.
      *
      */
@@ -1158,7 +1158,7 @@ public:
 
     /**
      * Number of text rows. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-rows-TEXTAREA">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-rows-TEXTAREA">
      * rows attribute definition </a> in HTML 4.0.
      *
      */
@@ -1172,7 +1172,7 @@ public:
     /**
      * Index that represents the element's position in the tabbing
      * order. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-tabindex">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-tabindex">
      * tabindex attribute definition </a> in HTML 4.0.
      *
      */
@@ -1261,7 +1261,7 @@ public:
 class HTMLOptionElementImpl;
 /**
  * A selectable choice. See the <a
- * href="http://www.w3.org/TR/REC-html40/interact/forms.html#edef-OPTION">
+ * href="https://www.w3.org/TR/REC-html40/interact/forms.html#edef-OPTION">
  * OPTION element definition </a> in HTML 4.0.
  *
  */
@@ -1315,13 +1315,13 @@ public:
      * see index
      *
      * This function is obsolete - the index property is actually supposed to be read-only
-     * (http://www.w3.org/DOM/updates/REC-DOM-Level-1-19981001-errata.html)
+     * (https://www.w3.org/DOM/updates/REC-DOM-Level-1-19981001-errata.html)
      */
     void setIndex(long);
 
     /**
      * The control is unavailable in this context. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-disabled">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-disabled">
      * disabled attribute definition </a> in HTML 4.0.
      *
      */
@@ -1334,7 +1334,7 @@ public:
 
     /**
      * Option label for use in hierarchical menus. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-label-OPTION">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-label-OPTION">
      * label attribute definition </a> in HTML 4.0.
      *
      */
@@ -1347,7 +1347,7 @@ public:
 
     /**
      * Means that this option is initially selected. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-selected">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-selected">
      * selected attribute definition </a> in HTML 4.0.
      *
      */
@@ -1360,7 +1360,7 @@ public:
 
     /**
      * The current form control value. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-value-OPTION">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-value-OPTION">
      * value attribute definition </a> in HTML 4.0.
      *
      */
@@ -1379,7 +1379,7 @@ class HTMLFormElement;
 
 /**
  * This element is used for single-line text input. See the <a
- * href="http://www.w3.org/TR/REC-html40/interact/forms.html#edef-ISINDEX">
+ * href="https://www.w3.org/TR/REC-html40/interact/forms.html#edef-ISINDEX">
  * ISINDEX element definition </a> in HTML 4.0. This element is
  * deprecated in HTML 4.0.
  *
@@ -1407,7 +1407,7 @@ public:
 
     /**
      * The prompt message. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-prompt">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-prompt">
      * prompt attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *

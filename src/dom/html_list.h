@@ -20,7 +20,7 @@
  *
  * This file includes excerpts from the Document Object Model (DOM)
  * Level 1 Specification (Recommendation)
- * http://www.w3.org/TR/REC-DOM-Level-1/
+ * https://www.w3.org/TR/REC-DOM-Level-1/
  * Copyright © World Wide Web Consortium , (Massachusetts Institute of
  * Technology , Institut National de Recherche en Informatique et en
  * Automatique , Keio University ). All Rights Reserved.
@@ -46,7 +46,7 @@ class DOMString;
 
 /**
  * Definition list. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/lists.html#edef-DL">
+ * href="https://www.w3.org/TR/REC-html40/struct/lists.html#edef-DL">
  * DL element definition </a> in HTML 4.0.
  *
  */
@@ -70,7 +70,7 @@ public:
 
     /**
      * Reduce spacing between list items. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/lists.html#adef-compact">
+     * href="https://www.w3.org/TR/REC-html40/struct/lists.html#adef-compact">
      * compact attribute definition </a> in HTML 4.0. This attribute
      * is deprecated in HTML 4.0.
      *
@@ -87,7 +87,7 @@ public:
 
 /**
  * Directory list. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/lists.html#edef-DIR">
+ * href="https://www.w3.org/TR/REC-html40/struct/lists.html#edef-DIR">
  * DIR element definition </a> in HTML 4.0. This element is deprecated
  * in HTML 4.0.
  *
@@ -112,7 +112,7 @@ public:
 
     /**
      * Reduce spacing between list items. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/lists.html#adef-compact">
+     * href="https://www.w3.org/TR/REC-html40/struct/lists.html#adef-compact">
      * compact attribute definition </a> in HTML 4.0. This attribute
      * is deprecated in HTML 4.0.
      *
@@ -129,7 +129,7 @@ public:
 
 /**
  * List item. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/lists.html#edef-LI">
+ * href="https://www.w3.org/TR/REC-html40/struct/lists.html#edef-LI">
  * LI element definition </a> in HTML 4.0.
  *
  */
@@ -154,7 +154,7 @@ public:
 
     /**
      * List item bullet style. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/lists.html#adef-type-LI">
+     * href="https://www.w3.org/TR/REC-html40/struct/lists.html#adef-type-LI">
      * type attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -168,7 +168,7 @@ public:
 
     /**
      * Reset sequence number when used in \c OL See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/lists.html#adef-value-LI">
+     * href="https://www.w3.org/TR/REC-html40/struct/lists.html#adef-value-LI">
      * value attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -185,7 +185,7 @@ public:
 
 /**
  * Menu list. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/lists.html#edef-MENU">
+ * href="https://www.w3.org/TR/REC-html40/struct/lists.html#edef-MENU">
  * MENU element definition </a> in HTML 4.0. This element is
  * deprecated in HTML 4.0.
  *
@@ -211,7 +211,7 @@ public:
 
     /**
      * Reduce spacing between list items. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/lists.html#adef-compact">
+     * href="https://www.w3.org/TR/REC-html40/struct/lists.html#adef-compact">
      * compact attribute definition </a> in HTML 4.0. This attribute
      * is deprecated in HTML 4.0.
      *
@@ -228,7 +228,7 @@ public:
 
 /**
  * Ordered list. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/lists.html#edef-OL">
+ * href="https://www.w3.org/TR/REC-html40/struct/lists.html#edef-OL">
  * OL element definition </a> in HTML 4.0.
  *
  */
@@ -252,7 +252,7 @@ public:
 
     /**
      * Reduce spacing between list items. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/lists.html#adef-compact">
+     * href="https://www.w3.org/TR/REC-html40/struct/lists.html#adef-compact">
      * compact attribute definition </a> in HTML 4.0. This attribute
      * is deprecated in HTML 4.0.
      *
@@ -266,7 +266,7 @@ public:
 
     /**
      * Starting sequence number. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/lists.html#adef-start">
+     * href="https://www.w3.org/TR/REC-html40/struct/lists.html#adef-start">
      * start attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -280,7 +280,7 @@ public:
 
     /**
      * Numbering style. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/lists.html#adef-type-OL">
+     * href="https://www.w3.org/TR/REC-html40/struct/lists.html#adef-type-OL">
      * type attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -297,7 +297,7 @@ public:
 
 /**
  * Unordered list. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/lists.html#edef-UL">
+ * href="https://www.w3.org/TR/REC-html40/struct/lists.html#edef-UL">
  * UL element definition </a> in HTML 4.0.
  *
  */
@@ -321,7 +321,7 @@ public:
 
     /**
      * Reduce spacing between list items. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/lists.html#adef-compact">
+     * href="https://www.w3.org/TR/REC-html40/struct/lists.html#adef-compact">
      * compact attribute definition </a> in HTML 4.0. This attribute
      * is deprecated in HTML 4.0.
      *
@@ -335,7 +335,7 @@ public:
 
     /**
      * Bullet style. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/lists.html#adef-type-UL">
+     * href="https://www.w3.org/TR/REC-html40/struct/lists.html#adef-type-UL">
      * type attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *

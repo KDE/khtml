@@ -847,7 +847,7 @@ QPainterPath RenderBox::borderRadiusClipPath(const BackgroundLayer *bgLayer, int
         QPoint topLeftRadii, topRightRadii, bottomLeftRadii, bottomRightRadii;
         calcBorderRadii(topLeftRadii, topRightRadii, bottomLeftRadii, bottomRightRadii, w, h);
 
-        // CSS Backgrounds and Borders Module Level 3 (http://www.w3.org/TR/2014/CR-css3-background-20140909/), chapter 5.3:
+        // CSS Backgrounds and Borders Module Level 3 (https://www.w3.org/TR/2014/CR-css3-background-20140909/), chapter 5.3:
         // "A box's backgrounds, but not its border-image, are clipped to the appropriate curve (as determined by 'background-clip')."
         int adjustTop = 0, adjustLeft = 0, adjustRight = 0, adjustBottom = 0;
         bool clipInner = true;
@@ -1702,7 +1702,7 @@ void RenderBox::calcAbsoluteHorizontal()
 
     // The following is based off of the W3C Working Draft from April 11, 2006 of
     // CSS 2.1: Section 10.3.7 "Absolutely positioned, non-replaced elements"
-    // <http://www.w3.org/TR/CSS21/visudet.html#abs-non-replaced-width>
+    // <https://www.w3.org/TR/CSS21/visudet.html#abs-non-replaced-width>
     // (block-style-comments in this function and in calcAbsoluteHorizontalValues()
     // correspond to text from the spec)
 
@@ -1992,7 +1992,7 @@ void RenderBox::calcAbsoluteVertical()
 
     // The following is based off of the W3C Working Draft from April 11, 2006 of
     // CSS 2.1: Section 10.6.4 "Absolutely positioned, non-replaced elements"
-    // <http://www.w3.org/TR/2005/WD-CSS21-20050613/visudet.html#abs-non-replaced-height>
+    // <https://www.w3.org/TR/2005/WD-CSS21-20050613/visudet.html#abs-non-replaced-height>
     // (block-style-comments in this function and in calcAbsoluteVerticalValues()
     // correspond to text from the spec)
 
@@ -2219,7 +2219,7 @@ void RenderBox::calcAbsoluteHorizontalReplaced()
 {
     // The following is based off of the W3C Working Draft from April 11, 2006 of
     // CSS 2.1: Section 10.3.8 "Absolutly positioned, replaced elements"
-    // <http://www.w3.org/TR/2005/WD-CSS21-20050613/visudet.html#abs-replaced-width>
+    // <https://www.w3.org/TR/2005/WD-CSS21-20050613/visudet.html#abs-replaced-width>
     // (block-style-comments in this function correspond to text from the spec and
     // the numbers correspond to numbers in spec)
 
@@ -2385,7 +2385,7 @@ void RenderBox::calcAbsoluteVerticalReplaced()
 {
     // The following is based off of the W3C Working Draft from April 11, 2006 of
     // CSS 2.1: Section 10.6.5 "Absolutly positioned, replaced elements"
-    // <http://www.w3.org/TR/2005/WD-CSS21-20050613/visudet.html#abs-replaced-height>
+    // <https://www.w3.org/TR/2005/WD-CSS21-20050613/visudet.html#abs-replaced-height>
     // (block-style-comments in this function correspond to text from the spec and
     // the numbers correspond to numbers in spec)
 

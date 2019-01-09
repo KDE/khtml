@@ -134,7 +134,7 @@ public:
     /**
      * Returns a string with Space Characters removed from the start and the end.
      * Space Characters as defined in
-     * http://dev.w3.org/html5/spec-LC/common-microsyntaxes.html#space-character
+     * https://dev.w3.org/html5/spec-LC/common-microsyntaxes.html#space-character
      */
     DOMString trimSpaces() const;
 

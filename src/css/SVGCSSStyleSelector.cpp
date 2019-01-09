@@ -887,7 +887,7 @@ void CSSStyleSelector::applySVGRule(int id, DOM::CSSValueImpl *value)
     }
     case CSS_PROP_ENABLE_BACKGROUND:
         // Silently ignoring this property for now
-        // http://bugs.webkit.org/show_bug.cgi?id=6022
+        // https://bugs.webkit.org/show_bug.cgi?id=6022
         break;
     default:
         // If you crash here, it's because you added a css property and are not handling it

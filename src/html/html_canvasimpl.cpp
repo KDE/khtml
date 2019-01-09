@@ -1080,7 +1080,7 @@ void CanvasContext2DImpl::beginPath()
     // no way to tell.
     // We used to insert a Inf/Inf element to tell if its empty. But that no longer
     // works with Qt newer than 2011-01-21
-    // http://qt.gitorious.org/qt/qt/commit/972fcb6de69fb7ed3ae8147498ceb5d2ac79f057
+    // https://code.qt.io/cgit/qt/qt.git/commit/?id=972fcb6de69fb7ed3ae8147498ceb5d2ac79f057
     // Now go with a extra bool to check if its really empty.
     emptyPath = true;
 }

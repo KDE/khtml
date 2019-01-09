@@ -85,7 +85,7 @@ class MediaQueryExp;
 
 /**
  * Class that evaluates css media queries as defined in
- * CSS3 Module "Media Queries" (http://www.w3.org/TR/css3-mediaqueries/)
+ * CSS3 Module "Media Queries" (https://www.w3.org/TR/css3-mediaqueries/)
  * Special constructors are needed, if simple media queries are to be
  * evaluated without knowledge of the medium features. This can happen
  * for example when parsing UA stylesheets, if evaluation is done

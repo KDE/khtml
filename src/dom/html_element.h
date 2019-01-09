@@ -20,7 +20,7 @@
  *
  * This file includes excerpts from the Document Object Model (DOM)
  * Level 1 Specification (Recommendation)
- * http://www.w3.org/TR/REC-DOM-Level-1/
+ * https://www.w3.org/TR/REC-DOM-Level-1/
  * Copyright © World Wide Web Consortium , (Massachusetts Institute of
  * Technology , Institut National de Recherche en Informatique et en
  * Automatique , Keio University ). All Rights Reserved.
@@ -94,7 +94,7 @@ public:
 
     /**
      * The element's identifier. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/global.html#adef-id">
+     * href="https://www.w3.org/TR/REC-html40/struct/global.html#adef-id">
      * id attribute definition </a> in HTML 4.0.
      *
      */
@@ -107,7 +107,7 @@ public:
 
     /**
      * The element's advisory title. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/global.html#adef-title">
+     * href="https://www.w3.org/TR/REC-html40/struct/global.html#adef-title">
      * title attribute definition </a> in HTML 4.0.
      *
      */
@@ -120,7 +120,7 @@ public:
 
     /**
      * Language code defined in RFC 1766. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/dirlang.html#adef-lang">
+     * href="https://www.w3.org/TR/REC-html40/struct/dirlang.html#adef-lang">
      * lang attribute definition </a> in HTML 4.0.
      *
      */
@@ -134,7 +134,7 @@ public:
     /**
      * Specifies the base direction of directionally neutral text and
      * the directionality of tables. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/dirlang.html#adef-dir">
+     * href="https://www.w3.org/TR/REC-html40/struct/dirlang.html#adef-dir">
      * dir attribute definition </a> in HTML 4.0.
      *
      */
@@ -149,7 +149,7 @@ public:
      * The class attribute of the element. This attribute has been
      * renamed due to conflicts with the "class" keyword exposed by
      * many languages. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/global.html#adef-class">
+     * href="https://www.w3.org/TR/REC-html40/struct/global.html#adef-class">
      * class attribute definition </a> in HTML 4.0.
      *
      */

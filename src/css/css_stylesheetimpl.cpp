@@ -471,13 +471,13 @@ StyleSheetImpl *StyleSheetListImpl::item(unsigned long index)
  * Currently MediaList always tries to parse media queries and if parsing fails,
  * tries to fallback to Media Descriptors if m_fallback flag is set.
  * Slight problem with syntax error handling:
- * CSS 2.1 Spec (http://www.w3.org/TR/CSS21/media.html)
+ * CSS 2.1 Spec (https://www.w3.org/TR/CSS21/media.html)
  * specifies that failing media type parsing is a syntax error
- * CSS 3 Media Queries Spec (http://www.w3.org/TR/css3-mediaqueries/)
+ * CSS 3 Media Queries Spec (https://www.w3.org/TR/css3-mediaqueries/)
  * specifies that failing media query is a syntax error
- * HTML 4.01 spec (http://www.w3.org/TR/REC-html40/present/styles.html#adef-media)
+ * HTML 4.01 spec (https://www.w3.org/TR/REC-html40/present/styles.html#adef-media)
  * specifies that Media Descriptors should be parsed with forward-compatible syntax
- * DOM Level 2 Style Sheet spec (http://www.w3.org/TR/DOM-Level-2-Style/)
+ * DOM Level 2 Style Sheet spec (https://www.w3.org/TR/DOM-Level-2-Style/)
  * talks about MediaList.mediaText and refers
  *   -  to Media Descriptors of HTML 4.0 in context of StyleSheet
  *   -  to Media Types of CSS 2.0 in context of CSSMediaRule and CSSImportRule
@@ -558,7 +558,7 @@ static DOMString parseMediaDescriptor(const DOMString &s)
 {
     int len = s.length();
 
-    // http://www.w3.org/TR/REC-html40/types.html#type-media-descriptors
+    // https://www.w3.org/TR/REC-html40/types.html#type-media-descriptors
     // "Each entry is truncated just before the first character that isn't a
     // US ASCII letter [a-zA-Z] (ISO 10646 hex 41-5a, 61-7a), digit [0-9] (hex 30-39),
     // or hyphen (hex 2d)."

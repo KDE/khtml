@@ -2,7 +2,7 @@ kde_enable_exceptions()
 
 find_package(OpenSSL)
 set_package_properties(OpenSSL PROPERTIES DESCRIPTION "Support for secure network communications (SSL and TLS)"
-                       URL "http://openssl.org"
+                       URL "https://openssl.org/"
                        TYPE RECOMMENDED
                        PURPOSE "KDE uses OpenSSL for the bulk of secure communications, including secure web browsing via HTTPS"
                       )

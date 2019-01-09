@@ -694,7 +694,7 @@ public:
      *
      * @return The focus node that comes after fromNode
      *
-     * See http://www.w3.org/TR/html4/interact/forms.html#h-17.11.1
+     * See https://www.w3.org/TR/html4/interact/forms.html#h-17.11.1
      */
     NodeImpl *nextFocusNode(NodeImpl *fromNode);
 
@@ -707,7 +707,7 @@ public:
      *
      * @return The focus node that comes before fromNode
      *
-     * See http://www.w3.org/TR/html4/interact/forms.html#h-17.11.1
+     * See https://www.w3.org/TR/html4/interact/forms.html#h-17.11.1
      */
     NodeImpl *previousFocusNode(NodeImpl *fromNode);
 

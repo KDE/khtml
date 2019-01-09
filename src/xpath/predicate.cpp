@@ -373,7 +373,7 @@ Value LogicalOp::doEvaluate() const
 {
     Value lhs(subExpr(0)->evaluate());
 
-    // This is not only an optimization, http://www.w3.org/TR/xpath
+    // This is not only an optimization, https://www.w3.org/TR/xpath
     // dictates that we must do short-circuit evaluation
     bool lhsBool = lhs.toBoolean();
     if (lhsBool == shortCircuitOn()) {

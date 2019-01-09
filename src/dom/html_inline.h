@@ -20,7 +20,7 @@
  *
  * This file includes excerpts from the Document Object Model (DOM)
  * Level 1 Specification (Recommendation)
- * http://www.w3.org/TR/REC-DOM-Level-1/
+ * https://www.w3.org/TR/REC-DOM-Level-1/
  * Copyright © World Wide Web Consortium , (Massachusetts Institute of
  * Technology , Institut National de Recherche en Informatique et en
  * Automatique , Keio University ). All Rights Reserved.
@@ -40,7 +40,7 @@ class DOMString;
 
 /**
  * The anchor element. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/links.html#edef-A"> A
+ * href="https://www.w3.org/TR/REC-html40/struct/links.html#edef-A"> A
  * element definition </a> in HTML 4.0.
  *
  */
@@ -65,7 +65,7 @@ public:
     /**
      * A single character access key to give access to the form
      * control. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-accesskey">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-accesskey">
      * accesskey attribute definition </a> in HTML 4.0.
      *
      */
@@ -78,7 +78,7 @@ public:
 
     /**
      * The character encoding of the linked resource. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/links.html#adef-charset">
+     * href="https://www.w3.org/TR/REC-html40/struct/links.html#adef-charset">
      * charset attribute definition </a> in HTML 4.0.
      *
      */
@@ -93,7 +93,7 @@ public:
      * Comma-separated list of lengths, defining an active region
      * geometry. See also \c shape for the shape of the
      * region. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-coords">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-coords">
      * coords attribute definition </a> in HTML 4.0.
      *
      */
@@ -106,7 +106,7 @@ public:
 
     /**
      * The URI of the linked resource. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/links.html#adef-href">
+     * href="https://www.w3.org/TR/REC-html40/struct/links.html#adef-href">
      * href attribute definition </a> in HTML 4.0.
      *
      */
@@ -119,7 +119,7 @@ public:
 
     /**
      * Language code of the linked resource. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/links.html#adef-hreflang">
+     * href="https://www.w3.org/TR/REC-html40/struct/links.html#adef-hreflang">
      * hreflang attribute definition </a> in HTML 4.0.
      *
      */
@@ -132,7 +132,7 @@ public:
 
     /**
      * Anchor name. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/links.html#adef-name-A">
+     * href="https://www.w3.org/TR/REC-html40/struct/links.html#adef-name-A">
      * name attribute definition </a> in HTML 4.0.
      *
      */
@@ -145,7 +145,7 @@ public:
 
     /**
      * Forward link type. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/links.html#adef-rel">
+     * href="https://www.w3.org/TR/REC-html40/struct/links.html#adef-rel">
      * rel attribute definition </a> in HTML 4.0.
      *
      */
@@ -158,7 +158,7 @@ public:
 
     /**
      * Reverse link type. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/links.html#adef-rev">
+     * href="https://www.w3.org/TR/REC-html40/struct/links.html#adef-rev">
      * rev attribute definition </a> in HTML 4.0.
      *
      */
@@ -172,7 +172,7 @@ public:
     /**
      * The shape of the active area. The coordinates are given by
      * \c coords . See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-shape">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-shape">
      * shape attribute definition </a> in HTML 4.0.
      *
      */
@@ -186,7 +186,7 @@ public:
     /**
      * Index that represents the element's position in the tabbing
      * order. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-tabindex">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-tabindex">
      * tabindex attribute definition </a> in HTML 4.0.
      *
      */
@@ -199,7 +199,7 @@ public:
 
     /**
      * Frame to render the resource in. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-target">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-target">
      * target attribute definition </a> in HTML 4.0.
      *
      */
@@ -212,7 +212,7 @@ public:
 
     /**
      * Advisory content type. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/links.html#adef-type-A">
+     * href="https://www.w3.org/TR/REC-html40/struct/links.html#adef-type-A">
      * type attribute definition </a> in HTML 4.0.
      *
      */
@@ -246,7 +246,7 @@ class HTMLBRElementImpl;
 
 /**
  * Force a line break. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/text.html#edef-BR"> BR
+ * href="https://www.w3.org/TR/REC-html40/struct/text.html#edef-BR"> BR
  * element definition </a> in HTML 4.0.
  *
  */
@@ -270,7 +270,7 @@ public:
 
     /**
      * Control flow of text around floats. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/graphics.html#adef-clear">
+     * href="https://www.w3.org/TR/REC-html40/present/graphics.html#adef-clear">
      * clear attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -290,7 +290,7 @@ class DOMString;
 
 /**
  * Local change to font. See the <a
- * href="http://www.w3.org/TR/REC-html40/present/graphics.html#edef-FONT">
+ * href="https://www.w3.org/TR/REC-html40/present/graphics.html#edef-FONT">
  * FONT element definition </a> in HTML 4.0. This element is
  * deprecated in HTML 4.0.
  *
@@ -315,7 +315,7 @@ public:
 
     /**
      * Font color. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/graphics.html#adef-color-FONT">
+     * href="https://www.w3.org/TR/REC-html40/present/graphics.html#adef-color-FONT">
      * color attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -329,7 +329,7 @@ public:
 
     /**
      * Font face identifier. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/graphics.html#adef-face-FONT">
+     * href="https://www.w3.org/TR/REC-html40/present/graphics.html#adef-face-FONT">
      * face attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -343,7 +343,7 @@ public:
 
     /**
      * Font size. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/graphics.html#adef-size-FONT">
+     * href="https://www.w3.org/TR/REC-html40/present/graphics.html#adef-size-FONT">
      * size attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -360,9 +360,9 @@ class DOMString;
 
 /**
  * Notice of modification to part of a document. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/text.html#edef-ins">
+ * href="https://www.w3.org/TR/REC-html40/struct/text.html#edef-ins">
  * INS </a> and <a
- * href="http://www.w3.org/TR/REC-html40/struct/text.html#edef-del">
+ * href="https://www.w3.org/TR/REC-html40/struct/text.html#edef-del">
  * DEL </a> element definitions in HTML 4.0.
  *
  */
@@ -386,7 +386,7 @@ public:
 
     /**
      * A URI designating a document that describes the reason for the
-     * change. See the <a href="http://www.w3.org/TR/REC-html40/">
+     * change. See the <a href="https://www.w3.org/TR/REC-html40/">
      * cite attribute definition </a> in HTML 4.0.
      *
      */
@@ -399,7 +399,7 @@ public:
 
     /**
      * The date and time of the change. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/text.html#adef-datetime">
+     * href="https://www.w3.org/TR/REC-html40/struct/text.html#adef-datetime">
      * datetime attribute definition </a> in HTML 4.0.
      *
      */
@@ -416,7 +416,7 @@ public:
 /**
  * For the \c Q and \c BLOCKQUOTE elements.
  * See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/text.html#edef-Q"> Q
+ * href="https://www.w3.org/TR/REC-html40/struct/text.html#edef-Q"> Q
  * element definition </a> in HTML 4.0.
  *
  * Note: The DOM is not quite consistent here. They also define the
@@ -445,7 +445,7 @@ public:
     /**
      * A URI designating a document that designates a source document
      * or message. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/text.html#adef-cite-Q">
+     * href="https://www.w3.org/TR/REC-html40/struct/text.html#adef-cite-Q">
      * cite attribute definition </a> in HTML 4.0.
      *
      */

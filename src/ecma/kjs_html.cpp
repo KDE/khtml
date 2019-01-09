@@ -1039,7 +1039,7 @@ const ClassInfo *KJS::HTMLElement::classInfo() const
   width       KJS::HTMLElement::ObjectWidth       DontDelete
 @end
 @begin HTMLObjectElementProtoTable 1
-# half deprecated - cf. http://lists.w3.org/Archives/Public/www-svg/2008Feb/0031.html
+# half deprecated - cf. https://lists.w3.org/Archives/Public/www-svg/2008Feb/0031.html
 # only implemented in ecma, because of acid3 dependency
   getSVGDocument  KJS::HTMLElement::ObjectGetSVGDocument  DontDelete|Function 0
 @end
@@ -1215,7 +1215,7 @@ const ClassInfo *KJS::HTMLElement::classInfo() const
   width       KJS::HTMLElement::IFrameWidth         DontDelete
 @end
 @begin HTMLIFrameElementProtoTable 1
-# half deprecated - cf. http://lists.w3.org/Archives/Public/www-svg/2008Feb/0031.html
+# half deprecated - cf. https://lists.w3.org/Archives/Public/www-svg/2008Feb/0031.html
 # only implemented in ecma, because of acid3 dependency
   getSVGDocument  KJS::HTMLElement::IFrameGetSVGDocument        DontDelete|Function 0
 @end

@@ -193,7 +193,7 @@ bool SVGAElement::isFocusableImpl(FocusType ft) const
 
 bool SVGAElement::childShouldCreateRenderer(Node *child) const
 {
-    // http://www.w3.org/2003/01/REC-SVG11-20030114-errata#linking-text-environment
+    // https://www.w3.org/2003/01/REC-SVG11-20030114-errata#linking-text-environment
     // The 'a' element may contain any element that its parent may contain, except itself.
     if (child->hasTagName(SVGNames::aTag)) {
         return false;

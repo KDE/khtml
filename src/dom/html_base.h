@@ -20,7 +20,7 @@
  *
  * This file includes excerpts from the Document Object Model (DOM)
  * Level 1 Specification (Recommendation)
- * http://www.w3.org/TR/REC-DOM-Level-1/
+ * https://www.w3.org/TR/REC-DOM-Level-1/
  * Copyright © World Wide Web Consortium , (Massachusetts Institute of
  * Technology , Institut National de Recherche en Informatique et en
  * Automatique , Keio University ). All Rights Reserved.
@@ -43,7 +43,7 @@ class DOMString;
  * The HTML document body. This element is always present in the DOM
  * API, even if the tags are not present in the source document. See
  * the <a
- * href="http://www.w3.org/TR/REC-html40/struct/global.html#edef-BODY">
+ * href="https://www.w3.org/TR/REC-html40/struct/global.html#edef-BODY">
  * BODY element definition </a> in HTML 4.0.
  *
  */
@@ -68,7 +68,7 @@ public:
     /**
      * Color of active links (after mouse-button down, but before
      * mouse-button up). See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/global.html#adef-alink">
+     * href="https://www.w3.org/TR/REC-html40/struct/global.html#adef-alink">
      * alink attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -82,7 +82,7 @@ public:
 
     /**
      * URI of the background texture tile image. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/global.html#adef-background">
+     * href="https://www.w3.org/TR/REC-html40/struct/global.html#adef-background">
      * background attribute definition </a> in HTML 4.0. This
      * attribute is deprecated in HTML 4.0.
      *
@@ -96,7 +96,7 @@ public:
 
     /**
      * Document background color. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/graphics.html#adef-bgcolor">
+     * href="https://www.w3.org/TR/REC-html40/present/graphics.html#adef-bgcolor">
      * bgcolor attribute definition </a> in HTML 4.0. This attribute
      * is deprecated in HTML 4.0.
      *
@@ -110,7 +110,7 @@ public:
 
     /**
      * Color of links that are not active and unvisited. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/global.html#adef-link">
+     * href="https://www.w3.org/TR/REC-html40/struct/global.html#adef-link">
      * link attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -124,7 +124,7 @@ public:
 
     /**
      * Document text color. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/global.html#adef-text">
+     * href="https://www.w3.org/TR/REC-html40/struct/global.html#adef-text">
      * text attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -138,7 +138,7 @@ public:
 
     /**
      * Color of links that have been visited by the user. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/global.html#adef-vlink">
+     * href="https://www.w3.org/TR/REC-html40/struct/global.html#adef-vlink">
      * vlink attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -158,7 +158,7 @@ class DOMString;
 
 /**
  * Create a frame. See the <a
- * href="http://www.w3.org/TR/REC-html40/present/frames.html#edef-FRAME">
+ * href="https://www.w3.org/TR/REC-html40/present/frames.html#edef-FRAME">
  * FRAME element definition </a> in HTML 4.0.
  *
  */
@@ -182,7 +182,7 @@ public:
 
     /**
      * Request frame borders. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-frameborder">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-frameborder">
      * frameborder attribute definition </a> in HTML 4.0.
      *
      */
@@ -196,7 +196,7 @@ public:
     /**
      * URI designating a long description of this image or frame. See
      * the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-longdesc-FRAME">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-longdesc-FRAME">
      * longdesc attribute definition </a> in HTML 4.0.
      *
      */
@@ -209,7 +209,7 @@ public:
 
     /**
      * Frame margin height, in pixels. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-marginheight">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-marginheight">
      * marginheight attribute definition </a> in HTML 4.0.
      *
      */
@@ -222,7 +222,7 @@ public:
 
     /**
      * Frame margin width, in pixels. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-marginwidth">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-marginwidth">
      * marginwidth attribute definition </a> in HTML 4.0.
      *
      */
@@ -236,7 +236,7 @@ public:
     /**
      * The frame name (object of the \c target attribute).
      * See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-name-FRAME">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-name-FRAME">
      * name attribute definition </a> in HTML 4.0.
      *
      */
@@ -249,7 +249,7 @@ public:
 
     /**
      * When true, forbid user from resizing frame. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-noresize">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-noresize">
      * noresize attribute definition </a> in HTML 4.0.
      *
      */
@@ -263,7 +263,7 @@ public:
     /**
      * Specify whether or not the frame should have scrollbars. See
      * the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-scrolling">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-scrolling">
      * scrolling attribute definition </a> in HTML 4.0.
      *
      */
@@ -276,7 +276,7 @@ public:
 
     /**
      * A URI designating the initial frame contents. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-src-FRAME">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-src-FRAME">
      * src attribute definition </a> in HTML 4.0.
      *
      */
@@ -306,7 +306,7 @@ class DOMString;
 
 /**
  * Create a grid of frames. See the <a
- * href="http://www.w3.org/TR/REC-html40/present/frames.html#edef-FRAMESET">
+ * href="https://www.w3.org/TR/REC-html40/present/frames.html#edef-FRAMESET">
  * FRAMESET element definition </a> in HTML 4.0.
  *
  */
@@ -330,7 +330,7 @@ public:
 
     /**
      * The number of columns of frames in the frameset. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-cols-FRAMESET">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-cols-FRAMESET">
      * cols attribute definition </a> in HTML 4.0.
      *
      */
@@ -343,7 +343,7 @@ public:
 
     /**
      * The number of rows of frames in the frameset. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-rows-FRAMESET">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-rows-FRAMESET">
      * rows attribute definition </a> in HTML 4.0.
      *
      */
@@ -361,7 +361,7 @@ class HTMLIFrameElementImpl;
 
 /**
  * Inline subwindows. See the <a
- * href="http://www.w3.org/TR/REC-html40/present/frames.html#edef-IFRAME">
+ * href="https://www.w3.org/TR/REC-html40/present/frames.html#edef-IFRAME">
  * IFRAME element definition </a> in HTML 4.0.
  *
  */
@@ -386,7 +386,7 @@ public:
     /**
      * Aligns this object (vertically or horizontally) with respect to
      * its surrounding text. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-align-IMG">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-align-IMG">
      * align attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -400,7 +400,7 @@ public:
 
     /**
      * Request frame borders. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-frameborder">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-frameborder">
      * frameborder attribute definition </a> in HTML 4.0.
      *
      */
@@ -413,7 +413,7 @@ public:
 
     /**
      * Frame height. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-height-IFRAME">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-height-IFRAME">
      * height attribute definition </a> in HTML 4.0.
      *
      */
@@ -427,7 +427,7 @@ public:
     /**
      * URI designating a long description of this image or frame. See
      * the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-longdesc-IFRAME">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-longdesc-IFRAME">
      * longdesc attribute definition </a> in HTML 4.0.
      *
      */
@@ -440,7 +440,7 @@ public:
 
     /**
      * Frame margin height, in pixels. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-marginheight">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-marginheight">
      * marginheight attribute definition </a> in HTML 4.0.
      *
      */
@@ -453,7 +453,7 @@ public:
 
     /**
      * Frame margin width, in pixels. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-marginwidth">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-marginwidth">
      * marginwidth attribute definition </a> in HTML 4.0.
      *
      */
@@ -467,7 +467,7 @@ public:
     /**
      * The frame name (object of the \c target attribute).
      * See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-name-IFRAME">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-name-IFRAME">
      * name attribute definition </a> in HTML 4.0.
      *
      */
@@ -481,7 +481,7 @@ public:
     /**
      * Specify whether or not the frame should have scrollbars. See
      * the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-scrolling">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-scrolling">
      * scrolling attribute definition </a> in HTML 4.0.
      *
      */
@@ -494,7 +494,7 @@ public:
 
     /**
      * A URI designating the initial frame contents. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-src-FRAME">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-src-FRAME">
      * src attribute definition </a> in HTML 4.0.
      *
      */
@@ -507,7 +507,7 @@ public:
 
     /**
      * Frame width. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-width-IFRAME">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-width-IFRAME">
      * width attribute definition </a> in HTML 4.0.
      *
      */
@@ -537,7 +537,7 @@ class DOMString;
 
 /**
  * Document head information. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/global.html#edef-HEAD">
+ * href="https://www.w3.org/TR/REC-html40/struct/global.html#edef-HEAD">
  * HEAD element definition </a> in HTML 4.0.
  *
  */
@@ -561,7 +561,7 @@ public:
 
     /**
      * URI designating a metadata profile. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/global.html#adef-profile">
+     * href="https://www.w3.org/TR/REC-html40/struct/global.html#adef-profile">
      * profile attribute definition </a> in HTML 4.0.
      *
      */
@@ -580,7 +580,7 @@ class DOMString;
 
 /**
  * Root of an HTML document. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/global.html#edef-HTML">
+ * href="https://www.w3.org/TR/REC-html40/struct/global.html#edef-HTML">
  * HTML element definition </a> in HTML 4.0.
  *
  */
@@ -604,7 +604,7 @@ public:
 
     /**
      * Version information about the document's DTD. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/global.html#adef-version">
+     * href="https://www.w3.org/TR/REC-html40/struct/global.html#adef-version">
      * version attribute definition </a> in HTML 4.0. This attribute
      * is deprecated in HTML 4.0.
      *

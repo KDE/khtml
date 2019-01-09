@@ -337,7 +337,7 @@ bool DOMString::startsWith(const DOMString &str) const
 
 static inline bool isSpaceCharacter(const ushort &c)
 {
-    // http://dev.w3.org/html5/spec-LC/common-microsyntaxes.html#space-character
+    // https://dev.w3.org/html5/spec-LC/common-microsyntaxes.html#space-character
     return ((c < 0x0021) &&
             (c == 0x0020 || c == 0x0009 || c == 0x000A || c == 0x000C || c == 0x000D));
 }
@@ -426,7 +426,7 @@ DOMString DOMString::format(const char *format, ...)
     int result = qvsnprintf(&ch, 1, format, args);
     // We need to call va_end() and then va_start() again here, as the
     // contents of args is undefined after the call to vsnprintf
-    // according to http://man.cx/snprintf(3)
+    // according to https://man.cx/snprintf(3)
     //
     // Not calling va_end/va_start here happens to work on lots of
     // systems, but fails e.g. on 64bit Linux.

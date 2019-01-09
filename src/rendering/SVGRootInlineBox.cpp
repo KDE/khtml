@@ -139,7 +139,7 @@ static inline float alignmentBaselineToShift(bool isVerticalText, const RenderOb
         ASSERT(baseline != AB_AUTO);
     }
 
-    // Note: http://wiki.apache.org/xmlgraphics-fop/LineLayout/AlignmentHandling
+    // Note: https://wiki.apache.org/xmlgraphics-fop/LineLayout/AlignmentHandling
     switch (baseline) {
     case AB_BASELINE: {
         if (parentStyle) {

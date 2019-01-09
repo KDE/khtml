@@ -209,7 +209,7 @@ void InlineTextBox::paint(RenderObject::PaintInfo &i, int tx, int ty)
  */
 inline const RenderStyle *retrieveSelectionPseudoStyle(const RenderObject *obj)
 {
-    // http://www.w3.org/Style/CSS/Test/CSS3/Selectors/20021129/html/tests/css3-modsel-162.html
+    // https://www.w3.org/Style/CSS/Test/CSS3/Selectors/20021129/html/tests/css3-modsel-162.html
     // is of the opinion that ::selection of parent elements is also to be applied
     // to children, so let's do it.
     while (obj) {

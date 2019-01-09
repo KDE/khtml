@@ -2127,7 +2127,7 @@ void DocumentImpl::processHttpEquiv(const DOMString &equiv, const DOMString &con
         d->setCookie(content);
     } else if (strcasecmp(equiv, "default-style") == 0) {
         // HTML 4.0 14.3.2
-        // http://www.hixie.ch/tests/evil/css/import/main/preferred.html
+        // https://www.hixie.ch/tests/evil/css/import/main/preferred.html
         m_preferredStylesheetSet = content;
         updateStyleSelector();
     } else if (strcasecmp(equiv, "content-language") == 0) {

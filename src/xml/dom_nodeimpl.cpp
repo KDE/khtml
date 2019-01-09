@@ -1451,7 +1451,7 @@ void NodeImpl::setDocument(DocumentImpl *doc)
 
 DOM::DOMString DOM::NodeImpl::lookupNamespaceURI(const DOM::DOMString &prefix)
 {
-    //for details see http://www.w3.org/TR/DOM-Level-3-Core/namespaces-algorithms.html#lookupNamespaceURIAlgo
+    //for details see https://www.w3.org/TR/DOM-Level-3-Core/namespaces-algorithms.html#lookupNamespaceURIAlgo
 
     // check if this is one of the hard defined prefixes
     PrefixName ppn = PrefixName::fromString(prefix);

@@ -611,7 +611,7 @@ static bool device_widthMediaFeatureEval(CSSValueImpl *value, RenderStyle *style
     return true;
 }
 
-// cf. http://www.w3.org/TR/css3-mediaqueries/#device-width
+// cf. https://www.w3.org/TR/css3-mediaqueries/#device-width
 // "For continuous media, this is the width of the viewport (as described by CSS2, section 9.1.1 [CSS2]).
 //  For paged media, this is the width of the page box (as described by CSS2, section 13.2 [CSS2])"
 

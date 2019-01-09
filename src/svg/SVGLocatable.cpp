@@ -87,7 +87,7 @@ SVGElement *SVGLocatable::farthestViewportElement(const SVGStyledElement *e)
 }
 
 // Spec:
-// http://www.w3.org/TR/2005/WD-SVGMobile12-20050413/svgudom.html#svg::SVGLocatable
+// https://www.w3.org/TR/2005/WD-SVGMobile12-20050413/svgudom.html#svg::SVGLocatable
 FloatRect SVGLocatable::getBBox(const SVGStyledElement *e)
 {
     Q_UNUSED(e);

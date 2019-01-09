@@ -20,7 +20,7 @@
  *
  * This file includes excerpts from the Document Object Model (DOM)
  * Level 1 Specification (Recommendation)
- * http://www.w3.org/TR/REC-DOM-Level-1/
+ * https://www.w3.org/TR/REC-DOM-Level-1/
  * Copyright © World Wide Web Consortium , (Massachusetts Institute of
  * Technology , Institut National de Recherche en Informatique et en
  * Automatique , Keio University ). All Rights Reserved.
@@ -40,7 +40,7 @@ class DOMString;
 
 /**
  * Document base URI. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/links.html#edef-BASE">
+ * href="https://www.w3.org/TR/REC-html40/struct/links.html#edef-BASE">
  * BASE element definition </a> in HTML 4.0.
  *
  */
@@ -64,7 +64,7 @@ public:
 
     /**
      * The base URI See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/links.html#adef-href-BASE">
+     * href="https://www.w3.org/TR/REC-html40/struct/links.html#adef-href-BASE">
      * href attribute definition </a> in HTML 4.0.
      *
      */
@@ -77,7 +77,7 @@ public:
 
     /**
      * The default target frame. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-target">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-target">
      * target attribute definition </a> in HTML 4.0.
      *
      */
@@ -97,7 +97,7 @@ class HTMLLinkElementImpl;
  * The \c LINK element specifies a link to an external
  * resource, and defines this document's relationship to that resource
  * (or vice versa). See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/links.html#edef-LINK">
+ * href="https://www.w3.org/TR/REC-html40/struct/links.html#edef-LINK">
  * LINK element definition </a> in HTML 4.0.
  *
  */
@@ -135,7 +135,7 @@ public:
     /**
      * The character encoding of the resource being linked to. See the
      * <a
-     * href="http://www.w3.org/TR/REC-html40/struct/links.html#adef-charset">
+     * href="https://www.w3.org/TR/REC-html40/struct/links.html#adef-charset">
      * charset attribute definition </a> in HTML 4.0.
      *
      */
@@ -148,7 +148,7 @@ public:
 
     /**
      * The URI of the linked resource. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/links.html#adef-href">
+     * href="https://www.w3.org/TR/REC-html40/struct/links.html#adef-href">
      * href attribute definition </a> in HTML 4.0.
      *
      */
@@ -161,7 +161,7 @@ public:
 
     /**
      * Language code of the linked resource. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/links.html#adef-hreflang">
+     * href="https://www.w3.org/TR/REC-html40/struct/links.html#adef-hreflang">
      * hreflang attribute definition </a> in HTML 4.0.
      *
      */
@@ -174,7 +174,7 @@ public:
 
     /**
      * Designed for use with one or more target media. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/styles.html#adef-media">
+     * href="https://www.w3.org/TR/REC-html40/present/styles.html#adef-media">
      * media attribute definition </a> in HTML 4.0.
      *
      */
@@ -187,7 +187,7 @@ public:
 
     /**
      * Forward link type. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/links.html#adef-rel">
+     * href="https://www.w3.org/TR/REC-html40/struct/links.html#adef-rel">
      * rel attribute definition </a> in HTML 4.0.
      *
      */
@@ -200,7 +200,7 @@ public:
 
     /**
      * Reverse link type. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/links.html#adef-rev">
+     * href="https://www.w3.org/TR/REC-html40/struct/links.html#adef-rev">
      * rev attribute definition </a> in HTML 4.0.
      *
      */
@@ -213,7 +213,7 @@ public:
 
     /**
      * Frame to render the resource in. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-target">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-target">
      * target attribute definition </a> in HTML 4.0.
      *
      */
@@ -226,7 +226,7 @@ public:
 
     /**
      * Advisory content type. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/links.html#adef-type-A">
+     * href="https://www.w3.org/TR/REC-html40/struct/links.html#adef-type-A">
      * type attribute definition </a> in HTML 4.0.
      *
      */
@@ -254,7 +254,7 @@ class HTMLMetaElementImpl;
 /**
  * This contains generic meta-information about the document. See the
  * <a
- * href="http://www.w3.org/TR/REC-html40/struct/global.html#edef-META">
+ * href="https://www.w3.org/TR/REC-html40/struct/global.html#edef-META">
  * META element definition </a> in HTML 4.0.
  *
  */
@@ -278,7 +278,7 @@ public:
 
     /**
      * Associated information. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/global.html#adef-content">
+     * href="https://www.w3.org/TR/REC-html40/struct/global.html#adef-content">
      * content attribute definition </a> in HTML 4.0.
      *
      */
@@ -291,7 +291,7 @@ public:
 
     /**
      * HTTP response header name. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/global.html#adef-http-equiv">
+     * href="https://www.w3.org/TR/REC-html40/struct/global.html#adef-http-equiv">
      * http-equiv attribute definition </a> in HTML 4.0.
      *
      */
@@ -304,7 +304,7 @@ public:
 
     /**
      * Meta information name. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/global.html#adef-name-META">
+     * href="https://www.w3.org/TR/REC-html40/struct/global.html#adef-name-META">
      * name attribute definition </a> in HTML 4.0.
      *
      */
@@ -317,7 +317,7 @@ public:
 
     /**
      * Select form of content. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/global.html#adef-scheme">
+     * href="https://www.w3.org/TR/REC-html40/struct/global.html#adef-scheme">
      * scheme attribute definition </a> in HTML 4.0.
      *
      */
@@ -335,7 +335,7 @@ class HTMLScriptElementImpl;
 
 /**
  * Script statements. See the <a
- * href="http://www.w3.org/TR/REC-html40/interact/scripts.html#edef-SCRIPT">
+ * href="https://www.w3.org/TR/REC-html40/interact/scripts.html#edef-SCRIPT">
  * SCRIPT element definition </a> in HTML 4.0.
  *
  */
@@ -392,7 +392,7 @@ public:
 
     /**
      * The character encoding of the linked resource. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/links.html#adef-charset">
+     * href="https://www.w3.org/TR/REC-html40/struct/links.html#adef-charset">
      * charset attribute definition </a> in HTML 4.0.
      *
      */
@@ -406,7 +406,7 @@ public:
     /**
      * Indicates that the user agent can defer processing of the
      * script. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/scripts.html#adef-defer">
+     * href="https://www.w3.org/TR/REC-html40/interact/scripts.html#adef-defer">
      * defer attribute definition </a> in HTML 4.0.
      *
      */
@@ -419,7 +419,7 @@ public:
 
     /**
      * URI designating an external script. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/scripts.html#adef-src-SCRIPT">
+     * href="https://www.w3.org/TR/REC-html40/interact/scripts.html#adef-src-SCRIPT">
      * src attribute definition </a> in HTML 4.0.
      *
      */
@@ -432,7 +432,7 @@ public:
 
     /**
      * The content type of the script language. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/scripts.html#adef-type-SCRIPT">
+     * href="https://www.w3.org/TR/REC-html40/interact/scripts.html#adef-type-SCRIPT">
      * type attribute definition </a> in HTML 4.0.
      *
      */
@@ -451,7 +451,7 @@ class HTMLStyleElementImpl;
 /**
  * Style information. A more detailed style sheet object model is
  * planned to be defined in a separate document. See the <a
- * href="http://www.w3.org/TR/REC-html40/present/styles.html#edef-STYLE">
+ * href="https://www.w3.org/TR/REC-html40/present/styles.html#edef-STYLE">
  * STYLE element definition </a> in HTML 4.0.
  *
  */
@@ -486,7 +486,7 @@ public:
 
     /**
      * Designed for use with one or more target media. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/styles.html#adef-media">
+     * href="https://www.w3.org/TR/REC-html40/present/styles.html#adef-media">
      * media attribute definition </a> in HTML 4.0.
      *
      */
@@ -499,7 +499,7 @@ public:
 
     /**
      * The style sheet language (Internet media type). See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/styles.html#adef-type-STYLE">
+     * href="https://www.w3.org/TR/REC-html40/present/styles.html#adef-type-STYLE">
      * type attribute definition </a> in HTML 4.0.
      *
      */
@@ -526,7 +526,7 @@ class HTMLTitleElementImpl;
 
 /**
  * The document title. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/global.html#edef-TITLE">
+ * href="https://www.w3.org/TR/REC-html40/struct/global.html#edef-TITLE">
  * TITLE element definition </a> in HTML 4.0.
  *
  */

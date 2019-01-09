@@ -141,7 +141,7 @@ bool Tokenizer::isNodeTypeName(QString name)
 }
 
 /* Returns whether the last parsed token matches the [32] Operator rule
- * (check http://www.w3.org/TR/xpath#exprlex). Necessary to disambiguate
+ * (check https://www.w3.org/TR/xpath#exprlex). Necessary to disambiguate
  * the tokens.
  */
 bool Tokenizer::isOperatorContext()

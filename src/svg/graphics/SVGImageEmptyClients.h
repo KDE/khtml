@@ -43,7 +43,7 @@
  This tree depends heavily on Clients (usually provided by WebKit classes).
 
  SVGImage has no way to access the current Page (nor should it, since Images are not tied to a page).
- See http://bugs.webkit.org/show_bug.cgi?id=5971 for more discussion on this issue.
+ See https://bugs.webkit.org/show_bug.cgi?id=5971 for more discussion on this issue.
 
  Ideally, whenever you change a Client class, you should add a stub here.
  Brittle, yes.  Unfortunate, yes.  Hopefully temporary.

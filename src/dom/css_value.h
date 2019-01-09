@@ -20,7 +20,7 @@
  *
  * This file includes excerpts from the Document Object Model (DOM)
  * Level 2 Specification (Style)
- * http://www.w3.org/TR/DOM-Level-2-Style/
+ * https://www.w3.org/TR/DOM-Level-2-Style/
  * Copyright © 2000 W3C® (MIT, INRIA, Keio), All Rights Reserved.
  *
  */
@@ -40,7 +40,7 @@ class CSSValue;
 
 /**
  * The \c CSSStyleDeclaration interface represents a
- * single <a href="http://www.w3.org/TR/REC-CSS2/syndata.html#block">
+ * single <a href="https://www.w3.org/TR/CSS2/syndata.html#block">
  * CSS declaration block </a> . This interface may be used to
  * determine the style properties currently set in a block or to set
  * style properties explicitly within the block.
@@ -50,7 +50,7 @@ class CSSValue;
  * all specified properties through the \c CSSStyleDeclaration
  * interface. Furthermore, implementations that support a
  * specific level of CSS should correctly handle <a
- * href="http://www.w3.org/TR/REC-CSS2/about.html#shorthand"> CSS
+ * href="https://www.w3.org/TR/CSS2/about.html#shorthand"> CSS
  * shorthand </a> properties for that level. For a further discussion
  * of shorthand properties, see the \c CSS2Properties
  * interface.
@@ -108,7 +108,7 @@ public:
      * explicitly set within this declaration block.
      *
      * @param propertyName The name of the CSS property. See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/propidx.html"> CSS property
+     * href="https://www.w3.org/TR/CSS2/propidx.html"> CSS property
      * index </a> .
      *
      * @return Returns the value of the property if it has been
@@ -122,14 +122,14 @@ public:
      * Used to retrieve the object representation of the value of a
      * CSS property if it has been explicitly set within this
      * declaration block. This method returns null if the property is
-     * a <a href="http://www.w3.org/TR/REC-CSS2/about.html#shorthand">
+     * a <a href="https://www.w3.org/TR/CSS2/about.html#shorthand">
      * shorthand </a> property. Shorthand property values can only be
      * accessed and modified as strings, using the
      * \c getPropertyValue and \c setProperty
      * methods.
      *
      * @param propertyName The name of the CSS property. See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/propidx.html"> CSS property
+     * href="https://www.w3.org/TR/CSS2/propidx.html"> CSS property
      * index </a> .
      *
      * @return Returns the value of the property if it has been
@@ -144,7 +144,7 @@ public:
      * within this declaration block.
      *
      * @param propertyName The name of the CSS property. See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/propidx.html"> CSS property
+     * href="https://www.w3.org/TR/CSS2/propidx.html"> CSS property
      * index </a> .
      *
      * @return Returns the value of the property if it has been
@@ -165,7 +165,7 @@ public:
      * explicitly set in this declaration block.
      *
      * @param propertyName The name of the CSS property. See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/propidx.html"> CSS property
+     * href="https://www.w3.org/TR/CSS2/propidx.html"> CSS property
      * index </a> .
      *
      * @return A string representing the priority (e.g.
@@ -180,7 +180,7 @@ public:
      * declaration block.
      *
      * @param propertyName The name of the CSS property. See the <a
-     * href="http://www.w3.org/TR/REC-CSS2/propidx.html"> CSS property
+     * href="https://www.w3.org/TR/CSS2/propidx.html"> CSS property
      * index </a> .
      *
      * @param value The new value of the property.
@@ -355,7 +355,7 @@ class Rect;
 
 /**
  * The \c CSSPrimitiveValue interface represents a single
- * <a href="http://www.w3.org/TR/REC-CSS2/syndata.html#values"> CSS
+ * <a href="https://www.w3.org/TR/CSS2/syndata.html#values"> CSS
  * value </a> . This interface may be used to determine the value of a
  * specific style property currently set in a block or to set a
  * specific style properties explicitly within the block. An instance
@@ -573,7 +573,7 @@ public:
 
 /**
  * The \c RGBColor interface is used to represent any <a
- * href="http://www.w3.org/TR/REC-CSS2/syndata.html#value-def-color">
+ * href="https://www.w3.org/TR/CSS2/syndata.html#value-def-color">
  * RGB color </a> value. This interface reflects the values in the
  * underlying style property. Hence, modifications made through this
  * interface modify the style property.
@@ -630,7 +630,7 @@ class RectImpl;
 
 /**
  * The \c Rect interface is used to represent any <a
- * href="http://www.w3.org/TR/REC-CSS2/visufx.html#value-def-shape">
+ * href="https://www.w3.org/TR/CSS2/visufx.html#value-def-shape">
  * rect </a> value. This interface reflects the values in the
  * underlying style property. Hence, modifications made through this
  * interface modify the style property.
@@ -687,7 +687,7 @@ class CounterImpl;
 
 /**
  * The \c Counter interface is used to represent any <a
- * href="http://www.w3.org/TR/REC-CSS2/syndata.html#value-def-counter">
+ * href="https://www.w3.org/TR/CSS2/syndata.html#value-def-counter">
  * counter or counters function </a> value. This interface reflects
  * the values in the underlying style property. Hence, modifications
  * made through this interface modify the style property.

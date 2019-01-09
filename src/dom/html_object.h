@@ -20,7 +20,7 @@
  *
  * This file includes excerpts from the Document Object Model (DOM)
  * Level 1 Specification (Recommendation)
- * http://www.w3.org/TR/REC-DOM-Level-1/
+ * https://www.w3.org/TR/REC-DOM-Level-1/
  * Copyright © World Wide Web Consortium , (Massachusetts Institute of
  * Technology , Institut National de Recherche en Informatique et en
  * Automatique , Keio University ). All Rights Reserved.
@@ -42,7 +42,7 @@ class HTMLAppletElementImpl;
 
 /**
  * An embedded Java applet. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/objects.html#edef-APPLET">
+ * href="https://www.w3.org/TR/REC-html40/struct/objects.html#edef-APPLET">
  * APPLET element definition </a> in HTML 4.0. This element is
  * deprecated in HTML 4.0.
  *
@@ -68,7 +68,7 @@ public:
     /**
      * Aligns this object (vertically or horizontally) with respect to
      * its surrounding text. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-align-IMG">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-align-IMG">
      * align attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -83,7 +83,7 @@ public:
     /**
      * Alternate text for user agents not rendering the normal content
      * of this element. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-alt">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-alt">
      * alt attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -97,7 +97,7 @@ public:
 
     /**
      * Comma-separated archive list. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-archive-APPLET">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-archive-APPLET">
      * archive attribute definition </a> in HTML 4.0. This attribute
      * is deprecated in HTML 4.0.
      *
@@ -111,7 +111,7 @@ public:
 
     /**
      * Applet class file. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-code">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-code">
      * code attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -125,7 +125,7 @@ public:
 
     /**
      * Optional base URI for applet. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-codebase-APPLET">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-codebase-APPLET">
      * codebase attribute definition </a> in HTML 4.0. This attribute
      * is deprecated in HTML 4.0.
      *
@@ -139,7 +139,7 @@ public:
 
     /**
      * Override height. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-height-APPLET">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-height-APPLET">
      * height attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -154,7 +154,7 @@ public:
     /**
      * Horizontal space, in pixels, to the left and right of this image, applet,
      * or object. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-hspace">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-hspace">
      * hspace attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -182,7 +182,7 @@ public:
 
     /**
      * The name of the applet. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-name-APPLET">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-name-APPLET">
      * name attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -196,7 +196,7 @@ public:
 
     /**
      * Serialized applet file. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-object">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-object">
      * object attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -211,7 +211,7 @@ public:
     /**
      * Vertical space, in pixels, above and below this image, applet, or object.
      * See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-vspace">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-vspace">
      * vspace attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -239,7 +239,7 @@ public:
 
     /**
      * Override width. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-width-APPLET">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-width-APPLET">
      * width attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -261,7 +261,7 @@ class HTMLObjectElementImpl;
  * object element are read-write but in some environments some
  * properties may be read-only once the underlying object is
  * instantiated. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/objects.html#edef-OBJECT">
+ * href="https://www.w3.org/TR/REC-html40/struct/objects.html#edef-OBJECT">
  * OBJECT element definition </a> in HTML 4.0.
  *
  */
@@ -306,7 +306,7 @@ public:
     /**
      * Aligns this object (vertically or horizontally) with respect to
      * its surrounding text. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-align-IMG">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-align-IMG">
      * align attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -320,7 +320,7 @@ public:
 
     /**
      * Space-separated list of archives. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-archive-OBJECT">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-archive-OBJECT">
      * archive attribute definition </a> in HTML 4.0.
      *
      */
@@ -333,7 +333,7 @@ public:
 
     /**
      * Width of border around the object. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-border">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-border">
      * border attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -348,7 +348,7 @@ public:
     /**
      * Base URI for \c classid , \c data , and
      * \c archive attributes. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-codebase-OBJECT">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-codebase-OBJECT">
      * codebase attribute definition </a> in HTML 4.0.
      *
      */
@@ -362,7 +362,7 @@ public:
     /**
      * Content type for data downloaded via \c classid
      * attribute. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-codetype">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-codetype">
      * codetype attribute definition </a> in HTML 4.0.
      *
      */
@@ -375,7 +375,7 @@ public:
 
     /**
      * A URI specifying the location of the object's data. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-data">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-data">
      * data attribute definition </a> in HTML 4.0.
      *
      */
@@ -389,7 +389,7 @@ public:
     /**
      * Declare (for future reference), but do not instantiate, this
      * object. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-declare">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-declare">
      * declare attribute definition </a> in HTML 4.0.
      *
      */
@@ -402,7 +402,7 @@ public:
 
     /**
      * Override height. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-height-IMG">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-height-IMG">
      * height attribute definition </a> in HTML 4.0.
      *
      */
@@ -416,7 +416,7 @@ public:
     /**
      * Horizontal space, in pixels, to the left and right of this image, applet,
      * or object. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-hspace">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-hspace">
      * hspace attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -445,7 +445,7 @@ public:
     /**
      * Form control or object name when submitted with a form. See the
      * <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-name-INPUT">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-name-INPUT">
      * name attribute definition </a> in HTML 4.0.
      *
      */
@@ -458,7 +458,7 @@ public:
 
     /**
      * Message to render while loading the object. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-standby">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-standby">
      * standby attribute definition </a> in HTML 4.0.
      *
      */
@@ -472,7 +472,7 @@ public:
     /**
      * Index that represents the element's position in the tabbing
      * order. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-tabindex">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-tabindex">
      * tabindex attribute definition </a> in HTML 4.0.
      *
      */
@@ -486,7 +486,7 @@ public:
     /**
      * Content type for data downloaded via \c data
      * attribute. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-type-OBJECT">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-type-OBJECT">
      * type attribute definition </a> in HTML 4.0.
      *
      */
@@ -499,7 +499,7 @@ public:
 
     /**
      * Use client-side image map. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-usemap">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-usemap">
      * usemap attribute definition </a> in HTML 4.0.
      *
      */
@@ -513,7 +513,7 @@ public:
     /**
      * Vertical space, in pixels, above and below this image, applet, or object.
      * See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-vspace">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-vspace">
      * vspace attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -541,7 +541,7 @@ public:
 
     /**
      * Override width. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-width-IMG">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-width-IMG">
      * width attribute definition </a> in HTML 4.0.
      *
      */
@@ -570,7 +570,7 @@ class HTMLParamElementImpl;
 
 /**
  * Parameters fed to the \c OBJECT element. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/objects.html#edef-PARAM">
+ * href="https://www.w3.org/TR/REC-html40/struct/objects.html#edef-PARAM">
  * PARAM element definition </a> in HTML 4.0.
  *
  */
@@ -594,7 +594,7 @@ public:
 
     /**
      * The name of a run-time parameter. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-name-PARAM">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-name-PARAM">
      * name attribute definition </a> in HTML 4.0.
      *
      */
@@ -608,7 +608,7 @@ public:
     /**
      * Content type for the \c value attribute when
      * \c valuetype has the value "ref". See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-type-PARAM">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-type-PARAM">
      * type attribute definition </a> in HTML 4.0.
      *
      */
@@ -621,7 +621,7 @@ public:
 
     /**
      * The value of a run-time parameter. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-value-PARAM">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-value-PARAM">
      * value attribute definition </a> in HTML 4.0.
      *
      */
@@ -635,7 +635,7 @@ public:
     /**
      * Information about the meaning of the \c value
      * attribute value. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-valuetype">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-valuetype">
      * valuetype attribute definition </a> in HTML 4.0.
      *
      */

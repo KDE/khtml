@@ -40,7 +40,7 @@ bool parseNumber(const UChar *&ptr, const UChar *end, float &number, bool skip =
 bool parseNumberOptionalNumber(const String &s, float &h, float &v);
 
 // SVG allows several different whitespace characters:
-// http://www.w3.org/TR/SVG/paths.html#PathDataBNF
+// https://www.w3.org/TR/SVG/paths.html#PathDataBNF
 inline bool isWhitespace(const UChar &c)
 {
     return (c == ' ' || c == '\t' || c == '\n' || c == '\r');

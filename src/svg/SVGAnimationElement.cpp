@@ -189,7 +189,7 @@ bool SVGAnimationElement::endElementAt(float offset, ExceptionCode &ec)
 
 SVGAnimationElement::AnimationMode SVGAnimationElement::animationMode() const
 {
-    // http://www.w3.org/TR/2001/REC-smil-animation-20010904/#AnimFuncValues
+    // https://www.w3.org/TR/2001/REC-smil-animation-20010904/#AnimFuncValues
     if (hasTagName(SVGNames::setTag)) {
         return ToAnimation;
     }

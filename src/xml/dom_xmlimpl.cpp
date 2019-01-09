@@ -423,7 +423,7 @@ bool ProcessingInstructionImpl::childTypeAllowed(unsigned short /*type*/)
 void ProcessingInstructionImpl::checkStyleSheet()
 {
     if (m_target && DOMString(m_target) == "xml-stylesheet") {
-        // see http://www.w3.org/TR/xml-stylesheet/
+        // see https://www.w3.org/TR/xml-stylesheet/
         // ### check that this occurs only in the prolog
         // ### support stylesheet included in a fragment of this (or another) document
         // ### make sure this gets called when adding from javascript

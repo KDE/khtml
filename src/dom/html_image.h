@@ -20,7 +20,7 @@
  *
  * This file includes excerpts from the Document Object Model (DOM)
  * Level 1 Specification (Recommendation)
- * http://www.w3.org/TR/REC-DOM-Level-1/
+ * https://www.w3.org/TR/REC-DOM-Level-1/
  * Copyright © World Wide Web Consortium , (Massachusetts Institute of
  * Technology , Institut National de Recherche en Informatique et en
  * Automatique , Keio University ). All Rights Reserved.
@@ -39,7 +39,7 @@ class DOMString;
 
 /**
  * Client-side image map area definition. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/objects.html#edef-AREA">
+ * href="https://www.w3.org/TR/REC-html40/struct/objects.html#edef-AREA">
  * AREA element definition </a> in HTML 4.0.
  *
  */
@@ -64,7 +64,7 @@ public:
     /**
      * A single character access key to give access to the form
      * control. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-accesskey">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-accesskey">
      * accesskey attribute definition </a> in HTML 4.0.
      *
      */
@@ -78,7 +78,7 @@ public:
     /**
      * Alternate text for user agents not rendering the normal content
      * of this element. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-alt">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-alt">
      * alt attribute definition </a> in HTML 4.0.
      *
      */
@@ -93,7 +93,7 @@ public:
      * Comma-separated list of lengths, defining an active region
      * geometry. See also \c shape for the shape of the
      * region. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-coords">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-coords">
      * coords attribute definition </a> in HTML 4.0.
      *
      */
@@ -106,7 +106,7 @@ public:
 
     /**
      * The URI of the linked resource. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/links.html#adef-href">
+     * href="https://www.w3.org/TR/REC-html40/struct/links.html#adef-href">
      * href attribute definition </a> in HTML 4.0.
      *
      */
@@ -120,7 +120,7 @@ public:
     /**
      * Specifies that this area is inactive, i.e., has no associated
      * action. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-nohref">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-nohref">
      * nohref attribute definition </a> in HTML 4.0.
      *
      */
@@ -134,7 +134,7 @@ public:
     /**
      * The shape of the active area. The coordinates are given by
      * \c coords . See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-shape">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-shape">
      * shape attribute definition </a> in HTML 4.0.
      *
      */
@@ -148,7 +148,7 @@ public:
     /**
      * Index that represents the element's position in the tabbing
      * order. See the <a
-     * href="http://www.w3.org/TR/REC-html40/interact/forms.html#adef-tabindex">
+     * href="https://www.w3.org/TR/REC-html40/interact/forms.html#adef-tabindex">
      * tabindex attribute definition </a> in HTML 4.0.
      *
      */
@@ -161,7 +161,7 @@ public:
 
     /**
      * Frame to render the resource in. See the <a
-     * href="http://www.w3.org/TR/REC-html40/present/frames.html#adef-target">
+     * href="https://www.w3.org/TR/REC-html40/present/frames.html#adef-target">
      * target attribute definition </a> in HTML 4.0.
      *
      */
@@ -179,7 +179,7 @@ class HTMLImageElementImpl;
 
 /**
  * Embedded image. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/objects.html#edef-IMG">
+ * href="https://www.w3.org/TR/REC-html40/struct/objects.html#edef-IMG">
  * IMG element definition </a> in HTML 4.0.
  *
  */
@@ -215,7 +215,7 @@ public:
     /**
      * Aligns this object (vertically or horizontally) with respect to
      * its surrounding text. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-align-IMG">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-align-IMG">
      * align attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -230,7 +230,7 @@ public:
     /**
      * Alternate text for user agents not rendering the normal content
      * of this element. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-alt">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-alt">
      * alt attribute definition </a> in HTML 4.0.
      *
      */
@@ -243,7 +243,7 @@ public:
 
     /**
      * Width of border around image. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-border-IMG">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-border-IMG">
      * border attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -271,7 +271,7 @@ public:
 
     /**
      * Override height. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-height-IMG">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-height-IMG">
      * height attribute definition </a> in HTML 4.0.
      *
      */
@@ -285,7 +285,7 @@ public:
     /**
      * Horizontal space to the left and right of this image. See the
      * <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-hspace">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-hspace">
      * hspace attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -299,7 +299,7 @@ public:
 
     /**
      * Use server-side image map. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-ismap">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-ismap">
      * ismap attribute definition </a> in HTML 4.0.
      *
      */
@@ -313,7 +313,7 @@ public:
     /**
      * URI designating a long description of this image or frame. See
      * the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-longdesc-IMG">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-longdesc-IMG">
      * longdesc attribute definition </a> in HTML 4.0.
      *
      */
@@ -326,7 +326,7 @@ public:
 
     /**
      * URI designating the source of this image. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-src-IMG">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-src-IMG">
      * src attribute definition </a> in HTML 4.0.
      *
      */
@@ -339,7 +339,7 @@ public:
 
     /**
      * Use client-side image map. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-usemap">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-usemap">
      * usemap attribute definition </a> in HTML 4.0.
      *
      */
@@ -352,7 +352,7 @@ public:
 
     /**
      * Vertical space above and below this image. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-vspace">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-vspace">
      * vspace attribute definition </a> in HTML 4.0. This attribute is
      * deprecated in HTML 4.0.
      *
@@ -366,7 +366,7 @@ public:
 
     /**
      * Override width. See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-width-IMG">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-width-IMG">
      * width attribute definition </a> in HTML 4.0.
      *
      */
@@ -392,7 +392,7 @@ class DOMString;
 
 /**
  * Client-side image map. See the <a
- * href="http://www.w3.org/TR/REC-html40/struct/objects.html#edef-MAP">
+ * href="https://www.w3.org/TR/REC-html40/struct/objects.html#edef-MAP">
  * MAP element definition </a> in HTML 4.0.
  *
  */
@@ -422,7 +422,7 @@ public:
 
     /**
      * Names the map (for use with \c usemap ). See the <a
-     * href="http://www.w3.org/TR/REC-html40/struct/objects.html#adef-name-MAP">
+     * href="https://www.w3.org/TR/REC-html40/struct/objects.html#adef-name-MAP">
      * name attribute definition </a> in HTML 4.0.
      *
      */

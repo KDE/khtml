@@ -308,7 +308,7 @@ void ProspectiveTokenizer::tokenize(const TokenizerString &source)
     m_source.append(source);
 
     // This is a simplified HTML5 Tokenizer
-    // http://www.whatwg.org/specs/web-apps/current-work/#tokenisation0
+    // https://html.spec.whatwg.org/#tokenization
     while (!m_source.isEmpty()) {
         ushort cc = m_source->unicode();
         switch (m_state) {

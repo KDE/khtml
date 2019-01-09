@@ -132,7 +132,7 @@ public:
 
     TextImpl *splitText(const unsigned long offset, int &exceptioncode);
 
-    // DOM Level 3: http://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-1312295772
+    // DOM Level 3: https://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-1312295772
     DOMString wholeText() const;
     TextImpl *replaceWholeText(const DOMString &newText, int &ec);
 

@@ -470,7 +470,7 @@ static inline bool isExtender(ushort c)
 bool Element::khtmlValidAttrName(const DOMString &name)
 {
     // Check if name is valid
-    // http://www.w3.org/TR/2000/REC-xml-20001006#NT-Name
+    // https://www.w3.org/TR/2000/REC-xml-20001006#NT-Name
     DOMStringImpl *_name = name.implementation();
     QChar ch = _name->s[0];
     if (!ch.isLetter() && ch != '_' && ch != ':') {

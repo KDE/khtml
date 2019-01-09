@@ -4016,14 +4016,14 @@ void KHTMLPart::slotViewPageInfo()
     } else {
         switch (xmlDocImpl()->parseMode()) {
         case DOM::DocumentImpl::Compat:
-            ui._mode->setText(i18nc("HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)", "Quirks"));
+            ui._mode->setText(i18nc("HTML rendering mode (see https://en.wikipedia.org/wiki/Quirks_mode)", "Quirks"));
             break;
         case DOM::DocumentImpl::Transitional:
-            ui._mode->setText(i18nc("HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)", "Almost standards"));
+            ui._mode->setText(i18nc("HTML rendering mode (see https://en.wikipedia.org/wiki/Quirks_mode)", "Almost standards"));
             break;
         case DOM::DocumentImpl::Strict:
         default: // others handled above
-            ui._mode->setText(i18nc("HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)", "Strict"));
+            ui._mode->setText(i18nc("HTML rendering mode (see https://en.wikipedia.org/wiki/Quirks_mode)", "Strict"));
             break;
         }
     }

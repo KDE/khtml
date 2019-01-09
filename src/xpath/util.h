@@ -48,7 +48,7 @@ typedef SharedPtr<DOM::StaticNodeListImpl> DomNodeList;
 bool isRootDomNode(DOM::NodeImpl *node);
 
 /* @return the 'string-value' of the given node as specified by
-   http://www.w3.org/TR/xpath
+   https://www.w3.org/TR/xpath
  */
 DOM::DOMString stringValue(DOM::NodeImpl *node);
 

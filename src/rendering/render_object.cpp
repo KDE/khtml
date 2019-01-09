@@ -1314,7 +1314,7 @@ void RenderObject::drawBorder(QPainter *p, int x1, int y1, int x2, int y2,
 
 void RenderObject::calcBorderRadii(QPoint &topLeftRadii, QPoint &topRightRadii, QPoint &bottomLeftRadii, QPoint &bottomRightRadii, int w, int h) const
 {
-    // CSS Backgrounds and Borders Module Level 3 (http://www.w3.org/TR/2014/CR-css3-background-20140909/), chapter 5.5:
+    // CSS Backgrounds and Borders Module Level 3 (https://www.w3.org/TR/2014/CR-css3-background-20140909/), chapter 5.5:
     // "Corner curves must not overlap: When the sum of any two adjacent border radii exceeds the size of the border box,
     //  UAs must proportionally reduce the used values of all border radii until none of them overlap.
     //  The algorithm for reducing radii is as follows: ..."

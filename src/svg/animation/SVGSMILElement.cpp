@@ -617,7 +617,7 @@ SMILTime SVGSMILElement::findInstanceTime(BeginOrEnd beginOrEnd, SMILTime minimu
 SMILTime SVGSMILElement::repeatingDuration() const
 {
     // Computing the active duration
-    // http://www.w3.org/TR/SMIL2/smil-timing.html#Timing-ComputingActiveDur
+    // https://www.w3.org/TR/SMIL2/smil-timing.html#Timing-ComputingActiveDur
     SMILTime repeatCount = this->repeatCount();
     SMILTime repeatDur = this->repeatDur();
     SMILTime simpleDuration = this->simpleDuration();
@@ -631,7 +631,7 @@ SMILTime SVGSMILElement::repeatingDuration() const
 SMILTime SVGSMILElement::resolveActiveEnd(SMILTime resolvedBegin, SMILTime resolvedEnd) const
 {
     // Computing the active duration
-    // http://www.w3.org/TR/SMIL2/smil-timing.html#Timing-ComputingActiveDur
+    // https://www.w3.org/TR/SMIL2/smil-timing.html#Timing-ComputingActiveDur
     SMILTime preliminaryActiveDuration;
     if (!resolvedEnd.isUnresolved() && dur().isUnresolved() && repeatDur().isUnresolved() && repeatCount().isUnresolved()) {
         preliminaryActiveDuration = resolvedEnd - resolvedBegin;
@@ -645,7 +645,7 @@ SMILTime SVGSMILElement::resolveActiveEnd(SMILTime resolvedBegin, SMILTime resol
     SMILTime maxValue = this->maxValue();
     if (minValue > maxValue) {
         // Ignore both.
-        // http://www.w3.org/TR/2001/REC-smil-animation-20010904/#MinMax
+        // https://www.w3.org/TR/2001/REC-smil-animation-20010904/#MinMax
         minValue = 0;
         maxValue = SMILTime::indefinite();
     }
@@ -655,7 +655,7 @@ SMILTime SVGSMILElement::resolveActiveEnd(SMILTime resolvedBegin, SMILTime resol
 void SVGSMILElement::resolveInterval(bool first, SMILTime &beginResult, SMILTime &endResult) const
 {
     // See the pseudocode in
-    // http://www.w3.org/TR/2001/REC-smil-animation-20010904/#Timing-BeginEnd-LifeCycle
+    // https://www.w3.org/TR/2001/REC-smil-animation-20010904/#Timing-BeginEnd-LifeCycle
     SMILTime beginAfter = first ? -numeric_limits<double>::infinity() : m_intervalEnd;
     SMILTime lastIntervalTempEnd = numeric_limits<double>::infinity();
     while (true) {

@@ -1308,7 +1308,7 @@ void RenderTableSection::addCell(RenderTableCell *cell, RenderTableRow *row)
     //What:Postion the cell
     //How: we take care of special case when colspan or rowspan equals 0
     //setting an initial "guess" of a colspan and rowspan, look at
-    //http://www.w3.org/TR/html401/struct/tables.html for details on cells with span = 0
+    //https://www.w3.org/TR/html401/struct/tables.html for details on cells with span = 0
     //after that position the cell normally, we do it to tell the cell where it is
     //and tell other cells where they can't be located (marking the cells as -1),
     //later taking the span into account (and in other function) the cell is

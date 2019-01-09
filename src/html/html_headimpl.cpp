@@ -184,7 +184,7 @@ void HTMLLinkElementImpl::parseAttribute(AttributeImpl *attr)
 
 static inline bool isIconLink(const QString &relAttribute)
 {
-    // http://www.w3.org/TR/html5/links.html#linkTypes:
+    // https://www.w3.org/TR/html5/links.html#linkTypes:
     // split rel attribute on spaces and search for "icon" keyword.
     // note: relAttribute is supposed to be a lower case string
     const QLatin1String icon("icon");
@@ -234,7 +234,7 @@ void HTMLLinkElementImpl::process()
 
             QString chset = getAttribute(ATTR_CHARSET).string();
             // set chset to charset of referring document when attribute CHARSET is absent.
-            // http://www.w3.org/TR/CSS21/syndata.html(4.4)
+            // https://www.w3.org/TR/CSS21/syndata.html(4.4)
             if (chset.isEmpty() && part) {
                 chset = part->encoding();
             }

@@ -143,7 +143,7 @@ class Wallet;
  * page at some URL) is the following:
  *
  * \code
- * QUrl url = "http://www.kde.org";
+ * QUrl url = "https://www.kde.org";
  * KHTMLPart *w = new KHTMLPart();
  * w->openUrl(url);
  * w->view()->resize(500, 400);

@@ -194,7 +194,7 @@ protected:
      *
      * @returns true if current encoding is utf8 and the text cannot be in this encoding
      *
-     * Please somebody read http://de.wikipedia.org/wiki/UTF-8 and check this code...
+     * Please somebody read https://en.wikipedia.org/wiki/UTF-8 and check this code...
      */
     bool errorsIfUtf8(const char *data, int length);
 

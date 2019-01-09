@@ -872,7 +872,7 @@ bool CSSStyleDeclarationImpl::setProperty(int id, const DOMString &value, bool i
 #if 0
     if (!success) {
         // CSS DOM requires raising SYNTAX_ERR here, but this is too dangerous for compatibility,
-        // see <http://bugs.webkit.org/show_bug.cgi?id=7296>.
+        // see <https://bugs.webkit.org/show_bug.cgi?id=7296>.
     }
 #endif
     return success;
