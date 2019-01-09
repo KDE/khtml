@@ -1167,10 +1167,10 @@ void RenderLineEdit::setStyle(RenderStyle *_style)
 
     bool showClearButton = (!shouldDisableNativeBorders() && !_style->hasBackgroundImage());
 
-    if (!showClearButton && widget()->isClearButtonShown()) {
-        widget()->setClearButtonShown(false);
-    } else if (showClearButton && !widget()->isClearButtonShown()) {
-        widget()->setClearButtonShown(true);
+    if (!showClearButton && widget()->isClearButtonEnabled()) {
+        widget()->setClearButtonEnabled(false);
+    } else if (showClearButton && !widget()->isClearButtonEnabled()) {
+        widget()->setClearButtonEnabled(true);
         QObjectList children = widget()->children();
         foreach (QObject *object, children) {
             QWidget *w = qobject_cast<QWidget *>(object);

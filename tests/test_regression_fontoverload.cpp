@@ -570,5 +570,5 @@ KParts::Plugin *KParts::Plugin::loadPlugin(QObject * /* parent */, const char * 
 
 #include <klineedit.h>
 
-void KLineEdit::setClearButtonShown(bool /*show*/)
+void KLineEdit::setClearButtonEnabled(bool /*show*/)
 {}
