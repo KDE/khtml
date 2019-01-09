@@ -43,8 +43,8 @@ namespace KJS
         return s_name; \
     } \
     \
-    KJS::Identifier* ArrayBufferViewProto##TypeName::s_name = 0; \
-    const KJS::ClassInfo ArrayBufferViewProto##TypeName::info = { "ArrayBuffer"#TypeName , 0, &ArrayBufferViewProtoTable, 0 }; \
+    KJS::Identifier* ArrayBufferViewProto##TypeName::s_name = nullptr; \
+    const KJS::ClassInfo ArrayBufferViewProto##TypeName::info = { "ArrayBuffer"#TypeName , nullptr, &ArrayBufferViewProtoTable, nullptr }; \
     \
     KJS::JSObject *ArrayBufferViewProto##TypeName::self(KJS::ExecState *exec) { \
         return KJS_CACHEGLOBALOBJECT_NS cacheGlobalObject<ArrayBufferViewProto##TypeName >(exec, *name()); \
@@ -53,7 +53,7 @@ namespace KJS
         : ArrayBufferViewProto<type, ArrayBufferView##TypeName>(exec) \
     {} \
     \
-    const KJS::ClassInfo ArrayBufferView##TypeName::info = { "ArrayBuffer"#TypeName , 0, &ArrayBufferViewProtoTable, 0 }; \
+    const KJS::ClassInfo ArrayBufferView##TypeName::info = { "ArrayBuffer"#TypeName , nullptr, &ArrayBufferViewProtoTable, nullptr }; \
     \
     ArrayBufferView##TypeName::ArrayBufferView##TypeName(ExecState* exec, ArrayBuffer* buffer, size_t byteOffset, size_t byteLength) \
         : ArrayBufferView<type, ArrayBufferViewProto##TypeName>(exec,buffer, byteOffset, byteLength) \

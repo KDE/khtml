@@ -45,7 +45,7 @@
 #endif
 
 #define PREPARE_JSEDITOR_CALL(command, retval) \
-    JSEditor *js = m_part->xmlDocImpl() ? m_part->xmlDocImpl()->jsEditor() : 0; \
+    JSEditor *js = m_part->xmlDocImpl() ? m_part->xmlDocImpl()->jsEditor() : nullptr; \
     if (!js) return retval; \
     const CommandImp *imp = js->commandImp(command)
 

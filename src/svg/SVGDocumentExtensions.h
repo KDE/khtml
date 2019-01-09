@@ -126,7 +126,7 @@ public:
             return propertyMap->get(propertyName.impl());
         }
 
-        return 0;
+        return ValueType();
     }
 
     template<typename ValueType>

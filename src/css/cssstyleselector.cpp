@@ -122,7 +122,7 @@ using namespace DOM;
     if (isInherit) { \
         style->setInheritedNoninherited(true); \
         BackgroundLayer* currChild = style->accessBackgroundLayers(); \
-        BackgroundLayer* prevChild = 0; \
+        BackgroundLayer* prevChild = nullptr; \
         const BackgroundLayer* currParent = parentStyle->backgroundLayers(); \
         while (currParent && currParent->is##Prop##Set()) { \
             if (!currChild) { \
@@ -154,7 +154,7 @@ using namespace DOM;
             if (!value->isPrimitiveValue() && !value->isValueList()) \
                 return; \
             BackgroundLayer* currChild = style->accessBackgroundLayers(); \
-            BackgroundLayer* prevChild = 0; \
+            BackgroundLayer* prevChild = nullptr; \
             if (value->isPrimitiveValue()) { \
                 map##Prop(currChild, value); \
                 currChild = currChild->next(); \

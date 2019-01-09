@@ -110,7 +110,7 @@
     { \
         const SVGElement* context = ContextElement; \
         ASSERT(context); \
-        SVGDocumentExtensions* extensions = (context->document() ? context->document()->accessSVGExtensions() : 0); \
+        SVGDocumentExtensions* extensions = (context->document() ? context->document()->accessSVGExtensions() : nullptr); \
         if (extensions && extensions->hasBaseValue<BareType>(context, AttrName)) \
             return extensions->baseValue<BareType>(context, AttrName); \
         return LowerProperty(); \
@@ -119,7 +119,7 @@
     { \
         const SVGElement* context = ContextElement; \
         ASSERT(context); \
-        SVGDocumentExtensions* extensions = (context->document() ? context->document()->accessSVGExtensions() : 0); \
+        SVGDocumentExtensions* extensions = (context->document() ? context->document()->accessSVGExtensions() : nullptr); \
         if (extensions && extensions->hasBaseValue<BareType>(context, AttrName)) { \
             extensions->setBaseValue<BareType>(context, AttrName, newValue); \
             return; \
@@ -132,7 +132,7 @@
     { \
         const SVGElement* context = ContextElement; \
         ASSERT(context); \
-        SVGDocumentExtensions* extensions = (context->document() ? context->document()->accessSVGExtensions() : 0); \
+        SVGDocumentExtensions* extensions = (context->document() ? context->document()->accessSVGExtensions() : nullptr); \
         if (extensions) { \
             ASSERT(!extensions->hasBaseValue<BareType>(context, AttrName)); \
             extensions->setBaseValue<BareType>(context, AttrName, LowerProperty()); \
@@ -143,7 +143,7 @@
     { \
         const SVGElement* context = ContextElement; \
         ASSERT(context); \
-        SVGDocumentExtensions* extensions = (context->document() ? context->document()->accessSVGExtensions() : 0); \
+        SVGDocumentExtensions* extensions = (context->document() ? context->document()->accessSVGExtensions() : nullptr); \
         if (extensions) { \
             ASSERT(extensions->hasBaseValue<BareType>(context, AttrName)); \
             set##UpperProperty(extensions->baseValue<BareType>(context, AttrName)); \

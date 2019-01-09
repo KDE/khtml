@@ -466,7 +466,7 @@ inline JSCell *jsString(const QString &s)
     };
 
 #define IMPLEMENT_PSEUDO_CONSTRUCTOR_IMP(Class,ClassName,ProtoClass,ParentProto) \
-    const ClassInfo Class::info = { ClassName, 0, 0, 0 }; \
+    const ClassInfo Class::info = { ClassName, nullptr, nullptr, nullptr }; \
     Class::Class(ExecState* exec): DOMObject(ParentProto) {\
         /* Since ProtoClass ctor might need us, make sure we're registered */ \
         exec->lexicalInterpreter()->globalObject()->put(exec, "[[" ClassName ".constructor]]", this, KJS::Internal | KJS::DontEnum); \
@@ -516,12 +516,12 @@ inline JSCell *jsString(const QString &s)
     JSObject* Class::self(ExecState *exec) { \
         return cacheGlobalObject<Class>(exec,  *name()); \
     } \
-    Identifier* Class::s_name = 0; \
+    Identifier* Class::s_name = nullptr; \
     Identifier* Class::name() { \
         if (!s_name) s_name = new Identifier("[[" ClassName ".constant_table]]"); \
         return s_name; \
     } \
-    const ClassInfo Class::info = { ClassName, 0, &Class##Table, 0 };
+    const ClassInfo Class::info = { ClassName, nullptr, &Class##Table, nullptr };
 
 // cacheGlobalObject<> is not in namespace KJS - need to use ::cacheGlobalObject<>
 #define KJS_EMPTY_PROTOTYPE_IMP(ClassName, ClassProto, ProtoCode) \
@@ -543,8 +543,8 @@ inline JSCell *jsString(const QString &s)
             return s_name; \
         }\
     }; \
-    Identifier* ClassProto::s_name = 0; \
-    const ClassInfo ClassProto::info = { ClassName, 0, 0, 0 };
+    Identifier* ClassProto::s_name = nullptr; \
+    const ClassInfo ClassProto::info = { ClassName, nullptr, nullptr, nullptr };
 
 #define KJS_EMPTY_PROTOTYPE_WITH_PROTOTYPE(ClassName, ClassProto, ClassProtoProto) \
     KJS_EMPTY_PROTOTYPE_IMP(ClassName, ClassProto, ClassProtoProto::self(exec))

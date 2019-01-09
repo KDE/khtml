@@ -415,7 +415,7 @@ CSSValueImpl *RenderStyleDeclarationImpl::getPropertyCSSValue(int propertyID) co
 
     // temporary(?) measure to handle with missing render object
     // check how we can better deal with it on a case-by-case basis
-#define RETURN_NULL_ON_NULL(ptr) if(ptr == 0) return 0;
+#define RETURN_NULL_ON_NULL(ptr) if(ptr == nullptr) return nullptr;
 
     switch (propertyID) {
     case CSS_PROP_BACKGROUND_COLOR:

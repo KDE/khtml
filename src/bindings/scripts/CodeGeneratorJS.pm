@@ -746,7 +746,7 @@ sub GenerateImplementation
                                \@hashKeys, \@hashValues,
                                \@hashSpecials, \@hashParameters);
 
-    push(@implContent, "const ClassInfo ${className}Prototype::s_info = { \"${interfaceName}Prototype\", 0, &${className}PrototypeTable, 0 };\n\n");
+    push(@implContent, "const ClassInfo ${className}Prototype::s_info = { \"${interfaceName}Prototype\", nullptr, &${className}PrototypeTable, nullptr };\n\n");
     if ($dataNode->extendedAttributes->{"DoNotCache"}) {
         push(@implContent, "JSObject* ${className}Prototype::self()\n");
         push(@implContent, "{\n");
@@ -781,15 +781,15 @@ sub GenerateImplementation
     if ($hasParent) {
         push(@implContent, "&" . $parentClassName . "::s_info, ");
     } else {
-        push(@implContent, "0, ");
+        push(@implContent, "nullptr, ");
     }
 
     if ($numAttributes > 0) {
         push(@implContent, "&${className}Table ");
     } else {
-        push(@implContent, "0 ");
+        push(@implContent, "nullptr ");
     }
-    push(@implContent, ", 0 };\n\n");
+    push(@implContent, ", nullptr };\n\n");
 
     # Get correct pass/store types respecting PODType flag
     my $podType = $dataNode->extendedAttributes->{"PODType"};
@@ -997,7 +997,7 @@ sub GenerateImplementation
         }
 
         push(@implContent, "    }\n");
-        push(@implContent, "    return 0;\n}\n\n");
+        push(@implContent, "    return nullptr;\n}\n\n");
 
         # Check if we have any writable attributes
         my $hasReadWriteProperties = 0;
@@ -1192,7 +1192,7 @@ sub GenerateImplementation
         }
         push(@implContent, "    }\n"); # end switch
         push(@implContent, "    (void)imp;\n") if $hasCustomFunctionsOnly;
-        push(@implContent, "    return 0;\n");
+        push(@implContent, "    return nullptr;\n");
         push(@implContent, "}\n");
     }
 
@@ -1243,10 +1243,14 @@ sub GenerateImplementation
         push(@implContent, "{\n");
 
         push(@implContent, "    return val->isObject(&${className}::s_info) ? " . ($podType ? "($podType) *" : "") . "static_cast<$className*>(val)->impl() : ");
-        if ($podType and $podType ne "float") {
-            push(@implContent, "$podType();\n}\n");
+        if ($podType) {
+            if ($podType ne "float") {
+                push(@implContent, "$podType();\n}\n");
+            } else {
+                push(@implContent, "0;\n}\n");
+            }
         } else {
-            push(@implContent, "0;\n}\n");
+            push(@implContent, "nullptr;\n}\n");
         }
     }
 
@@ -1654,10 +1658,10 @@ sub GenerateHashTable
             if (defined($links[$i])) {
                 push(@implContent, "&" . $nameEntries . "[$links[$i]]" . " \}");
             } else {
-                push(@implContent, "0 \}");
+                push(@implContent, "nullptr \}");
             }
         } else {
-            push(@implContent, "    { 0, 0, 0, 0, 0 }");
+            push(@implContent, "    { nullptr, 0, 0, 0, nullptr }");
         }
 
         push(@implContent, ",") unless($i eq $size - 1);
@@ -1795,7 +1799,7 @@ EOF
 $implContent .= << "EOF";
 };
 
-const ClassInfo ${className}Constructor::s_info = { "${interfaceName}Constructor", 0, &${className}ConstructorTable, 0 };
+const ClassInfo ${className}Constructor::s_info = { "${interfaceName}Constructor", nullptr, &${className}ConstructorTable, nullptr };
 
 bool ${className}Constructor::getOwnPropertySlot(ExecState* exec, const Identifier& propertyName, PropertySlot& slot)
 {

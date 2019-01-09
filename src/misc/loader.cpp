@@ -1134,17 +1134,18 @@ static inline bool securityCheckUrl(const QUrl &fullURL, KHTMLPart *part, DOM::D
     return true;
 }
 
-#define DOCLOADER_SECCHECK_IMP(doRedirectCheck,isImg) \
+#define DOCLOADER_SECCHECK_IMP(doRedirectCheck,isImg,failValue) \
     QUrl fullURL(m_doc->completeURL(url.string())); \
     if (!securityCheckUrl(fullURL, m_part, m_doc, doRedirectCheck, isImg)) \
-        return 0L;
+        return failValue;
 
-#define DOCLOADER_SECCHECK(doRedirectCheck)     DOCLOADER_SECCHECK_IMP(doRedirectCheck, false)
-#define DOCLOADER_SECCHECK_IMG(doRedirectCheck) DOCLOADER_SECCHECK_IMP(doRedirectCheck, true)
+#define DOCLOADER_SECCHECK(doRedirectCheck)      DOCLOADER_SECCHECK_IMP(doRedirectCheck, false, nullptr)
+#define DOCLOADER_SECCHECK_BOOL(doRedirectCheck) DOCLOADER_SECCHECK_IMP(doRedirectCheck, false, false)
+#define DOCLOADER_SECCHECK_IMG(doRedirectCheck)  DOCLOADER_SECCHECK_IMP(doRedirectCheck, true,  nullptr)
 
 bool DocLoader::willLoadMediaElement(const DOM::DOMString &url)
 {
-    DOCLOADER_SECCHECK(true);
+    DOCLOADER_SECCHECK_BOOL(true);
 
     return true;
 }
