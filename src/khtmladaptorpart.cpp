@@ -47,8 +47,6 @@ KJS::JSObject *AdaptorView::scriptObject()
     return new KJS::JSObject();
 }
 
-K_EXPORT_PLUGIN(KHTMLAdaptorPartFactory)
-
 KHTMLAdaptorPartFactory::KHTMLAdaptorPartFactory()
 {
 }

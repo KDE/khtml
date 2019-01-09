@@ -52,6 +52,3 @@ QObject *KHTMLFactory::create(const char *iface,
 
     return new KHTMLPart(parentWidget, parent, prof);
 }
-
-K_EXPORT_PLUGIN(KHTMLFactory)
-

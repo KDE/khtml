@@ -49,8 +49,6 @@
 #include <kio/global.h>
 #include <kusertimestamp.h>
 
-K_EXPORT_PLUGIN(KJavaAppletViewerFactory)
-
 KAboutData *KJavaAppletViewerFactory::s_aboutData = nullptr;
 KIconLoader *KJavaAppletViewerFactory::s_iconLoader = nullptr;
 
