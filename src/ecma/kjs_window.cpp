@@ -1208,7 +1208,7 @@ JSValue *Window::getValueProperty(ExecState *exec, int token)
         if (!part->widget()) {
             return jsNumber(0);
         }
-        KWindowInfo inf = KWindowSystem::windowInfo(part->widget()->topLevelWidget()->winId(), NET::WMGeometry);
+        const KWindowInfo inf(part->widget()->topLevelWidget()->winId(), NET::WMGeometry);
         return jsNumber(token == OuterHeight ?
                         inf.geometry().height() : inf.geometry().width());
 #else
