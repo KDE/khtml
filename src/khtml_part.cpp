@@ -3951,7 +3951,7 @@ bool KHTMLPart::urlSelected(const QString &url, int button, int state, const QSt
 void KHTMLPart::slotViewDocumentSource()
 {
     QUrl currentUrl(this->url());
-    bool isTempFile = false;
+    KRun::RunFlags runFlags;
     if (!(currentUrl.isLocalFile()) && KHTMLPageCache::self()->isComplete(d->m_cacheId)) {
         QTemporaryFile sourceFile(QDir::tempPath() + QLatin1String("/XXXXXX") + defaultExtension());
         sourceFile.setAutoRemove(false);
@@ -3959,11 +3959,11 @@ void KHTMLPart::slotViewDocumentSource()
             QDataStream stream(&sourceFile);
             KHTMLPageCache::self()->saveData(d->m_cacheId, &stream);
             currentUrl = QUrl::fromLocalFile(sourceFile.fileName());
-            isTempFile = true;
+            runFlags |= KRun::DeleteTemporaryFiles;
         }
     }
 
-    (void) KRun::runUrl(currentUrl, QLatin1String("text/plain"), view(), isTempFile);
+    (void) KRun::runUrl(currentUrl, QLatin1String("text/plain"), view(), runFlags);
 }
 
 void KHTMLPart::slotViewPageInfo()
@@ -4056,7 +4056,7 @@ void KHTMLPart::slotViewFrameSource()
     }
 
     QUrl url = frame->url();
-    bool isTempFile = false;
+    KRun::RunFlags runFlags;
     if (!(url.isLocalFile()) && frame->inherits("KHTMLPart")) {
         long cacheId = static_cast<KHTMLPart *>(frame)->d->m_cacheId;
 
@@ -4068,12 +4068,12 @@ void KHTMLPart::slotViewFrameSource()
                 KHTMLPageCache::self()->saveData(cacheId, &stream);
                 url = QUrl();
                 url.setPath(sourceFile.fileName());
-                isTempFile = true;
+                runFlags |= KRun::DeleteTemporaryFiles;
             }
         }
     }
 
-    (void) KRun::runUrl(url, QLatin1String("text/plain"), view(), isTempFile);
+    (void) KRun::runUrl(url, QLatin1String("text/plain"), view(), runFlags);
 }
 
 QUrl KHTMLPart::backgroundURL() const
@@ -7713,7 +7713,6 @@ bool KHTMLPart::inProgress() const
 }
 
 using namespace KParts;
-#include "moc_khtmlpart_p.cpp"
 #ifndef KHTML_NO_WALLET
 #include "moc_khtml_wallet_p.cpp"
 #endif
