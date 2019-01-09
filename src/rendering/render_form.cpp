@@ -2463,7 +2463,7 @@ void RenderTextArea::updateFromElement()
 {
     TextAreaWidget *w = static_cast<TextAreaWidget *>(m_widget);
     w->setReadOnly(element()->readOnly());
-    w->setClickMessage(element()->placeholder().string());
+    w->setPlaceholderText(element()->placeholder().string());
     RenderFormElement::updateFromElement();
 }
 
