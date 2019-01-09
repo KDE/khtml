@@ -104,6 +104,14 @@ add_definitions(-DENABLE_SVG)
 add_definitions(-DENABLE_SVG_FONTS)
 add_definitions(-DWTF_PLATFORM_QT)
 
+# avoid warning for "this use of "defined" may not be portable" for all the #if PLATFORM(Foo)
+set(_flag "-Wno-expansion-to-defined")
+check_cxx_compiler_flag(${_flag} _flag_present)
+if(_flag_present)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${_flag}")
+endif()
+
+
 set(KHTML_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(KHTML_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/src)
 
