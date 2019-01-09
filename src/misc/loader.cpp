@@ -890,10 +890,12 @@ void CachedFont::data(QBuffer &buffer, bool eof)
     m_font = buffer.buffer();
 
     // some fonts are compressed.
-    QIODevice *dev = KFilterDev::device(&buffer, mimetype(), false /*autoDeleteInDevice*/);
-    if (dev && dev->open(QIODevice::ReadOnly)) {
-        m_font = dev->readAll();
-        delete dev;
+    {
+        KCompressionDevice::CompressionType compressionType = KFilterDev::compressionTypeForMimeType(mimetype());
+        QScopedPointer<KCompressionDevice> dev(new KCompressionDevice(&buffer, false /*autoDeleteInDevice*/, compressionType));
+        if (dev && dev->open(QIODevice::ReadOnly)) {
+            m_font = dev->readAll();
+        }
     }
 
     // handle decoding of WOFF fonts
