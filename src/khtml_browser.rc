@@ -1,5 +1,5 @@
-<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="khtmlpart" version="22">
+<!DOCTYPE gui SYSTEM "kpartgui.dtd">
+<gui name="khtmlpart" version="22">
 <MenuBar>
  <Menu name="file"><text>&amp;File</text>
   <Action name="saveBackground" />
@@ -39,4 +39,4 @@
 <ActionProperties>
  <Action shortcut="F7" name="caretMode" />
 </ActionProperties>
-</kpartgui>
+</gui>
