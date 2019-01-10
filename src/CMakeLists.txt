@@ -728,6 +728,7 @@ set(khtmlpart_PART_SRCS khtml_factory.cpp )
 
 
 add_library(khtmlpart MODULE ${khtmlpart_PART_SRCS})
+kcoreaddons_desktop_to_json(khtmlpart khtml.desktop)
 
 target_link_libraries(khtmlpart KF5::KHtml KF5::XmlGui KF5::TextWidgets KF5::Parts KF5::I18n)
 
