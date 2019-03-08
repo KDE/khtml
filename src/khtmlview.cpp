@@ -2597,7 +2597,7 @@ void KHTMLView::displayAccessKeys(KHTMLView *caller, KHTMLView *origview, QVecto
                 lab->setPalette(QToolTip::palette());
                 lab->setLineWidth(2);
                 lab->setFrameStyle(QFrame::Box | QFrame::Plain);
-                lab->setMargin(3);
+                lab->setContentsMargins(3, 3, 3, 3);
                 lab->adjustSize();
                 lab->setParent(widget());
                 lab->setAutoFillBackground(true);

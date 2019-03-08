@@ -29,7 +29,7 @@ KHTMLViewBarWidget::KHTMLViewBarWidget(bool addCloseButton, QWidget *parent)
     QHBoxLayout *layout = new QHBoxLayout;
 
     // NOTE: Here be cosmetics.
-    layout->setMargin(2);
+    layout->setContentsMargins(2, 2, 2, 2);
 
     // hide button
     if (addCloseButton) {

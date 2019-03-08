@@ -822,7 +822,7 @@ QString PermissionDialog::exec(const QString &cert, const QString &perm)
     dialogLayout->addItem(spacer2);
 
     QHBoxLayout *const buttonLayout = new QHBoxLayout();
-    buttonLayout->setMargin(0);
+    buttonLayout->setContentsMargins(0, 0, 0, 0);
     buttonLayout->setObjectName("buttonLayout");
 
     QPushButton *const no = new QPushButton(i18n("&No"), dialog);

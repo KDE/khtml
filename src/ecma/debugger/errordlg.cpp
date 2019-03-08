@@ -49,12 +49,12 @@ KJSErrorDialog::KJSErrorDialog(QWidget *parent, const QString &errorMessage, boo
     m_dontShowAgainCb = new QCheckBox(i18n("&Do not show this message again"), contents);
 
     QVBoxLayout *vl = new QVBoxLayout(contents);
-    vl->setMargin(0);
+    vl->setContentsMargins(0, 0, 0, 0);
     vl->addWidget(label);
     vl->addWidget(m_dontShowAgainCb);
 
     QHBoxLayout *topLayout = new QHBoxLayout(page);
-    topLayout->setMargin(0);
+    topLayout->setContentsMargins(0, 0, 0, 0);
     topLayout->addWidget(iconLabel);
     topLayout->addWidget(contents);
     topLayout->addStretch(10);

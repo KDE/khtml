@@ -246,13 +246,13 @@ ConsoleDock::ConsoleDock(QWidget *parent)
 
     QHBoxLayout *bottomLayout = new QHBoxLayout;
     bottomLayout->setSpacing(0);
-    bottomLayout->setMargin(0);
+    bottomLayout->setContentsMargins(0, 0, 0, 0);
     bottomLayout->addWidget(consoleInput);
     bottomLayout->addWidget(consoleInputButton);
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->setSpacing(0);
-    mainLayout->setMargin(0);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->addWidget(consoleView);
     mainLayout->addLayout(bottomLayout);
     mainFrame->setLayout(mainLayout);
