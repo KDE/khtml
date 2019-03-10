@@ -387,7 +387,7 @@ void StaticNodeListImpl::normalizeUpto(NormalizationKind kind)
     }
 
     // First sort.
-    qSort(m_kids.begin(), m_kids.end(), nodeLess);
+    std::sort(m_kids.begin(), m_kids.end(), nodeLess);
 
     // Now get rid of dupes.
     DOM::NodeImpl *last = nullptr;
