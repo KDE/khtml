@@ -4337,7 +4337,7 @@ void KHTMLView::scheduleRepaint(int x, int y, int w, int h, bool asap)
     p.end();
 #endif
 
-    d->updateRegion = d->updateRegion.unite(QRect(x, y, w, h));
+    d->updateRegion = d->updateRegion.united(QRect(x, y, w, h));
 
     if (asap && !parsing) {
         unscheduleRepaint();
