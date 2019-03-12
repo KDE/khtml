@@ -897,7 +897,7 @@ void KHTMLView::paintEvent(QPaintEvent *e)
     QRect v(contentsX(), contentsY(), visibleWidth(), visibleHeight());
     QPoint off(contentsX(), contentsY());
     r.translate(off);
-    r = r.intersect(v);
+    r = r.intersected(v);
     if (!r.isValid() || r.isEmpty()) {
         return;
     }
@@ -4220,7 +4220,7 @@ void KHTMLView::timerEvent(QTimerEvent *e)
     }
 
     for (int i = 1; i < rects.size(); ++i) {
-        QRect newRegion = updateRegion.unite(rects[i]);
+        QRect newRegion = updateRegion.united(rects[i]);
         if (2 * newRegion.height() > 3 * updateRegion.height()) {
             repaintContents(updateRegion);
             updateRegion = rects[i];

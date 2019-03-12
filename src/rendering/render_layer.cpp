@@ -240,7 +240,7 @@ void RenderLayer::repaint(Priority p, bool markForRepaint)
     }
     QRect layerBounds, damageRect, fgrect;
     calculateRects(renderer()->canvas()->layer(), renderer()->viewRect(), layerBounds, damageRect, fgrect);
-    m_visibleRect = damageRect.intersect(layerBounds);
+    m_visibleRect = damageRect.intersected(layerBounds);
     if (m_visibleRect.isValid()) {
         renderer()->canvas()->repaintViewRectangle(m_visibleRect.x(), m_visibleRect.y(), m_visibleRect.width(), m_visibleRect.height(), (p > NormalPriority));
     }
@@ -274,7 +274,7 @@ void RenderLayer::updateLayerPositions(RenderLayer *rootLayer, bool doFullRepain
     if (m_hasVisibleContent && checkForRepaint && m_markedForRepaint) {
         QRect layerBounds, damageRect, fgrect;
         calculateRects(rootLayer, renderer()->viewRect(), layerBounds, damageRect, fgrect);
-        QRect vr = damageRect.intersect(layerBounds);
+        QRect vr = damageRect.intersected(layerBounds);
         if (vr != m_visibleRect && vr.isValid()) {
             renderer()->canvas()->repaintViewRectangle(vr.x(), vr.y(), vr.width(), vr.height());
             m_visibleRect = vr;
@@ -1404,16 +1404,16 @@ void RenderLayer::calculateClipRects(const RenderLayer *rootLayer, QRect &overfl
 
         if (m_object->hasOverflowClip()) {
             QRect newOverflowClip = m_object->overflowClipRect(x, y);
-            overflowClipRect  = newOverflowClip.intersect(overflowClipRect);
+            overflowClipRect  = newOverflowClip.intersected(overflowClipRect);
             if (m_object->isPositioned() || m_object->isRelPositioned()) {
-                posClipRect = newOverflowClip.intersect(posClipRect);
+                posClipRect = newOverflowClip.intersected(posClipRect);
             }
         }
         if (m_object->hasClip()) {
             QRect newPosClip = m_object->clipRect(x, y);
-            posClipRect = posClipRect.intersect(newPosClip);
-            overflowClipRect = overflowClipRect.intersect(newPosClip);
-            fixedClipRect = fixedClipRect.intersect(newPosClip);
+            posClipRect = posClipRect.intersected(newPosClip);
+            overflowClipRect = overflowClipRect.intersected(newPosClip);
+            fixedClipRect = fixedClipRect.intersected(newPosClip);
         }
     }
 }
@@ -1441,19 +1441,19 @@ void RenderLayer::calculateRects(const RenderLayer *rootLayer, const QRect &pain
     if (m_object->hasOverflowClip() || m_object->hasClip()) {
         // This layer establishes a clip of some kind.
         if (m_object->hasOverflowClip()) {
-            foregroundRect = foregroundRect.intersect(m_object->overflowClipRect(x, y));
+            foregroundRect = foregroundRect.intersected(m_object->overflowClipRect(x, y));
         }
 
         if (m_object->hasClip()) {
             // Clip applies to *us* as well, so go ahead and update the damageRect.
             QRect newPosClip = m_object->clipRect(x, y);
-            backgroundRect = backgroundRect.intersect(newPosClip);
-            foregroundRect = foregroundRect.intersect(newPosClip);
+            backgroundRect = backgroundRect.intersected(newPosClip);
+            foregroundRect = foregroundRect.intersected(newPosClip);
         }
 
         // If we establish a clip at all, then go ahead and make sure our background
         // rect is intersected with our layer's bounds.
-        backgroundRect = backgroundRect.intersect(layerBounds);
+        backgroundRect = backgroundRect.intersected(layerBounds);
     }
 }
 
@@ -1737,10 +1737,10 @@ static void write(QTextStream &ts, const RenderLayer &l,
 
     ts << " at (" << l.xPos() << "," << l.yPos() << ") size " << l.width() << "x" << l.height();
 
-    if (layerBounds != layerBounds.intersect(backgroundClipRect)) {
+    if (layerBounds != layerBounds.intersected(backgroundClipRect)) {
         ts << " backgroundClip " << backgroundClipRect;
     }
-    if (layerBounds != layerBounds.intersect(clipRect)) {
+    if (layerBounds != layerBounds.intersected(clipRect)) {
         ts << " clip " << clipRect;
     }
 

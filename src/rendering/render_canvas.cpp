@@ -560,7 +560,7 @@ QRect RenderCanvas::selectionRect() const
         }
         r = n;
         if (r) {
-            selectionRect = selectionRect.unite(enclosingPositionedRect(r));
+            selectionRect = selectionRect.united(enclosingPositionedRect(r));
         }
     }
 
@@ -723,7 +723,7 @@ void RenderCanvas::setSelection(RenderObject *s, int sp, RenderObject *e, int ep
                 updateRect = enclosingPositionedRect(o);
                 firstRect = false;
             } else {
-                updateRect = updateRect.unite(enclosingPositionedRect(o));
+                updateRect = updateRect.united(enclosingPositionedRect(o));
             }
         }
     }
@@ -744,7 +744,7 @@ void RenderCanvas::setSelection(RenderObject *s, int sp, RenderObject *e, int ep
                 updateRect = enclosingPositionedRect(o);
                 firstRect = false;
             } else {
-                updateRect = updateRect.unite(enclosingPositionedRect(o));
+                updateRect = updateRect.united(enclosingPositionedRect(o));
             }
         }
     }

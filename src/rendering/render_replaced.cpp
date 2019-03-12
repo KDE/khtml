@@ -426,10 +426,10 @@ void RenderWidget::updateFromElement()
                 for (int i = 0; i < QPalette::NColorGroups; ++i) {
                     if (shouldChangeBgPal) {
                         pal.setColor((QPalette::ColorGroup)i, QPalette::Window, backgroundColor);
-                        pal.setColor((QPalette::ColorGroup)i, QPalette::Light, backgroundColor.light(highlightVal));
-                        pal.setColor((QPalette::ColorGroup)i, QPalette::Dark, backgroundColor.dark(lowlightVal));
-                        pal.setColor((QPalette::ColorGroup)i, QPalette::Mid, backgroundColor.dark(120));
-                        pal.setColor((QPalette::ColorGroup)i, QPalette::Midlight, backgroundColor.light(110));
+                        pal.setColor((QPalette::ColorGroup)i, QPalette::Light, backgroundColor.lighter(highlightVal));
+                        pal.setColor((QPalette::ColorGroup)i, QPalette::Dark, backgroundColor.darker(lowlightVal));
+                        pal.setColor((QPalette::ColorGroup)i, QPalette::Mid, backgroundColor.darker(120));
+                        pal.setColor((QPalette::ColorGroup)i, QPalette::Midlight, backgroundColor.lighter(110));
                     }
                     pal.setColor((QPalette::ColorGroup)i, QPalette::Button, trans ? QColor(0, 0, 0, 0) : backgroundColor);
                     pal.setColor((QPalette::ColorGroup)i, QPalette::Base, trans ? QColor(0, 0, 0, 0) : backgroundColor);
@@ -463,11 +463,11 @@ void RenderWidget::updateFromElement()
                 if (v > 128)
                     // dark bg, light fg - need a darker disabled fg
                 {
-                    disfg = disfg.dark(lowlightVal);
+                    disfg = disfg.darker(lowlightVal);
                 } else if (v > 64)
                     // light bg, dark fg - need a lighter disabled fg - but only if !black
                 {
-                    disfg = disfg.light(highlightVal);
+                    disfg = disfg.lighter(highlightVal);
                 } else
                     // for really dark fg - use darkgray disabled fg,
                     // as ::light is pretty useless in this range
@@ -786,7 +786,7 @@ void RenderWidget::paintWidget(PaintInfo &pI, QWidget *widget, int tx, int ty, Q
 #endif
     QRect rr = pI.r;
     rr.translate(-tx, -ty);
-    const QRect r = widget->rect().intersect(rr);
+    const QRect r = widget->rect().intersected(rr);
     if (KHTMLView *v = qobject_cast<KHTMLView *>(widget)) {
         QPoint thePoint(tx, ty);
         if (v->verticalScrollBar()->isVisible()) {

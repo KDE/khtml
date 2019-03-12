@@ -273,7 +273,7 @@ void RenderImage::paint(PaintInfo &paintInfo, int _tx, int _ty)
             QPixmap pix = *Cache::brokenPixmap;
             if (berrorPic && (cWidth >= pix.width() + 4) && (cHeight >= pix.height() + 4)) {
                 QRect r(pix.rect());
-                r = r.intersect(QRect(0, 0, cWidth - 4, cHeight - 4));
+                r = r.intersected(QRect(0, 0, cWidth - 4, cHeight - 4));
                 paintInfo.p->drawPixmap(QPoint(_tx + leftBorder + leftPad + 2, _ty + topBorder + topPad + 2), pix, r);
             }
 

@@ -746,7 +746,7 @@ void RenderBox::paintBackgroundExtended(QPainter *p, const QColor &c, const Back
             //fixed
             QRect fix = getFixedBackgroundImageRect(bgLayer, sx, sy, scaledImageWidth, scaledImageHeight);
             QRect ele(_tx, _ty, w, h);
-            QRect b = fix.intersect(ele);
+            QRect b = fix.intersected(ele);
 
             //qCDebug(KHTML_LOG) <<" ele is " << ele << " b is " << b << " fix is " << fix;
             sx += b.x() - fix.x();

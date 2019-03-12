@@ -170,7 +170,7 @@ JSValue *Screen::getValueProperty(ExecState *exec, int token) const
         return jsNumber(thisWidget->depth());
     case AvailLeft: {
 #if HAVE_X11 && ! defined K_WS_QTONLY
-        QRect clipped = KWindowSystem::workArea().intersect(sg);
+        QRect clipped = KWindowSystem::workArea().intersected(sg);
         return jsNumber(clipped.x() - sg.x());
 #else
         return jsNumber(10);
@@ -178,7 +178,7 @@ JSValue *Screen::getValueProperty(ExecState *exec, int token) const
     }
     case AvailTop: {
 #if HAVE_X11 && ! defined K_WS_QTONLY
-        QRect clipped = KWindowSystem::workArea().intersect(sg);
+        QRect clipped = KWindowSystem::workArea().intersected(sg);
         return jsNumber(clipped.y() - sg.y());
 #else
         return jsNumber(10);
@@ -186,7 +186,7 @@ JSValue *Screen::getValueProperty(ExecState *exec, int token) const
     }
     case AvailHeight: {
 #if HAVE_X11 && ! defined K_WS_QTONLY
-        QRect clipped = KWindowSystem::workArea().intersect(sg);
+        QRect clipped = KWindowSystem::workArea().intersected(sg);
         return jsNumber(clipped.height());
 #else
         return jsNumber(100);
@@ -194,7 +194,7 @@ JSValue *Screen::getValueProperty(ExecState *exec, int token) const
     }
     case AvailWidth: {
 #if HAVE_X11 && ! defined K_WS_QTONLY
-        QRect clipped = KWindowSystem::workArea().intersect(sg);
+        QRect clipped = KWindowSystem::workArea().intersected(sg);
         return jsNumber(clipped.width());
 #else
         return jsNumber(100);
