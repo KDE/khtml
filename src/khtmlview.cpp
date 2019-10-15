@@ -3127,6 +3127,12 @@ private:
 
 void KHTMLView::print(bool quick)
 {
+    QPrinter printer;
+    print(&printer, quick);
+}
+
+void KHTMLView::print(QPrinter *_printer, bool quick)
+{
     if (!m_part->xmlDocImpl()) {
         return;
     }
@@ -3135,7 +3141,7 @@ void KHTMLView::print(bool quick)
         return;
     }
 
-    QPrinter printer;
+    QPrinter &printer = *_printer;
     QPointer<QPrintDialog> dialog(new QPrintDialog(&printer, this));
     QPointer<KHTMLPrintSettings> printSettings(new KHTMLPrintSettings(dialog)); //XXX: doesn't save settings between prints like this
     dialog->setOptionTabs(QList<QWidget *>() << printSettings.data());
