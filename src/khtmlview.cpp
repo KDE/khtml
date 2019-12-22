@@ -2128,9 +2128,6 @@ bool KHTMLView::eventFilter(QObject *o, QEvent *e)
         KHTMLWidget *k = dynamic_cast<KHTMLWidget *>(c);
         if (v && k && k->m_kwp->isRedirected()) {
             bool block = false;
-#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
-            bool isUpdate = false;
-#endif
             QWidget *w = static_cast<QWidget *>(o);
             switch (e->type()) {
             case QEvent::UpdateRequest: {
@@ -2140,9 +2137,6 @@ bool KHTMLView::eventFilter(QObject *o, QEvent *e)
                 break;
             }
             case QEvent::UpdateLater:
-#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
-                isUpdate = true;
-#endif
             // no break;
             case QEvent::Paint:
                 if (!allowWidgetPaintEvents) {
@@ -2160,32 +2154,6 @@ bool KHTMLView::eventFilter(QObject *o, QEvent *e)
                     QPoint ap = k->m_kwp->absolutePos();
                     x += ap.x();
                     y += ap.y();
-
-#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
-                    QRect pr = isUpdate ? static_cast<QUpdateLaterEvent *>(e)->region().boundingRect() : static_cast<QPaintEvent *>(e)->rect();
-                    bool asap = !d->contentsMoving && qobject_cast<QAbstractScrollArea *>(c);
-
-                    if (isUpdate) {
-                        setInPaintEventFlag(w, false);
-                        if (asap) {
-                            w->repaint(static_cast<QUpdateLaterEvent *>(e)->region());
-                        } else {
-                            w->update(static_cast<QUpdateLaterEvent *>(e)->region());
-                        }
-                        setInPaintEventFlag(w);
-                    }
-
-                    // QScrollView needs fast repaints
-                    if (asap && !isUpdate && !d->painting && m_part->xmlDocImpl() && m_part->xmlDocImpl()->renderer() &&
-                            !static_cast<khtml::RenderCanvas *>(m_part->xmlDocImpl()->renderer())->needsLayout()) {
-                        repaintContents(x + pr.x(), y + pr.y(),
-                                        pr.width(), pr.height() + 1); // ### investigate that +1 (shows up when
-                        // updating e.g a textarea's blinking cursor)
-                    } else if (!d->painting) {
-                        scheduleRepaint(x + pr.x(), y + pr.y(),
-                                        pr.width(), pr.height() + 1, asap);
-                    }
-#endif
                 }
                 break;
             case QEvent::MouseMove:
