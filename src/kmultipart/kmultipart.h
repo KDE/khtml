@@ -25,6 +25,7 @@
 #include <kparts/part.h>
 #include <kparts/browserextension.h>
 #include <QDate>
+#include <QElapsedTimer>
 
 class HTTPFilterGZip;
 class QTemporaryFile;
@@ -91,7 +92,7 @@ private:
     long m_totalNumberOfFrames;
     long m_numberOfFrames;
     long m_numberOfFramesSkipped;
-    QTime m_qtime;
+    QElapsedTimer m_qtime;
     QTimer *m_timer;
 };
 

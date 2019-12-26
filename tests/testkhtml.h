@@ -5,7 +5,7 @@
 #include <khtml_part.h>
 #include <QList>
 #include <QMap>
-#include <QTime>
+#include <QElapsedTimer>
 
 /**
  * @internal
@@ -55,7 +55,7 @@ private:
     QList<QString> filesToBenchmark;
     QMap<QString, QList<int> > results;
     int                 benchmarkRun;
-    QTime               loadTimer;
+    QElapsedTimer               loadTimer;
 
 };
 

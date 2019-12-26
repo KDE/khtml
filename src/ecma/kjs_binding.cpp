@@ -444,7 +444,7 @@ QString exceptionToString(ExecState *exec, JSValue *exceptionObj)
         int      line = lineValue->toNumber(exec);
         QString  url  = urlValue->toString(exec).qstring();
         exceptionMsg = i18n("Parse error at %1 line %2",
-                            Qt::escape(url), line + 1);
+                            url.toHtmlEscaped(), line + 1);
     } else {
         // ### it's still not 100% safe to call toString here, even on
         // native exception objects, since someone might have changed the toString property

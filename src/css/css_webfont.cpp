@@ -63,7 +63,7 @@ CSSFontFaceSource::~CSSFontFaceSource()
             WTF::Vector<DOMString> names = m_face->familyNames();
             unsigned size = names.size();
             for (unsigned i = 0; i < size; i++) {
-                QFont::removeSubstitution(names[i].string());
+                QFont::removeSubstitutions(names[i].string());
                 khtml::Font::invalidateCachedFontFamily(names[i].string());
             }
             QFontDatabase::removeApplicationFont(m_id);

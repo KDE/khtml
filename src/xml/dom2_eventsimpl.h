@@ -827,7 +827,7 @@ public:
     }
     KHTMLPart *source() const
     {
-        return m_source.data();
+        return m_source.toStrongRef().data();
     }
     DOMString  lastEventId() const
     {

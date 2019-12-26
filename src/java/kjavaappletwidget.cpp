@@ -59,7 +59,7 @@ KJavaAppletWidget::KJavaAppletWidget(QWidget *parent)
     d->tmplabel->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
     d->tmplabel->show();
 
-    m_swallowTitle.sprintf("KJAS Applet - Ticket number %u", appletCount++);
+    m_swallowTitle = QStringLiteral("KJAS Applet - Ticket number %1").arg(appletCount++);
     m_applet->setWindowName(m_swallowTitle);
 }
 

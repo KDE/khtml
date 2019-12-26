@@ -2585,7 +2585,7 @@ bool RenderBox::handleEvent(const DOM::EventImpl &e)
 
         const MouseEventImpl &me = static_cast<const MouseEventImpl &>(e);
         Qt::MouseButtons buttons = Qt::NoButton;
-        Qt::KeyboardModifiers state = nullptr;
+        Qt::KeyboardModifiers state = Qt::NoModifier;
         Qt::Orientation orient = Qt::Vertical;
 
         switch (me.button()) {

@@ -30,6 +30,7 @@
 #include <setjmp.h>
 #include <QDate>
 #include <QImage>
+#include <QElapsedTimer>
 
 #include "imageloader.h"
 #include "imagemanager.h"
@@ -109,7 +110,7 @@ struct khtml_jpeg_source_mgr : public jpeg_source_mgr {
     int valid_buffer_len;
     size_t skip_input_bytes;
     int ateof;
-    QTime decoder_timestamp;
+    QElapsedTimer decoder_timestamp;
     bool final_pass;
     bool decoding_done;
     bool do_progressive;

@@ -1001,7 +1001,7 @@ bool RenderWidget::handleEvent(const DOM::EventImpl &ev)
         QMouseEvent::Type type;
         Qt::MouseButton button = Qt::NoButton;
         Qt::MouseButtons buttons = Qt::NoButton;
-        Qt::KeyboardModifiers state = nullptr;
+        Qt::KeyboardModifiers state = Qt::NoModifier;
         Qt::Orientation orient = Qt::Vertical;
 
         if (qme) {
