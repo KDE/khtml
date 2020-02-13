@@ -556,7 +556,13 @@ set(khtml_LIB_SRCS
 
 qt5_add_dbus_interface(khtml_LIB_SRCS ${KCookieServer_DBUS_INTERFACE} kcookiejar_interface)
 
-ecm_qt_declare_logging_category(khtml_LIB_SRCS HEADER khtml_debug.h IDENTIFIER KHTML_LOG CATEGORY_NAME kf5.khtml)
+ecm_qt_declare_logging_category(khtml_LIB_SRCS
+    HEADER khtml_debug.h
+    IDENTIFIER KHTML_LOG
+    CATEGORY_NAME kf5.khtml
+    DESCRIPTION "khtml (lib)"
+    EXPORT KHTML
+)
 
 ki18n_wrap_ui(khtml_LIB_SRCS
    kjserrordlgbase.ui
@@ -812,6 +818,12 @@ install(FILES
   dom/dom2_events.h
   dom/dom2_views.h
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KHtml/dom COMPONENT Devel
+)
+
+ecm_qt_install_logging_categories(
+    EXPORT KHTML
+    FILE khtml.categories
+    DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
 )
 
 install(FILES khtml.desktop khtmlimage.desktop

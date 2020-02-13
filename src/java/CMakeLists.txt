@@ -12,7 +12,13 @@ set(kjavaappletviewer_PART_SRCS
    kjavadownloader.cpp
    kjavaappletviewer.cpp
 )
-ecm_qt_declare_logging_category(kjavaappletviewer_PART_SRCS HEADER kjavaappletviewer_debug.h IDENTIFIER KJAVAAPPLETVIEWER_LOG CATEGORY_NAME kf5.khtml.javaappletviewer)
+ecm_qt_declare_logging_category(kjavaappletviewer_PART_SRCS
+    HEADER kjavaappletviewer_debug.h
+    IDENTIFIER KJAVAAPPLETVIEWER_LOG
+    CATEGORY_NAME kf5.khtml.javaappletviewer
+    DESCRIPTION "javaappletviewer"
+    EXPORT KHTML
+)
 
 add_library(kjavaappletviewer MODULE ${kjavaappletviewer_PART_SRCS})
 
