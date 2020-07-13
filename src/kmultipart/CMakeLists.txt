@@ -10,7 +10,8 @@ set(kmultipart_PART_SRCS kmultipart.cpp httpfiltergzip.cpp)
 ecm_qt_declare_logging_category(kmultipart_PART_SRCS
     HEADER kmultipart_debug.h
     IDENTIFIER KMULTIPART_LOG
-    CATEGORY_NAME kf5.khtml.multipart
+    CATEGORY_NAME kf.khtml.multipart
+    OLD_CATEGORY_NAMES kf5.khtml.multipart
     DESCRIPTION "multipart"
     EXPORT KHTML
 )

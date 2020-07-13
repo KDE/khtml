@@ -15,7 +15,8 @@ set(kjavaappletviewer_PART_SRCS
 ecm_qt_declare_logging_category(kjavaappletviewer_PART_SRCS
     HEADER kjavaappletviewer_debug.h
     IDENTIFIER KJAVAAPPLETVIEWER_LOG
-    CATEGORY_NAME kf5.khtml.javaappletviewer
+    CATEGORY_NAME kf.khtml.javaappletviewer
+    OLD_CATEGORY_NAMES kf5.khtml.javaappletviewer
     DESCRIPTION "javaappletviewer"
     EXPORT KHTML
 )

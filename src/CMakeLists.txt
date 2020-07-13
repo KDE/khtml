@@ -559,7 +559,8 @@ qt5_add_dbus_interface(khtml_LIB_SRCS ${KCookieServer_DBUS_INTERFACE} kcookiejar
 ecm_qt_declare_logging_category(khtml_LIB_SRCS
     HEADER khtml_debug.h
     IDENTIFIER KHTML_LOG
-    CATEGORY_NAME kf5.khtml
+    CATEGORY_NAME kf.khtml
+    OLD_CATEGORY_NAMES kf5.khtml
     DESCRIPTION "khtml (lib)"
     EXPORT KHTML
 )
