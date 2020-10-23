@@ -25,7 +25,6 @@
 #include "SVGSymbolElement.h"
 
 #include "PlatformString.h"
-#include "SVGFitToViewBox.h"
 
 namespace WebCore
 {

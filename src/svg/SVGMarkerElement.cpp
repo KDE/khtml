@@ -26,7 +26,6 @@
 #include "PlatformString.h"
 #include "RenderSVGViewportContainer.h"
 #include "SVGAngle.h"
-#include "SVGFitToViewBox.h"
 #include "SVGLength.h"
 #include "SVGNames.h"
 #include "SVGPreserveAspectRatio.h"

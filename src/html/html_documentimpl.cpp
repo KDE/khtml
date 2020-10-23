@@ -27,7 +27,6 @@
 #include "html/html_headimpl.h"
 #include "html/html_baseimpl.h"
 #include "html/htmltokenizer.h"
-#include "html/html_miscimpl.h"
 #include "html/html_formimpl.h"
 
 #include "khtmlview.h"

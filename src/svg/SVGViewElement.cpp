@@ -25,10 +25,8 @@
 
 #include "Attr.h"
 #include "PlatformString.h"
-#include "SVGFitToViewBox.h"
 #include "SVGNames.h"
 #include "SVGStringList.h"
-#include "SVGZoomAndPan.h"
 
 namespace WebCore
 {

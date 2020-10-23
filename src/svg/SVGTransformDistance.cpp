@@ -26,7 +26,6 @@
 #include "FloatConversion.h"
 #include "FloatPoint.h"
 #include "FloatSize.h"
-#include "SVGTransform.h"
 
 #include <math.h>
 

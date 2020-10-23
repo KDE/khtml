@@ -21,7 +21,6 @@
  */
 
 #include "rendering/counter_tree.h"
-#include "rendering/render_object.h"
 
 namespace khtml
 {

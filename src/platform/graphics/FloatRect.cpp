@@ -27,7 +27,6 @@
 #include "FloatRect.h"
 
 #include "FloatConversion.h"
-#include "IntRect.h"
 #include <algorithm>
 
 using std::max;

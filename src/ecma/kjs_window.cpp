@@ -51,7 +51,6 @@
 #endif
 #include <assert.h>
 #include <QStyle>
-#include <QObject>
 #include <QTextDocument>
 #include <kstringhandler.h>
 
@@ -63,7 +62,6 @@
 #include "kjs_traversal.h"
 #include "kjs_css.h"
 #include "kjs_events.h"
-#include "kjs_views.h"
 #include "kjs_audio.h"
 #include "kjs_context2d.h"
 #include "kjs_xpath.h"

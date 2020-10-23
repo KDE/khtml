@@ -33,7 +33,6 @@
 #include "khtml_part.h"
 #include "khtmlview.h"
 #include "rendering/render_style.h"
-#include "dom/dom_string.h"
 #include "xml/dom_stringimpl.h"
 #include <QHash>
 #include <limits.h>

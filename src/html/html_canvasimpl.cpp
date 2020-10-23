@@ -71,7 +71,6 @@
 #include <QCharRef>
 #include <QPoint>
 #include <QLocale>
-#include <QRegion>
 #include <QImage>
 #include "khtml_debug.h"
 #include <cmath>

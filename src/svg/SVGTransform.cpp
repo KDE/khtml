@@ -23,7 +23,6 @@
 #include "wtf/Platform.h"
 #if ENABLE(SVG)
 
-#include "FloatPoint.h"
 #include "FloatSize.h"
 #include "SVGAngle.h"
 #include "SVGSVGElement.h"

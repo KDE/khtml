@@ -33,7 +33,6 @@
 #include "SVGSVGElement.h"
 #include "SVGStyledTransformableElement.h"
 #include "SVGTextElement.h"
-#include "SVGTransform.h"
 #include "SVGTransformList.h"
 #include "SVGUseElement.h"
 

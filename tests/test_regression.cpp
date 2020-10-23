@@ -217,7 +217,6 @@ const char *imageMissingIcon =
 #include <QColor>
 #include <QCursor>
 #include <QDir>
-#include <QObject>
 #include <QPushButton>
 #include <QString>
 #include <QTextStream>
@@ -242,7 +241,6 @@ const char *imageMissingIcon =
 #include "html/html_baseimpl.h"
 #include "dom/dom_doc.h"
 #include "misc/loader.h"
-#include "ecma/kjs_binding.h"
 #include "ecma/kjs_dom.h"
 #include "ecma/kjs_window.h"
 #include "ecma/kjs_proxy.h"

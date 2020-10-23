@@ -44,7 +44,6 @@
 
 #include "arena.h"
 
-#include <config-khtml.h>
 #include <stdlib.h>
 #include <string.h>
 

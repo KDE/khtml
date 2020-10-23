@@ -31,7 +31,6 @@
 #include "Document.h"
 /*#include "HTMLNames.h"*/
 #include "PlatformString.h"
-#include "SVGElement.h"
 /*#include "SVGElementInstance.h"*/
 #include "SVGNames.h"
 #include "RenderObject.h"

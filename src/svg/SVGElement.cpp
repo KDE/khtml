@@ -26,7 +26,6 @@
 #include "SVGElement.h"
 
 /*#include "DOMImplementation.h"*/
-#include "Document.h"
 /*#include "Event.h"
 #include "EventListener.h"
 #include "EventNames.h"
@@ -34,9 +33,7 @@
 #include "HTMLNames.h"
 #include "PlatformString.h"
 #include "RenderObject.h"
-#include "SVGDocumentExtensions.h"
 #include "SVGElementInstance.h"*/
-#include "SVGNames.h"
 #include "SVGSVGElement.h"
 /*#include "SVGURIReference.h"
 #include "SVGUseElement.h"

@@ -34,7 +34,6 @@
 #include "misc/loader.h"
 
 #include "css/cssstyleselector.h"
-#include "css/css_stylesheetimpl.h"
 #include "css/css_mediaquery.h"
 
 #include "ecma/kjs_proxy.h"

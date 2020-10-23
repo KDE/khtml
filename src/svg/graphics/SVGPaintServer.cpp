@@ -29,8 +29,6 @@
 #if ENABLE(SVG)
 #include "SVGPaintServer.h"
 
-#include "RenderObject.h"
-#include "RenderStyle.h"
 #include "SVGPaintServerSolid.h"
 #include "SVGStyledElement.h"
 #include "SVGURIReference.h"

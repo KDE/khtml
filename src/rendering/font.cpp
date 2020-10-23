@@ -39,7 +39,6 @@
 #include "khtml_debug.h"
 
 #include <QHash>
-#include <QPainter>
 #include <QFontDatabase>
 #include <QtGlobal>
 

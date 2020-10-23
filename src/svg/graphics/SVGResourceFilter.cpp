@@ -23,7 +23,6 @@
 #include "SVGResourceFilter.h"
 
 #include "SVGRenderTreeAsText.h"
-#include "SVGFilterEffect.h"
 
 namespace WebCore
 {

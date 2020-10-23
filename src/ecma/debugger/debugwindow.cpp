@@ -44,16 +44,12 @@
 #include "kjs_proxy.h"
 #include "kjs_dom.h"
 #include "kjs_binding.h"
-#include "khtml_part.h"
 #include "khtmlview.h"
-#include "khtml_pagecache.h"
 #include "khtml_settings.h"
 #include "khtml_factory.h"
 #include <kjs/ustring.h>
 #include <kjs/object.h>
 #include <kjs/function.h>
-#include <kjs/interpreter.h>
-#include <kjs/value.h>
 #include <kjs/context.h>
 #include <ecma/kjs_window.h>
 
@@ -72,7 +68,6 @@
 #include "callstackdock.h"
 #include "scriptsdock.h"
 
-#include "debugdocument.h"
 #include "value2string.h"
 #include "errordlg.h"
 

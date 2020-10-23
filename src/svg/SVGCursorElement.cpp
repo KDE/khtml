@@ -25,7 +25,6 @@
 
 #include "Attr.h"
 #include "SVGNames.h"
-#include "SVGLength.h"
 
 namespace WebCore
 {

@@ -22,7 +22,6 @@
 #include "kjavaappletserver.h"
 
 #include "kjavaappletcontext.h"
-#include "kjavaprocess.h"
 #include "kjavadownloader.h"
 
 #include "kjavaappletviewer_debug.h"

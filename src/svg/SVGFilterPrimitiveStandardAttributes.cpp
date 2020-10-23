@@ -27,7 +27,6 @@
 #include "SVGFilterEffect.h"
 #include "SVGLength.h"
 #include "SVGNames.h"
-#include "SVGStyledElement.h"
 #include "SVGUnitTypes.h"
 
 namespace WebCore

@@ -21,7 +21,6 @@
  */
 #include "css_renderstyledeclarationimpl.h"
 
-#include "rendering/render_style.h"
 #include "rendering/render_object.h"
 
 #include "cssproperties.h"

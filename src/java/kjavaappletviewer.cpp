@@ -20,7 +20,6 @@
 
 #include "kjavaappletviewer.h"
 
-#include "kjavaappletwidget.h"
 #include "kjavaappletserver.h"
 
 #include <stdio.h>
@@ -29,7 +28,6 @@
 #include <QDir>
 #include <QPair>
 #include <QTimer>
-#include <QPointer>
 #include <QLabel>
 #include <QStatusBar>
 #include <QTableWidget>

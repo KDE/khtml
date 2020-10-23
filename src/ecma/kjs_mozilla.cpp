@@ -20,7 +20,6 @@
 #include "kjs_mozilla.h"
 #include "kjs_mozilla.lut.h"
 
-#include "kjs_binding.h"
 
 #include <klocalizedstring.h>
 #include "khtml_debug.h"

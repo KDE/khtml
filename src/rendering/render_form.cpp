@@ -60,8 +60,6 @@
 #include <QLabel>
 #include <QStyleOptionFrame>
 #include <QStandardItemModel>
-#include <QListWidget>
-#include <QProxyStyle>
 
 #include <misc/helper.h>
 #include <xml/dom2_eventsimpl.h>

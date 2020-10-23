@@ -36,7 +36,6 @@
 #include "render_inline.h"
 #include "render_block.h"
 #include "render_arena.h"
-#include "render_line.h"
 #include <xml/dom_nodeimpl.h>
 #include <xml/dom_docimpl.h>
 #include <html/html_formimpl.h>

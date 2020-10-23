@@ -24,7 +24,6 @@
 
 #if ENABLE(SVG)
 #include "AffineTransform.h"
-#include "SVGTransform.h"
 #include "SVGSVGElement.h"
 #include "SVGTransformDistance.h"
 #include "SVGTransformList.h"

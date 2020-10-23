@@ -27,7 +27,6 @@
 
 #include "rendering/render_frames.h"
 #include "rendering/render_canvas.h"
-#include "html/html_baseimpl.h"
 #include "html/html_objectimpl.h"
 #include "html/htmltokenizer.h"
 #include "xml/dom2_eventsimpl.h"

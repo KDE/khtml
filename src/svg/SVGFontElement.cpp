@@ -25,7 +25,6 @@
 
 //#include "Font.h"
 //FIXME khtml #include "GlyphPageTreeNode.h"
-#include "SVGGlyphElement.h"
 #include "SVGMissingGlyphElement.h"
 #include "SVGNames.h"
 #include "SVGParserUtilities.h"

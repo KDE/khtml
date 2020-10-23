@@ -38,10 +38,8 @@
 #include "rendering/render_replaced.h"
 #include "rendering/render_generated.h"
 #include "rendering/counter_tree.h"
-#include "rendering/render_position.h"
 
 #include "xml/dom_elementimpl.h"
-#include "xml/dom_docimpl.h"
 #include "dom/dom_doc.h"
 #include "misc/loader.h"
 #include "misc/borderarcstroker.h"
@@ -52,7 +50,6 @@
 #include <khtml_part.h>
 #include <QPaintEngine>
 
-#include <assert.h>
 using namespace DOM;
 using namespace khtml;
 

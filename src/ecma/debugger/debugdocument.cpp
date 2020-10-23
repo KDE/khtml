@@ -1,9 +1,6 @@
 #include "debugdocument.h"
 #include "debugwindow.h"
 
-#include <QHash>
-#include <QVector>
-#include <QStringList>
 #include <QApplication>
 
 #include "kjs_binding.h"

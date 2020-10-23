@@ -36,7 +36,6 @@
 #include "misc/loader.h"
 #include "html/html_formimpl.h"
 #include "html/html_imageimpl.h"
-#include "html/dtd.h"
 #include "xml/dom2_eventsimpl.h"
 #include "html/html_documentimpl.h"
 #include "html/html_objectimpl.h"

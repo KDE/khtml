@@ -46,8 +46,6 @@
 
 #include <QStack>
 //Added by qt3to4:
-#include <QTimerEvent>
-#include <QList>
 #include "khtml_debug.h"
 #include <klocalizedstring.h>
 

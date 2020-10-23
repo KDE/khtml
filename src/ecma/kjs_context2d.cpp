@@ -21,7 +21,6 @@
 
 #include "kjs_context2d.h"
 
-#include "kjs_html.h"
 
 #include <misc/loader.h>
 #include <dom/dom_exception.h>

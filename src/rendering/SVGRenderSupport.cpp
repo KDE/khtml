@@ -27,7 +27,6 @@
 
 #include "AffineTransform.h"
 /*#include "ImageBuffer.h"*/
-#include "RenderObject.h"
 #include "RenderSVGContainer.h"
 /*#include "RenderView.h"*/
 #include "SVGResourceClipper.h"

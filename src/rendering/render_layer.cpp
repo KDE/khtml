@@ -46,7 +46,6 @@
 //#define BOX_DEBUG
 
 #include "render_layer.h"
-#include <assert.h>
 #include "khtmlview.h"
 #include "render_canvas.h"
 #include "render_arena.h"

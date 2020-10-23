@@ -34,7 +34,6 @@
 
 #include <float.h>
 
-#include "rendering/render_line.h"
 
 namespace WebCore
 {

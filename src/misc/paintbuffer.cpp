@@ -21,7 +21,6 @@
  */
 
 #include "paintbuffer.h"
-#include <QPixmap>
 #include <QTimerEvent>
 
 using namespace khtml;

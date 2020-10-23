@@ -29,7 +29,6 @@
 #include <xml/dom_nodeimpl.h>
 #include <xml/dom_nodelistimpl.h>
 
-#include "xpath/expression.h"
 #include "xpath/util.h"
 
 using namespace DOM;

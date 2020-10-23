@@ -32,7 +32,6 @@
 #include "RenderSVGContainer.h"
 #include "SVGLength.h"
 #include "SVGNames.h"
-#include "SVGPaintServerPattern.h"
 #include "SVGRenderSupport.h"
 #include "SVGStyledTransformableElement.h"
 #include "SVGSVGElement.h"

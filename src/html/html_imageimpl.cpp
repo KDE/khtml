@@ -39,7 +39,6 @@
 #include <QCharRef>
 #include <QPoint>
 #include <QStack>
-#include <QRegion>
 #include <QImage>
 
 using namespace DOM;

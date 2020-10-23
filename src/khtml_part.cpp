@@ -39,7 +39,6 @@
 #include "dom/dom_element.h"
 #include "dom/dom_exception.h"
 #include "dom/html_document.h"
-#include "dom/dom2_range.h"
 #include "editing/editor.h"
 #include "html/html_documentimpl.h"
 #include "html/html_baseimpl.h"

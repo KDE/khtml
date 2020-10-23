@@ -36,7 +36,6 @@
 #include <kio/scheduler.h>
 #include <kio/job.h>
 #include <QObject>
-#include <QHash>
 #include "khtml_debug.h"
 
 using namespace KJS;

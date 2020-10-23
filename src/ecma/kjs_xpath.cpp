@@ -16,12 +16,10 @@
  *  License along with this library; if not, write to the Free Software
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
-#include "kjs_binding.h"
 #include "kjs_xpath.h"
 #include "kjs_dom.h"
 
 #include "dom/dom3_xpath.h"
-#include "xml/dom3_xpathimpl.h"
 
 using KJS::XPathResult;
 

@@ -41,7 +41,6 @@
 #include <QImage>
 #include <QPainter>
 #include "khtml_debug.h"
-#include <assert.h>
 #include <limits.h>
 #include <math.h>
 

@@ -20,7 +20,6 @@
 #include "domparser.h"
 #include "domparser.lut.h"
 
-#include "kjs_dom.h"
 #include "kjs_window.h"
 #include "xml/dom_nodeimpl.h"
 #include "xml/dom_docimpl.h"

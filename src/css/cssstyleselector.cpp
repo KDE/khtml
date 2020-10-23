@@ -25,7 +25,6 @@
  */
 
 #include "css/cssstyleselector.h"
-#include "rendering/render_style.h"
 #include "css/css_stylesheetimpl.h"
 #include "css/css_ruleimpl.h"
 #include "css/css_valueimpl.h"
@@ -45,7 +44,6 @@ using namespace DOM;
 
 #include "css/cssproperties.h"
 #include "css/cssvalues.h"
-#include "css/css_mediaquery.h"
 
 #include "misc/khtmllayout.h"
 #include "khtml_settings.h"

@@ -35,7 +35,6 @@
 #include "dom/dom2_events.h"
 /*#include "EventNames.h"*/
 #include "FloatConversion.h"
-#include "FloatRect.h"
 /*#include "Frame.h"
 #include "HTMLNames.h"
 #include "RenderSVGViewportContainer.h"*/

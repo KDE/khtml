@@ -36,10 +36,7 @@
 #include "rendering/render_text.h"
 #include "xml/dom_docimpl.h"
 #include "xml/dom_elementimpl.h"
-#include "xml/dom_position.h"
 #include "xml/dom_positioniterator.h"
-#include "xml/dom_nodeimpl.h"
-#include "xml/dom_selection.h"
 #include "xml/dom_stringimpl.h"
 #include "xml/dom_textimpl.h"
 #include "xml/dom2_rangeimpl.h"
@@ -48,7 +45,6 @@
 #include "khtml_part.h"
 #include "khtmlview.h"
 
-#include <QList>
 #include <QScopedPointer>
 #include <limits.h>
 

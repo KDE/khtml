@@ -21,18 +21,13 @@
 
 #include "kjs_css.h"
 #include "kjs_css.lut.h"
-#include "kjs_binding.h"
 
 #include "html/html_headimpl.h" // for HTMLStyleElementImpl
 
 #include "dom/css_value.h"
 #include "dom/css_rule.h"
 
-#include "css/css_base.h"
-#include "css/css_ruleimpl.h"
 #include "css/css_renderstyledeclarationimpl.h"
-#include "css/css_stylesheetimpl.h"
-#include "css/css_valueimpl.h"
 #include "css/cssproperties.h"
 
 #include "kjs_dom.h"

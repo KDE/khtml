@@ -29,7 +29,6 @@
 
 #include <math.h>
 
-#include "FloatPoint.h"
 /*#include "GraphicsContext.h"
 #include "PointerEventsHitRules.h"*/
 #include "RenderSVGContainer.h"

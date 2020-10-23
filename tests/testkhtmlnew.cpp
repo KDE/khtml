@@ -16,7 +16,6 @@
 #include <QApplication>
 
 #include <kxmlguifactory.h>
-#include <kxmlguiwindow.h>
 #include <ktoggleaction.h>
 #include <kstandardaction.h>
 #include <kactioncollection.h>

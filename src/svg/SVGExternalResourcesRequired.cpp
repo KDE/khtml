@@ -27,7 +27,6 @@
 
 //#include "Attr.h"
 #include "SVGNames.h"
-#include "SVGElement.h"
 
 // khtml
 #include <wtf/PassRefPtr.h>
