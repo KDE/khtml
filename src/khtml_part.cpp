@@ -268,20 +268,20 @@ void KHTMLPart::init(KHTMLView *view, GUIProfile prof)
         actionCollection()->addAction("viewDocumentSource", d->m_paViewDocument);
         connect(d->m_paViewDocument, SIGNAL(triggered(bool)), this, SLOT(slotViewDocumentSource()));
         if (!parentPart()) {
-            actionCollection()->setDefaultShortcut(d->m_paViewDocument,QKeySequence(Qt::CTRL + Qt::Key_U));
+            actionCollection()->setDefaultShortcut(d->m_paViewDocument,QKeySequence(Qt::CTRL | Qt::Key_U));
         }
 
         d->m_paViewFrame = new QAction(i18n("View Frame Source"), this);
         actionCollection()->addAction("viewFrameSource", d->m_paViewFrame);
         connect(d->m_paViewFrame, SIGNAL(triggered(bool)), this, SLOT(slotViewFrameSource()));
         if (!parentPart()) {
-            actionCollection()->setDefaultShortcut(d->m_paViewFrame,QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_U));
+            actionCollection()->setDefaultShortcut(d->m_paViewFrame,QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_U));
         }
 
         d->m_paViewInfo = new QAction(i18n("View Document Information"), this);
         actionCollection()->addAction("viewPageInfo", d->m_paViewInfo);
         if (!parentPart()) {
-            actionCollection()->setDefaultShortcut(d->m_paViewInfo, QKeySequence(Qt::CTRL + Qt::Key_I));
+            actionCollection()->setDefaultShortcut(d->m_paViewInfo, QKeySequence(Qt::CTRL | Qt::Key_I));
         }
         connect(d->m_paViewInfo, SIGNAL(triggered(bool)), this, SLOT(slotViewPageInfo()));
 
@@ -398,7 +398,7 @@ void KHTMLPart::init(KHTMLView *view, GUIProfile prof)
             // TODO: Why also CTRL+=?  Because of http://trolltech.com/developer/knowledgebase/524/?
             // Nobody else does it...
             actionCollection()->setDefaultShortcut(d->m_paIncZoomFactor, QKeySequence("CTRL++; CTRL+="));
-            actionCollection()->setDefaultShortcut(d->m_paDecZoomFactor, QKeySequence(Qt::CTRL + Qt::Key_Minus));
+            actionCollection()->setDefaultShortcut(d->m_paDecZoomFactor, QKeySequence(Qt::CTRL | Qt::Key_Minus));
         }
     }
 
