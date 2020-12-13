@@ -20,10 +20,9 @@
 
 #define QT_GUI_LIB 1
 #define QT_WIDGETS_LIB 1
-// TODO: include <QTestWidgets> with Qt 5 instead of the above defines
 
 #include <khtml_part.h>
-#include <QtTest>
+#include <QTest>
 #include <khtmlview.h>
 #include "khtmlparttest.h"
 #include <csignal>
