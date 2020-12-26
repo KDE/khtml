@@ -332,7 +332,7 @@ void KHTMLPart::init(KHTMLView *view, GUIProfile prof)
 //   d->m_paSetEncoding->setDelayed( false );
 
     connect(d->m_paSetEncoding, &KSelectAction::textTriggered, this, &KHTMLPart::slotSetEncoding);
-    connect(d->m_paSetEncoding, SIGNAL(triggered(KEncodingProber::ProberType)), this, SLOT(slotAutomaticDetectionLanguage(KEncodingProber::ProberType)));
+    connect(d->m_paSetEncoding, &KCodecAction::encodingProberTriggered, this, &KHTMLPart::slotAutomaticDetectionLanguage);
 
     if (KSharedConfig::openConfig()->hasGroup("HTML Settings")) {
         KConfigGroup config(KSharedConfig::openConfig(), "HTML Settings");
