@@ -331,7 +331,7 @@ void KHTMLPart::init(KHTMLView *view, GUIProfile prof)
     actionCollection()->addAction("setEncoding", d->m_paSetEncoding);
 //   d->m_paSetEncoding->setDelayed( false );
 
-    connect(d->m_paSetEncoding, SIGNAL(triggered(QString)), this, SLOT(slotSetEncoding(QString)));
+    connect(d->m_paSetEncoding, &KSelectAction::textTriggered, this, &KHTMLPart::slotSetEncoding);
     connect(d->m_paSetEncoding, SIGNAL(triggered(KEncodingProber::ProberType)), this, SLOT(slotAutomaticDetectionLanguage(KEncodingProber::ProberType)));
 
     if (KSharedConfig::openConfig()->hasGroup("HTML Settings")) {
