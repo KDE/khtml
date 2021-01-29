@@ -95,6 +95,7 @@ endif()
 
 find_package(Gperf REQUIRED)
 
+remove_definitions(-DQT_NO_FOREACH)
 remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 remove_definitions(-DQT_NO_CAST_FROM_BYTEARRAY)
 
