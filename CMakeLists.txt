@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 
-set(KF5_VERSION "5.79.0") # handled by release scripts
-set(KF5_DEP_VERSION "5.79.0") # handled by release scripts
-project(KHtml VERSION ${KF5_VERSION})
+set(KF_VERSION "5.79.0") # handled by release scripts
+set(KF_DEP_VERSION "5.79.0") # handled by release scripts
+project(KHtml VERSION ${KF_VERSION})
 
 include(FeatureSummary)
 find_package(ECM 5.79.0  NO_MODULE)
@@ -27,21 +27,21 @@ include(KDECMakeSettings)
 # Most of KJS doesn't even require Qt, thus we can't use override
 string(REPLACE "-Wsuggest-override" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 
-find_package(KF5Archive ${KF5_DEP_VERSION} REQUIRED)
-find_package(KF5Codecs ${KF5_DEP_VERSION} REQUIRED)
-find_package(KF5GlobalAccel ${KF5_DEP_VERSION} REQUIRED)
-find_package(KF5I18n ${KF5_DEP_VERSION} REQUIRED)
-find_package(KF5IconThemes ${KF5_DEP_VERSION} REQUIRED)
-find_package(KF5KIO ${KF5_DEP_VERSION} REQUIRED)
-find_package(KF5JS ${KF5_DEP_VERSION} REQUIRED)
-find_package(KF5Notifications ${KF5_DEP_VERSION} REQUIRED)
-find_package(KF5Parts ${KF5_DEP_VERSION} REQUIRED)
-find_package(KF5Sonnet ${KF5_DEP_VERSION} REQUIRED)
-find_package(KF5TextWidgets ${KF5_DEP_VERSION} REQUIRED)
-find_package(KF5Wallet ${KF5_DEP_VERSION} REQUIRED)
-find_package(KF5WidgetsAddons ${KF5_DEP_VERSION} REQUIRED)
-find_package(KF5WindowSystem ${KF5_DEP_VERSION} REQUIRED)
-find_package(KF5XmlGui ${KF5_DEP_VERSION} REQUIRED)
+find_package(KF5Archive ${KF_DEP_VERSION} REQUIRED)
+find_package(KF5Codecs ${KF_DEP_VERSION} REQUIRED)
+find_package(KF5GlobalAccel ${KF_DEP_VERSION} REQUIRED)
+find_package(KF5I18n ${KF_DEP_VERSION} REQUIRED)
+find_package(KF5IconThemes ${KF_DEP_VERSION} REQUIRED)
+find_package(KF5KIO ${KF_DEP_VERSION} REQUIRED)
+find_package(KF5JS ${KF_DEP_VERSION} REQUIRED)
+find_package(KF5Notifications ${KF_DEP_VERSION} REQUIRED)
+find_package(KF5Parts ${KF_DEP_VERSION} REQUIRED)
+find_package(KF5Sonnet ${KF_DEP_VERSION} REQUIRED)
+find_package(KF5TextWidgets ${KF_DEP_VERSION} REQUIRED)
+find_package(KF5Wallet ${KF_DEP_VERSION} REQUIRED)
+find_package(KF5WidgetsAddons ${KF_DEP_VERSION} REQUIRED)
+find_package(KF5WindowSystem ${KF_DEP_VERSION} REQUIRED)
+find_package(KF5XmlGui ${KF_DEP_VERSION} REQUIRED)
 
 ecm_setup_version(PROJECT VARIABLE_PREFIX KHTML
                         VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/khtml_version.h"
