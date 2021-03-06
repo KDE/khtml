@@ -1,0 +1,1852 @@
+# translation of kdelibs4.po to Tajik Language
+# Copyright (C) 2004, 2002, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
+# 2004, 2005, 2006, 2007 infoDev, a World Bank organization.
+# 2004, 2005, 2006, 2007 Khujand Computer Technologies, Inc.
+# 2004, 2005, 2006, 2007 Youth Opportunities, NGO, 2005.
+# Roger Kovacs <rkovacs@khujand.org>, 2003.
+# Thomas Diehl <thd@kde.org>, 2003.
+# Victor Ibragimov <victor.ibragimov@gmail.com>, 2003, 2004, 2005, 2006, 2007, 2008, 2019.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-10-24 02:12+0200\n"
+"PO-Revision-Date: 2019-09-05 15:53+0500\n"
+"Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
+"Language-Team: English <kde-i18n-doc@kde.org>\n"
+"Language: tg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 19.04.3\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Victor Ibragimov"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "victor.ibragimov@gmail.com"
+
+#: ecma/debugger/callstackdock.cpp:35
+#, kde-format
+msgid "Call Stack"
+msgstr "Дастаи дархостҳо"
+
+#: ecma/debugger/callstackdock.cpp:39
+#, kde-format
+msgid "Call"
+msgstr "Дархост"
+
+#: ecma/debugger/callstackdock.cpp:39
+#, kde-format
+msgid "Line"
+msgstr "Сатр"
+
+#: ecma/debugger/consoledock.cpp:220
+#, kde-format
+msgid "Console"
+msgstr "Консол"
+
+#: ecma/debugger/consoledock.cpp:243
+#, kde-format
+msgid "Enter"
+msgstr "Ворид"
+
+#: ecma/debugger/debugdocument.cpp:203
+#, kde-format
+msgid ""
+"Unable to find the Kate editor component;\n"
+"please check your KDE installation."
+msgstr ""
+"Унсури муҳаррири Kate ёфт намешавад;\n"
+"Лутфан, насби KDE-и худро санҷед."
+
+#: ecma/debugger/debugdocument.cpp:269
+#, kde-format
+msgid "Breakpoint"
+msgstr "Нуқтаи ҷудокунӣ"
+
+#: ecma/debugger/debugwindow.cpp:96
+#, kde-format
+msgid "JavaScript Debugger"
+msgstr "Ислоҳкунандаи JavaScript"
+
+#: ecma/debugger/debugwindow.cpp:173
+#, kde-format
+msgid "&Break at Next Statement"
+msgstr "&Ҷудо кардан дар арзи навбатӣ"
+
+#: ecma/debugger/debugwindow.cpp:174
+#, kde-format
+msgid "Break at Next"
+msgstr "Ҷудо кардан дар қимати навбатӣ"
+
+#: ecma/debugger/debugwindow.cpp:179
+#, kde-format
+msgid "Continue"
+msgstr "Идома додан"
+
+#: ecma/debugger/debugwindow.cpp:185
+#, kde-format
+msgid "Step Over"
+msgstr "Гузариш ба сатри дигар"
+
+#: ecma/debugger/debugwindow.cpp:191
+#, kde-format
+msgid "Step Into"
+msgstr "Гузариш ба вазифа"
+
+#: ecma/debugger/debugwindow.cpp:198
+#, kde-format
+msgid "Step Out"
+msgstr "Баромад аз вазифа"
+
+#: ecma/debugger/debugwindow.cpp:204
+#, kde-format
+msgid "Reindent Sources"
+msgstr "Аз нав гузоштани фосила"
+
+#: ecma/debugger/debugwindow.cpp:209
+#, kde-format
+msgid "Report Exceptions"
+msgstr "Гузориш дар бораи истисно"
+
+#: ecma/debugger/debugwindow.cpp:217
+#, kde-format
+msgid "&Debug"
+msgstr "&Ислоҳи хатоҳо"
+
+#: ecma/debugger/debugwindow.cpp:225
+#, kde-format
+msgid "&Settings"
+msgstr "&Танзимот"
+
+#: ecma/debugger/debugwindow.cpp:251
+#, kde-format
+msgid "Close source"
+msgstr "Пӯшидани манбаъ"
+
+#: ecma/debugger/debugwindow.cpp:257
+#, kde-format
+msgid "Ready"
+msgstr "Тайёр"
+
+#: ecma/debugger/debugwindow.cpp:582
+#, kde-format
+msgid ""
+"An error occurred while attempting to run a script on this page.\n"
+"\n"
+"%1 line %2:\n"
+"%3"
+msgstr ""
+"Ҳангоми иҷрокунии нақш дар ин саҳифа хато ба вуҷуд омад.\n"
+"\n"
+"%1 сатри %2:\n"
+"%3"
+
+#: ecma/debugger/debugwindow.cpp:775
+#, kde-format
+msgid ""
+"Do not know where to evaluate the expression. Please pause a script or open "
+"a source file."
+msgstr ""
+"Ягон маълумот дар бораи баҳодиҳии ифода нест. Лутфан, нақшеро таваққуф кунед "
+"ё ин ки файли манбаро кушоед."
+
+#: ecma/debugger/debugwindow.cpp:809
+#, kde-format
+msgid "Evaluation threw an exception %1"
+msgstr "Пайдоиши %1 ҳангоми баҳодиҳӣ"
+
+#: ecma/debugger/errordlg.cpp:35
+#, kde-format
+msgid "JavaScript Error"
+msgstr "Хатои JavaScript"
+
+#: ecma/debugger/errordlg.cpp:49
+#, kde-format
+msgid "&Do not show this message again"
+msgstr "&Ин паём дигар нишон дода нашавад"
+
+#: ecma/debugger/localvariabledock.cpp:43
+#, kde-format
+msgid "Local Variables"
+msgstr "Тағйирёбандаҳои маҳаллӣ"
+
+#: ecma/debugger/localvariabledock.cpp:51
+#, kde-format
+msgid "Reference"
+msgstr "Истиснод"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
+#: java/kjavaappletviewer.cpp:146
+#, kde-format
+msgid "Value"
+msgstr "Қимат"
+
+#: ecma/debugger/scriptsdock.cpp:37
+#, kde-format
+msgid "Loaded Scripts"
+msgstr "Нақшҳои боршуда"
+
+#: ecma/kjs_binding.cpp:195
+#, kde-format
+msgid ""
+"A script on this page is causing KHTML to freeze. If it continues to run, "
+"other applications may become less responsive.\n"
+"Do you want to stop the script?"
+msgstr ""
+"Яке аз нақшҳои ин саҳифа кори KHTML-ро қатъ мекунад. Агар иҷрокунии нақш "
+"идома диҳад, барномаҳои дигар метавонанд суст кор намоянд.\n"
+"Шумо мехоҳед, ки ин нақшро манъ кунед?"
+
+#: ecma/kjs_binding.cpp:195
+#, kde-format
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: ecma/kjs_binding.cpp:195
+#, kde-format
+msgid "&Stop Script"
+msgstr "&Манъ кардани нақш"
+
+#: ecma/kjs_binding.cpp:445
+#, kde-format
+msgid "Parse error at %1 line %2"
+msgstr "Хатои таҷзия дар %1 сатри %2"
+
+#: ecma/kjs_html.cpp:2233 ecma/kjs_window.cpp:1944
+#, kde-format
+msgid "Confirmation: JavaScript Popup"
+msgstr "Тасдики амал: унсури пайдошавандаи JavaScript"
+
+#: ecma/kjs_html.cpp:2235
+#, kde-format
+msgid ""
+"This site is submitting a form which will open up a new browser window via "
+"JavaScript.\n"
+"Do you want to allow the form to be submitted?"
+msgstr ""
+"Сомонаи ҷорӣ дар ҳоли фиристодани шакле мебошад, ки равзанаи нави браузерро "
+"тавассути JavaScript мекушояд.\n"
+"Шумо мехоҳед, ки барои фиристодани шакл иҷозат диҳед?"
+
+#: ecma/kjs_html.cpp:2238
+#, kde-format
+msgid ""
+"<qt>This site is submitting a form which will open <p>%1</p> in a new "
+"browser window via JavaScript.<br />Do you want to allow the form to be "
+"submitted?</qt>"
+msgstr ""
+"<qt>Сомонаи ҷорӣ дар ҳоли фиристодани шакле мебошад, ки <p>%1</p>-ро дар "
+"равзанаи нави браузер тавассути JavaScript мекушояд.<br />Шумо мехоҳед, ки "
+"барои фиристодани шакл иҷозат диҳед?</qt>"
+
+#: ecma/kjs_html.cpp:2240 ecma/kjs_window.cpp:1952
+#, kde-format
+msgid "Allow"
+msgstr "Иҷозат додан"
+
+#: ecma/kjs_html.cpp:2240 ecma/kjs_window.cpp:1952
+#, kde-format
+msgid "Do Not Allow"
+msgstr "Иҷозат надодан"
+
+#: ecma/kjs_window.cpp:1947
+#, kde-format
+msgid ""
+"This site is requesting to open up a new browser window via JavaScript.\n"
+"Do you want to allow this?"
+msgstr ""
+"Сомонаи ҷорӣ дар ҳоли дархости кушодани равзанаи нави браузер тавассути "
+"JavaScript мебошад.\n"
+"Шумо мехоҳед, ки барои ин амал иҷозат диҳед?"
+
+#: ecma/kjs_window.cpp:1950
+#, kde-format
+msgid ""
+"<qt>This site is requesting to open<p>%1</p>in a new browser window via "
+"JavaScript.<br />Do you want to allow this?</qt>"
+msgstr ""
+"<qt>Сомонаи ҷорӣ дар ҳоли дархости кушодани <p>%1</p> дар равзанаи нави "
+"браузер тавассути JavaScript мебошад.<br />Шумо мехоҳед, ки барои ин амал "
+"иҷозат диҳед?</qt>"
+
+#: ecma/kjs_window.cpp:2283
+#, kde-format
+msgid "Close window?"
+msgstr "Равзанаро мепӯшед?"
+
+#: ecma/kjs_window.cpp:2283
+#, kde-format
+msgid "Confirmation Required"
+msgstr "Тасдики амал лозим аст"
+
+#: ecma/kjs_window.cpp:3233
+#, kde-format
+msgid ""
+"Do you want a bookmark pointing to the location \"%1\" to be added to your "
+"collection?"
+msgstr ""
+"Шумо мехоҳед, ки хатчӯбе бо нишонии ҷойгиршавии \"%1\" ба маҷмӯаи шумо илова "
+"карда шавад?"
+
+#: ecma/kjs_window.cpp:3236
+#, kde-format
+msgid ""
+"Do you want a bookmark pointing to the location \"%1\" titled \"%2\" to be "
+"added to your collection?"
+msgstr ""
+"Шумо мехоҳед, ки хатчӯбе бо нишонии ҷойгиршавии \"%1\" ва унвони \"%2\" ба "
+"маҷмӯаи шумо илова карда шавад?"
+
+#: ecma/kjs_window.cpp:3245
+#, kde-format
+msgid "JavaScript Attempted Bookmark Insert"
+msgstr "JavaScript дарҷкунии хатчӯбро кӯшиш кард"
+
+#: ecma/kjs_window.cpp:3249
+#, kde-format
+msgid "Insert"
+msgstr "Дарҷ кардан"
+
+#: ecma/kjs_window.cpp:3249
+#, kde-format
+msgid "Disallow"
+msgstr "Иҷозат надодан"
+
+#: html/html_formimpl.cpp:420
+#, kde-format
+msgid ""
+"The following files will not be uploaded because they could not be found.\n"
+"Do you want to continue?"
+msgstr ""
+"Файлҳои зерин бор карда намешаванд, зеро ки онҳо ёфт карда намешаванд.\n"
+"Шумо мехоҳед, ки идома диҳед?"
+
+#: html/html_formimpl.cpp:424
+#, kde-format
+msgid "Submit Confirmation"
+msgstr "Тасдики пешниҳод"
+
+#: html/html_formimpl.cpp:424
+#, kde-format
+msgid "&Submit Anyway"
+msgstr "&Ба ҳар ҳол пешниҳод кардан"
+
+#: html/html_formimpl.cpp:434
+#, kde-format
+msgid ""
+"You are about to transfer the following files from your local computer to "
+"the Internet.\n"
+"Do you really want to continue?"
+msgstr ""
+"Шумо дар ҳоли интиқоли файлҳои зерин аз компютери маҳалли худ ба Интернет "
+"қарор доред.\n"
+"Шумо дар ҳақиқат мехоҳед, ки ин амалро идома диҳед?"
+
+#: html/html_formimpl.cpp:438
+#, kde-format
+msgid "Send Confirmation"
+msgstr "Тасдики фиристодани файл"
+
+#: html/html_formimpl.cpp:438
+#, kde-format
+msgid "&Send File"
+msgid_plural "&Send Files"
+msgstr[0] "&Фиристодани файл"
+msgstr[1] "&Фиристодани файлҳо"
+
+#: html/html_formimpl.cpp:1687 html/html_formimpl.cpp:1908 khtml_part.cpp:4962
+#: khtmlview.cpp:2845 khtmlview.cpp:2889
+#, kde-format
+msgid "Submit"
+msgstr "Пешниҳод кардан"
+
+#: html/html_formimpl.cpp:1900 khtmlview.cpp:2860 khtmlview.cpp:2895
+#, kde-format
+msgid "Reset"
+msgstr "Бозсозӣ кардан"
+
+#: html/html_formimpl.cpp:2824
+#, kde-format
+msgid "Key Generator"
+msgstr "Эҷодкунии калидҳо"
+
+#: html/html_objectimpl.cpp:632
+#, kde-format
+msgid ""
+"No plugin found for '%1'.\n"
+"Do you want to download one from %2?"
+msgstr ""
+"Ягон васлкунак барои '%1' ёфт нашуд.\n"
+"Шумо мехоҳед, ки онро аз %2 боргирӣ намоед?"
+
+#: html/html_objectimpl.cpp:633
+#, kde-format
+msgid "Missing Plugin"
+msgstr "Васлкунак насб нашудааст"
+
+#: html/html_objectimpl.cpp:633
+#, kde-format
+msgid "Download"
+msgstr "Боргирӣ кардан"
+
+#: html/html_objectimpl.cpp:633
+#, kde-format
+msgid "Do Not Download"
+msgstr "Боргирӣ накардан"
+
+#: html/htmlparser.cpp:1980
+#, kde-format
+msgid "This is a searchable index. Enter search keywords: "
+msgstr ""
+"Ин намоябандӣ ҷустуҷӯшаванда аст. Калидвожаҳоро барои ҷустуҷӯ ворид намоед: "
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+"Шумо нишон додед, ки мехоҳед гувоҳиномаи амниятро ба даст оред ё ин ки "
+"харед. Устоди ҷорӣ шуморо ҳангоми харидорӣ роҳнамоӣ мекунад. Шумо метавнед "
+"ин амалро дар вақти дилхоҳ бекор кунед, ва дар ин маврид интиқол қатъ карда "
+"мешавад."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+"Акнун шумо бояд барои дархости гувоҳинома ниҳонвожаеро ворид намоед. Лутфан, "
+"ниҳонвожаи ҷиддию бехатарро интихоб намоед, зеро ки он барои рамзгузории "
+"калиди шахсии шумо истифода мешавад."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, kde-format
+msgid "&Repeat password:"
+msgstr "&Ниҳонвожаро такроран ворид намоед:"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, kde-format
+msgid "&Choose password:"
+msgstr "&Ниҳонвожаро интихоб намоед:"
+
+#: html/ksslkeygen.cpp:82
+#, kde-format
+msgid "KDE Certificate Request"
+msgstr "Дархости гувоҳиномаи KDE"
+
+#: html/ksslkeygen.cpp:89
+#, kde-format
+msgid "KDE Certificate Request - Password"
+msgstr "Дархости гувоҳиномаи KDE - Ниҳонвожа"
+
+#: html/ksslkeygen.cpp:126
+#, kde-format
+msgid "Unsupported key size."
+msgstr "Андозаи калид дастгирӣ намешавад."
+
+#: html/ksslkeygen.cpp:126
+#, kde-format
+msgid "KDE SSL Information"
+msgstr "Иттилооти SSL-и KDE"
+
+#: html/ksslkeygen.cpp:132 khtml_part.cpp:5017
+#, kde-format
+msgid "KDE"
+msgstr "KDE"
+
+#: html/ksslkeygen.cpp:133
+#, kde-format
+msgid "Please wait while the encryption keys are generated..."
+msgstr "Лутфан, то анҷоми эҷодкунии калидҳои рамзгузорӣ интизор шавед..."
+
+#: html/ksslkeygen.cpp:148
+#, kde-format
+msgid "Do you wish to store the passphrase in your wallet file?"
+msgstr "Шумо мехоҳед, ки гузарвожаи худро дар файли ҳамён нигоҳ доред?"
+
+#: html/ksslkeygen.cpp:148
+#, kde-format
+msgid "Store"
+msgstr "Нигоҳ доштан"
+
+#: html/ksslkeygen.cpp:148
+#, kde-format
+msgid "Do Not Store"
+msgstr "Нигоҳ надоштан"
+
+#: html/ksslkeygen.cpp:257
+#, kde-format
+msgid "2048 (High Grade)"
+msgstr "2048 (Дараҷаи баланд)"
+
+#: html/ksslkeygen.cpp:258
+#, kde-format
+msgid "1024 (Medium Grade)"
+msgstr "1024 (Дараҷаи миёна)"
+
+#: html/ksslkeygen.cpp:259
+#, kde-format
+msgid "768  (Low Grade)"
+msgstr "768  (Дараҷаи паст)"
+
+#: html/ksslkeygen.cpp:260
+#, kde-format
+msgid "512  (Low Grade)"
+msgstr "512  (Дараҷаи паст)"
+
+#: html/ksslkeygen.cpp:262
+#, kde-format
+msgid "No SSL support."
+msgstr "Дастгирии SSL нест."
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "Иттилооти ҳуҷҷатнигорӣ"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "Умумӣ"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "Сарлавҳа:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "Таҳрири охирин:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "Рамзгузории ҳуҷҷат:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "Реҷаи иҷрокунӣ:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "Сарлавҳаҳои HTTP"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "Хусусият"
+
+#: java/kjavaapplet.cpp:227
+#, kde-format
+msgid "Initializing Applet \"%1\"..."
+msgstr "Омодасозии зербарномаи \"%1\"..."
+
+#: java/kjavaapplet.cpp:233
+#, kde-format
+msgid "Starting Applet \"%1\"..."
+msgstr "Оғозкунии зербарномаи \"%1\"..."
+
+#: java/kjavaapplet.cpp:240
+#, kde-format
+msgid "Applet \"%1\" started"
+msgstr "Зербарномаи \"%1\" оғоз шуд"
+
+#: java/kjavaapplet.cpp:246
+#, kde-format
+msgid "Applet \"%1\" stopped"
+msgstr "Зербарномаи \"%1\" қутъ шуд"
+
+#: java/kjavaappletserver.cpp:143
+#, kde-format
+msgid "Loading Applet"
+msgstr "Боркунии зербарнома"
+
+#: java/kjavaappletserver.cpp:146
+#, kde-format
+msgid "Error: java executable not found"
+msgstr "Хато: иҷрошавандаи java ёфт нашуд"
+
+#: java/kjavaappletserver.cpp:673
+#, kde-format
+msgid "Signed by (validation: %1)"
+msgstr "Аз ҷониби (санҷиши эътибор: %1) ба имзо расид"
+
+#: java/kjavaappletserver.cpp:675
+#, kde-format
+msgid "Certificate (validation: %1)"
+msgstr "Гувоҳинома (санҷиши эътибор: %1)"
+
+#: java/kjavaappletserver.cpp:811 khtml_part.cpp:7047
+#, kde-format
+msgid "Security Alert"
+msgstr "Огоҳии амниятӣ"
+
+#: java/kjavaappletserver.cpp:816
+#, kde-format
+msgid "Do you grant Java applet with certificate(s):"
+msgstr "Ба зербарномаи Java гувоҳинома(ҳо) татбиқ карда мешава(н)д:"
+
+#: java/kjavaappletserver.cpp:818
+#, kde-format
+msgid "the following permission"
+msgstr "иҷозати зерин"
+
+#: java/kjavaappletserver.cpp:827
+#, kde-format
+msgid "&No"
+msgstr "&Не"
+
+#: java/kjavaappletserver.cpp:832
+#, kde-format
+msgid "&Reject All"
+msgstr "&Ҳамаро рад кардан"
+
+#: java/kjavaappletserver.cpp:836
+#, kde-format
+msgid "&Yes"
+msgstr "&Ҳа"
+
+#: java/kjavaappletserver.cpp:840
+#, kde-format
+msgid "&Grant All"
+msgstr "&Ҳамаро татбиқ кардан"
+
+#: java/kjavaappletviewer.cpp:55
+#, kde-format
+msgid "KDE Java Applet Plugin"
+msgstr "Васлкунаки зербарномаи Java дар KDE"
+
+#: java/kjavaappletviewer.cpp:137
+#, kde-format
+msgid "Applet Parameters"
+msgstr "Хусусиятҳои зербарнома"
+
+#: java/kjavaappletviewer.cpp:145
+#, kde-format
+msgid "Parameter"
+msgstr "Хосият"
+
+#: java/kjavaappletviewer.cpp:149
+#, kde-format
+msgid "Class"
+msgstr "Синф"
+
+#: java/kjavaappletviewer.cpp:155
+#, kde-format
+msgid "Base URL"
+msgstr "Нишонии асосии URL"
+
+#: java/kjavaappletviewer.cpp:161
+#, kde-format
+msgid "Archives"
+msgstr "Бойгониҳо"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "&Таҳрир"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Файл"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "&Намоиш"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "Навори абзорҳои HTML"
+
+#: khtml_ext.cpp:413
+#, kde-format
+msgid "&Copy Text"
+msgstr "&Нусха бардоштани матн"
+
+#: khtml_ext.cpp:427
+#, kde-format
+msgid "Open '%1'"
+msgstr "Кушодани '%1'"
+
+#: khtml_ext.cpp:444
+#, kde-format
+msgid "&Copy Email Address"
+msgstr "&Нусха бардоштани нишонии почтаи электронӣ"
+
+#: khtml_ext.cpp:449
+#, kde-format
+msgid "&Save Link As..."
+msgstr "&Нигоҳ доштани пайванд ҳамчун..."
+
+#: khtml_ext.cpp:454
+#, kde-format
+msgid "&Copy Link Address"
+msgstr "&Нусха бардоштани пайванди нишонӣ"
+
+#: khtml_ext.cpp:466
+#, kde-format
+msgctxt "@title:menu HTML frame/iframe"
+msgid "Frame"
+msgstr "Чорчӯба"
+
+#: khtml_ext.cpp:467
+#, kde-format
+msgid "Open in New &Window"
+msgstr "&Кушодан дар равзанаи нав"
+
+#: khtml_ext.cpp:473
+#, kde-format
+msgid "Open in &This Window"
+msgstr "&Кушодан дар равзанаи ҷорӣ"
+
+#: khtml_ext.cpp:478
+#, kde-format
+msgid "Open in &New Tab"
+msgstr "&Кушодан дар варақаи нав"
+
+#: khtml_ext.cpp:488
+#, kde-format
+msgid "Reload Frame"
+msgstr "Аз нав бор кардани чорчӯба"
+
+#: khtml_ext.cpp:493 khtml_part.cpp:446
+#, kde-format
+msgid "Print Frame..."
+msgstr "Чопкунии чорчӯба..."
+
+#: khtml_ext.cpp:499 khtml_part.cpp:298
+#, kde-format
+msgid "Save &Frame As..."
+msgstr "&Нигоҳ доштани чорчӯба ҳамчун..."
+
+#: khtml_ext.cpp:504 khtml_part.cpp:274
+#, kde-format
+msgid "View Frame Source"
+msgstr "Намоиши манбаи чорчӯба"
+
+#: khtml_ext.cpp:509
+#, kde-format
+msgid "View Frame Information"
+msgstr "Намоиши иттилооти чорчӯба"
+
+#: khtml_ext.cpp:519
+#, kde-format
+msgid "Block IFrame..."
+msgstr "Қулфкунии IFrame..."
+
+#: khtml_ext.cpp:543
+#, kde-format
+msgid "Save Image As..."
+msgstr "Нигоҳ доштани тасвир ҳамчун..."
+
+#: khtml_ext.cpp:548
+#, kde-format
+msgid "Send Image..."
+msgstr "Фиристодани тасвир..."
+
+#: khtml_ext.cpp:554
+#, kde-format
+msgid "Copy Image"
+msgstr "Нусха бардоштани тасвир"
+
+#: khtml_ext.cpp:562
+#, kde-format
+msgid "Copy Image Location"
+msgstr "Нусха бардоштани ҷойгиршавии тасвир"
+
+#: khtml_ext.cpp:571
+#, kde-format
+msgid "View Image (%1)"
+msgstr "Намоиши тасвир (%1)"
+
+#: khtml_ext.cpp:577
+#, kde-format
+msgid "Block Image..."
+msgstr "Қулфкунии тасвирҳо..."
+
+#: khtml_ext.cpp:584
+#, kde-format
+msgid "Block Images From %1"
+msgstr "Қулфкунии тасвирҳо аз %1"
+
+#: khtml_ext.cpp:596
+#, kde-format
+msgid "Stop Animations"
+msgstr "Манъ кардани ҳаракатдиҳӣ"
+
+#: khtml_ext.cpp:637
+#, kde-format
+msgid "Search for '%1' with %2"
+msgstr "Ҷустуҷӯи '%1' бо '%2'"
+
+#: khtml_ext.cpp:647
+#, kde-format
+msgid "Search for '%1' with"
+msgstr "Ҷустуҷӯи '%1' бо"
+
+#: khtml_ext.cpp:693
+#, kde-format
+msgid "Save Link As"
+msgstr "Нигоҳ доштани пайванд ҳамчун"
+
+#: khtml_ext.cpp:712
+#, kde-format
+msgid "Save Image As"
+msgstr "Нигоҳ доштани тасвир ҳамчун"
+
+#: khtml_ext.cpp:726 khtml_ext.cpp:738
+#, kde-format
+msgid "Add URL to Filter"
+msgstr "Илова кардани нишонии URL ба филтр"
+
+#: khtml_ext.cpp:727 khtml_ext.cpp:739
+#, kde-format
+msgid "Enter the URL:"
+msgstr "Нишонии URL-ро ворид намоед:"
+
+#: khtml_ext.cpp:875
+#, kde-format
+msgid ""
+"A file named \"%1\" already exists. Are you sure you want to overwrite it?"
+msgstr ""
+"Файли бо номи \"%1\" аллакай вуҷуд дорад. Шумо мехоҳед, ки онро рӯиҳамнависӣ "
+"кунед?"
+
+#: khtml_ext.cpp:875
+#, kde-format
+msgid "Overwrite File?"
+msgstr "Файлро рӯиҳамнависӣ мекунед?"
+
+#: khtml_ext.cpp:927
+#, kde-format
+msgid "The Download Manager (%1) could not be found in your $PATH "
+msgstr "Мудири боргириҳо (%1) дар масири $PATH ёфт карда нашуд"
+
+#: khtml_ext.cpp:928
+#, kde-format
+msgid ""
+"Try to reinstall it  \n"
+"\n"
+"The integration with Konqueror will be disabled."
+msgstr ""
+"Кӯшиш кунед, ки онро аз нав насб намоед  \n"
+"\n"
+"Ҳампайвандӣ бо Konqueror ғайрифаъол карда мешавад."
+
+#: khtml_ext.cpp:1007
+#, no-c-format, kde-format
+msgid "Default Font Size (100%)"
+msgstr "Андозаи ҳуруфи стандартӣ (100%)"
+
+#: khtml_ext.cpp:1021
+#, no-c-format, kde-format
+msgid "%1%"
+msgstr "%1%"
+
+#: khtml_global.cpp:203
+#, kde-format
+msgid "KHTML"
+msgstr "KHTML"
+
+#: khtml_global.cpp:204
+#, kde-format
+msgid "Embeddable HTML component"
+msgstr "Унсури дарунсохтшавандаи HTML"
+
+#: khtml_part.cpp:267
+#, kde-format
+msgid "View Do&cument Source"
+msgstr "&Намоиши манбаи ҳуҷҷат"
+
+#: khtml_part.cpp:281
+#, kde-format
+msgid "View Document Information"
+msgstr "Намоиши иттилооти ҳуҷҷат"
+
+#: khtml_part.cpp:288
+#, kde-format
+msgid "Save &Background Image As..."
+msgstr "Нигоҳ доштани &тасвири замина ҳамчун..."
+
+#: khtml_part.cpp:310 khtml_part.cpp:4189
+#, kde-format
+msgid "SSL"
+msgstr "SSL"
+
+#: khtml_part.cpp:314
+#, kde-format
+msgid "Print Rendering Tree to STDOUT"
+msgstr "Чоп кардани дарахти иҷрокунӣ ба STDOUT"
+
+#: khtml_part.cpp:318
+#, kde-format
+msgid "Print DOM Tree to STDOUT"
+msgstr "Чоп кардани дарахти DOM ба STDOUT"
+
+#: khtml_part.cpp:322
+#, kde-format
+msgid "Print frame tree to STDOUT"
+msgstr "Чоп кардани дарахти чорчӯба ба STDOUT"
+
+#: khtml_part.cpp:326
+#, kde-format
+msgid "Stop Animated Images"
+msgstr "Манъ кардани тасвирҳои мутаҳаррик"
+
+#: khtml_part.cpp:330
+#, kde-format
+msgid "Set &Encoding"
+msgstr "Танзими &рамзгузорӣ"
+
+#: khtml_part.cpp:376
+#, kde-format
+msgid "Use S&tylesheet"
+msgstr "Истифодаи &ҷадвали услубҳо"
+
+#: khtml_part.cpp:381
+#, kde-format
+msgid "Enlarge Font"
+msgstr "Калонкунии ҳуруф"
+
+#: khtml_part.cpp:384
+#, kde-format
+msgid ""
+"<qt>Enlarge Font<br /><br />Make the font in this window bigger. Click and "
+"hold down the mouse button for a menu with all available font sizes.</qt>"
+msgstr ""
+"<qt>Калонкунии ҳуруф<br /><br />Ҳуруфи равзанаи ҷориро калонтар кунед. Барои "
+"нишон додани феҳрист бо андозаҳои ҳуруфи дастрас, тугмаи мушро зер карда, "
+"доред.</qt>"
+
+#: khtml_part.cpp:388
+#, kde-format
+msgid "Shrink Font"
+msgstr "Хурдкунии ҳуруф"
+
+#: khtml_part.cpp:391
+#, kde-format
+msgid ""
+"<qt>Shrink Font<br /><br />Make the font in this window smaller. Click and "
+"hold down the mouse button for a menu with all available font sizes.</qt>"
+msgstr ""
+"<qt>Хурдкунии ҳуруф<br /><br />Ҳуруфи равзанаи ҷориро хурдтар кунед. Барои "
+"нишон додани феҳрист бо андозаҳои ҳуруфи дастрас, тугмаи мушро зер карда, "
+"доред.</qt>"
+
+#: khtml_part.cpp:406
+#, kde-format
+msgid ""
+"<qt>Find text<br /><br />Shows a dialog that allows you to find text on the "
+"displayed page.</qt>"
+msgstr ""
+"<qt>Ёфтани матн<br /><br />Равзанаи гуфтугӯиеро нишон медиҳад, ки ба шумо "
+"барои ёфтани матн дар саҳифаи нишондодашуда имкон медиҳад.</qt>"
+
+#: khtml_part.cpp:410
+#, kde-format
+msgid ""
+"<qt>Find next<br /><br />Find the next occurrence of the text that you have "
+"found using the <b>Find Text</b> function.</qt>"
+msgstr ""
+"<qt>Ёфтани навбатӣ<br /><br />Мувофиқати навбатии матнеро, ки шумо ба "
+"воситаи вазифаи <b>Ёфтани матн</b> ёфтед, меёбад.</qt>"
+
+#: khtml_part.cpp:416
+#, kde-format
+msgid ""
+"<qt>Find previous<br /><br />Find the previous occurrence of the text that "
+"you have found using the <b>Find Text</b> function.</qt>"
+msgstr ""
+"<qt>Ёфтани қаблӣ<br /><br />Мувофиқати қаблии матнеро, ки шумо ба воситаи "
+"вазифаи <b>Ёфтани матн</b> ёфтед, меёбад.</qt>"
+
+#: khtml_part.cpp:421
+#, kde-format
+msgid "Find Text as You Type"
+msgstr "Ҷустуҷӯи матн ҳангоми навиштан"
+
+#: khtml_part.cpp:424
+#, kde-format
+msgid ""
+"This shortcut shows the find bar, for finding text in the displayed page. It "
+"cancels the effect of \"Find Links as You Type\", which sets the \"Find "
+"links only\" option."
+msgstr ""
+"Ин миёнбур навореро барои ёфтани матн дар саҳифаи нишондодашуда нишон "
+"медиҳад. Он таъсиреро бо имкони \"Ёфтани пайвандҳо ҳангоми навиштан\" бекор "
+"мекунад, ки танҳои имкони \"Ёфтани танҳо пайвандҳо\" танзим мекунад."
+
+#: khtml_part.cpp:428
+#, kde-format
+msgid "Find Links as You Type"
+msgstr "Ёфтани пайвандҳо ҳангоми навиштан"
+
+#: khtml_part.cpp:434
+#, kde-format
+msgid ""
+"This shortcut shows the find bar, and sets the option \"Find links only\"."
+msgstr ""
+"Ин миёнбур навореро барои ёфтани матн нишон медиҳад ва имкони \"Ёфтани танҳо "
+"пайвандҳо\"-ро танзим мекунад."
+
+#: khtml_part.cpp:450
+#, kde-format
+msgid ""
+"<qt>Print Frame<br /><br />Some pages have several frames. To print only a "
+"single frame, click on it and then use this function.</qt>"
+msgstr ""
+"<qt>Чопкунии чорчӯба<br /><br />Баъзе саҳифаҳо дорои якчанд чорчӯба "
+"мебошанд. Барои чоп кардани танҳо як чорчӯба, ба он зер карда, ин вазифаро "
+"истифода баред.</qt>"
+
+#: khtml_part.cpp:465
+#, kde-format
+msgid "Toggle Caret Mode"
+msgstr "Фаъолсозии реҷаи дарҷкунӣ/ивазкунӣ"
+
+#: khtml_part.cpp:768
+#, kde-format
+msgid "The fake user-agent '%1' is in use."
+msgstr "Муайянкунандаи қалбакии браузери «%1» истифода мешавад."
+
+#: khtml_part.cpp:1272
+#, kde-format
+msgid "This web page contains coding errors."
+msgstr "Ин саҳифа дорои хатоҳои барномарезӣ мебошад."
+
+#: khtml_part.cpp:1313
+#, kde-format
+msgid "&Hide Errors"
+msgstr "&Пинҳон кардани хатоҳо"
+
+#: khtml_part.cpp:1314
+#, kde-format
+msgid "&Disable Error Reporting"
+msgstr "&Ғайрифаъол кардани гузоришдиҳӣ оид ба хатоҳо"
+
+#: khtml_part.cpp:1357
+#, kde-format
+msgid "<qt><b>Error</b>: %1: %2</qt>"
+msgstr "<qt><b>Хато</b>: %1: %2</qt>"
+
+#: khtml_part.cpp:1406
+#, kde-format
+msgid "<qt><b>Error</b>: node %1: %2</qt>"
+msgstr "<qt><b>Хато</b>: гиреҳи %1: %2</qt>"
+
+#: khtml_part.cpp:1528
+#, kde-format
+msgid "Display Images on Page"
+msgstr "Намоиш додани тасвирҳо дар саҳифа"
+
+#: khtml_part.cpp:1912
+#, kde-format
+msgid "Error: %1 - %2"
+msgstr "Хато: %1 - %2"
+
+#: khtml_part.cpp:1917
+#, kde-format
+msgid "The requested operation could not be completed"
+msgstr "Амалиёти дархостшуда иҷро карда намешавад"
+
+#: khtml_part.cpp:1923
+#, kde-format
+msgid "Technical Reason: "
+msgstr "Сабаби техникӣ: "
+
+#: khtml_part.cpp:1929
+#, kde-format
+msgid "Details of the Request:"
+msgstr "Тафсилоти дархост:"
+
+#: khtml_part.cpp:1931
+#, kde-format
+msgid "URL: %1"
+msgstr "Нишонии URL: %1"
+
+#: khtml_part.cpp:1934
+#, kde-format
+msgid "Protocol: %1"
+msgstr "Протокол: %1"
+
+#: khtml_part.cpp:1937
+#, kde-format
+msgid "Date and Time: %1"
+msgstr "Сана ва вақт: %1"
+
+#: khtml_part.cpp:1939
+#, kde-format
+msgid "Additional Information: %1"
+msgstr "Иттлилооти иловагӣ: %1"
+
+#: khtml_part.cpp:1941
+#, kde-format
+msgid "Description:"
+msgstr "Тафсилот:"
+
+#: khtml_part.cpp:1947
+#, kde-format
+msgid "Possible Causes:"
+msgstr "Сабабҳои имконпазир:"
+
+#: khtml_part.cpp:1954
+#, kde-format
+msgid "Possible Solutions:"
+msgstr "Қарорҳои имконпазир:"
+
+#: khtml_part.cpp:2402
+#, kde-format
+msgid "Page loaded."
+msgstr "Саҳифа бор шуд."
+
+#: khtml_part.cpp:2404
+#, kde-format
+msgid "%1 Image of %2 loaded."
+msgid_plural "%1 Images of %2 loaded."
+msgstr[0] "%1 аз %2 тасвир бор шуд."
+msgstr[1] "%1 аз %2 тасвир бор шуд."
+
+#: khtml_part.cpp:2582
+#, kde-format
+msgid "Automatic Detection"
+msgstr "Муайянкунии худкор"
+
+#: khtml_part.cpp:3712 khtml_part.cpp:3776 khtml_part.cpp:3786
+#, kde-format
+msgid " (In new window)"
+msgstr " (Дар равзанаи нав)"
+
+#: khtml_part.cpp:3740
+#, kde-format
+msgid "Symbolic Link"
+msgstr "Пайванди рамзӣ"
+
+#: khtml_part.cpp:3742
+#, kde-format
+msgid "%1 (Link)"
+msgstr "%1 (Пайванд)"
+
+#: khtml_part.cpp:3758
+#, kde-format
+msgid "%2 (%1 byte)"
+msgid_plural "%2 (%1 bytes)"
+msgstr[0] "%2 (%1 байт)"
+msgstr[1] "%2 (%1 байт)"
+
+#: khtml_part.cpp:3761
+#, kde-format
+msgid "%2 (%1 K)"
+msgstr "%2 (%1 К)"
+
+#: khtml_part.cpp:3788
+#, kde-format
+msgid " (In other frame)"
+msgstr " (Дар чорчӯбаи дигар)"
+
+#: khtml_part.cpp:3794
+#, kde-format
+msgid "Email to: "
+msgstr "Фиристодани паёми электронӣ ба: "
+
+#: khtml_part.cpp:3800
+#, kde-format
+msgid " - Subject: "
+msgstr " - Мавзӯъ: "
+
+#: khtml_part.cpp:3802
+#, kde-format
+msgid " - CC: "
+msgstr " - Нусха: "
+
+#: khtml_part.cpp:3804
+#, kde-format
+msgid " - BCC: "
+msgstr " - Нусхаи ноаён:' "
+
+#: khtml_part.cpp:3885 khtml_part.cpp:4107 khtml_part.cpp:4543
+#: khtml_run.cpp:106
+#, kde-format
+msgid "Save As"
+msgstr "Нигоҳ доштан ҳамчун"
+
+#: khtml_part.cpp:3890
+#, kde-format
+msgid ""
+"<qt>This untrusted page links to<br /><b>%1</b>.<br />Do you want to follow "
+"the link?</qt>"
+msgstr ""
+"<qt>Ин саҳифаи беэътибор ба <br /><b>%1</b> пайванд дорад.<br />Шумо "
+"мехоҳед, ки ин пайвандро кушоед?</qt>"
+
+#: khtml_part.cpp:3891
+#, kde-format
+msgid "Follow"
+msgstr "Кушодан"
+
+#: khtml_part.cpp:3986
+#, kde-format
+msgid "Frame Information"
+msgstr "Иттилооти чорчӯба"
+
+#: khtml_part.cpp:3992
+#, kde-format
+msgid "   <a href=\"%1\">[Properties]</a>"
+msgstr "   <a href=\"%1\">[Хусусиятҳо]</a>"
+
+#: khtml_part.cpp:4018
+#, kde-format
+msgctxt "HTML rendering mode (see https://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Quirks"
+msgstr "Реҷаи мувофиқатсозӣ"
+
+#: khtml_part.cpp:4021
+#, kde-format
+msgctxt "HTML rendering mode (see https://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Almost standards"
+msgstr "Қариб ба стандарт ҷавобгӯ мебошад"
+
+#: khtml_part.cpp:4025
+#, kde-format
+msgctxt "HTML rendering mode (see https://en.wikipedia.org/wiki/Quirks_mode)"
+msgid "Strict"
+msgstr "Мутобиқати ҷиддӣ ба стандартҳо"
+
+#: khtml_part.cpp:4094
+#, kde-format
+msgid "Save Background Image As"
+msgstr "Нигоҳ доштани тасвири замина ҳамчун"
+
+#: khtml_part.cpp:4187
+#, kde-format
+msgid "The peer SSL certificate chain appears to be corrupt."
+msgstr "Чунин менамояд, ки занҷири ҳаммонандии гувоҳиномаи SSL вайрон аст."
+
+#: khtml_part.cpp:4208
+#, kde-format
+msgid "Save Frame As"
+msgstr "Нигоҳ доштани чорчӯба ҳамчун"
+
+#: khtml_part.cpp:4252
+#, kde-format
+msgid "&Find in Frame..."
+msgstr "&Ёфтан дар чорчӯба..."
+
+#: khtml_part.cpp:4254
+#, kde-format
+msgid "&Find..."
+msgstr "&Ёфтан..."
+
+#: khtml_part.cpp:4901
+#, kde-format
+msgid ""
+"Warning:  This is a secure form but it is attempting to send your data back "
+"unencrypted.\n"
+"A third party may be able to intercept and view this information.\n"
+"Are you sure you wish to continue?"
+msgstr ""
+"Огоҳӣ:  Ин шакли бехатар аст, вале он дар ҳоли бозгашти иттилооти шумо бе "
+"рамзгузорӣ қарор дорад.\n"
+"Тарафи сеюм метавонад ин иттилоотро ба даст оварда, бинад.\n"
+"Шумо мутмаин ҳастед, ки мехоҳед идома диҳед?"
+
+#: khtml_part.cpp:4904 khtml_part.cpp:4914 khtml_part.cpp:4939
+#, kde-format
+msgid "Network Transmission"
+msgstr "Интиқоли шабакаи интернет"
+
+#: khtml_part.cpp:4904 khtml_part.cpp:4915
+#, kde-format
+msgid "&Send Unencrypted"
+msgstr "&Бе рамзгузорӣ фиристодан"
+
+#: khtml_part.cpp:4912
+#, kde-format
+msgid ""
+"Warning: Your data is about to be transmitted across the network "
+"unencrypted.\n"
+"Are you sure you wish to continue?"
+msgstr ""
+"Огоҳӣ: Иттилооти шумо дар ҳоли интиқол бе рамзгузорӣ тавассути шабака қарор "
+"дорад.\n"
+"Шумо мутмаин ҳастед, ки мехоҳед идома диҳед?"
+
+#: khtml_part.cpp:4937
+#, kde-format
+msgid ""
+"This site is attempting to submit form data via email.\n"
+"Do you want to continue?"
+msgstr ""
+"Ин сомона дар ҳоли пешниҳоди иттилооти шакл тавассути почтаи электронӣ қарор "
+"дорад.\n"
+"Шумо мехоҳед, ки идома диҳед?"
+
+#: khtml_part.cpp:4940
+#, kde-format
+msgid "&Send Email"
+msgstr "&Фиристодани почтаи электронӣ"
+
+#: khtml_part.cpp:4961
+#, kde-format
+msgid ""
+"<qt>The form will be submitted to <br /><b>%1</b><br />on your local "
+"filesystem.<br />Do you want to submit the form?</qt>"
+msgstr ""
+"<qt>Шакл ба <br /><b>%1</b><br />дар низоми файлии маҳаллии шумо интиқол "
+"дода мешавад.<br />Шумо мехоҳед, ки шаклро интиқол диҳед?</qt>"
+
+#: khtml_part.cpp:5017
+#, kde-format
+msgid ""
+"This site attempted to attach a file from your computer in the form "
+"submission. The attachment was removed for your protection."
+msgstr ""
+"Ин сомона дар ҳоли замима намудани файл аз компютери шумо ва фиристодани он "
+"тавассути шакл қарор дорад. Барои муҳофизати шумо замима тоза карда шуд."
+
+#: khtml_part.cpp:6111
+#, kde-format
+msgid "(%1/s)"
+msgstr "(%1/с)"
+
+#: khtml_part.cpp:7039
+#, kde-format
+msgid "Security Warning"
+msgstr "Огоҳии амниятӣ"
+
+#: khtml_part.cpp:7046
+#, kde-format
+msgid "<qt>Access by untrusted page to<br /><b>%1</b><br /> denied.</qt>"
+msgstr ""
+"<qt>Дастрасӣ аз саҳифаи беэътибор ба<br /><b>%1</b><br /> рад карда шуд.</qt>"
+
+#: khtml_part.cpp:7417
+#, kde-format
+msgid "The wallet '%1' is open and being used for form data and passwords."
+msgstr ""
+"Ҳамёни '%1' кушода аст ва барои иттилооти шаклҳо ва ниҳонвожаҳо истифода "
+"мешавад."
+
+#: khtml_part.cpp:7476
+#, kde-format
+msgid "&Close Wallet"
+msgstr "&Пӯшидани ҳамён"
+
+#: khtml_part.cpp:7479
+#, kde-format
+msgid "&Allow storing passwords for this site"
+msgstr "&Ниҳонвожаҳо барои ин сомона нигоҳ дошта шаванд"
+
+#: khtml_part.cpp:7484
+#, kde-format
+msgid "Remove password for form %1"
+msgstr "Тоза кардани ниҳонвожа аз шакли %1"
+
+#: khtml_part.cpp:7599
+#, kde-format
+msgid "JavaScript &Debugger"
+msgstr "&Ислоҳкунандаи JavaScript"
+
+#: khtml_part.cpp:7632
+#, kde-format
+msgid "This page was prevented from opening a new window via JavaScript."
+msgstr ""
+"Ин саҳифа аз кушоиши равзанаи нав тавассути JavaScript пешгирӣ карда шуд."
+
+#: khtml_part.cpp:7638
+#, kde-format
+msgid "Popup Window Blocked"
+msgstr "Равзанаи пайдошаванда қатъ карда шуд"
+
+#: khtml_part.cpp:7638
+#, kde-format
+msgid ""
+"This page has attempted to open a popup window but was blocked.\n"
+"You can click on this icon in the status bar to control this behavior\n"
+"or to open the popup."
+msgstr ""
+"Ин саҳифа кушодани равзанаи пайдошавандаро кӯшиш кард, аммо қатъ карда шуд."
+"Шумо метавонед барои идоракунии чунин рафтор ё кушодани равзанаи "
+"пайдошаванда\n"
+" ба ин нишона дар навори вазъият зер кунед."
+
+#: khtml_part.cpp:7652
+#, kde-format
+msgid "&Show Blocked Popup Window"
+msgid_plural "&Show %1 Blocked Popup Windows"
+msgstr[0] "&Нишон додани равзанаи пайдошавандаи қатъшуда"
+msgstr[1] "&Нишон додани %1 равзанаи пайдошавандаи қатъшуда"
+
+#: khtml_part.cpp:7654
+#, kde-format
+msgid "Show Blocked Window Passive Popup &Notification"
+msgstr "&Нишон додани огоҳӣ оид ба равзанаи пайдошавандаи қатъшуда"
+
+#: khtml_part.cpp:7656
+#, kde-format
+msgid "&Configure JavaScript New Window Policies..."
+msgstr "&Танзимоти сиёсатҳои равзанаи нави JavaScript..."
+
+#: khtml_printsettings.cpp:30
+#, kde-format
+msgid ""
+"<qt><p><strong>'Print images'</strong></p><p>If this checkbox is enabled, "
+"images contained in the HTML page will be printed. Printing may take longer "
+"and use more ink or toner.</p><p>If this checkbox is disabled, only the text "
+"of the HTML page will be printed, without the included images. Printing will "
+"be faster and use less ink or toner.</p> </qt>"
+msgstr ""
+"<qt><p><strong>'Чопкунии тасвирҳо'</strong></p><p>Агар ин имкон фаъол бошад, "
+"тасвирҳое, ки дар саҳифаи HTML ҷойгир шудаанд, чоп карда мешаванд. Чопкунӣ "
+"метавонад вақти зиёдро гирад ва ранг ё тонерро зиёдтар истифода барад.</"
+"p><p>Агар ин имкон ғайрифаъол бошад, танҳо матне, ки дар саҳифаи HTML ҷойгир "
+"шудааст, бе ягон тасвир чоп карда мешавад. Чопкунӣ тезтар иҷро мешавад ва "
+"ранг ё тонер камтар истифода мешавад.</p> </qt>"
+
+#: khtml_printsettings.cpp:42
+#, kde-format
+msgid ""
+"<qt><p><strong>'Print header'</strong></p><p>If this checkbox is enabled, "
+"the printout of the HTML document will contain a header line at the top of "
+"each page. This header contains the current date, the location URL of the "
+"printed page and the page number.</p><p>If this checkbox is disabled, the "
+"printout of the HTML document will not contain such a header line.</p> </qt>"
+msgstr ""
+"<qt><p><strong>'Чопкунии сарлавҳа'</strong></p><p>Агар ин имкон фаъол бошад, "
+"ҳуҷҷати HTML-и чопшуда дар болои ҳар як саҳифа сатри сарлавҳаро дар бар "
+"мегирад. Сатри сарлавҳа дорои санаи ҷорӣ, нишонии URL-и саҳифаи чопшуда ва "
+"рақами саҳифа мебошад. </p><p>Агар ин имкон ғайрифаъол бошад, ҳуҷҷати HTML "
+"чунин сатри сарлавҳаро дар бар намегирад.</p> </qt>"
+
+#: khtml_printsettings.cpp:55
+#, kde-format
+msgid ""
+"<qt><p><strong>'Printerfriendly mode'</strong></p><p>If this checkbox is "
+"enabled, the printout of the HTML document will be black and white only, and "
+"all colored background will be converted into white. Printout will be faster "
+"and use less ink or toner.</p><p>If this checkbox is disabled, the printout "
+"of the HTML document will happen in the original color settings as you see "
+"in your application. This may result in areas of full-page color (or "
+"grayscale, if you use a black+white printer). Printout will possibly happen "
+"more slowly and will probably use more toner or ink.</p> </qt>"
+msgstr ""
+"<qt><p><strong>'Реҷаи дӯстонаи принтер'</strong></p><p>Агар ин имкон фаъол "
+"бошад, ҳуҷҷати HTML-и чопшаванда танҳо бо ранги сиёҳу сафед чоп карда "
+"мешавад, ва ҳар гуна заминаи рангин ба ранги сафед табдил дода мешавад. "
+"Чопкунӣ тезтар иҷро мешавад ва ранг ё тонер камтар истифода мешавад.</"
+"p><p>Агар ин имкон ғайрифаъол бошад, ҳуҷҷати HTML-и чопшаванда дар рангҳои "
+"аслӣ, чӣ тавре ки шумо ҳуҷҷатро дар барнома мебинед, чоп карда мешавад. Дар "
+"ин ҳолат саҳифаи пурра ба таври серранг чоп карда мешавад (ё дар рангҳои "
+"хокистарӣ, агар принтери сиёҳу сафедро истифода баред). Эҳтимол аст, ки "
+"чопкунӣ сустар иҷро мешавад ва ранг ё тонери зиёдро истифода мебарад.</p> </"
+"qt>"
+
+#: khtml_printsettings.cpp:70
+#, kde-format
+msgid "HTML Settings"
+msgstr "Танзимоти HTML"
+
+#: khtml_printsettings.cpp:72
+#, kde-format
+msgid "Printer friendly mode (black text, no background)"
+msgstr "Реҷаи дӯстонаи принтер (матни сиёҳ, бе замина)"
+
+#: khtml_printsettings.cpp:75
+#, kde-format
+msgid "Print images"
+msgstr "Чопкунии тасвирҳо"
+
+#: khtml_printsettings.cpp:78
+#, kde-format
+msgid "Print header"
+msgstr "Чопкунии сарлавҳа"
+
+#: khtml_settings.cpp:906
+#, kde-format
+msgid "Filter error"
+msgstr "Хатои филтр"
+
+#: khtmladaptorpart.cpp:29
+#, kde-format
+msgid "Inactive"
+msgstr "Ғайрифаъол"
+
+#: khtmlimage.cpp:49
+#, kde-format
+msgid "KHTML Image"
+msgstr "Тасвири KHTML"
+
+#: khtmlimage.cpp:195
+#, kde-format
+msgid "%1 (%2 - %3x%4 Pixels)"
+msgstr "%1 (%2 - %3x%4 пиксел)"
+
+#: khtmlimage.cpp:197
+#, kde-format
+msgid "%1 - %2x%3 Pixels"
+msgstr "%1 - %2x%3 пиксел"
+
+#: khtmlimage.cpp:202
+#, kde-format
+msgid "%1 (%2x%3 Pixels)"
+msgstr "%1 (%2x%3 пиксел)"
+
+#: khtmlimage.cpp:204
+#, kde-format
+msgid "Image - %1x%2 Pixels"
+msgstr "Тасвир - %1x%2 пиксел"
+
+#: khtmlimage.cpp:210
+#, kde-format
+msgid "Done."
+msgstr "Тайёр."
+
+#: khtmlview.cpp:1900
+#, kde-format
+msgid "Access Keys activated"
+msgstr "Тугмаҳои дастрасӣ фаъоланд"
+
+#: kjserrordlg.cpp:9
+#, kde-format
+msgid "C&lear"
+msgstr "&Пок кардан"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "Хатоҳои JavaScript"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, kde-format
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"Равзанаи гуфтугӯи ҷорӣ ба шумо огоҳиҳо ва тафсилотро дар бораи хатоҳои "
+"нақшҳое, ки дар саҳифаҳои сомонавӣ пайдо мешаванд, нишон медиҳад.  Дар бисёр "
+"маврид, хатоҳо дар саҳифаҳои сомонавӣ ба сабаби хатоҳои муаллифони тарҳрезӣ "
+"ба вуҷуд меоянд.  Дар мавридҳои дигар, хатоҳо ба сабаби хатоҳои барномарезӣ "
+"дар Konqueror ба вуҷуд меоянд.  Агар фикр кунед, ки хатоҳо ба сабаби хатоҳои "
+"сомонасоз ба вуҷуд меоянд, бо сомонасоз дар тамос шавед.  Дар мавридҳои "
+"дигар, агар фикр кунед, ки хато аз дохили Konqueror ба вуҷуд меояд, лутфан, "
+"гузоришро дар бораи хато тавассути https://bugs.kde.org/ фиристонед.  Агар "
+"тавонед, ки мушкилиро бо мисолҳои тасвирдор пешниҳод намоед, муайянкунии "
+"хаторо осонтар мекунед."
+
+#: kmultipart/httpfiltergzip.cpp:89
+#, kde-format
+msgid "Receiving corrupt data."
+msgstr "Иттилооти вайроншуда қабул мешавад."
+
+#: kmultipart/kmultipart.cpp:39
+#, kde-format
+msgid "KMultiPart"
+msgstr "KMultiPart"
+
+#: kmultipart/kmultipart.cpp:41
+#, kde-format
+msgid "Embeddable component for multipart/mixed"
+msgstr "Унсури дарунсохтшаванда барои якчанд қисм/омехта"
+
+#: kmultipart/kmultipart.cpp:43
+#, kde-format
+msgid "Copyright 2001-2011, David Faure <faure@kde.org>"
+msgstr "Ҳуқуқи муаллиф 2001-2011, Дэвид Фауре (David Faure) <faure@kde.org>"
+
+#: kmultipart/kmultipart.cpp:335
+#, kde-format
+msgid "No handler found for %1."
+msgstr "Ягон дастгузор барои %1 ёфт нашуд."
+
+#: misc/kencodingdetector.cpp:1123 misc/kencodingdetector.cpp:1224
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Unicode"
+msgstr "Юникод"
+
+#: misc/kencodingdetector.cpp:1125 misc/kencodingdetector.cpp:1194
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Cyrillic"
+msgstr "Кирилликӣ"
+
+#: misc/kencodingdetector.cpp:1127 misc/kencodingdetector.cpp:1209
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Western European"
+msgstr "Аврупоии ғарбӣ"
+
+#: misc/kencodingdetector.cpp:1129 misc/kencodingdetector.cpp:1191
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Central European"
+msgstr "Аврупоии марказӣ"
+
+#: misc/kencodingdetector.cpp:1131 misc/kencodingdetector.cpp:1197
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Greek"
+msgstr "Юнонӣ"
+
+#: misc/kencodingdetector.cpp:1133 misc/kencodingdetector.cpp:1200
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Hebrew"
+msgstr "Яҳудӣ"
+
+#: misc/kencodingdetector.cpp:1135 misc/kencodingdetector.cpp:1206
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Turkish"
+msgstr "Туркӣ"
+
+#: misc/kencodingdetector.cpp:1137 misc/kencodingdetector.cpp:1203
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Japanese"
+msgstr "Ҷопонӣ"
+
+#: misc/kencodingdetector.cpp:1139 misc/kencodingdetector.cpp:1188
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Baltic"
+msgstr "Балтикӣ"
+
+#: misc/kencodingdetector.cpp:1141 misc/kencodingdetector.cpp:1185
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Arabic"
+msgstr "Арабӣ"
+
+#: misc/kencodingdetector.cpp:1212
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Chinese Traditional"
+msgstr "Хитоии анъанавӣ"
+
+#: misc/kencodingdetector.cpp:1215
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Chinese Simplified"
+msgstr "Хитоии оддӣ"
+
+#: misc/kencodingdetector.cpp:1218
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Korean"
+msgstr "Кореягӣ"
+
+#: misc/kencodingdetector.cpp:1221
+#, kde-format
+msgctxt "@item Text character set"
+msgid "Thai"
+msgstr "Тайландӣ"
+
+#: rendering/media_controls.cpp:45
+#, kde-format
+msgid "Play"
+msgstr "Пахш"
+
+#: rendering/media_controls.cpp:48
+#, kde-format
+msgid "Pause"
+msgstr "Таваққуф"
+
+#: rendering/render_form.cpp:901
+#, kde-format
+msgid "New Web Shortcut"
+msgstr "Миёнбури сомонаи нав"
+
+#: rendering/render_form.cpp:922
+#, kde-format
+msgid "%1 is already assigned to %2"
+msgstr "%1 аллакай ба %2 таъйин карда шуд"
+
+#: rendering/render_form.cpp:922
+#, kde-format
+msgid "Error"
+msgstr "Хато"
+
+#: rendering/render_form.cpp:968
+#, kde-format
+msgid "Search &provider name:"
+msgstr "&Номи таҳвилгари ҷустуҷӯ:"
+
+#: rendering/render_form.cpp:970
+#, kde-format
+msgid "New search provider"
+msgstr "Таҳвилгари ҷустуҷӯи нав"
+
+#: rendering/render_form.cpp:975
+#, kde-format
+msgid "UR&I shortcuts:"
+msgstr "Миёнбурҳои UR&I:"
+
+#: rendering/render_form.cpp:1054
+#, kde-format
+msgid "Clear &History"
+msgstr "&Тоза кардани таърих"
+
+#: rendering/render_form.cpp:1069
+#, kde-format
+msgid "Create Web Shortcut"
+msgstr "Эҷод кардани миёнбури сомона"
+
+#: ui/findbar/khtmlfindbar.cpp:49
+#, kde-format
+msgid "C&ase sensitive"
+msgstr "&Ба ҳисоб гирифтани ҳуруфи худру калон"
+
+#: ui/findbar/khtmlfindbar.cpp:51
+#, kde-format
+msgid "&Whole words only"
+msgstr "&Танҳо калимаҳои пурра"
+
+#: ui/findbar/khtmlfindbar.cpp:53
+#, kde-format
+msgid "From c&ursor"
+msgstr "&Аз рӯи нишондиҳандаи муш"
+
+#: ui/findbar/khtmlfindbar.cpp:55
+#, kde-format
+msgid "&Selected text"
+msgstr "&Матни интихобшуда"
+
+#: ui/findbar/khtmlfindbar.cpp:57
+#, kde-format
+msgid "Regular e&xpression"
+msgstr "&Ибораҳои оддӣ"
+
+#: ui/findbar/khtmlfindbar.cpp:59
+#, kde-format
+msgid "Find &links only"
+msgstr "&Ёфтани танҳо пайвандҳо"
+
+#: ui/findbar/khtmlfindbar.cpp:224
+#, kde-format
+msgid "Not found"
+msgstr "Ёфт нашуд"
+
+#: ui/findbar/khtmlfindbar.cpp:239
+#, kde-format
+msgid "No more matches for this search direction."
+msgstr "Ягон мувофиқат барои ин самти ҷустуҷӯ ёфт нашуд."
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "&Ёфтан:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&Навбатӣ"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "&Қаблӣ"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "&Имконот"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
+#, kde-format
+msgid "Do you want to store this password?"
+msgstr "Шумо мехоҳед, ки ин ниҳонвожаро нигоҳ доред?"
+
+#: ui/passwordbar/storepassbar.cpp:61
+#, kde-format
+msgid "Do you want to store this password for %1?"
+msgstr "Шумо мехоҳед, ки ин ниҳонвожаро барои %1 нигоҳ доред?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "&Нигоҳ доштан"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "&Барои ин сомона ҳеҷ гоҳ нигоҳ дошта нашавад"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "Дар &дафъаи ҷорӣ нигоҳ дошта нашавад"
+
+#: xml/dom_docimpl.cpp:2376
+#, kde-format
+msgid "Basic Page Style"
+msgstr "Услуби саҳифаи асосӣ"
+
+#: xml/xml_tokenizer.cpp:347
+#, kde-format
+msgid "the document is not in the correct file format"
+msgstr "ҳуҷҷат дар формати файли дуруст намебошад"
+
+#: xml/xml_tokenizer.cpp:352
+#, kde-format
+msgid "fatal parsing error: %1 in line %2, column %3"
+msgstr "ҳатои таҷзияи ҷиддӣ: %1 дар сатри %2, сутуни %3"
+
+#: xml/xml_tokenizer.cpp:567
+#, kde-format
+msgid "XML parsing error"
+msgstr "Хатои таҷзияи XML"
