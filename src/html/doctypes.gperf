@@ -1,7 +1,7 @@
 %readonly-tables
 %enum
 %struct-type
-%language=ANSI-C
+%language=C++
 %define lookup-function-name findDoctypeEntry
 %define initializer-suffix ,PubIDInfo::eAlmostStandards,PubIDInfo::eAlmostStandards
 %{

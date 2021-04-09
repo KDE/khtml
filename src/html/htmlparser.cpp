@@ -373,7 +373,7 @@ void KHTMLParser::parseDoctypeToken(DoctypeToken *t)
             QByteArray pubIDStr = lowerPubID.toLocal8Bit();
 
             // Look up the entry in our gperf-generated table.
-            const PubIDInfo *doctypeEntry = findDoctypeEntry(pubIDStr.constData(), t->publicID.length());
+            const PubIDInfo *doctypeEntry = Perfect_Hash::findDoctypeEntry(pubIDStr.constData(), t->publicID.length());
             if (!doctypeEntry) {
                 // The DOCTYPE is not in the list.  Assume strict mode.
                 // ### Doesn't make any sense, but it's what Mozilla does.
