@@ -39,7 +39,7 @@ struct css_prop {
     int id;
 };
 
-static const struct css_prop * findProp (register const char *str, register unsigned int len);
+static const struct css_prop * findProp (const char *str, unsigned int len);
 /* maximum key range = 797, duplicates = 0 */
 
 #ifdef __GNUC__
@@ -50,7 +50,7 @@ inline
 #endif
 #endif
 static unsigned int
-hash_prop (register const char *str, register unsigned int len)
+hash_prop (const char *str, unsigned int len)
 {
   static const unsigned short asso_values[] =
     {
@@ -81,7 +81,7 @@ hash_prop (register const char *str, register unsigned int len)
       802, 802, 802, 802, 802, 802, 802, 802, 802, 802,
       802, 802, 802, 802, 802, 802
     };
-  register int hval = len;
+  int hval = len;
 
   switch (hval)
     {
@@ -192,7 +192,7 @@ __attribute__ ((__gnu_inline__))
 #endif
 #endif
 const struct css_prop *
-findProp (register const char *str, register unsigned int len)
+findProp (const char *str, unsigned int len)
 {
   enum
     {
@@ -652,15 +652,15 @@ findProp (register const char *str, register unsigned int len)
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
     {
-      register int key = hash_prop (str, len);
+      int key = hash_prop (str, len);
 
       if (key <= MAX_HASH_VALUE && key >= 0)
         {
-          register int index = lookup[key];
+          int index = lookup[key];
 
           if (index >= 0)
             {
-              register const char *s = wordlist_prop[index].name;
+              const char *s = wordlist_prop[index].name;
 
               if (*str == *s && !strncmp (str + 1, s + 1, len - 1) && s[len] == '\0')
                 return &wordlist_prop[index];

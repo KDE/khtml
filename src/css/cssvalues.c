@@ -39,7 +39,7 @@ struct css_value {
     int id;
 };
 
-static const css_value * findValue (register const char *str, register unsigned int len);
+static const css_value * findValue (const char *str, unsigned int len);
 /* maximum key range = 2341, duplicates = 0 */
 
 #ifdef __GNUC__
@@ -50,7 +50,7 @@ inline
 #endif
 #endif
 static unsigned int
-hash_val (register const char *str, register unsigned int len)
+hash_val (const char *str, unsigned int len)
 {
   static const unsigned short asso_values[] =
     {
@@ -81,7 +81,7 @@ hash_val (register const char *str, register unsigned int len)
       2341, 2341, 2341, 2341, 2341, 2341, 2341, 2341, 2341, 2341,
       2341, 2341, 2341, 2341, 2341, 2341, 2341, 2341
     };
-  register int hval = 0;
+  int hval = 0;
 
   switch (len)
     {
@@ -180,7 +180,7 @@ __attribute__ ((__gnu_inline__))
 #endif
 #endif
 const struct css_value *
-findValue (register const char *str, register unsigned int len)
+findValue (const char *str, unsigned int len)
 {
   enum
     {
@@ -1102,15 +1102,15 @@ findValue (register const char *str, register unsigned int len)
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
     {
-      register int key = hash_val (str, len);
+      int key = hash_val (str, len);
 
       if (key <= MAX_HASH_VALUE && key >= 0)
         {
-          register int index = lookup[key];
+          int index = lookup[key];
 
           if (index >= 0)
             {
-              register const char *s = wordlist_value[index].name;
+              const char *s = wordlist_value[index].name;
 
               if (*str == *s && !strncmp (str + 1, s + 1, len - 1) && s[len] == '\0')
                 return &wordlist_value[index];
