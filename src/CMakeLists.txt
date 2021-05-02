@@ -616,7 +616,7 @@ if (KJS_DEBUGGER)
   target_link_libraries(KF5KHtml PRIVATE KF5::KTextEditor)
 endif()
 
-set_target_properties(KF5KHtml PROPERTIES VERSION ${KHTML_VERSION_STRING}
+set_target_properties(KF5KHtml PROPERTIES VERSION ${KHTML_VERSION}
                                           SOVERSION ${KHTML_SOVERSION}
                                           EXPORT_NAME KHtml
                      )
