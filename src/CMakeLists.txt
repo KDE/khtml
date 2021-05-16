@@ -336,7 +336,7 @@ if (KJS_DEBUGGER)
   )
 endif()
 
-#qt5_add_resources( kjs_html_STAT_SRCS ecma/debugger/debugger.qrc )
+#qt_add_resources( kjs_html_STAT_SRCS ecma/debugger/debugger.qrc )
 
 # khtml/rendering/Makefile.am: khtmlrender
 
@@ -552,9 +552,9 @@ set(khtml_LIB_SRCS
    )
 
 # Fairly certain this isn't used anywhere
-# qt5_generate_dbus_interface(khtml_iface.h org.kde.KHtmlPart.xml)
+# qt_generate_dbus_interface(khtml_iface.h org.kde.KHtmlPart.xml)
 
-qt5_add_dbus_interface(khtml_LIB_SRCS ${KCookieServer_DBUS_INTERFACE} kcookiejar_interface)
+qt_add_dbus_interface(khtml_LIB_SRCS ${KCookieServer_DBUS_INTERFACE} kcookiejar_interface)
 
 ecm_qt_declare_logging_category(khtml_LIB_SRCS
     HEADER khtml_debug.h
@@ -572,7 +572,7 @@ ki18n_wrap_ui(khtml_LIB_SRCS
    html/keygenwizard2.ui
 )
 
-qt5_add_resources( khtml_LIB_SRCS khtml.qrc )
+qt_add_resources( khtml_LIB_SRCS khtml.qrc )
 
 add_library(KF5KHtml ${khtml_LIB_SRCS})
 add_library(KF5::KHtml ALIAS KF5KHtml)

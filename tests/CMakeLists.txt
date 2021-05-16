@@ -42,7 +42,7 @@ if(NOT MSVC)
         testkhtmlnew.cpp
     )
 
-    qt5_add_resources( khtmltest_SRCS testkhtml.qrc )
+    qt_add_resources( khtmltest_SRCS testkhtml.qrc )
     add_executable(khtmltest ${khtmltest_SRCS} )
     ecm_mark_as_test(khtmltest)
     target_link_libraries( khtmltest KF5::KHtml KF5::XmlGui KF5::TextWidgets KF5::Parts )
@@ -103,7 +103,7 @@ if (KHTML_BUILD_TESTREGRESSION)
         test_regression_gui_main.cpp
     )
 
-    qt5_add_resources(testregressiongui_SRCS test_regression_gui.qrc)
+    qt_add_resources(testregressiongui_SRCS test_regression_gui.qrc)
 
     ki18n_wrap_ui(testregressiongui_SRCS test_regression_gui.ui)
 
