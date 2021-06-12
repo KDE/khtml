@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-set(KF_VERSION "5.83.0") # handled by release scripts
+set(KF_VERSION "5.84.0") # handled by release scripts
 set(KF_DEP_VERSION "5.83.0") # handled by release scripts
 project(KHtml VERSION ${KF_VERSION})
 
