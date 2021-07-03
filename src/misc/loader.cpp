@@ -48,7 +48,7 @@
 #include "woff.h"
 #include <imload/imagepainter.h>
 #include <imload/imagemanager.h>
-#include <kfilterdev.h>
+#include <KCompressionDevice>
 
 #include <assert.h>
 
@@ -891,7 +891,7 @@ void CachedFont::data(QBuffer &buffer, bool eof)
 
     // some fonts are compressed.
     {
-        KCompressionDevice::CompressionType compressionType = KFilterDev::compressionTypeForMimeType(mimetype());
+        KCompressionDevice::CompressionType compressionType = KCompressionDevice::compressionTypeForMimeType(mimetype());
         QScopedPointer<KCompressionDevice> dev(new KCompressionDevice(&buffer, false /*autoDeleteInDevice*/, compressionType));
         if (dev && dev->open(QIODevice::ReadOnly)) {
             m_font = dev->readAll();
