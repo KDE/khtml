@@ -80,11 +80,16 @@ public:
             }
         }
 
-        if (!reader.read(&image)) {
-            return Error;
-        }
-
+        const bool readSuccess = !reader.read(&image);
+        // It happens sometimes that even QImageReader said it failed to read
+        // it did actually read something,
+        // e.g. image from https://bugs.kde.org/show_bug.cgi?id=441554
+        // so if the image has a size, pretend it succeeded
         if (!size.isValid()) {
+            if (!readSuccess) {
+                return Error;
+            }
+
             // Might be too late by now..
             if (ImageManager::isAcceptableSize(image.width(), image.height())) {
                 notifyImageInfo(image.width(), image.height());
