@@ -69,6 +69,7 @@
 #include <kstringhandler.h>
 #include <kconfiggroup.h>
 #include <ksharedconfig.h>
+#include <KWindowSystem>
 
 #include <QBitmap>
 #include <QDialog>
@@ -1530,7 +1531,8 @@ void KHTMLView::mouseMoveEvent(QMouseEvent *_mouse)
 
     if (linkCursor != LINK_NORMAL && isVisible() && hasFocus()) {
 #if HAVE_X11
-
+    // ensure we don't trigger this code paths if we run in a Wayland session
+    if (KWindowSystem::isPlatformX11()) {
         if (!d->cursorIconWidget) {
 #if HAVE_X11
             d->cursorIconWidget = new QLabel(nullptr, Qt::X11BypassWindowManagerHint);
@@ -1572,6 +1574,7 @@ void KHTMLView::mouseMoveEvent(QMouseEvent *_mouse)
         //TODO?
 #endif
         d->cursorIconWidget->show();
+      }
 #endif
     } else if (d->cursorIconWidget) {
         d->cursorIconWidget->hide();
