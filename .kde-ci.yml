@@ -23,7 +23,7 @@ Dependencies:
     'frameworks/kio' : '@same'
     'frameworks/kwallet' : '@same'
     'frameworks/kglobalaccel' : '@same'
-    'kdesupport/phonon' : '@same'
+    'libraries/phonon' : '@stable'
 
 Options:
   test-before-installing: True
