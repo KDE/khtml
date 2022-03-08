@@ -29,7 +29,6 @@ string(REPLACE "-Wsuggest-override" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 
 find_package(KF5Archive ${KF_DEP_VERSION} REQUIRED)
 find_package(KF5Codecs ${KF_DEP_VERSION} REQUIRED)
-find_package(KF5GlobalAccel ${KF_DEP_VERSION} REQUIRED)
 find_package(KF5I18n ${KF_DEP_VERSION} REQUIRED)
 find_package(KF5IconThemes ${KF_DEP_VERSION} REQUIRED)
 find_package(KF5KIO ${KF_DEP_VERSION} REQUIRED)
@@ -42,6 +41,12 @@ find_package(KF5Wallet ${KF_DEP_VERSION} REQUIRED)
 find_package(KF5WidgetsAddons ${KF_DEP_VERSION} REQUIRED)
 find_package(KF5WindowSystem ${KF_DEP_VERSION} REQUIRED)
 find_package(KF5XmlGui ${KF_DEP_VERSION} REQUIRED)
+
+if(NOT WIN32 AND NOT APPLE)
+  find_package(KF5GlobalAccel ${KF_DEP_VERSION} REQUIRED)
+endif()
+
+set(HAVE_KGLOBALACCEL ${KF5GlobalAccel_FOUND})
 
 ecm_setup_version(PROJECT VARIABLE_PREFIX KHTML
                         VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/khtml_version.h"

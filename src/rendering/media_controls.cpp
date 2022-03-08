@@ -31,8 +31,13 @@
 #include <rendering/render_media.h>
 #include <phonon/videowidget.h>
 #include <ktogglefullscreenaction.h>
-#include <kglobalaccel.h>
 #include <klocalizedstring.h>
+
+#include "config-khtml.h"
+
+#if HAVE_KGLOBALACCEL
+#include <kglobalaccel.h>
+#endif
 
 namespace khtml
 {
@@ -65,10 +70,14 @@ void MediaControls::slotToggled(bool t)
 {
     if (t) {
         m_mediaPlayer->videoWidget()->enterFullScreen();
+#if HAVE_KGLOBALACCEL
         KGlobalAccel::self()->setShortcut(m_fullscreen->defaultAction(), QList<QKeySequence>() << Qt::Key_Escape);
+#endif
     } else {
         m_mediaPlayer->videoWidget()->exitFullScreen();
+#if HAVE_KGLOBALACCEL
         KGlobalAccel::self()->removeAllShortcuts(m_fullscreen->defaultAction());
+#endif
     }
 }
 

@@ -8,6 +8,7 @@
 #cmakedefine01 HAVE_X11
 #cmakedefine01 HAVE_GETPAGESIZE
 #cmakedefine01 HAVE_MMAP
+#cmakedefine01 HAVE_KGLOBALACCEL
 
 #endif /* CONFIG_KHTML_H */
 

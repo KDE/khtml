@@ -606,7 +606,6 @@ target_link_libraries(KF5KHtml
     KF5::Notifications
     KF5::Bookmarks
     KF5::KIOWidgets # KUrlRequester
-    KF5::GlobalAccel
 )
 if(NOT WIN32 AND NOT APPLE AND X11_FOUND)
   target_link_libraries(KF5KHtml PRIVATE Qt5::X11Extras)
@@ -614,6 +613,10 @@ endif()
 
 if (KJS_DEBUGGER)
   target_link_libraries(KF5KHtml PRIVATE KF5::KTextEditor)
+endif()
+
+if(TARGET KF5::GlobalAccel)
+  target_link_libraries(KF5KHtml PRIVATE KF5::GlobalAccel)
 endif()
 
 set_target_properties(KF5KHtml PROPERTIES VERSION ${KHTML_VERSION}
