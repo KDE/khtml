@@ -1,7 +1,0 @@
-number=1
-
-[0]
-description=Java Plug-in KJAS for Konqueror
-file=kjavaappletviewer.so
-mime=application/x-java-applet:class:Java Applet;application/x-java-bean:jar:JavaBeans;
-name=Java Plug-in

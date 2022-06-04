@@ -16,7 +16,6 @@ include_directories(
   ${KHTML_SOURCE_DIR}/ecma
   ${KHTML_SOURCE_DIR}/imload
   ${KHTML_SOURCE_DIR}/imload/decoders
-  ${KHTML_SOURCE_DIR}/java
   ${KHTML_SOURCE_DIR}/svg
   ${KHTML_SOURCE_DIR}/svg/graphics
   ${KHTML_SOURCE_DIR}/platform/graphics
@@ -28,11 +27,8 @@ include_directories(
 
 include_directories(
   ${KHTML_BINARY_DIR}/..
-  ${KHTML_BINARY_DIR}/java
   ${KHTML_BINARY_DIR}/css
 )
-
-add_subdirectory(java)
 
 # msvc linker doesn't like "#define protected public"
 if(NOT MSVC)

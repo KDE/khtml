@@ -475,7 +475,6 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/ecma
   ${CMAKE_CURRENT_SOURCE_DIR}/imload
   ${CMAKE_CURRENT_SOURCE_DIR}/imload/decoders
-  ${CMAKE_CURRENT_SOURCE_DIR}/java
   ${CMAKE_CURRENT_SOURCE_DIR}/svg
   ${CMAKE_CURRENT_SOURCE_DIR}/svg/graphics
   ${CMAKE_CURRENT_SOURCE_DIR}/platform/graphics
@@ -494,7 +493,6 @@ include_directories(
 # ${CMAKE_CURRENT_BINARY_DIR}/rendering
 # ${CMAKE_CURRENT_BINARY_DIR}/imload
 # ${CMAKE_CURRENT_BINARY_DIR}/imload/decoders
-  ${CMAKE_CURRENT_BINARY_DIR}/java
 # ${CMAKE_CURRENT_BINARY_DIR}/svg
 # ${CMAKE_CURRENT_BINARY_DIR}/svg/graphics
 # ${CMAKE_CURRENT_BINARY_DIR}/platform/graphics
@@ -510,7 +508,6 @@ set( KDELIBSUFF ${LIB_SUFFIX} )
 configure_file(html/ksslconfig.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/ksslconfig.h )
 
 add_subdirectory( kmultipart )
-add_subdirectory( java )
 
 add_definitions(-DENABLE_VIDEO)
 
