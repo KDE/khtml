@@ -123,7 +123,7 @@ bool KSSLKeyGen::validateCurrentPage()
         bits = 512;
         break;
     default:
-        KMessageBox::sorry(this, i18n("Unsupported key size."), i18n("KDE SSL Information"));
+        KMessageBox::error(this, i18n("Unsupported key size."), i18n("KDE SSL Information"));
         return false;
     }
 

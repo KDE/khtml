@@ -926,7 +926,7 @@ void KHTMLPopupGUIClient::saveURL(QWidget *parent, const QUrl &url, const QUrl &
                     if (cmd.isEmpty()) {
                         QString errMsg = i18n("The Download Manager (%1) could not be found in your $PATH ", downloadManger);
                         QString errMsgEx = i18n("Try to reinstall it  \n\nThe integration with Konqueror will be disabled.");
-                        KMessageBox::detailedSorry(nullptr, errMsg, errMsgEx);
+                        KMessageBox::detailedError(nullptr, errMsg, errMsgEx);
                         cfg.writePathEntry("DownloadManager", QString());
                         cfg.sync();
                     } else {

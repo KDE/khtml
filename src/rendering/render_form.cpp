@@ -919,7 +919,7 @@ bool WebShortcutCreator::createWebShortcut(QString query)
                             break;
                         }
                         if (s == t) {
-                            KMessageBox::sorry(nullptr, i18n("%1 is already assigned to %2", s, provider->name()), i18n("Error"));
+                            KMessageBox::error(nullptr, i18n("%1 is already assigned to %2", s, provider->name()));
                             isOk = false;
                         }
                     }
