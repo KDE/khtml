@@ -1,6 +1,6 @@
 include(ECMMarkAsTest)
 
-if(NOT WIN32 AND NOT APPLE AND X11_FOUND)
+if(NOT WIN32 AND NOT APPLE AND HAVE_X11)
   find_package(Qt5X11Extras "${REQUIRED_QT_VERSION}" CONFIG REQUIRED)
   set_package_properties(Qt5X11Extras PROPERTIES PURPOSE "Required for tests")
 endif()
@@ -79,7 +79,7 @@ endif()
 
 # Note that testregression can't be compiled by default, it needs private Qt headers.
 # See also BUILDING-TESTREGRESSION
-if (KHTML_BUILD_TESTREGRESSION)
+if (KHTML_BUILD_TESTREGRESSION AND HAVE_X11)
 
     set(testregression_SRCS
         test_regression.cpp

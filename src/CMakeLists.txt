@@ -592,7 +592,6 @@ target_link_libraries(KF5KHtml
     ${JPEG_LIBRARIES}
     ${GIF_LIBRARIES}
     ${PNG_LIBRARIES}
-    ${X11_LIBRARIES}
     Qt5::PrintSupport
     KF5::Archive
     KF5::SonnetCore
@@ -604,8 +603,8 @@ target_link_libraries(KF5KHtml
     KF5::Bookmarks
     KF5::KIOWidgets # KUrlRequester
 )
-if(NOT WIN32 AND NOT APPLE AND X11_FOUND)
-  target_link_libraries(KF5KHtml PRIVATE Qt5::X11Extras)
+if(NOT WIN32 AND NOT APPLE AND HAVE_X11)
+  target_link_libraries(KF5KHtml PRIVATE ${X11_LIBRARIES} Qt5::X11Extras)
 endif()
 
 if (KJS_DEBUGGER)

@@ -60,9 +60,13 @@ set_package_properties(Perl PROPERTIES
                        PURPOSE "Required for generating JS bindings for elements"
                       )
 
-if(NOT APPLE)
-  find_package(X11)
-  set(HAVE_X11 ${X11_FOUND})
+if(NOT WIN32 AND NOT APPLE)
+  option(WITH_X11 "Build with X11 integration" ON)
+  if(WITH_X11)
+    find_package(X11 REQUIRED)
+    set(HAVE_X11 1)
+    find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED X11Extras)
+  endif()
 endif()
 
 find_package(Phonon4Qt5 4.6.60)
@@ -93,10 +97,6 @@ set_package_properties(PNG PROPERTIES DESCRIPTION "PNG decoding library"
                        TYPE REQUIRED
                        PURPOSE "Required for decoding and displaying PNG images"
                       )
-
-if(NOT WIN32 AND NOT APPLE AND X11_FOUND)
-    find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED X11Extras)
-endif()
 
 find_package(Gperf REQUIRED)
 
