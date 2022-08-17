@@ -14,7 +14,6 @@ include_directories(
   ${KHTML_SOURCE_DIR}/ecma
   ${KHTML_SOURCE_DIR}/imload
   ${KHTML_SOURCE_DIR}/imload/decoders
-  ${KHTML_SOURCE_DIR}/java
   ${KHTML_SOURCE_DIR}/svg
   ${KHTML_SOURCE_DIR}/svg/graphics
   ${KHTML_SOURCE_DIR}/platform/graphics
