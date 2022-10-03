@@ -295,8 +295,8 @@ msgid ""
 "Do you want a bookmark pointing to the location \"%1\" to be added to your "
 "collection?"
 msgstr ""
-"Voleu que s'afija una adreça d'interés a la vostra col·lecció apuntant a la "
-"ubicació «%1»?"
+"Voleu que s'afija una adreça d'interés a la vostra col·lecció apuntant cap a "
+"la ubicació «%1»?"
 
 #: ecma/kjs_window.cpp:3236
 #, kde-format
@@ -304,8 +304,8 @@ msgid ""
 "Do you want a bookmark pointing to the location \"%1\" titled \"%2\" to be "
 "added to your collection?"
 msgstr ""
-"Voleu que s'afija una adreça d'interés a la vostra col·lecció apuntant a la "
-"ubicació «%1» i titulada «%2»?"
+"Voleu que s'afija una adreça d'interés a la vostra col·lecció apuntant cap a "
+"la ubicació «%1» i titulada «%2»?"
 
 #: ecma/kjs_window.cpp:3245
 #, kde-format
@@ -349,7 +349,7 @@ msgid ""
 "Do you really want to continue?"
 msgstr ""
 "Esteu a punt de transferir els fitxers següents des del vostre ordinador "
-"local a la Internet.\n"
+"local a Internet.\n"
 "Segur que voleu continuar?"
 
 #: html/html_formimpl.cpp:438
@@ -543,7 +543,7 @@ msgstr "Títol:"
 #: htmlpageinfo.ui:128
 #, kde-format
 msgid "Last modified:"
-msgstr "Modificat per últim cop:"
+msgstr "Modificat per última vegada:"
 
 #. i18n: ectx: property (text), widget (QLabel, _eLabel)
 #: htmlpageinfo.ui:144
@@ -753,7 +753,7 @@ msgstr "Voleu sobreescriure el fitxer?"
 #: khtml_ext.cpp:927
 #, kde-format
 msgid "The Download Manager (%1) could not be found in your $PATH "
-msgstr "No s'ha trobat el gestor de baixades (%1) a la $PATH "
+msgstr "No s'ha trobat el gestor de baixades (%1) en la $PATH "
 
 #: khtml_ext.cpp:928
 #, kde-format
@@ -872,8 +872,8 @@ msgid ""
 "<qt>Find text<br /><br />Shows a dialog that allows you to find text on the "
 "displayed page.</qt>"
 msgstr ""
-"<qt>Busca el text<br /><br />Mostra un diàleg que permet trobar el text a la "
-"pàgina mostrada.</qt>"
+"<qt>Busca el text<br /><br />Mostra un diàleg que permet trobar el text en "
+"la pàgina mostrada.</qt>"
 
 #: khtml_part.cpp:410
 #, kde-format
@@ -969,7 +969,7 @@ msgstr "<qt><b>Error</b>: node %1: %2</qt>"
 #: khtml_part.cpp:1528
 #, kde-format
 msgid "Display Images on Page"
-msgstr "Mostra les imatges a la pàgina"
+msgstr "Mostra les imatges en la pàgina"
 
 #: khtml_part.cpp:1912
 #, kde-format
@@ -1331,7 +1331,7 @@ msgid ""
 "be faster and use less ink or toner.</p> </qt>"
 msgstr ""
 "<qt><p><strong>«Imprimix les imatges»</strong></p><p>Si s'activa esta "
-"casella de selecció, s'imprimiran les imatges contingudes a la pàgina HTML. "
+"casella de selecció, s'imprimiran les imatges contingudes en la pàgina HTML. "
 "La impressió pot tardar més i utilitzar més tinta o tòner.</p> <p>Si es "
 "desactiva esta casella de selecció, només s'imprimirà el text de la pàgina "
 "HTML, sense les imatges incloses. La impressió serà més ràpida i utilitzarà "
@@ -1733,7 +1733,7 @@ msgstr "este document no està en el format de fitxer correcte"
 #: xml/xml_tokenizer.cpp:352
 #, kde-format
 msgid "fatal parsing error: %1 in line %2, column %3"
-msgstr "error d'anàlisi fatal: %1 a la línia %2, columna %3"
+msgstr "error d'anàlisi fatal: %1 en la línia %2, columna %3"
 
 #: xml/xml_tokenizer.cpp:567
 #, kde-format
