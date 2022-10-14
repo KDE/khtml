@@ -192,7 +192,7 @@ bool ScriptInterpreter::shouldInterruptScript() const
 #endif
 
     // qCDebug(KHTML_LOG) << "alarmhandler";
-    return KMessageBox::warningYesNo(nullptr, i18n("A script on this page is causing KHTML to freeze. If it continues to run, other applications may become less responsive.\nDo you want to stop the script?"), i18n("JavaScript"), KGuiItem(i18n("&Stop Script")), KStandardGuiItem::cont(), "kjscupguard_alarmhandler") == KMessageBox::Yes;
+    return KMessageBox::warningTwoActions(nullptr, i18n("A script on this page is causing KHTML to freeze. If it continues to run, other applications may become less responsive.\nDo you want to stop the script?"), i18n("JavaScript"), KGuiItem(i18n("&Stop Script")), KStandardGuiItem::cont(), "kjscupguard_alarmhandler") == KMessageBox::PrimaryAction;
 }
 
 UString::UString(const QString &d)

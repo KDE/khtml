@@ -145,8 +145,8 @@ bool KSSLKeyGen::validateCurrentPage()
 
 #if 0 // TODO: implement
     if (rc == 0 && KWallet::Wallet::isEnabled()) {
-        rc = KMessageBox::questionYesNo(this, i18n("Do you wish to store the passphrase in your wallet file?"), QString(), KGuiItem(i18n("Store")), KGuiItem(i18n("Do Not Store")));
-        if (rc == KMessageBox::Yes) {
+        rc = KMessageBox::questionTwoActions(this, i18n("Do you wish to store the passphrase in your wallet file?"), QString(), KGuiItem(i18n("Store")), KGuiItem(i18n("Do Not Store")));
+        if (rc == KMessageBox::PrimaryAction) {
             KWallet::Wallet *w = KWallet::Wallet::openWallet(KWallet::Wallet::LocalWallet(), effectiveWinId());
             if (w) {
                 // FIXME: store passphrase in wallet

@@ -1942,14 +1942,14 @@ JSValue *Window::openWindow(ExecState *exec, const List &args)
             caption = part->url().host() + " - ";
         }
         caption += i18n("Confirmation: JavaScript Popup");
-        if (KMessageBox::questionYesNo(widget,
-                                       str.isEmpty() ?
-                                       i18n("This site is requesting to open up a new browser "
-                                            "window via JavaScript.\n"
-                                            "Do you want to allow this?") :
-                                       i18n("<qt>This site is requesting to open<p>%1</p>in a new browser window via JavaScript.<br />"
-                                            "Do you want to allow this?</qt>", KStringHandler::csqueeze(url.toDisplayString().toHtmlEscaped(),  100)),
-                                       caption, KGuiItem(i18n("Allow")), KGuiItem(i18n("Do Not Allow"))) == KMessageBox::Yes) {
+        if (KMessageBox::questionTwoActions(widget,
+                                            str.isEmpty() ?
+                                            i18n("This site is requesting to open up a new browser "
+                                                 "window via JavaScript.\n"
+                                                 "Do you want to allow this?") :
+                                            i18n("<qt>This site is requesting to open<p>%1</p>in a new browser window via JavaScript.<br />"
+                                                 "Do you want to allow this?</qt>", KStringHandler::csqueeze(url.toDisplayString().toHtmlEscaped(),  100)),
+                                            caption, KGuiItem(i18n("Allow")), KGuiItem(i18n("Do Not Allow"))) == KMessageBox::PrimaryAction) {
             policy = KHTMLSettings::KJSWindowOpenAllow;
         }
     } else if (policy == KHTMLSettings::KJSWindowOpenSmart) {
@@ -2211,8 +2211,8 @@ JSValue *WindowFunc::callAsFunction(ExecState *exec, JSObject *thisObj, const Li
         if (part) {
             emit part->browserExtension()->requestFocus(part);
         }
-        return jsBoolean((KMessageBox::warningYesNo(widget, Qt::convertFromPlainText(str), caption,
-                          KStandardGuiItem::ok(), KStandardGuiItem::cancel()) == KMessageBox::Yes));
+        return jsBoolean((KMessageBox::warningTwoActions(widget, Qt::convertFromPlainText(str), caption,
+                          KStandardGuiItem::ok(), KStandardGuiItem::cancel()) == KMessageBox::PrimaryAction));
     }
     case Window::Prompt: {
         TimerPauser pause(exec);
@@ -2279,10 +2279,10 @@ JSValue *WindowFunc::callAsFunction(ExecState *exec, JSObject *thisObj, const Li
             } else {
                 // Can we get this dialog with tabs??? Does it close the window or the tab in that case?
                 emit part->browserExtension()->requestFocus(part);
-                if (KMessageBox::questionYesNo(window->part()->widget(),
-                                               i18n("Close window?"), i18n("Confirmation Required"),
-                                               KStandardGuiItem::close(), KStandardGuiItem::cancel())
-                        == KMessageBox::Yes) {
+                if (KMessageBox::questionTwoActions(window->part()->widget(),
+                                                    i18n("Close window?"), i18n("Confirmation Required"),
+                                                    KStandardGuiItem::close(), KStandardGuiItem::cancel())
+                        == KMessageBox::PrimaryAction) {
                     doClose = true;
                 }
             }
@@ -3244,9 +3244,9 @@ JSValue *ExternalFunc::callAsFunction(ExecState *exec, JSObject *thisObj, const 
         }
         caption += i18n("JavaScript Attempted Bookmark Insert");
 
-        if (KMessageBox::warningYesNo(
+        if (KMessageBox::warningTwoActions(
                     widget, question, caption,
-                    KGuiItem(i18n("Insert")), KGuiItem(i18n("Disallow"))) == KMessageBox::Yes) {
+                    KGuiItem(i18n("Insert")), KGuiItem(i18n("Disallow"))) == KMessageBox::PrimaryAction) {
             KBookmarkManager *mgr = KBookmarkManager::userBookmarksManager();
             KBookmarkDialog dlg(mgr, nullptr);
             dlg.addBookmark(title, QUrl(url), KIO::iconNameForUrl(QUrl(url)));

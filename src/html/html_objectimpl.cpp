@@ -628,10 +628,10 @@ void HTMLObjectBaseElementImpl::slotPartLoadingErrorNotify()
             // Prepare the URL to show in the question (host only if http, to make it short)
             QUrl pluginPageURL(embed->pluginPage);
             QString shortURL = pluginPageURL.scheme() == "http" ? pluginPageURL.host() : pluginPageURL.toDisplayString();
-            int res = KMessageBox::questionYesNo(part->view(),
-                                                 i18n("No plugin found for '%1'.\nDo you want to download one from %2?", mimeName, shortURL),
-                                                 i18n("Missing Plugin"), KGuiItem(i18n("Download")), KGuiItem(i18n("Do Not Download")), QString("plugin-") + serviceType);
-            if (res == KMessageBox::Yes) {
+            int res = KMessageBox::questionTwoActions(part->view(),
+                                                      i18n("No plugin found for '%1'.\nDo you want to download one from %2?", mimeName, shortURL),
+                                                      i18n("Missing Plugin"), KGuiItem(i18n("Download")), KGuiItem(i18n("Do Not Download")), QString("plugin-") + serviceType);
+            if (res == KMessageBox::PrimaryAction) {
                 // Display vendor download page
                 ext->createNewWindow(pluginPageURL);
                 return;
