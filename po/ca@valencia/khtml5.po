@@ -1469,7 +1469,7 @@ msgstr ""
 "errors en el lloc web, tal com el va dissenyar el seu autor. En altres casos "
 "és el resultat d'un error de programació de Konqueror. Si penseu que es "
 "tracta del primer cas, contacteu amb l'administració del lloc en qüestió. "
-"Contràriament, si sospiteu d'un error a Konqueror, empleneu un informe "
+"Contràriament, si sospiteu d'un error en Konqueror, empleneu un informe "
 "d'error a https://bugs.kde.org/. S'agrairà un cas de prova que il·lustre el "
 "problema."
 
