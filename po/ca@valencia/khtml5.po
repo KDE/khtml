@@ -158,7 +158,7 @@ msgid ""
 "Do not know where to evaluate the expression. Please pause a script or open "
 "a source file."
 msgstr ""
-"No se sap a on avaluar l'expressió. Feu una pausa a l'script o obriu el "
+"No se sap a on avaluar l'expressió. Feu una pausa en l'script o obriu el "
 "fitxer amb el codi font."
 
 #: ecma/debugger/debugwindow.cpp:809
