@@ -603,11 +603,6 @@ int main(int argc, char *argv[])
     qputenv("LC_ALL", "C");
     qputenv("LANG", "C");
 
-    // We want KIO to be in the slave-forking mode since
-    // then it'll ask KProtocolInfo::exec for the binary to run,
-    // and we intercept that, limiting the I/O to file://
-    // and the magic data://. See Slave::createSlave in KIO's slave.cpp
-    qputenv("KDE_FORK_SLAVES", "true");
     signal(SIGALRM, signal_handler);
 
     QApplication a(argc, argv);
