@@ -522,7 +522,7 @@ void XMLHttpRequest::send(const QString &_body, int &ec)
             QString key = i.key().original();
             QString value = i.value();
             if (key.toLower() == "accept") {
-                // The HTTP KIO slave supports an override this way
+                // The HTTP KIO worker supports an override this way
                 job->addMetaData("accept", value);
             } else {
                 if (!rh.isEmpty()) {

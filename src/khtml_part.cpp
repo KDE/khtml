@@ -2756,7 +2756,7 @@ void KHTMLPart::slotRedirect()
 
 void KHTMLPart::slotRedirection(KIO::Job *, const QUrl &url)
 {
-    // the slave told us that we got redirected
+    // the worker told us that we got redirected
     //qCDebug(KHTML_LOG) << "redirection by KIO to" << url;
     emit d->m_extension->setLocationBarUrl(url.toDisplayString());
     d->m_workingURL = url;

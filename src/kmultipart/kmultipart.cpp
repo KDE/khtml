@@ -174,7 +174,7 @@ bool KMultiPart::openUrl(const QUrl &url)
     //m_mimeType = arguments().mimeType();
 
     // Hmm, args.reload is set to true when reloading, but this doesn't seem to be enough...
-    // I get "HOLD: Reusing held slave for <url>", and the old data
+    // I get "HOLD: Reusing held worker for <url>", and the old data
 
     m_job = KIO::get(url,
                      arguments().reload() ? KIO::Reload : KIO::NoReload,
