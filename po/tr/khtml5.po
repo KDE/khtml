@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:42+0000\n"
-"PO-Revision-Date: 2022-10-26 23:57+0300\n"
+"PO-Revision-Date: 2022-11-21 22:30+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.08.1\n"
+"X-Generator: Lokalize 22.08.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -137,7 +137,7 @@ msgstr "Hata &Ayıkla"
 #: ecma/debugger/debugwindow.cpp:225
 #, kde-format
 msgid "&Settings"
-msgstr "Ayarla&r"
+msgstr "Ayar&lar"
 
 #: ecma/debugger/debugwindow.cpp:251
 #, kde-format
@@ -592,7 +592,7 @@ msgstr "&Dosya"
 #: khtml_browser.rc:18
 #, kde-format
 msgid "&View"
-msgstr "Görü&nüm"
+msgstr "&Görünüm"
 
 #. i18n: ectx: ToolBar (htmlToolBar)
 #: khtml_browser.rc:34
