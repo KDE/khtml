@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:42+0000\n"
-"PO-Revision-Date: 2022-11-21 22:30+0300\n"
+"PO-Revision-Date: 2022-11-24 17:02+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -603,7 +603,7 @@ msgstr "HTML Araç Çubuğu"
 #: khtml_ext.cpp:413
 #, kde-format
 msgid "&Copy Text"
-msgstr "Metni &Kopyala"
+msgstr "Metni Ko&pyala"
 
 #: khtml_ext.cpp:427
 #, kde-format
@@ -613,7 +613,7 @@ msgstr "'%1' Ögesini Aç"
 #: khtml_ext.cpp:444
 #, kde-format
 msgid "&Copy Email Address"
-msgstr "E-posta Adresini &Kopyala"
+msgstr "E-posta Adresini Ko&pyala"
 
 #: khtml_ext.cpp:449
 #, kde-format
@@ -623,7 +623,7 @@ msgstr "&Bağlantıyı Farklı Kaydet..."
 #: khtml_ext.cpp:454
 #, kde-format
 msgid "&Copy Link Address"
-msgstr "B&ağlantı Adresini Kopyala"
+msgstr "Bağlantı Adresini Ko&pyala"
 
 #: khtml_ext.cpp:466
 #, kde-format
