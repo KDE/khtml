@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:42+0000\n"
-"PO-Revision-Date: 2022-11-24 17:02+0300\n"
+"PO-Revision-Date: 2022-11-28 19:25+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -724,7 +724,7 @@ msgstr "%2 içinde %1ögesini ara"
 #: khtml_ext.cpp:647
 #, kde-format
 msgid "Search for '%1' with"
-msgstr "'%1' ifadesini şununla ara"
+msgstr "'%1' İfadesini Şununla Ara"
 
 #: khtml_ext.cpp:693
 #, kde-format
