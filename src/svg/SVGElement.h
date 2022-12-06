@@ -44,12 +44,12 @@
 
 #define ANIMATED_PROPERTY_FORWARD_DECLARATIONS(ForwardClass, BareType, UpperProperty, LowerProperty) \
     public: \
-    virtual BareType LowerProperty() const { return ForwardClass::LowerProperty(); } \
-    virtual void set##UpperProperty(BareType newValue) { ForwardClass::set##UpperProperty(newValue); } \
-    virtual BareType LowerProperty##BaseValue() const { return ForwardClass::LowerProperty##BaseValue(); } \
-    virtual void set##UpperProperty##BaseValue(BareType newValue) { ForwardClass::set##UpperProperty##BaseValue(newValue); } \
-    virtual void start##UpperProperty() const { ForwardClass::start##UpperProperty(); } \
-    virtual void stop##UpperProperty() { ForwardClass::stop##UpperProperty(); }
+    BareType LowerProperty() const override { return ForwardClass::LowerProperty(); } \
+    void set##UpperProperty(BareType newValue) override { ForwardClass::set##UpperProperty(newValue); } \
+    BareType LowerProperty##BaseValue() const override { return ForwardClass::LowerProperty##BaseValue(); } \
+    void set##UpperProperty##BaseValue(BareType newValue) override { ForwardClass::set##UpperProperty##BaseValue(newValue); } \
+    void start##UpperProperty() const override { ForwardClass::start##UpperProperty(); } \
+    void stop##UpperProperty() override { ForwardClass::stop##UpperProperty(); }
 
 #define ANIMATED_PROPERTY_DECLARATIONS_INTERNAL(ClassType, ClassStorageType, BareType, StorageType, UpperProperty, LowerProperty) \
     class SVGAnimatedTemplate##UpperProperty \
