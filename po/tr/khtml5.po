@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:42+0000\n"
-"PO-Revision-Date: 2022-12-03 19:51+0300\n"
+"PO-Revision-Date: 2022-12-10 18:37+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -562,7 +562,7 @@ msgstr "Belge kodlaması:"
 #: htmlpageinfo.ui:167
 #, kde-format
 msgid "Rendering mode:"
-msgstr "Hazırlama kipi:"
+msgstr "Sunum kipi:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
 #: htmlpageinfo.ui:186
@@ -807,7 +807,7 @@ msgstr "Belge Bilgisini Göster"
 #: khtml_part.cpp:288
 #, kde-format
 msgid "Save &Background Image As..."
-msgstr "&Arkaplan Resmini Farklı Kaydet..."
+msgstr "&Arka Plan Görselini Farklı Kaydet..."
 
 #: khtml_part.cpp:310 khtml_part.cpp:4189
 #, kde-format
@@ -817,7 +817,7 @@ msgstr "SSL"
 #: khtml_part.cpp:314
 #, kde-format
 msgid "Print Rendering Tree to STDOUT"
-msgstr "Gösterim Ağacını STDOUT'a (standart çıktı) yaz"
+msgstr "Sunum Ağacını STDOUT'a (standart çıktı) yaz"
 
 #: khtml_part.cpp:318
 #, kde-format
@@ -1154,7 +1154,7 @@ msgstr "Katı"
 #: khtml_part.cpp:4094
 #, kde-format
 msgid "Save Background Image As"
-msgstr "Arkaplan Resmini Farklı Kaydet"
+msgstr "Arka Plan Görselini Farklı Kaydet"
 
 #: khtml_part.cpp:4187
 #, kde-format
@@ -1388,7 +1388,7 @@ msgstr "HTML Ayarları"
 #: khtml_printsettings.cpp:72
 #, kde-format
 msgid "Printer friendly mode (black text, no background)"
-msgstr "Yazıcı dostu kipi (sadece siyah metin, arkaplan yok)"
+msgstr "Yazıcı dostu kip (yalnızca siyah metin, arka plan yok)"
 
 #: khtml_printsettings.cpp:75
 #, kde-format
