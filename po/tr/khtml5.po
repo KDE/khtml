@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:42+0000\n"
-"PO-Revision-Date: 2022-12-10 18:37+0300\n"
+"PO-Revision-Date: 2022-12-11 20:33+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.08.3\n"
+"X-Generator: Lokalize 22.12.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -215,7 +215,7 @@ msgid ""
 "Do you want to stop the script?"
 msgstr ""
 "Bu sayfadaki bir betik, KHTML uygulamasının donmasına yol açıyor. Eğer "
-"çalışmaya devam ederse, diğer uygulamalarınızın çalışması yavaşlayabilir.\n"
+"çalışmayı sürdürürse diğer uygulamalarınızın çalışması yavaşlayabilir.\n"
 "Bu betiği durdurmak ister misiniz?"
 
 #: ecma/kjs_binding.cpp:195
@@ -358,7 +358,7 @@ msgid ""
 msgstr ""
 "Aşağıdaki dosyaları bilgisayarınızdan İnternet'teki başka bir bilgisayara "
 "göndermek üzeresiniz.\n"
-"Gerçekten devam etmek istiyor musunuz?"
+"Gerçekten sürdürmek istiyor musunuz?"
 
 #: html/html_formimpl.cpp:438
 #, kde-format
@@ -415,7 +415,7 @@ msgstr "İndirme"
 #: html/htmlparser.cpp:1980
 #, kde-format
 msgid "This is a searchable index. Enter search keywords: "
-msgstr "Bu aranabilir bir dizindir. Anahtar kelimeleri giriniz: "
+msgstr "Bu aranabilir bir dizindir. Arama anahtar sözcüklerini girin:"
 
 #. i18n: ectx: property (text), widget (QLabel, TextLabel1)
 #: html/keygenwizard.ui:35
@@ -1207,7 +1207,7 @@ msgid ""
 "Are you sure you wish to continue?"
 msgstr ""
 "Uyarı: Bilgiler ağ üzerinden şifrelenmemiş bir şekilde gidecektir.\n"
-"Devam etmek istiyor musunuz?"
+"Sürdürmek istiyor musunuz?"
 
 #: khtml_part.cpp:4937
 #, kde-format
@@ -1216,7 +1216,7 @@ msgid ""
 "Do you want to continue?"
 msgstr ""
 "Bu site e-posta üzerinden bir form göndermeye çalışıyor.\n"
-"Devam etmek istiyor musunuz?"
+"Sürdürmek istiyor musunuz?"
 
 #: khtml_part.cpp:4940
 #, kde-format
@@ -1586,7 +1586,7 @@ msgstr "Korece"
 #, kde-format
 msgctxt "@item Text character set"
 msgid "Thai"
-msgstr "Tay Dili"
+msgstr "Tayca"
 
 #: rendering/media_controls.cpp:50
 #, kde-format
