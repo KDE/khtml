@@ -252,7 +252,7 @@ static QString findMostRecentLib(QString dir, QString name)
     QString best = 0L;
     // where do we start
     uint s = filter.length() - 1;
-    for (QStringList::const_iterator it = l.begin(); it != l.end(); ++it) {
+    for (QStringList::iterator it = l.begin(); it != l.end(); ++it) {
         QString numberpart = (*it).mid(s);
         uint endmaj = numberpart.indexOf('.');
         if (endmaj == -1) {
