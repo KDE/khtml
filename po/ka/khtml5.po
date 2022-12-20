@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: khtml\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:42+0000\n"
-"PO-Revision-Date: 2022-12-08 08:49+0100\n"
+"PO-Revision-Date: 2022-12-19 10:55+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -151,11 +151,13 @@ msgid ""
 "Do not know where to evaluate the expression. Please pause a script or open "
 "a source file."
 msgstr ""
+"არ ვიცი, გამოსახულება როგორ შევაფასო. შეაჩერეთ სკრიპტი ან გახსენით წყაროს "
+"ფაილი."
 
 #: ecma/debugger/debugwindow.cpp:809
 #, kde-format
 msgid "Evaluation threw an exception %1"
-msgstr ""
+msgstr "შეფასებამ გამოაგდო გამონაკლისი %1"
 
 #: ecma/debugger/errordlg.cpp:35
 #, kde-format
@@ -195,6 +197,9 @@ msgid ""
 "other applications may become less responsive.\n"
 "Do you want to stop the script?"
 msgstr ""
+"ამ გვერდზე არსებული სკრიპტი KHTML-ს ჭედავს. თუ მის შესრულებას გააგრძელებთ, "
+"სხვა აპლიკაციები შეიძლება ნაკლებად რეაგირებადი გახდნენ.\n"
+"გნებავთ სკრიპტის გაჩერება?"
 
 #: ecma/kjs_binding.cpp:195
 #, kde-format
@@ -331,6 +336,8 @@ msgid ""
 "the Internet.\n"
 "Do you really want to continue?"
 msgstr ""
+"აპირებთ შემდეგი ფაილების კომპიუტერიდან ინტერნეტში ატვირთვას.\n"
+"ნამდვილად გსურთ, გააგრძელოთ?"
 
 #: html/html_formimpl.cpp:438
 #, kde-format
@@ -446,12 +453,12 @@ msgstr "KDE"
 #: html/ksslkeygen.cpp:133
 #, kde-format
 msgid "Please wait while the encryption keys are generated..."
-msgstr ""
+msgstr "მოითმინეთ, მიმდინარეობს დაშიფვრის გასაღებების გენერაცია..."
 
 #: html/ksslkeygen.cpp:148
 #, kde-format
 msgid "Do you wish to store the passphrase in your wallet file?"
-msgstr ""
+msgstr "გნებავთ საკვანძო ფრაზის თქვენი საფულის ფაილში დამახსოვრება?"
 
 #: html/ksslkeygen.cpp:148
 #, kde-format
@@ -1083,7 +1090,7 @@ msgstr "   <a href=\"%1\">[პარამეტრები]</a>"
 #, kde-format
 msgctxt "HTML rendering mode (see https://en.wikipedia.org/wiki/Quirks_mode)"
 msgid "Quirks"
-msgstr ""
+msgstr "თავსებადობის რეჟიმი"
 
 #: khtml_part.cpp:4021
 #, kde-format
@@ -1105,7 +1112,7 @@ msgstr "ფონის ნახატის შენახვა როგო
 #: khtml_part.cpp:4187
 #, kde-format
 msgid "The peer SSL certificate chain appears to be corrupt."
-msgstr ""
+msgstr "თქვენი პარტნიორის SSL სერტიფიკატის ჯაჭვი, როგორც ჩანს, დაზიანებულია."
 
 #: khtml_part.cpp:4208
 #, kde-format
@@ -1198,7 +1205,7 @@ msgstr "უსაფრთხოების შეტყობინება"
 #: khtml_part.cpp:7046
 #, kde-format
 msgid "<qt>Access by untrusted page to<br /><b>%1</b><br /> denied.</qt>"
-msgstr ""
+msgstr "<qt>არასანდო გვერდებთან წვდომა <br /><b>%1</b><br /> აკრძალულია.</qt>"
 
 #: khtml_part.cpp:7047
 #, kde-format
@@ -1426,7 +1433,7 @@ msgstr "ჩადგმადი კომპონენტი მრავა�
 #: kmultipart/kmultipart.cpp:43
 #, kde-format
 msgid "Copyright 2001-2011, David Faure <faure@kde.org>"
-msgstr ""
+msgstr "2001-2011, David Faure <faure@kde.org>, ყველა უფლება დაცულია"
 
 #: kmultipart/kmultipart.cpp:335
 #, kde-format
@@ -1535,7 +1542,7 @@ msgstr "ახალი ვების მალსახმობი"
 #: rendering/render_form.cpp:922
 #, kde-format
 msgid "%1 is already assigned to %2"
-msgstr ""
+msgstr "%1 უკვე მინიჭებულია %2-ზე"
 
 #: rendering/render_form.cpp:968
 #, kde-format
