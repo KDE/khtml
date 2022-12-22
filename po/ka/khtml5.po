@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: khtml\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:42+0000\n"
-"PO-Revision-Date: 2022-12-19 10:55+0100\n"
+"PO-Revision-Date: 2022-12-21 08:59+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -404,6 +404,9 @@ msgid ""
 "This wizard is intended to guide you through the procedure. You may cancel "
 "at any time, and this will abort the transaction."
 msgstr ""
+"თქვენ მიუთითეთ, რომ გნებავთ მიიღოთ ან შეიძინოთ დაცული სერტიფიკატი. ეს ოსტატი "
+"ამ პროცედურას გაგატარებთ. მისი გაუქმება ნებისმიერ დროს შეგიძლიათ და ეს "
+"ტრანზაქციას გააუქმებს."
 
 #. i18n: ectx: property (text), widget (QLabel, TextLabel4)
 #: html/keygenwizard2.ui:35
@@ -1607,7 +1610,7 @@ msgstr "ნაპოვნი არაა"
 #: ui/findbar/khtmlfindbar.cpp:239
 #, kde-format
 msgid "No more matches for this search direction."
-msgstr ""
+msgstr "ძებნის ამ მიმართულებით მეტი დამთხვევა აღარ არსებობს."
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: ui/findbar/khtmlfindbar_base.ui:43
