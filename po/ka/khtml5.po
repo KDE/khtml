@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: khtml\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:42+0000\n"
-"PO-Revision-Date: 2022-12-21 08:59+0100\n"
+"PO-Revision-Date: 2022-12-25 07:39+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -415,6 +415,9 @@ msgid ""
 "You must now provide a password for the certificate request. Please choose a "
 "very secure password as this will be used to encrypt your private key."
 msgstr ""
+"სერტიფიკატის მოთხოვნისთვის პაროლის შეყვანა აუცილებელია. აირჩიეთ ძალიან "
+"დაცული პაროლი, რადგან ის თქვენი პირადი გასაღების დასაშიფრად იქნება "
+"გამოყენებული."
 
 #. i18n: ectx: property (text), widget (QLabel, TextLabel6)
 #: html/keygenwizard2.ui:48
@@ -831,6 +834,9 @@ msgid ""
 "<qt>Enlarge Font<br /><br />Make the font in this window bigger. Click and "
 "hold down the mouse button for a menu with all available font sizes.</qt>"
 msgstr ""
+"<qt>ფონტის გადიდება<br /><br />ამ ფანჯრის ფონტების გადიდება. ფონტის "
+"ხელმისაწვდომის ზომების მენიუს სანახავად დააჭირეთ და გეჭიროთ თაგუნას ღილაკზე."
+"</qt>"
 
 #: khtml_part.cpp:388
 #, kde-format
@@ -843,6 +849,9 @@ msgid ""
 "<qt>Shrink Font<br /><br />Make the font in this window smaller. Click and "
 "hold down the mouse button for a menu with all available font sizes.</qt>"
 msgstr ""
+"<qt>ფონტის დაპატარავება<br /><br />ამ ფანჯრის ფონტების დაპატარავება. ფონტის "
+"ხელმისაწვდომის ზომების მენიუს სანახავად დააჭირეთ და გეჭიროთ თაგუნას ღილაკზე."
+"</qt>"
 
 #: khtml_part.cpp:406
 #, kde-format
@@ -850,6 +859,8 @@ msgid ""
 "<qt>Find text<br /><br />Shows a dialog that allows you to find text on the "
 "displayed page.</qt>"
 msgstr ""
+"<qt>ტექსტის ძებნა<br /><br />გაჩვენებთ ფანჯარას, რომელითაც ნაჩვენებ გვერდზე "
+"ტექსტის მოძებნა შეგიძლიათ.</qt>"
 
 #: khtml_part.cpp:410
 #, kde-format
@@ -857,6 +868,8 @@ msgid ""
 "<qt>Find next<br /><br />Find the next occurrence of the text that you have "
 "found using the <b>Find Text</b> function.</qt>"
 msgstr ""
+"<qt>შემდეგის მოძებნა<br /><br />ტექსტის, რომელიც <b>ტექსტის მოძებნის</b> "
+"ფუნქციით იპოვეთ, შემდეგი არსებობის მოძებნა.</qt>"
 
 #: khtml_part.cpp:416
 #, kde-format
@@ -864,6 +877,8 @@ msgid ""
 "<qt>Find previous<br /><br />Find the previous occurrence of the text that "
 "you have found using the <b>Find Text</b> function.</qt>"
 msgstr ""
+"<qt>წინა მოძებნა<br /><br />ტექსტის, რომელიც <b>ტექსტის მოძებნის</b> "
+"ფუნქციით იპოვეთ, წინა არსებობის მოძებნა.</qt>"
 
 #: khtml_part.cpp:421
 #, kde-format
@@ -877,6 +892,9 @@ msgid ""
 "cancels the effect of \"Find Links as You Type\", which sets the \"Find "
 "links only\" option."
 msgstr ""
+"ეს მალსახმობი გაჩვენებთ ძებნის პანელს ნაჩვენებ გვერდზე ტექსტის მოსაძებნად. "
+"ის აუქმებს \"ბმულების აკრეფისას მოძებნის\" ეფექტებს, რომელიც \"მხოლოდ "
+"ბმულების მოძებნის\" პარამეტრს რთავს."
 
 #: khtml_part.cpp:428
 #, kde-format
@@ -888,6 +906,8 @@ msgstr "ბმების ძებნა აკრეფისას"
 msgid ""
 "This shortcut shows the find bar, and sets the option \"Find links only\"."
 msgstr ""
+"მალსახმობი გაჩვენებთ ძებნის პანელს და აყენებს პარამეტრს \"მხოლოდ ბმულების "
+"მოძებნა\"."
 
 #: khtml_part.cpp:450
 #, kde-format
@@ -895,6 +915,8 @@ msgid ""
 "<qt>Print Frame<br /><br />Some pages have several frames. To print only a "
 "single frame, click on it and then use this function.</qt>"
 msgstr ""
+"<qt>ჩარჩოს დაბეჭდვა<br /><br />ზოგიერ გვერდს რამდენიმე ჩარჩო გააჩნია. ერთი "
+"ჩარჩოს დასაბეჭდად დააწკაპუნეთ მასზე და გამოიყენეთ ეს ფუნქცია.</qt>"
 
 #: khtml_part.cpp:465
 #, kde-format
@@ -1185,6 +1207,8 @@ msgid ""
 "<qt>The form will be submitted to <br /><b>%1</b><br />on your local "
 "filesystem.<br />Do you want to submit the form?</qt>"
 msgstr ""
+"<qt>ფორმა გადაცემული იქნება <br /><b>%1</b><br />ლოკალურ ფაილურ სისტემაზე."
+"<br />გნებავთ ფორმის გადაცემა?</qt>"
 
 #: khtml_part.cpp:5017
 #, kde-format
