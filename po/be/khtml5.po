@@ -1,6 +1,3 @@
-# translation of kdelibs4.po to Belarusian
-# translation of kdelibs4.po to
-#
 # Eugene Zelenko <greendeath@mail.ru>, 2002-2004.
 # Ihar Hrachyshka <ihar.hrachyshka@gmail.com>, 2006.
 # Darafei Praliaskouski <komzpa@licei2.com>, 2007.
@@ -12,12 +9,12 @@
 # kom <me@komzpa.net>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: kdelibs4\n"
+"Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:42+0000\n"
-"PO-Revision-Date: 2009-09-06 15:21+0300\n"
+"PO-Revision-Date: 2023-01-12 10:16\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@gmail.com>\n"
-"Language-Team: Belarusian <i18n@mova.org>\n"
+"Language-Team: Belarusian\n"
 "Language: be\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,21 +23,26 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || n%10>=5 && n%10<=9 || n"
 "%100>=11 && n%100<=14 ? 2 : 3);\n"
+"X-Crowdin-Project: 86ff119b1606fcaa910d6b44fc14b611\n"
+"X-Crowdin-Project-ID: 127\n"
+"X-Crowdin-Language: be\n"
+"X-Crowdin-File: /main/be/khtml/khtml5.po\n"
+"X-Crowdin-File-ID: 7967\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Дарафей Праляскоўскі"
+msgstr "Дарафей Праляскоўскі, Antikruk"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "komzpa@gmail.com"
+msgstr "komzpa@licei2.com, nashtlumach@gmail.com"
 
 #: ecma/debugger/callstackdock.cpp:35
 #, kde-format
 msgid "Call Stack"
-msgstr "Стэк выклікаў"
+msgstr "Група выклікаў"
 
 #: ecma/debugger/callstackdock.cpp:39
 #, kde-format
@@ -60,30 +62,26 @@ msgstr "Кансоль"
 #: ecma/debugger/consoledock.cpp:243
 #, kde-format
 msgid "Enter"
-msgstr "Enter"
+msgstr "Увод"
 
 #: ecma/debugger/debugdocument.cpp:203
-#, fuzzy, kde-format
-#| msgid ""
-#| "A KDE text-editor component could not be found;\n"
-#| "please check your KDE installation."
+#, kde-format
 msgid ""
 "Unable to find the Kate editor component;\n"
 "please check your KDE installation."
 msgstr ""
-"Кампанент рэдагавання тэксту KDE не знойдзены;\n"
-"калі ласка, праверце правільнасць устаноўкі KDE."
+"Не ўдалося знайсці кампанент рэдактара Kate; праверце, ці ўсталяваныя ўсё "
+"кампаненты KDE."
 
 #: ecma/debugger/debugdocument.cpp:269
-#, fuzzy, kde-format
-#| msgid "Breakpoints"
+#, kde-format
 msgid "Breakpoint"
-msgstr "Пункты прыпынення"
+msgstr "Пункт спынення"
 
 #: ecma/debugger/debugwindow.cpp:96
 #, kde-format
 msgid "JavaScript Debugger"
-msgstr "Адладчык JavaScript"
+msgstr "Адладжванне JavaScript"
 
 #: ecma/debugger/debugwindow.cpp:173
 #, kde-format
@@ -91,10 +89,9 @@ msgid "&Break at Next Statement"
 msgstr "&Спыніцца на наступным выразе"
 
 #: ecma/debugger/debugwindow.cpp:174
-#, fuzzy, kde-format
-#| msgid "&Break at Next Statement"
+#, kde-format
 msgid "Break at Next"
-msgstr "&Спыніцца на наступным выразе"
+msgstr "Спыніцца на наступным"
 
 #: ecma/debugger/debugwindow.cpp:179
 #, kde-format
@@ -104,7 +101,7 @@ msgstr "Працягнуць"
 #: ecma/debugger/debugwindow.cpp:185
 #, kde-format
 msgid "Step Over"
-msgstr "Перашагнуць"
+msgstr "Крок праз"
 
 #: ecma/debugger/debugwindow.cpp:191
 #, kde-format
@@ -119,23 +116,22 @@ msgstr "Крок вонкі"
 #: ecma/debugger/debugwindow.cpp:204
 #, kde-format
 msgid "Reindent Sources"
-msgstr ""
+msgstr "Паўторныя крыніцы"
 
 #: ecma/debugger/debugwindow.cpp:209
-#, fuzzy, kde-format
-#| msgid "Action"
+#, kde-format
 msgid "Report Exceptions"
-msgstr "Дзеянне"
+msgstr "Паведаміць пра выключэнні"
 
 #: ecma/debugger/debugwindow.cpp:217
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Debug"
-msgstr "Адладка"
+msgstr "&Адладжванне"
 
 #: ecma/debugger/debugwindow.cpp:225
 #, kde-format
 msgid "&Settings"
-msgstr "&Настаўленні"
+msgstr "&Налады"
 
 #: ecma/debugger/debugwindow.cpp:251
 #, kde-format
@@ -145,7 +141,7 @@ msgstr "Закрыць крыніцу"
 #: ecma/debugger/debugwindow.cpp:257
 #, kde-format
 msgid "Ready"
-msgstr "Гатовы"
+msgstr "Гатова"
 
 #: ecma/debugger/debugwindow.cpp:582
 #, kde-format
@@ -155,7 +151,7 @@ msgid ""
 "%1 line %2:\n"
 "%3"
 msgstr ""
-"Адбылася памылка выканання сцэнару на гэтай старонцы.\n"
+"Падчас запуску скрыпта на гэтай старонцы адбылася старонка.\n"
 "\n"
 "%1, радок %2:\n"
 "%3"
@@ -166,11 +162,13 @@ msgid ""
 "Do not know where to evaluate the expression. Please pause a script or open "
 "a source file."
 msgstr ""
+"Не ўдалося вызначыць, дзе ацаніць выраз. Прыпыніце скрыпт або адкрыйце "
+"зыходны файл."
 
 #: ecma/debugger/debugwindow.cpp:809
 #, kde-format
 msgid "Evaluation threw an exception %1"
-msgstr ""
+msgstr "Падчас ацэньвання выяўлена выключэнне %1"
 
 #: ecma/debugger/errordlg.cpp:35
 #, kde-format
@@ -185,7 +183,7 @@ msgstr "&Больш не паказваць гэтае паведамленне"
 #: ecma/debugger/localvariabledock.cpp:43
 #, kde-format
 msgid "Local Variables"
-msgstr "Мясцовыя зменныя"
+msgstr "Лакальныя зменныя"
 
 #: ecma/debugger/localvariabledock.cpp:51
 #, kde-format
@@ -201,7 +199,7 @@ msgstr "Значэнне"
 #: ecma/debugger/scriptsdock.cpp:37
 #, kde-format
 msgid "Loaded Scripts"
-msgstr "Загрь сцэнар"
+msgstr "Загружаныя скрыпты"
 
 #: ecma/kjs_binding.cpp:195
 #, kde-format
@@ -210,6 +208,9 @@ msgid ""
 "other applications may become less responsive.\n"
 "Do you want to stop the script?"
 msgstr ""
+"Скрыпт на гэтай старонцы прыводзіць да нестабільнай працы KHTML. Калі ён "
+"працягне працаваць, то іншыя праграмы могуць пачаць працаваць павольней.\n"
+"Хочаце спыніць скрыпт?"
 
 #: ecma/kjs_binding.cpp:195
 #, kde-format
@@ -217,20 +218,19 @@ msgid "JavaScript"
 msgstr "JavaScript"
 
 #: ecma/kjs_binding.cpp:195
-#, fuzzy, kde-format
-#| msgid "Open Script"
+#, kde-format
 msgid "&Stop Script"
-msgstr "Адкрыць сцэнар"
+msgstr "&Спыніць скрыпт"
 
 #: ecma/kjs_binding.cpp:445
 #, kde-format
 msgid "Parse error at %1 line %2"
-msgstr "Памылка апрацоўкі у %1 у радку %2"
+msgstr "Не ўдалося разабраць %1 у радку %2"
 
 #: ecma/kjs_html.cpp:2233 ecma/kjs_window.cpp:1944
 #, kde-format
 msgid "Confirmation: JavaScript Popup"
-msgstr "Пацверджанне: Выплыўнае акно JavaScript"
+msgstr "Пацвярджэнне: выплыўнае акно JavaScript"
 
 #: ecma/kjs_html.cpp:2235
 #, kde-format
@@ -239,6 +239,9 @@ msgid ""
 "JavaScript.\n"
 "Do you want to allow the form to be submitted?"
 msgstr ""
+"Гэты сайт адпраўляе форму, якая адкрые новае акно браўзера з дапамогай "
+"JavaScript.\n"
+"Хочаце дазволіць адпраўленне формы?"
 
 #: ecma/kjs_html.cpp:2238
 #, kde-format
@@ -247,6 +250,8 @@ msgid ""
 "browser window via JavaScript.<br />Do you want to allow the form to be "
 "submitted?</qt>"
 msgstr ""
+"<qt>Гэты сайт адпраўляе форму, якая адкрые <p>%1</p> у новым акне браўзера з "
+"дапамогай JavaScript.<br />Хочаце дазволіць адпраўленне формы?</qt>"
 
 #: ecma/kjs_html.cpp:2240 ecma/kjs_window.cpp:1952
 #, kde-format
@@ -264,6 +269,8 @@ msgid ""
 "This site is requesting to open up a new browser window via JavaScript.\n"
 "Do you want to allow this?"
 msgstr ""
+"Гэты сайт хоча адкрыць новае акно браўзера з дапамогай JavaScript.\n"
+"Хочаце дазволіць гэта?"
 
 #: ecma/kjs_window.cpp:1950
 #, kde-format
@@ -271,6 +278,8 @@ msgid ""
 "<qt>This site is requesting to open<p>%1</p>in a new browser window via "
 "JavaScript.<br />Do you want to allow this?</qt>"
 msgstr ""
+"<qt>Гэты сайт хоча адкрыць <p>%1</p>у новым акне браўзера з дапамогай "
+"JavaScript.<br />Хочаце дазволіць гэта?</qt>"
 
 #: ecma/kjs_window.cpp:2283
 #, kde-format
@@ -280,7 +289,7 @@ msgstr "Закрыць акно?"
 #: ecma/kjs_window.cpp:2283
 #, kde-format
 msgid "Confirmation Required"
-msgstr "Патрабуецца пацверджанне"
+msgstr "Патрабуецца пацвярджэнне"
 
 #: ecma/kjs_window.cpp:3233
 #, kde-format
@@ -288,6 +297,7 @@ msgid ""
 "Do you want a bookmark pointing to the location \"%1\" to be added to your "
 "collection?"
 msgstr ""
+"Хочаце, каб закладка з размяшчэннем \"%1\" была дададзеная ў вашую калекцыю?"
 
 #: ecma/kjs_window.cpp:3236
 #, kde-format
@@ -295,11 +305,13 @@ msgid ""
 "Do you want a bookmark pointing to the location \"%1\" titled \"%2\" to be "
 "added to your collection?"
 msgstr ""
+"Хочаце, каб закладка з размяшчэннем \"%1\" пад назвай \"%2\" была дададзеная "
+"ў вашую калекцыю?"
 
 #: ecma/kjs_window.cpp:3245
 #, kde-format
 msgid "JavaScript Attempted Bookmark Insert"
-msgstr ""
+msgstr "JavaScript спрабуе ўставіць закладку"
 
 #: ecma/kjs_window.cpp:3249
 #, kde-format
@@ -317,16 +329,18 @@ msgid ""
 "The following files will not be uploaded because they could not be found.\n"
 "Do you want to continue?"
 msgstr ""
+"Наступныя файлы не будуць запампаваныя, бо іх не ўдалося знайсці.\n"
+"Хочаце працягнуць?"
 
 #: html/html_formimpl.cpp:424
 #, kde-format
 msgid "Submit Confirmation"
-msgstr "Пацверджанне перадачы"
+msgstr "Пацвярджэнне адпраўлення"
 
 #: html/html_formimpl.cpp:424
 #, kde-format
 msgid "&Submit Anyway"
-msgstr "&Усё роўна перадаць"
+msgstr "&Усё адно адправіць"
 
 #: html/html_formimpl.cpp:434
 #, kde-format
@@ -335,26 +349,28 @@ msgid ""
 "the Internet.\n"
 "Do you really want to continue?"
 msgstr ""
+"Вы збіраецеся перадаць наступныя файлы з лакальнага камп'ютара ў інтэрнэт.\n"
+"Сапраўды хочаце працягнуць?"
 
 #: html/html_formimpl.cpp:438
 #, kde-format
 msgid "Send Confirmation"
-msgstr "Даслаць пацверджанне"
+msgstr "Адправіць пацвярджэнне"
 
 #: html/html_formimpl.cpp:438
-#, fuzzy, kde-format
-#| msgid "&Send Files"
+#, kde-format
 msgid "&Send File"
 msgid_plural "&Send Files"
-msgstr[0] "&Даслаць файлы"
-msgstr[1] "&Даслаць файлы"
-msgstr[2] "&Даслаць файлы"
+msgstr[0] "&Адправіць файл"
+msgstr[1] "&Адправіць файлы"
+msgstr[2] "&Адправіць файлы"
+msgstr[3] "&Адправіць файлы"
 
 #: html/html_formimpl.cpp:1687 html/html_formimpl.cpp:1908 khtml_part.cpp:4962
 #: khtmlview.cpp:2848 khtmlview.cpp:2892
 #, kde-format
 msgid "Submit"
-msgstr "Перадаць"
+msgstr "Адправіць"
 
 #: html/html_formimpl.cpp:1900 khtmlview.cpp:2863 khtmlview.cpp:2898
 #, kde-format
@@ -372,13 +388,13 @@ msgid ""
 "No plugin found for '%1'.\n"
 "Do you want to download one from %2?"
 msgstr ""
-"Утулка для '%1' не знойдзеная.\n"
-"Ці вы хочаце спампаваць яе з %2?"
+"Убудова для \"%1\" не знойдзеная.\n"
+"Хочаце спампаваць яе з %2?"
 
 #: html/html_objectimpl.cpp:633
 #, kde-format
 msgid "Missing Plugin"
-msgstr "Няма ўтулкі"
+msgstr "Няма ўбудовы"
 
 #: html/html_objectimpl.cpp:633
 #, kde-format
@@ -403,6 +419,9 @@ msgid ""
 "This wizard is intended to guide you through the procedure. You may cancel "
 "at any time, and this will abort the transaction."
 msgstr ""
+"Вы пазначылі, што хочаце атрымаць або набыць бяспечны сертыфікат. Гэты "
+"памагаты дапаможа вам выканаць гэтую працэдуру. Вы можаце скасаваць яе ў "
+"любы час, і гэта прывядзе да перапынення трансакцыі."
 
 #. i18n: ectx: property (text), widget (QLabel, TextLabel4)
 #: html/keygenwizard2.ui:35
@@ -411,43 +430,40 @@ msgid ""
 "You must now provide a password for the certificate request. Please choose a "
 "very secure password as this will be used to encrypt your private key."
 msgstr ""
+"Цяпер вам трэба ўвесці пароль для запыту сертыфіката. Абярыце бяспечны "
+"пароль, бо ён будзе выкарыстоўвацца для шыфравання вашага прыватнага ключа."
 
 #. i18n: ectx: property (text), widget (QLabel, TextLabel6)
 #: html/keygenwizard2.ui:48
-#, fuzzy, kde-format
-#| msgid "&Keep password"
+#, kde-format
 msgid "&Repeat password:"
-msgstr "&Захоўваць пароль"
+msgstr "&Паўтарыце пароль:"
 
 #. i18n: ectx: property (text), widget (QLabel, TextLabel5)
 #: html/keygenwizard2.ui:58
-#, fuzzy, kde-format
-#| msgid "&Keep password"
+#, kde-format
 msgid "&Choose password:"
-msgstr "&Захоўваць пароль"
+msgstr "&Абярыце пароль:"
 
 #: html/ksslkeygen.cpp:82
-#, fuzzy, kde-format
-#| msgid "Details of the Request:"
+#, kde-format
 msgid "KDE Certificate Request"
-msgstr "Падрабязнасці запыту:"
+msgstr "Запыт сертыфіката KDE"
 
 #: html/ksslkeygen.cpp:89
 #, kde-format
 msgid "KDE Certificate Request - Password"
-msgstr ""
+msgstr "Запыт сертыфіката KDE - пароль"
 
 #: html/ksslkeygen.cpp:126
-#, fuzzy, kde-format
-#| msgid "Unsorted"
+#, kde-format
 msgid "Unsupported key size."
-msgstr "Несартаваны"
+msgstr "Памер ключа не падтрымліваецца."
 
 #: html/ksslkeygen.cpp:126
-#, fuzzy, kde-format
-#| msgid "Information"
+#, kde-format
 msgid "KDE SSL Information"
-msgstr "Звесткі"
+msgstr "Звесткі пра SSL KDE"
 
 #: html/ksslkeygen.cpp:132 khtml_part.cpp:5017
 #, kde-format
@@ -457,51 +473,47 @@ msgstr "KDE"
 #: html/ksslkeygen.cpp:133
 #, kde-format
 msgid "Please wait while the encryption keys are generated..."
-msgstr ""
+msgstr "Пачакайце, калі згенеруюцца ключы шыфравання..."
 
 #: html/ksslkeygen.cpp:148
-#, fuzzy, kde-format
-#| msgid "Do you want to restart search from the end?"
+#, kde-format
 msgid "Do you wish to store the passphrase in your wallet file?"
-msgstr "Вы хочаце працягнуць пошук з канца?"
+msgstr "Хочаце захаваць парольную фразу у файле кашалька?"
 
 #: html/ksslkeygen.cpp:148
-#, fuzzy, kde-format
-#| msgid "Store"
+#, kde-format
 msgid "Store"
-msgstr "Захоўваць"
+msgstr "Крама"
 
 #: html/ksslkeygen.cpp:148
-#, fuzzy, kde-format
-#| msgid "Do Not Store"
+#, kde-format
 msgid "Do Not Store"
 msgstr "Не захоўваць"
 
 #: html/ksslkeygen.cpp:257
 #, kde-format
 msgid "2048 (High Grade)"
-msgstr ""
+msgstr "2048 (высокі клас)"
 
 #: html/ksslkeygen.cpp:258
 #, kde-format
 msgid "1024 (Medium Grade)"
-msgstr ""
+msgstr "1024 (сярэдні клас)"
 
 #: html/ksslkeygen.cpp:259
 #, kde-format
 msgid "768  (Low Grade)"
-msgstr ""
+msgstr "768  (нізкі клас)"
 
 #: html/ksslkeygen.cpp:260
 #, kde-format
 msgid "512  (Low Grade)"
-msgstr ""
+msgstr "512  (нізкі клас)"
 
 #: html/ksslkeygen.cpp:262
-#, fuzzy, kde-format
-#| msgid "Enable SOCKS support"
+#, kde-format
 msgid "No SSL support."
-msgstr "Уключыць падтрымку SOCKS"
+msgstr "SSL не падтрымліваецца."
 
 #. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
 #: htmlpageinfo.ui:22
@@ -511,11 +523,10 @@ msgstr "Звесткі пра дакумент"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
 #: htmlpageinfo.ui:34
-#, fuzzy, kde-format
-#| msgid "General"
+#, kde-format
 msgctxt "@title:group Document information"
 msgid "General"
-msgstr "Агульныя"
+msgstr "Асноўныя"
 
 #. i18n: ectx: property (text), widget (QLabel, urlLabel)
 #: htmlpageinfo.ui:60
@@ -533,25 +544,25 @@ msgstr "Назва:"
 #: htmlpageinfo.ui:128
 #, kde-format
 msgid "Last modified:"
-msgstr "Час апошняй змены:"
+msgstr "Апошнія змены:"
 
 #. i18n: ectx: property (text), widget (QLabel, _eLabel)
 #: htmlpageinfo.ui:144
 #, kde-format
 msgid "Document encoding:"
-msgstr "Знаказбор дакумента:"
+msgstr "Кадаванне дакумента:"
 
 #. i18n: ectx: property (text), widget (QLabel, _modeLabel)
 #: htmlpageinfo.ui:167
 #, kde-format
 msgid "Rendering mode:"
-msgstr ""
+msgstr "Рэжым рэндэрынгу:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
 #: htmlpageinfo.ui:186
 #, kde-format
 msgid "HTTP Headers"
-msgstr "Загалоўкі HTTP"
+msgstr "Верхнія калонтытулы HTTP"
 
 #. i18n: ectx: property (text), widget (QTreeWidget, _headers)
 #: htmlpageinfo.ui:214
@@ -563,7 +574,7 @@ msgstr "Уласцівасць"
 #: khtml.rc:4 khtml_browser.rc:11
 #, kde-format
 msgid "&Edit"
-msgstr "&Змяніць"
+msgstr "&Рэдагаванне"
 
 #. i18n: ectx: Menu (file)
 #: khtml_browser.rc:4
@@ -581,40 +592,38 @@ msgstr "&Выгляд"
 #: khtml_browser.rc:34
 #, kde-format
 msgid "HTML Toolbar"
-msgstr "Панель начыння HTML"
+msgstr "Панэль інструментаў HTML"
 
 #: khtml_ext.cpp:413
 #, kde-format
 msgid "&Copy Text"
-msgstr "С&капіраваць тэкст"
+msgstr "С&капіяваць тэкст"
 
 #: khtml_ext.cpp:427
 #, kde-format
 msgid "Open '%1'"
-msgstr "Адкрыць '%1'"
+msgstr "Адкрыць \"%1\""
 
 #: khtml_ext.cpp:444
-#, fuzzy, kde-format
-#| msgid "Copy Email Address"
+#, kde-format
 msgid "&Copy Email Address"
-msgstr "Скапіраваць адрас электроннай пошты"
+msgstr "&Скапіяваць адрас электроннай пошты"
 
 #: khtml_ext.cpp:449
 #, kde-format
 msgid "&Save Link As..."
-msgstr "&Запісаць спасылку як..."
+msgstr "&Захаваць спасылку як..."
 
 #: khtml_ext.cpp:454
-#, fuzzy, kde-format
-#| msgid "Copy &Link Address"
+#, kde-format
 msgid "&Copy Link Address"
-msgstr "Скапіраваць адрас спасылкі"
+msgstr "&Скапіяваць адрас спасылкі"
 
 #: khtml_ext.cpp:466
 #, kde-format
 msgctxt "@title:menu HTML frame/iframe"
 msgid "Frame"
-msgstr "Кавалак"
+msgstr "Фрэйм"
 
 #: khtml_ext.cpp:467
 #, kde-format
@@ -634,7 +643,7 @@ msgstr "Адкрыць у &новай укладцы"
 #: khtml_ext.cpp:488
 #, kde-format
 msgid "Reload Frame"
-msgstr "Перачытаць фрэйм"
+msgstr "Перазагрузіць фрэйм"
 
 #: khtml_ext.cpp:493 khtml_part.cpp:446
 #, kde-format
@@ -644,12 +653,12 @@ msgstr "Друкаваць фрэйм..."
 #: khtml_ext.cpp:499 khtml_part.cpp:298
 #, kde-format
 msgid "Save &Frame As..."
-msgstr "Запісаць &фрэйм як..."
+msgstr "Захаваць &фрэйм як..."
 
 #: khtml_ext.cpp:504 khtml_part.cpp:274
 #, kde-format
 msgid "View Frame Source"
-msgstr "Паказаць крынічны код фрэйму"
+msgstr "Паказаць зыходны код фрэйма"
 
 #: khtml_ext.cpp:509
 #, kde-format
@@ -659,42 +668,42 @@ msgstr "Паказаць інфармацыю пра фрэйм"
 #: khtml_ext.cpp:519
 #, kde-format
 msgid "Block IFrame..."
-msgstr "Блакаваць IFrame..."
+msgstr "Заблакаваць IFrame..."
 
 #: khtml_ext.cpp:543
 #, kde-format
 msgid "Save Image As..."
-msgstr "Запісаць малюнак як..."
+msgstr "Захаваць выяву як..."
 
 #: khtml_ext.cpp:548
 #, kde-format
 msgid "Send Image..."
-msgstr "Даслаць малюнак"
+msgstr "Адправіць выяву..."
 
 #: khtml_ext.cpp:554
 #, kde-format
 msgid "Copy Image"
-msgstr "Скапіраваць малюнак"
+msgstr "Скапіяваць выяву"
 
 #: khtml_ext.cpp:562
 #, kde-format
 msgid "Copy Image Location"
-msgstr "Скапіраваць адрас малюнку"
+msgstr "Скапіяваць адрас выявы"
 
 #: khtml_ext.cpp:571
 #, kde-format
 msgid "View Image (%1)"
-msgstr "Паказаць малюнак (%1)"
+msgstr "Паказаць выяву (%1)"
 
 #: khtml_ext.cpp:577
 #, kde-format
 msgid "Block Image..."
-msgstr "Блакаваць малюнак..."
+msgstr "Заблакаваць выяву..."
 
 #: khtml_ext.cpp:584
 #, kde-format
 msgid "Block Images From %1"
-msgstr "Блакаваць малюнкі з %1"
+msgstr "Заблакаваць выявы з %1"
 
 #: khtml_ext.cpp:596
 #, kde-format
@@ -704,22 +713,22 @@ msgstr "Спыніць анімацыю"
 #: khtml_ext.cpp:637
 #, kde-format
 msgid "Search for '%1' with %2"
-msgstr "Шукаць '%1' з '%2'"
+msgstr "Шукаць \"%1\" з дапамогай \"%2\""
 
 #: khtml_ext.cpp:647
 #, kde-format
 msgid "Search for '%1' with"
-msgstr "Шукаць '%1' з"
+msgstr "Шукаць \"%1\" з дапамогай"
 
 #: khtml_ext.cpp:693
 #, kde-format
 msgid "Save Link As"
-msgstr "Запісаць спасылку як"
+msgstr "Захаваць спасылку як"
 
 #: khtml_ext.cpp:712
 #, kde-format
 msgid "Save Image As"
-msgstr "Запісаць малюнак як"
+msgstr "Захаваць выяву як"
 
 #: khtml_ext.cpp:726 khtml_ext.cpp:738
 #, kde-format
@@ -729,14 +738,13 @@ msgstr "Дадаць URL у фільтр"
 #: khtml_ext.cpp:727 khtml_ext.cpp:739
 #, kde-format
 msgid "Enter the URL:"
-msgstr "Увядзіце адрас:"
+msgstr "Увядзіце URL-адрас:"
 
 #: khtml_ext.cpp:875
 #, kde-format
 msgid ""
 "A file named \"%1\" already exists. Are you sure you want to overwrite it?"
-msgstr ""
-"Файл з назвай \"%1\" ужо існуе. Ці вы сапраўды хочаце перазапісаць яго?"
+msgstr "Файл з назвай \"%1\" ужо існуе. Сапраўды хочаце перазапісаць яго?"
 
 #: khtml_ext.cpp:875
 #, kde-format
@@ -746,7 +754,7 @@ msgstr "Перазапісаць файл?"
 #: khtml_ext.cpp:927
 #, kde-format
 msgid "The Download Manager (%1) could not be found in your $PATH "
-msgstr "Немагчыма знайсці Кіраўнік спампоўванняў (%1) у $PATH "
+msgstr "Не ўдалося знайсці кіраўнік спампоўванняў (%1) па адрасе $PATH "
 
 #: khtml_ext.cpp:928
 #, kde-format
@@ -755,14 +763,14 @@ msgid ""
 "\n"
 "The integration with Konqueror will be disabled."
 msgstr ""
-"Паспрабуйце пераўстанавіць яго  \n"
+"Паспрабуйце пераўсталяваць  \n"
 "\n"
-"Інтэграцыя з Konqueror выключаная!"
+"Інтэграцыя з Konqueror адключаная."
 
 #: khtml_ext.cpp:1007
 #, no-c-format, kde-format
 msgid "Default Font Size (100%)"
-msgstr "Стандартны памер шрыфту (100%)"
+msgstr "Прадвызначаны памер шрыфту (100%)"
 
 #: khtml_ext.cpp:1021
 #, no-c-format, kde-format
@@ -782,7 +790,7 @@ msgstr "Убудаваны кампанент HTML"
 #: khtml_part.cpp:267
 #, kde-format
 msgid "View Do&cument Source"
-msgstr "Паказаць крынічны код да&кумента"
+msgstr "Паказаць зыходны код да&кумента"
 
 #: khtml_part.cpp:281
 #, kde-format
@@ -792,7 +800,7 @@ msgstr "Паказаць звесткі пра дакумент"
 #: khtml_part.cpp:288
 #, kde-format
 msgid "Save &Background Image As..."
-msgstr "Захаваць &фонавы малюнак як..."
+msgstr "Захаваць &фонавую выяву як..."
 
 #: khtml_part.cpp:310 khtml_part.cpp:4189
 #, kde-format
@@ -802,28 +810,27 @@ msgstr "SSL"
 #: khtml_part.cpp:314
 #, kde-format
 msgid "Print Rendering Tree to STDOUT"
-msgstr ""
+msgstr "Вывесці дрэва рэндэрынгу ў STDOUT"
 
 #: khtml_part.cpp:318
 #, kde-format
 msgid "Print DOM Tree to STDOUT"
-msgstr "Вывесці дрэва DOM на STDOUT"
+msgstr "Вывесці дрэва DOM у STDOUT"
 
 #: khtml_part.cpp:322
-#, fuzzy, kde-format
-#| msgid "Print DOM Tree to STDOUT"
+#, kde-format
 msgid "Print frame tree to STDOUT"
-msgstr "Вывесці дрэва DOM на STDOUT"
+msgstr "Вывесці дрэва фрэйма ў STDOUT"
 
 #: khtml_part.cpp:326
 #, kde-format
 msgid "Stop Animated Images"
-msgstr "Спыніць анімацыю малюнкаў"
+msgstr "Спыніць анімацыю выяў"
 
 #: khtml_part.cpp:330
 #, kde-format
 msgid "Set &Encoding"
-msgstr "Вызначыць &знаказбор"
+msgstr "Вызначыць &кадаванне"
 
 #: khtml_part.cpp:376
 #, kde-format
@@ -836,69 +843,56 @@ msgid "Enlarge Font"
 msgstr "Павялічыць памер шрыфту"
 
 #: khtml_part.cpp:384
-#, fuzzy, kde-format
-#| msgid ""
-#| "Enlarge Font<br /><br />Make the font in this window bigger. Click and "
-#| "hold down the mouse button for a menu with all available font sizes."
+#, kde-format
 msgid ""
 "<qt>Enlarge Font<br /><br />Make the font in this window bigger. Click and "
 "hold down the mouse button for a menu with all available font sizes.</qt>"
 msgstr ""
-"Павялічыць памер шрыфту<br /><br />Павялічвае памер шрыфту гэтага акна. "
-"Зацісніце левую кнопку мышы, каб убачыць спіс наяўных памераў шрыфту."
+"<qt>Павялічыць шрыфт<br /><br />Зрабіць шрыфт у гэтым акне большым. "
+"Націсніце і ўтрымлівайце кнопку мышы, каб адкрыць меню з усімі даступнымі "
+"памерамі шрыфтоў.</qt>"
 
 #: khtml_part.cpp:388
 #, kde-format
 msgid "Shrink Font"
-msgstr "Зменшыць памер шрыфту"
+msgstr "Паменшыць памер шрыфту"
 
 #: khtml_part.cpp:391
-#, fuzzy, kde-format
-#| msgid ""
-#| "Shrink Font<br /><br />Make the font in this window smaller. Click and "
-#| "hold down the mouse button for a menu with all available font sizes."
+#, kde-format
 msgid ""
 "<qt>Shrink Font<br /><br />Make the font in this window smaller. Click and "
 "hold down the mouse button for a menu with all available font sizes.</qt>"
 msgstr ""
-"Зменшыць памер шрыфту <p>Змяншае памер шрыфту гэтага акна. Зацісніце левую "
-"кнопку мышы, каб убачыць спіс наяўных памераў шрыфту."
+"<qt>Паменшыць шрыфт<br /><br />Зрабіць шрыфт у гэтым акне меншым. Націсніце "
+"і ўтрымлівайце кнопку мышы, каб адкрыць меню з усімі даступнымі памерамі "
+"шрыфтоў.</qt>"
 
 #: khtml_part.cpp:406
-#, fuzzy, kde-format
-#| msgid ""
-#| "Find text<br /><br />Shows a dialog that allows you to find text on the "
-#| "displayed page."
+#, kde-format
 msgid ""
 "<qt>Find text<br /><br />Shows a dialog that allows you to find text on the "
 "displayed page.</qt>"
 msgstr ""
-"Знайсці тэкст<br /><br />Паказвае дыялог, які дазваляе шукаць тэкст на "
-"паказанай старонцы."
+"<qt>Пошук тэксту<br /><br />Паказвае дыялогавае акно, якое дазваляе знайсці "
+"тэкст на паказанай старонцы.</qt>"
 
 #: khtml_part.cpp:410
-#, fuzzy, kde-format
-#| msgid ""
-#| "Find next<br /><br />Find the next occurrence of the text that you have "
-#| "found using the <b>Find Text</b> function"
+#, kde-format
 msgid ""
 "<qt>Find next<br /><br />Find the next occurrence of the text that you have "
 "found using the <b>Find Text</b> function.</qt>"
 msgstr ""
-"Знайсці наступнае <p>Знаходзіць наступнае супадзенне, якое вы знайшлі з "
-"дапамогай функцыі <b>Знайсці тэкст</b>"
+"<qt>Шукаць наступнае<br /><br />Знайсці наступнае супадзенне тэксту, які вы "
+"знайшлі з дапамогай функцыі <b>Пошук тэксту</b>.</qt>"
 
 #: khtml_part.cpp:416
-#, fuzzy, kde-format
-#| msgid ""
-#| "Find previous<br /><br />Find the previous occurrence of the text that "
-#| "you have found using the <b>Find Text</b> function"
+#, kde-format
 msgid ""
 "<qt>Find previous<br /><br />Find the previous occurrence of the text that "
 "you have found using the <b>Find Text</b> function.</qt>"
 msgstr ""
-"Знайсці папярэдняе <p>Знаходзіць ранейшае супадзенне, якое вы знайшлі з "
-"дапамогай функцыі <b>Знайсці тэкст</b>"
+"<qt>Шукаць папярэдняе<br /><br />Знайсці папярэдняе супадзенне тэксту, які "
+"вы знайшлі з дапамогай функцыі <b>Пошук тэксту</b>.</qt>"
 
 #: khtml_part.cpp:421
 #, kde-format
@@ -912,6 +906,9 @@ msgid ""
 "cancels the effect of \"Find Links as You Type\", which sets the \"Find "
 "links only\" option."
 msgstr ""
+"Гэты цэтлік паказвае панэль пошуку для пошуку тэксту на паказанай старонцы. "
+"Гэта скасуе эфект \"Шукаць спасылкі пры ўводзе\", які вызначае параметр "
+"\"Шукаць толькі спасылкі\"."
 
 #: khtml_part.cpp:428
 #, kde-format
@@ -923,34 +920,33 @@ msgstr "Шукаць спасылкі пры ўводзе"
 msgid ""
 "This shortcut shows the find bar, and sets the option \"Find links only\"."
 msgstr ""
+"Гэты цэтлік паказвае панэль пошуку і вызначае параметр \"Шукаць толькі "
+"спасылкі\"."
 
 #: khtml_part.cpp:450
-#, fuzzy, kde-format
-#| msgid ""
-#| "Print Frame<br /><br />Some pages have several frames. To print only a "
-#| "single frame, click on it and then use this function."
+#, kde-format
 msgid ""
 "<qt>Print Frame<br /><br />Some pages have several frames. To print only a "
 "single frame, click on it and then use this function.</qt>"
 msgstr ""
-"Друкаваць фрэйм <p>Некаторыя старонкі маюць некалькі фрэймаў. Каб "
-"надрукаваць асобны фрэйм, націсніце на яго, а потым выкарыстайце гэтую "
-"функцыю."
+"<qt>Друкаваць фрэйм<br /><br />Некаторыя старонкі маюць некалькі фрэймаў. "
+"Каб надрукаваць толькі адзін фрэйм, пстрыкніце па ім, а затым скарыстайцеся "
+"гэтай функцыяй.</qt>"
 
 #: khtml_part.cpp:465
 #, kde-format
 msgid "Toggle Caret Mode"
-msgstr ""
+msgstr "Пераключыць рэжым тэкставага курсора"
 
 #: khtml_part.cpp:768
 #, kde-format
 msgid "The fake user-agent '%1' is in use."
-msgstr ""
+msgstr "Выкарыстоўваецца фальшывы user-agent \"%1\"."
 
 #: khtml_part.cpp:1272
 #, kde-format
 msgid "This web page contains coding errors."
-msgstr "Гэтая старонка ўтрымлівае памылкі коду."
+msgstr "Гэтая старонка змяшчае памылкі ў кодзе."
 
 #: khtml_part.cpp:1313
 #, kde-format
@@ -960,35 +956,32 @@ msgstr "С&хаваць памылкі"
 #: khtml_part.cpp:1314
 #, kde-format
 msgid "&Disable Error Reporting"
-msgstr "&Выключыць паведамленні пра памылкі"
+msgstr "&Адключыць паведамленні пра памылкі"
 
 #: khtml_part.cpp:1357
-#, fuzzy, kde-format
-#| msgid "<b>Error</b>: %1: %2"
+#, kde-format
 msgid "<qt><b>Error</b>: %1: %2</qt>"
-msgstr "Памылка: %1"
+msgstr "<qt><b>Памылка</b>: %1: %2</qt>"
 
 #: khtml_part.cpp:1406
-#, fuzzy, kde-format
-#| msgid "<b>Error</b>: node %1: %2"
+#, kde-format
 msgid "<qt><b>Error</b>: node %1: %2</qt>"
-msgstr "<b>Памылка</b>: вузел %1: %2"
+msgstr "<qt><b>Памылка</b>: вузел %1: %2</qt>"
 
 #: khtml_part.cpp:1528
 #, kde-format
 msgid "Display Images on Page"
-msgstr "Паказваць малюнкі на старонцы"
+msgstr "Паказваць выявы на старонцы"
 
 #: khtml_part.cpp:1912
-#, fuzzy, kde-format
-#| msgid "<b>Error</b>: %1: %2"
+#, kde-format
 msgid "Error: %1 - %2"
-msgstr "Памылка!"
+msgstr "Памылка: %1 - %2"
 
 #: khtml_part.cpp:1917
 #, kde-format
 msgid "The requested operation could not be completed"
-msgstr "Немагчыма паспяхова выканаць гэтае дзеянне"
+msgstr "Немагчыма завяршыць неабходную аперацыю"
 
 #: khtml_part.cpp:1923
 #, kde-format
@@ -1006,9 +999,9 @@ msgid "URL: %1"
 msgstr "URL: %1"
 
 #: khtml_part.cpp:1934
-#, fuzzy, kde-format
+#, kde-format
 msgid "Protocol: %1"
-msgstr "Пратакол"
+msgstr "Пратакол: %1"
 
 #: khtml_part.cpp:1937
 #, kde-format
@@ -1041,17 +1034,18 @@ msgid "Page loaded."
 msgstr "Старонка загружаная."
 
 #: khtml_part.cpp:2404
-#, fuzzy, kde-format
+#, kde-format
 msgid "%1 Image of %2 loaded."
 msgid_plural "%1 Images of %2 loaded."
-msgstr[0] "%1 малюнак з %2 загружаны."
-msgstr[1] "%1 малюнкі з %2 загружаны."
-msgstr[2] "%1 малюнкаў з %2 загружаны."
+msgstr[0] "Загружана %1 выява з %2."
+msgstr[1] "Загружана %1 выявы з %2."
+msgstr[2] "Загружана %1 выяў з %2."
+msgstr[3] "Загружана %1 выявы з %2."
 
 #: khtml_part.cpp:2582
 #, kde-format
 msgid "Automatic Detection"
-msgstr "Аўтаматычнае вызначэнне"
+msgstr "Аўтаматычнае выяўленне"
 
 #: khtml_part.cpp:3712 khtml_part.cpp:3776 khtml_part.cpp:3786
 #, kde-format
@@ -1069,18 +1063,18 @@ msgid "%1 (Link)"
 msgstr "%1 (спасылка)"
 
 #: khtml_part.cpp:3758
-#, fuzzy, kde-format
-#| msgid "%2 (%1 bytes)"
+#, kde-format
 msgid "%2 (%1 byte)"
 msgid_plural "%2 (%1 bytes)"
-msgstr[0] "%2 (%1 байтаў)"
-msgstr[1] "%2 (%1 байтаў)"
+msgstr[0] "%2 (%1 байт)"
+msgstr[1] "%2 (%1 байты)"
 msgstr[2] "%2 (%1 байтаў)"
+msgstr[3] "%2 (%1 байты)"
 
 #: khtml_part.cpp:3761
 #, kde-format
 msgid "%2 (%1 K)"
-msgstr "%2 (%1 Кб)"
+msgstr "%2 (%1 К)"
 
 #: khtml_part.cpp:3788
 #, kde-format
@@ -1090,7 +1084,7 @@ msgstr " (У іншым фрэйме)"
 #: khtml_part.cpp:3794
 #, kde-format
 msgid "Email to: "
-msgstr "Ліставаць: "
+msgstr "Напісаць: "
 
 #: khtml_part.cpp:3800
 #, kde-format
@@ -1105,13 +1099,13 @@ msgstr " - Копія: "
 #: khtml_part.cpp:3804
 #, kde-format
 msgid " - BCC: "
-msgstr " - Таемная копія: "
+msgstr " - Схаваная копія: "
 
 #: khtml_part.cpp:3885 khtml_part.cpp:4107 khtml_part.cpp:4543
 #: khtml_run.cpp:106
 #, kde-format
 msgid "Save As"
-msgstr "Запісаць як"
+msgstr "Захаваць як"
 
 #: khtml_part.cpp:3890
 #, kde-format
@@ -1119,8 +1113,8 @@ msgid ""
 "<qt>This untrusted page links to<br /><b>%1</b>.<br />Do you want to follow "
 "the link?</qt>"
 msgstr ""
-"<qt>Гэтая ненадзейная старонка спасылаецца на<br /><b>%1</b>.<br />Ці вы "
-"хочаце перайсці па гэтай спасылцы?</qt>"
+"<qt>Гэтая ненадзейная старонка спасылаецца на<br /><b>%1</b>.<br />Хочаце "
+"перайсці па гэтай спасылцы?</qt>"
 
 #: khtml_part.cpp:3891
 #, kde-format
@@ -1138,50 +1132,47 @@ msgid "   <a href=\"%1\">[Properties]</a>"
 msgstr "   <a href=\"%1\">[Уласцівасці]</a>"
 
 #: khtml_part.cpp:4018
-#, fuzzy, kde-format
-#| msgctxt "@item Text character set"
-#| msgid "Turkish"
+#, kde-format
 msgctxt "HTML rendering mode (see https://en.wikipedia.org/wiki/Quirks_mode)"
 msgid "Quirks"
-msgstr "Турэцкая"
+msgstr "Сумяшчальнасці (Quirks)"
 
 #: khtml_part.cpp:4021
 #, kde-format
 msgctxt "HTML rendering mode (see https://en.wikipedia.org/wiki/Quirks_mode)"
 msgid "Almost standards"
-msgstr ""
+msgstr "Амаль стандарты"
 
 #: khtml_part.cpp:4025
-#, fuzzy, kde-format
-#| msgid "Start"
+#, kde-format
 msgctxt "HTML rendering mode (see https://en.wikipedia.org/wiki/Quirks_mode)"
 msgid "Strict"
-msgstr "Запусціць"
+msgstr "Строгі"
 
 #: khtml_part.cpp:4094
 #, kde-format
 msgid "Save Background Image As"
-msgstr "Запісаць фонавы малюнак як"
+msgstr "Захаваць фонавую выяву як"
 
 #: khtml_part.cpp:4187
 #, kde-format
 msgid "The peer SSL certificate chain appears to be corrupt."
-msgstr ""
+msgstr "Выглядае, што ланцужок аднарангавых сертыфікатаў SSL пашкоджаны."
 
 #: khtml_part.cpp:4208
 #, kde-format
 msgid "Save Frame As"
-msgstr "Запісаць фрэйм як"
+msgstr "Захаваць фрэйм як"
 
 #: khtml_part.cpp:4252
 #, kde-format
 msgid "&Find in Frame..."
-msgstr "&Знайсці ў фрэйме..."
+msgstr "&Шукаць у фрэйме..."
 
 #: khtml_part.cpp:4254
 #, kde-format
 msgid "&Find..."
-msgstr "З&найсці..."
+msgstr "&Пошук..."
 
 #: khtml_part.cpp:4901
 #, kde-format
@@ -1191,6 +1182,10 @@ msgid ""
 "A third party may be able to intercept and view this information.\n"
 "Are you sure you wish to continue?"
 msgstr ""
+"Увага: гэта бяспечная форма, але яна спрабуе адправіць назад вашыя даныя ў "
+"незашыфраваным выглядзе.\n"
+"Трэці бок можа мець магчымасць перахапіць і праглядзець гэтую інфармацыю.\n"
+"Сапраўды хочаце працягнуць?"
 
 #: khtml_part.cpp:4904 khtml_part.cpp:4914 khtml_part.cpp:4939
 #, kde-format
@@ -1200,7 +1195,7 @@ msgstr "Перадача праз сетку"
 #: khtml_part.cpp:4904 khtml_part.cpp:4915
 #, kde-format
 msgid "&Send Unencrypted"
-msgstr "&Даслаць незашыфраванымі"
+msgstr "&Адправіць незашыфраваным"
 
 #: khtml_part.cpp:4912
 #, kde-format
@@ -1209,6 +1204,8 @@ msgid ""
 "unencrypted.\n"
 "Are you sure you wish to continue?"
 msgstr ""
+"Увага: вашыя даныя будуць перададзеныя па сетцы ў незашыфраваным выглядзе.\n"
+"Сапраўды хочаце працягнуць?"
 
 #: khtml_part.cpp:4937
 #, kde-format
@@ -1216,13 +1213,13 @@ msgid ""
 "This site is attempting to submit form data via email.\n"
 "Do you want to continue?"
 msgstr ""
-"Гэты сайт спрабуе адаслаць звесткі па электроннай пошце.\n"
-"Вы хочаце працягнуць?"
+"Гэты сайт спрабуе адправіць звесткі па электроннай пошце.\n"
+"Хочаце працягнуць?"
 
 #: khtml_part.cpp:4940
 #, kde-format
 msgid "&Send Email"
-msgstr "&Даслаць ліст"
+msgstr "&Адправіць ліст"
 
 #: khtml_part.cpp:4961
 #, kde-format
@@ -1230,6 +1227,8 @@ msgid ""
 "<qt>The form will be submitted to <br /><b>%1</b><br />on your local "
 "filesystem.<br />Do you want to submit the form?</qt>"
 msgstr ""
+"<qt>Форма будзе адпраўленая ў <br /><b>%1</b><br />у вашай лакальнай "
+"файлавай сістэме.<br />Хочаце адправіць форму?</qt>"
 
 #: khtml_part.cpp:5017
 #, kde-format
@@ -1237,6 +1236,8 @@ msgid ""
 "This site attempted to attach a file from your computer in the form "
 "submission. The attachment was removed for your protection."
 msgstr ""
+"Гэты сайт паспрабаваў далучыць файл з вашага камп'ютара да формы. Далучэнне "
+"было выдалена для вашай бяспекі."
 
 #: khtml_part.cpp:6111
 #, kde-format
@@ -1252,50 +1253,50 @@ msgstr "Папярэджанне сістэмы бяспекі"
 #, kde-format
 msgid "<qt>Access by untrusted page to<br /><b>%1</b><br /> denied.</qt>"
 msgstr ""
-"<qt>Доступ з ненадзейнай старонки да<br /><b>%1</b><br /> забаронены.</qt>"
+"<qt>Адмоўлена ў доступе з ненадзейнай старонкі да<br /><b>%1</b><br />.</qt>"
 
 #: khtml_part.cpp:7047
 #, kde-format
 msgid "Security Alert"
-msgstr "Важнае папярэджанне сістэмы бяспекі"
+msgstr "Абвестка сістэмы бяспекі"
 
 #: khtml_part.cpp:7417
 #, kde-format
 msgid "The wallet '%1' is open and being used for form data and passwords."
 msgstr ""
-"Гаманец '%1' адкрыты і выкарыстоўваецца для захоўвання данняў з формаў, а "
-"таксама пароляў."
+"Кашалёк \"%1\" адкрыты і выкарыстоўваецца для захоўвання даных з формаў і "
+"пароляў."
 
 #: khtml_part.cpp:7476
 #, kde-format
 msgid "&Close Wallet"
-msgstr "&Закрыць гаманец"
+msgstr "&Закрыць кашалёк"
 
 #: khtml_part.cpp:7479
 #, kde-format
 msgid "&Allow storing passwords for this site"
-msgstr ""
+msgstr "&Дазволіць захоўванне пароляў для гэтага сайта"
 
 #: khtml_part.cpp:7484
 #, kde-format
 msgid "Remove password for form %1"
-msgstr ""
+msgstr "Выдаліць пароль для формы %1"
 
 #: khtml_part.cpp:7599
 #, kde-format
 msgid "JavaScript &Debugger"
-msgstr "А&дладчык JavaScript"
+msgstr "А&дладжванне JavaScript"
 
 #: khtml_part.cpp:7632
 #, kde-format
 msgid "This page was prevented from opening a new window via JavaScript."
 msgstr ""
-"Гэтай старонцы было забаронена ствараць новае акно пры дапамозе JavaScript."
+"Гэтай старонцы было забаронена адкрыццё новага акна з дапамогай JavaScript."
 
 #: khtml_part.cpp:7638
 #, kde-format
 msgid "Popup Window Blocked"
-msgstr "Выплыўнае акно заблакаванае"
+msgstr "Выплыўнае акно заблакавана"
 
 #: khtml_part.cpp:7638
 #, kde-format
@@ -1304,24 +1305,28 @@ msgid ""
 "You can click on this icon in the status bar to control this behavior\n"
 "or to open the popup."
 msgstr ""
+"Гэтая старонка спрабавала адкрыць выплыўное акно, але яно было заблакавана.\n"
+"Вы можаце націснуць на гэты значок на панэлі стану, каб змяніць паводзіны\n"
+"або адкрыць выплыўное акно."
 
 #: khtml_part.cpp:7652
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Show Blocked Popup Window"
 msgid_plural "&Show %1 Blocked Popup Windows"
-msgstr[0] "&Паказаць %1 заблакаванае выплыўнае акно"
+msgstr[0] "&Паказаць %1 заблакаванае выплыўное акно"
 msgstr[1] "&Паказаць %1 заблакаваныя выплыўныя вокны"
-msgstr[2] "&Паказаць %1 заблакаваных выплыўных акна"
+msgstr[2] "&Паказаць %1 заблакаваных выплыўных акон"
+msgstr[3] "&Паказаць %1 заблакаваныя выплыўныя вокны"
 
 #: khtml_part.cpp:7654
 #, kde-format
 msgid "Show Blocked Window Passive Popup &Notification"
-msgstr "Паказваць пасіўнае выплыўнае &абвяшчэнне пра заблакаваныя вокны"
+msgstr "Паказваць пасіўныя выплыўныя &апавяшчэнні пра заблакаваныя вокны"
 
 #: khtml_part.cpp:7656
 #, kde-format
 msgid "&Configure JavaScript New Window Policies..."
-msgstr ""
+msgstr "&Наладжванне правіл новых акон JavaScript..."
 
 #: khtml_printsettings.cpp:30
 #, kde-format
@@ -1332,6 +1337,12 @@ msgid ""
 "of the HTML page will be printed, without the included images. Printing will "
 "be faster and use less ink or toner.</p> </qt>"
 msgstr ""
+"<qt><p><strong>\"Друкаваць выявы\"</strong></p><p>Калі параметр адзначаны, "
+"выявы, якія змяшчаюцца на старонцы HTML, будуць надрукаваныя. Друкаванне "
+"можа заняць больш часу і спатрэбіцца больш чарніла або тонера.</p><p>Калі "
+"параметр не адзначаны, будзе надрукаваны толькі тэкст старонкі HTML без "
+"выяў. Друкаванне будзе больш хуткім і спатрэбіцца менш чарніла або тонера.</"
+"p> </qt>"
 
 #: khtml_printsettings.cpp:42
 #, kde-format
@@ -1342,6 +1353,11 @@ msgid ""
 "printed page and the page number.</p><p>If this checkbox is disabled, the "
 "printout of the HTML document will not contain such a header line.</p> </qt>"
 msgstr ""
+"<qt><p><strong>\"Друкаваць верхні калонтытул\"</strong></p><p>Калі параметр "
+"адзначаны, надрукаваны дакумент HTML будзе змяшчаць радок калонтытула ўверсе "
+"кожнай старонкі. Гэты радок будзе змяшчаць бягучую дату, URL надрукаванай "
+"старонкі і нумар старонкі.</p><p>Калі параметр не адзначаны, дакумент HTML "
+"будзе друкавацца без такога радка.</p> </qt>"
 
 #: khtml_printsettings.cpp:55
 #, kde-format
@@ -1355,44 +1371,49 @@ msgid ""
 "grayscale, if you use a black+white printer). Printout will possibly happen "
 "more slowly and will probably use more toner or ink.</p> </qt>"
 msgstr ""
+"<qt><p><strong>\"Рэжым друкавання\"</strong></p><p>Калі параметр адзначаны, "
+"дакумент HTML будзе друкавацца чорна-белым, а ўвесь каляровы фон будзе "
+"пераўтварацца у белы. Друкаванне будзе хутчэйшым, будзе выкарыстоўвацца менш "
+"чарніла або тонера.</p><p> Калі параметр не адзначаны, дакумент HTML будзе "
+"друкавацца згодна з наладамі вашай праграмы. Гэта можа прывесці да каляровых "
+"участкаў на ўсю старонку (або адценняў шэрага, калі вы выкарыстоўваеце чорна-"
+"белы прынтар). Друкаванне, магчыма, будзе адбывацца больш павольна, можа "
+"спатрэбіцца больш тонера або чарніла.</p> </qt>"
 
 #: khtml_printsettings.cpp:70
 #, kde-format
 msgid "HTML Settings"
-msgstr "Настаўленні HTML"
+msgstr "Налады HTML"
 
 #: khtml_printsettings.cpp:72
 #, kde-format
 msgid "Printer friendly mode (black text, no background)"
-msgstr "Рэжым друку (чорны тэкст, без фону)"
+msgstr "Рэжым друкавання (чорны тэкст, без фону)"
 
 #: khtml_printsettings.cpp:75
 #, kde-format
 msgid "Print images"
-msgstr "Друкаваць малюнкі"
+msgstr "Друкаваць выявы"
 
 #: khtml_printsettings.cpp:78
 #, kde-format
 msgid "Print header"
-msgstr "Друкаваць загаловак"
+msgstr "Друкаваць верхні калонтытул"
 
 #: khtml_settings.cpp:906
 #, kde-format
 msgid "Filter error"
-msgstr "Памылка фільтру"
+msgstr "Памылка фільтра"
 
 #: khtmladaptorpart.cpp:29
-#, fuzzy, kde-format
-#| msgctxt "@item font size"
-#| msgid "Relative"
+#, kde-format
 msgid "Inactive"
-msgstr "Адносны"
+msgstr "Не актыўна"
 
 #: khtmlimage.cpp:49
-#, fuzzy, kde-format
-#| msgid "KHTML"
+#, kde-format
 msgid "KHTML Image"
-msgstr "KHTML"
+msgstr "Выява KHTML"
 
 #: khtmlimage.cpp:195
 #, kde-format
@@ -1412,17 +1433,17 @@ msgstr "%1 (%2x%3 пікселяў)"
 #: khtmlimage.cpp:204
 #, kde-format
 msgid "Image - %1x%2 Pixels"
-msgstr "Малюнак - %1x%2 пікселяў"
+msgstr "Выява - %1x%2 пікселяў"
 
 #: khtmlimage.cpp:210
 #, kde-format
 msgid "Done."
-msgstr "Зроблена."
+msgstr "Завершана."
 
 #: khtmlview.cpp:1903
 #, kde-format
 msgid "Access Keys activated"
-msgstr "Клавішы доступу задзейнічаныя"
+msgstr "Клавішы доступу актываваныя"
 
 #: kjserrordlg.cpp:9
 #, kde-format
@@ -1437,15 +1458,7 @@ msgstr "Памылкі JavaScript"
 
 #. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
 #: kjserrordlgbase.ui:18
-#, fuzzy, kde-format
-#| msgid ""
-#| "This dialog provides you with notification and details of scripting "
-#| "errors that occur on web pages.  In many cases it is due to an error in "
-#| "the web site as designed by its author.  In other cases it is the result "
-#| "of a programming error in Konqueror.  If you suspect the former, please "
-#| "contact the webmaster of the site in question.  Conversely if you suspect "
-#| "an error in Konqueror, please file a bug report at http://bugs.kde.org/.  "
-#| "A test case which illustrates the problem will be appreciated."
+#, kde-format
 msgid ""
 "This dialog provides you with notification and details of scripting errors "
 "that occur on web pages.  In many cases it is due to an error in the web "
@@ -1455,18 +1468,17 @@ msgid ""
 "in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
 "case which illustrates the problem will be appreciated."
 msgstr ""
-"Гэтае вакно паведамляе вам пра памылкі сцэнараў, убудаваных у старонкі "
-"Сеціва. У большасці выпадкаў прычынай гэтых памылак з'яўляюцца праблемы "
-"пляцоўкі, дапушчаныя яе стваральнікамі. Бывае, прычынай такіх памылак "
-"з'яўляюцца памылкі ў кодзе Konqueror. Калі ў вас першы выпадак, паведаміце "
-"адміністратару пляцоўкі пра памылку. У другім выпадку, паведаміце пра "
-"памылку на http://bugs.kde.org/. Калі ласка, дайце як мага больш звестак пра "
-"канкрэтныя выпадкі такіх памылак."
+"Гэтае дыялогавае акно забяспечвае апавяшчэнні і падрабязную інфармацыю пра "
+"памылкі скрыптоў на вэб-старонках. У большасці выпадкаў гэта памылкі ў кодзе "
+"на вэб-сайтах. У іншых выпадках - вынік памылкі праграмавання ў Konqueror. "
+"Калі вы падазраяце першае, звярніцеся да вэб-майстра адпаведнага сайта.  І "
+"наадварот, калі вы падазраяце памылку ў Konqueror, адпраўце справаздачу пра "
+"хібу на https://bugs.kde.org/."
 
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
-msgstr ""
+msgstr "Атрыманне пашкоджаных даных."
 
 #: kmultipart/kmultipart.cpp:39
 #, kde-format
@@ -1481,18 +1493,18 @@ msgstr "Убудаваны кампанент для multipart/mixed"
 #: kmultipart/kmultipart.cpp:43
 #, kde-format
 msgid "Copyright 2001-2011, David Faure <faure@kde.org>"
-msgstr ""
+msgstr "Аўтарскія правы 2001-2011, David Faure <faure@kde.org>"
 
 #: kmultipart/kmultipart.cpp:335
 #, kde-format
 msgid "No handler found for %1."
-msgstr "Не знойдзены апрацоўшчык для %1."
+msgstr "Не знойдзена сродку апрацоўвання для %1."
 
 #: misc/kencodingdetector.cpp:1123 misc/kencodingdetector.cpp:1224
 #, kde-format
 msgctxt "@item Text character set"
 msgid "Unicode"
-msgstr "Unicode"
+msgstr "Юнікод"
 
 #: misc/kencodingdetector.cpp:1125 misc/kencodingdetector.cpp:1194
 #, kde-format
@@ -1504,129 +1516,123 @@ msgstr "Кірыліца"
 #, kde-format
 msgctxt "@item Text character set"
 msgid "Western European"
-msgstr "Заходне-еўрапейскі"
+msgstr "Заходнееўрапейскае"
 
 #: misc/kencodingdetector.cpp:1129 misc/kencodingdetector.cpp:1191
 #, kde-format
 msgctxt "@item Text character set"
 msgid "Central European"
-msgstr "Цэнтральна-еўрапейскі"
+msgstr "Цэнтральнаеўрапейскае"
 
 #: misc/kencodingdetector.cpp:1131 misc/kencodingdetector.cpp:1197
 #, kde-format
 msgctxt "@item Text character set"
 msgid "Greek"
-msgstr "Грэцкая"
+msgstr "Грэчаскае"
 
 #: misc/kencodingdetector.cpp:1133 misc/kencodingdetector.cpp:1200
 #, kde-format
 msgctxt "@item Text character set"
 msgid "Hebrew"
-msgstr "Габрэйская"
+msgstr "Іўрыт"
 
 #: misc/kencodingdetector.cpp:1135 misc/kencodingdetector.cpp:1206
 #, kde-format
 msgctxt "@item Text character set"
 msgid "Turkish"
-msgstr "Турэцкая"
+msgstr "Турэцкае"
 
 #: misc/kencodingdetector.cpp:1137 misc/kencodingdetector.cpp:1203
 #, kde-format
 msgctxt "@item Text character set"
 msgid "Japanese"
-msgstr "Японская"
+msgstr "Японскае"
 
 #: misc/kencodingdetector.cpp:1139 misc/kencodingdetector.cpp:1188
 #, kde-format
 msgctxt "@item Text character set"
 msgid "Baltic"
-msgstr "Балцкая"
+msgstr "Балтыйскае"
 
 #: misc/kencodingdetector.cpp:1141 misc/kencodingdetector.cpp:1185
 #, kde-format
 msgctxt "@item Text character set"
 msgid "Arabic"
-msgstr "Арабская"
+msgstr "Арабскае"
 
 #: misc/kencodingdetector.cpp:1212
 #, kde-format
 msgctxt "@item Text character set"
 msgid "Chinese Traditional"
-msgstr "Кітайская традыцыйная"
+msgstr "Кітайскае традыцыйнае"
 
 #: misc/kencodingdetector.cpp:1215
 #, kde-format
 msgctxt "@item Text character set"
 msgid "Chinese Simplified"
-msgstr "Кітайская спрошчаная"
+msgstr "Кітайскае спрошчанае"
 
 #: misc/kencodingdetector.cpp:1218
 #, kde-format
 msgctxt "@item Text character set"
 msgid "Korean"
-msgstr "Карэйская"
+msgstr "Карэйскае"
 
 #: misc/kencodingdetector.cpp:1221
 #, kde-format
 msgctxt "@item Text character set"
 msgid "Thai"
-msgstr "Тайская"
+msgstr "Тайскае"
 
 #: rendering/media_controls.cpp:50
 #, kde-format
 msgid "Play"
-msgstr ""
+msgstr "Прайграць"
 
 #: rendering/media_controls.cpp:53
 #, kde-format
 msgid "Pause"
-msgstr "Паўза"
+msgstr "Прыпыніць"
 
 #: rendering/render_form.cpp:901
-#, fuzzy, kde-format
-#| msgid "Shortcut"
+#, kde-format
 msgid "New Web Shortcut"
-msgstr "Скарот"
+msgstr "Новы сеціўны цэтлік"
 
 #: rendering/render_form.cpp:922
-#, fuzzy, kde-format
-#| msgctxt "Socket error code AlreadyCreated"
-#| msgid "socket is already created"
+#, kde-format
 msgid "%1 is already assigned to %2"
-msgstr "сокет ужо створаны"
+msgstr "%1 ужо прызначана для %2"
 
 #: rendering/render_form.cpp:968
 #, kde-format
 msgid "Search &provider name:"
-msgstr ""
+msgstr "Назва сістэмы &пошуку:"
 
 #: rendering/render_form.cpp:970
-#, fuzzy, kde-format
-#| msgid "Enter search phrase here"
+#, kde-format
 msgid "New search provider"
-msgstr "Увядзіце сюды тэкст для пошуку"
+msgstr "Новая сістэма пошуку"
 
 #: rendering/render_form.cpp:975
-#, fuzzy, kde-format
-#| msgid "Shortcuts"
+#, kde-format
 msgid "UR&I shortcuts:"
-msgstr "Скароты"
+msgstr "&Цэтлікі URI:"
 
 #: rendering/render_form.cpp:1054
 #, kde-format
 msgid "Clear &History"
-msgstr "Ачысціць &часопіс"
+msgstr "Ачысціць &гісторыю"
 
 #: rendering/render_form.cpp:1069
-#, fuzzy, kde-format
-#| msgid "Configure Shortcuts"
+#, kde-format
 msgid "Create Web Shortcut"
-msgstr "Наставіць скароты"
+msgstr "Стварыць сеціўны цэтлік"
 
 #: ui/findbar/khtmlfindbar.cpp:49
 #, kde-format
 msgid "C&ase sensitive"
-msgstr "З улікам &рэгістру"
+msgstr "&Зважаць на рэгістр"
 
 #: ui/findbar/khtmlfindbar.cpp:51
 #, kde-format
@@ -1636,116 +1642,105 @@ msgstr "Толькі &асобныя словы"
 #: ui/findbar/khtmlfindbar.cpp:53
 #, kde-format
 msgid "From c&ursor"
-msgstr "Ад &курсору"
+msgstr "Ад &курсора"
 
 #: ui/findbar/khtmlfindbar.cpp:55
 #, kde-format
 msgid "&Selected text"
-msgstr "&Вылучаны тэкст"
+msgstr "&Абраны тэкст"
 
 #: ui/findbar/khtmlfindbar.cpp:57
 #, kde-format
 msgid "Regular e&xpression"
-msgstr "Сталы в&ыраз"
+msgstr "Рэгулярны в&ыраз"
 
 #: ui/findbar/khtmlfindbar.cpp:59
-#, fuzzy, kde-format
-#| msgid "Find Links as You Type"
+#, kde-format
 msgid "Find &links only"
-msgstr "Шукаць спасылкі пры ўводзе"
+msgstr "Шукаць толькі &спасылкі"
 
 #: ui/findbar/khtmlfindbar.cpp:224
 #, kde-format
 msgid "Not found"
-msgstr ""
+msgstr "Не знойдзена"
 
 #: ui/findbar/khtmlfindbar.cpp:239
 #, kde-format
 msgid "No more matches for this search direction."
-msgstr ""
+msgstr "Больш няма супадзенняў для гэтага пошуку."
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: ui/findbar/khtmlfindbar_base.ui:43
-#, fuzzy, kde-format
-#| msgid "Find"
+#, kde-format
 msgid "F&ind:"
-msgstr "Знайсці"
+msgstr "&Пошук:"
 
 #. i18n: ectx: property (text), widget (QToolButton, m_next)
 #: ui/findbar/khtmlfindbar_base.ui:75
-#, fuzzy, kde-format
-#| msgctxt "Opposite to Previous"
-#| msgid "&Next"
+#, kde-format
 msgid "&Next"
-msgstr "&Наступны"
+msgstr "&Далей"
 
 #. i18n: ectx: property (text), widget (QToolButton, m_previous)
 #: ui/findbar/khtmlfindbar_base.ui:85
 #, kde-format
 msgid "&Previous"
-msgstr "&Папярэдні"
+msgstr "&Назад"
 
 #. i18n: ectx: property (text), widget (QToolButton, m_options)
 #: ui/findbar/khtmlfindbar_base.ui:111
-#, fuzzy, kde-format
-#| msgid "Options"
+#, kde-format
 msgid "Opt&ions"
-msgstr "Параметры"
+msgstr "&Параметры"
 
 #. i18n: ectx: property (text), widget (QLabel, m_label)
 #: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
-#, fuzzy, kde-format
-#| msgid "Do you really want to delete this item?"
-#| msgid_plural "Do you really want to delete these %1 items?"
+#, kde-format
 msgid "Do you want to store this password?"
-msgstr "Вы сапраўды хочаце выдаліць %1 элемент?"
+msgstr "Хочаце захаваць гэты пароль?"
 
 #: ui/passwordbar/storepassbar.cpp:61
-#, fuzzy, kde-format
-#| msgid "Do you want to restart search from the end?"
+#, kde-format
 msgid "Do you want to store this password for %1?"
-msgstr "Вы хочаце працягнуць пошук з канца?"
+msgstr "Хочаце захаваць гэты пароль для %1?"
 
 #. i18n: ectx: property (text), widget (QToolButton, m_store)
 #: ui/passwordbar/storepassbar_base.ui:59
-#, fuzzy, kde-format
-#| msgid "Store"
+#, kde-format
 msgid "&Store"
-msgstr "Захоўваць"
+msgstr "&Захаваць"
 
 #. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
 #: ui/passwordbar/storepassbar_base.ui:69
-#, fuzzy, kde-format
-#| msgid "Ne&ver for This Site"
+#, kde-format
 msgid "Ne&ver store for this site"
-msgstr "Ні&колі для гэтага сайту"
+msgstr "Ні&колі не захоўваць для гэтага сайта"
 
 #. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
 #: ui/passwordbar/storepassbar_base.ui:79
-#, fuzzy, kde-format
-#| msgid "Do not show this message again"
+#, kde-format
 msgid "Do &not store this time"
-msgstr "Больш не паказваць гэтае паведамленне"
+msgstr "&Не захоўваць гэтым разам"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
 msgid "Basic Page Style"
-msgstr "Просты стыль старонкі"
+msgstr "Базавы стыль старонкі"
 
 #: xml/xml_tokenizer.cpp:347
 #, kde-format
 msgid "the document is not in the correct file format"
-msgstr "дакумент у няправільным фармаце"
+msgstr "у дакумента няправільны фармат файла"
 
 #: xml/xml_tokenizer.cpp:352
 #, kde-format
 msgid "fatal parsing error: %1 in line %2, column %3"
-msgstr "непапраўная памылка апрацоўкі: %1 у радку %2, у слупку %3"
+msgstr "падчас разбору адбылася фатальная памылка: %1 у радку %2, у слупку %3"
 
 #: xml/xml_tokenizer.cpp:567
 #, kde-format
 msgid "XML parsing error"
-msgstr "Памылка апрацоўкі XML"
+msgstr "Не ўдалося апрацаваць XML"
 
 #~ msgid "Error"
 #~ msgstr "Памылка"
