@@ -17,13 +17,13 @@
 # Serdar SOYTETİR <tulliana@gmail.com>, 2010, 2012.
 # Volkan Gezer <volkangezer@gmail.com>, 2013, 2014.
 # Kaan Ozdincer <kaanozdincer@gmail.com>, 2014.
-# Emir SARI <emir_sari@icloud.com>, 2022.
+# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:42+0000\n"
-"PO-Revision-Date: 2022-12-11 20:33+0300\n"
+"PO-Revision-Date: 2023-01-18 22:29+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.12.0\n"
+"X-Generator: Lokalize 22.12.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -926,8 +926,8 @@ msgstr "Bağlantıları Yazdıkça Bul"
 msgid ""
 "This shortcut shows the find bar, and sets the option \"Find links only\"."
 msgstr ""
-"Bu kısayol arama çubuğunu gösterir ve \"Sadece kısayolları bul\" seçeneğini "
-"ayarlar."
+"Bu kısayol arama çubuğunu gösterir ve \"Yalnızca kısayolları bul\" "
+"seçeneğini ayarlar."
 
 #: khtml_part.cpp:450
 #, kde-format
@@ -936,8 +936,8 @@ msgid ""
 "single frame, click on it and then use this function.</qt>"
 msgstr ""
 "<qt>Çerçeveyi Yazdır<br /><br /> Bazı sayfaların birden fazla çerçevesi "
-"olabilir. Sadece tek çerçeveyi yazdırmak için bu çerçeve üzerine tıklayın ve "
-"ardından bu fonksiyonu kullanın.</qt>"
+"olabilir. Yalnızca tek çerçeveyi yazdırmak için bu çerçeve üzerine tıklayın "
+"ve ardından bu fonksiyonu kullanın.</qt>"
 
 #: khtml_part.cpp:465
 #, kde-format
@@ -1339,7 +1339,7 @@ msgstr ""
 "<qt><p><strong>'Resimleri Yazdır'</strong></p><p>Eğer bu onay kutucuğu "
 "etkinleştirilmişse, HTML dosya içindeki resimler de yazdırılacaktır. "
 "Yazdırma işlemi biraz uzayacak ve daha fazla mürekkep veya toner "
-"tüketilecektir.</p><p>Onay kutucuğu etkisizleştirilmişse, Sadece HTML "
+"tüketilecektir.</p><p>Onay kutucuğu etkisizleştirilmişse, Yalnızca HTML "
 "dosyadaki metinler yazdırılacak, içindeki resimler yazdırılmayacaktır. Daha "
 "hızlı yazdırma ve daha az mürekkep veya toner tüketimi sağlar.</p> </qt>"
 
@@ -1641,7 +1641,7 @@ msgstr "&BÜYÜK/küçük harf duyarlı"
 #: ui/findbar/khtmlfindbar.cpp:51
 #, kde-format
 msgid "&Whole words only"
-msgstr "&Sadece tam sözcükler"
+msgstr "&Yalnızca tam sözcükler"
 
 #: ui/findbar/khtmlfindbar.cpp:53
 #, kde-format
@@ -1661,7 +1661,7 @@ msgstr "&Düzenli ifade"
 #: ui/findbar/khtmlfindbar.cpp:59
 #, kde-format
 msgid "Find &links only"
-msgstr "Sadece &bağlantıları bul"
+msgstr "Yalnızca &bağlantıları bul"
 
 #: ui/findbar/khtmlfindbar.cpp:224
 #, kde-format
