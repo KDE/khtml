@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:42+0000\n"
-"PO-Revision-Date: 2023-01-18 22:29+0300\n"
+"PO-Revision-Date: 2023-02-05 11:22+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.12.1\n"
+"X-Generator: Lokalize 22.12.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -679,17 +679,17 @@ msgstr "IFrame'i Engelle..."
 #: khtml_ext.cpp:543
 #, kde-format
 msgid "Save Image As..."
-msgstr "Resmi Farklı Kaydet..."
+msgstr "Görseli Farklı Kaydet..."
 
 #: khtml_ext.cpp:548
 #, kde-format
 msgid "Send Image..."
-msgstr "Resmi Gönder..."
+msgstr "Görseli Gönder..."
 
 #: khtml_ext.cpp:554
 #, kde-format
 msgid "Copy Image"
-msgstr "Resmi Kopyala"
+msgstr "Görseli Kopyala"
 
 #: khtml_ext.cpp:562
 #, kde-format
@@ -699,17 +699,17 @@ msgstr "Bağlantı Yolunu Kopyala"
 #: khtml_ext.cpp:571
 #, kde-format
 msgid "View Image (%1)"
-msgstr "Resmi Görüntüle (%1)"
+msgstr "Görseli Görüntüle (%1)"
 
 #: khtml_ext.cpp:577
 #, kde-format
 msgid "Block Image..."
-msgstr "Resmi Engelle..."
+msgstr "Görseli Engelle..."
 
 #: khtml_ext.cpp:584
 #, kde-format
 msgid "Block Images From %1"
-msgstr "%1 Adresinden Gelen Resimleri Engelle"
+msgstr "%1 Adresinden Gelen Görselleri Engelle"
 
 #: khtml_ext.cpp:596
 #, kde-format
@@ -734,7 +734,7 @@ msgstr "Bağlantıyı Farklı Kaydet"
 #: khtml_ext.cpp:712
 #, kde-format
 msgid "Save Image As"
-msgstr "Resmi Farklı Kaydet"
+msgstr "Görseli Farklı Kaydet"
 
 #: khtml_ext.cpp:726 khtml_ext.cpp:738
 #, kde-format
@@ -832,7 +832,7 @@ msgstr "Çerçeve ağacını STDOUT'a yaz"
 #: khtml_part.cpp:326
 #, kde-format
 msgid "Stop Animated Images"
-msgstr "Canlandırmalı Resimleri Durdur"
+msgstr "Canlandırmalı Görselleri Durdur"
 
 #: khtml_part.cpp:330
 #, kde-format
@@ -977,7 +977,7 @@ msgstr "<qt><b>Error</b>: düğüm %1: %2</qt>"
 #: khtml_part.cpp:1528
 #, kde-format
 msgid "Display Images on Page"
-msgstr "Sayfada Resimleri Göster"
+msgstr "Sayfada Görselleri Görüntüle"
 
 #: khtml_part.cpp:1912
 #, kde-format
@@ -1043,8 +1043,8 @@ msgstr "Sayfa yüklendi."
 #, kde-format
 msgid "%1 Image of %2 loaded."
 msgid_plural "%1 Images of %2 loaded."
-msgstr[0] "%2 resmin %1 tanesi yüklendi."
-msgstr[1] "%2 resmin %1 tanesi yüklendi."
+msgstr[0] "%1/%2 görsel yüklendi."
+msgstr[1] "%1/%2 görsel yüklendi."
 
 #: khtml_part.cpp:2582
 #, kde-format
@@ -1336,11 +1336,11 @@ msgid ""
 "of the HTML page will be printed, without the included images. Printing will "
 "be faster and use less ink or toner.</p> </qt>"
 msgstr ""
-"<qt><p><strong>'Resimleri Yazdır'</strong></p><p>Eğer bu onay kutucuğu "
-"etkinleştirilmişse, HTML dosya içindeki resimler de yazdırılacaktır. "
+"<qt><p><strong>'Görselleri Yazdır'</strong></p><p>Eğer bu onay kutucuğu "
+"etkinleştirilmişse, HTML dosyası içindeki görseller de yazdırılacaktır. "
 "Yazdırma işlemi biraz uzayacak ve daha fazla mürekkep veya toner "
-"tüketilecektir.</p><p>Onay kutucuğu etkisizleştirilmişse, Yalnızca HTML "
-"dosyadaki metinler yazdırılacak, içindeki resimler yazdırılmayacaktır. Daha "
+"tüketilecektir.</p><p>Onay kutucuğu etkisizleştirilmişse Yalnızca HTML "
+"dosyadaki metinler yazdırılacak, içindeki görseller yazdırılmayacaktır. Daha "
 "hızlı yazdırma ve daha az mürekkep veya toner tüketimi sağlar.</p> </qt>"
 
 #: khtml_printsettings.cpp:42
@@ -1393,7 +1393,7 @@ msgstr "Yazıcı dostu kip (yalnızca siyah metin, arka plan yok)"
 #: khtml_printsettings.cpp:75
 #, kde-format
 msgid "Print images"
-msgstr "Resimleri Yazdır"
+msgstr "Görselleri Yazdır"
 
 #: khtml_printsettings.cpp:78
 #, kde-format
@@ -1413,27 +1413,27 @@ msgstr "Pasif"
 #: khtmlimage.cpp:49
 #, kde-format
 msgid "KHTML Image"
-msgstr "KHTML Resmi"
+msgstr "KHTML Görseli"
 
 #: khtmlimage.cpp:195
 #, kde-format
 msgid "%1 (%2 - %3x%4 Pixels)"
-msgstr "%1 (%2 - %3x%4 Benek)"
+msgstr "%1 (%2 - %3 x %4 Piksel)"
 
 #: khtmlimage.cpp:197
 #, kde-format
 msgid "%1 - %2x%3 Pixels"
-msgstr "%1 - %2x%3 Benek"
+msgstr "%1 - %2 x %3 Piksel"
 
 #: khtmlimage.cpp:202
 #, kde-format
 msgid "%1 (%2x%3 Pixels)"
-msgstr "%1 (%2x%3 Benek)"
+msgstr "%1 (%2 x %3 Piksel)"
 
 #: khtmlimage.cpp:204
 #, kde-format
 msgid "Image - %1x%2 Pixels"
-msgstr "Resim - %1x%2 Benek"
+msgstr "Görsel - %1 x %2 Piksel"
 
 #: khtmlimage.cpp:210
 #, kde-format
