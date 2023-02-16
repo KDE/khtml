@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:42+0000\n"
-"PO-Revision-Date: 2023-02-07 11:01\n"
+"PO-Revision-Date: 2023-02-15 11:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -873,7 +873,7 @@ msgstr ""
 #: khtml_part.cpp:421
 #, kde-format
 msgid "Find Text as You Type"
-msgstr "查找您输入的文本"
+msgstr "在您输入文字的同时查找"
 
 #: khtml_part.cpp:424
 #, kde-format
@@ -888,7 +888,7 @@ msgstr ""
 #: khtml_part.cpp:428
 #, kde-format
 msgid "Find Links as You Type"
-msgstr "查找您输入的链接"
+msgstr "在您输入链接的同时查找"
 
 #: khtml_part.cpp:434
 #, kde-format
