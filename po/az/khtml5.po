@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the khtml package.
 #
-# Xəyyam <xxmn77@gmail.com>, 2020, 2021, 2022.
+# Xəyyam <xxmn77@gmail.com>, 2020, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: khtml\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:42+0000\n"
-"PO-Revision-Date: 2022-07-31 23:14+0400\n"
+"PO-Revision-Date: 2023-02-17 01:23+0400\n"
 "Last-Translator: Kheyyam <xxmn77@gmail.com>\n"
 "Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
 "Language: az\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.04.3\n"
+"X-Generator: Lokalize 22.12.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -298,7 +298,7 @@ msgstr ""
 #: ecma/kjs_window.cpp:3245
 #, kde-format
 msgid "JavaScript Attempted Bookmark Insert"
-msgstr "JavaScript Əlfəcin Əlavə Etməyə Cəhd Edir"
+msgstr "JavaScript əlfəcin əlavə etməyə cəhd etdi"
 
 #: ecma/kjs_window.cpp:3249
 #, kde-format
