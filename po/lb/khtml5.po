@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2006-06-22 16:29+0200\n"
 "Last-Translator: Michel Ludwig <michel.ludwig@kdemail.net>\n"
 "Language-Team: Luxembourgish <kde-i18n-lb@kde.org>\n"
@@ -184,7 +184,8 @@ msgstr ""
 msgid "Reference"
 msgstr "Referenzfeler"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "Wert"
@@ -408,6 +409,37 @@ msgstr "Net eroflueden"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "Dësem Index kënnt dir duerchsichen. Gitt Stëchwierder an: "
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Repeat password:"
+msgstr "Passwuert &bäibehalen"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Choose password:"
+msgstr "Passwuert &bäibehalen"
+
 #: html/ksslkeygen.cpp:82
 #, fuzzy, kde-format
 #| msgid "KDE Certificate Part"
@@ -484,6 +516,87 @@ msgstr ""
 #, kde-format
 msgid "No SSL support."
 msgstr ""
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "Informatiounen zum Dokument"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, fuzzy, kde-format
+#| msgid "General"
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "Allgemeng"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "Titel:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "Als Lescht geännert:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "Zeechesaatz vum Dokument:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "HTTP-Headeren"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "Eegeschaft"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "V&eränneren"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Datei"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "&Usiicht"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, fuzzy, kde-format
+#| msgid "Main Toolbar"
+msgid "HTML Toolbar"
+msgstr "Haapt-Toolbar"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1379,6 +1492,39 @@ msgstr "Kuerztasten ugeschalt"
 msgid "C&lear"
 msgstr "Eidelmaa&chen"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "Feeleren am JavaScript"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, fuzzy, kde-format
+#| msgid ""
+#| "This dialog provides you with notification and details of scripting "
+#| "errors that occur on web pages.  In many cases it is due to an error in "
+#| "the web site as designed by its author.  In other cases it is the result "
+#| "of a programming error in Konqueror.  If you suspect the former, please "
+#| "contact the webmaster of the site in question.  Conversely if you suspect "
+#| "an error in Konqueror, please file a bug report at http://bugs.kde.org/.  "
+#| "A test case which illustrates the problem will be appreciated."
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"Dësen Dialog weist iech eng Notificatioun an Detailer vu Feeleren am Script, "
+"déi op Internetsäiten virkomme kënnen.  An de meeschte Fäll läit dat un "
+"engem Feeler vum Verfaasser vun der Säit.  Da kënnt dir de Webmaster op de "
+"Feeler opmierksam maachen.  Et kann awer och sinn, dass et d'Resultat vun "
+"engem Programméierfeler am Konqueror ass.  Schreiwt dann w.e.g. e Käfer-"
+"Bericht, deen dir un http://bugs.kde.org/ schécke kënnt."
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1593,7 +1739,34 @@ msgstr "1 Iwwereneestëmmung fonnt."
 msgid "No more matches for this search direction."
 msgstr ""
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, fuzzy, kde-format
+#| msgid "Find:"
+msgid "F&ind:"
+msgstr "Sichen:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&Weider"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "&Zeréck"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, fuzzy, kde-format
+#| msgid "Options"
+msgid "Opt&ions"
+msgstr "Optiounen"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, fuzzy, kde-format
 #| msgid "Do you really want to execute '%1'? "
 msgid "Do you want to store this password?"
@@ -1604,6 +1777,27 @@ msgstr "Wëllt dir '%1' wiirklech lafe loossen? "
 #| msgid "Do you want to restart search from the end?"
 msgid "Do you want to store this password for %1?"
 msgstr "Wëllt dir vun hanne weidersichen?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, fuzzy, kde-format
+#| msgid "Store"
+msgid "&Store"
+msgstr "Späicheren"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, fuzzy, kde-format
+#| msgid "Ne&ver for This Site"
+msgid "Ne&ver store for this site"
+msgstr "Nie fir &dëss Säit"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, fuzzy, kde-format
+#| msgid "Do not show this message again"
+msgid "Do &not store this time"
+msgstr "Dëss Noricht net méi weisen"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1624,117 +1818,6 @@ msgstr "fatale Parsing-Feeler: %1, Zeil %2, Kolonn %3"
 #, kde-format
 msgid "XML parsing error"
 msgstr "XML Parsing-Feeler"
-
-#, fuzzy
-#~| msgid "&Keep password"
-#~ msgid "&Repeat password:"
-#~ msgstr "Passwuert &bäibehalen"
-
-#, fuzzy
-#~| msgid "&Keep password"
-#~ msgid "&Choose password:"
-#~ msgstr "Passwuert &bäibehalen"
-
-#~ msgid "Document Information"
-#~ msgstr "Informatiounen zum Dokument"
-
-#, fuzzy
-#~| msgid "General"
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "Allgemeng"
-
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
-#~ msgid "Title:"
-#~ msgstr "Titel:"
-
-#~ msgid "Last modified:"
-#~ msgstr "Als Lescht geännert:"
-
-#~ msgid "Document encoding:"
-#~ msgstr "Zeechesaatz vum Dokument:"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "HTTP-Headeren"
-
-#~ msgid "Property"
-#~ msgstr "Eegeschaft"
-
-#~ msgid "&Edit"
-#~ msgstr "V&eränneren"
-
-#~ msgid "&File"
-#~ msgstr "&Datei"
-
-#~ msgid "&View"
-#~ msgstr "&Usiicht"
-
-#, fuzzy
-#~| msgid "Main Toolbar"
-#~ msgid "HTML Toolbar"
-#~ msgstr "Haapt-Toolbar"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "Feeleren am JavaScript"
-
-#, fuzzy
-#~| msgid ""
-#~| "This dialog provides you with notification and details of scripting "
-#~| "errors that occur on web pages.  In many cases it is due to an error in "
-#~| "the web site as designed by its author.  In other cases it is the result "
-#~| "of a programming error in Konqueror.  If you suspect the former, please "
-#~| "contact the webmaster of the site in question.  Conversely if you "
-#~| "suspect an error in Konqueror, please file a bug report at http://bugs."
-#~| "kde.org/.  A test case which illustrates the problem will be appreciated."
-#~ msgid ""
-#~ "This dialog provides you with notification and details of scripting "
-#~ "errors that occur on web pages.  In many cases it is due to an error in "
-#~ "the web site as designed by its author.  In other cases it is the result "
-#~ "of a programming error in Konqueror.  If you suspect the former, please "
-#~ "contact the webmaster of the site in question.  Conversely if you suspect "
-#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
-#~ "org/.  A test case which illustrates the problem will be appreciated."
-#~ msgstr ""
-#~ "Dësen Dialog weist iech eng Notificatioun an Detailer vu Feeleren am "
-#~ "Script, déi op Internetsäiten virkomme kënnen.  An de meeschte Fäll läit "
-#~ "dat un engem Feeler vum Verfaasser vun der Säit.  Da kënnt dir de "
-#~ "Webmaster op de Feeler opmierksam maachen.  Et kann awer och sinn, dass "
-#~ "et d'Resultat vun engem Programméierfeler am Konqueror ass.  Schreiwt "
-#~ "dann w.e.g. e Käfer-Bericht, deen dir un http://bugs.kde.org/ schécke "
-#~ "kënnt."
-
-#, fuzzy
-#~| msgid "Find:"
-#~ msgid "F&ind:"
-#~ msgstr "Sichen:"
-
-#~ msgid "&Next"
-#~ msgstr "&Weider"
-
-#~ msgid "&Previous"
-#~ msgstr "&Zeréck"
-
-#, fuzzy
-#~| msgid "Options"
-#~ msgid "Opt&ions"
-#~ msgstr "Optiounen"
-
-#, fuzzy
-#~| msgid "Store"
-#~ msgid "&Store"
-#~ msgstr "Späicheren"
-
-#, fuzzy
-#~| msgid "Ne&ver for This Site"
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "Nie fir &dëss Säit"
-
-#, fuzzy
-#~| msgid "Do not show this message again"
-#~ msgid "Do &not store this time"
-#~ msgstr "Dëss Noricht net méi weisen"
 
 #~ msgid "Error"
 #~ msgstr "Feeler"

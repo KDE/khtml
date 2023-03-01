@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2010-01-27 10:39+0100\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -190,7 +190,8 @@ msgstr "Локални променливи"
 msgid "Reference"
 msgstr "Референца"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "Вредност"
@@ -411,6 +412,37 @@ msgstr "Не симнувај"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "Ова е пребарлив индекс. Внесете зборови за барање: "
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Repeat password:"
+msgstr "&Зачувај ја лозинката"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Choose password:"
+msgstr "&Зачувај ја лозинката"
+
 #: html/ksslkeygen.cpp:82
 #, fuzzy, kde-format
 #| msgid "Details of the Request:"
@@ -487,6 +519,85 @@ msgstr ""
 #| msgid "Enable SOCKS support"
 msgid "No SSL support."
 msgstr "Овозможи поддршка за SOCKS"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "Информација за документот"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "Општо"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "Наслов:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "Последно изменето:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "Кодирање на документот:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "HTTP-заглавија"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "Својство"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "&Уредување"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Датотека"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "П&риказ"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "HTML-алатник"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1342,6 +1453,40 @@ msgstr "Тастерите за пристап се активирани"
 msgid "C&lear"
 msgstr "&Исчисти"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "Грешки во JavaScript"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, fuzzy, kde-format
+#| msgid ""
+#| "This dialog provides you with notification and details of scripting "
+#| "errors that occur on web pages.  In many cases it is due to an error in "
+#| "the web site as designed by its author.  In other cases it is the result "
+#| "of a programming error in Konqueror.  If you suspect the former, please "
+#| "contact the webmaster of the site in question.  Conversely if you suspect "
+#| "an error in Konqueror, please file a bug report at http://bugs.kde.org/.  "
+#| "A test case which illustrates the problem will be appreciated."
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"Овој дијалог ви дава известување и детали за скриптни грешки кои се "
+"појавуваат на веб-страници. Во многу случаи тоа е поради грешка во веб-"
+"страницата дизајнирана од нејзиниот автор. Во други случаи тоа е поради "
+"програмска грешка во Konqueror. Ако се сомневате во првото, известете го веб-"
+"мастерот на страницата. Ако мислите дека има грешка во Konqueror, ве молиме "
+"да дадете извештај за грешка на http://bugs.kde.org/. Би било убаво ако може "
+"да дадете тест-случај што ќе го илустрира проблемот."
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1538,7 +1683,32 @@ msgstr "Не е најдено"
 msgid "No more matches for this search direction."
 msgstr "Нема повеќе совпаѓања за оваа насока на пребарување"
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "Најд&и:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&Следно"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "&Претходно"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "Опц&ии"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "Дали сакате да ја зачувате лозинката?"
@@ -1547,6 +1717,24 @@ msgstr "Дали сакате да ја зачувате лозинката?"
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "Дали сакате да ја зачувате лозинката за „%1“?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "&Зачувај"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "Ни&когаш за оваа локација"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "&Не зачувувај овој пат"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1567,103 +1755,6 @@ msgstr "фатална грешка при анализа: %1 на ред %2, к
 #, kde-format
 msgid "XML parsing error"
 msgstr "Грешка при анализа на XML"
-
-#, fuzzy
-#~| msgid "&Keep password"
-#~ msgid "&Repeat password:"
-#~ msgstr "&Зачувај ја лозинката"
-
-#, fuzzy
-#~| msgid "&Keep password"
-#~ msgid "&Choose password:"
-#~ msgstr "&Зачувај ја лозинката"
-
-#~ msgid "Document Information"
-#~ msgstr "Информација за документот"
-
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "Општо"
-
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
-#~ msgid "Title:"
-#~ msgstr "Наслов:"
-
-#~ msgid "Last modified:"
-#~ msgstr "Последно изменето:"
-
-#~ msgid "Document encoding:"
-#~ msgstr "Кодирање на документот:"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "HTTP-заглавија"
-
-#~ msgid "Property"
-#~ msgstr "Својство"
-
-#~ msgid "&Edit"
-#~ msgstr "&Уредување"
-
-#~ msgid "&File"
-#~ msgstr "&Датотека"
-
-#~ msgid "&View"
-#~ msgstr "П&риказ"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "HTML-алатник"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "Грешки во JavaScript"
-
-#, fuzzy
-#~| msgid ""
-#~| "This dialog provides you with notification and details of scripting "
-#~| "errors that occur on web pages.  In many cases it is due to an error in "
-#~| "the web site as designed by its author.  In other cases it is the result "
-#~| "of a programming error in Konqueror.  If you suspect the former, please "
-#~| "contact the webmaster of the site in question.  Conversely if you "
-#~| "suspect an error in Konqueror, please file a bug report at http://bugs."
-#~| "kde.org/.  A test case which illustrates the problem will be appreciated."
-#~ msgid ""
-#~ "This dialog provides you with notification and details of scripting "
-#~ "errors that occur on web pages.  In many cases it is due to an error in "
-#~ "the web site as designed by its author.  In other cases it is the result "
-#~ "of a programming error in Konqueror.  If you suspect the former, please "
-#~ "contact the webmaster of the site in question.  Conversely if you suspect "
-#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
-#~ "org/.  A test case which illustrates the problem will be appreciated."
-#~ msgstr ""
-#~ "Овој дијалог ви дава известување и детали за скриптни грешки кои се "
-#~ "појавуваат на веб-страници. Во многу случаи тоа е поради грешка во веб-"
-#~ "страницата дизајнирана од нејзиниот автор. Во други случаи тоа е поради "
-#~ "програмска грешка во Konqueror. Ако се сомневате во првото, известете го "
-#~ "веб-мастерот на страницата. Ако мислите дека има грешка во Konqueror, ве "
-#~ "молиме да дадете извештај за грешка на http://bugs.kde.org/. Би било "
-#~ "убаво ако може да дадете тест-случај што ќе го илустрира проблемот."
-
-#~ msgid "F&ind:"
-#~ msgstr "Најд&и:"
-
-#~ msgid "&Next"
-#~ msgstr "&Следно"
-
-#~ msgid "&Previous"
-#~ msgstr "&Претходно"
-
-#~ msgid "Opt&ions"
-#~ msgstr "Опц&ии"
-
-#~ msgid "&Store"
-#~ msgstr "&Зачувај"
-
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "Ни&когаш за оваа локација"
-
-#~ msgid "Do &not store this time"
-#~ msgstr "&Не зачувувај овој пат"
 
 #~ msgid "Error"
 #~ msgstr "Грешка"

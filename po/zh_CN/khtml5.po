@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2023-02-24 12:43\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -176,7 +176,8 @@ msgstr "局部变量"
 msgid "Reference"
 msgstr "引用"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "值"
@@ -389,6 +390,39 @@ msgstr "不下载"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "这是一个可搜索的索引。请输入搜索关键字："
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+"您已经表明您想要获得或者购买安全证书。此向导将会引导您完成这个过程。您可在任"
+"何时候取消，从而中止此项事务。"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+"您必须现在就为证书请求提供一个密码。请选择非常安全的密码，因为该密码会用于加"
+"密您的私人密钥。"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, kde-format
+msgid "&Repeat password:"
+msgstr "重复密码(&R)："
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, kde-format
+msgid "&Choose password:"
+msgstr "选择密码(&C)："
+
 #: html/ksslkeygen.cpp:82
 #, kde-format
 msgid "KDE Certificate Request"
@@ -458,6 +492,85 @@ msgstr "512 (低级)"
 #, kde-format
 msgid "No SSL support."
 msgstr "不支持 SSL。"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "文档信息"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "常规"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL："
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "标题："
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "上次修改时间："
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "文档编码："
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "渲染模式："
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "HTTP 头"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "属性"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "编辑(&E)"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "文件(&F)"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "视图(&V)"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "HTML 工具栏"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1286,6 +1399,30 @@ msgstr "激活了访问键"
 msgid "C&lear"
 msgstr "清除(&L)"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "JavaScript 错误"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, kde-format
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"这个对话框向您提供网页中出现的脚本错误通知和详细信息。很多情况下它是由于网页"
+"设计者的网站设计错误产生的。有其他情况是由于 Konqueror 中的程序设计错误。如果"
+"您怀疑是前一种错误，请和相关网站的网页设计者联系。反之，如果您怀疑是 "
+"Konqueror 的错误，请在 https://bugs.kde.org/ 提交错误报告。如果您能提供表现出"
+"这个问题的测试实例我们将非常感激。"
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1480,7 +1617,32 @@ msgstr "未找到"
 msgid "No more matches for this search direction."
 msgstr "无更多匹配项。"
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "查找(&I)："
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "下一个(&N)"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "上一个(&P)"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "选项(&I)"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "您想要保存此密码吗？"
@@ -1489,6 +1651,24 @@ msgstr "您想要保存此密码吗？"
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "您想要为 %1 保存此密码吗？"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "保存(&S)"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "不对此网站保存(&V)"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "这次不保存(&N)"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1509,104 +1689,3 @@ msgstr "致命解析错误：%1 位于行 %2，列 %3"
 #, kde-format
 msgid "XML parsing error"
 msgstr "XML 解析错误"
-
-#~ msgid ""
-#~ "You have indicated that you wish to obtain or purchase a secure "
-#~ "certificate. This wizard is intended to guide you through the procedure. "
-#~ "You may cancel at any time, and this will abort the transaction."
-#~ msgstr ""
-#~ "您已经表明您想要获得或者购买安全证书。此向导将会引导您完成这个过程。您可在"
-#~ "任何时候取消，从而中止此项事务。"
-
-#~ msgid ""
-#~ "You must now provide a password for the certificate request. Please "
-#~ "choose a very secure password as this will be used to encrypt your "
-#~ "private key."
-#~ msgstr ""
-#~ "您必须现在就为证书请求提供一个密码。请选择非常安全的密码，因为该密码会用于"
-#~ "加密您的私人密钥。"
-
-#~ msgid "&Repeat password:"
-#~ msgstr "重复密码(&R)："
-
-#~ msgid "&Choose password:"
-#~ msgstr "选择密码(&C)："
-
-#~ msgid "Document Information"
-#~ msgstr "文档信息"
-
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "常规"
-
-#~ msgid "URL:"
-#~ msgstr "URL："
-
-#~ msgid "Title:"
-#~ msgstr "标题："
-
-#~ msgid "Last modified:"
-#~ msgstr "上次修改时间："
-
-#~ msgid "Document encoding:"
-#~ msgstr "文档编码："
-
-#~ msgid "Rendering mode:"
-#~ msgstr "渲染模式："
-
-#~ msgid "HTTP Headers"
-#~ msgstr "HTTP 头"
-
-#~ msgid "Property"
-#~ msgstr "属性"
-
-#~ msgid "&Edit"
-#~ msgstr "编辑(&E)"
-
-#~ msgid "&File"
-#~ msgstr "文件(&F)"
-
-#~ msgid "&View"
-#~ msgstr "视图(&V)"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "HTML 工具栏"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "JavaScript 错误"
-
-#~ msgid ""
-#~ "This dialog provides you with notification and details of scripting "
-#~ "errors that occur on web pages.  In many cases it is due to an error in "
-#~ "the web site as designed by its author.  In other cases it is the result "
-#~ "of a programming error in Konqueror.  If you suspect the former, please "
-#~ "contact the webmaster of the site in question.  Conversely if you suspect "
-#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
-#~ "org/.  A test case which illustrates the problem will be appreciated."
-#~ msgstr ""
-#~ "这个对话框向您提供网页中出现的脚本错误通知和详细信息。很多情况下它是由于网"
-#~ "页设计者的网站设计错误产生的。有其他情况是由于 Konqueror 中的程序设计错"
-#~ "误。如果您怀疑是前一种错误，请和相关网站的网页设计者联系。反之，如果您怀疑"
-#~ "是 Konqueror 的错误，请在 https://bugs.kde.org/ 提交错误报告。如果您能提供"
-#~ "表现出这个问题的测试实例我们将非常感激。"
-
-#~ msgid "F&ind:"
-#~ msgstr "查找(&I)："
-
-#~ msgid "&Next"
-#~ msgstr "下一个(&N)"
-
-#~ msgid "&Previous"
-#~ msgstr "上一个(&P)"
-
-#~ msgid "Opt&ions"
-#~ msgstr "选项(&I)"
-
-#~ msgid "&Store"
-#~ msgstr "保存(&S)"
-
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "不对此网站保存(&V)"
-
-#~ msgid "Do &not store this time"
-#~ msgstr "这次不保存(&N)"

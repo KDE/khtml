@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: khtml\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2022-12-26 01:46+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -179,7 +179,8 @@ msgstr "ლოკალური ცვლადები"
 msgid "Reference"
 msgstr "ბმა"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "მნიშვნელობა"
@@ -395,6 +396,41 @@ msgstr "არ ჩამოტვირთვა"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "ეს საძიებო ინდექსია. მიუთითეთ ძიების საკვანძო სიტყვები: "
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+"თქვენ მიუთითეთ, რომ გნებავთ მიიღოთ ან შეიძინოთ დაცული სერტიფიკატი. ეს ოსტატი "
+"ამ პროცედურას გაგატარებთ. მისი გაუქმება ნებისმიერ დროს შეგიძლიათ და ეს "
+"ტრანზაქციას გააუქმებს."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+"სერტიფიკატის მოთხოვნისთვის პაროლის შეყვანა აუცილებელია. აირჩიეთ ძალიან "
+"დაცული პაროლი, რადგან ის თქვენი პირადი გასაღების დასაშიფრად იქნება "
+"გამოყენებული."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, kde-format
+msgid "&Repeat password:"
+msgstr "&გაიმეორეთ პაროლი:"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, kde-format
+msgid "&Choose password:"
+msgstr "&აირჩიეთ პაროლი:"
+
 #: html/ksslkeygen.cpp:82
 #, kde-format
 msgid "KDE Certificate Request"
@@ -464,6 +500,85 @@ msgstr "512  (დაბალი ხარისხი)"
 #, kde-format
 msgid "No SSL support."
 msgstr "SSL-ის მხარდაჭერის გარეშე."
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "ინფორმაცია დოკუმეტზე"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "ზოგადი"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "სათაური:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "შეცვლილი თარიღი:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "დოკუმენტის კოდირება:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "რენდერის რეჟიმი:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "HTTP თავსართები"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "თვისება"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "&ჩასწორება"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&ფაილი"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "&ნახვა"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "HTML -ის პანელი"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1308,6 +1423,33 @@ msgstr "წვდომის კოდები გააქტივებუ�
 msgid "C&lear"
 msgstr "გასუ&ფთავება"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "JavaScript-ის შეცდომა"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, kde-format
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"ეს ფანჯარა წარმოგიდგენთ გაფრთხილებას და დეტალებს სკრიპტების შეცდომების "
+"შესახებ, რომლებიც ვებგვერდებზე ხდება.  ბევრ შემთხვევაში ეს ვებგვერდის "
+"ავტორის მიერ დაშვებული შეცდომის ბრალია.  სხვა შემთხვევაში კი Konqueror-ის "
+"პროგრამისტების შეცდომას წარმოადგენს.   თუ ეჭვი პირველზეა, საეჭვო ვებგვერდის "
+"ავტორს დაუკავშირდით.  თუ დარწმუნებული ბრძანდებით, რომ ეს Konqueror-ის "
+"შეცდომის ბრალია, გამოგვიგზავნეთ შეცდომის ანგარიში მისამართზე https://bugs."
+"kde.org/.  სასურველია, თუ გამოგვიგზავნით ზუსტ საფეხურებს, როგორ გავიმეოროთ "
+"ეს შეცდომა."
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1502,7 +1644,32 @@ msgstr "ნაპოვნი არაა"
 msgid "No more matches for this search direction."
 msgstr "ძებნის ამ მიმართულებით მეტი დამთხვევა აღარ არსებობს."
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "&ძებნა:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&შემდეგი"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "&წინა"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "&მორგება"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "გნებავთ პაროლის დამახსოვრება?"
@@ -1511,6 +1678,24 @@ msgstr "გნებავთ პაროლის დამახსოვრ�
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "გნებავთ პაროლის დამახსოვრება %1-სთვის?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "&დამახსოვრება"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "&არასდროს ამ საიტისთვის"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "ა&რა ამჯერად"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1531,112 +1716,6 @@ msgstr "დამუშავების კრიტიკული შეც�
 #, kde-format
 msgid "XML parsing error"
 msgstr "XML დამუშავების შეცდომა"
-
-#~ msgid ""
-#~ "You have indicated that you wish to obtain or purchase a secure "
-#~ "certificate. This wizard is intended to guide you through the procedure. "
-#~ "You may cancel at any time, and this will abort the transaction."
-#~ msgstr ""
-#~ "თქვენ მიუთითეთ, რომ გნებავთ მიიღოთ ან შეიძინოთ დაცული სერტიფიკატი. ეს "
-#~ "ოსტატი ამ პროცედურას გაგატარებთ. მისი გაუქმება ნებისმიერ დროს შეგიძლიათ "
-#~ "და ეს ტრანზაქციას გააუქმებს."
-
-#~ msgid ""
-#~ "You must now provide a password for the certificate request. Please "
-#~ "choose a very secure password as this will be used to encrypt your "
-#~ "private key."
-#~ msgstr ""
-#~ "სერტიფიკატის მოთხოვნისთვის პაროლის შეყვანა აუცილებელია. აირჩიეთ ძალიან "
-#~ "დაცული პაროლი, რადგან ის თქვენი პირადი გასაღების დასაშიფრად იქნება "
-#~ "გამოყენებული."
-
-#~ msgid "&Repeat password:"
-#~ msgstr "&გაიმეორეთ პაროლი:"
-
-#~ msgid "&Choose password:"
-#~ msgstr "&აირჩიეთ პაროლი:"
-
-#~ msgid "Document Information"
-#~ msgstr "ინფორმაცია დოკუმეტზე"
-
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "ზოგადი"
-
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
-#~ msgid "Title:"
-#~ msgstr "სათაური:"
-
-#~ msgid "Last modified:"
-#~ msgstr "შეცვლილი თარიღი:"
-
-#~ msgid "Document encoding:"
-#~ msgstr "დოკუმენტის კოდირება:"
-
-#~ msgid "Rendering mode:"
-#~ msgstr "რენდერის რეჟიმი:"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "HTTP თავსართები"
-
-#~ msgid "Property"
-#~ msgstr "თვისება"
-
-#~ msgid "&Edit"
-#~ msgstr "&ჩასწორება"
-
-#~ msgid "&File"
-#~ msgstr "&ფაილი"
-
-#~ msgid "&View"
-#~ msgstr "&ნახვა"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "HTML -ის პანელი"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "JavaScript-ის შეცდომა"
-
-#~ msgid ""
-#~ "This dialog provides you with notification and details of scripting "
-#~ "errors that occur on web pages.  In many cases it is due to an error in "
-#~ "the web site as designed by its author.  In other cases it is the result "
-#~ "of a programming error in Konqueror.  If you suspect the former, please "
-#~ "contact the webmaster of the site in question.  Conversely if you suspect "
-#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
-#~ "org/.  A test case which illustrates the problem will be appreciated."
-#~ msgstr ""
-#~ "ეს ფანჯარა წარმოგიდგენთ გაფრთხილებას და დეტალებს სკრიპტების შეცდომების "
-#~ "შესახებ, რომლებიც ვებგვერდებზე ხდება.  ბევრ შემთხვევაში ეს ვებგვერდის "
-#~ "ავტორის მიერ დაშვებული შეცდომის ბრალია.  სხვა შემთხვევაში კი Konqueror-ის "
-#~ "პროგრამისტების შეცდომას წარმოადგენს.   თუ ეჭვი პირველზეა, საეჭვო "
-#~ "ვებგვერდის ავტორს დაუკავშირდით.  თუ დარწმუნებული ბრძანდებით, რომ ეს "
-#~ "Konqueror-ის შეცდომის ბრალია, გამოგვიგზავნეთ შეცდომის ანგარიში მისამართზე "
-#~ "https://bugs.kde.org/.  სასურველია, თუ გამოგვიგზავნით ზუსტ საფეხურებს, "
-#~ "როგორ გავიმეოროთ ეს შეცდომა."
-
-#~ msgid "F&ind:"
-#~ msgstr "&ძებნა:"
-
-#~ msgid "&Next"
-#~ msgstr "&შემდეგი"
-
-#~ msgid "&Previous"
-#~ msgstr "&წინა"
-
-#~ msgid "Opt&ions"
-#~ msgstr "&მორგება"
-
-#~ msgid "&Store"
-#~ msgstr "&დამახსოვრება"
-
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "&არასდროს ამ საიტისთვის"
-
-#~ msgid "Do &not store this time"
-#~ msgstr "ა&რა ამჯერად"
 
 #~ msgid "Initializing Applet \"%1\"..."
 #~ msgstr "აპლეტის ინიციალიზება - \"%1\"..."

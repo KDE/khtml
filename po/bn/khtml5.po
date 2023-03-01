@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2012-07-16 14:27+0530\n"
 "Last-Translator: Deepayan Sarkar <deepayan.sarkar@gmail.com>\n"
 "Language-Team: American English <kde-translation@bengalinux.org>\n"
@@ -182,7 +182,8 @@ msgstr "Local Variables"
 msgid "Reference"
 msgstr "Reference"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "মান"
@@ -399,6 +400,37 @@ msgstr "ডাউনলোড কোর না"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "এটি একটি সন্ধানযোগ্য সূচি। সন্ধান কী-ওয়ার্ড লিখুন:"
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Repeat password:"
+msgstr "পাসওয়ার্ড রেখে দা&ও"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Choose password:"
+msgstr "পাসওয়ার্ড রেখে দা&ও"
+
 #: html/ksslkeygen.cpp:82
 #, fuzzy, kde-format
 #| msgid "Details of the Request:"
@@ -475,6 +507,85 @@ msgstr ""
 #| msgid "Enable SOCKS support"
 msgid "No SSL support."
 msgstr "SOCKS সমর্থন সক্রিয় করো"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "নথী সম্বন্ধিত তথ্য"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "সাধারণ"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "ইউ-আর-এল:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "শিরোনাম:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "শেষ পরিবর্তন:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "ডকুমেন্ট এনকোডিং:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "Rendering mode:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "এইচ-টি-টি-পি (HTTP) হেডার"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "বৈশিষ্ট্য"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "সম্পা&দনা"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "ফা&ইল"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "প্রদর্শ&ন"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "এইচ-টি-এম-এল টুলবার"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1325,6 +1436,39 @@ msgstr "সহায়ক কী (Key) সক্রিয় করা হয়েছ�
 msgid "C&lear"
 msgstr "ফাঁকা &করো"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "জাভাস্ক্রিপ্ট সমস্যা"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, fuzzy, kde-format
+#| msgid ""
+#| "This dialog provides you with notification and details of scripting "
+#| "errors that occur on web pages.  In many cases it is due to an error in "
+#| "the web site as designed by its author.  In other cases it is the result "
+#| "of a programming error in Konqueror.  If you suspect the former, please "
+#| "contact the webmaster of the site in question.  Conversely if you suspect "
+#| "an error in Konqueror, please file a bug report at http://bugs.kde.org/.  "
+#| "A test case which illustrates the problem will be appreciated."
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"কোনো ওয়েব পেজে স্ক্রিপ্টিংজনিত সমস্যা ঘটলে এই ডায়ালগটি আপনাকে সে বিষয়ে জানায়। "
+"অনেক ক্ষেত্রেই এই জাতীয় সমস্যা ওয়েব পেজটির লেখকের দোষ। আবার অনেক সময়ই কনকরার-এর "
+"কোনো সমস্যা এর জন্য দায়ী হতে পারে। যদি আপনি প্রথম কারণটি সন্দেহ করেন, তাহলে "
+"আপনার উচিত ঐ সাইটের ওয়েবমাস্টারকে তা জানানো। যদি আপনার মনে হয় এটি কনকরার-এর "
+"দোষ, তাহলে অনুগ্রহ করে http://bugs.kde.org/-এ একটি বাগ রিপোর্ট জমা দিন। সমস্যাটি "
+"ব্যাখ্যা করে এমন একটি উদাহরণ সাথে দিলে সবচেয়ে ভাল হয়। "
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1521,7 +1665,32 @@ msgstr "পাওয়া যায়নি"
 msgid "No more matches for this search direction."
 msgstr "এদিকে আর কোন মিল পাওয়া যায়নি।"
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "&সন্ধান:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&পরবর্তী"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "পূর্ব&বর্তী"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "&অপশন"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "আপনি কি পাসওয়ার'ড সঞ্চয় করতে চান?"
@@ -1530,6 +1699,24 @@ msgstr "আপনি কি পাসওয়ার'ড সঞ্চয় করত�
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "আপনি কি %1-এর জন্য এই পাসওয়ার্ড-টি সঞ্চয় করতে চান?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "&সঞ্চয় করো"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "এই সাইটের জন্য &কদাপি নয়"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "&এখন  কোর না"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1550,105 +1737,6 @@ msgstr "মারাত্মক পার্সিং সমস্যা: %1, �
 #, kde-format
 msgid "XML parsing error"
 msgstr "এক্স-এম-এল পার্স করায় সমস্যা"
-
-#, fuzzy
-#~| msgid "&Keep password"
-#~ msgid "&Repeat password:"
-#~ msgstr "পাসওয়ার্ড রেখে দা&ও"
-
-#, fuzzy
-#~| msgid "&Keep password"
-#~ msgid "&Choose password:"
-#~ msgstr "পাসওয়ার্ড রেখে দা&ও"
-
-#~ msgid "Document Information"
-#~ msgstr "নথী সম্বন্ধিত তথ্য"
-
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "সাধারণ"
-
-#~ msgid "URL:"
-#~ msgstr "ইউ-আর-এল:"
-
-#~ msgid "Title:"
-#~ msgstr "শিরোনাম:"
-
-#~ msgid "Last modified:"
-#~ msgstr "শেষ পরিবর্তন:"
-
-#~ msgid "Document encoding:"
-#~ msgstr "ডকুমেন্ট এনকোডিং:"
-
-#~ msgid "Rendering mode:"
-#~ msgstr "Rendering mode:"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "এইচ-টি-টি-পি (HTTP) হেডার"
-
-#~ msgid "Property"
-#~ msgstr "বৈশিষ্ট্য"
-
-#~ msgid "&Edit"
-#~ msgstr "সম্পা&দনা"
-
-#~ msgid "&File"
-#~ msgstr "ফা&ইল"
-
-#~ msgid "&View"
-#~ msgstr "প্রদর্শ&ন"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "এইচ-টি-এম-এল টুলবার"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "জাভাস্ক্রিপ্ট সমস্যা"
-
-#, fuzzy
-#~| msgid ""
-#~| "This dialog provides you with notification and details of scripting "
-#~| "errors that occur on web pages.  In many cases it is due to an error in "
-#~| "the web site as designed by its author.  In other cases it is the result "
-#~| "of a programming error in Konqueror.  If you suspect the former, please "
-#~| "contact the webmaster of the site in question.  Conversely if you "
-#~| "suspect an error in Konqueror, please file a bug report at http://bugs."
-#~| "kde.org/.  A test case which illustrates the problem will be appreciated."
-#~ msgid ""
-#~ "This dialog provides you with notification and details of scripting "
-#~ "errors that occur on web pages.  In many cases it is due to an error in "
-#~ "the web site as designed by its author.  In other cases it is the result "
-#~ "of a programming error in Konqueror.  If you suspect the former, please "
-#~ "contact the webmaster of the site in question.  Conversely if you suspect "
-#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
-#~ "org/.  A test case which illustrates the problem will be appreciated."
-#~ msgstr ""
-#~ "কোনো ওয়েব পেজে স্ক্রিপ্টিংজনিত সমস্যা ঘটলে এই ডায়ালগটি আপনাকে সে বিষয়ে জানায়। "
-#~ "অনেক ক্ষেত্রেই এই জাতীয় সমস্যা ওয়েব পেজটির লেখকের দোষ। আবার অনেক সময়ই কনকরার-"
-#~ "এর কোনো সমস্যা এর জন্য দায়ী হতে পারে। যদি আপনি প্রথম কারণটি সন্দেহ করেন, "
-#~ "তাহলে আপনার উচিত ঐ সাইটের ওয়েবমাস্টারকে তা জানানো। যদি আপনার মনে হয় এটি "
-#~ "কনকরার-এর দোষ, তাহলে অনুগ্রহ করে http://bugs.kde.org/-এ একটি বাগ রিপোর্ট জমা "
-#~ "দিন। সমস্যাটি ব্যাখ্যা করে এমন একটি উদাহরণ সাথে দিলে সবচেয়ে ভাল হয়। "
-
-#~ msgid "F&ind:"
-#~ msgstr "&সন্ধান:"
-
-#~ msgid "&Next"
-#~ msgstr "&পরবর্তী"
-
-#~ msgid "&Previous"
-#~ msgstr "পূর্ব&বর্তী"
-
-#~ msgid "Opt&ions"
-#~ msgstr "&অপশন"
-
-#~ msgid "&Store"
-#~ msgstr "&সঞ্চয় করো"
-
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "এই সাইটের জন্য &কদাপি নয়"
-
-#~ msgid "Do &not store this time"
-#~ msgstr "&এখন  কোর না"
 
 #~ msgid "Error"
 #~ msgstr "সমস্যা"

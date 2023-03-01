@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2011-07-16 00:57+0800\n"
 "Last-Translator: Sharuzzaman Ahmat Raslan <sharuzzaman@gmail.com>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -180,7 +180,8 @@ msgstr "Setempat Pembolehubah"
 msgid "Reference"
 msgstr "Rujukan"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "Nilai"
@@ -401,6 +402,37 @@ msgstr "Jangan Muat turun"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "Ini ialah indeks-boleh-cari. Masukkan carian katakunci: "
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Repeat password:"
+msgstr "Simpan &Katalaluan"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Choose password:"
+msgstr "Simpan &Katalaluan"
+
 #: html/ksslkeygen.cpp:82
 #, fuzzy, kde-format
 #| msgid "Details of the Request:"
@@ -477,6 +509,85 @@ msgstr ""
 #| msgid "Enable SOCKS support"
 msgid "No SSL support."
 msgstr "Hidupkan sokongan SOCKS"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "Maklumat Dokumen"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "Umum"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "Tajuk:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "Ubahsuai terakhir:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "Pengekodan dokumen:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "Mode pelukisan:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "Pengepala HTTP"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "Ciri-ciri"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "&Edit"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Fail"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "&Lihat"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "Bar alat HTML"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1334,6 +1445,40 @@ msgstr "Kekunci Akses diaktifkan"
 msgid "C&lear"
 msgstr "Bersi&hkan"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "Ralat JavaScript"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, fuzzy, kde-format
+#| msgid ""
+#| "This dialog provides you with notification and details of scripting "
+#| "errors that occur on web pages.  In many cases it is due to an error in "
+#| "the web site as designed by its author.  In other cases it is the result "
+#| "of a programming error in Konqueror.  If you suspect the former, please "
+#| "contact the webmaster of the site in question.  Conversely if you suspect "
+#| "an error in Konqueror, please file a bug report at http://bugs.kde.org/.  "
+#| "A test case which illustrates the problem will be appreciated."
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"Dialog ini memberikan pemberitahuan dan perincian ralat penskripan yang "
+"berlaku dalam laman web. Dalam banyak kes ia disebabkan oleh ralat dalam "
+"laman web seperti yang direka bentuk oleh pengarang. Dalam kes lain, ia "
+"adalah hasil ralat pemprograman dalam Konqueror. Jika anda mengesyaki ralat "
+"dalam laman web, hubungi pemilik web tapak yang berkenaan. Sebaliknya, jika "
+"anda mengesyaki ralat dalam Konqueror, failkan laporan pepijat di http://"
+"bugs.kde.org/. Kes ujian yang menerangkan masalah amat diharapkan."
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1529,7 +1674,32 @@ msgstr "Tidak ditemui"
 msgid "No more matches for this search direction."
 msgstr "Tidak lebih."
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "Car&i:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "Berikut&nya"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "&Sebelum"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "P&ilihan"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "Apakah anda ingin menyimpan katalaluan ini?"
@@ -1538,6 +1708,24 @@ msgstr "Apakah anda ingin menyimpan katalaluan ini?"
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "Apakah anda ingin menyimpan katalaluan ini untuk %1?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "&Simpan"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "&Jangan simpan untuk laman ini"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "Ja&ngan simpan kali ini"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1558,107 +1746,6 @@ msgstr "ralat maut dalam penghuraian: %1 pada baris %2, kolum %3"
 #, kde-format
 msgid "XML parsing error"
 msgstr "Ralat penghuraian XML"
-
-#, fuzzy
-#~| msgid "&Keep password"
-#~ msgid "&Repeat password:"
-#~ msgstr "Simpan &Katalaluan"
-
-#, fuzzy
-#~| msgid "&Keep password"
-#~ msgid "&Choose password:"
-#~ msgstr "Simpan &Katalaluan"
-
-#~ msgid "Document Information"
-#~ msgstr "Maklumat Dokumen"
-
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "Umum"
-
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
-#~ msgid "Title:"
-#~ msgstr "Tajuk:"
-
-#~ msgid "Last modified:"
-#~ msgstr "Ubahsuai terakhir:"
-
-#~ msgid "Document encoding:"
-#~ msgstr "Pengekodan dokumen:"
-
-#~ msgid "Rendering mode:"
-#~ msgstr "Mode pelukisan:"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "Pengepala HTTP"
-
-#~ msgid "Property"
-#~ msgstr "Ciri-ciri"
-
-#~ msgid "&Edit"
-#~ msgstr "&Edit"
-
-#~ msgid "&File"
-#~ msgstr "&Fail"
-
-#~ msgid "&View"
-#~ msgstr "&Lihat"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "Bar alat HTML"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "Ralat JavaScript"
-
-#, fuzzy
-#~| msgid ""
-#~| "This dialog provides you with notification and details of scripting "
-#~| "errors that occur on web pages.  In many cases it is due to an error in "
-#~| "the web site as designed by its author.  In other cases it is the result "
-#~| "of a programming error in Konqueror.  If you suspect the former, please "
-#~| "contact the webmaster of the site in question.  Conversely if you "
-#~| "suspect an error in Konqueror, please file a bug report at http://bugs."
-#~| "kde.org/.  A test case which illustrates the problem will be appreciated."
-#~ msgid ""
-#~ "This dialog provides you with notification and details of scripting "
-#~ "errors that occur on web pages.  In many cases it is due to an error in "
-#~ "the web site as designed by its author.  In other cases it is the result "
-#~ "of a programming error in Konqueror.  If you suspect the former, please "
-#~ "contact the webmaster of the site in question.  Conversely if you suspect "
-#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
-#~ "org/.  A test case which illustrates the problem will be appreciated."
-#~ msgstr ""
-#~ "Dialog ini memberikan pemberitahuan dan perincian ralat penskripan yang "
-#~ "berlaku dalam laman web. Dalam banyak kes ia disebabkan oleh ralat dalam "
-#~ "laman web seperti yang direka bentuk oleh pengarang. Dalam kes lain, ia "
-#~ "adalah hasil ralat pemprograman dalam Konqueror. Jika anda mengesyaki "
-#~ "ralat dalam laman web, hubungi pemilik web tapak yang berkenaan. "
-#~ "Sebaliknya, jika anda mengesyaki ralat dalam Konqueror, failkan laporan "
-#~ "pepijat di http://bugs.kde.org/. Kes ujian yang menerangkan masalah amat "
-#~ "diharapkan."
-
-#~ msgid "F&ind:"
-#~ msgstr "Car&i:"
-
-#~ msgid "&Next"
-#~ msgstr "Berikut&nya"
-
-#~ msgid "&Previous"
-#~ msgstr "&Sebelum"
-
-#~ msgid "Opt&ions"
-#~ msgstr "P&ilihan"
-
-#~ msgid "&Store"
-#~ msgstr "&Simpan"
-
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "&Jangan simpan untuk laman ini"
-
-#~ msgid "Do &not store this time"
-#~ msgstr "Ja&ngan simpan kali ini"
 
 #~ msgid "Error"
 #~ msgstr "Ralat"

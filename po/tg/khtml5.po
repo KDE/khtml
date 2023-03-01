@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2019-09-05 15:53+0500\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
@@ -182,7 +182,8 @@ msgstr "Тағйирёбандаҳои маҳаллӣ"
 msgid "Reference"
 msgstr "Истиснод"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "Қимат"
@@ -406,6 +407,42 @@ msgid "This is a searchable index. Enter search keywords: "
 msgstr ""
 "Ин намоябандӣ ҷустуҷӯшаванда аст. Калидвожаҳоро барои ҷустуҷӯ ворид намоед: "
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+"Шумо нишон додед, ки мехоҳед гувоҳиномаи амниятро ба даст оред ё ин ки "
+"харед. Устоди ҷорӣ шуморо ҳангоми харидорӣ роҳнамоӣ мекунад. Шумо метавнед "
+"ин амалро дар вақти дилхоҳ бекор кунед, ва дар ин маврид интиқол қатъ карда "
+"мешавад."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+"Акнун шумо бояд барои дархости гувоҳинома ниҳонвожаеро ворид намоед. Лутфан, "
+"ниҳонвожаи ҷиддию бехатарро интихоб намоед, зеро ки он барои рамзгузории "
+"калиди шахсии шумо истифода мешавад."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, kde-format
+msgid "&Repeat password:"
+msgstr "&Ниҳонвожаро такроран ворид намоед:"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, kde-format
+msgid "&Choose password:"
+msgstr "&Ниҳонвожаро интихоб намоед:"
+
 #: html/ksslkeygen.cpp:82
 #, kde-format
 msgid "KDE Certificate Request"
@@ -475,6 +512,85 @@ msgstr "512  (Дараҷаи паст)"
 #, kde-format
 msgid "No SSL support."
 msgstr "Дастгирии SSL нест."
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "Иттилооти ҳуҷҷатнигорӣ"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "Умумӣ"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "Сарлавҳа:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "Таҳрири охирин:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "Рамзгузории ҳуҷҷат:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "Реҷаи иҷрокунӣ:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "Сарлавҳаҳои HTTP"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "Хусусият"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "&Таҳрир"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Файл"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "&Намоиш"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "Навори абзорҳои HTML"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1333,6 +1449,35 @@ msgstr "Тугмаҳои дастрасӣ фаъоланд"
 msgid "C&lear"
 msgstr "&Пок кардан"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "Хатоҳои JavaScript"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, kde-format
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"Равзанаи гуфтугӯи ҷорӣ ба шумо огоҳиҳо ва тафсилотро дар бораи хатоҳои "
+"нақшҳое, ки дар саҳифаҳои сомонавӣ пайдо мешаванд, нишон медиҳад.  Дар бисёр "
+"маврид, хатоҳо дар саҳифаҳои сомонавӣ ба сабаби хатоҳои муаллифони тарҳрезӣ "
+"ба вуҷуд меоянд.  Дар мавридҳои дигар, хатоҳо ба сабаби хатоҳои барномарезӣ "
+"дар Konqueror ба вуҷуд меоянд.  Агар фикр кунед, ки хатоҳо ба сабаби хатоҳои "
+"сомонасоз ба вуҷуд меоянд, бо сомонасоз дар тамос шавед.  Дар мавридҳои "
+"дигар, агар фикр кунед, ки хато аз дохили Konqueror ба вуҷуд меояд, лутфан, "
+"гузоришро дар бораи хато тавассути https://bugs.kde.org/ фиристонед.  Агар "
+"тавонед, ки мушкилиро бо мисолҳои тасвирдор пешниҳод намоед, муайянкунии "
+"хаторо осонтар мекунед."
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1527,7 +1672,32 @@ msgstr "Ёфт нашуд"
 msgid "No more matches for this search direction."
 msgstr "Ягон мувофиқат барои ин самти ҷустуҷӯ ёфт нашуд."
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "&Ёфтан:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&Навбатӣ"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "&Қаблӣ"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "&Имконот"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "Шумо мехоҳед, ки ин ниҳонвожаро нигоҳ доред?"
@@ -1536,6 +1706,24 @@ msgstr "Шумо мехоҳед, ки ин ниҳонвожаро нигоҳ д�
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "Шумо мехоҳед, ки ин ниҳонвожаро барои %1 нигоҳ доред?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "&Нигоҳ доштан"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "&Барои ин сомона ҳеҷ гоҳ нигоҳ дошта нашавад"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "Дар &дафъаи ҷорӣ нигоҳ дошта нашавад"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1556,115 +1744,6 @@ msgstr "ҳатои таҷзияи ҷиддӣ: %1 дар сатри %2, суту�
 #, kde-format
 msgid "XML parsing error"
 msgstr "Хатои таҷзияи XML"
-
-#~ msgid ""
-#~ "You have indicated that you wish to obtain or purchase a secure "
-#~ "certificate. This wizard is intended to guide you through the procedure. "
-#~ "You may cancel at any time, and this will abort the transaction."
-#~ msgstr ""
-#~ "Шумо нишон додед, ки мехоҳед гувоҳиномаи амниятро ба даст оред ё ин ки "
-#~ "харед. Устоди ҷорӣ шуморо ҳангоми харидорӣ роҳнамоӣ мекунад. Шумо "
-#~ "метавнед ин амалро дар вақти дилхоҳ бекор кунед, ва дар ин маврид интиқол "
-#~ "қатъ карда мешавад."
-
-#~ msgid ""
-#~ "You must now provide a password for the certificate request. Please "
-#~ "choose a very secure password as this will be used to encrypt your "
-#~ "private key."
-#~ msgstr ""
-#~ "Акнун шумо бояд барои дархости гувоҳинома ниҳонвожаеро ворид намоед. "
-#~ "Лутфан, ниҳонвожаи ҷиддию бехатарро интихоб намоед, зеро ки он барои "
-#~ "рамзгузории калиди шахсии шумо истифода мешавад."
-
-#~ msgid "&Repeat password:"
-#~ msgstr "&Ниҳонвожаро такроран ворид намоед:"
-
-#~ msgid "&Choose password:"
-#~ msgstr "&Ниҳонвожаро интихоб намоед:"
-
-#~ msgid "Document Information"
-#~ msgstr "Иттилооти ҳуҷҷатнигорӣ"
-
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "Умумӣ"
-
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
-#~ msgid "Title:"
-#~ msgstr "Сарлавҳа:"
-
-#~ msgid "Last modified:"
-#~ msgstr "Таҳрири охирин:"
-
-#~ msgid "Document encoding:"
-#~ msgstr "Рамзгузории ҳуҷҷат:"
-
-#~ msgid "Rendering mode:"
-#~ msgstr "Реҷаи иҷрокунӣ:"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "Сарлавҳаҳои HTTP"
-
-#~ msgid "Property"
-#~ msgstr "Хусусият"
-
-#~ msgid "&Edit"
-#~ msgstr "&Таҳрир"
-
-#~ msgid "&File"
-#~ msgstr "&Файл"
-
-#~ msgid "&View"
-#~ msgstr "&Намоиш"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "Навори абзорҳои HTML"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "Хатоҳои JavaScript"
-
-#~ msgid ""
-#~ "This dialog provides you with notification and details of scripting "
-#~ "errors that occur on web pages.  In many cases it is due to an error in "
-#~ "the web site as designed by its author.  In other cases it is the result "
-#~ "of a programming error in Konqueror.  If you suspect the former, please "
-#~ "contact the webmaster of the site in question.  Conversely if you suspect "
-#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
-#~ "org/.  A test case which illustrates the problem will be appreciated."
-#~ msgstr ""
-#~ "Равзанаи гуфтугӯи ҷорӣ ба шумо огоҳиҳо ва тафсилотро дар бораи хатоҳои "
-#~ "нақшҳое, ки дар саҳифаҳои сомонавӣ пайдо мешаванд, нишон медиҳад.  Дар "
-#~ "бисёр маврид, хатоҳо дар саҳифаҳои сомонавӣ ба сабаби хатоҳои муаллифони "
-#~ "тарҳрезӣ ба вуҷуд меоянд.  Дар мавридҳои дигар, хатоҳо ба сабаби хатоҳои "
-#~ "барномарезӣ дар Konqueror ба вуҷуд меоянд.  Агар фикр кунед, ки хатоҳо ба "
-#~ "сабаби хатоҳои сомонасоз ба вуҷуд меоянд, бо сомонасоз дар тамос шавед.  "
-#~ "Дар мавридҳои дигар, агар фикр кунед, ки хато аз дохили Konqueror ба "
-#~ "вуҷуд меояд, лутфан, гузоришро дар бораи хато тавассути https://bugs.kde."
-#~ "org/ фиристонед.  Агар тавонед, ки мушкилиро бо мисолҳои тасвирдор "
-#~ "пешниҳод намоед, муайянкунии хаторо осонтар мекунед."
-
-#~ msgid "F&ind:"
-#~ msgstr "&Ёфтан:"
-
-#~ msgid "&Next"
-#~ msgstr "&Навбатӣ"
-
-#~ msgid "&Previous"
-#~ msgstr "&Қаблӣ"
-
-#~ msgid "Opt&ions"
-#~ msgstr "&Имконот"
-
-#~ msgid "&Store"
-#~ msgstr "&Нигоҳ доштан"
-
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "&Барои ин сомона ҳеҷ гоҳ нигоҳ дошта нашавад"
-
-#~ msgid "Do &not store this time"
-#~ msgstr "Дар &дафъаи ҷорӣ нигоҳ дошта нашавад"
 
 #~ msgid "Error"
 #~ msgstr "Хато"

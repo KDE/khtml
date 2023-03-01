@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: khtml\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2022-03-21 22:56+0100\n"
 "Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -186,7 +186,8 @@ msgstr "Variables locals"
 msgid "Reference"
 msgstr "Referència"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "Valor"
@@ -408,6 +409,41 @@ msgstr "No baixar"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "Este és un índex que permet buscar. Introduïu les paraules clau: "
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+"Heu indicat que voleu obtindre o comprar un certificat segur. Este assistent "
+"està pensat per a guiar-vos pel procediment. Podeu cancel·lar en qualsevol "
+"moment, i açò interromprà la transacció."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+"Ara heu de proporcionar una contrasenya per a la petició de certificat. "
+"Seleccioneu una contrasenya molt segura, ja que s'utilitzarà per a encriptar "
+"la vostra clau privada."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, kde-format
+msgid "&Repeat password:"
+msgstr "Repetiu la co&ntrasenya:"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, kde-format
+msgid "&Choose password:"
+msgstr "Seleccioneu una &contrasenya:"
+
 #: html/ksslkeygen.cpp:82
 #, kde-format
 msgid "KDE Certificate Request"
@@ -477,6 +513,85 @@ msgstr "512 (Qualitat baixa)"
 #, kde-format
 msgid "No SSL support."
 msgstr "No s'accepta l'ús d'SSL."
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "Informació del document"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "General"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "Títol:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "Modificat per última vegada:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "Codificació del document:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "Mode de representació:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "Capçaleres HTTP"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "Propietat"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "E&dita"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "Fi&txer"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "Vi&sualitza"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "Barra d'eines HTML"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1330,6 +1445,34 @@ msgstr "S'han activat les tecles d'accés"
 msgid "C&lear"
 msgstr "&Neteja"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "Errors de JavaScript"
+
+# skip-rule: kct-scripting
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, kde-format
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"Este diàleg us proporciona la notificació i els detalls dels errors de "
+"scripts que es produïxen en les pàgines web. En molts casos són deguts a "
+"errors en el lloc web, tal com el va dissenyar el seu autor. En altres casos "
+"és el resultat d'un error de programació de Konqueror. Si penseu que es "
+"tracta del primer cas, contacteu amb l'administració del lloc en qüestió. "
+"Contràriament, si sospiteu d'un error en Konqueror, empleneu un informe "
+"d'error a https://bugs.kde.org/. S'agrairà un cas de prova que il·lustre el "
+"problema."
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1524,7 +1667,32 @@ msgstr "No s'ha trobat"
 msgid "No more matches for this search direction."
 msgstr "No hi ha cap més coincidència en esta direcció de busca."
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "Bu&sca:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&Següent"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "&Anterior"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "Opc&ions"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "Voleu emmagatzemar esta contrasenya?"
@@ -1533,6 +1701,24 @@ msgstr "Voleu emmagatzemar esta contrasenya?"
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "Voleu emmagatzemar esta contrasenya per a %1?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "&Emmagatzema"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "&Mai l'emmagatzemes per a este lloc"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "&No l'emmagatzemes esta vegada"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1553,110 +1739,3 @@ msgstr "error d'anàlisi fatal: %1 en la línia %2, columna %3"
 #, kde-format
 msgid "XML parsing error"
 msgstr "S'ha produït un error d'anàlisi XML"
-
-#~ msgid ""
-#~ "You have indicated that you wish to obtain or purchase a secure "
-#~ "certificate. This wizard is intended to guide you through the procedure. "
-#~ "You may cancel at any time, and this will abort the transaction."
-#~ msgstr ""
-#~ "Heu indicat que voleu obtindre o comprar un certificat segur. Este "
-#~ "assistent està pensat per a guiar-vos pel procediment. Podeu cancel·lar "
-#~ "en qualsevol moment, i açò interromprà la transacció."
-
-#~ msgid ""
-#~ "You must now provide a password for the certificate request. Please "
-#~ "choose a very secure password as this will be used to encrypt your "
-#~ "private key."
-#~ msgstr ""
-#~ "Ara heu de proporcionar una contrasenya per a la petició de certificat. "
-#~ "Seleccioneu una contrasenya molt segura, ja que s'utilitzarà per a "
-#~ "encriptar la vostra clau privada."
-
-#~ msgid "&Repeat password:"
-#~ msgstr "Repetiu la co&ntrasenya:"
-
-#~ msgid "&Choose password:"
-#~ msgstr "Seleccioneu una &contrasenya:"
-
-#~ msgid "Document Information"
-#~ msgstr "Informació del document"
-
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "General"
-
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
-#~ msgid "Title:"
-#~ msgstr "Títol:"
-
-#~ msgid "Last modified:"
-#~ msgstr "Modificat per última vegada:"
-
-#~ msgid "Document encoding:"
-#~ msgstr "Codificació del document:"
-
-#~ msgid "Rendering mode:"
-#~ msgstr "Mode de representació:"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "Capçaleres HTTP"
-
-#~ msgid "Property"
-#~ msgstr "Propietat"
-
-#~ msgid "&Edit"
-#~ msgstr "E&dita"
-
-#~ msgid "&File"
-#~ msgstr "Fi&txer"
-
-#~ msgid "&View"
-#~ msgstr "Vi&sualitza"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "Barra d'eines HTML"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "Errors de JavaScript"
-
-# skip-rule: kct-scripting
-#~ msgid ""
-#~ "This dialog provides you with notification and details of scripting "
-#~ "errors that occur on web pages.  In many cases it is due to an error in "
-#~ "the web site as designed by its author.  In other cases it is the result "
-#~ "of a programming error in Konqueror.  If you suspect the former, please "
-#~ "contact the webmaster of the site in question.  Conversely if you suspect "
-#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
-#~ "org/.  A test case which illustrates the problem will be appreciated."
-#~ msgstr ""
-#~ "Este diàleg us proporciona la notificació i els detalls dels errors de "
-#~ "scripts que es produïxen en les pàgines web. En molts casos són deguts a "
-#~ "errors en el lloc web, tal com el va dissenyar el seu autor. En altres "
-#~ "casos és el resultat d'un error de programació de Konqueror. Si penseu "
-#~ "que es tracta del primer cas, contacteu amb l'administració del lloc en "
-#~ "qüestió. Contràriament, si sospiteu d'un error en Konqueror, empleneu un "
-#~ "informe d'error a https://bugs.kde.org/. S'agrairà un cas de prova que "
-#~ "il·lustre el problema."
-
-#~ msgid "F&ind:"
-#~ msgstr "Bu&sca:"
-
-#~ msgid "&Next"
-#~ msgstr "&Següent"
-
-#~ msgid "&Previous"
-#~ msgstr "&Anterior"
-
-#~ msgid "Opt&ions"
-#~ msgstr "Opc&ions"
-
-#~ msgid "&Store"
-#~ msgstr "&Emmagatzema"
-
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "&Mai l'emmagatzemes per a este lloc"
-
-#~ msgid "Do &not store this time"
-#~ msgstr "&No l'emmagatzemes esta vegada"

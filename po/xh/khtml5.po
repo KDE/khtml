@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2002-12-13 17:20SAST\n"
 "Last-Translator: Lwandle Mgidlana <lwandle@translate.org.za>\n"
 "Language-Team: Xhosa <xhosa@translate.org.za>\n"
@@ -185,7 +185,8 @@ msgstr ""
 msgid "Reference"
 msgstr "Imposiso yokuthelekisa"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "Ixabiso"
@@ -407,6 +408,37 @@ msgstr "Yehlela Ngezantsi"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "Esi sisalathisi esiphendlekayo. Ngenisa amagama ophendlo angundoqo:"
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Repeat password:"
+msgstr "&Gcina igama lokugqitha"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Choose password:"
+msgstr "&Gcina igama lokugqitha"
+
 #: html/ksslkeygen.cpp:82
 #, fuzzy, kde-format
 #| msgid "KDE Certificate Part"
@@ -479,6 +511,87 @@ msgstr ""
 #, kde-format
 msgid "No SSL support."
 msgstr ""
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, fuzzy, kde-format
+msgid "Document Information"
+msgstr "Bona Ulwazi Loxwebhu"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, fuzzy, kde-format
+#| msgid "General"
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "Ngokubanzi"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "Iwonga:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "Uguqulo kancinci lokugqibela:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, fuzzy, kde-format
+msgid "Document encoding:"
+msgstr "Bona Ulwazi Loxwebhu"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, fuzzy, kde-format
+msgid "HTTP Headers"
+msgstr "Okubhaliwe okuphezulu kwephapha kwe HTTP:"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "Impahla"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "&Hlela"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Ifayile"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "&Imboniselo"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, fuzzy, kde-format
+#| msgid "Main Toolbar"
+msgid "HTML Toolbar"
+msgstr "Isixhobo se bar Engundoqo"
 
 #: khtml_ext.cpp:413
 #, fuzzy, kde-format
@@ -1300,6 +1413,25 @@ msgstr "Unikezelo Alwamkelekanga"
 msgid "C&lear"
 msgstr "C&ima"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, fuzzy, kde-format
+msgid "JavaScript Errors"
+msgstr "Imposiso ye KScript"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, kde-format
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1511,7 +1643,34 @@ msgstr "utelekiso olunye olufumanekileyo"
 msgid "No more matches for this search direction."
 msgstr ""
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, fuzzy, kde-format
+#| msgid "Find:"
+msgid "F&ind:"
+msgstr "Fumana:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&Elandelayo"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "&Edlulileyo"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, fuzzy, kde-format
+#| msgid "Options"
+msgid "Opt&ions"
+msgstr "Iinketho"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, fuzzy, kde-format
 #| msgid "Do you really want to execute '%1'? "
 msgid "Do you want to store this password?"
@@ -1521,6 +1680,26 @@ msgstr "Ufuna ngokwenene ukuphumeza i '%1'?"
 #, fuzzy, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "Ufuna ukuqala kwakhona uphendlo ekuqaleni?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, fuzzy, kde-format
+msgid "&Store"
+msgstr "Isitalato"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, fuzzy, kde-format
+#| msgid "Do not show this message again"
+msgid "Ne&ver store for this site"
+msgstr "Sukubonisa lomyalezo kwakhona"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, fuzzy, kde-format
+#| msgid "Do not show this message again"
+msgid "Do &not store this time"
+msgstr "Sukubonisa lomyalezo kwakhona"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1541,94 +1720,6 @@ msgstr "imposiso enobungozi yocukucezo lwesivakalisi: %1 kumgca %2,umhlathi %3"
 #, kde-format
 msgid "XML parsing error"
 msgstr "XML imposiso ekucukucezweni lwesivakalisi"
-
-#, fuzzy
-#~| msgid "&Keep password"
-#~ msgid "&Repeat password:"
-#~ msgstr "&Gcina igama lokugqitha"
-
-#, fuzzy
-#~| msgid "&Keep password"
-#~ msgid "&Choose password:"
-#~ msgstr "&Gcina igama lokugqitha"
-
-#, fuzzy
-#~ msgid "Document Information"
-#~ msgstr "Bona Ulwazi Loxwebhu"
-
-#, fuzzy
-#~| msgid "General"
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "Ngokubanzi"
-
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
-#~ msgid "Title:"
-#~ msgstr "Iwonga:"
-
-#~ msgid "Last modified:"
-#~ msgstr "Uguqulo kancinci lokugqibela:"
-
-#, fuzzy
-#~ msgid "Document encoding:"
-#~ msgstr "Bona Ulwazi Loxwebhu"
-
-#, fuzzy
-#~ msgid "HTTP Headers"
-#~ msgstr "Okubhaliwe okuphezulu kwephapha kwe HTTP:"
-
-#~ msgid "Property"
-#~ msgstr "Impahla"
-
-#~ msgid "&Edit"
-#~ msgstr "&Hlela"
-
-#~ msgid "&File"
-#~ msgstr "&Ifayile"
-
-#~ msgid "&View"
-#~ msgstr "&Imboniselo"
-
-#, fuzzy
-#~| msgid "Main Toolbar"
-#~ msgid "HTML Toolbar"
-#~ msgstr "Isixhobo se bar Engundoqo"
-
-#, fuzzy
-#~ msgid "JavaScript Errors"
-#~ msgstr "Imposiso ye KScript"
-
-#, fuzzy
-#~| msgid "Find:"
-#~ msgid "F&ind:"
-#~ msgstr "Fumana:"
-
-#~ msgid "&Next"
-#~ msgstr "&Elandelayo"
-
-#~ msgid "&Previous"
-#~ msgstr "&Edlulileyo"
-
-#, fuzzy
-#~| msgid "Options"
-#~ msgid "Opt&ions"
-#~ msgstr "Iinketho"
-
-#, fuzzy
-#~ msgid "&Store"
-#~ msgstr "Isitalato"
-
-#, fuzzy
-#~| msgid "Do not show this message again"
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "Sukubonisa lomyalezo kwakhona"
-
-#, fuzzy
-#~| msgid "Do not show this message again"
-#~ msgid "Do &not store this time"
-#~ msgstr "Sukubonisa lomyalezo kwakhona"
 
 #~ msgid "Error"
 #~ msgstr "Imposiso"

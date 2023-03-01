@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2020-12-17 19:53+0100\n"
 "Last-Translator: Kristóf Kiszel <kiszel.kristof@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -178,7 +178,8 @@ msgstr "Helyi változók"
 msgid "Reference"
 msgstr "Hivatkozás"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "Érték"
@@ -394,6 +395,40 @@ msgstr "Nem kell letölteni"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "Ez egy keresésre szolgáló index. Adja meg a keresendő kulcsszavakat: "
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+"A kérése szerint biztonsági tanúsítványt szeretne szerezni vagy vásárolni. "
+"Ez a varázsló lépésről lépésre végigvezeti Önt ezen a folyamaton. A "
+"varázslóból bármikor kiléphet, ha félbe szeretné szakítani a műveletet."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+"Meg kell adni egy jelszót a tanúsítványkéréshez. Ne válasszon túl egyszerű "
+"jelszót, mert ez lesz használva a privát kulcs titkosításához."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, kde-format
+msgid "&Repeat password:"
+msgstr "Még e&gyszer:"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, kde-format
+msgid "&Choose password:"
+msgstr "A jelszó kivá&lasztása:"
+
 #: html/ksslkeygen.cpp:82
 #, kde-format
 msgid "KDE Certificate Request"
@@ -463,6 +498,85 @@ msgstr "512 (alacsony titkosítási fok)"
 #, kde-format
 msgid "No SSL support."
 msgstr "Nincs SSL-támogatás."
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "A dokumentum jellemzői"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "Általános"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "Cím:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "Utolsó módosítás:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "A dokumentum kódolása:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "Renderelési mód:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "HTTP-fejlécek"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "Tulajdonság"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "S&zerkesztés"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Fájl"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "&Nézet"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "HTML eszköztár"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1319,6 +1433,33 @@ msgstr "Hozzáférési kulcsok aktiválva"
 msgid "C&lear"
 msgstr "A mező(k) tör&lése"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "JavaScript-hibák"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, kde-format
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"Ebben az ablakban a weboldalak szkriptjeinek végrehajtása során előforduló "
+"hibaüzenetek és a velük kapcsolatos információk láthatók. Sok esetben ezek a "
+"hibák az oldal készítői által elkövetett programozási hibák, de az is "
+"előfordulhat, hogy a hiba a Konqueror egy belső hibája miatt lépett fel. Az "
+"előbbi esetben célszerű felvenni a kapcsolatot a weboldal készítőjével. Ha "
+"úgy gondolja, hogy hibát talált a Konquerorban, jelentse be itt: https://"
+"bugs.kde.org/. Kérjük, hogy a hibát részletesen írja le, lehetőleg konkrét "
+"példával illusztrálva."
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1513,7 +1654,32 @@ msgstr "Nincs találat"
 msgid "No more matches for this search direction."
 msgstr "Nincs több találat ennél a keresési iránynál."
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "&Keresés:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&Következő"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "El&őző"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "Beá&llítások"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "El szeretné menteni a jelszót?"
@@ -1522,6 +1688,24 @@ msgstr "El szeretné menteni a jelszót?"
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "El szeretné tárolni a jelszót (%1)?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "&Elmentés"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "Ennél a webhelynél s&oha"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "M&ost nem"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1542,112 +1726,6 @@ msgstr "végzetes feldolgozási hiba: %1 - sor: %2, oszlop: %3"
 #, kde-format
 msgid "XML parsing error"
 msgstr "XML feldolgozási hiba"
-
-#~ msgid ""
-#~ "You have indicated that you wish to obtain or purchase a secure "
-#~ "certificate. This wizard is intended to guide you through the procedure. "
-#~ "You may cancel at any time, and this will abort the transaction."
-#~ msgstr ""
-#~ "A kérése szerint biztonsági tanúsítványt szeretne szerezni vagy "
-#~ "vásárolni. Ez a varázsló lépésről lépésre végigvezeti Önt ezen a "
-#~ "folyamaton. A varázslóból bármikor kiléphet, ha félbe szeretné szakítani "
-#~ "a műveletet."
-
-#~ msgid ""
-#~ "You must now provide a password for the certificate request. Please "
-#~ "choose a very secure password as this will be used to encrypt your "
-#~ "private key."
-#~ msgstr ""
-#~ "Meg kell adni egy jelszót a tanúsítványkéréshez. Ne válasszon túl "
-#~ "egyszerű jelszót, mert ez lesz használva a privát kulcs titkosításához."
-
-#~ msgid "&Repeat password:"
-#~ msgstr "Még e&gyszer:"
-
-#~ msgid "&Choose password:"
-#~ msgstr "A jelszó kivá&lasztása:"
-
-#~ msgid "Document Information"
-#~ msgstr "A dokumentum jellemzői"
-
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "Általános"
-
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
-#~ msgid "Title:"
-#~ msgstr "Cím:"
-
-#~ msgid "Last modified:"
-#~ msgstr "Utolsó módosítás:"
-
-#~ msgid "Document encoding:"
-#~ msgstr "A dokumentum kódolása:"
-
-#~ msgid "Rendering mode:"
-#~ msgstr "Renderelési mód:"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "HTTP-fejlécek"
-
-#~ msgid "Property"
-#~ msgstr "Tulajdonság"
-
-#~ msgid "&Edit"
-#~ msgstr "S&zerkesztés"
-
-#~ msgid "&File"
-#~ msgstr "&Fájl"
-
-#~ msgid "&View"
-#~ msgstr "&Nézet"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "HTML eszköztár"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "JavaScript-hibák"
-
-#~ msgid ""
-#~ "This dialog provides you with notification and details of scripting "
-#~ "errors that occur on web pages.  In many cases it is due to an error in "
-#~ "the web site as designed by its author.  In other cases it is the result "
-#~ "of a programming error in Konqueror.  If you suspect the former, please "
-#~ "contact the webmaster of the site in question.  Conversely if you suspect "
-#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
-#~ "org/.  A test case which illustrates the problem will be appreciated."
-#~ msgstr ""
-#~ "Ebben az ablakban a weboldalak szkriptjeinek végrehajtása során "
-#~ "előforduló hibaüzenetek és a velük kapcsolatos információk láthatók. Sok "
-#~ "esetben ezek a hibák az oldal készítői által elkövetett programozási "
-#~ "hibák, de az is előfordulhat, hogy a hiba a Konqueror egy belső hibája "
-#~ "miatt lépett fel. Az előbbi esetben célszerű felvenni a kapcsolatot a "
-#~ "weboldal készítőjével. Ha úgy gondolja, hogy hibát talált a Konquerorban, "
-#~ "jelentse be itt: https://bugs.kde.org/. Kérjük, hogy a hibát részletesen "
-#~ "írja le, lehetőleg konkrét példával illusztrálva."
-
-#~ msgid "F&ind:"
-#~ msgstr "&Keresés:"
-
-#~ msgid "&Next"
-#~ msgstr "&Következő"
-
-#~ msgid "&Previous"
-#~ msgstr "El&őző"
-
-#~ msgid "Opt&ions"
-#~ msgstr "Beá&llítások"
-
-#~ msgid "&Store"
-#~ msgstr "&Elmentés"
-
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "Ennél a webhelynél s&oha"
-
-#~ msgid "Do &not store this time"
-#~ msgstr "M&ost nem"
 
 #~ msgid "Error"
 #~ msgstr "Hiba"

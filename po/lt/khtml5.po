@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2017-06-25 15:05+0200\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -189,7 +189,8 @@ msgstr "Vietiniai kintamieji"
 msgid "Reference"
 msgstr "Nuoroda"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "Reikšmė"
@@ -410,6 +411,41 @@ msgstr "Neatsisiųsti"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "Tai yra paieškos rodyklė. Įveskite raktinius žodžius: "
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+"Jūs nurodėte, kad Jūs norite įsigyti ar nusipirkti saugų liudijimą. Šis "
+"vedlys yra skirtas vesti jus per šią procedūrą.  Jūs galite atšaukti jį bet "
+"kuriuo metu, ir tai nutrauks įvykių eigą."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+"Dabar Jūs privalote pateikti slaptažodį liudijimo paklausimui.  Prašome "
+"pasirinkti labai saugų slaptažodį, nes jis bus naudojamas Jūsų privataus "
+"rakto užšifravimui."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, kde-format
+msgid "&Repeat password:"
+msgstr "&Pakartokite slaptažodį:"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, kde-format
+msgid "&Choose password:"
+msgstr "&Pasirinkite slaptažodį"
+
 #: html/ksslkeygen.cpp:82
 #, kde-format
 msgid "KDE Certificate Request"
@@ -479,6 +515,85 @@ msgstr "512  (žemo patikimumo)"
 #, kde-format
 msgid "No SSL support."
 msgstr "SSL nepalaikomas."
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "Rodyti dokumento informaciją"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "Bendra"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "Antraštė:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "Pakeista:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "Dokumento koduotė:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "Vaizdavimo režimas:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "HTTP antraštės"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "Savybė"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "&Keisti"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Failas"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "&Rodymas"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "HTML įrankinė"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1341,6 +1456,41 @@ msgstr "Priėjimo raktas aktyvuotas"
 msgid "C&lear"
 msgstr "Iš&valyti"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "JavaScript klaidos"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, fuzzy, kde-format
+#| msgid ""
+#| "This dialog provides you with notification and details of scripting "
+#| "errors that occur on web pages.  In many cases it is due to an error in "
+#| "the web site as designed by its author.  In other cases it is the result "
+#| "of a programming error in Konqueror.  If you suspect the former, please "
+#| "contact the webmaster of the site in question.  Conversely if you suspect "
+#| "an error in Konqueror, please file a bug report at http://bugs.kde.org/.  "
+#| "A test case which illustrates the problem will be appreciated."
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"Šis dialogas pateikia jums informaciją apie scenarijų klaidas, kurių "
+"pasitaiko naršant žiniatinklio svetaines. Daugeliu atvejų, tai susiję su "
+"klaidomis svetainėse, kurias paliko jų autoriai. Kitais atvejais tai gali "
+"būti Konqueror programavimo klaidos. Jei įtariate, kad tai - žiniatinklio "
+"svetainės problema, susisiekite su svetainės administratoriumi. O jei "
+"įtariate, kad tai - Konqueror klaida, prašome pateikti pranešimą apie "
+"programos klaidą http://bugs.kde.org/. Būtų gerai pateikti ir pavyzdį, "
+"iliustruojantį klaidą."
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1535,7 +1685,32 @@ msgstr "Nerasta"
 msgid "No more matches for this search direction."
 msgstr "Nebėra daugiau atitikmenų šiai paieškai šia kryptimi."
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "&Ieškoti:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&Kitas"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "&Ankstesnis"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "Pa&rinktys"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "Ar norite išsaugoti šį slaptažodį?"
@@ -1544,6 +1719,24 @@ msgstr "Ar norite išsaugoti šį slaptažodį?"
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "Ar norite saugoti %1 slaptažodį?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "&Išsaugoti"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "Nie&kada šiai svetainei"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "Šį kartą &nesaugoti"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1564,121 +1757,6 @@ msgstr "lemtinga analizės klaida: %1 eilutė %2, stulpelis %3"
 #, kde-format
 msgid "XML parsing error"
 msgstr "XML sintaksės analizavimo klaida"
-
-#~ msgid ""
-#~ "You have indicated that you wish to obtain or purchase a secure "
-#~ "certificate. This wizard is intended to guide you through the procedure. "
-#~ "You may cancel at any time, and this will abort the transaction."
-#~ msgstr ""
-#~ "Jūs nurodėte, kad Jūs norite įsigyti ar nusipirkti saugų liudijimą. Šis "
-#~ "vedlys yra skirtas vesti jus per šią procedūrą.  Jūs galite atšaukti jį "
-#~ "bet kuriuo metu, ir tai nutrauks įvykių eigą."
-
-#~ msgid ""
-#~ "You must now provide a password for the certificate request. Please "
-#~ "choose a very secure password as this will be used to encrypt your "
-#~ "private key."
-#~ msgstr ""
-#~ "Dabar Jūs privalote pateikti slaptažodį liudijimo paklausimui.  Prašome "
-#~ "pasirinkti labai saugų slaptažodį, nes jis bus naudojamas Jūsų privataus "
-#~ "rakto užšifravimui."
-
-#~ msgid "&Repeat password:"
-#~ msgstr "&Pakartokite slaptažodį:"
-
-#~ msgid "&Choose password:"
-#~ msgstr "&Pasirinkite slaptažodį"
-
-#~ msgid "Document Information"
-#~ msgstr "Rodyti dokumento informaciją"
-
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "Bendra"
-
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
-#~ msgid "Title:"
-#~ msgstr "Antraštė:"
-
-#~ msgid "Last modified:"
-#~ msgstr "Pakeista:"
-
-#~ msgid "Document encoding:"
-#~ msgstr "Dokumento koduotė:"
-
-#~ msgid "Rendering mode:"
-#~ msgstr "Vaizdavimo režimas:"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "HTTP antraštės"
-
-#~ msgid "Property"
-#~ msgstr "Savybė"
-
-#~ msgid "&Edit"
-#~ msgstr "&Keisti"
-
-#~ msgid "&File"
-#~ msgstr "&Failas"
-
-#~ msgid "&View"
-#~ msgstr "&Rodymas"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "HTML įrankinė"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "JavaScript klaidos"
-
-#, fuzzy
-#~| msgid ""
-#~| "This dialog provides you with notification and details of scripting "
-#~| "errors that occur on web pages.  In many cases it is due to an error in "
-#~| "the web site as designed by its author.  In other cases it is the result "
-#~| "of a programming error in Konqueror.  If you suspect the former, please "
-#~| "contact the webmaster of the site in question.  Conversely if you "
-#~| "suspect an error in Konqueror, please file a bug report at http://bugs."
-#~| "kde.org/.  A test case which illustrates the problem will be appreciated."
-#~ msgid ""
-#~ "This dialog provides you with notification and details of scripting "
-#~ "errors that occur on web pages.  In many cases it is due to an error in "
-#~ "the web site as designed by its author.  In other cases it is the result "
-#~ "of a programming error in Konqueror.  If you suspect the former, please "
-#~ "contact the webmaster of the site in question.  Conversely if you suspect "
-#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
-#~ "org/.  A test case which illustrates the problem will be appreciated."
-#~ msgstr ""
-#~ "Šis dialogas pateikia jums informaciją apie scenarijų klaidas, kurių "
-#~ "pasitaiko naršant žiniatinklio svetaines. Daugeliu atvejų, tai susiję su "
-#~ "klaidomis svetainėse, kurias paliko jų autoriai. Kitais atvejais tai gali "
-#~ "būti Konqueror programavimo klaidos. Jei įtariate, kad tai - žiniatinklio "
-#~ "svetainės problema, susisiekite su svetainės administratoriumi. O jei "
-#~ "įtariate, kad tai - Konqueror klaida, prašome pateikti pranešimą apie "
-#~ "programos klaidą http://bugs.kde.org/. Būtų gerai pateikti ir pavyzdį, "
-#~ "iliustruojantį klaidą."
-
-#~ msgid "F&ind:"
-#~ msgstr "&Ieškoti:"
-
-#~ msgid "&Next"
-#~ msgstr "&Kitas"
-
-#~ msgid "&Previous"
-#~ msgstr "&Ankstesnis"
-
-#~ msgid "Opt&ions"
-#~ msgstr "Pa&rinktys"
-
-#~ msgid "&Store"
-#~ msgstr "&Išsaugoti"
-
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "Nie&kada šiai svetainei"
-
-#~ msgid "Do &not store this time"
-#~ msgstr "Šį kartą &nesaugoti"
 
 #~ msgid "Error"
 #~ msgstr "Klaida"

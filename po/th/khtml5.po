@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2010-12-31 22:47+0700\n"
 "Last-Translator: Phuwanat Sakornsakolpat <narachai@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -180,7 +180,8 @@ msgstr "ตัวแปรภายใน"
 msgid "Reference"
 msgstr "การอ้างอิง"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "ค่า"
@@ -393,6 +394,37 @@ msgstr "ไม่ต้องดาวน์โหลด"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "นี่เป็นดัชนีที่ใช้ค้นหาได้ เติมข้อความหรือคำที่ต้องการค้นหา: "
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Repeat password:"
+msgstr "&จดจำรหัสผ่าน"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Choose password:"
+msgstr "&จดจำรหัสผ่าน"
+
 #: html/ksslkeygen.cpp:82
 #, fuzzy, kde-format
 #| msgid "Details of the Request:"
@@ -469,6 +501,85 @@ msgstr ""
 #| msgid "Enable SOCKS support"
 msgid "No SSL support."
 msgstr "เปิดการรองรับพร็อกซีแบบ SOCKS"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "ข้อมูลของเอกสาร"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "ทั่วไป"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "ที่อยู่ URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "หัวเรื่อง:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "แก้ไขล่าสุด:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "รหัสภาษาของเอกสาร:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "โหมดการแสดงผล:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "ส่วนหัว HTTP"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "คุณสมบัติ"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "แ&ก้ไข"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "แ&ฟ้ม"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "&มุมมอง"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "แถบเครื่องมือ HTML"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1309,6 +1420,39 @@ msgstr "เปิดใช้กุญแจสำหรับเข้าถึ
 msgid "C&lear"
 msgstr "&ล้าง"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "ข้อผิดพลาดของจาวาสคริปต์"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, fuzzy, kde-format
+#| msgid ""
+#| "This dialog provides you with notification and details of scripting "
+#| "errors that occur on web pages.  In many cases it is due to an error in "
+#| "the web site as designed by its author.  In other cases it is the result "
+#| "of a programming error in Konqueror.  If you suspect the former, please "
+#| "contact the webmaster of the site in question.  Conversely if you suspect "
+#| "an error in Konqueror, please file a bug report at http://bugs.kde.org/.  "
+#| "A test case which illustrates the problem will be appreciated."
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"กล่องโต้ตอบนี้จะมีการแจ้งเตือนและรายละเอียดของข้อผิดพลาดของสคริปต์ที่เกิดขึ้นในหน้าเว็บ "
+"ส่วนมากจะเกิดจากข้อผิดพลาดที่เว็บไซต์ที่ถูกออกแบบโดยผู้จัดทำ อีกกรณีหนึ่ง "
+"เกิดขึ้นจากข้อผิดพลาดของโปรแกรมใน Konqueror หากคุณสงสัยในข้อแรก "
+"โปรดติดต่อกับเว็บมาสเตอร์ของไซต์ที่เกิดปัญหา แต่ถ้าหากว่าคุณสงสัยว่าเกิดจากข้อผิดพลาดใน "
+"Konqueror โปรด แจ้งบั๊กได้ที่ http://bugs.kde.org/  "
+"หากมีกรณีทดสอบซึ่งแสดงถึงปัญหาที่เกิดขึ้นมาด้วย จะขอบคุณมาก"
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1504,7 +1648,32 @@ msgstr "ค้นไม่พบ"
 msgid "No more matches for this search direction."
 msgstr "ไม่พบสิ่งใดที่เข้าคู่กับการค้นหานี้"
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "ค้น&หา:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&ถัดไป"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "&ก่อนหน้า"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "ตัวเลือ&ก"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "คุณต้องการจัดเก็บรหัสผ่านนี้หรือไม่ ?"
@@ -1513,6 +1682,24 @@ msgstr "คุณต้องการจัดเก็บรหัสผ่า
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "คุณต้องการจัดเก็บรหัสผ่านนี้สำหรับ %1 หรือไม่ ?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "&จัดเก็บ"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "ไ&ม่ต้องจัดเก็บกับเว็บไซต์นี้"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "ไม่&ต้องจัดเก็บในตอนนี้"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1533,105 +1720,6 @@ msgstr "การวิเคราะห์ค่าผิดพลาด: %1 �
 #, kde-format
 msgid "XML parsing error"
 msgstr "การวิเคราะห์ค่า XML ผิดพลาด"
-
-#, fuzzy
-#~| msgid "&Keep password"
-#~ msgid "&Repeat password:"
-#~ msgstr "&จดจำรหัสผ่าน"
-
-#, fuzzy
-#~| msgid "&Keep password"
-#~ msgid "&Choose password:"
-#~ msgstr "&จดจำรหัสผ่าน"
-
-#~ msgid "Document Information"
-#~ msgstr "ข้อมูลของเอกสาร"
-
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "ทั่วไป"
-
-#~ msgid "URL:"
-#~ msgstr "ที่อยู่ URL:"
-
-#~ msgid "Title:"
-#~ msgstr "หัวเรื่อง:"
-
-#~ msgid "Last modified:"
-#~ msgstr "แก้ไขล่าสุด:"
-
-#~ msgid "Document encoding:"
-#~ msgstr "รหัสภาษาของเอกสาร:"
-
-#~ msgid "Rendering mode:"
-#~ msgstr "โหมดการแสดงผล:"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "ส่วนหัว HTTP"
-
-#~ msgid "Property"
-#~ msgstr "คุณสมบัติ"
-
-#~ msgid "&Edit"
-#~ msgstr "แ&ก้ไข"
-
-#~ msgid "&File"
-#~ msgstr "แ&ฟ้ม"
-
-#~ msgid "&View"
-#~ msgstr "&มุมมอง"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "แถบเครื่องมือ HTML"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "ข้อผิดพลาดของจาวาสคริปต์"
-
-#, fuzzy
-#~| msgid ""
-#~| "This dialog provides you with notification and details of scripting "
-#~| "errors that occur on web pages.  In many cases it is due to an error in "
-#~| "the web site as designed by its author.  In other cases it is the result "
-#~| "of a programming error in Konqueror.  If you suspect the former, please "
-#~| "contact the webmaster of the site in question.  Conversely if you "
-#~| "suspect an error in Konqueror, please file a bug report at http://bugs."
-#~| "kde.org/.  A test case which illustrates the problem will be appreciated."
-#~ msgid ""
-#~ "This dialog provides you with notification and details of scripting "
-#~ "errors that occur on web pages.  In many cases it is due to an error in "
-#~ "the web site as designed by its author.  In other cases it is the result "
-#~ "of a programming error in Konqueror.  If you suspect the former, please "
-#~ "contact the webmaster of the site in question.  Conversely if you suspect "
-#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
-#~ "org/.  A test case which illustrates the problem will be appreciated."
-#~ msgstr ""
-#~ "กล่องโต้ตอบนี้จะมีการแจ้งเตือนและรายละเอียดของข้อผิดพลาดของสคริปต์ที่เกิดขึ้นในหน้าเว็บ "
-#~ "ส่วนมากจะเกิดจากข้อผิดพลาดที่เว็บไซต์ที่ถูกออกแบบโดยผู้จัดทำ อีกกรณีหนึ่ง "
-#~ "เกิดขึ้นจากข้อผิดพลาดของโปรแกรมใน Konqueror หากคุณสงสัยในข้อแรก "
-#~ "โปรดติดต่อกับเว็บมาสเตอร์ของไซต์ที่เกิดปัญหา แต่ถ้าหากว่าคุณสงสัยว่าเกิดจากข้อผิดพลาดใน "
-#~ "Konqueror โปรด แจ้งบั๊กได้ที่ http://bugs.kde.org/  "
-#~ "หากมีกรณีทดสอบซึ่งแสดงถึงปัญหาที่เกิดขึ้นมาด้วย จะขอบคุณมาก"
-
-#~ msgid "F&ind:"
-#~ msgstr "ค้น&หา:"
-
-#~ msgid "&Next"
-#~ msgstr "&ถัดไป"
-
-#~ msgid "&Previous"
-#~ msgstr "&ก่อนหน้า"
-
-#~ msgid "Opt&ions"
-#~ msgstr "ตัวเลือ&ก"
-
-#~ msgid "&Store"
-#~ msgstr "&จัดเก็บ"
-
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "ไ&ม่ต้องจัดเก็บกับเว็บไซต์นี้"
-
-#~ msgid "Do &not store this time"
-#~ msgstr "ไม่&ต้องจัดเก็บในตอนนี้"
 
 #~ msgid "Error"
 #~ msgstr "ผิดพลาด"

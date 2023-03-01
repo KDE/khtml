@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4_as\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2008-12-26 15:19+0530\n"
 "Last-Translator: Amitakhya Phukan <অমিতাক্ষ ফুকন>\n"
 "Language-Team: Assamese <fedora-trans-as@redhat.com>\n"
@@ -177,7 +177,8 @@ msgstr "স্থানীয় চলক"
 msgid "Reference"
 msgstr "প্ৰতিনিৰ্দেশ"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "মান"
@@ -390,6 +391,37 @@ msgstr "ডাউন্‌লোড কৰা ন'হ'ব"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "এইটো এটা অনুসন্ধানযোগ্য ইন্ডেক্স । অনুগ্ৰহ কৰি অনুসন্ধানৰ উদ্দেশ্যে শব্দ লিখক: "
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Repeat password:"
+msgstr "গুপ্তশব্দ ৰখা হ'ব (&K)"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Choose password:"
+msgstr "গুপ্তশব্দ ৰখা হ'ব (&K)"
+
 #: html/ksslkeygen.cpp:82
 #, fuzzy, kde-format
 #| msgid "Details of the Request:"
@@ -466,6 +498,86 @@ msgstr ""
 #| msgid "Enable SOCKS support"
 msgid "No SSL support."
 msgstr "SOCKS সমৰ্থন সক্ৰিয় কৰক"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "আলেখ্যন সংক্ৰান্ত তথ্য"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, fuzzy, kde-format
+#| msgid "General"
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "সাধাৰণ"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "শিৰোনাম:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "সৰ্বশেষ পৰিবৰ্তন:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "আলেখ্যনৰ এনকোডিং:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "HTTP হেডাৰ"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "বৈশিষ্ট্য"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "সম্পাদন (&E)"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "নথিপত্ৰ (&F)"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "চাওক (&V)"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "HTML টুল-বাৰ"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1268,6 +1380,25 @@ msgstr "অভিগমৰ চাবি সক্ৰিয় কৰা হৈছ�
 msgid "C&lear"
 msgstr "পৰিশ্ৰুত কৰক (&l)"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "JavaScript সংক্ৰান্ত ত্ৰুটি"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, kde-format
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1463,7 +1594,32 @@ msgstr "পোৱা ন'গ'ল"
 msgid "No more matches for this search direction."
 msgstr ""
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "বিচাৰক (&i):"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "পিছৰ (&N)"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "আগৰ (&P)"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "বিকল্প (&i)"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, fuzzy, kde-format
 #| msgid "Do you want to restart search from the end?"
 msgid "Do you want to store this password?"
@@ -1474,6 +1630,27 @@ msgstr "আপুনি নিশ্চিতৰূপে আলেখ্যন�
 #| msgid "Do you want to restart search from the end?"
 msgid "Do you want to store this password for %1?"
 msgstr "আপুনি নিশ্চিতৰূপে আলেখ্যনৰ অন্তিম স্থানৰ পৰা পুনঃ অনুসন্ধান কৰিবলৈ ইচ্ছুক নে ?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, fuzzy, kde-format
+#| msgid "Store"
+msgid "&Store"
+msgstr "সংৰক্ষণ কৰা হ'ব"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, fuzzy, kde-format
+#| msgid "Ne&ver for This Site"
+msgid "Ne&ver store for this site"
+msgstr "বৰ্তমান ছাইটৰ বাবে কেতিয়াও নহয় (&v)"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, fuzzy, kde-format
+#| msgid "Do not show this message again"
+msgid "Do &not store this time"
+msgstr "পুনঃ এই বাৰ্তা প্ৰদৰ্শন কৰা ন'হ'ব"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1494,85 +1671,6 @@ msgstr "মাৰাত্মক বিশলেষণৰ ভুল: %1 %2 শ�
 #, kde-format
 msgid "XML parsing error"
 msgstr "XML বিশ্লেষণ সংক্ৰান্ত ত্ৰুটি"
-
-#, fuzzy
-#~| msgid "&Keep password"
-#~ msgid "&Repeat password:"
-#~ msgstr "গুপ্তশব্দ ৰখা হ'ব (&K)"
-
-#, fuzzy
-#~| msgid "&Keep password"
-#~ msgid "&Choose password:"
-#~ msgstr "গুপ্তশব্দ ৰখা হ'ব (&K)"
-
-#~ msgid "Document Information"
-#~ msgstr "আলেখ্যন সংক্ৰান্ত তথ্য"
-
-#, fuzzy
-#~| msgid "General"
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "সাধাৰণ"
-
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
-#~ msgid "Title:"
-#~ msgstr "শিৰোনাম:"
-
-#~ msgid "Last modified:"
-#~ msgstr "সৰ্বশেষ পৰিবৰ্তন:"
-
-#~ msgid "Document encoding:"
-#~ msgstr "আলেখ্যনৰ এনকোডিং:"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "HTTP হেডাৰ"
-
-#~ msgid "Property"
-#~ msgstr "বৈশিষ্ট্য"
-
-#~ msgid "&Edit"
-#~ msgstr "সম্পাদন (&E)"
-
-#~ msgid "&File"
-#~ msgstr "নথিপত্ৰ (&F)"
-
-#~ msgid "&View"
-#~ msgstr "চাওক (&V)"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "HTML টুল-বাৰ"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "JavaScript সংক্ৰান্ত ত্ৰুটি"
-
-#~ msgid "F&ind:"
-#~ msgstr "বিচাৰক (&i):"
-
-#~ msgid "&Next"
-#~ msgstr "পিছৰ (&N)"
-
-#~ msgid "&Previous"
-#~ msgstr "আগৰ (&P)"
-
-#~ msgid "Opt&ions"
-#~ msgstr "বিকল্প (&i)"
-
-#, fuzzy
-#~| msgid "Store"
-#~ msgid "&Store"
-#~ msgstr "সংৰক্ষণ কৰা হ'ব"
-
-#, fuzzy
-#~| msgid "Ne&ver for This Site"
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "বৰ্তমান ছাইটৰ বাবে কেতিয়াও নহয় (&v)"
-
-#, fuzzy
-#~| msgid "Do not show this message again"
-#~ msgid "Do &not store this time"
-#~ msgstr "পুনঃ এই বাৰ্তা প্ৰদৰ্শন কৰা ন'হ'ব"
 
 #~ msgid "Error"
 #~ msgstr "ত্ৰুটি"

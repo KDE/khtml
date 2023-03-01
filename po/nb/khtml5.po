@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2014-11-05 13:40+0100\n"
 "Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
@@ -187,7 +187,8 @@ msgstr "Lokale variabler"
 msgid "Reference"
 msgstr "Referanse"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "Verdi"
@@ -404,6 +405,40 @@ msgstr "Ikke last ned"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "Dette er en søkbar indeks. Skriv inn søkeord: "
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+"Du har ytret ønske om å skaffe deg eller kjøpe et sikkert sertifikat. Denne "
+"veiviseren vil hjelpe deg gjennom prosessen. Du kan avbryte transaksjonen "
+"når som helst."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+"Du må nå oppgi et passord for sertifikatforespørselen. Du bør velge et svært "
+"trygt passord, siden det skal brukes til å kryptere den private nøkkelen din."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, kde-format
+msgid "&Repeat password:"
+msgstr "Sk&riv passord på nytt:"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, kde-format
+msgid "&Choose password:"
+msgstr "&Velg passord:"
+
 #: html/ksslkeygen.cpp:82
 #, kde-format
 msgid "KDE Certificate Request"
@@ -473,6 +508,85 @@ msgstr "512  (Svak)"
 #, kde-format
 msgid "No SSL support."
 msgstr "Ingen SSL-støtte."
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "Dokumentinformasjon"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "Generelt"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "Adresse:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "Tittel:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "Sist endret:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "Dokumentkoding:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "Opptegningsmodus:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "HTTP-hoder"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "Egenskap"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "&Rediger"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Fil"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "&Vis"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "HTML-verktøylinje"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1319,6 +1433,25 @@ msgstr "Tilgjengelighetstaster på"
 msgid "C&lear"
 msgstr "&Tøm"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "Javaskript-feil"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, kde-format
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1513,7 +1646,32 @@ msgstr "Ikke funnet"
 msgid "No more matches for this search direction."
 msgstr "Ingen flere treff i denne søkeretningen."
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "F&inn:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&Neste"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "&Forrige"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "Va&lg"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "Vil du lagre passordet?"
@@ -1522,6 +1680,24 @@ msgstr "Vil du lagre passordet?"
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "Vil du lagre passordet for %1?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "&Lagre"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "A&ldri lagre for dette nettstedet"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "Ikke lagre de&nne gangen"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1542,91 +1718,3 @@ msgstr "fatal tolkingsfeil: %1 i linje %2, kolonne %3"
 #, kde-format
 msgid "XML parsing error"
 msgstr "XML-tolkingsfeil"
-
-#~ msgid ""
-#~ "You have indicated that you wish to obtain or purchase a secure "
-#~ "certificate. This wizard is intended to guide you through the procedure. "
-#~ "You may cancel at any time, and this will abort the transaction."
-#~ msgstr ""
-#~ "Du har ytret ønske om å skaffe deg eller kjøpe et sikkert sertifikat. "
-#~ "Denne veiviseren vil hjelpe deg gjennom prosessen. Du kan avbryte "
-#~ "transaksjonen når som helst."
-
-#~ msgid ""
-#~ "You must now provide a password for the certificate request. Please "
-#~ "choose a very secure password as this will be used to encrypt your "
-#~ "private key."
-#~ msgstr ""
-#~ "Du må nå oppgi et passord for sertifikatforespørselen. Du bør velge et "
-#~ "svært trygt passord, siden det skal brukes til å kryptere den private "
-#~ "nøkkelen din."
-
-#~ msgid "&Repeat password:"
-#~ msgstr "Sk&riv passord på nytt:"
-
-#~ msgid "&Choose password:"
-#~ msgstr "&Velg passord:"
-
-#~ msgid "Document Information"
-#~ msgstr "Dokumentinformasjon"
-
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "Generelt"
-
-#~ msgid "URL:"
-#~ msgstr "Adresse:"
-
-#~ msgid "Title:"
-#~ msgstr "Tittel:"
-
-#~ msgid "Last modified:"
-#~ msgstr "Sist endret:"
-
-#~ msgid "Document encoding:"
-#~ msgstr "Dokumentkoding:"
-
-#~ msgid "Rendering mode:"
-#~ msgstr "Opptegningsmodus:"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "HTTP-hoder"
-
-#~ msgid "Property"
-#~ msgstr "Egenskap"
-
-#~ msgid "&Edit"
-#~ msgstr "&Rediger"
-
-#~ msgid "&File"
-#~ msgstr "&Fil"
-
-#~ msgid "&View"
-#~ msgstr "&Vis"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "HTML-verktøylinje"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "Javaskript-feil"
-
-#~ msgid "F&ind:"
-#~ msgstr "F&inn:"
-
-#~ msgid "&Next"
-#~ msgstr "&Neste"
-
-#~ msgid "&Previous"
-#~ msgstr "&Forrige"
-
-#~ msgid "Opt&ions"
-#~ msgstr "Va&lg"
-
-#~ msgid "&Store"
-#~ msgstr "&Lagre"
-
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "A&ldri lagre for dette nettstedet"
-
-#~ msgid "Do &not store this time"
-#~ msgstr "Ikke lagre de&nne gangen"

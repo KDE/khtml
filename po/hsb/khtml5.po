@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2008-12-19 22:49+0100\n"
 "Last-Translator: Eduard Werner <edi.werner@gmx.de>\n"
 "Language-Team: en_US <kde-i18n-doc@lists.kde.org>\n"
@@ -185,7 +185,8 @@ msgstr "Lokalne wariable"
 msgid "Reference"
 msgstr "Wotkaz"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "Hódnota"
@@ -407,6 +408,37 @@ msgstr "Nic sćahnyć"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "W tutym indeksu móžeće pytać. zapodajće klučowe słowa:"
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Repeat password:"
+msgstr "&Spomjatkuj sej hesło"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Choose password:"
+msgstr "&Spomjatkuj sej hesło"
+
 #: html/ksslkeygen.cpp:82
 #, fuzzy, kde-format
 #| msgid "Details of the Request:"
@@ -483,6 +515,86 @@ msgstr ""
 #| msgid "Enable SOCKS support"
 msgid "No SSL support."
 msgstr "SOCKS zaswěćić"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "Informacija wo dokumenće "
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, fuzzy, kde-format
+#| msgid "General"
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "Generelnje"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "Titl:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "Posledni raz změnjene"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "Kodowanje dokumenta"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "HTTP-hłójčki"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "Přiznak"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "&Wobdźěłać"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Dataja"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "&Napohlad"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "Hłowny nastrojowy pas"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1365,6 +1477,38 @@ msgstr "Tastowe skrótki aktiwizowane"
 msgid "C&lear"
 msgstr "&Wuprózdnić"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "JavaScript: zmylki"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, fuzzy, kde-format
+#| msgid ""
+#| "This dialog provides you with notification and details of scripting "
+#| "errors that occur on web pages.  In many cases it is due to an error in "
+#| "the web site as designed by its author.  In other cases it is the result "
+#| "of a programming error in Konqueror.  If you suspect the former, please "
+#| "contact the webmaster of the site in question.  Conversely if you suspect "
+#| "an error in Konqueror, please file a bug report at http://bugs.kde.org/.  "
+#| "A test case which illustrates the problem will be appreciated."
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"Tutón dialog informuje wo skriptowych zmylkach na www-stronach. Husto jedna "
+"so wo zmylk na stronje, na kotrymž je awtor wina. Druhdy pak zaleži tež na "
+"zmylku w konquerorje. W prěnim padźe wobroćće so na awtora strony, w "
+"poslednim pósćelće rozprawu wo zmylku na http://lbugs.kde.org/. Jeli maće "
+"testowu stronu, kiž problem znazorni, by to jara derje było."
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1561,7 +1705,33 @@ msgstr "Njejsym ničo namakał"
 msgid "No more matches for this search direction."
 msgstr "Žane dalše namakanki do tutoho směra."
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "P&ytać:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "Přichod&ne"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "P&rjedawši"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, fuzzy, kde-format
+#| msgid "Options"
+msgid "Opt&ions"
+msgstr "Opcije"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, fuzzy, kde-format
 msgid "Do you want to store this password?"
 msgstr "Chceće woprawdźe '%1' startować?"
@@ -1571,6 +1741,27 @@ msgstr "Chceće woprawdźe '%1' startować?"
 #| msgid "Do you want to restart search from the end?"
 msgid "Do you want to store this password for %1?"
 msgstr "Chceće wot kónca dale pytać?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, fuzzy, kde-format
+#| msgid "Store"
+msgid "&Store"
+msgstr "Składować"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, fuzzy, kde-format
+#| msgid "Ne&ver for This Site"
+msgid "Ne&ver store for this site"
+msgstr "Ženje za &tutón serwer"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, fuzzy, kde-format
+#| msgid "Do not show this message again"
+msgid "Do &not store this time"
+msgstr "Njepokaž tutu zdźělenku přichodny raz"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1591,111 +1782,6 @@ msgstr "fatalny zmylk parsowanja: %1 w lince %2, špalta %3"
 #, kde-format
 msgid "XML parsing error"
 msgstr "XML zmylk parsowanja"
-
-#, fuzzy
-#~| msgid "&Keep password"
-#~ msgid "&Repeat password:"
-#~ msgstr "&Spomjatkuj sej hesło"
-
-#, fuzzy
-#~| msgid "&Keep password"
-#~ msgid "&Choose password:"
-#~ msgstr "&Spomjatkuj sej hesło"
-
-#~ msgid "Document Information"
-#~ msgstr "Informacija wo dokumenće "
-
-#, fuzzy
-#~| msgid "General"
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "Generelnje"
-
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
-#~ msgid "Title:"
-#~ msgstr "Titl:"
-
-#~ msgid "Last modified:"
-#~ msgstr "Posledni raz změnjene"
-
-#~ msgid "Document encoding:"
-#~ msgstr "Kodowanje dokumenta"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "HTTP-hłójčki"
-
-#~ msgid "Property"
-#~ msgstr "Přiznak"
-
-#~ msgid "&Edit"
-#~ msgstr "&Wobdźěłać"
-
-#~ msgid "&File"
-#~ msgstr "&Dataja"
-
-#~ msgid "&View"
-#~ msgstr "&Napohlad"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "Hłowny nastrojowy pas"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "JavaScript: zmylki"
-
-#, fuzzy
-#~| msgid ""
-#~| "This dialog provides you with notification and details of scripting "
-#~| "errors that occur on web pages.  In many cases it is due to an error in "
-#~| "the web site as designed by its author.  In other cases it is the result "
-#~| "of a programming error in Konqueror.  If you suspect the former, please "
-#~| "contact the webmaster of the site in question.  Conversely if you "
-#~| "suspect an error in Konqueror, please file a bug report at http://bugs."
-#~| "kde.org/.  A test case which illustrates the problem will be appreciated."
-#~ msgid ""
-#~ "This dialog provides you with notification and details of scripting "
-#~ "errors that occur on web pages.  In many cases it is due to an error in "
-#~ "the web site as designed by its author.  In other cases it is the result "
-#~ "of a programming error in Konqueror.  If you suspect the former, please "
-#~ "contact the webmaster of the site in question.  Conversely if you suspect "
-#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
-#~ "org/.  A test case which illustrates the problem will be appreciated."
-#~ msgstr ""
-#~ "Tutón dialog informuje wo skriptowych zmylkach na www-stronach. Husto "
-#~ "jedna so wo zmylk na stronje, na kotrymž je awtor wina. Druhdy pak zaleži "
-#~ "tež na zmylku w konquerorje. W prěnim padźe wobroćće so na awtora strony, "
-#~ "w poslednim pósćelće rozprawu wo zmylku na http://lbugs.kde.org/. Jeli "
-#~ "maće testowu stronu, kiž problem znazorni, by to jara derje było."
-
-#~ msgid "F&ind:"
-#~ msgstr "P&ytać:"
-
-#~ msgid "&Next"
-#~ msgstr "Přichod&ne"
-
-#~ msgid "&Previous"
-#~ msgstr "P&rjedawši"
-
-#, fuzzy
-#~| msgid "Options"
-#~ msgid "Opt&ions"
-#~ msgstr "Opcije"
-
-#, fuzzy
-#~| msgid "Store"
-#~ msgid "&Store"
-#~ msgstr "Składować"
-
-#, fuzzy
-#~| msgid "Ne&ver for This Site"
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "Ženje za &tutón serwer"
-
-#, fuzzy
-#~| msgid "Do not show this message again"
-#~ msgid "Do &not store this time"
-#~ msgstr "Njepokaž tutu zdźělenku přichodny raz"
 
 #~ msgid "Error"
 #~ msgstr "Zmylk"

@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: khtml5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2017-05-16 06:49-0400\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Hebrew <kde-i18n-doc@kde.org>\n"
@@ -191,7 +191,8 @@ msgstr "משתנים מקומיים"
 msgid "Reference"
 msgstr "התייחסות"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "ערך"
@@ -407,6 +408,35 @@ msgstr "אל תוריד"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "זהו אינדקס שניתן לחפש בו. הזן מילות מפתח לחיפוש: "
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, fuzzy, kde-format
+msgid "&Repeat password:"
+msgstr "&שמור ססמה"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, fuzzy, kde-format
+msgid "&Choose password:"
+msgstr "&שמור ססמה"
+
 #: html/ksslkeygen.cpp:82
 #, fuzzy, kde-format
 msgid "KDE Certificate Request"
@@ -476,6 +506,85 @@ msgstr ""
 #, fuzzy, kde-format
 msgid "No SSL support."
 msgstr "אפשר תמיכה ב־SOCKS"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "מידע אודות המסמך"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "כללי"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "כתובת:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "כותרת:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "שונה לאחרונה:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "קידוד המסמך:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "מצב רינדור:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "כותרות HTTP"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "מאפיין"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "&עריכה"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&קובץ"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "&תצוגה"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "סרגל כלים של HTML"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1314,6 +1423,39 @@ msgstr "מקשי הנגישות הופעלו"
 msgid "C&lear"
 msgstr "נ&קה"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "שגיאות JavaScript"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, fuzzy, kde-format
+#| msgid ""
+#| "This dialog provides you with notification and details of scripting "
+#| "errors that occur on web pages.  In many cases it is due to an error in "
+#| "the web site as designed by its author.  In other cases it is the result "
+#| "of a programming error in Konqueror.  If you suspect the former, please "
+#| "contact the webmaster of the site in question.  Conversely if you suspect "
+#| "an error in Konqueror, please file a bug report at http://bugs.kde.org/.  "
+#| "A test case which illustrates the problem will be appreciated."
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"דו־שיח זה מיידע אותך ומספק לך פרטים לגבי שגיאות תסריטים בדפי אינטרנט. במקרים "
+"רבים הדבר נגרם בעקבות שגיאה באתר האינטרנט כפי שהוא תוכנן על ידי כותב האתר. "
+"במקרים אחר מדובר בשגיאה כתוצאה משגיאת תיכנות ב־Konqueror. אם אתה חושד "
+"שהאפשרות הראשונה היא הסבירה, צור קשר עם מנהל האתר המדובר. אם, לעומת זאת, אתה "
+"חושד שמדובר על שגיאה ב־Konqueror, דווח על באג ב־http://bugs.kde.org/‎. נשמח "
+"מאוד לקבל מקרה מבחן שממחיש את הבעיה."
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1508,7 +1650,32 @@ msgstr "לא נמצא"
 msgid "No more matches for this search direction."
 msgstr "אין יותר התאמות עבור כיוון החיפוש הזה."
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "&חפש:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&הבא"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "&הקודם"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "אפ&שרויות"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "האם אתה מעוניין לשמור ססמה זו?"
@@ -1517,6 +1684,24 @@ msgstr "האם אתה מעוניין לשמור ססמה זו?"
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "האם אתה מעוניין לשמור סיסמה זו ל%1?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "&שמור"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "&לעולם לא לשמור ססמאות עבור אתר זה"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "אל &תשמור הפעם"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1537,103 +1722,6 @@ msgstr "שגיאת פירוק קריטית: %1 בשורה %2, עמודה %3"
 #, kde-format
 msgid "XML parsing error"
 msgstr "שגיאת פירוש XML"
-
-#, fuzzy
-#~ msgid "&Repeat password:"
-#~ msgstr "&שמור ססמה"
-
-#, fuzzy
-#~ msgid "&Choose password:"
-#~ msgstr "&שמור ססמה"
-
-#~ msgid "Document Information"
-#~ msgstr "מידע אודות המסמך"
-
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "כללי"
-
-#~ msgid "URL:"
-#~ msgstr "כתובת:"
-
-#~ msgid "Title:"
-#~ msgstr "כותרת:"
-
-#~ msgid "Last modified:"
-#~ msgstr "שונה לאחרונה:"
-
-#~ msgid "Document encoding:"
-#~ msgstr "קידוד המסמך:"
-
-#~ msgid "Rendering mode:"
-#~ msgstr "מצב רינדור:"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "כותרות HTTP"
-
-#~ msgid "Property"
-#~ msgstr "מאפיין"
-
-#~ msgid "&Edit"
-#~ msgstr "&עריכה"
-
-#~ msgid "&File"
-#~ msgstr "&קובץ"
-
-#~ msgid "&View"
-#~ msgstr "&תצוגה"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "סרגל כלים של HTML"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "שגיאות JavaScript"
-
-#, fuzzy
-#~| msgid ""
-#~| "This dialog provides you with notification and details of scripting "
-#~| "errors that occur on web pages.  In many cases it is due to an error in "
-#~| "the web site as designed by its author.  In other cases it is the result "
-#~| "of a programming error in Konqueror.  If you suspect the former, please "
-#~| "contact the webmaster of the site in question.  Conversely if you "
-#~| "suspect an error in Konqueror, please file a bug report at http://bugs."
-#~| "kde.org/.  A test case which illustrates the problem will be appreciated."
-#~ msgid ""
-#~ "This dialog provides you with notification and details of scripting "
-#~ "errors that occur on web pages.  In many cases it is due to an error in "
-#~ "the web site as designed by its author.  In other cases it is the result "
-#~ "of a programming error in Konqueror.  If you suspect the former, please "
-#~ "contact the webmaster of the site in question.  Conversely if you suspect "
-#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
-#~ "org/.  A test case which illustrates the problem will be appreciated."
-#~ msgstr ""
-#~ "דו־שיח זה מיידע אותך ומספק לך פרטים לגבי שגיאות תסריטים בדפי אינטרנט. "
-#~ "במקרים רבים הדבר נגרם בעקבות שגיאה באתר האינטרנט כפי שהוא תוכנן על ידי "
-#~ "כותב האתר. במקרים אחר מדובר בשגיאה כתוצאה משגיאת תיכנות ב־Konqueror. אם "
-#~ "אתה חושד שהאפשרות הראשונה היא הסבירה, צור קשר עם מנהל האתר המדובר. אם, "
-#~ "לעומת זאת, אתה חושד שמדובר על שגיאה ב־Konqueror, דווח על באג ב־http://"
-#~ "bugs.kde.org/‎. נשמח מאוד לקבל מקרה מבחן שממחיש את הבעיה."
-
-#~ msgid "F&ind:"
-#~ msgstr "&חפש:"
-
-#~ msgid "&Next"
-#~ msgstr "&הבא"
-
-#~ msgid "&Previous"
-#~ msgstr "&הקודם"
-
-#~ msgid "Opt&ions"
-#~ msgstr "אפ&שרויות"
-
-#~ msgid "&Store"
-#~ msgstr "&שמור"
-
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "&לעולם לא לשמור ססמאות עבור אתר זה"
-
-#~ msgid "Do &not store this time"
-#~ msgstr "אל &תשמור הפעם"
 
 #~ msgid "Error"
 #~ msgstr "שגיאה"

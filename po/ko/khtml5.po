@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2022-05-15 22:25+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -179,7 +179,8 @@ msgstr "로컬 변수"
 msgid "Reference"
 msgstr "참조"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "값"
@@ -395,6 +396,39 @@ msgstr "다운로드하지 않음"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "이것은 검색할 수 있는 색인입니다. 찾을 단어를 입력하십시오: "
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+"인증서를 구입하거나 가져오기로 했습니다. 이 마법사는 전체 과정을 안내합니다. "
+"언제든지 이 단계를 취소할 수 있으며, 전체 트랜잭션이 중단됩니다."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+"인증 요청의 암호를 입력해야 합니다. 이 암호로 개인 키를 암호화하기 때문에 충"
+"분히 강력한 암호를 입력하십시오."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, kde-format
+msgid "&Repeat password:"
+msgstr "암호 반복(&R):"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, kde-format
+msgid "&Choose password:"
+msgstr "암호 선택(&C):"
+
 #: html/ksslkeygen.cpp:82
 #, kde-format
 msgid "KDE Certificate Request"
@@ -464,6 +498,85 @@ msgstr "512  (낮은 등급)"
 #, kde-format
 msgid "No SSL support."
 msgstr "SSL 지원 없음."
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "문서 정보"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "일반"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "제목:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "마지막 수정:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "문서 인코딩:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "렌더링 모드:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "HTTP 헤더"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "속성"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "편집(&E)"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "파일(&F)"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "보기(&V)"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "HTML 도구 모음"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1304,6 +1417,31 @@ msgstr "접근 키가 활성화되었습니다"
 msgid "C&lear"
 msgstr "지우기(&L)"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "자바스크립트 오류"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, kde-format
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"이 대화 상자는 웹 페이지에 있는 스크립트 오류에 대한 자세한 정보와 경고를 표"
+"시합니다. 대부분의 경우 웹사이트 제작자의 설계 오류 때문에 발생하는 것입니"
+"다. 그렇지 않다면 Konqueror의 프로그램 오류일 수 있습니다. 전자라고 생각하면 "
+"사이트 관리자에게 질문을 보내십시오. 반대로 Konqueror의 내부 오류라고 생각하"
+"면 https://bugs.kde.org/ 사이트에 버그를 알려 주십시오. 문제를 다시 재현할 "
+"수 있는 예제도 같이 설명해서 보내 주십시오."
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1498,7 +1636,32 @@ msgstr "찾지 못했습니다"
 msgid "No more matches for this search direction."
 msgstr "이 방향으로 더 이상 일치하는 것이 없습니다."
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "찾기(&I):"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "다음(&N)"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "이전(&P)"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "옵션(&I)"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "이 암호를 저장하시겠습니까?"
@@ -1507,6 +1670,24 @@ msgstr "이 암호를 저장하시겠습니까?"
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "이 %1의 암호를 저장하시겠습니까?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "저장(&S)"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "이 사이트에서는 안 함(&V)"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "지금 저장 안 함(&N)"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1527,108 +1708,6 @@ msgstr "치명적 해석 오류: 행 %2, 열 %3 안의 %1"
 #, kde-format
 msgid "XML parsing error"
 msgstr "XML 해석 오류"
-
-#~ msgid ""
-#~ "You have indicated that you wish to obtain or purchase a secure "
-#~ "certificate. This wizard is intended to guide you through the procedure. "
-#~ "You may cancel at any time, and this will abort the transaction."
-#~ msgstr ""
-#~ "인증서를 구입하거나 가져오기로 했습니다. 이 마법사는 전체 과정을 안내합니"
-#~ "다. 언제든지 이 단계를 취소할 수 있으며, 전체 트랜잭션이 중단됩니다."
-
-#~ msgid ""
-#~ "You must now provide a password for the certificate request. Please "
-#~ "choose a very secure password as this will be used to encrypt your "
-#~ "private key."
-#~ msgstr ""
-#~ "인증 요청의 암호를 입력해야 합니다. 이 암호로 개인 키를 암호화하기 때문에 "
-#~ "충분히 강력한 암호를 입력하십시오."
-
-#~ msgid "&Repeat password:"
-#~ msgstr "암호 반복(&R):"
-
-#~ msgid "&Choose password:"
-#~ msgstr "암호 선택(&C):"
-
-#~ msgid "Document Information"
-#~ msgstr "문서 정보"
-
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "일반"
-
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
-#~ msgid "Title:"
-#~ msgstr "제목:"
-
-#~ msgid "Last modified:"
-#~ msgstr "마지막 수정:"
-
-#~ msgid "Document encoding:"
-#~ msgstr "문서 인코딩:"
-
-#~ msgid "Rendering mode:"
-#~ msgstr "렌더링 모드:"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "HTTP 헤더"
-
-#~ msgid "Property"
-#~ msgstr "속성"
-
-#~ msgid "&Edit"
-#~ msgstr "편집(&E)"
-
-#~ msgid "&File"
-#~ msgstr "파일(&F)"
-
-#~ msgid "&View"
-#~ msgstr "보기(&V)"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "HTML 도구 모음"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "자바스크립트 오류"
-
-#~ msgid ""
-#~ "This dialog provides you with notification and details of scripting "
-#~ "errors that occur on web pages.  In many cases it is due to an error in "
-#~ "the web site as designed by its author.  In other cases it is the result "
-#~ "of a programming error in Konqueror.  If you suspect the former, please "
-#~ "contact the webmaster of the site in question.  Conversely if you suspect "
-#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
-#~ "org/.  A test case which illustrates the problem will be appreciated."
-#~ msgstr ""
-#~ "이 대화 상자는 웹 페이지에 있는 스크립트 오류에 대한 자세한 정보와 경고를 "
-#~ "표시합니다. 대부분의 경우 웹사이트 제작자의 설계 오류 때문에 발생하는 것입"
-#~ "니다. 그렇지 않다면 Konqueror의 프로그램 오류일 수 있습니다. 전자라고 생각"
-#~ "하면 사이트 관리자에게 질문을 보내십시오. 반대로 Konqueror의 내부 오류라"
-#~ "고 생각하면 https://bugs.kde.org/ 사이트에 버그를 알려 주십시오. 문제를 다"
-#~ "시 재현할 수 있는 예제도 같이 설명해서 보내 주십시오."
-
-#~ msgid "F&ind:"
-#~ msgstr "찾기(&I):"
-
-#~ msgid "&Next"
-#~ msgstr "다음(&N)"
-
-#~ msgid "&Previous"
-#~ msgstr "이전(&P)"
-
-#~ msgid "Opt&ions"
-#~ msgstr "옵션(&I)"
-
-#~ msgid "&Store"
-#~ msgstr "저장(&S)"
-
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "이 사이트에서는 안 함(&V)"
-
-#~ msgid "Do &not store this time"
-#~ msgstr "지금 저장 안 함(&N)"
 
 #~ msgid "Error"
 #~ msgstr "오류"

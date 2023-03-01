@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2019-11-11 20:29+0100\n"
 "Last-Translator: Matej Mrenica <matejm98mthw@gmail.com>\n"
 "Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
@@ -187,7 +187,8 @@ msgstr "Lokálne premenné"
 msgid "Reference"
 msgstr "Odkaz"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "Hodnota"
@@ -406,6 +407,39 @@ msgstr "Nesťahovať"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "Toto je index s možnosťou hľadania. Zadajte hľadané slová: "
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+"Naznačili ste že si želáte získať alebo kúpiť bezpečnostný certifikát. Tento "
+"sprievodca vás prevedie týmto procesom. Operáciu môžete kedykoľvek prerušiť."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+"Musíte zadať heslo pre žiadosť o certifikát. Vyberte si veľmi bezpečné "
+"heslo, pretože bude použité pre zašifrovanie vášho súkromného kľúča."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, kde-format
+msgid "&Repeat password:"
+msgstr "&Zopakovať heslo:"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, kde-format
+msgid "&Choose password:"
+msgstr "&Vybrať heslo:"
+
 #: html/ksslkeygen.cpp:82
 #, kde-format
 msgid "KDE Certificate Request"
@@ -475,6 +509,85 @@ msgstr "512  (Nízky stupeň)"
 #, kde-format
 msgid "No SSL support."
 msgstr "Žiadna podpora SSL."
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "Informácie o dokumente"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "Všeobecné"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "Názov:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "Posledná zmena:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "Kódovanie dokumentu:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "Režim vykresľovania:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "HTTP hlavičky"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "Vlastnosť"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "&Upraviť"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Súbor"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "&Zobraziť"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "Panel nástrojov HTML"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1321,6 +1434,31 @@ msgstr "Prístupové klávesy aktivované"
 msgid "C&lear"
 msgstr "Vyčis&tiť"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "Chyby JavaScriptu"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, kde-format
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"Tento dialóg zobrazuje upozornenia a detaily o chybách skriptov na webových "
+"stránkach. Často je to spôsobené chybou návrhára stránky. Inokedy sa jedná o "
+"programátorskú chybu v prehliadači Konqueror. Ak máte pocit, že sa jedná o "
+"prvú možnosť, kontaktujte webmastera danej stránky. Ak máte podozrenie, že "
+"sa jedná o chybu prehliadača Konqueror, vyplňte hlásenie o chybe na http://"
+"bugs.kde.org/. Privítame aj príklad, ktorý chybu jasne demonštruje."
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1515,7 +1653,32 @@ msgstr "Nenájdené"
 msgid "No more matches for this search direction."
 msgstr "Žiadne ďalšie zhody v tomto smere hľadania."
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "&Nájsť:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&Nasledujúci"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "&Predchádzajúci"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "&Možnosti"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "Chcete uložiť toto heslo?"
@@ -1524,6 +1687,24 @@ msgstr "Chcete uložiť toto heslo?"
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "Chcete uložiť toto heslo pre %1?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "&Uložiť"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "&Nikdy neukladať pre tento server"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "&Teraz neukladať"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1544,110 +1725,6 @@ msgstr "kritická chyba pri spracovaní: %1 na riadku %2, stĺpec %3"
 #, kde-format
 msgid "XML parsing error"
 msgstr "Chyba spracovania XML"
-
-#~ msgid ""
-#~ "You have indicated that you wish to obtain or purchase a secure "
-#~ "certificate. This wizard is intended to guide you through the procedure. "
-#~ "You may cancel at any time, and this will abort the transaction."
-#~ msgstr ""
-#~ "Naznačili ste že si želáte získať alebo kúpiť bezpečnostný certifikát. "
-#~ "Tento sprievodca vás prevedie týmto procesom. Operáciu môžete kedykoľvek "
-#~ "prerušiť."
-
-#~ msgid ""
-#~ "You must now provide a password for the certificate request. Please "
-#~ "choose a very secure password as this will be used to encrypt your "
-#~ "private key."
-#~ msgstr ""
-#~ "Musíte zadať heslo pre žiadosť o certifikát. Vyberte si veľmi bezpečné "
-#~ "heslo, pretože bude použité pre zašifrovanie vášho súkromného kľúča."
-
-#~ msgid "&Repeat password:"
-#~ msgstr "&Zopakovať heslo:"
-
-#~ msgid "&Choose password:"
-#~ msgstr "&Vybrať heslo:"
-
-#~ msgid "Document Information"
-#~ msgstr "Informácie o dokumente"
-
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "Všeobecné"
-
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
-#~ msgid "Title:"
-#~ msgstr "Názov:"
-
-#~ msgid "Last modified:"
-#~ msgstr "Posledná zmena:"
-
-#~ msgid "Document encoding:"
-#~ msgstr "Kódovanie dokumentu:"
-
-#~ msgid "Rendering mode:"
-#~ msgstr "Režim vykresľovania:"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "HTTP hlavičky"
-
-#~ msgid "Property"
-#~ msgstr "Vlastnosť"
-
-#~ msgid "&Edit"
-#~ msgstr "&Upraviť"
-
-#~ msgid "&File"
-#~ msgstr "&Súbor"
-
-#~ msgid "&View"
-#~ msgstr "&Zobraziť"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "Panel nástrojov HTML"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "Chyby JavaScriptu"
-
-#~ msgid ""
-#~ "This dialog provides you with notification and details of scripting "
-#~ "errors that occur on web pages.  In many cases it is due to an error in "
-#~ "the web site as designed by its author.  In other cases it is the result "
-#~ "of a programming error in Konqueror.  If you suspect the former, please "
-#~ "contact the webmaster of the site in question.  Conversely if you suspect "
-#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
-#~ "org/.  A test case which illustrates the problem will be appreciated."
-#~ msgstr ""
-#~ "Tento dialóg zobrazuje upozornenia a detaily o chybách skriptov na "
-#~ "webových stránkach. Často je to spôsobené chybou návrhára stránky. "
-#~ "Inokedy sa jedná o programátorskú chybu v prehliadači Konqueror. Ak máte "
-#~ "pocit, že sa jedná o prvú možnosť, kontaktujte webmastera danej stránky. "
-#~ "Ak máte podozrenie, že sa jedná o chybu prehliadača Konqueror, vyplňte "
-#~ "hlásenie o chybe na http://bugs.kde.org/. Privítame aj príklad, ktorý "
-#~ "chybu jasne demonštruje."
-
-#~ msgid "F&ind:"
-#~ msgstr "&Nájsť:"
-
-#~ msgid "&Next"
-#~ msgstr "&Nasledujúci"
-
-#~ msgid "&Previous"
-#~ msgstr "&Predchádzajúci"
-
-#~ msgid "Opt&ions"
-#~ msgstr "&Možnosti"
-
-#~ msgid "&Store"
-#~ msgstr "&Uložiť"
-
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "&Nikdy neukladať pre tento server"
-
-#~ msgid "Do &not store this time"
-#~ msgstr "&Teraz neukladať"
 
 #~ msgid "Error"
 #~ msgstr "Chyba"

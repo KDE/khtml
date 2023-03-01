@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2019-10-31 12:42+0200\n"
 "Last-Translator: Marek Laane <qiilaq69@gmail.com>\n"
 "Language-Team: Estonian <kde-et@lists.linux.ee>\n"
@@ -180,7 +180,8 @@ msgstr "Kohalikud muutujad"
 msgid "Reference"
 msgstr "Viide"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "Väärtus"
@@ -398,6 +399,40 @@ msgstr "Ära laadi alla"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "See on otsimisvõimalusega indeks. Sisesta otsingusõnad: "
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+"Sa ilmutasid soovi hankida või osta turvasertifikaat. Käesolev nõustaja "
+"aitab sul seda soovi täita. Selle käigus võid igal ajal loobuda ja "
+"katkestada sertifikaadi hankimise."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+"Sertifikaadi nõudele tuleb nüüd anda parool. Palun vali nii turvaline parool "
+"kui võimalik, sest seda kasutatakse sinu salajase võtme krüptimiseks."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, kde-format
+msgid "&Repeat password:"
+msgstr "Par&ool teist korda:"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, kde-format
+msgid "&Choose password:"
+msgstr "&Parool:"
+
 #: html/ksslkeygen.cpp:82
 #, kde-format
 msgid "KDE Certificate Request"
@@ -467,6 +502,85 @@ msgstr "512 (nõrk)"
 #, kde-format
 msgid "No SSL support."
 msgstr "SSL toetus puudub."
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "Dokumendi info"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "Üldine"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "Pealkiri:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "Viimati muudetud:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "Dokumendi kodeering:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "Renderdamise viis:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "HTTP päised"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "Omadus"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "&Redigeerimine"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Fail"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "&Vaade"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "HTML-riba"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1316,6 +1430,31 @@ msgstr "Kiirklahvid aktiveeritud"
 msgid "C&lear"
 msgstr "Pu&hasta"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "JavaScripti vead"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, kde-format
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"See dialoog näitab veebilehekülgedel ettetulevate skriptivigade üksikasju. "
+"Enamasti on tegemist juba veebilehekülje autori tehtud vigadega. Mõnikord "
+"võib siiski olla tegu ka Konquerori programmeerimisveaga. Kui arvad, et "
+"tegemist on esimesega, võid ühendust võtta antud veebilehekülje autoriga. "
+"Kui aga arvad, et süüdi on Konqueror, anna palun veast teada aadressil "
+"https://bugs.kde.org. Väga kasulik oleks kaasa panna ka viga selgitav näide."
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1510,7 +1649,32 @@ msgstr "Rohkem ei leitud"
 msgid "No more matches for this search direction."
 msgstr "Otsingusuunas pole rohkem sobivusi."
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "Ots&ing:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&Järgmine"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "&Eelmine"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "Val&ikud"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "Kas salvestada see parool?"
@@ -1519,6 +1683,24 @@ msgstr "Kas salvestada see parool?"
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "Kas salvestada see %1 parool?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "&Salvesta"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "Mitte kunagi selle sai&di puhul"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "See&kord ei salvestata"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1539,111 +1721,6 @@ msgstr "fataalne viga parsimisel: %1 reas %2, veerg %3"
 #, kde-format
 msgid "XML parsing error"
 msgstr "Viga XML-i parsimisel"
-
-#~ msgid ""
-#~ "You have indicated that you wish to obtain or purchase a secure "
-#~ "certificate. This wizard is intended to guide you through the procedure. "
-#~ "You may cancel at any time, and this will abort the transaction."
-#~ msgstr ""
-#~ "Sa ilmutasid soovi hankida või osta turvasertifikaat. Käesolev nõustaja "
-#~ "aitab sul seda soovi täita. Selle käigus võid igal ajal loobuda ja "
-#~ "katkestada sertifikaadi hankimise."
-
-#~ msgid ""
-#~ "You must now provide a password for the certificate request. Please "
-#~ "choose a very secure password as this will be used to encrypt your "
-#~ "private key."
-#~ msgstr ""
-#~ "Sertifikaadi nõudele tuleb nüüd anda parool. Palun vali nii turvaline "
-#~ "parool kui võimalik, sest seda kasutatakse sinu salajase võtme "
-#~ "krüptimiseks."
-
-#~ msgid "&Repeat password:"
-#~ msgstr "Par&ool teist korda:"
-
-#~ msgid "&Choose password:"
-#~ msgstr "&Parool:"
-
-#~ msgid "Document Information"
-#~ msgstr "Dokumendi info"
-
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "Üldine"
-
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
-#~ msgid "Title:"
-#~ msgstr "Pealkiri:"
-
-#~ msgid "Last modified:"
-#~ msgstr "Viimati muudetud:"
-
-#~ msgid "Document encoding:"
-#~ msgstr "Dokumendi kodeering:"
-
-#~ msgid "Rendering mode:"
-#~ msgstr "Renderdamise viis:"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "HTTP päised"
-
-#~ msgid "Property"
-#~ msgstr "Omadus"
-
-#~ msgid "&Edit"
-#~ msgstr "&Redigeerimine"
-
-#~ msgid "&File"
-#~ msgstr "&Fail"
-
-#~ msgid "&View"
-#~ msgstr "&Vaade"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "HTML-riba"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "JavaScripti vead"
-
-#~ msgid ""
-#~ "This dialog provides you with notification and details of scripting "
-#~ "errors that occur on web pages.  In many cases it is due to an error in "
-#~ "the web site as designed by its author.  In other cases it is the result "
-#~ "of a programming error in Konqueror.  If you suspect the former, please "
-#~ "contact the webmaster of the site in question.  Conversely if you suspect "
-#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
-#~ "org/.  A test case which illustrates the problem will be appreciated."
-#~ msgstr ""
-#~ "See dialoog näitab veebilehekülgedel ettetulevate skriptivigade "
-#~ "üksikasju. Enamasti on tegemist juba veebilehekülje autori tehtud "
-#~ "vigadega. Mõnikord võib siiski olla tegu ka Konquerori "
-#~ "programmeerimisveaga. Kui arvad, et tegemist on esimesega, võid ühendust "
-#~ "võtta antud veebilehekülje autoriga. Kui aga arvad, et süüdi on "
-#~ "Konqueror, anna palun veast teada aadressil https://bugs.kde.org. Väga "
-#~ "kasulik oleks kaasa panna ka viga selgitav näide."
-
-#~ msgid "F&ind:"
-#~ msgstr "Ots&ing:"
-
-#~ msgid "&Next"
-#~ msgstr "&Järgmine"
-
-#~ msgid "&Previous"
-#~ msgstr "&Eelmine"
-
-#~ msgid "Opt&ions"
-#~ msgstr "Val&ikud"
-
-#~ msgid "&Store"
-#~ msgstr "&Salvesta"
-
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "Mitte kunagi selle sai&di puhul"
-
-#~ msgid "Do &not store this time"
-#~ msgstr "See&kord ei salvestata"
 
 #~ msgid "Error"
 #~ msgstr "Viga"

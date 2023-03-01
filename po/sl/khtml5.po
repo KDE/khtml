@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2020-02-25 17:41+0100\n"
 "Last-Translator: \n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -192,7 +192,8 @@ msgstr "Krajevne spremenljivke"
 msgid "Reference"
 msgstr "Referenca"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "Vrednost"
@@ -412,6 +413,40 @@ msgstr "Ne prejmi"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "To je stvarno kazalo z iskanjem. Vnesite iskane besede: "
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+"Nakazali ste, da želite pridobiti ali kupiti varno potrdilo. Ta čarovnik vas "
+"bovodil skozi postopek. Vsak čas ga lahko prekinete, kar bo prekinilo "
+"transakcijo."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+"Sedaj morate navesti geslo za zahtevo po potrdilu. Izberite zelo varno "
+"geslo, ker se bo to uporabilo za šifriranje vašega zasebnega ključa."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, kde-format
+msgid "&Repeat password:"
+msgstr "&Ponovite geslo:"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, kde-format
+msgid "&Choose password:"
+msgstr "&Izberite geslo:"
+
 #: html/ksslkeygen.cpp:82
 #, kde-format
 msgid "KDE Certificate Request"
@@ -481,6 +516,85 @@ msgstr "512  (nizka stopnja)"
 #, kde-format
 msgid "No SSL support."
 msgstr "Ni podpore za SSL."
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "Podatki o dokumentu"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "Splošno"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "Naslov:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "Nazadnje spremenjeno:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "Kodiranje dokumenta:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "Način izrisovanja:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "Glave HTTP"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "Lastnost"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "&Uredi"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Datoteka"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "Po&gled"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "Orodna vrstica HTML"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1340,6 +1454,32 @@ msgstr "Dostopne tipke so omogočene"
 msgid "C&lear"
 msgstr "&Počisti"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "Napake JavaScripta"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, kde-format
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"To pogovorno okno vam kaže obvestila in podrobnosti o napakah v skriptih, ki "
+"se pojavljajo na spletnih straneh. V precej primerih gre za napake na "
+"spletni strani, ki jih je ustvaril avtor. V drugih primerih je to rezultat "
+"programske napake v Konquerorju. Če sumite na prvo možnost, obvestite "
+"upravnika spletne strani. Če pa sumite na napako v Konquerorju, izpolnite "
+"poročilo o hrošču na http://bugs.kde.org/. Dobro bi bilo, da podate poleg "
+"poročila še preizkusni primer."
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1534,7 +1674,32 @@ msgstr "Ni zadetkov"
 msgid "No more matches for this search direction."
 msgstr "V tej smeri iskanja ni več zadetkov."
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "&Najdi:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&Naslednji"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "&Prejšnji"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "&Možnosti"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "Ali želite shraniti to geslo?"
@@ -1543,6 +1708,24 @@ msgstr "Ali želite shraniti to geslo?"
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "Ali želite shraniti to geslo za %1?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "&Shrani"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "Ni&koli ne shrani za to stran"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "Tokrat &ne shrani"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1563,110 +1746,6 @@ msgstr "usodna napaka med razčlenjevanjem: %1 v vrstici %2, stolpec %3"
 #, kde-format
 msgid "XML parsing error"
 msgstr "Napaka med razčlenjevanjem XML"
-
-#~ msgid ""
-#~ "You have indicated that you wish to obtain or purchase a secure "
-#~ "certificate. This wizard is intended to guide you through the procedure. "
-#~ "You may cancel at any time, and this will abort the transaction."
-#~ msgstr ""
-#~ "Nakazali ste, da želite pridobiti ali kupiti varno potrdilo. Ta čarovnik "
-#~ "vas bovodil skozi postopek. Vsak čas ga lahko prekinete, kar bo prekinilo "
-#~ "transakcijo."
-
-#~ msgid ""
-#~ "You must now provide a password for the certificate request. Please "
-#~ "choose a very secure password as this will be used to encrypt your "
-#~ "private key."
-#~ msgstr ""
-#~ "Sedaj morate navesti geslo za zahtevo po potrdilu. Izberite zelo varno "
-#~ "geslo, ker se bo to uporabilo za šifriranje vašega zasebnega ključa."
-
-#~ msgid "&Repeat password:"
-#~ msgstr "&Ponovite geslo:"
-
-#~ msgid "&Choose password:"
-#~ msgstr "&Izberite geslo:"
-
-#~ msgid "Document Information"
-#~ msgstr "Podatki o dokumentu"
-
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "Splošno"
-
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
-#~ msgid "Title:"
-#~ msgstr "Naslov:"
-
-#~ msgid "Last modified:"
-#~ msgstr "Nazadnje spremenjeno:"
-
-#~ msgid "Document encoding:"
-#~ msgstr "Kodiranje dokumenta:"
-
-#~ msgid "Rendering mode:"
-#~ msgstr "Način izrisovanja:"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "Glave HTTP"
-
-#~ msgid "Property"
-#~ msgstr "Lastnost"
-
-#~ msgid "&Edit"
-#~ msgstr "&Uredi"
-
-#~ msgid "&File"
-#~ msgstr "&Datoteka"
-
-#~ msgid "&View"
-#~ msgstr "Po&gled"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "Orodna vrstica HTML"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "Napake JavaScripta"
-
-#~ msgid ""
-#~ "This dialog provides you with notification and details of scripting "
-#~ "errors that occur on web pages.  In many cases it is due to an error in "
-#~ "the web site as designed by its author.  In other cases it is the result "
-#~ "of a programming error in Konqueror.  If you suspect the former, please "
-#~ "contact the webmaster of the site in question.  Conversely if you suspect "
-#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
-#~ "org/.  A test case which illustrates the problem will be appreciated."
-#~ msgstr ""
-#~ "To pogovorno okno vam kaže obvestila in podrobnosti o napakah v skriptih, "
-#~ "ki se pojavljajo na spletnih straneh. V precej primerih gre za napake na "
-#~ "spletni strani, ki jih je ustvaril avtor. V drugih primerih je to "
-#~ "rezultat programske napake v Konquerorju. Če sumite na prvo možnost, "
-#~ "obvestite upravnika spletne strani. Če pa sumite na napako v Konquerorju, "
-#~ "izpolnite poročilo o hrošču na http://bugs.kde.org/. Dobro bi bilo, da "
-#~ "podate poleg poročila še preizkusni primer."
-
-#~ msgid "F&ind:"
-#~ msgstr "&Najdi:"
-
-#~ msgid "&Next"
-#~ msgstr "&Naslednji"
-
-#~ msgid "&Previous"
-#~ msgstr "&Prejšnji"
-
-#~ msgid "Opt&ions"
-#~ msgstr "&Možnosti"
-
-#~ msgid "&Store"
-#~ msgstr "&Shrani"
-
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "Ni&koli ne shrani za to stran"
-
-#~ msgid "Do &not store this time"
-#~ msgstr "Tokrat &ne shrani"
 
 #~ msgid "Error"
 #~ msgstr "Napaka"

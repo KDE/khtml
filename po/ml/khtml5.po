@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2019-12-12 20:57+0000\n"
 "Last-Translator: Vivek KJ Pazhedath <vivekkj2004@gmail.com>\n"
 "Language-Team: SMC <smc.org.in>\n"
@@ -174,7 +174,8 @@ msgstr "ലോക്കല്‍ വേരിയബിളുകള്‍"
 msgid "Reference"
 msgstr "സൂചിക"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "വില"
@@ -376,6 +377,35 @@ msgstr "ഡൌണ്‍ലോട് ചെയ്യേണ്ട"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr ""
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, fuzzy, kde-format
+msgid "&Repeat password:"
+msgstr "അടയാളവാക്ക് സൂക്ഷിയ്ക്കുക &k"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, fuzzy, kde-format
+msgid "&Choose password:"
+msgstr "അടയാളവാക്ക് സൂക്ഷിയ്ക്കുക &k"
+
 #: html/ksslkeygen.cpp:82
 #, fuzzy, kde-format
 msgid "KDE Certificate Request"
@@ -445,6 +475,85 @@ msgstr ""
 #, fuzzy, kde-format
 msgid "No SSL support."
 msgstr "സോക്സ് പിന്തുണ പ്രവര്‍ത്തികമാക്കുക"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "രചനാ വിവരം"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "പൊതുവായുള്ള"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "യുആര്‍എല്‍:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "തലക്കെട്ട്:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "അവസാനമായി മാറ്റംവരുത്തിയത്:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "രചനയുടെ എന്‍കോഡിങ്ങ്:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "റെണ്ടെറിങ് മോഡ്:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "എച്ച്ടിടിപി ഹെഡറുകള്‍"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "ഗുണം"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "തിരുത്തുക (&E)"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "ഫയല്‍ (&F)"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "കാഴ്ച (&V)"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "HTML പണിയായുധനിര"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1234,6 +1343,31 @@ msgstr "സമീപന കീകളെ സജീവമാക്കി"
 msgid "C&lear"
 msgstr "വൃത്തിയാക്കുക &l"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "ജാവാസ്ക്രിപ്റ്റ് തെറ്റുകള്‍"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, fuzzy, kde-format
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"ഈ ചെറുജാലകം വെബ് താളുകളില്‍ സംഭവിയ്ക്കുന്ന സ്ക്രിപ്റ്റിങ്ങിലെ തെറ്റുകളെക്കുറിച്ചുള്ള വിവരങ്ങളും "
+"അറിയിപ്പുകളും നല്‍കുന്നു. കൂടുതല്‍ സന്ദര്‍ഭങ്ങളിലും ഇതു് വെബ് സൈറ്റിന്റെ രചയിതാവു് രൂപകല്‍പന ചെയ്തതിലെ "
+"പിഴവാണു്. മറ്റുള്ള സന്ദര്‍ഭങ്ങളില്‍ ഇതു് കോണ്‍ക്വററിന്റെ പ്രോഗ്രാമിങ്ങിലെ തെറ്റാണു്. ആദ്യത്തേതാണു് "
+"കാരണമെന്നു് നിങ്ങള്‍ സംശയിയ്ക്കുന്നെങ്കില്‍ ആ സൈറ്റിന്റെ വെബ്മാസ്റ്ററുമായി ബന്ധപ്പെടുക. അല്ലാ, കോണ്‍"
+"ക്വററിലാണു് തെറ്റെന്നു് നിങ്ങള്‍ സംശയിയ്ക്കുന്നെങ്കില്‍ http://bugs.kde.org/ പോയി പിഴവാണെന്നു് "
+"പറയുക. ഈ പ്രശ്നം കാണിയ്ക്കാനുള്ള ഒരു പരീക്ഷണം നല്‍കിയാല്‍ നന്നായിരിയ്ക്കും."
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1428,7 +1562,32 @@ msgstr "കണ്ടില്ല"
 msgid "No more matches for this search direction."
 msgstr "ഈ ദിശയില്‍ തെരഞ്ഞാല്‍ ഇനി പോരുത്തമൊന്നുമില്ല."
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "കണ്ടു&പിടിയ്ക്കുക:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&അടുത്തതു്"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "&മുമ്പുള്ള"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "ഐച്ഛി&കങ്ങള്‍"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "നിങ്ങള്‍ക്കു് ഈ അടയാളവാക്കു് വെട്ടിമാറ്റണമോ?"
@@ -1437,6 +1596,24 @@ msgstr "നിങ്ങള്‍ക്കു് ഈ അടയാളവാക്�
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "%1 നുള്ള ഈ അടയാളവാക്കു് നിങ്ങള്‍ക്കു് സൂക്ഷിയ്ക്കണമോ?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "&സൂക്ഷിക്കുക"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "ഈ സൈറ്റിനു് ഒരിക്കലും &വേണ്ട"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "ഇത്തവണ സൂക്ഷിയ്ക്ക&ണ്ട"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1457,96 +1634,6 @@ msgstr ""
 #, kde-format
 msgid "XML parsing error"
 msgstr "%s: checksum-ല്‍ പിഴവ്"
-
-#, fuzzy
-#~ msgid "&Repeat password:"
-#~ msgstr "അടയാളവാക്ക് സൂക്ഷിയ്ക്കുക &k"
-
-#, fuzzy
-#~ msgid "&Choose password:"
-#~ msgstr "അടയാളവാക്ക് സൂക്ഷിയ്ക്കുക &k"
-
-#~ msgid "Document Information"
-#~ msgstr "രചനാ വിവരം"
-
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "പൊതുവായുള്ള"
-
-#~ msgid "URL:"
-#~ msgstr "യുആര്‍എല്‍:"
-
-#~ msgid "Title:"
-#~ msgstr "തലക്കെട്ട്:"
-
-#~ msgid "Last modified:"
-#~ msgstr "അവസാനമായി മാറ്റംവരുത്തിയത്:"
-
-#~ msgid "Document encoding:"
-#~ msgstr "രചനയുടെ എന്‍കോഡിങ്ങ്:"
-
-#~ msgid "Rendering mode:"
-#~ msgstr "റെണ്ടെറിങ് മോഡ്:"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "എച്ച്ടിടിപി ഹെഡറുകള്‍"
-
-#~ msgid "Property"
-#~ msgstr "ഗുണം"
-
-#~ msgid "&Edit"
-#~ msgstr "തിരുത്തുക (&E)"
-
-#~ msgid "&File"
-#~ msgstr "ഫയല്‍ (&F)"
-
-#~ msgid "&View"
-#~ msgstr "കാഴ്ച (&V)"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "HTML പണിയായുധനിര"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "ജാവാസ്ക്രിപ്റ്റ് തെറ്റുകള്‍"
-
-#, fuzzy
-#~ msgid ""
-#~ "This dialog provides you with notification and details of scripting "
-#~ "errors that occur on web pages.  In many cases it is due to an error in "
-#~ "the web site as designed by its author.  In other cases it is the result "
-#~ "of a programming error in Konqueror.  If you suspect the former, please "
-#~ "contact the webmaster of the site in question.  Conversely if you suspect "
-#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
-#~ "org/.  A test case which illustrates the problem will be appreciated."
-#~ msgstr ""
-#~ "ഈ ചെറുജാലകം വെബ് താളുകളില്‍ സംഭവിയ്ക്കുന്ന സ്ക്രിപ്റ്റിങ്ങിലെ തെറ്റുകളെക്കുറിച്ചുള്ള വിവരങ്ങളും "
-#~ "അറിയിപ്പുകളും നല്‍കുന്നു. കൂടുതല്‍ സന്ദര്‍ഭങ്ങളിലും ഇതു് വെബ് സൈറ്റിന്റെ രചയിതാവു് രൂപകല്‍പന "
-#~ "ചെയ്തതിലെ പിഴവാണു്. മറ്റുള്ള സന്ദര്‍ഭങ്ങളില്‍ ഇതു് കോണ്‍ക്വററിന്റെ പ്രോഗ്രാമിങ്ങിലെ തെറ്റാണു്. "
-#~ "ആദ്യത്തേതാണു് കാരണമെന്നു് നിങ്ങള്‍ സംശയിയ്ക്കുന്നെങ്കില്‍ ആ സൈറ്റിന്റെ വെബ്മാസ്റ്ററുമായി "
-#~ "ബന്ധപ്പെടുക. അല്ലാ, കോണ്‍ക്വററിലാണു് തെറ്റെന്നു് നിങ്ങള്‍ സംശയിയ്ക്കുന്നെങ്കില്‍ http://bugs.kde."
-#~ "org/ പോയി പിഴവാണെന്നു് പറയുക. ഈ പ്രശ്നം കാണിയ്ക്കാനുള്ള ഒരു പരീക്ഷണം നല്‍കിയാല്‍ "
-#~ "നന്നായിരിയ്ക്കും."
-
-#~ msgid "F&ind:"
-#~ msgstr "കണ്ടു&പിടിയ്ക്കുക:"
-
-#~ msgid "&Next"
-#~ msgstr "&അടുത്തതു്"
-
-#~ msgid "&Previous"
-#~ msgstr "&മുമ്പുള്ള"
-
-#~ msgid "Opt&ions"
-#~ msgstr "ഐച്ഛി&കങ്ങള്‍"
-
-#~ msgid "&Store"
-#~ msgstr "&സൂക്ഷിക്കുക"
-
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "ഈ സൈറ്റിനു് ഒരിക്കലും &വേണ്ട"
-
-#~ msgid "Do &not store this time"
-#~ msgstr "ഇത്തവണ സൂക്ഷിയ്ക്ക&ണ്ട"
 
 #~ msgid "Error"
 #~ msgstr "തെറ്റ്"

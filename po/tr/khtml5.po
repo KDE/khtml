@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2023-02-05 11:22+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -196,7 +196,8 @@ msgstr "Yerel Değişkenler"
 msgid "Reference"
 msgstr "Referans"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "Değer"
@@ -416,6 +417,40 @@ msgstr "İndirme"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "Bu aranabilir bir dizindir. Arama anahtar sözcüklerini girin:"
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+"Güvenli bir sertifika edinmek veya satın almak dileğinizi belirttiniz. Bu "
+"sihirbaz, tüm süreç boyunca size eşlik edecektir. Dilediğiniz herhangi bir "
+"aşamada iptal ederek aktarımı kesebileceksiniz."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+"Sertifika talebi için bir parola girmeniz gerekiyor. Lütfen gizli "
+"anahtarınızı şifrelemek için çok güvenli bir parola seçin."
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, kde-format
+msgid "&Repeat password:"
+msgstr "Parolayı Yi&nele:"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, kde-format
+msgid "&Choose password:"
+msgstr "Parolayı &seç:"
+
 #: html/ksslkeygen.cpp:82
 #, kde-format
 msgid "KDE Certificate Request"
@@ -485,6 +520,85 @@ msgstr "512  (Düşük Düzey)"
 #, kde-format
 msgid "No SSL support."
 msgstr "SSL desteği yok."
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "Belge Bilgileri"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "Genel"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "Başlık:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "Son değiştirilme zamanı:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "Belge kodlaması:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "Sunum kipi:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "HTTP Başlıkları"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "Özellik"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "Dü&zen"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Dosya"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "&Görünüm"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "HTML Araç Çubuğu"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1336,6 +1450,35 @@ msgstr "Erişim Tuşları etkinleştirildi"
 msgid "C&lear"
 msgstr "&Temizle"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "JavaScript Hataları"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, kde-format
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"Bilginize: Web sayfalarında görülen betik hataları, çoğu kez web sayfası "
+"tasarımcısının kullandığı çeşitli dillerdeki betiklerin tasarımına aittir. "
+"Onun dışındaki hatalar Konqueror içindeki programlama hatalarından "
+"kaynaklanır. Eğer bu ikinci olasılıktan şüpheleniyorsanız lütfen bir hata "
+"raporu formu aracılığıyla https://bugs.kde.org/ adresini ziyaret etmekten "
+"çekinmeyin. Hata başvurusundan önce verilen adresteki benzer hataları "
+"incelemek ve eğer aynı sorunun daha evvel bildirilmediğine karar "
+"verdiyseniz; Sorun'un nasıl oluştuğunun ve tekrarlanabilirliğinin tarif "
+"edilmesi, ilaveten sisteminize ait temel yazılım ve donanım bilgilerinin "
+"iletilmesi, memnuniyetle karşılanacaktır."
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1530,7 +1673,32 @@ msgstr "Bulunamadı"
 msgid "No more matches for this search direction."
 msgstr "Bu arama yönü için başka eşleşme yok."
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "&Bul:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&Sonraki"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "&Önceki"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "&Seçenekler"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "Bu parolayı kaydetmek istiyor musunuz?"
@@ -1539,6 +1707,24 @@ msgstr "Bu parolayı kaydetmek istiyor musunuz?"
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "Bu parolayı %1 için kaydetmek istiyor musunuz?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "&Kaydet"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "&Bu site için asla kaydetme"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "Bu kez kaydet&me"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1559,110 +1745,3 @@ msgstr "onulmaz ayrıştırma hatası: %2. satır %3. sütunda %1"
 #, kde-format
 msgid "XML parsing error"
 msgstr "XML ayrıştırma hatası"
-
-#~ msgid ""
-#~ "You have indicated that you wish to obtain or purchase a secure "
-#~ "certificate. This wizard is intended to guide you through the procedure. "
-#~ "You may cancel at any time, and this will abort the transaction."
-#~ msgstr ""
-#~ "Güvenli bir sertifika edinmek veya satın almak dileğinizi belirttiniz. Bu "
-#~ "sihirbaz, tüm süreç boyunca size eşlik edecektir. Dilediğiniz herhangi "
-#~ "bir aşamada iptal ederek aktarımı kesebileceksiniz."
-
-#~ msgid ""
-#~ "You must now provide a password for the certificate request. Please "
-#~ "choose a very secure password as this will be used to encrypt your "
-#~ "private key."
-#~ msgstr ""
-#~ "Sertifika talebi için bir parola girmeniz gerekiyor. Lütfen gizli "
-#~ "anahtarınızı şifrelemek için çok güvenli bir parola seçin."
-
-#~ msgid "&Repeat password:"
-#~ msgstr "Parolayı Yi&nele:"
-
-#~ msgid "&Choose password:"
-#~ msgstr "Parolayı &seç:"
-
-#~ msgid "Document Information"
-#~ msgstr "Belge Bilgileri"
-
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "Genel"
-
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
-#~ msgid "Title:"
-#~ msgstr "Başlık:"
-
-#~ msgid "Last modified:"
-#~ msgstr "Son değiştirilme zamanı:"
-
-#~ msgid "Document encoding:"
-#~ msgstr "Belge kodlaması:"
-
-#~ msgid "Rendering mode:"
-#~ msgstr "Sunum kipi:"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "HTTP Başlıkları"
-
-#~ msgid "Property"
-#~ msgstr "Özellik"
-
-#~ msgid "&Edit"
-#~ msgstr "Dü&zen"
-
-#~ msgid "&File"
-#~ msgstr "&Dosya"
-
-#~ msgid "&View"
-#~ msgstr "&Görünüm"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "HTML Araç Çubuğu"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "JavaScript Hataları"
-
-#~ msgid ""
-#~ "This dialog provides you with notification and details of scripting "
-#~ "errors that occur on web pages.  In many cases it is due to an error in "
-#~ "the web site as designed by its author.  In other cases it is the result "
-#~ "of a programming error in Konqueror.  If you suspect the former, please "
-#~ "contact the webmaster of the site in question.  Conversely if you suspect "
-#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
-#~ "org/.  A test case which illustrates the problem will be appreciated."
-#~ msgstr ""
-#~ "Bilginize: Web sayfalarında görülen betik hataları, çoğu kez web sayfası "
-#~ "tasarımcısının kullandığı çeşitli dillerdeki betiklerin tasarımına "
-#~ "aittir. Onun dışındaki hatalar Konqueror içindeki programlama "
-#~ "hatalarından kaynaklanır. Eğer bu ikinci olasılıktan şüpheleniyorsanız "
-#~ "lütfen bir hata raporu formu aracılığıyla https://bugs.kde.org/ adresini "
-#~ "ziyaret etmekten çekinmeyin. Hata başvurusundan önce verilen adresteki "
-#~ "benzer hataları incelemek ve eğer aynı sorunun daha evvel "
-#~ "bildirilmediğine karar verdiyseniz; Sorun'un nasıl oluştuğunun ve "
-#~ "tekrarlanabilirliğinin tarif edilmesi, ilaveten sisteminize ait temel "
-#~ "yazılım ve donanım bilgilerinin iletilmesi, memnuniyetle karşılanacaktır."
-
-#~ msgid "F&ind:"
-#~ msgstr "&Bul:"
-
-#~ msgid "&Next"
-#~ msgstr "&Sonraki"
-
-#~ msgid "&Previous"
-#~ msgstr "&Önceki"
-
-#~ msgid "Opt&ions"
-#~ msgstr "&Seçenekler"
-
-#~ msgid "&Store"
-#~ msgstr "&Kaydet"
-
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "&Bu site için asla kaydetme"
-
-#~ msgid "Do &not store this time"
-#~ msgstr "Bu kez kaydet&me"

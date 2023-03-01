@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2013-11-08 01:24+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -185,7 +185,8 @@ msgstr "Жергілікті айнымалылар"
 msgid "Reference"
 msgstr "Сілтеме"
 
-#: ecma/debugger/localvariabledock.cpp:52
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
 #, kde-format
 msgid "Value"
 msgstr "Мәні"
@@ -401,6 +402,37 @@ msgstr "Керегі жоқ"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "Бұл іздеу индексі. Түйін сөздерді келтіріңіз: "
 
+#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
+#: html/keygenwizard.ui:35
+#, kde-format
+msgid ""
+"You have indicated that you wish to obtain or purchase a secure certificate. "
+"This wizard is intended to guide you through the procedure. You may cancel "
+"at any time, and this will abort the transaction."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#: html/keygenwizard2.ui:35
+#, kde-format
+msgid ""
+"You must now provide a password for the certificate request. Please choose a "
+"very secure password as this will be used to encrypt your private key."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
+#: html/keygenwizard2.ui:48
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Repeat password:"
+msgstr "Парольді &жаттау"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
+#: html/keygenwizard2.ui:58
+#, fuzzy, kde-format
+#| msgid "&Keep password"
+msgid "&Choose password:"
+msgstr "Парольді &жаттау"
+
 #: html/ksslkeygen.cpp:82
 #, fuzzy, kde-format
 #| msgid "Details of the Request:"
@@ -477,6 +509,85 @@ msgstr ""
 #| msgid "Enable SOCKS support"
 msgid "No SSL support."
 msgstr "SOCKS қолдауы болсын"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
+#: htmlpageinfo.ui:22
+#, kde-format
+msgid "Document Information"
+msgstr "Құжат туралы мәлімет"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: htmlpageinfo.ui:34
+#, kde-format
+msgctxt "@title:group Document information"
+msgid "General"
+msgstr "Жалпы"
+
+#. i18n: ectx: property (text), widget (QLabel, urlLabel)
+#: htmlpageinfo.ui:60
+#, kde-format
+msgid "URL:"
+msgstr "URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, titleLabel)
+#: htmlpageinfo.ui:112
+#, kde-format
+msgid "Title:"
+msgstr "Атауы:"
+
+#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
+#: htmlpageinfo.ui:128
+#, kde-format
+msgid "Last modified:"
+msgstr "Соңғы өзгертілісі:"
+
+#. i18n: ectx: property (text), widget (QLabel, _eLabel)
+#: htmlpageinfo.ui:144
+#, kde-format
+msgid "Document encoding:"
+msgstr "Құжат кодтамасы:"
+
+#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
+#: htmlpageinfo.ui:167
+#, kde-format
+msgid "Rendering mode:"
+msgstr "Кескіндеу режімі:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: htmlpageinfo.ui:186
+#, kde-format
+msgid "HTTP Headers"
+msgstr "HTTP айдарлары"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
+#: htmlpageinfo.ui:214
+#, kde-format
+msgid "Property"
+msgstr "Қасиеті"
+
+#. i18n: ectx: Menu (edit)
+#: khtml.rc:4 khtml_browser.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "&Өңдеу"
+
+#. i18n: ectx: Menu (file)
+#: khtml_browser.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Файл"
+
+#. i18n: ectx: Menu (view)
+#: khtml_browser.rc:18
+#, kde-format
+msgid "&View"
+msgstr "&Көрініс"
+
+#. i18n: ectx: ToolBar (htmlToolBar)
+#: khtml_browser.rc:34
+#, kde-format
+msgid "HTML Toolbar"
+msgstr "HTML құралдары"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1323,6 +1434,38 @@ msgstr "Қатынау пернелері белсендірілген"
 msgid "C&lear"
 msgstr "&Тазалау"
 
+#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:15
+#, kde-format
+msgid "JavaScript Errors"
+msgstr "JavaScript қателері"
+
+#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
+#: kjserrordlgbase.ui:18
+#, fuzzy, kde-format
+#| msgid ""
+#| "This dialog provides you with notification and details of scripting "
+#| "errors that occur on web pages.  In many cases it is due to an error in "
+#| "the web site as designed by its author.  In other cases it is the result "
+#| "of a programming error in Konqueror.  If you suspect the former, please "
+#| "contact the webmaster of the site in question.  Conversely if you suspect "
+#| "an error in Konqueror, please file a bug report at http://bugs.kde.org/.  "
+#| "A test case which illustrates the problem will be appreciated."
+msgid ""
+"This dialog provides you with notification and details of scripting errors "
+"that occur on web pages.  In many cases it is due to an error in the web "
+"site as designed by its author.  In other cases it is the result of a "
+"programming error in Konqueror.  If you suspect the former, please contact "
+"the webmaster of the site in question.  Conversely if you suspect an error "
+"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
+"case which illustrates the problem will be appreciated."
+msgstr ""
+"Бұл диалогта веб-парақшалардағы скрипттердің қателері көрсетілген.  Көбінде "
+"бұл веб-парақшалардағы қателер. Кейбірде Konqueror бағдарламасының қатесі. "
+"Біріншісі болса - парақшаның авторларына хабарлаңыз. Егер де бұл Konqueror "
+"бағдарламасының қатесі десеңіз - http://bugs.kde.org/ сайтына хабарлаңыз. "
+"Хабарда қатені туғызған жағдайдың мысалын келтірген жөн."
+
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1518,7 +1661,32 @@ msgstr "Табылмады"
 msgid "No more matches for this search direction."
 msgstr "Бұл іздеу бағытында сәйкестіктер енді жоқ."
 
-#: ui/passwordbar/storepassbar.cpp:59
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/findbar/khtmlfindbar_base.ui:43
+#, kde-format
+msgid "F&ind:"
+msgstr "І&дейтіні:"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_next)
+#: ui/findbar/khtmlfindbar_base.ui:75
+#, kde-format
+msgid "&Next"
+msgstr "&Келесі"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_previous)
+#: ui/findbar/khtmlfindbar_base.ui:85
+#, kde-format
+msgid "&Previous"
+msgstr "&Алдыңғы"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_options)
+#: ui/findbar/khtmlfindbar_base.ui:111
+#, kde-format
+msgid "Opt&ions"
+msgstr "Па&раметрлері"
+
+#. i18n: ectx: property (text), widget (QLabel, m_label)
+#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "Осы пароль сақталсын ба?"
@@ -1527,6 +1695,24 @@ msgstr "Осы пароль сақталсын ба?"
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "%1 паролі жаттап алынсын ба?"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_store)
+#: ui/passwordbar/storepassbar_base.ui:59
+#, kde-format
+msgid "&Store"
+msgstr "&Сақтау"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
+#: ui/passwordbar/storepassbar_base.ui:69
+#, kde-format
+msgid "Ne&ver store for this site"
+msgstr "&Бұл сайт үшін ешқашанда"
+
+#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
+#: ui/passwordbar/storepassbar_base.ui:79
+#, kde-format
+msgid "Do &not store this time"
+msgstr "Бұл &ретте сақталмасын"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1547,105 +1733,6 @@ msgstr "дағдарысты талдау %1 қатесі %2-жолда, %3-ба
 #, kde-format
 msgid "XML parsing error"
 msgstr "XML талдау қатесі"
-
-#, fuzzy
-#~| msgid "&Keep password"
-#~ msgid "&Repeat password:"
-#~ msgstr "Парольді &жаттау"
-
-#, fuzzy
-#~| msgid "&Keep password"
-#~ msgid "&Choose password:"
-#~ msgstr "Парольді &жаттау"
-
-#~ msgid "Document Information"
-#~ msgstr "Құжат туралы мәлімет"
-
-#~ msgctxt "@title:group Document information"
-#~ msgid "General"
-#~ msgstr "Жалпы"
-
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
-#~ msgid "Title:"
-#~ msgstr "Атауы:"
-
-#~ msgid "Last modified:"
-#~ msgstr "Соңғы өзгертілісі:"
-
-#~ msgid "Document encoding:"
-#~ msgstr "Құжат кодтамасы:"
-
-#~ msgid "Rendering mode:"
-#~ msgstr "Кескіндеу режімі:"
-
-#~ msgid "HTTP Headers"
-#~ msgstr "HTTP айдарлары"
-
-#~ msgid "Property"
-#~ msgstr "Қасиеті"
-
-#~ msgid "&Edit"
-#~ msgstr "&Өңдеу"
-
-#~ msgid "&File"
-#~ msgstr "&Файл"
-
-#~ msgid "&View"
-#~ msgstr "&Көрініс"
-
-#~ msgid "HTML Toolbar"
-#~ msgstr "HTML құралдары"
-
-#~ msgid "JavaScript Errors"
-#~ msgstr "JavaScript қателері"
-
-#, fuzzy
-#~| msgid ""
-#~| "This dialog provides you with notification and details of scripting "
-#~| "errors that occur on web pages.  In many cases it is due to an error in "
-#~| "the web site as designed by its author.  In other cases it is the result "
-#~| "of a programming error in Konqueror.  If you suspect the former, please "
-#~| "contact the webmaster of the site in question.  Conversely if you "
-#~| "suspect an error in Konqueror, please file a bug report at http://bugs."
-#~| "kde.org/.  A test case which illustrates the problem will be appreciated."
-#~ msgid ""
-#~ "This dialog provides you with notification and details of scripting "
-#~ "errors that occur on web pages.  In many cases it is due to an error in "
-#~ "the web site as designed by its author.  In other cases it is the result "
-#~ "of a programming error in Konqueror.  If you suspect the former, please "
-#~ "contact the webmaster of the site in question.  Conversely if you suspect "
-#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
-#~ "org/.  A test case which illustrates the problem will be appreciated."
-#~ msgstr ""
-#~ "Бұл диалогта веб-парақшалардағы скрипттердің қателері көрсетілген.  "
-#~ "Көбінде бұл веб-парақшалардағы қателер. Кейбірде Konqueror "
-#~ "бағдарламасының қатесі. Біріншісі болса - парақшаның авторларына "
-#~ "хабарлаңыз. Егер де бұл Konqueror бағдарламасының қатесі десеңіз - http://"
-#~ "bugs.kde.org/ сайтына хабарлаңыз. Хабарда қатені туғызған жағдайдың "
-#~ "мысалын келтірген жөн."
-
-#~ msgid "F&ind:"
-#~ msgstr "І&дейтіні:"
-
-#~ msgid "&Next"
-#~ msgstr "&Келесі"
-
-#~ msgid "&Previous"
-#~ msgstr "&Алдыңғы"
-
-#~ msgid "Opt&ions"
-#~ msgstr "Па&раметрлері"
-
-#~ msgid "&Store"
-#~ msgstr "&Сақтау"
-
-#~ msgid "Ne&ver store for this site"
-#~ msgstr "&Бұл сайт үшін ешқашанда"
-
-#~ msgid "Do &not store this time"
-#~ msgstr "Бұл &ретте сақталмасын"
 
 #~ msgid "Error"
 #~ msgstr "Қате"
