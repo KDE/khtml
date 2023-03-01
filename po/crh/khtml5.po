@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-08-06 00:42+0000\n"
+"POT-Creation-Date: 2023-03-01 21:29+0000\n"
 "PO-Revision-Date: 2009-02-12 23:29-0600\n"
 "Last-Translator: Reşat SABIQ <tilde.birlik@gmail.com>\n"
 "Language-Team: Qırımtatarca (Qırım Türkçesi)\n"
@@ -177,8 +177,7 @@ msgstr "Yerli Deñişçenler"
 msgid "Reference"
 msgstr "Sıltav"
 
-#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
-#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
+#: ecma/debugger/localvariabledock.cpp:52
 #, kde-format
 msgid "Value"
 msgstr "Qıymet"
@@ -397,37 +396,6 @@ msgid "This is a searchable index. Enter search keywords: "
 msgstr ""
 "Bu qıdırıla bilgen bir indekstir. Qıdıruv anahtar sözlerini kirsetiñiz: "
 
-#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
-#: html/keygenwizard.ui:35
-#, kde-format
-msgid ""
-"You have indicated that you wish to obtain or purchase a secure certificate. "
-"This wizard is intended to guide you through the procedure. You may cancel "
-"at any time, and this will abort the transaction."
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
-#: html/keygenwizard2.ui:35
-#, kde-format
-msgid ""
-"You must now provide a password for the certificate request. Please choose a "
-"very secure password as this will be used to encrypt your private key."
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
-#: html/keygenwizard2.ui:48
-#, fuzzy, kde-format
-#| msgid "&Keep password"
-msgid "&Repeat password:"
-msgstr "&Sır-sözni tut"
-
-#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
-#: html/keygenwizard2.ui:58
-#, fuzzy, kde-format
-#| msgid "&Keep password"
-msgid "&Choose password:"
-msgstr "&Sır-sözni tut"
-
 #: html/ksslkeygen.cpp:82
 #, fuzzy, kde-format
 #| msgid "Details of the Request:"
@@ -504,85 +472,6 @@ msgstr ""
 #| msgid "Enable SOCKS support"
 msgid "No SSL support."
 msgstr "SOCKS destegini qabilleştir "
-
-#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
-#: htmlpageinfo.ui:22
-#, kde-format
-msgid "Document Information"
-msgstr "Vesiqa Malümatı"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
-#: htmlpageinfo.ui:34
-#, kde-format
-msgctxt "@title:group Document information"
-msgid "General"
-msgstr "Umumiy"
-
-#. i18n: ectx: property (text), widget (QLabel, urlLabel)
-#: htmlpageinfo.ui:60
-#, kde-format
-msgid "URL:"
-msgstr "URL:"
-
-#. i18n: ectx: property (text), widget (QLabel, titleLabel)
-#: htmlpageinfo.ui:112
-#, kde-format
-msgid "Title:"
-msgstr "Başlıq:"
-
-#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
-#: htmlpageinfo.ui:128
-#, kde-format
-msgid "Last modified:"
-msgstr "Soñki değişme tarihı:"
-
-#. i18n: ectx: property (text), widget (QLabel, _eLabel)
-#: htmlpageinfo.ui:144
-#, kde-format
-msgid "Document encoding:"
-msgstr "Vesiqa kodlandırması:"
-
-#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
-#: htmlpageinfo.ui:167
-#, kde-format
-msgid "Rendering mode:"
-msgstr ""
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
-#: htmlpageinfo.ui:186
-#, kde-format
-msgid "HTTP Headers"
-msgstr "HTTP Başlıqları"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
-#: htmlpageinfo.ui:214
-#, kde-format
-msgid "Property"
-msgstr "Hasiyet"
-
-#. i18n: ectx: Menu (edit)
-#: khtml.rc:4 khtml_browser.rc:11
-#, kde-format
-msgid "&Edit"
-msgstr "&Tarir"
-
-#. i18n: ectx: Menu (file)
-#: khtml_browser.rc:4
-#, kde-format
-msgid "&File"
-msgstr "&Dosye"
-
-#. i18n: ectx: Menu (view)
-#: khtml_browser.rc:18
-#, kde-format
-msgid "&View"
-msgstr "&Körüniş"
-
-#. i18n: ectx: ToolBar (htmlToolBar)
-#: khtml_browser.rc:34
-#, kde-format
-msgid "HTML Toolbar"
-msgstr "HTML Alet Çubuğı"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1430,25 +1319,6 @@ msgstr "İrişim Tuşları faalleştirildi"
 msgid "C&lear"
 msgstr "&Temizle"
 
-#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
-#: kjserrordlgbase.ui:15
-#, kde-format
-msgid "JavaScript Errors"
-msgstr "JavaScript Hataları"
-
-#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
-#: kjserrordlgbase.ui:18
-#, kde-format
-msgid ""
-"This dialog provides you with notification and details of scripting errors "
-"that occur on web pages.  In many cases it is due to an error in the web "
-"site as designed by its author.  In other cases it is the result of a "
-"programming error in Konqueror.  If you suspect the former, please contact "
-"the webmaster of the site in question.  Conversely if you suspect an error "
-"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
-"case which illustrates the problem will be appreciated."
-msgstr ""
-
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1645,32 +1515,7 @@ msgstr "Eşleşme tapılmadı"
 msgid "No more matches for this search direction."
 msgstr "Bu qıdırma yönelişi içün başqa eşleşmeler yoq."
 
-#. i18n: ectx: property (text), widget (QLabel, label)
-#: ui/findbar/khtmlfindbar_base.ui:43
-#, kde-format
-msgid "F&ind:"
-msgstr "&Tap:"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_next)
-#: ui/findbar/khtmlfindbar_base.ui:75
-#, kde-format
-msgid "&Next"
-msgstr "&Nevbetteki"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_previous)
-#: ui/findbar/khtmlfindbar_base.ui:85
-#, kde-format
-msgid "&Previous"
-msgstr "&Evelki"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_options)
-#: ui/findbar/khtmlfindbar_base.ui:111
-#, kde-format
-msgid "Opt&ions"
-msgstr "&İhtiyariyat"
-
-#. i18n: ectx: property (text), widget (QLabel, m_label)
-#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
+#: ui/passwordbar/storepassbar.cpp:59
 #, fuzzy, kde-format
 #| msgid "Do you want to restart search from the end?"
 msgid "Do you want to store this password?"
@@ -1681,27 +1526,6 @@ msgstr "Qıdıruvnı ahırdan berli kene başlatmaq istermisiñiz?"
 #| msgid "Do you want to restart search from the end?"
 msgid "Do you want to store this password for %1?"
 msgstr "Qıdıruvnı ahırdan berli kene başlatmaq istermisiñiz?"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_store)
-#: ui/passwordbar/storepassbar_base.ui:59
-#, fuzzy, kde-format
-#| msgid "Store"
-msgid "&Store"
-msgstr "Saqla"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
-#: ui/passwordbar/storepassbar_base.ui:69
-#, fuzzy, kde-format
-#| msgid "Ne&ver for This Site"
-msgid "Ne&ver store for this site"
-msgstr "Bu Sayt içün &Asla"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
-#: ui/passwordbar/storepassbar_base.ui:79
-#, fuzzy, kde-format
-#| msgid "Do not show this message again"
-msgid "Do &not store this time"
-msgstr "Bu risaleni bir daa kösterme"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1722,6 +1546,83 @@ msgstr "ölümcil ayırıştıruv hatası: %2 satırdaki, %3 sutundaki %1"
 #, kde-format
 msgid "XML parsing error"
 msgstr "XML ayırıştıruv hatası"
+
+#, fuzzy
+#~| msgid "&Keep password"
+#~ msgid "&Repeat password:"
+#~ msgstr "&Sır-sözni tut"
+
+#, fuzzy
+#~| msgid "&Keep password"
+#~ msgid "&Choose password:"
+#~ msgstr "&Sır-sözni tut"
+
+#~ msgid "Document Information"
+#~ msgstr "Vesiqa Malümatı"
+
+#~ msgctxt "@title:group Document information"
+#~ msgid "General"
+#~ msgstr "Umumiy"
+
+#~ msgid "URL:"
+#~ msgstr "URL:"
+
+#~ msgid "Title:"
+#~ msgstr "Başlıq:"
+
+#~ msgid "Last modified:"
+#~ msgstr "Soñki değişme tarihı:"
+
+#~ msgid "Document encoding:"
+#~ msgstr "Vesiqa kodlandırması:"
+
+#~ msgid "HTTP Headers"
+#~ msgstr "HTTP Başlıqları"
+
+#~ msgid "Property"
+#~ msgstr "Hasiyet"
+
+#~ msgid "&Edit"
+#~ msgstr "&Tarir"
+
+#~ msgid "&File"
+#~ msgstr "&Dosye"
+
+#~ msgid "&View"
+#~ msgstr "&Körüniş"
+
+#~ msgid "HTML Toolbar"
+#~ msgstr "HTML Alet Çubuğı"
+
+#~ msgid "JavaScript Errors"
+#~ msgstr "JavaScript Hataları"
+
+#~ msgid "F&ind:"
+#~ msgstr "&Tap:"
+
+#~ msgid "&Next"
+#~ msgstr "&Nevbetteki"
+
+#~ msgid "&Previous"
+#~ msgstr "&Evelki"
+
+#~ msgid "Opt&ions"
+#~ msgstr "&İhtiyariyat"
+
+#, fuzzy
+#~| msgid "Store"
+#~ msgid "&Store"
+#~ msgstr "Saqla"
+
+#, fuzzy
+#~| msgid "Ne&ver for This Site"
+#~ msgid "Ne&ver store for this site"
+#~ msgstr "Bu Sayt içün &Asla"
+
+#, fuzzy
+#~| msgid "Do not show this message again"
+#~ msgid "Do &not store this time"
+#~ msgstr "Bu risaleni bir daa kösterme"
 
 #~ msgid "Error"
 #~ msgstr "Hata"

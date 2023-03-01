@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-08-06 00:42+0000\n"
+"POT-Creation-Date: 2023-03-01 21:29+0000\n"
 "PO-Revision-Date: 2013-01-31 01:08+0400\n"
 "Last-Translator: Davit <nikdavnik@mail.ru>\n"
 "Language-Team: Armenian Language: hy\n"
@@ -182,8 +182,7 @@ msgstr "Լոկալ փոփոխականներ"
 msgid "Reference"
 msgstr "Հղում"
 
-#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
-#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
+#: ecma/debugger/localvariabledock.cpp:52
 #, kde-format
 msgid "Value"
 msgstr "Արժեք"
@@ -399,37 +398,6 @@ msgstr "Չներբեռնել"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "Սա որոնման հնարավորությամբ ինդեքս է,մուտքագրեք բանալի բառերը"
 
-#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
-#: html/keygenwizard.ui:35
-#, kde-format
-msgid ""
-"You have indicated that you wish to obtain or purchase a secure certificate. "
-"This wizard is intended to guide you through the procedure. You may cancel "
-"at any time, and this will abort the transaction."
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
-#: html/keygenwizard2.ui:35
-#, kde-format
-msgid ""
-"You must now provide a password for the certificate request. Please choose a "
-"very secure password as this will be used to encrypt your private key."
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
-#: html/keygenwizard2.ui:48
-#, fuzzy, kde-format
-#| msgid "&Keep password"
-msgid "&Repeat password:"
-msgstr "&Պահպանել ծածկագիրը"
-
-#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
-#: html/keygenwizard2.ui:58
-#, fuzzy, kde-format
-#| msgid "&Keep password"
-msgid "&Choose password:"
-msgstr "&Պահպանել ծածկագիրը"
-
 #: html/ksslkeygen.cpp:82
 #, fuzzy, kde-format
 #| msgid "Details of the Request:"
@@ -506,87 +474,6 @@ msgstr ""
 #| msgid "Enable SOCKS support"
 msgid "No SSL support."
 msgstr "Միացնել SOCKS համատեղելիությունը"
-
-# ֆայլ-նիշք
-#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
-#: htmlpageinfo.ui:22
-#, kde-format
-msgid "Document Information"
-msgstr "Տեղեկություն նիշքի մասին"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
-#: htmlpageinfo.ui:34
-#, kde-format
-msgctxt "@title:group Document information"
-msgid "General"
-msgstr "Գլխավոր"
-
-# համացանցի հասցե
-#. i18n: ectx: property (text), widget (QLabel, urlLabel)
-#: htmlpageinfo.ui:60
-#, kde-format
-msgid "URL:"
-msgstr "URL:"
-
-#. i18n: ectx: property (text), widget (QLabel, titleLabel)
-#: htmlpageinfo.ui:112
-#, kde-format
-msgid "Title:"
-msgstr "Վերնագիր:"
-
-#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
-#: htmlpageinfo.ui:128
-#, kde-format
-msgid "Last modified:"
-msgstr "Վերջին փոփոխություն:"
-
-#. i18n: ectx: property (text), widget (QLabel, _eLabel)
-#: htmlpageinfo.ui:144
-#, kde-format
-msgid "Document encoding:"
-msgstr "Նիշքի կոդավորում:"
-
-#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
-#: htmlpageinfo.ui:167
-#, kde-format
-msgid "Rendering mode:"
-msgstr "HTML ներկայացման ռեժիմ:"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
-#: htmlpageinfo.ui:186
-#, kde-format
-msgid "HTTP Headers"
-msgstr "HTTP վերնագրեր"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
-#: htmlpageinfo.ui:214
-#, kde-format
-msgid "Property"
-msgstr "Պարամետր"
-
-#. i18n: ectx: Menu (edit)
-#: khtml.rc:4 khtml_browser.rc:11
-#, kde-format
-msgid "&Edit"
-msgstr "&Տեղեկություն"
-
-#. i18n: ectx: Menu (file)
-#: khtml_browser.rc:4
-#, kde-format
-msgid "&File"
-msgstr "&Նիշք"
-
-#. i18n: ectx: Menu (view)
-#: khtml_browser.rc:18
-#, kde-format
-msgid "&View"
-msgstr "&Տեսք"
-
-#. i18n: ectx: ToolBar (htmlToolBar)
-#: khtml_browser.rc:34
-#, kde-format
-msgid "HTML Toolbar"
-msgstr "HTML գործիքներ"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1435,33 +1322,6 @@ msgstr "Մուտքի բանալիների օգտագործումը միացվա�
 msgid "C&lear"
 msgstr "&Մաքրել"
 
-#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
-#: kjserrordlgbase.ui:15
-#, kde-format
-msgid "JavaScript Errors"
-msgstr "JavaScript սխալներ"
-
-#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
-#: kjserrordlgbase.ui:18
-#, fuzzy, kde-format
-#| msgid ""
-#| "This dialog provides you with notification and details of scripting "
-#| "errors that occur on web pages.  In many cases it is due to an error in "
-#| "the web site as designed by its author.  In other cases it is the result "
-#| "of a programming error in Konqueror.  If you suspect the former, please "
-#| "contact the webmaster of the site in question.  Conversely if you suspect "
-#| "an error in Konqueror, please file a bug report at http://bugs.kde.org/.  "
-#| "A test case which illustrates the problem will be appreciated."
-msgid ""
-"This dialog provides you with notification and details of scripting errors "
-"that occur on web pages.  In many cases it is due to an error in the web "
-"site as designed by its author.  In other cases it is the result of a "
-"programming error in Konqueror.  If you suspect the former, please contact "
-"the webmaster of the site in question.  Conversely if you suspect an error "
-"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
-"case which illustrates the problem will be appreciated."
-msgstr "Այս պատուհանում պատկերված է վեբ-կայքերում առաջացած սխալները։"
-
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1658,32 +1518,7 @@ msgstr "Գտնված չէ"
 msgid "No more matches for this search direction."
 msgstr "Չեն հայտնաբերվել մուտքագրումներ տրված ուղղությամբ:"
 
-#. i18n: ectx: property (text), widget (QLabel, label)
-#: ui/findbar/khtmlfindbar_base.ui:43
-#, kde-format
-msgid "F&ind:"
-msgstr "&Փնտրել:"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_next)
-#: ui/findbar/khtmlfindbar_base.ui:75
-#, kde-format
-msgid "&Next"
-msgstr "&Հաջորդը"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_previous)
-#: ui/findbar/khtmlfindbar_base.ui:85
-#, kde-format
-msgid "&Previous"
-msgstr "&Նախորդը"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_options)
-#: ui/findbar/khtmlfindbar_base.ui:111
-#, kde-format
-msgid "Opt&ions"
-msgstr "&Պարամետրեր"
-
-#. i18n: ectx: property (text), widget (QLabel, m_label)
-#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
+#: ui/passwordbar/storepassbar.cpp:59
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "Պահպանե՞լ ծածկագիրը"
@@ -1692,25 +1527,6 @@ msgstr "Պահպանե՞լ ծածկագիրը"
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "Պահպանե՞լ գաղտնաբառը %1 համար"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_store)
-#: ui/passwordbar/storepassbar_base.ui:59
-#, kde-format
-msgid "&Store"
-msgstr "&Պահպանել"
-
-# այս  վեբ-կայքի  համար   երբեք   չպահպանել
-#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
-#: ui/passwordbar/storepassbar_base.ui:69
-#, kde-format
-msgid "Ne&ver store for this site"
-msgstr "&Երբեք, այս վեբ-կայքի համար"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
-#: ui/passwordbar/storepassbar_base.ui:79
-#, kde-format
-msgid "Do &not store this time"
-msgstr "&Հաջորդ անգամ"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1731,6 +1547,102 @@ msgstr "մշակման կրիտիկական սխալ: %1 տող %2, դիրք %3"
 #, kde-format
 msgid "XML parsing error"
 msgstr "XML մշակման սխալ"
+
+#, fuzzy
+#~| msgid "&Keep password"
+#~ msgid "&Repeat password:"
+#~ msgstr "&Պահպանել ծածկագիրը"
+
+#, fuzzy
+#~| msgid "&Keep password"
+#~ msgid "&Choose password:"
+#~ msgstr "&Պահպանել ծածկագիրը"
+
+# ֆայլ-նիշք
+#~ msgid "Document Information"
+#~ msgstr "Տեղեկություն նիշքի մասին"
+
+#~ msgctxt "@title:group Document information"
+#~ msgid "General"
+#~ msgstr "Գլխավոր"
+
+# համացանցի հասցե
+#~ msgid "URL:"
+#~ msgstr "URL:"
+
+#~ msgid "Title:"
+#~ msgstr "Վերնագիր:"
+
+#~ msgid "Last modified:"
+#~ msgstr "Վերջին փոփոխություն:"
+
+#~ msgid "Document encoding:"
+#~ msgstr "Նիշքի կոդավորում:"
+
+#~ msgid "Rendering mode:"
+#~ msgstr "HTML ներկայացման ռեժիմ:"
+
+#~ msgid "HTTP Headers"
+#~ msgstr "HTTP վերնագրեր"
+
+#~ msgid "Property"
+#~ msgstr "Պարամետր"
+
+#~ msgid "&Edit"
+#~ msgstr "&Տեղեկություն"
+
+#~ msgid "&File"
+#~ msgstr "&Նիշք"
+
+#~ msgid "&View"
+#~ msgstr "&Տեսք"
+
+#~ msgid "HTML Toolbar"
+#~ msgstr "HTML գործիքներ"
+
+#~ msgid "JavaScript Errors"
+#~ msgstr "JavaScript սխալներ"
+
+#, fuzzy
+#~| msgid ""
+#~| "This dialog provides you with notification and details of scripting "
+#~| "errors that occur on web pages.  In many cases it is due to an error in "
+#~| "the web site as designed by its author.  In other cases it is the result "
+#~| "of a programming error in Konqueror.  If you suspect the former, please "
+#~| "contact the webmaster of the site in question.  Conversely if you "
+#~| "suspect an error in Konqueror, please file a bug report at http://bugs."
+#~| "kde.org/.  A test case which illustrates the problem will be appreciated."
+#~ msgid ""
+#~ "This dialog provides you with notification and details of scripting "
+#~ "errors that occur on web pages.  In many cases it is due to an error in "
+#~ "the web site as designed by its author.  In other cases it is the result "
+#~ "of a programming error in Konqueror.  If you suspect the former, please "
+#~ "contact the webmaster of the site in question.  Conversely if you suspect "
+#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
+#~ "org/.  A test case which illustrates the problem will be appreciated."
+#~ msgstr "Այս պատուհանում պատկերված է վեբ-կայքերում առաջացած սխալները։"
+
+#~ msgid "F&ind:"
+#~ msgstr "&Փնտրել:"
+
+#~ msgid "&Next"
+#~ msgstr "&Հաջորդը"
+
+#~ msgid "&Previous"
+#~ msgstr "&Նախորդը"
+
+#~ msgid "Opt&ions"
+#~ msgstr "&Պարամետրեր"
+
+#~ msgid "&Store"
+#~ msgstr "&Պահպանել"
+
+# այս  վեբ-կայքի  համար   երբեք   չպահպանել
+#~ msgid "Ne&ver store for this site"
+#~ msgstr "&Երբեք, այս վեբ-կայքի համար"
+
+#~ msgid "Do &not store this time"
+#~ msgstr "&Հաջորդ անգամ"
 
 #~ msgid "Error"
 #~ msgstr "Սխալ"

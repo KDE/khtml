@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-08-06 00:42+0000\n"
+"POT-Creation-Date: 2023-03-01 21:29+0000\n"
 "PO-Revision-Date: 2016-04-29 19:43+0100\n"
 "Last-Translator: GunChleoc <fios@foramnagaidhlig.net>\n"
 "Language-Team: Fòram na Gàidhlig\n"
@@ -180,8 +180,7 @@ msgstr "Caochladairean ionadail"
 msgid "Reference"
 msgstr "Iomradh"
 
-#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
-#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
+#: ecma/debugger/localvariabledock.cpp:52
 #, kde-format
 msgid "Value"
 msgstr "Luach"
@@ -407,41 +406,6 @@ msgstr "Na luchdaich a-nuas"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "Seo inneacs a ghabhas lorg ann. Cuir a-steach faclan-luirg:"
 
-#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
-#: html/keygenwizard.ui:35
-#, kde-format
-msgid ""
-"You have indicated that you wish to obtain or purchase a secure certificate. "
-"This wizard is intended to guide you through the procedure. You may cancel "
-"at any time, and this will abort the transaction."
-msgstr ""
-"Leig thu ris gum bu toil leat teisteanas tèarainteachd fhaighinn no a "
-"cheannach. Is adhbhar air an draoidh seo gus taic a thoirt leis an tagradh. "
-"'S urrainn dhut sgur dheth uair sam bith agus sguiridh seo dhen tar-chur."
-
-#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
-#: html/keygenwizard2.ui:35
-#, kde-format
-msgid ""
-"You must now provide a password for the certificate request. Please choose a "
-"very secure password as this will be used to encrypt your private key."
-msgstr ""
-"Feumaidh tu facal-faire a sholar airson an iarrtas airson teisteanais a-nis. "
-"Feuch an tagh thu facal-faire a tha glè thèarainte on a thèid a chleachdadh "
-"gus an iuchair phrìobhaideach agad a chrioptachadh."
-
-#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
-#: html/keygenwizard2.ui:48
-#, kde-format
-msgid "&Repeat password:"
-msgstr "Am facal-fai&re a-rithist:"
-
-#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
-#: html/keygenwizard2.ui:58
-#, kde-format
-msgid "&Choose password:"
-msgstr "Tagh fa&cal-faire:"
-
 #: html/ksslkeygen.cpp:82
 #, kde-format
 msgid "KDE Certificate Request"
@@ -513,85 +477,6 @@ msgstr "512  (ìre ìosal)"
 #, kde-format
 msgid "No SSL support."
 msgstr "Chan eil taic ri SSL ann."
-
-#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
-#: htmlpageinfo.ui:22
-#, kde-format
-msgid "Document Information"
-msgstr "Fiosrachadh na sgrìobhainne"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
-#: htmlpageinfo.ui:34
-#, kde-format
-msgctxt "@title:group Document information"
-msgid "General"
-msgstr "Coitcheann"
-
-#. i18n: ectx: property (text), widget (QLabel, urlLabel)
-#: htmlpageinfo.ui:60
-#, kde-format
-msgid "URL:"
-msgstr "URL:"
-
-#. i18n: ectx: property (text), widget (QLabel, titleLabel)
-#: htmlpageinfo.ui:112
-#, kde-format
-msgid "Title:"
-msgstr "Tiotal:"
-
-#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
-#: htmlpageinfo.ui:128
-#, kde-format
-msgid "Last modified:"
-msgstr "An t-atharrachadh mu dheireadh:"
-
-#. i18n: ectx: property (text), widget (QLabel, _eLabel)
-#: htmlpageinfo.ui:144
-#, kde-format
-msgid "Document encoding:"
-msgstr "Còdachadh na sgrìobhainne:"
-
-#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
-#: htmlpageinfo.ui:167
-#, kde-format
-msgid "Rendering mode:"
-msgstr "Modh reandaraidh:"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
-#: htmlpageinfo.ui:186
-#, kde-format
-msgid "HTTP Headers"
-msgstr "Bannan-cinn HTTP"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
-#: htmlpageinfo.ui:214
-#, kde-format
-msgid "Property"
-msgstr "Roghainn"
-
-#. i18n: ectx: Menu (edit)
-#: khtml.rc:4 khtml_browser.rc:11
-#, kde-format
-msgid "&Edit"
-msgstr "D&easaich"
-
-#. i18n: ectx: Menu (file)
-#: khtml_browser.rc:4
-#, kde-format
-msgid "&File"
-msgstr "&Faidhle"
-
-#. i18n: ectx: Menu (view)
-#: khtml_browser.rc:18
-#, kde-format
-msgid "&View"
-msgstr "&Sealladh"
-
-#. i18n: ectx: ToolBar (htmlToolBar)
-#: khtml_browser.rc:34
-#, kde-format
-msgid "HTML Toolbar"
-msgstr "Bàr-inneal HTML"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1469,41 +1354,6 @@ msgstr "Tha na h-iuchraichean inntrigidh gnìomhach"
 msgid "C&lear"
 msgstr "Fa&lamhaich"
 
-#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
-#: kjserrordlgbase.ui:15
-#, kde-format
-msgid "JavaScript Errors"
-msgstr "Mearachdan JavaScript"
-
-#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
-#: kjserrordlgbase.ui:18
-#, fuzzy, kde-format
-#| msgid ""
-#| "This dialog provides you with notification and details of scripting "
-#| "errors that occur on web pages.  In many cases it is due to an error in "
-#| "the web site as designed by its author.  In other cases it is the result "
-#| "of a programming error in Konqueror.  If you suspect the former, please "
-#| "contact the webmaster of the site in question.  Conversely if you suspect "
-#| "an error in Konqueror, please file a bug report at http://bugs.kde.org/.  "
-#| "A test case which illustrates the problem will be appreciated."
-msgid ""
-"This dialog provides you with notification and details of scripting errors "
-"that occur on web pages.  In many cases it is due to an error in the web "
-"site as designed by its author.  In other cases it is the result of a "
-"programming error in Konqueror.  If you suspect the former, please contact "
-"the webmaster of the site in question.  Conversely if you suspect an error "
-"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
-"case which illustrates the problem will be appreciated."
-msgstr ""
-"Bheir an còmhradh seo brathan is fiosrachadh mu mhearachdan sgriobtaidh dhut "
-"a thachras air duilleagan-lìn. Mar as trice, tachraidh seo ri linn "
-"mearachdan san làrach-lìn mar a chaidh a dealbhachadh le a h-ùghdar. Aig "
-"amannan eile, bidh mearachd prògramachaidh ann an Konqueror fhèin as "
-"coireach. Ma tha thu dhen bheachd gun do thachair an dàrna rud, cuir fios gu "
-"maighstir-lìn na làraich ud. Ma tha thu dhen bheachd gun do thachair an rud "
-"eile, dèan aitiris air buga air http://bugs.kde.org/. Bhitheamaid taingeil "
-"airson eisimpleir air mar a chuireas sinn a' mhearachd am follais."
-
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1698,32 +1548,7 @@ msgstr "Cha deach a lorg"
 msgid "No more matches for this search direction."
 msgstr "Chan eil barrachd mhaidsichean ann airson na comhair seo."
 
-#. i18n: ectx: property (text), widget (QLabel, label)
-#: ui/findbar/khtmlfindbar_base.ui:43
-#, kde-format
-msgid "F&ind:"
-msgstr "L&org:"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_next)
-#: ui/findbar/khtmlfindbar_base.ui:75
-#, kde-format
-msgid "&Next"
-msgstr "Air &adhart"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_previous)
-#: ui/findbar/khtmlfindbar_base.ui:85
-#, kde-format
-msgid "&Previous"
-msgstr "Ai&r ais"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_options)
-#: ui/findbar/khtmlfindbar_base.ui:111
-#, kde-format
-msgid "Opt&ions"
-msgstr "Rogha&innean"
-
-#. i18n: ectx: property (text), widget (QLabel, m_label)
-#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
+#: ui/passwordbar/storepassbar.cpp:59
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "A bheil thu airson am facal-faire seo a ghlèidheadh?"
@@ -1732,24 +1557,6 @@ msgstr "A bheil thu airson am facal-faire seo a ghlèidheadh?"
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "A bheil thu airson am facal-faire seo a ghlèidheadh airson %1?"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_store)
-#: ui/passwordbar/storepassbar_base.ui:59
-#, kde-format
-msgid "&Store"
-msgstr "&Glèidh"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
-#: ui/passwordbar/storepassbar_base.ui:69
-#, kde-format
-msgid "Ne&ver store for this site"
-msgstr "Na glèidh idir airson na &làraich seo"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
-#: ui/passwordbar/storepassbar_base.ui:79
-#, kde-format
-msgid "Do &not store this time"
-msgstr "&Na glèidh an turas seo"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1770,6 +1577,123 @@ msgstr "mearachd parsaidh mharbhtach: %1 air loidhne %2, colbh %3"
 #, kde-format
 msgid "XML parsing error"
 msgstr "Mearachd le parsadh an XML"
+
+#~ msgid ""
+#~ "You have indicated that you wish to obtain or purchase a secure "
+#~ "certificate. This wizard is intended to guide you through the procedure. "
+#~ "You may cancel at any time, and this will abort the transaction."
+#~ msgstr ""
+#~ "Leig thu ris gum bu toil leat teisteanas tèarainteachd fhaighinn no a "
+#~ "cheannach. Is adhbhar air an draoidh seo gus taic a thoirt leis an "
+#~ "tagradh. 'S urrainn dhut sgur dheth uair sam bith agus sguiridh seo dhen "
+#~ "tar-chur."
+
+#~ msgid ""
+#~ "You must now provide a password for the certificate request. Please "
+#~ "choose a very secure password as this will be used to encrypt your "
+#~ "private key."
+#~ msgstr ""
+#~ "Feumaidh tu facal-faire a sholar airson an iarrtas airson teisteanais a-"
+#~ "nis. Feuch an tagh thu facal-faire a tha glè thèarainte on a thèid a "
+#~ "chleachdadh gus an iuchair phrìobhaideach agad a chrioptachadh."
+
+#~ msgid "&Repeat password:"
+#~ msgstr "Am facal-fai&re a-rithist:"
+
+#~ msgid "&Choose password:"
+#~ msgstr "Tagh fa&cal-faire:"
+
+#~ msgid "Document Information"
+#~ msgstr "Fiosrachadh na sgrìobhainne"
+
+#~ msgctxt "@title:group Document information"
+#~ msgid "General"
+#~ msgstr "Coitcheann"
+
+#~ msgid "URL:"
+#~ msgstr "URL:"
+
+#~ msgid "Title:"
+#~ msgstr "Tiotal:"
+
+#~ msgid "Last modified:"
+#~ msgstr "An t-atharrachadh mu dheireadh:"
+
+#~ msgid "Document encoding:"
+#~ msgstr "Còdachadh na sgrìobhainne:"
+
+#~ msgid "Rendering mode:"
+#~ msgstr "Modh reandaraidh:"
+
+#~ msgid "HTTP Headers"
+#~ msgstr "Bannan-cinn HTTP"
+
+#~ msgid "Property"
+#~ msgstr "Roghainn"
+
+#~ msgid "&Edit"
+#~ msgstr "D&easaich"
+
+#~ msgid "&File"
+#~ msgstr "&Faidhle"
+
+#~ msgid "&View"
+#~ msgstr "&Sealladh"
+
+#~ msgid "HTML Toolbar"
+#~ msgstr "Bàr-inneal HTML"
+
+#~ msgid "JavaScript Errors"
+#~ msgstr "Mearachdan JavaScript"
+
+#, fuzzy
+#~| msgid ""
+#~| "This dialog provides you with notification and details of scripting "
+#~| "errors that occur on web pages.  In many cases it is due to an error in "
+#~| "the web site as designed by its author.  In other cases it is the result "
+#~| "of a programming error in Konqueror.  If you suspect the former, please "
+#~| "contact the webmaster of the site in question.  Conversely if you "
+#~| "suspect an error in Konqueror, please file a bug report at http://bugs."
+#~| "kde.org/.  A test case which illustrates the problem will be appreciated."
+#~ msgid ""
+#~ "This dialog provides you with notification and details of scripting "
+#~ "errors that occur on web pages.  In many cases it is due to an error in "
+#~ "the web site as designed by its author.  In other cases it is the result "
+#~ "of a programming error in Konqueror.  If you suspect the former, please "
+#~ "contact the webmaster of the site in question.  Conversely if you suspect "
+#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
+#~ "org/.  A test case which illustrates the problem will be appreciated."
+#~ msgstr ""
+#~ "Bheir an còmhradh seo brathan is fiosrachadh mu mhearachdan sgriobtaidh "
+#~ "dhut a thachras air duilleagan-lìn. Mar as trice, tachraidh seo ri linn "
+#~ "mearachdan san làrach-lìn mar a chaidh a dealbhachadh le a h-ùghdar. Aig "
+#~ "amannan eile, bidh mearachd prògramachaidh ann an Konqueror fhèin as "
+#~ "coireach. Ma tha thu dhen bheachd gun do thachair an dàrna rud, cuir fios "
+#~ "gu maighstir-lìn na làraich ud. Ma tha thu dhen bheachd gun do thachair "
+#~ "an rud eile, dèan aitiris air buga air http://bugs.kde.org/. Bhitheamaid "
+#~ "taingeil airson eisimpleir air mar a chuireas sinn a' mhearachd am "
+#~ "follais."
+
+#~ msgid "F&ind:"
+#~ msgstr "L&org:"
+
+#~ msgid "&Next"
+#~ msgstr "Air &adhart"
+
+#~ msgid "&Previous"
+#~ msgstr "Ai&r ais"
+
+#~ msgid "Opt&ions"
+#~ msgstr "Rogha&innean"
+
+#~ msgid "&Store"
+#~ msgstr "&Glèidh"
+
+#~ msgid "Ne&ver store for this site"
+#~ msgstr "Na glèidh idir airson na &làraich seo"
+
+#~ msgid "Do &not store this time"
+#~ msgstr "&Na glèidh an turas seo"
 
 #~ msgid "Error"
 #~ msgstr "Mearachd"

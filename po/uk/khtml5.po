@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: khtml5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-08-06 00:42+0000\n"
+"POT-Creation-Date: 2023-03-01 21:29+0000\n"
 "PO-Revision-Date: 2019-01-10 09:23+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -184,8 +184,7 @@ msgstr "Локальні змінні"
 msgid "Reference"
 msgstr "Посилання"
 
-#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
-#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
+#: ecma/debugger/localvariabledock.cpp:52
 #, kde-format
 msgid "Value"
 msgstr "Значення"
@@ -406,41 +405,6 @@ msgstr "Не отримувати"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "Це покажчик з можливістю пошуку. Введіть ключові слова пошуку:"
 
-#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
-#: html/keygenwizard.ui:35
-#, kde-format
-msgid ""
-"You have indicated that you wish to obtain or purchase a secure certificate. "
-"This wizard is intended to guide you through the procedure. You may cancel "
-"at any time, and this will abort the transaction."
-msgstr ""
-"Ви вказали, що хочете отримати або придбати безпечний сертифікат. Цей "
-"майстер допоможе виконати потрібні дії. Ви можете скасувати цей процес на "
-"довільному кроці — операцію буде скасовано."
-
-#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
-#: html/keygenwizard2.ui:35
-#, kde-format
-msgid ""
-"You must now provide a password for the certificate request. Please choose a "
-"very secure password as this will be used to encrypt your private key."
-msgstr ""
-"Вам слід надати пароль для запиту сертифіката. Будь ласка, виберіть такий "
-"пароль, який дуже важко підібрати, оскільки цей пароль буде використано для "
-"шифрування вашого закритого ключа."
-
-#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
-#: html/keygenwizard2.ui:48
-#, kde-format
-msgid "&Repeat password:"
-msgstr "П&овторіть пароль:"
-
-#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
-#: html/keygenwizard2.ui:58
-#, kde-format
-msgid "&Choose password:"
-msgstr "&Виберіть пароль:"
-
 #: html/ksslkeygen.cpp:82
 #, kde-format
 msgid "KDE Certificate Request"
@@ -510,85 +474,6 @@ msgstr "512  (низька якість)"
 #, kde-format
 msgid "No SSL support."
 msgstr "Немає підтримки SSL."
-
-#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
-#: htmlpageinfo.ui:22
-#, kde-format
-msgid "Document Information"
-msgstr "Інформація про документ"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
-#: htmlpageinfo.ui:34
-#, kde-format
-msgctxt "@title:group Document information"
-msgid "General"
-msgstr "Загальне"
-
-#. i18n: ectx: property (text), widget (QLabel, urlLabel)
-#: htmlpageinfo.ui:60
-#, kde-format
-msgid "URL:"
-msgstr "URL:"
-
-#. i18n: ectx: property (text), widget (QLabel, titleLabel)
-#: htmlpageinfo.ui:112
-#, kde-format
-msgid "Title:"
-msgstr "Заголовок:"
-
-#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
-#: htmlpageinfo.ui:128
-#, kde-format
-msgid "Last modified:"
-msgstr "Останні зміни:"
-
-#. i18n: ectx: property (text), widget (QLabel, _eLabel)
-#: htmlpageinfo.ui:144
-#, kde-format
-msgid "Document encoding:"
-msgstr "Кодування документа:"
-
-#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
-#: htmlpageinfo.ui:167
-#, kde-format
-msgid "Rendering mode:"
-msgstr "Режим показу:"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
-#: htmlpageinfo.ui:186
-#, kde-format
-msgid "HTTP Headers"
-msgstr "HTTP-заголовки"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
-#: htmlpageinfo.ui:214
-#, kde-format
-msgid "Property"
-msgstr "Властивість"
-
-#. i18n: ectx: Menu (edit)
-#: khtml.rc:4 khtml_browser.rc:11
-#, kde-format
-msgid "&Edit"
-msgstr "З&міни"
-
-#. i18n: ectx: Menu (file)
-#: khtml_browser.rc:4
-#, kde-format
-msgid "&File"
-msgstr "&Файл"
-
-#. i18n: ectx: Menu (view)
-#: khtml_browser.rc:18
-#, kde-format
-msgid "&View"
-msgstr "П&ерегляд"
-
-#. i18n: ectx: ToolBar (htmlToolBar)
-#: khtml_browser.rc:34
-#, kde-format
-msgid "HTML Toolbar"
-msgstr "Пенал HTML"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1445,32 +1330,6 @@ msgstr "Клавіші доступу активовано"
 msgid "C&lear"
 msgstr "О&чистити"
 
-#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
-#: kjserrordlgbase.ui:15
-#, kde-format
-msgid "JavaScript Errors"
-msgstr "Помилки JavaScript"
-
-#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
-#: kjserrordlgbase.ui:18
-#, kde-format
-msgid ""
-"This dialog provides you with notification and details of scripting errors "
-"that occur on web pages.  In many cases it is due to an error in the web "
-"site as designed by its author.  In other cases it is the result of a "
-"programming error in Konqueror.  If you suspect the former, please contact "
-"the webmaster of the site in question.  Conversely if you suspect an error "
-"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
-"case which illustrates the problem will be appreciated."
-msgstr ""
-"За допомогою цього діалогового вікна можна отримувати інформацію про помилки "
-"скриптів на сторінках інтернету. Здебільшого, такі помилки є помилками "
-"автора при розробці сайта інтернету. Але інколи причиною є помилки в "
-"Konqueror. Якщо ви вважаєте, що це перший випадок, ви можете зв'язатися з "
-"автором сторінки інтернету. Якщо на вашу думку, це помилка в Konqueror, будь "
-"ласка, звітуйте помилку на https://bugs.kde.org/. Ми будемо вдячні, якщо ви "
-"долучите тестовий приклад для демонстрації помилки."
-
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1665,32 +1524,7 @@ msgstr "Не знайдено"
 msgid "No more matches for this search direction."
 msgstr "У вказаному напрямку більше нічого не знайдено."
 
-#. i18n: ectx: property (text), widget (QLabel, label)
-#: ui/findbar/khtmlfindbar_base.ui:43
-#, kde-format
-msgid "F&ind:"
-msgstr "З&найти:"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_next)
-#: ui/findbar/khtmlfindbar_base.ui:75
-#, kde-format
-msgid "&Next"
-msgstr "&Далі"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_previous)
-#: ui/findbar/khtmlfindbar_base.ui:85
-#, kde-format
-msgid "&Previous"
-msgstr "&Назад"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_options)
-#: ui/findbar/khtmlfindbar_base.ui:111
-#, kde-format
-msgid "Opt&ions"
-msgstr "Па&раметри"
-
-#. i18n: ectx: property (text), widget (QLabel, m_label)
-#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
+#: ui/passwordbar/storepassbar.cpp:59
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "Бажаєте зберегти цей пароль?"
@@ -1699,24 +1533,6 @@ msgstr "Бажаєте зберегти цей пароль?"
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "Бажаєте зберегти цей пароль для %1?"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_store)
-#: ui/passwordbar/storepassbar_base.ui:59
-#, kde-format
-msgid "&Store"
-msgstr "Зб&ерегти"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
-#: ui/passwordbar/storepassbar_base.ui:69
-#, kde-format
-msgid "Ne&ver store for this site"
-msgstr "Н&іколи для цього сайта"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
-#: ui/passwordbar/storepassbar_base.ui:79
-#, kde-format
-msgid "Do &not store this time"
-msgstr "&Не зберігати цього разу"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1737,6 +1553,111 @@ msgstr "фатальна помилка аналізу: %1 в рядку %2, с�
 #, kde-format
 msgid "XML parsing error"
 msgstr "Помилка аналізу XML"
+
+#~ msgid ""
+#~ "You have indicated that you wish to obtain or purchase a secure "
+#~ "certificate. This wizard is intended to guide you through the procedure. "
+#~ "You may cancel at any time, and this will abort the transaction."
+#~ msgstr ""
+#~ "Ви вказали, що хочете отримати або придбати безпечний сертифікат. Цей "
+#~ "майстер допоможе виконати потрібні дії. Ви можете скасувати цей процес на "
+#~ "довільному кроці — операцію буде скасовано."
+
+#~ msgid ""
+#~ "You must now provide a password for the certificate request. Please "
+#~ "choose a very secure password as this will be used to encrypt your "
+#~ "private key."
+#~ msgstr ""
+#~ "Вам слід надати пароль для запиту сертифіката. Будь ласка, виберіть такий "
+#~ "пароль, який дуже важко підібрати, оскільки цей пароль буде використано "
+#~ "для шифрування вашого закритого ключа."
+
+#~ msgid "&Repeat password:"
+#~ msgstr "П&овторіть пароль:"
+
+#~ msgid "&Choose password:"
+#~ msgstr "&Виберіть пароль:"
+
+#~ msgid "Document Information"
+#~ msgstr "Інформація про документ"
+
+#~ msgctxt "@title:group Document information"
+#~ msgid "General"
+#~ msgstr "Загальне"
+
+#~ msgid "URL:"
+#~ msgstr "URL:"
+
+#~ msgid "Title:"
+#~ msgstr "Заголовок:"
+
+#~ msgid "Last modified:"
+#~ msgstr "Останні зміни:"
+
+#~ msgid "Document encoding:"
+#~ msgstr "Кодування документа:"
+
+#~ msgid "Rendering mode:"
+#~ msgstr "Режим показу:"
+
+#~ msgid "HTTP Headers"
+#~ msgstr "HTTP-заголовки"
+
+#~ msgid "Property"
+#~ msgstr "Властивість"
+
+#~ msgid "&Edit"
+#~ msgstr "З&міни"
+
+#~ msgid "&File"
+#~ msgstr "&Файл"
+
+#~ msgid "&View"
+#~ msgstr "П&ерегляд"
+
+#~ msgid "HTML Toolbar"
+#~ msgstr "Пенал HTML"
+
+#~ msgid "JavaScript Errors"
+#~ msgstr "Помилки JavaScript"
+
+#~ msgid ""
+#~ "This dialog provides you with notification and details of scripting "
+#~ "errors that occur on web pages.  In many cases it is due to an error in "
+#~ "the web site as designed by its author.  In other cases it is the result "
+#~ "of a programming error in Konqueror.  If you suspect the former, please "
+#~ "contact the webmaster of the site in question.  Conversely if you suspect "
+#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
+#~ "org/.  A test case which illustrates the problem will be appreciated."
+#~ msgstr ""
+#~ "За допомогою цього діалогового вікна можна отримувати інформацію про "
+#~ "помилки скриптів на сторінках інтернету. Здебільшого, такі помилки є "
+#~ "помилками автора при розробці сайта інтернету. Але інколи причиною є "
+#~ "помилки в Konqueror. Якщо ви вважаєте, що це перший випадок, ви можете "
+#~ "зв'язатися з автором сторінки інтернету. Якщо на вашу думку, це помилка в "
+#~ "Konqueror, будь ласка, звітуйте помилку на https://bugs.kde.org/. Ми "
+#~ "будемо вдячні, якщо ви долучите тестовий приклад для демонстрації помилки."
+
+#~ msgid "F&ind:"
+#~ msgstr "З&найти:"
+
+#~ msgid "&Next"
+#~ msgstr "&Далі"
+
+#~ msgid "&Previous"
+#~ msgstr "&Назад"
+
+#~ msgid "Opt&ions"
+#~ msgstr "Па&раметри"
+
+#~ msgid "&Store"
+#~ msgstr "Зб&ерегти"
+
+#~ msgid "Ne&ver store for this site"
+#~ msgstr "Н&іколи для цього сайта"
+
+#~ msgid "Do &not store this time"
+#~ msgstr "&Не зберігати цього разу"
 
 #~ msgid "Error"
 #~ msgstr "Помилка"

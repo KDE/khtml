@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the khtml package.
 #
-# Xəyyam <xxmn77@gmail.com>, 2020, 2021, 2022.
+# Xəyyam <xxmn77@gmail.com>, 2020, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: khtml\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-08-06 00:42+0000\n"
-"PO-Revision-Date: 2022-07-31 23:14+0400\n"
+"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"PO-Revision-Date: 2023-02-17 01:23+0400\n"
 "Last-Translator: Kheyyam <xxmn77@gmail.com>\n"
 "Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
 "Language: az\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.04.3\n"
+"X-Generator: Lokalize 22.12.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -178,8 +178,7 @@ msgstr "Yerli Dəyişikliklər"
 msgid "Reference"
 msgstr "İstinad"
 
-#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
-#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
+#: ecma/debugger/localvariabledock.cpp:52
 #, kde-format
 msgid "Value"
 msgstr "Dəyər"
@@ -298,7 +297,7 @@ msgstr ""
 #: ecma/kjs_window.cpp:3245
 #, kde-format
 msgid "JavaScript Attempted Bookmark Insert"
-msgstr "JavaScript Əlfəcin Əlavə Etməyə Cəhd Edir"
+msgstr "JavaScript əlfəcin əlavə etməyə cəhd etdi"
 
 #: ecma/kjs_window.cpp:3249
 #, kde-format
@@ -396,41 +395,6 @@ msgstr "Yükləmə"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "Bu axtarış imkanı olan indeksdir. Axtarış üçün açar sözu daxil et: "
 
-#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
-#: html/keygenwizard.ui:35
-#, kde-format
-msgid ""
-"You have indicated that you wish to obtain or purchase a secure certificate. "
-"This wizard is intended to guide you through the procedure. You may cancel "
-"at any time, and this will abort the transaction."
-msgstr ""
-"Siz göstərdiniz ki, təhlükəsizlik sertifikatı əldə etmək və ya almaq "
-"istəyirsiniz. Bu ustad sizə sertifikat sifariş verməkdə yardım edəcək. Siz "
-"istədiyiniz zaman bu işi ləğv edə bilərsiniz."
-
-#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
-#: html/keygenwizard2.ui:35
-#, kde-format
-msgid ""
-"You must now provide a password for the certificate request. Please choose a "
-"very secure password as this will be used to encrypt your private key."
-msgstr ""
-"Sertifikat tələbi üçün etibarlı parol tələb olunur. Etibarlılıq üçün yaxşı "
-"qorunan mürəkkəb paroldan istifadə edin. belə ki, bu sizin gizli açarınızı "
-"şifrələmək üçün  istifadə olunacaq."
-
-#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
-#: html/keygenwizard2.ui:48
-#, kde-format
-msgid "&Repeat password:"
-msgstr "&Parolu Təkrarla"
-
-#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
-#: html/keygenwizard2.ui:58
-#, kde-format
-msgid "&Choose password:"
-msgstr "&Parol Seç"
-
 #: html/ksslkeygen.cpp:82
 #, kde-format
 msgid "KDE Certificate Request"
@@ -500,85 +464,6 @@ msgstr "512 (Zəif Dərəcəli)"
 #, kde-format
 msgid "No SSL support."
 msgstr "SSL dəstəklənmir"
-
-#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
-#: htmlpageinfo.ui:22
-#, kde-format
-msgid "Document Information"
-msgstr "Sənəd haqqında məlumat"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
-#: htmlpageinfo.ui:34
-#, kde-format
-msgctxt "@title:group Document information"
-msgid "General"
-msgstr "Əsas"
-
-#. i18n: ectx: property (text), widget (QLabel, urlLabel)
-#: htmlpageinfo.ui:60
-#, kde-format
-msgid "URL:"
-msgstr "URL:"
-
-#. i18n: ectx: property (text), widget (QLabel, titleLabel)
-#: htmlpageinfo.ui:112
-#, kde-format
-msgid "Title:"
-msgstr "Başlıq:"
-
-#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
-#: htmlpageinfo.ui:128
-#, kde-format
-msgid "Last modified:"
-msgstr "Son dəyişdirilən:"
-
-#. i18n: ectx: property (text), widget (QLabel, _eLabel)
-#: htmlpageinfo.ui:144
-#, kde-format
-msgid "Document encoding:"
-msgstr "Sənəd kodlanması"
-
-#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
-#: htmlpageinfo.ui:167
-#, kde-format
-msgid "Rendering mode:"
-msgstr "HTML göstərmə rejimi"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
-#: htmlpageinfo.ui:186
-#, kde-format
-msgid "HTTP Headers"
-msgstr "HTTP başlıqları"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
-#: htmlpageinfo.ui:214
-#, kde-format
-msgid "Property"
-msgstr "Parametr"
-
-#. i18n: ectx: Menu (edit)
-#: khtml.rc:4 khtml_browser.rc:11
-#, kde-format
-msgid "&Edit"
-msgstr "&Düzəliş"
-
-#. i18n: ectx: Menu (file)
-#: khtml_browser.rc:4
-#, kde-format
-msgid "&File"
-msgstr "&Fayl"
-
-#. i18n: ectx: Menu (view)
-#: khtml_browser.rc:18
-#, kde-format
-msgid "&View"
-msgstr "&Göstər"
-
-#. i18n: ectx: ToolBar (htmlToolBar)
-#: khtml_browser.rc:34
-#, kde-format
-msgid "HTML Toolbar"
-msgstr "HTML Alətlər Çubuğu"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1422,31 +1307,6 @@ msgstr "Giriş Açarları aktivləşdirildi"
 msgid "C&lear"
 msgstr "T&əmizlə"
 
-#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
-#: kjserrordlgbase.ui:15
-#, kde-format
-msgid "JavaScript Errors"
-msgstr "JavaScript Xətaları"
-
-#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
-#: kjserrordlgbase.ui:18
-#, kde-format
-msgid ""
-"This dialog provides you with notification and details of scripting errors "
-"that occur on web pages.  In many cases it is due to an error in the web "
-"site as designed by its author.  In other cases it is the result of a "
-"programming error in Konqueror.  If you suspect the former, please contact "
-"the webmaster of the site in question.  Conversely if you suspect an error "
-"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
-"case which illustrates the problem will be appreciated."
-msgstr ""
-"Bu dialoqda Veb səhifələrindəki xətalar göstərilir.Iksər hallarda bu xətalar "
-"veb səhifəsi yaradılan zaman və ya KonQueror-dakı səhvlər ucbatından baş "
-"verir. Birinci halda bu xətalar barəsində veb ustalarını məlumatlandırın, "
-"digər halda isə əgər səhv Konqueror-da baş verirsə xətalar haqqında məlumatı "
-"https://bugs.kde.org/ ünvanına göndərin. Səhvlərin nədən ibarət olduğunu  "
-"göstərən nümunələr onları aradan qaldırmağa kömək edir."
-
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1641,32 +1501,7 @@ msgstr "Tapılmadı"
 msgid "No more matches for this search direction."
 msgstr "Başqa Oxşar Axtarış Nəticələri Yoxdur."
 
-#. i18n: ectx: property (text), widget (QLabel, label)
-#: ui/findbar/khtmlfindbar_base.ui:43
-#, kde-format
-msgid "F&ind:"
-msgstr "T&ap:"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_next)
-#: ui/findbar/khtmlfindbar_base.ui:75
-#, kde-format
-msgid "&Next"
-msgstr "&Növbəti"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_previous)
-#: ui/findbar/khtmlfindbar_base.ui:85
-#, kde-format
-msgid "&Previous"
-msgstr "&Əvvəlki"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_options)
-#: ui/findbar/khtmlfindbar_base.ui:111
-#, kde-format
-msgid "Opt&ions"
-msgstr "Seç&imlər"
-
-#. i18n: ectx: property (text), widget (QLabel, m_label)
-#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
+#: ui/passwordbar/storepassbar.cpp:59
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "Siz bu parolu saxlamaq istəyirsinizmi?"
@@ -1675,24 +1510,6 @@ msgstr "Siz bu parolu saxlamaq istəyirsinizmi?"
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "Siz %1 üçün parolu saxlamaq istəyirsinizmi?"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_store)
-#: ui/passwordbar/storepassbar_base.ui:59
-#, kde-format
-msgid "&Store"
-msgstr "&Saxla"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
-#: ui/passwordbar/storepassbar_base.ui:69
-#, kde-format
-msgid "Ne&ver store for this site"
-msgstr "&Bu səhifə üçün heç zaman saxlama"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
-#: ui/passwordbar/storepassbar_base.ui:79
-#, kde-format
-msgid "Do &not store this time"
-msgstr "&Bu dəfə saxlama"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1713,6 +1530,111 @@ msgstr "kritik təhlil xətası: %2 sətirdə %1, sütun %3"
 #, kde-format
 msgid "XML parsing error"
 msgstr "XML təhlil xətası"
+
+#~ msgid ""
+#~ "You have indicated that you wish to obtain or purchase a secure "
+#~ "certificate. This wizard is intended to guide you through the procedure. "
+#~ "You may cancel at any time, and this will abort the transaction."
+#~ msgstr ""
+#~ "Siz göstərdiniz ki, təhlükəsizlik sertifikatı əldə etmək və ya almaq "
+#~ "istəyirsiniz. Bu ustad sizə sertifikat sifariş verməkdə yardım edəcək. "
+#~ "Siz istədiyiniz zaman bu işi ləğv edə bilərsiniz."
+
+#~ msgid ""
+#~ "You must now provide a password for the certificate request. Please "
+#~ "choose a very secure password as this will be used to encrypt your "
+#~ "private key."
+#~ msgstr ""
+#~ "Sertifikat tələbi üçün etibarlı parol tələb olunur. Etibarlılıq üçün "
+#~ "yaxşı qorunan mürəkkəb paroldan istifadə edin. belə ki, bu sizin gizli "
+#~ "açarınızı şifrələmək üçün  istifadə olunacaq."
+
+#~ msgid "&Repeat password:"
+#~ msgstr "&Parolu Təkrarla"
+
+#~ msgid "&Choose password:"
+#~ msgstr "&Parol Seç"
+
+#~ msgid "Document Information"
+#~ msgstr "Sənəd haqqında məlumat"
+
+#~ msgctxt "@title:group Document information"
+#~ msgid "General"
+#~ msgstr "Əsas"
+
+#~ msgid "URL:"
+#~ msgstr "URL:"
+
+#~ msgid "Title:"
+#~ msgstr "Başlıq:"
+
+#~ msgid "Last modified:"
+#~ msgstr "Son dəyişdirilən:"
+
+#~ msgid "Document encoding:"
+#~ msgstr "Sənəd kodlanması"
+
+#~ msgid "Rendering mode:"
+#~ msgstr "HTML göstərmə rejimi"
+
+#~ msgid "HTTP Headers"
+#~ msgstr "HTTP başlıqları"
+
+#~ msgid "Property"
+#~ msgstr "Parametr"
+
+#~ msgid "&Edit"
+#~ msgstr "&Düzəliş"
+
+#~ msgid "&File"
+#~ msgstr "&Fayl"
+
+#~ msgid "&View"
+#~ msgstr "&Göstər"
+
+#~ msgid "HTML Toolbar"
+#~ msgstr "HTML Alətlər Çubuğu"
+
+#~ msgid "JavaScript Errors"
+#~ msgstr "JavaScript Xətaları"
+
+#~ msgid ""
+#~ "This dialog provides you with notification and details of scripting "
+#~ "errors that occur on web pages.  In many cases it is due to an error in "
+#~ "the web site as designed by its author.  In other cases it is the result "
+#~ "of a programming error in Konqueror.  If you suspect the former, please "
+#~ "contact the webmaster of the site in question.  Conversely if you suspect "
+#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
+#~ "org/.  A test case which illustrates the problem will be appreciated."
+#~ msgstr ""
+#~ "Bu dialoqda Veb səhifələrindəki xətalar göstərilir.Iksər hallarda bu "
+#~ "xətalar veb səhifəsi yaradılan zaman və ya KonQueror-dakı səhvlər "
+#~ "ucbatından baş verir. Birinci halda bu xətalar barəsində veb ustalarını "
+#~ "məlumatlandırın, digər halda isə əgər səhv Konqueror-da baş verirsə "
+#~ "xətalar haqqında məlumatı https://bugs.kde.org/ ünvanına göndərin. "
+#~ "Səhvlərin nədən ibarət olduğunu  göstərən nümunələr onları aradan "
+#~ "qaldırmağa kömək edir."
+
+#~ msgid "F&ind:"
+#~ msgstr "T&ap:"
+
+#~ msgid "&Next"
+#~ msgstr "&Növbəti"
+
+#~ msgid "&Previous"
+#~ msgstr "&Əvvəlki"
+
+#~ msgid "Opt&ions"
+#~ msgstr "Seç&imlər"
+
+#~ msgid "&Store"
+#~ msgstr "&Saxla"
+
+#~ msgid "Ne&ver store for this site"
+#~ msgstr "&Bu səhifə üçün heç zaman saxlama"
+
+#~ msgid "Do &not store this time"
+#~ msgstr "&Bu dəfə saxlama"
 
 #~ msgid "Error"
 #~ msgstr "Xəta"

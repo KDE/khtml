@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-08-06 00:42+0000\n"
+"POT-Creation-Date: 2023-03-01 21:29+0000\n"
 "PO-Revision-Date: 2022-08-07 11:35+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -181,8 +181,7 @@ msgstr "அக மாறிகள்"
 msgid "Reference"
 msgstr "மேற்கோள்"
 
-#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
-#: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
+#: ecma/debugger/localvariabledock.cpp:52
 #, kde-format
 msgid "Value"
 msgstr "விழுப்பம்"
@@ -400,39 +399,6 @@ msgstr "பதிவிறக்க வேண்டாம்"
 msgid "This is a searchable index. Enter search keywords: "
 msgstr "தேடக்கூடிய அகரவரிசை. தேடவேண்டிய முதன்மைச் சொற்களைத் தரவும்:  "
 
-#. i18n: ectx: property (text), widget (QLabel, TextLabel1)
-#: html/keygenwizard.ui:35
-#, kde-format
-msgid ""
-"You have indicated that you wish to obtain or purchase a secure certificate. "
-"This wizard is intended to guide you through the procedure. You may cancel "
-"at any time, and this will abort the transaction."
-msgstr ""
-"பாதுகாப்பான சான்றிதழை வாங்கவேண்டுமென கூறியுள்ளீர்கள். இவ்வுதவிநிரல், அதற்கான வழிமுறையை "
-"நீங்கள் நிறைவேற்ற உதவும். எப்போது வேண்டுமானாலும் இதை நீங்கள் ரத்து செய்யலாம்; அவ்வாறு "
-"செய்தல், பரிவர்த்தனையைக் கைவிடும்."
-
-#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
-#: html/keygenwizard2.ui:35
-#, kde-format
-msgid ""
-"You must now provide a password for the certificate request. Please choose a "
-"very secure password as this will be used to encrypt your private key."
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QLabel, TextLabel6)
-#: html/keygenwizard2.ui:48
-#, kde-format
-msgid "&Repeat password:"
-msgstr "கடவுச்சொல்லை &மீண்டும் உள்ளிடுங்கள்:"
-
-#. i18n: ectx: property (text), widget (QLabel, TextLabel5)
-#: html/keygenwizard2.ui:58
-#, fuzzy, kde-format
-#| msgid "&Keep password"
-msgid "&Choose password:"
-msgstr "கடவுச்சொல்லை &வைத்திரு"
-
 #: html/ksslkeygen.cpp:82
 #, fuzzy, kde-format
 #| msgid "Details of the Request:"
@@ -508,85 +474,6 @@ msgstr ""
 #| msgid "Enable SOCKS support"
 msgid "No SSL support."
 msgstr "SOCKS ஆதரவினை செயற்படுத்தவும்"
-
-#. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
-#: htmlpageinfo.ui:22
-#, kde-format
-msgid "Document Information"
-msgstr "ஆவணத் தகவல்"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
-#: htmlpageinfo.ui:34
-#, kde-format
-msgctxt "@title:group Document information"
-msgid "General"
-msgstr "பொதுவான"
-
-#. i18n: ectx: property (text), widget (QLabel, urlLabel)
-#: htmlpageinfo.ui:60
-#, kde-format
-msgid "URL:"
-msgstr "URL:"
-
-#. i18n: ectx: property (text), widget (QLabel, titleLabel)
-#: htmlpageinfo.ui:112
-#, kde-format
-msgid "Title:"
-msgstr "தலைப்பு:"
-
-#. i18n: ectx: property (text), widget (QLabel, _lmLabel)
-#: htmlpageinfo.ui:128
-#, kde-format
-msgid "Last modified:"
-msgstr "கடைசியாக மாற்றப்பட்டது:"
-
-#. i18n: ectx: property (text), widget (QLabel, _eLabel)
-#: htmlpageinfo.ui:144
-#, kde-format
-msgid "Document encoding:"
-msgstr "ஆவணத்தின் எழுத்துருவாக்கம்:"
-
-#. i18n: ectx: property (text), widget (QLabel, _modeLabel)
-#: htmlpageinfo.ui:167
-#, kde-format
-msgid "Rendering mode:"
-msgstr "எழுத்துருவாக்க முறை:"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
-#: htmlpageinfo.ui:186
-#, kde-format
-msgid "HTTP Headers"
-msgstr "HTTP தலைப்புகள்"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, _headers)
-#: htmlpageinfo.ui:214
-#, kde-format
-msgid "Property"
-msgstr "பண்பு"
-
-#. i18n: ectx: Menu (edit)
-#: khtml.rc:4 khtml_browser.rc:11
-#, kde-format
-msgid "&Edit"
-msgstr "&தொகுக்க"
-
-#. i18n: ectx: Menu (file)
-#: khtml_browser.rc:4
-#, kde-format
-msgid "&File"
-msgstr "&கோப்பு"
-
-#. i18n: ectx: Menu (view)
-#: khtml_browser.rc:18
-#, kde-format
-msgid "&View"
-msgstr "&பார்வையிடுக"
-
-#. i18n: ectx: ToolBar (htmlToolBar)
-#: khtml_browser.rc:34
-#, kde-format
-msgid "HTML Toolbar"
-msgstr "HTML கருவிப்பட்டை"
 
 #: khtml_ext.cpp:413
 #, kde-format
@@ -1441,39 +1328,6 @@ msgstr "அணுகுதற்கான விசைகள் செயற்�
 msgid "C&lear"
 msgstr "&துடைக்க"
 
-#. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
-#: kjserrordlgbase.ui:15
-#, kde-format
-msgid "JavaScript Errors"
-msgstr "JavaScript பிழைகள்"
-
-#. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
-#: kjserrordlgbase.ui:18
-#, fuzzy, kde-format
-#| msgid ""
-#| "This dialog provides you with notification and details of scripting "
-#| "errors that occur on web pages.  In many cases it is due to an error in "
-#| "the web site as designed by its author.  In other cases it is the result "
-#| "of a programming error in Konqueror.  If you suspect the former, please "
-#| "contact the webmaster of the site in question.  Conversely if you suspect "
-#| "an error in Konqueror, please file a bug report at http://bugs.kde.org/.  "
-#| "A test case which illustrates the problem will be appreciated."
-msgid ""
-"This dialog provides you with notification and details of scripting errors "
-"that occur on web pages.  In many cases it is due to an error in the web "
-"site as designed by its author.  In other cases it is the result of a "
-"programming error in Konqueror.  If you suspect the former, please contact "
-"the webmaster of the site in question.  Conversely if you suspect an error "
-"in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
-"case which illustrates the problem will be appreciated."
-msgstr ""
-"இணையப் பக்கங்களில் ஏற்படும் நேர் நிரல் வழுக்கள் குறித்த அறிவிப்பினையும் விவரங்களையும் "
-"இப்பலகைத் தருகிறது. பெரும்பாலும் இணையத் தளத்திலுள்ள வழுவினால் இது ஏற்படுகிறது. "
-"இல்லாவிடில் கான்கொயரரிலுள்ள நிரலாக்க வழுவினால் இது ஏற்படுகிறது. முன்னதெனத் தாங்கள் "
-"தீர்மானித்தால் அத் தளத்தின் இணையப் பராமரிப்பாளரைத் தொடரபுகக் கொகொள்க. வழு கான்கொயரரில் எனக் "
-"கருதினால் http://bugs.kde.org ல் வழுத் தாக்கல் செய்யவும். பிரச்சனையினை விளக்கும் சோதனை "
-"மாதிரி இருப்பது உதவியாக இருக்கும்."
-
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
@@ -1669,32 +1523,7 @@ msgstr "கிடைக்கவில்லை"
 msgid "No more matches for this search direction."
 msgstr "இத்தேடல் திசைக்கு எந்தவொரு பொருத்தமும் இல்லை"
 
-#. i18n: ectx: property (text), widget (QLabel, label)
-#: ui/findbar/khtmlfindbar_base.ui:43
-#, kde-format
-msgid "F&ind:"
-msgstr "&தேடுக:"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_next)
-#: ui/findbar/khtmlfindbar_base.ui:75
-#, kde-format
-msgid "&Next"
-msgstr "&அடுத்த"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_previous)
-#: ui/findbar/khtmlfindbar_base.ui:85
-#, kde-format
-msgid "&Previous"
-msgstr "&முந்தைய"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_options)
-#: ui/findbar/khtmlfindbar_base.ui:111
-#, kde-format
-msgid "Opt&ions"
-msgstr "&தேர்வுகள்"
-
-#. i18n: ectx: property (text), widget (QLabel, m_label)
-#: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
+#: ui/passwordbar/storepassbar.cpp:59
 #, kde-format
 msgid "Do you want to store this password?"
 msgstr "இக்கடவுச் சொல்லை உண்மையாகவே சேமிக்கலாமா?"
@@ -1703,24 +1532,6 @@ msgstr "இக்கடவுச் சொல்லை உண்மையாக�
 #, kde-format
 msgid "Do you want to store this password for %1?"
 msgstr "%1 க்கான இக்கடவுச் சொல்லினை சேமிக்கவா?"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_store)
-#: ui/passwordbar/storepassbar_base.ui:59
-#, kde-format
-msgid "&Store"
-msgstr "&சேமிக்க"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
-#: ui/passwordbar/storepassbar_base.ui:69
-#, kde-format
-msgid "Ne&ver store for this site"
-msgstr "இவ்விணையப் பக்கத்தை சேமிக்க &வேண்டாம்"
-
-#. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
-#: ui/passwordbar/storepassbar_base.ui:79
-#, kde-format
-msgid "Do &not store this time"
-msgstr "இம்முறை சேமிக்க வேண்டாம்"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1741,6 +1552,112 @@ msgstr "கோப்பு அலகிடல் தவறு: %2 வரித�
 #, kde-format
 msgid "XML parsing error"
 msgstr "XML அலகிடல் பிழை"
+
+#~ msgid ""
+#~ "You have indicated that you wish to obtain or purchase a secure "
+#~ "certificate. This wizard is intended to guide you through the procedure. "
+#~ "You may cancel at any time, and this will abort the transaction."
+#~ msgstr ""
+#~ "பாதுகாப்பான சான்றிதழை வாங்கவேண்டுமென கூறியுள்ளீர்கள். இவ்வுதவிநிரல், அதற்கான "
+#~ "வழிமுறையை நீங்கள் நிறைவேற்ற உதவும். எப்போது வேண்டுமானாலும் இதை நீங்கள் ரத்து செய்யலாம்; "
+#~ "அவ்வாறு செய்தல், பரிவர்த்தனையைக் கைவிடும்."
+
+#~ msgid "&Repeat password:"
+#~ msgstr "கடவுச்சொல்லை &மீண்டும் உள்ளிடுங்கள்:"
+
+#, fuzzy
+#~| msgid "&Keep password"
+#~ msgid "&Choose password:"
+#~ msgstr "கடவுச்சொல்லை &வைத்திரு"
+
+#~ msgid "Document Information"
+#~ msgstr "ஆவணத் தகவல்"
+
+#~ msgctxt "@title:group Document information"
+#~ msgid "General"
+#~ msgstr "பொதுவான"
+
+#~ msgid "URL:"
+#~ msgstr "URL:"
+
+#~ msgid "Title:"
+#~ msgstr "தலைப்பு:"
+
+#~ msgid "Last modified:"
+#~ msgstr "கடைசியாக மாற்றப்பட்டது:"
+
+#~ msgid "Document encoding:"
+#~ msgstr "ஆவணத்தின் எழுத்துருவாக்கம்:"
+
+#~ msgid "Rendering mode:"
+#~ msgstr "எழுத்துருவாக்க முறை:"
+
+#~ msgid "HTTP Headers"
+#~ msgstr "HTTP தலைப்புகள்"
+
+#~ msgid "Property"
+#~ msgstr "பண்பு"
+
+#~ msgid "&Edit"
+#~ msgstr "&தொகுக்க"
+
+#~ msgid "&File"
+#~ msgstr "&கோப்பு"
+
+#~ msgid "&View"
+#~ msgstr "&பார்வையிடுக"
+
+#~ msgid "HTML Toolbar"
+#~ msgstr "HTML கருவிப்பட்டை"
+
+#~ msgid "JavaScript Errors"
+#~ msgstr "JavaScript பிழைகள்"
+
+#, fuzzy
+#~| msgid ""
+#~| "This dialog provides you with notification and details of scripting "
+#~| "errors that occur on web pages.  In many cases it is due to an error in "
+#~| "the web site as designed by its author.  In other cases it is the result "
+#~| "of a programming error in Konqueror.  If you suspect the former, please "
+#~| "contact the webmaster of the site in question.  Conversely if you "
+#~| "suspect an error in Konqueror, please file a bug report at http://bugs."
+#~| "kde.org/.  A test case which illustrates the problem will be appreciated."
+#~ msgid ""
+#~ "This dialog provides you with notification and details of scripting "
+#~ "errors that occur on web pages.  In many cases it is due to an error in "
+#~ "the web site as designed by its author.  In other cases it is the result "
+#~ "of a programming error in Konqueror.  If you suspect the former, please "
+#~ "contact the webmaster of the site in question.  Conversely if you suspect "
+#~ "an error in Konqueror, please file a bug report at https://bugs.kde."
+#~ "org/.  A test case which illustrates the problem will be appreciated."
+#~ msgstr ""
+#~ "இணையப் பக்கங்களில் ஏற்படும் நேர் நிரல் வழுக்கள் குறித்த அறிவிப்பினையும் விவரங்களையும் "
+#~ "இப்பலகைத் தருகிறது. பெரும்பாலும் இணையத் தளத்திலுள்ள வழுவினால் இது ஏற்படுகிறது. "
+#~ "இல்லாவிடில் கான்கொயரரிலுள்ள நிரலாக்க வழுவினால் இது ஏற்படுகிறது. முன்னதெனத் தாங்கள் "
+#~ "தீர்மானித்தால் அத் தளத்தின் இணையப் பராமரிப்பாளரைத் தொடரபுகக் கொகொள்க. வழு கான்கொயரரில் "
+#~ "எனக் கருதினால் http://bugs.kde.org ல் வழுத் தாக்கல் செய்யவும். பிரச்சனையினை "
+#~ "விளக்கும் சோதனை மாதிரி இருப்பது உதவியாக இருக்கும்."
+
+#~ msgid "F&ind:"
+#~ msgstr "&தேடுக:"
+
+#~ msgid "&Next"
+#~ msgstr "&அடுத்த"
+
+#~ msgid "&Previous"
+#~ msgstr "&முந்தைய"
+
+#~ msgid "Opt&ions"
+#~ msgstr "&தேர்வுகள்"
+
+#~ msgid "&Store"
+#~ msgstr "&சேமிக்க"
+
+#~ msgid "Ne&ver store for this site"
+#~ msgstr "இவ்விணையப் பக்கத்தை சேமிக்க &வேண்டாம்"
+
+#~ msgid "Do &not store this time"
+#~ msgstr "இம்முறை சேமிக்க வேண்டாம்"
 
 #~ msgid "Error"
 #~ msgstr "பிழை"
