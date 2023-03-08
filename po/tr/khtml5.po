@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:42+0000\n"
-"PO-Revision-Date: 2023-02-05 11:22+0300\n"
+"PO-Revision-Date: 2023-03-07 20:34+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.12.2\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -744,7 +744,7 @@ msgstr "Süzülecek URL Ekle"
 #: khtml_ext.cpp:727 khtml_ext.cpp:739
 #, kde-format
 msgid "Enter the URL:"
-msgstr "Adresi girin:"
+msgstr "URL'yi gir:"
 
 #: khtml_ext.cpp:875
 #, kde-format
@@ -1353,10 +1353,10 @@ msgid ""
 "printout of the HTML document will not contain such a header line.</p> </qt>"
 msgstr ""
 "<qt><p><strong>'Başlık Yazdırma'</strong></p><p>Eğer bu onay kutucuğu "
-"etkinleştirilmişse, HTML belgenin yazıcı çıktısında, her sayfanın en başında "
+"etkinleştirilmişse HTML belgenin yazıcı çıktısında, her sayfanın en başında "
 "bir Başlık satırı yer alacaktır. Bu başlık, güncel tarihi, basılan sayfanın "
-"URL adresini ve sayfa numarasını içerir.</p><p>Onay kutucuğu "
-"etkisizleştirilmişse, HTML belgenin yazıcı çıktısında bir başlık satırı yer "
+"URL'sini ve sayfa numarasını içerir.</p><p>Onay kutucuğu "
+"etkisizleştirilmişse HTML belgenin yazıcı çıktısında bir başlık satırı yer "
 "almayacaktır.</p> </qt>"
 
 #: khtml_printsettings.cpp:55
