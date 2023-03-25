@@ -1,4 +1,5 @@
 # Agron Selimaj <as9902613@gmail.com>, 2012.
+# Indrit Bashkimi <indrit.bashkimi@gmail.com>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: kde4libs\n"
@@ -13,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Launchpad-Export-Date: 2010-11-24 03:19+0000\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Generator: Lokalize 19.12.3\n"
 
 #, fuzzy, kde-format
 #| msgid "without name"
