@@ -12,10 +12,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: kdelibs4\n"
+"Project-Id-Version: khtml\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:42+0000\n"
-"PO-Revision-Date: 2023-01-04 22:00+0100\n"
+"PO-Revision-Date: 2023-04-18 06:31+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-doc@kde.org>\n"
 "Language: eo\n"
@@ -85,12 +85,12 @@ msgstr "Javaskripto-sencimigilo"
 #: ecma/debugger/debugwindow.cpp:173
 #, kde-format
 msgid "&Break at Next Statement"
-msgstr "&Haltigi ĉe sekvonta deklaro"
+msgstr "&Halti ĉe sekvonta deklaro"
 
 #: ecma/debugger/debugwindow.cpp:174
 #, kde-format
 msgid "Break at Next"
-msgstr "&Haltigi ĉe sekvonta haltopunkto"
+msgstr "Halti ĉe sekvonta haltopunkto"
 
 #: ecma/debugger/debugwindow.cpp:179
 #, kde-format
