@@ -21,7 +21,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 "X-Generator: Lokalize 1.1\n"
@@ -358,7 +358,6 @@ msgstr "送信の確認"
 msgid "&Send File"
 msgid_plural "&Send Files"
 msgstr[0] "ファイルを送信(&S)"
-msgstr[1] "ファイルを送信(&S)"
 
 #: html/html_formimpl.cpp:1687 html/html_formimpl.cpp:1908 khtml_part.cpp:4962
 #: khtmlview.cpp:2848 khtmlview.cpp:2892
@@ -1032,7 +1031,6 @@ msgstr "ページを読み込みました。"
 msgid "%1 Image of %2 loaded."
 msgid_plural "%1 Images of %2 loaded."
 msgstr[0] "%1 / %2 画像を読み込みました。"
-msgstr[1] "%1 / %2 画像を読み込みました。"
 
 #: khtml_part.cpp:2582
 #, kde-format
@@ -1059,7 +1057,6 @@ msgstr "%1 (リンク)"
 msgid "%2 (%1 byte)"
 msgid_plural "%2 (%1 bytes)"
 msgstr[0] "%2 (%1 バイト)"
-msgstr[1] "%2 (%1 バイト)"
 
 #: khtml_part.cpp:3761
 #, kde-format
@@ -1310,8 +1307,7 @@ msgstr ""
 #, kde-format
 msgid "&Show Blocked Popup Window"
 msgid_plural "&Show %1 Blocked Popup Windows"
-msgstr[0] "ブロックされたポップアップウィンドウを表示(&S)"
-msgstr[1] "%1 個のブロックされたポップアップウィンドウを表示(&S)"
+msgstr[0] "%1 個のブロックされたポップアップウィンドウを表示(&S)"
 
 #: khtml_part.cpp:7654
 #, kde-format
