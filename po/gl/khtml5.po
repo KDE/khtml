@@ -9,14 +9,14 @@
 # Xosé <xosecalvo@gmail.com>, 2010.
 # Marce Villarino <mvillarino@kde-espana.es>, 2011, 2012, 2013, 2014.
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2015, 2017.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2020.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2020, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:42+0000\n"
-"PO-Revision-Date: 2020-01-12 11:01+0100\n"
+"PO-Revision-Date: 2023-06-05 14:32+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 19.08.3\n"
+"X-Generator: Lokalize 23.04.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1463,12 +1463,12 @@ msgid ""
 "case which illustrates the problem will be appreciated."
 msgstr ""
 "Este diálogo fornécelle unha notificación e detalles dos erros de script que "
-"ocorren nas páxinas web. Na maioría dos casos, isto é debido a un erro no "
-"deseño do autor do sitio. Noutros casos, é o resultado dun fallo de "
-"programación de Konqueror. Se sospeita que se trata do primeiro, por favor, "
-"contacte co deseñador da páxina en cuestión. Se pola contra, sospeita que se "
-"trata dun fallo de Konqueror, por favor, envíe un informe do fallo a https://"
-"bugs.kde.org/. Será útil un caso de proba que ilustre o problema."
+"ocorren nas páxinas web. Isto adoita deberse a un erro no deseño do autor do "
+"sitio. Noutros casos, é o resultado dun fallo de programación de Konqueror. "
+"Se sospeita que se trata do primeiro, por favor, contacte co deseñador da "
+"páxina en cuestión. Se pola contra, sospeita que se trata dun fallo de "
+"Konqueror, por favor, envíe un informe do fallo a https://bugs.kde.org/. "
+"Será útil un caso de proba que ilustre o problema."
 
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
