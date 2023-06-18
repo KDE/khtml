@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:42+0000\n"
-"PO-Revision-Date: 2023-06-05 14:32+0200\n"
+"PO-Revision-Date: 2023-06-17 16:29+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.04.1\n"
+"X-Generator: Lokalize 23.04.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -67,7 +67,7 @@ msgid ""
 "Unable to find the Kate editor component;\n"
 "please check your KDE installation."
 msgstr ""
-"Non se pode atopar a compoñente de edición de Kate;\n"
+"Non se pode atopar a compoñente de editor de Kate;\n"
 "Comprobe a instalación de KDE."
 
 #: ecma/debugger/debugdocument.cpp:269
@@ -227,7 +227,7 @@ msgstr "Erro de procesamento en %1 liña %2"
 #: ecma/kjs_html.cpp:2233 ecma/kjs_window.cpp:1944
 #, kde-format
 msgid "Confirmation: JavaScript Popup"
-msgstr "Confirmación: Xanela emerxente de JavaScript"
+msgstr "Confirmación: diálogo emerxente de JavaScript"
 
 #: ecma/kjs_html.cpp:2235
 #, kde-format
