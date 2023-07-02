@@ -18,6 +18,9 @@
  * Boston, MA 02110-1301, USA.
  */
 
+#ifndef KHTMLPARTTEST_H
+#define KHTMLPARTTEST_H
+
 #include <QObject>
 
 class KHTMLPart;
@@ -31,3 +34,5 @@ private Q_SLOTS:
     void testConstructKHTMLViewFromInitList();
     void testConstructKHTMLViewBeforePart();
 };
+
+#endif
