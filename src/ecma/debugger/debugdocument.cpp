@@ -298,3 +298,4 @@ KTextEditor::View *DebugDocument::viewerView()
     return m_kteView;
 }
 
+#include "moc_debugdocument.cpp"

@@ -117,3 +117,5 @@ void StorePass::slotDoNotStoreClicked()
 {
     removeBar();
 }
+
+#include "moc_storepassbar.cpp"

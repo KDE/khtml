@@ -1823,3 +1823,4 @@ void CachedObjectClient::error(int /*err*/, const QString &/*text*/) {}
 
 #undef CDEBUG
 
+#include "moc_loader.cpp"

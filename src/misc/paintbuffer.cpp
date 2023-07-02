@@ -278,3 +278,5 @@ void BufferedPainter::end(QPainter *&p, BufferedPainter *bp, float opacity)
 #endif
     delete bp;
 }
+
+#include "moc_paintbuffer.cpp"

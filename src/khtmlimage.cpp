@@ -337,3 +337,4 @@ void KHTMLImage::slotPopupMenu(const QPoint &global, const QUrl &url, mode_t mod
     m_ext->popupMenu(global, url, mode, args, browserArgs, flags, actionGroups);
 }
 
+#include "moc_khtmlimage.cpp"

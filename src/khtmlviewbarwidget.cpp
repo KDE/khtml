@@ -56,3 +56,5 @@ void KHTMLViewBarWidget::resizeEvent(QResizeEvent *event)
     }
     QWidget::resizeEvent(event);
 }
+
+#include "moc_khtmlviewbarwidget.cpp"

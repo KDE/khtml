@@ -52,3 +52,5 @@ QObject *KHTMLFactory::create(const char *iface,
 
     return new KHTMLPart(parentWidget, parent, prof);
 }
+
+#include "moc_khtml_factory.cpp"

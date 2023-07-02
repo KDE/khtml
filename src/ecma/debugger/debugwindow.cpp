@@ -1013,3 +1013,4 @@ void DebugWindow::leaveModality()
     }
 }
 
+#include "moc_debugwindow.cpp"

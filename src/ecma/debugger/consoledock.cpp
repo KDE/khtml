@@ -286,3 +286,5 @@ void ConsoleDock::slotUserRequestedEval()
 }
 
 }
+
+#include "moc_consoledock.cpp"

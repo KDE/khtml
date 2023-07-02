@@ -39,3 +39,5 @@ BreakpointsDock::~BreakpointsDock()
 }
 
 }
+
+#include "moc_breakpointsdock.cpp"

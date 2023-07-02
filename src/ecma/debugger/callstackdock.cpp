@@ -128,3 +128,5 @@ KJS::ExecState *CallStackDock::selectedFrameContext()
 }
 
 }
+
+#include "moc_callstackdock.cpp"

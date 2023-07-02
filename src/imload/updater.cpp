@@ -104,3 +104,4 @@ void Updater::pushUpdates()
 
 }
 
+#include "moc_updater.cpp"

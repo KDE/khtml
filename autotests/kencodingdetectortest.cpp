@@ -86,3 +86,5 @@ void KEncodingDetectorTest::testDecode()
 }
 
 QTEST_MAIN(KEncodingDetectorTest)
+
+#include "moc_kencodingdetectortest.cpp"

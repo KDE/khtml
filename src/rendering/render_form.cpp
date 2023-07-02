@@ -2573,3 +2573,4 @@ void RenderTextArea::setSelectionRange(long start, long end)
 }
 // ---------------------------------------------------------------------------
 
+#include "moc_render_form.cpp"

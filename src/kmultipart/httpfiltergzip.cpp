@@ -92,3 +92,5 @@ HTTPFilterGZip::slotInput(const QByteArray &d)
         }
     }
 }
+
+#include "moc_httpfiltergzip_p.cpp"

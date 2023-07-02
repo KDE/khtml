@@ -65,3 +65,4 @@ QObject *KHTMLAdaptorPartFactory::create(const char * /*iface*/,
     return new AdaptorView(wparent, parent, QStringList());
 }
 
+#include "moc_khtmladaptorpart.cpp"

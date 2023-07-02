@@ -185,3 +185,5 @@ void LocalVariablesDock::updateDisplay(KJS::ExecState *exec)
 }
 
 }
+
+#include "moc_localvariabledock.cpp"

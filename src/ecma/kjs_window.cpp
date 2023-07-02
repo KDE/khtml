@@ -3358,3 +3358,4 @@ JSValue *HistoryFunc::callAsFunction(ExecState *exec, JSObject *thisObj, const L
 
 } // namespace KJS
 
+#include "moc_kjs_window.cpp"

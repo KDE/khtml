@@ -299,3 +299,4 @@ KHTMLPageCacheDelivery::~KHTMLPageCacheDelivery()
     delete file;
 }
 
+#include "moc_khtml_pagecache.cpp"

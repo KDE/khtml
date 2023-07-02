@@ -7716,3 +7716,4 @@ using namespace KParts;
 #include "moc_khtml_wallet_p.cpp"
 #endif
 
+#include "moc_khtml_part.cpp"

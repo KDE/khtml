@@ -1190,3 +1190,4 @@ void TestRegressionWindow::writeListFile(const QString &fileName, const QStringL
     file.close();
 }
 
+#include "moc_test_regression_gui_window.cpp"

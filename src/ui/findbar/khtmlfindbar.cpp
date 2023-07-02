@@ -269,3 +269,5 @@ bool KHTMLFindBar::event(QEvent *e)
     }
     return KHTMLViewBarWidget::event(e);
 }
+
+#include "moc_khtmlfindbar.cpp"

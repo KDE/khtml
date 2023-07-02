@@ -4498,3 +4498,5 @@ bool KHTMLView::caretKeyPressEvent(QKeyEvent *_ke)
 }
 
 #undef DEBUG_CARETMODE
+
+#include "moc_khtmlview.cpp"

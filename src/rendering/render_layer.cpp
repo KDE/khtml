@@ -2171,3 +2171,4 @@ void Marquee::timerEvent(QTimerEvent * /*evt*/)
     }
 }
 
+#include "moc_render_layer.cpp"

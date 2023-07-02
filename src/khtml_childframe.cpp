@@ -139,3 +139,4 @@ KHTMLFrameList::Iterator KHTMLFrameList::find(const QString &name)
     return it;
 }
 
+#include "moc_khtml_childframe_p.cpp"

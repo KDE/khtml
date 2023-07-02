@@ -94,3 +94,4 @@ void MediaControls::slotStateChanged(Phonon::State state)
 
 }
 
+#include "moc_media_controls.cpp"

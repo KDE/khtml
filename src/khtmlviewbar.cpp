@@ -143,3 +143,5 @@ void KHTMLViewBar::hideEvent(QHideEvent *event)
 //   if (!event->spontaneous())
 //     m_view->setFocus();
 }
+
+#include "moc_khtmlviewbar.cpp"

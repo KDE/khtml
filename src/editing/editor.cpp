@@ -615,3 +615,4 @@ bool Editor::handleKeyEvent(QKeyEvent *_ke)
 
 }
 
+#include "moc_editor.cpp"

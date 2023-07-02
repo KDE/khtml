@@ -91,3 +91,4 @@ void AnimTimer::destroyed(AnimProvider *provider)
 
 }
 
+#include "moc_animtimer.cpp"

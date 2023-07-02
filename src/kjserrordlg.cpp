@@ -33,3 +33,5 @@ void KJSErrorDlg::init()
 {
     _errorText->setAcceptRichText(false);
 }
+
+#include "moc_kjserrordlg.cpp"

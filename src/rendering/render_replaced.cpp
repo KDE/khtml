@@ -1348,3 +1348,4 @@ KHTMLWidget::~KHTMLWidget()
     delete m_kwp;
 }
 
+#include "moc_render_replaced.cpp"

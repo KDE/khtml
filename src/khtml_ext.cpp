@@ -1271,3 +1271,4 @@ KHTMLPart *KHTMLHtmlExtension::part() const
     return static_cast<KHTMLPart *>(parent());
 }
 
+#include "moc_khtml_ext.cpp"

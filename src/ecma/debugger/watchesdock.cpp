@@ -37,3 +37,5 @@ WatchesDock::~WatchesDock()
 }
 
 }
+
+#include "moc_watchesdock.cpp"

@@ -106,3 +106,4 @@ void KHTMLRun::save(const QUrl &url, const QString &suggestedFilename)
     KHTMLPopupGUIClient::saveURL(part()->widget(), i18n("Save As"), url, arguments().metaData(), QString(), 0, suggestedFilename);
 }
 
+#include "moc_khtml_run.cpp"

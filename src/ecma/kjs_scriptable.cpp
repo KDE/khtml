@@ -974,3 +974,4 @@ bool KHTMLPartScriptable::setException(ScriptableExtension * /*caller*/,
 
 } // namespace KJS
 
+#include "moc_kjs_scriptable.cpp"

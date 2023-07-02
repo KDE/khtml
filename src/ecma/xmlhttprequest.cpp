@@ -990,3 +990,4 @@ JSValue *XMLHttpRequestProtoFunc::callAsFunction(ExecState *exec, JSObject *this
 
 } // end namespace
 
+#include "moc_xmlhttprequest.cpp"

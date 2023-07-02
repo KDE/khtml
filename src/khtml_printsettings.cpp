@@ -105,3 +105,4 @@ bool KHTMLPrintSettings::printHeader()
     return m_printheader->isChecked();
 }
 
+#include "moc_khtml_printsettings.cpp"

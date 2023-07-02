@@ -74,3 +74,5 @@ void KJSErrorDialog::slotUser1()
 }
 
 }
+
+#include "moc_errordlg.cpp"

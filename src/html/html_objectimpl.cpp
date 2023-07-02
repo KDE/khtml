@@ -880,3 +880,4 @@ void HTMLParamElementImpl::parseAttribute(AttributeImpl *attr)
     }
 }
 
+#include "moc_html_objectimpl.cpp"

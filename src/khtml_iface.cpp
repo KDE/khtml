@@ -236,3 +236,4 @@ void KHTMLPartIface::print(bool quick)
     part->view()->print(quick);
 }
 
+#include "moc_khtml_iface.cpp"

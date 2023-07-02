@@ -619,3 +619,5 @@ void KHTMLFind::slotFindPrevious()
 {
     findTextNext(true);    // find backwards
 }
+
+#include "moc_khtmlfind_p.cpp"

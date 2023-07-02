@@ -3415,3 +3415,4 @@ void XMLDocumentImpl::close()
     }
 }
 
+#include "moc_dom_docimpl.cpp"

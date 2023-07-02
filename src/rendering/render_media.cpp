@@ -121,3 +121,5 @@ void RenderMedia::slotMetaDataChanged()
 }
 
 }
+
+#include "moc_render_media.cpp"

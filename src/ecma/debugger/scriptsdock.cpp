@@ -148,3 +148,4 @@ void ScriptsDock::scriptSelected(QTreeWidgetItem *item, int /*column*/)
     }
 }
 
+#include "moc_scriptsdock.cpp"

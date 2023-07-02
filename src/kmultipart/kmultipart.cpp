@@ -598,3 +598,5 @@ void KMultiPartBrowserExtension::reparseConfiguration()
 #endif
 
 #include "kmultipart.moc"
+
+#include "moc_kmultipart.cpp"

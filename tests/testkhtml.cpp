@@ -211,3 +211,5 @@ void Dummy::handleDone()
     ++benchmarkRun;
     QTimer::singleShot(100, this, SLOT(nextRun()));
 }
+
+#include "moc_testkhtml.cpp"

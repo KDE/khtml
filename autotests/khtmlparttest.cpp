@@ -67,3 +67,5 @@ void KHTMLPartTest::testConstructKHTMLViewBeforePart()
     QVERIFY(view->part() == part);
     delete part;
 }
+
+#include "moc_khtmlparttest.cpp"
