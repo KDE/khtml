@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:42+0000\n"
-"PO-Revision-Date: 2023-06-04 01:40+0300\n"
+"PO-Revision-Date: 2023-07-04 00:53+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -184,7 +184,7 @@ msgstr "JavaScript Hatası"
 #: ecma/debugger/errordlg.cpp:49
 #, kde-format
 msgid "&Do not show this message again"
-msgstr "&Bu mesajı bir daha gösterme"
+msgstr "&Bu iletiyi bir daha gösterme"
 
 #: ecma/debugger/localvariabledock.cpp:43
 #, kde-format
