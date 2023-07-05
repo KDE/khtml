@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 1.4\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -360,10 +360,11 @@ msgid "Send Confirmation"
 msgstr "تأیید ارسال"
 
 #: html/html_formimpl.cpp:438
-#, kde-format
+#, fuzzy, kde-format
 msgid "&Send File"
 msgid_plural "&Send Files"
 msgstr[0] "ارسال پرونده‌ها‌"
+msgstr[1] ""
 
 #: html/html_formimpl.cpp:1687 html/html_formimpl.cpp:1908 khtml_part.cpp:4962
 #: khtmlview.cpp:2848 khtmlview.cpp:2892
@@ -1048,10 +1049,11 @@ msgid "Page loaded."
 msgstr "صفحه بار شد."
 
 #: khtml_part.cpp:2404
-#, kde-format
+#, fuzzy, kde-format
 msgid "%1 Image of %2 loaded."
 msgid_plural "%1 Images of %2 loaded."
 msgstr[0] "%1 تصویر از %2 بار شد."
+msgstr[1] ""
 
 #: khtml_part.cpp:2582
 #, kde-format
@@ -1074,10 +1076,11 @@ msgid "%1 (Link)"
 msgstr "%1 )پیوند("
 
 #: khtml_part.cpp:3758
-#, kde-format
+#, fuzzy, kde-format
 msgid "%2 (%1 byte)"
 msgid_plural "%2 (%1 bytes)"
 msgstr[0] "%2 (%1 بایت)"
+msgstr[1] ""
 
 #: khtml_part.cpp:3761
 #, kde-format
@@ -1320,10 +1323,11 @@ msgstr ""
 "یا باز کردن بالاپر، این شمایل را در میله وضعیت فشار دهید."
 
 #: khtml_part.cpp:7652
-#, kde-format
+#, fuzzy, kde-format
 msgid "&Show Blocked Popup Window"
 msgid_plural "&Show %1 Blocked Popup Windows"
 msgstr[0] "نمایش %1 پنجرهٔ بالاپر مسدودشده"
+msgstr[1] ""
 
 #: khtml_part.cpp:7654
 #, kde-format
