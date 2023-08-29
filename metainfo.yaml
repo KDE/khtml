@@ -9,7 +9,7 @@ platforms:
     - name: macOS
 portingAid: true
 deprecated: true
-release: true
+release: false
 libraries:
  - qmake: KHtml
    cmake: "KF5::KHtml"
