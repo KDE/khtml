@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:42+0000\n"
-"PO-Revision-Date: 2023-07-04 00:53+0300\n"
+"PO-Revision-Date: 2023-09-07 14:33+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.07.70\n"
+"X-Generator: Lokalize 23.11.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1096,12 +1096,12 @@ msgstr " - Konu: "
 #: khtml_part.cpp:3802
 #, kde-format
 msgid " - CC: "
-msgstr " - KK: "
+msgstr " - Kopya: "
 
 #: khtml_part.cpp:3804
 #, kde-format
 msgid " - BCC: "
-msgstr " - BCC: "
+msgstr " - Gizli kopya: "
 
 #: khtml_part.cpp:3885 khtml_part.cpp:4107 khtml_part.cpp:4543
 #: khtml_run.cpp:106
