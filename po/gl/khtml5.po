@@ -67,7 +67,7 @@ msgid ""
 "Unable to find the Kate editor component;\n"
 "please check your KDE installation."
 msgstr ""
-"Non se pode atopar a compoñente de editor de Kate;\n"
+"Non é posíbel atopar a compoñente de editor de Kate;\n"
 "Comprobe a instalación de KDE."
 
 #: ecma/debugger/debugdocument.cpp:269
@@ -754,7 +754,7 @@ msgstr "Sobrescribir o ficheiro?"
 #: khtml_ext.cpp:927
 #, kde-format
 msgid "The Download Manager (%1) could not be found in your $PATH "
-msgstr "Non se puido atopar o Xestor de descargas (%1) no seu $PATH"
+msgstr "Non foi posíbel atopar o Xestor de descargas (%1) no seu $PATH"
 
 #: khtml_ext.cpp:928
 #, kde-format
@@ -980,7 +980,7 @@ msgstr "Erro: %1 - %2"
 #: khtml_part.cpp:1917
 #, kde-format
 msgid "The requested operation could not be completed"
-msgstr "Non se puido completar a operación pedida"
+msgstr "Non foi posíbel completar a operación pedida"
 
 #: khtml_part.cpp:1923
 #, kde-format
