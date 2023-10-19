@@ -349,7 +349,7 @@ msgid ""
 "Do you really want to continue?"
 msgstr ""
 "Esteu a punt de transferir els fitxers següents des del vostre ordinador "
-"local a Internet.\n"
+"local cap a Internet.\n"
 "Segur que voleu continuar?"
 
 #: html/html_formimpl.cpp:438
@@ -667,7 +667,7 @@ msgstr "Visualitza la informació del marc"
 #: khtml_ext.cpp:519
 #, kde-format
 msgid "Block IFrame..."
-msgstr "Bloca «IFrame»..."
+msgstr "Bloca el «IFrame»..."
 
 #: khtml_ext.cpp:543
 #, kde-format

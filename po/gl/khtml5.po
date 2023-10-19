@@ -1180,7 +1180,7 @@ msgstr ""
 "Coidado: Este é un formulario seguro pero está a intentar enviar os seus "
 "datos sen cifrar.\n"
 "Esta información podería interceptarse por terceiros.\n"
-"Está seguro de que quere continuar?"
+"Seguro que quere continuar?"
 
 #: khtml_part.cpp:4904 khtml_part.cpp:4914 khtml_part.cpp:4939
 #, kde-format
@@ -1200,7 +1200,7 @@ msgid ""
 "Are you sure you wish to continue?"
 msgstr ""
 "Coidado: Os seus datos están a piques de transmitirse pola rede sen cifrar.\n"
-"Está seguro de que quere continuar?"
+"Seguro que quere continuar?"
 
 #: khtml_part.cpp:4937
 #, kde-format
