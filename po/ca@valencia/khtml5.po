@@ -667,7 +667,7 @@ msgstr "Visualitza la informació del marc"
 #: khtml_ext.cpp:519
 #, kde-format
 msgid "Block IFrame..."
-msgstr "Bloca el «IFrame»..."
+msgstr "Bloca «IFrame»..."
 
 #: khtml_ext.cpp:543
 #, kde-format
