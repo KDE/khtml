@@ -672,7 +672,7 @@ msgstr "Bloca «IFrame»..."
 #: khtml_ext.cpp:543
 #, kde-format
 msgid "Save Image As..."
-msgstr "Guarda la imatge com a..."
+msgstr "Anomena i guarda la imatge..."
 
 #: khtml_ext.cpp:548
 #, kde-format
@@ -727,7 +727,7 @@ msgstr "Guarda l'enllaç com a"
 #: khtml_ext.cpp:712
 #, kde-format
 msgid "Save Image As"
-msgstr "Guarda la imatge com a"
+msgstr "Anomena i guarda la imatge"
 
 #: khtml_ext.cpp:726 khtml_ext.cpp:738
 #, kde-format
@@ -1330,12 +1330,12 @@ msgid ""
 "of the HTML page will be printed, without the included images. Printing will "
 "be faster and use less ink or toner.</p> </qt>"
 msgstr ""
-"<qt><p><strong>«Imprimix les imatges»</strong></p><p>Si s'activa esta "
+"<qt><p><strong>«Imprimix les imatges»</strong></p><p>Si se selecciona esta "
 "casella de selecció, s'imprimiran les imatges contingudes en la pàgina HTML. "
 "La impressió pot tardar més i utilitzar més tinta o tòner.</p> <p>Si es "
-"desactiva esta casella de selecció, només s'imprimirà el text de la pàgina "
-"HTML, sense les imatges incloses. La impressió serà més ràpida i utilitzarà "
-"menys tinta o tòner.</p> </qt>"
+"desselecciona esta casella de selecció, només s'imprimirà el text de la "
+"pàgina HTML, sense les imatges incloses. La impressió serà més ràpida i "
+"utilitzarà menys tinta o tòner.</p> </qt>"
 
 #: khtml_printsettings.cpp:42
 #, kde-format
@@ -1346,11 +1346,11 @@ msgid ""
 "printed page and the page number.</p><p>If this checkbox is disabled, the "
 "printout of the HTML document will not contain such a header line.</p> </qt>"
 msgstr ""
-"<qt><p><strong>«Imprimix la capçalera»</strong></p><p>Si s'activa esta "
+"<qt><p><strong>«Imprimix la capçalera»</strong></p><p>Si se selecciona esta "
 "casella de selecció, la impressió del document HTML contindrà una línia de "
 "capçalera dalt de cada pàgina. Esta capçalera conté la data actual, l'URL "
 "d'ubicació de la pàgina impresa i el número de pàgina.</p> <p>Si es "
-"desactiva esta casella de selecció, la impressió del document HTML no "
+"desselecciona esta casella de selecció, la impressió del document HTML no "
 "contindrà esta línia de capçalera.</p> </qt>"
 
 #: khtml_printsettings.cpp:55
@@ -1365,15 +1365,16 @@ msgid ""
 "grayscale, if you use a black+white printer). Printout will possibly happen "
 "more slowly and will probably use more toner or ink.</p> </qt>"
 msgstr ""
-"<qt><p><strong>«Mode d'impressió fàcil d'emprar»</strong></p><p>Si s'activa "
-"esta casella de selecció, la impressió del document HTML serà només en blanc "
-"i negre i tot el fons de color es passarà a blanc. La impressió serà més "
-"ràpida i utilitzarà menys tinta o tòner.</p><p>Si es desactiva esta casella "
-"de selecció, la impressió del document HTML es farà amb la configuració de "
-"colors originals, tal com els veeu en l'aplicació. Açò pot donar àrees de "
-"color a tota la pàgina (o d'escala de grisos, si utilitzeu una impressora de "
-"blanc i negre). La impressió possiblement serà més lenta i probablement "
-"utilitzarà molt més tòner o tinta.</p> </qt>"
+"<qt><p><strong>«Mode d'impressió fàcil d'emprar»</strong></p><p>Si se "
+"selecciona esta casella de selecció, la impressió del document HTML serà "
+"només en blanc i negre i tot el fons de color es passarà a blanc. La "
+"impressió serà més ràpida i utilitzarà menys tinta o tòner.</p><p>Si es "
+"desselecciona esta casella de selecció, la impressió del document HTML es "
+"farà amb la configuració de colors originals, tal com els veeu en "
+"l'aplicació. Açò pot donar àrees de color a tota la pàgina (o d'escala de "
+"grisos, si utilitzeu una impressora de blanc i negre). La impressió "
+"possiblement serà més lenta i probablement utilitzarà molt més tòner o tinta."
+"</p> </qt>"
 
 #: khtml_printsettings.cpp:70
 #, kde-format
