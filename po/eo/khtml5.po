@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: khtml\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:25+0000\n"
-"PO-Revision-Date: 2023-04-18 06:31+0100\n"
+"PO-Revision-Date: 2023-11-18 21:07+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-doc@kde.org>\n"
 "Language: eo\n"
@@ -115,7 +115,7 @@ msgstr "Paŝi ele"
 #: ecma/debugger/debugwindow.cpp:204
 #, kde-format
 msgid "Reindent Sources"
-msgstr ""
+msgstr "Reindent Fontoj"
 
 #: ecma/debugger/debugwindow.cpp:209
 #, kde-format
@@ -161,11 +161,13 @@ msgid ""
 "Do not know where to evaluate the expression. Please pause a script or open "
 "a source file."
 msgstr ""
+"Ne scias kie taksi la esprimon. Bonvolu paŭzi skripton aŭ malfermi "
+"fontdosieron."
 
 #: ecma/debugger/debugwindow.cpp:809
 #, kde-format
 msgid "Evaluation threw an exception %1"
-msgstr ""
+msgstr "Taksado ĵetis escepton %1"
 
 #: ecma/debugger/errordlg.cpp:35
 #, kde-format
@@ -413,6 +415,9 @@ msgid ""
 "This wizard is intended to guide you through the procedure. You may cancel "
 "at any time, and this will abort the transaction."
 msgstr ""
+"Vi indikis, ke vi volas akiri aŭ aĉeti sekuran atestilon. Ĉi tiu sorĉisto "
+"celas gvidi vin tra la proceduro. Vi povas nuligi iam ajn, kaj ĉi tio ĉesos "
+"la transakcion."
 
 #. i18n: ectx: property (text), widget (QLabel, TextLabel4)
 #: html/keygenwizard2.ui:35
@@ -421,6 +426,8 @@ msgid ""
 "You must now provide a password for the certificate request. Please choose a "
 "very secure password as this will be used to encrypt your private key."
 msgstr ""
+"Vi nun devas provizi pasvorton por la atestilpeto. Bonvolu elekti tre "
+"sekuran pasvorton ĉar ĉi tio estos uzata por ĉifri vian privatan ŝlosilon."
 
 #. i18n: ectx: property (text), widget (QLabel, TextLabel6)
 #: html/keygenwizard2.ui:48
@@ -442,7 +449,7 @@ msgstr "Peto pri KDE-Atestilo"
 #: html/ksslkeygen.cpp:89
 #, kde-format
 msgid "KDE Certificate Request - Password"
-msgstr ""
+msgstr "KDE-Atestilpeto - Pasvorto"
 
 #: html/ksslkeygen.cpp:126
 #, kde-format
@@ -462,7 +469,7 @@ msgstr "KDE"
 #: html/ksslkeygen.cpp:133
 #, kde-format
 msgid "Please wait while the encryption keys are generated..."
-msgstr ""
+msgstr "Bonvolu atendi dum la ĉifradaj ŝlosiloj estas generitaj..."
 
 #: html/ksslkeygen.cpp:148
 #, kde-format
@@ -482,22 +489,22 @@ msgstr "Ne Konservi"
 #: html/ksslkeygen.cpp:257
 #, kde-format
 msgid "2048 (High Grade)"
-msgstr ""
+msgstr "2048 (Alta Grado)"
 
 #: html/ksslkeygen.cpp:258
 #, kde-format
 msgid "1024 (Medium Grade)"
-msgstr ""
+msgstr "1024 (Meza Grado)"
 
 #: html/ksslkeygen.cpp:259
 #, kde-format
 msgid "768  (Low Grade)"
-msgstr ""
+msgstr "768 (Malalta Grado)"
 
 #: html/ksslkeygen.cpp:260
 #, kde-format
 msgid "512  (Low Grade)"
-msgstr ""
+msgstr "512 (Malalta Grado)"
 
 #: html/ksslkeygen.cpp:262
 #, kde-format
@@ -896,6 +903,9 @@ msgid ""
 "cancels the effect of \"Find Links as You Type\", which sets the \"Find "
 "links only\" option."
 msgstr ""
+"Ĉi tiu ŝparvojo montras la serĉbreton, por trovi tekston en la montrata "
+"paĝo. Ĝi nuligas la efikon de \"Trovi Ligilojn dum Vi Tajpas\", kiu fiksas "
+"la opcion \"Trovi nur ligilojn\"."
 
 #: khtml_part.cpp:428
 #, kde-format
@@ -907,6 +917,8 @@ msgstr "Trovi ligilojn dum entajpado"
 msgid ""
 "This shortcut shows the find bar, and sets the option \"Find links only\"."
 msgstr ""
+"Ĉi tiu ŝparvojo montras la trovalbreton, kaj fiksas la opcion \"Trovi nur "
+"ligilojn\"."
 
 #: khtml_part.cpp:450
 #, kde-format
@@ -1121,7 +1133,7 @@ msgstr "Kapricoj (Quirks)"
 #, kde-format
 msgctxt "HTML rendering mode (see https://en.wikipedia.org/wiki/Quirks_mode)"
 msgid "Almost standards"
-msgstr ""
+msgstr "Preskaŭ normoj"
 
 #: khtml_part.cpp:4025
 #, kde-format
@@ -1255,12 +1267,12 @@ msgstr "F&ermi sekretejon"
 #: khtml_part.cpp:7479
 #, kde-format
 msgid "&Allow storing passwords for this site"
-msgstr ""
+msgstr "&Permesi konservi pasvortojn por ĉi tiu retejo"
 
 #: khtml_part.cpp:7484
 #, kde-format
 msgid "Remove password for form %1"
-msgstr ""
+msgstr "Forigi pasvorton por formularo %1"
 
 #: khtml_part.cpp:7599
 #, kde-format
@@ -1456,7 +1468,7 @@ msgstr ""
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
-msgstr ""
+msgstr "Ricevante koruptajn datumojn."
 
 #: kmultipart/kmultipart.cpp:39
 #, kde-format
@@ -1645,7 +1657,7 @@ msgstr "Ne troveblas"
 #: ui/findbar/khtmlfindbar.cpp:239
 #, kde-format
 msgid "No more matches for this search direction."
-msgstr ""
+msgstr "Ne plu kongruoj por ĉi tiu serĉdirekto."
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: ui/findbar/khtmlfindbar_base.ui:43
