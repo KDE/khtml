@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:25+0000\n"
-"PO-Revision-Date: 2023-09-07 14:33+0300\n"
+"PO-Revision-Date: 2023-11-26 01:21+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -1418,22 +1418,22 @@ msgstr "KHTML Görseli"
 #: khtmlimage.cpp:195
 #, kde-format
 msgid "%1 (%2 - %3x%4 Pixels)"
-msgstr "%1 (%2 - %3 x %4 Piksel)"
+msgstr "%1 (%2 - %3 × %4 Piksel)"
 
 #: khtmlimage.cpp:197
 #, kde-format
 msgid "%1 - %2x%3 Pixels"
-msgstr "%1 - %2 x %3 Piksel"
+msgstr "%1 - %2 × %3 Piksel"
 
 #: khtmlimage.cpp:202
 #, kde-format
 msgid "%1 (%2x%3 Pixels)"
-msgstr "%1 (%2 x %3 Piksel)"
+msgstr "%1 (%2 × %3 Piksel)"
 
 #: khtmlimage.cpp:204
 #, kde-format
 msgid "Image - %1x%2 Pixels"
-msgstr "Görsel - %1 x %2 Piksel"
+msgstr "Görsel - %1 × %2 Piksel"
 
 #: khtmlimage.cpp:210
 #, kde-format
