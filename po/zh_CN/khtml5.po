@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:25+0000\n"
-"PO-Revision-Date: 2023-11-25 02:29\n"
+"PO-Revision-Date: 2023-12-09 09:27\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -616,7 +616,7 @@ msgstr "在此窗口中打开(&T)"
 #: khtml_ext.cpp:478
 #, kde-format
 msgid "Open in &New Tab"
-msgstr "在新标签中打开(&N)"
+msgstr "在新标签页中打开(&N)"
 
 #: khtml_ext.cpp:488
 #, kde-format
