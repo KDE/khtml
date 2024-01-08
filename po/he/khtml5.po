@@ -17,19 +17,20 @@
 # Meni Livne <livne@kde.org>, 2007.
 # tahmar1900 <tahmar1900@gmail.com>, 2008, 2009.
 # Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
+# SPDX-FileCopyrightText: 2023 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: khtml5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:25+0000\n"
-"PO-Revision-Date: 2017-05-16 06:49-0400\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Hebrew <kde-i18n-doc@kde.org>\n"
+"PO-Revision-Date: 2024-01-06 15:02+0200\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 3.9.6\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -45,7 +46,7 @@ msgstr "kde-l10n-he@kde.org"
 #: ecma/debugger/callstackdock.cpp:35
 #, kde-format
 msgid "Call Stack"
-msgstr "קריאה למחסנית"
+msgstr "מחסנית הקריאות"
 
 #: ecma/debugger/callstackdock.cpp:39
 #, kde-format
@@ -65,7 +66,7 @@ msgstr "מסוף"
 #: ecma/debugger/consoledock.cpp:243
 #, kde-format
 msgid "Enter"
-msgstr "כנס"
+msgstr "כניסה"
 
 #: ecma/debugger/debugdocument.cpp:203
 #, kde-format
@@ -73,8 +74,8 @@ msgid ""
 "Unable to find the Kate editor component;\n"
 "please check your KDE installation."
 msgstr ""
-"אין אפשרות למצוא את רכיב העריכה של Kate.\n"
-"אנא בדוק את התקנת ה־KDE שלך."
+"אי אפשר למצוא את רכיב העריכה של Kate.\n"
+"נא לבדוק שהתקנת ה־KDE שלך תקינה."
 
 #: ecma/debugger/debugdocument.cpp:269
 #, kde-format
@@ -84,62 +85,62 @@ msgstr "נקודת עצירה"
 #: ecma/debugger/debugwindow.cpp:96
 #, kde-format
 msgid "JavaScript Debugger"
-msgstr "מנפה באגים ב־JavaScript"
+msgstr "מנפה תקלות ב־JavaScript"
 
 #: ecma/debugger/debugwindow.cpp:173
 #, kde-format
 msgid "&Break at Next Statement"
-msgstr "&עצור במשפט הבא"
+msgstr "&עצירה במשפט הבא"
 
 #: ecma/debugger/debugwindow.cpp:174
 #, kde-format
 msgid "Break at Next"
-msgstr "עצור במשפט הבא"
+msgstr "עצירה במשפט הבא"
 
 #: ecma/debugger/debugwindow.cpp:179
 #, kde-format
 msgid "Continue"
-msgstr "המשך"
+msgstr "להמשיך"
 
 #: ecma/debugger/debugwindow.cpp:185
 #, kde-format
 msgid "Step Over"
-msgstr "דלג"
+msgstr "דילוג מעבר"
 
 #: ecma/debugger/debugwindow.cpp:191
 #, kde-format
 msgid "Step Into"
-msgstr "צעד פנימה"
+msgstr "צעידה פנימה"
 
 #: ecma/debugger/debugwindow.cpp:198
 #, kde-format
 msgid "Step Out"
-msgstr "צעד החוצה"
+msgstr "צעידה החוצה"
 
 #: ecma/debugger/debugwindow.cpp:204
 #, kde-format
 msgid "Reindent Sources"
-msgstr "הזח מחדש את קבצי המקור"
+msgstr "הזחת קובצי המקור מחדש"
 
 #: ecma/debugger/debugwindow.cpp:209
 #, kde-format
 msgid "Report Exceptions"
-msgstr "הודע על חריגות"
+msgstr "דיווח על חריגות"
 
 #: ecma/debugger/debugwindow.cpp:217
 #, kde-format
 msgid "&Debug"
-msgstr "&ניפוי"
+msgstr "&ניפוי תקלות"
 
 #: ecma/debugger/debugwindow.cpp:225
 #, kde-format
 msgid "&Settings"
-msgstr "&הגדרות"
+msgstr "ה&גדרות"
 
 #: ecma/debugger/debugwindow.cpp:251
 #, kde-format
 msgid "Close source"
-msgstr "סגור את המקור"
+msgstr "סגירת המקור"
 
 #: ecma/debugger/debugwindow.cpp:257
 #, kde-format
@@ -154,7 +155,7 @@ msgid ""
 "%1 line %2:\n"
 "%3"
 msgstr ""
-"אירעה שגיאה במהלך הניסיון להפעיל תסריט בדף זה.\n"
+"אירעה שגיאה במהלך הניסיון להפעיל סקריפט בדף זה.\n"
 "\n"
 "%1, שורה %2:\n"
 "%3"
@@ -164,7 +165,8 @@ msgstr ""
 msgid ""
 "Do not know where to evaluate the expression. Please pause a script or open "
 "a source file."
-msgstr "לא יודע איפה לפענח את הביטוי. אנא עצור את התסריט או פתוח קובץ מקור."
+msgstr ""
+"לא ברור איפה לפענח את הביטוי. נא להשהות את הסקריפט או לפתוח את קובץ המקור."
 
 #: ecma/debugger/debugwindow.cpp:809
 #, kde-format
@@ -179,7 +181,7 @@ msgstr "שגיאת JavaScript"
 #: ecma/debugger/errordlg.cpp:49
 #, kde-format
 msgid "&Do not show this message again"
-msgstr "&אל תציג הודעה זו שנית"
+msgstr "&לא להציג הודעה זו שוב"
 
 #: ecma/debugger/localvariabledock.cpp:43
 #, kde-format
@@ -189,7 +191,7 @@ msgstr "משתנים מקומיים"
 #: ecma/debugger/localvariabledock.cpp:51
 #, kde-format
 msgid "Reference"
-msgstr "התייחסות"
+msgstr "הפנייה"
 
 #. i18n: ectx: property (text), widget (QTreeWidget, _headers)
 #: ecma/debugger/localvariabledock.cpp:52 htmlpageinfo.ui:219
@@ -200,7 +202,7 @@ msgstr "ערך"
 #: ecma/debugger/scriptsdock.cpp:37
 #, kde-format
 msgid "Loaded Scripts"
-msgstr "תסריטים טעונים"
+msgstr "סקריפטים טעונים"
 
 #: ecma/kjs_binding.cpp:195
 #, kde-format
@@ -209,9 +211,9 @@ msgid ""
 "other applications may become less responsive.\n"
 "Do you want to stop the script?"
 msgstr ""
-"תסריט הנמצא בדף זה גורם ל־KHTML לקפוא. אם הוא ימשיך לפעול, עלול הדבר להביא "
-"לזמני תגובה אטיים יותר בתוכניות אחרות.\n"
-"האם ברצונך לעצור את התסריט?"
+"סקריפט בדף זה גורם ל־KHTML לקפוא. אם הוא ימשיך לפעול, עלול הדבר להביא לזמני "
+"תגובה אטיים יותר בתוכניות אחרות.\n"
+"לעצור את הסקריפט?"
 
 #: ecma/kjs_binding.cpp:195
 #, kde-format
@@ -221,7 +223,7 @@ msgstr "JavaScript"
 #: ecma/kjs_binding.cpp:195
 #, kde-format
 msgid "&Stop Script"
-msgstr "&עצור תסריט"
+msgstr "&עצירת סקריפט"
 
 #: ecma/kjs_binding.cpp:445
 #, kde-format
@@ -240,8 +242,8 @@ msgid ""
 "JavaScript.\n"
 "Do you want to allow the form to be submitted?"
 msgstr ""
-"אתר זה שולח טופס אשר יביא לפתיחת חלון דפדפן חדש באמצעות JavaScript.\n"
-"האם ברצונך לאפשר את שליחת הטופס?"
+"אתר זה שולח טופס שפותח חלון דפדפן חדש באמצעות JavaScript.\n"
+"לאפשר את שליחת הטופס?"
 
 #: ecma/kjs_html.cpp:2238
 #, kde-format
@@ -250,18 +252,18 @@ msgid ""
 "browser window via JavaScript.<br />Do you want to allow the form to be "
 "submitted?</qt>"
 msgstr ""
-"<qt>אתר זה שולח טופס שיביא לפתיחת <p>%1</p> בחלון דפדפן חדש באמצעות "
-"JavaScript.<br />האם ברצונך לאפשר את שליחת הטופס?</qt>"
+"<qt>אתר זה שולח טופס שיפתח <p>%1</p> בחלון דפדפן חדש באמצעות JavaScript.<br /"
+">לאפשר את שליחת הטופס?</qt>"
 
 #: ecma/kjs_html.cpp:2240 ecma/kjs_window.cpp:1952
 #, kde-format
 msgid "Allow"
-msgstr "אפשר"
+msgstr "לאפשר"
 
 #: ecma/kjs_html.cpp:2240 ecma/kjs_window.cpp:1952
 #, kde-format
 msgid "Do Not Allow"
-msgstr "אל תאפשר"
+msgstr "לא לאפשר"
 
 #: ecma/kjs_window.cpp:1947
 #, kde-format
@@ -270,7 +272,7 @@ msgid ""
 "Do you want to allow this?"
 msgstr ""
 "אתר זה מנסה לפתוח חלון דפדפן חדש באמצעות JavaScript.\n"
-"האם ברצונך לאפשר זאת?"
+"לאפשר זאת?"
 
 #: ecma/kjs_window.cpp:1950
 #, kde-format
@@ -279,48 +281,46 @@ msgid ""
 "JavaScript.<br />Do you want to allow this?</qt>"
 msgstr ""
 "<qt>אתר זה מנסה לפתוח חלון דפדפן חדש בכתובת <p>%1</p>באמצעות JavaScript.<br /"
-">האם ברצונך לאפשר זאת? </qt>"
+">לאפשר זאת? </qt>"
 
 #: ecma/kjs_window.cpp:2283
 #, kde-format
 msgid "Close window?"
-msgstr "האם לסגור את החלון?"
+msgstr "לסגור את החלון?"
 
 #: ecma/kjs_window.cpp:2283
 #, kde-format
 msgid "Confirmation Required"
-msgstr "יש צורך באישור"
+msgstr "צריך אישור"
 
 #: ecma/kjs_window.cpp:3233
 #, kde-format
 msgid ""
 "Do you want a bookmark pointing to the location \"%1\" to be added to your "
 "collection?"
-msgstr "האם ברצונך להוסיף לאוסף הסימניות שלך סימנייה המצביעה אל המיקום \"%1\"?"
+msgstr "להוסיף לאוסף הסימניות שלך סימנייה המצביעה למיקום „%1”?"
 
 #: ecma/kjs_window.cpp:3236
 #, kde-format
 msgid ""
 "Do you want a bookmark pointing to the location \"%1\" titled \"%2\" to be "
 "added to your collection?"
-msgstr ""
-"האם ברצונך להוסיף לאוסף הסימניות שלך סימנייה בשם \"%2\" המצביעה אל המיקום "
-"\"%1\"?"
+msgstr "להוסיף לאוסף הסימניות שלך סימנייה בשם „%2” המצביעה למיקום „%1”?"
 
 #: ecma/kjs_window.cpp:3245
 #, kde-format
 msgid "JavaScript Attempted Bookmark Insert"
-msgstr "ניסיון להוספת סימנייה של JavaScript"
+msgstr "ניסיון של JavaScript להוסיף סימנייה"
 
 #: ecma/kjs_window.cpp:3249
 #, kde-format
 msgid "Insert"
-msgstr "הוסף"
+msgstr "הוספה"
 
 #: ecma/kjs_window.cpp:3249
 #, kde-format
 msgid "Disallow"
-msgstr "אל תאפשר"
+msgstr "לא לאפשר"
 
 #: html/html_formimpl.cpp:420
 #, kde-format
@@ -328,18 +328,18 @@ msgid ""
 "The following files will not be uploaded because they could not be found.\n"
 "Do you want to continue?"
 msgstr ""
-"הקבצים הבאים לא יועלו מכיוון שלא ניתן למצוא אותם.\n"
-"האם ברצונך להמשיך?"
+"הקבצים הבאים לא יישלחו כי אי אפשר למצוא אותם.\n"
+"להמשיך?"
 
 #: html/html_formimpl.cpp:424
 #, kde-format
 msgid "Submit Confirmation"
-msgstr "בקשה לאישור שליחה"
+msgstr "אישור הגשה"
 
 #: html/html_formimpl.cpp:424
 #, kde-format
 msgid "&Submit Anyway"
-msgstr "&שלח בכל מקרה"
+msgstr "ל&שלוח בכל מקרה"
 
 #: html/html_formimpl.cpp:434
 #, kde-format
@@ -348,31 +348,31 @@ msgid ""
 "the Internet.\n"
 "Do you really want to continue?"
 msgstr ""
-"אתה עומד להעביר את הקבצים הבאים מהמחשב המקומי שלך אל האינטרנט.\n"
-"האם אתה בטוח שברצונך להמשיך?"
+"פעולה זו תעביר את הקבצים הבאים מהמחשב המקומי שלך אל האינטרנט.\n"
+"להמשיך?"
 
 #: html/html_formimpl.cpp:438
 #, kde-format
 msgid "Send Confirmation"
-msgstr "בקשה לאישור שליחה"
+msgstr "אישור שליחה"
 
 #: html/html_formimpl.cpp:438
 #, kde-format
 msgid "&Send File"
 msgid_plural "&Send Files"
-msgstr[0] "&שלח קובץ"
-msgstr[1] "&שלח קבצים"
+msgstr[0] "&שליחת קובץ"
+msgstr[1] "&שליחת קבצים"
 
 #: html/html_formimpl.cpp:1687 html/html_formimpl.cpp:1908 khtml_part.cpp:4962
 #: khtmlview.cpp:2848 khtmlview.cpp:2892
 #, kde-format
 msgid "Submit"
-msgstr "שלח"
+msgstr "הגשה"
 
 #: html/html_formimpl.cpp:1900 khtmlview.cpp:2863 khtmlview.cpp:2898
 #, kde-format
 msgid "Reset"
-msgstr "אפס"
+msgstr "איפוס"
 
 #: html/html_formimpl.cpp:2824
 #, kde-format
@@ -385,8 +385,8 @@ msgid ""
 "No plugin found for '%1'.\n"
 "Do you want to download one from %2?"
 msgstr ""
-"לא נמצא תוסף עבור \"%1\".\n"
-"האם ברצונך להוריד תוסף מ־%2?"
+"לא נמצא תוסף עבור ‚%1’.\n"
+"להוריד תוסף מ־%2?"
 
 #: html/html_objectimpl.cpp:633
 #, kde-format
@@ -396,17 +396,17 @@ msgstr "תוסף חסר"
 #: html/html_objectimpl.cpp:633
 #, kde-format
 msgid "Download"
-msgstr "הורד"
+msgstr "הורדה"
 
 #: html/html_objectimpl.cpp:633
 #, kde-format
 msgid "Do Not Download"
-msgstr "אל תוריד"
+msgstr "לא להוריד"
 
 #: html/htmlparser.cpp:1980
 #, kde-format
 msgid "This is a searchable index. Enter search keywords: "
-msgstr "זהו אינדקס שניתן לחפש בו. הזן מילות מפתח לחיפוש: "
+msgstr "זה מפתח שניתן לחפש בו. נא למלא מילות מפתח לחיפוש: "
 
 #. i18n: ectx: property (text), widget (QLabel, TextLabel1)
 #: html/keygenwizard.ui:35
@@ -416,6 +416,8 @@ msgid ""
 "This wizard is intended to guide you through the procedure. You may cancel "
 "at any time, and this will abort the transaction."
 msgstr ""
+"ציינת את רצונך לקבל או לרכוש אישור מאובטח. האשף הזה נועד להנחות אותך בתהליך. "
+"אפשר לבטל בכל עת והתהליך יבוטל במלואו."
 
 #. i18n: ectx: property (text), widget (QLabel, TextLabel4)
 #: html/keygenwizard2.ui:35
@@ -424,38 +426,40 @@ msgid ""
 "You must now provide a password for the certificate request. Please choose a "
 "very secure password as this will be used to encrypt your private key."
 msgstr ""
+"כעת יש לספק סיסמה לבקשת האישור. נא לבחור סיסמה חזקה מאוד כיוון שהיא גם תשמש "
+"להצפנת המפתח הפרטי שלך."
 
 #. i18n: ectx: property (text), widget (QLabel, TextLabel6)
 #: html/keygenwizard2.ui:48
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Repeat password:"
-msgstr "&שמור ססמה"
+msgstr "&חזרה על הסיסמה:"
 
 #. i18n: ectx: property (text), widget (QLabel, TextLabel5)
 #: html/keygenwizard2.ui:58
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Choose password:"
-msgstr "&שמור ססמה"
+msgstr "&בחירת סיסמה:"
 
 #: html/ksslkeygen.cpp:82
-#, fuzzy, kde-format
+#, kde-format
 msgid "KDE Certificate Request"
-msgstr "פרטי הבקשה:"
+msgstr "בקשת אישור של KDE"
 
 #: html/ksslkeygen.cpp:89
 #, kde-format
 msgid "KDE Certificate Request - Password"
-msgstr ""
+msgstr "בקשת אישור של KDE - סיסמה"
 
 #: html/ksslkeygen.cpp:126
-#, fuzzy, kde-format
+#, kde-format
 msgid "Unsupported key size."
-msgstr "מקש לא נתמך"
+msgstr "גודל המפתח לא נתמך."
 
 #: html/ksslkeygen.cpp:126
-#, fuzzy, kde-format
+#, kde-format
 msgid "KDE SSL Information"
-msgstr "מידע"
+msgstr "פרטי SSL של KDE"
 
 #: html/ksslkeygen.cpp:132 khtml_part.cpp:5017
 #, kde-format
@@ -465,53 +469,53 @@ msgstr "KDE"
 #: html/ksslkeygen.cpp:133
 #, kde-format
 msgid "Please wait while the encryption keys are generated..."
-msgstr ""
+msgstr "נא להמתין בזמן שמפתחות ההצפנה נוצרים…"
 
 #: html/ksslkeygen.cpp:148
-#, fuzzy, kde-format
+#, kde-format
 msgid "Do you wish to store the passphrase in your wallet file?"
-msgstr "האם אתה מעוניין לשמור סיסמה זו ל%1?"
+msgstr "לאחסן את מילת הצופן בקובץ הארנק שלך?"
 
 #: html/ksslkeygen.cpp:148
-#, fuzzy, kde-format
+#, kde-format
 msgid "Store"
-msgstr "&שמור"
+msgstr "לאחסן"
 
 #: html/ksslkeygen.cpp:148
-#, fuzzy, kde-format
+#, kde-format
 msgid "Do Not Store"
-msgstr "&אל תשמור"
+msgstr "לא לאחסן"
 
 #: html/ksslkeygen.cpp:257
 #, kde-format
 msgid "2048 (High Grade)"
-msgstr ""
+msgstr "2048 (רמה גבוהה)"
 
 #: html/ksslkeygen.cpp:258
 #, kde-format
 msgid "1024 (Medium Grade)"
-msgstr ""
+msgstr "1024 (רמה בינונית)"
 
 #: html/ksslkeygen.cpp:259
 #, kde-format
 msgid "768  (Low Grade)"
-msgstr ""
+msgstr "768  (רמה נמוכה)"
 
 #: html/ksslkeygen.cpp:260
 #, kde-format
 msgid "512  (Low Grade)"
-msgstr ""
+msgstr "512  (רמה נמוכה)"
 
 #: html/ksslkeygen.cpp:262
-#, fuzzy, kde-format
+#, kde-format
 msgid "No SSL support."
-msgstr "אפשר תמיכה ב־SOCKS"
+msgstr "אין תמיכה ב־SSL."
 
 #. i18n: ectx: property (windowTitle), widget (QDialog, KHTMLInfoDlg)
 #: htmlpageinfo.ui:22
 #, kde-format
 msgid "Document Information"
-msgstr "מידע אודות המסמך"
+msgstr "מידע על המסמך"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
 #: htmlpageinfo.ui:34
@@ -536,7 +540,7 @@ msgstr "כותרת:"
 #: htmlpageinfo.ui:128
 #, kde-format
 msgid "Last modified:"
-msgstr "שונה לאחרונה:"
+msgstr "שינוי אחרון:"
 
 #. i18n: ectx: property (text), widget (QLabel, _eLabel)
 #: htmlpageinfo.ui:144
@@ -548,7 +552,7 @@ msgstr "קידוד המסמך:"
 #: htmlpageinfo.ui:167
 #, kde-format
 msgid "Rendering mode:"
-msgstr "מצב רינדור:"
+msgstr "מצב עיבוד:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
 #: htmlpageinfo.ui:186
@@ -589,27 +593,27 @@ msgstr "סרגל כלים של HTML"
 #: khtml_ext.cpp:413
 #, kde-format
 msgid "&Copy Text"
-msgstr "&העתק טקסט"
+msgstr "ה&עתקת טקסט"
 
 #: khtml_ext.cpp:427
 #, kde-format
 msgid "Open '%1'"
-msgstr "פתח את \"%1\""
+msgstr "פתיחה של ‚%1’"
 
 #: khtml_ext.cpp:444
 #, kde-format
 msgid "&Copy Email Address"
-msgstr "&העתק כתובת דוא\"ל"
+msgstr "העתקת &כתובת דוא״ל"
 
 #: khtml_ext.cpp:449
 #, kde-format
 msgid "&Save Link As..."
-msgstr "&שמר קישור בשם..."
+msgstr "&שמירת קישור בשם…"
 
 #: khtml_ext.cpp:454
 #, kde-format
 msgid "&Copy Link Address"
-msgstr "&העתק כתובת הקישור"
+msgstr "הע&תקת כתובת הקישור"
 
 #: khtml_ext.cpp:466
 #, kde-format
@@ -620,97 +624,97 @@ msgstr "מסגרת"
 #: khtml_ext.cpp:467
 #, kde-format
 msgid "Open in New &Window"
-msgstr "פתח ב&חלון חדש"
+msgstr "פתיחה ב&חלון חדש"
 
 #: khtml_ext.cpp:473
 #, kde-format
 msgid "Open in &This Window"
-msgstr "פתח בחלון &זה"
+msgstr "פתיחה בחלון &זה"
 
 #: khtml_ext.cpp:478
 #, kde-format
 msgid "Open in &New Tab"
-msgstr "פתח בלשונית &חדשה"
+msgstr "פתיחה בלשונית &חדשה"
 
 #: khtml_ext.cpp:488
 #, kde-format
 msgid "Reload Frame"
-msgstr "טען מסגרת מחדש"
+msgstr "טעינת מסגרת מחדש"
 
 #: khtml_ext.cpp:493 khtml_part.cpp:446
 #, kde-format
 msgid "Print Frame..."
-msgstr "הדפס המסגרת..."
+msgstr "הדפסת המסגרת…"
 
 #: khtml_ext.cpp:499 khtml_part.cpp:298
 #, kde-format
 msgid "Save &Frame As..."
-msgstr "שמירת המ&סגרת בשם..."
+msgstr "שמירת המ&סגרת בשם…"
 
 #: khtml_ext.cpp:504 khtml_part.cpp:274
 #, kde-format
 msgid "View Frame Source"
-msgstr "הצג מקור המסגרת"
+msgstr "הצגת מקור המסגרת"
 
 #: khtml_ext.cpp:509
 #, kde-format
 msgid "View Frame Information"
-msgstr "הצג מידע מסגרת"
+msgstr "הצגת פרטי מסגרת"
 
 #: khtml_ext.cpp:519
 #, kde-format
 msgid "Block IFrame..."
-msgstr "חסימת מסגרת משובצת..."
+msgstr "חסימת מסגרת משובצת…"
 
 #: khtml_ext.cpp:543
 #, kde-format
 msgid "Save Image As..."
-msgstr "שמירת התמונה בשם..."
+msgstr "שמירת התמונה בשם…"
 
 #: khtml_ext.cpp:548
 #, kde-format
 msgid "Send Image..."
-msgstr "שליח תמונה..."
+msgstr "שליחת תמונה…"
 
 #: khtml_ext.cpp:554
 #, kde-format
 msgid "Copy Image"
-msgstr "העתק תמונה"
+msgstr "העתקת תמונה"
 
 #: khtml_ext.cpp:562
 #, kde-format
 msgid "Copy Image Location"
-msgstr "העתק מיקום התמונה"
+msgstr "העתקת מיקום התמונה"
 
 #: khtml_ext.cpp:571
 #, kde-format
 msgid "View Image (%1)"
-msgstr "צפה בתמונה (%1)"
+msgstr "צפייה בתמונה (%1)"
 
 #: khtml_ext.cpp:577
 #, kde-format
 msgid "Block Image..."
-msgstr "חסום תמונה..."
+msgstr "חסימת תמונה…"
 
 #: khtml_ext.cpp:584
 #, kde-format
 msgid "Block Images From %1"
-msgstr "חסום תמונות מ־%1"
+msgstr "חסימת תמונות מ־%1"
 
 #: khtml_ext.cpp:596
 #, kde-format
 msgid "Stop Animations"
-msgstr "עצור הנפשות"
+msgstr "עצירת הנפשות"
 
 #: khtml_ext.cpp:637
 #, kde-format
 msgid "Search for '%1' with %2"
-msgstr "חפש את \"%1\" בעזרת \"%2\""
+msgstr "חיפוש אחר ‚%1’ בעזרת %2"
 
 #: khtml_ext.cpp:647
 #, kde-format
 msgid "Search for '%1' with"
-msgstr "חפש את \"%1\" בעזרת"
+msgstr "חיפוש אחר ‚%1’ בעזרת"
 
 #: khtml_ext.cpp:693
 #, kde-format
@@ -725,28 +729,28 @@ msgstr "שמירת התמונה בשם"
 #: khtml_ext.cpp:726 khtml_ext.cpp:738
 #, kde-format
 msgid "Add URL to Filter"
-msgstr "הוסף כתובת למסנן"
+msgstr "הוספת כתובת למסנן"
 
 #: khtml_ext.cpp:727 khtml_ext.cpp:739
 #, kde-format
 msgid "Enter the URL:"
-msgstr "הזן את הכתובת:"
+msgstr "נא למלא כתובת:"
 
 #: khtml_ext.cpp:875
 #, kde-format
 msgid ""
 "A file named \"%1\" already exists. Are you sure you want to overwrite it?"
-msgstr "כבר קיים קובץ בשם \"%1\". האם אתה בטוח שברצונך לכתוב עליו?"
+msgstr "כבר קיים קובץ בשם ‚%1’. לכתוב עליו?"
 
 #: khtml_ext.cpp:875
 #, kde-format
 msgid "Overwrite File?"
-msgstr "האם לשכתב את הקובץ?"
+msgstr "לכתוב על הקובץ?"
 
 #: khtml_ext.cpp:927
 #, kde-format
 msgid "The Download Manager (%1) could not be found in your $PATH "
-msgstr "אין אפשרות למצוא את מנהל ההורדה (%1) בנתיב שלך, PATH$"
+msgstr "אי אפשר למצוא את מנהל ההורדות (%1) בנתיב שלך, PATH$"
 
 #: khtml_ext.cpp:928
 #, kde-format
@@ -755,14 +759,14 @@ msgid ""
 "\n"
 "The integration with Konqueror will be disabled."
 msgstr ""
-"נסה להתקין אותו מחדש  \n"
+"כדאי לנסות להתקין אותו מחדש  \n"
 "\n"
-"השילוב עם Konqueror לא יהיה זמין."
+"השילוב מול Konqueror יושבת."
 
 #: khtml_ext.cpp:1007
 #, no-c-format, kde-format
 msgid "Default Font Size (100%)"
-msgstr "גודל גופן ברירת מחדל (100%)"
+msgstr "גודל כתב כברירת מחדל (100%)"
 
 #: khtml_ext.cpp:1021
 #, no-c-format, kde-format
@@ -777,22 +781,22 @@ msgstr "KHTML"
 #: khtml_global.cpp:204
 #, kde-format
 msgid "Embeddable HTML component"
-msgstr "רכיב HTML בר־הטבעה"
+msgstr "רכיב HTML שאפשר לשבץ"
 
 #: khtml_part.cpp:267
 #, kde-format
 msgid "View Do&cument Source"
-msgstr "הצג &מקור מסמך"
+msgstr "הצגת &מקור מסמך"
 
 #: khtml_part.cpp:281
 #, kde-format
 msgid "View Document Information"
-msgstr "הצג מידע מסמך"
+msgstr "הצגת פרטי מסמך"
 
 #: khtml_part.cpp:288
 #, kde-format
 msgid "Save &Background Image As..."
-msgstr "שמירת תמ&ונת הרקע בשם..."
+msgstr "שמירת תמ&ונת הרקע בשם…"
 
 #: khtml_part.cpp:310 khtml_part.cpp:4189
 #, kde-format
@@ -802,37 +806,37 @@ msgstr "SSL"
 #: khtml_part.cpp:314
 #, kde-format
 msgid "Print Rendering Tree to STDOUT"
-msgstr "הדפס עץ רינדור אל הפלט הסטנדרטי"
+msgstr "הדפסת עץ עיבוד לפלט התקני (stdout)"
 
 #: khtml_part.cpp:318
 #, kde-format
 msgid "Print DOM Tree to STDOUT"
-msgstr "הדפס עץ DOM אל הפלט הסטנדרטי"
+msgstr "הדפסת עץ DOM לפלט התקני (stdout)"
 
 #: khtml_part.cpp:322
 #, kde-format
 msgid "Print frame tree to STDOUT"
-msgstr "הדפס את עץ המסגרת אל הפלט הסטנדרטי "
+msgstr "הדפסת עץ המסגרות לפלט התקני (stdout)"
 
 #: khtml_part.cpp:326
 #, kde-format
 msgid "Stop Animated Images"
-msgstr "עצור תמונות מונפשות"
+msgstr "עצירת תמונות מונפשות"
 
 #: khtml_part.cpp:330
 #, kde-format
 msgid "Set &Encoding"
-msgstr "קבע &קידוד"
+msgstr "הגדרת &קידוד"
 
 #: khtml_part.cpp:376
 #, kde-format
 msgid "Use S&tylesheet"
-msgstr "השתמש ב&גיליון סגנון"
+msgstr "להשתמש ב&גיליון סגנון"
 
 #: khtml_part.cpp:381
 #, kde-format
 msgid "Enlarge Font"
-msgstr "הגדל גופנים"
+msgstr "הגדלת כתב"
 
 #: khtml_part.cpp:384
 #, kde-format
@@ -840,13 +844,13 @@ msgid ""
 "<qt>Enlarge Font<br /><br />Make the font in this window bigger. Click and "
 "hold down the mouse button for a menu with all available font sizes.</qt>"
 msgstr ""
-"<qt>הגדל גופנים<br /><br /> הגדלת גודל הגופנים בחלון זה. לחץ והשאר את לחצן "
-"העכבר לחוץ כדי לקבל תפריט עם כל גדלי הגופנים הזמינים. </qt>"
+"<qt>הגדלת כתב<br /><br /> הגדלת גודל הכתב בחלון זה. יש ללחוץ ולהחזיק את לחצן "
+"העכבר לחוץ כדי לקבל תפריט עם כל גודלי הכתב הזמינים. </qt>"
 
 #: khtml_part.cpp:388
 #, kde-format
 msgid "Shrink Font"
-msgstr "הקטן גופנים"
+msgstr "הקטנת כתב"
 
 #: khtml_part.cpp:391
 #, kde-format
@@ -854,15 +858,15 @@ msgid ""
 "<qt>Shrink Font<br /><br />Make the font in this window smaller. Click and "
 "hold down the mouse button for a menu with all available font sizes.</qt>"
 msgstr ""
-"<qt>הקטן גופנים<br /><br />הקטנת גודל הגופנים בחלון זה. לחץ והשאר את לחצן "
-"העכבר לחוץ כדי לקבל תפריט עם כל גדלי הגופנים הזמינים. </qt>"
+"<qt>הקטת כתב<br /><br />הקטנת גודל הכתב בחלון זה. יש ללחוץ ולהחזיק את לחצן "
+"העכבר כדי לקבל תפריט עם כל גודלי הכתב הזמינים. </qt>"
 
 #: khtml_part.cpp:406
 #, kde-format
 msgid ""
 "<qt>Find text<br /><br />Shows a dialog that allows you to find text on the "
 "displayed page.</qt>"
-msgstr "<qt>חפש טקסט<br /><br />הצגת חלון המאפשר לחפש טקסט בדף במוצג.</qt>"
+msgstr "<qt>איתור טקסט<br /><br />הצגת חלון המאפשר לחפש טקסט בדף במוצג.</qt>"
 
 #: khtml_part.cpp:410
 #, kde-format
@@ -870,8 +874,8 @@ msgid ""
 "<qt>Find next<br /><br />Find the next occurrence of the text that you have "
 "found using the <b>Find Text</b> function.</qt>"
 msgstr ""
-"<qt>חפש את הבא<br /><br />חיפוש המופע הבא של הטקסט שנמצא בעזרת <b>חיפוש "
-"טקסט</b> </qt>"
+"<qt>איתור הבא<br /><br />איתור המופע הבא של הטקסט שנמצא בעזרת <b>חיפוש טקסט</"
+"b>.</qt>"
 
 #: khtml_part.cpp:416
 #, kde-format
@@ -879,8 +883,8 @@ msgid ""
 "<qt>Find previous<br /><br />Find the previous occurrence of the text that "
 "you have found using the <b>Find Text</b> function.</qt>"
 msgstr ""
-"<qt>חפש את הקודם<br /><br />חיפוש המופע הקודם של הטקסט שנמצא בעזרת <b>חיפוש "
-"טקסט</b> </qt>"
+"<qt>איתור הקודם<br /><br />איתור המופע הקודם של הטקסט שנמצא בעזרת <b>חיפוש "
+"טקסט</b>.</qt>"
 
 #: khtml_part.cpp:421
 #, kde-format
@@ -895,18 +899,18 @@ msgid ""
 "links only\" option."
 msgstr ""
 "קיצור זה מציג את סרגל החיפוש המשתמש לחיפוש טקסט בדף המוצג. הוא מבטל את המצב "
-"של \"חיפוש קישורים תוך כדי כתיבה\" שקובע את אפשרות \"חפש קישורים בלבד\"."
+"של „חיפוש קישורים תוך כדי כתיבה” שמגדיר את האפשרות „איתור קישורים בלבד”."
 
 #: khtml_part.cpp:428
 #, kde-format
 msgid "Find Links as You Type"
-msgstr "חיפוש קישורים תוך כדי כתיבה"
+msgstr "איתור קישורים תוך כדי כתיבה"
 
 #: khtml_part.cpp:434
 #, kde-format
 msgid ""
 "This shortcut shows the find bar, and sets the option \"Find links only\"."
-msgstr "קיצור זה מציג את הסרגל, וקובע את האפשרות \"חפש קישורים בלבד\"."
+msgstr "קיצור זה מציג את הסרגל, ומגדיר את האפשרות „איתור קישורים בלבד”."
 
 #: khtml_part.cpp:450
 #, kde-format
@@ -914,18 +918,18 @@ msgid ""
 "<qt>Print Frame<br /><br />Some pages have several frames. To print only a "
 "single frame, click on it and then use this function.</qt>"
 msgstr ""
-"<qt>הדפס מסגרת<br /><br />בדפים מסוימים יש מספר מסגרות. כדי להדפיס מסגרת "
-"בודדת, לחץ עליה ולאחר מכן השתמש באפשרות זו. </qt>"
+"<qt>הדפסת מסגרת<br /><br />בדפים מסוימים יש מספר מסגרות. כדי להדפיס מסגרת "
+"בודדת, יש ללחוץ עליה ולאחר מכן להשתמש באפשרות זו. </qt>"
 
 #: khtml_part.cpp:465
 #, kde-format
 msgid "Toggle Caret Mode"
-msgstr "החלף מצב סמן טקסט"
+msgstr "החלפת מצב סמן טקסט"
 
 #: khtml_part.cpp:768
 #, kde-format
 msgid "The fake user-agent '%1' is in use."
-msgstr "זיהוי הדפדפן המזויף \"%1\" נמצא בשימוש."
+msgstr "סוכן המשתמש המזויף ‚%1’ שבשימוש."
 
 #: khtml_part.cpp:1272
 #, kde-format
@@ -935,12 +939,12 @@ msgstr "אתר זה מכיל שגיאות קוד."
 #: khtml_part.cpp:1313
 #, kde-format
 msgid "&Hide Errors"
-msgstr "&הסתר שגיאות"
+msgstr "ה&סתרת שגיאות"
 
 #: khtml_part.cpp:1314
 #, kde-format
 msgid "&Disable Error Reporting"
-msgstr "&בטל דיווח על שגיאות"
+msgstr "&ביטול דיווח על שגיאות"
 
 #: khtml_part.cpp:1357
 #, kde-format
@@ -955,7 +959,7 @@ msgstr "<qt><b>שגיאה</b>: צומת %1: %2</qt>"
 #: khtml_part.cpp:1528
 #, kde-format
 msgid "Display Images on Page"
-msgstr "הצג תמונות בדף"
+msgstr "הצגת תמונות בעמוד"
 
 #: khtml_part.cpp:1912
 #, kde-format
@@ -965,7 +969,7 @@ msgstr "שגיאה: %1 - %2"
 #: khtml_part.cpp:1917
 #, kde-format
 msgid "The requested operation could not be completed"
-msgstr "אין אפשרות להשלים את הפעולה המבוקשת"
+msgstr "אי אפשר להשלים את הפעולה המבוקשת"
 
 #: khtml_part.cpp:1923
 #, kde-format
@@ -1048,13 +1052,13 @@ msgstr "%1 (קישור)"
 #, kde-format
 msgid "%2 (%1 byte)"
 msgid_plural "%2 (%1 bytes)"
-msgstr[0] "%2 (%1 בית)"
+msgstr[0] "%2 (בית %1)"
 msgstr[1] "%2 (%1 בתים)"
 
 #: khtml_part.cpp:3761
 #, kde-format
 msgid "%2 (%1 K)"
-msgstr "%1 (%2 קילו)"
+msgstr "%1 (%2 ק״ב)"
 
 #: khtml_part.cpp:3788
 #, kde-format
@@ -1064,7 +1068,7 @@ msgstr " (במסגרת אחרת)"
 #: khtml_part.cpp:3794
 #, kde-format
 msgid "Email to: "
-msgstr "שלח דוא\"ל אל: "
+msgstr "שליחת דוא״ל אל: "
 
 #: khtml_part.cpp:3800
 #, kde-format
@@ -1093,18 +1097,18 @@ msgid ""
 "<qt>This untrusted page links to<br /><b>%1</b>.<br />Do you want to follow "
 "the link?</qt>"
 msgstr ""
-"<qt> אתר לא נבטח זה מכיל קישור אל  <br /><b>%1</b>.<br />האם ברצונך להמשיך "
-"ולעבור לדף המקושר?</qt>"
+"<qt> אתר מפוקפק זה מכיל קישור אל  <br /><b>%1</b>.<br />להמשיך ולעבור לדף "
+"שבקישור?</qt>"
 
 #: khtml_part.cpp:3891
 #, kde-format
 msgid "Follow"
-msgstr "המשך"
+msgstr "להמשיך"
 
 #: khtml_part.cpp:3986
 #, kde-format
 msgid "Frame Information"
-msgstr "מידע אודות המסגרת"
+msgstr "מידע על המסגרת"
 
 #: khtml_part.cpp:3992
 #, kde-format
@@ -1115,23 +1119,19 @@ msgstr "   <a href=\"%1\">[מאפיינים]</a>"
 #, kde-format
 msgctxt "HTML rendering mode (see https://en.wikipedia.org/wiki/Quirks_mode)"
 msgid "Quirks"
-msgstr ""
+msgstr "Quirks (מוזרויות)"
 
 #: khtml_part.cpp:4021
-#, fuzzy, kde-format
-#| msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
-#| msgid "Almost standards"
+#, kde-format
 msgctxt "HTML rendering mode (see https://en.wikipedia.org/wiki/Quirks_mode)"
 msgid "Almost standards"
-msgstr "כמעט תקני"
+msgstr "כמעט לפי התקנים"
 
 #: khtml_part.cpp:4025
-#, fuzzy, kde-format
-#| msgctxt "HTML rendering mode (see http://en.wikipedia.org/wiki/Quirks_mode)"
-#| msgid "Strict"
+#, kde-format
 msgctxt "HTML rendering mode (see https://en.wikipedia.org/wiki/Quirks_mode)"
 msgid "Strict"
-msgstr "מחמיר"
+msgstr "קפדני"
 
 #: khtml_part.cpp:4094
 #, kde-format
@@ -1146,17 +1146,17 @@ msgstr "נראה שתעודת ה־SSL המרוחקת פגומה."
 #: khtml_part.cpp:4208
 #, kde-format
 msgid "Save Frame As"
-msgstr "שמור מסגרת בשם"
+msgstr "שמירת מסגרת בשם"
 
 #: khtml_part.cpp:4252
 #, kde-format
 msgid "&Find in Frame..."
-msgstr "&חיפוש במסגרת..."
+msgstr "&איתור במסגרת…"
 
 #: khtml_part.cpp:4254
 #, kde-format
 msgid "&Find..."
-msgstr "&חיפוש..."
+msgstr "&איתור…"
 
 #: khtml_part.cpp:4901
 #, kde-format
@@ -1166,10 +1166,10 @@ msgid ""
 "A third party may be able to intercept and view this information.\n"
 "Are you sure you wish to continue?"
 msgstr ""
-"אזהרה: זהו טופס מאובטח, אך הוא מנסה לשלוח חזרה את הנתונים שלך בצורה לא "
+"אזהרה: זה טופס מאובטח, אך הוא מנסה לשלוח חזרה את הנתונים שלך בצורה לא "
 "מוצפנת\n"
-"צד שלישי עלול להיות מסוגל ליירט מידע זה ולצפות בו.\n"
-"האם אתה בטוח שברצונך להמשיך?"
+"צד שלישי עלול ליירט מידע זה ולצפות בו.\n"
+"להמשיך?"
 
 #: khtml_part.cpp:4904 khtml_part.cpp:4914 khtml_part.cpp:4939
 #, kde-format
@@ -1179,7 +1179,7 @@ msgstr "העברה ברשת"
 #: khtml_part.cpp:4904 khtml_part.cpp:4915
 #, kde-format
 msgid "&Send Unencrypted"
-msgstr "&שלח ללא הצפנה"
+msgstr "&שליחה ללא הצפנה"
 
 #: khtml_part.cpp:4912
 #, kde-format
@@ -1188,8 +1188,8 @@ msgid ""
 "unencrypted.\n"
 "Are you sure you wish to continue?"
 msgstr ""
-"אזהרה: הנתונים שלך עומדים להיות מועברים על גבי הרשת בצורה לא מוצפנת.\n"
-"האם אתה בטוח שברצונך להמשיך?"
+"אזהרה: הנתונים שלך עומדים להישלח על גבי הרשת בצורה לא מוצפנת.\n"
+"להמשיך?"
 
 #: khtml_part.cpp:4937
 #, kde-format
@@ -1197,13 +1197,13 @@ msgid ""
 "This site is attempting to submit form data via email.\n"
 "Do you want to continue?"
 msgstr ""
-"אתר זה מנסה לשלוח נתוני טפסים דרך הדוא\"ל.\n"
-"האם ברצונך להמשיך?"
+"אתר זה מנסה לשלוח נתוני טפסים דרך דוא״ל.\n"
+"להמשיך?"
 
 #: khtml_part.cpp:4940
 #, kde-format
 msgid "&Send Email"
-msgstr "&שלח דוא\"ל"
+msgstr "&שליחת דוא״ל"
 
 #: khtml_part.cpp:4961
 #, kde-format
@@ -1211,8 +1211,8 @@ msgid ""
 "<qt>The form will be submitted to <br /><b>%1</b><br />on your local "
 "filesystem.<br />Do you want to submit the form?</qt>"
 msgstr ""
-"<qt>הטופס יישלח אל <br /><b>%1</b><br />במערכת הקבצים המקומית שלך.<br />האם "
-"ברצונך לשלוח את הטופס?</qt>"
+"<qt>הטופס יישלח אל <br /><b>%1</b><br />במערכת הקבצים המקומית שלך.<br /> "
+"לשלוח את הטופס?</qt>"
 
 #: khtml_part.cpp:5017
 #, kde-format
@@ -1220,7 +1220,7 @@ msgid ""
 "This site attempted to attach a file from your computer in the form "
 "submission. The attachment was removed for your protection."
 msgstr ""
-"אתר זה ניסה לצרף לטופס הנשלח קובץ מהמחשב שלך. הקובץ המצורף הוסר מטעמי אבטחה."
+"אתר זה ניסה לצרף קובץ מהמחשב שלך לטופס הנשלח. הקובץ המצורף הוסר מטעמי אבטחה."
 
 #: khtml_part.cpp:6111
 #, kde-format
@@ -1235,37 +1235,37 @@ msgstr "אזהרת אבטחה"
 #: khtml_part.cpp:7046
 #, kde-format
 msgid "<qt>Access by untrusted page to<br /><b>%1</b><br /> denied.</qt>"
-msgstr "<qt>הגישה מדף לא נבטח אל<br /><b>%1</b><br />  נדחתה.</qt>"
+msgstr "<qt>הגישה מדף מפוקפק אל<br /><b>%1</b><br />  נדחתה.</qt>"
 
 #: khtml_part.cpp:7047
 #, kde-format
 msgid "Security Alert"
-msgstr "אזעקת אבטחה"
+msgstr "התראת אבטחה"
 
 #: khtml_part.cpp:7417
 #, kde-format
 msgid "The wallet '%1' is open and being used for form data and passwords."
-msgstr "הארנק \"%1\" פתוח ומשמש למילוי סיסמאות ונתונים בטפסים."
+msgstr "הארנק ‚%1’ פתוח ומשמש למילוי סיסמאות ונתונים בטפסים."
 
 #: khtml_part.cpp:7476
 #, kde-format
 msgid "&Close Wallet"
-msgstr "&סגור ארנק"
+msgstr "&סגירת הארנק"
 
 #: khtml_part.cpp:7479
 #, kde-format
 msgid "&Allow storing passwords for this site"
-msgstr "&אפשר שמירת סיסמאות לאתר זה"
+msgstr "ל&אפשר אחסון סיסמאות לאתר זה"
 
 #: khtml_part.cpp:7484
 #, kde-format
 msgid "Remove password for form %1"
-msgstr "הסר סיסמה משדה %1"
+msgstr "הסרת סיסמה משדה %1"
 
 #: khtml_part.cpp:7599
 #, kde-format
 msgid "JavaScript &Debugger"
-msgstr "&מנפה באגים ב־JavaScript"
+msgstr "מ&נפה תקלות ב־JavaScript"
 
 #: khtml_part.cpp:7632
 #, kde-format
@@ -1275,7 +1275,7 @@ msgstr "דף זה לא הורשה לפתוח חלון חדש באמצעות Java
 #: khtml_part.cpp:7638
 #, kde-format
 msgid "Popup Window Blocked"
-msgstr "נחסם חלון קופץ"
+msgstr "חלון קופץ נחסם"
 
 #: khtml_part.cpp:7638
 #, kde-format
@@ -1285,25 +1285,25 @@ msgid ""
 "or to open the popup."
 msgstr ""
 "אתר זה ניסה לפתוח חלון מוקפץ, אך הוא נחסם.\n"
-"באפשרותך ללחוץ על הסמל בשורת המצב כדי להתאים אופן פעולה זה\n"
+"אפשר ללחוץ על הסמל בשורת המצב כדי להתאים אופן פעולה זה\n"
 "או כדי לפתוח את החלון המוקפץ."
 
 #: khtml_part.cpp:7652
 #, kde-format
 msgid "&Show Blocked Popup Window"
 msgid_plural "&Show %1 Blocked Popup Windows"
-msgstr[0] "הצג &חלון מוקפץ שנחסם"
-msgstr[1] "הצג %1 &חלונות מוקפצים שנחסמו"
+msgstr[0] "הצגת &חלון מוקפץ שנחסם"
+msgstr[1] "הצגת %1 &חלונות מוקפצים שנחסמו"
 
 #: khtml_part.cpp:7654
 #, kde-format
 msgid "Show Blocked Window Passive Popup &Notification"
-msgstr "ה&צג הודעה מוקפצת פסיבית לגבי חסימת חלונות קופצים"
+msgstr "הצגת הודעה קופצת &פסיבית מהחלון שנחסם"
 
 #: khtml_part.cpp:7656
 #, kde-format
 msgid "&Configure JavaScript New Window Policies..."
-msgstr "&הגדרות מדיניות חלונות חדשים של JavaScript..."
+msgstr "ה&גדרות מדיניות חלונות חדשים של JavaScript…"
 
 #: khtml_printsettings.cpp:30
 #, kde-format
@@ -1314,9 +1314,9 @@ msgid ""
 "of the HTML page will be printed, without the included images. Printing will "
 "be faster and use less ink or toner.</p> </qt>"
 msgstr ""
-"<qt><p>\"הדפס תמונות\"<strong></strong></p> <p> אם תיבה זו מסומנת תמונות "
-"המוכלת הדף ה־‎ׁHTML יודפסו.  ייתכן הדפסה של תמונות תשתמש ביותר טונר או דיו.</"
-"p><p> אם תיבה זו לא מסומנת, רק טקסט של הדף יודפס, ללא התמונות המוכלות. "
+"<qt><p>‚הדפסת תמונות’<strong></strong></p> <p> אם תיבה זו מסומנת תמונות "
+"המוכלות בדף ה־‎ׁHTML יודפסו. הדפסת תמונות תהיה איטית ותשתמש ביותר טונר או דיו."
+"</p><p> אם תיבה זו לא מסומנת, רק טקסט של הדף יודפס, ללא התמונות המוכלות. "
 "ההדפסה תהיה מהירה יותר ותשתמש בפחות דיו או טונר. </p></qt> "
 
 #: khtml_printsettings.cpp:42
@@ -1328,10 +1328,10 @@ msgid ""
 "printed page and the page number.</p><p>If this checkbox is disabled, the "
 "printout of the HTML document will not contain such a header line.</p> </qt>"
 msgstr ""
-"<qt><p>\"הדפס כותבת\"<strong></strong> </p> אם תיבה זו מסומנת ההדפסה של מסמך "
-"ה־HTML תכיל את שורת הכותבת בראשית כל דף. הכותרת מכילה את התאריך הנוכחי, "
+"<qt><p>‚הדפסת כותרת’<strong></strong> </p> אם תיבה זו מסומנת ההדפסה של מסמך "
+"ה־HTML תכיל את שורת הכותרת בראשית כל דף. הכותרת מכילה את התאריך הנוכחי, "
 "כתובת האינטרנט של הדף המודפס ומספר הדף.<p> </p> <p> אם תיבה זו לא מסומנת, "
-"ההדפסה של מסמך ה־HTML לא תכיל את שורת הכותבת הנ\"ל. </p></qt>"
+"ההדפסה של מסמך ה־HTML לא תכיל את שורת הכותרת הנ״ל. </p></qt>"
 
 #: khtml_printsettings.cpp:55
 #, kde-format
@@ -1345,13 +1345,12 @@ msgid ""
 "grayscale, if you use a black+white printer). Printout will possibly happen "
 "more slowly and will probably use more toner or ink.</p> </qt>"
 msgstr ""
-"<qt><p><strong>\"מצב ידידותי למדפסת\"</strong></p><p>אם תיבה זו מסומנת, "
-"ההדפסה של ה־HTML תהיה שחור לבן בלבד, וכל הרקע יהפוך ללבן. הדפסה זו תהיה "
-"מהירה יותר ותשתמש בפחות דיו או טונר.</p><p> אם תיבה זו לא מסומנת, ההדפסה של "
-"מסמך ה־HTML תהיה דומה למקור וכל הצבעים יודפסו כפי שאתה רואה ביישום. ייתכן "
-"וזה יגרום לאזורים גדולים של דפים להיות צבועים בצבע (או אפור אם אתה משתמש "
-"במדפסת שחור לבן). הדפסה כזאת כנראה תהיה אטית יותר ותשתמש ביותר דיו או טונר.</"
-"p></qt>"
+"<qt><p><strong>‚מצב ידידותי למדפסת’</strong></p><p>אם תיבה זו מסומנת, ההדפסה "
+"של ה־HTML תהיה בשחור לבן בלבד, וכל הרקע יהפוך ללבן. הדפסה זו תהיה מהירה יותר "
+"ותשתמש בפחות דיו או טונר.</p><p> אם תיבה זו לא מסומנת, ההדפסה של מסמך ה־HTML "
+"תהיה דומה למקור וכל הצבעים יודפסו כפי שהם מופיעים ביישום. זה עלול לגרום "
+"לאזורים גדולים של דפים להיות צבועים בצבע (או אפור עם מדפסת שחור לבן). הדפסה "
+"כזאת כנראה תהיה איטית יותר ותשתמש ביותר דיו או טונר.</p></qt>"
 
 #: khtml_printsettings.cpp:70
 #, kde-format
@@ -1366,12 +1365,12 @@ msgstr "מצב ידידותי למדפסת (טקסט שחור, בלי רקע)"
 #: khtml_printsettings.cpp:75
 #, kde-format
 msgid "Print images"
-msgstr "הדפס תמונות"
+msgstr "הדפסת תמונות"
 
 #: khtml_printsettings.cpp:78
 #, kde-format
 msgid "Print header"
-msgstr "הדפס כותרת"
+msgstr "הדפסת כותרת"
 
 #: khtml_settings.cpp:906
 #, kde-format
@@ -1384,9 +1383,9 @@ msgid "Inactive"
 msgstr "לא פעיל"
 
 #: khtmlimage.cpp:49
-#, fuzzy, kde-format
+#, kde-format
 msgid "KHTML Image"
-msgstr "KHTML"
+msgstr "תמונת KHTML"
 
 #: khtmlimage.cpp:195
 #, kde-format
@@ -1421,7 +1420,7 @@ msgstr "מקשי הנגישות הופעלו"
 #: kjserrordlg.cpp:9
 #, kde-format
 msgid "C&lear"
-msgstr "נ&קה"
+msgstr "ני&קוי"
 
 #. i18n: ectx: property (windowTitle), widget (QDialog, KJSErrorDlgBase)
 #: kjserrordlgbase.ui:15
@@ -1431,15 +1430,7 @@ msgstr "שגיאות JavaScript"
 
 #. i18n: ectx: property (whatsThis), widget (QDialog, KJSErrorDlgBase)
 #: kjserrordlgbase.ui:18
-#, fuzzy, kde-format
-#| msgid ""
-#| "This dialog provides you with notification and details of scripting "
-#| "errors that occur on web pages.  In many cases it is due to an error in "
-#| "the web site as designed by its author.  In other cases it is the result "
-#| "of a programming error in Konqueror.  If you suspect the former, please "
-#| "contact the webmaster of the site in question.  Conversely if you suspect "
-#| "an error in Konqueror, please file a bug report at http://bugs.kde.org/.  "
-#| "A test case which illustrates the problem will be appreciated."
+#, kde-format
 msgid ""
 "This dialog provides you with notification and details of scripting errors "
 "that occur on web pages.  In many cases it is due to an error in the web "
@@ -1449,17 +1440,16 @@ msgid ""
 "in Konqueror, please file a bug report at https://bugs.kde.org/.  A test "
 "case which illustrates the problem will be appreciated."
 msgstr ""
-"דו־שיח זה מיידע אותך ומספק לך פרטים לגבי שגיאות תסריטים בדפי אינטרנט. במקרים "
-"רבים הדבר נגרם בעקבות שגיאה באתר האינטרנט כפי שהוא תוכנן על ידי כותב האתר. "
-"במקרים אחר מדובר בשגיאה כתוצאה משגיאת תיכנות ב־Konqueror. אם אתה חושד "
-"שהאפשרות הראשונה היא הסבירה, צור קשר עם מנהל האתר המדובר. אם, לעומת זאת, אתה "
-"חושד שמדובר על שגיאה ב־Konqueror, דווח על באג ב־http://bugs.kde.org/‎. נשמח "
-"מאוד לקבל מקרה מבחן שממחיש את הבעיה."
+"החלונית הזאת מספקת לך התראה ופרטים על שגיאות סקריפטים שקורות באתרי אינטרנט. "
+"במקרים רבים בעקבות שגיאה באתר כפי שתוכנן על ידי יוצריו. במקרים אחרים כתוצאה "
+"מתקלת פיתוח ב־Konqueror. אם יש לך חשד שמדובר במקרה הראשון כדאי ליצור קשר עם "
+"יוצרי האתר. אם החשד שלך פונה כלפי Konqueror, נא להגיש דיווח על תקלה תחת "
+"https://bugs.kde.org/. רצוי לציין צעדים לשחזור שידגימו איך הגעת לתקלה."
 
 #: kmultipart/httpfiltergzip.cpp:89
 #, kde-format
 msgid "Receiving corrupt data."
-msgstr ""
+msgstr "מתקבלים נתונים שגויים."
 
 #: kmultipart/kmultipart.cpp:39
 #, kde-format
@@ -1469,12 +1459,12 @@ msgstr "KMultiPart"
 #: kmultipart/kmultipart.cpp:41
 #, kde-format
 msgid "Embeddable component for multipart/mixed"
-msgstr "רכיב בר־שיבוץ עבור multipart/mixed"
+msgstr "רכיב שאפשר להטמיע עבור multipart/mixed (חלוקה/ערבוב)"
 
 #: kmultipart/kmultipart.cpp:43
-#, fuzzy, kde-format
+#, kde-format
 msgid "Copyright 2001-2011, David Faure <faure@kde.org>"
-msgstr "כל הזכויות שמורות 2001, David Faure ‏<email>faure@kde.org</email>"
+msgstr "כל הזכויות שמורות 2001‏-2011, דוד פור ‏<email>faure@kde.org</email>"
 
 #: kmultipart/kmultipart.cpp:335
 #, kde-format
@@ -1568,12 +1558,12 @@ msgstr "תאילנדי"
 #: rendering/media_controls.cpp:50
 #, kde-format
 msgid "Play"
-msgstr "נגן"
+msgstr "נגינה"
 
 #: rendering/media_controls.cpp:53
 #, kde-format
 msgid "Pause"
-msgstr "השהה"
+msgstr "השהיה"
 
 #: rendering/render_form.cpp:901
 #, kde-format
@@ -1603,12 +1593,12 @@ msgstr "קיצורי &כתובות:"
 #: rendering/render_form.cpp:1054
 #, kde-format
 msgid "Clear &History"
-msgstr "נקה &היסטוריה"
+msgstr "ניקוי &היסטוריה"
 
 #: rendering/render_form.cpp:1069
 #, kde-format
 msgid "Create Web Shortcut"
-msgstr "צור קישור אינטרנט"
+msgstr "יצירת קישור אינטרנט"
 
 #: ui/findbar/khtmlfindbar.cpp:49
 #, kde-format
@@ -1638,7 +1628,7 @@ msgstr "ביטוי ר&גולרי"
 #: ui/findbar/khtmlfindbar.cpp:59
 #, kde-format
 msgid "Find &links only"
-msgstr "חפש &קישורים בלבד"
+msgstr "איתור &קישורים בלבד"
 
 #: ui/findbar/khtmlfindbar.cpp:224
 #, kde-format
@@ -1648,13 +1638,13 @@ msgstr "לא נמצא"
 #: ui/findbar/khtmlfindbar.cpp:239
 #, kde-format
 msgid "No more matches for this search direction."
-msgstr "אין יותר התאמות עבור כיוון החיפוש הזה."
+msgstr "אין יותר תוצאות בכיוון החיפוש הזה."
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: ui/findbar/khtmlfindbar_base.ui:43
 #, kde-format
 msgid "F&ind:"
-msgstr "&חפש:"
+msgstr "&איתור:"
 
 #. i18n: ectx: property (text), widget (QToolButton, m_next)
 #: ui/findbar/khtmlfindbar_base.ui:75
@@ -1678,30 +1668,30 @@ msgstr "אפ&שרויות"
 #: ui/passwordbar/storepassbar.cpp:59 ui/passwordbar/storepassbar_base.ui:39
 #, kde-format
 msgid "Do you want to store this password?"
-msgstr "האם אתה מעוניין לשמור ססמה זו?"
+msgstr "לאחסן סיסמה זו?"
 
 #: ui/passwordbar/storepassbar.cpp:61
 #, kde-format
 msgid "Do you want to store this password for %1?"
-msgstr "האם אתה מעוניין לשמור סיסמה זו ל%1?"
+msgstr "לאחסן סיסמה זו עבור %1?"
 
 #. i18n: ectx: property (text), widget (QToolButton, m_store)
 #: ui/passwordbar/storepassbar_base.ui:59
 #, kde-format
 msgid "&Store"
-msgstr "&שמור"
+msgstr "&אחסון"
 
 #. i18n: ectx: property (text), widget (QToolButton, m_neverForThisSite)
 #: ui/passwordbar/storepassbar_base.ui:69
 #, kde-format
 msgid "Ne&ver store for this site"
-msgstr "&לעולם לא לשמור ססמאות עבור אתר זה"
+msgstr "&לעולם לא לשמור סיסמאות לאתר זה"
 
 #. i18n: ectx: property (text), widget (QToolButton, m_doNotStore)
 #: ui/passwordbar/storepassbar_base.ui:79
 #, kde-format
 msgid "Do &not store this time"
-msgstr "אל &תשמור הפעם"
+msgstr "לא &לשמור הפעם"
 
 #: xml/dom_docimpl.cpp:2376
 #, kde-format
@@ -1716,12 +1706,12 @@ msgstr "המסמך אינו בתבנית הקובץ הנכונה"
 #: xml/xml_tokenizer.cpp:352
 #, kde-format
 msgid "fatal parsing error: %1 in line %2, column %3"
-msgstr "שגיאת פירוק קריטית: %1 בשורה %2, עמודה %3"
+msgstr "שגיאת פירוק מכרעת: %1 בשורה %2, עמודה %3"
 
 #: xml/xml_tokenizer.cpp:567
 #, kde-format
 msgid "XML parsing error"
-msgstr "שגיאת פירוש XML"
+msgstr "שגיאת פירוק XML"
 
 #~ msgid "Error"
 #~ msgstr "שגיאה"
