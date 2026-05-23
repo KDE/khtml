@@ -1,5 +1,5 @@
 maintainer: sandsmark
-description: KHTML APIs
+description: TML HTML Rendering Engine APIs
 tier: 3
 type: solution
 platforms:
@@ -11,9 +11,9 @@ portingAid: true
 deprecated: true
 release: true
 libraries:
- - qmake: KHtml
-   cmake: "KF5::KHtml"
-cmakename: KF5KHtml
+ - qmake: TML
+   cmake: "KF5::TML"
+cmakename: KF5TML
 
 public_lib: true
 group: Frameworks

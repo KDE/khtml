@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 set(KF_VERSION "5.117.0") # handled by release scripts
 set(KF_DEP_VERSION "5.116.0") # handled by release scripts
-project(KHtml VERSION ${KF_VERSION})
+project(TML VERSION ${KF_VERSION})
 
 include(FeatureSummary)
 find_package(ECM 5.116.0  NO_MODULE)
@@ -48,9 +48,9 @@ endif()
 
 set(HAVE_KGLOBALACCEL ${KF5GlobalAccel_FOUND})
 
-ecm_setup_version(PROJECT VARIABLE_PREFIX KHTML
-                        VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/khtml_version.h"
-                        PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF5KHtmlConfigVersion.cmake"
+ecm_setup_version(PROJECT VARIABLE_PREFIX TML
+                        VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/tml_version.h"
+                        PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF5TMLConfigVersion.cmake"
                         SOVERSION 5)
 
 find_package(Perl)
@@ -114,7 +114,7 @@ add_definitions(-DENABLE_SVG)
 add_definitions(-DENABLE_SVG_FONTS)
 add_definitions(-DWTF_PLATFORM_QT)
 
-# avoid warning for "this use of "defined" may not be portable" for all the #if PLATFORM(Foo)
+# avoid warning for "this use of \"defined\" may not be portable" for all the #if PLATFORM(Foo)
 set(_flag "-Wno-expansion-to-defined")
 check_cxx_compiler_flag(${_flag} _flag_present)
 if(_flag_present)
@@ -122,10 +122,10 @@ if(_flag_present)
 endif()
 
 
-set(KHTML_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
-set(KHTML_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/src)
+set(TML_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
+set(TML_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/src)
 
-add_definitions(-DTRANSLATION_DOMAIN=\"khtml5\")
+add_definitions(-DTRANSLATION_DOMAIN=\"tml5\")
 ki18n_install(po)
 add_subdirectory(src)
 if(BUILD_TESTING)
@@ -134,28 +134,28 @@ if(BUILD_TESTING)
 endif()
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
-set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF5KHtml")
+set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF5TML")
 
 include(CMakePackageConfigHelpers)
 
 configure_package_config_file(
-  "${CMAKE_CURRENT_SOURCE_DIR}/KF5KHtmlConfig.cmake.in"
-  "${CMAKE_CURRENT_BINARY_DIR}/KF5KHtmlConfig.cmake"
+  "${CMAKE_CURRENT_SOURCE_DIR}/KF5TMLConfig.cmake.in"
+  "${CMAKE_CURRENT_BINARY_DIR}/KF5TMLConfig.cmake"
   INSTALL_DESTINATION  ${CMAKECONFIG_INSTALL_DIR}
 )
 
 install(FILES
-  "${CMAKE_CURRENT_BINARY_DIR}/KF5KHtmlConfig.cmake"
-  "${CMAKE_CURRENT_BINARY_DIR}/KF5KHtmlConfigVersion.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/KF5TMLConfig.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/KF5TMLConfigVersion.cmake"
   DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
   COMPONENT Devel
 )
 
-install(EXPORT KF5KHtmlTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}" FILE KF5KHtmlTargets.cmake NAMESPACE KF5:: )
+install(EXPORT KF5TMLTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}" FILE KF5TMLTargets.cmake NAMESPACE KF5:: )
 
 install(FILES
-  ${CMAKE_CURRENT_BINARY_DIR}/khtml_version.h
-  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KHtml COMPONENT Devel
+  ${CMAKE_CURRENT_BINARY_DIR}/tml_version.h
+  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/TML COMPONENT Devel
 )
 
 feature_summary(WHAT ALL   FATAL_ON_MISSING_REQUIRED_PACKAGES)
